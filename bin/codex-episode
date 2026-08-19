@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+# Start or resume one bounded client-native autoresearch episode on Sherlock.
+# This wrapper only starts Codex. It reads the local Git contract pin, but never
+# mutates MCP, Slurm, or Git state.
+
+set -euo pipefail
+
+usage() {
+  printf '%s\n' >&2 \
+    'Usage:' \
+    '  bin/codex-episode launch <episode-dir>' \
+    '  bin/codex-episode resume <episode-dir> <codex-session-id>' \
+    '' \
+    'The episode directory must be a direct child of this project root and contain:' \
+    'GOAL.md, DATASETS.md, inputs/, and outputs/'
+  exit 2
+}
+
+error() {
+  printf 'codex-episode: %s\n' "$*" >&2
+  exit 2
+}
+
+[[ $# -ge 2 ]] || usage
+
+mode=$1
+shift
+case "$mode" in
+  launch|resume) ;;
+  *) usage ;;
+esac
+
+episode_arg=$1
+shift
+
+session_id=""
+if [[ "$mode" == "resume" ]]; then
+  [[ $# -ge 1 ]] || error "resume requires an explicit Codex session id"
+  session_id=$1
+  shift
+  [[ -n "$session_id" ]] || error "resume requires an explicit Codex session id"
+  [[ "$session_id" != -* ]] || error "resume requires an explicit session id, not a selector"
+  [[ "$session_id" != *$'\n'* ]] || error "resume session id must be one line"
+fi
+[[ $# -eq 0 ]] || usage
+
+root_dir=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+[[ -f "$root_dir/.codex/config.toml" ]] || error "missing project MCP configuration"
+[[ -f "$root_dir/.agents/skills/brain-autoresearch-loop/SKILL.md" ]] || \
+  error "missing project-local brain-autoresearch-loop skill"
+if [[ "$episode_arg" == /* ]]; then
+  episode_candidate=$episode_arg
+else
+  episode_candidate="$root_dir/$episode_arg"
+fi
+[[ -d "$episode_candidate" ]] || error "episode directory does not exist: $episode_candidate"
+episode_dir=$(cd -P -- "$episode_candidate" && pwd)
+[[ $(dirname -- "$episode_dir") == "$root_dir" ]] || \
+  error "episode must be a direct child of $root_dir"
+
+for required in GOAL.md DATASETS.md; do
+  [[ -f "$episode_dir/$required" ]] || error "missing $required in $episode_dir"
+done
+for required in inputs outputs; do
+  [[ -d "$episode_dir/$required" ]] || error "missing $required/ in $episode_dir"
+done
+
+[[ ! -L "$episode_dir/outputs" ]] || error "outputs/ must not be a symlink"
+outputs_dir=$(cd -P -- "$episode_dir/outputs" && pwd)
+[[ "$outputs_dir" == "$episode_dir/outputs" ]] || error "outputs/ must remain inside the episode"
+
+control_dir="$outputs_dir/.codex-episode"
+lock_file="$outputs_dir/.codex-episode.lock"
+[[ ! -L "$control_dir" ]] || error "local Codex control directory must not be a symlink"
+[[ ! -L "$lock_file" ]] || error "local Codex lock must not be a symlink"
+
+if [[ "$mode" == "launch" && -e "$episode_dir/outputs/candidate_bundle.json" ]]; then
+  error "launch refuses an episode that already has outputs/candidate_bundle.json; use resume"
+fi
+if [[ "$mode" == "launch" && -e "$control_dir" ]]; then
+  error "episode was already launched locally; use resume with its explicit session id"
+fi
+
+[[ -n ${BR_MCP_TOKEN:-} ]] || error "BR_MCP_TOKEN must be set for the project MCP configuration"
+[[ -n ${SCRATCH:-} ]] || error "SCRATCH must be set on Sherlock"
+[[ "$SCRATCH" == /* ]] || error "SCRATCH must be an absolute path"
+[[ -d "$SCRATCH" && -w "$SCRATCH" ]] || error "SCRATCH must already exist and be writable"
+command -v codex >/dev/null 2>&1 || error "codex is not on PATH"
+command -v flock >/dev/null 2>&1 || error "flock is required for episode session isolation"
+
+episode_name=$(basename -- "$episode_dir")
+scratch_root=$(cd -P -- "$SCRATCH" && pwd)
+[[ "$scratch_root" != "/" ]] || error "SCRATCH must not resolve to filesystem root"
+case "$scratch_root/" in
+  "$root_dir"/*) error "SCRATCH must not resolve inside the OAK project" ;;
+esac
+scratch_parent="$scratch_root/autoresearch"
+mkdir -p -- "$scratch_parent"
+scratch_parent=$(cd -P -- "$scratch_parent" && pwd)
+case "$scratch_parent/" in
+  "$scratch_root"/*) ;;
+  *) error "autoresearch scratch parent escaped SCRATCH" ;;
+esac
+scratch_dir="$scratch_parent/$episode_name"
+mkdir -- "$scratch_dir" 2>/dev/null || [[ -d "$scratch_dir" ]] || \
+  error "could not create episode scratch directory"
+scratch_dir=$(cd -P -- "$scratch_dir" && pwd)
+case "$scratch_dir/" in
+  "$scratch_root"/*) ;;
+  *) error "episode scratch directory escaped SCRATCH" ;;
+esac
+
+exec 9>"$lock_file"
+flock -n 9 || error "another Codex process is already active for $episode_name"
+
+contract_commit=""
+if [[ "$mode" == "launch" ]]; then
+  git_root=$(git -C "$root_dir" rev-parse --show-toplevel 2>/dev/null) || \
+    error "launch requires $root_dir to be a Git worktree"
+  git_root=$(cd -P -- "$git_root" && pwd)
+  [[ "$git_root" == "$root_dir" ]] || error "launch requires $root_dir to be the Git worktree root"
+
+  contract_commit=$(git -C "$root_dir" rev-parse HEAD 2>/dev/null) || \
+    error "launch requires a committed Git HEAD"
+  goal_rel="$episode_name/GOAL.md"
+  datasets_rel="$episode_name/DATASETS.md"
+  for contract_file in "$goal_rel" "$datasets_rel"; do
+    [[ ! -L "$root_dir/$contract_file" ]] || \
+      error "launch requires $contract_file to be a regular tracked file, not a symlink"
+    git -C "$root_dir" ls-files --error-unmatch -- "$contract_file" >/dev/null 2>&1 || \
+      error "launch requires $contract_file to be tracked at HEAD"
+    git -C "$root_dir" diff --quiet -- "$contract_file" || \
+      error "launch requires $contract_file to be clean in the working tree"
+    git -C "$root_dir" diff --cached --quiet -- "$contract_file" || \
+      error "launch requires $contract_file to be clean in the index"
+  done
+fi
+
+launch_prompt() {
+  printf '%s\n' \
+    '$brain-autoresearch-loop' \
+    '' \
+    "Launch Autoresearch Goal for $episode_name." \
+    '' \
+    "This command grants bounded client-native candidate discovery for $episode_dir only; it is not confirmation, publication, reward, or Landscape-transition authority." \
+    "The local immutable contract is pinned at Git commit $contract_commit for tracked, clean GOAL.md and DATASETS.md." \
+    "Read the root AGENTS.md, CAMPAIGN.md, LANDSCAPE.md, QUESTIONS.md, and this episode's GOAL.md and DATASETS.md before acting." \
+    "During outcome-blind episode design, optionally inspect clearly named Landscape or Self-evolvable Questions JSON already present under inputs/. If none are present, readable, or relevant, continue without them. Use them only for candidate recall, novelty, rival/control ideas, and claim boundaries; never treat them as evidence, Society decisions, typed idea-source lineage, or launch authority." \
+    "Treat inputs/ as read-only. Write new scientific artifacts only under $episode_dir/outputs/. Initialize and maintain the seven outputs Markdown projections required by the project-local skill." \
+    "Use $scratch_dir for transient work and Slurm for expensive computation. Query the configured Brain Researcher MCP service for canonical state and follow the skill's gates." \
+    "Do not modify sibling episodes or root campaign documents, replay stale actions, record reward, approve confirmation, launch canonical execution, or apply a Landscape transition. Stop at the appropriate canonical gate and report the next action."
+}
+
+resume_prompt() {
+  printf '%s\n' \
+    '$brain-autoresearch-loop' \
+    '' \
+    "Resume the existing autoresearch work for $episode_name. This is not authorization to create a new goal, new episode, confirmation run, reward, or scientific transition." \
+    "First query the configured Brain Researcher MCP service for the live canonical state. Do not reuse cached or expired actions from local notes or an old terminal." \
+    "Keep the episode boundary: inputs/ is read-only; new scientific artifacts and the seven required Markdown projections belong only in $episode_dir/outputs/. Use $scratch_dir for transient work and Slurm for expensive computation." \
+    "Do not modify sibling episodes or root campaign documents. Continue only work permitted by the current canonical state, then stop at the next human or canonical gate."
+}
+
+common_args=(
+  --cd "$episode_dir"
+  --add-dir "$scratch_dir"
+  --sandbox workspace-write
+  --ask-for-approval on-request
+)
+if [[ -n ${BR_AUTORESEARCH_CODEX_MODEL:-} ]]; then
+  common_args+=(--model "$BR_AUTORESEARCH_CODEX_MODEL")
+fi
+
+if [[ "$mode" == "launch" ]]; then
+  mkdir -- "$control_dir" || error "episode was already launched locally; use resume"
+  prompt=$(launch_prompt)
+  codex "${common_args[@]}" "$prompt"
+  exit $?
+fi
+
+if [[ -e "$control_dir" && ! -d "$control_dir" ]]; then
+  error "local Codex control path is not a directory"
+fi
+mkdir -p -- "$control_dir"
+session_binding="$control_dir/session_id"
+[[ ! -L "$session_binding" ]] || error "local Codex session binding must not be a symlink"
+if [[ -e "$session_binding" && ! -f "$session_binding" ]]; then
+  error "local Codex session binding must be a regular file"
+fi
+if [[ -f "$session_binding" ]]; then
+  IFS= read -r bound_session_id < "$session_binding" || \
+    error "local Codex session binding is empty or unreadable"
+  [[ -n "$bound_session_id" ]] || error "local Codex session binding is empty"
+  [[ "$bound_session_id" == "$session_id" ]] || \
+    error "episode is bound to a different Codex session id"
+else
+  bind_after_success=true
+fi
+
+prompt=$(resume_prompt)
+set +e
+codex resume "${common_args[@]}" "$session_id" "$prompt"
+resume_status=$?
+set -e
+if [[ $resume_status -eq 0 && ${bind_after_success:-false} == true ]]; then
+  printf '%s\n' "$session_id" > "$session_binding"
+fi
+exit "$resume_status"

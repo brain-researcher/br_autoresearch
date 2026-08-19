@@ -1,0 +1,65 @@
+{
+  "confirmation_eligible": false,
+  "confirmation_requirement": "independent_fresh_confirmation_required",
+  "controls": [
+    "EI and ER task-version strata analyzed separately as internal controls.",
+    "Equal-run and 0.1st-percentile-stabilized inverse-variance aggregation.",
+    "Outcome-blind core/periphery masks, deterministic split halves, leave-one-subject-out guard, and fixed BH-FDR/top-|t| comparison."
+  ],
+  "development_summary": "The frozen hierarchy selected `residual_substantive_spatial_sensitivity` as one reproducible exploratory methods candidate. Here, substantive means a material spatial sensitivity to the analysis choice, not a biological mechanism. This is an internal ds001734 result, not independent confirmation. All frozen tables, controls, and decision booleans were generated from 108 source-derived subject checkpoints.",
+  "deviations": [
+    "Before neural outcome access, the initial 100%-coverage core failed its feasibility guard; the contract was transparently versioned and re-frozen using one erosion of the fixed common mask without changing endpoints or SESOIs.",
+    "The first aggregation submission requested 96 GB and was canceled at zero runtime when partition scheduling translated it into a 13-CPU allocation; it was resubmitted at a measured-safe 24 GB and 4 CPUs without changing analysis code or endpoints."
+  ],
+  "failed_attempts": [
+    "pytest was unavailable; six test functions were invoked directly and passed without dependency changes.",
+    "Pilot Slurm job 39400893 stopped before checkpoint creation because one run omitted optional trial_type.missed; the design-preservation implementation was repaired and the same subject retried.",
+    "Aggregation job 39502592 stopped at the prespecified affine negative control because an algebraically equivalent 1-r-squared residual suffered catastrophic cancellation; direct OLS-residual evaluation passed the unchanged control on retry 39502945."
+  ],
+  "falsifier": "Any required contrast, task-version, bootstrap interval, split-half direction, negative control, or leave-one-subject-out condition in the frozen residual_substantive_spatial_sensitivity rule fails.",
+  "hypothesis": "The large smoothing contribution persists as spatial-pattern sensitivity after scale alignment, core restriction, and non-extreme aggregation.",
+  "isolation_assurance": "client_unattested",
+  "limitations": [
+    "Every result is exploratory-only within ds001734 and is not independent confirmation.",
+    "EI and ER are task versions with different gain support; stratum results are associative internal controls.",
+    "The analysis isolates one C1 model and two smoothing endpoints; it does not estimate a universal smoothing effect or rerun the v1 multiverse.",
+    "Mask-core, 0.1st-percentile variance stabilization, and SESOI thresholds are method choices whose transportability requires fresh data.",
+    "BH-FDR q=0.05 is a secondary fixed stability readout, not a primary inferential family across tests."
+  ],
+  "output_artifacts": [
+    "outputs/source_inventory.md",
+    "outputs/source_inventory.json",
+    "outputs/source_inventory_runs.tsv",
+    "outputs/mechanism_selection.md",
+    "outputs/frozen_successor_contract.md",
+    "outputs/frozen_successor_contract.json",
+    "outputs/mask_summary.json",
+    "outputs/common_analysis_mask.nii.gz",
+    "outputs/core_analysis_mask.nii.gz",
+    "outputs/periphery_analysis_mask.nii.gz",
+    "outputs/analysis_manifest.tsv",
+    "outputs/mechanism_results.tsv",
+    "outputs/threshold_stability.tsv",
+    "outputs/robustness_results.tsv",
+    "outputs/decision.json",
+    "outputs/figures/mechanism_summary.png",
+    "outputs/RESULT.md",
+    "outputs/code/inventory_sources.py",
+    "outputs/code/build_masks.py",
+    "outputs/code/fit_subject.py",
+    "outputs/code/fit_subjects.sbatch",
+    "outputs/code/aggregate_results.py",
+    "outputs/code/aggregate_results.sbatch",
+    "outputs/code/finalize_results.py",
+    "outputs/tests/test_pipeline_math.py",
+    "outputs/experiment_log.md"
+  ],
+  "prediction": "The complete frozen rule for residual_substantive_spatial_sensitivity passes for gain and loss, EI and ER controls, split halves, and leave-one-subject-out guard.",
+  "primary_test": "The two-test C1 S0-versus-S8 frozen mechanism decomposition in outputs/frozen_successor_contract.json.",
+  "reproduction": "On Sherlock, load python/3.12.1, build masks, run outputs/code/fit_subjects.sbatch, then outputs/code/aggregate_results.sbatch and outputs/code/finalize_results.py. See outputs/RESULT.md for exact commands.",
+  "research_question": "Why did v1 attribute approximately 89.5% of continuous gain- and loss-map variation to smoothing: amplitude/shape, mask-edge/weighting, task-version/sample composition, substantive spatial sensitivity, or a continuous-threshold disconnect?",
+  "schema_version": "br.autoresearch_goal_candidate_bundle.v1",
+  "scientific_acceptance": false,
+  "scientific_status": "exploratory_only",
+  "terminal_status": "candidate_ready"
+}

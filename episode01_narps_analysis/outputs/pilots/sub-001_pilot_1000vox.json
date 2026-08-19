@@ -1,0 +1,53 @@
+{
+  "chunk_voxels": 1000,
+  "confounds": [
+    "C0"
+  ],
+  "contrasts": [
+    "gain_demean",
+    "loss_demean"
+  ],
+  "effect_summary": {
+    "max": 1.4849334955215454,
+    "mean": 0.007852930575609207,
+    "min": -0.31447410583496094
+  },
+  "elapsed_seconds": 12.404533624649048,
+  "mask_sha256": "3f52df0149a6cfd55c7bda38de8fd63d7af9148047945320facd107ccf360252",
+  "maxrss_gib": 3.7987518310546875,
+  "n_jobs": 1,
+  "n_voxels": 1000,
+  "nilearn_ar1_bins": 100,
+  "pilot": true,
+  "pilot_voxels": 1000,
+  "run_records": [
+    {
+      "confound": "C0",
+      "fit_seconds": 0.48099589347839355,
+      "maxrss_gib": 3.7987518310546875,
+      "run": 1,
+      "smoothing": "S0"
+    }
+  ],
+  "runs": [
+    1
+  ],
+  "schema_version": "narps.subject_fixed_effects.v1",
+  "smoothings": [
+    "S0"
+  ],
+  "software": {
+    "nibabel": "5.4.2",
+    "nilearn": "0.14.0",
+    "numpy": "2.2.6",
+    "pandas": "2.3.2",
+    "platform": "Linux-3.10.0-1160.144.1.el7.tuxcare.els6.x86_64-x86_64-with-glibc2.17",
+    "python": "3.12.1 (main, Jan 12 2024, 16:49:08) [GCC 12.1.0]"
+  },
+  "subject": "sub-001",
+  "variance_summary": {
+    "max": 1.2738194465637207,
+    "mean": 0.0032712360844016075,
+    "min": 0.00011384819663362578
+  }
+}

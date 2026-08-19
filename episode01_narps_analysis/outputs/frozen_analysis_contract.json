@@ -1,0 +1,307 @@
+{
+  "schema_version": "narps.frozen_analysis_contract.v1",
+  "contract_status": "frozen_before_neural_outcome_access",
+  "frozen_at_utc": "2026-08-14T14:22:00Z",
+  "workspace": "/oak/stanford/groups/russpold/users/zijiao/NARPS",
+  "scientific_status": "exploratory_only",
+  "confirmation_eligible": false,
+  "scientific_acceptance": false,
+  "confirmation_requirement": "independent_fresh_confirmation_required",
+  "research_question": "Using public NARPS ds001734 data, are gain- and loss-related task-fMRI group effect maps more sensitive to confound handling and outcome-blind subject exclusion than to spatial smoothing?",
+  "claim_boundary": {
+    "independent_confirmation": false,
+    "biological_effect_claim_allowed": false,
+    "qc_causal_claim_allowed": false,
+    "ei_er_primary_contrast_allowed": false,
+    "interpretation": "All findings are exploratory analysis-choice attribution. QC differences are analysis-set/sample-composition sensitivity because all five strict exclusions are ER participants."
+  },
+  "source_scope": {
+    "raw_participants_events": "/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/input/ds001734",
+    "fmriprep_derivatives": "/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734/derivatives",
+    "fitlins_run_level_designs": "/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses/ds001734/task-MGT/node-runLevel",
+    "source_access": "read_only",
+    "artifact_root": "outputs/",
+    "expected_subjects": 108,
+    "expected_runs_per_subject": 4,
+    "expected_usable_runs": 432,
+    "task_versions": {
+      "equalIndifference": 54,
+      "equalRange": 54
+    },
+    "required_space": "MNI152NLin2009cAsym",
+    "required_resolution_mm": 2
+  },
+  "contrasts": [
+    "gain_demean",
+    "loss_demean"
+  ],
+  "technical_eligibility": {
+    "rule": "Both gain_demean and loss_demean must be estimable in each of all four runs under every frozen confound model.",
+    "full_design_rank_required": false,
+    "nuisance_rank_deficiency_alone_excludes_subject": false,
+    "failure_policy": "Do not alter a QC set. If a required frozen subject/run contrast is not estimable, terminate as technical_failure."
+  },
+  "qc_sets": {
+    "Q0_all": {
+      "n": 108,
+      "equalIndifference": 54,
+      "equalRange": 54,
+      "excluded": []
+    },
+    "Q1_lenient": {
+      "n": 106,
+      "equalIndifference": 54,
+      "equalRange": 52,
+      "criteria": {
+        "subject_weighted_mean_fd_max_mm": 0.30,
+        "each_run_proportion_fd_gt_0_5_max": 0.20
+      },
+      "excluded": [
+        "sub-030",
+        "sub-100"
+      ]
+    },
+    "Q2_strict": {
+      "n": 103,
+      "equalIndifference": 54,
+      "equalRange": 49,
+      "criteria": {
+        "must_satisfy": "Q1_lenient",
+        "subject_weighted_mean_fd_max_mm": 0.20,
+        "each_run_proportion_fd_gt_0_5_max": 0.10
+      },
+      "excluded": [
+        "sub-030",
+        "sub-100",
+        "sub-016",
+        "sub-018",
+        "sub-088"
+      ]
+    },
+    "required_nesting": "Q2_strict subset Q1_lenient subset Q0_all",
+    "fd_definition": {
+      "column": "framewise_displacement",
+      "drop_definition_driven_first_frame_nan": true,
+      "denominator": "all remaining defined frames",
+      "subject_mean": "frame-count-weighted across all four runs",
+      "require_all_four_runs": true,
+      "std_dvars": "diagnostic_only",
+      "volume_censoring": false
+    }
+  },
+  "confound_models": {
+    "C0": {
+      "motion": [
+        "trans_x",
+        "trans_y",
+        "trans_z",
+        "rot_x",
+        "rot_y",
+        "rot_z"
+      ],
+      "additional": "native run-specific cosine/DCT regressors",
+      "preserve": "unchanged task regressors and intercept"
+    },
+    "C1": {
+      "definition": "true_Friston24",
+      "terms": "six originals, six first temporal derivatives, six squared originals, and six squared derivatives",
+      "derivative_first_row": 0.0,
+      "term_count": 24,
+      "additional": "the same task, DCT, and intercept terms as C0",
+      "selector_name_trusted": false
+    },
+    "C2": {
+      "base": "C1",
+      "a_comp_cor": [
+        "a_comp_cor_00",
+        "a_comp_cor_01",
+        "a_comp_cor_02",
+        "a_comp_cor_03",
+        "a_comp_cor_04",
+        "a_comp_cor_05"
+      ],
+      "metadata_requirements": {
+        "Mask": "combined",
+        "Retained": true
+      },
+      "failure_policy": "technical_failure; do not substitute components"
+    },
+    "column_scaling": "native values; no nuisance z-scoring",
+    "nonfinite_policy": "Only the definition-driven first derivative row may be deterministically set to zero; any other nonfinite required value is a technical failure."
+  },
+  "smoothing_levels_fwhm_mm": {
+    "S0": 0,
+    "S1": 5,
+    "S2": 8
+  },
+  "frozen_grid": {
+    "axes": {
+      "confound": [
+        "C0",
+        "C1",
+        "C2"
+      ],
+      "qc": [
+        "Q0_all",
+        "Q1_lenient",
+        "Q2_strict"
+      ],
+      "smoothing": [
+        "S0",
+        "S1",
+        "S2"
+      ]
+    },
+    "cell_count_per_contrast": 27,
+    "required_complete_cells_per_contrast": 27,
+    "missing_cell_policy": "No imputation, omission, replacement, or reduced grid; any missing fitted cell yields technical_failure."
+  },
+  "first_level_model": {
+    "input": "fMRIPrep preprocessed BOLD in MNI152NLin2009cAsym 2 mm space",
+    "design": "Use the frozen FitLins run-level task regressors, native run-specific cosine/DCT regressors, and intercept; replace only the nuisance block with the requested C model.",
+    "smoothing": "Apply the cell's isotropic Gaussian FWHM to the 4D BOLD before GLM; S0 is unsmoothed.",
+    "estimator": "Nilearn first-level GLM with voxelwise AR(1) noise, drift_model=None because native DCT columns are explicit, standardize=False, and signal_scaling=0.",
+    "effect_units": "voxel time series scaled to mean 100; contrast estimates are percent-signal units per unchanged design-regressor unit",
+    "run_combination": "Combine four run contrast estimates within subject by inverse-variance fixed effects.",
+    "contrast_scaling": "Use the unchanged FitLins gain_demean or loss_demean contrast vector; never compare magnitudes between the two contrasts."
+  },
+  "common_analysis_mask": {
+    "outcome_blind": true,
+    "reference_grid": "lexicographically first Q0_all run brain mask in required space/resolution",
+    "resampling": "nearest-neighbor only when a run mask is not already on the reference grid",
+    "coverage_rule": "Include a voxel only when present in at least 95% of all 432 run masks and at least 95% of the 216 run masks in each task-version cohort.",
+    "postprocessing": "No erosion, dilation, hole filling, or outcome-based trimming.",
+    "validity_floor": "Mask must be nonempty and contain at least 50% of the median run-mask voxel count; otherwise technical_failure.",
+    "file": "outputs/common_analysis_mask.nii.gz",
+    "same_mask_all_cells_contrasts": true
+  },
+  "primary_estimand": {
+    "unit": "continuous unthresholded voxelwise group contrast-effect map",
+    "subject_unit": "four-run inverse-variance fixed-effect contrast map",
+    "group_model": "For each C x Q x S cell and contrast, fit subject-level OLS with an intercept and task-version code +0.5 for equalIndifference and -0.5 for equalRange.",
+    "map": "The group intercept, equal to the equally weighted mean of the two task-version cohort means regardless of cohort sample-size imbalance.",
+    "purpose": "analysis-choice sensitivity, not a primary EI-versus-ER contrast",
+    "normalization": "No per-cell spatial centering, z-scoring, winsorization, thresholding, or L2 normalization. Use the common mask and first-level percent-signal scaling exactly as defined.",
+    "voxel_weighting": "uniform over the frozen common mask"
+  },
+  "variance_decomposition": {
+    "method": "exact balanced functional ANOVA over the 27 group effect maps, performed separately for gain_demean and loss_demean",
+    "coding": "sum-to-zero marginal-mean decomposition",
+    "terms": [
+      "C",
+      "Q",
+      "S",
+      "C:Q",
+      "C:S",
+      "Q:S",
+      "C:Q:S"
+    ],
+    "sum_of_squares": "For each term, sum its orthogonal effect-map squares over all factor-level combinations with the appropriate replication multiplicity, then sum uniformly over mask voxels. The seven terms exactly partition total across-cell map sum of squares about the grand map.",
+    "factor_attribution": {
+      "method": "equal Shapley allocation of every interaction sum of squares to its participating factors",
+      "C": "SS_C + 0.5*SS_CQ + 0.5*SS_CS + (1/3)*SS_CQS",
+      "Q": "SS_Q + 0.5*SS_CQ + 0.5*SS_QS + (1/3)*SS_CQS",
+      "S": "SS_S + 0.5*SS_CS + 0.5*SS_QS + (1/3)*SS_CQS",
+      "shares": "divide each attributed value by total across-cell map sum of squares"
+    },
+    "primary_ratios": [
+      "attributed_C / attributed_S",
+      "attributed_Q / attributed_S",
+      "(attributed_C + attributed_Q) / attributed_S"
+    ],
+    "cell_independence_assumed": false,
+    "inferential_model_over_cells": false,
+    "material_interaction": "An interaction is material if its SS share is at least 0.05 of total across-cell SS; all interactions are reported regardless."
+  },
+  "uncertainty": {
+    "method": "paired cohort-stratified Bayesian bootstrap at the subject level",
+    "replicates": 2000,
+    "rng": "PCG64",
+    "seed": 20260815,
+    "weights": "Draw one iid Exp(1) weight per Q0_all subject per replicate; reuse that subject's weight for every C, Q, S, and contrast, and renormalize weights within each task-version cohort among subjects eligible for that Q set before taking the equally weighted two-cohort mean.",
+    "intervals": "percentile 95% intervals for shares and ordinary metrics; Bonferroni-simultaneous 97.5% intervals (1.25th to 98.75th percentiles) for the two primary C/S and Q/S ratios",
+    "voxelwise_inference": false
+  },
+  "continuous_comparison_metrics": {
+    "primary": "functional-ANOVA/Shapley attributed map variance and C/S and Q/S ratios",
+    "pairwise": [
+      "spatial Pearson correlation",
+      "cosine similarity",
+      "normalized root-mean-square difference"
+    ],
+    "normalized_rms_difference": "sqrt(mean((map_a-map_b)^2)) / sqrt(mean(map_reference^2)); the lexicographic C0-Q0-S0 map is the fixed reference within each contrast, and zero denominator is a technical failure",
+    "sign_agreement": "fraction of common-mask voxels with matching nonzero signs; descriptive only"
+  },
+  "secondary_bh_fdr": {
+    "q": 0.05,
+    "sidedness": "two-sided",
+    "family": "all common-mask voxels separately within each cell and contrast",
+    "group_statistic": "OLS t test of the task-version-adjusted group intercept with df = N_Q - 2",
+    "readouts": [
+      "number and proportion of BH-rejected voxels",
+      "positive/negative rejected-voxel counts",
+      "pairwise Jaccard stability of rejected sets",
+      "whether any rejection occurs"
+    ],
+    "role": "secondary conclusion-stability only",
+    "threshold_as_factor": false,
+    "threshold_tuning": false
+  },
+  "matched_size_random_deletion": {
+    "replicates": 1000,
+    "rng": "PCG64",
+    "seed": 20260814,
+    "transitions": {
+      "Q0_to_Q1": "For each replicate, remove a simple random sample without replacement of 0 EI and 2 ER subjects from Q0_all.",
+      "Q1_to_Q2": "For each replicate, remove a simple random sample without replacement of 0 EI and 3 ER subjects from Q1_lenient."
+    },
+    "reuse": "Reuse each replicate's exact sampled subject sets across all nine C x S cells and both contrasts.",
+    "metrics": [
+      "normalized root-mean-square map difference",
+      "one minus spatial Pearson correlation"
+    ],
+    "comparison": "For each transition, contrast, C, and S, compare the observed frozen-Q change with its matched-size random-deletion distribution; report median, 2.5/97.5 percentiles, observed-to-null-median ratio, and upper-tail empirical p=(1+#null>=observed)/1001.",
+    "interpretation": "sample-composition calibration only; not a causal estimate of QC"
+  },
+  "exploratory_diagnostic": {
+    "required": true,
+    "primary_choice": "Within the ER cohort, compute leave-one-out continuous-map influence (normalized RMS difference from the full ER map) for each of the five frozen excluded subjects, across C x S and both contrasts, and compare descriptively with retained ER subjects.",
+    "label": "exploratory_post_primary",
+    "may_modify_primary_analysis": false,
+    "ei_er_effects": "Any direct EI-versus-ER coefficient is task-version-associated and exploratory."
+  },
+  "decision_and_stop_rules": {
+    "full_objective_supported": "For at least one contrast, both attributed_C/attributed_S and attributed_Q/attributed_S must exceed 1.0 and the lower bound of each Bonferroni-simultaneous 97.5% Bayesian-bootstrap interval must exceed 1.0.",
+    "partial_patterns": "If only one ratio or only the combined (C+Q)/S ratio exceeds 1, report the exact pattern and do not state that both confound handling and exclusion are more influential than smoothing.",
+    "candidate_ready": "Allowed only after all 27 cells for both contrasts, both matched-size calibrations, all required outputs, and reproducibility checks complete, and the full_objective_supported rule is met with a specific prediction and falsifier.",
+    "closed_no_candidate": "Use when the complete analysis is valid but the candidate_ready rule is not met or the result is too unstable/informationally weak.",
+    "technical_failure": "Use when required data, combined retained aCompCor components, contrast estimability, common-mask validity, compute, or any complete-grid requirement fails. Do not relax or replace a frozen rule.",
+    "repair_policy": "Engineering repairs may correct code or resume computation only if they leave this contract byte-for-byte unchanged and are recorded as failed attempts/deviations.",
+    "outcome_adaptive_changes": false
+  },
+  "visualizations": {
+    "primary": [
+      "Shapley-attributed C/Q/S variance-share bars with uncertainty, faceted by contrast",
+      "27-cell continuous-map Pearson-correlation heatmaps, faceted by contrast"
+    ],
+    "secondary": [
+      "BH-FDR rejected-voxel count and Jaccard-stability panels",
+      "matched-size random-deletion calibration distributions with observed values"
+    ],
+    "exploratory": [
+      "excluded-subject ER influence diagnostic"
+    ]
+  },
+  "required_outputs": [
+    "outputs/frozen_analysis_contract.json",
+    "outputs/frozen_analysis_contract.md",
+    "outputs/qc_subject_sets.tsv",
+    "outputs/multiverse_manifest.tsv",
+    "outputs/variance_attribution.tsv",
+    "outputs/conclusion_stability.tsv",
+    "outputs/matched_n_calibration.tsv",
+    "outputs/figures/",
+    "outputs/RESULT.md",
+    "outputs/candidate_bundle.json"
+  ]
+}

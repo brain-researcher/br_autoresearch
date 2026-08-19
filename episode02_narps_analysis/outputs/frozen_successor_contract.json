@@ -1,0 +1,232 @@
+{
+  "schema_version": "narps.episode02.frozen_successor_contract.v2",
+  "contract_status": "refrozen_after_outcome_blind_mask_feasibility_repair_before_neural_outcome_access",
+  "frozen_at_utc": "2026-08-17T15:26:35Z",
+  "pre_outcome_amendment": {
+    "superseded_v1_sha256": "1c7f712a8c5ced45a97f312794df15fa68d83f117b4f0dddf63cc9d35c6f5496",
+    "neural_outcome_values_read_before_amendment": false,
+    "reason": "The outcome-blind 100%-coverage intersection produced only 28,881 eroded core voxels, violating the predeclared core>=50% common-mask feasibility guard. The repaired core is the one-voxel erosion of the already fixed 95%-coverage common mask (204,421/221,116 voxels); no threshold, endpoint, prediction, SESOI, subject rule, or neural-outcome-dependent choice changed."
+  },
+  "workspace": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode02_narps_analysis",
+  "lineage": {
+    "parent_loop_id": "arl_8cbd25a7a8610a008c2830ba624052c4",
+    "parent_terminal_status": "closed_no_candidate",
+    "parent_smoothing_share_approximate": 0.895,
+    "parent_evidence_role": "prior_exploratory_mechanism_generation_only",
+    "v1_grid_rerun": false
+  },
+  "claim_boundary": {
+    "scientific_status": "exploratory_only",
+    "confirmation_eligible": false,
+    "scientific_acceptance": false,
+    "confirmation_requirement": "independent_fresh_confirmation_required",
+    "within_ds001734_is_independent_confirmation": false,
+    "biological_mechanism_claim_allowed": false,
+    "qc_causal_claim_allowed": false
+  },
+  "source_scope": {
+    "source_inventory": "outputs/source_inventory.json",
+    "participants_events": "inputs/raw",
+    "fmriprep": "inputs/fmriprep",
+    "fitlins_designs": "inputs/fitlins/task-MGT/node-runLevel",
+    "source_access": "read_only",
+    "required_space": "MNI152NLin2009cAsym",
+    "required_resolution_mm": 2,
+    "subjects": 108,
+    "task_versions": {
+      "equalIndifference": 54,
+      "equalRange": 54
+    },
+    "runs_per_subject": 4,
+    "required_runs": 432,
+    "optional_raw_bold_required": false
+  },
+  "selected_tests": [
+    {
+      "test_id": "T1_amplitude_shape_threshold",
+      "mechanism": "amplitude_versus_shape_with_continuous_threshold_control",
+      "target_contrasts": [
+        "gain_demean",
+        "loss_demean"
+      ],
+      "primary_estimand": "For each contrast, compare the fixed C1/Q0 S0 and S8 equal-cohort inverse-variance group effect maps over the common mask. D_raw = RMS(Y8-Y0)/RMS(Y0). Fit Y0 = alpha + beta*Y8 by ordinary least squares across mask voxels; D_aligned = RMS(Y0-alpha-beta*Y8)/RMS(Y0), aligned_ratio = D_aligned/D_raw, and scale_attenuation = 1-aligned_ratio. Also report spatial Pearson r.",
+      "directional_prediction": "If amplitude/offset dominates, scale alignment removes at least half the raw smoothing difference (scale_attenuation >= 0.50) and Pearson r >= 0.80 for each contrast in the full equal-cohort result and separately in EI and ER.",
+      "sesoi": {
+        "minimum_scale_attenuation": 0.5,
+        "minimum_pearson_r": 0.8,
+        "bootstrap_interval_coverage": 0.95,
+        "support_rule": "For both contrasts, the full-sample point estimates and 95% paired cohort-stratified bootstrap lower bounds exceed both SESOI thresholds; EI and ER point estimates separately exceed both thresholds."
+      },
+      "falsifier": "Amplitude/offset dominance is falsified if either contrast fails either full-sample SESOI/interval condition or if either task-version stratum fails either point-estimate threshold.",
+      "matched_negative_control": "For each S0 group map, create Y_control = 0.1*SD(Y0) + 1.25*Y0. The identical alignment code must give Pearson r within 1e-12 of 1 and aligned residual RMS <= 1e-10*RMS(Y0). Failure is a technical implementation failure, not a scientific result.",
+      "strongest_alternative_discriminated": "Residual substantive spatial sensitivity rather than removable global amplitude/offset change.",
+      "secondary_threshold_control": {
+        "group_statistic": "OLS intercept t statistic with task-version code +0.5 EI and -0.5 ER; separate one-sample t statistics within EI and ER",
+        "procedure": "two-sided Benjamini-Hochberg FDR q=0.05 separately for each smoothing, contrast, and group/stratum",
+        "readouts": [
+          "rejected voxel counts",
+          "S0/S8 rejected-set Jaccard",
+          "matched-cardinality top-absolute-t Jaccard with k=min(S0 rejected count,S8 rejected count)"
+        ],
+        "disconnect_rule": "Threshold-crossing disconnect is flagged when FDR Jaccard <0.25 but matched-cardinality top-|t| Jaccard >=0.50; broad spatial relocation is flagged when both are <0.25. If k=0 the matched-cardinality readout is undefined and no disconnect claim is allowed.",
+        "role": "secondary fixed control; never tuned and never treated as an additional test"
+      }
+    },
+    {
+      "test_id": "T2_edge_weighting",
+      "mechanism": "mask_edge_and_inverse_variance_weighting",
+      "target_contrasts": [
+        "gain_demean",
+        "loss_demean"
+      ],
+      "primary_estimand": "Using the same C1/Q0 S0/S8 run estimates, compare inverse-variance (IVW), equal-run, and stabilized-IVW subject aggregation. For each group map define Delta=Y8-Y0, edge_enrichment=mean(Delta^2 in periphery)/mean(Delta^2 in core), core_ratio=D_raw_core/D_raw_full, and aggregation_attenuation=1-D_raw_alternative_full/D_raw_IVW_full.",
+      "directional_prediction": "An edge/weighting mechanism predicts, for each contrast, IVW edge_enrichment >=2.0, core_ratio <=0.75, and at least 25% attenuation under equal-run or stabilized-IVW aggregation. EI and ER must each show edge_enrichment >=1.5 and core_ratio <=0.85.",
+      "sesoi": {
+        "minimum_full_edge_enrichment": 2.0,
+        "maximum_full_core_ratio": 0.75,
+        "minimum_aggregation_attenuation": 0.25,
+        "minimum_stratum_edge_enrichment": 1.5,
+        "maximum_stratum_core_ratio": 0.85,
+        "bootstrap_interval_coverage": 0.95,
+        "support_rule": "For both contrasts, full-sample point estimates and paired-bootstrap 95% lower/upper bounds satisfy edge_enrichment/core_ratio respectively; at least one alternative aggregation meets attenuation by point estimate and lower bound; EI and ER point estimates meet their stratum thresholds."
+      },
+      "falsifier": "The mechanism is falsified if either contrast fails any full-sample support component, neither alternative aggregation attenuates by 25%, or either task-version stratum fails its edge/core point thresholds.",
+      "matched_negative_controls": [
+        "Equal-run subject aggregation gives all four runs identical weight and removes inverse-variance leverage while preserving effects, subjects, masks, and smoothing.",
+        "Stabilized IVW floors each positive finite run-variance map at its predeclared within-map 0.1st percentile before inversion, preserving the upper 99.9% of its spatial variance ranking."
+      ],
+      "strongest_alternative_discriminated": "Spatial sensitivity persisting in well-covered core voxels and under aggregation that cannot be dominated by extremely small variances."
+    }
+  ],
+  "shared_first_level_model": {
+    "confound_choice": "C1_true_Friston24",
+    "reason": "One fixed intermediate confound model isolates smoothing and avoids rerunning the v1 confound multiverse.",
+    "task_and_drift_terms": "Unchanged FitLins run design task regressors gain_demean, loss_demean, trial_type.decision, trial_type.missed, rt_reg.rt, native cosine columns, and intercept.",
+    "motion_terms": "Six native motion parameters, their first differences with first row zero, squared originals, and squared derivatives; nuisance columns stay in native units.",
+    "smoothing_fwhm_mm": {
+      "S0": 0,
+      "S8": 8
+    },
+    "smoothing_application": "isotropic Gaussian smoothing on 4D fMRIPrep BOLD before GLM",
+    "estimator": "nilearn voxelwise AR(1) first-level GLM",
+    "parameters": {
+      "drift_model": null,
+      "standardize": false,
+      "signal_scaling": 0,
+      "noise_model": "ar1",
+      "minimize_memory": true
+    },
+    "contrast_vectors": "Unit weight on the unchanged gain_demean or loss_demean design column, zero elsewhere.",
+    "required_outputs_per_subject_smoothing_contrast": [
+      "four run effect arrays",
+      "four run variance arrays",
+      "IVW subject effect",
+      "equal-run subject effect",
+      "stabilized-IVW subject effect"
+    ],
+    "subject_handling": "All 108 technically eligible subjects (Q0); no QC exclusion or censoring. Gain and loss are never pooled or compared in magnitude.",
+    "nonfinite_policy": "Any nonfinite required design value, contrast nonestimability, nonfinite effect, or nonpositive/nonfinite variance prevents that subject checkpoint and is a technical failure if not repairable without changing this contract."
+  },
+  "masks": {
+    "common_mask": "Include voxels covered by at least 95% of all 432 run masks and at least 95% of the 216 masks in each task-version cohort; use one mask for both contrasts, smoothings, and aggregations.",
+    "core_mask": "Apply one iteration of 3D binary erosion with six-neighbor connectivity to the fixed 95%-coverage common mask.",
+    "periphery_mask": "common_mask minus core_mask",
+    "validity": "Common mask must be nonempty and at least 50% of the median run-mask size; core must contain at least 50% of common-mask voxels; periphery must contain at least 1% of common-mask voxels. Otherwise technical_failure.",
+    "outcome_blind": true,
+    "voxel_weighting_within_region": "uniform"
+  },
+  "group_estimands": {
+    "primary": "For each subject map, compute the EI mean and ER mean, then average those two cohort maps with weight 0.5 each.",
+    "task_version_controls": "Repeat map comparisons within EI and ER separately. These are internal robustness/task-version association controls, not independent confirmation.",
+    "sample_composition_rule": "A mechanism cannot be candidate_ready if its required direction is absent in either EI or ER.",
+    "amplitude_alignment": "Fit alpha and beta across voxels separately for each contrast, group/stratum, mask region, and aggregation; do not transfer parameters between results.",
+    "variance_stabilization": "For each subject, run, smoothing, and contrast separately, floor positive finite run variances at their common-mask 0.1st percentile before inverse weighting."
+  },
+  "uncertainty_and_robustness": {
+    "bootstrap": {
+      "replicates": 1000,
+      "rng": "PCG64",
+      "seed": 20260817,
+      "method": "paired cohort-stratified ordinary subject bootstrap with replacement",
+      "reuse": "Reuse each replicate's sampled subject indices across both smoothings, both contrasts, all masks, and all aggregation strategies.",
+      "interval": "percentile 95%",
+      "implementation": "Exact region-specific subject-map sums and Gram matrices may replace explicit voxel maps without changing any estimand."
+    },
+    "deterministic_split_half": "Within each task version, sort subject IDs and alternate them into A/B halves; combine corresponding EI/ER halves. Report all primary metrics in both halves. Candidate direction must be the same in both halves, but SESOI crossing is not required in halves.",
+    "small_subject_guard": "Report leave-one-subject-out influence on D_raw and edge_enrichment. A candidate is disallowed if removing any one subject changes the relevant full-sample point estimate across its SESOI threshold.",
+    "interpretation": "All robustness is internal to ds001734."
+  },
+  "candidate_decision_hierarchy": [
+    {
+      "priority": 1,
+      "candidate": "edge_weighting_mechanism",
+      "rule": "T2 support rule passes for both contrasts, split-half directions agree, and the small-subject guard passes."
+    },
+    {
+      "priority": 2,
+      "candidate": "amplitude_offset_mechanism",
+      "rule": "T1 support rule passes for both contrasts, T2 does not pass, split-half directions agree, and the small-subject guard passes."
+    },
+    {
+      "priority": 3,
+      "candidate": "residual_substantive_spatial_sensitivity",
+      "rule": "T1 amplitude support and T2 edge/weighting support both fail; under equal-run aggregation in the core, both contrasts have D_raw >=0.25 and Pearson r <=0.80 in the full result and in EI and ER, with both split halves in the same direction and the small-subject guard passing."
+    },
+    {
+      "priority": 4,
+      "candidate": "continuous_threshold_disconnect",
+      "rule": "For both contrasts in the full result and EI/ER strata, Pearson r >=0.80, FDR Jaccard <0.25, and matched-cardinality top-|t| Jaccard >=0.50; split-half directions and the small-subject guard must pass."
+    }
+  ],
+  "terminal_rules": {
+    "candidate_ready": "Exactly the highest-priority candidate whose complete frozen rule passes; report only one candidate.",
+    "closed_no_candidate": "All analyses and controls complete but no candidate hierarchy rule passes, or a result is inconclusive/unstable under its frozen robustness checks.",
+    "technical_failure": "Required source, mask, estimability, runtime, storage, or checkpoint completeness prevents the frozen tests from completing after allowed engineering repair.",
+    "no_replacement_after_outcome_access": true,
+    "post_hoc_results": "Any metric not explicitly declared above is descriptive post-hoc and cannot affect terminal status."
+  },
+  "resource_and_stop_conditions": {
+    "execution_surface": "Sherlock compute nodes only",
+    "scratch_root": "/scratch/users/zijiao/episode02_narps_analysis",
+    "durable_root": "outputs/",
+    "maximum_subject_tasks": 108,
+    "maximum_array_retries_per_failed_subject": 2,
+    "maximum_requested_core_hours": 1800,
+    "maximum_scratch_bytes": 1000000000000,
+    "wall_clock_stop_hours": 48,
+    "stop_after": "The two selected tests, controls, robustness checks, required artifacts, and terminal bundle are complete; do not widen the search."
+  },
+  "software": {
+    "module": "python/3.12.1",
+    "python_environment": "/home/users/zijiao/pcvenv",
+    "required_packages": [
+      "nibabel",
+      "nilearn",
+      "numpy",
+      "pandas",
+      "scipy",
+      "matplotlib"
+    ]
+  },
+  "required_terminal_artifacts": [
+    "outputs/source_inventory.md",
+    "outputs/source_inventory.json",
+    "outputs/source_inventory_runs.tsv",
+    "outputs/mechanism_selection.md",
+    "outputs/frozen_successor_contract.md",
+    "outputs/frozen_successor_contract.json",
+    "outputs/analysis_manifest.tsv",
+    "outputs/common_analysis_mask.nii.gz",
+    "outputs/core_analysis_mask.nii.gz",
+    "outputs/periphery_analysis_mask.nii.gz",
+    "outputs/mechanism_results.tsv",
+    "outputs/threshold_stability.tsv",
+    "outputs/robustness_results.tsv",
+    "outputs/figures/mechanism_summary.png",
+    "outputs/RESULT.md",
+    "outputs/candidate_bundle.json",
+    "outputs/experiment_log.md",
+    "outputs/memory.md",
+    "outputs/governance.md"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "narps.engineering_repairs.v1",
+  "recorded_at_utc": "2026-08-14T16:56:05Z",
+  "last_updated_at_utc": "2026-08-14T17:21:50Z",
+  "frozen_contract_sha256": {
+    "outputs/frozen_analysis_contract.json": "edae18d760897767058f31f4313cc732ab6bdba2acbc4e36a7af7a1e3d9fc0a8",
+    "outputs/frozen_analysis_contract.md": "1bad0c7f0ac03cb4da0d8fddaa69e4f403af83bc00808303107dc06b7cdabd34"
+  },
+  "common_analysis_mask_sha256": "3f52df0149a6cfd55c7bda38de8fd63d7af9148047945320facd107ccf360252",
+  "legacy_compatible_checkpoints": [
+    "sub-001",
+    "sub-002",
+    "sub-003",
+    "sub-008",
+    "sub-009",
+    "sub-010",
+    "sub-011",
+    "sub-014",
+    "sub-015",
+    "sub-016",
+    "sub-017",
+    "sub-018",
+    "sub-019",
+    "sub-022"
+  ],
+  "legacy_metadata_note": "These 14 successful checkpoints were produced before diagnostic clamp-count logging was added. They passed the removed guard and then executed the identical mean_scaling, AR(1) GLM, contrast, and inverse-variance code path; their sidecars therefore omit only mean_scaling_clamped_voxels diagnostics.",
+  "failed_attempts": [
+    "Initial Slurm array job 38985523 tasks 3, 4, 5, 10, 17, and 18 (sub-004, sub-005, sub-006, sub-013, sub-020, and sub-021) exited under an implementation preflight guard that rejected run/voxel temporal means near zero before Nilearn scaling. No subject checkpoint was written by a failed task. Exact retry jobs 38988452, 38996012, and 38990221 completed all six subjects successfully after the guard was corrected.",
+    "A read-only development diagnostic that attempted to hold several full 4D BOLD arrays under the 4 GiB interactive allocation was killed for memory. It wrote no source or result artifact; bounded mask/proxy checks and Slurm-scale retries replaced it.",
+    "Pending aggregation jobs 38987807 and 38998260 were canceled before execution: the first had an unsatisfiable afterok dependency once original fit tasks failed, and the second predated integration of the diagnostic-only edge audit. Two attempted mixed dependencies on already-completed retry arrays were rejected by Slurm without creating a job. Final job 38999383 uses afterany on the original array and independently requires exactly 108 valid immutable checkpoints before writing anything."
+  ],
+  "repairs": [
+    {
+      "repair_id": "exact_nilearn_mean_scaling_edge_handling",
+      "reason": "The frozen 95-percent coverage mask permits a small number of low-intensity edge voxels in individual runs, while the initial guard inadvertently imposed an unfrozen 100-percent per-run nonzero-mean condition.",
+      "before_fit_code_sha256": "c0fd2a7a887a0a3fa2f9c7bac53fc72fd59eb0cc7fdd0bad5747d3c427e1798c",
+      "after_fit_code_sha256": "8e6b3c52622e5c0840a01cec7408d1e23907822aa9b5b2b1d077e210335b333e",
+      "change": "Removed only the extra near-zero temporal-mean rejection; retained the finite-value check and delegated scaling exactly to nilearn.glm.first_level.mean_scaling, the implementation used by frozen signal_scaling=0. Added clamp-count logging and sidecar provenance.",
+      "numerical_consistency": "Every successful pre-repair task had passed the removed guard and already executed the identical Nilearn mean_scaling, AR(1) GLM, contrasts, and inverse-variance fixed effects. Failed tasks had written no immutable checkpoint, so their exact retries are the only checkpoints for those subjects.",
+      "validation": [
+        "All six exact subject retries completed with finite effects and strictly positive variances.",
+        "For the most extensive observed edge case, sub-006 run 1 S0, the float64 logging diagnostic identified 1672 temporal means below 1 and the run completed under unchanged Nilearn mean_scaling; the diagnostic count is not asserted to equal Nilearn's internal float32 comparison in every rounding-edge case.",
+        "Frozen contract and common-mask SHA-256 values remained unchanged.",
+        "Post-repair Python compilation and aggregate synthetic algebra self-tests passed."
+      ]
+    }
+  ],
+  "deviations": []
+}

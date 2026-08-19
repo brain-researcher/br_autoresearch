@@ -1,0 +1,69 @@
+{
+  "common_mask": {
+    "cohort_required_runs": {
+      "equalIndifference": 206,
+      "equalRange": 206
+    },
+    "cohort_runs": {
+      "equalIndifference": 216,
+      "equalRange": 216
+    },
+    "median_run_mask_voxels": 253854.5,
+    "overall_required_runs": 411,
+    "shape": [
+      97,
+      115,
+      97
+    ],
+    "voxels": 221116,
+    "zooms": [
+      2.0,
+      2.0,
+      2.0
+    ]
+  },
+  "contract_hashes": {
+    "frozen_analysis_contract.json": "edae18d760897767058f31f4313cc732ab6bdba2acbc4e36a7af7a1e3d9fc0a8",
+    "frozen_analysis_contract.md": "1bad0c7f0ac03cb4da0d8fddaa69e4f403af83bc00808303107dc06b7cdabd34"
+  },
+  "group_counts": {
+    "equalIndifference": 54,
+    "equalRange": 54
+  },
+  "inputs_frozen_grid_present": false,
+  "notes": [
+    "std_dvars was read only as a diagnostic.",
+    "No BOLD voxel values or neural outcome maps were read by this audit.",
+    "The workspace inputs directory did not supply frozen_grid.json; the user-supplied frozen grid was locked verbatim in the output contracts."
+  ],
+  "qc_counts": {
+    "Q0_all": {
+      "equalIndifference": 54,
+      "equalRange": 54,
+      "total": 108
+    },
+    "Q1_lenient": {
+      "equalIndifference": 54,
+      "equalRange": 52,
+      "total": 106
+    },
+    "Q2_strict": {
+      "equalIndifference": 54,
+      "equalRange": 49,
+      "total": 103
+    }
+  },
+  "runs": 432,
+  "schema_version": "narps.source_audit.v1",
+  "software": {
+    "nibabel": "5.3.2",
+    "nilearn": "0.11.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "platform": "Linux-3.10.0-1160.144.1.el7.tuxcare.els6.x86_64-x86_64-with-glibc2.17",
+    "python": "3.11.15 | packaged by conda-forge | (main, Jun 11 2026, 03:34:02) [GCC 14.3.0]",
+    "scipy": "1.15.3"
+  },
+  "status": "pass",
+  "subjects": 108
+}

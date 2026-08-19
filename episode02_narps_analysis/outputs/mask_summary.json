@@ -1,0 +1,46 @@
+{
+  "core_definition": "one six-neighbor binary erosion of the fixed common mask",
+  "counts": {
+    "common": 221116,
+    "core": 204421,
+    "median_run_mask": 253854.5,
+    "periphery": 16695
+  },
+  "coverage_thresholds": {
+    "equalIndifference": 206,
+    "equalRange": 206,
+    "overall": 411
+  },
+  "files": {
+    "common": {
+      "path": "outputs/common_analysis_mask.nii.gz",
+      "sha256": "3f52df0149a6cfd55c7bda38de8fd63d7af9148047945320facd107ccf360252"
+    },
+    "core": {
+      "path": "outputs/core_analysis_mask.nii.gz",
+      "sha256": "b5fed758d4f5619a479b63171a56984a0e5b99b213c5c6915a8d092775eac22f"
+    },
+    "periphery": {
+      "path": "outputs/periphery_analysis_mask.nii.gz",
+      "sha256": "3c54c42270dc490ceb2cadda6f4801b2dd4ff3f33d5a7a02ba693a6e401f8953"
+    }
+  },
+  "group_run_counts": {
+    "equalIndifference": 216,
+    "equalRange": 216
+  },
+  "outcome_blind": true,
+  "reference_mask": "inputs/fmriprep/sub-001/func/sub-001_task-MGT_run-1_space-MNI152NLin2009cAsym_res-2_desc-brain_mask.nii.gz",
+  "run_mask_count": 432,
+  "schema_version": "narps.episode02.mask_summary.v1",
+  "shape": [
+    97,
+    115,
+    97
+  ],
+  "zooms": [
+    2.0,
+    2.0,
+    2.0
+  ]
+}

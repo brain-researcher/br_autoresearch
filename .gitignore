@@ -1,0 +1,51 @@
+# Every episode is tracked from the time its Goal is proposed. Large data and
+# transient runtime files are excluded by the rules below.
+
+# Inputs are durable OAK data/pointers, not part of the lightweight root repo.
+# Keep only the small README that preserves the directory in a fresh clone.
+/*/inputs/*
+!/*/inputs/README.md
+
+# Local Codex launch/session controls are operational state, not authority.
+/*/outputs/.codex-episode/
+/*/outputs/.codex-episode.lock
+/*/outputs/logs/
+/*/outputs/cache/
+/*/outputs/tmp/
+/*/outputs/subject_maps/
+/*/outputs/group_maps/
+
+# Credentials and local Codex runtime state.  Keep the project MCP config.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/.codex/*
+!/.codex/config.toml
+
+# Transient Sherlock and Python state.
+/scratch/
+/tmp/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.tmp
+slurm-*.out
+slurm-*.err
+
+# Large derived data belong in OAK episode storage, not the lightweight root repo.
+*.nii
+*.nii.gz
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.pt
+*.ckpt
+*.tar
+*.tar.gz
+*.zip
