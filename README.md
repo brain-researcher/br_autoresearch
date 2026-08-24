@@ -182,21 +182,23 @@ An episode may use one, several, or none of these routes.
 
 ## Data already available on Sherlock
 
-The first version of the campaign will mainly explore data that have already
-been processed on Sherlock.
+The first version of the campaign will mainly explore data that are already
+available on Sherlock, including processed fMRI outputs and curated public
+source releases.
 
-As of 2026-08-19, the main shared starting points are:
+The main starting points fall into three broad groups:
 
-| Data | Count | Path |
-| --- | ---: | --- |
-| OpenNeuro FitLins result directories | 54 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses` |
-| OpenNeuro fMRIPrep directories | 9 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep` |
-| HCP-YA derivatives | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP-YA-BIDS` |
-| HCP connectivity data | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP1200_PTN` |
+| Category | What is available | Main Sherlock location |
+| --- | --- | --- |
+| Processed human fMRI | 54 OpenNeuro FitLins result directories and 9 fMRIPrep directories | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins` |
+| HCP-YA | Task-fMRI derivative and connectivity roots; detailed inventory is still pending | `/oak/stanford/groups/russpold/data/HCP_YA` |
+| Curated public releases | 14 source releases spanning human neuroimaging, meta-analysis, animal behavior, neural imaging, and morphology | `/oak/stanford/groups/russpold/data/br_autoresearch_data` |
 
-These counts mean that the directories exist. Each episode still checks the
-task, subjects, events, contrasts, confounds, files, access rules, and which
-data must remain untouched for confirmation.
+See [DATA_CATALOG.md](DATA_CATALOG.md) for the current releases, versions,
+sizes, licenses, paths, and important usage notes. The catalog describes what
+is available; it does not assign data to discovery, validation, or confirmation
+in advance. Each episode makes that decision from its scientific question and
+records it before looking at the relevant outcomes.
 
 ## What someone needs to submit
 
@@ -232,6 +234,7 @@ reports, and final status. Large imaging data and temporary compute files stay
 outside Git.
 
 - [CAMPAIGN.md](CAMPAIGN.md) lists the episodes and their current status.
+- [DATA_CATALOG.md](DATA_CATALOG.md) lists shared datasets available on Sherlock.
 - [LANDSCAPE.md](LANDSCAPE.md) summarizes the research areas we are exploring.
 - [QUESTIONS.md](QUESTIONS.md) contains possible questions for future episodes.
 - [SOCIETY.md](SOCIETY.md) explains the multi-agent review and its limits.
