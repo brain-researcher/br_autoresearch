@@ -1,0 +1,868 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep20_neurocam_prior_guided_codesign_adaptive
+episode_id: ep20
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  documentary_neurocam_reference:
+    final_article_doi: 10.1016/j.scib.2025.11.030
+    preprint_doi: 10.1101/2024.08.18.608446
+    pubmed_id: PMID:41309324
+    role: documentary_architecture_and_characterization_anchors_only
+    candidate_access: visible_before_search
+    source_manifest: inputs/SOURCE_MANIFEST.json
+    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
+    current_local_payload: proxy_metadata_contract_present_primary_payload_absent
+  reference_examples:
+    role: nonbinding_documentary_and_non_candidate_discriminating_simulation_sanity_context_only
+    access: visible_before_search
+    bundle_directory: inputs/reference_bundles
+    bundles:
+      paper_direct:
+        path: inputs/reference_bundles/neurocam_paper_direct_v1.json
+        labels: [reference, example]
+        estimation_only: false
+      figure_derived:
+        path: inputs/reference_bundles/neurocam_figure_derived_v1.json
+        labels: [reference, example, estimation]
+        estimation_only: true
+    allowed_uses:
+      - documentary_context
+      - non_candidate_discriminating_simulation_sanity_check
+    prohibited_uses:
+      - prior_initialization
+      - model_parameter_prior
+      - search_space_initialization
+      - reference_model_calibration
+      - reference_model_qualification
+      - candidate_scoring
+      - launch_gate_lifting
+      - substitution_for_raw_iv_cv
+      - substitution_for_compact_model
+      - substitution_for_pdk_netlist_or_layout
+      - substitution_for_fabrication_outcomes
+    authoritative_for_reference_fit: false
+    authoritative_for_reference_qualification: false
+    launch_gate_effect: none
+    current_payload: two_labeled_oak_provisioned_examples_present_nonbinding
+  reference_model_calibration:
+    role: fit_paper_derived_neurocam_class_reference_model_ensemble
+    access: development_visible
+    source_manifest: inputs/SOURCE_MANIFEST.json
+    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
+    anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
+    model_contract: inputs/REFERENCE_MODEL_CONTRACT.yaml
+    current_payload: paper_derived_proxy_metadata_only_not_fit_ready
+  reference_model_qualification:
+    role: public_documentary_anchors_withheld_from_reference_fit_by_frozen_role
+    access: published_values_visible_role_locked_fit_execution
+    qualification_is_fit_holdout_not_secret_external_validation: true
+    gate_output: frozen_pass_fail_receipt_and_predeclared_residual_summary
+    candidate_tuning_from_outputs: prohibited
+    source_manifest: inputs/SOURCE_MANIFEST.json
+    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
+    anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
+    qualification_contract: inputs/REFERENCE_QUALIFICATION.yaml
+    current_payload: role_contract_present_input_gated_not_run
+  development_signal_environments:
+    role: outcome_visible_adaptive_development
+    access: frozen_aggregate_evaluator
+    direct_generator_parameter_access_after_freeze: prohibited
+    manifest: null
+    current_payload: absent
+  development_device_ensemble:
+    role: outcome_visible_adaptive_development
+    access: frozen_aggregate_evaluator
+    conditional_on_compiled_design: true
+    manifest: null
+    current_payload: absent
+  virtual_audit:
+    role: one_shot_structural_signal_forward_and_device_shift
+    access: permission_separated_evaluator_only_after_lock
+    implementation_independent_of_development_required: true
+    same_generator_new_seed_is_structural_audit: false
+    commitment_manifest: null
+    current_payload: absent
+  empirical_replay_development:
+    role: development_spectral_amplitude_missingness_and_software_stress
+    access: frozen_development_evaluator
+    permitted_design_arms: [D0, D1]
+    may_score_rank_or_compare_alternative_hardware_geometry_or_readout: false
+    may_select_retire_or_update_D2_D3_D4_hardware_successor: false
+    permitted_ledger_effect: software_stability_or_simulator_envelope_falsifier_only
+    source_manifest: null
+    current_payload: absent
+  empirical_replay_plausibility:
+    role: post_lock_catastrophic_plausibility_diagnostic_not_dense_surface_truth
+    access: sealed_until_configuration_lock
+    may_promote_without_primary_virtual_endpoints: false
+    source_manifest: null
+    current_payload: absent
+  empirical_partition_contract:
+    separate_sources_or_disjoint_content_addressed_partitions_required: true
+    minimum_partition_unit: whole_subject_device_session_or_independent_replayed_waveform
+    overlapping_trace_windows_across_roles: prohibited
+    development_to_plausibility_summary_or_normalization_leakage: prohibited
+  physical_candidate_validation:
+    role: deferred_future_episode_only
+    permitted_in_ep20: false
+    current_payload: absent
+  required_role_filtered_handoffs:
+    - documentary_reference
+    - reference_calibration
+    - reference_qualification
+    - development_signal
+    - development_device
+    - audit_virtual
+    - empirical_replay_development
+    - empirical_replay_plausibility
+    - hardware_rules
+  mixed_development_and_audit_mount: prohibited
+  current_readiness: paper_derived_proxy_metadata_contracts_present_primary_payload_fit_qualification_trace_design_rules_audit_and_replay_absent_launch_blocked
+
+reference_model_qualification:
+  required_before_candidate_discriminating_scores: true
+  model_name: paper_derived_neurocam_class_reference_model_ensemble
+  prohibited_model_names:
+    - exact_neurocam_twin
+    - complete_neurocam_digital_twin
+    - validated_physical_twin
+  calibration_and_qualification_anchors_disjoint: true
+  at_least_one_operating_mode_or_curve_withheld_from_fit: true
+  all_required_checks_must_pass: true
+  no_candidate_tuning_from_qualification: true
+  aggregate_only_split_requires_outcome_blind_discrimination_test: true
+  structural_checks:
+    lattice: 64x64
+    pixel_count: 4096
+    pitch_um: 150
+    active_area_mm: [9.6, 9.6]
+    array_gate_lines: 64
+    array_source_lines: 64
+    total_gate_plus_source_lines: 128
+    reference_and_nonarray_lines_costed_separately: true
+    dynamic_modes:
+      - mode_id: NC_DYN_384
+        source_lines: 24
+        gate_lines: 16
+        pixel_count: 384
+        effective_sample_rate_hz: 1000
+        effective_pixel_samples_per_second: 384000
+        nominal_raw_adc_conversions_per_second: 2400000
+        noise_reported_central_uv_rms: 8.8
+        noise_reported_plus_minus_uv_rms: 4.2
+        noise_dispersion_semantics: unspecified
+      - mode_id: NC_DYN_1536
+        source_lines: 24
+        gate_lines: 64
+        pixel_count: 1536
+        effective_sample_rate_hz: 250
+        effective_pixel_samples_per_second: 384000
+        nominal_raw_adc_conversions_per_second: 2400000
+        noise_reported_central_uv_rms: 12.6
+        noise_reported_plus_minus_uv_rms: 8.4
+        noise_dispersion_semantics: unspecified
+      - mode_id: NC_DYN_4096
+        source_lines: 64
+        gate_lines: 64
+        pixel_count: 4096
+        effective_sample_rate_hz: 250
+        effective_pixel_samples_per_second: 1024000
+        nominal_raw_adc_conversions_per_second: 6400000
+        noise_reported_central_uv_rms: 63.6
+        noise_reported_plus_minus_uv_rms: 24.1
+        noise_dispersion_semantics: unspecified
+  planning_tolerances:
+    cardinality_exact: true
+    sample_rate_relative_error_max: 0.02
+    throughput_relative_error_max: 0.02
+    gain_reported_central_absolute_error_max: 0.05
+    gain_reported_dispersion_absolute_error_max: 0.03
+    representative_cutoff_hz_lower_bound_min: 800
+    full_frequency_response_curve_tolerance: null
+    frequency_response_amplitude_conflict_must_be_resolved_before_curve_gate: true
+    noise_reported_central_relative_error_max: 0.20
+    noise_reported_dispersion_relative_error_max: 0.30
+    nearest_neighbour_crosstalk_error_db_max: 3.0
+    distant_crosstalk_must_be_db_at_most: -42.0
+    source_direction_crosstalk_db_is_greater_less_negative_than_gate_direction: true
+    mode_tradeoff_ordering_exact: true
+  required_fixture_checks:
+    - scan_timing_and_skew
+    - history_dependent_settling
+    - saturation
+    - quantization
+    - missing_and_dead_pixels
+    - conditional_noise
+    - deterministic_replay
+    - compiler_rejection
+  fixture_checks_are_execution_integrity_not_documentary_anchor_qualification: true
+  missing_pixel_and_yield_anchor_required_only_if_provenanced_target_is_acquired: true
+  tolerances_require_outcome_blind_synthetic_calibration_and_scientist_signoff: true
+  failure_before_candidate_scores: technical_reference_model_unqualified
+
+grammar:
+  scientific_object: robust_virtual_hardware_software_codesign_under_paper_derived_reference_uncertainty
+  primary_physical_target: cortical_surface_potential_phi_on_common_grid
+  latent_source_role: synthetic_diagnostic_only
+  downstream_task_role: secondary_transfer_audit_only
+  primary_frequency_band_hz: [1, 100]
+  reduced_mode_high_rate_diagnostic_band_hz: [100, 400]
+  high_rate_diagnostic_may_promote: false
+  single_neuron_spike_claim: prohibited
+  model_semantics:
+    source_and_label: joint_P_of_S_and_Z
+    source_to_surface: L_gamma_placement
+    electrode_interface: E_h_zeta_aperture_impedance_reference
+    electronics: R_h_eta_action_history
+    stochastic_noise: conditional_on_geometry_mode_and_scan_history
+    acquisition_action: fixed_or_strictly_past_only
+    electrode_averaging_applied_exactly_once: true
+    all_voltages_referenced: true
+  fixed_hardware:
+    process_class: Ln_IZO_TFT
+    substrate: flexible_polyimide
+    active_area_mm: [9.6, 9.6]
+    lattice: 64x64
+    pitch_um: 150
+    one_tft_row_column_topology: true
+    array_gate_lines_max: 64
+    array_source_lines_max: 64
+    total_gate_plus_source_lines_max: 128
+    reference_ground_guard_cost_fixed_and_counted: true
+    new_on_array_memory_or_compute: false
+    adc_afe_circuit_family_fixed: true
+  hardware_grammar_manifest: inputs/FROZEN_HARDWARE_GRAMMAR.yaml
+  hardware_grammar_hash: null
+  design_rules_manifest: inputs/DESIGN_RULES.yaml
+  design_rules_hash: null
+  resource_model_manifest: inputs/RESOURCE_MODEL.yaml
+  resource_model_hash: null
+  software_budget_manifest: inputs/SOFTWARE_BUDGET.yaml
+  software_budget_hash: null
+  geometry_families:
+    - published_uniform_reference
+    - interleaved_two_scale_same_lattice
+    - tiled_two_scale_same_lattice
+  pad_catalogue:
+    maximum_distinct_pad_classes: 3
+    reference_pad_um: [70, 135]
+    alternate_dimensions: null
+    exact_clearances: null
+    frozen_finite_catalogue_required_before_launch: true
+    continuous_relaxation_may_be_scored: false
+    discrete_compiled_post_rounding_design_required: true
+  readout_families:
+    - registered_uniform_reference_scan
+    - fixed_heterogeneous_row_dwell_and_revisit
+    - fixed_source_bank_precision_allocation
+    - bounded_causal_row_revisit
+  readout_constraints:
+    row_action_targets_legal_gate_group_not_arbitrary_pixel: true
+    minimum_base_dwell_us: 62.5
+    dwell_catalogue_multiplier: [1, 2, 4]
+    shorter_than_base_dwell: prohibited
+    causal_policy_uses_only_past_observations_and_current_hardware_state: true
+    causal_policy_family_count_max: 1
+    candidate_specific_future_or_truth_access: prohibited
+    all_actions_charged_to_resource_model: true
+  software_families:
+    conventional_s0:
+      family: causal_linear_gaussian_state_space_or_kriging
+      learned_hardware_specific_representation: false
+      measurement_compatible_adapter_required: true
+    physics_informed_linear:
+      family: regularized_physics_informed_inverse
+    structured_state_space:
+      family: regularized_low_rank_plus_local_state_space_inverse
+    compact_causal_nonlinear:
+      family: capacity_capped_measurement_aware_neural_inverse
+    s1_selection:
+      eligible_subclasses:
+        - physics_informed_linear
+        - structured_state_space
+        - compact_causal_nonlinear
+      timing: after_complete_reference_evaluation_before_any_D2_D3_or_D4_outcome
+      selection_metric: maximize_minimum_across_resource_envelopes_of_equal_family_macro_D1_R2_SSE
+      within_envelope_aggregation: frozen_equal_signal_family_and_device_stratum_weights
+      resource_envelope_aggregation: minimum
+      tie_break: lower_capacity_then_lexicographically_lowest_recipe_hash
+      exact_formula_and_resource_weights_manifest: inputs/SOFTWARE_BUDGET.yaml
+      selected_subclass: null
+      selected_subclass_hash_required_before_candidate_hardware_scores: true
+      all_evaluated_D1_points_remain_in_incumbent_frontier: true
+      reselection_after_candidate_hardware_outcome: prohibited
+    uncertainty_output_required: true
+    candidate_parameter_count_planning_max: 5000000
+    exact_parameter_and_training_step_ceiling: null
+    exact_ceiling_required_before_launch: true
+    native_event_inputs:
+      - value
+      - timestamp
+      - measurement_id
+      - hardware_state
+      - gain_state
+      - scan_state
+      - device_calibration_state
+  training_fairness:
+    same_selected_s1_architecture_capacity_optimizer_data_steps_selection_calls_and_seeds_across_D1_D3_D4: true
+    weights_retrained_separately_for_each_hardware_operator: true
+    reuse_D3_weights_for_D1_or_D4: prohibited
+    D1_receives_equal_software_search_budget: true
+    hardware_only_s0_may_refit_registered_coefficients_under_same_data_budget: true
+  design_ladder:
+    D0:
+      hardware: complete_registered_neurocam_operating_frontier
+      software: conventional_s0
+    D1:
+      hardware: same_complete_neurocam_operating_frontier
+      software: all_registered_s1_subclasses_separately_trained_under_equal_budget
+    D2:
+      hardware: compiled_candidate_hardware
+      software: conventional_s0_with_frozen_compatible_adapter
+    D3:
+      hardware: compiled_candidate_hardware
+      software: pre_hardware_selected_s1_subclass_separately_trained
+    D4:
+      hardware: all_registered_resource_matched_heuristic_controls
+      software: same_pre_hardware_selected_s1_architecture_and_training_budget_separately_trained
+  comparator_matching:
+    manifest: inputs/RESOURCE_MODEL.yaml
+    frozen_before_candidate_hardware_scores: true
+    required_fields:
+      - resource_envelope_id
+      - eligible_D0_member_ids
+      - matched_D0_member_id_by_D1_member_id
+      - selected_s1_matched_D1_member_id
+      - eligible_D4_member_ids
+      - latency_conversion_bitrate_power_and_routing_receipt
+    D0_and_D1_match_rule: exact_frozen_resource_envelope_id_and_no_candidate_specific_relaxation
+    D2_match_rule: identical_compiled_D3_hardware_and_operating_recipe_with_s0
+    D4_match_rule: every_registered_heuristic_with_same_resource_envelope_id
+    missing_or_multiple_selected_D1_match: invalid_trial
+  incumbent_frontier:
+    includes_D0_and_D1: true
+    includes_all_registered_legal_operating_modes: true
+    all_members_locked_before_candidate_hardware_scores: true
+    comparator_within_each_resource_envelope: simultaneous_memberwise_comparison_against_every_eligible_locked_reference
+    frontier_gate: minimum_multiplicity_adjusted_member_specific_macro_gain_lcb
+    samplewise_pointwise_oracle_envelope: diagnostic_only
+    audit_outcome_dependent_reference_substitution: prohibited
+    single_weak_full_array_baseline_only: prohibited
+  trial_atom:
+    counted_atom: one_complete_design_arm_across_all_development_signal_device_cells_and_frozen_seeds
+    ledger_schema_ref: ../TRIAL_LEDGER.schema.json
+    all_ledger_schema_required_fields_mandatory: true
+    required_fields:
+      - trial_id
+      - timestamp_utc
+      - previous_record_hash
+      - record_hash
+      - parent_trial_ids
+      - proposal_mode
+      - proposal_context_hash
+      - outcome_evidence_refs
+      - successor_cycle_id
+      - configuration_lock_hash
+      - stage
+      - hypothesis
+      - directional_prediction
+      - falsifier
+      - changed_operator
+      - unchanged_operators
+      - expected_information_gain
+      - expected_cost
+      - config
+      - hashes
+      - state
+      - resources
+      - belief_update
+      - successor_rationale
+      - disposition
+    required_episode_fields:
+      - config.ladder_id
+      - config.design_arm
+      - hashes.compiled_hardware
+      - hashes.software_recipe
+      - hashes.environment_manifest
+      - hashes.resource_receipt
+    valid_design_arms: [D0, D1, D2, D3, D4]
+    complete_linked_D0_D4_ladder_required_for_lock: true
+    may_not_split_atom_by:
+      - signal_family
+      - device_draw
+      - resource_envelope
+      - seed
+      - metric
+      - scheduler_job
+    not_new_valid_trials:
+      - qualification
+      - byte_identical_cached_reference
+      - duplicate_configuration
+      - deterministic_score_replay
+      - engineering_retry
+      - audit
+  hardware_constraint_compiler:
+    same_compiler_for_all_candidates_and_controls: true
+    compile_before_scoring: true
+    post_rounding_cost_recheck_required: true
+    rejection_is_invalid_trial: true
+    required_cost_axes:
+      - active_area
+      - array_gate_and_source_lines
+      - reference_ground_guard_and_supply_cost
+      - active_afe_adc_channels
+      - raw_adc_conversions_per_second
+      - effective_pixel_samples_per_second
+      - output_bits_per_second
+      - scan_latency_and_skew
+      - gate_switches_per_second
+      - power_and_thermal_proxy
+      - routing_area_and_loading
+      - yield_and_dead_pixel_burden
+  transfer_probes:
+    hardware_selection_from_transfer_task: prohibited
+    model_family: fixed_linear_or_low_rank
+    separately_retrained_equal_budget: true
+    labels:
+      - event_presence
+      - source_zone
+      - wave_direction
+  forbidden:
+    - candidate_scores_before_reference_model_qualification
+    - calling_the_reference_model_an_exact_or_complete_neurocam_twin
+    - post_score_fitting_of_electronics_priors_grammar_margins_or_audit_identity
+    - arbitrary_learned_analog_mixing
+    - local_analog_aggregation
+    - hierarchical_mux_or_routing
+    - tile_buffer_or_on_array_memory
+    - new_adc_or_afe_circuit
+    - variable_resolution_adc_not_in_reference_resource_model
+    - new_material_substrate_or_tft_process
+    - active_area_pitch_pixel_count_or_topology_change
+    - more_than_128_gate_plus_source_array_lines
+    - hardware_bypassing_design_rules_or_compiler
+    - a_single_weak_D0_point_or_candidate_specific_baseline_omission
+    - unmatched_conversion_bitrate_afe_adc_latency_power_routing_or_yield_cost
+    - reuse_of_D3_weights_for_D1_or_D4
+    - unequal_software_capacity_training_or_selection_credit
+    - latent_source_S_as_primary_target
+    - electrode_averaging_in_both_L_and_E
+    - future_ground_truth_or_audit_access_in_scheduler
+    - per_seed_per_family_or_per_audit_world_design_selection
+    - free_form_hardware_code_outside_finite_grammar
+    - counting_duplicate_retry_qualification_or_audit_as_valid_trial
+    - post_lock_ensemble_winner_runner_up_or_margin_substitution
+    - audit_driven_successor
+    - fabricated_physical_in_vivo_or_chronic_superiority_language
+
+objectives:
+  primary_metric:
+    name: cortical_surface_field_R2_SSE
+    target: phi_on_common_dense_grid
+    band_hz: [1, 100]
+    denominator_mean_source: training_fold_only
+    common_space_time_mask_required: true
+    samples_pixels_and_timepoints_are_not_inferential_units: true
+  incumbent_comparator:
+    name: complete_preregistered_neurocam_operating_frontier
+    members: all_legal_D0_and_D1_points_under_same_resource_envelope
+    comparison: simultaneous_against_every_eligible_locked_member
+    samplewise_oracle_selection: prohibited_for_primary
+  paired_frontier_gain:
+    member_specific_definition: paired_D3_R2_SSE_minus_reference_member_R2_SSE
+    eligible_support_for_member_b: E_b_equals_strata_where_b_is_eligible_in_the_frozen_resource_envelope_map
+    undefined_contrasts_outside_E_b: excluded_not_imputed
+    confirmatory_macro_estimand: equal_weight_stratum_macro_mean_with_weights_renormalized_within_E_b_for_each_reference_member
+    frontier_wide_estimand: minimum_across_eligible_reference_members_of_member_specific_macro_gain
+    paired_on:
+      - field_realization
+      - source_or_surface_model_draw
+      - device_process_draw
+      - nuisance_draw
+      - evaluation_mask
+      - resource_envelope
+    development_search_objective: minimum_cell_mean_gain_across_strata_and_eligible_reference_members
+  evaluation_cell: signal_mechanism_by_device_variation_stratum_by_resource_envelope
+  aggregation:
+    fields_within_structural_signal_device_cell: first
+    device_cells_within_signal_family: equal_weight
+    signal_families: equal_weight
+    pooling_by_pixel_or_timepoint_count: prohibited
+  uncertainty:
+    primary_interval: one_sided_simultaneous_95_percent_paired_cluster_bootstrap
+    bootstrap_unit: independent_paired_generated_scene_by_device_draw_world
+    D0_D4_share_each_signal_device_nuisance_and_mask_draw: true
+    pixel_or_timepoint_resampling: prohibited
+    bootstrap_draws_planning: 10000
+    exact_draws_frozen_before_outcomes: true
+  promotion_margins:
+    D3_vs_each_complete_incumbent_frontier_member_macro_simultaneous_lcb_min: 0.010
+    D3_vs_matched_D1_overall_lcb_min: 0.005
+    D3_vs_matched_D2_overall_lcb_min: 0.005
+    D3_vs_each_eligible_D4_control_overall_simultaneous_lcb_min: 0.005
+    every_registered_stratum_by_reference_contrast_simultaneous_lcb_min: -0.005
+    localization_error_noninferiority_mm: 0.15
+    wave_direction_error_noninferiority_degrees: 5.0
+    wave_speed_relative_error_noninferiority: 0.05
+    transient_normalized_proper_log_score_utility_noninferiority: 0.01
+    uncertainty_ECE_noninferiority: 0.01
+    downstream_task_normalized_utility_noninferiority: 0.01
+    margins_require_outcome_blind_fixture_calibration_and_scientist_signoff: true
+  secondary_metrics:
+    - focal_event_localization_error_mm
+    - wave_direction_angular_error_degrees
+    - wave_speed_relative_error
+    - transient_detection_normalized_proper_log_score_utility
+    - transient_detection_AUROC_diagnostic_only
+    - uncertainty_interval_coverage_sharpness_and_ECE
+    - worst_signal_family_gain
+    - worst_device_stratum_gain
+    - post_rounding_field_gain
+    - latency_conversion_bitrate_power_and_yield_proxies
+    - frozen_probe_transfer_utility
+  secondary_task_cannot_promote_or_rescue_primary_failure: true
+  descriptive_complementarity:
+    expression: U11_minus_U10_minus_U01_plus_U00
+    held_out_reporting_only: true
+    promotion_gate: false
+    causal_decomposition_claim: prohibited
+
+budgets:
+  minimum_valid_trials: 32
+  maximum_valid_trials: 64
+  patience_valid_trials: 12
+  max_engineering_failures: 12
+  cpu_core_hour_ceiling: 4000
+  gpu_hour_ceiling: 960
+  wall_clock_hour_ceiling: 336
+  parallel_gpu_ceiling: 8
+  parallel_cpu_core_ceiling: 128
+  memory_gb_ceiling: 512
+  memory_gb_per_trial_ceiling: 128
+  scratch_gb_ceiling: 4096
+  minimum_falsification_fraction_after_branch_coverage: 0.40
+  falsification_count_rounding: ceiling_of_fraction_times_post_coverage_valid_trials
+  all_reference_training_falsifier_and_audit_work_charged: true
+  profiling_must_fit_minimum_evidence_and_audit_before_outcome_access: true
+  resource_limit_is_scientific_success: false
+  resource_limit_is_scientific_negative: false
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 16
+  rule: complete_the_exact_sixteen_arm_D0_D4_coverage_manifest_before_adaptive_patience
+  readiness_rejection_must_be_logged: true
+  exact_manifest:
+    - D0_complete_reference_frontier_with_s0
+    - D1_reference_frontier_physics_informed_linear
+    - D1_reference_frontier_structured_state_space
+    - D1_reference_frontier_compact_causal_nonlinear
+    - D2_interleaved_two_scale_geometry
+    - D2_tiled_two_scale_geometry
+    - D2_fixed_rate_precision_allocation
+    - D2_joint_geometry_and_readout
+    - D3_interleaved_two_scale_geometry
+    - D3_tiled_two_scale_geometry
+    - D3_fixed_rate_precision_allocation
+    - D3_joint_geometry_and_readout
+    - D4_checkerboard_pad_heuristic
+    - D4_tile_pad_heuristic
+    - D4_area_histogram_matched_random_geometry
+    - D4_uniform_geometry_best_legal_schedule
+  every_geometry_family_covered: true
+  every_software_family_covered_on_reference: true
+  every_hardware_hypothesis_has_D2_D3_and_D4_context: true
+  cached_reference_may_reduce_compute_but_not_hide_mode_results: true
+
+required_falsifiers:
+  - full_D0_D1_operating_frontier_mode_sweep
+  - prior_spatial_spectrum_and_correlation_length_shift
+  - silent_region_focal_event
+  - unseen_propagation_speed_direction_and_curvature
+  - broad_focal_mixture_shift
+  - independent_source_to_surface_operator
+  - coupled_noise_crosstalk_RC_and_settling_misspecification
+  - gain_impedance_drift_saturation_and_contact_gap_variation
+  - random_and_clustered_dead_pixel_and_dead_line_patterns
+  - decoder_capacity_training_step_and_selection_credit_match
+  - D1_D3_D4_independent_retraining_check
+  - random_and_heuristic_geometry_controls
+  - large_small_pad_assignment_reversal
+  - geometry_only_schedule_only_software_only_and_uncertainty_head_ablations
+  - pad_averaging_single_application_check
+  - fabrication_rounding_and_post_rounding_resource_recheck
+  - leave_one_signal_family_out_influence
+  - leave_one_device_stratum_out_influence
+  - causal_scheduler_future_information_mutation
+  - reference_and_common_mode_convention_sensitivity
+  - development_empirical_partition_spectral_amplitude_and_missingness_stress
+  - direct_common_seed_replication_of_incumbent_and_candidate
+  - independent_evaluator_replay
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  reference_model_qualification_required: true
+  branch_coverage_required: true
+  minimum_valid_trials_required: 32
+  complete_linked_D0_D4_ladder_required: true
+  one_global_compiled_hardware_specification_required: true
+  resource_envelope_specific_operating_recipes_may_be_locked: true
+  per_signal_or_per_device_hardware_selection: prohibited
+  require_D3_vs_complete_D0_D1_frontier_gate: true
+  require_D3_vs_matched_D1_gate: true
+  require_D3_vs_matched_D2_gate: true
+  require_D3_vs_each_eligible_D4_control_gate: true
+  require_every_stratum_noninferiority: true
+  descriptive_complementarity_may_promote: false
+  require_all_secondary_noninferiority_constraints: true
+  require_all_hardware_and_resource_constraints_after_rounding: true
+  require_all_mandatory_falsifiers: true
+  require_leave_one_family_and_device_influence_checks: true
+  require_deterministic_score_replay: true
+  require_empirical_or_phantom_plausibility_diagnostic: true
+  empirical_plausibility_catastrophic_failure_threshold: null
+  launch_requires_empirical_threshold_freeze: true
+  exactly_one_locked_candidate: true
+  tie_rule:
+    primary: maximum_development_worst_environment_paired_gain
+    equivalence_width: 0.005
+    secondary: lower_conversion_energy_proxy
+    tertiary: lower_scan_latency
+    final: lexicographically_lowest_canonical_design_hash
+
+development_lock:
+  required_before_configuration_lock: true
+  evaluated_only_after_valid_development_stop: true
+  interval_family: development_multiplicity_adjusted_one_sided_95_percent_paired_intervals
+  all_required:
+    - reference_model_qualification_passed
+    - minimum_32_valid_trials_and_exact_16_arm_coverage_complete
+    - minimum_two_adaptive_successor_cycles_and_two_incumbent_challenger_decisions_complete
+    - post_coverage_falsifier_fraction_and_deterministic_replay_passed
+    - D3_vs_each_eligible_D0_D1_member_macro_simultaneous_lcb_at_least_0.010
+    - D3_vs_resource_map_matched_D1_and_D2_macro_lcb_each_at_least_0.005
+    - D3_vs_each_resource_eligible_D4_macro_simultaneous_lcb_at_least_0.005
+    - every_stratum_by_eligible_reference_contrast_simultaneous_lcb_at_least_minus_0.005
+    - all_secondary_noninferiority_margins_pass
+    - all_post_rounding_hardware_and_resource_constraints_pass
+    - all_mandatory_development_falsifiers_and_influence_checks_pass
+    - development_empirical_partition_software_and_simulator_envelope_stress_passes_without_hardware_ranking
+  candidate_selection: apply_promotion_tie_rule_to_all_development_lock_eligible_D3_designs
+  exactly_one_candidate_locked: true
+  sealed_plausibility_or_virtual_audit_outcome_is_prelock_prerequisite: false
+  no_lock_if_no_development_eligible_candidate: true
+
+stop:
+  before_minimum: prohibited_except_reference_qualification_policy_integrity_evaluator_or_unrecoverable_technical_failure_resource_ceiling_engineering_failure_ceiling_admissible_space_exhaustion_or_exhaustive_D3_compiler_infeasibility
+  patience_starts_after_minimum: true
+  patience_requires_branch_coverage: true
+  patience_requires_falsifier_fraction: true
+  patience_requires_minimum_successor_cycles_and_decisions: true
+  patience_counts_only_complete_eligible_D3_opportunity_with_linked_ladder: true
+  patience_delta_primary_gain: 0.010
+  new_feasible_pareto_point_resets_patience: true
+  first_positive_result_stops_search: false
+  first_negative_result_stops_search: false
+  one_branch_failure_stops_search: false
+  maximum_valid_trials_stops_search: true
+  resource_ceiling_stops_search: true
+  engineering_failure_count_exceeds_max_stops_search: true
+  exhausted_admissible_space_stops_search: true
+  all_branches_infeasible_stops_search: true
+  lock_after_stop_only_if_every_pre_audit_development_lock_prerequisite_is_satisfied: true
+  otherwise_terminal: closed_unresolved
+  resource_ceiling_terminal: incomplete_search
+  maximum_before_minimum_evidence_terminal: incomplete_search
+  exhausted_admissible_space_before_minimum_terminal: incomplete_search
+  exhausted_admissible_space_after_minimum_terminal_resolution: apply_terminal_discrimination_rules
+  all_branches_infeasible_terminal: closed_resource_or_fabrication_constraint_failure
+  maximum_or_patience_after_minimum_without_lock_terminal: closed_unresolved
+  engineering_failure_count_exceeds_max_terminal: technical_failure
+
+audit:
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  evaluator: permission_separated_trusted_runner
+  all_audit_components_open_together: true
+  partial_cell_score_or_qc_feedback: prohibited
+  independently_implemented_signal_and_forward_evaluator_required: true
+  independently_implemented_electronics_structure_required: true
+  empirical_or_phantom_plausibility_diagnostic_required: true
+  same_development_generator_new_seed_only: prohibited
+  sealed_components:
+    - signal_generating_mechanisms
+    - signal_parameter_ranges_and_spatial_spectra
+    - source_to_surface_operator
+    - electronics_scaling_and_coupling_structure
+    - coupled_device_and_process_variation
+    - nuisance_and_missingness
+    - downstream_transfer_task
+    - empirical_or_phantom_plausibility_partition
+  minimum_planning_support:
+    hidden_signal_mechanisms: 3
+    device_shift_cells_per_mechanism: 4
+    paired_field_realizations_per_cell: 64
+    exact_counts_require_outcome_blind_interval_width_and_resource_calibration: true
+  run_together_on_identical_paired_worlds:
+    - locked_complete_D0_frontier
+    - locked_complete_D1_frontier
+    - locked_D2_arm
+    - locked_D3_candidate
+    - locked_all_resource_eligible_D4_controls
+  no_refit_after_lock: true
+  no_hardware_or_operating_recipe_replacement: true
+  no_margin_metric_or_aggregation_change: true
+  no_runner_up_substitution: true
+  no_audit_driven_successor: true
+  retry_rule: common_protocol_no_candidate_discriminating_output_only
+  success_requires_all_promotion_inequalities_and_constraints: true
+  post_audit_mutation_allowed: false
+  claim_scope: simulation_only_paper_derived_virtual_codesign_specification
+  physical_superiority_allowed: false
+  fabrication_ready_language_allowed: false
+
+terminal_precedence:
+  - policy_violation
+  - technical_reference_model_unqualified
+  - technical_audit_or_support_integrity_failure
+  - technical_failure
+  - incomplete_search
+  - closed_resource_or_fabrication_constraint_failure
+  - closed_software_only_sufficient
+  - closed_hardware_only_no_joint_gain
+  - closed_heuristic_hardware_sufficient
+  - closed_robustness_or_transfer_failure
+  - closed_development_only_candidate
+  - closed_complete_incumbent_frontier_not_beaten
+  - closed_unresolved
+  - candidate_ready_virtual_codesign_specification
+
+terminal_mapping:
+  candidate_ready_virtual_codesign_specification: candidate_ready
+  closed_complete_incumbent_frontier_not_beaten: closed_no_candidate
+  closed_software_only_sufficient: closed_no_candidate
+  closed_hardware_only_no_joint_gain: closed_no_candidate
+  closed_heuristic_hardware_sufficient: closed_no_candidate
+  closed_resource_or_fabrication_constraint_failure: closed_no_candidate
+  closed_robustness_or_transfer_failure: closed_no_candidate
+  closed_development_only_candidate: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  technical_reference_model_unqualified: technical_failure
+  technical_audit_or_support_integrity_failure: technical_failure
+  policy_violation: technical_failure
+  technical_failure: technical_failure
+
+terminal_discrimination:
+  interval_family: multiplicity_adjusted_one_sided_95_percent_paired_intervals
+  matched_control_equivalence_margin: 0.005
+  eligible_D1_vs_same_mode_D0_macro_lcb_min_for_software_only_label: 0.0
+  D2_vs_matched_D0_macro_lcb_min_for_hardware_only_label: 0.0
+  every_rule_requires_no_higher_precedence_trigger: true
+  rules:
+    policy_violation:
+      trigger: any_forbidden_action_audit_leak_or_post_outcome_contract_mutation
+    technical_reference_model_unqualified:
+      trigger: frozen_reference_qualification_attempted_and_failed_before_candidate_hardware_scores
+    technical_audit_or_support_integrity_failure:
+      trigger: lock_mismatch_duplicate_open_invalid_support_artifact_or_evaluator_integrity_failure
+    technical_failure:
+      trigger: unrecoverable_input_compiler_execution_deterministic_replay_failure_or_engineering_failure_count_above_12_not_classified_above
+    incomplete_search:
+      trigger: resource_ceiling_at_any_stage_or_other_authorized_stop_or_space_exhaustion_before_complete_minimum_evidence_without_exhaustive_D3_compiler_infeasibility_proof
+    closed_resource_or_fabrication_constraint_failure:
+      trigger: frozen_compiler_exhaustively_proves_every_D3_grammar_branch_infeasible_after_discrete_rounding
+    closed_software_only_sufficient:
+      all_required:
+        - one_shot_audit_completed
+        - at_least_one_eligible_D1_has_D3_vs_D1_superiority_lcb_below_0.005
+        - that_D1_minus_D3_simultaneous_lcb_at_least_minus_0.005
+        - that_D1_vs_its_same_mode_D0_macro_lcb_at_least_0.0
+    closed_hardware_only_no_joint_gain:
+      all_required:
+        - one_shot_audit_completed
+        - D3_vs_matched_D2_superiority_lcb_below_0.005
+        - D2_minus_D3_simultaneous_lcb_at_least_minus_0.005
+        - D2_vs_matched_D0_macro_lcb_at_least_0.0
+    closed_heuristic_hardware_sufficient:
+      all_required:
+        - one_shot_audit_completed
+        - at_least_one_eligible_D4_has_D3_vs_D4_superiority_lcb_below_0.005
+        - that_D4_minus_D3_simultaneous_lcb_at_least_minus_0.005
+    closed_robustness_or_transfer_failure:
+      all_required:
+        - one_shot_audit_completed
+        - all_frontier_member_macro_and_matched_control_superiority_gates_pass
+        - at_least_one_stratum_secondary_falsifier_or_empirical_plausibility_gate_fails
+    closed_development_only_candidate:
+      all_required:
+        - candidate_met_every_explicit_development_lock_rule
+        - one_shot_audit_completed
+        - at_least_one_frontier_member_macro_or_matched_control_superiority_gate_fails
+        - no_specific_control_equivalence_rule_above_is_satisfied
+    closed_complete_incumbent_frontier_not_beaten:
+      trigger: minimum_evidence_complete_and_finite_admissible_D3_space_exhausted_and_every_feasible_D3_fails_the_explicit_development_frontier_superiority_inequalities
+    closed_unresolved:
+      trigger: minimum_evidence_complete_but_no_positive_specific_negative_or_exhaustive_frontier_negative_rule_is_satisfied
+    candidate_ready_virtual_codesign_specification:
+      trigger: exactly_one_locked_D3_passes_every_promotion_constraint_falsifier_and_plausibility_gate_in_the_one_shot_audit
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true
+  required_manifest_hashes:
+    source_manifest: null
+    neurocam_anchor_manifest: null
+    reference_anchor_split: null
+    reference_model_contract: null
+    reference_qualification_contract: null
+    frozen_hardware_grammar: null
+    design_rules: null
+    resource_model: null
+    software_budget: null
+    development_environments: null
+    development_device_ensemble: null
+    development_draw_manifest: null
+    audit_commitment: null
+    audit_hidden_payload_merkle_root: null
+    audit_dependency_report: null
+    empirical_development_replay_manifest: null
+    empirical_plausibility_replay_manifest: null
+    exposure_ledger: null
+    evaluator_contract: null
+  runtime_artifact_hashes:
+    reference_model_ensemble_manifest: null
+    reference_qualification_receipt: null
+    one_shot_audit_receipt: null
+  unresolved_launch_blockers:
+    - immutable_article_supplement_and_source_hashes
+    - proposed_fit_versus_qualification_anchor_split_present_but_not_frozen_for_execution
+    - frequency_response_test_amplitude_conflict_and_curve_tolerance
+    - raw_trace_or_accepted_aggregate_only_reference_limit
+    - DAQ_ADC_AFE_marker_reference_and_bit_rate_accounting
+    - exact_reduced_mode_spatial_subsets_channel_identities_and_marker_semantics
+    - finite_design_rule_backed_alternative_pad_catalogue
+    - PDK_or_scientist_approved_conservative_surrogate_rule_deck
+    - defensible_bounded_power_and_thermal_proxy
+    - complete_resource_compiler_and_rejection_fixtures
+    - executable_development_generators_with_parameter_provenance
+    - independently_implemented_permission_separated_audit
+    - exact_empirical_replay_or_known_input_phantom_source
+    - disjoint_development_and_sealed_plausibility_replay_partitions
+    - empirical_plausibility_failure_threshold
+    - exact_software_capacity_training_and_selection_budget
+    - outcome_blind_margin_and_interval_width_calibration
+    - trusted_one_shot_evaluator
+    - profiled_compute_within_frozen_ceiling
+    - scientist_signoff_on_margins_and_claim_text
+    - registered_adaptive_program_binding

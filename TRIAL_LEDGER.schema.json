@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autoresearch.adaptive_trial_record.v1",
+  "title": "Append-only adaptive trial record",
+  "type": "object",
+  "required": [
+    "trial_id",
+    "timestamp_utc",
+    "previous_record_hash",
+    "record_hash",
+    "parent_trial_ids",
+    "proposal_mode",
+    "proposal_context_hash",
+    "outcome_evidence_refs",
+    "successor_cycle_id",
+    "configuration_lock_hash",
+    "stage",
+    "hypothesis",
+    "directional_prediction",
+    "falsifier",
+    "changed_operator",
+    "unchanged_operators",
+    "expected_information_gain",
+    "expected_cost",
+    "config",
+    "hashes",
+    "state",
+    "resources",
+    "belief_update",
+    "successor_rationale",
+    "disposition"
+  ],
+  "properties": {
+    "trial_id": {"type": "string", "minLength": 1},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "previous_record_hash": {"type": ["string", "null"]},
+    "record_hash": {"type": "string", "minLength": 32},
+    "parent_trial_ids": {"type": "array", "items": {"type": "string"}},
+    "proposal_mode": {
+      "enum": [
+        "readiness_or_baseline",
+        "prespecified_coverage",
+        "outcome_adaptive_successor",
+        "mandated_falsifier",
+        "lock",
+        "audit"
+      ]
+    },
+    "proposal_context_hash": {"type": "string", "minLength": 32},
+    "outcome_evidence_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "successor_cycle_id": {"type": ["string", "null"]},
+    "configuration_lock_hash": {"type": ["string", "null"]},
+    "stage": {"enum": ["readiness", "coverage", "adaptive", "falsification", "lock", "audit"]},
+    "hypothesis": {"type": "string", "minLength": 1},
+    "directional_prediction": {"type": "string", "minLength": 1},
+    "falsifier": {"type": "string", "minLength": 1},
+    "changed_operator": {"type": "string", "minLength": 1},
+    "unchanged_operators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "expected_information_gain": {"type": "string", "minLength": 1},
+    "expected_cost": {"type": "object", "minProperties": 1},
+    "config": {"type": "object"},
+    "hashes": {
+      "type": "object",
+      "required": ["policy", "code", "environment", "source", "split", "config"]
+    },
+    "state": {"enum": ["PROPOSED", "READINESS_REJECTED", "RUNNING", "ENGINEERING_FAILED", "INVALID", "SCORED", "RETIRED", "CHALLENGER", "INCUMBENT", "LOCKED", "AUDIT_OPENED", "AUDITED"]},
+    "metrics": {"type": ["object", "null"]},
+    "controls": {"type": ["object", "null"]},
+    "resources": {"type": "object"},
+    "belief_update": {"type": "string"},
+    "successor_rationale": {"type": "string"},
+    "disposition": {"type": "string"},
+    "incumbent_decision": {"type": ["object", "null"]},
+    "audit_receipt": {"type": ["object", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"stage": {"const": "adaptive"}},
+        "required": ["stage"]
+      },
+      "then": {
+        "properties": {
+          "proposal_mode": {"const": "outcome_adaptive_successor"},
+          "parent_trial_ids": {"minItems": 1},
+          "outcome_evidence_refs": {"minItems": 1},
+          "successor_cycle_id": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"stage": {"const": "lock"}},
+        "required": ["stage"]
+      },
+      "then": {
+        "properties": {
+          "proposal_mode": {"const": "lock"},
+          "configuration_lock_hash": {"type": "string", "minLength": 32},
+          "state": {"const": "LOCKED"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"stage": {"const": "audit"}},
+        "required": ["stage"]
+      },
+      "then": {
+        "required": ["audit_receipt"],
+        "properties": {
+          "proposal_mode": {"const": "audit"},
+          "configuration_lock_hash": {"type": "string", "minLength": 32},
+          "state": {"enum": ["AUDIT_OPENED", "AUDITED", "ENGINEERING_FAILED"]},
+          "audit_receipt": {"type": "object", "minProperties": 1}
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}
