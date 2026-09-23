@@ -1,0 +1,876 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep16_braingate_cross_session_failure_modes_adaptive
+episode_id: ep16
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  source:
+    asset_id: braingate_long_term_array_performance_dryad_x0k6djj1h_v6
+    doi: 10.5061/dryad.x0k6djj1h
+    dryad_version: 6
+    api_version_id: 462702
+    official_file_count: 24
+    official_total_bytes: 84729840092
+    local_source_role: verified_read_only_shared_source
+    local_source_mounted_to_candidate: false
+  assignment_unit: whole_participant_with_all_arrays_and_sessions
+  preassignment_inventory:
+    owner: trusted_structural_extractor
+    permitted_fields:
+      - archive_member_name
+      - participant_id
+      - post_implant_day
+      - array_and_electrode_identity
+      - block_and_trial_indices
+      - trial_count
+      - trial_start_target_coordinate
+    forbidden_fields:
+      - neural_values
+      - cursor_trajectory
+      - trial_duration_or_success
+      - dSNR_tuning_or_angular_error
+      - yield_or_impedance_outcomes
+      - model_score_or_prediction
+    output: content_addressed_target_schedule_support_matrix
+    controller_may_execute_extractor: false
+    retain_mixed_temporary_files: false
+  split:
+    status: provisional_pending_exposure_and_structural_support
+    final_counts:
+      development: 6
+      audit: 3
+    initial_forced_development: [T5, T10, T11]
+    initial_audit_candidate_pool: [T2, T3, T6, T7, T8, T9]
+    forced_development_reasons:
+      T5: direct_PRI_T_and_chronic_recalibration_exposure
+      T10: official_session_level_dSNR_rows_viewed_during_design_audit
+      T11: direct_NoMAD_and_MINDFUL_related_exposure
+    exposure_regeneration:
+      sources: [publications, public_outputs, caches, prior_agent_contexts, analyst_records]
+      participant_specific_cross_session_or_terminal_quantity_exposure_forces_development: true
+      dataset_wide_within_session_exposure_only_downgrades_evidence_tier: true
+      audit_pool_recomputed_as_complement: true
+      required_before_role_hash: true
+    audit_set_enumeration: exhaustive_three_person_subsets_after_exposure_and_structural_screen
+    preassignment_support:
+      session_trial_threshold_applies_to: declared_whole_trial_epochs
+      cursor_or_neural_eligibility_evaluated: false
+      pair_type: structural_candidate_pair
+      common_geometry_strata_min: 1
+      near_undirected_pairs_min: 6
+      long_undirected_pairs_min: 6
+      near_and_long_counts_must_cooccur_in_same_component: true
+      pooling_counts_across_strata: prohibited
+      declared_trials_per_session_stratum_min: 128
+      whole_block_sides_min: 2
+      declared_trials_per_block_side_min: 64
+      same_physical_array_set: true
+    post_role_scorability:
+      algorithm_frozen_before_role_hash: true
+      development_owner: development_builder
+      audit_owner: one_shot_trusted_evaluator
+      audit_pairs_subset_of_structural_manifest: true
+      scorable_near_undirected_pairs_min: 6
+      scorable_long_undirected_pairs_min: 6
+      near_and_long_counts_must_cooccur_in_same_component: true
+      pooling_counts_across_strata: prohibited
+      exact_primary_packet_trials_per_session_stratum: 128
+      evaluation_trials_per_outer_fold: 64
+      full_rank_component_gates_required: true
+      role_reassignment_or_pair_addition: prohibited
+      failure_terminal: closed_task_support_incommensurate
+    lexicographic_assignment:
+      - maximize_minimum_near_and_long_pair_support
+      - maximize_target_schedule_stratum_balance_and_coverage
+      - maximize_single_and_dual_array_regime_coverage
+      - maximize_minimum_implant_span_then_session_count
+      - sha256_tiebreak_ep16_braingate_role_v1
+    fewer_than_three_eligible_audit_candidates: closed_task_support_incommensurate
+    post_hash_role_change: prohibited
+    amendment_after_neural_outcome_access: prohibited
+    participant_replacement_after_audit_access: prohibited
+  development:
+    access: role_filtered_full_decoding_and_permitted_yield
+    support_qualified_participants_min: 4
+    exposed_but_unsupported_participant_counts_as_completed_evidence: false
+    evaluation: leave_one_development_participant_out_panel_emulation
+    outcomes_may_drive_admissible_successors: true
+  audit_structural:
+    access: opaque_roles_geometry_support_and_pair_manifest_only
+    neural_cursor_and_measurement_outcomes: prohibited
+  audit_evaluator:
+    access_after_lock: role_filtered_full_required_data
+    candidate_or_controller_access: none
+    required_scorable_participants: 3
+    evidence_tier: campaign_sealed_strict_replication_not_pristine_confirmation
+  handoffs_required:
+    - development_full
+    - audit_structural
+    - audit_evaluator_full
+  evidence_status: publication_exposed_cross_session_procedure_sealed
+
+grammar:
+  execution: declarative_config_trusted_builder_and_evaluator
+  common_contract:
+    participant_is_inferential_unit: true
+    primary_array_representation: combined_for_dual_single_or_dPCG_otherwise
+    task_geometry_source: observed_target_schedule_and_trial_boundaries_only
+    directed_source_target_matrix: true
+    reciprocal_pairs_required_when_eligible: true
+    near_lag_days: [1, 30]
+    mid_lag_days_excluded_from_primary: [31, 179]
+    long_lag_days_min: 180
+    primary_feature: sbp
+    locked_feature_falsifier: tx_4_5
+    threshold_best_of_search: prohibited
+    target_schedule_classifier:
+      claim: observed_schedule_equivalence_not_verified_task_identity
+      center: target_set_centroid
+      scale: median_nonzero_intertarget_distance
+      translation_and_isotropic_scale_invariant: true
+      rotation_or_reflection_invariant: false
+      coordinate_relative_tolerance: null
+      tolerance_human_freeze_before_role_assignment: true
+      transition_graph_uses_presence_not_frequency: true
+      ambiguous_strata_primary_role: excluded
+      missing_task_name_alone_excludes_fixed_center_schedule: false
+      size_dependent_schedule_without_target_size: excluded
+      ambiguity_reasons: [multiple_layouts, inadequate_target_coverage, unstable_quantization, conflicting_transition_graph, detected_material_instruction_difference]
+    trial_representation:
+      one_sample_per_whole_trial: true
+      window_duration_ms: 300
+      onset_offset_ms: null
+      onset_offset_global_not_session_specific: true
+      onset_offset_single_value_human_freeze_required: true
+      onset_offset_selected_from_real_neural_scores: false
+      full_window_inside_declared_trial_and_block: true
+      label_and_distance_gate_time: neural_window_start
+      scorable_finiteness_fields: [neural_window_X, target_at_window_start, cursor_at_window_start]
+      later_cursor_samples_affect_label_or_eligibility: false
+      time_bins_or_overlapping_windows_as_samples: prohibited
+    target_proxy: normalized_cursor_to_target_error_at_neural_window_start
+    near_target_exclusion_fraction_of_median_intertarget_distance: 0.05
+    primary_model: multioutput_ridge
+    primary_score: direction_balanced_negative_2d_mse
+    secondary_scores: [heldout_multivariate_R2, mean_angular_error]
+    fold_unit: two_reciprocal_block_disjoint_outer_folds
+    block_assignment_precedes_trial_sampling: true
+    each_block_side_scorable_trials_min: 64
+    primary_packet_trials_per_session_stratum: 128
+    fitting_trials_per_outer_fold: 64
+    evaluation_trials_per_outer_fold: 64
+    outer_roles_swap: true
+    nested_target_packets: C16_subset_C32_subset_C64
+    full_labels_definition: C64_not_entire_session
+    random_time_bin_split: prohibited
+    source_model_preprocessing: source_fit_only
+    local_model_preprocessing: target_training_fold_fit_only
+    primary_calibration_budget_trials: 32
+    sensitivity_calibration_budget_trials: [16, 64]
+    calibration_selection: hash_seeded_direction_balanced_whole_trials
+    common_target_evaluation_examples_for_B_L_F_A: true
+    exact_fit_roles:
+      B_t: target_C64_to_target_E64
+      L_t: target_C64_to_target_E64
+      F_s_to_t: source_C64_to_target_E64
+      A_s_to_t_m_b: source_model_plus_target_Cb_to_target_E64
+    ridge_selection: nested_in_fit_pool_or_globally_development_locked
+    physical_electrode_axis:
+      key: implanted_array_identity_and_electrode_id
+      unavailable_target_channel: source_center_after_source_fitted_scaling
+      delete_unavailable_column: false
+      local_scaling: target_fit_fold_only
+      survivor_axis_is_primary: false
+      unavailable_implanted_array_is_measurement_state: true
+    weights:
+      selected_trial_equal_within_octant: true
+      total_octant_weight_equal: true
+      identical_in_fit_null_and_score: true
+  performance_objects:
+    B_t: cross_fitted_intercept_only_target_null
+    L_t: cross_fitted_target_session_trained_benchmark
+    F_s_to_t: source_session_model_on_same_target_evaluation_folds
+    A_s_to_t_m_b: bounded_adaptation_using_exact_target_trial_budget
+    J_t: L_t_minus_B_t
+    G_s_t: L_t_minus_F_s_to_t
+    R_s_t: (L_t_minus_F_s_to_t)_divided_by_(L_t_minus_B_t)
+    Q_s_t_m_b: (A_s_to_t_m_b_minus_F_s_to_t)_divided_by_(L_t_minus_F_s_to_t)
+    K_s_t_m_b: (A_s_to_t_m_b_minus_F_s_to_t)_divided_by_(L_t_minus_B_t)
+    V_s_t: F_s_to_t_minus_B_t
+    ratios_clipped: false
+    folds_aggregated_before_ratios: true
+    failed_required_denominator: unresolved_not_pair_dropped
+  participant_aggregation:
+    pair_weight: equal_total_weight_per_target_session_then_equal_sources_within_target
+    recovery_numerator: target_node_weighted_mean_A_mstar_32_minus_F_over_long_pairs
+    Qbar_i: recovery_numerator_divided_by_target_node_weighted_mean_L_minus_F
+    K_i: recovery_numerator_divided_by_target_node_weighted_mean_J_t
+    average_of_pair_ratios_is_primary: false
+  lag_estimand:
+    primary: participant_specific_componentwise_source_and_target_fixed_effect_long_indicator
+    equation: R_s_t_equals_component_source_FE_plus_component_target_FE_plus_H_i_g_times_long_plus_error
+    graph_component: connected_session_by_observed_schedule_stratum
+    source_and_target_constraints: sum_to_zero_within_component
+    pair_weighting: equal_total_weight_per_target_session
+    mid_lag_in_primary_fit: false
+    component_requirements:
+      near_and_long_in_each_component: true
+      full_constrained_design_rank: true
+      condition_number_max: null
+      residualized_long_column_norm_min: null
+      session_node_leverage_max: null
+      numeric_bounds_human_freeze_required: true
+    component_aggregation: equal_stratum_then_equal_component_weight
+    robust_summary: median_long_R_minus_median_near_R
+    robust_summary_weighting: median_sources_within_target_then_median_targets
+    primary_and_robust_direction_must_agree: true
+  local_signal_estimand:
+    component_unit: observed_schedule_connected_component
+    component_eligibility: contains_both_near_and_long_chronological_ready_pairs
+    component_fractional_equation: within_component_target_node_weighted_mean_long_(Jt_minus_Js)_over_Js_minus_near_counterpart
+    component_raw_transport_equation: within_component_target_node_weighted_mean_long_(F_s_to_t_minus_B_t)_minus_near_counterpart
+    participant_aggregation: equal_stratum_then_equal_component_weight_renormalized_over_eligible_components
+    near_and_long_use_same_component_set: true
+    symbols: {fractional_local_change: S_i, raw_transported_above_null_change: D_i}
+    source_J_readiness_required: true
+    route_requires_simultaneous_negative_S_and_D_margins: true
+    route_can_support_measurement_or_remapping: false
+    claim: contract_specific_session_local_recoverable_target_direction_score
+  target_exposure_panel:
+    target_exposure_packets:
+      budgets_trials: [16, 32, 64]
+      nested_packets: C16_subset_C32_subset_C64
+      packet_and_evaluation_blocks_disjoint: true
+      baseline_target_X_trials: 0
+      fixed_packet_zero_label_access: X_only
+      supervised_access: identical_X_and_Y
+      fit_once_before_evaluation: true
+      evaluation_X_for_fit_or_stopping: prohibited
+      rolling_origin_optional:
+        identical_past_X_stream_across_zero_label_methods: true
+        cumulative_exposure_logged: true
+        future_or_current_sample_access: prohibited
+      whole_session_transductive:
+        role: diagnostic_upper_bound
+        deployment_or_low_cost_terminal_credit: prohibited
+    zero_target_sample:
+      - source_model_and_source_fitted_state
+    fixed_packet_X_only:
+      - causal_streaming_mean_scale
+      - bounded_unlabeled_covariance_or_orthogonal_alignment
+    fixed_32_labels:
+      - output_gain_bias_and_2d_rotation
+      - bounded_orthogonal_or_low_rank_latent_remapping
+      - bounded_supervised_alignment
+    full_labels:
+      - session_local_ridge_benchmark
+      - capacity_matched_latent_local_model
+      - one_development_frozen_ceiling_model
+    unrestricted_adaptation: prohibited
+    identical_calibration_trials_across_supervised_methods: true
+    zero_label_receives_labels: false
+    transductive_branch_supports_deployment_claim: false
+    bounded_method_grammar:
+      status: launch_blocked_pending_human_signed_numeric_bounds
+      required:
+        - maximum_latent_rank
+        - maximum_effective_degrees_of_freedom
+        - ridge_and_shrinkage_grids
+        - covariance_condition_number
+        - singular_value_bounds
+        - normalization_warmup_and_time_constant
+        - transform_norm_and_temporal_stability
+        - channel_QC_cutoffs
+    audit_recovery_method:
+      symbol: m_star
+      select_before_audit: true
+      admissibility: passes_exposure_shuffled_label_stability_and_complexity_gates
+      candidate_unit: complete_method_and_hyperparameter_recipe
+      candidate_set: finite_and_hashed_before_candidate_discriminating_scores
+      outer_lodo_influence_check:
+        split_winner_selected_on: other_support_qualified_development_participants_only
+        heldout_participant_may_select_or_tune_split_winner: false
+        heldout_adaptation_access: heldout_C32_X_and_Y_only
+        heldout_evaluation: heldout_E64_only
+        split_selection_scalar: minimum_participant_aggregated_A_m_32_among_nonheldout_participants
+        split_tie_rule: same_as_final_recipe
+        disagreement_role: reported_influence_diagnostic_not_terminal_gate
+        failure_to_produce_valid_winner_in_every_split: integrity_failure
+      score_lag_set: long_only
+      score_fold_aggregation: aggregate_two_outer_folds_before_pair_aggregation
+      score_pair_aggregation: equal_stratum_then_equal_target_node_then_equal_source_within_target
+      scalar_per_recipe: minimum_across_development_participants_of_aggregated_A_score
+      objective: maximize_scalar_per_recipe
+      practical_tie_tolerance: null
+      tie_order: [output_gain_bias_rotation, orthogonal_remapping, low_rank_remapping, bounded_supervised_alignment]
+      final_tie: configuration_hash
+      final_audit_recipe:
+        prerequisites: [finite_hashed_candidate_set, all_recipe_scores_valid, all_integrity_checks_pass]
+        select_using: already_computed_scores_from_all_support_qualified_development_participants
+        scalar: same_minimum_participant_A_m_32_score
+        development_E64_scores_enter_final_recipe_selection: true
+        audit_participant_data_enter_selection: false
+        cross_participant_parameter_refit: prohibited
+        audit_pair_fit: source_C64_only
+        audit_pair_adaptation: target_C32_X_and_Y_only
+        frozen_items: [method_family, hyperparameters, rank, preprocessing, stopping, configuration_hash]
+      post_audit_selection: prohibited
+  measurement_panel:
+    primary_session_neural_marginal_exposure:
+      source_packet: X_source_C64_current_outer_fit_fold
+      target_packet: X_target_C64_current_outer_fit_fold
+      labels: prohibited
+      evaluation_E64_features: prohibited
+      whole_session_profile: transductive_diagnostic_only
+    primary_state:
+      - electrode_and_array_identity
+      - channel_availability_and_finite_value_rate
+      - prespecified_label_blind_decoding_session_marginals
+    supplemental_state:
+      - exact_day_yield
+      - waveform_summary
+      - impedance_with_missingness_indicator
+    identity_aware_emulator:
+      operator_status: launch_blocked_pending_freeze
+      operator: E_Ms_to_Mt
+      label_blind_measurement_partial_order: launch_blocked_pending_freeze
+      primary_transition_direction: chronological_s_before_t
+      primary_transition_classes: [near, long]
+      degradation_admissible_rule: M_t_observably_no_better_than_M_s_under_frozen_partial_order
+      fold_consensus_admissibility:
+        order_call_computed_from: each_outer_fold_C64_profile_separately
+        primary_pair_rule: degradation_admissible_in_both_outer_folds
+        support_count: consensus_pair_counted_once
+        emulator_operator: remains_fold_specific
+        discordant_or_any_improvement_or_incomparable_call: mandatory_falsifier_only
+      allowed_operations: [channel_dropout, attenuation, additive_noise]
+      information_creation_or_missing_channel_restoration: prohibited
+      consensus_admissible_transitions_per_class_per_participant_min: 6
+      insufficient_admissible_transition_support: closed_task_support_incommensurate
+      improvement_incomparable_and_reciprocal_reverse_transitions: mandatory_falsifier_only
+      per_source_outer_fold:
+        L_tilde: fit_emulated_source_C64_score_emulated_source_E64
+        F_tilde: fit_original_source_C64_score_emulated_source_E64
+        B_tilde: fit_emulated_source_C64_null_score_emulated_source_E64
+        source_E64_used_for_training: false
+      simultaneous_J_R_and_admissible_H_equivalence_required: true
+      observed_J_transition: (J_t_minus_J_s)_divided_by_J_s
+      emulated_J_transition: (J_tilde_s_t_minus_J_s)_divided_by_J_s
+      pair_J_error: absolute_observed_minus_emulated_J_transition
+      pair_R_error: absolute_R_s_t_minus_R_tilde_s_t
+      participant_J_error_by_class: target_node_weighted_mean_pair_J_error_over_admissible_near_or_long_transitions
+      participant_R_error_by_class: target_node_weighted_mean_pair_R_error_over_admissible_near_or_long_transitions
+      adjudication_J_error: maximum_of_near_and_long_participant_J_error
+      adjudication_R_error: maximum_of_near_and_long_participant_R_error
+      admissible_excess_model:
+        subset: chronological_degradation_admissible_pairs_only
+        unit: observed_schedule_component_with_both_near_and_long_classes
+        observed: same_constrained_source_and_target_FE_long_indicator_as_primary_H
+        emulated: same_model_on_R_tilde_for_identical_pairs
+        aggregation: equal_stratum_then_equal_component_weight
+        rank_condition_residual_and_leverage_gates: same_as_primary_H
+        symbols:
+          observed_excess: H_i_M
+          emulated_excess: H_tilde_i_M
+          absolute_reproduction_error: E_H_i_identity
+        H_reproduction_error: maximum_over_contributing_components_of_absolute_observed_minus_emulated_component_H
+        opposite_component_error_cancellation: prohibited
+        observed_excess_positive_margin_required: true
+        emulated_excess_equivalence_required: true
+      near_lag_reproduction_required: true
+      J_error_requires_source_and_target_J_readiness: true
+      R_error_requires_observed_and_emulated_R_readiness: true
+    survivor_electrodes:
+      same_frozen_availability_rule_both_sessions: true
+      neuron_identity_claim: prohibited
+    matched_random_degradation:
+      preserve_count_and_quality_distribution: true
+      randomize_electrode_identity: true
+      frozen_null_bank_required: true
+      bank_size_seeds_and_mean_aggregation_frozen_before_scores: true
+      error_components: [J_near, J_long, R_near, R_long, H_excess]
+      random_error_construction:
+        J_and_R: bank_mean_of_same_pairwise_absolute_errors_as_identity_emulator
+        H: bank_mean_component_error_then_maximum_over_contributing_components
+        uncertainty: simultaneous_with_identity_errors_and_separation
+      adequacy_state:
+        adequate: simultaneous_upper_bounds_for_all_five_random_errors_inside_corresponding_equivalence_margins
+        ruled_out: simultaneous_lower_bound_for_any_random_error_exceeds_its_margin
+        unresolved: every_other_valid_case
+      identity_random_separation: minimum_over_components_of_random_mean_error_minus_identity_error
+      tri_state_rules:
+        identity_and_random_adequate: supported_generic_quantity_or_quality_sufficiency
+        identity_adequate_random_ruled_out_and_separation_supported: supported_identity_pattern_specific_sufficiency
+        identity_adequate_without_full_identity_specific_rule: unresolved
+        random_adequate_identity_not_adequate: unresolved_emulator_inconsistency
+        both_explicitly_ruled_out: ruled_out_observable_measurement_sufficiency
+        every_other_incomplete_case: unresolved
+      random_control_changes_measurement_bit: true
+      supported_subtype_changes_candidate_terminal_name: false
+    correlation_alone_establishes_sufficiency: false
+  forbidden:
+    - historical_online_decoder_performance_claim
+    - true_closed_loop_counterfactual_claim
+    - causal_hardware_neuron_loss_or_representation_drift_claim
+    - additive_percentage_decomposition
+    - audit_neural_outcome_access_by_controller
+    - mixed_or_ambiguous_target_schedule_primary_pairs
+    - random_time_bin_cross_validation
+    - within_window_or_endpoint_cursor_trajectory_as_primary_label
+    - session_pair_or_trial_as_population_replication
+    - target_labels_or_future_samples_in_zero_label_branch
+    - unequal_label_budget_across_competing_methods
+    - unrestricted_high_dimensional_or_deep_adaptation
+    - whole_session_transductive_normalization_as_deployable_zero_calibration
+    - best_of_threshold_crossing_feature_selection
+    - complete_case_impedance_cohort_as_primary
+    - post_audit_tuning_replacement_or_rescue
+
+trial_contract:
+  counted_atom: one_complete_diagnostic_panel_configuration
+  includes:
+    - all_support_qualified_development_participants_minimum_four
+    - exposed_unsupported_development_participants_logged_not_counted
+    - every_frozen_eligible_near_and_long_pair
+    - both_directions_when_eligible
+    - every_required_observed_target_schedule_stratum
+    - sbp_primary_and_tx_4_5_locked_falsifier
+    - common_B_L_F_A_target_evaluation_folds
+    - zero_16_32_64_and_full_label_exposure_rows
+    - all_required_adaptation_classes
+    - identity_aware_survivor_and_random_measurement_counterfactuals
+    - all_branch_native_signatures_and_required_falsifiers
+  unique_key: scientific_configuration_hash
+  one_trial_cannot_be_split_by:
+    - participant
+    - source_or_target_session
+    - directed_pair
+    - observed_target_schedule_stratum
+    - array
+    - feature_family
+    - calibration_draw_or_seed
+    - metric
+    - scheduler_job
+  does_not_count_as_new_trial:
+    - byte_identical_engineering_retry
+    - duplicate_configuration
+    - score_replay
+    - support_inventory
+    - synthetic_only_qualification
+    - audit_evaluation
+  valid_when:
+    - every_required_participant_pair_branch_and_falsifier_completed
+    - exact_block_disjoint_64_64_outer_folds_and_nested_packets_verified
+    - source_and_local_models_use_equal_64_trial_fit_counts
+    - zero_label_and_supervised_target_exposure_matches_declared_packets
+    - denominator_failures_are_retained_not_dropped
+    - complete_resource_lineage_and_exposure_record_exists
+  trial_purpose:
+    required_enum:
+      - coverage_panel
+      - adaptive_panel
+      - native_falsifier
+      - cross_panel_control
+      - ablation
+      - influence
+    commit_before_execution: true
+    exactly_one_primary_purpose: true
+
+panel_record_contract:
+  schema_version: ep16.diagnostic_panel.v1
+  materialize_before_audit: true
+  immutable_after_lock: true
+  required_fields:
+    - panel_id_and_configuration_hash
+    - participant_role_structural_pair_manifest_and_scorable_mask_hashes
+    - target_schedule_classifier_tolerance_and_ambiguity_hash
+    - feature_proxy_window_fold_and_score_contract
+    - physical_electrode_axis_and_missing_channel_contract
+    - B_L_F_A_model_and_preprocessing_contracts
+    - exact_calibration_packets_and_budget_hashes
+    - m_star_final_recipe_selection_tie_no_refit_rule_and_hash
+    - component_rank_condition_and_leverage_gate_record
+    - measurement_partial_order_emulator_and_null_bank_hashes
+    - denominator_effect_recovery_and_equivalence_margin_record
+    - simultaneous_uncertainty_and_tri_state_decision_record
+    - exposure_ledger_hash
+    - code_environment_seed_and_resource_manifest
+    - complete_outcome_decision_table
+    - exact_audit_command_and_evaluator_hash
+
+objectives:
+  scientific_primary: adjudicate_replicable_operational_failure_signatures_without_causal_decomposition
+  predictive_primary: maximize_reliable_heldout_target_direction_score_under_common_capacity
+  panel_selection_must_not_optimize:
+    - magnitude_of_long_lag_failure
+    - preferred_terminal_signature
+    - causal_story
+  development_pareto:
+    maximize:
+      - cross_fitted_L_and_F_score_reliability
+      - leave_one_participant_signature_stability
+      - budget_matched_adaptation_predictive_score
+      - emulator_fixture_recovery
+    minimize:
+      - invalid_or_uninterpretable_pair_fraction
+      - label_blind_emulator_measurement_profile_error
+      - transform_instability
+      - effective_degrees_of_freedom
+      - runtime
+  incumbent_order:
+    - all_integrity_and_leakage_checks_pass
+    - all_required_branches_and_falsifiers_present
+    - lower_invalid_denominator_and_pair_fraction
+    - better_leave_one_participant_stability
+    - better_common_score_reliability
+    - lower_complexity_then_runtime
+  margins:
+    status: launch_blocked_pending_human_signed_record
+    proposed_anchors_not_frozen:
+      harmful_long_lag_H_min: 0.10
+      low_budget_Q_min: 0.50
+      low_budget_K_min: 0.10
+      session_local_reduction_fraction_min: 0.15
+      raw_transported_above_null_decline_margin: null
+      measurement_J_normalized_error_max: 0.10
+      measurement_R_absolute_error_max: 0.10
+      measurement_admissible_H_min: null
+      measurement_H_equivalence_max: null
+      identity_random_error_separation_min: null
+    frozen_values_required_before_development_scores:
+      - J_readiness_min
+      - raw_transport_gap_readiness_min
+      - harmful_long_lag_H_min
+      - robust_median_H_min
+      - low_budget_Q_min
+      - low_budget_K_min
+      - session_local_reduction_margin
+      - raw_transported_above_null_decline_margin
+      - measurement_J_equivalence_margin
+      - measurement_R_equivalence_margin
+      - measurement_admissible_H_min
+      - measurement_H_equivalence_margin
+      - identity_random_error_separation_margin
+      - within_participant_interval_rule
+      - simultaneous_familywise_calibration_rule
+    numeric_design_bounds_required_before_development_scores:
+      - target_coordinate_relative_tolerance
+      - onset_offset_single_value
+      - channel_QC_cutoffs
+      - adaptation_rank_and_effective_df_maxima
+      - ridge_shrinkage_and_normalization_grids
+      - covariance_condition_and_singular_value_bounds
+      - transform_stability_threshold
+      - H_design_condition_residual_and_leverage_bounds
+      - adaptation_method_tie_tolerance
+      - measurement_state_partial_order_and_degradation_tolerances
+      - measurement_random_null_bank_size_seeds_and_aggregation
+    synthetic_qualification_may_relax_margin: false
+
+budgets:
+  stage1_coverage_valid_panels: 20
+  minimum_valid_trials: 40
+  maximum_valid_trials: 96
+  valid_trials_min: 40
+  valid_trials_max: 96
+  patience_valid_trials: 16
+  patience_active_after_trial: 40
+  cpu_core_hour_ceiling: 1200
+  cpu_core_hours_max: 1200
+  cpu_cores_per_trial_max: 16
+  memory_gib_per_trial_max: 96
+  wall_hours_per_trial_max: 8
+  wall_clock_hour_ceiling: 168
+  total_wall_clock_hours_max: 168
+  gpu_hour_ceiling: 0
+  gpu_hours_max: 0
+  profiling_must_fit_ceiling_before_outcome_access: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 20
+  rule: exact_20_row_manifest_of_complete_panels_covering_all_adaptation_measurement_and_falsifier_families
+  every_row_is_complete_diagnostic_panel: true
+  exact_manifest:
+    - {row: coverage_01, purpose: coverage_panel, primary_axis: frozen_source_reference}
+    - {row: coverage_02, purpose: coverage_panel, primary_axis: causal_normalization_low_bound}
+    - {row: coverage_03, purpose: coverage_panel, primary_axis: causal_normalization_high_bound}
+    - {row: coverage_04, purpose: coverage_panel, primary_axis: unlabeled_covariance_low_shrinkage}
+    - {row: coverage_05, purpose: coverage_panel, primary_axis: unlabeled_covariance_high_shrinkage}
+    - {row: coverage_06, purpose: coverage_panel, primary_axis: orthogonal_unlabeled_alignment}
+    - {row: coverage_07, purpose: coverage_panel, primary_axis: output_gain_and_bias}
+    - {row: coverage_08, purpose: coverage_panel, primary_axis: output_rotation}
+    - {row: coverage_09, purpose: coverage_panel, primary_axis: low_rank_lower_bound}
+    - {row: coverage_10, purpose: coverage_panel, primary_axis: low_rank_upper_bound}
+    - {row: coverage_11, purpose: coverage_panel, primary_axis: bounded_supervised_alignment}
+    - {row: coverage_12, purpose: coverage_panel, primary_axis: capacity_matched_latent_local}
+    - {row: coverage_13, purpose: coverage_panel, primary_axis: development_frozen_ceiling}
+    - {row: coverage_14, purpose: native_falsifier, primary_axis: identity_aware_dropout_only_emulator}
+    - {row: coverage_15, purpose: native_falsifier, primary_axis: identity_aware_dropout_and_noise_emulator}
+    - {row: coverage_16, purpose: native_falsifier, primary_axis: matched_random_degradation_bank}
+    - {row: coverage_17, purpose: native_falsifier, primary_axis: survivor_electrode_axis}
+    - {row: coverage_18, purpose: native_falsifier, primary_axis: tx_4_5_feature_family}
+    - {row: coverage_19, purpose: cross_panel_control, primary_axis: reciprocal_and_source_target_quality_controls}
+    - {row: coverage_20, purpose: cross_panel_control, primary_axis: fold_null_missingness_and_lag_sensitivities}
+  row_values_resolved_only_from_human_signed_numeric_grammar: true
+  readiness_rejection_must_be_logged: true
+
+synthetic_qualification:
+  required_before_real_neural_scores: true
+  fixtures:
+    - stationary_no_transport_failure
+    - pure_output_gain_bias_rotation_mismatch
+    - orthogonal_low_rank_remappable_mismatch
+    - identity_specific_channel_dropout_and_noise
+    - count_matched_random_channel_degradation
+    - session_local_signal_reduction_with_raw_transport_decline
+    - reproducible_composite_signature
+    - mixed_nonreproducible_signature
+    - deliberate_random_bin_and_target_label_leakage
+  must_verify:
+    - one_sample_per_trial_and_exact_64_64_fold_roles
+    - nested_C16_C32_C64_packet_identity_and_exposure_firewall
+    - physical_electrode_axis_and_missing_channel_rule
+    - metric_direction_and_fold_aggregation
+    - R_Q_and_K_denominator_behavior_without_clipping
+    - componentwise_source_target_fixed_effect_rank_and_condition_gates
+    - componentwise_S_and_D_use_identical_near_long_component_support
+    - expected_branch_recovery_and_no_single_trial_retirement
+    - simultaneous_J_R_and_admissible_H_measurement_equivalence
+    - two_fold_measurement_admissibility_consensus_and_discordant_falsifier
+    - identity_aware_vs_random_tri_state_and_separation_margin
+    - final_m_star_recipe_selection_and_no_cross_participant_refit
+    - tri_state_signature_adjudication
+    - dual_H_and_S_plus_D_entry_routes
+    - one_shot_terminal_decision_table
+  may_set_scientific_margin: false
+  human_signed_margin_record_required_after_pass: true
+
+successor_policy:
+  proposal_requires:
+    - parent_trial_id_and_configuration_hash
+    - observed_development_trigger
+    - one_primary_operator_change
+    - predicted_signature_before_execution
+    - declared_trial_purpose
+  trigger_routes:
+    stable_L_degraded_F:
+      prioritize: [causal_normalization, output_calibration, bounded_alignment]
+    reduced_L:
+      prioritize: [measurement_emulator, survivor_electrodes, feature_and_trial_falsifiers]
+    emulator_matches_J_not_R_or_admissible_H:
+      interpretation: measurement_quantity_only_not_excess_transport_sufficiency
+      prioritize: [mapping_mismatch_falsifiers, source_quality_controls]
+    output_only_adequate:
+      prioritize: [budget_curve, output_transform_stability]
+      retire_after_falsifiers: high_dimensional_alignment
+    only_high_dimensional_adequate:
+      require: [low_rank_necessity, transform_stability, shuffled_target_control, equal_budget_comparator]
+    task_strata_disagree:
+      require_before_heterogeneity: [task_instruction_interaction, leave_one_stratum_influence]
+
+branch_retirement:
+  common_preconditions:
+    exact_20_row_coverage_complete: true
+    native_postcoverage_falsifiers_min: 2
+    one_failed_or_successful_trial_is_sufficient: false
+  high_dimensional_alignment:
+    when: output_only_clears_same_budget_margin_and_required_falsifiers
+  measurement_sufficiency:
+    retirement_after_valid_fixture_qualification: prohibited
+    reason: failed_equivalence_is_a_scientific_result
+  generic_channel_quantity:
+    when: identity_aware_beats_matched_random_null_under_frozen_error_rule
+  deployable_zero_label:
+    when: only_whole_session_transductive_normalization_succeeds
+  retirement_is_terminal_success: false
+
+falsification:
+  post_coverage_fraction_min: 0.40
+  denominator: valid_trials_after_coverage
+  qualifying_purposes: [native_falsifier, cross_panel_control, ablation, influence]
+  ordinary_hyperparameter_change_qualifies: false
+  failed_falsifier_counts_as_positive_support: false
+
+required_falsifiers:
+  - intercept_and_block_preserving_shifted_label_nulls
+  - random_bin_split_leakage_regression_test
+  - sbp_primary_vs_fixed_tx_4_5
+  - source_and_target_quality_fixed_effect_and_matched_contrasts
+  - reciprocal_directed_pair_consistency
+  - direction_octant_and_target_schedule_balance
+  - window_start_proxy_vs_target_transition_direction_sensitivity
+  - identical_16_32_64_trial_budget_curves
+  - causal_streaming_vs_transductive_normalization
+  - output_only_vs_orthogonal_low_rank_vs_supervised_alignment
+  - shuffled_target_labels_for_every_supervised_adaptation
+  - identity_aware_vs_matched_random_measurement_emulator
+  - fold_discordant_measurement_admissibility_falsifier
+  - measurement_reverse_improvement_incomparable_no_information_creation_falsifiers
+  - survivor_electrode_analysis
+  - local_model_training_size_learning_curve
+  - impedance_and_yield_missingness_influence
+  - leave_one_development_participant_and_task_stratum_influence
+  - correlation_without_equivalence_negative_control
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  branch_coverage_required: true
+  complete_diagnostic_panel_required: true
+  leave_one_development_participant_emulation_required: true
+  lock_one_panel: true
+  all_promotion_gates_required_before_configuration_lock: true
+  select_interpretation_after_audit: prohibited
+  freeze:
+    - code_environment_and_data_identities
+    - participant_roles_structural_pair_manifest_scorable_mask_and_schedule_strata
+    - feature_proxy_window_folds_and_score
+    - physical_electrode_axis_missing_channel_and_trial_packet_rules
+    - model_preprocessing_and_capacity_contracts
+    - target_exposure_packets_and_budgets
+    - measurement_partial_order_emulator_survivor_rule_and_random_null_bank
+    - all_denominator_effect_recovery_and_equivalence_margins
+    - controls_falsifiers_terminal_table_and_audit_command
+
+stop:
+  before_minimum: only_integrity_exposure_support_leakage_or_evaluator_failure
+  patience_starts_after_minimum: true
+  patience_requires_branch_coverage: true
+  patience_requires_postcoverage_falsifier_fraction: true
+  patience_requires_minimum_adaptive_successor_cycles: 2
+  patience_requires_minimum_incumbent_challenger_decisions: 2
+  after_minimum:
+    - patience_exhausted
+    - maximum_valid_trials_reached
+    - cpu_or_wall_clock_budget_exhausted
+  budget_or_patience_stop_is_scientific_success: false
+  no_viable_three_person_audit_set: closed_task_support_incommensurate
+  unresolved_human_signed_margins: remain_launch_blocked
+
+audit:
+  mode: one_shot_whole_participant_strict_adequacy
+  configuration_lock_required: true
+  exact_20_row_coverage_required: true
+  minimum_adaptive_successor_cycles_required: 2
+  minimum_incumbent_challenger_decisions_required: 2
+  postcoverage_falsifier_fraction_required: 0.40
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  participants: 3
+  owner: trusted_evaluator
+  network_egress: disabled
+  shared_mixed_source_mounted: false
+  controller_neural_cursor_or_measurement_outcome_access: false
+  all_three_opened_together: true
+  evaluator_emits_scorable_subset_hash_atomically: true
+  participant_replacement_or_reduced_n: prohibited
+  partial_result_feedback: prohibited
+  retune_margin_threshold_model_or_emulator: prohibited
+  population_p_value_claim: prohibited
+  exact_sign_flip_p_min: 0.125
+  uncertainty:
+    resampling_unit: session_nodes_with_induced_pairs_then_blocks_and_trials_within_nodes
+    pairwise_independent_bootstrap: prohibited
+    simultaneous_family:
+      - H_i
+      - H_i_median
+      - Qbar_i_m_star
+      - K_i_m_star
+      - S_i
+      - D_i
+      - H_i_M
+      - E_H_i_identity
+      - E_J_i_near_identity
+      - E_J_i_long_identity
+      - E_R_i_near_identity
+      - E_R_i_long_identity
+      - E_H_i_random
+      - E_J_i_near_random
+      - E_J_i_long_random
+      - E_R_i_near_random
+      - E_R_i_long_random
+      - Delta_i_random
+    familywise_calibration_rule: null
+    human_freeze_before_scores: true
+  decision_rule:
+    state_space: [supported, ruled_out, unresolved]
+    equality_at_margin: unresolved
+    long_lag_bit:
+      supported: simultaneous_lower_bounds_for_H_and_H_median_exceed_margins
+      ruled_out: upper_bound_for_either_required_contrast_below_margin
+      unresolved: all_other_valid_cases_including_denominator_or_postfit_numerical_ambiguity
+    signature_bits:
+      observable_measurement_sufficiency:
+        prerequisite: simultaneous_lower_bound_for_H_i_M_exceeds_positive_margin
+        identity_adequacy: simultaneous_upper_bounds_for_identity_E_H_and_all_four_identity_near_long_E_J_E_R_errors_inside_equivalence_margins
+        random_adequacy: same_five_error_tri_state_using_random_bank_errors
+        supported: identity_adequate_and_random_control_resolves_to_generic_or_identity_pattern_specific_support
+        ruled_out: H_i_M_explicitly_below_margin_or_both_identity_and_random_emulators_explicitly_outside_equivalence
+        unresolved: all_other_valid_cases_including_random_identity_inconsistency_uncertain_separation_or_readiness_failure
+      low_budget_32_trial_recovery:
+        method: m_star_only
+        supported: simultaneous_lower_bounds_for_Qbar_and_K_exceed_margins
+        ruled_out: upper_bound_for_either_Qbar_or_K_below_margin
+        unresolved: all_other_valid_or_denominator_failure_cases
+      session_local_signal_reduction:
+        supported: simultaneous_upper_bounds_for_S_and_D_below_negative_margins
+        ruled_out: lower_bound_for_either_S_or_D_above_its_negative_margin
+        unresolved: all_other_valid_cases
+    precedence:
+      - integrity_exposure_or_evaluator_failure_to_technical_failure
+      - structural_scorable_or_rank_failure_to_closed_task_support_incommensurate
+      - adjudicate_normalized_H_gate_and_local_S_plus_D_gate_per_participant
+      - all_three_H_supported_evaluate_measurement_recovery_and_local_signal_bits
+      - under_common_H_any_unresolved_signature_bit_to_closed_unexplained_or_unresolved
+      - under_common_H_identical_single_supported_set_with_all_omitted_bits_ruled_out_to_matching_single_candidate
+      - under_common_H_identical_multiple_supported_sets_with_all_omitted_bits_ruled_out_to_composite_candidate
+      - under_common_H_identical_empty_supported_sets_to_closed_unexplained_or_unresolved
+      - without_common_H_all_three_local_S_plus_D_supported_to_session_local_signal_candidate
+      - both_entry_gates_ruled_out_all_three_to_closed_no_long_lag_excess_transport_deficit
+      - different_fully_resolved_profiles_apply_heterogeneity_rule
+      - other_resolved_entry_gate_disagreement_to_closed_nonreplicating_long_lag_deficit
+      - other_resolved_signature_disagreement_after_common_H_to_closed_mixed_nonreproducible_mechanisms
+      - any_other_unresolved_required_state_to_closed_unexplained_or_unresolved
+    heterogeneity:
+      development_frozen_profile_rule: required
+      disjoint_time_stratified_session_node_partitions_per_participant: 2
+      each_partition_has_near_long_and_rank_support: true
+      distinct_fully_resolved_participant_profiles_min: 2
+      each_participant_partition_and_full_profile_agree: true
+      disable_before_neural_access_if_structurally_ineligible: true
+      population_subtype_claim: prohibited
+    measurement_random_control_changes_terminal_eligibility: true
+    supported_measurement_subtype_changes_terminal_name: false
+    mandatory_sensitivities:
+      tx_4_5_survivor_alternate_lag: non_rescuing_claim_narrowing_diagnostics
+      veto_only_for_predeclared_integrity_or_leakage_failure: true
+  audit_is_independent_external_confirmation: false
+
+terminal_mapping:
+  candidate_ready_observable_measurement_sufficiency: candidate_ready
+  candidate_ready_low_budget_remappable_mismatch: candidate_ready
+  candidate_ready_session_local_signal_reduction: candidate_ready
+  candidate_ready_reproducible_composite_signature: candidate_ready
+  candidate_ready_reproducible_failure_heterogeneity: candidate_ready
+  closed_no_long_lag_excess_transport_deficit: closed_no_candidate
+  closed_nonreplicating_long_lag_deficit: closed_no_candidate
+  closed_mixed_nonreproducible_mechanisms: closed_no_candidate
+  closed_task_support_incommensurate: closed_no_candidate
+  closed_unexplained_or_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true

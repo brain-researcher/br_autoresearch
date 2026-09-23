@@ -1,0 +1,29 @@
+# Experiment log
+
+> Client-maintained exploratory projection. This file grants no execution,
+> review, scientific, memory, or Landscape authority. Preserve existing entries
+> and append new entries in chronological order.
+> It is not a required Society review artifact. If explicitly declared in
+> a frozen CandidateBundle's `output_artifacts`, it may be supplied only as optional
+> supplemental context; declare primary result artifacts separately.
+
+## Binding
+
+- Goal handoff: not observed
+- Outer loop: not observed
+- Workspace: local planned draft; no Native Goal handoff observed
+
+## Entries
+
+### Entry 1
+
+- Stage: not observed
+- Question or attempt: not observed
+- Action: not observed
+- Outcome: not observed
+- Evidence refs: not observed
+- Failure or deviation: none observed
+
+## Remaining uncertainty
+
+- Not yet assessed.

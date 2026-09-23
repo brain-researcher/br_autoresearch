@@ -1,0 +1,644 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep17_cneuromod_model_ranking_stability_adaptive
+episode_id: ep17
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  source_release:
+    source: cneuromod_things
+    release_tag: 1.0.1
+    root_commit: 0f22b6c5eca4001e86fa936f3b6c2569a0179970
+    glmsingle_commit: 1f16b9e982ed47cb5d07ae1cf03d479c2d8521a3
+    participants: [sub-01, sub-02, sub-03, sub-06]
+    participants_required: 4
+    participant_replacement: prohibited
+    biological_unit: participant
+  development:
+    concepts_target: 480
+    assignment_unit: whole_concept_across_all_images_repetitions_participants_and_beta_stages
+    use: adaptive_coverage_successors_falsifiers_and_final_readout_fit
+    participant_weighting: equal
+    audit_neural_outcomes_visible: false
+  support_calibration:
+    concepts_target: 120
+    assignment_unit: whole_concept_across_all_images_repetitions_participants_and_beta_stages
+    use: voxel_reliability_support_selection_and_stage_specific_noise_ceilings_only
+    may_enter_model_fit_or_score: false
+    raw_neural_owner: trusted_builder_only
+    raw_neural_visible_to_search_worker: false
+  audit:
+    concepts_target: 120
+    assignment_unit: whole_concept_across_all_images_repetitions_participants_and_beta_stages
+    neural_outcome_owner: trusted_evaluator_only_after_lock
+    audit_kind: same_participant_concept_disjoint_heldout_stimulus_replication
+    final_readout_refit_on_audit: prohibited
+    new_participant_or_cross_dataset_claim: prohibited
+    maximum_open_count: 1
+  source_acquisition:
+    status: verified_restricted_raw
+    availability_ref: DATASETS.md
+    operational_records: steward_managed_with_provisioned_source_not_tracked_in_git
+    mixed_raw_files_allowed_in_restricted_staging: true
+    source_integrity_verification_before_role_freeze: allowed
+    mixed_raw_files_visible_to_search_worker: false
+    role_filtered_handoffs_required: true
+  prospective_collision:
+    episode: ep18
+    assets: [THINGS_images, THINGS_concepts, image_features]
+    rule: reserve_disjoint_concepts_or_freeze_complete_EP18_design_before_EP17_audit_outcome_access
+  evidence_status: public_source_campaign_sealed_not_externally_untouched
+
+grammar:
+  execution: declarative_contract_graph_with_trusted_builder_and_evaluator
+  eligibility_and_roles:
+    eligibility_source: events_and_derivative_metadata_only
+    metadata_column_allowlist:
+      - image_ID
+      - concept_ID
+      - presentation_index
+      - session_run_trial_position
+      - acquisition_order
+      - repetition_lag
+      - provider_schedule_exception_flag
+    excluded_metadata_outcomes:
+      - recognition_response
+      - correctness
+      - reaction_time
+      - other_behavioural_outcomes
+    expected_concepts_not_assumed_observed: 720
+    primary_image_universe: exact_four_participant_common_image_ID_intersection
+    repetition_completeness_rule: null
+    identical_B_C_D_trial_mapping_required: true
+    structural_checks_before_neural_values: true
+    global_concept_roles: [development, support_calibration, sealed_audit]
+    role_counts:
+      development: 480
+      support_calibration: 120
+      sealed_audit: 120
+    all_images_repetitions_participants_and_stages_follow_concept_role: true
+    assignment_method: deterministic_versioned_hash_and_balance
+    balance_fields:
+      - external_THINGS_or_THINGSplus_taxonomy
+      - five_vs_six_exemplar_status
+      - participant_acquisition_order
+      - session_coverage
+      - repetition_lag
+    balance_tolerances: null
+    tie_break_rule: null
+    taxonomy_manifest:
+      release: null
+      file: null
+      sha256: null
+      concept_ID_crosswalk: null
+      unmapped_rule: null
+      multilabel_rule: null
+      group_merge_rule: null
+      minimum_cell_size: null
+      identical_for_role_balance_and_semantic_strata: true
+      freeze_before_role_assignment_and_neural_scores: true
+    candidate_model_defined_roles_or_balance: prohibited
+    development_outer_folds:
+      count: 6
+      concepts_each: 80
+      unit: concept
+    development_uncertainty_blocks:
+      count: 24
+      concepts_each: 20
+      independent_of_outer_fold_labels: true
+    audit_influence_blocks:
+      count: 12
+      concepts_each: 10
+      unit: concept
+    exact_720_eligibility_gate_failure: readiness_refusal_unless_preoutcome_scientist_amendment
+  handoffs:
+    metadata_only:
+      contents: events_concept_image_repeat_session_stage_and_geometry_indices
+      neural_values: absent
+    calibration_raw:
+      contents: role_filtered_support_calibration_neural_values
+      owner: trusted_builder
+      visible_to_search_worker: false
+    development:
+      contents: role_filtered_development_neural_values_plus_frozen_calibration_derived_support_reliability_and_ceiling_artifacts
+      visible_to_search_worker: true
+    sealed_audit:
+      contents: role_filtered_audit_neural_values
+      visible_to_search_worker: false
+      owner: trusted_evaluator
+    immutable_hashes_and_permissions_required: true
+  model_registry:
+    promotion_pairs_required: 3
+    promotion_pairs_max: 4
+    checkpoints_total_min: 6
+    checkpoints_total_max: 8
+    pair_isolates_exactly_one_declared_contrast: true
+    allowed_contrasts:
+      - training_objective_at_fixed_architecture_and_diet
+      - architecture_at_fixed_objective_and_diet
+      - training_diet_at_fixed_architecture_and_objective
+    trained_vs_random:
+      required: true
+      role: falsifier_only
+      promotion_eligible: false
+      unique_random_checkpoint_counts_toward_cap: true
+      may_reuse_one_registered_trained_checkpoint: true
+    checkpoint_sharing_across_pairs:
+      allowed: true
+      requirement: each_pair_still_isolates_one_axis_and_dependence_is_declared
+      creates_independent_replication: false
+    required_fields:
+      - checkpoint_sha256
+      - architecture
+      - objective
+      - training_data_lineage
+      - parameter_count
+      - license
+      - image_preprocessing
+      - candidate_layers
+      - feature_tensor_shape
+      - controlled_axis
+      - residual_imbalance
+      - THINGS_and_target_image_exposure_status
+    exposure_labels:
+      - lineage_audited_no_known_target_exposure
+      - known_related_corpus_exposure
+      - known_exact_or_near_duplicate_exposure
+      - exposure_unknown
+    known_target_exposure_promotion_eligible: false
+    exposure_unknown_clean_claim_allowed: false
+    launch_requires_named_hashed_lineage_clean_panel: true
+  linking:
+    primary: voxelwise_ridge_encoding
+    frozen_scope: linear_voxel_encoding_only
+    train_only_steps:
+      - feature_centering
+      - PCA
+      - layer_selection
+      - PCA_rank_selection
+      - ridge_selection
+    shared_selection_budget_within_pair: true
+    pca_rank_grid: null
+    ridge_grid: null
+    eligible_layer_manifest: null
+    launch_requires_exact_grids_and_layers: true
+    development_nested_fitting:
+      outer_unit: concept
+      outer_folds: 6
+      inner_folds_per_outer_training: null
+      all_selection_nested_in_outer_training_concepts: true
+      outer_heldout_used_for_selection: false
+      launch_requires_numeric_inner_fold_and_assignment_manifest: true
+    final_predictor:
+      fit_data: all_development_concepts_only
+      outer_fold_to_final_hyperparameter_aggregation_rule: null
+      launch_requires_aggregation_and_tie_break_rule: true
+      hash_feature_transform_hyperparameters_and_voxel_coefficients_before_audit: true
+      audit_refit: prohibited
+    mandatory_linking_falsifier:
+      count: 1
+      family: fixed_dimensional_linear_CKA
+      model_features: exact_locked_layer_with_training_only_centering_and_PCA
+      common_fixed_PCA_rank_q: null
+      neural_response: equal_image_weight_image_averaged_response
+      fold_score: standard_biased_linear_CKA_on_column_centered_same_heldout_images
+      formula: squared_Frobenius_XtY_over_product_Frobenius_XtX_YtY
+      zero_denominator: invalid
+      fold_aggregation: unique_image_count_weighted
+      margin: null
+      uncertainty: crossed_participant_by_concept_block_max_t
+      disagreement_gate: encoding_and_CKA_cross_opposite_signed_margins_same_contract_and_stratum
+      new_model_layer_rank_or_contract_search: false
+  scientific_strata:
+    ROIs: null
+    primary_ROI_source: common_anatomical_atlas_crosswalk_all_four_participants
+    launch_requires_numeric_ROI_manifest: true
+    participant_specific_localizers:
+      role: sensitivity_only
+      terminal_driving: false
+    semantic_grouping:
+      source: external_THINGS_or_THINGSplus_taxonomy
+      release_file_hash_and_concept_crosswalk: null
+      unmapped_multilabel_and_group_merge_rules: null
+      groups_and_minimum_cell_size: null
+      identical_manifest_to_role_balance: true
+      candidate_model_defined: false
+    heldout_concept_audit:
+      separate_endpoint: true
+      same_participants: true
+      direct_application_without_readout_refit: true
+  contract_graph:
+    beta_stages:
+      B: fit_HRF_without_GLMdenoise_or_ridge
+      C: fit_HRF_plus_GLMdenoise_without_ridge
+      D: fit_HRF_plus_GLMdenoise_plus_ridge
+      source_family: one_pinned_CNeuroMod_GLMsingle_derivative
+      launch_requires_participant_complete_B_C_D_alignment: true
+      public_D_noise_ceiling:
+        role: positive_control_only
+        reusable_as_B_or_C_ceiling: false
+        visible_to_search_worker: false
+        open_after_configuration_lock_only: true
+        terminal_driving: false
+    support_levels:
+      A_all: common_finite_anatomical_atlas_support
+      A_N: bank_mean_of_deterministic_hashed_N_subsets_with_fixed_spatial_quotas
+      R_N: calibration_repeat_reliability_top_N_with_identical_spatial_quotas
+      N_per_ROI: null
+      hashed_subset_bank_size_K: null
+      subparcel_and_spatial_bin_definitions: null
+      quota_manifest: null
+      launch_requires_N_K_bins_quotas_hashes_and_aggregation: true
+      quota_mismatch_is_support_policy_composite: true
+    noise_ceiling:
+      estimation_pool: support_calibration_concepts_only
+      estimator: null
+      floor_by_stage: null
+      common_finite_NC_eligibility_threshold: null
+      recompute_for_stages: [B, C, D]
+      public_D_map_role: positive_control_only
+      score_and_calibration_concepts_disjoint: true
+      raw_R2_modified_by_floor: false
+      normalized_denominator: max_stage_specific_NC_and_frozen_floor
+      launch_requires_estimator_floor_and_feasibility: true
+    five_required_isolated_edges_per_promotion_pair:
+      - beta_B_to_C_on_fixed_voxels
+      - beta_C_to_D_on_fixed_voxels
+      - support_A_all_to_A_N_at_fixed_beta
+      - support_A_N_to_R_N_at_fixed_beta_N_and_spatial_quotas
+      - variance_raw_to_variance_ceiling_normalized_on_identical_V_NC
+    isolation_anchors:
+      beta_edges:
+        support: A_all_common_finite_anatomical
+      support_edges:
+        beta_stage: D
+      required_ceiling_treatment_edge:
+        beta_stage: D
+        support: identical_common_V_NC
+      every_mandated_score_emitted_but_relation_binds_one_scale: true
+    composite_edges:
+      - beta_x_support_when_voxel_identity_changes
+      - beta_x_ceiling_when_stage_and_ceiling_change_together
+      - support_x_ceiling_when_NC_eligibility_changes_voxel_identity
+    composite_edges_enter_isolated_reversal_rate: false
+  response:
+    primary_unit: unique_image_within_participant_and_beta_stage
+    repetition_aggregation: equal_mean_of_retained_trialwise_betas
+    fitting_and_scoring_weight: equal_per_unique_image
+    trialwise_inverse_variance_or_presentation_weighting: sensitivity_only
+    all_repetitions_follow_concept_role_and_fold: true
+  score_scales:
+    correlation_raw:
+      voxel_score: Fisher_z_of_heldout_image_correlation
+      ROI_aggregation: mean_voxel_then_equal_mean_participant
+      margin: null
+      atanh_boundary_tolerance: null
+    variance_raw:
+      voxel_score: heldout_R2_against_development_training_response_mean
+      retain_negative: true
+      ROI_aggregation: mean_voxel_then_equal_mean_participant
+      margin: null
+    variance_ceiling_normalized:
+      voxel_score: heldout_R2_divided_by_stage_specific_NC_floor
+      estimand: mean_of_voxelwise_ratios
+      ratio_of_means: prohibited
+      retain_negative_and_above_one: true
+      identical_V_NC_as_variance_raw: true
+      margin: null
+    CKA_linking:
+      role: mandatory_falsifier_and_possible_locked_relation
+      margin: null
+    specialization_interaction:
+      estimand: Gamma_equals_pair_effect_g1_minus_pair_effect_g2
+      margin_by_score_scale: null
+      gate: interaction_and_both_within_stratum_effects_cross_signed_margins
+    pooled_scale_envelope: prohibited
+    correlation_vs_variance_disagreement: metric_target_dependence
+    raw_vs_normalized_variance_disagreement: ceiling_treatment_sensitivity
+    launch_requires_scientist_signed_margins: true
+  folds_and_degeneracy:
+    candidate_independent: true
+    identical_folds_and_image_weights_within_pair: true
+    all_images_of_one_concept_same_fold: true
+    all_repetitions_same_fold: true
+    inner_tuning_nested_in_outer_training_concepts: true
+    outer_heldout_used_for_selection: false
+    response_variance_eligibility_before_model_outputs: true
+    pairwise_complete_deletion: prohibited
+    model_specific_missing_voxel_or_image_handling: invalid_trial
+    presentation_diagnostics:
+      first_presentation_and_repeat_index_stratified: true
+      refit_voxel_coefficients: false
+      terminal_driving: false
+  uncertainty:
+    bootstrap_draws: 10000
+    resampling: crossed_participant_by_24_development_or_12_audit_concept_blocks
+    participant_weighting: equal
+    concept_unit_keeps_all_images_and_repetitions_together: true
+    simultaneous_method: max_t_within_one_relation_and_score_scale
+    studentization_and_quantile_rule: null
+    launch_requires_exact_simultaneous_bound_estimator: true
+    fixed_seed_manifest_required: true
+    frozen_predictions_and_selected_hyperparameters_treated_as_fixed: true
+    full_selection_refit_bootstrap: sensitivity_only_nonterminal
+    development_bounds_are_postadaptive_descriptive: true
+    population_inference_from_four_participants: prohibited
+    contract_uncertainty_envelope:
+      formula: min_contract_lower_to_max_contract_upper
+      descriptive_only: true
+      within_one_score_scale_only: true
+  relation_rules:
+    ordinary_relation_id_binds:
+      - model_pair
+      - one_encoding_score_scale
+      - margin
+      - signed_components
+      - contracts
+      - strata
+      - response_construction
+      - audit_mapping
+    linking_relation_id_binds:
+      - model_pair
+      - encoding_score_and_margin
+      - CKA_margin
+      - signed_components
+      - contract
+      - stratum
+      - response_construction
+      - audit_mapping
+    eligible_terminal_contract_manifest:
+      hash_required: true
+      freeze_before_first_candidate_discriminating_neural_score: true
+      scope: every_controlled_pair_x_score_family
+      enumerates_exact_vertices_edges_and_signed_components: true
+      minimum_vertices: endpoints_of_all_five_required_isolated_edges_where_score_is_defined
+      inapplicability_rule: prespecified_structural_or_calibration_feasibility_only
+      exclusion_reason_retained: true
+      exact_development_to_audit_homologous_mapping_required: true
+      post_score_shrink_expand_relabel_or_favorable_replacement: prohibited
+      later_unregistered_contracts: diagnostic_or_successor_only
+    stable_positive: every_eligible_contract_simultaneous_lower_bound_above_margin
+    stable_negative: every_eligible_contract_simultaneous_upper_bound_below_negative_margin
+    genuine_reversal: isolated_adjacent_contracts_cross_opposite_margins
+    specialization: interaction_and_both_stratum_effects_cross_signed_margins
+    linking_dependence: encoding_and_CKA_cross_opposite_margins
+    practical_equivalence: every_simultaneous_bound_inside_equivalence_region
+    resolution_limited: bounds_overlap_pass_and_null_regions
+    point_sign_flip_is_reversal: false
+    nonsignificance_is_equivalence: false
+  trial_atom:
+    unit: one_model_pair_x_one_directed_isolated_contract_edge_x_all_four_development_participants
+    includes:
+      - every_frozen_ROI
+      - every_frozen_semantic_stratum
+      - paired_concept_folds
+      - all_mandated_scores_and_bounds
+      - native_falsifiers
+    cannot_split_by:
+      - participant
+      - ROI
+      - semantic_group
+      - concept_block
+      - image
+      - repetition
+      - fold
+      - seed
+      - support_bank_member
+      - score_scale
+      - scheduler_job
+    unique_key: scientific_configuration_hash
+    engineering_retry_reuses_id_only_if_byte_identical: true
+    parent_trial_and_visible_ledger_prefix_hash_required: true
+  successor_grammar:
+    common_required_fields:
+      - parent_scored_trial
+      - directional_prediction
+      - competing_explanation
+      - native_falsifier
+      - exactly_one_changed_scientific_operator
+      - unchanged_operator_manifest
+      - expected_information_gain_and_cost
+      - visible_ledger_prefix_hash
+      - retirement_condition
+    branches:
+      low_reliability_only:
+        required_next: fixed_identity_reliability_strata_A_N_vs_R_N_and_repeat_split
+      beta_reversal:
+        required_next: fixed_support_scale_stage_specific_NC_layer_stability_and_repeat_split
+      ceiling_only:
+        required_next: alternate_frozen_NC_estimator_floor_and_no_clipping
+      all_measurement_contracts_stable:
+        required_next: CKA_participant_influence_concept_block_and_semantic_attacks
+      ROI_or_semantic_flip:
+        required_next: fixed_measurement_contract_interaction_and_block_stability
+      audit_nonreplication:
+        required_next: none_terminal_prelocked_diagnostics_only
+  branch_retirement:
+    minimum_valid_configurations: 2
+    direct_native_falsifier_or_replication_required: true
+    states:
+      - retired_falsified
+      - retired_equivalent
+      - retired_exhausted
+      - active_unresolved
+    one_failed_trial_can_retire: false
+    nonsignificance_can_retire: false
+    readiness_failure_is_scientific_retirement: false
+  forbidden:
+    - arbitrary_model_zoo_expansion_after_scores
+    - candidate_model_defined_roles_strata_or_OOD_partition
+    - model_specific_outer_folds_or_image_weights
+    - beta_stage_specific_voxels_on_pure_beta_edge
+    - public_D_ceiling_called_B_or_C_ceiling
+    - clipping_negative_R2_or_normalized_values_above_one
+    - pooling_correlation_variance_or_CKA_scales
+    - treating_voxels_images_concepts_repetitions_or_contracts_as_biological_replicates
+    - mixed_raw_neural_source_mounted_to_search_worker
+    - audit_neural_outcome_or_partial_metric_access_before_lock
+    - audit_readout_refit
+    - audit_driven_subset_selection_rescue_margin_change_or_rerun
+    - post_score_terminal_contract_universe_shrink_expand_or_relabel
+
+objectives:
+  primary: identify_controlled_pairwise_relations_as_contract_robust_isolated_axis_sensitive_conditional_or_underidentified
+  not_a_single_scalar_leaderboard: true
+  development_claim_priority:
+    - isolated_axis_relation_with_both_practical_margin_crossings
+    - contract_robust_control_pair_relation
+    - preregistered_conditional_specialization
+    - linking_criterion_dependence
+  audit_selection:
+    terminal_driving_primary_relations: 1
+    secondary_checks_max: 2
+    secondary_can_rescue_primary: false
+    lineage_clean_and_exposure_eligible_required: true
+  claim_scope:
+    conditional_on_linear_encoding_and_registered_contract_family: true
+    same_participant_heldout_concept_replication_only: true
+    cross_dataset_new_participant_population_or_universal_ranking_claim: prohibited
+    causal_training_objective_claim: prohibited
+
+budgets:
+  coverage_edges_per_required_pair: 5
+  required_promotion_pairs_min: 3
+  minimum_valid_trials: 32
+  maximum_valid_trials: 72
+  valid_trials_min: 32
+  valid_trials_max: 72
+  patience_valid_trials: 12
+  patience_active_after_trial: 32
+  engineering_failures_max: 16
+  cpu_core_hour_ceiling: 6000
+  cpu_core_hours_max: 6000
+  gpu_hour_ceiling: 256
+  gpu_hours_max: 256
+  wall_clock_hour_ceiling: 240
+  total_wall_clock_hours_max: 240
+  scratch_storage_tib_ceiling: 4
+  outcome_blind_timing_and_storage_pilot_must_fit_ceiling: true
+  ceiling_increase_after_candidate_scores: prohibited
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 15
+  rule: every_required_controlled_pair_on_all_five_isolated_edges_before_qualified_patience
+  readiness_rejection_must_be_logged: true
+  optional_fourth_pair_adds_five_required_coverage_trials: true
+
+required_falsifiers:
+  - null_and_trained_vs_random_pair_recovery
+  - deliberately_leaky_concept_fold_and_support_pipeline_must_be_detected
+  - frozen_480_120_120_global_concept_role_manifest
+  - frozen_hashed_A_N_bank_and_identical_spatial_quotas
+  - repeat_split_reliability_and_stage_specific_B_C_D_noise_ceilings
+  - no_clipping_and_NC_floor_sensitivity
+  - participant_and_candidate_independent_concept_block_influence
+  - fixed_dimensional_linear_CKA_with_its_own_margin
+  - first_presentation_and_repeat_index_diagnostics_without_refit
+  - model_training_exposure_and_near_duplicate_ledger
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  balanced_contract_edge_coverage_required: true
+  branch_retirement_certificate_required: true
+  development_only_positive_is_candidate_ready: false
+  primary_relation_count: 1
+  secondary_checks_max: 2
+  freeze:
+    - CNeuroMod_release_commits_object_hashes_and_handoffs
+    - taxonomy_release_file_hash_concept_crosswalk_label_rules_group_merges_and_minimum_cell_size
+    - exact_common_image_eligibility_and_480_120_120_concept_roles
+    - six_development_folds_24_development_uncertainty_blocks_and_twelve_audit_blocks
+    - controlled_model_pair_checkpoint_and_exposure_manifests
+    - preprocessing_feature_layer_PCA_ridge_CKA_rank_and_final_hyperparameter_aggregation
+    - final_development_only_voxel_coefficients
+    - beta_stage_voxel_identity_and_response_crosswalks
+    - ROI_support_N_K_spatial_quota_bank_and_stage_specific_NC
+    - score_interaction_CKA_margins_audit_adequacy_widths_and_atanh_tolerance
+    - uncertainty_seed_and_concept_block_manifest
+    - primary_and_secondary_relation_ids
+    - eligible_terminal_contract_manifest_and_exact_development_to_audit_homologous_mapping
+    - evaluator_code_environment_permissions_and_output_schema
+    - EP17_EP18_exposure_decision
+
+stop:
+  prelaunch_readiness_failure: remains_launch_blocked_without_terminal
+  after_launch_before_minimum: only_integrity_policy_evaluator_or_frozen_audit_pool_failure
+  patience_starts_after_minimum_and_complete_coverage: true
+  after_minimum:
+    - patience_exhausted
+    - maximum_valid_trials_reached
+    - CPU_GPU_wall_or_storage_ceiling_reached
+    - every_branch_retired_or_active_unresolved
+  budget_stop_is_scientific_success: false
+  audit_failure_updates_search: false
+  continued_search_after_audit_requires_new_episode_and_new_sealed_source: true
+
+audit:
+  mode: one_shot_same_participant_concept_disjoint_heldout_stimulus_replication
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  source: cneuromod_things_same_four_participants
+  participants_required: 4
+  concepts_target: 120
+  influence_blocks: 12
+  owner: trusted_evaluator
+  final_predictor_fit_source: development_concepts_only
+  readout_refit_or_hyperparameter_selection_on_audit: prohibited
+  primary_ROI: common_anatomical_atlas_crosswalk_all_four
+  neural_outcomes_visible_to_search_worker: false
+  terminal_driving_primary_relations: 1
+  secondary_checks_max: 2
+  all_locked_checks_disclosed: true
+  uncertainty:
+    bootstrap: crossed_participant_by_audit_concept_block
+    draws: 10000
+    simultaneous_method: max_t_within_relation_and_score_scale
+    estimator_identical_to_locked_development_relation: true
+  decision_components:
+    robust_pair: every_homologous_registered_contract_within_locked_score_scale
+    reversal: both_endpoints_of_same_isolated_edge_within_locked_score_scale
+    specialization: both_preregistered_strata_and_interaction
+    linking_dependence: locked_encoding_score_and_fixed_dimensional_linear_CKA
+  primary_pass_rules:
+    every_signed_component_simultaneous_bound_crosses_margin: true
+    same_participant_intersection_exceeding_every_component_margin_min: 3
+    participants_total: 4
+    every_leave_one_participant_mean_retains_direction: true
+    every_leave_one_audit_block_mean_retains_direction: true
+    reversal_both_endpoints_cross_opposite_margins: true
+    specialization_interaction_and_both_strata_cross_margins: true
+    linking_encoding_and_CKA_cross_opposite_margins: true
+    exact_score_margin_response_predictor_and_pool_mapping_required: true
+    integrity_and_exposure_gates_pass: true
+  negative_classification:
+    heldout_concept_nonreplication_requires_adequate_bounds: true
+    adequacy_width_threshold_by_score_scale: null
+    launch_requires_numeric_scientist_signed_adequacy_thresholds: true
+    adequate_patterns:
+      - practical_equivalence
+      - opposite_margin_crossing
+      - stable_participant_or_concept_heterogeneity
+    bounds_overlap_pass_and_null: closed_audit_underidentified
+  mandatory_diagnostics:
+    - first_presentation_only_without_refit
+    - repeat_index_stratified_without_refit
+    - acquisition_order_and_repetition_lag
+    - ROI_crosswalk
+    - frozen_semantic_distribution
+    - leave_one_participant
+    - leave_one_audit_block
+    - sealed_public_D_ceiling_positive_control
+  participant_level_p_value_claim: prohibited
+  cross_dataset_new_participant_or_population_claim: prohibited
+  post_open_refit_retune_subset_rescue_margin_change_or_rerun: prohibited
+
+terminal_mapping:
+  candidate_ready_contract_robust_pair: candidate_ready
+  candidate_ready_heldout_concept_measurement_reversal: candidate_ready
+  candidate_ready_stable_conditional_specialization: candidate_ready
+  candidate_ready_linking_criterion_dependence: candidate_ready
+  closed_underidentified: closed_no_candidate
+  closed_no_isolated_relation: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  closed_heldout_concept_nonreplication: closed_no_candidate
+  closed_audit_underidentified: closed_no_candidate
+  closed_audit_pool_incommensurate: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true

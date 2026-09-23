@@ -1,0 +1,1086 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep19_causal_motor_forecasting_benchmark_adaptive
+episode_id: ep19
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  way_eeg_gal:
+    asset_id: way_eeg_gal_figshare_collection_v2
+    doi: 10.6084/m9.figshare.c.988376.v2
+    participants: 12
+    assignment_unit: continuous_series_with_participant_as_inferential_unit
+    fit_series: [1, 2, 3, 4, 5, 6]
+    inner_selection_series: [1, 2, 3, 4, 5, 6]
+    aggregate_feedback_board_series: [7]
+    no_feedback_lock_series: [8]
+    additional_campaign_sealed_evaluation_series: [9]
+    weight_fit_unit: participant_specific
+    common_recipe_across_participants: true
+    per_participant_recipe_selection: prohibited
+    primary_weight_fit: each_participant_own_series_1_to_6
+    locked_refit: each_participant_own_series_1_to_7
+    cross_participant_outcome_pooling: nonpromoting_diagnostic_only
+    series_10_public_multimodal: false
+    series_7_aggregate_outcome_may_drive_successors: true
+    series_8_or_9_outcome_may_drive_successors: false
+    series_9_prior_exposed_campaign_sealed: true
+    source_acquisition: verified_steward_quarantine_unextracted
+    episode_role_filtered_handoff: absent
+  legacy_kaggle:
+    role: historical_task_metric_and_artifact_compatibility_only
+    official_train_series: [1, 2, 3, 4, 5, 6, 7, 8]
+    official_test_series: [9, 10]
+    official_metric: mean_columnwise_event_AUROC
+    official_events: 6
+    approximate_label_half_width_ms: 150
+    full_private_leaderboard_rerun_claim: prohibited_without_complete_artifacts
+  self_paced_development:
+    asset_id: freewill_eeg_reaching_grasping_figshare_v1
+    doi: 10.6084/m9.figshare.28632599.v1
+    participants:
+      - sub-02
+      - sub-03
+      - sub-04
+      - sub-06
+      - sub-08
+      - sub-09
+      - sub-11
+      - sub-12
+      - sub-14
+      - sub-15
+      - sub-17
+      - sub-18
+      - sub-20
+      - sub-21
+      - sub-22
+    participant_count: 15
+    use: second_task_outcome_bearing_development_and_replication_recipe_qualification
+    EEG_outcomes_may_drive_development: true
+    search_evaluation: frozen_five_fold_whole_participant_cross_validation
+    fold_assignment: null
+    launch_requires_fold_assignment_freeze_before_EEG_outcomes: true
+    feedback: fold_complete_aggregate_only
+    final_fit_after_recipe_lock: all_fifteen_development_participants
+    fits_audit_facing_group_encoder: true
+    source_acquisition: verified_steward_quarantine_unextracted
+    episode_role_filtered_handoff: absent
+  self_paced_audit:
+    asset_id: freewill_eeg_reaching_grasping_figshare_v1
+    participants:
+      - sub-01
+      - sub-05
+      - sub-07
+      - sub-10
+      - sub-13
+      - sub-16
+      - sub-19
+      - sub-23
+    participant_count: 8
+    assignment_unit: whole_participant_with_all_sessions_runs_and_modalities
+    access: trusted_evaluator_only_after_lock
+    controller_signal_event_qc_or_score_access: prohibited
+    primary_replication_regime: C32
+    audit_facing_encoder_source: fifteen_self_paced_development_participants_only
+    direct_WAY_weight_transfer_role: nonpromoting_diagnostic
+    participant_replacement: prohibited
+    source_acquisition: verified_steward_quarantine_unextracted
+    episode_role_filtered_handoff: absent
+  joint_locked_evaluation:
+    components:
+      - all_WAY_participants_series_8_and_9
+      - all_eight_self_paced_audit_participants
+    open_together: true
+    partial_feedback: prohibited
+    evidence_tier: campaign_sealed_public_source_not_globally_pristine
+  deferred_ajile12:
+    doi: 10.48324/dandi.000055/0.220127.0436
+    role: exploratory_offline_association_only
+    strict_forecasting_audit_eligible: false
+  handoffs_required:
+    - way_structural
+    - way_development_series_1_to_7
+    - way_evaluator_only_series_8_and_9
+    - self_paced_structural
+    - self_paced_development_15_participants
+    - self_paced_evaluator_only_8_participants
+    - legacy_artifacts_with_license_and_hash
+
+grammar:
+  execution: containerized_streaming_submission_with_trusted_builder_and_evaluator
+  scientific_object: near_to_strict_forecast_rank_transition_and_neural_increment
+  leaderboard_object: bounded_predictive_model_improvement_on_frozen_forecast_task
+  streaming_interface:
+    trusted_builder:
+      fit_inputs: role_filtered_training_stream_neural_transform_handle_and_seed
+      freeze_output: immutable_model_hash
+      candidate_controls_neural_transform: false
+      transforms: [real_EEG, zero_EEG, hidden_surrogate_EEG]
+    reset:
+      input: random_stream_token_regime_and_minimal_structural_metadata
+      token_may_encode_participant_session_date_or_filename: false
+      state_reset_required: true
+    predict:
+      input: one_current_causal_observation_packet
+      output: nineteen_category_time_to_onset_distribution
+      future_access: prohibited
+    observe_unscored:
+      use: causal_state_warmup_without_label
+      output_scored: false
+    calibrate:
+      available_only_in: [C32, Cfull_diagnostic]
+      label_and_state_update_budget_enforced_by_evaluator: true
+      calibration_targets_visible_only_during_audited_pre_score_call: true
+      scored_targets_or_masks_visible: false
+      permitted_supervised_C32_parameters:
+        - one_global_temperature
+        - three_free_coarse_horizon_logit_offsets_with_fourth_group_as_reference
+      prohibited_C32_updates:
+        - encoder
+        - spatial_projection
+        - nineteen_free_category_biases
+      C32_contract:
+        transform_order: nineteen_logits_divided_by_positive_temperature_then_four_group_offsets_then_softmax
+        temperature_initial_value: 1.0
+        temperature_positive_parameterization: null
+        group_offsets_initial_value: 0.0
+        groups:
+          offset_1: 0_to_300ms
+          offset_2: 300_to_600ms
+          offset_3: 600_to_900ms
+          fixed_reference: over_900ms
+        objective: natural_prevalence_weighted_IPW_censoring_aware_nineteen_category_NLL
+        regularization_strength: null
+        parameter_bounds: null
+        optimizer: null
+        maximum_iterations: null
+        convergence_tolerance: null
+        deterministic_tie_and_failure_rule: null
+        fit_separately_to_isolated_copy_of_each_scored_model: true
+        includes_standalone_B_star_real_zero_and_every_surrogate_reference_and_challenger: true
+        fitted_calibration_parameters_shared_across_models: false
+        same_packet_algorithm_budget_and_failure_rule_across_models: true
+        self_paced_delta_G_C_and_zero_noninferiority_use_separately_C32_calibrated_copies: true
+        canonical_checkpoints_or_model_weights_mutated: false
+        launch_requires_complete_algorithm_freeze: true
+      permitted_Cfull_updates: all_otherwise_trainable_parameters_in_isolated_diagnostic_copies_initialized_from_locked_baseline_real_zero_and_surrogate_checkpoints
+      canonical_B_star_or_C0_C32_artifact_mutated_by_Cfull: false
+      Cfull_input: earliest_half_complete_valid_run_prefix_only
+      Cfull_scored_suffix_visible_during_refit: false
+    on_done:
+      input: acquisition_gap_run_or_session_boundary_only
+      outcome_derived_movement_or_trial_boundary_exposed: false
+      reset_policy_frozen: true
+    normalized_latency_recorded: true
+    falcon_code_or_data_dependency_required: false
+    falcon_interface_mechanics_are_precedent_only: true
+    falcon_precedent_release: v1.0.2
+    falcon_precedent_commit: 770c9b9597b8f58bf67b5a9ec6401ef705a2cb0f
+    falcon_precedent_license: MIT
+    submission_form: OCI_container_or_reproducible_training_recipe
+    arbitrary_prediction_file_submission: prohibited
+    runtime_network_egress: disabled
+    scored_targets_onsets_and_evaluation_mask_visible_to_container: false
+    fixed_CPU_GPU_RAM_wall_and_scratch_meter_required: true
+    scorer_process_separate_from_prediction_process: true
+  time_and_risk_contract:
+    decision_stride_ms: 50
+    prediction_horizon_ms: 900
+    onset_interval_bins: 18
+    no_onset_within_900ms_bin: true
+    bin_width_ms: 50
+    interval_edge_convention: left_closed_right_open
+    interval_formula: I_k_equals_[50_times_k_minus_1_comma_50_times_k)_ms
+    endpoint_bins_ms:
+      near_event: [0, 300]
+      primary_strict: [300, 600]
+      longer_strict: [600, 900]
+    endpoint_score: binary_log_score_from_sum_of_six_interval_masses
+    endpoint_anchor_requires_status_observed_through_endpoint_upper_edge_regardless_of_earlier_onset: true
+    administratively_censored_anchor_role: compatible_mass_categorical_training_likelihood_only
+    administrative_censor_snap: floor_to_last_complete_50ms_boundary
+    partial_straddling_bin_information_used: false
+    compatible_mass_rule: sum_bins_with_lower_edge_at_or_after_snapped_boundary_plus_over_900
+    censor_before_first_complete_bin_contributes_neutral_likelihood_one: true
+    input_history: at_or_before_decision_time_only
+    risk_eligibility: past_only_streaming_stillness
+    onset_uses_EEG: false
+    provider_onset_primary: false
+    future_confirmation_may_define_label_only: true
+    future_confirmation_may_define_risk_set_or_input: false
+    provisional_crossing_state: pending_and_no_scored_anchors
+    failed_crossing_rearm: prospective_only_without_reinstating_intervening_anchors
+    anchor_subsampling_requires_inclusion_probability: true
+    natural_risk_distribution_restored_by_weighting: true
+    complete_900ms_followup_uses_categorical_log_loss: true
+    earlier_noncandidate_censoring_uses_sum_of_compatible_probability_mass: true
+    outcome_dependent_truncation: ineligible
+    safety_bound_must_be_below_primary_lower_edge: true
+    exact_onset_threshold_dwell_and_ambiguity_rule: null
+    launch_requires_exact_detector_freeze: true
+    detector_parameter_sources:
+      WAY: series_1_to_7_only
+      self_paced: fifteen_development_participants_only
+    C32_may_update_detector_threshold_dwell_clock_or_ambiguity: false
+  preprocessing:
+    one_sided_filters_only: true
+    backward_derivatives_only: true
+    training_or_past_only_normalization: true
+    development_initialized_sample_by_sample_unlabeled_normalization_state_in_C0_C32: allowed
+    C0_learned_parameter_update: prohibited
+    gap_and_series_state_reset: true
+    centered_or_zero_phase_filtering: prohibited
+    bidirectional_recurrence: prohibited
+    future_same_padding: prohibited
+    whole_session_normalization: prohibited
+    split_crossing_windows: prohibited
+    track_A_historical_montage_channels: 32
+    track_B_and_C_scientific_common_channels: 29
+    primary_common_channels: 29
+    primary_common_channel_names:
+      - Fp1
+      - Fp2
+      - F7
+      - F3
+      - Fz
+      - F4
+      - F8
+      - FC5
+      - FC1
+      - FC2
+      - FC6
+      - T7
+      - C3
+      - C4
+      - T8
+      - TP9
+      - CP5
+      - CP1
+      - CP2
+      - CP6
+      - TP10
+      - P7
+      - P3
+      - Pz
+      - P4
+      - P8
+      - O1
+      - Oz
+      - O2
+  non_neural_baseline:
+    symbols: [B_star_WAY, B_star_SP]
+    selection_protocol_shared_across_sources: true
+    instances_fit_separately_on_source_development_data: true
+    selected_before_candidate_EEG_scores: true
+    candidate_families:
+      - regularized_logistic_discrete_hazard
+      - gradient_boosted_discrete_hazard
+      - small_causal_TCN_discrete_hazard
+    permitted_inputs:
+      - cue_and_time_since_cue
+      - task_context_and_target_only_if_causally_disclosed_at_t
+      - past_EMG_when_available
+      - past_kinematics_force_or_accelerometry_when_available
+      - past_EOG_when_available
+      - posture_recent_motion_and_stillness_duration
+      - session_time_and_missingness
+    EEG_access: prohibited
+    self_paced_forbidden_inputs:
+      - completed_movement_TgtID
+      - ultimately_chosen_cup
+    immutable_after_lock: true
+    common_recipe_selection:
+      eligibility: frozen_causal_and_calibration_gates_pass
+      primary_metric: maximize_participant_macro_natural_prevalence_binary_log_score_at_300_to_600ms
+      deterministic_tie_break_order:
+        - lower_censor_aware_nineteen_category_NLL
+        - lower_parameter_count
+        - lower_measured_latency
+        - lexicographically_smaller_configuration_hash
+      WAY_support: participant_local_series_1_to_6_inner_predictions
+      WAY_fold_aggregation: pool_complete_series_out_of_fold_eligible_anchors_by_natural_time_within_participant_then_macro_average_participants
+      WAY_weight_fit: separate_weights_per_participant
+      self_paced_support: frozen_whole_participant_development_folds
+      self_paced_fold_aggregation: score_each_held_out_participant_then_macro_average_all_fifteen_out_of_fold_scores
+      self_paced_final_weight_fit: one_group_model_on_all_fifteen_development_participants_after_recipe_lock
+    source_inputs:
+      WAY: [cue, causal_context, past_EMG, past_kinematics, past_force, posture, session_time, missingness]
+      self_paced: [cue_or_start_state, causal_context, past_accelerometry, past_EOG, posture, session_time, missingness]
+  submission_contract:
+    complete_panel_required:
+      - frozen_source_specific_B_star
+      - zero_neural_recalibration_twin
+      - source_specific_B_star_plus_real_N
+      - two_development_source_specific_B_star_plus_surrogate_N_twins
+      - EEG_only_diagnostic
+      - peripheral_only_positive_control
+    trusted_builder_twins_require:
+      - same_architecture_family
+      - same_non_neural_inputs
+      - same_temporal_context
+      - same_optimization_and_selection_budget
+      - same_folds_seeds_and_calibration_packet
+    residual_primary:
+      baseline_probability_sanitizer: normalize_elementwise_max_probability_and_epsilon
+      same_sanitizer_applied_to_standalone_B_star_scoring: true
+      baseline_logit_equation: centered_log_of_sanitized_B_star_category_probabilities
+      equation: p_real_equals_softmax_z_B_star_d_plus_r_theta_over_19_categories
+      final_residual_layer_initialization: exact_zero
+      epoch_zero_is_eligible_early_stopping_checkpoint: true
+      baseline_logit_epsilon: null
+      launch_requires_baseline_logit_epsilon_freeze: true
+      neural_branch_may_reread_full_behavior_history: false
+    zero_twin_role: training_and_recalibration_stability_not_capacity_matched_neural_null
+    zero_twin_noninferior_to_source_B_star_required: true
+    surrogate_bank:
+      generated_by: trusted_evaluator
+      transformations_hidden_from_submitter: true
+      session_preserving_block_shift_count: 4
+      block_shift_minimum: exceeds_explicit_input_state_history_horizon_and_boundary_guard
+      cross_channel_coherent_phase_randomization_count: 4
+      development_trial_bank: same_one_hidden_shift_and_one_hidden_phase_for_every_candidate
+      full_eight_bank_runs_for: [five_locked_references, locked_finalist]
+      retrain_each_twin_from_scratch_on_transformed_training_stream: true
+      paired_initialization_seeds_and_optimizer: true
+      development_gate_comparator: participantwise_best_of_two_hidden_development_surrogates
+      final_gate_comparator: participantwise_best_of_eight_hidden_surrogate_twins
+      development_C_bank_size: 2
+      final_C_bank_size: 8
+      participantwise_max_is_part_of_each_C_estimand: true
+      participantwise_max_computed_before_participant_bootstrap: true
+      second_surrogate_bank_multiplicity_family: not_applicable
+    full_multimodal_interaction:
+      leaderboard_practical_allowed: true
+      primary_neural_increment_claim_allowed: false
+  leaderboards:
+    practical_forecasting:
+      quantity: participant_macro_natural_prevalence_log_score_of_source_B_star_plus_real_N
+      primary_horizon_ms: [300, 600]
+      calibration_gate_required: true
+      scientific_terminal_driver: false
+    neural_increment:
+      quantities:
+        delta_fixed: score_real_minus_source_specific_B_star
+        G_zero: score_real_minus_zero_neural_recalibration_twin
+        C_surrogate_development: score_real_minus_participantwise_best_of_two_hidden_development_surrogates
+        C_surrogate_final: score_real_minus_participantwise_best_of_eight_surrogate_twins
+      delta_G_and_C_are_separate_gates_with_separate_horizon_specific_margins: true
+      development_and_final_C_use_same_margin_unless_a_distinct_pair_is_presigned: true
+      development_table_order: none_gate_then_rank_by_absolute_WAY_primary_log_score
+      raw_components_always_reported: true
+      display_scale: cumulative_delta_fixed_log_score_gain_bits_per_eligible_minute_not_mutual_information
+      primary_horizon_ms: [300, 600]
+      scientific_terminal_driver: true
+    leaderboard_separation:
+      development_board_repeatable: true
+      WAY_series_7_feedback: rate_limited_aggregate_only
+      aggregate_feedback_count_max: 40
+      one_scientific_trial_returns_one_joint_development_feedback_packet: true
+      feedback_count_includes:
+        - every_reference_or_challenger_query_that_returns_any_WAY_series_7_or_self_paced_CV_outcome
+        - every_score_bearing_invalid_or_partial_submission
+      feedback_count_excludes:
+        - B_star_selection_on_series_1_to_6_without_series_7_query
+        - nested_reference_tuning_on_series_1_to_6
+        - failure_before_any_outcome_is_returned
+        - byte_identical_evaluator_retry_after_certified_infrastructure_failure
+      feedback_returns: source_by_horizon_fold_complete_aggregate_gates_and_WAY_selection_score
+      feedback_omits: [participant, fold, null_bank_member, file_order, calibration_packet]
+      WAY_series_8_and_9_joint_submission_count_max: 1
+      audit_board_public: false
+      audit_score_reuse_for_search: prohibited
+  legacy_compatibility:
+    official_six_event_mean_AUROC: required
+    HandStart_AUROC_separate: required
+    historical_winner_repository:
+      url: https://github.com/alexandrebarachant/Grasp-and-lift-EEG-challenge
+      role: reproducibility_positive_control
+      exact_commit_hash: 36fe555d523c3ca3f201e765b1b1004dc5383dd2
+      preferred_reproduction: Safe1
+      original_YOLO_private_AUROC_context_only: 0.98109
+      original_Safe1_private_AUROC_context_only: 0.98095
+      native_Python2_Theano_or_semantic_port_must_be_labeled: true
+    exact_legacy_behavior_may_cross_series_state: post_audit_compatibility_only
+    exact_series_1_to_8_then_9_run_before_joint_evaluation: prohibited
+    forecast_track_must_reset_series_state: true
+  reference_panel:
+    freeze_before_forecast_scores: true
+    membership:
+      - causal_filterbank_bandpower_elastic_net_time_to_onset
+      - causal_covariance_riemannian_tangent_time_to_onset
+      - causalized_EEGNet
+      - dilated_causal_TCN
+      - small_unidirectional_GRU
+    code_version_preprocessing_and_parameter_tier_required: true
+    equal_inner_search_credits: 12
+    frozen_seeds: 3
+    adaptive_challenger_can_join_reference_panel: false
+    primary_comparison_mode: same_joint_nineteen_category_fit_scored_at_both_endpoints
+    primary_terminal_dataset: WAY_joint_series_8_and_9
+    secondary_comparison_modes:
+      - legacy_encoder_frozen_equal_budget_forecast_head
+      - self_paced_reference_ranking
+    all_reference_pairs_and_both_tasks_share_one_simultaneous_bound: true
+  new_model_grammar:
+    seed_incumbent: best_eligible_frozen_reference_recipe
+    distinct_challenger_requires_failure_justified_one_operator_successor: true
+    parameter_max: 2000000
+    explicit_input_window_seconds_max: 2.0
+    streaming_state_age_seconds_max: 8.0
+    truncated_BPTT_and_state_detach_rule_freeze_required: true
+    state_cleared_at_acquisition_gap_run_series_and_session_boundary: true
+    update_interval_ms: 50
+    p95_inference_latency_ms_max: null
+    launch_requires_latency_freeze: true
+    external_foundation_weights: prohibited
+    development_only_self_supervised_pretraining: eligible_declared_operator
+    allowed_augmentations:
+      - causal_crop
+      - amplitude_perturbation
+      - channel_dropout
+    one_primary_operator_change_per_successor: true
+    branches:
+      classic_causal:
+        operators:
+          - linear_FIR_hazard
+          - bandpower_linear_hazard
+          - covariance_riemannian_hazard
+          - compact_EEGNet
+      temporal_architecture:
+        operators:
+          - dilated_depthwise_TCN
+          - unidirectional_GRU
+          - diagonal_state_space
+          - small_causal_transformer
+        SSM_requires_named_long_memory_failure: true
+        transformer_not_mandatory_coverage: true
+      representation:
+        operators:
+          - raw_voltage
+          - frozen_causal_filter_bank
+          - causal_bandpower
+          - causal_covariance
+          - development_only_self_supervised_encoder
+          - learned_multiscale_causal_filters
+      fusion:
+        operators:
+          - frozen_baseline_residual
+          - late_fusion
+          - gated_fusion
+          - behavior_conditioned_neural_encoder
+        non_residual_primary_increment_eligible: false
+      adaptation:
+        regimes:
+          C0: no_target_labels_past_only_unlabeled_normalization
+          C32: earliest_32_complete_events_per_participant_four_supervised_degrees_of_freedom
+          Cfull_diagnostic: earliest_half_of_complete_valid_runs_refit_later_runs_scored_nonpromoting
+      montage_robustness:
+        operators:
+          - fixed_common_channel_projection
+          - geometry_aware_projection
+        geometry_aware_requires_declared_successor: true
+  training_contract:
+    loss: censoring_aware_categorical_time_to_onset_negative_log_likelihood
+    AUROC_as_training_objective: prohibited
+    class_balanced_evaluation: prohibited
+    continuous_split_unit: complete_series_or_session
+    boundary_guard: max_filter_resampler_receptive_field_and_state_history
+    inner_search:
+      design: outcome_blind_Sobol
+      configurations_per_family: 12
+      seeds: 3
+      same_credits_all_families: true
+      applies_to: frozen_reference_families_only_on_WAY_series_1_to_6
+      common_configuration_per_family: true
+      selection_metric: minimize_participant_macro_censor_aware_nineteen_category_NLL_after_within_participant_arithmetic_mean_over_three_seed_scores
+      fold_aggregation: pool_complete_series_out_of_fold_eligible_anchors_by_natural_time_within_participant_then_macro_average_participants
+      deterministic_tie_break_order:
+        - lower_parameter_count
+        - lower_measured_latency
+        - lexicographically_smaller_configuration_hash
+      WAY_weight_fit_after_selection: separate_weights_per_participant
+      per_participant_configuration_selection: prohibited
+      nested_subfits_count_as_one_selected_reference_panel_scientific_trial: true
+      subfit_outcomes_visible_to_adaptive_controller: false
+    adaptive_successor_hyperparameters: one_exact_configuration_per_scientific_trial
+    early_stopping:
+      allowed_on_inner_training_side_only: true
+      metric: survival_negative_log_likelihood
+      outer_partial_result_pruning: prohibited
+    refit_after_epoch_selection: frozen_rule_required
+    identical_calibration_packet_across_models: true
+    C32_packet_unit: earliest_32_complete_eligible_reaches_independently_per_participant
+    C32_packet_contents: full_causal_history_all_eligible_risk_anchor_and_censoring_targets_and_onsets
+    C0_and_C32_score_support: identical_suffix_after_participant_specific_C32_prefix_and_guard
+    calibration_packet_and_full_history_guard_excluded_from_scoring: true
+    C32_calibrated_parameters_persist_across_participant_sessions: true
+    filter_and_recurrent_state_reset_each_session: true
+    C0_C32_Cfull_use_isolated_model_copies: true
+    Cfull:
+      role: nonpromoting_upper_bound_diagnostic
+      participant_minimum_complete_valid_runs: 4
+      local_refit_prefix: earliest_floor_half_complete_valid_runs
+      scored_support: all_later_complete_valid_runs
+      inner_epoch_selection: chronological_complete_run_split_closest_to_80_20_with_at_least_one_run_each
+      inner_selection_changes_only: epoch_count
+      inner_fit_start: isolated_copy_of_locked_checkpoint_with_frozen_stochastic_seed_schedule
+      final_refit: reset_isolated_copy_to_same_locked_checkpoint_then_finetune_entire_prefix_for_selected_epoch_count
+      frozen:
+        - architecture
+        - preprocessing_graph
+        - loss
+        - optimizer
+        - hyperparameters
+        - twin_construction
+        - random_seeds
+      update_mask: all_otherwise_trainable_parameters_in_isolated_diagnostic_copies_of_source_baseline_and_real_zero_surrogate_twins
+      copies_initialized_from_locked_checkpoints: true
+      canonical_B_star_or_C0_C32_artifact_mutated: false
+      suffix_label_or_signal_derived_statistic_visible_to_refit: false
+      insufficient_support_action: report_missing_diagnostic_without_repair_or_promotion
+      score_support_labeled_separately: true
+    all_frozen_reference_models_run_joint_evaluation: true
+    probability_floor_or_clipping_rule: null
+    launch_requires_probability_rule_freeze: true
+    audit_participant_EEG_self_supervised_pretraining: prohibited
+  ranking_estimand:
+    unit: participant
+    primary_mode: same_joint_nineteen_category_fit_scored_at_both_endpoints
+    primary_source_and_support: WAY_joint_series_8_and_9
+    ranked_branch: source_specific_B_star_plus_real_EEG_twin
+    zero_or_surrogate_twins_ranked: false
+    seed_count: 3
+    seed_aggregation: arithmetic_mean_of_participant_endpoint_scores
+    seed_probability_ensemble_for_primary_rank: false
+    bootstrap_input: participant_values_after_fixed_seed_score_mean
+    secondary_nonterminal_modes: [frozen_encoder_transfer, self_paced_reference_ranking]
+    pairwise_effect: participant_macro_score_a_minus_score_b
+    participant_score: IPW_sum_of_anchor_binary_log_scores_divided_by_IPW_eligible_exposure
+    within_participant_weighting: natural_eligible_time_not_equal_trial_or_session
+    session_and_trial_role: nested_observations_kept_with_participant_not_resampled_as_units
+    training_loss: censoring_aware_nineteen_category_NLL
+    endpoint_score: binary_log_score_of_summed_six_bin_probability
+    tasks:
+      - common_score_near_event_0_to_300ms
+      - strict_forecast_300_to_600ms
+    official_AUROC_scale_kept_separate: true
+    endpoint_interval_state_map:
+      positive: simultaneous_lower_bound_strictly_greater_than_positive_practical_margin
+      negative: simultaneous_upper_bound_strictly_less_than_negative_practical_margin
+      equivalent: entire_simultaneous_interval_within_closed_negative_to_positive_practical_margin_band
+      unresolved: all_other_interval_configurations
+      point_estimate_alone_determines_state: false
+    states:
+      retained: both_tasks_cross_same_direction_practical_margins
+      reversed: tasks_cross_opposite_direction_practical_margins
+      collapsed: near_identifiable_forecast_practically_equivalent
+      emergent: near_equivalent_forecast_identifiable
+      stable_equivalent: both_tasks_practically_equivalent
+      unresolved: interval_too_wide
+    point_sign_flip_is_reversal: false
+    Kendall_or_Spearman_is_primary: false
+    simultaneous_pairwise_bounds_required_across_all_pairs_and_both_tasks: true
+  score_aggregation:
+    stochastic_branches: [real, zero, reference, challenger, surrogate]
+    paired_frozen_seed_count: 3
+    order:
+      - compute_participant_endpoint_score_separately_for_each_seed_and_branch
+      - take_arithmetic_mean_of_three_scores_within_participant_and_branch
+      - form_delta_and_G_from_paired_branch_seed_means
+      - for_C_development_take_participantwise_max_over_two_separately_seed_meaned_development_surrogate_scores
+      - for_C_final_take_participantwise_max_over_eight_separately_seed_meaned_locked_surrogate_scores
+      - form_final_challenger_vs_each_reference_from_branch_seed_means
+    probability_ensemble_before_scoring: prohibited
+    bootstrap_input: fixed_participant_level_seed_mean_scores
+  uncertainty:
+    bootstrap_draws: 10000
+    confidence_level: 0.95
+    resampling: participant_only_with_all_nested_sessions_trials_and_anchors_kept_together
+    cross_source_resampling: independently_resample_participants_within_each_source_per_joint_bootstrap_draw
+    participants_equal_weight: true
+    risk_anchors_are_independent_units: false
+    reference_rank_simultaneous_method: participant_bootstrap_max_t_across_all_frozen_reference_pairs_and_both_tasks
+    neural_gate_simultaneous_family: delta_fixed_G_zero_and_C_surrogate_final_in_both_sources_at_primary_horizon_plus_WAY_delta_fixed_G_zero_and_C_surrogate_final_at_near_horizon
+    neural_gate_simultaneous_method: participant_bootstrap_max_t_simultaneous_lower_and_upper_bounds
+    positive_gate_pass_rule: lower_bound_clears_signed_margin
+    resolved_failure_rule: upper_bound_below_signed_margin
+    otherwise: unresolved
+    neural_gate_terminal_routing:
+      WAY_primary_and_near: WAY_neural_stages
+      self_paced_primary: second_task_participant_replication_stage
+    final_challenger_family: locked_challenger_minus_each_of_five_eligible_frozen_references_on_joint_WAY_primary_score
+    final_challenger_simultaneous_method: participant_bootstrap_max_t_simultaneous_lower_and_upper_bounds
+    final_challenger_pass_rule: every_lower_bound_clears_same_signed_final_margin
+    final_challenger_resolved_failure_rule: any_upper_bound_below_signed_final_margin
+    final_challenger_family_is_separate_from_neural_and_reference_rank_families: true
+    reliability_estimands:
+      Z_zero_noninferiority: participant_macro_primary_score_zero_minus_source_specific_B_star
+      L_longer_horizon_non_degradation: delta_fixed_at_600_to_900ms
+      sources: [WAY, self_paced]
+      simultaneous_family: all_four_source_by_estimand_contrasts
+      method: participant_bootstrap_max_t_simultaneous_lower_and_upper_bounds
+      pass_rule: lower_bound_strictly_greater_than_negative_frozen_margin
+      resolved_failure_rule: upper_bound_strictly_less_than_negative_frozen_margin
+      otherwise: unresolved
+      terminal_routing:
+        WAY_Z_and_L: WAY_candidate_reliability_stage
+        self_paced_Z_and_L: second_task_participant_replication_stage
+    participant_robustness:
+      prelock_development:
+        contrasts: [delta_fixed, G_zero, C_surrogate_development]
+        WAY_series_7: each_named_contrast_positive_in_at_least_nine_of_twelve_and_every_leave_one_participant_out_macro_mean_positive
+        self_paced_five_fold_OOF: each_named_contrast_positive_in_at_least_twelve_of_fifteen_and_every_leave_one_participant_out_macro_mean_positive
+        role: promotion_qualification_not_confirmatory_inference
+      joint_audit:
+        contrasts: [delta_fixed, G_zero, C_surrogate_final]
+        WAY: every_leave_one_participant_out_mean_for_each_named_contrast_retains_positive_direction
+        self_paced: each_named_contrast_positive_in_at_least_six_of_eight_and_every_leave_one_participant_out_mean_positive
+      terminal_routing:
+        prelock_development: prelock_promotion_eligibility_stage
+        WAY: WAY_candidate_reliability_stage
+        self_paced: second_task_participant_replication_stage
+    calibration_contract:
+      terminal_model: locked_real_EEG_branch
+      horizon_ms: [300, 600]
+      participant_residual: per_seed_IPW_natural_time_mean_of_binary_outcome_minus_predicted_endpoint_probability
+      seed_aggregation: arithmetic_mean_of_three_per_seed_absolute_participant_residuals_without_probability_ensemble
+      source_estimand: participant_macro_mean_of_seed_mean_absolute_calibration_in_the_large_residual
+      WAY_support: pooled_series_8_and_9_fully_observed_primary_endpoint_anchors
+      self_paced_support: C32_scored_suffix_fully_observed_primary_endpoint_anchors
+      simultaneous_family: both_source_estimands
+      method: participant_bootstrap_max_t_simultaneous_lower_and_upper_bounds
+      per_source_pass_rule: that_source_upper_bound_strictly_below_frozen_calibration_tolerance
+      per_source_resolved_failure_rule: that_source_lower_bound_strictly_above_frozen_calibration_tolerance
+      per_source_otherwise: unresolved
+      joint_success_requires_both_sources_pass: true
+      terminal_routing:
+        WAY_calibration: WAY_candidate_reliability_stage
+        self_paced_calibration: second_task_participant_replication_stage
+      near_and_longer_horizon_role: reported_nonterminal
+      reference_recipe_qualification: same_metric_and_tolerance_on_permitted_development_predictions
+      frozen_reference_removed_after_audit_failure: false
+      claim_scope: marginal_not_conditional_calibration
+    development_bounds_are_postadaptive_descriptive: true
+  forbidden:
+    - post_score_onset_or_horizon_change
+    - candidate_specific_negative_sampling_or_risk_set
+    - deliberately_weak_zero_neural_twin
+    - unequal_input_label_or_compute_budget
+    - future_confirmed_risk_eligibility
+    - centered_filter_bidirectional_RNN_or_future_padding
+    - whole_session_future_fitted_or_audit_parameter_fitted_normalization
+    - participant_horizon_seed_or_fold_cherry_picking
+    - reference_panel_expansion_after_forecast_scores
+    - optimization_for_rank_reversal_magnitude
+    - audit_score_driven_successor
+    - post_lock_ensemble_or_runner_up_substitution
+    - transductive_test_or_audit_self_supervision
+    - external_pretraining_with_unknown_WAY_or_audit_exposure
+    - C32_or_Cfull_called_zero_shot
+    - residual_prediction_called_conscious_intention_or_causal_preparation
+
+trial_contract:
+  counted_atom: one_complete_model_policy_panel
+  includes:
+    - all_required_WAY_development_participants_and_series
+    - all_fifteen_self_paced_development_participants
+    - all_three_horizons
+    - both_source_specific_B_star_instances
+    - zero_real_and_two_hidden_development_surrogate_branches
+    - joint_multi_horizon_fit
+    - all_frozen_seeds
+    - C0_and_C32_development_emulation_when_applicable
+    - all_causality_leakage_calibration_and_latency_tests
+  finalist_only_outputs:
+    - full_eight_surrogate_bank
+    - Cfull_diagnostic
+    - reference_panel_representation_transfer
+  unique_key: scientific_configuration_hash
+  one_trial_cannot_be_split_by:
+    - participant
+    - series_session_or_run
+    - horizon
+    - branch
+    - seed
+    - calibration_regime
+    - metric
+    - scheduler_job
+  does_not_count_as_new_trial:
+    - byte_identical_engineering_retry
+    - duplicate_configuration
+    - score_replay
+    - metadata_inventory
+    - synthetic_only_qualification
+    - audit_evaluation
+  valid_when:
+    - complete_panel_and_all_required_controls_finish
+    - causal_and_split_integrity_tests_pass
+    - natural_prevalence_weights_and_lineage_are_complete
+    - resource_and_latency_records_are_complete
+  trial_purpose:
+    required_enum:
+      - coverage_panel
+      - adaptive_challenger
+      - native_falsifier
+      - ablation
+      - influence
+      - direct_replication
+    exactly_one_primary_purpose: true
+    commit_before_execution: true
+
+objectives:
+  scientific_primary: quantify_strict_neural_increment_and_near_to_strict_horizon_rank_transition
+  leaderboard_practical: maximize_primary_horizon_absolute_forecast_log_score_after_calibration_gate
+  leaderboard_neural_diagnostic: report_separate_delta_fixed_G_zero_and_C_surrogate_development_before_lock_and_C_surrogate_final_at_locked_evaluation
+  challenger_selection_after_gates: maximize_WAY_series_7_absolute_primary_horizon_forecast_log_score
+  self_paced_development_role: eligibility_and_replication_procedure_gate_not_pooled_selection_score
+  search_must_not_optimize:
+    - official_legacy_AUROC_only
+    - rank_reversal_magnitude
+    - audit_score
+    - preferred_terminal_story
+  incumbent_order:
+    - all_causal_timing_state_and_split_tests_pass
+    - source_specific_delta_fixed_G_zero_and_C_surrogate_development_clear_separate_margins
+    - calibration_tolerance_passes
+    - participant_robustness_and_longer_horizon_non_degradation_pass
+    - better_primary_horizon_log_score_than_best_eligible_reference
+    - lower_parameter_count_latency_and_compute
+  margins:
+    status: launch_blocked_pending_scientist_signed_record
+    required_before_candidate_EEG_scores:
+      - delta_fixed_primary_min
+      - G_zero_primary_min
+      - C_surrogate_primary_min
+      - delta_fixed_near_min
+      - G_zero_near_min
+      - C_surrogate_near_min
+      - zero_twin_noninferiority_to_source_B_star_margin
+      - near_event_denominator_readiness_min
+      - practical_pairwise_margin_near
+      - practical_pairwise_margin_forecast
+      - calibration_tolerance
+      - longer_horizon_non_degradation_margin
+      - participant_robustness_rule
+      - synchronization_and_detector_uncertainty_max_ms
+      - p95_inference_latency_ms_max
+      - development_meaningful_improvement_margin_log_score
+      - final_WAY_challenger_improvement_margin_log_score
+    default_C_surrogate_margin_shared_between_development_and_final: true
+    separate_development_and_final_C_margins_permitted_only_if_both_scientist_signed_before_any_candidate_EEG_score: true
+    synthetic_qualification_may_choose_margin: false
+
+budgets:
+  coverage_valid_trials: 12
+  minimum_valid_trials: 24
+  maximum_valid_trials: 40
+  valid_trials_min: 24
+  valid_trials_max: 40
+  patience_valid_trials: 8
+  patience_active_after_trial: 24
+  development_feedback_calls_max: 40
+  engineering_failure_max: 12
+  cpu_core_hour_ceiling: 2000
+  cpu_core_hours_max: 2000
+  gpu_hour_ceiling: 480
+  gpu_hours_max: 480
+  wall_clock_hour_ceiling: 240
+  total_wall_clock_hours_max: 240
+  scratch_tib_max: 2
+  outcome_partial_fold_pruning: prohibited
+  profiling_must_fit_ceiling_before_outcome_access: true
+  reference_nested_subfits_and_all_surrogate_twins_count_toward_resource_ceilings: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 12
+  admissible_space_manifest_ref: inputs/FROZEN_ADMISSIBLE_SPACE.yaml
+  admissible_space_manifest_sha256: null
+  launch_requires_manifest_and_hash: true
+  rule: complete_mandatory_branches_with_equal_budget_and_at_least_one_direct_control_per_branch
+  mandatory_branches:
+    - classic_causal
+    - temporal_architecture
+    - representation
+    - fusion
+  embedded_every_complete_trial: [C0_and_C32_adaptation_emulation_when_applicable]
+  conditional_branches:
+    montage_robustness: required_only_after_montage_or_participant_failure_trigger
+    diagonal_state_space: required_only_after_named_long_memory_failure
+  readiness_rejection_must_be_logged: true
+
+synthetic_qualification:
+  required_before_real_EEG_scores: true
+  fixtures:
+    - no_neural_increment_context_only_hazard
+    - causal_premovement_EEG_motif_at_frozen_SNRs
+    - near_event_only_post_onset_artifact
+    - shifted_EEG_capacity_control
+    - cue_only_timing_signal
+    - participant_ID_only_signal
+    - clock_offset_and_resampling_group_delay
+    - series_boundary_leakage
+    - deliberate_centered_filter_and_future_normalization
+    - deliberate_future_EMG_and_EEG_positive_leak
+  must_verify:
+    - survival_target_censoring_and_natural_prevalence_weights
+    - exact_zero_future_to_past_response
+    - streaming_chunk_and_batch_replay_equivalence
+    - onset_timing_and_ambiguity_classification
+    - delta_and_pairwise_rank_state_direction
+    - calibration_and_latency_measurement
+    - one_shot_terminal_decision_table
+  may_set_scientific_margin: false
+
+successor_policy:
+  proposal_requires:
+    - parent_scored_trial_and_configuration_hash
+    - visible_ledger_prefix_hash
+    - observed_development_failure_pattern
+    - competing_explanation
+    - exactly_one_primary_operator_change
+    - directional_prediction_for_all_three_horizons
+    - predicted_reference_or_incumbent_pair_effect
+    - native_falsifier
+    - unchanged_operator_manifest
+    - parameter_latency_and_compute_estimate
+    - code_and_environment_hash
+    - retirement_condition
+  trigger_routes:
+    near_only_gain:
+      prioritize: [shorter_receptive_field, high_frequency_artifact_control]
+      onset_sensitivity_role: pre_frozen_nonpromoting_falsifier_never_a_target_changing_successor
+    context_dominates:
+      prioritize: [zero_neural_recalibration_twin, cue_stratified_evaluation, residual_neural_branch]
+    real_equals_surrogate:
+      prioritize: [block_shift_sensitivity, phase_randomization, participant_ID_and_session_state_controls]
+    far_horizon_TCN_failure:
+      prioritize: [diagonal_state_space_single_operator_successor]
+    montage_or_participant_failure:
+      prioritize: [geometry_aware_projection, channel_dropout, C0_vs_C32]
+    calibration_failure:
+      prioritize: [temperature_only_head, proper_loss_and_reliability_diagnostics]
+    apparent_universal_win:
+      prioritize: [component_ablation, shortened_history, leave_one_participant_influence, direct_replication]
+  audit_trigger_has_successor: false
+
+branch_retirement:
+  minimum_valid_configurations: 2
+  direct_native_falsifier_or_replication_required: true
+  states:
+    - retired_falsified
+    - retired_equivalent
+    - retired_exhausted
+    - active_unresolved
+  one_failed_trial_can_retire: false
+  nonsignificance_can_retire: false
+  readiness_failure_is_scientific_retirement: false
+
+falsification:
+  post_coverage_fraction_min: 0.40
+  denominator: valid_trials_after_coverage
+  qualifying_purposes: [native_falsifier, ablation, influence, direct_replication]
+  ordinary_hyperparameter_change_qualifies: false
+  failed_falsifier_counts_as_support: false
+
+required_falsifiers:
+  - future_input_mutation_bit_identity
+  - sample_chunk_and_batch_streaming_replay_equivalence
+  - future_impulse_zero_past_response
+  - acquisition_gap_run_series_and_session_state_reset
+  - centered_filter_future_padding_and_whole_session_normalization_rejection
+  - overlapping_window_split_boundary_rejection
+  - cue_stratified_label_shuffle
+  - circular_and_block_shifted_EEG_null
+  - eight_retrained_hidden_surrogate_EEG_twins
+  - participant_and_session_ID_only_control
+  - deliberate_future_signal_positive_leak_detection
+  - synthetic_causal_premovement_motif_recovery
+  - legacy_near_event_positive_control
+  - source_B_star_vs_zero_neural_recalibration_twin
+  - pre_frozen_onset_sensitivity_envelope_nonpromoting
+  - raw_voltage_vs_causal_filterbank_representation_ablation
+  - receptive_field_and_low_frequency_ablation
+  - leave_one_development_participant_and_series_influence
+  - C0_vs_identical_C32_calibration_packet
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  branch_coverage_required: true
+  complete_submission_panel_required: true
+  participant_robustness_required: true
+  lock_one_challenger: true
+  reference_panel_immutable: true
+  one_joint_locked_evaluation_required: true
+  development_leaderboard_first_place_is_terminal: false
+  freeze:
+    - source_and_role_manifests
+    - clocks_onset_stillness_horizons_and_risk_weights
+    - common_channels_resampling_filters_and_state_resets
+    - both_source_specific_B_star_instances_and_complete_submission_panel
+    - reference_panel_and_historical_compatibility_artifacts
+    - challenger_architecture_weights_or_training_recipe
+    - folds_seeds_calibration_packets_and_compute_budgets
+    - scores_margins_uncertainty_and_terminal_table
+    - evaluator_image_command_output_schema_and_lock_hash
+
+stop:
+  termination_precedence:
+    - policy_violation
+    - technical_failure
+    - prelock_development_terminal_map
+    - source_ordered_joint_audit_terminal_map
+  candidate_specific_integrity_failure: invalidate_submission_without_assigning_prelock_scientific_terminal
+  shared_evaluator_reference_or_locked_finalist_integrity_failure: technical_failure
+  patience:
+    starts_after_minimum: true
+    qualified_opportunity: complete_adaptive_challenger_passing_all_noncomparative_integrity_and_eligibility_gates_and_able_to_replace_incumbent_except_for_score_comparison
+    increment: qualified_opportunity_not_exceeding_incumbent_WAY_series_7_primary_log_score_by_signed_development_margin
+    reset: qualified_opportunity_exceeding_that_margin
+    consecutive_opportunities: 8
+    noncounting_purposes:
+      - coverage_panel
+      - native_falsifier
+      - ablation
+      - influence
+      - direct_replication
+      - invalid_submission
+      - exact_retry
+    noncounting_work_still_consumes_declared_trial_feedback_and_resources: true
+    requires_branch_coverage: true
+    requires_postcoverage_falsifier_fraction: true
+    requires_mandatory_prelock_falsifiers_complete: true
+  before_minimum:
+    scientific_stop: prohibited
+    integrity_timing_leakage_exposure_support_or_evaluator_failure: technical_failure
+    admissible_space_feedback_quota_or_compute_exhaustion: technical_failure
+    engineering_failure_ceiling: technical_failure
+  after_minimum:
+    - qualified_patience_exhausted
+    - maximum_valid_trials_reached
+    - development_feedback_quota_reached
+    - frozen_admissible_space_exhausted
+    - cpu_gpu_wall_or_scratch_budget_exhausted
+  after_minimum_exhaustion_action:
+    requires_at_least_one_otherwise_valid_distinct_challenger: true
+    ordered_candidate_set_reduction:
+      - any_otherwise_valid_challenger_passes_all_eligibility_gates_and_clears_improvement_margin: proceed_to_configuration_lock
+      - otherwise_any_challenger_eligibility_or_posteligibility_improvement_state_is_unresolved: closed_unresolved
+      - otherwise_at_least_one_challenger_is_eligible_and_all_eligible_challengers_are_resolved_below_improvement_margin: closed_no_challenger_improvement
+      - otherwise_all_otherwise_valid_challengers_have_a_resolved_eligibility_failure: closed_prelock_promotion_eligibility_failure
+    reduction_is_mutually_exclusive_and_exhaustive_after_integrity_filtering: true
+    candidate_specific_integrity_failure: invalidate_submission
+    shared_evaluator_reference_or_locked_finalist_integrity_failure: technical_failure
+  engineering_failure_ceiling_action: technical_failure
+  budget_or_patience_stop_is_scientific_success: false
+  no_valid_causal_onset_or_clock_certificate: technical_failure
+  no_scorable_locked_evaluation_support: technical_failure
+  unresolved_scientist_signed_margins: remain_launch_blocked
+
+audit:
+  mode: one_joint_campaign_sealed_WAY_and_second_task_participant_evaluation
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  owner: trusted_evaluator
+  network_egress: disabled
+  components:
+    way_series_8_and_9:
+      participants: 12
+      refit_source: same_participant_series_1_to_7
+      role: no_feedback_lock_plus_additional_campaign_sealed_evaluation
+    self_paced:
+      participants: 8
+      group_encoder_source: fifteen_self_paced_development_participants_only
+      primary_regime: C32
+      secondary_regime: C0
+      diagnostic_regime: Cfull
+      role: second_task_whole_participant_replication_in_development_exposed_domain
+  all_components_opened_together: true
+  partial_results_or_QC_feedback: prohibited
+  participant_or_series_replacement: prohibited
+  post_lock_change_to_model_baseline_onset_horizon_margin_C32_algorithm_or_C32_budget: prohibited
+  audited_model_specific_C32_parameter_fit_under_frozen_algorithm_and_budget: permitted
+  exact_success_rule:
+    status: launch_blocked_pending_scientist_signed_margins
+    terminal_gate_source_order: [WAY, global_latency_resource, self_paced, challenger_improvement, reference_rank]
+    required_elements:
+      - WAY_participant_macro_delta_fixed_G_zero_and_C_surrogate_final_each_clear_own_margin
+      - every_leave_one_WAY_participant_mean_for_each_of_three_contrasts_has_locked_positive_direction
+      - self_paced_delta_fixed_G_zero_and_C_surrogate_final_each_positive_in_at_least_6_of_8_participants
+      - self_paced_macro_delta_fixed_G_zero_and_C_surrogate_final_each_clear_own_margin
+      - every_leave_one_self_paced_participant_mean_for_each_of_three_contrasts_has_locked_positive_direction
+      - causality_gates_pass
+      - locked_real_branch_primary_marginal_calibration_gate_passes_in_both_sources
+      - zero_twin_is_noninferior_to_source_specific_B_star_in_both_sources
+      - participant_robustness_rule_passes
+      - longer_horizon_non_degradation_rule_passes
+      - p95_latency_and_frozen_resource_limits_pass
+      - challenger_exceeds_best_eligible_reference_on_joint_WAY_primary_score_by_signed_final_margin
+      - primary_rank_uses_same_joint_fit_on_WAY_series_8_and_9_only
+      - pairwise_rank_state_uses_one_simultaneous_bound_across_all_pairs_and_both_tasks
+    exact_C32_or_endpoint_support_built_only_after_lock: true
+    insufficient_audit_support: nonreplaceable_technical_failure
+    terminal_rank_priority:
+      - all_near_event_edges_practically_equivalent_means_candidate_ready_rank_no_reference_signal
+      - any_unresolved_edge_means_rank_underidentified
+      - otherwise_any_reversed_collapsed_or_emergent_edge_means_rank_changed
+      - otherwise_all_edges_retained_or_stable_equivalent_with_at_least_one_retained_means_rank_robust
+  second_task_audit_confirms_before_any_peripheral_activation: false
+  second_task_audit_confirms_before_accelerometer_detectable_motion_only: true
+  unseen_task_confirmation: false
+
+terminal_decision_contract:
+  precedence:
+    - policy_violation
+    - technical_failure
+    - any_otherwise_valid_prelock_challenger_passing_eligibility_and_improvement_proceeds_to_configuration_lock
+    - otherwise_any_unresolved_prelock_eligibility_or_posteligibility_improvement_state_means_closed_unresolved
+    - otherwise_at_least_one_eligible_prelock_challenger_and_all_eligible_challengers_resolved_below_improvement_means_closed_no_challenger_improvement
+    - otherwise_all_otherwise_valid_prelock_challengers_have_resolved_eligibility_failure_means_closed_prelock_promotion_eligibility_failure
+    - unresolved_WAY_primary_delta_fixed_means_closed_unresolved
+    - resolved_WAY_primary_delta_fixed_failure_means_closed_near_event_but_not_primary_strict_if_all_WAY_near_delta_G_C_lower_bounds_clear_signed_near_margins_else_closed_no_resolved_eeg_increment_at_primary_horizon
+    - resolved_WAY_G_zero_or_C_surrogate_final_failure_after_WAY_delta_pass_means_closed_neural_specificity_gate_failure
+    - otherwise_unresolved_WAY_G_zero_or_C_surrogate_final_after_WAY_delta_pass_means_closed_unresolved
+    - resolved_WAY_reliability_or_global_latency_resource_failure_means_closed_candidate_reliability_gate_failure
+    - otherwise_unresolved_WAY_reliability_or_global_latency_resource_gate_after_WAY_neural_gates_pass_means_closed_unresolved
+    - resolved_any_required_self_paced_neural_calibration_or_reliability_failure_means_closed_second_task_participant_nonreplication
+    - otherwise_unresolved_any_required_self_paced_neural_calibration_or_reliability_gate_after_WAY_and_global_pass_means_closed_unresolved
+    - resolved_challenger_improvement_failure_means_closed_no_challenger_improvement
+    - otherwise_unresolved_challenger_improvement_after_all_scientific_gates_pass_means_closed_unresolved
+    - candidate_ready_rank_map
+  within_audit_multicontrast_stage_reduction: any_resolved_failure_then_any_unresolved_then_pass
+  prelock_candidate_set_reduction_is_the_explicit_order_above: true
+  unresolved_later_audit_gate_cannot_override_earlier_resolved_failure: true
+  exactly_one_terminal_label_required: true
+
+terminal_mapping:
+  candidate_ready_strict_forecast_rank_robust: candidate_ready
+  candidate_ready_strict_forecast_rank_changed: candidate_ready
+  candidate_ready_strict_forecast_rank_underidentified: candidate_ready
+  candidate_ready_strict_forecast_rank_no_reference_signal: candidate_ready
+  closed_near_event_but_not_primary_strict: closed_no_candidate
+  closed_no_resolved_eeg_increment_at_primary_horizon: closed_no_candidate
+  closed_neural_specificity_gate_failure: closed_no_candidate
+  closed_candidate_reliability_gate_failure: closed_no_candidate
+  closed_second_task_participant_nonreplication: closed_no_candidate
+  closed_no_challenger_improvement: closed_no_candidate
+  closed_prelock_promotion_eligibility_failure: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true
