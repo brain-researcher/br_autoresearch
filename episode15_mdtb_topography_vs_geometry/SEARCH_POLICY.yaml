@@ -1,0 +1,686 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep15_mdtb_topography_vs_geometry_adaptive
+episode_id: ep15
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  source: functional_fusion_mdtb_zenodo_16788784_v1_0
+  assignment_unit: participant
+  split:
+    development_participants: 12
+    audit_participants: 12
+    status: not_yet_instantiated
+    outcome_blind_simulation_required: true
+    amendment_required_to_change_split: true
+  assignment_rule:
+    inputs: [sex, age, native_english, ses_rest, task_a_only_reliability]
+    task_b_blind: true
+    exhaustive_12_12_balance_search: true
+    lexicographic_vector:
+      - maximum_categorical_level_count_imbalance
+      - sum_categorical_level_count_imbalance
+      - standardized_age_mean_difference
+      - standardized_age_wasserstein_distance
+      - standardized_task_a_reliability_mean_difference
+      - standardized_task_a_reliability_wasserstein_distance
+    missing_categorical_values: explicit_level
+    missing_age_or_task_a_reliability: block_role_freeze
+    deterministic_sha256_tiebreak: ep15_topography_vs_geometry_role_v1
+    controller_receives_participant_reliability_values: false
+  development:
+    access: anatomy_task_a_and_task_b
+    evaluation: leave_one_participant_out_target_emulation
+    pseudo_target_task_b_fit_access: prohibited
+    source_template: other_development_participants_only
+  audit:
+    search_worker_access: none
+    calibrator_access_after_panel_lock: anatomy_and_task_a_only
+    evaluator_access_after_prediction_lock: task_b_only
+    required_scorable_participants: 12
+    participant_replacement: prohibited
+    reduced_n_analysis: prohibited
+  endpoint:
+    task_b_only_conditions: 18
+    equal_weight_domains:
+      - CPRO
+      - prediction
+      - spatialMap
+      - movie
+      - mentalRotation
+      - emotionProcess
+      - respAlt
+    movie_conditions_average_in_weight_not_map: true
+    condition_crossproducts_computed_before_domain_averaging: true
+    geometry_pair_weights_domain_balanced: true
+    map_halves: [runs_1_to_8, runs_9_to_16]
+    geometry_partitions: [runs_1_to_4, runs_5_to_8, runs_9_to_12, runs_13_to_16]
+  fitted_prior_policy:
+    published_algorithms_allowed: true
+    published_mdtb_fitted_parameters_allowed: false
+    group_priors_bases_profiles_and_source_maps: development_refit_only
+    outer_fold_target_task_b_excluded: true
+    audit_task_a_updates_shared_parameters: false
+  evidence_status: publication_exposed_internal_procedure_sealed
+  collision_check: ep03_and_prior_mdtb_exposure_ledger_required
+
+grammar:
+  execution: declarative_config_trusted_builder_and_evaluator
+  target_space: cerebellum_only
+  common_contract:
+    target_specific_fit_inputs: [target_anatomy, target_task_a]
+    target_task_b_fit_access: prohibited
+    one_target_rule_applied_to_all_task_b_conditions: true
+    common_registered_support: true
+    common_map_construction_and_interpolation: true
+    global_gain:
+      form: one_positive_participant_scalar
+      fit_source: target_task_a_only
+      applied_uniformly_across_voxels_and_task_b_conditions: true
+      available_identically_to_all_classes: true
+      condition_domain_or_voxel_specific_gain: prohibited
+    group_residual_reference: M0b_group_functional
+    primary_map_estimand: pairwise_reliable_between_participant_residual_recovery
+    primary_geometry_estimand: four_partition_crossvalidated_condition_second_moment
+  controls:
+    M0a_anatomical:
+      role: fixed_reference
+      prediction: raw_conditionwise_development_mean_under_frozen_anatomical_SUIT_resampling
+      target_task_a_access: false
+    M0b_group_functional:
+      role: fixed_reference_and_residual_origin
+      prediction: development_fit_group_functional_source_map_Gc
+      target_specific_input: none
+    negative:
+      - reliability_stratified_task_a_correspondence_permutation
+      - participant_identity_derangement
+      - capacity_and_smoothness_matched_random_local_basis
+      - capacity_and_smoothness_matched_random_warp
+  branches:
+    M1:
+      label: hierarchical_individualized_parcel_membership
+      scientific_hypothesis: shared_profiles_with_personalized_membership_are_adequate
+      group_prior_fit: development_only_with_outer_target_excluded
+      target_membership_fit: task_a_only
+      response_profiles: shared_not_target_specific
+      variants:
+        assignment: [probabilistic, hard]
+        granularity: [coarse, reference, fine]
+      native_signatures:
+        - recovery_is_boundary_localized
+        - parcel_interior_reliable_residual_is_adequate
+      contradiction: recovery_occurs_only_in_parcel_interiors
+    M2:
+      label: one_smooth_spatial_relocation
+      scientific_hypothesis: condition_invariant_spatial_relocation_is_adequate
+      operator: one_task_a_fit_diffeomorphic_field
+      variants:
+        regularity: [tight, reference, loose]
+        displacement_bound: [reference, stress]
+      required_certificates:
+        - inverse_consistency
+        - frozen_jacobian_bounds
+        - frozen_displacement_bounds
+      native_signatures:
+        - gain_exceeds_matched_random_warp
+        - displacement_is_reproducible_across_task_a_halves
+    M3:
+      label: certified_isometric_correspondence
+      scientific_hypothesis: centered_condition_geometry_is_shared
+      operator_form: Q_equals_I_plus_B_times_O_minus_I_times_B_transpose
+      basis_requirements:
+        - development_fixed
+        - orthonormal_and_centered
+        - bounded_dimension_and_effective_df
+        - identity_on_canonical_complement
+      required_certificate:
+        full_orthogonality: Q_transpose_Q_and_Q_Q_transpose_equal_I
+        constant_mode: Q_times_one_equals_one
+        task_a_active_subspace_design_rank_and_unique_solution: required
+        unidentified_directions: remove_or_fix_to_identity
+        deterministic_sign_order_and_tie_convention: required
+        numerical_tolerance: null
+        launch_requires_numeric_tolerance: true
+      variants:
+        locality: [tight, reference, broad]
+        active_subspace: [low, reference, high]
+      prohibited:
+        - weighted_average_of_orthogonal_operators
+        - averaged_overlapping_local_procrustes_without_final_reprojection_and_certificate
+        - arbitrary_task_a_nullspace_rotation
+      native_signatures:
+        - task_a_half_composition_and_inverse_consistency
+        - task_b_individual_condition_geometry_within_equivalence_margin
+    M4:
+      label: bounded_stable_nonisometric_geometry
+      scientific_hypothesis: stable_geometry_changing_variation_is_needed
+      parameterization: L_equals_Q_times_matrix_exp_S
+      anchor:
+        branch: M3
+        same_Q_basis_support_preprocessing_and_fit_rule: true
+        null_reduction: S_equals_zero_byte_identically_reproduces_paired_M3
+      S_parameterization:
+        form: S_equals_B_C_B_transpose
+        C_symmetric: true
+        C_trace_zero: true
+        S_times_one_zero: true
+        subfamily:
+          - centered_basis_anisotropic_stretch
+          - localized_low_rank_stretch
+          - localized_low_rank_stretch_shear
+        rank_bound: null
+        spectral_norm_bound: null
+        singular_value_bounds: null
+        condition_number_bound: null
+        effective_df_bound: null
+        final_operator_locality_bound: null
+        launch_requires_all_numeric_bounds: true
+      scientific_credit_requires:
+        - map_adequacy
+        - geometry_adequacy
+        - material_map_gain_over_M1_M2_and_paired_M3
+        - material_geometry_gain_over_M1_M2_and_paired_M3
+        - task_a_half_to_half_stability
+        - matched_output_smoothness_null_rejected
+  forbidden:
+    - audit_task_b_candidate_access
+    - audit_task_b_qc_based_replacement
+    - audit_task_a_panel_selection_or_shared_refit
+    - target_task_b_estimated_transform_scaling_or_normalization
+    - audit_participant_task_b_source_template
+    - released_mdtb_fitted_atlas_basis_prior_or_map_library
+    - participant_condition_domain_voxel_or_pair_as_independent_sample
+    - whole_brain_or_cortical_primary_score
+    - arbitrary_candidate_code_or_unbounded_dense_operator
+    - geometry_normalization_by_random_K_trace
+    - post_audit_tuning_retry_or_rescue
+
+trial_contract:
+  counted_atom: one_fully_frozen_model_or_falsifier_instance
+  includes:
+    - all_12_development_participant_heldout_folds
+    - all_18_task_b_only_conditions
+    - all_7_equal_weight_domains
+    - both_independent_map_halves
+    - all_four_geometry_partitions
+    - map_and_geometry_endpoints
+    - fixed_M0a_and_M0b_references
+    - applicable_operator_and_integrity_certificates
+    - all_branch_native_signature_outputs
+  unique_key: scientific_configuration_hash
+  one_trial_cannot_be_split_by:
+    - participant_fold
+    - condition
+    - domain
+    - run_partition
+    - seed
+    - metric
+    - scheduler_job
+  does_not_count_as_new_trial:
+    - byte_identical_engineering_retry
+    - duplicate_configuration
+    - metric_replay
+    - readiness_or_synthetic_only_check
+    - audit_evaluation
+  valid_when:
+    - every_required_fold_and_endpoint_scored
+    - no_target_task_b_fit_access
+    - every_applicable_operator_and_integrity_certificate_passes
+    - every_native_scientific_signature_is_computed_and_recorded
+    - complete_resource_lineage_and_exposure_record
+  scientific_signature_pass_or_fail_affects_trial_validity: false
+  trial_purpose:
+    required_enum:
+      - coverage_model
+      - adaptive_model
+      - native_falsifier
+      - cross_panel_control
+      - ablation
+      - influence
+    commit_before_execution: true
+    exactly_one_primary_purpose: true
+  M4_extra_fields:
+    - paired_M3_trial_id
+    - paired_M3_configuration_hash
+    - proof_S_zero_byte_identically_reproduces_M3
+
+panel_record_contract:
+  schema_version: ep15.composite_panel.v1
+  materialize_before_audit: true
+  immutable_after_lock: true
+  required_fields:
+    - panel_id
+    - M1_trial_id_and_configuration_hash
+    - M2_trial_id_and_configuration_hash
+    - M3_trial_id_and_configuration_hash
+    - M4_trial_id_and_configuration_hash
+    - M3_M4_pairing_and_S_zero_proof_hash
+    - M0a_M0b_and_negative_control_hashes
+    - coverage_manifest_hash
+    - source_K0_support_and_map_construction_hashes
+    - margins_contrasts_multiplicity_and_decision_code_hashes
+    - visible_ledger_prefix_hash
+    - code_environment_and_retry_policy_hashes
+  controller_incumbent_id_points_to: panel_id
+  branch_replacement_creates_new_panel_id: true
+
+objectives:
+  aggregation:
+    map_endpoint: participant_pairwise_then_conditionwise_seven_domain_equal
+    geometry_endpoint: participant_pairwise_and_domain_pair_balanced
+    inferential_unit: participant
+  estimands:
+    map_signal: reliable_between_participant_task_b_only_map_variation
+    map_recovery: fraction_reliable_between_participant_variation_recovered
+    map_adequacy: remaining_reliable_variation_fraction
+    geometry_signal: reliable_between_participant_condition_geometry_variation
+    geometry_recovery: fraction_reliable_individual_geometry_recovered
+    values_not_clipped: true
+    participant_level_ratios: prohibited
+  geometry_contract:
+    independent_estimates_required: 2
+    task_b_partitions_required: 4
+    global_gain_removal: fixed_linear_projection_against_development_K0
+    K0_is_actual_M3_source_geometry: true
+    K0_is_not_automatic_gram_of_raw_group_mean: true
+    condition_geometry_is_only_necessary_isometry_invariant: true
+    M1_and_M2_may_change_voxel_weighted_geometry: true
+  signal_gates:
+    map_present: simultaneous_LCB_of_VB_minus_tau_signal_times_SB_above_zero
+    map_negligible: simultaneous_UCB_of_VB_minus_tau_signal_times_SB_below_zero
+    map_otherwise: unresolved
+    geometry_present: simultaneous_LCB_of_VK_minus_tau_geometry_times_SK_above_zero
+    geometry_equivalent: simultaneous_UCB_of_VK_minus_tau_geometry_times_SK_below_zero
+    geometry_otherwise: unresolved
+  scientific_margins:
+    tau_signal:
+      value: null
+      scale: fraction_of_frozen_positive_development_crossvalidated_source_map_energy_SB
+    tau_remaining:
+      value: null
+      scale: fraction_of_reliable_between_participant_variation
+    tau_increment:
+      value: null
+      scale: dimensionless_map_or_geometry_recovery_fraction
+    tau_geometry:
+      value: null
+      scale: individual_geometry_variation_relative_to_SK_equals_K0_norm_squared
+    all_values_and_scales_require_human_signature: true
+    freeze_before_first_candidate_discriminating_development_task_b_score: true
+    synthetic_detectability_defines_scientific_margin: false
+    outcome_dependent_choice_forbidden: true
+  inference:
+    pairwise_estimator: participant_pair_difference_U_statistic
+    variance: delete_one_participant_jackknife_pseudovalues
+    ratio_confidence_intervals: prohibited
+    decision_statistics: prespecified_linear_contrasts
+    class_claim: intersection_union_of_required_components
+    across_four_class_claims: Holm_inverted_one_sided_bounds
+    confidence_family_and_code_hash: null
+    launch_requires_frozen_implementation: true
+    nonsignificance_establishes_adequacy_or_equivalence: false
+    crossing_any_decision_boundary: unresolved
+  no_cross_branch_scalar_winner: true
+  archives:
+    M1: feasible_branch_pareto
+    M2: feasible_branch_pareto
+    M3: feasible_certified_branch_pareto
+    M4: feasible_paired_M3_M4_pareto
+
+budgets:
+  stage1_coverage_valid_trials: 20
+  minimum_valid_trials: 40
+  maximum_valid_trials: 96
+  patience_valid_trials: 16
+  maximum_engineering_failed_attempts: 16
+  cpu_core_hour_ceiling: 1200
+  cpu_cores_per_trial_max: 32
+  memory_gib_per_trial_max: 128
+  wall_hours_per_trial_max: 8
+  wall_clock_hour_ceiling: 120
+  scratch_gib_ceiling: null
+  gpu_hour_ceiling: 0
+  accounting:
+    folds_seeds_metrics_and_scheduler_jobs_are_not_trials: true
+    synthetic_and_falsifier_compute_counts_toward_resource_ceiling: true
+    audit_does_not_count_toward_development_valid_trials: true
+    launch_requires_numeric_scratch_ceiling: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 20
+  rule: exact_20_row_frozen_branch_native_manifest_not_cartesian_hyperparameter_grid
+  readiness_rejection_must_be_logged: true
+  manifest:
+    ref: inputs/FROZEN_COVERAGE_MANIFEST.yaml
+    sha256: null
+    freeze_before_first_development_score: true
+    exact_rows: 20
+    one_row_one_unique_valid_trial: true
+    required_rows:
+      M1:
+        - reference_probabilistic
+        - hard_assignment
+        - coarse_granularity
+        - fine_granularity
+      M2:
+        - reference_diffeomorphism
+        - tight_regularity
+        - loose_regularity
+        - displacement_bound_stress
+      M3:
+        - reference_local_isometry
+        - tight_locality
+        - broad_locality
+        - active_subspace_stress
+      M4:
+        - centered_basis_anisotropic_stretch
+        - localized_low_rank_stretch
+        - localized_low_rank_stretch_shear
+        - rank_or_spectral_bound_stress
+      cross_panel_controls:
+        - task_a_correspondence_permutation
+        - participant_identity_derangement
+        - random_local_basis
+        - matched_random_warp
+  completion:
+    valid_scored_row_required: true
+    duplicate_invalid_or_readiness_rejection_satisfies_row: false
+    missing_mandatory_branch_blocks_audit: true
+
+synthetic_qualification:
+  purpose: validate_decision_code_and_operating_characteristics_not_choose_margins
+  prerequisites:
+    - margin_free_algebra_and_implementation_checks_pass
+    - all_scientific_margins_human_signed
+  seeds_per_world: 100
+  worlds:
+    - group_only
+    - parcel_only
+    - smooth_warp_only
+    - exact_isometry
+    - stable_nonisometry
+    - task_a_b_specific_geometry
+    - reliability_only_null
+  required_output: model_class_confusion_matrix
+  stable_identifiable_world_correct_classification_min: 0.90
+  null_false_promotion_max: 0.05
+  task_specific_world_false_stable_nonisometry_max: 0.05
+  ambiguous_world_abstention_rule_must_be_predeclared: true
+  full_12_12_selection_and_decision_simulation_required: true
+
+successor_policy:
+  evidence_source: development_only
+  proposal_requires:
+    - parent_trial_ids
+    - prior_scored_outcome_refs
+    - complete_visible_ledger_prefix_hash
+    - directional_prediction
+    - branch_native_falsifier
+    - changed_operator
+    - unchanged_operators
+    - expected_information_gain
+    - expected_cost
+  maximum_changed_scientific_operators: 1
+  interaction_successor_requires_scored_single_operator_parents: true
+  minimum_adaptive_successor_cycles: 2
+  minimum_distinct_branches_with_adaptive_successors: 2
+  prespecified_coverage_row_cannot_be_relabelled_adaptive: true
+  branch_triggers:
+    M1:
+      continue_if: recovery_and_boundary_signature_are_promising
+      successors: [granularity, hard_vs_probabilistic, boundary_width]
+    M2:
+      continue_if: recovery_with_valid_jacobian_and_task_a_stability
+      successors: [regularity, displacement_bound, anatomy_coupling]
+    M3:
+      continue_if: recovery_and_global_isometry_certificate_pass
+      successors: [locality, active_subspace, composition_rule]
+    M4:
+      continue_if: dual_map_and_geometry_gain_is_promising
+      successors: [stretch_vs_shear, rank_bound, spectral_bound, mode_ablation]
+
+branch_retirement:
+  one_failed_trial_may_retire_branch: false
+  minimum_before_scientific_retirement:
+    coverage_rows_complete: true
+    native_postcoverage_falsifiers: 2
+  dispositions:
+    - active
+    - provisionally_supported
+    - retired_falsified
+    - retired_exhausted
+    - blocked_nonexecutable
+  invalid_certificate:
+    disposition: blocked_nonexecutable
+    counts_as_scientific_negative: false
+  repeated_valid_adequacy_and_signature_failure: retired_falsified
+  no_admissible_successor_within_grammar: retired_exhausted
+  budget_end_before_required_evidence: active_unresolved
+  mandatory_branch_nonexecutable:
+    audit_allowed: false
+    terminal: technical_failure
+
+falsification:
+  postcoverage:
+    minimum_scored_trials: 8
+    minimum_native_trials_per_branch: 1
+    minimum_cross_panel_control_trials: 4
+    fraction_of_all_postcoverage_valid_trials_min: 0.40
+    denominator: every_valid_postcoverage_trial
+    numerator_trial_purposes:
+      - native_falsifier
+      - cross_panel_control
+      - ablation
+      - influence
+    purpose_must_be_committed_before_execution: true
+    ordinary_optimization_with_embedded_diagnostics_counts_as_falsification: false
+    one_trial_counts_in_at_most_one_purpose: true
+  M1:
+    - boundary_vs_interior_localization
+    - atlas_granularity
+    - hard_vs_probabilistic_membership
+  M2:
+    - task_a_split_half_field_stability
+    - inverse_consistency_displacement_and_jacobian
+    - matched_smooth_random_warp
+  M3:
+    - final_operator_full_isometry_certificate
+    - split_half_composition_and_inverse
+    - individual_condition_geometry_equivalence
+    - locality_vs_global_rotation
+  M4:
+    - stretch_and_shear_mode_ablations
+    - singular_spectrum_and_condition_number
+    - task_a_split_half_stability
+    - individual_geometry_prediction
+    - matched_output_smoothness_null
+
+required_falsifiers:
+  - branch_native_M1_package
+  - branch_native_M2_package
+  - branch_native_M3_package
+  - branch_native_M4_package
+  - task_a_condition_correspondence_permutation
+  - participant_identity_derangement
+  - capacity_and_smoothness_matched_random_basis_and_warp
+  - equal_task_a_quantity_and_reliability
+  - leave_one_development_participant_influence
+  - audit_firewall_and_prediction_hash
+  - published_parameter_and_cache_exposure_audit
+  - ep03_accession_collision_audit
+
+promotion:
+  incumbent_is_terminal: false
+  incumbent_unit: composite_development_panel
+  branch_incumbents: true
+  cross_branch_raw_score_ranking: prohibited
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  incumbent_challenger_decision_unit: branch_replacement_materialized_as_new_complete_panel_record
+  minimum_complete_panel_revision_decisions: 2
+  minimum_distinct_branches_with_adaptive_successors: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  selection:
+    M1: feasible_M1_pareto_archive
+    M2: feasible_M2_pareto_archive
+    M3_M4: compatible_paired_representatives
+    tiebreak:
+      signed_executable_spec_hash: null
+      launch_requires_nonnull_hash: true
+      lexicographic:
+        - metric: minimum_adequacy_and_native_signature_slack
+          direction: maximize
+        - metric: maximum_participant_or_domain_influence
+          direction: minimize
+        - metric: task_a_split_half_stability
+          direction: maximize
+        - metric: effective_degrees_of_freedom
+          direction: minimize
+        - metric: measured_cpu_core_hours
+          direction: minimize
+  lock_one_configuration: true
+  configuration_kind: composite_four_branch_explanatory_panel
+  locked_members:
+    - one_M1
+    - one_M2
+    - one_M3
+    - one_M4_paired_to_locked_M3
+    - M0a
+    - M0b
+    - frozen_negative_controls
+  all_four_branches_must_be_executable: true
+  audit_model_selection: prohibited
+  freeze:
+    - participant_roles_and_exposure_ledger
+    - source_maps_K0_domain_table_and_map_construction
+    - masks_support_interpolation_and_global_gain
+    - four_branch_operators_capacities_certificates_and_pairing
+    - scientific_margins_linear_contrasts_and_multiplicity_code
+    - synthetic_confusion_matrix_and_null_seed_bank
+    - code_environment_predictions_hashes_and_retry_policy
+
+stop:
+  at_any_stage:
+    - integrity_or_firewall_failure
+    - cpu_core_hour_ceiling_reached
+    - wall_clock_hour_ceiling_reached
+    - scratch_storage_ceiling_reached
+    - maximum_engineering_failed_attempts_reached
+    - every_admissible_composite_panel_nonexecutable
+    - admissible_successor_grammar_exhausted
+  before_minimum:
+    scientific_success_allowed: false
+    audit_allowed: false
+    terminal: technical_failure
+    reason: required_search_depth_or_executability_not_achieved
+  patience_eligible_only_after:
+    - minimum_valid_trials
+    - exact_coverage_manifest_complete
+    - falsifier_count_and_fraction_complete
+    - two_adaptive_successor_cycles
+    - two_incumbent_challenger_decisions
+    - two_distinct_branches_have_adaptive_successors
+    - two_complete_panel_revision_decisions
+    - every_mandatory_branch_has_valid_representative
+  after_minimum:
+    - qualified_patience_exhausted
+    - maximum_valid_trials_reached
+    - cpu_wall_or_storage_ceiling_reached
+    - admissible_successor_space_exhausted
+  audit_after_any_stop_requires_all_lock_prerequisites: true
+  first_positive_branch_is_stop: false
+  budget_stop_is_scientific_success: false
+
+audit:
+  mode: one_shot
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  unit: participant
+  owner: trusted_evaluator
+  sequence:
+    - refit_locked_shared_recipes_on_all_development_participants_only
+    - calibrate_each_audit_target_from_anatomy_and_task_a
+    - lock_and_hash_all_panel_predictions_without_task_b_mounted
+    - trusted_evaluator_mounts_task_b_once
+    - compute_signal_adequacy_signature_increment_and_equivalence_statuses
+    - seal_primary_decision_hash
+    - emit_nonrescuing_diagnostics
+  primary_decision:
+    precedence:
+      - integrity_or_exposure_failure
+      - reliable_between_participant_map_signal_gate
+      - simultaneous_branch_adequacy_and_signature_evaluation
+      - geometry_equivalence_or_prediction_status
+      - unique_vs_multiple_explanation_resolution
+      - nontransportable_vs_unresolved_resolution
+    signal_gate:
+      present: simultaneous_LCB_of_VB_minus_tau_signal_times_SB_above_zero
+      negligible: simultaneous_UCB_of_VB_minus_tau_signal_times_SB_below_zero
+      intermediate: closed_unresolved
+    branch_support:
+      M1:
+        - map_adequate
+        - boundary_signature_pass
+        - geometry_status_resolved_not_intermediate
+        - geometry_adequate_if_geometry_signal_resolved
+      M2:
+        - map_adequate
+        - warp_certificates_and_stability_pass
+        - geometry_status_resolved_not_intermediate
+        - geometry_adequate_if_geometry_signal_resolved
+      M3:
+        - map_adequate
+        - condition_geometry_equivalent_within_tau_geometry
+        - M4_increment_bounded_below_materiality
+      M4:
+        - map_adequate
+        - geometry_signal_resolved_and_geometry_adequate
+        - material_map_gain_over_M1_M2_and_paired_M3
+        - material_geometry_gain_over_M1_M2_and_paired_M3
+        - task_a_half_stability_and_smoothness_falsifier_pass
+        - all_nonnested_competitor_statuses_resolved
+    outcomes:
+      exactly_one_supported_M1: candidate_ready_parcel_sufficiency
+      exactly_one_supported_M2: candidate_ready_smooth_relocation
+      exactly_one_supported_M3: candidate_ready_shared_isometry
+      exactly_one_supported_M4_with_dual_increment: candidate_ready_stable_nonisometry
+      two_or_more_nonnested_supported_including_M4_with_M1_or_M2: closed_multiple_adequate_explanations
+      signal_present_none_adequate: closed_reliable_nontransportable
+      signal_upper_bound_below_tau_signal: closed_no_resolvable_individual_signal
+      any_required_boundary_or_competitor_status_indeterminate: closed_unresolved
+  postdecision_diagnostics:
+    - shared_task_b_nonrest_conditions
+    - shared_task_b_rest_condition
+    - each_locked_M1_to_M4_recipe_refits_only_target_parameters_on_task_b_runs_1_to_8_and_predicts_runs_9_to_16
+    - leave_one_audit_participant_influence
+    - condition_domain_and_geometry_tables
+  diagnostics_can_change_primary_decision: false
+  participant_replacement_after_outcome_access: false
+  rerun_retune_or_threshold_change_after_open: false
+  external_replication_claim: false
+
+terminal_mapping:
+  candidate_ready_parcel_sufficiency: candidate_ready
+  candidate_ready_smooth_relocation: candidate_ready
+  candidate_ready_shared_isometry: candidate_ready
+  candidate_ready_stable_nonisometry: candidate_ready
+  closed_multiple_adequate_explanations: closed_no_candidate
+  closed_reliable_nontransportable: closed_no_candidate
+  closed_no_resolvable_individual_signal: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true

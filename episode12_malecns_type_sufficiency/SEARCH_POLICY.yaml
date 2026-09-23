@@ -1,0 +1,175 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep12_malecns_type_sufficiency_adaptive
+episode_id: ep12
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  assignment_unit: whole_provider_type
+  assignment_source: annotation_only_fields_before_connectivity_access
+  split:
+    development_fraction: 0.80
+    final_fraction: 0.20
+    deterministic_seed_required: true
+  development:
+    evaluation: reciprocal_cross_side_transfer
+    graph_rows: development_focal_sources_only
+  audit:
+    name: final_types
+    access: trusted_evaluator_once_after_outgoing_lock
+    evaluation: left_to_right_and_right_to_left_without_target_refit
+  replication_scope: single_male_internal_only
+
+grammar:
+  execution: declarative_config_trusted_evaluator
+  mandatory_model_triplet: [T_type_template, U_flexible_unimodal, M_residual_modes]
+  partner_vocabulary:
+    - development_frequency_pooling
+    - explicit_unknown_untyped_fragment_bins
+    - bounded_hierarchical_partner_categories
+  partner_minimum_development_type_count: [2, 4, 8]
+  rare_partner_pooling_mass_fraction: [0.01, 0.025, 0.05]
+  partner_hierarchy_depth: [1, 2]
+  representation:
+    - count_aware_log_ratio
+    - low_rank_composition
+    - low_rank_count_model
+  rank: [2, 4, 8, 16]
+  composition_pseudocount: [0.1, 0.5, 1.0]
+  nuisance:
+    - connection_strength_exposure
+    - reconstruction_and_status
+    - prespecified_anatomical_effects
+  nuisance_spline_df: [0, 3, 5]
+  covariance: [diagonal, shrinkage, low_rank]
+  covariance_rank: [2, 4, 8]
+  component_count: [2, 3]
+  regularization: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  forbidden:
+    - provider_group_for_search
+    - provider_instance_as_partner_category
+    - silent_typed_partner_renormalization
+    - neuron_edge_or_synapse_role_splits
+    - final_type_outcome_dependent_choices
+    - arbitrary_candidate_code
+
+objectives:
+  primary: type_equal_direction_equal_heldout_log_predictive_density_M_minus_C
+  reference: best_fair_development_selected_T_or_U
+  pareto:
+    maximize: [bilateral_predictive_gain, cross_side_component_matching, calibration]
+    minimize: [model_complexity, type_influence, strength_concentration]
+  constraints:
+    - improvement_in_both_transfer_directions
+    - separated_prevalent_modes
+    - endpoint_mass_preserved
+    - numerical_unimodality_for_U
+    - synthetic_recovery
+    - no_known_anatomy_or_technical_explanation
+
+budgets:
+  minimum_valid_trials: 36
+  maximum_valid_trials: 96
+  valid_trials_min: 36
+  valid_trials_max: 96
+  patience_valid_trials: 16
+  patience_active_after_trial: 36
+  cpu_core_hour_ceiling: 1000
+  cpu_core_hours_max: 1000
+  cpu_cores_per_trial_max: 32
+  memory_gib_per_trial_max: 192
+  wall_hours_per_trial_max: 12
+  wall_clock_hour_ceiling: 120
+  gpu_hour_ceiling: 0
+  gpu_count: 0
+
+full_search_null:
+  controller_operation: run_full_search_null
+  rerun_complete_controller: true
+  fitted_generator: locked_best_fair_T_or_U_reference
+  replicates: 99
+  seed_manifest_frozen: true
+  initial_ledger_each_replicate: empty
+  rerun_entire_T_U_M_controller: true
+  identical_grammar_budgets_stop_and_promotion: true
+  deterministic_controller_replay_required: true
+  proposal_model_version_prompt_sampling_and_seed_frozen: true
+  monte_carlo_p: (1_plus_count_null_ge_observed)_divided_by_(replicates_plus_1)
+  pass_threshold: 0.05
+  profiling_must_fit_total_cpu_ceiling_before_outcome_access: true
+  profiling_must_fit_total_cpu_ceiling_before_connectivity_outcome_access: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 18
+  rule: balanced_covering_array_over_vocabulary_representation_covariance_K_and_complete_T_U_M_triplets
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - fitted_T_U_null_full_search_rerun
+  - strength_and_margin_preserving_graph_randomization
+  - cross_side_component_alignment_permutation
+  - shuffled_partner_and_valid_side_controls
+  - binary_weighted_vocabulary_and_rank_sensitivities
+  - nuisance_and_partner_block_ablations
+  - capacity_matched_noise_controls
+  - leave_one_type_and_partner_family_influence
+  - status_endpoint_anatomy_and_missingness_checks
+  - forbidden_group_instance_post_result_novelty_audit
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  every_trial_requires_complete_triplet: true
+  coverage_required: all_families_and_pairwise_interactions_in_frozen_balanced_covering_array
+  full_search_null_pass_required: true
+  select_from: feasible_pareto_archive
+  lock_one_configuration: true
+  freeze:
+    - eligibility_and_whole_type_roles
+    - vocabulary_representation_and_rank
+    - nuisance_covariance_and_capacity
+    - support_score_thresholds_and_seeds
+    - controls_and_decision_table
+
+stop:
+  before_minimum: only_integrity_support_or_synthetic_failure
+  patience_starts_after_minimum: true
+  after_minimum:
+    - patience_exhausted
+    - valid_trials_max_reached
+    - cpu_budget_exhausted
+  budget_stop_is_scientific_success: false
+
+audit:
+  mode: one_shot
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  unit: final_whole_types
+  owner: trusted_evaluator
+  candidate_label_access: false
+  reciprocal_directions_required: true
+  retuning_after_open: false
+  incoming_result_can_change_outgoing_terminal: false
+  population_replication_claim: false
+
+terminal_mapping:
+  candidate_ready_residual_modes: candidate_ready
+  closed_single_population_sufficient: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true

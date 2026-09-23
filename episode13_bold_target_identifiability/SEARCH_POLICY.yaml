@@ -1,0 +1,153 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep13_bold_identifiability_cegis
+episode_id: ep13
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  empirical_dataset: none
+  history_exposed:
+    source: declared_prior_cases_without_local_artifact_dependency
+    cases: 13_valid_plus_4_invalid_controls
+    confirmation_status: development_only
+  development:
+    unit: structured_conjecture_and_exact_counterexample
+    corpus: append_only_cegis_cases
+  audit:
+    unit: independently_generated_exact_case
+    generator: separately_authored_and_frozen_before_theorem_comparison
+    epistemic_role: implementation_audit_not_universal_proof
+
+grammar:
+  execution: structured_conjecture_exact_checker
+  base_criteria:
+    - row_space_membership
+    - kernel_annihilation
+    - rank_augmentation_equality
+  certificates:
+    - exact_readout_w
+    - exact_target_changing_null_delta
+    - factorized_u_v_readout
+  factorization:
+    - temporal_row_condition
+    - spatial_row_condition
+    - conjunction
+    - full_operator_only
+  case_partitions:
+    - both_targets_nonzero
+    - spatial_target_zero
+    - contrast_target_zero
+    - both_targets_zero
+    - invalid_contract
+  repairs:
+    - add_or_remove_one_assumption
+    - split_one_case_partition
+    - correct_vectorization_or_kronecker_order
+    - weaken_equivalence_to_implication
+    - replace_false_factorization_clause
+  forbidden:
+    - floating_point_evidence_as_proof
+    - empirical_HRF_or_participant_search
+    - unconstrained_theorem_generation
+    - historical_evaluator_as_oracle
+
+objectives:
+  ordering: lexicographic
+  levels:
+    - exact_correctness_and_discharged_proof_obligations
+    - maximal_valid_scope_with_minimal_assumptions
+    - complete_edge_case_handling
+    - independently_replayable_certificates
+    - theorem_and_proof_simplicity
+  finite_case_pass_is_terminal: false
+
+budgets:
+  minimum_valid_trials: 16
+  maximum_valid_trials: 64
+  valid_trials_min: 16
+  valid_trials_max: 64
+  patience_valid_trials: 12
+  patience_active_after_trial: 16
+  cpu_core_hour_ceiling: 256
+  cpu_core_hours_max: 256
+  cpu_cores_per_trial_max: 8
+  memory_gib_per_trial_max: 32
+  wall_hours_per_trial_max: 4
+  wall_clock_hour_ceiling: 72
+  total_wall_clock_hours_max: 72
+  gpu_hour_ceiling: 0
+  gpu_count: 0
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 12
+  rule: every_base_criterion_factorization_clause_and_zero_nonzero_partition
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - rank_deficient_operator_identifiable_nonzero_target
+  - temporal_only_spatial_only_and_dual_loss
+  - all_zero_target_partitions
+  - non_square_asymmetric_kronecker_orientation
+  - non_symmetric_idempotent_residualizer
+  - exact_readout_and_null_witness_replay
+  - malformed_shape_rational_and_non_idempotent_controls
+  - frozen_bounded_exact_enumeration
+  - dual_constructed_identifiable_and_nonidentifiable_cases
+  - row_kernel_rank_certificate_factorization_ablations
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  finite_regression_suite_can_promote: false
+  accepted_evidence:
+    - complete_exact_proof
+    - exact_counterexample_plus_proved_corrected_statement
+  lock_one_statement: true
+  freeze:
+    - theorem_assumptions_and_case_partitions
+    - proof_and_certificates
+    - independent_checker
+    - generated_case_rule_and_seed
+    - invocation_environment
+
+stop:
+  before_minimum: only_specification_or_checker_integrity_failure
+  patience_starts_after_minimum: true
+  after_minimum:
+    - exact_proof_completed
+    - exact_refutation_and_corrected_proof_completed
+    - patience_exhausted
+    - valid_trials_max_reached
+    - cpu_or_wall_clock_budget_exhausted
+  budget_stop_is_theorem: false
+
+audit:
+  mode: one_shot
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  owner: independent_exact_verifier
+  candidate_expected_label_access: false
+  failure_invalidates_lock: true
+  repair_after_open_requires_new_episode: true
+  finite_audit_establishes_universal_theorem: false
+
+terminal_mapping:
+  candidate_ready_theorem: candidate_ready
+  candidate_ready_refutation: candidate_ready
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  search_policy_ref: null
+  launch_blocked: true

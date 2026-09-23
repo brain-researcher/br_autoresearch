@@ -1,0 +1,130 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep09_dendrite_distal_arbor_adaptive
+episode_id: ep09
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: seu_a1876_ep09_ep11
+  split_unit: most_conservative_verified_animal_brain_specimen_group
+  minimum_development_groups: 12
+  minimum_locked_audit_groups: 8
+  audit_assignment: preoutcome_whole_group
+  evaluation_evidence: group_sealed_internal_source_audit
+  shared_outcomes_with: [ep10, ep11]
+  independent_from_shared_episodes: false
+  prior_exposure: ledger_required
+
+grammar:
+  context_blocks: [soma_coordinates, source_anatomy, layer_depth, independent_labels, acquisition_qc]
+  dendrite_blocks:
+    - topology_branch_order
+    - sholl_multiscale_radial
+    - path_geometry_tortuosity
+    - orientation_extent
+    - hemispheric_symmetry
+    - persistent_homology
+  transforms:
+    scaling: [robust, signed_log, block_normalized]
+    pca_ranks: [4, 8, 16, 32, 64]
+    pls_ranks: [2, 4, 8, 16]
+  learners: [elastic_net_logistic, group_sparse_logistic, low_rank_multitarget_logistic, shallow_gradient_boosting, additive_spline]
+  calibration: [none, platt, isotonic]
+  max_ensemble_members: 2
+  paired_capacity_control: required
+  forbidden:
+    - axonal_predictor
+    - projection_class
+    - evaluation_group_prevalence
+    - outcome_derived_subtype
+    - unresolved_pretrained_representation_lineage
+    - random_neuron_split
+    - per_target_or_group_winner
+    - free_form_feature_generation
+
+objectives:
+  primary: equal_group_delta_brier_context_minus_context_plus_dendrite
+  secondary: [worst_source_family_gain, log_loss, calibration_error, sparsity, stability]
+  minimum_meaningful_improvement: 0.001
+  constraints:
+    capacity_matched_m0_m1: true
+    beat_capacity_matched_nuisance: true
+    max_source_family_regression_brier: 0.002
+    no_single_group_dependence: true
+    delta_morph_frozen_before_audit: true
+
+budgets:
+  minimum_valid_trials: 40
+  maximum_valid_trials: 96
+  patience_valid_trials: 18
+  max_invalid_retries: 16
+  cpu_core_hour_ceiling: 1500
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 120
+  parallel_core_ceiling: 64
+  memory_gb_ceiling: 512
+  scratch_gb_ceiling: 1024
+  minimum_falsification_fraction_after_branch_coverage: 0.40
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 20
+  rule: every_dendrite_block_transform_and_learner_family_with_capacity_matched_m0
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - context_stratified_within_group_dendrite_permutation
+  - group_preserving_target_prevalence_outcome_permutation
+  - capacity_matched_random_and_smooth_nuisance_blocks
+  - soma_location_source_and_layer_matching
+  - dendrite_feature_block_ablations
+  - native_vs_ccf_dendrite_locked_sensitivity
+  - leave_one_group_and_source_family_out
+  - batch_missingness_and_registration_influence
+  - null_confounded_sparse_distributed_and_miscalibrated_synthetic_recovery
+  - external_source_and_pretrained_representation_lineage_audit
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  require_paired_m0_m1: true
+  require_capacity_proof: true
+  require_all_falsifiers_pass: true
+  require_group_robust_pareto_feasibility: true
+  require_reproducible_refit_from_immutable_inputs: true
+
+stop:
+  before_minimum: forbidden_except_technical_impossibility
+  patience_starts_after_minimum: true
+  patience_delta: 0.001
+  require_feature_transform_and_learner_family_coverage: true
+  resource_exhaustion_result: incomplete_search
+  budget_stop_is_scientific_success: false
+  budget_stop_is_scientific_negative: false
+
+audit:
+  configuration_lock_required: true
+  shared_episode_contracts_lock_before_any_open: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  audit_role: sealed_biological_groups
+  terminal_claim_scope: incremental_distal_arbor_prediction_in_unseen_groups_within_source
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

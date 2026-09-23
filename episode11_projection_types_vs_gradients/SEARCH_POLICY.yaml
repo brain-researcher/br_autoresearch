@@ -1,0 +1,178 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep11_projection_modes_adaptive
+episode_id: ep11
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: seu_a1876_ep09_ep11
+  readiness:
+    source: SEU-A1876 metadata and authenticated CCFv3 assets
+    outcome_access: false
+  development:
+    unit: verified biological_group
+    assignment: shared_EP09_EP11_ledger
+    minimum_groups: 12
+    evaluation: group_held_out_spatial_block_equal
+  audit:
+    unit: complete_verified_biological_group
+    assignment: shared_sealed_role_before_outcome_access
+    minimum_groups: 8
+    access: trusted_evaluator_once_after_lock
+  correlation:
+    sibling_episodes: [ep09, ep10]
+    independent_replication: false
+
+grammar:
+  execution: declarative_config_trusted_evaluator
+  outcome_vocabulary:
+    - authenticated_full_axon_ccfv3
+    - validated_provider_arbor_sensitivity
+  outcome_blocks:
+    - atlas_occupancy
+    - topology_path_summaries
+    - occupancy_plus_topology
+  transforms:
+    - development_fit_center_scale
+    - development_fit_pca
+    - development_fit_nonnegative_low_rank
+  representation_rank: [4, 8, 16, 32, 64]
+  anatomical_basis: [linear, spline_df4, spline_df8, low_rank_smooth_rank8]
+  model_family: [G_gaussian_gradient, U_flexible_unimodal, D_component_only, H_hybrid]
+  unimodal_family: [skew_normal, student_t_location_scale, log_concave_spline]
+  log_concave_spline_basis_df: [4, 8]
+  covariance: [diagonal, shrinkage, low_rank_plus_diagonal]
+  covariance_rank: [2, 4, 8, 16]
+  component_count: [2, 3, 4]
+  regularization_strength: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  effective_complexity_match:
+    estimator: frozen_effective_degrees_of_freedom
+    absolute_tolerance: 2
+    relative_tolerance: 0.10
+  ensemble:
+    maximum_members: 2
+    same_scientific_family_only: true
+    weights_from_development_only: true
+  forbidden:
+    - released_projection_class
+    - outcome_derived_predictors
+    - random_neuron_evidence_splits
+    - arbitrary_candidate_code
+    - audit_dependent_branching
+
+objectives:
+  primary: group_equal_spatial_block_equal_heldout_log_predictive_density
+  comparisons: [H_minus_C, D_minus_C, D_minus_H]
+  pareto:
+    maximize: [predictive_density, cross_group_mode_reuse, calibration]
+    minimize: [effective_capacity, group_influence, technical_decodability]
+  constraints:
+    - heldout_mode_separation
+    - minimum_component_prevalence
+    - matched_effective_complexity
+    - synthetic_regime_recovery
+    - spatial_and_technical_nulls_pass
+
+budgets:
+  minimum_valid_trials: 48
+  maximum_valid_trials: 120
+  valid_trials_min: 48
+  valid_trials_max: 120
+  patience_valid_trials: 18
+  patience_active_after_trial: 48
+  cpu_core_hour_ceiling: 1500
+  cpu_core_hours_max: 1500
+  cpu_cores_per_trial_max: 32
+  memory_gib_per_trial_max: 128
+  wall_hours_per_trial_max: 12
+  wall_clock_hour_ceiling: 120
+  gpu_hour_ceiling: 0
+  gpu_count: 0
+
+full_search_null:
+  controller_operation: run_full_search_null
+  rerun_complete_controller: true
+  fitted_generator: locked_best_continuous_reference_C
+  replicates: 99
+  seed_manifest_frozen: true
+  initial_ledger_each_replicate: empty
+  rerun_entire_controller: true
+  identical_grammar_budgets_stop_and_promotion: true
+  deterministic_controller_replay_required: true
+  proposal_model_version_prompt_sampling_and_seed_frozen: true
+  monte_carlo_p: (1_plus_count_null_ge_observed)_divided_by_(replicates_plus_1)
+  pass_threshold: 0.05
+  profiling_must_fit_total_cpu_ceiling_before_outcome_access: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 16
+  rule: balanced_G_U_D_H_outcome_block_covariance_and_unimodal_family_covering_array
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - fitted_continuous_null_full_search_rerun
+  - conditional_residual_randomization
+  - moran_variogram_matched_spatial_surrogates
+  - technical_field_decodability
+  - capacity_matched_noise_features
+  - shuffled_group_and_outcome_controls
+  - full_axon_vs_provider_arbor_sensitivity
+  - topology_occupancy_anatomy_block_ablations
+  - leave_one_group_and_territory_influence
+  - synthetic_G_U_D_H_recovery
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  coverage_required: all_retained_families_blocks_and_covariance_classes
+  full_search_null_pass_required: true
+  effective_complexity_match_required: true
+  select_from: feasible_pareto_archive
+  lock_one_configuration: true
+  freeze:
+    - code_and_environment
+    - representation_and_vocabulary
+    - models_capacity_and_thresholds
+    - group_and_block_weights
+    - seeds_nulls_and_decision_table
+
+stop:
+  before_minimum: only_readiness_or_integrity_failure
+  patience_starts_after_minimum: true
+  after_minimum:
+    - patience_exhausted
+    - valid_trials_max_reached
+    - cpu_budget_exhausted
+  budget_stop_is_scientific_success: false
+
+audit:
+  mode: one_shot
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  owner: trusted_evaluator
+  candidate_label_access: false
+  requires_unexposed_complete_groups: true
+  rerun_or_retune_after_open: false
+  correlated_with_ep09_ep10: true
+
+terminal_mapping:
+  candidate_ready_hybrid: candidate_ready
+  candidate_ready_component_only: candidate_ready
+  closed_continuous_unimodal: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  search_policy_ref: null
+  launch_blocked: true

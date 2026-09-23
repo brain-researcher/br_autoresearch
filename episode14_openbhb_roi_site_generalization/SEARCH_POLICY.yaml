@@ -1,0 +1,199 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep14_openbhb_cpu_adaptive
+episode_id: ep14
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  development:
+    participants: 3227
+    splits: 3_pinned_RAMP_robustness_splits
+    roles_per_split: [fit, internal_test_seen_siteXacq, external_test_unseen_siteXacq]
+    independence: overlapping_robustness_views_not_replications
+  locked_probe:
+    source: development_only
+    candidates_max: 12
+    probe: five_fold_multinomial_logistic_site_probe
+    probe_spec: fold_fit_standardize_l2_C1_balanced_lbfgs_maxiter2000
+  quick_probe:
+    source: development_only
+    probe: three_fold_multinomial_logistic_site_probe
+    probe_spec: fold_fit_standardize_l2_C1_balanced_lbfgs_maxiter2000
+  audit:
+    participants: 757
+    internal: 362
+    external: 395
+    features: opaque_rows_without_targets
+    labels: trusted_evaluator_only_after_lock
+
+grammar:
+  execution: declarative_pipeline_trusted_builder
+  atlas: [desikan, destrieux, row_aligned_concatenation]
+  feature_blocks:
+    - raw_allowed_ROI
+    - atlas_bilateral_mean_difference
+    - atlas_region_aggregates
+    - measurement_family_aggregates
+    - bounded_block_interactions
+  scaler: [standard_fit_only, robust_fit_only]
+  reducer:
+    family: [none, PCA, PLS, random_fourier_features]
+    pca_rank: [16, 32, 64, 128, 256]
+    pls_rank: [4, 8, 16, 32]
+    random_fourier_components: [256, 512, 1024]
+  bounded_interactions:
+    maximum_order: 2
+    maximum_output_features: 128
+  site_free_invariance:
+    family: [none, fit_site_direction_projection]
+    removal_rank: [1, 2, 4, 8, 16]
+    transform_accepts_site_label: false
+  age_model: [ridge, elastic_net, huber, random_fourier_ridge]
+  regularization: [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+  ensemble:
+    maximum_members: 3
+    nonnegative_weights: true
+    weights_from_development_OOF_only: true
+  forbidden:
+    - arbitrary_candidate_code
+    - identifiers_or_metadata_as_features
+    - global_tissue_volumes_or_QC_as_features
+    - test_or_audit_site_dependent_ComBat_or_centering
+    - transductive_test_or_audit_fitting
+    - audit_label_or_distribution_access
+    - raw_MRI_GPU_or_external_participant_features
+
+objectives:
+  primary: minimize_mean_external_test_age_MAE
+  pareto:
+    minimize:
+      - mean_external_MAE
+      - worst_split_external_MAE
+      - internal_siteXacq_balanced_accuracy
+      - combined_external_MAE_times_site_BAcc_power_0_3
+      - internal_MAE
+      - runtime_and_rank
+  feasibility:
+    mean_external_MAE_relative_improvement_min: 0.02
+    mean_site_BAcc_absolute_increase_max: 0.01
+    combined_value_must_improve: true
+    external_MAE_improving_splits_min: 2
+    development_splits_total: 3
+  winner_tiebreak_order:
+    - mean_external_MAE
+    - worst_split_external_MAE
+    - combined_value
+    - site_balanced_accuracy
+    - complexity_and_runtime
+  overlap_handling:
+    repeated_participant_predictions: average_before_uncertainty
+    splits_are_independent_replications: false
+
+budgets:
+  stage1_coverage_valid_configs: 24
+  minimum_valid_trials: 48
+  maximum_valid_trials: 120
+  valid_trials_min: 48
+  valid_trials_max: 120
+  patience_valid_trials: 20
+  patience_active_after_trial: 48
+  locked_probe_candidates_max: 12
+  cpu_core_hour_ceiling: 500
+  cpu_core_hours_max: 500
+  cpu_cores_per_trial_max: 16
+  memory_gib_per_trial_max: 64
+  wall_hours_per_trial_max: 4
+  wall_clock_hour_ceiling: 120
+  total_wall_clock_hours_max: 120
+  gpu_hour_ceiling: 0
+  gpu_hours_max: 0
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 24
+  rule: balanced_stage1_atlas_feature_reduction_invariance_and_predictor_covering_array
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - age_median_raw_ridge_and_PCA_ridge_baselines
+  - shuffled_age_and_shuffled_site_controls
+  - fold_fit_vs_deliberately_leaky_regression_test
+  - desikan_destrieux_and_concatenation_ablations
+  - neuro_feature_reducer_and_invariance_block_ablations
+  - representation_rank_variance_finite_and_collapse_checks
+  - site_removal_vs_raw_representation
+  - per_siteXacq_and_age_range_errors
+  - leave_one_development_split_influence
+  - ensemble_member_and_weight_ablations
+  - transform_without_any_test_or_audit_site_metadata
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  stage1_coverage_required: true
+  quick_and_locked_probe_metrics_comparable: false
+  locked_probe_tournament_required: true
+  select_from: locked_probe_feasible_pareto_candidates
+  lock_one_configuration: true
+  freeze:
+    - config_code_and_environment
+    - feature_headers_and_fold_roles
+    - seeds_and_fit_only_state_rules
+    - probe_metrics_thresholds_and_controls
+    - audit_command_and_firewall_manifest
+
+stop:
+  before_minimum: only_integrity_leakage_or_evaluator_failure
+  patience_starts_after_minimum: true
+  after_minimum:
+    - patience_exhausted
+    - valid_trials_max_reached
+    - cpu_or_wall_clock_budget_exhausted
+  budget_stop_is_scientific_success: false
+
+audit:
+  mode: one_shot
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  rows: 757
+  owner: trusted_evaluator
+  network_egress: disabled
+  raw_source_and_cache_mounted: false
+  candidate_age_site_or_role_label_access: false
+  public_label_exposure_ledger_required: true
+  test_site_dependent_transform: prohibited
+  retune_blend_threshold_change_or_rerun: false
+  refit_training_rows: 3227
+  external_rows: 395
+  bootstrap:
+    replicates: 10000
+    seed_manifest_frozen: true
+    hierarchy: [siteXacq, participant]
+    interval: one_sided_95_percent
+  candidate_ready_rules:
+    external_relative_mae_reduction_min: 0.02
+    candidate_minus_baseline_external_mae_upper_bound_max: 0.0
+    site_balanced_accuracy_increase_point_max: 0.01
+    site_balanced_accuracy_increase_upper_bound_max: 0.01
+  point_pass_interval_fail_terminal: closed_unresolved
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_generalization: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  outer_loop_ref: null
+  goal_handoff_ref: null
+  episode_ref: null
+  dataset_handoff_ref: null
+  search_policy_ref: null
+  launch_blocked: true

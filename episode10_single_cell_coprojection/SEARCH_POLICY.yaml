@@ -1,0 +1,148 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep10_residual_coprojection_adaptive
+episode_id: ep10
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: seu_a1876_ep09_ep11
+  split_unit: most_conservative_verified_animal_brain_specimen_group
+  minimum_development_groups: 12
+  minimum_locked_audit_groups: 8
+  audit_assignment: preoutcome_whole_group
+  evaluation_evidence: group_sealed_internal_source_audit
+  shared_outcomes_with: [ep09, ep11]
+  independent_from_shared_episodes: false
+  prior_exposure: ledger_required
+
+grammar:
+  q0_pooling: [global, source_hierarchical, bounded_k_partial_pooling]
+  q0_terms:
+    - k_dependent_singleton_popularity
+    - soma_source_layer_independent_labels
+    - acquisition_and_quality_covariates
+    - soma_to_target_distance
+    - mean_pairwise_target_distance
+    - soma_anchored_mst_length
+  q1_families: [sparse, low_rank, hierarchical, restricted_sparse_plus_low_rank]
+  sparse_penalties: [lasso, elastic_net, group_lasso]
+  low_rank_ranks: [1, 2, 3, 4, 6, 8]
+  maximum_hybrid_sparse_pairs: 16
+  exact_normalization_required: true
+  residualize_pair_features_against_full_q0: true
+  forbidden:
+    - pseudolikelihood
+    - approximate_normalization
+    - projection_class
+    - audit_target_frequency
+    - free_form_pair_mining
+    - random_neuron_split
+    - per_source_winner
+    - posthoc_vocabulary_shrinkage
+
+objectives:
+  primary: equal_group_delta_bits_q1_over_q0
+  secondary: [calibration, worst_source_family_gain, sparsity_effective_rank, runtime]
+  minimum_meaningful_improvement: 0.002
+  constraints:
+    q0_adequacy_required: true
+    exact_probability_normalization: true
+    max_source_family_regression_bits_per_cell: 0.01
+    no_single_group_dependence: true
+    fitted_q0_full_search_null_controlled: true
+    delta_combo_frozen_before_audit: true
+
+budgets:
+  minimum_valid_trials: 40
+  maximum_valid_trials: 88
+  q0_valid_trials_min: 8
+  q0_valid_trials_max: 16
+  q1_valid_trials_min: 32
+  q1_valid_trials_max: 72
+  patience_valid_trials: 14
+  max_invalid_retries: 12
+  cpu_core_hour_ceiling: 1800
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 144
+  parallel_core_ceiling: 64
+  memory_gb_ceiling: 512
+  scratch_gb_ceiling: 1536
+  minimum_falsification_fraction_after_branch_coverage: 0.40
+
+full_search_null:
+  controller_operation: run_full_search_null
+  rerun_complete_controller: true
+  fitted_generator: locked_development_q0
+  replicates: 99
+  seed_manifest_frozen: true
+  initial_ledger_each_replicate: empty
+  rerun_stages: [q0_search, q1_coverage, q1_adaptive, stop, finalist_selection]
+  identical_grammar_budgets_stop_and_promotion: true
+  deterministic_controller_replay_required: true
+  proposal_model_version_prompt_sampling_and_seed_frozen: true
+  monte_carlo_p: (1_plus_count_null_ge_observed)_divided_by_(replicates_plus_1)
+  pass_threshold: 0.05
+  profiling_must_fit_total_cpu_ceiling_before_outcome_access: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 16
+  rule: sparse_low_rank_hierarchical_hybrid_and_declared_rank_anchors_after_q0_adequacy
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - fitted_q0_simulations_rerun_complete_adaptive_search
+  - null_singleton_geometry_sparse_lowrank_hierarchical_synthetic_recovery
+  - k_and_group_preserving_target_label_permutation
+  - q0_pair_residualization_rank_and_orthogonality_proof
+  - geometry_hierarchy_sparse_and_lowrank_ablations
+  - capacity_matched_noise_interactions
+  - leave_one_group_pair_source_family_and_batch_out
+  - locked_alternate_nonoverlapping_atlas_vocabulary
+  - shared_ep09_ep11_lineage_and_exposure_audit
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  require_q0_adequacy: true
+  require_full_search_null_pass: true
+  require_q0_and_q1_trials_counted: true
+  require_all_falsifiers_pass: true
+  require_one_global_q0_q1_specification: true
+  require_reproducible_refit_from_immutable_inputs: true
+
+stop:
+  before_minimum: forbidden_except_technical_impossibility
+  patience_starts_after_minimum: true
+  patience_delta_bits_per_cell: 0.002
+  require_q1_family_and_rank_coverage: true
+  resource_exhaustion_result: incomplete_search
+  budget_stop_is_scientific_success: false
+  budget_stop_is_scientific_negative: false
+
+audit:
+  configuration_lock_required: true
+  shared_episode_contracts_lock_before_any_open: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  audit_role: sealed_biological_groups
+  terminal_claim_scope: residual_complete_target_set_prediction_within_frozen_source_and_atlas
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true
