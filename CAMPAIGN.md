@@ -88,8 +88,9 @@ episode.
 | EP02 | historical alias belongs only to `narps_prior_v2` | Current formal Dudman F20-17 adaptive contract; planned and not yet run, and not the audit half of EP01 |
 
 EP18 remains an incomplete draft record, not a reserved empty ID and not a
-formal episode. It needs a search policy, input/output guards, and seven
-workspace projections before entering this table.
+formal episode. Its core scientific contracts are present, but it still needs
+input/output guards and seven workspace projections before entering this
+table.
 
 The reusable design under `_examples/narps_deep_search_template/` is now
 instantiated as the new formal EP01 at `episode01_narps_deep_search/`; the

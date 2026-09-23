@@ -27,11 +27,13 @@ program.
   controlling color, shape, texture, and image-model features?
 - **Why:** it adds a new modality with a direct competing explanation.
 - **Current state:** proposed ep18 has the complete THINGS-EEG1 source EEG
-  release verified and read-only, but it is an incomplete, non-counted draft.
-- **Minimum next step:** perform controlled extraction of the acquired THINGS
-  archive, freeze the exact image-event join and participant roles, construct
-  isolated development/audit views, and add the search policy, workspace
-  projections, and shared EP17/EP18 exposure ledger.
+  release verified and read-only and now has a draft search policy, but it is
+  still an incomplete, non-counted draft without input/output guards or the
+  seven workspace projections.
+- **Minimum next step:** add those guards and projections, perform controlled
+  extraction of the acquired THINGS archive, freeze the exact image-event join
+  and participant roles, construct isolated development/audit views, and
+  initialize the shared EP17/EP18 exposure ledger.
 
 ## Still missing formal Foundation episodes
 

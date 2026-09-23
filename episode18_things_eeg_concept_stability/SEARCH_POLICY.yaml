@@ -1,0 +1,1215 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep18_things_eeg_concept_stability_adaptive
+episode_id: ep18
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  source_release:
+    dataset: THINGS-EEG1
+    accession: ds003825
+    release: v1.2.0
+    participants_total: 50
+    provider_exclusions: [sub-01, sub-06, sub-18, sub-23]
+    eligible_participants_expected: 46
+    biological_and_inferential_unit: participant
+    participant_replacement_after_assignment: prohibited
+
+  development:
+    participants: 30
+    assignment_unit: whole_participant
+    use:
+      - setup_and_calibration
+      - branch_coverage
+      - adaptive_search
+      - falsification
+      - finalist_selection
+      - preaudit_precision_projection
+    EEG_visible_to_search_worker: true
+
+  audit:
+    participants: 16
+    assignment_unit: whole_participant
+    use: one_shot_new_participant_participant_refit_replication
+    EEG_visible_to_search_worker: false
+    owner: permission_separated_evaluator
+    participant_replacement: prohibited
+    participant_exclusion_after_assignment: prohibited
+    maximum_open_count: 1
+
+  participant_assignment:
+    inputs_allowed:
+      - participant_id
+      - age
+      - gender
+      - native_english
+      - language_profile
+      - provider_exclusion
+      - acquisition_order
+      - fixed_file_event_header_marker_integrity
+    signal_quality_reliability_predictions_or_scores: prohibited
+    force_split_pair: [sub-49, sub-50]
+    force_exactly_one_of_split_pair_into_each_role: true
+    audit_count: 16
+    development_count: 30
+    acquisition_order_quartiles: 4
+    audit_count_per_quartile: 4
+    acquisition_order_definition: ascending_numeric_participant_ID_among_46_eligible
+    quartile_definition: numpy_array_split_of_that_order_into_four_consecutive_groups
+    method: exact_binary_integer_optimization_over_16_member_audit_sets
+    balance_objective:
+      first: minimize_maximum_absolute_standardized_difference
+      second: minimize_sum_squared_standardized_differences
+      fields:
+        - age
+        - gender
+        - native_english
+        - language_profile
+        - acquisition_order_quartile
+      continuous_age_standardization: eligible_cohort_sample_SD
+      categorical_encoding: one_indicator_per_observed_level
+      categorical_standardized_difference: audit_minus_development_proportion_divided_by_eligible_pooled_Bernoulli_SD
+      zero_variance_field: drop_and_record
+    tie_break:
+      digest: sha256
+      salt: ep18_participant_split_v1
+      rule: lexicographically_smallest_digest_of_sorted_audit_IDs
+    exact_ID_manifest_frozen_before_EEG_derived_work: true
+    eligible_count_not_46: technical_failure_without_preoutcome_contract_amendment
+
+  repeated_image_session:
+    images: 200
+    repeats_per_image: 12
+    roles:
+      - signal_recovery
+      - reliability_qualification
+      - positive_controls
+      - injection_calibration
+    primary_noise_ceiling: false
+    may_enter_candidate_selection_or_primary_score: false
+    may_rescue_primary: false
+
+  shared_exposure:
+    ledger_group: ep17_ep18_THINGS
+    exact_image_and_concept_overlap_required: true
+    checkpoint_feature_and_first_access_history_required: true
+    independent_stimulus_family_confirmation_of_ep17: false
+
+  audit_isolation:
+    separate_principal_or_separately_controlled_mount_required: true
+    public_provider_redownload_block_required: true
+    same_account_ACL_is_not_a_seal: true
+    state_until_verified: procedural_holdout_only
+    EEG_candidate_comparison_while_procedural_only: prohibited
+
+grammar:
+  source_and_event_contract:
+    primary_input: raw_continuous_BrainVision_EEG
+    sampling_hz_source: 1000
+    actual_event_onsets_required: true
+    nominal_image_duration_seconds: 0.05
+    source_duration_value_50_is_milliseconds: true
+    physical_sequence_is_signal_boundary: true
+    main_blocks: 12
+    physical_sequences_per_block: 6
+    images_per_sequence: 309
+    concepts: 1854
+    exemplars_per_concept: 12
+    repeated_images: 200
+    repeated_presentations_per_image: 12
+    schema_aware_parser_required: true
+    event_sample_onset_and_E1_marker_agreement_required: true
+    BrainVision_marker_to_array_index_convention_must_be_frozen: true
+    exact_event_image_join_and_hash_required: true
+    repeated_image_concept_recovery_uses_validated_stim_path_join: true
+
+  participant_folds:
+    outer_folds:
+      count: 6
+      heldout_block_pairs:
+        - [0, 6]
+        - [1, 7]
+        - [2, 8]
+        - [3, 9]
+        - [4, 10]
+        - [5, 11]
+      fit_blocks_per_fold: 10
+      score_blocks_per_fold: 2
+    inner_folds:
+      count_per_outer_fold: 5
+      unit: remaining_complementary_block_pair_j_and_j_plus_6
+      fit_blocks: 8
+      validation_blocks: 2
+      all_preprocessing_reduction_covariance_rank_and_penalty_selection_nested: true
+    outer_heldout_data_used_for_selection: false
+    tie_break:
+      rule: one_standard_error_then_lower_complexity
+      order:
+        - lower_effective_degrees_of_freedom
+        - lower_rank
+        - stronger_regularization
+        - lexicographic_configuration_hash
+      stronger_regularization_key: larger_minimum_log10_penalty_then_larger_sum_of_log10_penalties_then_lexicographic_penalty_vector
+
+  sensor_space:
+    shared_recorded_channel_labels: 62
+    final_reference: common_average
+    frozen_orthonormal_contrast_dimension: 61
+    covariance_in_singular_62_channel_CAR_space: prohibited
+    extra_sub49_sub50_channels:
+      role: sensitivity_only
+      terminal_driving: false
+    exact_channel_order_interpolation_rule_none_contrast_basis_and_transform_hash_required: true
+
+  preprocessing:
+    target_sample_rate_hz: 250
+    resampling:
+      method: linear_phase_FIR_then_decimate_by_4
+      source_rate_hz: 1000
+      FIR_numtaps: 401
+      FIR_cutoff_hz: 100
+      FIR_window: Kaiser_beta_8.6
+      group_delay_compensation_source_samples: 200
+      coefficient_SHA256_and_impulse_fixture_required: true
+    event_to_250Hz_grid: two_adjacent_sample_fractional_linear_impulse_preserving_exact_source_sample_time
+    highpass_filter: none
+    anti_alias_coefficients_and_hash_frozen_before_scoring: true
+    maximum_filter_support_each_side_ms: 1000
+    raw_padding_each_side_ms: 1000
+    raw_padding_windows_must_not_overlap_another_scored_sequence: true
+    score_window: first_stimulus_onset_through_last_onset_plus_800ms
+    slow_drift_model:
+      type: per_physical_sequence_Legendre_degrees_0_1_2_3
+      learned_from_EEG: false
+    filtering_crosses_physical_sequence_boundary: false
+    full_filter_support_trimmed_after_padding: true
+    ordinary_prestimulus_baseline_correction: prohibited
+    heldout_amplitude_residual_or_concept_dependent_sample_deletion: prohibited
+    retention_mask:
+      allowed_causes:
+        - structural_recording_bounds
+        - nonfinite_source_samples
+        - frozen_filter_support
+      model_independent: true
+      fixed_once_per_participant_outer_fold: true
+      identical_for_all_models_partitions_and_primary_comparisons: true
+      every_retained_scored_sample_counted_once: true
+    primary_bad_channel_removal_or_interpolation: prohibited
+
+  feature_registry:
+    image_derived_input_rule:
+      input: pixels_and_opaque_image_ID_only
+      forbidden_inputs:
+        - filename
+        - parent_folder
+        - concept_ID
+        - concept_name
+        - concept_name_prompt
+        - event_label
+    label_derived_features:
+      inputs:
+        - concept_name_embedding
+        - frozen_human_perceptual_dimensions
+        - frozen_human_conceptual_dimensions
+      generated_in_separate_job: true
+    label_feature_preparation:
+      concept_pool: all_1854_fixed_concepts
+      EEG_used: false
+      continuous_missing_value_rule: add_missingness_indicator_then_median_impute_over_1854_concepts
+      categorical_or_multilabel_absence_is_zero_only_when_source_table_explicitly_encodes_absence: true
+      center_and_scale_each_numeric_column_over_1854_concepts: true
+      scale_estimator: population_SD_ddof_0
+      zero_variance_or_nonfinite_column: drop_and_record
+      declared_family_blocks:
+        - normalized_concept_name_embedding
+        - property_ratings
+        - category27_multihot
+        - category53_multihot
+      family_weighting: rescale_each_nonempty_family_to_Frobenius_norm_sqrt_1854_then_concatenate
+      same_prepared_matrix_used_by_linear_label_readout_and_RBF_kernel: true
+      exact_matrix_crosswalk_column_order_and_SHA256_required: true
+    upstream_encoder_or_raw_feature_selection_uses_EP18_EEG: false
+    exact_checkpoint_revision_weight_hash_license_training_lineage_preprocessing_layer_pooling_and_dimension_required: true
+    manifest_frozen_before_candidate_discriminating_EEG_scores: true
+    no_postscore_checkpoint_or_model_zoo_expansion: true
+
+    pinned_learned_extractors:
+      supervised_vision:
+        model_ID: microsoft/resnet-50
+        revision: 34c2154c194f829b11125337b98c8f5f9965ff19
+        outputs: [layer1_global_mean, layer2_global_mean, layer3_global_mean, layer4_global_mean]
+      self_supervised_vision:
+        model_ID: facebook/dinov2-large
+        revision: 47b73eefe95e8d44ec3623f8890bd894b6ea2d6c
+        outputs: [blocks_6_12_18_24_CLS, blocks_6_12_18_24_mean_patch]
+      core_VLM_image:
+        model_ID: openai/clip-vit-large-patch14
+        revision: 32bd64288804d66eefd0ccbe215aa642df71cc41
+        outputs: [final_projected_image_embedding]
+      caption_generator:
+        model_ID: Salesforce/blip2-opt-2.7b
+        revision: 59a1ef6c1e5117b3f65523d1c6066825bcf315e3
+        decoding: deterministic_beam_search_5_beams_max_32_new_tokens_no_label_prompt
+        outputs: [generated_caption_UTF8]
+      caption_and_label_text_encoder:
+        model_ID: sentence-transformers/all-mpnet-base-v2
+        revision: e8c3b32edf5434bc2275fc9bab85f82640a19130
+        outputs: [L2_normalized_sentence_embedding]
+      expanded_VLM_image:
+        model_ID: google/siglip2-so400m-patch14-384
+        revision: e8e487298228002f3d8a82e0cd5c8ea9c567f57f
+        outputs: [final_pooled_image_embedding]
+    pinned_revision_change_after_policy_freeze: prohibited
+    local_weight_file_SHA256_and_extracted_matrix_SHA256_required: true
+    unresolved_or_incompatible_license: candidate_discriminating_EEG_scores_prohibited
+
+    handcrafted_image_features:
+      decode: sRGB_with_alpha_composited_on_white
+      canonical_size: 224_by_224_bicubic
+      fixed_outputs:
+        - RGB_and_luminance_mean_SD_skewness
+        - per_channel_16_bin_histograms_on_0_to_1
+        - grayscale_16_bin_radial_Fourier_power
+        - Sobel_edge_density_and_orientation_16_bin_histogram
+        - Gabor_mean_and_SD_for_frequencies_0.05_0.10_0.20_and_orientations_0_45_90_135_degrees
+        - center_of_mass_second_moments_and_quadrant_luminance_contrast
+      implementation_and_numeric_test_fixture_hash_required: true
+
+    human_label_features:
+      concept_name_embedding: all_mpnet_model_above_on_exact_normalized_concept_name_without_prompt
+      tables:
+        - property-ratings.tsv
+        - category27_manual.tsv
+        - category53_wide-format.tsv
+      source: acquired_THINGS_metadata_snapshot
+      exact_table_SHA256_row_crosswalk_missing_value_and_multilabel_encoding_required: true
+
+    core_image_panel:
+      required_families:
+        - handcrafted_low_level_color_frequency_texture_and_geometry
+        - pinned_supervised_vision
+        - pinned_self_supervised_vision
+        - pinned_core_VLM_image
+        - pinned_caption_embedding
+      all_families_mandatory: true
+
+    expanded_image_panel:
+      construction: additive_union_with_core_panel
+      additional_family: pinned_expanded_VLM_image
+      substitutions_for_core_families: prohibited
+      terminal_driving: true
+
+    unresolved_extractor_manifest:
+      candidate_discriminating_EEG_scores_allowed: false
+      reason: exact_model_ID_revision_and_weight_hashes_must_first_be_recorded
+
+    downstream_reduction:
+      method: training_only_centering_and_PCA
+      per_family_rank_grid: [32, 64, 128]
+      numerical_rank_tolerance_relative_to_largest_singular_value: 1e-10
+      realized_rank_rule: minimum_of_requested_rank_and_number_of_singular_values_above_tolerance
+      zero_realized_rank: invalid_trial
+      PCA_score_convention: divide_scores_by_training_component_SD_without_extra_rotation
+      heldout_transform_uses_training_mean_loadings_and_component_SD: true
+      concatenate_all_mandatory_family_blocks: true
+      expanded_encoder_gets_its_own_rank_without_displacing_core_blocks: true
+      shared_total_rank_cap: prohibited
+      fitted_inside_every_inner_training_fold: true
+
+  temporal_model:
+    causal_response_horizon_ms: [0, 800]
+    allowed_bases:
+      - name: binned_FIR
+        bin_width_ms: 20
+      - name: raised_cosine
+        ranks: [8, 12, 16]
+    basis_and_rank_common_to_compared_models: true
+    every_image_enters_at_actual_onset: true
+    neighboring_images_enter_as_their_own_events: true
+    required_nuisance_terms:
+      - target_onset
+      - validated_or_fixed_coarse_button_response
+      - physical_sequence_position
+      - sequence_boundary
+      - fixed_slow_drift_basis
+    nuisance_timing:
+      target: impulse_at_actual_target_image_onset
+      validated_response: impulse_at_image_onset_plus_event_rt_when_response_equals_1_and_rt_is_finite_positive_and_within_sequence_bounds
+      invalid_or_absent_response: no_response_impulse_and_record_reason
+      physical_sequence_position: one_hot_withinsequencenumber_0_through_5
+      response_time_reconstruction_rule_may_not_change_by_participant: true
+
+  model_ladder:
+    common:
+      same_samples_folds_sensor_transform_whitening_nuisance_and_tuning_budget: true
+      direct_joint_fit_to_EEG_required: true
+      exported_once_residualized_EEG_analysis: prohibited
+
+    estimation_and_scaling:
+      response_space: frozen_61D_sensor_contrasts_whitened_by_the_fixed_fold_nuisance_reference_covariance
+      training_sample_weights: each_physical_sequence_has_equal_total_weight_and_samples_within_a_sequence_have_equal_weight
+      temporal_basis_columns: unit_L2_norm_on_the_0_to_800ms_250Hz_lag_grid
+      penalized_design_block_scaling: center_nonimpulse_columns_then_rescale_each_block_so_trace_Z_transpose_W_Z_equals_1_on_training_rows
+      heldout_design_uses_training_center_and_scale: true
+      nuisance_block: unpenalized_weighted_least_squares_with_SVD_pseudoinverse_relative_tolerance_1e-10
+      objective: weighted_whitened_multivariate_squared_error_plus_sum_of_block_ridge_penalties
+      objective_weight_normalization: training_weights_sum_to_1
+      penalties_shared_across_61_outputs: true
+      image_blocks_share_one_penalty: true
+      linear_label_blocks_share_one_penalty: true
+      added_replacement_slot_has_its_own_penalty: true
+      ridge_parameterization: lambda_equals_10_to_the_power_a_after_unit_energy_block_scaling
+      image_penalty_log10_grid: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+      linear_label_penalty_log10_grid: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+      added_slot_penalty_log10_grid: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+      inner_selection_unit: five_inner_block_pair_losses_for_one_participant_and_outer_fold
+      inner_one_SE_rule: retain_configurations_with_mean_loss_at_most_best_mean_plus_best_configuration_sample_SD_over_sqrt_5_then_apply_frozen_complexity_ties
+      inner_loss: same_equal_sequence_nuisance_normalized_whitened_loss_as_outer_score
+
+    M_nuisance:
+      predictors:
+        - target_onset
+        - validated_or_fixed_coarse_button_response
+        - physical_sequence_position
+        - sequence_boundary
+        - fixed_slow_drift_basis
+      response_basis: raised_cosine_rank_12_over_0_to_800ms
+      recipe_is_fixed_across_every_candidate_trial_and_phase: true
+
+    M_image:
+      predictors:
+        - M_nuisance
+        - selected_image_panel
+      label_or_membership_input: prohibited
+
+    M_image_true:
+      predictors:
+        - M_image
+        - regularized_true_categorical_slot
+      role: image_only_increment_diagnostic
+
+    M_label_linear:
+      predictors:
+        - M_image
+        - linear_concept_name_and_human_dimension_readout
+      role: shared_common_model_for_capacity_comparison
+
+    M_label_cap:
+      predictors:
+        - M_label_linear
+        - nonlinear_kernel_slot_over_frozen_label_and_human_features
+      concept_ID_one_hot_or_membership_matrix: prohibited
+      kernel: RBF
+      kernel_formula: exp_minus_squared_Euclidean_distance_over_2_sigma_squared
+      kernel_input: frozen_prepared_label_feature_matrix_above
+      kernel_factorization: full_training_concept_Gram_eigendecomposition
+      relative_eigenvalue_floor: 1e-10
+      exact_feature_map: with_K_equal_U_diag_d_U_transpose_in_frozen_concept_order_retain_d_above_floor_and_set_Phi_equal_U_retained_times_diag_sqrt_d_retained
+      event_design_rows: index_the_corresponding_Phi_row_by_true_concept_then_apply_the_registered_temporal_basis
+      alternative_K_U_or_U_times_d_feature_maps_or_unregistered_dual_solvers: prohibited
+      RBF_reference_distance: median_nonzero_pairwise_Euclidean_distance_over_all_1854_prepared_concept_rows
+      RBF_bandwidth_multipliers_of_reference_distance: [0.5, 1.0, 2.0]
+      role: terminal_driving_capacity_matched_baseline
+
+    M_true:
+      predictors:
+        - M_label_linear
+        - regularized_true_categorical_slot
+      role: terminal_candidate
+
+    M_pseudo:
+      predictors:
+        - M_label_linear
+        - regularized_pseudo_group_slot
+      same_slot_algorithm_rank_penalty_grid_and_tuning_budget_as_M_true: true
+
+    added_slot:
+      representation: full_group_kernel_ridge_in_the_common_temporal_basis
+      true_and_pseudo_kernel: identity_over_1854_group_labels
+      estimator: ridge
+      penalty_grid_log10: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+      unconstrained_1854_by_channel_by_lag_lookup: prohibited
+
+    capacity_matching:
+      comparison: nonlinear_label_slot_vs_true_categorical_slot
+      quantity: trace_H_joint_minus_trace_H_common
+      H_definition: W_half_X_times_inverse_of_X_transpose_W_X_plus_block_penalty_matrix_times_X_transpose_W_half
+      W_definition: same_equal_sequence_training_weight_matrix_as_the_encoding_objective
+      inverse_convention: weighted_symmetric_Moore_Penrose_generalized_inverse_with_relative_eigenvalue_tolerance_1e-10_identical_for_H_common_and_H_joint
+      H_uses_exact_RBF_Phi_or_identity_group_design_declared_above: true
+      H_common_uses: selected_M_label_linear_design_and_penalties
+      H_joint_uses: identical_common_design_and_penalties_plus_one_added_slot_and_its_penalty
+      relative_tolerance: 0.05
+      exact_inequality: label_df_at_least_categorical_df_and_label_df_minus_categorical_df_at_most_0.05_times_categorical_df
+      both_df_must_be_strictly_positive: true
+      temporal_basis_and_61D_output_space_matched: true
+      required_for_every_participant_outer_fold: true
+      failure_to_find_match: sealed_postlock_scientific_qualification_failure_not_baseline_trial_invalidation
+      interpretation: predictive_basis_advantage_conditional_on_frozen_features_and_readout_not_new_nominal_information
+      coupling_algorithm:
+        step_1: select_common_image_label_temporal_and_RBF_recipe_by_M_label_cap_inner_prediction_loss_only
+        step_2: refit_selected_M_label_cap_on_all_outer_training_blocks_and_compute_added_slot_conditional_df
+        step_3: for_each_true_or_pseudo_slot_retain_only_penalties_satisfying_the_exact_df_inequality
+        step_4: with_step_1_common_temporal_PCA_image_penalty_linear_label_penalty_RBF_bandwidth_and_RBF_penalty_immutable_select_only_each_true_or_pseudo_slot_penalty_by_its_own_five_fold_inner_prediction_loss_and_the_exact_inner_one_SE_rule
+        step_5: refit_each_selected_model_on_all_outer_training_blocks
+        no_eligible_categorical_configuration: sealed_postlock_scientific_qualification_failure_not_baseline_trial_invalidation
+        concept_or_pseudo_contrast_may_change_steps_1_to_5: false
+        tie_order:
+          - smaller_absolute_df_gap
+          - stronger_penalty
+          - lexicographic_configuration_hash
+
+  matched_partitions:
+    bank_size_K: 8
+    generated_without_EEG: true
+    participant_specific_membership_allowed: true
+    same_literal_partition_used_across_all_six_folds_for_a_participant: true
+    shared_generator_objective_tolerances_seed_order_and_retry_limit: true
+    each_partition:
+      images_used_exactly_once: true
+      groups: 1854
+      images_per_group: 12
+      one_image_per_main_block: true
+      distinct_true_concepts_per_group: 12
+
+    fold_specific_matching_required_for_every_outer_fold: true
+    matched_metrics:
+      - heldout_to_ten_training_nearest_neighbor_distance
+      - heldout_to_training_centroid_distance
+      - training_and_heldout_within_group_scatter
+      - conditional_membership_design_log_singular_value_spectrum
+      - conditional_membership_design_leverage
+      - conditional_effective_degrees_of_freedom
+      - full_horizon_temporal_context_features
+      - sequence_and_within_sequence_position
+      - target_and_validated_response_proximity
+
+    temporal_context_horizon:
+      lower_ms: -1000
+      upper_ms: 1800
+      immediate_neighbor_only_matching: prohibited
+
+    matching_feature_preparation:
+      image_feature_vectors: L2_normalize_each_frozen_family_vector
+      context_signature_per_event:
+        offsets: every_event_with_actual_onset_in_minus_1000_to_plus_1800ms
+        fixed_nominal_event_offset_order: minus_10_through_plus_18
+        image_summary: outcome_blind_PCA32_per_matching_feature_family
+        additional_fields:
+          - relative_onset
+          - sequence_position
+          - distance_to_sequence_boundaries
+          - target_indicator
+          - validated_response_indicator
+        outside_sequence: explicit_boundary_mask_not_wraparound
+        vector_construction: concatenate_standardized_fields_in_fixed_event_offset_then_feature_manifest_order_with_boundary_mask_bits
+        continuous_field_standardization: mean_and_population_SD_over_all_main_events_without_EEG
+        zero_variance_continuous_field: drop_and_record
+      PCA_fit_pool: all_22248_images_without_EEG
+      exact_matching_feature_manifest_and_transform_hash_required: true
+
+    metric_construction:
+      unit: one_scalar_per_participant_outer_fold_group_feature_family_and_registered_metric
+      empirical_distribution_unit: 1854_groups
+      nearest_neighbor_and_centroid_use: cosine_distance
+      heldout_nearest_neighbor: mean_over_the_two_heldout_images_of_minimum_distance_to_the_ten_training_images
+      training_centroid: L2_normalized_arithmetic_mean_of_the_ten_unit_training_vectors
+      heldout_to_centroid: mean_over_the_two_heldout_images_with_zero_norm_centroid_causing_rejection
+      training_scatter: mean_of_all_45_training_pairwise_cosine_distances
+      heldout_scatter: cosine_distance_between_the_two_heldout_images
+      context_vector_metrics: apply_the_same_nearest_neighbor_centroid_training_scatter_and_heldout_scatter_formulas_to_the_fixed_flattened_context_vectors
+      target_and_response_proximity_rate: for_each_group_mean_over_12_anchor_events_of_indicator_or_count_at_each_fixed_context_offset_with_each_offset_registered_separately
+      standardization_reference: corresponding_true_group_metric_distribution_in_same_participant_fold_and_feature_family
+      scale: true_distribution_sample_standard_deviation
+      zero_scale_rule: require_exact_equality_within_1e-12
+      Wasserstein_rule: one_dimensional_W1_between_pseudo_and_true_group_metric_distributions_divided_by_true_SD
+      every_registered_metric_family_and_fold_must_pass_separately: true
+
+    design_geometry:
+      neural_values_used: false
+      common_design: fixed_stimulus_only_reference_M_label_linear_design
+      reference_feature_transform: frozen_outcome_blind_matching_transform
+      conditionalization: ridge_projection_with_log10_penalty_0
+      temporal_bases_checked: [binned_FIR_20ms, raised_cosine_rank_8, raised_cosine_rank_12, raised_cosine_rank_16]
+      slot_log10_penalties_checked: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+      compare_complete_effective_df_curve: true
+      compare_log_singular_value_quantiles: [0.05, 0.25, 0.50, 0.75, 0.95]
+      singular_value_floor_relative_to_largest: 1e-12
+      values_at_or_below_floor: treated_as_zero_and_compared_through_effective_rank_not_log
+      compare_leverage_quantiles: [0.05, 0.25, 0.50, 0.75, 0.95]
+      post_selection_recheck:
+        uses_each_candidate_selected_common_design_scoring_mask_temporal_basis_and_slot_penalty: true
+        every_registered_visual_context_spectrum_leverage_and_effective_df_tolerance_must_pass: true
+        failure: sealed_postlock_scientific_qualification_failure_not_baseline_trial_invalidation
+        partition_regeneration_replacement_or_tolerance_relaxation_after_failure: prohibited
+
+    distribution_matching:
+      quantiles: [0.05, 0.25, 0.50, 0.75, 0.95]
+      maximum_absolute_standardized_mean_difference: 0.10
+      maximum_standardized_Wasserstein_1_distance: 0.10
+      maximum_absolute_standardized_quantile_difference: 0.10
+      maximum_relative_effective_df_difference: 0.05
+      maximum_relative_singular_value_or_leverage_quantile_difference: 0.10
+      maximum_target_or_response_proximity_rate_difference: 0.01
+
+    generation:
+      PRNG: numpy_PCG64DXSM
+      seed_salt: ep18_pseudo_bank_v1
+      seed_derivation: first_8_bytes_big_endian_of_sha256_salt_participant_k_start
+      starts_per_bank_member: 64
+      bounded_swaps_per_start: 100000
+      legal_start: seeded_random_block_stratified_partition_with_distinct_true_concepts
+      legal_move: exchange_two_same_block_images_between_groups_only_if_both_groups_retain_distinct_true_concepts
+      objective:
+        first: lexicographically_minimize_sorted_normalized_constraint_exceedances
+        second: minimize_sum_squared_standardized_metric_discrepancies
+        third: lexicographically_minimize_sha256_of_partition_membership
+      accept_move: strict_lexicographic_objective_improvement_only
+      acceptance: every_registered_tolerance_passes_in_every_outer_fold
+      diversity_failure_against_earlier_bank_member: reject_and_continue_to_next_frozen_start
+      accepted_partition_order: first_acceptance_in_frozen_seed_order
+      accepted_bank_members_required: 8
+      tolerance_relaxation_after_EEG_access: prohibited
+      inadequate_bank: closed_underidentified_before_candidate_comparison
+
+    diversity:
+      maximum_pairwise_absolute_adjusted_Rand_index: 0.01
+
+    primary_comparison_rule: true_partition_must_beat_every_bank_member
+    random_same_size_partitions:
+      bank_size: 8
+      role: capacity_diagnostic_only
+      terminal_comparator: false
+    permutation_test_interpretation: prohibited
+
+  loss:
+    name: equal_sequence_nuisance_normalized_whitened_continuous_MSE
+    nuisance_reference:
+      model: fixed_M_nuisance_recipe_above
+      candidate_temporal_image_label_or_concept_choices_may_change_it: false
+      training_fit: equal_sequence_weighted_unpenalized_least_squares
+      pseudoinverse: SVD_relative_tolerance_1e-10
+      predictions_and_denominator_shared_by_every_candidate_in_the_participant_outer_fold: true
+    covariance:
+      source: outer_training_blocks_only
+      residual_source: frozen_nuisance_only_model
+      estimator: Ledoit_Wolf_shrinkage
+      implementation_version_and_numeric_fixture_hash_required: true
+      residual_pooling: concatenate_all_retained_outer_training_samples_after_nuisance_fit_with_each_sample_once
+      residual_centering: subtract_pooled_training_residual_mean
+      inverse_square_root: symmetric_principal_eigendecomposition
+      inverse_eigenvalue_floor: 1e-12_times_largest_eigenvalue
+      nonfinite_or_nonpositive_largest_eigenvalue: unscorable_technical_failure
+      common_to_all_models_and_partitions_in_fold: true
+    sequence_error: mean_over_retained_samples_of_residual_quadratic_form_divided_by_61
+    sequence_loss: model_sequence_error_divided_by_same_fold_nuisance_sequence_error
+    nuisance_sequence_error_nonfinite_or_at_most_1e_minus_12: unscorable_technical_failure
+    fold_loss: equal_mean_over_twelve_heldout_physical_sequences
+    participant_loss: equal_mean_over_six_outer_folds
+    participant_aggregation: equal_mean_over_participants
+    loss_units: fraction_of_heldout_nuisance_only_whitened_error
+    concept_balanced_sample_loss_wording: prohibited
+    concept_and_category_concentration_reported_separately: true
+    missingness_or_retention_model_specific: prohibited
+
+  estimands:
+    descriptive_image_increment:
+      formula: L_M_image_minus_L_M_image_true
+      terminal_driving: false
+    primary_categorical_increment:
+      formula: L_M_label_cap_minus_L_M_true
+      terminal_driving: true
+    partition_specificity_k:
+      formula: L_M_pseudo_k_minus_L_M_true
+      terminal_driving: true
+      required_for_all_k: true
+    participant_vectors_average_outer_folds_before_inference: true
+    folds_sequences_samples_images_sensors_or_concepts_as_independent_replicates: prohibited
+
+  margin_calibration:
+    performed_before_true_or_pseudo_concept_scores_are_released: true
+    development_participants_only: true
+    true_concept_effect_used_to_choose_margin: false
+    reference_image_positive_control:
+      panel: frozen_core_image_panel
+      temporal_basis: raised_cosine_rank_12
+      per_family_PCA_rank: 64
+      family_blocks_concatenated_without_total_rank_cap: true
+      estimator: ridge
+      image_penalty: select_from_the_frozen_log10_grid_by_the_same_five_inner_fold_one_SE_rule_using_M_image_loss_only
+      nuisance_covariance_whitening_and_loss: identical_fixed_recipe_declared_in_the_loss_contract
+      G_formula: equal_participant_mean_of_L_M_nuisance_minus_L_M_image_reference
+      G_must_be_positive: true
+    reference_task_positive_control:
+      reduced_model: sequence_position_boundary_and_drift_without_target_or_response_terms
+      full_model: M_nuisance
+      T_formula: equal_participant_mean_of_L_reduced_task_model_minus_L_M_nuisance
+      T_must_be_positive: true
+    delta_C:
+      formula: max_0.001_and_0.05_times_G
+      role: categorical_increment_margin
+    delta_P:
+      formula: max_0.0005_and_0.025_times_G
+      role: each_true_vs_pseudo_margin
+    delta_Q:
+      formula: max_0.002_and_0.25_times_G
+      role: audit_image_positive_control_margin
+    delta_T:
+      formula: max_0.001_and_0.25_times_T
+      role: audit_task_positive_control_margin
+    injection_levels: [delta_P, delta_C, two_times_delta_C, two_times_delta_P]
+    synthetic_recovery_may_lower_a_margin: false
+    no_positive_reference_gain: closed_underidentified
+
+  uncertainty:
+    unit: participant
+    fold_scores_averaged_before_inference: true
+    participant_weighting: equal
+    audit_participants: 16
+    terminal_endpoint_count: 9
+    terminal_primary_family:
+      - M_label_cap_vs_M_true
+      - M_pseudo_1_vs_M_true
+      - M_pseudo_2_vs_M_true
+      - M_pseudo_3_vs_M_true
+      - M_pseudo_4_vs_M_true
+      - M_pseudo_5_vs_M_true
+      - M_pseudo_6_vs_M_true
+      - M_pseudo_7_vs_M_true
+      - M_pseudo_8_vs_M_true
+    positive_claim_bounds:
+      method: Bonferroni_simultaneous_one_sided_t
+      familywise_alpha: 0.05
+      per_endpoint_alpha: 0.005555555555555556
+      degrees_of_freedom: 15
+    primary_two_sided_intervals:
+      method: Bonferroni_simultaneous_two_sided_t
+      familywise_alpha: 0.05
+      endpoints: same_terminal_primary_family
+      degrees_of_freedom: 15
+      per_tail_alpha: 0.002777777777777778
+      critical_value_definition: t_quantile_1_minus_0.05_divided_by_18_with_df15
+    terminal_negative_control_family:
+      endpoints:
+        - negative_lag_categorical_increment
+        - shifted_concept_labels_plus_37_events
+        - shifted_concept_labels_plus_73_events
+        - shifted_concept_labels_plus_109_events
+      estimand_for_each: L_M_label_cap_minus_L_control_categorical_model
+      method: Bonferroni_simultaneous_one_sided_upper_and_lower_t_bounds
+      familywise_alpha: 0.05
+      degrees_of_freedom: 15
+      per_bound_alpha: 0.00625
+      critical_value_definition: t_quantile_1_minus_0.05_divided_by_8_with_df15
+      required_control_rule: every_simultaneous_upper_bound_at_most_delta_P
+      artifact_bounds: Bonferroni_simultaneous_one_sided_t_at_familywise_alpha_0.05
+      artifact_rule: any_artifact_lower_bound_exceeds_delta_P
+    development_postlock_negative_control_family:
+      endpoints: same_four_terminal_negative_control_endpoints
+      participant_n: 30
+      method: Bonferroni_simultaneous_one_sided_upper_and_lower_t_bounds
+      familywise_alpha: 0.05
+      degrees_of_freedom: 29
+      per_bound_alpha: 0.00625
+      pass_and_artifact_rules: identical_to_terminal_negative_control_family
+    audit_positive_control_family:
+      endpoints:
+        - image_prediction_gain
+        - target_and_response_prediction_gain
+        - repeated_image_odd_even_template_prediction_gain
+      method: Bonferroni_simultaneous_one_sided_t
+      familywise_alpha: 0.05
+      degrees_of_freedom: 15
+    readout_diagnostic:
+      endpoint: L_M_label_linear_minus_L_M_true
+      method: one_sided_t_lower_bound
+      alpha: 0.05
+      role: classify_readout_insufficiency_only_not_candidate_ready
+    participant_population_claim_beyond_THINGS_EEG1: prohibited
+    unseen_concept_or_unseen_image_population_claim: prohibited
+
+  preaudit_precision_gate:
+    target_audit_n: 16
+    primary_endpoint_count: 9
+    negative_control_endpoint_count: 4
+    development_participants: 30
+    development_endpoint_vectors_from_locked_finalist_only: true
+    upper_SD_per_endpoint:
+      first_estimate: one_sided_90_percent_chi_square_upper_SD
+      second_estimate: percentile_95_from_100000_participant_bootstraps
+      use: maximum_of_both
+      bootstrap_seed: 180018
+      bootstrap_statistic: sample_SD_of_centered_participant_endpoint_vector
+    projected_halfwidth:
+      formula: t_quantile_1_minus_0.05_over_18_df15_times_upper_SD_over_sqrt16_for_each_primary_two_sided_interval
+      categorical_increment_must_not_exceed: delta_C
+      each_partition_contrast_must_not_exceed: delta_P
+      each_negative_control_formula: t_quantile_1_minus_0.05_over_8_df15_times_upper_SD_over_sqrt16
+      each_negative_control_must_not_exceed: delta_P
+    blinded_resampling:
+      replicates: 10000
+      seed: 180019
+      PRNG: numpy_PCG64DXSM
+      sampling_unit: participant_row
+      dependence_rule: use_one_joint_with_replacement_sample_of_16_from_the_30_development_rows_for_every_endpoint_in_a_replicate
+      primary_null_construction: subtract_each_of_the_nine_development_endpoint_means_then_add_zero
+      primary_injection_construction: subtract_each_endpoint_mean_then_add_2_times_delta_C_to_the_categorical_endpoint_and_2_times_delta_P_to_each_partition_endpoint
+      primary_interval_rule_in_each_replicate: same_df15_Bonferroni_one_sided_t_rule_planned_for_audit
+      null_event: all_nine_primary_lower_bounds_exceed_their_respective_margins
+      recovery_event: all_nine_injected_primary_lower_bounds_exceed_their_respective_margins
+      negative_control_construction: center_each_of_four_development_control_vectors_at_zero_and_apply_the_same_joint_participant_resample
+      negative_control_pass_event: all_four_simultaneous_upper_bounds_are_at_most_delta_P
+      positive_control_construction: jointly_bootstrap_the_three_uncentered_locked_development_positive_control_vectors
+      positive_control_pass_event: all_three_bounds_pass_their_frozen_audit_thresholds
+      null_familywise_candidate_rate_max: 0.05
+      full_conjunction_recovery_at_two_times_each_margin_min: 0.80
+      negative_control_null_pass_probability_min: 0.80
+      positive_control_family_pass_probability_min: 0.80
+    failure: closed_underidentified_without_opening_audit
+
+  audit_adequacy:
+    all_assigned_participants_required: 16
+    individual_neural_QC_reliability_outlier_or_influence_exclusion: prohibited
+    participant_replacement: prohibited
+    winsorization_or_postopen_robustification: prohibited
+    image_positive_control:
+      contrast: M_nuisance_vs_frozen_reference_M_image
+      cohort_lower_bound_must_exceed: delta_Q
+    task_positive_control:
+      contrast: reduced_task_model_vs_M_nuisance
+      cohort_lower_bound_must_exceed: delta_T
+    repeated_image_reliability:
+      statistic: odd_even_crossvalidated_template_prediction_gain
+      sequence_split: odd_ordinal_repeated_sequences_72_74_76_78_80_82_vs_even_73_75_77_79_81_83
+      directions: fit_odd_score_even_and_fit_even_score_odd_then_average
+      continuous_predictor: regularized_200_image_identity_slot_plus_fixed_M_nuisance
+      response_basis: raised_cosine_rank_12_over_0_to_800ms
+      identity_slot_scaling: same_unit_energy_rule_as_primary
+      identity_slot_log10_penalty: 0
+      covariance_and_denominator: fit_the_fixed_nuisance_reference_on_the_six_training_sequences_of_each_direction
+      sequence_loss: same_equal_sequence_nuisance_normalized_whitened_loss
+      gain_formula: nuisance_loss_minus_image_identity_model_loss
+      no_main_session_or_opposite_half_EEG_enters_fit: true
+      cohort_lower_bound_must_exceed: 0.0
+    all_three_bounds_use_audit_positive_control_family_above: true
+    every_leave_one_participant_positive_control_point_estimate_must_exceed_zero: true
+    failure: closed_underidentified
+    unscorable_assigned_participant_due_to_input_or_code_failure: technical_failure
+
+  influence_guards:
+    candidate_ready_requires:
+      - every_leave_one_participant_primary_point_estimate_positive
+      - every_leave_one_participant_minimum_partition_separation_positive
+      - every_heldout_block_pair_group_mean_primary_contrast_positive
+      - every_heldout_block_pair_group_mean_minimum_partition_separation_positive
+      - every_leave_one_physical_sequence_group_mean_primary_contrast_positive
+      - every_leave_one_physical_sequence_group_mean_minimum_partition_separation_positive
+      - every_leave_one_broad_category_primary_point_estimate_positive
+    event_ownership_concentration_diagnostic:
+      attribution_bins: each_event_onset_to_next_event_onset_with_final_tail_assigned_to_last_event
+      contribution: M_label_cap_minus_M_true_whitened_error_difference_in_attribution_bin_averaged_over_folds_and_participants
+      use: concentration_only_not_latency_or_mechanistic_attribution
+      top_five_percent_concepts_absolute_contribution_max: 0.25
+      top_five_percent_formula: sum_largest_93_absolute_contributions_divided_by_sum_all_1854_absolute_contributions
+      effective_concept_count_formula: square_sum_absolute_contributions_divided_by_sum_squared_absolute_contributions
+      effective_concept_count_min: 927
+    broad_category_guard:
+      taxonomy: category27_manual.tsv
+      exact_source_hash_and_concept_crosswalk_required: true
+      multilabel_rule: leave_category_out_removes_every_concept_tagged_with_that_category
+      terminal_rule: every_leave_one_category_primary_and_minimum_partition_point_estimate_positive
+
+  temporal_and_sequence_controls:
+    negative_lag_window_ms: [-800, -300]
+    negative_lag_upper_edge_precedes_the_200ms_half_support_of_the_group_delay_compensated_resampling_FIR: true
+    noncircular_within_sequence_label_shift_offsets_in_events: [37, 73, 109]
+    shift_wrap_across_sequence_boundary: prohibited
+    prestimulus_concept_control_is_negative_lag_endpoint_above: true
+    target_response_position_drift_ablations:
+      required: true
+      role: diagnostic_and_influence_only
+      may_rescue_or_define_terminal_artifact_without_negative_control_bound: false
+    target_and_response_window_censoring_sensitivity:
+      censor_full_locked_response_horizon_around_events: true
+      primary_and_minimum_partition_point_estimates_must_remain_positive: true
+    every_negative_control_simultaneous_upper_bound_must_not_exceed: delta_P
+
+  trial_atom:
+    unit: one_complete_scientific_configuration
+    includes:
+      - all_30_development_participants
+      - all_six_outer_folds
+      - all_five_inner_folds_per_outer_fold
+      - complete_model_ladder
+      - expanded_image_panel
+      - all_eight_matched_partitions
+      - same_size_random_controls
+      - native_temporal_and_sequence_controls
+      - required_influence_diagnostics
+    scientific_result_cannot_split_by:
+      - participant
+      - fold
+      - block
+      - sequence
+      - concept
+      - image
+      - sensor
+      - partition
+    compute_sharding_across_Slurm_jobs: allowed
+    counted_trial_requires_complete_hash_verified_merge_of_every_shard: true
+    sealed_scientific_failure_record_with_complete_M_label_cap_output_remains_a_valid_baseline_phase_trial: true
+    unique_key: complete_scientific_configuration_hash
+    parent_trial_and_visible_ledger_prefix_hash_required: true
+    byte_identical_engineering_retry_may_reuse_trial_ID: true
+
+  successor_grammar:
+    exactly_one_scientific_operator_changes_per_successor: true
+    operator_semantics: replace_only_the_named_admissible_selector_set_singleton_operators_fix_that_value_and_full_grid_operators_keep_selection_nested_inside_training_folds
+    required_fields:
+      - parent_scored_trial
+      - visible_ledger_prefix_hash
+      - directional_prediction
+      - competing_explanation
+      - changed_operator
+      - unchanged_operator_manifest
+      - native_falsifier
+      - expected_information_gain
+      - expected_cost
+      - retirement_condition
+    branches:
+      temporal_overlap:
+        operators:
+          - binned_FIR_20ms
+          - raised_cosine_rank_8
+          - raised_cosine_rank_12
+          - raised_cosine_rank_16
+          - full_temporal_grid_nested_selection
+      image_feature_sufficiency:
+        operators:
+          - per_family_PCA_rank_32
+          - per_family_PCA_rank_64
+          - per_family_PCA_rank_128
+          - full_PCA_rank_grid_nested_selection
+      label_readout_capacity:
+        operators:
+          - RBF_bandwidth_0.5
+          - RBF_bandwidth_1.0
+          - RBF_bandwidth_2.0
+          - full_RBF_bandwidth_grid_nested_selection
+
+  development_feedback_firewall:
+    baseline_recipe_phase:
+      minimum_valid_trials: 19
+      valid_trial_definition: structural_input_fit_and_M_label_cap_score_succeeds_without_using_any_withheld_concept_dependent_status
+      lock_eligible_trial_definition: valid_trial_and_all_baseline_phase_constraints_pass
+      branch_coverage: at_least_three_valid_trials_in_each_of_temporal_overlap_image_feature_sufficiency_and_label_readout_capacity
+      visible_to_controller:
+        - M_label_cap_prediction_loss
+        - image_and_task_positive_controls
+        - M_label_cap_effective_degrees_of_freedom
+        - M_label_cap_path_conditioning_complexity_and_runtime_only
+      withheld_even_if_computed:
+        - M_true_scores
+        - M_pseudo_scores
+        - true_vs_pseudo_or_label_contrasts
+        - negative_control_concept_scores
+        - categorical_capacity_match_pass_or_fail
+        - postselection_pseudo_match_pass_or_fail
+        - concept_influence_guard_pass_or_fail
+      withheld_quantities_may_not_affect_trial_validity_retry_selection_patience_branch_retirement_or_ledger_visibility: true
+      sealed_shard_runtime_completion_error_class_and_resource_use_hidden_until_lock: true
+      sealed_shard_scheduling_and_engineering_retries: fixed_outcome_independent_rules_not_controller_decisions
+      controller_resource_accounting_for_sealed_work: preregistered_constant_charge_per_scheduled_complete_atom_not_observed_runtime_or_failure_time
+      postcoverage_requirement: at_least_10_valid_trials_after_first_complete_branch_coverage_with_at_least_0.40_predeclared_falsifier_trials
+      baseline_lock_timing: only_after_a_qualified_stop_with_minimum_trials_branch_coverage_postcoverage_requirement_and_at_least_one_lock_eligible_trial
+      baseline_lock_selection_pool: lock_eligible_trials_only
+      baseline_lock_rule: frozen_30_participant_one_standard_error_rule_on_M_label_cap_loss
+      baseline_lock_is_irreversible_within_round: true
+      unqualified_stop_or_no_lock_eligible_trial: closed_search_exhausted_without_scientific_release_or_audit
+    locked_scientific_release:
+      adaptive_trials_after_release: 0
+      source: hash_verified_complete_trial_atom_of_the_irreversibly_selected_baseline
+      common_image_label_temporal_recipe: immutable
+      release_once:
+        - categorical_and_pseudo_scores
+        - capacity_and_postselection_matching_status
+        - negative_controls
+        - random_partition_diagnostics
+        - influence_checks
+        - injections_and_precision_projection
+      failure_of_any_required_scientific_check: classify_or_close_without_selecting_a_different_baseline
+      reopening_weakening_or_challenging_baseline_after_release: prohibited
+      development_decision_precedence:
+        - integrity_or_unrecoverable_execution_failure_is_technical_failure
+        - capacity_match_or_postselection_pseudo_match_failure_is_closed_underidentified
+        - positive_control_reliability_injection_or_precision_failure_is_closed_underidentified
+        - any_negative_control_lower_bound_above_delta_P_is_closed_sequence_or_filtering_artifact
+        - any_negative_control_upper_bound_above_delta_P_without_artifact_lower_bound_is_closed_underidentified
+        - primary_or_any_partition_development_point_estimate_not_above_its_margin_is_closed_development_conjunction_failed
+        - otherwise_advance_the_frozen_procedure_to_audit
+      mutually_exclusive_first_matching_development_rule_wins: true
+    no_withheld_score_or_pass_fail_proxy_may_enter_proposal_prompt_ledger_memory_or_resource_decision_before_baseline_lock: true
+
+  forbidden:
+    - random_trial_or_image_split
+    - image_feature_use_of_filename_folder_concept_ID_or_concept_prompt
+    - concept_ID_or_one_hot_input_to_M_label_cap
+    - EEG_informed_pseudo_partition
+    - favorable_pseudo_bank_replacement
+    - post_EEG_partition_tolerance_relaxation
+    - participant_specific_winner
+    - model_specific_samples_masks_or_covariance
+    - heldout_block_preprocessing_fit
+    - cross_sequence_filtering_or_label_shift_wrap
+    - baseline_correction_using_responses_to_previous_RSVP_images
+    - exported_once_residualized_EEG_search
+    - removing_mandatory_feature_families_because_the_effect_grows
+    - postscore_feature_checkpoint_or_model_zoo_expansion
+    - audit_participant_exclusion_or_replacement
+    - audit_driven_refit_retuning_subset_selection_margin_change_or_rerun
+    - abstract_semantic_amodal_or_visual_independence_claim
+    - shared_template_transport_terminal_claim_in_round_one
+
+objectives:
+  primary:
+    metric: equal_participant_mean_outer_fold_prediction_loss_of_M_label_cap
+    panel: expanded_image_panel
+    direction: minimize
+    eligible_pool: lock_eligible_baseline_trials_only
+    trial_vector: one_outer_CV_participant_loss_per_each_of_30_development_participants
+    selection_rule: choose_the_lowest_30_participant_mean_then_retain_trials_with_mean_at_most_that_mean_plus_its_sample_SD_over_sqrt_30_then_lower_effective_df_rank_stronger_penalty_and_hash
+    global_complexity_tie_aggregation:
+      effective_df: equal_mean_over_30_participants_times_6_outer_folds
+      realized_rank: equal_mean_of_the_sum_of_realized_family_and_temporal_ranks_over_the_same_180_cells
+      stronger_penalty: larger_mean_of_log10_image_label_and_RBF_penalties_over_the_same_180_cells
+      final_tie: lexicographically_smallest_complete_configuration_hash
+    concept_true_vs_pseudo_or_negative_control_contrasts_enter_incumbent_selection: false
+    concept_true_vs_pseudo_or_negative_control_contrasts_enter_patience_or_branch_retirement: false
+
+  baseline_phase_constraints:
+    image_and_task_positive_controls_pass: true
+    M_label_cap_design_rank_conditioning_and_fit_pass: true
+    exact_reproducible_refit_from_immutable_inputs: true
+  postlock_scientific_qualification:
+    effective_df_capacity_match_passes: true
+    all_eight_matched_partitions_and_postselection_rechecks_pass: true
+    temporal_and_shift_controls_pass_the_one_sided_upper_bound_rule: true
+    influence_guards_pass: true
+    failure_may_not_reopen_search: true
+
+  secondary:
+    - min_of_mean_Delta_cap_minus_delta_C_and_each_mean_C_k_minus_delta_P_postadaptive_descriptive
+    - M_image_vs_M_image_true_increment
+    - core_image_panel_result
+    - M_label_linear_vs_M_true
+    - random_partition_controls
+    - repeated_image_reliability
+    - time_resolved_descriptive_curves
+
+  claim_scope:
+    strongest_permitted: categorical_predictive_template_increment_conditional_on_frozen_feature_and_readout_family
+    fixed_1854_concepts_and_22248_images: true
+    new_participants_within_THINGS_EEG1: true
+    abstract_semantic_or_amodal_claim: prohibited
+    new_concept_or_new_image_population_generalization: prohibited
+    zero_shot_cross_subject_EEG_template_claim: prohibited
+
+budgets:
+  minimum_valid_trials: 19
+  maximum_valid_trials: 44
+  patience_valid_trials: 10
+  patience_starts_after_trial: 19
+  engineering_failures_max: 16
+  cpu_core_hour_ceiling: 12000
+  gpu_hour_ceiling: 512
+  wall_clock_hour_ceiling: 336
+  parallel_core_ceiling: 128
+  memory_gib_per_job_ceiling: 256
+  scratch_storage_tib_ceiling: 4
+  outcome_blind_compute_and_storage_pilot_must_fit_ceiling: true
+  ceiling_increase_after_candidate_scores: prohibited
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 9
+  rule: during_the_baseline_recipe_phase_at_least_three_valid_trials_in_each_of_temporal_overlap_image_feature_sufficiency_and_label_readout_capacity_before_lock
+  readiness_rejection_must_be_logged: true
+
+synthetic_qualification:
+  required_before_real_candidate_discriminating_scores: true
+  generator_contract:
+    event_rows_masks_folds_and_sequence_boundaries: exact_development_manifests_with_no_EEG_values
+    PRNG: numpy_PCG64DXSM
+    seed_salt: ep18_synthetic_fixture_v1
+    sensor_noise: 61D_zero_mean_Gaussian_AR1_with_rho_0.8_unit_marginal_variance_and_equicorrelation_0.2
+    coefficient_draws: fixed_seed_standard_normal_then_rescale_each_injected_component_to_its_registered_whitened_RMS
+    nuisance_component: fixed_target_response_position_boundary_and_drift_design
+    image_component: frozen_reference_image_design
+    concept_component: true_or_registered_pseudo_membership_design_as_named_by_fixture
+    neighbor_component: preceding_and_following_actual_event_design
+    latency_jitter: independent_zero_mean_truncated_normal_SD_20ms_limit_50ms
+    amplitude_calibration: deterministic_bisection_on_synthetic_replicates_only_until_expected_loss_contrast_is_within_0.05_times_the_registered_margin
+    replicates_per_fixture: 1000
+    no_real_EEG_amplitude_residual_or_candidate_score_used: true
+  fixtures:
+    - complete_null
+    - image_only_signal
+    - categorical_increment
+    - matched_pseudo_partition_signal
+    - preceding_and_following_image_signal
+    - target_and_response_signal
+    - slow_drift_signal
+    - latency_jitter
+    - deliberately_leaky_random_trial_split
+  must_verify:
+    - event_image_join_and_actual_timing
+    - six_outer_and_five_nested_inner_folds
+    - sequence_padding_filter_support_and_unique_sample_scoring
+    - common_61D_basis_mask_covariance_and_loss_direction
+    - capacity_matching_and_no_ID_input_to_label_kernel
+    - all_eight_fold_specific_pseudo_matching_rules
+    - null_false_positive_and_injection_recovery
+    - audit_rejection_without_configuration_lock
+    - audit_rejection_of_mutated_hash_or_second_open
+    - deterministic_score_replay_and_resource_metering
+  may_change_scientific_margin_formula: false
+
+required_falsifiers:
+  - null_image_only_categorical_neighbor_target_drift_and_latency_injection_recovery
+  - deliberately_leaky_random_trial_split_must_be_detected
+  - negative_lag_and_prestimulus_control
+  - full_horizon_noncircular_label_shifts
+  - target_response_sequence_position_and_drift_ablations
+  - expanded_additive_image_panel
+  - nonlinear_label_kernel_capacity_match
+  - all_eight_fold_matched_pseudo_partitions
+  - same_size_random_partition_capacity_controls
+  - participant_block_pair_sequence_category_and_concept_concentration_influence
+  - image_task_and_repeated_image_signal_positive_controls
+  - audit_permission_and_public_redownload_isolation_test
+  - EP17_EP18_stimulus_checkpoint_and_feature_exposure_audit
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  post_coverage_falsifier_definition: outcome_blind_proposal_tagged_before_execution_as_a_stronger_baseline_or_overlap_challenge_using_only_baseline_visible_metrics
+  post_coverage_denominator: all_valid_trials_proposed_after_the_first_ledger_prefix_with_complete_branch_coverage
+  post_coverage_fraction_formula: count_of_those_trials_predeclared_as_falsifiers_divided_by_that_denominator
+  post_coverage_minimum_valid_trials: 10
+  zero_postcoverage_denominator: not_lock_eligible
+  qualified_lock_requires_postcoverage_minimum_and_fraction: true
+  complete_trial_atom_required: true
+  expanded_panel_required: true
+  capacity_match_required: true
+  all_eight_matched_partitions_required: true
+  all_required_falsifiers_pass: true
+  preaudit_precision_gate_required: true
+  development_only_positive_is_candidate_ready: false
+  finalist_selected_by_M_label_cap_prediction_loss_not_concept_contrast: true
+  freeze:
+    - source_event_image_and_participant_manifests
+    - exact_30_16_participant_roles_and_permissions
+    - EP17_EP18_exposure_ledger
+    - channel_order_interpolation_rule_none_reference_and_61D_contrast_basis
+    - filter_resampling_temporal_support_and_scoring_masks
+    - feature_checkpoints_weights_lineage_preprocessing_layers_pooling_and_dimensions
+    - core_expanded_panels_and_label_feature_registry
+    - outer_and_inner_folds
+    - model_ladder_capacity_matching_and_penalty_selection
+    - K8_matched_and_random_partition_banks
+    - loss_covariance_margins_uncertainty_and_influence_procedures
+    - audit_adequacy_and_precision_rules
+    - code_environment_seeds_complete_ledger_and_audit_command
+
+stop:
+  before_minimum: forbidden_except_integrity_policy_access_or_total_technical_impossibility
+  patience_starts_only_after_minimum_complete_branch_coverage_and_postcoverage_minimum_and_fraction: true
+  qualified_patience_improvement_threshold: 0.00025
+  after_minimum:
+    - patience_exhausted
+    - maximum_valid_trials_reached
+    - CPU_GPU_wall_or_storage_ceiling_reached
+    - every_branch_retired_or_exhausted
+    - no_configuration_can_meet_visible_baseline_rank_conditioning_or_positive_control_constraints
+  first_positive_result_is_not_a_stop: true
+  adaptive_search_ends_at_irreversible_baseline_lock_before_scientific_score_release: true
+  failed_postlock_scientific_qualification_cannot_restart_search: true
+  budget_stop_is_scientific_success: false
+  continued_search_after_audit_requires_new_round_and_new_audit_source: true
+
+audit:
+  mode: one_shot_whole_participant_participant_refit_replication
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  participants_required: 16
+  outer_folds_per_participant: 6
+  inner_training_selection_rule_identical_to_development: true
+  participant_specific_coefficients_and_penalties_allowed_under_locked_rule: true
+  participant_and_fold_specific_realized_rank_and_penalty_allowed_under_locked_rule: true
+  feature_families_admissible_basis_rank_grids_selection_rules_masks_partitions_controls_margins_and_decisions_fixed: true
+  terminal_panel: expanded_image_panel
+  terminal_primary_contrasts:
+    - M_label_cap_vs_M_true
+    - M_pseudo_1_vs_M_true
+    - M_pseudo_2_vs_M_true
+    - M_pseudo_3_vs_M_true
+    - M_pseudo_4_vs_M_true
+    - M_pseudo_5_vs_M_true
+    - M_pseudo_6_vs_M_true
+    - M_pseudo_7_vs_M_true
+    - M_pseudo_8_vs_M_true
+  primary_pass:
+    M_label_cap_vs_M_true_lower_bound_exceeds: delta_C
+    every_pseudo_vs_true_lower_bound_exceeds: delta_P
+    every_negative_control_simultaneous_upper_bound_at_most_delta_P: true
+    cohort_reliability_and_positive_controls_pass: true
+    influence_guards_pass: true
+    integrity_permission_and_exposure_gates_pass: true
+  decision_precedence:
+    - audit_integrity_or_unscorable_participant_is_technical_failure
+    - any_participant_fold_capacity_match_or_postselection_pseudo_recheck_failure_is_closed_underidentified_without_exclusion_or_replacement
+    - failed_cohort_positive_control_or_reliability_is_closed_underidentified
+    - any_negative_control_Bonferroni_lower_bound_above_delta_P_is_closed_sequence_or_filtering_artifact
+    - any_negative_control_simultaneous_upper_bound_above_delta_P_without_artifact_lower_bound_is_closed_underidentified
+    - full_primary_pass_is_candidate_ready_categorical_concept_template_increment
+    - development_full_conjunction_point_estimates_above_two_times_margins_and_any_audit_primary_upper_bound_at_most_its_margin_is_closed_new_participant_nonreplication
+    - linear_readout_lower_bound_above_delta_C_and_primary_increment_upper_bound_at_most_delta_C_is_closed_readout_insufficiency
+    - primary_increment_simultaneous_upper_bound_at_most_delta_C_is_closed_feature_and_readout_sufficiency
+    - any_pseudo_interval_inside_plus_or_minus_delta_P_or_any_pseudo_upper_bound_below_minus_delta_P_is_closed_partition_nonspecificity
+    - otherwise_closed_underidentified
+  mutually_exclusive_first_matching_rule_wins: true
+  development_full_conjunction_for_nonreplication_label:
+    primary_mean_exceeds: two_times_delta_C
+    every_partition_mean_exceeds: two_times_delta_P
+    inferential_claim: false
+  shared_template_transport:
+    role: deferred_nonterminal_exploratory_only
+    may_qualify_or_rescue_primary: false
+  mechanical_retry:
+    allowed_only_if_no_audit_prediction_metric_or_diagnostic_was_emitted: true
+    code_configuration_and_input_hashes_must_be_identical: true
+  postopen_mutation_refit_rescue_margin_change_or_rerun: prohibited
+
+terminal_mapping:
+  candidate_ready_categorical_concept_template_increment: candidate_ready
+  closed_feature_and_readout_sufficiency: closed_no_candidate
+  closed_readout_insufficiency: closed_no_candidate
+  closed_partition_nonspecificity: closed_no_candidate
+  closed_sequence_or_filtering_artifact: closed_no_candidate
+  closed_new_participant_nonreplication: closed_no_candidate
+  closed_development_conjunction_failed: closed_no_candidate
+  closed_underidentified: closed_no_candidate
+  closed_search_exhausted: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true
