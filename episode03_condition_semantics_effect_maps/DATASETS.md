@@ -88,5 +88,6 @@ until audit opening.
 Large immutable inputs must remain outside Git and be exposed read-only.
 Durable manifests, ledgers, code, compact results, and lock receipts belong in
 the episode workspace; transient matrices belong under a dedicated
-`$SCRATCH/autoresearch/` path. The old EP03 directory and any remote live cache
+`$SCRATCH/br_autoresearch/episode03_condition_semantics_effect_maps/` path. The
+old EP03 directory and any remote live cache
 are provenance sources only, never mutable episode storage.

@@ -57,7 +57,11 @@ optional supplemental context under the project-local skill contract.
 ## Sherlock storage and compute
 
 - Keep durable inputs and final artifacts in the episode directory on OAK.
-- Put transient intermediates in `$SCRATCH/autoresearch/<episode-name>/`.
+- Put new transient intermediates in
+  `$SCRATCH/br_autoresearch/<episode-name>/`. Existing
+  `$SCRATCH/autoresearch/` trees are legacy runtime state: do not treat them as
+  canonical inputs, move them, or delete them without an explicit migration
+  decision.
 - Run expensive computation through Slurm; do not run long or resource-heavy
   analyses on the login node.
 - Do not put credentials, tokens, or private keys in this repository.  The

@@ -209,11 +209,11 @@ An episode may use one, several, or none of these routes.
 The first version of the campaign will mainly explore data that have already
 been processed on Sherlock.
 
-As of 2026-08-19, the main shared starting points are:
+As of 2026-09-23, the main shared starting points are:
 
 | Data | Count | Path |
 | --- | ---: | --- |
-| OpenNeuro FitLins result directories | 54 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses` |
+| OpenNeuro FitLins `ds*` result directories | 55 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses` |
 | OpenNeuro fMRIPrep directories | 9 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep` |
 | HCP-YA derivatives | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP-YA-BIDS` |
 | HCP connectivity data | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP1200_PTN` |

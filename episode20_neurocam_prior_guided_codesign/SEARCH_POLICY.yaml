@@ -14,7 +14,7 @@ dataset_roles:
     candidate_access: visible_before_search
     source_manifest: inputs/SOURCE_MANIFEST.json
     anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
-    current_local_payload: proxy_metadata_contract_present_primary_payload_absent
+    current_local_payload: documentary_source_legacy_quarantine_staged_not_moved_no_episode_handoff
   reference_examples:
     role: nonbinding_documentary_and_non_candidate_discriminating_simulation_sanity_context_only
     access: visible_before_search
@@ -46,7 +46,7 @@ dataset_roles:
     authoritative_for_reference_fit: false
     authoritative_for_reference_qualification: false
     launch_gate_effect: none
-    current_payload: two_labeled_oak_provisioned_examples_present_nonbinding
+    current_payload: absent_from_canonical_episode_legacy_examples_not_provisioned
   reference_model_calibration:
     role: fit_paper_derived_neurocam_class_reference_model_ensemble
     access: development_visible
@@ -54,7 +54,7 @@ dataset_roles:
     anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
     anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
     model_contract: inputs/REFERENCE_MODEL_CONTRACT.yaml
-    current_payload: paper_derived_proxy_metadata_only_not_fit_ready
+    current_payload: paper_derived_proxy_metadata_contracts_absent_not_fit_ready
   reference_model_qualification:
     role: public_documentary_anchors_withheld_from_reference_fit_by_frozen_role
     access: published_values_visible_role_locked_fit_execution
@@ -65,7 +65,7 @@ dataset_roles:
     anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
     anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
     qualification_contract: inputs/REFERENCE_QUALIFICATION.yaml
-    current_payload: role_contract_present_input_gated_not_run
+    current_payload: role_contract_absent_input_gated_not_run
   development_signal_environments:
     role: outcome_visible_adaptive_development
     access: frozen_aggregate_evaluator
@@ -120,7 +120,7 @@ dataset_roles:
     - empirical_replay_plausibility
     - hardware_rules
   mixed_development_and_audit_mount: prohibited
-  current_readiness: paper_derived_proxy_metadata_contracts_present_primary_payload_fit_qualification_trace_design_rules_audit_and_replay_absent_launch_blocked
+  current_readiness: documentary_source_legacy_quarantine_staged_not_moved_proxy_contracts_and_examples_absent_fit_qualification_trace_design_rules_audit_and_replay_absent_launch_blocked
 
 reference_model_qualification:
   required_before_candidate_discriminating_scores: true
@@ -846,7 +846,7 @@ canonical_binding:
     one_shot_audit_receipt: null
   unresolved_launch_blockers:
     - immutable_article_supplement_and_source_hashes
-    - proposed_fit_versus_qualification_anchor_split_present_but_not_frozen_for_execution
+    - proposed_fit_versus_qualification_anchor_split_absent_and_not_frozen_for_execution
     - frequency_response_test_amplitude_conflict_and_curve_tolerance
     - raw_trace_or_accepted_aggregate_only_reference_limit
     - DAQ_ADC_AFE_marker_reference_and_bit_rate_accounting

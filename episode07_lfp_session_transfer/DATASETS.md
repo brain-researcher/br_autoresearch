@@ -279,6 +279,7 @@ launched episode and may produce a technical terminal; they are not external
 readiness or launch gates.
 
 Large immutable bytes remain outside Git. Transient computation belongs in a
-dedicated `$SCRATCH/autoresearch/episode07_lfp_session_transfer/` allocation.
+dedicated `$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`
+allocation.
 Only manifests, policies, ledgers, hashes, receipts, locks, and final reports
 are durable episode outputs.

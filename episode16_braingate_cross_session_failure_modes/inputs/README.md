@@ -16,4 +16,4 @@ cannot move a participant after the role hash.
 Do not extract archives here, mount a mixed audit archive into a candidate
 worker, or infer launch authority from the verified shared source. After an
 authorized launch, transient extraction belongs under
-`$SCRATCH/autoresearch/episode16_braingate_cross_session_failure_modes/`.
+`$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/`.

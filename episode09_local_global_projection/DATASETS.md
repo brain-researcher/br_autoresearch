@@ -84,5 +84,5 @@ blocks launch. Optional CCF-ME absence does not block the primary analysis.
 
 Large payloads remain outside Git or behind immutable read-only references.
 Transient expansions and feature matrices belong in
-`$SCRATCH/autoresearch/episode09_local_global_projection/`; durable
+`$SCRATCH/br_autoresearch/episode09_local_global_projection/`; durable
 outputs are manifests, parsers/tests, ledgers, lock artifacts, and reports.

@@ -23,6 +23,27 @@ All counts, identifiers, checksums, access terms, missing trials, and exact
 usable rows must be regenerated from the bound release. Planning counts are
 not receipts.
 
+### Physical-location record
+
+The canonical checkout does not contain these payloads and does not have a
+repository-local `.steward_acquisition` directory. Resolve physical paths only
+through the root
+[`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json):
+
+- `legacy_steward_acquisition` identifies the current quarantined acquisition
+  bytes in the legacy worktree;
+- `planned_steward_acquisition` is the planned durable external destination,
+  currently `absent_planned_target`; the EP04 asset moves remain
+  `staged_not_moved`; and
+- `scratch_ep04` identifies an existing legacy runtime copy under
+  `$SCRATCH/autoresearch/episode04_shared_scene_geometry/`. It is a cleanup
+  candidate after durable-destination verification, not a migration
+  destination.
+
+No source has been moved or provisioned into this episode. These location
+records are inventory pointers, not role-filtered handoffs, readiness receipts,
+or permission to inspect neural or stimulus outcomes.
+
 ## Exposure ledger
 
 | Slice | Adaptive role | Exposure statement |
@@ -119,6 +140,9 @@ threshold, or aggregation may change.
 
 Inputs are read-only and large source material remains outside Git. Durable
 manifests, code, ledgers, lock receipts, reports, and compact predictions
-belong in the episode workspace. Transient beta matrices and search
-caches belong in a dedicated `$SCRATCH/autoresearch/` path. Historical EP04
-outputs are immutable prior evidence, not a writable cache or audit source.
+belong in the episode workspace. New transient beta matrices and search caches
+belong under
+`$SCRATCH/br_autoresearch/episode04_shared_scene_geometry/`. The old path
+represented by `scratch_ep04` remains legacy runtime state and must not be used
+as the durable source or planned destination. Historical EP04 outputs are
+immutable prior evidence, not a writable cache or audit source.

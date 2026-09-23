@@ -55,7 +55,7 @@ command -v flock >/dev/null 2>&1 || error "flock is required"
   error "SCRATCH must be an absolute, existing, writable directory"
 
 episode_name=$(basename -- "$episode_dir")
-scratch_dir="$SCRATCH/autoresearch/$episode_name"
+scratch_dir="$SCRATCH/br_autoresearch/$episode_name"
 mkdir -p -- "$scratch_dir"
 scratch_dir=$(cd -P -- "$scratch_dir" && pwd)
 

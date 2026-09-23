@@ -95,6 +95,6 @@ block the primary complete-arbor analysis.
 
 Large sources remain outside Git or behind immutable read-only references.
 Expanded archives, exact choice-space caches, and simulations belong in
-`$SCRATCH/autoresearch/episode10_single_cell_coprojection/`; durable
+`$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/`; durable
 outputs are manifests, ledgers, validated tables/specifications, lock bundles,
 and reports.

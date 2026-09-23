@@ -20,7 +20,7 @@ neural outcome, and authorizes no compute. Shared adaptive-search rules are in
 | License | CC0 |
 | Related article | `10.1038/s41591-026-04530-3` |
 | Associated code | `https://github.com/nptl-stanford/array-paper` |
-| Read-only local source | `/oak/stanford/groups/russpold/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6` |
+| Local source (integrity verified; write seal pending) | `/oak/stanford/groups/russpold/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6` |
 
 The local source was acquired on 2026-09-16. Every official file matched the
 pinned Dryad manifest by name, byte size, and SHA-256, and all 23 participant
@@ -36,6 +36,12 @@ archives passed non-extracting `tar -tzf` checks. The controlling records are:
 Those transfer and archive checks establish package identity, not scientific
 readiness. The shared source remains outside this episode and is never copied,
 committed, or directly mounted into a candidate worker.
+
+The 2026-09-23 location inventory observed the release root and payload as mode
+`2770`, writable by the owning user/group. The source therefore must not be
+described as operationally read-only until a separately authorized permission
+seal and receipt exist. This mismatch is a readiness blocker; Phase 1 does not
+change the source permissions.
 
 ## Released cohorts must remain distinct
 
@@ -369,7 +375,8 @@ is allowed.
 
 `inputs/` remains read-only and contains no symlink to the shared 84.73-GB
 source. Transient extraction belongs under
-`$SCRATCH/autoresearch/episode16_braingate_cross_session_failure_modes/` only
+`$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/`
+only
 after authorization.
 
 ## Exposure and novelty ledger

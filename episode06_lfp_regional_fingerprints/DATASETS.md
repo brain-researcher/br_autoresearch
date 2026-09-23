@@ -123,5 +123,6 @@ hashes remain unchanged.
 Large immutable inputs remain outside Git and are exposed read-only. Durable
 manifests, code, trial ledger, predictions, lock receipts, and reports belong
 in the episode workspace; transient arrays belong in a dedicated
-`$SCRATCH/autoresearch/` path. Historical EP05/EP06 directories may supply
+`$SCRATCH/br_autoresearch/episode06_lfp_regional_fingerprints/` path.
+Historical EP05/EP06 directories may supply
 explicitly declared provenance only and must not be modified.

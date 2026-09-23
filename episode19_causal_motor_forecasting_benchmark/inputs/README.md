@@ -6,6 +6,15 @@ mixed source archives remain outside the episode in steward quarantine. The
 deferred AJILE12 materialization also remains outside the episode and is not a
 primary-task fallback.
 
+The root
+[`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) names the
+current legacy-worktree quarantine `legacy_steward_acquisition`, groups these
+assets as `asset_ep19_public_sources`, `asset_ep19_safe_commit`, and
+`asset_ep19_ajile12`, and records `planned_steward_acquisition` as the planned
+durable external root. Asset migration remains `staged_not_moved`; the planned
+root is `absent_planned_target`. None of those logical locations is a
+provisioned EP19 input or a readiness receipt.
+
 `../DATASETS.md` requires content-addressed, role-filtered structural,
 development, no-feedback lock, and evaluator-only audit handoffs. Do not link a
 mixed public download or shared source tree into this directory. Public access

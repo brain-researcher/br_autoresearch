@@ -1,18 +1,25 @@
 # Episode 17 inputs
 
-This directory contains durable Episode 17 inputs and becomes read-only after
-provisioning.
+This directory is reserved for durable Episode 17 input contracts and becomes
+read-only after provisioning. It currently contains no neural or stimulus
+payload.
 
-The required CNeuroMod-THINGS 1.0.1 subset is already provisioned in
-steward-managed, read-only OAK storage. Its exact location is an operational
-record outside Git and is disclosed only to the trusted builder.
+The required CNeuroMod-THINGS 1.0.1 subset remains quarantined in the legacy
+worktree. The root
+[`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) identifies
+the current restricted tree as `legacy_ep17_restricted_raw` and the planned
+external destination as `planned_ep17_restricted_raw`. The CNeuroMod stimulus
+archive is currently under `legacy_steward_acquisition`, with
+`planned_steward_acquisition` as its planned durable root. Both source moves
+are `staged_not_moved`; both planned destinations are
+`absent_planned_target`.
 
 It includes the neural/structural subset and official release-provenance
-archive described in [`../DATASETS.md`](../DATASETS.md). Source integrity and
-read-only permissions were verified during provisioning. Operational transfer
-logs, receipts, and checksum inventories remain with that steward workspace;
+archive described in [`../DATASETS.md`](../DATASETS.md). Operational transfer
+logs, receipts, and checksum inventories remain with the legacy quarantines;
 they are not tracked in this repository, and a code-only checkout contains no
-data payload.
+data payload. A planned location is not a completed relocation or a verified
+episode handoff.
 
 The verified raw source still mixes development, calibration, and audit rows.
 It is restricted acquisition material, not a search-worker handoff. The trusted

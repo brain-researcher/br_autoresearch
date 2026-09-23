@@ -97,6 +97,6 @@ external generalization but need not block an explicitly internal episode.
 
 Large inputs stay outside Git or under immutable read-only references.
 Transient caches belong in
-`$SCRATCH/autoresearch/episode08_lfp_acquisition_policy/`; durable
+`$SCRATCH/br_autoresearch/episode08_lfp_electrode_trial_policy/`; durable
 artifacts are limited to manifests, action/trial ledgers, lock bundles, and
 reports.

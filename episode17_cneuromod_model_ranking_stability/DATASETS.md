@@ -3,15 +3,36 @@
 ## Readiness in one sentence
 
 CNeuroMod-THINGS 1.0.1 is the only neural source. Its required 128.145 GiB
-neural/structural subset and release-provenance archive are available in
-verified, read-only, steward-managed OAK storage. The operational acquisition
-logs, checksums, and transfer program remain with that provisioned source and
-are intentionally not versioned in this code repository. EP17 nevertheless
-remains **not analysis-ready and not launch-authorized** until outcome-blind
-role assignment, role-filtered handoffs, and the remaining scientific
-contracts are complete.
+neural/structural subset and release-provenance archive are currently
+quarantined in the legacy worktree, outside this canonical checkout. The root
+location manifest identifies that tree as `legacy_ep17_restricted_raw`. Its
+migration remains `staged_not_moved`; the external destination
+`planned_ep17_restricted_raw` is still `absent_planned_target`. Operational
+acquisition logs, checksums, and the transfer program remain with the legacy
+source and are intentionally not versioned in this code repository. EP17
+remains **not analysis-ready and not
+launch-authorized** until the move is durably verified and outcome-blind role
+assignment, role-filtered handoffs, and the remaining scientific contracts are
+complete.
 
 Provisioning source bytes is not permission to inspect neural arrays.
+
+## Physical-location record
+
+[`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json) is the only
+repository record that maps the logical locations below to machine paths:
+
+- `legacy_ep17_restricted_raw` is the current restricted neural/structural
+  quarantine in the legacy worktree, with migration `staged_not_moved`;
+- `planned_ep17_restricted_raw` is its planned external restricted-data
+  destination and remains `absent_planned_target`;
+- `legacy_steward_acquisition` contains the current quarantined CNeuroMod
+  stimulus archive; its asset move is `staged_not_moved`; and
+- `planned_steward_acquisition` is the planned durable destination for that
+  steward asset and remains `absent_planned_target`.
+
+Neither current source is an episode-ready handoff. No path listed in the
+manifest changes the access boundary or lifts a readiness gate.
 
 ## Frozen source
 
@@ -60,23 +81,24 @@ the missing-intermediate problem that affected the former NSD design.
 It does not create external biological replication. The four people are the
 only biological units, and the audit reuses those same people.
 
-## Verified local source availability
+## Verified legacy source inventory
 
-The steward-managed source contains the four participants' B/C/D matrices,
+The legacy quarantined source contains the four participants' B/C/D matrices,
 public D-ceiling maps, GLMsingle designs, masks and run metadata, restricted
 per-trial annotation sources, and anatomical `aparcaseg` candidates required
 by this episode. The neural/structural subset is approximately 128.145 GiB;
 the official `cneuromod-things-1.0.1.tar.gz` release archive is retained beside
 it as provenance. Neither payload is part of a code-only checkout.
 
-The steward records the exact restricted source location outside Git and
-discloses it only to the trusted builder; downstream consumers receive
+The root location manifest records the restricted source by logical identifier;
+the machine path remains outside Git and is disclosed only to the trusted
+builder; downstream consumers receive
 approved, role-filtered handoffs. Source-level acquisition evidence stays with
 that workspace rather than being duplicated as tracked manifests, receipt
 files, or checksum sidecars.
 
 The fMRI stimulus archive was transferred separately and is not included in
-the neural-source byte total above. The steward-held, pinned
+the neural-source byte total above. The legacy-steward-held, pinned
 `images_fmri.zip` is 917,286,854 bytes. Its research/noncommercial terms were
 accepted and recorded on 2026-09-22.
 The archive remains encrypted and unextracted in steward quarantine; controlled
@@ -84,7 +106,7 @@ extraction, per-image hashing, exact event-image alignment, and a role-safe
 feature handoff remain feature-computation blockers. None weakens the
 neural-data seal.
 
-## Provisioned state and access boundary
+## Legacy acquisition state and access boundary
 
 Source provisioning completed on 2026-09-21 against the frozen release and
 gitlink identities above. The required files and provenance archive were
@@ -93,16 +115,16 @@ inside the same restricted tree. No MAT, NIfTI, HDF5, or annotation array was
 parsed as part of acquisition.
 
 The exact transfer logs and integrity inventory are operational records in the
-steward workspace. They are not launch instructions and are not carried by
-Git. A new checkout must receive the steward's separately verified handoff; it
-must not infer data availability or its location from repository files.
+legacy quarantine. They are not launch instructions and are not carried by
+Git. A new checkout must receive a separately verified, role-filtered handoff;
+it must not infer data availability or its location from repository files.
 
 The raw source remains mixed-role and restricted after transfer. It must not be
 mounted to the adaptive search worker.
 
 ## Neural products
 
-For every participant, the provisioned source contains:
+For every participant, the legacy quarantined source contains:
 
 | Stage | File | Scientific interpretation |
 | --- | --- | --- |

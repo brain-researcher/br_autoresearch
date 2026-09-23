@@ -1,29 +1,39 @@
 # Episode 20 inputs
 
-`inputs/` is read-only after provisioning. This scientist-authorized
-provisioning step added five metadata-only contracts for the paper-derived
-NeuroCam reference lane. They record source identity, reported aggregate
-anchors, a proposed fit/qualification split, the permitted reference-model
-scope, and a pre-run qualification gate.
+`inputs/` is read-only after provisioning. In this canonical checkout it
+contains only this README: no NeuroCam payload, metadata contract, anchor
+manifest, qualification contract, or reference example bundle is provisioned.
 
-A follow-up provisioning step adds two EP20-local JSON examples under
-`reference_bundles/`:
+The root
+[`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) records the
+current documentary source in the legacy worktree as
+`legacy_steward_acquisition`, identifies the NeuroCam PDF as
+`asset_ep20_neurocam_documentary`, and names
+`planned_steward_acquisition` as the planned durable external root. The asset
+move is `staged_not_moved`; the planned root is `absent_planned_target`. No
+source has been handed off to this directory.
+
+Two JSON examples exist only at `legacy_ep20_reference_bundles`, whose
+destination is unassigned, and are not canonical EP20 inputs. If a future
+trusted provisioning step copies, hashes, and role-labels
+them under `reference_bundles/`, their intended identities are:
 
 - `neurocam_paper_direct_v1.json` is labeled `reference` and `example`;
 - `neurocam_figure_derived_v1.json` is labeled `reference`, `example`, and
   `estimation`.
 
-Both are nonbinding inputs for documentary context and
+Both would be nonbinding inputs for documentary context and
 non-candidate-discriminating simulation sanity checks only. Neither may
 initialize model parameters or the search space, enter reference calibration,
 reference qualification, candidate scoring, or any launch gate. They cannot
 substitute for raw I-V/C-V, a compact model, PDK, netlist, mask/layout, or
 fabrication outcomes.
 
-These contracts are not configuration-lock eligible and do not authorize a
-fit, qualification run, candidate score, or launch. No NeuroCam article
-payload, raw trace, simulator, design-rule package, empirical replay, sealed
-audit asset, compact model, PDK, or fabrication outcome is present here.
+Absent contracts and legacy-only examples are not configuration-lock eligible
+and do not authorize a fit, qualification run, candidate score, or launch. No
+NeuroCam article payload, raw trace, simulator, design-rule package, empirical
+replay, sealed audit asset, compact model, PDK, or fabrication outcome is
+present here.
 
 [`../DATASETS.md`](../DATASETS.md) requires content-addressed, role-filtered
 handoffs for documentary reference, reference calibration, reference
@@ -51,19 +61,16 @@ Before launch, this directory must contain frozen, hashed versions of at least:
 - `EXPOSURE_LEDGER.json` identifying every role and permitted reader.
 
 Their required semantics and unresolved fields are specified in
-[`../SEARCH_POLICY.yaml`](../SEARCH_POLICY.yaml). The five present reference
-contracts instantiate metadata interfaces only, while the two JSON bundles are
-explicitly nonbinding examples. A filename, reported aggregate, or estimate is
-not evidence that a primary payload, fitted model, qualification result, or
-real device asset exists.
+[`../SEARCH_POLICY.yaml`](../SEARCH_POLICY.yaml). These files are planned
+interfaces, not present inputs. A filename, reported aggregate, legacy example,
+or estimate is not evidence that a primary payload, fitted model,
+qualification result, or real device asset exists.
 
 The repository intentionally ignores per-episode `inputs/` payloads except for
-this README. These five contracts are therefore durable OAK-provisioned inputs,
-and the two example bundles follow the same provisioning boundary. They are not
-files carried by a code-only checkout. Any future release must provision and
-verify them separately with the trusted provisioning environment; committing
-the tracked documentation alone neither supplies a self-contained reference
-bundle nor promises a repository-local preflight check.
+this README. Any future contract or example bundle must therefore be
+provisioned and verified separately with the trusted provisioning environment;
+committing the tracked documentation alone neither supplies a self-contained
+reference bundle nor promises a repository-local preflight check.
 
 No candidate output, cache, fitted model, generated field, qualification
 residual, audit QC, partial score, or result may be written under `inputs/`.

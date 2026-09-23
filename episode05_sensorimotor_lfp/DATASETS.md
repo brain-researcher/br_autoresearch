@@ -127,5 +127,6 @@ pipeline may be audited.
 Large source data stay outside Git and are exposed read-only. Durable code,
 manifests, ledgers, predictions, receipts, and reports belong under the eventual
 episode workspace. Transient arrays belong in a dedicated
-`$SCRATCH/autoresearch/` directory. Expensive computation uses Slurm; neither
+`$SCRATCH/br_autoresearch/episode05_sensorimotor_lfp/` directory. Expensive
+computation uses Slurm; neither
 prior run artifacts are writable episode storage.

@@ -15,10 +15,10 @@ provisioned under `inputs/`.
 
 | Source class | Fixed role | Candidate may see outcomes? | Current state |
 | --- | --- | --- | --- |
-| NeuroCam final article and supplement | Documentary architecture and characterization anchors | Yes, before search | Metadata contract present; immutable local payload and rights record absent |
-| Episode-local reference example bundles | Nonbinding documentary context and non-candidate-discriminating simulation sanity checks only | Yes, before search | Paper-direct example and explicitly estimated example provisioned under `inputs/reference_bundles/`; neither is a parameter prior, search-space, fit, qualification, scoring, or launch-gate input |
-| Reference calibration-anchor manifest | Fit the paper-derived reference-model ensemble | Yes | Paper-derived proxy anchor/model contracts present; fit remains input-gated |
-| Reference qualification-anchor manifest | Public documentary anchors excluded from fitting by a frozen role | Published values are visible; the fit may not use them and candidates may not tune from qualification residuals | Role split and pre-run gate present; qualification remains input-gated and unrun |
+| NeuroCam final article and supplement | Documentary architecture and characterization anchors | Yes, before search | Documentary PDF remains in legacy-worktree quarantine as `asset_ep20_neurocam_documentary`; no episode-local handoff or rights record |
+| Episode-local reference example bundles | Nonbinding documentary context and non-candidate-discriminating simulation sanity checks only | Yes, before search | Absent from this canonical checkout; `legacy_ep20_reference_bundles` is not a provisioned EP20 input |
+| Reference calibration-anchor manifest | Fit the paper-derived reference-model ensemble | Yes | Absent; fit remains input-gated |
+| Reference qualification-anchor manifest | Public documentary anchors excluded from fitting by a frozen role | Published values are visible; the fit may not use them and candidates may not tune from qualification residuals | Absent; qualification remains input-gated and unrun |
 | Development surface-field and biophysical generators | Adaptive candidate development | Yes, through frozen aggregate evaluator | Not implemented |
 | Development electronics/device ensemble | Adaptive candidate development | Yes, through frozen aggregate evaluator | Not implemented |
 | Sealed structural audit engine | One-shot virtual audit after lock | No pre-lock access | Source and steward absent |
@@ -26,6 +26,22 @@ provisioned under `inputs/`.
 | Sealed empirical or known-input plausibility partition | Post-lock catastrophic-failure diagnostic; never dense ground truth by assumption | No pre-lock outcome access | Exact source/partition absent |
 | PDK, netlist, mask layout, raw NeuroCam traces, wafer/device data | Potential future qualification evidence | Role must be assigned before access | No public accession or local handoff identified |
 | Fabricated candidate tile/full array/in-vivo comparison | Future physical episode only | No EP20 role | Absent and not authorized |
+
+## Physical-location record
+
+The canonical checkout has no repository-local `.steward_acquisition` tree.
+The root
+[`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json) identifies the
+current documentary quarantine as `legacy_steward_acquisition`, groups its
+NeuroCam asset as `asset_ep20_neurocam_documentary`, and records
+`planned_steward_acquisition` as the planned durable external root. The asset
+move is `staged_not_moved`; the planned root is `absent_planned_target`.
+The two legacy JSON examples are separately inventoried as
+`legacy_ep20_reference_bundles` with no approved destination.
+
+This location record does not provision the PDF, metadata contracts, example
+bundles, raw traces, or any role-filtered handoff into EP20. It carries no
+readiness or launch-gate effect.
 
 ## Immutable documentary reference
 
@@ -61,9 +77,11 @@ mask set, a complete DAQ schematic, or a validated digital twin.
 
 ## Episode-local reference examples
 
-Two small JSON bundles are provisioned under `inputs/reference_bundles/` for
-EP20-only documentary context and non-candidate-discriminating simulation
-sanity checks:
+No JSON reference bundle is provisioned under `inputs/reference_bundles/` in
+this canonical checkout. Two small examples exist only in the legacy
+worktree. They are inventory candidates, not EP20 inputs, and remain absent
+unless a future trusted provisioning step copies, hashes, and role-labels them.
+If provisioned, their intended roles would be:
 
 - `neurocam_paper_direct_v1.json` transcribes paper-direct summary anchors and
   is marked `reference_only`, `example_only`, and not estimation-only.
@@ -71,13 +89,14 @@ sanity checks:
   manual visual estimates and is marked `reference_only`, `example_only`, and
   `estimation_only`.
 
-These files are nonbinding examples. They are not authoritative for the
+Such files would be nonbinding examples. They are not authoritative for the
 reference-model fit or qualification split, are not candidate-score inputs,
 cannot initialize model parameters or the search space, and have no
 launch-gate effect. They cannot substitute for raw I-V/C-V, compact-model,
-PDK, netlist, mask/layout, or fabrication-outcome assets. The existing
-`NEUROCAM_ANCHORS.yaml` and `REFERENCE_ANCHOR_SPLIT.yaml` remain the role
-contracts for any future paper-derived calibration and qualification work.
+PDK, netlist, mask/layout, or fabrication-outcome assets. The planned
+`NEUROCAM_ANCHORS.yaml` and `REFERENCE_ANCHOR_SPLIT.yaml` would be role
+contracts for future paper-derived calibration and qualification work; neither
+file is currently present here.
 
 ## Paper-supported architecture anchors
 
@@ -525,12 +544,13 @@ an uncontrolled duplicate of papers, device traces, or large simulations.
 At drafting time:
 
 - the final paper, DOI, preprint DOI, and aggregate anchors are identified;
-- five metadata-only paper-derived proxy contracts now define source,
-  anchors, role separation, model scope, and the unrun qualification gate;
-- two OAK-provisioned JSON examples provide nonbinding paper-direct and
-  explicitly estimated context only;
-- those contracts are not configuration-lock eligible and authorize neither
-  reference fitting nor candidate scoring;
+- the documentary PDF remains quarantined in the legacy worktree under
+  `asset_ep20_neurocam_documentary`, with its durable move still
+  `staged_not_moved` and target still `absent_planned_target`;
+- the five planned metadata-only paper-derived proxy contracts are absent;
+- the two legacy JSON examples are not provisioned in this canonical episode;
+- no absent contract or legacy example is configuration-lock eligible or
+  authorizes reference fitting or candidate scoring;
 - no immutable paper/supplement copy or hash is present in this episode;
 - no raw NeuroCam calibration handoff, PDK, netlist, DRC, layout, or DAQ code is
   provisioned;
@@ -542,10 +562,10 @@ At drafting time:
 - no resource compiler or qualification evaluator exists; and
 - no candidate-discriminating signal or device outcome has been opened here.
 
-This episode reference material adds traceable paper-derived proxy definitions
-and labeled examples only. It adds no real I-V/C-V payload, compact model, PDK,
-raw NeuroCam trace, fabrication outcome, execution authority, or
-physical-device validation.
+This episode documentation specifies planned paper-derived proxy definitions
+and example roles only. It adds no provisioned reference bundle, real I-V/C-V
+payload, compact model, PDK, raw NeuroCam trace, fabrication outcome, execution
+authority, or physical-device validation.
 
 These are launch blockers, not invitations to substitute guessed parameters or
 to weaken the claim silently.

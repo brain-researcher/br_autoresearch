@@ -13,10 +13,27 @@ ready. Shared adaptive-search rules are in
 | WAY-EEG-GAL Figshare collection v2 | open development, no-feedback series-8 lock, and public series-9 additional campaign-sealed evaluation | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
 | Kaggle Grasp-and-Lift EEG Detection | historical task/split/metric specification only | not a scientific source handoff |
 | Self-paced/free-choice EEG reaching Figshare v1 | 15-participant development set plus 8-participant whole-person replication set | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
-| AJILE12 DANDI published version | deferred exploratory ECoG extension only | 55 archives materialized in steward quarantine; final SHA-256 completion receipt pending as of 2026-09-22 |
+| AJILE12 DANDI published version | deferred exploratory ECoG extension only | Acquisition complete for 55 archives in legacy-worktree quarantine; no role-filtered handoff |
 
 No candidate may substitute a preprocessed mirror, notebook cache, or moving
 dataset draft for a pinned source below.
+
+### Physical-location record
+
+The canonical checkout has no repository-local `.steward_acquisition` tree.
+Resolve these sources through
+[`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json):
+
+- `legacy_steward_acquisition` is the current legacy-worktree quarantine;
+- `asset_ep19_public_sources`, `asset_ep19_safe_commit`, and
+  `asset_ep19_ajile12` identify the EP19 acquisitions within that quarantine;
+  and
+- `planned_steward_acquisition` is their planned durable external root and
+  remains `absent_planned_target`.
+
+The EP19 assets remain `staged_not_moved`. These identifiers describe storage
+inventory only: they are not extracted, role-filtered episode handoffs and do
+not change the launch-blocked state.
 
 ## WAY-EEG-GAL
 
@@ -31,7 +48,7 @@ dataset draft for a pinned source below.
 | Descriptor | `10.1038/sdata.2014.47` |
 | Official utilities | `https://github.com/luciw/way-eeg-gal-utilities` |
 | Conservative license policy | CC BY 4.0 |
-| Read-only local source | `.steward_acquisition/ep19_public_sources/archives/way/`; acquisition-verified quarantine, not an episode handoff |
+| Read-only local source | Logical asset `asset_ep19_public_sources` in the root location manifest; currently quarantined under `legacy_steward_acquisition`, not an episode handoff |
 
 The descriptor reports a CC BY 4.0 release, while the current Figshare API
 reports CC0 for the child records. EP19 uses the more conservative CC BY 4.0
@@ -186,7 +203,7 @@ endpoint's full upper edge. Outcome-dependent truncation is ineligible.
 | Bytes | 13,591,548,048 |
 | MD5 | `3b7c3039c5c9fb6abf1429a830301711` |
 | License | CC BY 4.0 |
-| Read-only local source | `.steward_acquisition/ep19_public_sources/archives/freewill/Freewill_EEG_Reaching_Grasping.zip`; acquisition-verified quarantine, not an episode handoff |
+| Read-only local source | Logical asset `asset_ep19_public_sources` in the root location manifest; currently quarantined under `legacy_steward_acquisition`, not an episode handoff |
 
 The release contains 23 people, 49 sessions, and 6,808 trials, with raw
 continuous BrainVision EEG, four EOG channels, audio/TRIG, and three-axis wrist
@@ -436,18 +453,22 @@ Training cannot start until all applicable checks pass:
 
 ## Current local inventory and readiness
 
-The steward quarantine now contains 12 official WAY participant archives and
-the official Freewill archive: 13 archives totaling 23,930,807,095 bytes. All
+The legacy-worktree quarantine represented by `asset_ep19_public_sources` now
+contains 12 official WAY participant archives and the official Freewill
+archive: 13 archives totaling 23,930,807,095 bytes. All
 provider byte sizes and MD5 values passed, and all 13 local SHA-256 values were
 independently rechecked. The exact `Safe1` commit source and license are also
 acquisition-verified. These archives remain unextracted, outside episode
 `inputs/`, and unavailable to candidate workers.
 
-All 55 AJILE12 archives (845,869,698,341 expected bytes) have been materialized
-in their separate deferred-extension quarantine. Final aggregate SHA-256
-verification job `44680486` was still running at this 2026-09-22 inventory
-update, so AJILE12 is not yet a completed acquisition and remains ineligible for
-the primary claim regardless.
+All 55 AJILE12 archives (845,869,698,341 expected bytes) remain in their
+separate legacy deferred-extension quarantine as `asset_ep19_ajile12`. Its move
+is `staged_not_moved`, while the planned destination is
+`absent_planned_target`. The acquisition has an `ACQUISITION_COMPLETE_UTC`
+marker, an asset manifest, and a verified count/byte receipt for all 55 assets
+and 845,869,698,341 payload bytes. Acquisition completion is not a role-filtered
+EP19 handoff or readiness receipt, and AJILE12 remains ineligible for the
+primary claim regardless.
 
 No signal or event-level audit outcome was read during acquisition. Public
 metadata, source code, archive inventory, and aggregate paper information are
