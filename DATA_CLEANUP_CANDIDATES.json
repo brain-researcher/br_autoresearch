@@ -1,0 +1,206 @@
+{
+  "schema_version": "br-autoresearch-cleanup-candidates-v1",
+  "observed_at": "2026-09-23T14:29:44-07:00",
+  "location_manifest": "DATA_LOCATION_MANIFEST.json",
+  "location_manifest_sha256_at_review": "298eff1e9bf468f51ace53120a15e00a26cb8bf9906b4c980fd70d27eee2c14b",
+  "scope": "Cleanup A exact-path candidates only",
+  "inventory_digest_semantics": "Metadata-only digest over path, type, mode, uid, gid, device, inode, link count, size, mtime, and symlink target; it is not a content hash or equivalence proof.",
+  "authority": {
+    "receipt_preparation_authorized": true,
+    "quarantine_authorized": false,
+    "permanent_deletion_authorized": false
+  },
+  "quarantine_policy": {
+    "minimum_hold_days": 7,
+    "scratch_root": "/scratch/users/zijiao/.autoresearch_cleanup_quarantine",
+    "oak_root": "/oak/stanford/groups/russpold/users/zijiao/.autoresearch_cleanup_quarantine",
+    "roots_exist_at_observation": false,
+    "compatibility_symlink_allowed": false,
+    "cross_filesystem_copy_fallback_allowed": false
+  },
+  "excluded_from_cleanup_a": [
+    "Every whole episode directory, including scratch_ep04 and scratch_ep05",
+    "The EP04 neural_release subtree until the steward relocation is verified",
+    "Historical NARPS checkpoints and every frozen-prior tree",
+    "EP02 recovery, evaluator-vault, restricted, or role-separated material",
+    "OpenBHB, EP20 examples, and other data without an assigned durable archive",
+    "The legacy autoresearch worktree as a whole"
+  ],
+  "candidates": [
+    {
+      "logical_id": "scratch_things_eeg1_ingest",
+      "batch": "cleanup_a",
+      "cleanup_scope": "entire completed ingest staging root",
+      "source_path": "/scratch/users/zijiao/autoresearch_ingest/things_eeg1",
+      "quarantine_root": "/scratch/users/zijiao/.autoresearch_cleanup_quarantine",
+      "source_snapshot": {
+        "device_id": "3863872424",
+        "inode": "180156263953379646",
+        "mode": "0755",
+        "allocated_bytes": 59759665152,
+        "directories": 232,
+        "regular_files": 556,
+        "symlinks": 302,
+        "other": 0,
+        "logical_file_bytes": 59755703730,
+        "inventory_format": "nul-safe-length-prefixed-stat-v1",
+        "inventory_sha256": "0f4cfb4572adc6101d0ce60251889b50d24bf2d0b0a2d97f1c501c56579f98d0"
+      },
+      "scientific_payload": {
+        "source_path": "/scratch/users/zijiao/autoresearch_ingest/things_eeg1/openneuro-ds003825-v1.2.0/source",
+        "authoritative_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source",
+        "expected_regular_files": 412,
+        "expected_logical_bytes": 59435654496,
+        "mapping": "same_relative_paths"
+      },
+      "evidence_paths": [
+        "/scratch/users/zijiao/autoresearch_ingest/things_eeg1/openneuro-ds003825-v1.2.0/source_metadata/annex-md5-verification.log",
+        "/scratch/users/zijiao/autoresearch_ingest/things_eeg1/openneuro-ds003825-v1.2.0/source_metadata/regular-md5-verification.log",
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source_metadata/oak-annex-md5-verification.log",
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source_metadata/oak-regular-md5-verification.log"
+      ],
+      "required_equivalence": "Immediately before quarantine, rerun per-file provider-MD5 or SHA256 verification over both current 412-file scientific trees and compare the newly generated results. Separately inventory and explicitly approve disposition of the other 144 regular files and 302 already-broken internal annex links in the whole-root cleanup unit; historical logs alone are insufficient.",
+      "expected_reclaim_allocated_bytes": 59759665152,
+      "quarantine_authorized": false,
+      "permanent_deletion_authorized": false
+    },
+    {
+      "logical_id": "scratch_ep05_payload",
+      "batch": "cleanup_a",
+      "cleanup_scope": "payload leaf only; never the whole EP05 runtime",
+      "source_path": "/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp/source/zenodo_7055668/payload",
+      "quarantine_root": "/scratch/users/zijiao/.autoresearch_cleanup_quarantine",
+      "source_snapshot": {
+        "device_id": "3863872424",
+        "inode": "180156236690458015",
+        "mode": "0750",
+        "allocated_bytes": 9571819520,
+        "directories": 1,
+        "regular_files": 25,
+        "symlinks": 0,
+        "other": 0,
+        "logical_file_bytes": 9571571204,
+        "inventory_format": "nul-safe-length-prefixed-stat-v1",
+        "inventory_sha256": "c38ce08f174cf68937c1460bbc0e03154d8aefce38d10fa8fa855ed02a34ec16"
+      },
+      "scientific_payload": {
+        "source_path": "/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp/source/zenodo_7055668/payload",
+        "authoritative_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source",
+        "expected_regular_files": 25,
+        "expected_logical_bytes": 9571571204,
+        "mapping": "same_relative_paths"
+      },
+      "evidence_paths": [
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source_metadata/provider_sha256_manifest.tsv",
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source_metadata/verification.json"
+      ],
+      "required_equivalence": "On Slurm, recompute all 25 source SHA256 values and compare them with the durable provider manifest immediately before quarantine.",
+      "expected_reclaim_allocated_bytes": 9571819520,
+      "quarantine_authorized": false,
+      "permanent_deletion_authorized": false
+    },
+    {
+      "logical_id": "personal_link_001201_full",
+      "batch": "cleanup_a",
+      "cleanup_scope": "entire independent personal LINK copy",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_full",
+      "quarantine_root": "/oak/stanford/groups/russpold/users/zijiao/.autoresearch_cleanup_quarantine",
+      "source_snapshot": {
+        "device_id": "3626059016",
+        "inode": "144123848743260577",
+        "mode": "2770",
+        "allocated_bytes": 12564307968,
+        "directories": 3,
+        "regular_files": 313,
+        "symlinks": 0,
+        "other": 0,
+        "logical_file_bytes": 12563297344,
+        "inventory_format": "nul-safe-length-prefixed-stat-v1",
+        "inventory_sha256": "2f23fc71803d05b7de904c60ee13a5a2291d935281a82f97ad7d1c0b81044cc7"
+      },
+      "scientific_payload": {
+        "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_full/001201",
+        "authoritative_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source",
+        "expected_regular_files": 313,
+        "expected_logical_bytes": 12563297344,
+        "mapping": "same_relative_paths"
+      },
+      "evidence_paths": [
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source_metadata/verification.json",
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source_metadata/verify_download.py"
+      ],
+      "required_equivalence": "On Slurm, verify all 312 NWB files against provider SHA256 on both copies and independently hash dandiset.yaml.",
+      "expected_reclaim_allocated_bytes": 12564307968,
+      "quarantine_authorized": false,
+      "permanent_deletion_authorized": false
+    },
+    {
+      "logical_id": "personal_link_001201_sentinels",
+      "batch": "cleanup_a",
+      "cleanup_scope": "three independent personal sentinel copies",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_sentinels",
+      "quarantine_root": "/oak/stanford/groups/russpold/users/zijiao/.autoresearch_cleanup_quarantine",
+      "source_snapshot": {
+        "device_id": "3626059016",
+        "inode": "144123848743260569",
+        "mode": "2770",
+        "allocated_bytes": 131903488,
+        "directories": 1,
+        "regular_files": 3,
+        "symlinks": 0,
+        "other": 0,
+        "logical_file_bytes": 131890716,
+        "inventory_format": "nul-safe-length-prefixed-stat-v1",
+        "inventory_sha256": "714e2b3ef1503fdb9e5dc6020137d3a5f439c40cc494c8511a7156faee3c0290"
+      },
+      "scientific_payload": {
+        "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_sentinels",
+        "authoritative_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source/sub-Monkey-N",
+        "expected_regular_files": 3,
+        "expected_logical_bytes": 131890716,
+        "mapping": "same_basenames"
+      },
+      "evidence_paths": [
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source_metadata/verification.json"
+      ],
+      "required_equivalence": "Recompute and compare SHA256 for the 20200127, 20211116, and 20230622 sentinel NWB files immediately before quarantine.",
+      "expected_reclaim_allocated_bytes": 131903488,
+      "quarantine_authorized": false,
+      "permanent_deletion_authorized": false
+    },
+    {
+      "logical_id": "personal_epic_ptir_coating",
+      "batch": "cleanup_a",
+      "cleanup_scope": "single independent personal workbook copy",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/epic_ptir_coating",
+      "quarantine_root": "/oak/stanford/groups/russpold/users/zijiao/.autoresearch_cleanup_quarantine",
+      "source_snapshot": {
+        "device_id": "3626059016",
+        "inode": "144123848743260574",
+        "mode": "2770",
+        "allocated_bytes": 139264,
+        "directories": 1,
+        "regular_files": 1,
+        "symlinks": 0,
+        "other": 0,
+        "logical_file_bytes": 132385,
+        "inventory_format": "nul-safe-length-prefixed-stat-v1",
+        "inventory_sha256": "f86e7ef0888461fb405ddd75ac753ab915f7670d6a46f27b8ac0a50a14732c99"
+      },
+      "scientific_payload": {
+        "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/epic_ptir_coating",
+        "authoritative_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/epic_ptir_coating/mendeley-7p3cxn7jtn-v1/source",
+        "expected_regular_files": 1,
+        "expected_logical_bytes": 132385,
+        "mapping": "same_relative_paths"
+      },
+      "evidence_paths": [
+        "/oak/stanford/groups/russpold/data/br_autoresearch_data/epic_ptir_coating/mendeley-7p3cxn7jtn-v1/source_metadata/verification.json"
+      ],
+      "required_equivalence": "Recompute the workbook SHA256 and require b8aa78b253b162a2dbb6c3cc28c1c834f9e18fb982482e975a6cf3a5b8a3bf99 immediately before quarantine.",
+      "expected_reclaim_allocated_bytes": 139264,
+      "quarantine_authorized": false,
+      "permanent_deletion_authorized": false
+    }
+  ]
+}

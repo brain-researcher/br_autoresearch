@@ -209,6 +209,16 @@ promotion or cleanup cannot be implemented as an atomic rename. A future
 cleanup must first prove that the durable copy is complete, byte-verified,
 role-correct, and independently readable.
 
+The separately reviewed Cleanup A allowlist and procedure are in
+[`DATA_CLEANUP_CANDIDATES.json`](DATA_CLEANUP_CANDIDATES.json) and
+[`DATA_CLEANUP_RUNBOOK.md`](DATA_CLEANUP_RUNBOOK.md). Five owner-private
+v2 planning receipts were prepared under the external `manifests/` namespace
+on 2026-09-23; each preserves the exact candidate catalog it hashes. Five
+earlier v1 planning receipts are retained there as explicitly superseded audit
+history. These records contain advisory metadata snapshots only: every
+verification gate is pending, quarantine and deletion remain unauthorized,
+and neither quarantine root exists.
+
 The canonical launcher and current episode documentation now use
 `$SCRATCH/br_autoresearch/<episode-name>/`. Existing
 `$SCRATCH/autoresearch/` content is legacy runtime, including the large EP04
