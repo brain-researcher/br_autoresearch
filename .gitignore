@@ -5,6 +5,27 @@
 # Keep only the small README that preserves the directory in a fresh clone.
 /*/inputs/*
 !/*/inputs/README.md
+!/episode01_narps_deep_search/inputs/prior_lineage/
+!/episode01_narps_deep_search/inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json
+/episode01_narps_deep_search/inputs/prior_lineage/materialized/
+
+# Relocated legacy NARPS prior records retain large local-only payloads. These
+# nested paths need explicit rules because the generic episode rules above
+# intentionally match only direct children of the repository root.
+/_examples/historical_prior_records/episode01_narps_analysis/inputs/*
+/_examples/historical_prior_records/episode02_narps_analysis/inputs/*
+/_examples/historical_prior_records/episode01_narps_analysis/outputs/logs/
+/_examples/historical_prior_records/episode01_narps_analysis/outputs/cache/
+/_examples/historical_prior_records/episode01_narps_analysis/outputs/tmp/
+/_examples/historical_prior_records/episode01_narps_analysis/outputs/subject_maps/
+/_examples/historical_prior_records/episode01_narps_analysis/outputs/group_maps/
+/_examples/historical_prior_records/episode02_narps_analysis/outputs/logs/
+/_examples/historical_prior_records/episode02_narps_analysis/outputs/cache/
+/_examples/historical_prior_records/episode02_narps_analysis/outputs/tmp/
+/_examples/historical_prior_records/episode02_narps_analysis/outputs/subject_maps/
+/_examples/historical_prior_records/episode02_narps_analysis/outputs/group_maps/
+/_examples/historical_prior_records/*/outputs/.codex-episode/
+/_examples/historical_prior_records/*/outputs/.codex-episode.lock
 
 # Local Codex launch/session controls are operational state, not authority.
 /*/outputs/.codex-episode/
@@ -36,6 +57,7 @@ slurm-*.out
 slurm-*.err
 
 # Large derived data belong in OAK episode storage, not the lightweight root repo.
+.evaluator_vault/
 *.nii
 *.nii.gz
 *.npy

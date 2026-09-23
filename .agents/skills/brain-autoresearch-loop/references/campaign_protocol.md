@@ -53,6 +53,12 @@ approval, independent confirmation, claim adjudication, or Landscape update.
 Negative and technical terminals are Society-ineligible and do not call
 Society.
 
+The lane name is conventional, not a magic phrase: any unambiguous scientist
+request to start this native-goal exploration, or the scientist's own launcher
+invocation, is sufficient. Drafting, readiness, or setup requests alone do not
+authorize launch, and an agent must not invoke the launcher to manufacture that
+authority.
+
 Prepare only against the authenticated owner’s `codex_autoresearch_v1` loop at
 `DISCOVERING`, and bind the exact source revision into the handoff. Submit must
 revalidate that binding before it records the terminal bundle.
@@ -73,14 +79,15 @@ prior evidence; inspect the exposed schema and attempt high-level
 unavailable, rejected, or failed attempt in `outputs/idea_search.json` as
 non-blocking client-maintained workspace provenance; screen the canonical
 fifteen `PatternId` values exactly once in canonical order; record one through
-three advisory ideation pattern steps per candidate: record `official_submode`
-only when the actual C00--C30 card informed formulation; otherwise use
-`parent_pattern_only` for canonical fifteen-`PatternId` classification; use
-`unknown_pattern` only when no canonical `PatternId` fits. Do not force a
-C00--C30 ID for a canonical candidate or fabricate a 31-submode lineage; then
+three advisory ideation pattern steps per candidate. `official_submode` is
+optional: use it only when the actual C00--C30 card informed formulation and an
+authoritative mapping from that card to a canonical `PatternId` can be verified
+from the available source. Otherwise, use the schema-supported, non-blocking
+`parent_pattern_only` classification and omit `submode_id`; use
+`unknown_pattern` only when no canonical `PatternId` fits. Do not force or
+fabricate C00--C30 lineage; then
 freeze its typed trace and V3 selection record before candidate-discriminating
-target outcome access. The full mapping and record boundary are in
-[`autoresearch_goal_ideation_v3.md`](../../../docs/specs/autoresearch_goal_ideation_v3.md).
+target outcome access.
 The V3 trace starts phenomenon-first by default
 (`research_mode: phenomenon_driven`); `theory_driven` and
 `instrument_validation` are explicit choices. The ordinary bounded strategy

@@ -16,9 +16,10 @@ write authority to any other OAK location.
 - Each episode must contain `GOAL.md`, `DATASETS.md`, `inputs/`, and `outputs/`.
   Treat `inputs/` as read-only.  Put all new scientific artifacts, including
   the seven required Markdown projections, under that episode's `outputs/`.
-- The canonical authority for episode state, actions, Society packets, reward,
-  launch approval, and Landscape transitions is the configured Brain
-  Researcher MCP service.  Local Markdown is a readable projection only.
+- The configured Brain Researcher MCP service remains the authority for
+  Society packets, reward, accepted claims, and Landscape transitions. It is
+  not a prerequisite for starting an explicitly requested episode-managed
+  exploration run. Local episode state and artifacts describe that run only.
 - Do not set `BR_AUTORESEARCH_DATA_ROOT` in a Sherlock client shell to point
   at this OAK directory.  The live MCP service currently resolves its own
   canonical storage under `/app/jobstore/autoresearch`; OAK is the workspace
@@ -29,10 +30,12 @@ write authority to any other OAK location.
 - Never replay an action from local notes or an old terminal.  Query canonical
   state again, especially when resuming an episode.
 
-## Required episode documents
+## Required episode documents (project-local policy)
 
-The project-local `$brain-autoresearch-loop` skill is authoritative for their
-format and update rules.  Initialize and maintain these under
+The project-local `$brain-autoresearch-loop` skill is authoritative when an
+episode opts into the canonical Brain Researcher review/reward workflow. For a
+standalone episode-managed run, use the same seven projections as the local
+format and update convention. Initialize and maintain them under
 `<episode>/outputs/`:
 
 1. `experiment_log.md`
@@ -42,6 +45,9 @@ format and update rules.  Initialize and maintain these under
 5. `loop.md`
 6. `landscape.md`
 7. `verification.md`
+
+This seven-file projection requirement is a local reproducibility policy, not
+an MCP state-transition gate.
 
 The six non-log projections are not `candidate_bundle.json` artifacts and must
 never be declared in the bundle's `output_artifacts`.  They must not be treated
@@ -57,15 +63,28 @@ optional supplemental context under the project-local skill contract.
 - Do not put credentials, tokens, or private keys in this repository.  The
   project MCP configuration reads `BR_MCP_TOKEN` from the environment.
 
-## Versioning and frozen history
+## Versioning and frozen prior history
 
-- `episode01_narps_analysis` and `episode02_narps_analysis` predate this root
-  bootstrap.  Their existing artifacts are frozen historical material: do not
-  rewrite, rename, or retroactively normalize them.
-- Before `bin/codex-episode launch`, `GOAL.md` and `DATASETS.md` must be
-  tracked and clean at this root repository's current `HEAD`.  This creates a
-  reproducibility pin for the local contract; it does not replace the
-  canonical MCP freeze or any scientific gate.
+- `_examples/historical_prior_records/episode01_narps_analysis` and
+  `_examples/historical_prior_records/episode02_narps_analysis` predate this
+  root bootstrap. They were relocated once from the repository root by an
+  explicit scientist instruction on 2026-09-22. Their contents and canonical
+  identities remain immutable prior records: do not rewrite, rename, delete,
+  or retroactively normalize them. Do not reward or otherwise mutate a legacy
+  canonical record as part of work on the new EP01; any such action requires
+  its own explicit scientist-authorized turn and a fresh canonical-state read.
+  Their former EP01/EP02 display aliases do not make either directory a current
+  episode.
+- The current formal EP01 is `episode01_narps_deep_search`. It may consume the
+  legacy records only through its verified, episode-local, content-addressed
+  prior packet. Never read live sibling outputs during a run, and never reuse a
+  legacy loop or Goal handoff as the new episode identity.
+- `bin/codex-episode launch` requires an explicit user invocation plus
+  `GOAL.md`, `DATASETS.md`, one search policy, and the episode's `inputs/` and
+  `outputs/` directories. It snapshots the exact contract bytes and current
+  Git HEAD but does not require a clean commit or a canonical receipt. Data
+  validation, runtime qualification, falsification, held-out evaluation, and
+  any audit logic are executed and recorded inside the episode.
 - Commit only deliberate, reviewable changes.  Do not run `git add`, `git
   commit`, `git push`, or any other Git mutation unless the user explicitly
   requests it.
@@ -75,15 +94,21 @@ optional supplemental context under the project-local skill contract.
 
 ## Launching Codex
 
-Use `bin/codex-episode` from this root.  It starts Codex with the episode as
-its writable working directory and adds only that episode's scratch directory.
-`inputs/` remains an instruction-level read-only boundary inside the writable
-episode workspace; the launcher does not claim OS-level input isolation:
+`bin/codex-episode` starts Codex with the episode as its writable working
+directory and adds only that episode's scratch directory. `inputs/` remains an
+instruction-level read-only boundary inside the writable episode workspace;
+the launcher does not claim OS-level input isolation. The episode is
+responsible for enforcing its own data roles and recording any limitation this
+creates. Resume uses an explicit Codex session identifier and the same bounded
+workspace; the first successful resume records that identifier and later
+resumes reject a different one:
 
 ```bash
 bin/codex-episode launch episodeNN_topic
 bin/codex-episode resume episodeNN_topic <codex-session-id>
 ```
 
-The launcher grants bounded native exploration only.  It does not itself call
-MCP, submit Slurm jobs, change Git, approve an experiment, or advance science.
+The launcher grants bounded episode-managed exploration only. It does not
+itself call MCP, submit Slurm jobs, change Git, approve a scientific claim, or
+advance Landscape state. Brain Researcher review and reward can be requested
+afterward without becoming a prerequisite for doing the episode work.

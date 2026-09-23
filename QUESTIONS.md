@@ -1,66 +1,61 @@
 # Questions for future episodes
 
-This is a backlog, not an automatic launch queue. One episode should take one
-question or a tightly connected pair.
+This is a backlog, not an automatic launch queue. The authoritative coverage
+map is `portfolios/foundation20/CROSSWALK.md`.
 
-## Analysis decisions in NARPS
+## Formal pre-launch contract — F20-17
 
-### What does smoothing actually change?
+The new local EP02 is
+`episode02_dopamine_learning_rate_causality`, now a counted formal adaptive
+contract rather than a backlog draft. Its materialization integrity passed,
+but the role handoff is `materialized_unsealed` because the same UID can read
+the provider source and a network-enabled worker can reacquire it. Generic
+calibration v2 returned `selected_rule: null` (0 of 216 eligible), so no primary
+audit opening or positive terminal is authorized. The next readiness work is
+to freeze endpoint/time semantics and the assignment or conditional-
+exchangeability contract, establish a real role firewall, run endpoint-
+faithful calibration with a presigned absolute raw-unit margin and independent
+validation, obtain scientist signoff, finish the author-code port/configuration
+and resource profile, and bind a permission-separated evaluator and canonical
+program.
 
-- **Why:** the strongest first-pass sensitivity may be concentrated in the
-  transition from unsmoothed to smoothed maps, not in the difference between
-  two smoothing kernels.
-- **Data:** NARPS `ds001734` FitLins outputs and the frozen episode01/02 records.
-- **Next experiment:** compare kernel-matched operators, edge/core masks, and
-  amplitude-versus-shape effects under a fixed exclusion and confound rule.
+## Highest-priority incomplete Foundation question
 
-### Are exclusion effects cohort-wide or subject-driven?
+### THINGS concepts versus image-specific features — F20-10
 
-- **Why:** a median over excluded subjects can hide one influential participant
-  or one group-specific numerical failure.
-- **Data:** the same NARPS source with exact subject-level provenance.
-- **Next experiment:** predeclare influence summaries, bootstrap calibration,
-  and a second analysis path before inspecting the target comparison.
+- **Question:** Does EEG object semantics generalize across exemplars after
+  controlling color, shape, texture, and image-model features?
+- **Why:** it adds a new modality with a direct competing explanation.
+- **Current state:** proposed ep18 has the complete THINGS-EEG1 source EEG
+  release verified and read-only, but it is an incomplete, non-counted draft.
+- **Minimum next step:** perform controlled extraction of the acquired THINGS
+  archive, freeze the exact image-event join and participant roles, construct
+  isolated development/audit views, and add the search policy, workspace
+  projections, and shared EP17/EP18 exposure ledger.
 
-### Which decision family dominates after scale is normalized?
+## Still missing formal Foundation episodes
 
-- **Why:** raw map sum-of-squares can mix scientific sensitivity with units,
-  scaling floors, and near-zero variance estimates.
-- **Data:** NARPS maps plus explicit numerical diagnostics.
-- **Next experiment:** perform variance attribution on normalized, interpretable
-  endpoints with matched negative controls.
+IBC functional fingerprints (F20-03); the remaining NSD questions (F20-06 to
+F20-08); AVS pre-fixation selection (F20-09); both human BCI questions
+(F20-14, F20-15); the remaining behavior/circuit questions F20-16 and F20-18;
+the spatial-null brain-map meta-analysis (F20-20); and the incomplete F20-10
+THINGS draft. These are the 11 Foundation questions without formal direct or
+bounded contracts. Rajagopalan and Kathman
+source releases are already acquisition-verified for F20-16 and F20-18;
+what is missing is their episode-specific extraction, QC, immutable handoff,
+and split/exposure contracts.
 
-## N-back measurement
+F20-05 now has a formal CNeuroMod-only Episode 17 contract. Its
+128.145 GiB neural/structural manifest and provenance archive are locally
+checksum-verified. The original THINGS archive and exact CNeuroMod subset are
+also acquired under recorded terms, but remain encrypted and unextracted.
+Controlled extraction, exact image-event alignment, the taxonomy,
+events-derived 480/120/120 concept split, role-aware views,
+model/ROI/ceiling/margin and terminal-contract manifests, the EP17/EP18
+exposure decision, and the evaluator are EP17 bootstrap tasks before scored
+search or held-out evaluation; they do not block starting the episode.
 
-### Is there an eligible discovery/retest/transport split?
-
-- **Why:** LR/RL runs in one visit are not an independent session, and two
-  datasets called `n-back` may have incompatible events, ages, or outcomes.
-- **Data:** HCP-YA, AOMIC `ds002785`/`ds002790`, and a still-unverified NDA root.
-- **Next experiment:** outcome-blind inventory of task semantics, sessions,
-  behavior, access terms, derivatives, and non-overlapping data roles.
-
-### Can reliability improve without losing construct validity?
-
-- **Why:** optimizing ICC alone can produce a stable assay that measures the
-  wrong thing.
-- **Data:** one verified discovery source with held-out subjects and a genuine
-  development retest if available.
-- **Next experiment:** bounded Pareto search over assay representations, with
-  locked ROI and whole-brain baselines.
-
-### What survives independent transport without retuning?
-
-- **Why:** a useful result should identify both invariant components and the
-  task/site/population boundaries where they fail.
-- **Data:** a sealed, task-compatible external cohort selected before the assay
-  is locked.
-- **Next experiment:** one-shot replay of a single frozen signature with motion,
-  category, site, behavior, and difficulty controls.
-
-## Propose another question
-
-Add a short entry with four things: the question, why it is worth answering,
-the data that may answer it, and the smallest discriminating experiment. It is
-fine to start with a broad phenomenon. The runner can help formulate a bounded
-test after the proposal is reviewed.
+For each, add one primary scientific question, why it matters, exact available
+data, the smallest discriminating test, major falsifiers, and an exposure-safe
+split. Do not count ROI choices, model variants, or robustness checks as new
+episodes.

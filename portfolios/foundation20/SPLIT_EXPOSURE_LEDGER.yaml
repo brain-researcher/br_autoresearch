@@ -1,0 +1,173 @@
+schema_version: autoresearch.split_exposure_ledger.v1
+observed_on: "2026-09-22"
+
+asset_families:
+  - asset_id: narps_ds001734
+    episodes:
+      - ep01
+    historical_prior_records:
+      - prior_id: narps_prior_v1
+        former_display_alias: ep01
+      - prior_id: narps_prior_v2
+        former_display_alias: ep02
+    design_examples:
+      - narps_deep_search_template
+    exposure: neural_outcomes_open
+    confirmation_status: not_untouched
+    shared_requirement: new_ep01_must_use_a_verified_episode_local_content_addressed_prior_packet_and_frozen_development_manifests
+    rule: preserve frozen prior runs; all ds001734 search and folds are development only and contribute no independent confirmation
+
+  - asset_id: openneuro_ds000005_mixed_gambles
+    episodes:
+      - ep01
+    exposure: public_dataset_and_metadata_open_existing_5mm_derivative_filenames_observed_candidate_discriminating_arrays_forbidden_to_ep01_discovery
+    confirmation_status: independently_collected_procedure_sealed_one_shot_transport_audit_not_globally_pristine
+    missing_requirement: exposure_audit_payload_merkle_commitment_role_filtered_handoff_permission_separated_runner_synthetic_rejection_tests_and_scientist_signed_contrast_threshold_contract
+    rule: open_once_after_ep01_configuration_lock_emit_only_predeclared_metrics_never_resume_search_or_substitute_runner_up
+
+  - asset_id: neuroeffect_openneuro_51_reported
+    episodes:
+      - ep03
+    exposure: full_corpus_used_in_external_development_pilot
+    confirmation_status: not_untouched
+    rule: flag every prior-touched dataset and require prospectively sealed future data for confirmation
+
+  - asset_id: functional_fusion_mdtb_zenodo_16788784_v1_0
+    episodes:
+      - ep15
+    exposure: provider_publication_and_prior_analyses_open_local_metadata_filenames_reginfo_design_shapes_and_archive_structure_inspected_no_beta_voxel_outcomes_opened_by_ep15_preflight
+    confirmation_status: internal_procedure_sealed_not_untouched_external_confirmation
+    observed_collision_check: current_ep03_docs_have_no_explicit_mdtb_reference_but_accession_manifest_is_absent_and_ds002105_crosswalk_is_required
+    shared_requirement: outcome_blind_12_12_roles_plus_role_filtered_development_A_B_audit_anatomy_A_and_evaluator_only_audit_B_handoffs
+    rule: crosswalk_ep03_against_openneuro_ds002105_then_use_all_18_B_only_conditions_with_seven_domain_weighting_never_mount_mixed_audit_archives_or_published_MDTB_fitted_parameters_to_the_controller_and_require_new_participants_or_a_compatible_sealed_dataset_for_external_confirmation
+
+  - asset_id: laion_fmri_scene_corpus
+    episodes:
+      - ep04
+    exposure: episode_outcomes_open
+    confirmation_status: governed_by_active_canonical_loop
+    rule: do not reuse or move while ep04 is active
+
+  - asset_id: natural_scenes_dataset_core_and_synthetic
+    episodes: []
+    planned_foundation_topics: [F20-06, F20-07, F20-08]
+    related_episodes:
+      - ep04
+    exposure: provider_publications_Conwell_model_results_and_NSD_synthetic_results_open_remote_object_names_inspected_no_local_neural_payload
+    confirmation_status: not_current_EP17_source_NSD_synthetic_not_pristine_audit
+    existing_assets: public_remote_object_store_with_assumehrf_fithrf_and_fithrf_GLMdenoise_RR_products_but_no_observed_separate_core_Type_C_directory
+    missing_requirement: future_episode_specific_DUA_content_addressed_manifest_and_split_exposure_contract
+    rule: do_not_infer_EP04_or_future_NSD_evidence_independence_from_different_local_episode_numbers_and_never_attribute_the_public_fithrf_to_final_edge_to_denoise_or_ridge_alone
+
+  - asset_id: cneuromod_things
+    episodes:
+      - ep17
+    prospective_collision:
+      - ep18
+    exposure: provider_publication_and_repository_open_37_object_128_145_GiB_plus_Zenodo_archive_acquisition_verified_job_44586404_original_THINGS_and_exact_CNeuroMod_image_archives_acquired_under_recorded_research_noncommercial_acceptance_central_directories_audited_no_neural_array_or_image_pixel_parsed
+    confirmation_status: public_source_campaign_sealed_same_participant_heldout_concept_audit_not_external_confirmation
+    existing_assets: frozen_tag_1_0_1_root_glmsingle_behaviour_and_anatomy_commits_exact_size_MD5_manifest_for_four_participant_Type_B_C_D_D_ceiling_events_design_masks_and_aparcaseg_plus_verified_full_THINGS_metadata_original_image_archive_exact_CNeuroMod_subset_and_THINGSplus_CC0_control_archive
+    missing_requirement: controlled_stimulus_extraction_exact_per_image_hash_event_join_role_safe_feature_handoff_frozen_taxonomy_events_derived_common_image_universe_480_120_120_global_concept_roles_role_filtered_neural_handoffs_recomputed_B_C_D_ceilings_anatomical_ROI_crosswalk_numeric_contracts_hashed_terminal_contract_universe_and_evaluator
+    shared_requirement: reserve_concept_disjoint_EP17_EP18_roles_or_freeze_the_complete_EP18_design_before_any_EP17_audit_neural_outcome_access
+    rule: final_readout_and_voxel_coefficients_fit_on_development_concepts_only_then_applied_once_without_refit_to_sealed_concepts_in_the_same_four_people_no_cross_dataset_new_participant_or_population_claim_and_no_post_audit_subset_rescue
+
+  - asset_id: dryad_xd2547dkt
+    episodes:
+      - ep05
+      - ep06
+      - ep07
+      - ep08
+    exposure: neural_outcomes_open_in_ep05
+    confirmation_status: ep06_ep07_ep08_are_new_exploratory_questions_not_confirmation
+    shared_requirement: one content-addressed structural asset pack and one cross-episode exposure log
+    rule: never import ep05 candidate status reward review or mutable outputs as evidence
+
+  - asset_id: seu_a1876_zenodo_13944322
+    episodes:
+      - ep09
+      - ep10
+      - ep11
+    exposure: metadata_inspected_outcomes_not_locally_provisioned
+    confirmation_status: episodes_are_not_independent_from_each_other
+    shared_requirement: one cell identity biological group duplicate exposure and whole-brain split ledger
+    rule: freeze shared evaluation roles before the first candidate-discriminating morphology outcome is opened
+
+  - asset_id: braingate_long_term_array_performance_dryad_x0k6djj1h_v6
+    episodes:
+      - ep16
+    exposure: provider_publication_and_summary_outputs_open_T5_T11_direct_prior_method_exposure_T10_session_level_summary_rows_viewed_local_raw_mat_neural_values_not_opened
+    confirmation_status: publication_exposed_campaign_sealed_internal_procedure_audit_only
+    existing_assets: verified_24_file_84729840092_byte_Dryad_v6_source_with_729_decoding_and_2289_yield_sessions
+    missing_requirement: target_schedule_only_structural_support_and_exposure_screen_whole_participant_6_3_role_manifest_post_role_scorable_mask_exact_outer_folds_numeric_method_and_rank_bounds_final_m_star_recipe_role_filtered_handoffs_human_signed_margins_frozen_measurement_emulator_admissible_excess_and_random_null_and_permission_separated_audit_runner
+    shared_requirement: all_sessions_and_arrays_for_each_participant_stay_on_one_side_T5_T10_T11_development_only_one_cross_session_outcome_exposure_ledger
+    rule: never treat source_target_pairs_sessions_blocks_trials_arrays_or_electrodes_as_independent_participants_and_never claim_offline_transport_as_historical_online_closed_loop_performance
+
+  - asset_id: openneuro_ds000114_local_derived
+    episodes: []
+    planned_role: bounded_F20_03_canary_not_yet_created
+    exposure: included_in_prior_full56_effect_pairs_development_with_840_cross_task_pairs
+    confirmation_status: not_untouched_exploratory_only
+    existing_assets: 100_bold_tensors_and_280_effect_rows_plus_280_z_rows
+    missing_requirement: source_map_provenance_reference_affine_masks_confounds_qc_completeness_hashes_and_cross_session_task_family_split
+    rule: do not count contrast rows as independent samples or present this short_interval_same_scanner canary as IBC validation
+
+  - asset_id: neurosynth_v7_local_source_snapshot
+    episodes: []
+    planned_role: F20_20_source_for_episode_not_yet_created
+    exposure: source_present_prior_analysis_use_not_yet_audited
+    confirmation_status: unresolved_until_exposure_and_publication_split_are_frozen
+    existing_assets: coordinates_metadata_abstract_term_tfidf_and_rebuildable_nimare_cache
+    missing_requirement: canonical_manifest_coordinate_policy_concept_family_ledger_cognitive_maps_annotations_transforms_and_spatial_null_bank
+    rule: byte_identical_mirror_and_serialized_cache_are_not_independent_sources; split publications globally before map generation
+
+  - asset_id: rajagopalan_operant_matching_zenodo_7449214
+    episodes: []
+    planned_role: F20_16_source_for_episode_not_yet_created
+    exposure: provider_publication_and_outputs_open_campaign_specific_use_not_yet_audited
+    confirmation_status: unresolved_until_trial_schema_exposure_and_splits_are_frozen
+    existing_assets: official_archive_with_choice_reward_history_contingency_and_figure_organized_derived_files_with_duplicate_fly_names
+    missing_requirement: schema_first_candidate_outcome_blind_extraction_trial_schema_qc_immutable_handoff_duplicate_grouping_and_whole_fly_block_contingency_split_ledger
+    rule: freeze whole_fly identities first and never random_split trials across a fly; define contiguous_block and contingency holdouts separately
+
+  - asset_id: dudman_learning_rate_figshare_21816054_v1
+    episodes:
+      - ep02
+    planned_role: formal_F20_17_direct_exact_prelaunch_contract
+    exposure: provider_publication_and_aggregate_direction_open_exact_role_packs_materialized_with_integrity_PASS_superseded_uncommitted_local_phase0_v1_emitted_two_per_record_prelaunch_fields_before_any_candidate_search_or_controller_and_their_values_are_conservatively_exposed_regardless_of_viewing_author_script_exposed_control_outcome_rank_labels_handoff_materialized_unsealed_same_UID_source_readable_and_network_reacquisition_possible
+    superseded_prelaunch_exposure:
+      artifact: uncommitted_local_phase0_v1_packet
+      timing: before_any_candidate_search_or_controller
+      fields:
+        - stimulated_trial_count
+        - declared_contingency_structurally_consistent
+      values_recorded_here: false
+      exposure_treatment: permanently_exposed_regardless_of_whether_viewed
+      superseded_by: phase0_v2_with_both_fields_removed
+      permanently_excluded_from:
+        - candidate_scoring
+        - model_selection
+        - audit_terminal
+        - amplitude_boundary_interpretation
+    confirmation_status: publication_exposed_role_sequestered_internal_reanalysis_only
+    existing_assets: checksum_verified_24_mouse_aligned_behavior_photometry_and_perturbation_file_sanitized_author_code_cohort_map_exact_hash_bound_role_materialization_full_28_48_trial_SEARCH_POLICY_json_and_outcome_blind_generic_calibration_v2_selected_rule_null_with_zero_of_216_eligible
+    missing_requirement: separate_principal_no_network_confidentiality_firewall_verified_endpoint_trialID_lickState_and_701_sample_time_axis_semantics_assignment_mechanism_or_presigned_conditional_exchangeability_receipt_endpoint_faithful_binomial_or_beta_binomial_calibration_presigned_absolute_raw_unit_margin_and_scale_floor_independent_validation_scientist_signoff_author_code_port_configuration_lock_resource_profile_permission_separated_evaluator_and_canonical_binding
+    rule: all_nine_controls_are_development_only_primary_audit_is_the_atomic_whole_mouse_6_stimLick_minus_vs_5_stimLick_plus_contrast_and_must_not_open_while_selected_rule_is_null_mice_21_24_are_post_primary_non_rescuing_amplitude_boundary_never_use_the_two_superseded_phase0_v1_fields_for_candidate_scoring_model_selection_audit_terminal_or_boundary_interpretation_never_random_split_trials_or_mount_or_reacquire_the_provider_MAT_on_candidate_workers_and_treat_462_label_enumeration_as_conditional_exchangeability_unless_the_assignment_receipt_proves_the_design
+
+  - asset_id: kathman_working_memory_zenodo_20053990
+    episodes: []
+    planned_role: F20_18_source_for_episode_not_yet_created
+    exposure: provider_publication_and_outputs_open_campaign_specific_use_not_yet_audited
+    confirmation_status: unresolved_until_sync_nuisance_exposure_and_splits_are_frozen
+    existing_assets: official_processed_two_photon_behavior_pid_and_confocal_archives_with_42_one_fly_syncstruct_files
+    missing_requirement: neural_behavior_synchronization_qc_content_and_navigation_state_contract_immutable_handoff_whole_fly_trial_roi_split_ledger
+    rule: group all trials and ROIs from each fly and freeze position_speed_odor_and_navigation nuisance controls before outcome inspection
+
+  - asset_id: flyem_male_cns_v1_0_flat_connectome
+    episodes:
+      - ep12
+    planned_role: ep12_primary_source
+    exposure: provider_publication_and_annotations_open_local_schema_six_field_bilateral_feasibility_and_stage_a_annotation_category_frequency_scenarios_inspected_connectivity_derived_tables_not_inspected
+    confirmation_status: single_specimen_exploratory_source_not_untouched_biological_replication
+    existing_assets: acquisition_verified_11_file_flat_connectome_release_with_four_file_graph_core_and_full_synapse_tables
+    missing_requirement: non_bids_resolver_frozen_annotation_provenance_known_structure_exclusions_node_universe_endpoint_coverage_whole_type_reciprocal_evaluation_ledger_common_low_rank_model_and_degree_type_neuropil_aware_nulls
+    rule: never random_split edges as independent samples; group held_out neurons_types_or_homolog_units and do not claim population_level_or_cross_sex_generalization from one male specimen

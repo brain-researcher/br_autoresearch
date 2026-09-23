@@ -1,0 +1,234 @@
+schema_version: autoresearch.episode_readiness.v1
+observed_on: "2026-09-22"
+readiness_model_ref: READINESS_MODEL.yaml
+canonical_authority: Brain Researcher MCP
+scope: optional_canonical_confirmation_projection_not_local_launch
+
+portfolio_blockers:
+  - blocker_id: trusted_canonical_receipt_verifier_absent
+    class: canonical_program
+    description: >-
+      The local validator has no signed-receipt verifier or fresh server lookup
+      capable of proving issuer, freshness, supersession, registered program,
+      episode uniqueness, and the exact contract manifest. It therefore rejects
+      every locally asserted canonical_ready state.
+    resolution_authority: canonical_service
+  - blocker_id: trusted_isolated_launch_broker_absent
+    class: canonical_program
+    description: >-
+      bin/codex-episode is a same-UID episode launcher. A separately deployed
+      broker would still be needed for an optional externally attested
+      canonical confirmation, but not for local episode launch or resume.
+    resolution_authority: shared
+  - blocker_id: registered_inner_adaptive_program_absent
+    class: canonical_program
+    description: >-
+      The observed codex_autoresearch_v1 profile implements outer-loop
+      governance but no registered program has been verified to implement the
+      required inner adaptive controller, append-only trial ledger,
+      incumbent/challenger tournament, and one-shot evaluation interface. That
+      is a canonical-confirmation gap, not a local launch blocker.
+    resolution_authority: canonical_service
+  - blocker_id: mutable_runtime_state_not_yet_bound
+    class: canonical_program
+    description: >-
+      No current episode has a fresh optional canonical binding receipt tying
+      an exact registered program version to the episode identity and policy
+      hash. Local episode-managed execution does not require one.
+    resolution_authority: canonical_service
+
+active_episode_review: ep07
+review_queue:
+  - ep07
+  - ep12
+  - ep14
+  - ep01
+  - ep02
+  - ep15
+  - ep16
+  - ep17
+  - ep19
+  - ep06
+  - ep08
+  - ep09
+  - ep10
+  - ep11
+  - ep04
+  - ep13
+  - ep03
+  - ep05
+  - ep20
+
+episodes:
+  - episode_id: ep01
+    path: episode01_narps_deep_search
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [contract, development_handoff, audit_boundary, trusted_evaluator, identity_collision]
+    next_gate: Materialize the content-addressed prior/development/audit surfaces and reconcile legacy canonical identities.
+  - episode_id: ep02
+    path: episode02_dopamine_learning_rate_causality
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [contract, scientific_freeze, audit_boundary, trusted_evaluator, compute_profile, canonical_program]
+    next_gate: Enforce permission-separated source and audit access, freeze endpoint and assignment semantics, and bind endpoint-faithful calibration, the evaluator, and the canonical adaptive program.
+  - episode_id: ep03
+    path: episode03_condition_semantics_effect_maps
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [source, audit_boundary, external_data]
+    next_gate: Authenticate the map-level development handoff and identify a genuinely prospective audit group.
+  - episode_id: ep04
+    path: episode04_shared_scene_geometry
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [development_handoff, audit_boundary, exposure_ledger, identity_collision]
+    next_gate: Build role-filtered LAION handoffs and prove that the 371 OOD trials remain campaign-sealed.
+  - episode_id: ep05
+    path: episode05_sensorimotor_lfp
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, audit_boundary, external_data, identity_collision]
+    next_gate: Build the shared LFP development pack and secure prospective compatible whole-session audit data.
+  - episode_id: ep06
+    path: episode06_lfp_regional_fingerprints
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, development_handoff, audit_boundary]
+    next_gate: Freeze one shared LFP pack and the internal 4+2 whole-session role manifest.
+  - episode_id: ep07
+    path: episode07_lfp_session_transfer
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [source, shared_evidence, development_handoff, audit_boundary, trusted_evaluator, compute_profile]
+    next_gate: Launch EP07; perform numeric source/roster checks, runtime profiling, controller qualification, falsification, and held-out evaluation inside the episode.
+    notes: Compatibility fields above apply only to optional canonical confirmation; explicit local episode launch is allowed.
+  - episode_id: ep08
+    path: episode08_lfp_electrode_trial_policy
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, development_handoff, audit_boundary, trusted_evaluator]
+    next_gate: Freeze the shared LFP pack, pilot/acquisition/evaluation roles, and sequential replay evaluator.
+  - episode_id: ep09
+    path: episode09_local_global_projection
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, source, development_handoff, audit_boundary]
+    next_gate: Authenticate cell-to-brain lineage and verify at least 12 development and 8 sealed biological groups.
+  - episode_id: ep10
+    path: episode10_single_cell_coprojection
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, source, development_handoff, compute_profile]
+    next_gate: Complete the shared SEU build and verify recurring-pair support plus the 99 full-search-null executor profile.
+  - episode_id: ep11
+    path: episode11_projection_types_vs_gradients
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [shared_evidence, source, scientific_freeze, audit_boundary, compute_profile]
+    next_gate: Freeze lineage, model classes, spatial nulls, and the shared 12-development/8-audit group split.
+  - episode_id: ep12
+    path: episode12_malecns_type_sufficiency
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scientific_freeze, development_handoff, audit_boundary, trusted_evaluator, compute_profile]
+    next_gate: Freeze the annotation-only whole-type eligibility and reciprocal 80/20 role manifest before connectivity access.
+  - episode_id: ep13
+    path: episode13_bold_target_identifiability
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scientific_freeze, trusted_evaluator, identity_collision]
+    next_gate: Reconcile the several live BOLD-identifiability loops before independently freezing the exact checker and case generator.
+  - episode_id: ep14
+    path: episode14_openbhb_roi_site_generalization
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [exposure_ledger, audit_boundary, trusted_evaluator]
+    next_gate: Sign the public-label exposure audit, then construct the network-disabled evaluator-only label join.
+  - episode_id: ep15
+    path: episode15_mdtb_topography_vs_geometry
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scientific_freeze, development_handoff, audit_boundary, trusted_evaluator, exposure_ledger]
+    next_gate: Verify all-24 common-space support and freeze the Task-B-blind 12/12 participant roles.
+  - episode_id: ep16
+    path: episode16_braingate_cross_session_failure_modes
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [source, scientific_freeze, development_handoff, audit_boundary, trusted_evaluator]
+    next_gate: Snapshot the writable mixed source immutably, then run the trusted schedule-only support scan and freeze 6/3 roles.
+  - episode_id: ep17
+    path: episode17_cneuromod_model_ranking_stability
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scientific_freeze, development_handoff, audit_boundary, shared_evidence, trusted_evaluator]
+    next_gate: Complete controlled pixel extraction and event hashing, then jointly freeze EP17/EP18 concept roles before neural outcome access.
+  - episode_id: ep19
+    path: episode19_causal_motor_forecasting_benchmark
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scientific_freeze, development_handoff, audit_boundary, trusted_evaluator]
+    next_gate: Inventory the verified WAY and Freewill archives structurally, then freeze timing/onset rules and role-filtered handoffs without waiting for AJILE.
+  - episode_id: ep20
+    path: episode20_neurocam_prior_guided_codesign
+    readiness: {state: provisioning, manifest_ref: null}
+    execution: {state: not_started}
+    evidence: {status: not_evaluated}
+    canonical_binding: null
+    compatibility: {launch_blocked: true, launch_eligible: false}
+    blocking_classes: [scope_decision, source, external_data, scientific_freeze, trusted_evaluator]
+    next_gate: Choose collaborator-grade engineering inputs or formally narrow the claim to a paper-derived virtual reference before implementation.

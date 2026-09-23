@@ -24,19 +24,20 @@ of the campaign is to see how broadly an agent can search, how deeply it can
 follow the most promising branches, and whether that produces more informative
 and reproducible science.
 
-One episode does not pretend to exhaust that space. It first maps several
-meaningfully different candidate directions, then carries at most one or two
-into deeper falsification, ablation, sensitivity, and negative-control work.
-Unexplored branches and failed ideas remain available to later episodes. Across
-more than 100 episodes, we can study both breadth and depth without confusing a
-larger search with a license to select whichever analysis happens to look best.
-Here, a better result means a sharper test, a more reproducible or transportable
-finding, or a well-supported reason to stop. It does not mean a smaller
-`p`-value.
+The ordinary bounded-search lane first maps several meaningfully different
+candidate directions, then carries at most one or two into deeper
+falsification, ablation, sensitivity, and negative-control work. The
+[adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md) supports many more
+outcome-adaptive successor cycles inside a frozen grammar, append-only ledger,
+finite round budget, and one-shot audit. Across more than 100 episodes, we can
+study both breadth and depth without confusing a larger search with a license
+to select whichever analysis happens to look best. Here, a better result means
+a sharper test, a more reproducible or transportable finding, or a
+well-supported reason to stop. It does not mean a smaller `p`-value.
 
-## How the loop is designed
+## How the loops are designed
 
-The basic loop is:
+The ordinary bounded Goal/confirmation lane is:
 
 ```text
 question + data
@@ -48,19 +49,42 @@ question + data
     -> next question
 ```
 
+The adaptive-search lane inserts a governed development loop inside one approved
+round:
+
+```text
+approved round + frozen policy
+    -> branch coverage
+    -> hypothesis -> development trial -> falsifier -> successor
+    -> incumbent/challenger decisions until a valid stop
+    -> configuration lock
+    -> episode-managed locked held-out evaluation
+    -> finding, refutation, limitation, or incomplete search
+```
+
+Society and scientist authority still govern the round and any scientific
+promotion; development trials do not individually become accepted findings.
+
 ### 1. Start with a question
 
-Each episode starts with `GOAL.md` and `DATASETS.md`.
+Each episode starts with `GOAL.md` and `DATASETS.md`. A formal adaptive episode
+also has a schema-valid search policy, normally `SEARCH_POLICY.yaml` (EP02 uses
+the JSON-equivalent `SEARCH_POLICY.json`). An explicit scientist invocation of
+`bin/codex-episode launch` starts the episode. Data checks, runtime
+qualification, search validation, falsification, configuration lock, and
+held-out evaluation then occur inside that episode and are recorded under its
+`outputs/`. Root readiness projections and Brain Researcher canonical bindings
+may support later review or claim governance, but they are not launch gates.
 
 The Goal can be specific:
 
-> Does a category-balanced 2-back versus 0-back pattern remain reliable across
-> sessions after controlling for motion and task difficulty?
+> Do condition-description features reduce held-out-dataset map error beyond a
+> task-family prototype under a dataset-grouped split?
 
 It can also be broad:
 
-> I want to know which parts of the n-back response are stable across sessions
-> and cohorts, and which parts only work for one task or site.
+> I want to know which aspects of an experimental condition predict brain-map
+> geometry across studies, and where that relationship stops generalizing.
 
 Brain Researcher can help turn either form into a testable research question.
 The scientist still decides whether the rewritten Goal is the right question.
@@ -182,23 +206,24 @@ An episode may use one, several, or none of these routes.
 
 ## Data already available on Sherlock
 
-The first version of the campaign will mainly explore data that are already
-available on Sherlock, including processed fMRI outputs and curated public
-source releases.
+The first version of the campaign will mainly explore data that have already
+been processed on Sherlock.
 
-The main starting points fall into three broad groups:
+As of 2026-08-19, the main shared starting points are:
 
-| Category | What is available | Main Sherlock location |
-| --- | --- | --- |
-| Processed human fMRI | 54 OpenNeuro FitLins result directories and 9 fMRIPrep directories | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins` |
-| HCP-YA | Task-fMRI derivative and connectivity roots; detailed inventory is still pending | `/oak/stanford/groups/russpold/data/HCP_YA` |
-| Curated public releases | 14 source releases spanning human neuroimaging, meta-analysis, animal behavior, neural imaging, and morphology | `/oak/stanford/groups/russpold/data/br_autoresearch_data` |
+| Data | Count | Path |
+| --- | ---: | --- |
+| OpenNeuro FitLins result directories | 54 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses` |
+| OpenNeuro fMRIPrep directories | 9 | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep` |
+| HCP-YA derivatives | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP-YA-BIDS` |
+| HCP connectivity data | not yet inventoried here | `/oak/stanford/groups/russpold/data/HCP_YA/HCP1200_PTN` |
 
-See [DATA_CATALOG.md](DATA_CATALOG.md) for the current releases, versions,
-sizes, licenses, paths, and important usage notes. The catalog describes what
-is available; it does not assign data to discovery, validation, or confirmation
-in advance. Each episode makes that decision from its scientific question and
-records it before looking at the relevant outcomes.
+These counts mean that the directories exist. Each episode still checks the
+task, subjects, events, contrasts, confounds, files, access rules, and which
+data must remain untouched for confirmation.
+
+See [DATA_CATALOG.md](DATA_CATALOG.md) for the shared releases, versions,
+storage locations, and access notes currently available on Sherlock.
 
 ## What someone needs to submit
 
@@ -208,6 +233,7 @@ The main inputs are two files:
 episodeNN_short_name/
 ├── GOAL.md
 ├── DATASETS.md
+├── SEARCH_POLICY.yaml (or schema-equivalent SEARCH_POLICY.json)
 ├── inputs/README.md
 └── outputs/README.md
 ```
@@ -217,6 +243,9 @@ possible analysis methods. Brain Researcher can help rephrase it.
 
 `DATASETS.md` says which data you want to use, where they are, what is already
 known, and what still needs to be checked. Imaging data do not go into Git.
+
+The search policy freezes the admissible grammar, objectives, branch coverage,
+budgets, falsifiers, stopping rule, and one-shot audit boundary.
 
 Once the Goal looks right, open a pull request. I will review the proposal,
 merge accepted episodes, and run them together on Sherlock. I currently have
@@ -228,14 +257,34 @@ Sherlock.
 
 ## Repository record
 
-Every episode is tracked from the time its Goal is proposed. We keep its Goal,
-dataset notes, code, analysis choices, failed attempts, figures, tables,
-reports, and final status. Large imaging data and temporary compute files stay
-outside Git.
+Each formal episode has one current Goal, dataset contract, and search policy.
+Once a run starts, its trials and failures belong in the append-only ledger and
+current output workspace; superseded local version directories are not kept.
+Large imaging data and temporary compute files stay outside Git.
 
-- [CAMPAIGN.md](CAMPAIGN.md) lists the episodes and their current status.
-- [DATA_CATALOG.md](DATA_CATALOG.md) lists shared datasets available on Sherlock.
+- [CAMPAIGN.md](CAMPAIGN.md) lists formal episode slots, their current status,
+  immutable prior runs, and reserved IDs.
+- [DATA_CATALOG.md](DATA_CATALOG.md) lists shared datasets available on
+  Sherlock; episode-specific eligibility and audit boundaries remain governed
+  by each episode's dataset contract.
+- [EPISODE_REGISTRY.yaml](EPISODE_REGISTRY.yaml) separates stable episode IDs,
+  historical prior identities, direct physical paths, and current policy
+  references. The current EP01 is `episode01_narps_deep_search`; the old NARPS
+  runs are frozen in the [historical prior archive](_examples/historical_prior_records/).
+- [Adaptive-evidence policy](ADAPTIVE_EVIDENCE_POLICY.yaml) fail-closes the
+  portfolio so fixed tests and unexecuted search designs cannot be counted as
+  realized adaptive autoresearch.
+- [Adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md),
+  [controller interface](ADAPTIVE_CONTROLLER_INTERFACE.md), and
+  [depth audit](EPISODE_DEPTH_AUDIT.md) define the 19 direct EP01--EP17 except
+  EP18, plus EP19--EP20, contracts, append-only lineage, and one-shot audit
+  boundary. EP18 remains the sole incomplete, uncounted draft.
+- [Unnumbered examples](_examples/README.md) retain reusable design provenance;
+  the NARPS deep-search example now has one formal EP01 instantiation.
 - [LANDSCAPE.md](LANDSCAPE.md) summarizes the research areas we are exploring.
 - [QUESTIONS.md](QUESTIONS.md) contains possible questions for future episodes.
+- [Foundation-20 crosswalk](portfolios/foundation20/CROSSWALK.md) records direct,
+  bounded, partial, adjacent, and missing topic coverage; its exposure ledger
+  prevents shared data from being mislabeled as independent confirmation.
 - [SOCIETY.md](SOCIETY.md) explains the multi-agent review and its limits.
 - [AGENTS.md](AGENTS.md) contains the instructions used by agents running here.

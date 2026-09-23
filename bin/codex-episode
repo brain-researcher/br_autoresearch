@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Start or resume one bounded client-native autoresearch episode on Sherlock.
-# This wrapper only starts Codex. It reads the local Git contract pin, but never
-# mutates MCP, Slurm, or Git state.
+# Start or resume one bounded, episode-managed autoresearch task on Sherlock.
+# This wrapper starts Codex and snapshots the local contract bytes. Data checks,
+# model validation, held-out evaluation, and terminal decisions happen inside
+# the episode rather than acting as portfolio-level launch gates.
 
 set -euo pipefail
 
@@ -12,7 +13,7 @@ usage() {
     '  bin/codex-episode resume <episode-dir> <codex-session-id>' \
     '' \
     'The episode directory must be a direct child of this project root and contain:' \
-    'GOAL.md, DATASETS.md, inputs/, and outputs/'
+    'GOAL.md, DATASETS.md, one SEARCH_POLICY.{yaml,json}, inputs/, and outputs/'
   exit 2
 }
 
@@ -45,9 +46,15 @@ fi
 [[ $# -eq 0 ]] || usage
 
 root_dir=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
-[[ -f "$root_dir/.codex/config.toml" ]] || error "missing project MCP configuration"
-[[ -f "$root_dir/.agents/skills/brain-autoresearch-loop/SKILL.md" ]] || \
-  error "missing project-local brain-autoresearch-loop skill"
+
+# Sherlock's system Git is old enough not to support `git -C`. Run Git from a
+# subshell rooted at the project instead, preserving the caller's working
+# directory and normal Git/worktree discovery.
+git_in_root() (
+  cd -P -- "$root_dir" || exit 1
+  command git "$@"
+)
+
 if [[ "$episode_arg" == /* ]]; then
   episode_candidate=$episode_arg
 else
@@ -60,7 +67,20 @@ episode_dir=$(cd -P -- "$episode_candidate" && pwd)
 
 for required in GOAL.md DATASETS.md; do
   [[ -f "$episode_dir/$required" ]] || error "missing $required in $episode_dir"
+  [[ ! -L "$episode_dir/$required" ]] || error "$required must not be a symlink"
 done
+policy_file=""
+for policy_candidate in SEARCH_POLICY.yaml SEARCH_POLICY.json; do
+  if [[ -f "$episode_dir/$policy_candidate" ]]; then
+    [[ ! -L "$episode_dir/$policy_candidate" ]] || \
+      error "$policy_candidate must not be a symlink"
+    [[ -z "$policy_file" ]] || \
+      error "episode contains both SEARCH_POLICY.yaml and SEARCH_POLICY.json"
+    policy_file=$policy_candidate
+  fi
+done
+[[ -n "$policy_file" ]] || \
+  error "missing SEARCH_POLICY.yaml or SEARCH_POLICY.json in $episode_dir"
 for required in inputs outputs; do
   [[ -d "$episode_dir/$required" ]] || error "missing $required/ in $episode_dir"
 done
@@ -75,20 +95,20 @@ lock_file="$outputs_dir/.codex-episode.lock"
 [[ ! -L "$lock_file" ]] || error "local Codex lock must not be a symlink"
 
 if [[ "$mode" == "launch" && -e "$episode_dir/outputs/candidate_bundle.json" ]]; then
-  error "launch refuses an episode that already has outputs/candidate_bundle.json; use resume"
+  error "launch found outputs/candidate_bundle.json; resume the original session, or preserve it and start a new episode rather than overwriting it"
 fi
 if [[ "$mode" == "launch" && -e "$control_dir" ]]; then
-  error "episode was already launched locally; use resume with its explicit session id"
+  error "episode has a prior launch marker; resume the correct Codex session instead of starting a second episode task"
 fi
+episode_name=$(basename -- "$episode_dir")
+command -v sha256sum >/dev/null 2>&1 || error "sha256sum is required for the contract snapshot"
 
-[[ -n ${BR_MCP_TOKEN:-} ]] || error "BR_MCP_TOKEN must be set for the project MCP configuration"
 [[ -n ${SCRATCH:-} ]] || error "SCRATCH must be set on Sherlock"
 [[ "$SCRATCH" == /* ]] || error "SCRATCH must be an absolute path"
 [[ -d "$SCRATCH" && -w "$SCRATCH" ]] || error "SCRATCH must already exist and be writable"
 command -v codex >/dev/null 2>&1 || error "codex is not on PATH"
 command -v flock >/dev/null 2>&1 || error "flock is required for episode session isolation"
 
-episode_name=$(basename -- "$episode_dir")
 scratch_root=$(cd -P -- "$SCRATCH" && pwd)
 [[ "$scratch_root" != "/" ]] || error "SCRATCH must not resolve to filesystem root"
 case "$scratch_root/" in
@@ -113,52 +133,28 @@ esac
 exec 9>"$lock_file"
 flock -n 9 || error "another Codex process is already active for $episode_name"
 
-contract_commit=""
-if [[ "$mode" == "launch" ]]; then
-  git_root=$(git -C "$root_dir" rev-parse --show-toplevel 2>/dev/null) || \
-    error "launch requires $root_dir to be a Git worktree"
-  git_root=$(cd -P -- "$git_root" && pwd)
-  [[ "$git_root" == "$root_dir" ]] || error "launch requires $root_dir to be the Git worktree root"
-
-  contract_commit=$(git -C "$root_dir" rev-parse HEAD 2>/dev/null) || \
-    error "launch requires a committed Git HEAD"
-  goal_rel="$episode_name/GOAL.md"
-  datasets_rel="$episode_name/DATASETS.md"
-  for contract_file in "$goal_rel" "$datasets_rel"; do
-    [[ ! -L "$root_dir/$contract_file" ]] || \
-      error "launch requires $contract_file to be a regular tracked file, not a symlink"
-    git -C "$root_dir" ls-files --error-unmatch -- "$contract_file" >/dev/null 2>&1 || \
-      error "launch requires $contract_file to be tracked at HEAD"
-    git -C "$root_dir" diff --quiet -- "$contract_file" || \
-      error "launch requires $contract_file to be clean in the working tree"
-    git -C "$root_dir" diff --cached --quiet -- "$contract_file" || \
-      error "launch requires $contract_file to be clean in the index"
-  done
-fi
-
 launch_prompt() {
   printf '%s\n' \
-    '$brain-autoresearch-loop' \
+    "Run the episode-managed autoresearch workflow for $episode_name." \
     '' \
-    "Launch Autoresearch Goal for $episode_name." \
-    '' \
-    "This command grants bounded client-native candidate discovery for $episode_dir only; it is not confirmation, publication, reward, or Landscape-transition authority." \
-    "The local immutable contract is pinned at Git commit $contract_commit for tracked, clean GOAL.md and DATASETS.md." \
-    "Read the root AGENTS.md, CAMPAIGN.md, LANDSCAPE.md, QUESTIONS.md, and this episode's GOAL.md and DATASETS.md before acting." \
+    "The scientist explicitly invoked this launcher. That authorizes starting bounded work inside $episode_dir, but not publication claims, reward, or changes to sibling episodes." \
+    "The immutable launch copies under $control_dir/contract record Git HEAD $contract_commit and SHA-256 values GOAL=$goal_sha256 DATASETS=$datasets_sha256 POLICY=$policy_sha256. A clean Git tree is not a prerequisite." \
+    "Read the root AGENTS.md, then use $control_dir/contract/GOAL.md, DATASETS.md, and $policy_file as this run's contract. The live root files are authoring copies and may not silently replace the launch snapshot." \
+    "Bootstrap, data-value checks, runtime checks, controller checks, falsification, held-out evaluation, and any audit semantics are episode stages. Perform and record them inside this task; do not wait for a portfolio readiness promotion, external evaluator, audit broker, or canonical receipt before beginning." \
+    "If an internal prerequisite fails, repair it within scope when safe or terminate the episode with an explicit technical/no-candidate record. Never silently weaken the frozen scientific question, split, estimand, or decision rule." \
     "During outcome-blind episode design, optionally inspect clearly named Landscape or Self-evolvable Questions JSON already present under inputs/. If none are present, readable, or relevant, continue without them. Use them only for candidate recall, novelty, rival/control ideas, and claim boundaries; never treat them as evidence, Society decisions, typed idea-source lineage, or launch authority." \
     "Treat inputs/ as read-only. Write new scientific artifacts only under $episode_dir/outputs/. Initialize and maintain the seven outputs Markdown projections required by the project-local skill." \
-    "Use $scratch_dir for transient work and Slurm for expensive computation. Query the configured Brain Researcher MCP service for canonical state and follow the skill's gates." \
-    "Do not modify sibling episodes or root campaign documents, replay stale actions, record reward, approve confirmation, launch canonical execution, or apply a Landscape transition. Stop at the appropriate canonical gate and report the next action."
+    "Use $scratch_dir for transient work and Slurm for expensive computation. Brain Researcher/Society integration may be used later for review or claim governance, but it is not a launch prerequisite for this episode-managed run." \
+    "Do not modify sibling episodes or root campaign documents. Report the episode's realized terminal state and all validation or held-out results without promoting them automatically into shared campaign claims."
 }
 
 resume_prompt() {
   printf '%s\n' \
-    '$brain-autoresearch-loop' \
-    '' \
-    "Resume the existing autoresearch work for $episode_name. This is not authorization to create a new goal, new episode, confirmation run, reward, or scientific transition." \
-    "First query the configured Brain Researcher MCP service for the live canonical state. Do not reuse cached or expired actions from local notes or an old terminal." \
+    "Resume the existing episode-managed autoresearch task for $episode_name." \
+    "Use the unchanged contract copies under $control_dir/contract; the launcher has verified that the live authoring files still match their recorded hashes." \
     "Keep the episode boundary: inputs/ is read-only; new scientific artifacts and the seven required Markdown projections belong only in $episode_dir/outputs/. Use $scratch_dir for transient work and Slurm for expensive computation." \
-    "Do not modify sibling episodes or root campaign documents. Continue only work permitted by the current canonical state, then stop at the next human or canonical gate."
+    "Continue the episode's own bootstrap, search, validation, held-out evaluation, and terminal protocol from its recorded state. Do not wait for a portfolio-level readiness or canonical gate." \
+    "Do not modify sibling episodes or root campaign documents, and do not turn an internal result into a shared claim automatically."
 }
 
 common_args=(
@@ -172,16 +168,71 @@ if [[ -n ${BR_AUTORESEARCH_CODEX_MODEL:-} ]]; then
 fi
 
 if [[ "$mode" == "launch" ]]; then
-  mkdir -- "$control_dir" || error "episode was already launched locally; use resume"
+  mkdir -- "$control_dir" || \
+    error "episode acquired a launch marker concurrently; use the recovery guidance from a fresh launch attempt"
+  launch_state="$control_dir/state"
+  snapshot_dir="$control_dir/contract"
+  mkdir -- "$snapshot_dir"
+  cp -- "$episode_dir/GOAL.md" "$snapshot_dir/GOAL.md"
+  cp -- "$episode_dir/DATASETS.md" "$snapshot_dir/DATASETS.md"
+  cp -- "$episode_dir/$policy_file" "$snapshot_dir/$policy_file"
+  chmod a-w -- "$snapshot_dir/GOAL.md" "$snapshot_dir/DATASETS.md" "$snapshot_dir/$policy_file"
+  goal_sha256=$(sha256sum "$snapshot_dir/GOAL.md" | awk '{print $1}')
+  datasets_sha256=$(sha256sum "$snapshot_dir/DATASETS.md" | awk '{print $1}')
+  policy_sha256=$(sha256sum "$snapshot_dir/$policy_file" | awk '{print $1}')
+  [[ $(sha256sum "$episode_dir/GOAL.md" | awk '{print $1}') == "$goal_sha256" ]] || \
+    error "GOAL.md changed while the launch snapshot was being created"
+  [[ $(sha256sum "$episode_dir/DATASETS.md" | awk '{print $1}') == "$datasets_sha256" ]] || \
+    error "DATASETS.md changed while the launch snapshot was being created"
+  [[ $(sha256sum "$episode_dir/$policy_file" | awk '{print $1}') == "$policy_sha256" ]] || \
+    error "$policy_file changed while the launch snapshot was being created"
+  contract_commit=$(git_in_root rev-parse HEAD 2>/dev/null || printf '%s' unavailable)
+  snapshot_file="$control_dir/contract_snapshot.tsv"
+  printf '%s\t%s\n' \
+    git_head "$contract_commit" \
+    GOAL.md "$goal_sha256" \
+    DATASETS.md "$datasets_sha256" \
+    "$policy_file" "$policy_sha256" > "$snapshot_file"
+  printf '%s\n' "starting" > "$launch_state"
   prompt=$(launch_prompt)
+  set +e
   codex "${common_args[@]}" "$prompt"
-  exit $?
+  launch_status=$?
+  set -e
+  state_tmp="$control_dir/state.$$"
+  if [[ $launch_status -eq 0 ]]; then
+    printf '%s\n' "completed:0" > "$state_tmp"
+  else
+    printf '%s\n' "interrupted_or_failed:$launch_status" > "$state_tmp"
+  fi
+  mv -- "$state_tmp" "$launch_state"
+  exit "$launch_status"
 fi
 
-if [[ -e "$control_dir" && ! -d "$control_dir" ]]; then
-  error "local Codex control path is not a directory"
-fi
-mkdir -p -- "$control_dir"
+[[ -d "$control_dir" ]] || error "resume requires an existing episode launch marker"
+snapshot_dir="$control_dir/contract"
+snapshot_file="$control_dir/contract_snapshot.tsv"
+[[ -d "$snapshot_dir" && ! -L "$snapshot_dir" ]] || \
+  error "resume requires the regular contract snapshot directory created at launch"
+[[ -f "$snapshot_file" && ! -L "$snapshot_file" ]] || \
+  error "resume requires the contract snapshot manifest created at launch"
+snapshot_goal_sha256=$(awk -F '\t' '$1 == "GOAL.md" {print $2}' "$snapshot_file")
+snapshot_datasets_sha256=$(awk -F '\t' '$1 == "DATASETS.md" {print $2}' "$snapshot_file")
+snapshot_policy_sha256=$(awk -F '\t' -v policy="$policy_file" '$1 == policy {print $2}' "$snapshot_file")
+[[ -n "$snapshot_goal_sha256" && -n "$snapshot_datasets_sha256" && -n "$snapshot_policy_sha256" ]] || \
+  error "contract snapshot manifest is incomplete or names a different policy"
+[[ $(sha256sum "$snapshot_dir/GOAL.md" | awk '{print $1}') == "$snapshot_goal_sha256" ]] || \
+  error "snapshotted GOAL.md bytes changed"
+[[ $(sha256sum "$snapshot_dir/DATASETS.md" | awk '{print $1}') == "$snapshot_datasets_sha256" ]] || \
+  error "snapshotted DATASETS.md bytes changed"
+[[ $(sha256sum "$snapshot_dir/$policy_file" | awk '{print $1}') == "$snapshot_policy_sha256" ]] || \
+  error "snapshotted $policy_file bytes changed"
+[[ $(sha256sum "$episode_dir/GOAL.md" | awk '{print $1}') == "$snapshot_goal_sha256" ]] || \
+  error "live GOAL.md changed since launch; start a new episode run for the revised contract"
+[[ $(sha256sum "$episode_dir/DATASETS.md" | awk '{print $1}') == "$snapshot_datasets_sha256" ]] || \
+  error "live DATASETS.md changed since launch; start a new episode run for the revised contract"
+[[ $(sha256sum "$episode_dir/$policy_file" | awk '{print $1}') == "$snapshot_policy_sha256" ]] || \
+  error "live $policy_file changed since launch; start a new episode run for the revised contract"
 session_binding="$control_dir/session_id"
 [[ ! -L "$session_binding" ]] || error "local Codex session binding must not be a symlink"
 if [[ -e "$session_binding" && ! -f "$session_binding" ]]; then
@@ -196,13 +247,23 @@ if [[ -f "$session_binding" ]]; then
 else
   bind_after_success=true
 fi
-
+resume_state="$control_dir/state"
+printf '%s\n' "resuming" > "$resume_state"
 prompt=$(resume_prompt)
 set +e
 codex resume "${common_args[@]}" "$session_id" "$prompt"
 resume_status=$?
 set -e
-if [[ $resume_status -eq 0 && ${bind_after_success:-false} == true ]]; then
-  printf '%s\n' "$session_id" > "$session_binding"
+state_tmp="$control_dir/state.$$"
+if [[ $resume_status -eq 0 ]]; then
+  printf '%s\n' "completed:0" > "$state_tmp"
+  if [[ ${bind_after_success:-false} == true ]]; then
+    binding_tmp="$control_dir/session_id.$$"
+    printf '%s\n' "$session_id" > "$binding_tmp"
+    mv -- "$binding_tmp" "$session_binding"
+  fi
+else
+  printf '%s\n' "interrupted_or_failed:$resume_status" > "$state_tmp"
 fi
+mv -- "$state_tmp" "$resume_state"
 exit "$resume_status"

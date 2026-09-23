@@ -1,0 +1,255 @@
+schema_version: autoresearch.episode_registry.v2
+registry_schema_ref: EPISODE_REGISTRY.schema.json
+observed_on: "2026-09-22"
+canonical_authority: Brain Researcher MCP
+local_authority: filesystem organization and human-readable projections only
+contract_mode: direct_single_current_version
+adaptive_evidence_policy_ref: ADAPTIVE_EVIDENCE_POLICY.yaml
+adaptive_protocol_ref: ADAPTIVE_SEARCH_PROTOCOL.md
+controller_interface_ref: ADAPTIVE_CONTROLLER_INTERFACE.md
+search_policy_schema_ref: SEARCH_POLICY.schema.json
+trial_ledger_schema_ref: TRIAL_LEDGER.schema.json
+readiness_model_ref: READINESS_MODEL.yaml
+readiness_ledger_ref: EPISODE_READINESS.yaml
+readiness_schema_ref: EPISODE_READINESS.schema.json
+
+state_semantics:
+  readiness_authority: >-
+    Optional canonical-confirmation projections only; not consulted by the
+    local episode launcher.
+  execution_authority: explicit_scientist_invocation_then_episode_managed
+  evidence_authority: ADAPTIVE_EVIDENCE_POLICY.yaml
+  launch_blocked_field: inert_legacy_canonical_confirmation_projection
+  launch_blocked_false_rule: >-
+    Applies only to the optional canonical-confirmation lane. The local launcher
+    never reads this field.
+  search_policy_legacy_state_fields: >-
+    Inert immutable authoring-time snapshots. They neither authorize nor block
+    episode-managed execution.
+
+numbering_policy:
+  portfolio_count_excludes_prior_runs: true
+  former_display_aliases_are_lineage_metadata_not_current_ids: true
+  formal_episode_ids_are_not_compacted: true
+
+historical_prior_records:
+  - prior_id: narps_prior_v1
+    former_display_alias: ep01
+    path: _examples/historical_prior_records/episode01_narps_analysis
+    relocated_from: episode01_narps_analysis
+    relocation_authorized_on: "2026-09-22"
+    counts_as_portfolio_episode: false
+    path_mutability: frozen
+    canonical_goal_handoff_id: goal_handoff_e3f79fc20a54776ebf304655
+    canonical_loop_id: arl_8cbd25a7a8610a008c2830ba624052c4
+    canonical_state_observed: COMPLETE
+    canonical_revision_observed: 3
+    canonical_terminal_status_observed: closed_no_candidate
+    reusable_as_current_episode_identity: false
+  - prior_id: narps_prior_v2
+    former_display_alias: ep02
+    path: _examples/historical_prior_records/episode02_narps_analysis
+    relocated_from: episode02_narps_analysis
+    relocation_authorized_on: "2026-09-22"
+    counts_as_portfolio_episode: false
+    path_mutability: frozen
+    canonical_goal_handoff_id: goal_handoff_daf31dc2e8aa7a9965a9a8e7
+    canonical_loop_id: arl_b622657e9fbd000075c5ad5f4cf30c44
+    canonical_state_observed: AWAITING_REWARD
+    canonical_revision_observed: 3
+    canonical_record_nonterminal: true
+    canonical_next_action_id_observed: ara_96998496972c58df9e3e3c4abbe9b33e
+    canonical_next_action_observed: record_reward
+    canonical_next_action_expires_at_utc: "2026-08-18T03:57:24.294608Z"
+    cached_action_replay_allowed: false
+    reusable_as_current_episode_identity: false
+
+reserved_episode_ids: []
+
+incomplete_draft_records:
+  - proposed_episode_id: ep18
+    path: episode18_things_eeg_concept_stability
+    status: incomplete_local_draft
+    counts_as_portfolio_episode: false
+    present_contracts: [GOAL.md, DATASETS.md]
+    missing_contracts:
+      - SEARCH_POLICY.yaml
+      - inputs/README.md
+      - outputs/README.md
+      - seven_workspace_projections
+    launch_blocked: true
+
+shared_evidence_groups:
+  - group_id: lfp_ep05_ep08
+    episode_ids: [ep05, ep06, ep07, ep08]
+    required_shared_artifact: exposure_split_ledger
+    evidence_independence: correlated_not_independent
+  - group_id: seu_a1876_ep09_ep11
+    episode_ids: [ep09, ep10, ep11]
+    required_shared_artifact: exposure_split_ledger
+    evidence_independence: correlated_not_independent
+  - group_id: things_ep17_prospective_ep18
+    episode_ids: [ep17]
+    prospective_episode_ids: [ep18]
+    required_shared_artifact: exposure_split_ledger
+    evidence_independence: correlated_unless_concept_roles_or_complete_designs_are_frozen
+
+episodes:
+  - episode_id: ep01
+    path: episode01_narps_deep_search
+    title: Transportable mechanisms of smoothing-induced effect-map change
+    search_policy_ref: episode01_narps_deep_search/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-01
+    canonical_binding: null
+    legacy_canonical_records_require_identity_nonreuse_check: true
+    prepare_collision_requires_separate_reconciliation_if_observed: true
+    prior_lineage_ids: [narps_prior_v1, narps_prior_v2]
+    launch_blocked: true
+  - episode_id: ep02
+    path: episode02_dopamine_learning_rate_causality
+    title: Causal mesolimbic dopamine control of learning-rate magnitude
+    search_policy_ref: episode02_dopamine_learning_rate_causality/SEARCH_POLICY.json
+    local_role: current_adaptive_episode
+    foundation_primary: F20-17
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep03
+    path: episode03_condition_semantics_effect_maps
+    title: Transportable condition semantics for effect-map geometry
+    search_policy_ref: episode03_condition_semantics_effect_maps/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-04
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep04
+    path: episode04_shared_scene_geometry
+    title: Shared scene geometry across language vision and brain
+    search_policy_ref: episode04_shared_scene_geometry/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_adjacent: [F20-02]
+    canonical_binding: null
+    existing_canonical_history_requires_reconciliation: true
+    launch_blocked: true
+  - episode_id: ep05
+    path: episode05_sensorimotor_lfp
+    title: Condition-general sensorimotor LFP information
+    search_policy_ref: episode05_sensorimotor_lfp/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_adjacent: [F20-11, F20-13]
+    canonical_binding: null
+    existing_canonical_history_requires_reconciliation: true
+    launch_blocked: true
+  - episode_id: ep06
+    path: episode06_lfp_regional_fingerprints
+    title: Regional LFP recording-domain fingerprints
+    search_policy_ref: episode06_lfp_regional_fingerprints/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-11
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep07
+    path: episode07_lfp_session_transfer
+    title: Calibrated cross-session LFP transfer
+    search_policy_ref: episode07_lfp_session_transfer/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-12
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep08
+    path: episode08_lfp_electrode_trial_policy
+    title: Post-pilot electrode retention and trial allocation
+    search_policy_ref: episode08_lfp_electrode_trial_policy/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-13
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep09
+    path: episode09_local_global_projection
+    title: Dendrite-to-distal-arbor prediction
+    search_policy_ref: episode09_local_global_projection/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_adjacent: [F20-19]
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep10
+    path: episode10_single_cell_coprojection
+    title: Residual single-cell co-projection structure
+    search_policy_ref: episode10_single_cell_coprojection/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_adjacent: [F20-19]
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep11
+    path: episode11_projection_types_vs_gradients
+    title: Projection modes versus continuous gradients
+    search_policy_ref: episode11_projection_types_vs_gradients/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-19
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep12
+    path: episode12_malecns_type_sufficiency
+    title: Predictive sufficiency of MaleCNS curated types
+    search_policy_ref: episode12_malecns_type_sufficiency/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_adjacent: [F20-19]
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep13
+    path: episode13_bold_target_identifiability
+    title: Counterexample-guided exact BOLD identifiability
+    search_policy_ref: episode13_bold_target_identifiability/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: null
+    canonical_binding: null
+    existing_canonical_history_requires_reconciliation: true
+    launch_blocked: true
+  - episode_id: ep14
+    path: episode14_openbhb_roi_site_generalization
+    title: CPU-first OpenBHB site-generalizing brain age
+    search_policy_ref: episode14_openbhb_roi_site_generalization/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: null
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep15
+    path: episode15_mdtb_topography_vs_geometry
+    title: MDTB cerebellar topography versus response geometry
+    search_policy_ref: episode15_mdtb_topography_vs_geometry/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-02
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep16
+    path: episode16_braingate_cross_session_failure_modes
+    title: BrainGate offline cross-session failure signatures
+    search_policy_ref: episode16_braingate_cross_session_failure_modes/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: null
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep17
+    path: episode17_cneuromod_model_ranking_stability
+    title: CNeuroMod measurement-contract stability of visual-model relations
+    search_policy_ref: episode17_cneuromod_model_ranking_stability/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: F20-05
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep19
+    path: episode19_causal_motor_forecasting_benchmark
+    title: Causal prospective movement-onset forecasting benchmark
+    search_policy_ref: episode19_causal_motor_forecasting_benchmark/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: null
+    canonical_binding: null
+    launch_blocked: true
+  - episode_id: ep20
+    path: episode20_neurocam_prior_guided_codesign
+    title: Robust virtual NeuroCam-derived hardware-software co-design
+    search_policy_ref: episode20_neurocam_prior_guided_codesign/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    foundation_primary: null
+    canonical_binding: null
+    launch_blocked: true

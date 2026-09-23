@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autoresearch.adaptive_search_policy.v1",
+  "title": "Adaptive autoresearch episode policy",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "policy_id",
+    "episode_id",
+    "status",
+    "common_protocol_ref",
+    "evidence_mode",
+    "dataset_roles",
+    "grammar",
+    "objectives",
+    "budgets",
+    "branch_coverage",
+    "required_falsifiers",
+    "promotion",
+    "stop",
+    "audit",
+    "terminal_mapping",
+    "canonical_binding"
+  ],
+  "properties": {
+    "schema_version": {"const": "autoresearch.adaptive_search_policy.v1"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "episode_id": {"type": "string", "pattern": "^ep(0[1-9]|1[0-9]|2[0-1])$"},
+    "status": {
+      "const": "planned_unregistered",
+      "deprecated": true,
+      "description": "Immutable contract-authoring snapshot retained for compatibility. Never mutate this field during promotion; mutable state belongs in EPISODE_READINESS.yaml and Brain Researcher receipts."
+    },
+    "common_protocol_ref": {"const": "../ADAPTIVE_SEARCH_PROTOCOL.md"},
+    "evidence_mode": {"const": "adaptive_search"},
+    "dataset_roles": {"type": "object", "minProperties": 2},
+    "grammar": {"type": "object", "minProperties": 1},
+    "objectives": {"type": "object", "minProperties": 1},
+    "budgets": {
+      "type": "object",
+      "required": ["minimum_valid_trials", "maximum_valid_trials", "patience_valid_trials", "cpu_core_hour_ceiling", "gpu_hour_ceiling", "wall_clock_hour_ceiling"]
+    },
+    "branch_coverage": {
+      "type": "object",
+      "required": ["required", "minimum_valid_trials", "rule", "readiness_rejection_must_be_logged"],
+      "properties": {
+        "required": {"const": true},
+        "minimum_valid_trials": {"type": "integer", "minimum": 1},
+        "rule": {"type": "string", "minLength": 1},
+        "readiness_rejection_must_be_logged": {"const": true}
+      }
+    },
+    "full_search_null": {
+      "type": "object",
+      "required": [
+        "controller_operation",
+        "replicates",
+        "initial_ledger_each_replicate",
+        "rerun_complete_controller",
+        "identical_grammar_budgets_stop_and_promotion",
+        "deterministic_controller_replay_required",
+        "proposal_model_version_prompt_sampling_and_seed_frozen",
+        "monte_carlo_p",
+        "pass_threshold",
+        "profiling_must_fit_total_cpu_ceiling_before_outcome_access"
+      ],
+      "properties": {
+        "controller_operation": {"const": "run_full_search_null"},
+        "replicates": {"const": 99},
+        "initial_ledger_each_replicate": {"const": "empty"},
+        "rerun_complete_controller": {"const": true},
+        "identical_grammar_budgets_stop_and_promotion": {"const": true},
+        "deterministic_controller_replay_required": {"const": true},
+        "proposal_model_version_prompt_sampling_and_seed_frozen": {"const": true},
+        "monte_carlo_p": {"type": "string", "minLength": 1},
+        "pass_threshold": {"type": "number", "maximum": 0.05},
+        "profiling_must_fit_total_cpu_ceiling_before_outcome_access": {"const": true}
+      }
+    },
+    "required_falsifiers": {"type": "array", "minItems": 2},
+    "promotion": {
+      "type": "object",
+      "required": [
+        "incumbent_is_terminal",
+        "minimum_adaptive_successor_cycles",
+        "minimum_incumbent_challenger_decisions",
+        "post_coverage_falsifier_fraction_min"
+      ],
+      "properties": {
+        "incumbent_is_terminal": {"const": false},
+        "minimum_adaptive_successor_cycles": {"type": "integer", "minimum": 2},
+        "minimum_incumbent_challenger_decisions": {"type": "integer", "minimum": 2},
+        "post_coverage_falsifier_fraction_min": {"type": "number", "minimum": 0.4, "maximum": 1.0}
+      }
+    },
+    "stop": {"type": "object", "minProperties": 1},
+    "audit": {
+      "type": "object",
+      "required": [
+        "configuration_lock_required",
+        "lock_hash_required",
+        "maximum_open_count",
+        "audit_updates_search"
+      ],
+      "properties": {
+        "configuration_lock_required": {"const": true},
+        "lock_hash_required": {"const": true},
+        "maximum_open_count": {"const": 1},
+        "audit_updates_search": {"const": false}
+      }
+    },
+    "terminal_mapping": {
+      "type": "object",
+      "minProperties": 3,
+      "additionalProperties": {
+        "enum": ["candidate_ready", "closed_no_candidate", "technical_failure"]
+      }
+    },
+    "canonical_binding": {
+      "type": "object",
+      "required": ["canonical_program_id", "registered_program_policy_ref", "search_policy_ref", "launch_blocked"],
+      "deprecated": true,
+      "description": "Immutable unbound-at-authoring snapshot retained for optional canonical-confirmation compatibility. It is inert for episode-managed local launch, and a local policy cannot establish or record its own canonical binding.",
+      "properties": {
+        "canonical_program_id": {"type": "null"},
+        "registered_program_policy_ref": {"type": "null"},
+        "search_policy_ref": {"type": "null"},
+        "launch_blocked": {"const": true, "deprecated": true}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "episode_id": {"enum": ["ep10", "ep11", "ep12"]}
+        },
+        "required": ["episode_id"]
+      },
+      "then": {"required": ["full_search_null"]}
+    }
+  ],
+  "additionalProperties": true
+}

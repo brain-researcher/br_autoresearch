@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autoresearch.episode_registry.v2",
+  "title": "Autoresearch static episode inventory and optional canonical lineage",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "canonical_authority",
+    "readiness_model_ref",
+    "readiness_ledger_ref",
+    "readiness_schema_ref",
+    "state_semantics",
+    "episodes"
+  ],
+  "properties": {
+    "schema_version": {"const": "autoresearch.episode_registry.v2"},
+    "canonical_authority": {"const": "Brain Researcher MCP"},
+    "readiness_model_ref": {"const": "READINESS_MODEL.yaml"},
+    "readiness_ledger_ref": {"const": "EPISODE_READINESS.yaml"},
+    "readiness_schema_ref": {"const": "EPISODE_READINESS.schema.json"},
+    "state_semantics": {
+      "type": "object",
+      "required": ["readiness_authority", "execution_authority", "evidence_authority", "launch_blocked_field"]
+    },
+    "episodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "episode_id",
+          "path",
+          "title",
+          "search_policy_ref",
+          "local_role",
+          "canonical_binding",
+          "launch_blocked"
+        ],
+        "properties": {
+          "episode_id": {"type": "string", "pattern": "^ep(0[1-9]|1[0-9]|2[0-1])$"},
+          "path": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "search_policy_ref": {"type": "string", "minLength": 1},
+          "local_role": {"const": "current_adaptive_episode"},
+          "canonical_binding": {"type": ["object", "null"]},
+          "launch_blocked": {"type": "boolean", "deprecated": true, "description": "Inert legacy canonical-confirmation metadata; ignored by bin/codex-episode."}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
