@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import unittest
@@ -99,6 +100,57 @@ class SearchPolicyTests(unittest.TestCase):
         self.assertEqual(contract["current_environment_status"], "BLOCKED_PENDING_EXTERNAL_PROVISIONING")
         self.assertFalse(contract["same_uid_controls_are_sufficient"])
         self.assertIn("atomic_no_partial_output", contract["required_checks"])
+        self.assertEqual(contract["episode_id"], "ep02")
+        self.assertEqual(contract["trusted_signers"], {})
+        self.assertIsNone(contract["primary_audit_pack_root_sha256"])
+        self.assertIsNone(contract["policy_sha256"])
+        self.assertIsNone(contract["configuration_lock_sha256"])
+        self.assertLessEqual(contract["receipt_validity_seconds_max"], 86400)
+        self.assertLessEqual(contract["clock_skew_seconds_max"], 300)
+        self.assertTrue((EPISODE / handoff["firewall_verifier_ref"]).is_file())
+        self.assertTrue((EPISODE / handoff["external_receipt_template_ref"]).is_file())
+
+    def test_sanitized_cohort_map_is_tracked_and_matches_policy_roles(self) -> None:
+        pin = self.policy["source_pins"]["sanitized_cohort_map"]
+        path = EPISODE / pin["ref"]
+        observed_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+        self.assertEqual(observed_hash, pin["sha256"])
+        self.assertFalse(pin["contains_outcome_values"])
+        cohort_map = json.loads(path.read_text())
+        mapped = {
+            item["cohort_id"]: item["source_records_1_based"]
+            for item in cohort_map["cohorts"]
+        }
+        roles = self.policy["dataset_roles"]
+        self.assertEqual(mapped["development_control"], roles["development_full"]["source_records_1_based"])
+        self.assertEqual(
+            mapped["audit_calibrated_stim_lick_minus"],
+            roles["primary_audit_evaluator_only"]["arms"]["stimLick_minus"]["source_records_1_based"],
+        )
+        self.assertEqual(
+            mapped["audit_calibrated_stim_lick_plus"],
+            roles["primary_audit_evaluator_only"]["arms"]["stimLick_plus"]["source_records_1_based"],
+        )
+        self.assertEqual(
+            mapped["boundary_supraphysiological_stim_lick_plus"],
+            roles["post_primary_boundary_evaluator_only"]["source_records_1_based"],
+        )
+
+    def test_portable_tools_do_not_bind_runtime_packets(self) -> None:
+        roles = self.policy["dataset_roles"]
+        trusted = roles["trusted_mixed_source"]
+        for key in ("phase0_inventory_implementation_ref", "role_materializer_implementation_ref"):
+            self.assertTrue((EPISODE / trusted[key]).is_file())
+        calibration = self.policy["small_n_calibration"]
+        self.assertIsNone(calibration["tracked_result_artifact"])
+        self.assertFalse(calibration["prerequisite_inventory"]["can_make_a_rule_binding"])
+        self.assertFalse(
+            calibration["prerequisite_inventory"]["cryptographic_authority_verification_implemented_here"]
+        )
+        self.assertFalse(
+            calibration["provisional_endpoint_shaped_engine"]["label_endpoint_faithful_before_receipt_resolution_allowed"]
+        )
+        self.assertEqual(self.policy["canonical_binding"]["tracked_runtime_binding_artifacts"], [])
 
     def test_mouse_is_only_inferential_and_resampling_unit(self) -> None:
         scope = self.policy["scientific_scope"]

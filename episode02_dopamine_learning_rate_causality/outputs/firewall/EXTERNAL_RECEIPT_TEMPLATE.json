@@ -1,0 +1,65 @@
+{
+  "attestations": [
+    {
+      "public_key_pem": null,
+      "role": "infrastructure_operator",
+      "signature_base64": null,
+      "signer_id": null
+    },
+    {
+      "public_key_pem": null,
+      "role": "data_steward",
+      "signature_base64": null,
+      "signer_id": null
+    }
+  ],
+  "receipt_payload": {
+    "candidate_runtime_id": null,
+    "checks": {
+      "atomic_no_partial_output": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "candidate_evaluator_pack_denial": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "candidate_network_egress_denial": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "candidate_source_denial": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "evaluator_network_egress_denial": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "evaluator_only_mount": {
+        "external_evidence_id": null,
+        "status": null
+      },
+      "separate_principals": {
+        "external_evidence_id": null,
+        "status": null
+      }
+    },
+    "configuration_lock_sha256": null,
+    "contract_sha256": null,
+    "episode_id": "ep02",
+    "evaluator_runtime_id": null,
+    "expires_at_utc": null,
+    "observed_at_utc": null,
+    "policy_sha256": null,
+    "primary_audit_pack_root_sha256": null,
+    "principals": {
+      "candidate": null,
+      "evaluator": null,
+      "steward": null
+    },
+    "source_sha256": "1039b9555ef50b80e01cc923b372a7960daade774fdb6a236c34cafcedf75866"
+  },
+  "schema_version": "ep02.dudman.permission_firewall_receipt_bundle.v1",
+  "status": "UNSIGNED_TEMPLATE"
+}

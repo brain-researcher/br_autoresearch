@@ -25,6 +25,22 @@
       "doi": "10.1038/s41586-022-05614-z",
       "role": "task_acquisition_intervention_and_model_specification"
     },
+    "official_documentary_evidence": {
+      "full_text_xml_sha256": "0e228404c08fc41a4d1715a6107a0741216b8cb5b508080ea0d6478bb1248c8d",
+      "supplementary_table_1_sha256": "bb637651bd82b454b05cafe82e662012937524afa6a0d54ac9edac8fb7011a6d",
+      "reporting_summary_sha256": "388145418aa3a74a4be2254bbc4dd2b3977514e6a573d1204291fcab6d68ca12",
+      "reporting_summary_facts": [
+        "randomization_within_repeated_2_to_4_mouse_cohorts",
+        "four_mice_removed_after_initial_collection_for_poor_signals_associated_with_mistargeted_fibres_or_insufficient_expression",
+        "experimenter_not_blinded_during_data_collection"
+      ],
+      "release_contains_randomization_block_and_exclusion_roster": false
+    },
+    "sanitized_cohort_map": {
+      "ref": "COHORT_MAP.json",
+      "sha256": "0a29751c0b26fe453fc7cb556173544586bffb53ccbc09efd79fc0b52cd0cf90",
+      "contains_outcome_values": false
+    },
     "author_code": {
       "repository": "https://github.com/dudmanj/RNN_learnDA",
       "commit": "3627746957975632cddb05bf8f6b26a4b6f901b6",
@@ -54,7 +70,10 @@
       "record_count": 24,
       "candidate_access": "prohibited",
       "evaluator_runtime_access_after_materialization": "prohibited",
-      "reason": "one_compressed_top_level_variable_contains_every_role"
+      "reason": "one_compressed_top_level_variable_contains_every_role",
+      "phase0_inventory_implementation_ref": "outputs/code/phase0_inventory.py",
+      "role_materializer_implementation_ref": "outputs/code/materialize_roles.py",
+      "tracked_runtime_packet": null
     },
     "development_full": {
       "cohort": "control",
@@ -108,7 +127,10 @@
       "empirical_mouse_outcomes_used": false,
       "implementation_ref": "outputs/code/calibrate_endpoint_small_n.py",
       "test_ref": "outputs/tests/test_endpoint_small_n_calibration.py",
-      "tracked_result_artifact": null
+      "generic_implementation_ref": "outputs/code/calibrate_small_n.py",
+      "generic_test_ref": "outputs/tests/test_small_n_calibration.py",
+      "tracked_result_artifact": null,
+      "runtime_results_can_self_bind_policy": false
     },
     "runtime_role_handoff": {
       "allowed_candidate_role_ids": ["development_full", "audit_structural"],
@@ -117,6 +139,16 @@
       "runtime_handoff_required": true,
       "candidate_may_read_steward_or_evaluator_paths": false,
       "firewall_contract_ref": "outputs/firewall/FIREWALL_CONTRACT.json",
+      "firewall_verifier_ref": "outputs/code/verify_permission_firewall.py",
+      "external_receipt_template_ref": "outputs/firewall/EXTERNAL_RECEIPT_TEMPLATE.json",
+      "tracked_contract_is_incomplete_template": true,
+      "required_runtime_commitments": [
+        "primary_audit_pack_root_sha256",
+        "policy_sha256",
+        "configuration_lock_sha256",
+        "two_distinct_ed25519_signer_ids_and_key_fingerprints",
+        "bounded_observation_and_expiry_times"
+      ],
       "physical_firewall_status": "BLOCKED_PENDING_EXTERNAL_PROVISIONING",
       "launch_authorized": false,
       "runtime_packaging_alone_implies_launch_readiness": false
@@ -567,6 +599,19 @@
     "binding_rule": null,
     "positive_audit_opening_authorized": false,
     "positive_mechanistic_terminal_authorized": false,
+    "prerequisite_inventory": {
+      "role": "record_declared_runtime_states_and_hashes_only",
+      "cryptographic_authority_verification_implemented_here": false,
+      "can_make_a_rule_binding": false,
+      "separate_signed_policy_amendment_required": true
+    },
+    "provisional_endpoint_shaped_engine": {
+      "implementation_ref": "outputs/code/calibrate_endpoint_small_n.py",
+      "label_endpoint_faithful_before_receipt_resolution_allowed": false,
+      "all_462_labels_role": "unblocked_conditional_exchangeability_sensitivity_only",
+      "result_storage": "runtime_only_not_tracked",
+      "binding_authority": false
+    },
     "design": {
       "development_control_mice": 9,
       "stimLick_minus_mice": 6,

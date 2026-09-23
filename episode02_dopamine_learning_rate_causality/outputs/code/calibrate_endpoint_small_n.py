@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Outcome-blind binomial/beta-binomial calibration for Dudman EP02.
 
-This is an endpoint-faithful *provisional* calibration engine: each synthetic
+This is a provisional endpoint-shaped calibration engine: each synthetic
 mouse score is a difference of two bounded session proportions with explicit
 integer numerators and denominators.  It never reads empirical outcome files.
-Unresolved endpoint receipts and an unsigned scientist decision force the
-binding rule to remain null even when a rule has acceptable simulated
-operating characteristics.
+It cannot establish endpoint fidelity or trusted receipt authority. The
+binding rule remains null even when a rule has acceptable simulated operating
+characteristics.
 """
 
 from __future__ import annotations
@@ -177,6 +177,14 @@ SCENARIOS: tuple[Scenario, ...] = (
 
 def canonical_json_bytes(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def atomic_write_text(path: Path, content: str) -> None:
@@ -502,38 +510,83 @@ def tsv(headers: list[str], rows: Iterable[dict[str, Any]]) -> str:
     return buffer.getvalue()
 
 
-def evidence_gate(receipt_directory: Path, signoff_path: Path) -> dict[str, Any]:
-    receipt_names = (
-        "trialID_codebook_receipt.json",
-        "seshID_training_day_semantics_receipt.json",
-        "lickState_750ms_trigger_semantics_receipt.json",
-        "raw_701_sample_axis_and_event_alignment_receipt.json",
-        "randomization_mechanism_receipt.json",
-    )
+def nonbinding_prerequisite_inventory(
+    receipt_directory: Path, signoff_path: Path
+) -> dict[str, Any]:
+    """Inventory declared prerequisites without granting them authority.
+
+    A local JSON flag or signature-shaped string is not proof that the issuer
+    is trusted. This calibration engine records file hashes and declared
+    states, but deliberately has no trusted endpoint-receipt or scientist key
+    registry. Consequently this function can never make a rule binding.
+    """
+    receipt_schemas = {
+        "trialID_codebook_receipt.json": "ep02.dudman.endpoint_receipt.v1",
+        "seshID_training_day_semantics_receipt.json": "ep02.dudman.endpoint_receipt.v1",
+        "lickState_750ms_trigger_semantics_receipt.json": "ep02.dudman.endpoint_receipt.v1",
+        "raw_701_sample_axis_and_event_alignment_receipt.json": "ep02.dudman.endpoint_receipt.v1",
+        "randomization_mechanism_receipt.json": "ep02.dudman.randomization_receipt.v1",
+    }
     receipts: dict[str, Any] = {}
-    failures: list[str] = []
-    for name in receipt_names:
+    declared_readiness_failures: list[str] = []
+    for name, expected_schema in receipt_schemas.items():
         path = receipt_directory / name
         if not path.exists():
-            failures.append(f"missing_receipt:{name}")
+            declared_readiness_failures.append(f"missing_receipt:{name}")
             continue
-        value = json.loads(path.read_text(encoding="utf-8"))
-        receipts[name] = {"status": value.get("status")}
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            declared_readiness_failures.append(f"invalid_receipt_json:{name}")
+            continue
+        receipts[name] = {
+            "sha256": sha256_file(path),
+            "schema_version": value.get("schema_version"),
+            "status": value.get("status"),
+        }
+        if value.get("schema_version") != expected_schema:
+            declared_readiness_failures.append(f"receipt_schema_mismatch:{name}")
         if value.get("launch_gate_satisfied") is not True:
-            failures.append(f"receipt_not_resolved:{name}")
+            declared_readiness_failures.append(f"receipt_not_resolved:{name}")
     if not signoff_path.exists():
-        failures.append("scientist_signoff_missing")
+        declared_readiness_failures.append("scientist_signoff_missing")
         signoff = {}
     else:
-        signoff = json.loads(signoff_path.read_text(encoding="utf-8"))
+        try:
+            signoff = json.loads(signoff_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError):
+            declared_readiness_failures.append("scientist_signoff_invalid_json")
+            signoff = {}
         if signoff.get("status") != "SIGNED" or not signoff.get("scientist_signature"):
-            failures.append("scientist_signoff_not_signed")
+            declared_readiness_failures.append("scientist_signoff_not_signed")
+        if signoff.get("schema_version") != "ep02.dudman.scientist_signoff.v1":
+            declared_readiness_failures.append("scientist_signoff_schema_mismatch")
+
+    authority_failures = [
+        "endpoint_receipt_authorities_not_cryptographically_verified",
+        "scientist_signoff_authority_not_cryptographically_verified",
+        "separate_signed_policy_amendment_required",
+    ]
     return {
-        "binding_eligible": not failures,
-        "failures": sorted(failures),
+        "status": "NONBINDING_PREREQUISITE_INVENTORY_ONLY",
+        "all_declared_readiness_fields_satisfied": not declared_readiness_failures,
+        "cryptographic_authority_verified": False,
+        "binding_eligible": False,
+        "declared_readiness_failures": sorted(declared_readiness_failures),
+        "authority_failures": authority_failures,
+        "failures": sorted(declared_readiness_failures + authority_failures),
         "receipts": receipts,
-        "scientist_signoff_status": signoff.get("status"),
+        "scientist_signoff": {
+            "sha256": sha256_file(signoff_path) if signoff_path.exists() else None,
+            "schema_version": signoff.get("schema_version"),
+            "declared_status": signoff.get("status"),
+        },
     }
+
+
+def receipt_preflight(receipt_directory: Path, signoff_path: Path) -> dict[str, Any]:
+    """Backward-compatible name for the nonbinding inventory."""
+    return nonbinding_prerequisite_inventory(receipt_directory, signoff_path)
 
 
 def rule_dict(rule: Rule | None) -> dict[str, Any] | None:
@@ -541,6 +594,8 @@ def rule_dict(rule: Rule | None) -> dict[str, Any] | None:
 
 
 def run(arguments: argparse.Namespace) -> dict[str, Any]:
+    if arguments.selection_seed == arguments.validation_seed:
+        raise ValueError("selection and validation seeds must be independent")
     rules = rule_grid()
     selection_counts, selection_valid = evaluate_grid(
         arguments.draws,
@@ -564,12 +619,11 @@ def run(arguments: argparse.Namespace) -> dict[str, Any]:
         provisional is not None and validation_diagnostics[provisional.rule_id]["selection_eligible"]
     )
     reported_rule = provisional or diagnostic
-    gate = evidence_gate(arguments.receipt_directory, arguments.signoff)
-    binding_allowed = bool(gate["binding_eligible"] and validation_eligible)
-    if binding_allowed:
-        raise RuntimeError(
-            "This v1 engine never self-binds. A signed policy amendment must import the validated rule."
-        )
+    prerequisite_inventory = nonbinding_prerequisite_inventory(
+        arguments.receipt_directory, arguments.signoff
+    )
+    if prerequisite_inventory["binding_eligible"]:
+        raise AssertionError("local prerequisite inventory must never grant binding authority")
 
     scenario_rows: list[dict[str, Any]] = []
     for stream, counts, valid in (
@@ -598,20 +652,17 @@ def run(arguments: argparse.Namespace) -> dict[str, Any]:
         row.update({f"validation_{k}": v for k, v in validation_diagnostics[rule.rule_id].items()})
         rule_rows.append(row)
 
-    binding_blockers = list(gate["failures"])
+    binding_blockers = list(prerequisite_inventory["failures"])
     if provisional is None:
         binding_blockers.append("no_selection_eligible_rule")
     if not validation_eligible:
         binding_blockers.append("no_independently_validated_rule")
-    signoff_alone_can_bind = bool(
-        validation_eligible
-        and set(gate["failures"]) == {"scientist_signoff_not_signed"}
-    )
+    signoff_alone_can_bind = False
 
     calibration_status = (
         "NO_ELIGIBLE_RULE_PROVISIONAL_NONBINDING_AND_RECEIPTS_SIGNOFF_UNRESOLVED"
         if provisional is None or not validation_eligible
-        else "PROVISIONAL_RULE_VALIDATED_BUT_NONBINDING_RECEIPTS_SIGNOFF_UNRESOLVED"
+        else "PROVISIONAL_RULE_VALIDATED_BUT_NONBINDING_AUTHORITY_NOT_VERIFIED"
     )
     payload = {
         "schema_version": SCHEMA_VERSION,
@@ -660,10 +711,11 @@ def run(arguments: argparse.Namespace) -> dict[str, Any]:
             "design_exact_claim_allowed": False,
             "intention_to_treat_claim_allowed": False,
             "reason": "the_reporting_summary_documents_randomization_within_repeated_2_to_4_mouse_cohorts_and_four_postcollection_exclusions_but_the_release_lacks_block_rosters_within_block_allocations_and_exclusion_group_membership",
+            "reporting_summary_sha256": "388145418aa3a74a4be2254bbc4dd2b3977514e6a573d1204291fcab6d68ca12",
             "allowed_label": "unblocked_all_11_conditional_exchangeability_sensitivity_only",
             "weak_average_effect_null_claimed_exactly_tested": False,
         },
-        "evidence_gate": gate,
+        "prerequisite_inventory": prerequisite_inventory,
         "selection_eligible_rule_count": sum(
             bool(item["selection_eligible"]) for item in selection_diagnostics.values()
         ),
@@ -702,6 +754,7 @@ def run(arguments: argparse.Namespace) -> dict[str, Any]:
         "runtime": {
             "python": platform.python_version(),
             "numpy": np.__version__,
+            "code_sha256": sha256_file(Path(__file__).resolve()),
             "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
         },
     }
@@ -713,7 +766,7 @@ def run(arguments: argparse.Namespace) -> dict[str, Any]:
     atomic_write_text(output / "calibration.json", json.dumps(payload, indent=2, sort_keys=True) + "\n")
     diagnostic_selection = selection_diagnostics[diagnostic.rule_id]
     diagnostic_validation = validation_diagnostics[diagnostic.rule_id]
-    report = f"""# Endpoint-faithful small-`n` calibration
+    report = f"""# Provisional endpoint-shaped small-`n` calibration
 
 ## Result
 
@@ -738,13 +791,19 @@ absolute development-scale floor, and independent selection/validation seeds.
 - Binding rule: **none**
 - Audit opening authorized: **no**
 
-Even a provisionally validated rule cannot bind while field/time evidence is
-unresolved, the randomization mechanism is incomplete, and the scientist
-signoff is unsigned. The engine itself is incapable of self-binding: once all
-preconditions are met, a separately reviewed and signed policy amendment must
-import the chosen rule and supporting evidence.
+This packet must not be described as endpoint-faithful while field/time
+semantics and the documented randomization space remain unresolved. The local
+prerequisite inventory records declared states and hashes but performs no
+cryptographic authority verification. Even a provisionally validated rule
+therefore cannot bind. A separately reviewed, cryptographically verified and
+signed policy amendment must import any future rule and supporting evidence.
 """
     atomic_write_text(output / "CALIBRATION.md", report)
+    manifest_names = ("CALIBRATION.md", "calibration.json", "rule_grid.tsv", "scenario_results.tsv")
+    atomic_write_text(
+        output / "SHA256SUMS",
+        "".join(f"{sha256_file(output / name)}  {name}\n" for name in manifest_names),
+    )
     return payload
 
 

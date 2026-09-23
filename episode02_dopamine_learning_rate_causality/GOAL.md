@@ -11,6 +11,11 @@ Generated inventories, calibration packets, receipts, signatures, and
 checksums are runtime records. They are not tracked evidence and cannot
 authorize execution by their presence.
 
+The repository does track portable, fail-closed implementations for Phase-0
+inventory, deterministic role materialization, generic and provisional
+endpoint-shaped calibration, and external firewall-receipt verification.
+Their presence is capability, not evidence that any runtime gate passed.
+
 ## Scientific question
 
 At physiological amplitude, does phasic mesolimbic dopamine multiply the
@@ -66,11 +71,13 @@ This estimand is not yet identified from the release alone. `trialID`,
 fields are parity checks only.
 
 The paper reports randomization within repeated cohorts of two to four mice
-and four post-collection exclusions. The release omits the block roster,
-within-block allocations, and the excluded animals' groups and timing. Thus
-the `C(11,6)=462` unblocked enumeration is only a conditional-exchangeability
-sensitivity unless the design record is recovered; it is not presently a
-design-exact intention-to-treat analysis.
+and four removals after initial collection for poor signals associated with
+mistargeted fibres or insufficient expression. It also reports that the
+experimenter was not blinded during data collection. The release omits the
+block roster, within-block allocations, and the excluded animals' groups and
+timing. Thus the `C(11,6)=462` unblocked enumeration is only a conditional-
+exchangeability sensitivity unless the design record is recovered; it is not
+presently a design-exact intention-to-treat analysis.
 
 ## Adaptive-search contract
 
@@ -90,19 +97,30 @@ There may be one aggregate evaluator opening after configuration lock. The
 optional high-amplitude boundary diagnostic is contained inside that same
 transaction. Audit feedback cannot update search or expose individual mice.
 
-## Endpoint calibration
+## Portable pre-launch implementations
+
+[`COHORT_MAP.json`](COHORT_MAP.json) is a sanitized, outcome-free mapping from
+published one-based source indices to the four evidence roles. The Phase-0
+inventory and role materializer consume that tracked contract but write all
+inventories, arrays, commitments, and access receipts to runtime storage.
+
+[`outputs/code/calibrate_small_n.py`](outputs/code/calibrate_small_n.py)
+provides a generic whole-mouse stress calibration.
 
 [`outputs/code/calibrate_endpoint_small_n.py`](outputs/code/calibrate_endpoint_small_n.py)
-and its unit test implement a reusable outcome-blind binomial/beta-binomial
-calibration engine. It models ties, variable denominators, overdispersion,
-missingness, one-arm alternatives, a raw-unit margin, and independent
-selection and validation streams.
+and its unit test implement a reusable outcome-blind, provisional endpoint-
+shaped binomial/beta-binomial calibration engine. It models ties, variable
+denominators, overdispersion, missingness, one-arm alternatives, a raw-unit
+margin, and independent selection and validation streams.
 
-The code is not a decision rule. Authorized runs write generated tables and
-reports to scratch or another runtime store. A binding threshold may enter
-this policy only through a separately reviewed amendment after endpoint
-semantics, design support, safety/power criteria, and scientist signoff are
-frozen. No calibration result is tracked in this episode.
+Neither engine is a decision rule. Its local prerequisite inventory records
+declared states and hashes but deliberately performs no cryptographic
+authority verification. Authorized runs write generated tables and reports to
+scratch or another runtime store. A binding threshold may enter this policy
+only through a separately reviewed, cryptographically verified and signed
+amendment after endpoint semantics, design support, safety/power criteria, and
+scientist signoff are frozen. No calibration result is tracked in this
+episode.
 
 ## Launch conditions
 

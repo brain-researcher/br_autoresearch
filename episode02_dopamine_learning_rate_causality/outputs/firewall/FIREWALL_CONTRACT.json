@@ -1,7 +1,13 @@
 {
   "contract_id": "ep02_permission_separated_firewall_v1",
   "contract_hash_serialization": "UTF-8 JSON with sorted keys, no insignificant whitespace, ensure_ascii=false",
+  "episode_id": "ep02",
   "current_environment_status": "BLOCKED_PENDING_EXTERNAL_PROVISIONING",
+  "clock_skew_seconds_max": 300,
+  "configuration_lock_sha256": null,
+  "policy_sha256": null,
+  "primary_audit_pack_root_sha256": null,
+  "receipt_validity_seconds_max": 86400,
   "required_checks": [
     "separate_principals",
     "candidate_source_denial",
@@ -26,7 +32,7 @@
   "trusted_signers": {},
   "trusted_signers_status": "PENDING_SCIENTIST_AND_INFRASTRUCTURE_PIN",
   "signed_payload_serialization": "UTF-8 JSON receipt_payload with sorted keys, no insignificant whitespace, ensure_ascii=false",
-  "verification_rule": "all_required_checks_pass_and_both_independently_pinned_ed25519_signatures_verify",
+  "verification_rule": "all_required_checks_pass; episode, source, audit-pack, policy, and configuration commitments match; receipt is current; and two distinct independently pinned Ed25519 keys verify",
   "weak_controls_that_never_satisfy_this_contract_alone": [
     "chmod_or_posix_acl_under_the_candidate_uid",
     "slurm_job_running_as_the_candidate_uid",

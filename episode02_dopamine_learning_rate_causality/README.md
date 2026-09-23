@@ -11,8 +11,22 @@ form a post-primary boundary diagnostic that cannot rescue the primary result.
 Read [`GOAL.md`](GOAL.md), [`DATASETS.md`](DATASETS.md), and
 [`SEARCH_POLICY.json`](SEARCH_POLICY.json). The access contract is in
 [`outputs/firewall/FIREWALL.md`](outputs/firewall/FIREWALL.md), and the
-reusable calibration implementation is
-[`outputs/code/calibrate_endpoint_small_n.py`](outputs/code/calibrate_endpoint_small_n.py).
+sanitized role map is [`COHORT_MAP.json`](COHORT_MAP.json).
+
+The tracked source surface includes portable Phase-0 inventory, deterministic
+role materialization, generic small-`n` stress calibration, provisional
+endpoint-shaped binomial/beta-binomial calibration, and an external signed-
+receipt firewall verifier. Their Slurm wrappers derive the episode path at
+runtime and write job artifacts only beneath `$SCRATCH`.
+
+The official Reporting Summary documents randomization within repeated
+2–4-mouse cohorts and four removals after collection, but the released data do
+not contain the block/exclusion roster. Consequently all 462 unblocked labels
+are a sensitivity space, not the documented randomized design or an ITT
+analysis. Endpoint field/time semantics and the physical firewall also remain
+unresolved.
 
 No generated preflight packet, calibration result, receipt, signature, or
-checksum is tracked as evidence. No search or audit has started.
+checksum is tracked as evidence. The tracked firewall contract has null
+runtime commitments and no signer pins by design. No search or audit has
+started.

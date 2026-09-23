@@ -7,3 +7,7 @@ under a frozen whole-mouse audit.
 
 No adaptive-search realization, audit result, mechanism claim, or canonical
 Landscape transition has occurred.
+
+The current release also does not identify the documented small-cohort
+randomization blocks or post-collection exclusions, so an unblocked 462-label
+calculation cannot be promoted to a randomized-design or ITT result.

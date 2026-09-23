@@ -4,9 +4,11 @@ No canonical loop, Goal handoff, configuration lock, or audit opening exists.
 
 ```text
 scientific specification
-  -> resolve endpoint and randomization scope
+  -> run outcome-blind structural tooling in isolated runtime storage
+  -> resolve endpoint and documented randomization scope
   -> provision permission-separated roles
-  -> validate and sign an endpoint-faithful decision rule
+  -> presign margins and validate an endpoint-faithful decision rule
+  -> verify trusted receipts and sign a separate policy amendment
   -> qualify implementation and evaluator
   -> search only after explicit authorization
 ```

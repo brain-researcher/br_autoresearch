@@ -1,0 +1,47 @@
+{
+  "schema_version": "ep02.dudman.sanitized_cohort_map.v1",
+  "episode_id": "ep02_dopamine_learning_rate_causality",
+  "source_index_base": 1,
+  "source_payload_sha256": "1039b9555ef50b80e01cc923b372a7960daade774fdb6a236c34cafcedf75866",
+  "cohorts": [
+    {
+      "cohort_id": "development_control",
+      "role": "development_full",
+      "source_records_1_based": [1, 2, 4, 6, 9, 11, 15, 16, 19]
+    },
+    {
+      "cohort_id": "audit_calibrated_stim_lick_minus",
+      "role": "primary_audit_evaluator_only",
+      "source_records_1_based": [3, 5, 10, 14, 18, 20]
+    },
+    {
+      "cohort_id": "audit_calibrated_stim_lick_plus",
+      "role": "primary_audit_evaluator_only",
+      "source_records_1_based": [7, 8, 12, 13, 17]
+    },
+    {
+      "cohort_id": "boundary_supraphysiological_stim_lick_plus",
+      "role": "post_primary_boundary_evaluator_only",
+      "source_records_1_based": [21, 22, 23, 24]
+    }
+  ],
+  "mapping_provenance": {
+    "official_repository": "https://github.com/dudmanj/RNN_learnDA",
+    "official_repository_commit": "3627746957975632cddb05bf8f6b26a4b6f901b6",
+    "official_file": "Analysis Scripts/Figure_1_related.m",
+    "official_file_sha256": "71255ba4b9eda521f8be984d48ce9034194aaf8fddc9fae56bb9d5ed63041346",
+    "official_lines_used": "5-7",
+    "official_lines_scope": "control, stimPlus, and stimMinus source-record indices only",
+    "boundary_source": "Nature Supplementary Table 1 note: mice 21-24 were used only for stim+Lick+",
+    "boundary_supplement_sha256": "bb637651bd82b454b05cafe82e662012937524afa6a0d54ac9edac8fb7011a6d",
+    "article_doi": "10.1038/s41586-022-05614-z",
+    "code_license": "MIT"
+  },
+  "sanitization": {
+    "full_upstream_analysis_script_may_enter_search_workspace": false,
+    "outcome_derived_final_latency_order_removed": true,
+    "outcome_derived_good_bad_control_labels_removed": true,
+    "all_control_records_forced_to_development": true,
+    "individual_intervention_outcomes_included": false
+  }
+}

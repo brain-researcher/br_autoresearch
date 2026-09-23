@@ -1,10 +1,15 @@
 # Permission-separated firewall
 
-## Current status
+## Current status and tracked template
 
 **BLOCKED.** The present workspace does not provide independently attested
 separation between candidate, steward, and evaluator principals. Network
 denial and an evaluator-only mount are also unprovisioned.
+
+The tracked `FIREWALL_CONTRACT.json` is deliberately incomplete: audit-pack,
+policy, and configuration-lock commitments and both trusted signer pins are
+null or absent. It is a provisioning template, not a receipt. Those values
+must be filled only after the corresponding runtime objects are frozen.
 
 Mode bits, POSIX ACLs controlled by the same uid, a Slurm job under that uid,
 or a candidate-launched container are useful accidental-access controls, but
@@ -28,16 +33,23 @@ outside the candidate principal:
    the configuration lock. The evaluator must emit one atomic aggregate
    packet and no partial mouse, arm, fold, metric, or QC feedback.
 6. Pin one Ed25519 public-key fingerprint for the independent infrastructure
-   operator and one for the independent data steward in
-   `FIREWALL_CONTRACT.json`. Both must attest the same runtime identities,
-   source commitments, and external evidence for every required check.
+   operator and a different key and signer identity for the independent data
+   steward. Both must attest the same episode, source, audit-pack, policy,
+   configuration-lock, runtime identities, and external evidence IDs.
+7. Set an observation and expiry time. The portable verifier accepts at most
+   the contract's 24-hour validity window and five-minute clock skew.
 
 Changing signer pins changes the contract and requires renewed review.
 
 ## Verification
 
-Verification must be performed by an independent infrastructure operator and
-data steward after provisioning. A self-authored local file or a negative
-probe made from inside the candidate runtime cannot attest that runtime's
-confinement. Verification records belong in the runtime evidence store, not
-in the tracked episode specification.
+After provisioning, both signers sign the canonical `receipt_payload` in
+`EXTERNAL_RECEIPT_TEMPLATE.json`. `verify_permission_firewall.py` checks the
+contract and payload bindings, three distinct runtime principals, distinct
+signer identities and key fingerprints, validity interval, all required
+checks, and both Ed25519 signatures. It reads no outcome file.
+
+A self-authored local file or a negative probe made from inside the candidate
+runtime cannot attest that runtime's confinement. Completed contracts,
+receipts, assessments, and checksum sidecars belong in the runtime evidence
+store, not in the tracked episode specification.
