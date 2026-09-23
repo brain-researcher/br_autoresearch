@@ -1,0 +1,723 @@
+schema_version: ep07.anchor_runtime_contract.v2
+episode_id: ep07
+status: pending_runtime_artifact_hashes_and_end_to_end_dry_profile_not_executable
+scientific_scope: full_operator_families_retained
+operator_grammar_ref: NUMERIC_OPERATOR_GRAMMAR.md
+qualification_scope:
+  root_launch_gate: false
+  episode_internal_before_scored_search: true
+  failure_semantics: record_episode_technical_terminal_or_repair_within_frozen_contract
+
+authority_boundary:
+  creates_execution_authority: false
+  authorizes_development_outcome_access: false
+  authorizes_audit_access: false
+  unresolved_hard_gates:
+    - runtime_image_sha256_absent
+    - exact_wheel_hash_lock_absent
+    - registered_node_class_receipt_sha256_absent
+    - runtime_grammar_dispatch_qualification_absent
+    - shape_matched_end_to_end_synthetic_dry_profile_absent
+    - trusted_builder_numeric_validity_and_roster_receipt_absent
+
+anchor_contract:
+  anchors_per_stream: 16
+  execution_order:
+    - A01
+    - A02
+    - A03
+    - A04
+    - A05
+    - A06
+    - A07
+    - A08
+    - A09
+    - A10
+    - A11
+    - A12
+    - A13
+    - A14
+    - A15
+    - A16
+  common_fields:
+    arithmetic: IEEE754_float64
+    ensemble: null
+  transfer_materialization:
+    source: anchor_fragment_at_matching_anchor_id
+    inject:
+      stream: transfer
+      configuration_kind: base
+      grammar_schema_version: ep07.numeric_operator_grammar.v2
+    required_before_hash:
+      runtime_contract_sha256: nonnull_sha256_of_locked_runtime_contract_subtree
+    configuration_hash_rule: runtime_contract.config_canonicalization
+    planning_uniqueness_without_runtime_hash: nonauthoritative_only
+  finite_grid:
+    stream: [transfer, calibration_only]
+    configuration_kind: [base, ensemble]
+    representation:
+      scope: [lmp_only, eight_power_classes, all_9_classes]
+      aggregation:
+        - moments_quantiles
+        - robust_histogram_8
+        - low_rank_set_encoder_8
+        - low_rank_set_encoder_16
+      fixed_parameters:
+        quantile_method: linear
+        moments_quantiles_order: [mean, population_sd, q10, q25, q50, q75, q90]
+        robust_histogram_internal_percentiles:
+          - "12.5"
+          - "25"
+          - "37.5"
+          - "50"
+          - "62.5"
+          - "75"
+          - "87.5"
+        robust_histogram_searchsorted_side: right
+        low_rank_set_basis_dimensions_per_class: 17
+        low_rank_set_output_rank_by_family:
+          low_rank_set_encoder_8: 8
+          low_rank_set_encoder_16: 16
+        scaling: columnwise_median_and_IQR_fit_on_permitted_rows
+        zero_IQR_replacement: "1"
+    spike_latent:
+      rank: [4, 8, 12, 16]
+      whiten: [false, true]
+      eigen_floor_relative: ["1e-6", "1e-4"]
+    alignment:
+      families: [none, orthogonal_procrustes, regularized_cca]
+      regularized_cca:
+        relative_ridge: ["0.0001", "0.01", "1"]
+      orthogonal_procrustes:
+        reflection_allowed: true
+      none:
+        searchable_parameters: []
+    nuisance:
+      - direction_time_residual
+      - additive_direction_time
+      - combined
+    source_pooling:
+      families:
+        - equal_session
+        - reliability_weighted
+        - calibration_similarity
+        - hierarchical_shrinkage
+        - leave_one_source_stacking
+      equal_session:
+        searchable_parameters: []
+      reliability_weighted:
+        softmax_temperature: ["0.05", "0.2"]
+        source_folds: 5
+      calibration_similarity:
+        softmax_temperature: ["0.05", "0.2"]
+      hierarchical_shrinkage:
+        lambda: ["0.1", "1", "10"]
+      leave_one_source_stacking:
+        simplex_ridge: ["0.01", "0.1", "1"]
+        source_folds: 5
+        support_masks: [1, 2, 3, 4, 5, 6, 7]
+    mapping:
+      families: [ridge, elastic_net, reduced_rank_ridge, shallow_mlp]
+      ridge:
+        lambda: ["0.0001", "0.01", "1", "100"]
+      elastic_net:
+        alpha: ["0.001", "0.01", "0.1"]
+        l1_ratio: ["0.1", "0.5", "0.9"]
+        initialization: zeros
+        coordinate_order: cyclic
+        max_iter: 10000
+        solver_tolerance: "1e-8"
+      reduced_rank_ridge:
+        lambda: ["0.01", "0.1", "1"]
+        output_rank_fraction: ["0.5"]
+        output_rank_rounding: floor_minimum_one
+      shallow_mlp:
+        width: [16, 32, 64]
+        learning_rate: ["0.0003", "0.001"]
+        weight_decay: ["0.0001", "0.001", "0.01"]
+        fixed_parameters:
+          architecture: affine_exact_GELU_affine
+          optimizer: AdamW
+          beta1: "0.9"
+          beta2: "0.999"
+          epsilon: "1e-8"
+          epochs: 300
+          whole_trial_batch_size: 16
+          global_gradient_norm_clip: "5"
+          learning_rate_schedule: constant
+          early_stopping: false
+          weight_decay_mode: decoupled_weights_only
+    adaptation:
+      families: [zero_prior_fit, source_prior_shrinkage, convex_source_target]
+      zero_prior_fit:
+        searchable_parameters: []
+      source_prior_shrinkage:
+        identity_lambda: ["0.1", "1", "10"]
+      convex_source_target:
+        source_weight: ["0.25", "0.5", "0.75"]
+    ensemble:
+      parent_count: 2
+      first_parent_weight: ["0.25", "0.5", "0.75"]
+      maximum_absolute_equal_cell_mean_prediction_correlation: "0.95"
+      parents_must_be:
+        - previously_valid
+        - non_ensemble
+        - same_stream
+        - distinct_canonical_hashes
+      parent_hash_order: ascending_lexicographic
+      unsorted_parent_hash_input: reject
+      first_parent_weight_applies_to: lexicographically_first_parent_hash
+      combination_scale: native_target_neuron_count_scale
+      consumes_one_stream_evaluation: true
+
+  legal_combinations:
+    base_configuration:
+      required_nonnull_fields:
+        - stream
+        - representation
+        - spike_latent
+        - nuisance
+        - mapping
+        - adaptation
+      required_null_fields: [ensemble]
+    source_bearing_transfer:
+      predicate: >-
+        stream_equals_transfer_and_adaptation_family_is_not_zero_prior_fit
+      alignment: one_of_finite_grid_alignment_families
+      source_pooling: one_of_finite_grid_source_pooling_families
+      adaptation: [source_prior_shrinkage, convex_source_target]
+    transfer_zero_prior_control:
+      predicate: stream_equals_transfer_and_adaptation_family_equals_zero_prior_fit
+      alignment: null
+      source_pooling: null
+    calibration_only:
+      predicate: stream_equals_calibration_only
+      alignment: null
+      source_pooling: null
+      adaptation: {family: zero_prior_fit}
+    hierarchical_mapping_constraint:
+      predicate: source_pooling_family_equals_hierarchical_shrinkage
+      mapping_family: [ridge, reduced_rank_ridge]
+    nonhierarchical_pooling_mapping_constraint:
+      source_pooling_family:
+        - equal_session
+        - reliability_weighted
+        - calibration_similarity
+        - leave_one_source_stacking
+      mapping_family: [ridge, elastic_net, reduced_rank_ridge, shallow_mlp]
+    ensemble_configuration:
+      required_nonnull_fields: [stream, ensemble]
+      required_null_fields:
+        - representation
+        - spike_latent
+        - alignment
+        - nuisance
+        - source_pooling
+        - mapping
+        - adaptation
+      exact_parent_count: 2
+      nested_ensemble: prohibited
+      transfer_source_bearing: at_least_one_parent_is_source_bearing
+
+  inactive_field_rules:
+    default: reject_unknown_or_inactive_field
+    family_discriminator: family
+    explicit_null_policy: >-
+      Null is legal only where legal_combinations explicitly requires null;
+      optional inactive parameter keys must be absent, not null.
+    allowed_keys_by_family:
+      alignment:
+        none: [family]
+        orthogonal_procrustes: [family]
+        regularized_cca: [family, relative_ridge]
+      spike_latent:
+        whiten_false: [rank, whiten]
+        whiten_true: [rank, whiten, eigen_floor_relative]
+      source_pooling:
+        equal_session: [family]
+        reliability_weighted: [family, softmax_temperature]
+        calibration_similarity: [family, softmax_temperature]
+        hierarchical_shrinkage: [family, lambda]
+        leave_one_source_stacking: [family, simplex_ridge]
+      mapping:
+        ridge: [family, lambda]
+        elastic_net: [family, alpha, l1_ratio]
+        reduced_rank_ridge: [family, lambda, output_rank_fraction]
+        shallow_mlp: [family, width, learning_rate, weight_decay]
+      adaptation:
+        zero_prior_fit: [family]
+        source_prior_shrinkage: [family, identity_lambda]
+        convex_source_target: [family, source_weight]
+      ensemble:
+        allowed_keys: [parent_hashes, first_parent_weight]
+        parent_hashes_length: 2
+    value_representation:
+      grid_decimals: exact_strings
+      integer_grid_values: JSON_integers
+      booleans: JSON_booleans
+      nulls: JSON_null
+    validation_order:
+      - reject_unknown_top_level_and_nested_keys
+      - validate_family_specific_allowed_keys
+      - validate_values_against_finite_grid
+      - validate_cross_field_legal_combinations
+      - validate_rank_and_shape_support
+      - canonicalize_and_hash
+      - reject_duplicate_hash
+
+  complexity_order:
+    authority: outcome_blind_tie_break_only
+    comparison: lexicographic_ascending
+    base_tuple_fields_in_order:
+      - {field: configuration_kind, codes: {base: 0}}
+      - {field: representation.scope, codes: {lmp_only: 0, eight_power_classes: 1, all_9_classes: 2}}
+      - {field: representation.aggregation, codes: {moments_quantiles: 0, robust_histogram_8: 1, low_rank_set_encoder_8: 2, low_rank_set_encoder_16: 3}}
+      - {field: spike_latent.rank, transform: integer_value}
+      - {field: spike_latent.whiten, codes: {false: 0, true: 1}}
+      - {field: alignment.family, codes: {null: 0, none: 1, orthogonal_procrustes: 2, regularized_cca: 3}}
+      - {field: nuisance, codes: {additive_direction_time: 0, direction_time_residual: 1, combined: 2}}
+      - {field: source_pooling.family, codes: {null: 0, equal_session: 1, reliability_weighted: 2, calibration_similarity: 3, hierarchical_shrinkage: 4, leave_one_source_stacking: 5}}
+      - {field: mapping.family, codes: {ridge: 0, reduced_rank_ridge: 1, elastic_net: 2, shallow_mlp: 3}}
+      - {field: adaptation.family, codes: {zero_prior_fit: 0, convex_source_target: 1, source_prior_shrinkage: 2}}
+      - {field: active_numeric_parameters, transform: ordinal_indices_in_family_specific_allowed_key_order_then_finite_grid_order_with_absent_as_minus_one}
+    ensemble_tuple_fields_in_order:
+      - {field: configuration_kind, codes: {ensemble: 1}}
+      - {field: first_parent_weight, codes: {"0.5": 0, "0.25": 1, "0.75": 1}}
+    exact_score_and_complexity_tie: ascending_canonical_configuration_hash
+    freeze_time: before_any_development_outcome_access
+  calibration_only_derivation:
+    source_anchor_relation: one_to_one_same_anchor_id
+    materialization:
+      inject:
+        grammar_schema_version: ep07.numeric_operator_grammar.v2
+      required_before_hash:
+        runtime_contract_sha256: nonnull_sha256_of_locked_runtime_contract_subtree
+      configuration_hash_rule: runtime_contract.config_canonicalization
+    copy_exact:
+      - representation
+      - spike_latent
+      - nuisance
+      - mapping
+    force:
+      stream: calibration_only
+      configuration_kind: base
+      alignment: null
+      source_pooling: null
+      adaptation:
+        family: zero_prior_fit
+      ensemble: null
+    prohibited_carryover:
+      - alignment_parameter
+      - pooling_parameter
+      - source_adaptation_parameter
+      - source_parent_hash
+    preexecution_uniqueness_rule: >-
+      Materialize and canonical-hash all sixteen derived calibration-only
+      configurations before any outcome access. Any within-stream collision is
+      a contract failure rather than permission to substitute an anchor.
+
+  structural_support:
+    verification_stage: episode_bootstrap_before_outcome_scoring
+    trust_level: planning_values_pending_episode_bootstrap_reproduction
+    sessions: 12
+    planning_total_structurally_supported_trials: 3090
+    planning_minimum_units:
+      m1_execution: 26
+      pmd_preparation: 66
+    declared_maximum_spike_rank: 16
+    planning_minimum_target_calibration_trials: 33
+    minimum_target_calibration_rows:
+      m1_execution: 330
+      pmd_preparation: 495
+    direction_by_time_anchor_rows:
+      m1_execution: 80
+      pmd_preparation: 120
+    low_rank_set_basis_dimensions:
+      basis_dimensions_per_class: 17
+      lmp_only: 17
+      eight_power_classes: 136
+      all_9_classes: 153
+    dimension_check: passed_for_all_sixteen_anchors
+    remaining_numeric_support_check: trusted_builder_only
+
+  anchors:
+    A01:
+      representation: {scope: all_9_classes, aggregation: moments_quantiles}
+      spike_latent: {rank: 4, whiten: false}
+      alignment: {family: none}
+      nuisance: additive_direction_time
+      source_pooling: {family: equal_session}
+      mapping: {family: ridge, lambda: "1"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "1"}
+      ensemble: null
+
+    A02:
+      representation: {scope: lmp_only, aggregation: moments_quantiles}
+      spike_latent: {rank: 8, whiten: false}
+      alignment: {family: orthogonal_procrustes}
+      nuisance: direction_time_residual
+      source_pooling: {family: reliability_weighted, softmax_temperature: "0.2"}
+      mapping: {family: ridge, lambda: "0.01"}
+      adaptation: {family: convex_source_target, source_weight: "0.75"}
+      ensemble: null
+
+    A03:
+      representation: {scope: eight_power_classes, aggregation: moments_quantiles}
+      spike_latent: {rank: 12, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: regularized_cca, relative_ridge: "0.01"}
+      nuisance: combined
+      source_pooling: {family: calibration_similarity, softmax_temperature: "0.2"}
+      mapping: {family: elastic_net, alpha: "0.01", l1_ratio: "0.1"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "10"}
+      ensemble: null
+
+    A04:
+      representation: {scope: all_9_classes, aggregation: robust_histogram_8}
+      spike_latent: {rank: 16, whiten: true, eigen_floor_relative: "1e-6"}
+      alignment: {family: regularized_cca, relative_ridge: "0.01"}
+      nuisance: additive_direction_time
+      source_pooling: {family: hierarchical_shrinkage, lambda: "1"}
+      mapping:
+        family: reduced_rank_ridge
+        lambda: "0.01"
+        output_rank_fraction: "0.5"
+      adaptation: {family: convex_source_target, source_weight: "0.5"}
+      ensemble: null
+
+    A05:
+      representation: {scope: lmp_only, aggregation: robust_histogram_8}
+      spike_latent: {rank: 4, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: regularized_cca, relative_ridge: "1"}
+      nuisance: direction_time_residual
+      source_pooling: {family: leave_one_source_stacking, simplex_ridge: "0.01"}
+      mapping: {family: elastic_net, alpha: "0.01", l1_ratio: "0.9"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "0.1"}
+      ensemble: null
+
+    A06:
+      representation: {scope: eight_power_classes, aggregation: robust_histogram_8}
+      spike_latent: {rank: 8, whiten: false}
+      alignment: {family: none}
+      nuisance: combined
+      source_pooling: {family: equal_session}
+      mapping:
+        family: reduced_rank_ridge
+        lambda: "1"
+        output_rank_fraction: "0.5"
+      adaptation: {family: convex_source_target, source_weight: "0.25"}
+      ensemble: null
+
+    A07:
+      representation: {scope: all_9_classes, aggregation: low_rank_set_encoder_8}
+      spike_latent: {rank: 12, whiten: false}
+      alignment: {family: orthogonal_procrustes}
+      nuisance: additive_direction_time
+      source_pooling: {family: reliability_weighted, softmax_temperature: "0.05"}
+      mapping:
+        family: reduced_rank_ridge
+        lambda: "0.1"
+        output_rank_fraction: "0.5"
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "1"}
+      ensemble: null
+
+    A08:
+      representation: {scope: lmp_only, aggregation: low_rank_set_encoder_8}
+      spike_latent: {rank: 16, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: regularized_cca, relative_ridge: "0.0001"}
+      nuisance: direction_time_residual
+      source_pooling: {family: calibration_similarity, softmax_temperature: "0.05"}
+      mapping: {family: elastic_net, alpha: "0.001", l1_ratio: "0.5"}
+      adaptation: {family: convex_source_target, source_weight: "0.75"}
+      ensemble: null
+
+    A09:
+      representation: {scope: eight_power_classes, aggregation: low_rank_set_encoder_16}
+      spike_latent: {rank: 4, whiten: false}
+      alignment: {family: orthogonal_procrustes}
+      nuisance: combined
+      source_pooling: {family: hierarchical_shrinkage, lambda: "0.1"}
+      mapping: {family: ridge, lambda: "0.0001"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "10"}
+      ensemble: null
+
+    A10:
+      representation: {scope: all_9_classes, aggregation: low_rank_set_encoder_16}
+      spike_latent: {rank: 8, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: regularized_cca, relative_ridge: "0.01"}
+      nuisance: additive_direction_time
+      source_pooling: {family: leave_one_source_stacking, simplex_ridge: "0.1"}
+      mapping:
+        family: shallow_mlp
+        width: 32
+        learning_rate: "0.001"
+        weight_decay: "0.0001"
+      adaptation: {family: convex_source_target, source_weight: "0.5"}
+      ensemble: null
+
+    A11:
+      representation: {scope: lmp_only, aggregation: moments_quantiles}
+      spike_latent: {rank: 12, whiten: false}
+      alignment: null
+      nuisance: direction_time_residual
+      source_pooling: null
+      mapping:
+        family: shallow_mlp
+        width: 64
+        learning_rate: "0.0003"
+        weight_decay: "0.01"
+      adaptation: {family: zero_prior_fit}
+      ensemble: null
+
+    A12:
+      representation: {scope: eight_power_classes, aggregation: robust_histogram_8}
+      spike_latent: {rank: 16, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: orthogonal_procrustes}
+      nuisance: combined
+      source_pooling: {family: reliability_weighted, softmax_temperature: "0.2"}
+      mapping: {family: ridge, lambda: "100"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "0.1"}
+      ensemble: null
+
+    A13:
+      representation: {scope: all_9_classes, aggregation: moments_quantiles}
+      spike_latent: {rank: 4, whiten: true, eigen_floor_relative: "1e-6"}
+      alignment: {family: regularized_cca, relative_ridge: "1"}
+      nuisance: direction_time_residual
+      source_pooling: {family: calibration_similarity, softmax_temperature: "0.2"}
+      mapping: {family: elastic_net, alpha: "0.1", l1_ratio: "0.5"}
+      adaptation: {family: convex_source_target, source_weight: "0.25"}
+      ensemble: null
+
+    A14:
+      representation: {scope: lmp_only, aggregation: robust_histogram_8}
+      spike_latent: {rank: 8, whiten: false}
+      alignment: {family: orthogonal_procrustes}
+      nuisance: additive_direction_time
+      source_pooling: {family: hierarchical_shrinkage, lambda: "10"}
+      mapping:
+        family: reduced_rank_ridge
+        lambda: "1"
+        output_rank_fraction: "0.5"
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "1"}
+      ensemble: null
+
+    A15:
+      representation: {scope: eight_power_classes, aggregation: low_rank_set_encoder_8}
+      spike_latent: {rank: 12, whiten: true, eigen_floor_relative: "1e-4"}
+      alignment: {family: regularized_cca, relative_ridge: "0.01"}
+      nuisance: combined
+      source_pooling: {family: leave_one_source_stacking, simplex_ridge: "1"}
+      mapping:
+        family: shallow_mlp
+        width: 16
+        learning_rate: "0.001"
+        weight_decay: "0.001"
+      adaptation: {family: convex_source_target, source_weight: "0.75"}
+      ensemble: null
+
+    A16:
+      representation: {scope: all_9_classes, aggregation: low_rank_set_encoder_16}
+      spike_latent: {rank: 16, whiten: false}
+      alignment: {family: none}
+      nuisance: direction_time_residual
+      source_pooling: {family: equal_session}
+      mapping: {family: ridge, lambda: "0.0001"}
+      adaptation: {family: source_prior_shrinkage, identity_lambda: "10"}
+      ensemble: null
+
+runtime_contract:
+  runtime_id: ep07_cpu_float64_v2_pending_artifact_lock
+  platform:
+    architecture: x86_64
+    device: cpu_only
+    cpu_feature_target: x86_64_v3
+    registered_node_class_receipt_sha256: null
+  python: "3.12.11"
+  launcher: "uv==0.8.17"
+  dependency_versions:
+    numpy: "2.2.6"
+    scipy: "1.15.3"
+    h5py: "3.13.0"
+    scikit_learn: "1.6.1"
+    pyyaml: "6.0.3"
+    jsonschema: "4.25.1"
+    threadpoolctl: "3.6.0"
+    psutil: "7.0.0"
+  artifact_binding:
+    runtime_image_sha256: null
+    python_executable_sha256: null
+    uv_lock_sha256: null
+    exact_wheel_manifest_sha256: null
+    exact_wheel_hashes: null
+    registered_node_class_receipt_sha256: null
+    state: pending_blocks_executable_status
+  environment:
+    PYTHONHASHSEED: "0"
+    OMP_NUM_THREADS: "1"
+    OPENBLAS_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+    NUMEXPR_NUM_THREADS: "1"
+    VECLIB_MAXIMUM_THREADS: "1"
+    OPENBLAS_CORETYPE: ZEN
+    TZ: UTC
+  arithmetic:
+    dtype: float64
+    gpu: prohibited
+    mixed_precision: prohibited
+    process_local_default_rng: prohibited
+  linear_algebra:
+    svd: scipy_linalg_svd_full_matrices_true_check_finite_true_lapack_driver_gesvd
+    symmetric_eigendecomposition: scipy_linalg_eigh_check_finite_true_driver_evd
+    positive_definite_solve: scipy_linalg_solve_assume_a_pos_check_finite_true
+    general_solve: scipy_linalg_solve_assume_a_gen_check_finite_true
+    general_symmetric_kkt_solve: scipy_linalg_solve_assume_a_sym_check_finite_true
+    degeneracy_and_sign_rules_ref: NUMERIC_OPERATOR_GRAMMAR.md#3-deterministic-numerical-primitives
+    solver_fallback: prohibited
+  elastic_net:
+    implementation: sklearn_linear_model_ElasticNet_one_output_at_a_time
+    alpha_translation: declared_alpha_divided_by_2p
+    fit_intercept: true
+    precompute: false
+    copy_X: true
+    initialization: zeros
+    max_iter: 10000
+    tol: "1e-8"
+    warm_start: false
+    positive: false
+    selection: cyclic
+    nonconvergence: invalid_configuration
+  shallow_mlp:
+    implementation: pinned_numpy_reference
+    architecture: affine_exact_GELU_affine
+    optimizer: AdamW
+    weight_decay: decoupled_weights_only
+    biases_decay: false
+    beta1: "0.9"
+    beta2: "0.999"
+    epsilon: "1e-8"
+    epochs: 300
+    whole_trial_batch_size: 16
+    global_gradient_norm_clip: "5"
+    learning_rate_schedule: constant
+    early_stopping: false
+    dropout: false
+    batch_normalization: false
+    nonfinite_state: invalid_configuration_no_retry_with_new_seed
+  seed_contract:
+    rng: numpy_random_PCG64DXSM
+    uint64_conversion: big_endian_first_8_bytes_of_SHA256
+    payload: >-
+      ep07-seed-v2\0{registered_policy_sha256}\0{canonical_config_sha256}
+      \0{component}\0{animal}\0{date}\0{stratum}\0{fold}
+      \0{epoch}\0{replicate}
+    payload_encoding: UTF8_exact_fields_joined_by_single_NUL_without_trailing_NUL
+    allowed_component_ids:
+      - mlp_weight_initialization
+      - mlp_epoch_permutation
+      - synthetic_fixture_generation
+    unavailable_field_sentinel: "-"
+    integer_serialization: unsigned_base10_without_leading_zero
+    fold_values: zero_based_integer_or_unavailable_sentinel
+    epoch_values: zero_based_integer_or_unavailable_sentinel
+    replicate_values: zero_based_integer_or_unavailable_sentinel
+    animal_date_stratum_values: exact_frozen_manifest_UTF8_value_or_unavailable_sentinel
+    generator_lifecycle: fresh_PCG64DXSM_generator_for_each_complete_payload
+    config_hash_excludes_derived_seeds: true
+    seed_search: prohibited
+  config_canonicalization:
+    format: canonical_JSON_UTF8
+    recursive_key_order: lexicographic
+    separators: [",", ":"]
+    ensure_ascii: true
+    allow_nan: false
+    hashed_bytes_have_trailing_newline: false
+    searchable_decimals_are_exact_strings: true
+    hash: SHA256
+    hash_excludes:
+      - config_sha256
+      - human_anchor_label
+      - derived_seeds
+      - execution_timestamps
+      - worker_and_job_identifiers
+    hash_includes:
+      - grammar_schema_version
+      - runtime_contract_sha256
+      - stream
+      - every_operator_and_required_explicit_null
+      - sorted_parent_hashes_and_parent_weight_for_ensembles
+    unused_field_rule: reject_not_ignore
+    duplicate_hash_rule: reject_before_evaluation
+
+compute_profile:
+  evidence_mode: structural_dimensions_and_nonqualifying_synthetic_operator_microprofile
+  neural_numeric_values_read: false
+  model_or_comparator_scores_read: false
+  structural_dimensions:
+    total_trials: 3090
+    source_trials: {mihili: 641, chewie_l: 619}
+    target_calibration_trials_total: {mihili: 129, chewie_l: 238}
+    target_calibration_trials_per_day_range: [33, 147]
+    maximum_source_plus_calibration_rows:
+      m1_execution: 7660
+      pmd_preparation: 11490
+    maximum_aggregated_design_width_including_nuisance: 93
+    maximum_latent_width: 16
+    estimated_frozen_window_float64_gib:
+      lfp: 0.4973
+      spike: 0.0631
+      total: 0.5604
+  nonqualifying_microprofile:
+    purpose: operator_scale_sanity_check_only
+    host_cpu: AMD_EPYC_8434P
+    threads: 1
+    synthetic_shape: {rows: 11490, predictors: 93, hidden: 64, outputs: 16}
+    mean_ridge_solve_seconds: 0.00574
+    estimated_300_epoch_minibatch_mlp_seconds: 10.9
+    caveat: >-
+      This did not execute the complete twelve-day pipeline, all nested source
+      folds, every anchor, handoff isolation, or evaluator protocol and cannot
+      satisfy the compute-profile readiness gate.
+  provisional_scheduler_request:
+    gpu_count: 0
+    cpus_per_stream_evaluation: 1
+    memory_gb_per_stream_evaluation: 8
+    scratch_gb_per_worker: 16
+    maximum_parallel_stream_evaluations: 31
+    normal_128gb_node_parallelism: 16
+    memory_256gb_node_parallelism: 31
+    maximum_parallel_scratch_gb: 496
+  required_end_to_end_dry_profile:
+    state: pending_blocks_executable_status
+    data: deterministic_shape_matched_synthetic_only
+    required_paths:
+      - all_twelve_target_day_by_stratum_fits
+      - A04_hierarchy_cca_reduced_rank
+      - A05_stacking_elastic_net
+      - A10_stacking_cca_mlp
+      - A15_stacking_cca_mlp
+      - calibration_only_derivations
+      - two_parent_ensemble
+      - exact_replay
+    pass_limits:
+      peak_rss_gb_per_stream_evaluation: 6
+      p95_wall_minutes_per_stream_evaluation: 45
+      projected_maximum_80_evaluation_core_hours: 400
+      projected_campaign_wall_hours: 72
+    required_receipt_fields:
+      - runtime_image_sha256
+      - exact_wheel_manifest_sha256
+      - synthetic_fixture_sha256
+      - implementation_tree_sha256
+      - per_path_wall_cpu_peak_rss_and_scratch
+      - replay_output_hashes
+      - projection_method_and_safety_factor
+
+promotion_rule:
+  current_result: remain_provisioning
+  executable_only_after:
+    - exact_runtime_artifacts_bound_by_sha256
+    - all_sixteen_transfer_and_calibration_anchor_hashes_unique
+    - semantic_linter_accepts_every_anchor
+    - end_to_end_synthetic_dry_profile_passes
+    - deterministic_replay_receipt_passes
+    - trusted_builder_and_handoff_gates_pass

@@ -1,0 +1,166 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep08_electrode_trial_acquisition_adaptive
+episode_id: ep08
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: lfp_ep05_ep08
+  primary_animals: [mihili, chewie_l]
+  sensitivity_domains: [chewie_r_implant]
+  development_target_sessions_per_animal: 4
+  audit_target_sessions_per_animal: 2
+  session_split_unit: whole_session
+  within_session_evaluation: direction_stratified_locked_trials
+  fixed_all_electrode_pilot_trials: 16
+  fixed_pilot_trials_per_direction: 2
+  pilot_directions_required: 8
+  pilot_excludes_evaluation_trials: true
+  evaluation_evidence: internal_held_session_audit
+  external_claim_requirement: third_lineage_independent_animal
+  prior_exposure: true
+
+grammar:
+  electrode_selectors:
+    - reliability
+    - spatial_diversity
+    - redundancy_aware
+    - learned_linear_ranker
+    - learned_shallow_boosting
+    - offline_contextual_ranker
+  trial_allocators:
+    - direction_balanced
+    - uncertainty_weighted
+    - residual_diversity
+    - d_optimal
+    - bounded_ucb
+  combination_rules: [fixed_weighted_pilot_score_then_allocate, learned_pilot_ranker_then_allocate]
+  maximum_lookahead_steps: 2
+  electrode_budgets: [4, 8, 16]
+  post_pilot_trial_budgets: [32, 64, 128]
+  middle_anchor: 8x64
+  full_resource_role: ceiling_and_equivalence_only
+  electrode_lock_after_pilot: true
+  later_electrode_addition: forbidden
+  earlier_trial_backfill: forbidden
+  within_direction_trial_order: frozen_hash_queue
+  adaptive_trial_reward: trusted_nested_cv_calibration_loss_change
+  action_semantics:
+    initial_trial_action: direction_balanced_lowest_hash_stratum
+    tie_break: lowest_frozen_hash
+    missing_geometry_fallback: reliability_plus_redundancy_without_spatial_terms
+    state_serialization: canonical_json_sha256
+    pilot_cost_reported_separately: true
+  policy_time_state:
+    - static_geometry_and_qc_all_electrodes
+    - all_electrode_pilot_summaries
+    - locked_retained_electrode_set
+    - acquired_selected_electrode_lfp_and_calibration_target
+  lfp_features: [lmp, power_100_200_hz, power_200_400_hz]
+  shared_decoder: reduced_rank_ridge
+  forbidden:
+    - audit_evaluation_target_access
+    - realized_future_utility
+    - evaluation_spikes_as_policy_reward
+    - non_cross_fitted_development_utility_labels
+    - per_session_policy_selection
+    - arbitrary_band_column_selection
+    - numeric_channel_matching_across_sessions
+    - selector_specific_decoder_capacity
+    - free_form_policy_code
+
+objectives:
+  primary: equal_cell_animal_balanced_mean_delta_r2_sse_over_strongest_cost_matched_baseline
+  primary_grid: 3x3_E_4_8_16_by_post_pilot_N_32_64_128
+  aggregation: equal_cells_then_sessions_then_equal_animals
+  secondary: [full_resource_equivalence, strongest_baseline_gain, policy_complexity, acquisition_latency]
+  minimum_meaningful_improvement: 0.005
+  required_anchor_budgets: [low_4x32, middle_8x64]
+  constraints:
+    beat_strongest_cost_matched_baseline_each_primary_animal: true
+    audit_animal_means_positive: true
+    audit_sessions_improved_min: 3
+    audit_sessions_total: 4
+    identical_cost_and_evaluation_trials: true
+    no_material_full_budget_loss: true
+    leave_one_animal_out_transfer_stress: true
+    utility_labels_whole_session_cross_fitted: true
+
+budgets:
+  minimum_valid_trials: 40
+  maximum_valid_trials: 112
+  patience_valid_trials: 20
+  max_invalid_retries: 16
+  cpu_core_hour_ceiling: 1200
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 120
+  parallel_core_ceiling: 48
+  memory_gb_ceiling: 256
+  scratch_gb_ceiling: 750
+  minimum_falsification_fraction_after_branch_coverage: 0.40
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 20
+  rule: every_retention_selector_and_trial_allocator_family_with_fixed_baselines
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - repeated_cost_matched_random_selection
+  - development_utility_label_permutation
+  - electrode_geometry_shuffle
+  - reliability_diversity_learned_score_and_allocator_ablations
+  - redundancy_and_quality_matched_baselines
+  - reverse_animal_transfer
+  - leave_one_development_session_out
+  - leave_one_animal_out_policy_transfer
+  - sequential_action_information_replay_audit
+  - spike_contamination_and_low_frequency_sensitivities
+  - saturating_clustered_redundant_trial_limited_and_null_synthetic_worlds
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  require_one_global_transferable_policy: true
+  require_all_falsifiers_pass: true
+  require_anchor_budget_success: true
+  require_reproducible_sequential_replay: true
+  require_electrode_lock_before_trial_allocation: true
+  require_three_of_four_audit_sessions_improve: true
+
+stop:
+  before_minimum: forbidden_except_technical_impossibility
+  patience_starts_after_minimum: true
+  patience_delta: 0.005
+  require_selector_and_allocator_family_coverage: true
+  require_baseline_seed_completion: true
+  resource_exhaustion_result: incomplete_search
+  budget_stop_is_scientific_success: false
+  budget_stop_is_scientific_negative: false
+
+audit:
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  audit_role: held_out_sessions_and_locked_within_session_evaluation
+  terminal_claim_scope: retrospective_internal_held_session_post_pilot_retention_and_calibration_replay
+  external_claim_allowed: false
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

@@ -1,0 +1,466 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep07_cross_session_transfer_adaptive
+episode_id: ep07
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+numeric_contract:
+  scientist_decision: retain_full_declared_model_space
+  operator_grammar_ref: NUMERIC_OPERATOR_GRAMMAR.md
+  anchor_runtime_contract_ref: ANCHOR_RUNTIME_CONTRACT.yaml
+  numeric_search_contract_ref: NUMERIC_SEARCH_CONTRACT.yaml
+  anchors_per_stream: 16
+  adaptive_successor_pairs_range: [2, 14]
+  finalist_falsifier_pairs: 10
+  outcome_contacts_per_stream_range: [28, 40]
+  total_outcome_contacts_range: [56, 80]
+  post_coverage_falsifier_fraction_min: 0.40
+  executable_status: pending_runtime_artifact_lock_and_end_to_end_dry_profile
+
+dataset_roles:
+  shared_exposure_ledger_group: lfp_ep05_ep08
+  prior_exposure: true
+  source_training: prespecified_source_only_days_within_the_same_animal_implant_and_region
+  target_calibration_fraction: 0.20
+  adaptive_development_fraction: 0.40
+  locked_evaluation_fraction: 0.40
+  split_unit: whole_trial_stratified_within_target_day_and_direction
+  primary_domains: [mihili_m1, chewie_l_m1, mihili_pmd, chewie_l_pmd]
+  assignment_unit: whole_recording_day
+  assignment_rule: first_three_days_source_only_last_three_days_target_only_forward_in_time
+  primary_session_roles:
+    mihili:
+      source_only: ["2014-02-17", "2014-02-18", "2014-03-03"]
+      target_only: ["2014-03-04", "2014-03-06", "2014-03-07"]
+    chewie_l:
+      source_only: ["2016-09-29", "2016-10-05", "2016-10-06"]
+      target_only: ["2016-10-07", "2016-10-14", "2016-10-21"]
+  simultaneous_region_rule: M1_and_PMd_from_the_same_recording_day_must_have_the_same_role
+  global_nonoverlap_invariant: no_trial_from_any_target_only_day_may_enter_any_source_fit
+  primary_animals: [mihili, chewie_l]
+  sensitivity_domains: [chewie_r_m1]
+  sensitivity_may_satisfy_primary_replication: false
+  cross_animal_transfer: prohibited
+  cross_region_transfer: prohibited
+  target_trial_split:
+    split_unit: whole_trial_stratified_within_target_day_and_direction
+    split_seed_utf8: ep07-target-role-split-v1
+    ordering_payload: canonical_JSON_UTF8_array_of_split_seed_animal_id_session_date_direction_id_authenticated_trial_id
+    ordering: ascending_SHA256_hex_digest_then_authenticated_trial_id_as_collision_tiebreak
+    minimum_complete_trials_per_direction: 15
+    n_calibration: "floor(0.2*n + 0.5)"
+    n_development: "floor((n - n_calibration)/2)"
+    n_audit: "n - n_calibration - n_development"
+    minimum_result_at_n_15:
+      calibration: 3
+      development: 6
+      audit: 6
+    expected_directions_per_primary_day: 8
+    missing_primary_day_or_insufficient_direction_support: prelaunch_ineligible_requires_policy_revision
+  eligibility_and_response:
+    assignment_timing: before_target_trial_hashing_and_before_any_candidate_or_comparator_fit
+    whole_simultaneous_trial_predicate:
+      result: exactly_R
+      bin_size_seconds: 0.03
+      joined_identities: [animal, implant, day, behavioral_trial, M1, PMd, reach_direction]
+      direction_mapping: nearest_circular_multiple_of_pi_over_4_labeled_0_through_7
+      maximum_direction_error_radians: 0.01
+      event_indices: finite_integers_with_each_frozen_window_supported_on_its_native_axis
+      provider_event_indexing: MATLAB_one_based_converted_exactly_once_to_zero_based
+      python_time_slices: {m1_execution: "M1[movement+5:movement+15]", pmd_preparation: "PMd[go_cue-15:go_cue]"}
+      arrays_and_guides: declared_two_dimensional_shapes_and_consistent_time_axes
+      required_window_values: all_LFP_and_spike_values_finite_in_both_strata
+      spike_values: nonnegative_integers
+      either_stratum_failure: exclude_the_whole_simultaneous_trial
+    eligibility_must_not_use: [variability, magnitude, residuals, model_scores, comparator_scores]
+    scored_response: provider_released_native_bin_spike_count_unchanged
+    prediction_scale: original_target_neuron_native_count_scale
+    forbidden_primary_response_transforms: [square_root, logarithm, smoothing, clipping, variance_normalization]
+  target_roles:
+    calibration:
+      fraction_nominal: 0.20
+      visible_to_candidate: true
+      outcomes_may_fit_target_state: true
+    development:
+      fraction_nominal: 0.40
+      visible_to_candidate: covariates_and_opaque_trial_ids_only
+      outcomes_visible_to: trusted_development_evaluator_only
+    audit:
+      fraction_nominal: 0.40
+      visible_before_lock: false
+      outcomes_visible_to: permission_separated_one_open_audit_evaluator_only
+  strata:
+    m1_execution:
+      region: M1
+      event: movement_onset
+      half_open_window_ms: "[movement_onset+150,movement_onset+450)"
+      native_bin_width_ms: 30
+      native_bin_count: 10
+    pmd_preparation:
+      region: PMd
+      event: go_cue
+      half_open_window_ms: "[go_cue-450,go_cue)"
+      native_bin_width_ms: 30
+      native_bin_count: 15
+    resampling_or_interpolation: prohibited
+  evaluation_evidence: internal_locked_whole_trial_holdout
+  provider_preprocessing_exception:
+    allowed: true
+    scope: frozen_provider_released_representation_only
+    known_non_role_reconstructible_steps:
+      - session_wide_centering
+      - zero_phase_filtering
+      - smoothing
+    conditions:
+      - performed_by_provider_before_episode_role_assignment
+      - target_label_blind
+      - identical_released_inputs_for_transfer_and_comparators
+      - no_episode_fit_or_selection_uses_development_or_audit_outcomes
+      - exception_recorded_in_exposure_and_provenance_manifests
+    claim_limit: released_provider_preprocessed_representation_not_raw_voltage
+  handoff_firewall:
+    candidate_read_allowlist:
+      - source_only_LFP_spike_targets_and_covariates
+      - target_calibration_LFP_spike_targets_and_covariates
+      - target_development_LFP_covariates_and_opaque_trial_ids
+      - frozen_structural_metadata_and_manifests
+    candidate_forbidden:
+      - target_development_labels
+      - audit_trial_ids_covariates_labels_metrics_or_prediction_joins
+      - mixed_raw_Dryad_payload
+      - sibling_episode_raw_inputs_features_scores_winners_or_caches
+      - prior_episode_selected_settings_or_trial_order
+      - symlinks_or_hardlinks_to_any_forbidden_source
+      - network_reacquisition
+      - mutable_shared_cache
+    evaluator_separation:
+      development_labels: trusted_development_evaluator_only
+      audit_payload: separately_sealed_permission_separated_store
+      feedback_to_candidate: scalar_allowlisted_development_metrics_and_approved_diagnostics_only
+      audit_access: exactly_once_after_configuration_lock_hash_approval
+    execution_requirements:
+      - network_disabled_candidate_worker
+      - read_allowlist_excluding_repository_root_sibling_inputs_and_audit_vault
+      - mount_cache_symlink_hardlink_and_network_denial_receipts
+
+grammar:
+  representations:
+    feature_classes: [lmp, eight_authenticated_power_bands]
+    temporal_bins_ms: [30]
+    temporal_bin_rule: native_bins_only_no_resampling_or_interpolation
+    electrode_aggregation: [moments_quantiles, robust_histogram, low_rank_set_encoder]
+  latent_alignment:
+    ranks: [4, 8, 12, 16]
+    whitening: [false, true]
+    methods: [none, orthogonal_procrustes, regularized_cca]
+  nuisance: [direction_time_residual, additive_direction_time, combined]
+  source_pooling: [equal_session, reliability_weighted, calibration_similarity, hierarchical_shrinkage, leave_one_source_stacking]
+  mappings: [ridge, elastic_net, reduced_rank_ridge, shallow_mlp]
+  adaptation: [zero_prior_fit, source_prior_shrinkage, convex_source_target]
+  max_ensemble_members: 2
+  one_global_policy_rule: one_frozen_policy_shared_across_all_eligible_target_days_no_session_specific_winner
+  fit_visibility: source_only_and_target_calibration_only
+  configuration_seed_rule: deterministic_seed_derived_from_policy_hash_and_configuration_hash
+  numeric_hyperparameters_and_tie_order:
+    operator_equations_ref: NUMERIC_OPERATOR_GRAMMAR.md
+    finite_grid_anchor_runtime_ref: ANCHOR_RUNTIME_CONTRACT.yaml
+    selection_budget_retry_terminal_ref: NUMERIC_SEARCH_CONTRACT.yaml
+    rule: all_referenced_contracts_and_their_content_hashes_must_be_locked_before_development_outcome_access
+  forbidden:
+    - evaluation_fitted_transform
+    - development_label_access_by_candidate
+    - per_session_winner_selection
+    - numeric_channel_matching_across_days
+    - cross_animal_or_cross_region_transfer
+    - target_day_trials_in_any_source_fit
+    - free_form_feature_code
+    - raw_waveform_deep_network
+    - episode_level_reprocessing_that_crosses_target_trial_roles
+
+comparators:
+  fixed:
+    direction_time_mean:
+      comparator_id: target_calibration_direction_by_time_mean
+      fit_data: target_calibration_only
+      development_feedback: none_except_predeclared_score_reporting_within_paired_evaluation
+    calibration_only_champion:
+      comparator_id: target_calibration_only_matched_search_champion
+      source_information: prohibited
+      fit_data: target_calibration_only
+      legal_model_families: same_representation_nuisance_mapping_and_target_adaptation_families_as_transfer_when_source_free
+      evaluator_budget: exactly_equal_to_transfer_stream
+      selection: one_global_calibration_only_policy_no_session_specific_winner
+  common_information_rule: every_comparator_uses_the_same_target_calibration_trials_target_neuron_roster_and_provider_representation_as_transfer
+
+paired_evaluator_budget:
+  counting_unit: one_outcome_contacting_stream_trial
+  streams: [transfer, calibration_only_champion]
+  anchors_per_stream: 16
+  anchor_total: 32
+  adaptive_successor_pairs_minimum: 2
+  adaptive_successor_pairs_maximum: 14
+  finalist_bound_falsifier_pairs_exact: 10
+  evaluations_per_pair_per_stream: 1
+  evaluations_per_pair_total: 2
+  selectable_configurations_per_stream_range: [18, 30]
+  outcome_contacts_per_stream_range: [28, 40]
+  total_outcome_contacts_range: [56, 80]
+  minimum_audit_eligible_valid_trials: 56
+  total_formula: "2 * (16 + adaptive_successor_pairs + 10)"
+  allocation_rule: every_successor_and_falsifier_round_is_paired_and_no_score_dependent_unpaired_budget_is_allowed
+  falsifier_selection_rule: all_ten_pairs_are_bound_to_the_single_frozen_finalists_and_never_enter_selection
+  capacity_statement: controls_tuning_opportunity_not_model_capacity
+
+metrics_and_estimands:
+  audit_unit: whole_target_trial
+  nonindependent_subunits: [native_bins, neurons, directions, calibration_repeats]
+  target_neuron_roster:
+    membership: every_authenticated_unit_guide_entry_present_with_identical_identity_and_order_across_all_eligible_trials_and_required_windows_of_the_target_day_and_region
+    construction_inputs: authenticated_unit_guide_values_and_array_shapes_only
+    forbidden_construction_inputs: [calibration_spike_values, development_spike_values, audit_spike_values, variability, residuals, scores]
+    canonical_order: lexicographic_canonical_unit_guide_tuple
+    freeze_time: before_target_trial_hashing_and_before_any_target_spike_value_is_available_to_a_model
+    guide_mismatch: target_day_structurally_ineligible_no_intersection_roster
+    individual_low_or_zero_variance_neuron: retain
+    sharing: identical_roster_for_transfer_and_all_comparators
+  source_neuron_roster:
+    membership: every_authenticated_source_day_unit_guide_entry_present_with_identical_identity_and_order_across_all_eligible_source_trials_and_required_windows
+    construction_inputs: authenticated_unit_guide_values_and_array_shapes_only
+    canonical_order: lexicographic_canonical_unit_guide_tuple_within_source_day_and_region
+    cross_day_neuron_matching: prohibited
+    outcome_value_filtering: prohibited
+  zero_joint_audit_denominator: technical_failure_no_posthoc_neuron_or_session_exclusion
+  day_level_r2:
+    name: R2_SSE
+    aggregation: one_joint_SSE_over_all_audit_trials_native_bins_and_frozen_target_neurons_within_target_day_and_stratum
+    formula: "R2[s,k,m] = 1 - sum_{t,q,j}(y[s,k,t,q,j]-yhat[m,s,k,t,q,j])^2 / sum_{t,q,j}(y[s,k,t,q,j]-mean_audit_{t,q}(y[s,k,t,q,j]))^2"
+    computed_once_per_model_day_and_stratum: true
+  comparator_increment:
+    formula: "Delta[s,k,b] = R2[s,k,transfer] - R2[s,k,b]"
+    comparators: [target_calibration_direction_by_time_mean, target_calibration_only_matched_search_champion]
+  animal_balanced_comparator_estimand:
+    formula: "theta[k,b] = mean_{a in {mihili,chewie_l}} mean_{s in three_target_days(a)} Delta[s,k,b]"
+    fixed_session_weights: equal_within_animal_then_equal_between_animals
+  intersection_union_estimand:
+    formula: "theta[k] = min_b theta[k,b]"
+    interpretation: transfer_increment_against_each_and_both_prespecified_comparators
+
+objectives:
+  primary: animal_balanced_mean_delta_r2_against_each_prespecified_comparator
+  adaptive_stream_scores:
+    transfer_before_calibration_champion_freezes: equal_stratum_animal_balanced_increment_over_fixed_direction_time_mean
+    calibration_only: equal_stratum_animal_balanced_absolute_r2
+    transfer_final_selection_after_calibration_champion_freezes: equal_stratum_mean_of_minimum_comparator_wise_increment
+  secondary_report_only: [lower_tail_session_delta, within_session_ceiling_retention, simplicity]
+  candidate_margin_r2: 0.01
+  minimum_meaningful_improvement: 0.01
+  search_patience_resolution_r2: 0.002
+  constraints:
+    max_primary_animal_regression_r2: 0.005
+    require_majority_sessions_each_primary_animal: true
+    matched_target_information_budget: true
+    matched_evaluator_opportunities: true
+    multiplicity_family: [m1_execution, pmd_preparation]
+    multiplicity_alpha_one_sided: 0.05
+
+budgets:
+  minimum_valid_trials: 56
+  maximum_valid_trials: 80
+  maximum_outcome_contacts: 80
+  patience_valid_trials: 14
+  valid_trial_counting: total_across_the_two_paired_streams
+  max_invalid_retries: 12
+  cpu_core_hour_ceiling: 800
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 96
+  parallel_core_ceiling: 32
+  memory_gb_ceiling: 256
+  scratch_gb_ceiling: 500
+  minimum_falsification_fraction_after_branch_coverage: 0.40
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 32
+  anchors_per_stream: 16
+  rule: paired_anchors_cover_all_base_alignment_pooling_mapping_representation_adaptation_levels_and_numeric_boundaries_in_each_stream_where_legally_applicable
+  ensemble_anchor_coverage: not_applicable_requires_previously_valid_parents
+  ensemble_successor_coverage: weights_0_25_and_0_75_must_each_receive_one_valid_successor_evaluation_per_stream_before_finalist_selection
+  readiness_rejection_must_be_logged: true
+
+inference:
+  family: fixed_policy_paired_whole_trial_bootstrap
+  bootstrap_replicates: 9999
+  plus_one_denominator: 10000
+  rng_algorithm: numpy_PCG64DXSM
+  rng_seed_uint64: 7007999
+  refit_in_bootstrap: false
+  resampling:
+    unit: whole_audit_trial
+    stratification: within_each_target_day_and_direction
+    draws_per_cell: original_number_of_audit_trials_in_that_target_day_and_direction
+    replacement: true
+    pairing: keep_all_native_bins_neurons_and_all_transfer_and_comparator_predictions_from_a_trial_together
+    cross_stratum_coupling: use_the_same_resampled_authenticated_trial_ids_for_simultaneous_M1_and_PMd_data
+    recompute_each_replicate: day_level_R2_comparator_deltas_animal_means_and_theta_from_the_resampled_trials
+  comparator_tests:
+    null: "H0[k,b]: theta[k,b] <= 0.01_R2"
+    alternative: "H1[k,b]: theta[k,b] > 0.01_R2"
+    centered_plus_one_p_formula: "p[k,b] = (1 + count(theta_star[k,b] - theta_hat[k,b] >= theta_hat[k,b] - 0.01)) / 10000"
+  intersection_union:
+    formula: "p_IUT[k] = max_b p[k,b]"
+    meaning: a_stratum_can_pass_only_if_transfer_clears_the_margin_against_both_comparators
+  multiplicity:
+    method: one_sided_Holm_stepdown
+    family: [m1_execution, pmd_preparation]
+    family_size: 2
+    alpha: 0.05
+    equal_p_value_tie_order: [m1_execution, pmd_preparation]
+    exact_rule: sort_the_two_p_IUT_values_ascending_test_the_smaller_at_0.025_and_only_if_rejected_test_the_larger_at_0.05
+  inference_scope: exchangeable_repeat_trials_within_fixed_day_by_direction_cells_and_observed_cell_sizes_from_the_six_fixed_target_days_not_new_direction_composition_sessions_animals_implants_or_regions
+
+required_falsifiers:
+  - F01_source_session_label_shuffle
+  - F02_source_trial_correspondence_shuffle
+  - F03_target_calibration_correspondence_shuffle
+  - F04_zero_source_ablation
+  - F05_direction_time_template_only
+  - F06_equal_source_weight_replacement
+  - F07_leave_source_day_position_1_out
+  - F08_leave_source_day_position_2_out
+  - F09_leave_source_day_position_3_out
+  - F10_active_component_ablation
+
+nonbudgeted_pre_audit_gates:
+  - G01_stable_synthetic_recovery
+  - G02_drifting_synthetic_recovery
+  - G03_null_synthetic_recovery
+  - G04_latent_scale_shift_recovery
+  - G05_deterministic_full_refit_replay
+  - G06_role_boundary_access_denial
+  - G07_cache_symlink_hardlink_and_network_denial
+
+conditional_ensemble_component_ablation_gate:
+  applicable_when: either_frozen_finalist_is_a_two_parent_ensemble
+  records: [C01_remove_first_parent, C02_remove_second_parent]
+  source: already_stored_scored_parent_predictions_no_new_outcome_contact
+  pass_rule: ensemble_primary_score_not_less_than_each_parent_only_score
+
+leave_one_target_day_out:
+  mode: no_refit_computation_from_stored_locked_audit_predictions
+  search_or_falsifier_budget: false
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  require_global_shared_policy: true
+  transfer_finalist_must_be_source_bearing: true
+  require_all_falsifiers_pass: true
+  require_pareto_feasible: false
+  finalist_selection_authority: NUMERIC_SEARCH_CONTRACT.yaml#development_selection
+  require_reproducible_refit_from_immutable_inputs: true
+  max_ensemble_members: 2
+  candidate_ready_per_stratum:
+    corrected_inference: Holm_rejects_the_stratum_IUT_margin_null
+    comparator_wise_within_animal_sign: "for every comparator b and animal a, mean_{s in target_days(a)} Delta[s,k,b] > 0"
+    comparator_wise_session_majority: "for every animal a, at least two of its three target days have Delta[s,k,b] > 0 for both comparators b"
+    comparator_wise_leave_one_target_day: "for every comparator b and each of six omissions, theta_LOTO[k,b] > 0 after recomputing the affected animal mean over its other two target days"
+    required_falsifiers: all_pass
+    leakage_and_role_audits: all_pass
+  stratum_logic:
+    one_corrected_stratum_passes: candidate_ready_for_that_exact_region_epoch_stratum_only
+    both_corrected_strata_pass: candidate_ready_with_support_in_both_prespecified_strata_not_phase_general
+    region_epoch_confound: prohibits_phase_general_or_region_independent_claim
+
+stop:
+  before_two_adaptive_successor_pairs: forbidden_except_registered_resource_or_technical_impossibility
+  patience_applies_to: adaptive_successor_pairs_only
+  anchors_and_falsifiers_count_toward_patience: false
+  patience_delta: 0.002
+  patience_unit: 14_consecutive_valid_evaluations_equal_to_7_complete_paired_rounds
+  candidate_margin_must_not_be_used_for_patience: 0.01
+  require_grammar_family_coverage: true
+  after_normal_successor_stop: freeze_calibration_only_champion_first_then_source_bearing_transfer_finalist_then_run_all_ten_finalist_bound_falsifier_pairs
+  after_registered_resource_stop: incomplete_search_without_finalist_or_falsifier_phase
+  after_technical_stop: technical_failure_without_finalist_or_falsifier_phase
+  resource_exhaustion_result: incomplete_search
+  budget_stop_is_scientific_success: false
+  budget_stop_is_scientific_negative: false
+
+audit:
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  audit_role: locked_whole_trial_evaluation_40_percent
+  bootstrap_policy_ref: inference
+  no_refit_or_successor_after_open: true
+  retry_allowed_only_if_no_audit_label_metric_prediction_join_or_candidate_discriminating_diagnostic_was_emitted: true
+  terminal_claim_scope: source_prior_value_for_calibrated_target_sessions_on_internal_held_trials
+
+terminal_decision:
+  candidate_ready_m1_only:
+    condition: m1_execution_passes_all_promotion_rules_and_pmd_preparation_does_not
+    outer_status: candidate_ready
+    claim: transfer_increment_supported_for_M1_execution_in_the_six_fixed_target_days_only
+  candidate_ready_pmd_only:
+    condition: pmd_preparation_passes_all_promotion_rules_and_m1_execution_does_not
+    outer_status: candidate_ready
+    claim: transfer_increment_supported_for_PMd_preparation_in_the_six_fixed_target_days_only
+  candidate_ready_both:
+    condition: both_strata_pass_all_promotion_rules
+    outer_status: candidate_ready
+    claim: support_in_both_prespecified_region_epoch_strata_without_phase_generalization
+  audit_failed:
+    condition: valid_audit_neither_stratum_passes_each_stratum_has_theta_hat_min_over_comparators_at_or_below_0.01_and_no_prespecified_audit_robustness_guard_fails
+    outer_status: closed_no_candidate
+    interpretation: failed_to_clear_the_practical_margin_not_evidence_of_no_signal
+  unresolved:
+    condition: valid_audit_neither_stratum_passes_but_at_least_one_stratum_has_theta_hat_min_over_comparators_above_0.01_or_fails_a_prespecified_robustness_guard
+    outer_status: closed_no_candidate
+    interpretation: suggestive_or_heterogeneous_fixed_corpus_result_not_candidate_ready
+  development_exhausted_no_eligible_policy:
+    condition: required_anchors_and_successor_search_completed_and_either_no_feasible_finalist_exists_or_one_finalist_froze_all_ten_falsifier_pairs_completed_and_at_least_one_scientific_falsifier_failed
+    audit_must_remain_closed: true
+    runner_up_substitution: prohibited
+    outer_status: closed_no_candidate
+  incomplete_search:
+    condition: not_technical_failure_not_development_exhausted_and_required_anchors_two_valid_successor_pairs_or_conditional_finalist_bound_falsifier_evidence_not_completed
+    audit_must_remain_closed: true
+    outer_status: closed_no_candidate
+  technical_failure:
+    condition: leakage_broken_split_premature_audit_access_zero_joint_denominator_or_invalid_audit_execution
+    outer_status: technical_failure
+
+claim_boundary:
+  allowed: added_value_of_source_session_information_for_an_already_calibrated_target_session_on_future_trials_from_the_six_fixed_target_days_within_animal_implant_and_region
+  prohibited:
+    - independent_confirmation
+    - wholly_unseen_target_session_generalization
+    - zero_shot_transfer
+    - new_session_or_new_animal_population_inference
+    - cross_animal_transfer
+    - cross_region_transfer
+    - phase_generalization
+    - raw_signal_or_raw_voltage_benchmark_claim
+    - clinical_generalization
+
+terminal_mapping:
+  candidate_ready_m1_only: candidate_ready
+  candidate_ready_pmd_only: candidate_ready
+  candidate_ready_both: candidate_ready
+  audit_failed: closed_no_candidate
+  development_exhausted_no_eligible_policy: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  unresolved: closed_no_candidate
+  technical_failure: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

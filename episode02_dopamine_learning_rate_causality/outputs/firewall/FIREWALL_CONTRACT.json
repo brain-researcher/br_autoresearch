@@ -1,0 +1,37 @@
+{
+  "contract_id": "ep02_permission_separated_firewall_v1",
+  "contract_hash_serialization": "UTF-8 JSON with sorted keys, no insignificant whitespace, ensure_ascii=false",
+  "current_environment_status": "BLOCKED_PENDING_EXTERNAL_PROVISIONING",
+  "required_checks": [
+    "separate_principals",
+    "candidate_source_denial",
+    "candidate_evaluator_pack_denial",
+    "candidate_network_egress_denial",
+    "evaluator_network_egress_denial",
+    "evaluator_only_mount",
+    "atomic_no_partial_output"
+  ],
+  "required_distinct_principals": [
+    "candidate",
+    "evaluator",
+    "steward"
+  ],
+  "required_signer_roles": [
+    "infrastructure_operator",
+    "data_steward"
+  ],
+  "same_uid_controls_are_sufficient": false,
+  "schema_version": "ep02.dudman.permission_firewall_contract.v1",
+  "source_sha256": "1039b9555ef50b80e01cc923b372a7960daade774fdb6a236c34cafcedf75866",
+  "trusted_signers": {},
+  "trusted_signers_status": "PENDING_SCIENTIST_AND_INFRASTRUCTURE_PIN",
+  "signed_payload_serialization": "UTF-8 JSON receipt_payload with sorted keys, no insignificant whitespace, ensure_ascii=false",
+  "verification_rule": "all_required_checks_pass_and_both_independently_pinned_ed25519_signatures_verify",
+  "weak_controls_that_never_satisfy_this_contract_alone": [
+    "chmod_or_posix_acl_under_the_candidate_uid",
+    "slurm_job_running_as_the_candidate_uid",
+    "apptainer_or_namespace_launched_by_the_candidate_uid",
+    "an_unattested_local_negative_access_probe",
+    "a_self_authored_json_receipt"
+  ]
+}

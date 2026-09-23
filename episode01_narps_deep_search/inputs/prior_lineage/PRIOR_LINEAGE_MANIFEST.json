@@ -1,0 +1,230 @@
+{
+  "schema_version": "autoresearch.prior_lineage_manifest.v1",
+  "created_on": "2026-09-22",
+  "repository_revision": "a499b40d16de1ab75cb925e583d262364fdb911a",
+  "status": "manifest_only_not_materialized",
+  "role": "fully_exposed_development_prior",
+  "counts_as_new_evidence": false,
+  "counts_as_confirmation": false,
+  "live_sibling_read_during_run": false,
+  "source_path_base": "repository_root_current_worktree",
+  "repository_revision_path_base": "repository_root_at_declared_revision",
+  "repository_revision_path_rewrites": [
+    {
+      "current_prefix": "_examples/historical_prior_records/episode01_narps_analysis",
+      "prefix_at_repository_revision": "episode01_narps_analysis"
+    },
+    {
+      "current_prefix": "_examples/historical_prior_records/episode02_narps_analysis",
+      "prefix_at_repository_revision": "episode02_narps_analysis"
+    }
+  ],
+  "destination_path_base": "episode_root",
+  "materialization_contract": {
+    "destination": "inputs/prior_lineage/materialized/",
+    "copy_required": true,
+    "symlink_allowed": false,
+    "hardlink_allowed": false,
+    "verify_sha256_and_bytes_before_launch": true,
+    "verify_current_and_declared_revision_paths": true,
+    "large_derived_arrays_included": false,
+    "large_array_rule": "use a controller-provisioned immutable read-only snapshot with a complete manifest, or recompute from pinned ds001734"
+  },
+  "design_provenance": {
+    "path": "_examples/narps_deep_search_template",
+    "repository_revision": "a499b40d16de1ab75cb925e583d262364fdb911a",
+    "files": [
+      {
+        "path": "_examples/narps_deep_search_template/GOAL.md",
+        "sha256": "fe155863b93da86f037f4cf61034d3620f734d20b720d66344c9e020b71661db"
+      },
+      {
+        "path": "_examples/narps_deep_search_template/DATASETS.md",
+        "sha256": "e6db918b11214f35333310404d10007d3432709e8ff674fe58e2449027c62b7a"
+      },
+      {
+        "path": "_examples/narps_deep_search_template/SEARCH_POLICY.md",
+        "sha256": "ab813ab4d851df344b1e0c189116b22f935f9640dee4f111215ed37bf8611b5b"
+      }
+    ]
+  },
+  "prior_records": [
+    {
+      "prior_id": "narps_prior_v1",
+      "former_display_alias": "ep01",
+      "source_path": "_examples/historical_prior_records/episode01_narps_analysis",
+      "source_path_at_repository_revision": "episode01_narps_analysis",
+      "source_path_mutability": "frozen",
+      "canonical_goal_handoff_id": "goal_handoff_e3f79fc20a54776ebf304655",
+      "canonical_loop_id": "arl_8cbd25a7a8610a008c2830ba624052c4",
+      "canonical_state_observed_on": "2026-09-22",
+      "canonical_state": "COMPLETE",
+      "canonical_revision": 3,
+      "canonical_terminal_status": "closed_no_candidate",
+      "reusable_as_current_episode_identity": false,
+      "source_goal_sha256": "9504992e12d72382d10e4b42b7fdcfdde3f46a748ecbf03bd4820f7be3e51640",
+      "source_datasets_sha256": "02a21235c3a0890608bd6f2bc5ca4ab403c6f7a4034d834ba150cb5fc8e83f62"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "former_display_alias": "ep02",
+      "source_path": "_examples/historical_prior_records/episode02_narps_analysis",
+      "source_path_at_repository_revision": "episode02_narps_analysis",
+      "source_path_mutability": "frozen",
+      "canonical_goal_handoff_id": "goal_handoff_daf31dc2e8aa7a9965a9a8e7",
+      "canonical_loop_id": "arl_b622657e9fbd000075c5ad5f4cf30c44",
+      "canonical_state_observed_on": "2026-09-22",
+      "canonical_state": "AWAITING_REWARD",
+      "canonical_revision": 3,
+      "canonical_terminal_status": null,
+      "canonical_next_action_id": "ara_96998496972c58df9e3e3c4abbe9b33e",
+      "canonical_next_action": "record_reward",
+      "canonical_next_action_expires_at_utc": "2026-08-18T03:57:24.294608Z",
+      "cached_action_replay_allowed": false,
+      "human_confirmation_required": true,
+      "reusable_as_current_episode_identity": false,
+      "source_goal_sha256": "33826fe1a437fb12875da3d1c6a03c1b7508fec51efdd6a8d2b370c06b6e60bc",
+      "source_datasets_sha256": "9f70e80baf46f32fabcd697eb240d4068bbcb84b8029d5934ddc4f215336e542"
+    }
+  ],
+  "required_small_artifacts": [
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/frozen_analysis_contract.json",
+      "bytes": 14868,
+      "sha256": "edae18d760897767058f31f4313cc732ab6bdba2acbc4e36a7af7a1e3d9fc0a8"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/frozen_analysis_contract.md",
+      "bytes": 11228,
+      "sha256": "1bad0c7f0ac03cb4da0d8fddaa69e4f403af83bc00808303107dc06b7cdabd34"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/candidate_bundle.json",
+      "bytes": 6852,
+      "sha256": "07049a311ca53561c11a1cd09e0d31377d5f5104ec2af6550234d7adcdb9eaa5"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/RESULT.md",
+      "bytes": 7434,
+      "sha256": "427169921370bedef23aef923eed0431ea826293f0ddabd2a1ae6e3d1b6bc7f2"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/source_audit.json",
+      "bytes": 1782,
+      "sha256": "ed41699eec9b8af77b21d5e78348203f4b5de230d3806ec32140bb69cb838bd8"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/multiverse_manifest.tsv",
+      "bytes": 11129,
+      "sha256": "a2f8a8eeb8f0b13185444bef41ba7ba25b1faf401c189c3686b274f00c5b295e"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/variance_attribution.tsv",
+      "bytes": 6981,
+      "sha256": "9df076d5dfb9d97c2a70dc88f99077a40853161e9af7c4c24705663a6489a898"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/conclusion_stability.tsv",
+      "bytes": 254337,
+      "sha256": "23846a15bc2f5a6aa1fbd44b143efb7eaeaee356e0d196e4a8e59a808e334784"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/edge_scaling_diagnostic_summary.json",
+      "bytes": 3593,
+      "sha256": "f5f9e8e9dcb8932da9ae23d3f35becb967b1d7212a76b28b3ccb3a61c72a45b0"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/matched_n_calibration.tsv",
+      "bytes": 18956,
+      "sha256": "d771feccce8c41a0633d951813d8f3b1d69626bc5ddf0b0e280857204f3272ca"
+    },
+    {
+      "prior_id": "narps_prior_v1",
+      "path": "_examples/historical_prior_records/episode01_narps_analysis/outputs/governance.md",
+      "bytes": 3078,
+      "sha256": "a8bafce7e944f3f0629c1a39ecbf4f66922c9d52d880ed6d13f8357642d410c3"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/frozen_successor_contract.json",
+      "bytes": 14994,
+      "sha256": "27a58a09ee043e71b7d1fca93de0ef727b79fc6ecbd9fef2eaf800208317829f"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/frozen_successor_contract.md",
+      "bytes": 6837,
+      "sha256": "62aea3f7a884630aeff50c9fc713ffa9f0831a7c6d939c85692328cd40ac3aa3"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/candidate_bundle.json",
+      "bytes": 5040,
+      "sha256": "0eab742c59d49393f9c7efa0e609084ddfb8ebadb4ec7843771c6e33ffc5c609"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/RESULT.md",
+      "bytes": 5557,
+      "sha256": "2fbb6f6209a4490d29e3efe68e9b959f9725748d986e9a3d84d1d09bdf822925"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/source_inventory.json",
+      "bytes": 156722,
+      "sha256": "0dd83faf9ad4921ab26ea9385653473394f83d7fd1af294f26eda35f4685d8dd"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/analysis_manifest.tsv",
+      "bytes": 23167,
+      "sha256": "2c8f1f2e5d98f38f67e10953ba6d524babcafd4863cafc8986ba2174cb6f97cd"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/mechanism_results.tsv",
+      "bytes": 15914,
+      "sha256": "f8be59a78914441899521beeaa5af22bb09c42586676a780bb7782220ca3d68e"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/threshold_stability.tsv",
+      "bytes": 1075,
+      "sha256": "b6485e714ab2cb48f93e2dc7dae8859e53d7dac65373dfe37beadf3d1a40c007"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/robustness_results.tsv",
+      "bytes": 5456,
+      "sha256": "0242af5b5ed83b8060d1b0873dfac0ffe7dc1514c12c044f81b6419918fca075"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/decision.json",
+      "bytes": 710,
+      "sha256": "28517752a71347348c8233c8bb702d1eb46314ec18cf80345740280b637bd500"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/governance.md",
+      "bytes": 2356,
+      "sha256": "7ce81eceed08a537ea61103fb0f45271b241180801483a300fe263d1ddbea22a"
+    },
+    {
+      "prior_id": "narps_prior_v2",
+      "path": "_examples/historical_prior_records/episode02_narps_analysis/outputs/society.md",
+      "bytes": 3022,
+      "sha256": "fa26ca10e748a49a95e5c522e4207b5fe2509499c7a060679ec9a37f68731414"
+    }
+  ]
+}

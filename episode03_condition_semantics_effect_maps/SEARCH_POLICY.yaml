@@ -1,0 +1,158 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep03_condition_semantics_adaptive
+episode_id: ep03
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  development:
+    source: exposed_neuroeffect_51_independent_dataset_groups
+    use: grouped_nested_cross_validation_and_mechanism_search
+    freshness: historically_exposed
+  selection:
+    source: same_51_groups_with_frozen_outer_group_folds
+    use: out_of_fold_constrained_model_selection
+    freshness: internal_only
+  audit:
+    source: prospective_independent_new_dataset_groups
+    use: one_shot_locked_evaluation
+    freshness: must_be_sealed_and_lineage_disjoint
+    available: false
+
+grammar:
+  semantic_inputs:
+    - signed_standardized_contrast_template
+    - train_fold_lexical_ngrams
+    - frozen_ontology_indicators
+    - hash_pinned_frozen_text_encoder
+    - registered_lexical_ontology_encoder_concat
+  semantic_transforms:
+    - none
+    - train_fold_pca
+    - train_fold_pls
+    - signed_positive_negative_difference_composition
+  map_bases:
+    - train_fold_voxel_pca
+    - registered_atlas_network_basis
+  predictors:
+    - ridge
+    - elastic_net
+    - partial_least_squares
+    - kernel_ridge_linear
+    - kernel_ridge_cosine
+    - kernel_ridge_rbf
+    - reduced_rank_multioutput_regression
+  nuisance_modes:
+    - none
+    - train_only_residualization
+    - prespecified_stratification
+  ensemble:
+    max_members: 2
+    rule: convex_blend_of_pre_evaluated_complementary_pipelines
+  forbidden:
+    - arbitrary_code_mutation
+    - target_map_features
+    - result_or_discussion_text
+    - dataset_or_publication_identity
+    - map_derived_taxonomy
+    - audit_adaptive_preprocessing
+
+objectives:
+  primary:
+    name: dataset_group_weighted_relative_mse_gain_over_task_family_prototype
+    direction: maximize
+    formula: mean_d(1-L_model_d/L_family_d)
+  secondary:
+    - spatial_correlation_gain
+    - reliability_normalized_gain
+    - leave_one_family_out_gain
+    - fraction_of_dataset_groups_improved
+  constraints:
+    - polarity_equivariance_pass
+    - positive_cluster_excluded_direction
+    - complete_procedure_permutation_pass
+    - metadata_and_lexical_controls_do_not_explain_gain
+    - no_single_dataset_group_dominance
+    - leakage_duplicate_reliability_gates_pass
+
+budgets:
+  minimum_valid_trials: 30
+  maximum_valid_trials: 72
+  patience_valid_trials: 12
+  cpu_core_hour_ceiling: 1500
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 120
+  max_parallel_cores: 32
+  max_memory_gb_per_trial: 128
+  max_scratch_gb: 1000
+  finalists_max: 4
+  audit_openings_max: 1
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 8
+  rule: family_prototype_lexical_ontology_frozen_encoder_voxel_basis_and_atlas_basis_anchors
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - within_family_signed_text_permutation_full_procedure
+  - contrast_polarity_reversal
+  - metadata_only_model
+  - trivial_lexical_only_model
+  - semantic_cluster_exclusion
+  - duplicate_lineage_and_near_duplicate_exclusion
+  - capacity_matched_random_features
+  - leave_one_group_influence
+  - reliability_matched_analysis
+  - semantic_block_and_ensemble_ablation
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  low_fidelity_rule: dominated_trials_may_be_pruned_only_on_frozen_inner_folds
+  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_development_groups
+  lock_rule: select_exactly_one_feasible_pipeline_then_hash_code_environment_manifests_dag_and_thresholds
+
+stop:
+  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
+  after_minimum: patience_or_max_trials_or_resource_ceiling
+  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
+  valid_terminal_classes:
+    - candidate_ready
+    - closed_no_candidate
+    - search_exhausted_no_audit
+    - technical_failure
+    - policy_violation
+audit:
+  mode: one_shot_after_configuration_lock
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  retraining: forbidden
+  candidate_swap: forbidden
+  threshold_change: forbidden
+  partial_score_visibility: forbidden
+  development_groups_eligible: false
+  requires_external_sealed_corpus: true
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  search_exhausted_no_audit: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_handoff_id: null
+  action_id: null
+  runtime_episode_id: null
+  candidate_bundle_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

@@ -1,0 +1,192 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep06_lfp_regional_fingerprints_adaptive
+episode_id: ep06
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: lfp_ep05_ep08
+  development:
+    source: hash_ranked_four_of_six_eligible_mihili_and_four_of_six_chewie_l_sessions
+    use: adaptive_search_and_nested_session_selection
+    freshness: historically_exposed
+  selection:
+    source: frozen_nested_session_folds_with_cross_animal_transfer
+    use: constrained_global_policy_selection
+    freshness: internal_only
+  internal_audit:
+    source: hash_ranked_two_of_six_eligible_sessions_per_primary_animal
+    use: one_shot_locked_within_corpus_session_transfer
+    freshness: exposure_tainted_procedural_audit
+    available: conditional_on_structural_eligibility_and_firewall
+  audit:
+    source: hash_ranked_two_of_six_eligible_sessions_per_primary_animal
+    use: one_shot_locked_within_corpus_session_transfer
+    freshness: exposure_tainted_procedural_audit
+    available: conditional_on_structural_eligibility_and_firewall
+  external_confirmation:
+    source: prospective_third_animal_with_simultaneous_matched_m1_pmd
+    use: separate_successor_round_direct_generalization
+    freshness: must_be_independent_and_sealed
+    available: false
+
+grammar:
+  analysis_windows:
+    primary: execution_plus_150_to_plus_450_ms
+    alternatives: finite_behavior_defined_preparation_execution_schedule
+  feature_blocks:
+    - lmp
+    - power_0p5_4_hz
+    - power_4_8_hz
+    - power_8_12_hz
+    - power_12_25_hz
+    - power_25_50_hz
+    - power_50_100_hz
+    - power_100_200_hz
+    - power_200_400_hz
+    - registered_contiguous_low_mid_high_groups
+    - full_nine_class_profile
+  electrode_aggregation:
+    - fixed_matched_15_electrode_mean
+    - fixed_matched_15_electrode_median
+    - train_only_reliability_shrinkage
+    - train_only_electrode_pca
+  spike_latents:
+    - train_only_pca_finite_rank_schedule
+    - train_only_reduced_rank_finite_schedule
+  mappings:
+    - ridge
+    - reduced_rank_regression
+    - partial_least_squares
+    - regularized_cca
+  profile_normalization:
+    - centered_unit_l2_shape
+    - reliability_shrunk_shape
+    - frozen_weight_shape_plus_magnitude
+  alignment:
+    - none
+    - training_session_robust_scaling
+    - train_only_orthogonal_procrustes
+  classifiers:
+    - nearest_prototype_correlation
+    - nearest_prototype_cosine
+    - shrinkage_mahalanobis
+    - regularized_logistic
+  ensemble:
+    max_members: 2
+    rule: convex_combination_of_pre_evaluated_complementary_policies
+  forbidden:
+    - arbitrary_band_edges
+    - audit_specific_alignment
+    - per_animal_winner_selection
+    - unpaired_m1_pmd_trials
+    - outcome_selected_electrodes
+    - raw_phase_analysis
+    - arbitrary_code_mutation
+
+objectives:
+  primary:
+    name: mean_bidirectional_cross_animal_balanced_accuracy_minus_chance
+    direction: maximize
+  secondary:
+    - m1_minus_pmd_contrast_alignment
+    - session_consistency
+    - reliability_adjusted_margin
+    - policy_complexity
+  constraints:
+    - both_cross_animal_directions_above_complete_procedure_null
+    - regional_contrast_alignment_same_direction
+    - no_single_session_dominance
+    - paired_trial_equal_capacity_and_reliability_gates_pass
+    - array_qc_metadata_only_hardware_confound_gate_pass
+    - low_frequency_and_spike_bleed_sensitivities_pass
+    - tme_surrogate_and_band_label_nulls_pass
+
+budgets:
+  minimum_valid_trials: 20
+  maximum_valid_trials: 48
+  patience_valid_trials: 10
+  cpu_core_hour_ceiling: 1200
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 96
+  max_parallel_cores: 32
+  max_memory_gb_per_trial: 128
+  max_scratch_gb: 750
+  finalists_max: 4
+  audit_openings_max: 1
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 12
+  rule: fixed_low_full_ridge_cca_prototype_and_regularized_classifier_anchors
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - paired_session_region_label_permutation_full_procedure
+  - band_label_profile_permutation
+  - within_direction_whole_trial_lfp_latent_pairing
+  - tme_or_smoothness_dimension_matched_surrogate
+  - direction_by_time_and_elapsed_time_baselines
+  - low_frequency_and_high_frequency_exclusion
+  - same_electrode_unit_intersection_sensitivity
+  - matched_electrode_trial_rank_reliability_budgets
+  - array_qc_impedance_missing_channel_metadata_only_hardware_confound
+  - feature_mapping_normalization_alignment_ablations
+  - leave_one_session_and_bidirectional_transfer
+  - area2_recording_domain_specificity_without_region_claim
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  coverage_rule: run_fixed_low_full_ridge_cca_prototype_and_regularized_classifier_anchors
+  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_eight_development_sessions_and_falsifiers
+  lock_rule: select_one_policy_before_any_internal_or_external_audit_reveal
+  external_confirmation_requires_new_registered_round: true
+
+stop:
+  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
+  after_minimum: patience_or_max_trials_or_resource_ceiling
+  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
+  valid_terminal_classes:
+    - candidate_ready
+    - closed_no_candidate
+    - search_exhausted_no_audit
+    - technical_failure
+    - policy_violation
+audit:
+  mode: one_shot_after_configuration_lock
+  configuration_lock_required: true
+  lock_hash_required: true
+  source: four_hash_reserved_current_release_sessions
+  maximum_open_count: 1
+  audit_updates_search: false
+  claim: procedural_within_corpus_session_transfer_only
+  external_generalization:
+    required_source: prospective_sealed_third_matched_m1_pmd_animal
+    requires_new_registered_successor_round: true
+    direct_test_requires_same_locked_candidate: true
+  retraining_policy: forbidden
+  candidate_swap: forbidden
+  threshold_or_exclusion_change: forbidden
+  partial_score_visibility: forbidden
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  search_exhausted_no_audit: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_handoff_id: null
+  action_id: null
+  runtime_episode_id: null
+  candidate_bundle_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

@@ -1,0 +1,619 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep01_narps_adaptive_smoothing_search_v1
+episode_id: ep01
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+prior_lineage:
+  manifest: inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json
+  materialization_status: manifest_only_not_launch_ready
+  role: fully_exposed_development_prior
+  counts_as_new_evidence: false
+  live_sibling_reads_during_run: prohibited
+  prior_records:
+    - prior_id: narps_prior_v1
+      former_display_alias: ep01
+      canonical_loop_id: arl_8cbd25a7a8610a008c2830ba624052c4
+      canonical_goal_handoff_id: goal_handoff_e3f79fc20a54776ebf304655
+      observed_state: COMPLETE
+      observed_revision: 3
+      observed_terminal_status: closed_no_candidate
+      reusable_as_current_identity: false
+    - prior_id: narps_prior_v2
+      former_display_alias: ep02
+      canonical_loop_id: arl_b622657e9fbd000075c5ad5f4cf30c44
+      canonical_goal_handoff_id: goal_handoff_daf31dc2e8aa7a9965a9a8e7
+      observed_state: AWAITING_REWARD
+      observed_revision: 3
+      observed_terminal_status: null
+      observed_next_action_id: ara_96998496972c58df9e3e3c4abbe9b33e
+      observed_next_action_type: record_reward
+      observed_next_action_expires_at_utc: "2026-08-18T03:57:24.294608Z"
+      cached_action_replay_allowed: false
+      reusable_as_current_identity: false
+
+dataset_roles:
+  historical_prior:
+    source: narps_prior_v1_and_narps_prior_v2
+    access: content_addressed_episode_local_packet_only
+    outcome_exposure: fully_exposed
+    permitted_use: hypothesis_generation_historical_reproduction_and_ingestion_tests
+    counts_as_trial_or_confirmation: false
+    current_payload: manifest_only_packet_not_materialized
+  development_ds001734:
+    source: OpenNeuro_ds001734_v1_0_5
+    doi: 10.18112/openneuro.ds001734.v1.0.5
+    role: outcome_visible_adaptive_development
+    access: controller_provisioned_read_only_handoff
+    outcome_exposure: fully_exposed_by_prior_runs
+    source_manifest: null
+    split_manifest: null
+    environment_manifest: null
+    mask_manifest: null
+    operator_manifest: null
+    current_payload: historical_paths_observed_handoff_not_frozen
+  synthetic_fixtures:
+    role: outcome_blind_calibration_and_integrity_tests
+    access: development_visible
+    fixture_manifest: null
+    current_payload: absent
+  audit_ds000005:
+    source: OpenNeuro_ds000005
+    role: one_shot_external_transport_audit
+    access: permission_separated_evaluator_only_after_configuration_lock
+    discovery_visible_fields: identity_schema_counts_commitments_and_contrast_names_only
+    required_candidate_discriminating_neural_arrays_visible_before_lock: false
+    current_prelock_visibility_enforced: false
+    independently_collected: true
+    globally_pristine: false
+    campaign_procedure_sealed_required: true
+    audit_manifest: null
+    audit_payload_merkle_root: null
+    audit_runner_ref: null
+    current_payload: locally_present_but_no_role_filtered_handoff_or_firewall
+  mixed_development_and_audit_mount: prohibited
+
+grammar:
+  scientific_object: mechanism_prediction_of_unsmoothed_to_8mm_effect_map_change
+  trial_atom: one_interpretable_operator_family_unless_declared_composition_or_ablation
+  primary_environments:
+    - gain_EI
+    - gain_ER
+    - loss_EI
+    - loss_ER
+  global_exact_kernel_reference:
+    symbol: K8_ref
+    input: M0_after_group_aggregation
+    stage: group_map
+    operator: exactly_matched_8mm_Gaussian
+    boundary_normalization_resampling_and_grid_manifest: null
+    unresolved_manifest_is_launch_blocking: true
+  stage_specific_kernel_operators_are_mechanism_hypotheses: true
+  every_DeltaESC_uses_global_K8_ref: true
+  spatial_operator_and_stage:
+    operator: exactly_matched_Gaussian
+    fwhm_mm: [0, 2, 4, 5, 6, 8, 10]
+    stages:
+      - pre_GLM_BOLD
+      - run_effect
+      - subject_fixed_effect
+      - group_map
+    mutable_fields:
+      - boundary_convention
+      - normalization
+      - interpolation
+      - resampling_order
+      - commutation_order
+  mask_and_boundary_support:
+    families:
+      - fixed_coverage_mask
+      - kernel_aware_erosion
+      - distance_to_boundary_shells_mm
+      - low_intensity_support
+      - whole_mask_vs_interior
+  scaling_and_numerical_stabilization:
+    families:
+      - native_vs_explicitly_matched_signal_scaling
+      - synthetic_calibrated_variance_floor
+      - outcome_blind_constant_series_handling
+      - floating_point_precision
+      - resampling_precision
+  first_level_and_group_estimation:
+    nuisance_anchor: C1
+    nuisance_sensitivity_environments: [C0, C2]
+    unrestricted_confound_leaderboard: prohibited
+    group_aggregation:
+      - equal_run
+      - inverse_variance
+      - stabilized_inverse_variance
+      - robust
+    noise_models:
+      - AR1
+      - frozen_executable_alternative
+  residual_representation_and_reliability:
+    families:
+      - residual_spatial_frequency
+      - split_half_reliability_weighting
+      - leave_one_subject_out_reliability_weighting
+      - grouped_fold_low_dimensional_residual_summary
+      - spatial_phase_negative_control
+      - subject_label_negative_control
+      - mismatched_kernel_negative_control
+  composition:
+    maximum_operators: 3
+    single_operator_evidence_required: true
+    every_component_ablation_required: true
+    negative_control_required: true
+  forbidden:
+    - arbitrary_ROI_fishing
+    - threshold_tuning
+    - post_audit_feature_creation
+    - unrestricted_neural_architecture_search
+    - unlogged_manual_edit
+    - audit_adaptive_preprocessing
+    - audit_candidate_swap
+    - live_read_from_legacy_sibling_output
+    - undeclared_data_mount_or_network_access
+
+objectives:
+  primary:
+    name: worst_environment_gain_over_exact_kernel
+    direction: lexicographic_maximize
+    esc_formula: 1-SSE_M8_Mhat8_over_SSE_M8_M0
+    delta_esc_formula: ESC_h_minus_ESC_K8_ref
+    comparison_mask: null
+    denominator_floor: null
+    nonfinite_and_degenerate_environment_rule: null
+    metric_and_degeneracy_contract: null
+    unresolved_fields_are_launch_blocking: true
+  ranking:
+    coordinates:
+      - minimum_environment_DeltaESC
+      - median_environment_DeltaESC
+      - negative_complexity
+      - canonical_configuration_hash
+    complexity_functional: null
+    canonical_configuration_hash_tie_direction: lexicographically_lowest
+    environment_compensation_across_direction_reversal: prohibited
+    deterministic_tie_resolution: true
+    unresolved_complexity_functional_is_launch_blocking: true
+  secondary:
+    - spatial_correlation
+    - normalized_RMS_difference
+    - spatial_frequency_residual
+    - edge_distance_profile
+    - sign_agreement
+    - matched_rank_overlap
+    - thresholded_set_stability
+  constraints:
+    - all_four_primary_environments_reported
+    - deterministic_task_version_stratified_subject_folds
+    - same_mask_and_metric_for_candidate_and_baselines
+    - global_exact_K8_ref_implementation_replayed_independently_before_lock
+    - no_single_environment_direction_reversal
+    - required_ablation_and_negative_controls_pass
+    - audit_thresholds_and_interval_family_frozen_before_development
+
+trial_contract:
+  schema_ref: ../TRIAL_LEDGER.schema.json
+  ledger_path: outputs/experiments.jsonl
+  append_only: true
+  hash_chained: true
+  required_common_fields:
+    - trial_id
+    - timestamp_utc
+    - previous_record_hash
+    - record_hash
+    - parent_trial_ids
+    - proposal_mode
+    - proposal_context_hash
+    - outcome_evidence_refs
+    - successor_cycle_id
+    - configuration_lock_hash
+    - stage
+    - hypothesis
+    - directional_prediction
+    - falsifier
+    - changed_operator
+    - unchanged_operators
+    - expected_information_gain
+    - expected_cost
+    - config
+    - hashes
+    - state
+    - resources
+    - belief_update
+    - successor_rationale
+    - disposition
+  required_episode_fields:
+    - strongest_alternative
+    - mechanism_family
+    - mechanism_stage
+    - coverage_slot_id
+    - counts_as_valid_trial
+    - valid_trial_sequence_number
+    - coverage_satisfied_record_hash
+    - post_coverage
+    - falsifier_credit_category
+    - counts_toward_falsifier_numerator
+    - engineering_failure_attempt_number
+    - retry_of_trial_id
+    - comparison_mask_hash
+    - global_exact_K8_ref_operator_hash
+    - per_environment_metrics
+    - per_environment_uncertainty
+    - controls
+    - ablations
+    - aggregate_lexicographic_score
+    - complexity_measure
+  required_transition_states:
+    - PROPOSED
+    - READINESS_REJECTED
+    - RUNNING
+    - ENGINEERING_FAILED
+    - INVALID
+    - SCORED
+    - RETIRED
+    - CHALLENGER
+    - INCUMBENT
+    - LOCKED
+    - AUDIT_OPENED
+    - AUDITED
+  outcome_adaptive_successor_requires_prior_scored_record: true
+  outcome_adaptive_successor_requires_complete_visible_prefix_hash: true
+  corrections_create_superseding_record: true
+  coverage_slot_id_maximum_per_trial: 1
+  duplicate_or_retry_records_never_receive_new_coverage_or_falsifier_credit: true
+  engineering_retry_reuses_scientific_trial_only_when_config_and_roles_are_byte_identical: true
+
+budgets:
+  minimum_valid_trials: 30
+  maximum_valid_trials: 60
+  patience_valid_trials: 12
+  max_engineering_failures: 15
+  cpu_core_hour_ceiling: 2500
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 96
+  max_parallel_cores: null
+  max_memory_gb_per_trial: null
+  max_scratch_gib: 1536
+  finalists_max: 3
+  finalists_max_excludes_required_no_change_and_global_K8_ref_baselines: true
+  audit_openings_max: 1
+  unresolved_memory_and_concurrency_limits_are_launch_blocking: true
+  stage_valid_trial_ranges:
+    coverage: [12, 20]
+    adaptive_targeted_recomputation: [12, 24]
+    falsification_ablation_and_replication: [6, 16]
+  stage_minima_sum_to_total_minimum: true
+  stage_maxima_sum_to_total_maximum: true
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 12
+  rule: exactly_two_primary_slots_for_each_A_through_E_family_plus_one_no_change_and_one_global_exact_K8_ref_baseline_with_at_most_one_slot_per_trial
+  readiness_rejection_must_be_logged: true
+  invalid_duplicate_and_engineering_failed_attempts_count: false
+  coverage_slots:
+    spatial_operator_and_stage: 2
+    mask_and_boundary_support: 2
+    scaling_and_numerical_stabilization: 2
+    first_level_and_group_estimation: 2
+    residual_representation_and_reliability: 2
+    no_change_baseline: 1
+    global_exact_K8_ref_baseline: 1
+
+required_falsifiers:
+  - exact_kernel_stage_commutation
+  - whole_mask_vs_kernel_eroded_interior
+  - signal_scaling_match_and_ablation
+  - variance_floor_sensitivity_frozen_from_synthetic_data
+  - spatial_phase_randomization
+  - subject_label_permutation
+  - deliberately_mismatched_kernel
+  - every_composed_operator_single_component_ablation
+  - deterministic_subject_halves
+  - leave_one_subject_out_influence
+  - independent_operator_and_metric_reimplementation
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  minimum_incumbent_improvement_delta_esc: 0.01
+  challenger_replacement_rule: improve_minimum_environment_DeltaESC_by_at_least_0_01_or_do_not_decrease_it_and_match_within_0_01_while_resolving_a_declared_falsifier_at_lower_complexity
+  tolerance_rule_never_replaces_with_lower_minimum_environment_DeltaESC: true
+  total_order_after_primary_rule: median_environment_DeltaESC_then_lower_frozen_complexity_then_lexicographically_lowest_canonical_configuration_hash
+  low_fidelity_rule: broad_screen_may_retire_only_on_frozen_grouped_folds_and_cannot_satisfy_full_replication
+  finalist_rule: incumbent_plus_at_most_two_challengers_with_no_change_and_global_exact_K8_ref_baselines
+  nonkernel_comparator_set:
+    required_before_eligibility: true
+    population: every_nonkernel_member_of_the_frozen_full_development_shortlist
+    must_be_nonempty: true
+    must_include: highest_ranked_nonkernel_configuration_completing_every_full_development_requirement
+    omission_or_absence: development_depth_gate_unsatisfied
+    highest_ranked_member_becomes_diagnostic_runner_up_when_exact_K8_ref_wins: true
+  positive_candidate_requires_valid_one_shot_audit: true
+  falsifier_credit:
+    denominator: every_valid_trial_committed_after_the_unique_branch_coverage_satisfied_record
+    numerator: denominator_trials_with_exactly_one_predeclared_falsifier_credit_category
+    required_count_formula: ceiling_of_0_40_times_denominator
+    qualifying_categories:
+      - alternative
+      - negative_control
+      - ablation
+      - influence_guard
+      - synthetic_recovery
+      - direct_replication
+    stage2_trials_may_qualify_when_category_is_committed_before_execution: true
+    every_stage3_valid_trial_requires_one_qualifying_category: true
+    extra_stage1_trials_before_coverage_satisfaction_are_not_in_denominator: true
+    every_valid_trial_after_coverage_satisfaction_is_in_denominator_regardless_of_stage_label: true
+    minimum_30_trial_schedule_requires_at_least_two_stage2_qualifying_trials: true
+    duplicate_invalid_retry_and_engineering_failed_records_count: false
+
+development_lock:
+  exactly_one_winner: true
+  exactly_one_diagnostic_runner_up: true
+  diagnostic_runner_up_rule:
+    exact_K8_ref_winner: highest_ranked_member_of_frozen_nonkernel_comparator_set
+    nonkernel_winner: highest_ranked_distinct_fully_developed_configuration_including_global_K8_ref_baseline
+  eligibility_contract:
+    status: provisional_requires_outcome_blind_synthetic_calibration_and_scientist_signoff
+    simultaneous_interval_family: null
+    development_kernel_ESC_floor: null
+    development_useful_DeltaESC_margin: null
+    unresolved_fields_are_launch_blocking: true
+    family_selection_precedence:
+      - select_highest_ranked_nonkernel_finalist_passing_nonkernel_lock_rule
+      - otherwise_select_global_exact_K8_ref_only_if_exact_K8_ref_lock_rule_passes
+      - otherwise_close_no_development_lock_without_audit
+    raw_incumbent_is_not_automatically_selected: true
+    exact_K8_ref_lock:
+      selected_family_must_be: global_exact_kernel_reference
+      all_four_environment_simultaneous_LCB_ESC_at_least_development_kernel_ESC_floor: true
+      frozen_nonkernel_comparator_set_nonempty: true
+      every_comparator_all_four_environment_simultaneous_UCB_DeltaESC_strictly_less_than_development_useful_margin: true
+    nonkernel_lock:
+      selected_family_must_not_be: global_exact_kernel_reference
+      selection: highest_ranked_passing_nonkernel_finalist
+      all_four_environment_simultaneous_LCB_DeltaESC_at_least_development_useful_margin: true
+      direction_reversal_in_any_environment: prohibited
+    positive_eligibility_rules_are_mutually_exclusive: true
+    neither_rule_passes: closed_no_development_lock_without_audit
+  required_before_lock:
+    - valid_development_stop_event
+    - minimum_valid_trials_reached
+    - every_stage_valid_trial_minimum_satisfied
+    - branch_coverage_satisfied
+    - minimum_adaptive_successor_cycles_reached
+    - minimum_incumbent_challenger_decisions_reached
+    - post_coverage_falsifier_fraction_satisfied
+    - finalist_full_development_replication_complete
+    - frozen_nonkernel_comparator_set_complete_and_nonempty
+    - component_ablations_and_negative_controls_complete
+    - independent_primary_metric_replay_within_frozen_tolerance
+    - append_only_ledger_integrity_verified
+    - deterministic_score_replay_verified
+  lock_contents:
+    - winner
+    - diagnostic_runner_up
+    - complete_frozen_nonkernel_comparator_set
+    - no_change_and_global_exact_K8_ref_baselines
+    - code_and_environment
+    - data_split_environment_mask_and_operator_manifests
+    - hyperparameters_and_seeds
+    - metric_degeneracy_uncertainty_and_threshold_rules
+    - audit_retry_and_report_schema
+    - audit_command
+    - complete_ledger_prefix
+
+stop:
+  deterministic_first_applicable: true
+  routes_at_any_time:
+    policy_violation: policy_violation
+    sixteenth_engineering_failure: technical_failure
+    every_branch_technically_impossible: technical_failure
+  incomplete_routes_before_valid_audit_completion:
+    resource_ceiling_or_authorized_interruption: incomplete_search
+    maximum_valid_trials_with_any_development_depth_gate_unsatisfied: incomplete_search
+    all_admissible_scientific_configurations_exhausted_with_any_development_depth_gate_unsatisfied: incomplete_search
+  development_depth_gates:
+    - minimum_valid_trials_reached
+    - every_stage_valid_trial_minimum_satisfied
+    - branch_coverage_satisfied
+    - minimum_adaptive_successor_cycles_reached
+    - minimum_incumbent_challenger_decisions_reached
+    - post_coverage_falsifier_fraction_satisfied
+    - finalist_full_development_replication_complete
+    - frozen_nonkernel_comparator_set_complete_and_nonempty
+    - component_ablations_and_negative_controls_complete
+    - independent_primary_metric_replay_within_frozen_tolerance
+    - append_only_ledger_integrity_verified
+    - deterministic_score_replay_verified
+  qualified_patience_requires:
+    - every_development_depth_gate_satisfied
+  patience_reset_predicate: incumbent_replaced_under_frozen_challenger_replacement_rule
+  development_stop_events_in_order:
+    - policy_violation
+    - sixteenth_engineering_failure
+    - every_branch_technically_impossible
+    - resource_ceiling
+    - authorized_interruption
+    - maximum_valid_trials
+    - qualified_patience
+    - all_admissible_scientific_configurations_exhausted
+  stop_does_not_itself_imply_candidate_or_kernel_sufficiency: true
+  lock_classifier_routes_require_every_development_depth_gate:
+    - maximum_valid_trials
+    - qualified_patience
+    - all_admissible_scientific_configurations_exhausted
+  eligible_stop_with_no_lock_terminal: closed_no_development_lock
+  first_positive_negative_or_incumbent_is_stop_event: false
+  valid_terminal_classes:
+    - policy_violation
+    - technical_audit_integrity_failure
+    - technical_failure
+    - incomplete_search
+    - closed_no_development_lock
+    - closed_development_only
+    - closed_unresolved
+    - candidate_ready_pipeline_noncommutative
+    - candidate_ready_kernel_sufficient
+
+audit:
+  mode: one_shot_external_transport_after_configuration_lock
+  dataset: OpenNeuro_ds000005
+  primary_contrasts: [paragain, paraloss]
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  opening_unit: one_lock_hash_bound_scientific_audit_transaction
+  audit_updates_search: false
+  zero_post_audit_development_mutations_required: true
+  permission_separated_runner_required: true
+  partial_score_visibility: prohibited
+  candidate_swap: prohibited
+  threshold_change: prohibited
+  mechanism_refit_or_tuning: prohibited
+  frozen_S0_S8_path_recomputation: required
+  runner_up_may_replace_winner: false
+  mechanical_retry:
+    permitted_only_if_no_candidate_discriminating_value_was_emitted: true
+    continuation_of_same_logical_opening: true
+    counts_as_additional_scientific_opening: false
+    same_lock_hash_payload_root_runner_and_command_required: true
+    every_attempt_requires_hash_chained_receipt: true
+    exact_eligible_infrastructure_failures: null
+    maximum_attempts_within_single_opening: null
+    unresolved_retry_list_is_launch_blocking: true
+    unresolved_maximum_attempt_count_is_launch_blocking: true
+  uncertainty:
+    method: paired_subject_bootstrap
+    confidence_level: 0.95
+    draw_count: null
+    simultaneous_family: null
+    unresolved_fields_are_launch_blocking: true
+  provisional_thresholds:
+    status: requires_outcome_blind_synthetic_calibration_and_scientist_signoff
+    kernel_sufficient:
+      both_contrasts_simultaneous_paired_95pct_LCB_exact_K8_ref_ESC_min: 0.80
+      locked_nonkernel_comparator_set_required_and_nonempty: true
+      every_comparator_both_contrasts_simultaneous_paired_95pct_UCB_DeltaESC_strictly_less_than: 0.05
+      deterministic_halves_and_all_LOSO_stable: true
+      mismatched_kernel_and_spatial_phase_controls_fail: true
+    pipeline_noncommutative:
+      both_contrasts_selected_point_DeltaESC_min: 0.10
+      simultaneous_paired_95pct_lower_bound_strictly_greater_than: 0
+      deterministic_halves_and_all_LOSO_direction_agree: true
+      component_ablations_and_negative_controls_pass: true
+    positive_classes_mutually_exclusive: true
+  definitive_transport_failure_rules:
+    exact_K8_ref_selected:
+      - either_contrast_simultaneous_paired_95pct_UCB_exact_K8_ref_ESC_strictly_less_than_0_80
+      - any_nonkernel_comparator_either_contrast_simultaneous_paired_95pct_LCB_DeltaESC_at_least_0_05
+      - required_stability_or_negative_control_fails_without_integrity_breach
+    nonkernel_selected:
+      - either_contrast_simultaneous_paired_95pct_UCB_DeltaESC_strictly_less_than_0_10
+      - required_stability_ablation_or_negative_control_fails_without_integrity_breach
+    result: closed_development_only
+  unresolved_rule: valid_audit_is_neither_positive_nor_definitive_transport_failure
+
+terminal_precedence:
+  - policy_violation
+  - technical_audit_integrity_failure
+  - technical_failure
+  - incomplete_search
+  - closed_no_development_lock
+  - closed_development_only
+  - closed_unresolved
+  - candidate_ready_pipeline_noncommutative
+  - candidate_ready_kernel_sufficient
+
+terminal_mapping:
+  policy_violation: technical_failure
+  technical_audit_integrity_failure: technical_failure
+  technical_failure: technical_failure
+  incomplete_search: closed_no_candidate
+  closed_no_development_lock: closed_no_candidate
+  closed_development_only: closed_no_candidate
+  closed_unresolved: closed_no_candidate
+  candidate_ready_pipeline_noncommutative: candidate_ready
+  candidate_ready_kernel_sufficient: candidate_ready
+
+terminal_discrimination:
+  policy_violation:
+    when: forbidden_access_mutation_or_policy_breach_invalidates_round
+  technical_audit_integrity_failure:
+    when: audit_firewall_lock_binding_open_count_or_receipt_integrity_fails
+  technical_failure:
+    when: sixteenth_engineering_failure_invalid_inputs_or_every_branch_technically_unusable
+  incomplete_search:
+    when: resource_or_interruption_prevents_valid_audit_or_maximum_or_scientific_exhaustion_occurs_with_any_development_depth_gate_unsatisfied
+  closed_no_development_lock:
+    when: every_development_depth_gate_and_valid_stop_are_satisfied_but_no_configuration_is_lock_eligible
+  closed_development_only:
+    when: valid_lock_and_audit_meet_one_exact_definitive_transport_failure_rule_without_integrity_breach
+  closed_unresolved:
+    when: valid_lock_and_audit_meet_neither_positive_rule_nor_any_exact_definitive_transport_failure_rule
+  candidate_ready_pipeline_noncommutative:
+    when: selected_nonkernel_mechanism_passes_every_frozen_pipeline_audit_rule_for_both_contrasts
+  candidate_ready_kernel_sufficient:
+    when: selected_global_K8_ref_mechanism_passes_every_frozen_kernel_audit_rule_for_both_contrasts
+
+canonical_binding:
+  loop_id: null
+  goal_handoff_id: null
+  action_id: null
+  runtime_episode_id: null
+  candidate_bundle_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  legacy_canonical_records_require_identity_nonreuse_check: true
+  prepare_collision_requires_separate_reconciliation_if_observed: true
+  legacy_loop_ids_are_prior_only_and_not_reusable: true
+  launch_blocked: true
+  required_manifest_hashes:
+    prior_packet: null
+    development_source: null
+    development_split: null
+    development_environment: null
+    contrast_sign_unit_crosswalk: null
+    exposure_ledger: null
+    comparison_mask: null
+    global_exact_K8_ref_operator: null
+    metric_degeneracy_interval_threshold_contract: null
+    development_lock_eligibility_contract: null
+    full_development_shortlist_and_nonkernel_comparator_set: null
+    complexity_functional: null
+    synthetic_fixtures: null
+    code: null
+    environment: null
+    audit_metadata_commitment: null
+    audit_payload_merkle_root: null
+    audit_runner: null
+    audit_retry_policy: null
+    resource_profile: null
+    scientist_signoff_receipt: null
+  unresolved_launch_blockers:
+    - content_addressed_prior_packet_absent_or_unverified
+    - ds001734_payload_and_worktree_manifest_not_revalidated
+    - ds000005_exposure_lineage_and_payload_commitment_not_verified
+    - contrast_semantics_sign_and_unit_crosswalk_unsigned
+    - development_fold_environment_mask_and_operator_manifests_unfrozen
+    - exact_global_K8_reference_DAG_unfrozen
+    - complexity_functional_and_total_order_unfrozen
+    - development_lock_eligibility_margins_and_interval_family_unsigned
+    - ESC_degeneracy_interval_and_threshold_calibration_unsigned
+    - permission_separated_evaluator_and_audit_runner_absent
+    - evaluator_synthetic_rejection_tests_absent
+    - audit_retry_failure_list_unfrozen
+    - audit_retry_maximum_attempt_count_unfrozen
+    - code_environment_and_container_hashes_absent
+    - memory_and_concurrency_limits_unfrozen
+    - compute_profile_not_verified_within_budget
+    - registered_adaptive_program_binding_absent
+    - scientist_signoff_absent

@@ -1,0 +1,174 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep05_sensorimotor_lfp_adaptive
+episode_id: ep05
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  shared_exposure_ledger_group: lfp_ep05_ep08
+  infrastructure_reproduction:
+    source: exposed_dryad_release_and_pinned_publication_code
+    use: fixed_pass_mismatch_technical_failure_gate_not_search
+    counts_as_trial: false
+  development:
+    source: all_structurally_eligible_exposed_m1_sessions
+    use: nested_whole_session_policy_search
+    freshness: historically_exposed
+  selection:
+    source: frozen_outer_session_folds_within_exposed_release
+    use: animal_balanced_constrained_policy_selection
+    freshness: internal_only
+  audit:
+    source: prospective_compatible_future_whole_sessions
+    use: one_shot_locked_policy_evaluation
+    freshness: must_be_sealed
+    available: false
+
+grammar:
+  lfp_blocks:
+    - lmp
+    - authenticated_single_power_band
+    - registered_low_frequency_block
+    - registered_high_frequency_block
+    - registered_all_band_block
+    - lmp_plus_one_registered_band_block
+  channel_transforms:
+    - fixed_matched_electrode_mean
+    - fixed_matched_electrode_median
+    - train_only_channel_pca
+    - train_only_reliability_weighting
+    - deterministic_train_only_top_k_from_finite_schedule
+  temporal_representations:
+    - current_bin
+    - registered_finite_history_schedule
+  targets:
+    primary: xy_velocity_residual_beyond_train_only_direction_by_time
+    diagnostic:
+      - speed
+      - acceleration
+  feature_transforms:
+    - train_only_standardization
+    - train_only_pca
+    - train_only_pls
+    - registered_lfp_by_elapsed_time_tensor_product
+  predictors:
+    - ridge
+    - elastic_net
+    - reduced_rank_regression
+    - pls_regression
+    - linear_kernel_ridge
+    - rbf_kernel_ridge
+  ensemble:
+    max_members: 2
+    rule: convex_blend_of_pre_evaluated_complementary_pipelines
+  forbidden:
+    - per_session_winner_selection
+    - arbitrary_window_search
+    - bin_level_random_split
+    - test_direction_preprocessing
+    - cross_session_weight_transfer_claim
+    - arbitrary_code_mutation
+
+objectives:
+  primary:
+    name: animal_balanced_session_level_delta_r2_sse_over_direction_by_time
+    direction: maximize
+  secondary:
+    - session_consistency
+    - low_frequency_robustness
+    - model_complexity
+    - random_trial_ceiling
+  constraints:
+    - publication_reproduction_gate_pass
+    - positive_frozen_summary_in_both_eligible_m1_animals
+    - frozen_majority_of_sessions_positive
+    - whole_trial_pairing_null_pass
+    - leave_one_session_and_budget_matching_pass
+    - behavior_and_elapsed_time_increment_positive
+    - temporal_offset_and_feature_label_controls_pass
+    - not_exclusively_high_frequency_or_spike_bleed_through
+
+budgets:
+  minimum_valid_trials: 28
+  maximum_valid_trials: 64
+  patience_valid_trials: 12
+  cpu_core_hour_ceiling: 2000
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 120
+  max_parallel_cores: 32
+  max_memory_gb_per_trial: 128
+  max_scratch_gb: 750
+  finalists_max: 4
+  audit_openings_max: 1
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 10
+  rule: behavior_lmp_low_high_linear_reduced_rank_and_nonlinear_anchors
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - fixed_publication_fidelity_gate
+  - direction_by_time_and_elapsed_time_baselines
+  - within_direction_whole_trial_evaluation_pairing
+  - whole_trial_lfp_behavior_shuffle
+  - registered_temporal_offsets
+  - lmp_band_low_high_all_block_ablations
+  - matched_electrode_channel_and_trial_budgets
+  - same_electrode_unit_intersection_sensitivity
+  - target_residualization_ablation
+  - leave_one_session_and_both_animal_signs
+  - capacity_matched_random_or_phase_surrogate
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  reproduction_counts_as_search: false
+  coverage_rule: run_behavior_lmp_low_high_linear_reduced_rank_and_nonlinear_anchors
+  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_eligible_sessions_directions_and_falsifiers
+  lock_rule: select_one_global_policy_then_hash_source_splits_code_environment_dag_guides_windows_thresholds_and_schema
+
+stop:
+  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
+  after_minimum: patience_or_max_trials_or_resource_ceiling
+  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
+  valid_terminal_classes:
+    - candidate_ready
+    - closed_no_candidate
+    - search_exhausted_no_audit
+    - technical_failure
+    - policy_violation
+audit:
+  mode: one_shot_after_configuration_lock
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  source_required: prospective_compatible_future_whole_sessions
+  exposed_dryad_sessions_eligible_as_fresh_audit: false
+  session_specific_fit_under_locked_recipe: allowed
+  policy_adaptation: forbidden
+  candidate_swap: forbidden
+  threshold_or_exclusion_change: forbidden
+  partial_score_visibility: forbidden
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  search_exhausted_no_audit: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_handoff_id: null
+  action_id: null
+  runtime_episode_id: null
+  candidate_bundle_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

@@ -1,0 +1,178 @@
+schema_version: autoresearch.adaptive_search_policy.v1
+policy_id: ep04_shared_scene_geometry_adaptive
+episode_id: ep04
+status: planned_unregistered
+common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
+evidence_mode: adaptive_search
+
+dataset_roles:
+  development:
+    source: laion_fmri_4712_regular_subject_unique_images_per_participant
+    use: repetition_grouped_image_disjoint_adaptive_search
+    freshness: development_exposed
+    core_feature_coverage_gate: caption_object_each_visual_and_low_level_on_subject_unique_images
+  selection:
+    source: frozen_subject_unique_outer_folds_across_five_participants
+    use: participant_balanced_constrained_model_selection
+    freshness: internal_only
+  historical_prior:
+    source: laion_fmri_1121_regular_shared_images
+    use: fixed_reproduction_context_only_not_trial_scoring
+    freshness: opened_in_prior_ep04_round
+  audit:
+    source: sealed_371_shared_ood_responses_or_new_independent_compatible_data
+    use: one_shot_locked_boundary_evaluation
+    freshness: conditional_on_exposure_audit
+    available: false
+
+grammar:
+  representation_blocks:
+    - human_caption_mpnet
+    - object_category_inventory
+    - openclip
+    - dinov2
+    - pecore
+    - siglip2
+    - registered_low_level_covariates
+  caption_constructions:
+    - mean_human_caption_embedding
+    - token_word_average
+    - pinned_relation_action_object_blocks
+    - caption_minus_object_residual
+  transforms:
+    - normalization_only
+    - train_fold_pca
+    - train_fold_pls
+    - whitened_kernel
+    - covariance_spectrum_matching
+  combination:
+    - no_fusion
+    - residualized_increment
+    - banded_or_stacked_ridge
+    - convex_blend_max_two_evaluated_blocks
+  neural_targets:
+    - cross_validated_roi_encoding
+    - cross_validated_rdm_prediction
+  readouts:
+    - ridge
+    - fractional_ridge
+    - reduced_rank_ridge
+    - linear_kernel_alignment
+    - rsa_correlation_distance
+    - rsa_crossnobis_distance
+  roi_family:
+    - retinotopic_evc_control
+    - laion_ventral
+    - laion_lateral
+    - laion_dorsal
+  forbidden:
+    - foundation_model_finetuning
+    - arbitrary_voxel_mask_search
+    - outcome_based_caption_editing
+    - cross_fold_nearest_neighbour_access
+    - regular_shared_or_audit_outcome_selection
+    - arbitrary_code_mutation
+
+objectives:
+  primary:
+    name: participant_balanced_fisher_z_predictive_gain_over_best_capacity_matched_single_block
+    direction: maximize
+  secondary:
+    - cross_validated_rsa_gain
+    - participant_consistency
+    - source_stratum_robustness
+    - model_complexity
+  constraints:
+    - majority_of_participants_improve
+    - no_single_roi_dominance
+    - caption_context_increment_positive
+    - shared_component_increment_positive
+    - image_permutation_and_random_feature_nulls_pass
+    - cluster_and_near_neighbour_exclusion_direction_positive
+    - frozen_high_level_over_evc_specificity_pattern
+    - subject_unique_core_comparator_coverage_gate_pass
+
+budgets:
+  minimum_valid_trials: 24
+  maximum_valid_trials: 64
+  patience_valid_trials: 10
+  cpu_core_hour_ceiling: 2500
+  gpu_hour_ceiling: 0
+  wall_clock_hour_ceiling: 120
+  max_parallel_cores: 48
+  max_memory_gb_per_trial: 256
+  max_scratch_gb: 1500
+  finalists_max: 4
+  audit_openings_max: 1
+
+branch_coverage:
+  required: true
+  minimum_valid_trials: 12
+  rule: caption_object_each_visual_block_rsa_encoding_and_shared_component_anchors
+  readiness_rejection_must_be_logged: true
+
+required_falsifiers:
+  - whole_image_label_permutation
+  - caption_image_shuffle
+  - object_word_only_caption_control
+  - object_relation_text_vision_and_fusion_ablations
+  - capacity_covariance_spectrum_matched_random_features
+  - near_neighbour_exclusion
+  - source_stratified_analysis
+  - pretrained_model_lineage_sensitivity
+  - evc_specificity_control
+  - leave_one_roi_and_participant_influence
+  - caption_count_and_repeat_selection_sensitivity
+
+promotion:
+  incumbent_is_terminal: false
+  minimum_adaptive_successor_cycles: 2
+  minimum_incumbent_challenger_decisions: 2
+  post_coverage_falsifier_fraction_min: 0.40
+  coverage_rule: evaluate_caption_object_each_visual_block_rsa_encoding_and_shared_component_anchors
+  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_development_participants_and_falsifiers
+  lock_rule: select_one_pipeline_and_hash_code_environment_features_rois_splits_thresholds_and_schema
+
+stop:
+  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
+  after_minimum: patience_or_max_trials_or_resource_ceiling
+  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
+  valid_terminal_classes:
+    - candidate_ready
+    - closed_no_candidate
+    - search_exhausted_no_audit
+    - technical_failure
+    - policy_violation
+audit:
+  mode: one_shot_after_configuration_lock
+  configuration_lock_required: true
+  lock_hash_required: true
+  maximum_open_count: 1
+  audit_updates_search: false
+  preferred_source: laion_fmri_371_shared_ood_if_proven_unopened
+  fallback_source: prospectively_sealed_new_compatible_data
+  regular_shared_eligible: false
+  participant_generalization_claim_from_same_five: forbidden
+  retraining: forbidden
+  category_specific_tuning: forbidden
+  candidate_swap: forbidden
+  threshold_change: forbidden
+  partial_score_visibility: forbidden
+
+terminal_mapping:
+  candidate_ready: candidate_ready
+  closed_no_candidate: closed_no_candidate
+  search_exhausted_no_audit: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+canonical_binding:
+  loop_id: null
+  goal_handoff_id: null
+  action_id: null
+  runtime_episode_id: null
+  candidate_bundle_id: null
+  canonical_program_id: null
+  registered_program_policy_ref: null
+  search_policy_ref: null
+  launch_blocked: true

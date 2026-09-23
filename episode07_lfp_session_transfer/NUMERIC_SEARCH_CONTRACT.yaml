@@ -1,0 +1,562 @@
+schema_version: autoresearch.numeric_search_contract.v1
+contract_id: ep07_full_space_numeric_search_v1
+episode_id: ep07
+contract_revision: 1
+status: scientist_approved_pending_episode_bootstrap_validation
+observed_on: "2026-09-22"
+
+authority:
+  scientist_approval_recorded: true
+  approved_decision: retain_full_declared_model_space
+  simplification_required: false
+  creates_canonical_registration: false
+  authorizes_outcome_access: false
+  authorizes_launch: false
+  final_linter_review_required: true
+  runtime_and_trusted_execution_qualification_required: true
+
+references:
+  goal: GOAL.md
+  datasets: DATASETS.md
+  search_policy: SEARCH_POLICY.yaml
+  common_protocol: ../ADAPTIVE_SEARCH_PROTOCOL.md
+
+full_space_decision:
+  retain_operator_families:
+    representations: [lmp, eight_authenticated_power_bands]
+    electrode_aggregation: [moments_quantiles, robust_histogram, low_rank_set_encoder]
+    latent_alignment: [none, orthogonal_procrustes, regularized_cca]
+    nuisance: [direction_time_residual, additive_direction_time, combined]
+    source_pooling:
+      - equal_session
+      - reliability_weighted
+      - calibration_similarity
+      - hierarchical_shrinkage
+      - leave_one_source_stacking
+    mappings: [ridge, elastic_net, reduced_rank_ridge, shallow_mlp]
+    adaptation: [zero_prior_fit, source_prior_shrinkage, convex_source_target]
+    maximum_ensemble_members: 2
+  implementation_condition: every_operator_numeric_choice_seed_tie_rule_and_failure_rule_is_frozen_before_development_outcome_access
+  open_linter_requirements:
+    - complete_equation_level_operator_manifest
+    - complete_numeric_hyperparameter_grid
+    - sixteen_legal_anchor_hashes_per_stream
+    - deterministic_complexity_rank_for_every_configuration
+    - executable_static_configuration_linter
+
+audit_finding_resolutions:
+  prediction_output:
+    dtype: float64
+    scale: native_target_spike_count
+    clipping: prohibited
+  direction_mapping:
+    method: nearest_circular_multiple_of_pi_over_4
+    maximum_error_radians: 0.01
+  target_neuron_roster:
+    inputs: authenticated_unit_guides_and_array_shapes_only
+    order: lexicographic_canonical_unit_guide_tuple
+    outcome_value_filtering: prohibited
+  regularized_cca_backprojection:
+    resolution: defined_by_NUMERIC_OPERATOR_GRAMMAR_section_6_3_Wx_Wy_G_target_coordinate_map
+    additional_lambda_back: prohibited
+    pseudoinverse_fallback: prohibited
+  low_rank_set_encoder:
+    legality_rule: requested_rank_must_not_exceed_input_dimension_or_number_of_fit_rows
+    former_eight_from_seven_anchor: resolved_by_17_dimension_invariant_basis_rank_8_is_legal
+    illegal_adaptive_proposal: reject_before_evaluator_dispatch
+  champion_order: calibration_only_champion_first_then_transfer_finalist
+  falsifier_binding: one_frozen_transfer_finalist_and_one_frozen_calibration_only_champion
+
+score_definitions:
+  development_day_score: "R2_dev[c,s,k] = one_joint_R2_SSE_over_development_trials_bins_and_frozen_neurons"
+  calibration_primary: "J_C(c) = mean_k mean_a mean_{s in target_days(a)} R2_dev[c,s,k]"
+  transfer_search_increment: "Delta_search[c,s,k] = R2_dev[c,s,k] - R2_dev[direction_time_mean,s,k]"
+  transfer_search_estimand: "theta_search[c,k] = mean_a mean_{s in target_days(a)} Delta_search[c,s,k]"
+  transfer_search_primary: "J_T_search(c) = mean_k theta_search[c,k]"
+  transfer_final_increment: "Delta_dev[c,s,k,b] = R2_dev[c,s,k] - R2_dev[b,s,k]"
+  transfer_final_estimand: "theta_dev[c,k,b] = mean_a mean_{s in target_days(a)} Delta_dev[c,s,k,b]"
+  transfer_final_primary: "J_T_final(c) = mean_k min_b theta_dev[c,k,b]"
+  strata: [m1_execution, pmd_preparation]
+  comparators:
+    - target_calibration_direction_by_time_mean
+    - frozen_calibration_only_champion
+  means:
+    animals: equal_weight
+    target_days_within_animal: equal_weight
+    strata_in_development_selection: equal_weight
+
+search_accounting:
+  counting_unit: one_outcome_contacting_stream_trial
+  streams: [transfer, calibration_only_champion]
+
+  anchor_phase:
+    paired_rounds: 16
+    trials_per_stream: 16
+    total_trials: 32
+    configurations_are_prespecified: true
+    feedback_may_change_anchor_order: false
+
+  adaptive_successor_phase:
+    attempted_pair_symbol: A_attempt
+    attempted_paired_rounds_minimum: 2
+    attempted_paired_rounds_maximum: 14
+    valid_pair_symbol: A_valid
+    valid_paired_rounds_minimum_for_audit_eligibility: 2
+    validity_rule: both_stream_trials_must_be_valid_or_the_atomic_pair_is_invalid
+    trials_per_round_per_stream: 1
+    outcome_contacts_formula: "2 * A_attempt"
+
+  finalist_bound_falsifier_phase:
+    symbol: F
+    paired_rounds_exact: 10
+    trials_per_round_per_stream: 1
+    total_trials: 20
+
+  post_anchor_phase:
+    attempted_paired_rounds_formula: "A_attempt + 10"
+    paired_rounds_range: [12, 24]
+    paired_rounds_maximum: 24
+
+  total:
+    scope: completed_required_development_procedure_an_abnormal_early_stop_is_incomplete_and_may_have_fewer_contacts
+    outcome_contacts_formula: "2 * (16 + A_attempt + 10)"
+    outcome_contacts_range: [56, 80]
+    outcome_contacts_per_stream_range: [28, 40]
+    audit_eligible_valid_trial_range: [56, 80]
+    search_configurations_per_stream_range: [18, 30]
+    first_audit_eligible_valid_trial_count_if_no_numeric_failure: 56
+    maximum_outcome_contacts: 80
+
+  falsifier_fraction_after_anchor_coverage:
+    numerator_paired_rounds: 10
+    denominator_formula: "A_attempt + 10"
+    fraction_formula: "10 / (A_attempt + 10)"
+    minimum_at_A_attempt_14: 0.4166666666666667
+    required_minimum: 0.40
+    synthetic_and_integrity_gates_count_in_numerator: false
+
+  fixed_direction_time_mean_consumes_search_budget: false
+  score_dependent_unpaired_budget: prohibited
+
+branch_coverage:
+  base_operator_coverage_completed_by: sixteen_prespecified_anchor_pairs
+  total_anchor_trials: 32
+  coverage_semantics: marginal_coverage_of_every_legal_base_operator_level_and_numeric_boundary_not_cartesian_coverage
+  required_in_each_stream: every_base_operator_level_legally_applicable_to_that_stream
+  numeric_boundaries_required: true
+  ensemble_anchor_coverage: not_applicable_because_parents_must_be_previously_valid
+  ensemble_successor_coverage:
+    required_before_finalist_selection: true
+    per_stream_required_valid_weights: ["0.25", "0.75"]
+    parent_rule: two_distinct_previously_valid_nonensemble_configs_in_that_stream
+    rationale: covers_the_ensemble_family_and_both_weight_boundaries_without_illegal_anchor_parents
+  structural_lint_before_dispatch: true
+  anchor_manifest_ref: ANCHOR_RUNTIME_CONTRACT.yaml#anchor_contract
+  anchor_manifest_content_hash_binding: required_in_configuration_lock_before_outcome_access
+  missing_or_unreadable_anchor_manifest_blocks_final_linter_pass: true
+
+adaptive_successor_definition:
+  pair_barrier: release_feedback_only_after_both_stream_trials_are_valid
+  first_cycle_parent: best_eligible_anchor_in_the_same_stream
+  later_cycle_parent: eligible_configuration_known_before_the_cycle
+  causal_receipts_required:
+    - proposal_timestamp_after_prior_pair_feedback_receipt
+    - parent_configuration_hash
+    - prior_feedback_digest
+    - unique_child_configuration_hash_within_stream
+    - at_least_one_searchable_field_changed_from_parent
+  feedback_isolation: each_stream_proposer_reads_only_its_own_allowlisted_feedback
+  prespecified_batch_counts_as_adaptive: false
+  retroactive_recombination_counts_as_adaptive: false
+  minimum_valid_feedback_dependent_cycles: 2
+  ensemble_rule:
+    members_must_have_prior_valid_evaluations: true
+    ensemble_must_consume_its_own_successor_trial: true
+    retroactive_unscored_ensemble: prohibited
+
+development_selection:
+  common:
+    one_global_policy_across_days_animals_and_strata: true
+    per_session_winner: prohibited
+    per_animal_winner: prohibited
+    per_stratum_winner: prohibited
+    selection_score_rounding: prohibited
+    score_dtype: float64
+    complexity_rank_source: frozen_outcome_blind_registered_grammar_manifest
+
+  calibration_only_champion:
+    selected_first: true
+    candidate_pool: calibration_only_anchors_and_adaptive_successors_only
+    primary_score: J_C
+    tie_order:
+      - larger_J_C
+      - larger_worst_stratum_animal_balanced_R2
+      - larger_worst_animal_stratum_mean_R2
+      - larger_worst_session_stratum_R2
+      - smaller_registered_complexity_rank
+      - ascending_canonical_configuration_hash
+    frozen_before_transfer_finalist_selection: true
+
+  transfer_finalist:
+    selected_after_calibration_champion_freezes: true
+    candidate_pool: transfer_anchors_and_adaptive_successors_only
+    primary_score: J_T_final
+    feasibility:
+      source_bearing_required: true
+      ensemble_source_bearing_definition: at_least_one_parent_is_source_bearing
+      zero_prior_fit_is_searchable_control_but_finalist_ineligible: true
+      animal_regression_guard: "for every k,a,b: mean_s Delta_dev[c,s,k,b] >= -0.005"
+      session_majority_guard: "for each animal a, at least two of three target days have mean_k min_b Delta_dev[c,s,k,b] > 0"
+    tie_order:
+      - larger_J_T_final
+      - larger_worst_stratum_comparator_theta
+      - larger_worst_animal_comparator_mean_increment
+      - larger_worst_session_stratum_comparator_increment
+      - smaller_registered_complexity_rank
+      - ascending_canonical_configuration_hash
+
+  stored_prediction_reuse:
+    recompute_transfer_scores_after_calibration_champion_freezes: allowed
+    creates_new_configuration: false
+    consumes_evaluator_budget: false
+
+patience:
+  applies_to: adaptive_successor_phase_only
+  anchors_count_toward_patience: false
+  finalist_falsifiers_count_toward_patience: false
+  required_valid_successor_pairs_before_any_stop: 2
+  resolution_r2: 0.002
+  consecutive_no_progress_pair_limit: 7
+  equivalent_stream_trial_count: 14
+  progress_event: calibration_stream_improves_J_C_or_transfer_stream_improves_J_T_search_by_at_least_0.002_over_its_previous_best_eligible_value
+  scientific_candidate_margin_r2: 0.01
+  candidate_margin_used_for_patience: false
+  normal_successor_stop_events:
+    - fourteen_successor_pair_opportunities_attempted
+    - seven_consecutive_valid_successor_pairs_without_progress
+    - admissible_configuration_space_exhausted_after_at_least_two_valid_successor_pairs
+  abnormal_stop_events:
+    registered_resource_stop: incomplete_search_without_finalist_selection_or_falsifier_phase
+    technical_stop: technical_failure_without_finalist_selection_or_falsifier_phase
+  normal_successor_stop_enters_frozen_selection_then_falsifier_phase: true
+
+falsifier_pass_modes:
+  stream_scores:
+    transfer: J_T_final
+    calibration_only: J_C
+  causal_destruction:
+    formula: "original_primary_score > control_primary_score"
+  nondominance:
+    formula: "control_primary_score <= original_primary_score"
+  exact_invariance:
+    prediction_digest_equal: true
+    score_bits_equal: true
+  source_history_robustness:
+    rule: transformed_transfer_fit_satisfies_the_frozen_transfer_feasibility_guards
+
+finalist_bound_falsifier_protocol:
+  paired_rounds_exact: 10
+  bound_transfer_configuration: frozen_transfer_finalist
+  bound_calibration_configuration: frozen_calibration_only_champion
+  refit_from_immutable_inputs: true
+  transform_randomness: none_all_F01_through_F10_are_fixed_deterministic_transforms
+  model_refit_seed_rule: retain_the_original_configuration_derived_component_seeds_falsifier_id_never_changes_model_seed
+  canonical_trial_order: ascending_authenticated_trial_id_within_animal_day_direction
+  exactly_one_registered_transform_per_stream_trial: true
+  hidden_subsearch: prohibited
+  result_updates_search_or_selection: false
+  runner_up_substitution_after_failure: prohibited
+  all_ten_run_after_a_scientific_failure: true
+  stop_early_only_for_integrity_or_forbidden_access_failure: true
+  applicability:
+    derived_from: static_frozen_operator_graph
+    frozen_before_falsifier_scores_open: true
+    consumed_edge: apply_registered_transform_and_declared_pass_mode
+    unused_edge: exact_invariance
+  ensemble_recursion:
+    F01_through_F09: apply_the_one_registered_transform_recursively_to_each_applicable_parent_graph_then_recombine_with_the_original_frozen_ensemble_weight
+    F10: ensemble_wrapper_has_no_ordinary_operator_edge_and_uses_exact_invariance_component_removals_are_the_separate_stored_parent_gate
+    nested_ensembles: prohibited
+  scoring:
+    transfer_controls_keep_fixed_comparators:
+      - target_calibration_direction_by_time_mean
+      - original_untransformed_frozen_calibration_only_champion
+    paired_falsified_calibration_trial_becomes_transfer_comparator: false
+    calibration_control_score: J_C
+
+  trials:
+    - id: F01_source_session_label_shuffle
+      transfer_transform: fixed_cyclic_permutation_of_chronological_source_day_labels
+      transfer_pass_mode_if_consumed: causal_destruction
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F02_source_trial_correspondence_shuffle
+      transfer_transform: fixed_within_source_day_direction_cyclic_rotation_of_spike_trial_correspondence
+      transfer_pass_mode: causal_destruction
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F03_target_calibration_correspondence_shuffle
+      transfer_transform: fixed_within_target_day_direction_cyclic_rotation_of_calibration_spike_trial_correspondence
+      transfer_pass_mode_if_consumed: causal_destruction
+      calibration_transform: same_registered_target_calibration_correspondence_shuffle
+      calibration_pass_mode_if_consumed: causal_destruction
+
+    - id: F04_zero_source_ablation
+      transfer_transform: replace_all_source_contributions_with_the_registered_zero_source_reduction
+      transfer_pass_mode: causal_destruction
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F05_direction_time_template_only
+      transfer_transform: replace_trial_specific_predictive_features_with_registered_direction_by_native_time_templates
+      transfer_pass_mode: causal_destruction
+      calibration_transform: same_registered_direction_time_template_reduction
+      calibration_pass_mode: causal_destruction
+
+    - id: F06_equal_source_weight_replacement
+      transfer_transform: replace_learned_source_pooling_weights_with_equal_one_third_weights
+      transfer_pass_mode_if_not_already_equal: nondominance
+      transfer_pass_mode_if_already_equal: exact_invariance
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F07_leave_source_day_position_1_out
+      transfer_transform: refit_after_omitting_chronological_source_day_position_1
+      transfer_pass_mode: source_history_robustness
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F08_leave_source_day_position_2_out
+      transfer_transform: refit_after_omitting_chronological_source_day_position_2
+      transfer_pass_mode: source_history_robustness
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F09_leave_source_day_position_3_out
+      transfer_transform: refit_after_omitting_chronological_source_day_position_3
+      transfer_pass_mode: source_history_robustness
+      calibration_transform: exact_deterministic_replay
+      calibration_pass_mode: exact_invariance
+
+    - id: F10_active_component_ablation
+      transfer_transform: first_applicable_operator_ablation_in_fixed_priority_order
+      transfer_pass_mode_if_applicable: nondominance
+      transfer_pass_mode_if_no_ordinary_operator_graph: exact_invariance
+      calibration_transform: first_applicable_source_free_operator_ablation_in_the_same_fixed_priority_order
+      calibration_pass_mode_if_applicable: nondominance
+      calibration_pass_mode_if_no_ordinary_operator_graph: exact_invariance
+
+  active_component_ablation_priority:
+    - nonidentity_alignment_to_none
+    - whitening_true_to_false
+    - multiple_feature_classes_to_lmp_only
+    - low_rank_set_encoder_to_moments_quantiles
+    - combined_nuisance_to_additive_direction_time
+    - source_latent_coordinates_to_fixed_cyclic_permutation
+    - first_canonical_target_feature_coordinate_to_zero
+
+  executable_transform_definitions:
+    F01:
+      applicable_to_pooling: [reliability_weighted, calibration_similarity, leave_one_source_stacking]
+      source_order: chronological_positions_1_2_3
+      permutation: "pi(1)=2, pi(2)=3, pi(3)=1"
+      operation: "replace sum_s w[s]*p[s] by sum_s w[s]*p[pi(s)] before target adaptation; keep experts and weights fixed, then refit only the declared target adaptation"
+      all_other_pooling_families: unused_edge_exact_invariance
+    F02:
+      operation: within_each_source_day_and_direction_pair_the_LFP_tensor_of_sorted_trial_i_with_the_complete_spike_tensor_of_sorted_trial_i_plus_1_mod_n
+      atomic_unit_moved: all_native_bins_and_source_neurons_of_one_whole_trial
+      refit: every_source_response_dependent_PCA_template_alignment_mapping_pooling_and_target_adaptation_state
+      unchanged: source_predictor_values_target_calibration_and_all_hyperparameters
+    F03:
+      operation: within_each_target_day_and_direction_pair_the_LFP_tensor_of_sorted_calibration_trial_i_with_the_complete_spike_tensor_of_sorted_trial_i_plus_1_mod_n
+      atomic_unit_moved: all_native_bins_and_target_neurons_of_one_whole_trial
+      refit: target_PCA_target_templates_alignment_target_only_model_and_target_adaptation
+      unchanged: source_days_target_predictor_values_and_all_hyperparameters
+    F04:
+      source_prior_shrinkage: set_P_S_to_the_all_zero_target_latent_matrix_on_calibration_and_development_then_refit_A_and_c_with_the_declared_objective
+      convex_source_target: "replace gamma*p_S + (1-gamma)*p_T by (1-gamma)*p_T without renormalizing and refit p_T normally"
+      ensemble: zero_every_source_bearing_parent_contribution_keep_source_free_parent_contributions_and_original_ensemble_coefficients_without_renormalizing
+      unchanged: target_calibration_role_hyperparameters_and_original_model_seeds
+    F05:
+      source_fit_rows: replace_each_aggregated_LFP_row_by_the_direction_by_native_time_mean_fit_on_its_fold_permitted_source_predictor_rows
+      target_calibration_and_prediction_rows: replace_each_aggregated_LFP_row_by_the_direction_by_native_time_mean_fit_on_target_calibration_predictor_rows
+      refit: complete_declared_model_on_the_reduced_predictors
+      direction_and_time_covariates: unchanged
+    F10:
+      nonidentity_alignment_to_none: refit_with_alignment_family_none
+      whitening_true_to_false: refit_without_whitening_and_omit_eigen_floor_relative
+      multiple_feature_classes_to_lmp_only: refit_with_scope_lmp_only
+      low_rank_set_encoder_to_moments_quantiles: refit_with_aggregation_moments_quantiles
+      combined_nuisance_to_additive_direction_time: refit_with_nuisance_additive_direction_time
+      source_latent_coordinates_to_fixed_cyclic_permutation: rotate_every_source_prediction_target_latent_coordinate_forward_by_one_before_pooling_then_refit_target_adaptation
+      first_canonical_target_feature_coordinate_to_zero: set_column_zero_of_the_final_scaled_aggregated_design_to_zero_for_every_fit_and_prediction_row_then_refit
+
+  leave_one_source_day_refit_semantics:
+    remaining_source_count_symbol: S
+    required_value_for_F07_to_F09: 2
+    equal_pooling: arithmetic_mean_with_weight_one_over_S
+    reliability_and_similarity: renormalize_declared_softmax_over_only_the_S_remaining_sources
+    hierarchical_objective: replace_every_outer_one_third_and_three_factor_by_one_over_S_and_S_respectively
+    stacking: enumerate_the_nonempty_support_masks_1_through_2_power_S_minus_1_for_the_S_remaining_experts
+    target_adaptation: refit_from_the_transformed_pooled_source_prediction_and_the_unchanged_target_calibration_role
+    all_other_operator_hyperparameters: unchanged
+
+nonbudgeted_computations_and_gates:
+  ensemble_component_ablations:
+    applicable_when: either_frozen_finalist_is_an_ensemble
+    creates_new_outcome_contact: false
+    source: already_stored_scored_native_scale_parent_predictions_recomputed_against_the_fixed_original_comparators
+    records:
+      - C01_remove_lexicographically_first_parent_use_second_parent_only
+      - C02_remove_lexicographically_second_parent_use_first_parent_only
+    required_pass: original_ensemble_primary_score_is_not_less_than_each_parent_only_primary_score
+    updates_search_or_selection: false
+    satisfies_common_protocol_all_component_ablations: true
+
+  leave_one_target_day_out:
+    counted_as_search_or_falsifier_trial: false
+    timing: inside_the_single_locked_audit_evaluation
+    refit: false
+    source: stored_locked_audit_predictions_for_transfer_and_both_comparators
+    omissions: all_six_target_days_one_at_a_time
+    recomputation: affected_animal_mean_uses_its_other_two_days_then_equal_animal_weighting
+    required_outputs: "theta_LOTO[k,b,omitted_day] for every k,b,and omission"
+    updates_search_or_selection: false
+    promotion_rule: every_theta_LOTO_value_must_be_strictly_positive_for_a_passing_stratum
+
+  synthetic_and_integrity_gates:
+    - id: G01_stable_synthetic_recovery
+    - id: G02_drifting_synthetic_recovery
+    - id: G03_null_synthetic_recovery
+    - id: G04_latent_scale_shift_recovery
+    - id: G05_deterministic_full_refit_replay
+    - id: G06_role_boundary_access_denial
+    - id: G07_cache_symlink_hardlink_and_network_denial
+  synthetic_and_integrity_gate_accounting:
+    consumes_real_development_outcome_budget: false
+    counts_in_postcoverage_falsifier_fraction: false
+    required_before_audit_lock: true
+    failure_terminal_class: technical_failure
+
+retry_policy:
+  exact_infrastructure_retries:
+    maximum_total: 12
+    maximum_per_trial: 2
+    permitted_only_if:
+      - configuration_hash_seed_inputs_and_environment_are_unchanged
+      - evaluator_certifies_no_score_prediction_join_or_candidate_discriminating_diagnostic_was_emitted
+    consumes_scientific_budget: false
+    updates_patience: false
+  candidate_specific_numeric_failure_after_outcome_contact:
+    infrastructure_retry: prohibited
+    changed_configuration_replacement_in_same_opportunity: prohibited
+    candidate_eligible_for_selection: false
+    attempted_atomic_pair_opportunity_is_consumed_for_both_streams: true
+    either_stream_failure_makes_the_pair_invalid: true
+    counts_as_valid_trial: false
+    maximum_outcome_contact_cap_still_applies: 80
+    incomplete_required_phase_yields: incomplete_search
+  retry_cap_exhausted_without_forbidden_exposure: incomplete_search
+  partial_duplicate_or_uncertain_outcome_exposure: technical_failure
+  audit_retry:
+    allowed_only_if_no_audit_label_metric_prediction_join_or_candidate_discriminating_diagnostic_was_emitted: true
+    otherwise: technical_failure
+
+audit_eligibility:
+  required:
+    - sixteen_valid_anchor_pairs
+    - at_least_two_valid_feedback_dependent_successor_pairs
+    - frozen_calibration_only_champion
+    - one_frozen_feasible_source_bearing_transfer_finalist
+    - ten_valid_finalist_bound_falsifier_pairs
+    - every_scientific_falsifier_passes
+    - every_synthetic_and_integrity_gate_passes
+    - reproducible_refit_from_immutable_inputs
+    - immutable_configuration_lock_hash
+  audit_open_count_maximum: 1
+  audit_updates_search: false
+  successor_or_finalist_replacement_after_audit_open: prohibited
+
+terminal_predicates:
+  symbols:
+    valid_audit: audit_completed_once_with_valid_lock_inputs_metrics_and_inference
+    pass_m1: m1_execution_satisfies_every_frozen_promotion_rule
+    pass_pmd: pmd_preparation_satisfies_every_frozen_promotion_rule
+    above_margin_point_estimate: "exists k: min_b theta_hat[k,b] > 0.01"
+    audit_robustness_failure: at_least_one_of_within_animal_sign_session_majority_or_leave_one_target_day_guards_fails_for_a_nonpassing_stratum
+
+  precedence:
+    - technical_failure
+    - candidate_ready_both
+    - candidate_ready_m1_only
+    - candidate_ready_pmd_only
+    - unresolved
+    - audit_failed
+    - development_exhausted_no_eligible_policy
+    - incomplete_search
+
+  decisions:
+    technical_failure:
+      condition: forbidden_access_broken_role_or_identity_lock_mismatch_integrity_gate_failure_invalid_inference_or_invalid_audit_execution
+      audit_may_have_opened: true
+      interpretation: execution_or_evidence_invalid
+
+    candidate_ready_both:
+      condition: "valid_audit and pass_m1 and pass_pmd"
+      interpretation: both_prespecified_region_epoch_strata_pass_without_phase_generalization
+
+    candidate_ready_m1_only:
+      condition: "valid_audit and pass_m1 and not pass_pmd"
+      interpretation: M1_execution_only
+
+    candidate_ready_pmd_only:
+      condition: "valid_audit and pass_pmd and not pass_m1"
+      interpretation: PMd_preparation_only
+
+    unresolved:
+      condition: "valid_audit and not pass_m1 and not pass_pmd and (above_margin_point_estimate or audit_robustness_failure)"
+      disjoint_from_audit_failed: true
+      interpretation: suggestive_or_heterogeneous_fixed_corpus_result_not_candidate_ready
+
+    audit_failed:
+      condition: "valid_audit and not pass_m1 and not pass_pmd and not above_margin_point_estimate and not audit_robustness_failure"
+      disjoint_from_unresolved: true
+      interpretation: frozen_candidate_did_not_clear_the_practical_margin_not_evidence_of_no_signal
+
+    development_exhausted_no_eligible_policy:
+      condition: "required_anchors_and_successor_search_completed and (no_feasible_finalist_exists or (one_finalist_froze and all_ten_falsifier_pairs_completed and at_least_one_scientific_falsifier_failed))"
+      audit_must_remain_closed: true
+      runner_up_substitution: prohibited
+      interpretation: completed_development_procedure_produced_no_audit_eligible_policy
+
+    incomplete_search:
+      condition: "not technical_failure and not development_exhausted_no_eligible_policy and (required_anchors_or_two_valid_successor_cycles_not_completed or (one_feasible_finalist_froze and ten_valid_falsifier_pairs_or_other_required_search_evidence_not_completed))"
+      audit_must_remain_closed: true
+      interpretation: administrative_closure_not_a_scientific_negative
+
+terminal_mapping:
+  candidate_ready_m1_only: candidate_ready
+  candidate_ready_pmd_only: candidate_ready
+  candidate_ready_both: candidate_ready
+  unresolved: closed_no_candidate
+  audit_failed: closed_no_candidate
+  development_exhausted_no_eligible_policy: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  technical_failure: technical_failure
+
+final_linter_assertions:
+  - "A_attempt is an integer and 2 <= A_attempt <= 14"
+  - "A_valid is an integer and 2 <= A_valid <= A_attempt for audit eligibility"
+  - "F == 10"
+  - "total_outcome_contacts == 2 * (16 + A_attempt + F)"
+  - "56 <= total_outcome_contacts <= 80"
+  - "10 / (A_attempt + 10) >= 0.40"
+  - exactly_sixteen_unique_legal_anchor_hashes_exist_per_stream
+  - at_least_two_successor_pairs_have_valid_causal_lineage_receipts
+  - exactly_ten_atomic_finalist_bound_falsifier_pairs_exist
+  - no_falsifier_record_is_eligible_for_champion_or_finalist_selection
+  - leave_one_target_day_out_uses_only_stored_locked_predictions_and_refits_nothing
+  - unresolved_and_audit_failed_predicates_are_mutually_exclusive_and_exhaustive_when_no_stratum_passes_a_valid_audit
+  - every_terminal_key_has_exactly_one_terminal_mapping
