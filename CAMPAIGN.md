@@ -15,13 +15,13 @@ inert authoring metadata and are not consulted by the local launcher.
 
 ## Episode-managed launch
 
-`bin/codex-episode` checks only the bounded workspace, required core contract
-files, scratch location, and single-session lock. It snapshots the exact
-contract bytes and then delegates bootstrap, data validation, runtime checks,
-adaptive search, falsification, and held-out evaluation to the episode itself.
-The older readiness projections remain optional records for a future
-confirmatory/canonical workflow; they do not authorize or block local episode
-execution.
+`bin/codex-episode` is deliberately thin. It checks only the direct-child
+workspace, required core files, scratch location, and active-process lock,
+then starts or resumes Codex in that bounded workspace. Contract versioning,
+data validation, runtime checks, adaptive search, falsification, and held-out
+evaluation belong to the episode rather than the launcher. The older readiness
+projections remain optional records for a future confirmatory/canonical
+workflow; they do not authorize or block local episode execution.
 
 ## Current episodes
 

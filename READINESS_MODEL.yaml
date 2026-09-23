@@ -10,9 +10,8 @@ episode_managed_launch:
     - direct_child_workspace
     - goal_datasets_and_one_search_policy_present
     - inputs_and_outputs_present
-    - scratch_outside_project
+    - writable_absolute_scratch
     - single_active_process_lock
-    - exact_contract_byte_snapshot
   episode_internal_after_launch:
     - data_and_numeric_validation
     - split_and_leakage_checks

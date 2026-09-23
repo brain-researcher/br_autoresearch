@@ -81,10 +81,10 @@ optional supplemental context under the project-local skill contract.
   legacy loop or Goal handoff as the new episode identity.
 - `bin/codex-episode launch` requires an explicit user invocation plus
   `GOAL.md`, `DATASETS.md`, one search policy, and the episode's `inputs/` and
-  `outputs/` directories. It snapshots the exact contract bytes and current
-  Git HEAD but does not require a clean commit or a canonical receipt. Data
-  validation, runtime qualification, falsification, held-out evaluation, and
-  any audit logic are executed and recorded inside the episode.
+  `outputs/` directories. The launcher does not snapshot contracts, inspect
+  Git state, or evaluate scientific policy. Data validation, runtime
+  qualification, falsification, held-out evaluation, and any audit logic are
+  executed and recorded inside the episode.
 - Commit only deliberate, reviewable changes.  Do not run `git add`, `git
   commit`, `git push`, or any other Git mutation unless the user explicitly
   requests it.
@@ -100,8 +100,8 @@ instruction-level read-only boundary inside the writable episode workspace;
 the launcher does not claim OS-level input isolation. The episode is
 responsible for enforcing its own data roles and recording any limitation this
 creates. Resume uses an explicit Codex session identifier and the same bounded
-workspace; the first successful resume records that identifier and later
-resumes reject a different one:
+workspace. The launcher does not maintain a persistent session or workflow
+state machine:
 
 ```bash
 bin/codex-episode launch episodeNN_topic
