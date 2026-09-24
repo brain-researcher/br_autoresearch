@@ -128,3 +128,57 @@ and the evidence supporting that outcome.
 The current EP12 directory contains a study design, not a working
 episode-specific executor. None of these requirements claims that a run has
 occurred.
+
+## Data needed for the circuit follow-up
+
+The [paper plan](outputs/paper_plan.md) proposes a later input-output study.
+It does not expand access during the primary outgoing round. No external
+dataset is selected, provisioned, or declared unexposed by this revision.
+
+| Source | Proposed role | Condition before use |
+| --- | --- | --- |
+| MaleCNS v1.0, previously assigned development types | Discover a small circuit hypothesis after the outgoing conclusion is fixed; relate outgoing preferences to incoming partners | Record the new incoming exposure, select cases without final-type outcomes, and keep the original result fixed |
+| MaleCNS annotations, cell morphology and published circuit descriptions | Identify the cells, assess anatomy and prior subtype annotations | Authenticate any additional morphology assets; distinguish descriptions already used by curation from new evidence |
+| One suitable external connectome, initially assessing FlyWire or hemibrain | Test the locked circuit prediction in another specimen | Pin version, specimen identity, anatomy, homologous types, partner crosswalk, observation rules, exposure history and evaluation role before connectivity access |
+
+Choose the external source for coverage of the actual candidate circuit,
+not for a preferred result. The two candidate resources are not interchangeable:
+hemibrain has restricted anatomical coverage, and a male-to-female comparison
+is a transfer challenge with sex, specimen, and reconstruction differences.
+Additional releases or hemispheres of one specimen do not add animals.
+Previously exposed external outcomes remain development information; use a
+genuinely new audit source for a new confirmatory round.
+
+### Incoming access can expose outgoing outcomes
+
+An edge from neuron j to neuron i is both an outgoing observation for j and
+an incoming observation for i. In particular, an incoming query for a
+development neuron can reveal an outgoing edge owned by a final type. The
+follow-up must not issue such queries during the outgoing search or while
+that final bank remains reserved. A focal-neuron filter alone is insufficient.
+
+Before constructing a follow-up view, a custodian must check source and target
+roles for every edge, record any already consumed roles, and preserve unknown
+or withheld mass. Shared edges cannot be represented as fresh independent
+evidence. Keep both direction-specific profiles of each focal type within the
+same specimen-level role for the new study.
+
+### External prediction has a fixed information boundary
+
+Outgoing profiles and approved anatomical covariates may be inputs to a
+frozen rule that assigns group probabilities or a continuous coordinate.
+External incoming profiles are prediction targets. They may not select the
+case, align groups, fit centroids, choose a vocabulary, tune a model, or decide
+which external dataset to report. Applying a source-fitted rule is inference;
+reclustering the target connectome is fitting and is not permitted in that
+evaluation.
+
+Cross-dataset type matching should use authenticated published homologies and
+morphology where possible. Record that existing taxonomies may themselves
+have used connectivity. Inspecting candidate-specific external connectivity
+to resolve a match consumes that evidence; it is not an annotation-only step.
+
+Incoming and outgoing profiles use separately normalized total incident mass,
+including unknown, untyped and unsupported partner bins. Exclusions and
+coverage limits are fixed before evaluation. A zero in an incomplete or
+withheld graph cannot establish the absence of a pathway.

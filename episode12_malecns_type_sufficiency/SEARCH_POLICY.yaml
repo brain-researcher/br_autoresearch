@@ -5,6 +5,50 @@ status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
+# Planning metadata, not an implemented follow-up controller or launch gate.
+# The executable scientific contract in this file remains the outgoing round.
+research_program:
+  paper_question: when_does_a_cell_type_average_hide_input_output_pathway_organization
+  plan_ref: outputs/paper_plan.md
+  primary_round: reciprocal_outgoing_T_U_M_comparison
+  primary_endpoint_and_terminal_mapping_unchanged: true
+  followup:
+    state: proposed_not_configured_or_run
+    evidence_mode: proposed_fixed_comparison
+    purpose: test_circuit_consequences_of_within_type_wiring_organization
+    starts_after_outgoing_conclusion_is_fixed: true
+    automatically_launched_by_this_policy: false
+    outgoing_terminal_may_be_overwritten: false
+    candidate_source: previously_assigned_development_types
+    final_types_may_select_followup_cases: false
+    discovery_features: outgoing_profiles_only
+    prediction_target: incoming_partner_composition
+    input_output_views_are_independent_biological_replicates: false
+    primary_followup_score: neuron_equal_incoming_composition_brier_improvement
+    contrasts:
+      groups: versus_development_selected_best_fair_template_anatomy_or_continuous
+      continuous: versus_development_selected_best_fair_template_or_anatomy
+      selection_and_multiplicity_fixed_before_external_access: true
+    circuit_readout: neuron_equal_input_output_pair_mass_total_variation_error
+    external_evaluation:
+      source_manifest: null
+      matching_and_scope_fixed_before_external_connectivity_access: true
+      first_access_record_required: true
+      same_specimen_or_new_release_is_independent_replication: false
+      cross_sex_transfer_is_same_sex_replication: false
+      target_side_fitting_or_component_alignment_from_incoming: false
+    separate_contract_required:
+      - candidate_and_partner_selection_with_multiplicity
+      - source_and_exposure_manifest_with_edge_ownership
+      - common_vocabulary_missingness_and_anatomical_support
+      - fixed_models_capacity_and_target_side_inference
+      - meaningful_margins_and_uncertainty
+      - synthetic_recovery_and_conditional_pairing_null
+      - compute_budget_and_stop_rules
+      - one_shot_external_evaluation_and_result_table
+    inherits_primary_budget_or_null_calibration: false
+    candidate_ready_implies_paper_claim_established: false
+
 # Data are split by whole annotated type before connectivity outcomes are used.
 dataset_roles:
   assignment_unit: whole_provider_type
@@ -73,6 +117,8 @@ objectives:
     purpose: distinguish_one_average_profile_from_continuous_heterogeneity
     may_replace_primary_M_vs_C_comparison: false
     may_create_new_cell_type_claim: false
+    anatomical_contribution_and_adjusted_residual_reported_separately: true
+    followup_may_not_replace_primary: true
 
   # These conditions decide whether a comparison is usable.
   comparison_validity:
@@ -282,6 +328,11 @@ terminal_mapping:
   technical_failure: technical_failure
 
 reporting:
+  scientific_scope:
+    primary_round_and_circuit_followup_reported_separately: true
+    all_followup_candidates_and_failures_reported: true
+    local_case_may_replace_type_aggregate_result: false
+    paper_claim_requires_evidence_beyond_primary_terminal: true
   main_figure:
     illustrative_type_selection_rule: null
     uses_development_only: true

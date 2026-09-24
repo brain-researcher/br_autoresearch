@@ -11,10 +11,22 @@ recovered on the right? Or is the apparent grouping better explained by
 continuous variation, anatomy, connection strength, or reconstruction
 quality?
 
-We study outgoing partner-type profiles in the pinned MaleCNS v1.0 release.
-This is a bilateral-reproducibility study in one male fly. A positive result
-would motivate closer study; it would not establish new cell types or their
-functions.
+We start with outgoing partner-type profiles in the pinned MaleCNS v1.0
+release. This first test measures bilateral reproducibility in one male fly.
+It is the entry point to a larger circuit question:
+
+> When does averaging neurons of the same type hide distinct input-output
+> pathways?
+
+The intended paper should identify a specific wiring organization, explain
+what a type average misses, and test that explanation beyond the data used
+to discover it. Finding another cluster or improving a predictive score is
+an intermediate result. Neither establishes a new cell type or its function.
+
+The [paper plan](outputs/paper_plan.md) sets out the circuit follow-up,
+closest prior work, decisive comparisons, and evidence needed for each claim.
+The T/U/M test below remains the primary outgoing round. The follow-up is a
+separate proposed round; its results cannot change this round's conclusion.
 
 ## At a glance
 
@@ -25,7 +37,36 @@ functions.
 | What must repeat? | A preference learned on one body side must predict neurons of the same type on the other side. Both directions are required. |
 | What is held out? | Twenty percent of whole annotated types are reserved for one final evaluation. |
 | What is the main score? | The held-out predictive gain of M over the better fair T/U reference. |
-| What can the study conclude? | Reproducible groups, an adequate single-population description within a fixed margin, or an unresolved result. |
+| What can the first round conclude? | Reproducible groups, an adequate single-population description within a fixed margin, or an unresolved result. |
+| What would make a deeper discovery? | A specified input-output organization that the type average misses, with evidence beyond the discovery data. |
+| What is the next test? | After the outgoing result is fixed, ask whether outgoing preferences predict previously unused incoming profiles, and whether the association transfers to a separately locked external source. |
+
+## From a wiring difference to a circuit finding
+
+Consider a hypothetical type X. Some X neurons mainly receive from A and
+project to B; others receive from C and project to D. A graph that merges all
+X neurons can suggest A-to-D and C-to-B paths through X even when those
+cell-level chains are weak or absent. This is an illustration, not an EP12
+result. Real data must establish the size and reproducibility of the
+association, including missing connections and anatomical organization.
+
+The follow-up asks whether such input-output associations exist in a small,
+explicitly selected circuit, and whether retaining a reproducible group or
+continuous coordinate improves their prediction. Anatomy, continuous
+variation, and discrete groups are competing explanations. A continuous or
+spatial organization can be biologically informative without supporting
+residual modes in the primary test.
+
+Known within-type heterogeneity and cross-brain connectivity subgroups are
+starting points in the literature, not sufficient novelty claims. Each
+candidate needs a comparison with existing annotations and circuit papers.
+The paper must show what is newly learned about that circuit, or establish
+a useful, well-tested boundary on when averaging is adequate.
+
+The follow-up has its own endpoint, source manifest, calibration, budget,
+selection rule, and held-out evaluation. Reusing the same male or the other
+body side provides a diagnostic, not new independent confirmation. A local
+case cannot replace a failed type-aggregate outgoing test.
 
 ## Three competing explanations
 
@@ -62,7 +103,7 @@ A valid comparison is not the same as evidence for M. A well-qualified test
 must be allowed to reach final evaluation even when T or U looks better during
 development.
 
-## Figure concept
+## First-round figure concept
 
 The main figure should place left- and right-side outgoing profiles for the
 same annotated type beside the predictions of T, U, and M. Illustrative types
@@ -73,6 +114,11 @@ The mockup below uses synthetic values only. It is a design aid, not an
 observed EP12 result.
 
 ![Conceptual EP12 main figure using synthetic data](outputs/ep12_conceptual_main_figure.png)
+
+This planned panel tests the outgoing phenomenon. The paper plan adds named
+partners and cell-level anatomy, competing input-output explanations, and
+external evaluation. All figure claims remain hypotheses until supported by
+observed results.
 
 ## The three scientific answers
 
@@ -159,7 +205,12 @@ The analysis must test whether any apparent groups are explained by:
 The post-result comparison with provider group, instance, or published
 assignments is a novelty check only. A match is a rediscovery, not a new type.
 
-## Search and null calibration
+Report the anatomical contribution as well as the adjusted residual result.
+An effect explained by location cannot support residual modes, but may
+motivate a separately tested hypothesis about spatial wiring organization.
+Do not remove an anatomical adjustment after seeing which conclusion wins.
+
+## First-round search and null calibration
 
 | Item | Limit |
 | --- | ---: |
@@ -234,12 +285,18 @@ ran. A real result requires durable trial records, the selected procedure,
 the final-evaluation record, the detailed outcome, the reason, and links to
 the supporting outputs.
 
-## Claim boundary
+## First-round claim boundary
 
 The strongest positive wording is **bilaterally reproducible residual outgoing
 wiring groups within eligible curated types in this MaleCNS male**. EP12 does
 not establish new cell types, cross-animal or cross-sex generalization,
 molecular identity, causality, function, or behavior.
+
+The proposed paper-level claim concerns the accuracy of a structural
+input-output description. It requires the additional evidence in the paper
+plan. Static synapse counts alone do not establish signal transmission,
+selective gating, or a behavioral computation. A successful primary round
+does not automatically mean the paper-level claim has been earned.
 
 This local revision does not authorize data access, computation, or formal
 acceptance. No real EP12 analysis or final evaluation was run while preparing
