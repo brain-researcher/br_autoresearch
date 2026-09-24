@@ -1,4 +1,4 @@
 # Loop
 
-No canonical action is inferred from this local workspace. Query the live
-Brain Researcher state before launch or resume.
+No EP10 run has started. Check the current episode state before launch or
+resume.

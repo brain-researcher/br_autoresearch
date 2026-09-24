@@ -6,61 +6,307 @@ common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
 dataset_roles:
-  shared_exposure_ledger_group: seu_a1876_ep09_ep11
-  split_unit: most_conservative_verified_animal_brain_specimen_group
+  dataset: frozen comparable resources selected from the EP10 candidate registry
+  candidate_resources:
+    SEU_A1876: measurement feasibility and development candidate
+    Gao_18621: within-source and cross-position support candidate
+    MouseLight: independent acquisition external-transfer candidate
+    Projection_TAGs: independent-label population-mixture candidate
+  resource_roles: null
+  resource_role_status: pending metadata lineage independence and observation comparability audit
+  source_population: null
+  priority_source_candidate: MOp
+  priority_source_is_provisional: true
+  boundary_source_candidates: [MOs, SSp]
+  pooling_MOp_MOs_SSp_allowed: false
+  source_selection: biological rationale and metadata-only cross-animal and cross-position coverage
+  split_unit: most conservative verified animal or specimen group
   minimum_development_groups: 12
-  minimum_locked_audit_groups: 8
-  audit_assignment: preoutcome_whole_group
-  evaluation_evidence: group_sealed_internal_source_audit
+  minimum_locked_final_groups: 8
+  assignment: whole groups before target outcomes are inspected
+  evaluation_scope: frozen comparable observation regime with equal-group evaluation
   shared_outcomes_with: [ep09, ep11]
+  shared_identity_role_and_exposure_record_required: true
+  cross_resource_lineage_and_exposure_record_required: true
   independent_from_shared_episodes: false
-  prior_exposure: ledger_required
+  external_replication: false
+  external_candidate_status: pending independence source target and detection-model comparability
+  group_counts_cannot_be_summed_across_duplicate_or_incomparable_resources: true
+  if_no_defensible_final_role: exploratory grouped cross-validation only
+
+phase1_feasibility_audit:
+  required_before_candidate_discriminating_development: true
+  candidate_effect_scanning_allowed: false
+  required_checks:
+    - source by verified group by soma-position common support
+    - independent-label provenance and label by group by position overlap
+    - cross-resource duplicate lineage and prior exposure
+    - target detection non-detection unknown and boundary reproducibility
+    - full-tree branch and terminal-tree extractability and repeatability
+    - when proposed exact A+B and A+C group support and within-A profile repeatability
+    - simulated detectable effects and group-level precision
+    - exact-normalization runtime and 99-null compute profile
+  required_outputs:
+    - one frozen source and target observation regime
+    - development and final roles plus external-resource eligibility or disposition
+    - supported common-position domain
+    - testable competing explanations and an explicit list of unresolved alternatives
+    - one-page proceed revise or stop decision with precision and compute grounds
+  stop_conditions:
+    - fewer than 12 comparable development groups or 8 comparable locked final groups
+    - no cross-group and cross-position common support for one coherent source
+    - complete target-set non-detection cannot be defended
+    - exact normalization or 99 complete null reruns are infeasible under the frozen budget
+
+measurement:
+  target_vocabulary: null
+  target_resolution: null
+  laterality_rule: null
+  arborization_vs_passing_axon_rule: null
+  verified_non_detection_rule: null
+  incomplete_reconstruction_is_absence: false
+  complete_set_observation_required: true
+  full_reconstructions_are_primary: true
+  provider_arbors: validated sensitivity only
+  putative_boutons_are_synapses: false
+  projection_class_allowed: false
+  cross_resource_target_mapping: null
+  cross_resource_detection_model: null
+  failure_action: stop the complete-set endpoint and revise the question
 
 grammar:
-  q0_pooling: [global, source_hierarchical, bounded_k_partial_pooling]
-  q0_terms:
-    - k_dependent_singleton_popularity
-    - soma_source_layer_independent_labels
-    - acquisition_and_quality_covariates
-    - soma_to_target_distance
-    - mean_pairwise_target_distance
-    - soma_anchored_mst_length
-  q1_families: [sparse, low_rank, hierarchical, restricted_sparse_plus_low_rank]
-  sparse_penalties: [lasso, elastic_net, group_lasso]
-  low_rank_ranks: [1, 2, 3, 4, 6, 8]
-  maximum_hybrid_sparse_pairs: 16
-  exact_normalization_required: true
-  residualize_pair_features_against_full_q0: true
+  contract_aliases:
+    Q0: M1
+    Q1: M2
+  competing_explanations:
+    measured_prevalence_and_spatial_routing: M0 and M1
+    independently_labeled_population_mixture: verified independent-label block and within-label contrasts
+    stable_residual_target_combination: M2 over an adequate M1
+  common_scoring:
+    condition_on_detected_target_count: true
+    same_neurons_and_candidate_sets: true
+    exact_normalization_required: true
+    equal_group_weighting: true
+  models:
+    M0:
+      explanation: target prevalence source context and verified independent population labels
+      additive_reference_not_unconditional_independence: true
+      terms:
+        - target preference conditional on target count
+        - smooth soma-position and sampling-composition effects
+        - eligible source and layer information
+        - independently documented technical covariates
+        - independently obtained driver or molecular labels when verified
+    M1:
+      explanation: M0 plus measured spatial organization
+      inherits: M0
+      pooling_options: [global, source_hierarchical, bounded_K_partial_pooling]
+      geometry:
+        - source-to-target geometry
+        - pairwise target geometry
+        - soma-anchored target-set geometry
+        - routing priors from independent maps or development folds
+    M2:
+      explanation: M1 plus regularized residual target-pair associations
+      inherits: M1
+  independent_population_mixture:
+    eligible_labels: independently obtained layer driver-line or molecular labels only
+    projection_derived_labels_allowed: false
+    projection_matrix_clusters_allowed_as_independent_labels: false
+    required_analyses:
+      - label by animal by soma-position overlap and confounding
+      - within-label and label-adjusted combination probability contrasts
+      - comparison with the same model without the verified label block
+    if_no_eligible_label: report population mixture not excluded
+  M2_core:
+    family: sparse
+    penalties: [lasso, elastic_net, group_lasso]
+    identified_parameterization_required: true
+    pair_features_residualized_against_M1: true
+  conditional_extensions:
+    low_rank:
+      trigger: diffuse structured residual association
+      ranks: [1, 2, 3, 4, 6, 8]
+    hierarchical:
+      trigger: reproducible between-group heterogeneity not explained by influence or batch
+    restricted_sparse_plus_low_rank:
+      trigger: both localized and diffuse residual association
+      maximum_sparse_pairs: 16
+    activation_requires:
+      - a logged grouped-development diagnosis
+      - adequate sample support
+      - synthetic recovery support
   forbidden:
     - pseudolikelihood
-    - approximate_normalization
-    - projection_class
-    - audit_target_frequency
-    - free_form_pair_mining
-    - random_neuron_split
-    - per_source_winner
-    - posthoc_vocabulary_shrinkage
+    - approximate normalization
+    - projection class
+    - projection-derived clusters as population-mixture controls
+    - random-neuron splits
+    - free-form pair mining
+    - final-outcome-dependent choices
+    - post-result vocabulary shrinkage
+    - interpreting unconstrained raw pair coefficients
+    - per-source or per-resource winners
+    - pooling MOp MOs or SSp to manufacture support
+
+combination_validation:
+  selection: grouped development only
+  frozen_before_final_evaluation:
+    - target pair or target set
+    - effect direction
+    - common-support domain
+    - soma-position and anatomical applicability region
+    - probability-contrast effect scale
+    - smallest useful effect criterion
+    - replication uncertainty and multiplicity rules
+  selected_combination: null
+  effect_direction: null
+  common_support_domain: null
+  applicability_region: null
+  effect_scale: probability contrast under a frozen common covariate distribution
+  smallest_useful_effect_criterion: null
+  replication_criterion: null
+  common_support_required: true
+  unsupported_position_extrapolation_allowed: false
+  non_significant_heterogeneity_implies_stability: false
+  raw_pair_coefficient_is_biological_effect: false
+  aggregate_predictive_gain_validates_named_combinations: false
+  candidate_novelty_requirements:
+    generic_cotarget_within_target_laminar_association_is_novel: false
+    prior_overlap: Yuan et al. 2024 axonal BARseq linked cotarget status to laminar termination within a shared cortical target
+    each_candidate_must_state:
+      - unresolved explanation distinguished beyond the prior association
+      - one specific held-out anatomical prediction
+      - how confirmation or refutation changes interpretation of the named pathway
+    laminar_association_alone: replication or extension rather than core novelty
+
+full_axon_anatomy:
+  role: outcome-only characterization after target and combination lock
+  required_metrics:
+    - divergence branch location for the frozen target combination
+    - shared path length under a frozen normalization
+    - separate collateral and terminal-tree coverage of each target
+    - continuous terminal-tree crossing of target boundaries
+  shared_path_normalization: null
+  matched_structural_reference_rule: null
+  matched_reference_factors:
+    - target distance and geometry
+    - soma position
+    - source layer or verified independent label
+    - target prevalence
+    - target count and other cotargets
+    - total axon morphology
+    - registration and clipping
+    - reconstruction observability
+  metric_and_reference_rules_frozen_before_candidate_specific_or_locked_final_anatomy_results: true
+  phase1_examples: outcome-blind measurement development or development-only anatomy
+  inference: animal-level uncertainty with a frozen matched permutation or bootstrap and multiplicity rule
+  calibrated_by_the_99_target_set_null: false
+  all_axons_share_a_root_is_evidence: false
+  shared_target_terminal_contrast:
+    status: conditional secondary outcome-only endpoint
+    scientific_contrast: neurons with qualifying arborization in A under frozen A+B versus A+C definitions
+    activation_requires:
+      - the candidate combination is frozen in grouped development
+      - both contexts have adequate animal and common-position support
+      - within-A coordinates and terminal profiles are repeatable
+    A_B_C_selection_rule: prespecified or selected by the target-set controller and replayed in all 99 nulls never selected from anatomy
+    shared_target_A: null
+    cotarget_B: null
+    cotarget_C: null
+    B_C_exclusivity_rule: null
+    other_targets_and_K_rule: null
+    target_intrinsic_coordinate: null
+    primary_normalized_terminal_profile_metric: null
+    pooled_A_heterogeneity_loss_metric: null
+    predicted_direction: null
+    common_support_rule: null
+    multiplicity_rule: null
+    permitted_supporting_summaries:
+      - terminal-branch or reconstruction-endpoint profile
+      - centroid spread and focality
+    total_qualifying_arbor_in_A_reported_separately: true
+    pooled_A_profile_compared_with_both_context_specific_profiles: true
+    entry_route_into_A_role_frozen_as_alternative_or_mediator: true
+    adjustment_or_matching_factors:
+      - soma position and source layer or independent label
+      - target count and other targets
+      - total morphology and target observability
+      - registration clipping boundary and reconstruction quality
+    same_grouped_development_and_locked_final_groups: true
+    participates_in_primary_M2_over_M1_endpoint: false
+    changes_40_to_88_trials_16_anchors_or_99_nulls: false
+    final_inference: animal-level frozen permutation or bootstrap with multiplicity control
+    disposition_required_if_ineligible: true
+    activation_decision_frozen_before_final_evaluation: true
+    failed_activated_endpoint_cannot_be_dropped: true
+  claim_limits:
+    - reconstruction endpoints are not synapses
+    - morphology does not identify postsynaptic or input partners
+    - morphology does not measure synapse number strength or cell-type-specific synaptic connectivity
+    - target identity and terminal morphology from one reconstruction are not independent replications
+  predictive_geometry_sources:
+    - independent atlas or tract prior computable for every candidate target set
+    - training-fold-only aggregate learned inside each development fold
+  hard_leakage_bans:
+    - test-cell realized path to a target cannot predict whether that target is present
+    - test-cell branch or terminal-tree features cannot enter M0 M1 or M2 target-presence predictors
+    - final-evaluation full-axon anatomy cannot select the reported combination or applicability region
+    - anatomy derived from the target matrix cannot serve as an independent population label
+    - locked-final within-A profiles cannot select A B C exclusivity target rules coordinate metric or direction
+    - within-A morphology cannot enter M0 M1 or M2
+
+external_evaluation:
+  role: pending verified independent and comparable resource
+  permitted_transfer_types:
+    - frozen-parameter transport
+    - marginal target-frequency recalibration with association structure locked
+  selected_transfer_type: null
+  selection_frozen_before_external_outcomes: true
+  transfer_types_cannot_be_mixed_in_one_claim: true
+  cross_measurement_validation_requires_source_target_and_detection-model_compatibility: true
+
+optional_masked_target_task:
+  status: disabled pending a separate observation and evaluation contract
+  participates_in_primary_endpoint: false
+  participates_in_promotion: false
+  masking_rule: null
+  masking_must_be_frozen_and_independent_of_test_outcomes: true
+  true_target_count_including_hidden_targets_allowed_as_input: false
+  realized_hidden-target_path_branch_or_terminal_features_allowed_as_input: false
+  activation_requires:
+    - marginalize or separately predict target count
+    - define a separate score observation model and leakage audit
+    - include every adaptive choice in the 40-to-88-trial controller and all 99 null reruns
+  if_true_target_count_is_supplied: label diagnostic given true target count and not target completion
 
 objectives:
-  primary: equal_group_delta_bits_q1_over_q0
-  secondary: [calibration, worst_source_family_gain, sparsity_effective_rank, runtime]
-  minimum_meaningful_improvement: 0.002
-  constraints:
-    q0_adequacy_required: true
-    exact_probability_normalization: true
-    max_source_family_regression_bits_per_cell: 0.01
-    no_single_group_dependence: true
-    fitted_q0_full_search_null_controlled: true
-    delta_combo_frozen_before_audit: true
+  primary: equal-group held-out complete-set log-predictive gain of M2 over M1
+  secondary: equal-group held-out complete-set log-predictive gain of M1 over M0
+  supporting: [calibration, worst-source-family gain, sparsity or effective rank, runtime]
+  secondary_cannot_rescue_failed_primary_without_the_explanation_route: true
+  smallest_useful_primary_gain_bits_per_cell: 0.002
+  max_source_family_regression_bits_per_cell: 0.01
+  group_level_uncertainty_method: null
+  pair_level_multiplicity_method: null
+  freeze_unset_rules_before_candidate_discriminating_development: true
+  internal_predictive_gain_only: preliminary and not promotion eligible
+  validity_requires:
+    - adequate M1 calibration
+    - exact probability normalization
+    - no single-group dominance
+    - no prespecified source family loses more than 0.01 bits per cell
+    - calibrated full-search null
 
 budgets:
   minimum_valid_trials: 40
   maximum_valid_trials: 88
-  q0_valid_trials_min: 8
-  q0_valid_trials_max: 16
-  q1_valid_trials_min: 32
-  q1_valid_trials_max: 72
+  reference_trials_min: 8
+  reference_trials_max: 16
+  association_trials_min: 32
+  association_trials_max: 72
   patience_valid_trials: 14
+  patience_improvement_threshold_bits_per_cell: 0.002
   max_invalid_retries: 12
   cpu_core_hour_ceiling: 1800
   gpu_hour_ceiling: 0
@@ -68,19 +314,31 @@ budgets:
   parallel_core_ceiling: 64
   memory_gb_ceiling: 512
   scratch_gb_ceiling: 1536
-  minimum_falsification_fraction_after_branch_coverage: 0.40
 
 full_search_null:
   controller_operation: run_full_search_null
-  rerun_complete_controller: true
-  fitted_generator: locked_development_q0
+  scope: target-set model search combination selection and target-set transfer analysis
+  fitted_generator: locked development M1 including every verified label and spatial term
   replicates: 99
-  seed_manifest_frozen: true
   initial_ledger_each_replicate: empty
-  rerun_stages: [q0_search, q1_coverage, q1_adaptive, stop, finalist_selection]
+  rerun_complete_controller: true
+  rerun_stages:
+    - M0 and M1 reference and population-mixture development
+    - M2 core and eligible extensions
+    - combination direction common-support and applicability selection
+    - any target-set transfer analysis whose choices were not frozen outcome-blind
+    - target-set falsification stopping finalist and route-eligibility selection
   identical_grammar_budgets_stop_and_promotion: true
   deterministic_controller_replay_required: true
   proposal_model_version_prompt_sampling_and_seed_frozen: true
+  preserve:
+    - biological groups group sizes and resource strata
+    - soma position independent labels and technical covariates
+    - candidate targets target count and complete-set choice spaces
+    - resource-specific observability and detection structure
+  all_target_set_promotion_relevant_selection_must_be_replayed: true
+  anatomy_metrics_references_and_external_roles_are_frozen_outcome_blind_and_tested_separately: true
+  target_set_selection_not_replayable_must_be_frozen_before_development_or_excluded_from_promotion: true
   monte_carlo_p: (1_plus_count_null_ge_observed)_divided_by_(replicates_plus_1)
   pass_threshold: 0.05
   profiling_must_fit_total_cpu_ceiling_before_outcome_access: true
@@ -88,60 +346,116 @@ full_search_null:
 branch_coverage:
   required: true
   minimum_valid_trials: 16
-  rule: sparse_low_rank_hierarchical_hybrid_and_declared_rank_anchors_after_q0_adequacy
+  rule: current shared policy requires sparse low-rank hierarchical and hybrid families to run or receive an input-readiness rejection
+  proposed_conditional_rule: sparse is core; other families run only after their prespecified trigger
+  trigger_not_met_satisfies_current_shared_rule: false
+  reconciliation_required_before_execution: true
+  allowed_resolutions:
+    - revise the shared depth rule to accept logged trigger dispositions
+    - revert EP10 to all-family execution or input-readiness rejection
   readiness_rejection_must_be_logged: true
 
 required_falsifiers:
-  - fitted_q0_simulations_rerun_complete_adaptive_search
-  - null_singleton_geometry_sparse_lowrank_hierarchical_synthetic_recovery
-  - k_and_group_preserving_target_label_permutation
-  - q0_pair_residualization_rank_and_orthogonality_proof
-  - geometry_hierarchy_sparse_and_lowrank_ablations
-  - capacity_matched_noise_interactions
-  - leave_one_group_pair_source_family_and_batch_out
-  - locked_alternate_nonoverlapping_atlas_vocabulary
-  - shared_ep09_ep11_lineage_and_exposure_audit
+  - full adaptive searches on 99 fitted-M1 null datasets
+  - synthetic recovery of M0 M1 sparse-pair and every activated extension
+  - a null that preserves groups resources labels soma position target count and observation structure
+  - target-label permutation that preserves target count and biological groups
+  - pair-parameter identification and residualization checks
+  - phenomenon replication before testing a spatial or population-mixture explanation
+  - independent-label animal-position confounding and label-block ablations
+  - geometry sparse-pair and activated-extension ablations
+  - capacity-matched noise interactions
+  - leave-one-group pair resource and batch influence checks
+  - source-position common-support and applicability checks
+  - locked target-definition atlas and target-boundary sensitivities
+  - matched branch shared-path collateral and terminal-tree structural references
+  - when eligible the frozen A+B-versus-A+C profile in A with target-count cotarget position label registration boundary and reconstruction sensitivities
+  - when a comparable external resource exists a frozen transfer test under one declared transfer type
+  - reconstruction quality missingness duplicate lineage and EP09-EP11 exposure review
 
 promotion:
   incumbent_is_terminal: false
   minimum_adaptive_successor_cycles: 2
   minimum_incumbent_challenger_decisions: 2
   post_coverage_falsifier_fraction_min: 0.40
-  require_q0_adequacy: true
+  common_gates:
+    - phase-1 feasibility audit passed
+    - at least 12 development and 8 locked final biological groups
+    - exact normalization and adequate M1 calibration
+    - 40-to-88 valid trials and 16 branch anchors
+    - all reference and association trials counted under one global M1 and M2 specification
+    - all 99 full-search null reruns passed the frozen rule
+    - branch-policy reconciliation completed
+    - reproducible refit and all required falsifiers passed
+  routes:
+    residual_combination_with_anatomy:
+      requires:
+        - M2 improves over M1 by the frozen useful margin in locked groups
+        - at least one frozen combination direction and applicability region replicates on common support
+        - full-axon branching and terminal-tree evidence passes frozen matched structural references
+        - shared-target terminal-contrast eligibility or ineligibility is documented
+        - if the shared-target endpoint was activated its development-frozen prediction replicates in locked groups and failure cannot be dropped
+        - if a genuinely comparable external resource exists it supports the frozen combination under one declared transfer type
+        - if no comparable external resource exists the comparability audit documents why and the claim remains internal cross-animal evidence
+    spatial_or_known_population_explanation:
+      requires:
+        - the frozen combination phenomenon first replicates in locked groups
+        - the frozen spatial or independently labeled population explanation replicates and is calibrated
+        - uncertainty bounds residual M2 value below the frozen useful margin
+        - synthetic recovery shows residual effects of interest were detectable
+        - any population-mixture claim uses labels independent of projection outcomes
+  internal_predictive_gain_alone_is_sufficient: false
   require_full_search_null_pass: true
-  require_q0_and_q1_trials_counted: true
-  require_all_falsifiers_pass: true
-  require_one_global_q0_q1_specification: true
-  require_reproducible_refit_from_immutable_inputs: true
+  require_reproducible_refit: true
+  require_branch_policy_reconciliation: true
 
 stop:
-  before_minimum: forbidden_except_technical_impossibility
+  before_minimum: forbidden except for technical impossibility
   patience_starts_after_minimum: true
-  patience_delta_bits_per_cell: 0.002
-  require_q1_family_and_rank_coverage: true
   resource_exhaustion_result: incomplete_search
   budget_stop_is_scientific_success: false
   budget_stop_is_scientific_negative: false
 
 audit:
   configuration_lock_required: true
-  shared_episode_contracts_lock_before_any_open: true
   lock_hash_required: true
   maximum_open_count: 1
   audit_updates_search: false
-  audit_role: sealed_biological_groups
-  terminal_claim_scope: residual_complete_target_set_prediction_within_frozen_source_and_atlas
+  unit: locked whole biological groups
+  frozen_before_open:
+    - source resources target observation and common-support domain
+    - models thresholds uncertainty and multiplicity rules
+    - combination direction applicability and effect criteria
+    - full-axon metrics normalization and matched references
+    - when activated shared target cotarget contexts within-target coordinate metric direction support and multiplicity
+    - external transfer type when an eligible external resource exists
+  if_no_defensible_final_role: exploratory grouped cross-validation without a fresh-final-test claim
+
+reporting:
+  required_displays:
+    - source resource group position label coverage exclusions missingness and target definition
+    - held-out M0 M1 and M2 prediction calibration and M2-minus-M1 by group
+    - frozen combination probability contrasts across animals positions and applicability boundaries
+    - independent-label population-mixture contrasts and remaining confounding
+    - full-axon branch shared-path collateral terminal-tree and boundary-reference results
+    - when eligible pooled and context-specific shared-target profiles hidden heterogeneity total arbor animal distributions and sensitivities
+    - external transfer result with its declared transfer type and detection model when a comparable resource exists
+  pair_level_claims_require_pair_level_evidence: true
+  target_identity_and_terminal_morphology_from_one_reconstruction_are_independent_replication: false
+  predictive_gain_only_must_be_labeled: preliminary internal evidence
 
 terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_candidate: closed_no_candidate
-  incomplete_search: closed_no_candidate
+  residual_combination_anatomy_supported: candidate_ready
+  spatial_or_known_population_explanation_supported: candidate_ready
+  internal_predictive_gain_only: closed_no_candidate
+  no_meaningful_added_association_and_no_supported_explanation: closed_no_candidate
   unresolved: closed_no_candidate
+  no_valid_comparison: closed_no_candidate
+  incomplete_search: closed_no_candidate
+  measurement_or_feasibility_failure: closed_no_candidate
   technical_failure: technical_failure
 
 canonical_binding:
-  loop_id: null
-  goal_id: null
   canonical_program_id: null
   registered_program_policy_ref: null
   search_policy_ref: null

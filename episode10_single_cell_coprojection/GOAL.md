@@ -1,185 +1,256 @@
-# EP10 — adaptive residual co-projection modeling
+# EP10 — Spatial routing and reproducible target combinations in single-neuron cortical projections
 
-This episode is governed by [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.md).
+**Status:** scientific design; no EP10 result is reported here.
 
-## Authority and history boundary
+The [paper plan](outputs/paper_plan.md) translates this design into candidate-
+specific claims, decisive alternatives, outcome routes, and a contingent
+figure sequence. It does not authorize execution or presume a positive result.
 
-This current local contract is unregistered. It creates no canonical loop, authorizes no
-data access or compute, opens no target combinations, and establishes no
-scientific finding. New canonical loop, Goal, registered program, and search
-policy bindings are mandatory. Prior EP09/10/11 work is exposure to
-record, not admissible initialization evidence.
+## Scientific question
 
-EP09, EP10, and EP11 can use the same SEU cells and axonal targets. Their
-results are statistically correlated and cannot be advertised as independent
-replications. Their group roles, outcome rules, and claims must all be locked
-before the first shared audit opening; otherwise this episode is explicitly
-outcome-exposed development only.
+Within one well-defined cortical source population, which combinations of
+projection targets recur across animals and soma locations? How much of each
+combination can be explained by target prevalence, spatial routing, or the
+mixture of independently identified cell populations? For combinations that
+remain, how are the targets reached through the branching structure of complete
+single-neuron axons?
 
-## Adaptive scientific question
+MOp is the provisional priority for the first feasibility review because it can
+connect existing morphology and multi-target tracing work. It is not the chosen
+source. That choice must be made from animal coverage, soma-position overlap,
+independent labels, target observability, and reconstruction quality before
+candidate associations are examined. MOs and SSp may later test the boundary of
+a result, but they must not be pooled with MOp simply to increase sample size.
 
-After conditioning on a neuron's observed target count, target-specific
-popularity, source/soma context, quality, and frozen set-geometry proxies,
-which bounded residual-combination model—sparse, low-rank, hierarchical, or a
-restricted hybrid—best improves the probability assigned to the complete
-projection target set in unseen biological groups?
+The biological replicate is the verified animal. If animal identity cannot be
+resolved, the analysis must use the most conservative defensible specimen
+grouping and describe any result as cross-group rather than cross-animal.
 
-This is an adaptive comparison of complete-set probability models, not a
-search for visually interesting target pairs. The baseline `Q0` and residual
-model `Q1` always score identical cells over the identical exactly normalized
-choice space.
+## Proposed contribution and novelty boundary
 
-## Observation and data roles
+Non-random co-projection is already known, and complete-morphology studies
+already describe projection and path diversity. EP10 will not claim either as a
+new discovery or produce another undifferentiated target-pair atlas.
 
-For cell `i`, freeze candidate targets `V_i`, complete observed set `S_i`,
-observed count `K_i = |S_i|`, and choice space
-`Omega_i = {S subset V_i : |S| = K_i}`. Every target in `V_i` must be either a
-valid detection or valid non-detection; any unknown makes the primary set
-incomplete. The most conservative verified animal/brain/specimen group is the
-split and inference unit; random-neuron splits are forbidden.
+The proposed contribution links three questions: whether a few named
+combinations are stable under measured spatial variation, whether routing or
+population composition explains them, and how complete axons implement them.
+Novelty must be reassessed for the final source and targets; if prior work has
+already answered this linked question, EP10 should change direction or stop.
 
-Assign at least 12 groups to adaptive development and at least 8 groups to a
-locked audit before target identities are inspected. Development groups choose
-vocabulary support, establish `Q0`, search `Q1`, and calibrate the full-search
-null through nested grouped folds. Audit target sets remain inaccessible until
-one model family, rank/penalty, and inference procedure are locked.
+[Yuan et al. (2024)](https://www.nature.com/articles/s41467-024-52756-x)
+used axonal BARseq to show that, in auditory-cortex IT neurons, projection to
+another area was associated with laminar termination within a shared cortical
+target. EP10 therefore cannot claim that a generic relationship between
+co-target identity and within-target laminar distribution is new. Before a
+candidate enters locked evaluation, its dossier must state:
 
-## Common baseline Q0
+- which unresolved explanation it distinguishes beyond that prior association;
+- one specific held-out anatomical prediction; and
+- how confirmation or refutation would change interpretation of the named
+  pathway.
 
-All candidates condition on `K_i` and share:
+A laminar association alone is a replication or extension, not the core EP10
+contribution.
 
-- K-dependent target singleton/popularity terms;
-- flexible soma coordinates, source parcel, layer/independent labels, and
-  prospectively available quality/technical covariates;
-- soma-to-target atlas distance;
-- mean pairwise distance of proposed targets and soma-anchored minimum
-  spanning-tree length; and
-- identical supported `V_i`, `S_i`, `K_i`, `Omega_i`, group weights, folds,
-  likelihood, and exact normalizer.
+Clusters derived from the same projection matrix cannot establish an
+independent cell type or rule out population mixture.
 
-`Q0` pooling may be global, source-family hierarchical, or bounded partial
-pooling across `K`, chosen entirely within development data. Q0 adequacy is a
-hard constraint, not a weak foil for Q1.
+## A motivating example
 
-## Bounded adaptive grammar for Q1
+Suppose neurons in anterior and posterior parts of one source can reach targets
+A, B, and C, and development data suggest that A often occurs with B. Ask in
+order whether B is common at the same detected target count, whether position
+and independently defined routing geometry predict A+B, and whether labeled
+cell populations occupy the two positions in different proportions.
 
-Residual pair features are projected away from the complete Q0 singleton and
-geometry design under every supported choice space. One candidate may use:
+The useful test is where these explanations differ—for example, where routing
+predicts less A+B but the combination remains frequent. Freeze the effect
+direction, spatial region, and common-support rule in development, then test
+animals that did not select the rule. A location without relevant cells is
+extrapolation, not validation.
 
-1. **Sparse interactions:** lasso, elastic net, or group lasso over recurring
-   target pairs;
-2. **Low-rank interactions:** symmetric target embeddings with ranks
-   `{1, 2, 3, 4, 6, 8}` and bounded Frobenius/nuclear penalties;
-3. **Hierarchical interactions:** global pair effects with source-family or
-   hemisphere deviations under shared shrinkage;
-4. **Restricted hybrid:** a low-rank term plus at most 16 sparse residual pair
-   corrections selected inside grouped development folds; and
-5. **Calibration/pooling:** bounded penalty grids, target-support thresholds,
-   and one of global or prespecified source-family sharing.
+A deeper question follows once a combination is frozen. Among neurons with
+qualifying arborization in A, does the terminal distribution inside A differ
+between an A+B group and an A+C group? Development must define whether these
+groups require B-positive/C-negative versus C-positive/B-negative cells and
+how other targets and `K` are handled. A frozen contrast in unseen animals can
+then test whether the same regional target label conceals different output
+organization that an A-averaged projection map would blur. This is a secondary
+anatomical endpoint; it does not replace the target-set primary test. Report
+the pooled A profile beside the two context-specific profiles and use one
+development-frozen measure of how much heterogeneity pooling hides.
 
-Exact normalization over `Omega_i` is required for Q0 and Q1. If a supported
-choice space cannot be enumerated or evaluated exactly within the frozen cap,
-that cell is prospectively infeasible; pseudolikelihood or post hoc vocabulary
-shrinking is not allowed. Free-form pair mining, audit-frequency features,
-axon-derived `Projection class`, per-source winners, `K` prediction, and
-winner selection by coefficient interpretability are prohibited.
+The existing grouped split, M2-minus-M1 primary endpoint, search budget,
+stopping thresholds, full-search null, and promotion decisions remain
+unchanged. The new endpoint uses the same development and final groups rather
+than creating a second split.
 
-## Objective and constraints
+## Three explanations to distinguish
 
-For independent group `g`, compute
+The explanations are not mutually exclusive. EP10 should estimate where each
+one is adequate and where residual organization remains.
 
-`d_g = mean_i log2[Q1_i(S_i) / Q0_i(S_i)]`,
+| Explanation | Scientific test | Permitted interpretation |
+| --- | --- | --- |
+| **Target prevalence and spatial routing** | Predict complete target sets from single-target frequencies, soma context, smooth position effects, technical covariates, and routing quantities available for every candidate target set. | Good calibration and a narrow upper bound on residual gains support adequacy of the measured reference at the chosen resolution, not proof that all geometry has been captured. |
+| **Known population composition** | Add or stratify by layer, driver, molecular, or other labels obtained independently of the axon target matrix; check overlap and confounding among label, position, and animal. | Attenuation within independently labeled groups supports a composition explanation. Without suitable labels, population mixture remains unexcluded. |
+| **A stable target combination** | Freeze a development-selected combination, effect direction, and applicability region; test its joint probability in unseen animals after the measured alternatives are included. | Reproduction supports a conditional organizational pattern, not functional coordination, a cell type, or a causal wiring program. |
 
-then give groups equal weight in `Delta_bits = mean_g d_g`. Primary search
-maximizes grouped out-of-fold `Delta_bits`. Secondary objectives are held-out
-calibration, worst-source-family gain, sparsity/effective rank, and runtime.
+The predictive implementation uses nested references: M0 represents target
+prevalence and source context, M1 adds measured routing, and M2 adds regularized
+target associations. All score the same target sets conditional on detected
+target count, `K`. Fixed-`K` M0 is not an unconditional independence model.
+M2 minus M1 is primary; M1 minus M0 is secondary.
 
-A candidate is feasible only when Q0 passes frozen marginal/geometry/quality
-adequacy tolerances, all probabilities normalize, no prespecified source
-family loses more than `0.01` bits/cell, the gain is not dominated by one
-group, and the fitted-Q0 full-search null is controlled. Freeze a smallest
-useful gain `delta_combo`, group-level interval, and multiplicity rule before
-audit.
+Because fixed-`K` interaction coefficients can be non-unique, claims must use
+identified probability contrasts rather than raw coefficients. Position
+comparisons should use a common covariate distribution and report uncertainty.
+A non-significant interaction does not establish equality; a materially changed
+magnitude marks a boundary or heterogeneity.
 
-## Search stages
+## Observation and phase-one feasibility
 
-1. **Measurement preflight:** authenticate identities/groups, full-target
-   readability, vocabulary, atlas geometry, exact choice spaces, and audit
-   sealing.
-2. **Q0 stage:** run 8--16 valid bounded Q0 pooling/regularization trials until
-   adequacy is met; every Q0 trial is ledgered and resource-metered. Freeze a
-   common Q0 rule before comparing Q1 families.
-3. **Coverage stage:** evaluate at least 16 Q1 anchors spanning sparse,
-   low-rank, hierarchical, and hybrid families and their bounded ranks.
-4. **Adaptive stage:** propose successors using the append-only development
-   ledger; every trial declares a structural hypothesis, parent, and degrees
-   of freedom.
-5. **Null/falsification stage:** run exactly **99** fixed-seed replicates from
-   full datasets simulated from fitted Q0. Each replicate starts with an empty
-   ledger and reruns Q0 search, Q1 coverage/adaptation, early stop, family
-   choice, and finalist selection with the identical controller, grammar,
-   budgets, and promotion rules.
-6. **Lock/audit:** select one Q0/Q1 specification, reproduce it from immutable
-   development inputs, freeze all measurement/model/inference artifacts, hash
-   the bundle, then score the sealed groups once.
+The primary endpoint requires a frozen target vocabulary and a defensible
+distinction among arborization, passing axon, verified non-detection, and
+unknown. Unknown is never absence. Conditioning on `K` does not explain why
+some neurons reach more targets than others.
 
-## Required falsifiers and ablations
+Before model search, phase one must establish:
 
-- end-to-end fitted-Q0 simulations that rerun the complete adaptive search;
-- synthetic recovery of null, singleton-only, geometry-only, sparse-pair,
-  low-rank, hierarchical, and misspecified-Q0 worlds;
-- K- and group-preserving target-label permutation;
-- proof that residual pair columns are orthogonal to the complete Q0 design;
-- removal of geometry, source hierarchy, sparse term, and low-rank term;
-- capacity-matched noise interactions and penalty-path stability;
-- leave-one-group, leave-one-target-pair, source-family, and batch influence;
-- alternate non-overlapping atlas vocabulary as a locked sensitivity; and
-- lineage/exposure audit shared with EP09/EP11.
+- source-by-animal and source-by-position support, including zero and excluded
+  groups;
+- sample lineage, duplicate status, and prior exposure across relevant releases
+  and EP09–EP11;
+- reproducible target calls from complete trees, including boundary and
+  reconstruction-quality examples;
+- if the shared-target endpoint is pursued, per-animal A+B/A+C support and
+  repeatable registration and terminal profiles within A;
+- provenance and overlap for any independent labels; and
+- a one-page proceed, revise, or stop decision that names the feasible source,
+  target resolution, competing explanations, development and evaluation roles,
+  detectable effect and precision, and exact-normalization and null-search cost.
 
-The fitted-Q0 search-null distribution calibrates the observed development
-gain and the audit threshold. Simulating only the final chosen model is
-insufficient because it omits search optimism. Freeze controller code,
-proposal-model/version/prompt, sampling configuration, and the 99-seed manifest
-before real outcomes. The Monte Carlo rule is
-`p=(1 + #{null statistic >= observed}) / 100`, with `p <= 0.05` required. If
-the proposal trajectory cannot be replayed deterministically, or readiness
-profiling cannot fit all 99 reruns inside the total CPU ceiling, the null gate
-is invalid and the episode stops before outcome search.
+If one coherent source lacks independent animals, overlapping spatial support,
+or reliable complete-set observation, EP10 must change data, narrow its claim,
+or stop before expensive search. Combining incomparable sources, labels, or
+measurement types is not a remedy.
 
-## Incumbent, budget, and stopping
+The active group allocation, exact scoring, adaptive search, calibration, and
+stopping rules remain defined in `SEARCH_POLICY.yaml`; this scientific goal does
+not replace them.
 
-The incumbent is a nonterminal development model. It grants no claim or audit
-access. Run **8--16** valid Q0 trials and **32--72** valid Q1 trials, for
-**40--88** total scientific development trials. Q1 patience is **14**
-consecutive valid trials after its minimum with no feasible Pareto improvement
-of at least `0.002` bits/cell. All four Q1 families, declared rank regimes, and
-required falsifiers must have coverage. At most 12 engineering failures may be
-retried outside scientific patience. The 99 mandatory null reruns do not count
-as extra candidate trials but do count against compute and wall ceilings.
+## Complete axons as biological evidence
 
-Resource envelope: CPU only; at most 1,800 aggregate CPU-hours, 144 wall-clock
-hours, 64 concurrent cores, and 1.5 TB scratch, including fitted-Q0 full-search
-simulations. Resource exhaustion returns `incomplete_search`, never a
-scientific negative.
+After the target definition and candidate combinations are frozen, EP10 returns
+to each complete axon tree. Prespecified summaries should ask where paths to two
+targets diverge, how much normalized path they share before divergence, which
+collaterals and terminal branches cover each target, and whether an apparent
+pair is one continuous terminal tree divided by an atlas boundary.
 
-## Lock, one-shot audit, and terminal boundary
+For an eligible A+B versus A+C comparison, development must also freeze one
+target-intrinsic coordinate system and one primary summary of the normalized
+terminal-arbor distribution within A. Cortical depth or layer is appropriate
+only when biologically meaningful; a three-dimensional subregion or topographic
+coordinate may be more informative elsewhere. Total qualifying arbor length in
+A is a separate outcome, not a substitute for its normalized distribution.
+Terminal-branch density, reconstruction-endpoint density, focality, centroid,
+and spread may be supporting summaries, but reconstruction endpoints are not
+synapses.
 
-The lock bundle includes sources/hashes, cell/group/duplicate/exposure ledger,
-atlas/vocabulary and observation rules, exact choice spaces, Q0 adequacy,
-residualization matrices, grammar, full trial/proposal ledger, all grouped
-predictions, fitted-Q0 full-search null, selected Q0/Q1, penalties/ranks,
-`delta_combo`, interval/multiplicity code, falsifiers, environment, seeds, and
-artifact hashes. Audit groups open once and can never cause sparse/low-rank/
-hierarchical winner swapping or renewed search.
+The comparison must use animal-level inference on common support and a frozen
+adjustment or matching rule for soma position, source layer or independent
+labels, `K` and other targets, total morphology, registration, clipping, and
+reconstruction quality. Entry route into A must be declared in advance as an
+alternative explanation or possible mediator rather than silently matched
+away.
 
-`candidate_ready` requires the frozen group interval above `delta_combo`, a
-passed fitted-Q0 search-null criterion, acceptable Q0 adequacy and probability
-calibration, concordant prespecified source-family behavior, and no decisive
-falsifier or single-group dependence. Otherwise report
-`closed_no_candidate`, `unresolved`, or `technical_failure` under the lock.
+Every axon has a common root, so a shared ancestor is not a finding. Compare
+candidate combinations with pairs matched on distance, overall morphology, and
+observability, and show animal-level distributions as well as examples.
 
-A positive audit means only that residual target-combination structure helps
-complete-set prediction at the frozen atlas resolution, observation rule,
-target count, vocabulary, and source distribution. It does not prove synapses,
-functional coordination, causal routing, developmental mechanism, intrinsic
-information, cell type, or independence from EP09/EP11.
+Predictive geometry and outcome anatomy must remain separate. Routing priors
+must be available for every candidate set from an independent atlas or
+development data. A test neuron's realized path, branch point, or terminal tree
+is an outcome and cannot predict its target presence. Adult morphology can show
+implementation, not a developmental decision, energetic cause, or synaptic
+mechanism.
+
+Within-A morphology is likewise an outcome. Locked-group terminal profiles
+cannot choose A, B, or C; select the coordinate, metric, or predicted direction;
+revise target calls; enter M0, M1, or M2; or serve as an independent cell label.
+Only a contrast frozen in development may be tested in final animals.
+
+## Evidence chain
+
+1. **Phenomenon and observation.** Establish animal and spatial support,
+   defensible target calls, and a small set of combinations worth explaining.
+2. **Competing explanations.** Compare calibrated predictions from prevalence,
+   spatial routing, independently measured population composition, and residual
+   association; report combination-level effect sizes and animal-level
+   uncertainty, not only a global score.
+3. **Anatomical implementation.** Quantify branch and terminal organization
+   against matched structural references, test A+B versus A+C organization
+   within their shared target when eligible, and examine sensitivity to target
+   boundaries.
+4. **Prediction and boundaries.** Test the frozen combination, direction, and
+   applicability region in unseen animals. When a genuinely comparable resource
+   or measurement exists, test it externally and state whether all parameters
+   transfer or only target frequencies are recalibrated.
+
+![Conceptual EP10 v2 evidence chain using synthetic data](outputs/ep10_v2_evidence_chain.png)
+
+**Figure note.** This is a study-design illustration, not an observed EP10
+result. It links combination selection, competing explanations, full-axon
+branching, and validation across animals and conditions.
+
+Aggregate M2-minus-M1 gain supports this chain but does not validate a named
+combination. Each reported combination needs a frozen probability contrast,
+animal- and position-level uncertainty, a multiplicity procedure, and a stated
+domain of common support. Likewise, a held-out subset of one public release is
+an internal cross-animal test, not automatically an independent external
+replication.
+
+## Possible outcomes
+
+| Outcome | What would be needed | Scientific interpretation |
+| --- | --- | --- |
+| **Combination and anatomical implementation supported** | A named relationship reproduces across animals within its frozen spatial domain, survives measured alternatives, and has robust branch or terminal organization relative to matched references. Eligibility and activation of the shared-target endpoint are frozen before final evaluation; if activated, its within-A prediction must also reproduce and cannot be dropped after failure. Appropriate external evidence is added when available. | A conditional, observational organization rule is supported for the specified source and measurement regime. |
+| **Space or known population composition explains the pattern** | The original pattern first reproduces; the explanatory model is calibrated, residual effects are bounded below a meaningful threshold, and the explanation predicts new animals. | A measured routing or composition explanation may support an explanatory paper even without useful M2 gain. |
+| **Internal predictive gain only** | M2 improves a score within the available release, but named combinations, spatial boundaries, anatomy, or independent transfer remain unsupported. | This is a methods result or preliminary finding, not the intended biological paper. |
+| **Unresolved or infeasible** | Animals disagree, uncertainty is wide, the reference remains inadequate, observation is unreliable, or independent grouping and common support cannot be established. | The data do not decide the question. Failure of the design is not evidence that co-projection organization is absent. |
+
+A null test alone cannot support the second outcome. The analysis must be
+sensitive to effects of interest and precise enough to exclude a scientifically
+meaningful residual association.
+
+## Decisions still open
+
+Before outcome-discriminating development, investigators must settle the final
+source, target granularity and laterality, common-support rule, independent-label
+strategy, effect scale and meaningful margin, combination-selection and
+multiplicity procedures, branch-summary normalization and matched references,
+the shared-target coordinate and terminal-profile summary, and the standard for
+external comparability. Dataset roles must follow identity, coverage, and
+measurement quality rather than favorable associations.
+
+## Claim boundary
+
+The strongest positive claim is that, within a frozen source population,
+target vocabulary, observation rule, detected target count, and spatial domain,
+a specific reconstructed target combination shows reproducible organization
+beyond measured alternatives and is realized through a reproducible axonal
+branching pattern. When the shared-target endpoint is activated, the claim may
+also state that the terminal profile within a named target changes predictably
+with a frozen co-target context.
+
+EP10 cannot establish synaptic connectivity, shared function, a causal or
+developmental program, a new cell type, whole-brain generality, or independence
+from analyses that reuse the same cells. Any conclusion must state which
+alternatives were actually measured and which remain unresolved.
+
+Complete morphology can resolve axonal arbor topography and branch organization.
+Unlike the EP12 question, it cannot identify postsynaptic or input partners,
+synapse number or strength, or cell-type-specific synaptic connectivity. Target
+identity and terminal morphology extracted from the same reconstruction are
+complementary evidence, not independent replication.
