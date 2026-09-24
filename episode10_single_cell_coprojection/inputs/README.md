@@ -1,11 +1,11 @@
 # Inputs
 
-This directory is read-only during episode work. It is currently a placeholder
-for authenticated, immutable references to the source morphology release,
-Allen CCF assets, and any approved content-addressed handoff described in
-`../DATASETS.md`.
+This directory is read-only during episode work. It can hold approved
+references to the source morphology release and Allen CCF assets described in
+`../DATASETS.md`; the data do not need to be copied here when an approved
+read-only location is available.
 
-No source morphology, projection outcome, atlas payload, or Episode 09 handoff
-was provisioned when this pre-launch contract was created.
+No source morphology, projection outcome, or atlas payload was placed here
+when this plan was written.
 
 Do not place credentials or mutable sibling-episode outputs here.

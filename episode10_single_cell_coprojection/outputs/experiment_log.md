@@ -8,3 +8,7 @@ constraints; no morphology outcome was inspected.
 
 The paper plan was added as a design document. Creating it did not open data,
 run an analysis, or change any scientific outcome.
+
+The launch description was simplified on 2026-09-24 by removing administrative
+launch gates. Scientific data qualification remains the first analysis stage;
+no outcome was opened during this documentation change.

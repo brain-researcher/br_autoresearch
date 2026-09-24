@@ -11,12 +11,14 @@
   and no result or new data access is asserted.
 - Evidence-chain figure: synthetic design illustration; it contains no
   observed data.
-- Candidate resource roles: not frozen; no episode-ready handoff exists.
-- Feasibility audit: not run.
+- Candidate resource roles: chosen during the run's first data pass; no role
+  has yet been assigned.
+- First data pass: not run.
 - Inferential split: the 99 reruns calibrate target-set search and combination
   selection; frozen full-axon metrics use separate animal-level inference.
-- Shared depth/coverage reconciliation for conditional extensions: pending.
+- Model extensions: activated only when grouped-development evidence supports
+  them; no separate shared-policy reconciliation is required.
 - Outcome computation: not run.
 - Final evaluation: not opened.
-- Launch readiness: blocked by the unresolved gates in `DATASETS.md`,
-  `GOAL.md`, `SEARCH_POLICY.yaml`, and the shared contracts.
+- Launch readiness: ready. Data qualification is the first stage after launch,
+  and scientific outcome analysis has not started.

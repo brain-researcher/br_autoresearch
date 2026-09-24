@@ -2,8 +2,8 @@
 
 EP10 asks whether specific single-neuron target combinations recur across
 animals and soma positions, what measured alternatives explain them, and how
-complete axon trees implement them. No resource has yet been assigned a final
-discovery or validation role, and no biological analysis has started.
+complete axon trees implement them. Resource roles will be chosen during the
+run's first data pass; no biological analysis has started.
 
 The [paper plan](outputs/paper_plan.md) maps these data requirements to the
 claims, figures, failure interpretations, and external evidence needed for a
@@ -46,7 +46,7 @@ Choose the primary source using biological rationale, metadata, independence,
 coverage, and measurement quality. Do not scan target-pair effects, model
 scores, or visually striking morphologies to choose it.
 
-## Required support audit
+## First data pass
 
 Before assigning analytical roles, produce a source-by-group support table
 with one row for every observed or expected combination:
@@ -55,7 +55,7 @@ with one row for every observed or expected combination:
 | --- | --- | --- | --- | ---: | --- | --- | --- |
 | pending | pending | pending | pending | pending | pending | pending | dataset build not completed |
 
-The audit must establish:
+The first pass should establish:
 
 - cell-to-metadata and morphology joins;
 - the most conservative defensible animal, brain, or specimen identity;
@@ -77,18 +77,13 @@ unresolved, use the most conservative verified specimen grouping and limit the
 claim to cross-group evidence. More neurons from one group do not replace
 biological replication.
 
-## Cross-release lineage and exposure
+## Avoiding duplicated samples
 
-Build one cell and specimen lineage table spanning the candidate resources,
-their publications, and EP09–EP11. Use stable identifiers where available and
-compare soma location, reconstruction identity, morphology lineage, and
-transformed derivatives where identifiers differ. Record cross-release reuse,
-prior inspection of outcomes or choices, whether each file represents a new
-sample or a derivative, and every episode that used the same outcomes.
-
-EP09–EP11 require one shared identity, role, duplicate, and exposure record.
-Results on the same cells are correlated evidence, not independent
-replications; different repositories or papers do not establish independence.
+Use stable identifiers and basic morphology/metadata matching to keep the same
+cell or biological group from crossing the development/final split. If EP09,
+EP10, or EP11 use the same cells, treat those results as correlated evidence,
+not independent replications. A different repository or paper does not by
+itself establish a new sample.
 
 ## Assigning discovery and validation roles
 
@@ -147,7 +142,7 @@ candidate targets, imputation, or validation labels. Any label used to test a
 population-mixture explanation needs provenance independent of the target
 outcomes.
 
-## Observation-decision audit
+## Observation decisions
 
 Retain a reviewable table of accepted targets, passing fibers, boundary cases,
 unknowns, and exclusions. Include the full-tree evidence, agreement with
@@ -160,10 +155,10 @@ For any within-target endpoint, additionally verify registration and the
 target-intrinsic coordinate inside A, terminal-tree completeness and clipping,
 stable boundary assignment, and repeatability of normalized terminal profiles.
 Because both A membership and the profile in A come from the same
-reconstruction, audit whether reconstruction quality changes inclusion or the
+reconstruction, check whether reconstruction quality changes inclusion or the
 apparent profile differently across A+B and A+C.
 
-## Cross-resource comparability audit
+## Cross-resource comparison
 
 Before transfer, document source and soma-position overlap; non-overlapping
 target and laterality mappings; reconstruction, sampling, and detection
@@ -239,13 +234,16 @@ The morphology resources can resolve arbor topography and branching. They do
 not identify postsynaptic or input partners, synapse number or strength, or the
 cell-type-specific synaptic connectivity sought by EP12.
 
-## Conditions for proceeding
+## What the first run decides
 
-Proceed only after the four audits identify one supported source; valid 12/8
-roles; a repeatable complete-target rule; jointly supported target and position
-strata; provenance and overlap for any labels used in a mixture claim;
-feasible exact normalization; a defensible anatomy role; and a recorded
-eligibility decision for each external candidate.
+EP10 does not need a separate administrative review before launch. Its first
+stage asks whether one source supports the 12/8 group split, a repeatable
+complete-target rule, overlapping target and position strata, any labels used
+for a mixture analysis, feasible exact normalization, and a defensible anatomy
+analysis. External resources can remain optional.
+
+Outcome modeling begins only after those scientific choices are made without
+looking at candidate effects.
 
 Insufficient A+B/A+C support makes the shared-target endpoint ineligible and
 forbids that claim; it does not by itself change the preserved target-set

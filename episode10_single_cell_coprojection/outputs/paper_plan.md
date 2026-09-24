@@ -86,13 +86,14 @@ locked-final anatomy.
 
 ## Study sequence
 
-### 1. Qualify the data before searching for a result
+### 1. Start with data qualification
 
-Phase one asks whether EP10 has a valid estimand and enough independent animal
-and position support. It audits lineage and prior exposure, repeatable target
-calls, non-detection versus unknown, independent-label provenance, detectable
-effects, and exact-normalization/null cost. If the shared-target endpoint is
-proposed, it also audits exact A+B/A+C support and repeatability inside A.
+The first analysis stage asks whether EP10 has a valid estimand and enough
+independent animal and position support. It checks sample overlap, repeatable
+target calls, non-detection versus unknown, independent-label provenance,
+detectable effects, and exact-normalization/null cost. If the shared-target
+endpoint is proposed, it also checks exact A+B/A+C support and repeatability
+inside A.
 
 The output is a one-page proceed, revise, or stop decision naming the source,
 target resolution, data roles, common-support domain, precision, and compute

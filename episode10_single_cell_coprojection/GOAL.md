@@ -109,28 +109,29 @@ comparisons should use a common covariate distribution and report uncertainty.
 A non-significant interaction does not establish equality; a materially changed
 magnitude marks a boundary or heterogeneity.
 
-## Observation and phase-one feasibility
+## First analysis stage
 
 The primary endpoint requires a frozen target vocabulary and a defensible
 distinction among arborization, passing axon, verified non-detection, and
 unknown. Unknown is never absence. Conditioning on `K` does not explain why
 some neurons reach more targets than others.
 
-Before model search, phase one must establish:
+The run begins by establishing:
 
 - source-by-animal and source-by-position support, including zero and excluded
   groups;
-- sample lineage, duplicate status, and prior exposure across relevant releases
-  and EP09–EP11;
+- that the same cell or biological group does not cross the development/final
+  split or count as an independent replication across releases;
 - reproducible target calls from complete trees, including boundary and
   reconstruction-quality examples;
 - if the shared-target endpoint is pursued, per-animal A+B/A+C support and
   repeatable registration and terminal profiles within A;
 - provenance and overlap for any independent labels; and
-- a one-page proceed, revise, or stop decision that names the feasible source,
+- a short proceed, revise, or stop decision that names the feasible source,
   target resolution, competing explanations, development and evaluation roles,
   detectable effect and precision, and exact-normalization and null-search cost.
 
+These are the first scientific tasks after launch, not a separate launch gate.
 If one coherent source lacks independent animals, overlapping spatial support,
 or reliable complete-set observation, EP10 must change data, narrow its claim,
 or stop before expensive search. Combining incomparable sources, labels, or
