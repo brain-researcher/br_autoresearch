@@ -1,126 +1,130 @@
-# Dataset Contract — Episode 12
+# Dataset contract — Episode 12
 
-This episode relies only on the already acquired MaleCNS v1.0 flat-connectome
-release described below. It creates no new data asset and grants no graph
-access. The common role and locking rules are in
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md).
+EP12 uses the existing MaleCNS v1.0 flat-connectome release. It creates no new
+data asset and grants no new access by itself.
 
-## Fixed release
+## Data source
 
 | Item | Fixed value |
 | --- | --- |
-| Shared dataset ID | `flyem_male_cns` |
-| Release | `gcs-male-cns-v1.0-flat-connectome` |
-| Provider ID | `male-cns:v1.0` |
+| Dataset | MaleCNS v1.0 flat connectome |
+| Shared dataset ID | flyem_male_cns |
+| Provider ID | male-cns:v1.0 |
 | Release date | 2026-06-08 |
-| Source prefix | `gs://flyem-male-cns/v1.0/connectome-data/flat-connectome/` |
-| Read-only local source | `/oak/stanford/groups/russpold/data/br_autoresearch_data/flyem_male_cns/gcs-male-cns-v1.0-flat-connectome` |
+| Read-only local source | /oak/stanford/groups/russpold/data/br_autoresearch_data/flyem_male_cns/gcs-male-cns-v1.0-flat-connectome |
 | License | CC BY 4.0 |
-| Paper | Berg et al., *Cell* (2026), `10.1016/j.cell.2026.08.015` |
+| Paper | Berg et al., Cell (2026), 10.1016/j.cell.2026.08.015 |
 
-The release comprises 11 Feather files totaling 31,318,683,398 bytes. Existing
-source metadata reports provider sizes/MD5, local SHA-256, and successful Arrow
-IPC opening. This episode must reference those immutable records rather than
-copying or mutating the shared source.
+The primary analysis uses four parts of that release:
 
-### Required graph core
+| File | Use in EP12 |
+| --- | --- |
+| body annotations | neuron type, side, anatomy, and eligibility |
+| body neurotransmitters | optional annotation and quality-control context |
+| body statistics | connection strength and reconstruction/status controls |
+| connectome weights | directed outgoing partner profiles |
 
-| File | Bytes | Provider MD5 | Role |
-| --- | ---: | --- | --- |
-| `body-annotations-male-cns-v1.0-minconf-0.5.feather` | 14,483,314 | `50a7718770c57220f160ba4f431ab89e` | node, type, side, anatomy annotations |
-| `body-neurotransmitters-male-cns-v1.0.feather` | 43,282,834 | `3d842b12fe5c49eefade528d7dd24a1f` | optional annotation/QC context only |
-| `body-stats-male-cns-v1.0-minconf-0.5.feather` | 778,062,826 | `404c3349c28580148e16815eb99f382a` | strength/status support; connectivity-derived |
-| `connectome-weights-male-cns-v1.0-minconf-0.5.feather` | 1,051,241,946 | `f30e9dcca25cfd021bf1e7b3d975599e` | directed weighted-graph outcome |
+The full minconf-0.5 weight table is the primary graph input. Traced-only and
+significant-only variants are not primary inputs unless their meaning is
+independently established before the analysis begins. Point-synapse,
+synapse-partner, and t-bar neurotransmitter tables are not required.
 
-The primary outcome uses the full `minconf-0.5` weight table. Colocated
-`traced-only` and `significant-only` variants are not primary inputs unless
-their semantics are independently authenticated and added before lock. Point
-synapse, synapse-partner, and t-bar neurotransmitter tables are not required.
+## What has already been seen
 
-## Exposure history
+Annotation layouts and category counts were previously inspected. No
+connection weights, body statistics, synapse values, or neurotransmitter
+values were reported as inspected for the original EP12 question.
 
-Schemas and annotation category counts were previously inspected. No
-connection-weight, body-stat, synapse, or neurotransmitter values were
-reported as inspected for the original question. Existing annotation-only
-artifacts include:
+Existing annotation-only feasibility counts include:
 
 - 211,577 annotation rows;
-- 164,506 rows with non-null `type` and 11,751 distinct raw type strings;
-- provisional left/right counts of 80,785/82,932;
+- 164,506 rows with a non-empty type and 11,751 raw type labels;
+- provisional left/right counts of 80,785 and 82,932;
 - 1,224 types with at least five provisional left and five right neurons;
 - 1,184 at that threshold after rejecting types with any non-lateral row; and
 - a conservative scenario with 656 fully lateral types and 13,806 typed rows.
 
-These are feasibility counts, not the eligible cohort or mixture-support
-threshold. The broad fallback used in the provisional counts is not the final
-sensory-aware side rule. Preserve the existing annotation inventory and first
-access history as exposed development metadata.
+These counts do not define the final cohort. They remain exposed feasibility
+information, and revising the design cannot make them unobserved.
 
-## Annotation-only 80/20 assignment
+## Assigning development and final types
 
-Before body stats or graph weights are opened, derive eligible type candidates
-using a frozen annotation-only rule. Assign **whole provider types**, not
-neurons or edges, 80% to `development` and 20% to `final_sealed` with a fixed
-deterministic seed. Any stratification may use only prespecified annotation
-scope/support fields and must be recorded before outcomes.
+Before body statistics or graph weights are opened, apply a fixed
+annotation-only eligibility rule. Assign whole provider types—not neurons,
+edges, synapses, or sides—so that 80% go to development and 20% go to final
+evaluation.
 
-The primary brain stratum excludes prospectively identified optic-column,
-retinotopic, sensory-receptor, and serial-homologue families. VNC types are a
-separate analysis matched or adjusted within `somaNeuromere`. Medial, unknown,
-missing, and left/right-conflict cases follow frozen quarantine/exclusion
-rules. A failure to retain adequate bilateral whole-type support stops the
-episode; it cannot be repaired by relaxing thresholds after graph access.
-Every type assigned to `final_sealed` remains in the audit accounting. A
-prospectively frozen graph-support formula may return `unscorable`, but no
-replacement final type may be chosen after any final graph value is opened.
+Any balancing may use only annotation fields chosen in advance. The final
+assignment is made once and recorded before outcomes are examined. If the
+eligible cohort lacks enough bilateral support, the episode stops; thresholds
+cannot be loosened after graph access.
 
-## Field restrictions and outcome ownership
+Every type assigned to final evaluation remains in the accounting. A support
+rule fixed in advance may mark a type unscorable, but that type cannot be
+silently removed or replaced.
 
-Provider `type` defines focal and partner categories, with explicit caveat that
-the taxonomy was connectivity-informed. `instance` is side-encoded and
-forbidden as a primary category. `group` may encode finer
-connectivity-informed distinctions and is forbidden for eligibility,
-splitting, initialization, fitting, or model selection. Both are available
-only in a post-result novelty audit.
+## Field restrictions
 
-Outgoing profiles own rows by focal source neuron. Incoming profiles own rows
-by focal target neuron. Keep each focal neuron and all of its
-direction-specific incident counts in its whole-type role. Synapses and edges
-are not samples. Untyped, unproofread, fragment, missing-annotation, and
-out-of-vocabulary endpoint mass remain explicit; no analysis silently
-conditions on typed partners.
+Provider type defines the focal and partner categories, with the caveat that
+the published taxonomy was itself informed by connectivity.
 
-During outgoing development, only development-type source-owned profiles may
-be materialized. Final-type identities may be used for endpoint-to-type lookup
-but their focal profiles, totals, support, and graph-derived summaries remain
-sealed. Incoming profiles remain unmaterialized until the outgoing result is
-immutable.
+Provider instance is side-encoded, and provider group may contain finer
+connectivity-informed distinctions. Neither may be used for eligibility,
+splitting, initialization, fitting, or model selection. They may be consulted
+only after the result to ask whether a reported group is already represented
+in existing annotations.
 
-## Staged role boundary
+Unknown, untyped, fragment, proofreading, missing-annotation, and
+out-of-vocabulary partner mass must remain explicit. The analysis cannot make
+its profiles look cleaner by silently discarding those endpoints.
 
-| Stage | Allowed | Hidden |
+## Who may see what
+
+| Stage | Available | Still hidden |
 | --- | --- | --- |
-| Annotation lock | provider methods and annotation fields; eligibility and 80/20 type assignment | body stats, graph weights, synapses, neurotransmitters |
-| Synthetic qualification | generated fixtures only | all real connectivity-derived values |
-| Outgoing development | body stats as declared; development-type source-owned rows | final-type focal profiles; all incoming summaries |
-| Outgoing lock | development ledger and selected triplet | all final-type outcomes |
-| One-shot final evaluation | trusted evaluation of final-type source-owned rows in both directions | final labels/outcomes from controller and candidate |
-| Incoming scope | target-owned rows under a separately fixed workflow after outgoing freeze | no claim of independent evidence |
+| Type assignment | annotation fields needed for eligibility and the 80/20 split | body statistics, graph weights, synapses, neurotransmitter values |
+| Synthetic qualification | generated examples only | all real connectivity values |
+| Outgoing development | declared body statistics and outgoing profiles owned by development types | focal profiles and graph-derived summaries for final types |
+| Null calibration | the selected development-only T/U generator and synthetic null data | all final-type focal profiles |
+| Final evaluation | the chosen T/U/M procedure and final profiles inside one evaluator operation | final profiles and candidate-guiding diagnostics from the search process |
+| Incoming scope | incoming profiles after the outgoing result is fixed | any use of incoming results to change the outgoing conclusion |
 
-The final evaluator must log first access, prevent search-code label access,
-and refuse a second opening. Any premature access invalidates the audit role.
+Outgoing profiles belong to their focal source neuron. Incoming profiles
+belong to their focal target neuron. Keep each neuron and all of its
+direction-specific connections in the role assigned to its whole type.
+Synapses and edges are measurements, not independent biological samples.
 
-## Launch blockers and required records
+## Final cross-side evaluation
 
-The shared source is acquisition-ready, but the original contract reports no
-canonical non-BIDS handoff. A future run requires operator-managed read-only
-registration for `ds:manual:flyem_male_cns` and an appropriate
-`connectome-graph` readiness profile. This contract does not create either.
+For each final type, the evaluator performs both directions in one final
+operation:
 
-Required durable records are the immutable source manifest; annotation and
-exposure history; neuron/type/endpoint eligibility ledger; 80/20 whole-type
-assignment; endpoint-coverage report; outgoing and incoming vocabularies;
-trial ledger; frozen T/U/M configurations; every type/direction score; nulls,
-component matching and influence results; resource accounting; and the final
-lock/audit manifests. High-I/O transforms must remain reconstructable from the
-pinned release and durable code.
+1. fit the chosen T/U/M procedure to the left-side outgoing profiles and score
+   the right side without fitting on the right;
+2. fit the same procedure to the right-side profiles and score the left side
+   without fitting on the left.
+
+This source-side fitting is part of the final evaluation, not a new round of
+development. The vocabulary, model families, tuning rules, thresholds, and
+allowed summaries are already fixed. Final profiles and diagnostics that could
+guide a new candidate are not returned to the search process.
+
+The evaluator records first access and refuses a second effective opening. If
+an acknowledgement is lost, the existing final operation must be reconciled
+before any retry.
+
+## Scope and required records
+
+Outgoing composition is the primary analysis. Incoming composition begins only
+after the outgoing conclusion is fixed, uses its own choices, and cannot rescue
+the outgoing result.
+
+A future run must retain enough information to reconstruct what happened:
+the source used, exposure history, whole-type assignment, partner vocabulary,
+trial results and failures, resource use, chosen procedure, null results,
+every final type and direction, the final-opening count, the detailed outcome,
+and the evidence supporting that outcome.
+
+The current EP12 directory contains a study design, not a working
+episode-specific executor. None of these requirements claims that a run has
+occurred.

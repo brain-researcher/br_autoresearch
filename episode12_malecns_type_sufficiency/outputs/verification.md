@@ -1,6 +1,6 @@
 # Verification
 
-- Current Goal, dataset contract, and search policy: present.
+- Goal, dataset description, and search policy: revised.
+- Concept figure: synthetic design mockup; it contains no observed data.
 - Outcome computation: not run.
-- One-shot audit: not opened.
-- Launch readiness: subject to `DATASETS.md`, `GOAL.md`, and canonical gates.
+- Final evaluation: not opened.

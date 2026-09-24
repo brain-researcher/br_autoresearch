@@ -1,200 +1,246 @@
-# Adaptive Search for MaleCNS Type Sufficiency
+# Do neurons of the same type share the same downstream wiring?
 
-## Authority, history, and claim scale
+Neurons assigned to the same cell type are often summarized by one wiring
+profile. That summary may hide meaningful differences. Some cells could
+prefer one set of downstream partners, while others of the same type prefer
+another.
 
-This is the current local Episode 12 contract. It does not authorize graph
-access or compute and does not create a canonical Goal. It is governed by
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md). Existing
-annotation-only inventories are exposed historical feasibility evidence; they
-are not untouched confirmation data.
+EP12 asks whether those differences form reproducible groups. If neurons on
+the left prefer one set of downstream partners, can the same preference be
+recovered on the right? Or is the apparent grouping better explained by
+continuous variation, anatomy, connection strength, or reconstruction
+quality?
 
-MaleCNS v1.0 contains one male fly. Whole-type and left-to-right/right-to-left
-separation can test internal reproducibility within that specimen, but no
-amount of adaptive search creates animal-level replication. Every terminal
-claim is limited to the pinned release, eligible curated types, and one male.
+We study outgoing partner-type profiles in the pinned MaleCNS v1.0 release.
+This is a bilateral-reproducibility study in one male fly. A positive result
+would motivate closer study; it would not establish new cell types or their
+functions.
 
-## Adaptive scientific question
+## At a glance
 
-For individual neurons assigned the same curated provider `type`, is one
-type-level wiring population predictively sufficient, or do residual outgoing
-partner-allocation modes transfer across body sides after accounting for
-connection strength, known anatomy, and technical status?
+| Question | EP12 design |
+| --- | --- |
+| What varies? | The distribution of a neuron's outgoing connections across downstream partner types. |
+| What is compared? | One average profile (T), one flexible continuous population (U), and two or three residual groups (M). |
+| What must repeat? | A preference learned on one body side must predict neurons of the same type on the other side. Both directions are required. |
+| What is held out? | Twenty percent of whole annotated types are reserved for one final evaluation. |
+| What is the main score? | The held-out predictive gain of M over the better fair T/U reference. |
+| What can the study conclude? | Reproducible groups, an adequate single-population description within a fixed margin, or an unresolved result. |
 
-Every trial must fit a capacity-controlled triplet on the same profiles and
-folds:
+## Three competing explanations
 
-- `T`: one type template;
-- `U`: one flexible but numerically unimodal population around that template;
-  and
-- `M`: two or three residual modes built from the same latent kernel as `U`.
+Every analysis compares the same three model families on the same profiles and
+evaluation units.
 
-The primary outcome is outgoing weighted partner-type composition. Incoming
-composition is a separately locked, later scope analysis using its own
-vocabulary and representation; it cannot rescue the outgoing primary result
-and is not independent evidence because graph edges overlap.
+| Model | Scientific explanation |
+| --- | --- |
+| **T: one type template** | One average downstream partner profile describes the type well enough at the tested resolution. |
+| **U: a flexible single population** | Cells vary continuously around that profile, without distinct groups. |
+| **M: two or three residual modes** | Cells form distinct partner-preference groups that reproduce across sides after the planned adjustments. |
 
-## Development and final-type roles
+U is essential. A mixture can imitate continuous variation, so M cannot win
+merely by being more flexible. It must predict better than both T and U, and
+its groups must be reproducible and interpretable.
 
-Before any connectivity-derived values are opened, eligible complete provider
-types are assigned deterministically from annotation-only fields to:
+## How the test works
 
-- **development types (80%)** for vocabulary, representation, support,
-  nuisance, covariance, component, and regularization search; and
-- **final types (20%)** whose source-owned outgoing profiles remain sealed
-  until one-shot evaluation.
+1. **Assign whole types.** Before connection values are opened, use
+   annotation-only fields to assign 80% of eligible types to development and
+   20% to final evaluation.
+2. **Compare T, U, and M fairly.** Every trial fits all three explanations
+   under the same data roles and comparable capacity.
+3. **Choose one complete procedure.** Use a rule fixed in advance and based
+   only on development data. M does not have to win during development for a
+   scientifically valid comparison to continue.
+4. **Transfer across sides.** For each final type, fit the chosen procedure on
+   one side and score the other without fitting on the target side; then
+   reverse the direction. Both transfers occur in one final evaluation.
+5. **Report the answer.** Apply thresholds and uncertainty rules fixed before
+   the development analysis that could favor one explanation over another.
 
-The split is by whole provider type, stratified only with prespecified
-annotation-only scope/support variables, with one frozen seed and assignment
-manifest. A neuron, edge, synapse, or side can never be split independently of
-its focal type role. Within each development type, left-to-right and
-right-to-left transfer supply selection scores; within each final type, both
-directions are evaluated once without target-side refitting. The evaluator
-reports every assigned final type. A frozen graph-support rule may mark a type
-unscorable, but cannot silently drop it; too few scorable final types triggers
-the prespecified unresolved or technical terminal rather than post-hoc
-replacement.
+A valid comparison is not the same as evidence for M. A well-qualified test
+must be allowed to reach final evaluation even when T or U looks better during
+development.
 
-Because partner identities can include final-type names, endpoint-to-type
-lookup is allowed solely to construct the frozen partner vocabulary and
-explicit unresolved bins. Final focal profiles, totals, supports, and outcome
-summaries remain hidden.
+## Figure concept
 
-## Bounded declarative grammar
+The main figure should place left- and right-side outgoing profiles for the
+same annotated type beside the predictions of T, U, and M. Illustrative types
+are chosen by a development-only rule fixed in advance; the quantitative
+summary reports every assigned final type.
 
-Each trial is a validated configuration interpreted by trusted code; arbitrary
-candidate programs are not allowed. The grammar searches:
+The mockup below uses synthetic values only. It is a design aid, not an
+observed EP12 result.
 
-- **partner vocabulary:** minimum development-type count in `{2,4,8}`, rare
-  pooling at mass fractions `{0.01,0.025,0.05}`, explicit unresolved/untyped/
-  proofreading bins, self-type handling, and hierarchy depth `{1,2}`, all
-  learned from development-owned profiles only;
-- **composition:** count-aware log-ratio or low-rank count/composition
-  representation with pseudocount `{0.1,0.5,1.0}` and rank
-  `{2,4,8,16}`;
-- **nuisance:** prespecified strength/exposure, reconstruction/status, and
-  known anatomical effects with bounded linear or smooth complexity;
-- **observation/covariance:** shared overdispersed-multinomial-compatible
-  kernels with diagonal, shrinkage, or low-rank covariance of rank `{2,4,8}`;
-- **population family:** the mandatory `T/U/M` triplet, with `M` using
-  `K in {2, 3}` and `U` passing a numerical one-mode check; and
-- **regularization/hierarchical shrinkage:** penalties
-  `{0.001,0.01,0.1,1,10,100}` shared fairly across `T/U/M`, fit only on
-  development types. Prespecified anatomical nuisance splines use
-  `{0,3,5}` degrees of freedom.
+![Conceptual EP12 main figure using synthetic data](outputs/ep12_conceptual_main_figure.png)
 
-The grammar cannot use provider `group` or `instance` for eligibility,
-initialization, fitting, selection, or partner categories; cannot choose
-features from final outcomes; and cannot silently renormalize away untyped,
-fragment, missing, or out-of-vocabulary mass.
+## The three scientific answers
 
-## Objective, constraints, and incumbent
+| Detailed outcome | Evidence required | Permitted interpretation |
+| --- | --- | --- |
+| **Reproducible residual groups** | A valid final evaluation; M exceeds the meaningful margin in both directions; the groups recur across sides; their partner preferences are identifiable; all required controls pass. | Eligible annotated types in this male contain bilaterally reproducible residual wiring groups. |
+| **Single population adequate within margin** | A calibrated T/U reference; both directional upper bounds for M's advantage fall below the meaningful margin; synthetic tests show adequate sensitivity. | Within this analysis, precision, and model family, a single-population description is adequate. |
+| **Unresolved** | A valid final evaluation is completed, but intervals are wide, directions disagree, structure is ambiguous, or the evidence supports only a narrower claim. | These data do not decide the prespecified broad question. |
 
-For type `t` and direction `d`, score held-out log predictive density per
-eligible incident synapse, average neurons equally within `t,d`, then weight
-types and the two transfer directions equally. The primary adaptive objective
-is the development estimate of `M - C`, where `C` is the better fair
-single-population reference among `T` and `U`.
+A nonsignificant difference is not evidence that one population is adequate.
+An adequacy conclusion requires enough precision to rule out the meaningful
+advantage set in advance.
 
-A feasible incumbent must retain calibration and endpoint mass, show
-meaningful improvement in **both** directions, maintain separated and
-prevalent modes, match components across sides, pass synthetic recovery, and
-avoid concentration in a few types or high-strength neurons. Search maintains
-a Pareto archive over predictive gain, calibration, component transfer,
-complexity, and influence.
+The T-versus-U comparison remains a prespecified explanatory readout. If U
+beats T but M adds no meaningful advantage, EP12 may report that one average
+profile misses continuous heterogeneity. This cannot replace the primary
+M-versus-better-T/U test after results are seen, and it is not a discovery of
+new cell types.
 
-An incumbent is never a scientific terminal. It remains replaceable until
-the numeric stop rule fires; a high development score alone cannot authorize
-opening final types or naming a biological cell type.
+### When the test does not reach an answer
 
-## Stages
+| Status | What happened | What may be said |
+| --- | --- | --- |
+| **No valid comparison** | Development is completed, but no fair and usable T/U/M comparison can continue; final types remain unopened. | A development-stage limitation prevented the primary held-out test. |
+| **Incomplete search** | The run stops before the required search is complete. | Search is incomplete; no completed-search conclusion is allowed. |
+| **Technical failure** | An unrecoverable execution error, damaged or mismatched input, role leakage, or final-evaluation failure invalidates the analysis. | No scientific interpretation is allowed. |
 
-1. **Annotation lock:** authenticate side derivation, known-structure
-   exclusions, scope strata, eligibility formulas, split seed, and the 80/20
-   whole-type assignment before connectivity access.
-2. **Synthetic qualification:** test every retained triplet implementation on
-   one-template, continuous-unimodal, true-mode, imbalanced-mode, sparse-count,
-   missing-mass, and side-artifact fixtures.
-3. **Development coverage:** evaluate configurations spanning every partner
-   vocabulary family, representation family, covariance class, and `K`.
-4. **Adaptive development:** propose ledger-linked successors; each changes a
-   declared grammar field and states a hypothesis and falsifier. Every trial
-   evaluates the complete fair `T/U/M` triplet.
-5. **Outgoing lock:** select one triplet configuration and freeze cohort,
-   vocabulary, rank, nuisance/covariance, support, capacities, seeds,
-   thresholds, score, and controls.
-6. **Audit once:** a trusted evaluator opens final-type source-owned profiles
-   once and performs both reciprocal transfers. No final outcome reaches the
-   controller.
-7. **Incoming scope:** only after the outgoing result is immutable, run the
-   separately prespecified incoming workflow. It is reported as correlated
-   scope evidence and cannot change the outgoing terminal.
+## What makes a comparison valid
 
-## Required falsifiers and ablations
+A complete comparison must:
 
-- exactly **99** fixed-seed fitted-`T/U` parametric-null graphs at real
-  development type sizes, strengths, missingness, and side structure, each
-  starting from an empty ledger and rerunning the entire deterministic `T/U/M`
-  adaptive search;
-- strength- and margin-preserving graph randomization within frozen
-  type-by-side strata;
-- cross-side component-alignment permutation preserving component sizes;
-- shuffled partner identities and side labels where structurally valid;
-- binary-versus-weighted and rare-pooling/vocabulary/rank sensitivities;
-- removal of each nuisance block and each partner-vocabulary block;
-- T/U/M capacity-matched synthetic and noise-feature controls;
-- leave-one-development-type and leave-one-partner-family influence;
-- checks against status, endpoint coverage, side ambiguity, anatomy,
-  neuromere/serial/optic position, and missingness; and
-- a post-result novelty audit against forbidden provider `group`, `instance`,
-  and other published assignments. Matches are rediscoveries, not novelty.
+- use the assigned development and final roles without leakage;
+- evaluate T, U, and M under fair capacity and calibration rules;
+- preserve unknown, untyped, fragment, and missing partner mass;
+- pass synthetic tests for average, continuous, grouped, weak-signal, and
+  side-artifact scenarios;
+- reproduce when rerun under the same settings; and
+- record complete outputs, failures, resource use, and the reason for every
+  inclusion or exclusion.
 
-Freeze controller code, proposal-model/version/prompt, sampling configuration,
-and the 99-seed manifest before connectivity outcomes. The Monte Carlo rule is
-`p=(1 + #{null statistic >= observed}) / 100`, with `p <= 0.05` required. If
-the proposal trajectory cannot replay deterministically or readiness profiling
-cannot fit all null reruns within the total CPU ceiling, stop before graph
-access and revise the contract rather than weakening the null.
+Poor real-data performance by M, weak separation, or continuous-looking
+variation is a scientific result, not a broken comparison. Numerical failure,
+target-side fitting, unfair model capacity, or uncontrolled missing output
+makes the comparison invalid.
 
-## Numeric search contract
+For each type and transfer direction, the score is held-out log predictive
+density per eligible incident synapse. Neurons are weighted equally within a
+type and direction; types and directions are then weighted equally. Synapses
+and edges are not treated as independent biological replicates.
 
-- minimum valid trials: **36**;
-- maximum valid trials: **96**;
-- patience: **16** consecutive valid trials without a preregistered
-  meaningful Pareto improvement, active only after trial 36;
-- total compute ceiling: **1,000 CPU-core-hours**;
-- per-trial ceiling: **32 CPU cores**, **192 GiB RAM**, **12 wall-hours**;
-- overall wall-clock ceiling: **120 hours**;
-- GPU allocation: **0**;
-- every trial must persist all three models, split scores, constraints,
-  lineage, resource use, and any invalid/failure reason.
+## Data roles and scope
 
-Budget or patience exhaustion triggers lock selection from the feasible Pareto
-archive; it is not positive evidence.
+The split is by whole provider type. Neurons, edges, synapses, and body sides
+cannot receive roles independently of their focal type. Every assigned final
+type stays in the accounting. A rule fixed in advance may mark a type
+unscorable, but the type cannot be silently removed or replaced after final
+values are opened.
 
-## One-shot decision and claim boundary
+Provider group and instance labels cannot be used to define, initialize, fit,
+or select the candidate groups. They may be inspected only later to ask
+whether a result merely rediscovers an existing annotation.
 
-After lock, the 20% final types are opened once. No vocabulary, support rule,
-rank, model, threshold, exclusion, or component matching can change. Valid
-terminals are:
+Outgoing composition is primary. Incoming composition is a later, separately
+fixed scope analysis. It cannot rescue the outgoing result and is not
+independent evidence because the same graph edges contribute to both views.
 
-- `candidate_ready_residual_modes`: locked `M` exceeds the frozen meaningful
-  margin over both `T` and `U` in both transfer directions, modes are separated,
-  prevalent, cross-side matched, and all null, provenance, technical, and
-  influence gates pass;
-- `closed_single_population_sufficient`: calibrated `T/U` is sufficient
-  within the frozen margin, or mixture gains are unidirectional, continuous,
-  unmatched, null-compatible, or concentrated;
-- `closed_unresolved`: final types do not adjudicate the alternatives; or
-- `technical_failure`: side, support, provenance, endpoint coverage,
-  identifiability, calibration, synthetic recovery, or audit integrity fails.
+Previously inspected annotation inventories remain exposed feasibility
+evidence. Revising the study cannot make previously seen information
+unobserved. The live exposure and execution state must therefore be checked
+before a run begins.
 
-The strongest permitted positive wording is **bilaterally reproducible
-residual outgoing-wiring modes within eligible curated types in this MaleCNS
-male** or **the released type aggregation was not predictively sufficient for
-these profiles**. It does not establish new cell types, cross-animal or
-cross-sex generalization, molecular identity, causality, or behavior. The
-whole types are leakage/inference units for this within-male prediction only;
-they may not be used to construct an animal-population confidence interval.
-The positive class maps to canonical `candidate_ready`; the sufficient and
-unresolved classes map to `closed_no_candidate`; integrity failure maps to
-`technical_failure`.
+## Controls
+
+The analysis must test whether any apparent groups are explained by:
+
+- connection strength or missing endpoint mass;
+- reconstruction status and other technical quality measures;
+- anatomical position, neuromere, serial organization, or optic structure;
+- a few influential types, partner families, or high-strength neurons;
+- arbitrary partner vocabularies, pooling choices, ranks, or nuisance terms;
+- shuffled partner identities or side labels; and
+- continuous variation that a mixture happens to approximate.
+
+The post-result comparison with provider group, instance, or published
+assignments is a novelty check only. A match is a rediscovery, not a new type.
+
+## Search and null calibration
+
+| Item | Limit |
+| --- | ---: |
+| Valid trials | 36 minimum; 96 maximum |
+| Patience | 16 valid trials without improvement, active only after trial 36 |
+| Total compute | 1,000 CPU-core-hours |
+| Per trial | 32 CPU cores; 192 GiB RAM; 12 wall-hours |
+| Overall wall clock | 120 hours |
+| GPU | 0 |
+
+If at least one complete comparison is ready for null calibration, the
+development data choose a fair T or U generator using a separate rule fixed in
+advance. The study then runs exactly 99 synthetic-null searches. Each starts
+from the beginning and repeats the same T/U/M search and selection logic, but
+does not launch another layer of null searches.
+
+Each fitted-T/U null keeps the development sample sizes, connection strengths,
+missingness, and side structure. The observed and null searches use the same
+development statistic: M minus the better fair T/U reference after the fixed
+selection rule has been applied. Because this revision changes that selection
+program, an older null calibration cannot be reused.
+
+The full program therefore has a minimum declared scale of 36 trials × 3
+models × 100 observed-or-null searches = 10,800 model-family fits before types
+and directions are counted. This is a protocol count, not measured runtime.
+A cost study must show that the planned work fits the compute limit before
+real connection outcomes are opened.
+
+The null probability is used when deciding whether the final result supports
+M. Completing the null program correctly is required for a valid comparison;
+failing its scientific threshold does not by itself make the comparison
+invalid or prevent an informative T/U result.
+
+## Decisions that still need to be made
+
+Before development that could distinguish the explanations begins, a
+scientist must set:
+
+- the numerical meaningful margin, its unit, and the simultaneous uncertainty
+  method;
+- the sensitivity rule for allowing an adequacy conclusion;
+- the development-only rule for choosing the final comparison;
+- the separate development-only rule for choosing the null generator; and
+- the development-only rule for choosing illustrative types in the main
+  figure.
+
+These values are deliberately not invented here. Until they are set, EP12 is
+a revised design, not a ready or completed analysis.
+
+Any small real-data diagnostic must use assigned development types only.
+Before their connection values are opened, its selection rule, allowed
+outputs, and exposure record must be fixed.
+
+If a smaller fixed comparison is chosen instead of the adaptive study, it must
+be described as a different study design. Its success cannot be counted as
+completion of this search.
+
+## Execution evidence still required
+
+The current EP12 directory describes the study but does not contain a working
+episode-specific executor. Before anyone claims that EP12 can run through to a
+result, synthetic tests must demonstrate:
+
+- positive, adequate, and unresolved outcomes;
+- distinct handling of no-valid-comparison, budget exhaustion, and input
+  failure;
+- recovery after interruption without losing or double-counting a trial; and
+- one final opening even if an acknowledgement is lost and the run resumes.
+
+Documentation or a passing structural check is not evidence that the study
+ran. A real result requires durable trial records, the selected procedure,
+the final-evaluation record, the detailed outcome, the reason, and links to
+the supporting outputs.
+
+## Claim boundary
+
+The strongest positive wording is **bilaterally reproducible residual outgoing
+wiring groups within eligible curated types in this MaleCNS male**. EP12 does
+not establish new cell types, cross-animal or cross-sex generalization,
+molecular identity, causality, function, or behavior.
+
+This local revision does not authorize data access, computation, or formal
+acceptance. No real EP12 analysis or final evaluation was run while preparing
+it.

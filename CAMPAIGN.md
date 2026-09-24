@@ -38,7 +38,7 @@ workflow; they do not authorize or block local episode execution.
 | EP09 | Which dendritic representation predicts distal axonal arbors beyond anatomy and metadata? | 40--96 | Group-sealed biological audit |
 | EP10 | Which sparse, low-rank, or hierarchical model predicts residual co-projections beyond a searched Q0? | 40--88 | Group-sealed audit plus 99 complete search-null reruns |
 | EP11 | Do reusable projection-morphology modes require discrete components, continuous gradients, or a hybrid? | 48--120 | At least eight sealed biological groups plus 99 search-null reruns |
-| EP12 | Are curated MaleCNS types sufficient, or do reproducible residual wiring modes improve held-out-type prediction? | 36--96 | Whole-type audit within one male plus 99 search-null reruns |
+| EP12 | Are within-type wiring differences best described by one shared template, continuous variation, or reproducible residual groups? | 36--96 | Reciprocal side-transfer evaluation of held-out whole types within one male, plus 99 full-search null reruns |
 | EP13 | Which exact BOLD-identifiability conjecture survives counterexample-guided repair and proof checking? | 16--64 | Exact proof/refutation; finite audit is implementation evidence only |
 | EP14 | Which CPU-scale, site-free ROI representation improves unseen-acquisition brain-age prediction without increasing acquisition decodability? | 48--120 | Locked probe followed by one-shot 757-row audit |
 | EP15 | Which constrained class adequately predicts reliable individual Task-B-only cerebellar variation from anatomy and Task A: parcel membership, smooth relocation, shared isometry, or stable non-isometry? | 40--96 | One locked opening for 12 participant-level Task-B outcomes |
