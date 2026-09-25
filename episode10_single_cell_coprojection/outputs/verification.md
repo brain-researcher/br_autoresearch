@@ -15,9 +15,16 @@
   has yet been assigned.
 - First data pass: not run.
 - Inferential split: the 99 reruns calibrate target-set search and combination
-  selection; frozen full-axon metrics use separate animal-level inference.
+  selection; frozen full-axon metrics use separate biological-group inference.
 - Model extensions: activated only when grouped-development evidence supports
   them; no separate shared-policy reconciliation is required.
+- Model-search coverage: at least 16 valid anchors cover the sparse core and
+  every development-triggered extension; this is distinct from axonal branching.
+- Shared-target timing: exact A+B/A+C eligibility is assessed in development
+  groups after the split, while final groups remain unopened; a later final
+  support shortfall is inconclusive rather than a reason to reselect.
+- Pooling discrepancy: its estimator, null, useful margin, and group-level
+  uncertainty are frozen before final evaluation.
 - Outcome computation: not run.
 - Final evaluation: not opened.
 - Launch readiness: ready. Data qualification is the first stage after launch,

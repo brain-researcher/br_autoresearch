@@ -66,11 +66,14 @@ The first pass should establish:
 - whether source, position, label, animal, and batch are too confounded to
   distinguish the proposed explanations.
 
-If the shared-target anatomy endpoint is activated, the table must also show
-per-group and per-position counts for the exact A+B and A+C definitions,
-including B/C exclusivity, `K`, other targets, and qualifying arborization in A.
-Both groups need enough overlapping animal support for group-level inference;
-two visually compelling neurons are not support.
+Before roles are assigned, do not inspect exact A+B/A+C counts. Whether A, B,
+and C are prespecified or selected by the target-set controller, assess exact
+eligibility only in development groups after the split. Keep final-group
+outcomes unopened until evaluation. At that point, tabulate B/C exclusivity,
+`K`, other targets, qualifying arborization in A, and common-position support.
+If final groups later contain too few qualifying events, the endpoint is
+inconclusive; do not redefine the combination or retroactively change
+eligibility.
 
 The biological replicate is the verified animal. If animal identity remains
 unresolved, use the most conservative verified specimen grouping and limit the
@@ -162,7 +165,7 @@ apparent profile differently across A+B and A+C.
 
 Before transfer, document source and soma-position overlap; non-overlapping
 target and laterality mappings; reconstruction, sampling, and detection
-differences; animal support and lineage; permissible recalibration; and how
+differences; biological-group support and lineage; permissible recalibration; and how
 assay-specific zero and unknown states alter the estimand. Comparability failure
 narrows or prevents an external claim and does not license post hoc remapping.
 Projection-TAGs can test mixture only for a prespecified overlapping relation
@@ -198,8 +201,9 @@ summary of the heterogeneity hidden by pooling; do not infer information loss
 from visual separation alone.
 
 Use the existing whole-group development and final allocation; do not create a
-neuron-random split or new roles for this endpoint. Compare animal-level
-effects on common support under a frozen adjustment or matching rule for soma
+neuron-random split or new roles for this endpoint. Compare biological-group-
+level effects on common support—the animal when verified, otherwise the most
+conservative specimen—under a frozen adjustment or matching rule for soma
 position, source layer or independent labels, `K` and other targets, total
 morphology, target observability, registration, clipping, and reconstruction
 quality. Treat entry route into A as a prespecified alternative or mediator,
@@ -208,7 +212,7 @@ not an automatic matching variable.
 Use reference pairs matched on target distance, soma position, source label,
 prevalence, `K` and other co-targets, total axon extent, registration and
 clipping, and observation quality. Report representative trees with
-animal-level distributions rather than only favorable examples. A shared root
+group-level distributions rather than only favorable examples. A shared root
 or common ancestor branch is universal, not a finding.
 
 ### Leakage boundary
@@ -221,10 +225,13 @@ Actual routes, branch points, shared paths, collaterals, and terminal trees are
 outcome characterization only. They cannot be predictive geometry, selection
 or eligibility inputs, imputation variables, or reasons to revise vocabulary.
 
-Locked-final profiles inside A cannot select A, B, or C; define B/C
-exclusivity; choose a metric or direction; revise target rules; enter M0, M1,
-or M2; or serve as an independent label. Target identity and terminal anatomy
-from the same reconstruction are complementary outcomes, not independent
+With B/C context labels blinded, development profiles inside A may establish
+technical repeatability and choose the most reliable option from a prespecified
+set of coordinates or profile summaries. They cannot select A, B, or C, define
+B/C exclusivity, or choose a predicted direction. The A+B versus A+C contrast
+cannot choose the coordinate or metric, revise target rules, enter M0, M1, or
+M2, or serve as an independent label. Target identity and terminal anatomy from
+the same reconstruction are complementary outcomes, not independent
 replications.
 
 Adult morphology describes implementation, not developmental order, energetic
@@ -240,14 +247,17 @@ EP10 does not need a separate administrative review before launch. Its first
 stage asks whether one source supports the 12/8 group split, a repeatable
 complete-target rule, overlapping target and position strata, any labels used
 for a mixture analysis, feasible exact normalization, and a defensible anatomy
-analysis. External resources can remain optional.
+analysis. External resources are not needed to launch; if a genuinely
+comparable independent resource is available, its frozen transfer test is
+required for a Route A claim.
 
 Outcome modeling begins only after those scientific choices are made without
 looking at candidate effects.
 
-Insufficient A+B/A+C support makes the shared-target endpoint ineligible and
-forbids that claim; it does not by itself change the preserved target-set
-primary endpoint or justify pooling incomparable groups.
+Insufficient development A+B/A+C support makes the shared-target endpoint
+ineligible and forbids that claim. Insufficient final support makes an activated
+endpoint inconclusive. Neither outcome changes the preserved target-set primary
+endpoint or justifies pooling incomparable groups.
 
 If these conditions fail, change the data strategy, narrow the claim, or stop.
 Do not pool incomparable areas, assays, specimens, or releases to create

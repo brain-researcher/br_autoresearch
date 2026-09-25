@@ -15,7 +15,7 @@ mixture of independently identified cell populations? For combinations that
 remain, how are the targets reached through the branching structure of complete
 single-neuron axons?
 
-MOp is the provisional priority for the first feasibility review because it can
+MOp is the provisional priority for the first data pass because it can
 connect existing morphology and multi-target tracing work. It is not the chosen
 source. That choice must be made from animal coverage, soma-position overlap,
 independent labels, target observability, and reconstruction quality before
@@ -46,7 +46,9 @@ co-target identity and within-target laminar distribution is new. Before a
 candidate enters locked evaluation, its dossier must state:
 
 - which unresolved explanation it distinguishes beyond that prior association;
-- one specific held-out anatomical prediction; and
+- one specific held-out prediction appropriate to the proposed route—an
+  anatomical prediction for Route A or a spatial/population prediction for
+  Route B; and
 - how confirmation or refutation would change interpretation of the named
   pathway.
 
@@ -67,14 +69,14 @@ cell populations occupy the two positions in different proportions.
 The useful test is where these explanations differ—for example, where routing
 predicts less A+B but the combination remains frequent. Freeze the effect
 direction, spatial region, and common-support rule in development, then test
-animals that did not select the rule. A location without relevant cells is
+final groups that did not select the rule. A location without relevant cells is
 extrapolation, not validation.
 
 A deeper question follows once a combination is frozen. Among neurons with
 qualifying arborization in A, does the terminal distribution inside A differ
 between an A+B group and an A+C group? Development must define whether these
 groups require B-positive/C-negative versus C-positive/B-negative cells and
-how other targets and `K` are handled. A frozen contrast in unseen animals can
+how other targets and `K` are handled. A frozen contrast in unseen final groups can
 then test whether the same regional target label conceals different output
 organization that an A-averaged projection map would blur. This is a secondary
 anatomical endpoint; it does not replace the target-set primary test. Report
@@ -94,8 +96,8 @@ one is adequate and where residual organization remains.
 | Explanation | Scientific test | Permitted interpretation |
 | --- | --- | --- |
 | **Target prevalence and spatial routing** | Predict complete target sets from single-target frequencies, soma context, smooth position effects, technical covariates, and routing quantities available for every candidate target set. | Good calibration and a narrow upper bound on residual gains support adequacy of the measured reference at the chosen resolution, not proof that all geometry has been captured. |
-| **Known population composition** | Add or stratify by layer, driver, molecular, or other labels obtained independently of the axon target matrix; check overlap and confounding among label, position, and animal. | Attenuation within independently labeled groups supports a composition explanation. Without suitable labels, population mixture remains unexcluded. |
-| **A stable target combination** | Freeze a development-selected combination, effect direction, and applicability region; test its joint probability in unseen animals after the measured alternatives are included. | Reproduction supports a conditional organizational pattern, not functional coordination, a cell type, or a causal wiring program. |
+| **Known population composition** | Add or stratify by layer, driver, molecular, or other labels obtained independently of the axon target matrix; check overlap and confounding among label, position, and biological group. | Attenuation within independently labeled groups supports a composition explanation. Without suitable labels, population mixture remains unexcluded. |
+| **A stable target combination** | Freeze a development-selected combination, effect direction, and applicability region; test its joint probability in unseen final groups after the measured alternatives are included. | Reproduction supports a conditional organizational pattern, not functional coordination, a cell type, or a causal wiring program. |
 
 The predictive implementation uses nested references: M0 represents target
 prevalence and source context, M1 adds measured routing, and M2 adds regularized
@@ -118,24 +120,25 @@ some neurons reach more targets than others.
 
 The run begins by establishing:
 
-- source-by-animal and source-by-position support, including zero and excluded
+- source-by-group and source-by-position support, including zero and excluded
   groups;
 - that the same cell or biological group does not cross the development/final
   split or count as an independent replication across releases;
 - reproducible target calls from complete trees, including boundary and
   reconstruction-quality examples;
-- if the shared-target endpoint is pursued, per-animal A+B/A+C support and
-  repeatable registration and terminal profiles within A;
+- if the shared-target endpoint may be pursued, a repeatable method for atlas
+  alignment and terminal-profile extraction that does not yet select A, B, or C
+  or compare their contexts;
 - provenance and overlap for any independent labels; and
 - a short proceed, revise, or stop decision that names the feasible source,
   target resolution, competing explanations, development and evaluation roles,
   detectable effect and precision, and exact-normalization and null-search cost.
 
 These are the first scientific tasks after launch, not a separate launch gate.
-If one coherent source lacks independent animals, overlapping spatial support,
-or reliable complete-set observation, EP10 must change data, narrow its claim,
-or stop before expensive search. Combining incomparable sources, labels, or
-measurement types is not a remedy.
+If one coherent source lacks independent biological groups, overlapping
+spatial support, or reliable complete-set observation, EP10 must change data,
+narrow its claim, or stop before expensive search. Combining incomparable
+sources, labels, or measurement types is not a remedy.
 
 The active group allocation, exact scoring, adaptive search, calibration, and
 stopping rules remain defined in `SEARCH_POLICY.yaml`; this scientific goal does
@@ -159,16 +162,17 @@ Terminal-branch density, reconstruction-endpoint density, focality, centroid,
 and spread may be supporting summaries, but reconstruction endpoints are not
 synapses.
 
-The comparison must use animal-level inference on common support and a frozen
-adjustment or matching rule for soma position, source layer or independent
-labels, `K` and other targets, total morphology, registration, clipping, and
-reconstruction quality. Entry route into A must be declared in advance as an
-alternative explanation or possible mediator rather than silently matched
-away.
+The comparison must use biological-group-level inference on common support: the
+group is the animal when verified, or the most conservative specimen otherwise,
+with a cross-group rather than cross-animal claim. Use a frozen adjustment or
+matching rule for soma position, source layer or independent labels, `K` and
+other targets, total morphology, registration, clipping, and reconstruction
+quality. Entry route into A must be declared in advance as an alternative
+explanation or possible mediator rather than silently matched away.
 
 Every axon has a common root, so a shared ancestor is not a finding. Compare
 candidate combinations with pairs matched on distance, overall morphology, and
-observability, and show animal-level distributions as well as examples.
+observability, and show group-level distributions as well as examples.
 
 Predictive geometry and outcome anatomy must remain separate. Routing priors
 must be available for every candidate set from an independent atlas or
@@ -177,10 +181,13 @@ is an outcome and cannot predict its target presence. Adult morphology can show
 implementation, not a developmental decision, energetic cause, or synaptic
 mechanism.
 
-Within-A morphology is likewise an outcome. Locked-group terminal profiles
-cannot choose A, B, or C; select the coordinate, metric, or predicted direction;
-revise target calls; enter M0, M1, or M2; or serve as an independent cell label.
-Only a contrast frozen in development may be tested in final animals.
+Within-A morphology is likewise an outcome. With B/C context labels blinded,
+development data may establish technical repeatability and select the most
+reliable option from a prespecified set of coordinates or profile summaries.
+Within-A morphology cannot choose A, B, or C, and the A+B versus A+C contrast
+cannot choose the coordinate, metric, or predicted direction; revise target
+calls; enter M0, M1, or M2; or serve as an independent cell label. Only a
+contrast frozen in development may be tested in final groups.
 
 ## Evidence chain
 
@@ -188,14 +195,14 @@ Only a contrast frozen in development may be tested in final animals.
    defensible target calls, and a small set of combinations worth explaining.
 2. **Competing explanations.** Compare calibrated predictions from prevalence,
    spatial routing, independently measured population composition, and residual
-   association; report combination-level effect sizes and animal-level
+   association; report combination-level effect sizes and group-level
    uncertainty, not only a global score.
 3. **Anatomical implementation.** Quantify branch and terminal organization
    against matched structural references, test A+B versus A+C organization
-   within their shared target when eligible, and examine sensitivity to target
+   within their shared target when activated, and examine sensitivity to target
    boundaries.
 4. **Prediction and boundaries.** Test the frozen combination, direction, and
-   applicability region in unseen animals. When a genuinely comparable resource
+   applicability region in unseen groups. When a genuinely comparable resource
    or measurement exists, test it externally and state whether all parameters
    transfer or only target frequencies are recalibrated.
 
@@ -203,23 +210,25 @@ Only a contrast frozen in development may be tested in final animals.
 
 **Figure note.** This is a study-design illustration, not an observed EP10
 result. It links combination selection, competing explanations, full-axon
-branching, and validation across animals and conditions.
+branching, and validation across groups and conditions. The conditional
+A+B/A+C comparison and pooled-versus-context profiles inside A are specified in
+the text and are not depicted in this general evidence-chain figure.
 
 Aggregate M2-minus-M1 gain supports this chain but does not validate a named
 combination. Each reported combination needs a frozen probability contrast,
-animal- and position-level uncertainty, a multiplicity procedure, and a stated
+group- and position-level uncertainty, a multiplicity procedure, and a stated
 domain of common support. Likewise, a held-out subset of one public release is
-an internal cross-animal test, not automatically an independent external
-replication.
+an internal cross-group test—cross-animal only when animal identities are
+verified—not automatically an independent external replication.
 
 ## Possible outcomes
 
 | Outcome | What would be needed | Scientific interpretation |
 | --- | --- | --- |
-| **Combination and anatomical implementation supported** | A named relationship reproduces across animals within its frozen spatial domain, survives measured alternatives, and has robust branch or terminal organization relative to matched references. Eligibility and activation of the shared-target endpoint are frozen before final evaluation; if activated, its within-A prediction must also reproduce and cannot be dropped after failure. Appropriate external evidence is added when available. | A conditional, observational organization rule is supported for the specified source and measurement regime. |
-| **Space or known population composition explains the pattern** | The original pattern first reproduces; the explanatory model is calibrated, residual effects are bounded below a meaningful threshold, and the explanation predicts new animals. | A measured routing or composition explanation may support an explanatory paper even without useful M2 gain. |
-| **Internal predictive gain only** | M2 improves a score within the available release, but named combinations, spatial boundaries, anatomy, or independent transfer remain unsupported. | This is a methods result or preliminary finding, not the intended biological paper. |
-| **Unresolved or infeasible** | Animals disagree, uncertainty is wide, the reference remains inadequate, observation is unreliable, or independent grouping and common support cannot be established. | The data do not decide the question. Failure of the design is not evidence that co-projection organization is absent. |
+| **Combination and anatomical implementation supported** | A named relationship reproduces across final biological groups within its frozen spatial domain, survives measured alternatives, and has robust branch or terminal organization relative to matched references. Cross-animal language is used only when animal identities are verified. Eligibility and activation of the shared-target endpoint are frozen before final evaluation; if activated, its within-A prediction must also reproduce and cannot be dropped after failure. Appropriate external evidence is added when available. | A conditional, observational organization rule is supported for the specified source and measurement regime. |
+| **Space or known population composition explains the pattern** | The original pattern first reproduces; the explanatory model is calibrated, residual effects are bounded below a meaningful threshold, and the explanation predicts new final groups. | A measured routing or composition explanation may support an explanatory paper even without useful M2 gain. |
+| **Internal predictive gain only** | M2 improves a score within the available release, but named combinations, spatial boundaries, and anatomy remain unsupported; if a comparable external resource exists, transfer also fails. | This is a methods result or preliminary finding, not the intended biological paper. |
+| **Unresolved or infeasible** | Groups disagree, uncertainty is wide, the reference remains inadequate, observation is unreliable, or independent grouping and common support cannot be established. | The data do not decide the question. Failure of the design is not evidence that co-projection organization is absent. |
 
 A null test alone cannot support the second outcome. The analysis must be
 sensitive to effects of interest and precise enough to exclude a scientifically

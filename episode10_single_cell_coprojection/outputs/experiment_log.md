@@ -12,3 +12,7 @@ run an analysis, or change any scientific outcome.
 The launch description was simplified on 2026-09-24 by removing administrative
 launch gates. Scientific data qualification remains the first analysis stage;
 no outcome was opened during this documentation change.
+
+A final consistency pass clarified development-only A+B/A+C eligibility,
+pooling-discrepancy inference, model-search anchors, negative-result reporting,
+and route-specific held-out predictions. No data or outcome was opened.

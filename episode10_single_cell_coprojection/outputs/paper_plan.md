@@ -15,7 +15,7 @@ patterns apply, and what a projection map averaged over the source fails to
 show.
 
 The strongest intended result would name a source and a target combination,
-show that it reproduces across animals within a frozen soma-position domain,
+show that it reproduces across verified animals within a frozen soma-position domain,
 distinguish it from target prevalence, measured spatial routing, and known
 population composition, and show how complete axons implement it through
 branching and terminal organization.
@@ -31,7 +31,7 @@ partners, synapse strengths, functions, developmental programs, or cell types.
 
 A second valid paper route is explanatory rather than residual. The original
 combination first reproduces, but measured spatial routing or an independently
-labeled population mixture predicts it in unseen animals and leaves residual
+labeled population mixture predicts it in unseen final groups and leaves residual
 association below a meaningful bound. That result would explain why an average
 is misleading without requiring M2 to remain useful.
 
@@ -89,13 +89,14 @@ locked-final anatomy.
 ### 1. Start with data qualification
 
 The first analysis stage asks whether EP10 has a valid estimand and enough
-independent animal and position support. It checks sample overlap, repeatable
+independent biological-group and position support. It checks sample overlap, repeatable
 target calls, non-detection versus unknown, independent-label provenance,
 detectable effects, and exact-normalization/null cost. If the shared-target
-endpoint is proposed, it also checks exact A+B/A+C support and repeatability
-inside A.
+endpoint may be pursued, it checks whether atlas-aligned coordinates and
+terminal profiles can be extracted repeatably without selecting A, B, or C or
+comparing their contexts.
 
-The output is a one-page proceed, revise, or stop decision naming the source,
+The output is a brief proceed, revise, or stop decision naming the source,
 target resolution, data roles, common-support domain, precision, and compute
 requirements. MOp remains provisional; MOp, MOs, and SSp cannot be pooled to
 manufacture support. No candidate effects are scanned in this phase.
@@ -117,12 +118,12 @@ M2 minus M1 is the unchanged primary predictive endpoint. M1 minus M0 is
 secondary. The aggregate score can support residual association, but cannot
 validate a particular combination.
 
-The original contract remains in force: at least 12 development and 8
-locked-final biological groups; 40–88 valid trials; 16 branch-coverage anchors;
-exactly 99 complete target-set search-null reruns; a 0.002 bits-per-cell useful
-gain and patience threshold; and a 0.01 bits-per-cell source-family regression
-guard. The shared-target anatomy question uses the same groups and does not
-change those decisions.
+The core numerical design remains in force: at least 12 development and 8
+locked-final biological groups, 40–88 valid trials, and at least 16 model-search
+anchors. It also retains exactly 99 complete target-set search-null reruns, a
+0.002 bits-per-cell useful gain and patience threshold, and a 0.01 bits-per-cell
+source-family regression guard. The shared-target anatomy question uses the
+same groups and does not change those decisions.
 
 ### 3. Develop, freeze, and test a named paper candidate
 
@@ -134,10 +135,15 @@ A+B/A+C endpoint receives an eligibility and activation decision at the same
 time. Claims use identified probability contrasts, not raw fixed-`K`
 coefficients.
 
+Whether A, B, and C are specified independently or selected by the target-set
+controller, exact support and endpoint eligibility are assessed only in
+development groups. Final groups remain unopened; too few qualifying final
+events make the result inconclusive rather than licensing reselection.
+
 Selection made by the target-set controller is replayed in all 99 null runs;
 anatomy cannot select A, B, or C. In locked groups, test the frozen contrast in
 its predicted direction and domain without redefining the candidate. Show
-animal- and position-level results, every selected candidate, disagreement,
+group- and position-level results, every selected candidate, disagreement,
 influence, unsupported positions, and missingness. A failed candidate cannot be
 replaced.
 
@@ -150,10 +156,12 @@ non-significant residual is not an adequacy result without demonstrated power.
 
 For Route A, after the candidate is frozen, quantify path divergence,
 normalized shared path, separate collateral and terminal-tree coverage, and
-continuous trees crossing atlas boundaries. Compare animal-level distributions
+continuous trees crossing atlas boundaries. Compare group-level distributions
 with references matched on target geometry, soma position, source label,
 prevalence, `K`, other targets, total morphology, registration, clipping, and
-reconstruction quality. A common root is not a finding.
+reconstruction quality. Here and below, the group is the animal when verified,
+or the most conservative specimen otherwise with a cross-group claim. A common
+root is not a finding.
 
 The shared-target contrast is conditional, not required for every candidate.
 If activated, freeze A, B, C, exclusivity, `K` and other-target handling, the
@@ -161,13 +169,17 @@ coordinate inside A, one primary normalized-profile metric, one falsifiable
 profile prediction, one pooling-discrepancy summary, and whether entry route is
 an alternative or mediator.
 
-The contract deliberately does not yet choose that metric. Phase one must
-decide whether the paper's primary estimand is an animal-first mean of
-neuron-normalized topographies or another justified animal-level summary. A
+The contract deliberately does not yet choose that metric. After A, B, and C
+are chosen in grouped development, freeze the shared-target endpoint's primary
+profile estimator from biological rationale and technical repeatability while
+B/C context labels are blinded. Reliability may choose among a prespecified set
+of coordinates or summaries; the A+B versus A+C contrast cannot choose the
+metric or direction. The estimator may be a group-first mean of
+neuron-normalized topographies or another justified group-level summary. A
 raw or amount-weighted regional projection map answers a different question;
 it must be displayed separately and cannot be called equivalent to the
 neuron-normalized profile. Any pooling-discrepancy summary needs a frozen null,
-meaningful margin, and animal-level uncertainty before it can quantify what an
+meaningful margin, and group-level uncertainty before it can quantify what an
 average hides.
 
 Report total arbor in A separately from normalized distribution. Branch or
@@ -194,11 +206,11 @@ it does not enter the morphology likelihood.
 
 | Endpoint | What supports it | What it can mean |
 | --- | --- | --- |
-| **Primary target-set endpoint** | Equal-group locked-final M2-minus-M1 gain above 0.002 bits/cell, calibration, passed full-search null, no disallowed source-family loss | Residual combination structure improves complete-set prediction at the frozen resolution |
-| **Named-combination contrast** | Frozen probability contrast reproduces across animals in its common-support domain with multiplicity control | A conditional target organization recurs; not yet a mechanism or cell type |
+| **Primary target-set endpoint** | Equal-group locked-final M2-minus-M1 gain of at least 0.002 bits/cell, calibration, passed full-search null, no disallowed source-family loss | Residual combination structure improves complete-set prediction at the frozen resolution |
+| **Named-combination contrast** | Frozen probability contrast reproduces across final biological groups in its common-support domain with multiplicity control | A conditional target organization recurs; not yet a mechanism or cell type |
 | **Explanatory endpoint** | The phenomenon reproduces, M1 or an independent-label block predicts it, and residual M2 value is bounded below the useful margin | Measured routing or known composition explains the pattern within the stated scope |
-| **Shared-target terminal endpoint, when activated** | The A+B versus A+C prediction reproduces at animal level with amount, registration, boundary, and a prespecified entry-route analysis | Co-target context predicts axonal organization within A |
-| **Pooling-discrepancy readout, when activated** | A frozen animal-level comparison separates context profiles from the declared pooled-map estimator with a useful margin | The declared regional average omits a quantified conditional organization |
+| **Shared-target terminal endpoint, when activated** | The A+B versus A+C prediction reproduces at group level with amount, registration, boundary, and a prespecified entry-route analysis | Co-target context predicts axonal organization within A |
+| **Pooling-discrepancy readout, when activated** | A frozen group-level comparison separates context profiles from the declared pooled-map estimator with a useful margin | The declared regional average omits a quantified conditional organization |
 | **Branch implementation for Route A** | Frozen divergence, shared-path, collateral, and terminal-tree summaries pass matched structural comparisons | Complete axons implement the organization reproducibly |
 
 Target identity and morphology from the same reconstruction are complementary
@@ -209,16 +221,16 @@ outcomes, not independent replications.
 | Alternative explanation | Test | Consequence if it explains the result |
 | --- | --- | --- |
 | Target prevalence and fixed `K` | M0 and calibrated complete-set predictions | No residual interaction claim beyond that reference |
-| Soma position and measured routing | M1, common-position contrasts, and applicability checks | Support a spatial explanation if the phenomenon reproduces and residual value is bounded |
-| Known population composition | Independent-label block, within-label contrasts, and animal-position overlap | Support only the measured composition explanation; without eligible labels, mixture remains unresolved |
+| Soma position and measured routing | M0 position terms plus M1's incremental routing terms, common-position contrasts, and applicability checks | Support a spatial explanation if the phenomenon reproduces and residual value is bounded |
+| Known population composition | Independent-label block, within-label contrasts, and group-position overlap | Support only the measured composition explanation; without eligible labels, mixture remains unresolved |
 | Shared-target definition, amount, and entry route | Freeze exclusivity, `K`, other targets, total A arbor, and the route's role as alternative or mediator | Narrow the A+B/A+C claim or reframe it as amount- or route-dependent |
 | Target boundary and reconstruction quality | Continuous-tree, registration, clipping, and repeated-boundary sensitivities | Do not make an anatomical organization claim if measurement explains it |
-| One animal, resource, or striking tree | Leave-one-group and influence checks; report full distributions | Narrow or reject the candidate claim |
+| One group, resource, or striking tree | Leave-one-group and influence checks; report full distributions | Narrow or reject the candidate claim |
 | Adaptive selection or overfitting | Complete 99-run target-set search null | No promotion if the frozen null rule fails |
 | Prior axonal BARseq overlap | Candidate-specific literature and novelty review | Report replication or extension unless a separate consequential prediction is supported |
 
 The 99 target-set null does not calibrate anatomy. Anatomy uses frozen metrics,
-matched references, animal-level uncertainty, and its own multiplicity rule.
+matched references, group-level uncertainty, and its own multiplicity rule.
 
 ## Paper-worthy routes
 
@@ -230,12 +242,13 @@ that passes matched structural comparisons; and an eligibility disposition for
 the shared-target endpoint. If that endpoint was activated, its prediction must
 also reproduce and its failure cannot be discarded. Comparable external
 evidence is added when available; otherwise the claim remains internal
-cross-animal evidence.
+cross-group evidence, and is called cross-animal only when animal identities
+are verified.
 
 ### Route B: spatial-routing or known-population explanation
 
 This route requires the original phenomenon to reproduce, the frozen spatial
-or independently labeled explanation to predict new animals, adequate
+or independently labeled explanation to predict new final groups, adequate
 calibration, uncertainty that bounds residual M2 value below the meaningful
 margin, and simulations demonstrating sensitivity to residual effects of
 interest.
@@ -261,12 +274,13 @@ but are not candidate-ready biological outcomes under the current plan.
 
 | Evidence | Next action and permitted claim |
 | --- | --- |
-| M2 clears its margin, a named combination reproduces, and matched full-axon evidence passes | Develop Route A, retaining exact pathway, animal, position, and external scope |
+| M2 clears its margin, a named combination reproduces, matched full-axon evidence passes, and any activated within-A or required external-transfer prediction also passes | Develop Route A, retaining exact pathway, biological-group, position, and external scope |
 | Combination reproduces but an activated within-A prediction fails | Report the narrower target-set phenomenon; once activated, that endpoint is required and Route A fails for this candidate |
 | Space or independent labels explain a reproduced combination | Develop Route B if the residual bound is informative; do not retain a residual-combination narrative |
 | Combination reproduces but branch evidence is unstable | Route A fails. Report only the narrower target-set result unless Route B independently passes its explanation and residual-bound requirements |
 | No useful M2 gain and no supported explanation | Close without a paper candidate under the current question |
-| A+B/A+C support is insufficient | Mark the shared-target endpoint ineligible; retain the unchanged target-set primary endpoint without the within-A claim |
+| Development A+B/A+C support is insufficient | Mark the shared-target endpoint ineligible; retain the unchanged target-set primary endpoint without the within-A claim |
+| An activated endpoint has too few qualifying final events | Report it as inconclusive, retain it in the results, and do not reselect A, B, or C; Route A is not supported for that candidate |
 | Observation or non-detection is indefensible | Stop or reformulate; unknown cannot become absence |
 | Animal identity or common-position support is unresolved | Use the conservative specimen scope or stop the cross-animal claim |
 | External data are incomparable | Retain internal scope and report failed comparability; do not remap after outcomes |
@@ -280,15 +294,16 @@ evidence that co-projection organization is absent.
 
 | Figure | Claim the evidence must earn | Proposed content |
 | --- | --- | --- |
-| **1. The observable population** | One coherent source, target vocabulary, and animal/position domain support the analysis | Source and targets; group-by-position coverage; detection/non-detection/unknown examples; exclusions and observation workflow |
-| **2. Distinguishing the competing explanations** | The calibrated comparison tests whether residual association, routing, or known composition is adequate | M0/M1/M2 schematic; gain and bounds by animal; calibration; full-search null; influence and source-family results |
+| **1. The observable population** | One coherent source, target vocabulary, and group/position domain support the analysis | Source and targets; group-by-position coverage; detection/non-detection/unknown examples; exclusions and observation workflow |
+| **2. Distinguishing the competing explanations** | The calibrated comparison tests whether residual association, routing, or known composition is adequate | M0/M1/M2 schematic; gain and bounds by group; calibration; full-search null; influence and source-family results |
 | **3. One named combination and its explanations** | The frozen relationship reproduces in a defined domain, or one measured explanation accounts for it | Probability contrasts; applicability map; common support; independent labels; residual bound; every frozen candidate |
 | **4. Route-contingent explanation** | Route A earns a full-axon implementation claim, or Route B earns a calibrated spatial/population explanation with a useful residual bound | Route A: fixed-rule trees, branch summaries, and the shared-target panel when activated. Route B: the successful explanatory variable, overlap, prediction, residual bound, and failure regions; no positive anatomy panel is required. |
-| **5. Transfer, limits, and the corrected pathway view** | The supported rule predicts unseen animals and, when feasible, a comparable resource within a stated scope | Frozen predictions; external result or comparability failure; applicability boundary; pooled versus conditional pathway diagram; retained and rejected interpretations |
+| **5. Transfer, limits, and the corrected pathway view** | The supported rule predicts unseen groups and, when feasible, a comparable resource within a stated scope | Frozen predictions; external result or comparability failure; applicability boundary; pooled versus conditional pathway diagram; retained and rejected interpretations |
 
 If Route B wins, Figures 3–5 center the successful explanation and residual
-bound. The shared-target panel is omitted when inactive or unsupported; anatomy
-may appear as a limitation or sensitivity, not as a required positive result.
+bound. The shared-target panel is omitted only when inactive or ineligible. An
+activated but negative or inconclusive endpoint remains visible; anatomy may
+appear as a limitation or sensitivity, not as a required positive result.
 
 ## Tables and supplementary record
 
@@ -320,7 +335,7 @@ evidence, not independent replication.
 ## What the abstract must eventually say
 
 A positive abstract should always name the cortical source, exact phenomenon,
-spatial domain, held-out-animal and external scope, strongest measured
+spatial domain, held-out-group and external scope, strongest measured
 alternative, and major unresolved alternative. Route A must additionally name
 the full-axon organization that changes the pathway interpretation. Route B
 instead names the successful spatial or population explanation and the bound

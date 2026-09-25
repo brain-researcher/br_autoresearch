@@ -36,7 +36,7 @@ workflow; they do not authorize or block local episode execution.
 | EP07 | Which source-pooling and alignment policy adds value for an already calibrated target session? | 32--80 | Locked trials from calibrated target sessions |
 | EP08 | Which post-pilot electrode-retention and calibration-trial policy preserves motor information most efficiently? | 40--112 | Four held sessions internally; third animal for external claims |
 | EP09 | Which dendritic representation predicts distal axonal arbors beyond anatomy and metadata? | 40--96 | Group-sealed biological audit |
-| EP10 | Which sparse, low-rank, or hierarchical model predicts residual co-projections beyond a searched Q0? | 40--88 | Group-sealed audit plus 99 complete search-null reruns |
+| EP10 | Which target combinations remain after prevalence, spatial routing, and known population composition, where do they apply, and how are they implemented by complete axons? | 40--88 | Grouped final evaluation plus 99 complete search-null reruns |
 | EP11 | Do reusable projection-morphology modes require discrete components, continuous gradients, or a hybrid? | 48--120 | At least eight sealed biological groups plus 99 search-null reruns |
 | EP12 | Are within-type wiring differences best described by one shared template, continuous variation, or reproducible residual groups? | 36--96 | Reciprocal side-transfer evaluation of held-out whole types within one male, plus 99 full-search null reruns |
 | EP13 | Which exact BOLD-identifiability conjecture survives counterexample-guided repair and proof checking? | 16--64 | Exact proof/refutation; finite audit is implementation evidence only |

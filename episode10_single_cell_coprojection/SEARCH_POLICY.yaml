@@ -7,7 +7,9 @@ launch:
   ready: true
   first_stage: qualify one candidate morphology resource before fitting outcome models
   minimum_to_start:
-    - read-only access to candidate morphologies and basic neuron source and animal-or-specimen metadata
+    - >-
+      read-only access to candidate morphologies and basic neuron, source, and
+      animal-or-specimen metadata
 
 data:
   candidate_resources:
@@ -23,17 +25,26 @@ data:
   minimum_final_groups: 8
   split_timing: before inspecting candidate co-projection outcomes
   split_rule: whole groups with no cell or group appearing on both sides
-  if_group_requirements_fail: narrow the claim use exploratory grouped cross-validation or stop
+  final_opening: once after development choices and analysis rules are fixed
+  post_final_tuning_or_reselection: forbidden
+  source_family_definition: prespecified source-by-resource strata with adequate evaluation support
+  if_group_requirements_fail: >-
+    narrow the claim, use exploratory grouped cross-validation, or stop
   shared_cells_with_ep09_or_ep11_are_independent_replication: false
 
 first_analysis_stage:
   purpose: decide what can be measured and tested with the available data
   before_candidate_effect_search:
     - choose one supported source and assign whole groups to development and final evaluation
-    - define target resolution laterality and the distinction among arborization passing axon absence and unknown
+    - >-
+      define target resolution, laterality, and the distinction among
+      arborization, passing axon, absence, and unknown
     - confirm common soma-position support and usable complete reconstructions
+    - >-
+      if a shared-target endpoint may be pursued, verify context-blinded
+      coordinate and terminal-profile repeatability without selecting A, B, or C
     - estimate precision and the cost of exact scoring and 99 full-search null reruns
-  decision: proceed narrow or stop
+  decision: proceed revise or stop
 
 observation:
   full_reconstructions_are_primary: true
@@ -56,7 +67,9 @@ observation:
 
 models:
   M0:
-    question: what is expected from target prevalence source context and verified independent labels?
+    question: >-
+      what is expected from target prevalence, source context, and verified
+      independent labels?
     interpretation: an additive reference model not a claim of unconditional independence
     terms:
       - target preference conditional on target count K
@@ -80,10 +93,17 @@ models:
     penalties: [lasso, elastic_net, group_lasso]
     pair_features_residualized_against_M1: true
   optional_extensions:
-    low_rank: run ranks 1 2 3 4 6 and 8 when development residuals are diffuse and structured
-    hierarchical: run when reproducible between-group heterogeneity remains
-    sparse_plus_low_rank: run with at most 16 sparse pairs when both localized and diffuse residual structure remain
-    rule: activate only from a grouped-development diagnosis with adequate support and synthetic recovery
+    low_rank:
+      trigger: development residuals are diffuse and structured
+      ranks: [1, 2, 3, 4, 6, 8]
+    hierarchical:
+      trigger: reproducible between-group heterogeneity remains
+    sparse_plus_low_rank:
+      trigger: both localized and diffuse residual structure remain
+      maximum_sparse_pairs: 16
+    rule: >-
+      activate only from a grouped-development diagnosis with adequate support
+      and synthetic recovery
   population_mixture:
     eligible_labels: independently measured layer driver-line or molecular labels only
     required_comparisons:
@@ -116,10 +136,12 @@ candidate_combination:
   unsupported_position_extrapolation: false
   aggregate_predictive_gain_alone_validates_a_named_combination: false
   novelty_rule:
-    prior_overlap: Yuan et al. 2024 already linked cotarget status to laminar termination within a shared cortical target
+    prior_overlap: >-
+      Yuan et al. 2024 already linked cotarget status to laminar termination
+      within a shared cortical target
     each_candidate_must_add:
       - an unresolved explanation it can distinguish
-      - one held-out anatomical prediction
+      - one held-out prediction appropriate to Route A or Route B
       - a pathway interpretation that would change after confirmation or refutation
 
 full_axon_anatomy:
@@ -142,7 +164,12 @@ full_axon_anatomy:
     - a shared root is not evidence
     - reconstruction endpoints are not synapses
     - morphology does not identify synaptic partners number strength or causal wiring
-  inference: animal-level permutation or bootstrap with frozen matched references and multiplicity rule
+  inference: >-
+    group-level permutation or bootstrap with frozen matched references and a
+    multiplicity rule
+  group_interpretation: >-
+    animal when verified, otherwise conservative specimen with a cross-group
+    claim
   calibrated_by_target_set_99_null: false
   leakage_rule: a test neuron's realized path branch or terminal tree cannot enter M0 M1 or M2
 
@@ -151,27 +178,45 @@ shared_target_question:
   contrast: neurons arborizing in A under development-chosen A+B versus A+C definitions
   activate_only_when:
     - the target combination is already chosen in grouped development
-    - both contexts have adequate animal and common-position support
+    - both contexts have adequate development-group and common-position support
     - coordinates and terminal profiles within A are repeatable
-  selection_rule: prespecify A B and C or choose them with the target-set controller in grouped development never from within-A anatomy
+  measurement_development:
+    context_labels: B and C blinded
+    permitted: >-
+      choose the most reliable option from a prespecified set of coordinates
+      or profile summaries
+    forbidden: use the A+B versus A+C contrast to choose a coordinate metric or direction
+  selection_rule: >-
+    prespecify A B and C or choose them with the target-set controller in
+    grouped development, never from within-A anatomy
   null_rule: replay controller-based A B and C selection in all 99 target-set null runs
   freeze_before_final_evaluation:
     - A B and C and any B-C exclusivity rule
     - treatment of K other targets and total arbor amount in A
     - target-intrinsic coordinate and primary normalized terminal-profile metric
     - predicted direction common-support rule and multiplicity rule
+    - pooled-map estimator and pooling-discrepancy summary
+    - pooling-discrepancy null useful margin and group-level uncertainty method
     - whether entry route is an alternative explanation or mediator
   report:
     - pooled A profile beside both context-specific profiles
     - total qualifying arbor in A separately from its normalized distribution
-    - animal-level effects and reconstruction-quality sensitivities
+    - group-level effects and reconstruction-quality sensitivities
+    - pooling discrepancy with its frozen null margin and uncertainty
   if_ineligible: omit the within-A claim without changing the target-set primary endpoint
+  if_final_support_is_too_small: report the endpoint as inconclusive without reselection
   changes_primary_search_budget_or_nulls: false
-  leakage_rule: within-A morphology cannot choose the targets metric direction or target-presence model
+  pooling_discrepancy_is_calibrated_by_target_set_99_null: false
+  leakage_rule: >-
+    within-A morphology cannot choose A, B, or C or enter the target-presence
+    model; the A+B versus A+C contrast cannot choose the coordinate, metric, or
+    direction
 
 external_evaluation:
   launch_requirement: false
-  eligible_only_if: source target and detection rules are genuinely comparable and samples are independent
+  eligible_only_if: >-
+    source, target, and detection rules are genuinely comparable and samples
+    are independent
   choose_one_transfer_type:
     - frozen-parameter transport
     - marginal target-frequency recalibration with association structure fixed
@@ -199,7 +244,6 @@ budgets:
   reference_trials_max: 16
   association_trials_min: 32
   association_trials_max: 72
-  branch_anchor_trials_min: 16
   patience_valid_trials: 14
   patience_improvement_threshold_bits_per_cell: 0.002
   max_invalid_retries: 12
@@ -210,13 +254,28 @@ budgets:
   memory_gb_ceiling: 512
   scratch_gb_ceiling: 1536
 
+model_search_coverage:
+  minimum_valid_anchor_trials: 16
+  counted_within_total_valid_trials: true
+  anchor_definition: >-
+    a prespecified development trial testing an eligible model family or
+    tuning boundary under the common M0 M1 and M2 specification
+  must_cover:
+    - sparse penalties and their declared tuning boundaries
+    - every optional extension whose development trigger is met
+    - ranks or complexity boundaries declared for each activated extension
+  untriggered_extensions: record trigger not met and do not count them as anchors
+  coverage_complete_when: >-
+    at least 16 valid anchors cover every active family and its declared
+    boundaries
+
 full_search_null:
   replicates: 99
   generator: fitted development M1 with the same verified labels and spatial terms
   each_replicate_starts_with_empty_search_history: true
   rerun:
     - M0 and M1 development
-    - M2 core and any activated extension
+    - M2 core, extension-trigger decisions, activated extensions, and model-search coverage
     - combination direction common support and applicability selection
     - finalist route and stopping decisions
   preserve:
@@ -225,7 +284,9 @@ full_search_null:
     - candidate targets target count and observation structure
   monte_carlo_p: (1 + null results at least as large as observed) / 100
   pass_threshold: 0.05
-  rule: each null reruns every outcome-dependent choice with the observed grammar budgets and stopping rules
+  rule: >-
+    each null reruns every outcome-dependent choice with the observed grammar,
+    budgets, and stopping rules
 
 required_falsifiers:
   - synthetic recovery for M0 M1 sparse M2 and every activated extension
@@ -237,11 +298,12 @@ required_falsifiers:
   - source-position common-support checks
   - frozen target-boundary sensitivities
   - matched branch path collateral and terminal-tree comparisons
-  - when eligible the frozen A+B versus A+C profile and its prespecified sensitivities
+  - when activated the frozen A+B versus A+C profile and its prespecified sensitivities
 
 final_decision:
   common_requirements:
-    - at least 40 valid trials including 16 branch anchors under one M0 M1 and M2 specification
+    - at least 40 valid trials under one M0 M1 and M2 specification
+    - model-search coverage is complete under the 16-anchor rule
     - two adaptive successor cycles and two incumbent-challenger decisions
     - at least 40 percent of post-coverage trials devoted to falsification
     - all 99 complete-search null reruns finish and the observed Monte Carlo p is at most 0.05
@@ -252,6 +314,7 @@ final_decision:
       - a chosen combination that reproduces on common support
       - full-axon organization that survives matched structural comparisons
       - the within-A prediction also reproduces if that endpoint was activated
+      - when a comparable independent resource exists its frozen transfer test supports the claim
   route_B_spatial_or_known_population_explanation:
     requires:
       - the combination phenomenon first reproduces in final groups
@@ -264,9 +327,10 @@ final_decision:
 stopping:
   before_search: failed scientific measurability may lead to revise or stop
   after_search_begins_and_before_40_valid_trials: only for technical impossibility
-  patience_starts_after_minimum: true
-  patience_valid_trials: 14
-  patience_improvement_threshold_bits_per_cell: 0.002
+  patience_starts_after: minimum valid trials and model-search coverage are complete
+  patience_rule: >-
+    use budgets.patience_valid_trials and
+    budgets.patience_improvement_threshold_bits_per_cell
   resource_exhaustion: incomplete search
   budget_stop_is_success_or_negative_result: false
 
@@ -274,8 +338,8 @@ reporting:
   show:
     - group position label coverage exclusions missingness and target definition
     - held-out M0 M1 and M2 prediction and calibration by group
-    - chosen combination contrasts across animals positions and applicability boundaries
+    - chosen combination contrasts across groups positions and applicability boundaries
     - independent-label contrasts and remaining confounding
     - branch shared-path collateral terminal-tree and boundary-reference results
-    - pooled and context-specific shared-target profiles when eligible
+    - pooled and context-specific shared-target profiles when activated
     - external transfer only when a comparable independent resource exists
