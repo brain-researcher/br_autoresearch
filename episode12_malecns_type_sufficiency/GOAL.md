@@ -273,15 +273,21 @@ completion of this search.
 
 ## Execution evidence still required
 
-The current EP12 directory describes the study but does not contain a working
-episode-specific executor. Before anyone claims that EP12 can run through to a
-result, synthetic tests must demonstrate:
+Design-freeze status (2026-09-24): the EP12 directory described the study but
+did not yet contain a working episode-specific executor. Before anyone claims
+that EP12 can run through to a result, synthetic tests must demonstrate:
 
 - positive, adequate, and unresolved outcomes;
 - distinct handling of no-valid-comparison, budget exhaustion, and input
   failure;
 - recovery after interruption without losing or double-counting a trial; and
 - one final opening even if an acknowledgement is lost and the run resumes.
+
+Launch update (2026-09-25): `outputs/executor/` now implements and tests the
+synthetic control plane, and `outputs/executor_qualification/` durably records
+all six terminal/recovery scenarios above. This update does not claim that the
+scientific T/U/M estimators, five required data-shape tests, full-search null,
+or real-data path are qualified; those remain gated before outcome access.
 
 Documentation or a passing structural check is not evidence that the study
 ran. A real result requires durable trial records, the selected procedure,

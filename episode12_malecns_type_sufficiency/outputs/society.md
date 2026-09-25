@@ -1,3 +1,4 @@
 # Society
 
-Society has not been called for the current episode contract.
+Society was not called during the 2026-09-25 synthetic control-plane launch.
+No external or canonical scientific review was requested.

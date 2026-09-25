@@ -125,9 +125,13 @@ trial results and failures, resource use, chosen procedure, null results,
 every final type and direction, the final-opening count, the detailed outcome,
 and the evidence supporting that outcome.
 
-The current EP12 directory contains a study design, not a working
-episode-specific executor. None of these requirements claims that a run has
-occurred.
+Design-freeze status (2026-09-24): the EP12 directory contained a study design,
+not a working episode-specific executor. Launch update (2026-09-25): the
+synthetic control plane and its durable qualification now live under
+`outputs/executor/` and `outputs/executor_qualification/`. The real scientific
+estimators, scientific data-shape qualification, full-search null, and
+real-data path remain unimplemented or disabled, so this update does not claim
+that a scientific run has occurred.
 
 ## Data needed for the circuit follow-up
 
