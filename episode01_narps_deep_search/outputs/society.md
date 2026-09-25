@@ -34,5 +34,6 @@
 
 ## Boundary
 
-- A Society decision is not scientist reward, launch approval, execution,
-  scientific acceptance, memory, ClaimCard, or Landscape transition.
+- A Society decision is not scientist reward, protected-outcome access,
+  execution, scientific acceptance, memory, ClaimCard, or Landscape
+  transition.

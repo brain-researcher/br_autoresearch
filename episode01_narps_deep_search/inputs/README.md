@@ -2,9 +2,9 @@
 
 This directory is read-only during an authorized Episode 01 run. The present
 draft contains only a lineage manifest; it contains no development or audit
-neural payload and is not launch-ready.
+neural payload and is insufficient for outcome evaluation.
 
-Required pre-launch surfaces are:
+Required pre-outcome surfaces are:
 
 - `prior_lineage/materialized/`: verified content-addressed copies of the small
   legacy artifacts declared in `PRIOR_LINEAGE_MANIFEST.json`;

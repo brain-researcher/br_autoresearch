@@ -5,11 +5,12 @@ and is the morphology-search flagship.
 
 ## Authority and history boundary
 
-This is the current local contract. It creates no canonical loop,
-authorizes no download or compute, opens no morphology outcomes, and records
-no finding. Prior EP09/10/11 work is exposure, not initialization evidence.
-Before launch, bind canonical identities and create one shared
-cell/group/duplicate/exposure ledger for all three morphology episodes.
+This is the current local contract. An explicit scientist instruction naming
+EP09 may start bounded episode work. This file alone authorizes no protected-
+outcome access, Brain Researcher transition, or scientific finding. Prior
+EP09/10/11 work is exposure, not initialization evidence. Before candidate
+search, create one shared cell/group/duplicate/exposure ledger for all three
+morphology episodes.
 
 EP09, EP10, and EP11 reuse the same SEU neurons and axonal outcomes. Their
 audits are correlated, not independent replications. All three role manifests

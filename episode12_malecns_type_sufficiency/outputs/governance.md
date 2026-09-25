@@ -1,5 +1,5 @@
 # Governance
 
-The current local contract is not canonically bound or authorized for launch.
-Local files do not grant outcome access, compute, reward, or scientific
-acceptance.
+An explicit scientist invocation may launch bounded, episode-managed local
+work. A local run does not by itself grant canonical confirmation, reward, or
+scientific acceptance.

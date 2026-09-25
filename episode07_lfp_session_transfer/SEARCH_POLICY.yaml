@@ -1,9 +1,70 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep07_cross_session_transfer_adaptive
 episode_id: ep07
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
+
+# Planning metadata only. The executable search and its terminal decision
+# remain the primary forward-transfer round defined below.
+research_program:
+  paper_question: what_lfp_to_population_information_survives_from_earlier_days_after_target_day_calibration
+  plan_ref: outputs/paper_plan.md
+  primary_round: source_bearing_transfer_vs_direction_time_mean_and_matched_calibration_only
+  primary_estimand_budget_roles_and_terminal_rules_unchanged: true
+  followup:
+    state: proposed_not_configured_or_run
+    evidence_mode: proposed_fixed_mechanism_comparison
+    starts_after_primary_conclusion_is_fixed: true
+    automatically_launched_by_this_policy: false
+    primary_terminal_may_be_overwritten: false
+    purpose: distinguish_mean_reach_reuse_aligned_population_geometry_and_trial_specific_lfp_spike_residual_transfer
+    discovery_source: source_days_and_assigned_target_development_trials_only
+    primary_audit_outcomes_may_select_mechanism: false
+    candidate_mechanisms:
+      - direction_by_time_mean_reuse
+      - behavior_anchored_low_dimensional_geometry
+      - within_direction_time_trial_residual_coupling
+    candidate_feature_blocks:
+      - lmp
+      - authenticated_power_band_families
+      - locked_source_fitted_population_dimensions
+    candidate_mechanism_count_max: 2
+    development_targets_are_already_exposed_to_primary_evaluator: true
+    mechanism_selection_and_ties_fixed_before_any_new_mechanism_specific_score_or_diagnostic: true
+    primary_audit_can_supply_only_secondary_outputs_registered_before_its_single_opening: true
+    mechanism_endpoints:
+      - separately_scored_direction_time_template_component
+      - separately_fit_residual_only_source_gain_over_matched_calibration_only_reference
+      - lfp_inputs_and_spike_targets_residualized_before_model_fit
+      - no_algebraic_recentering_of_completed_full_predictions
+      - source_day_and_component_omission_influence
+      - calibration_visible_prediction_of_target_session_source_benefit
+    required_signal_boundary_checks:
+      - lmp_or_low_frequency_only
+      - exclude_100_400_hz_power
+      - same_electrode_unit_intersection
+      - spike_quality_matched_support
+      - high_frequency_only_result_is_spike_rich_feature_boundary
+    external_prediction:
+      source_manifest: null
+      requires_newly_sequestered_target_sessions: true
+      source_weights_fit_within_animal_implant_and_region: true
+      frozen_rule_predicts_activity_and_session_level_source_benefit: true
+      target_outcomes_may_fit_or_select_rule: false
+      same_consumed_primary_audit_is_new_confirmation: false
+      chewie_r_is_third_animal_replication: false
+    separate_contract_required:
+      - mechanism_candidate_selection_and_multiplicity
+      - residual_definition_and_component_accounting
+      - source_and_target_session_manifest_with_exposure_history
+      - calibration_visible_transferability_predictors
+      - fixed_models_comparators_margins_and_uncertainty
+      - source_day_component_and_behavior_template_falsifiers
+      - spike_bleed_and_frequency_boundary_checks
+      - compute_budget_stop_rules_and_result_table
+      - one_shot_external_evaluation
+    inherits_primary_budget_search_feedback_or_audit_opening: false
+    positive_primary_implies_mechanism_claim: false
 
 numeric_contract:
   scientist_decision: retain_full_declared_model_space
@@ -57,7 +118,7 @@ dataset_roles:
       development: 6
       audit: 6
     expected_directions_per_primary_day: 8
-    missing_primary_day_or_insufficient_direction_support: prelaunch_ineligible_requires_policy_revision
+    missing_primary_day_or_insufficient_direction_support: analysis_ineligible_requires_policy_revision
   eligibility_and_response:
     assignment_timing: before_target_trial_hashing_and_before_any_candidate_or_comparator_fit
     whole_simultaneous_trial_predicate:
@@ -447,6 +508,20 @@ claim_boundary:
     - raw_signal_or_raw_voltage_benchmark_claim
     - clinical_generalization
 
+reporting:
+  scientific_scope:
+    primary_transfer_and_mechanism_followup_reported_separately: true
+    primary_candidate_ready_is_not_mechanism_evidence: true
+    mean_geometry_and_trial_residual_results_reported_separately: true
+    every_fixed_target_day_and_both_comparators_reported: true
+    failed_external_predictions_reported: true
+  paper_figures:
+    - primary_transfer_gain_against_both_comparators
+    - mean_trajectory_versus_trial_residual_decomposition
+    - locked_lfp_block_population_dimension_and_source_day_controls
+    - forward_prediction_of_which_new_sessions_benefit
+    - scope_limits_and_calibration_consequence
+
 terminal_mapping:
   candidate_ready_m1_only: candidate_ready
   candidate_ready_pmd_only: candidate_ready
@@ -456,11 +531,3 @@ terminal_mapping:
   incomplete_search: closed_no_candidate
   unresolved: closed_no_candidate
   technical_failure: technical_failure
-
-canonical_binding:
-  loop_id: null
-  goal_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true

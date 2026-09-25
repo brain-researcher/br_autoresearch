@@ -1,0 +1,71 @@
+schema_version: ep11.stage0_readiness_status.v1
+episode_id: ep11
+run_id: ep11-stage0-20260925T000506Z
+status_utc: 2026-09-25T00:07:54Z
+local_run_status: stage0_active
+registration_status: unregistered
+scientific_status: no_result
+outcome_bearing_development: blocked
+audit_open_count: 0
+
+safe_checks_completed:
+  contract_yaml_duplicate_key_parse: pass
+  search_policy_json_schema: pass
+  contract_invariant_checks: pass
+  local_markdown_links: pass
+  git_diff_check: pass
+  quarantine_contract_read: pass
+  source_metadata_workbook_byte_size_and_sha256_match_acquisition_receipt: pass
+  allen_ccfv3_payload_byte_hashes_match_acquisition_receipt: pass
+
+access_record:
+  allowed_material_read:
+    - repository_contracts_and_manifests
+    - SEU_quarantine_README_checksum_receipt_and_file_metadata
+    - Allen_CCF_quarantine_README_checksum_receipt_and_file_metadata
+  mechanical_bytes_read_without_value_decoding:
+    - Full_morphometry.xlsx_for_SHA256_only
+    - Allen_CCF_annotation_template_and_structure_graph_for_SHA256_only
+  workbook_cells_or_sheet_values_opened_in_this_stage0_run: false
+  morphology_ZIP_contents_opened_in_this_stage0_run: false
+  axonal_geometry_or_projection_summary_visible_in_this_stage0_run: false
+  audit_outcome_visible_in_this_stage0_run: false
+
+readiness_gates:
+  source_acquisition_receipt:
+    state: pass
+  trusted_allow_list_redaction_builder:
+    state: missing
+  authenticated_brain_id_to_independent_animal_mapping:
+    state: missing
+  cell_file_duplicate_and_reconstruction_lineage:
+    state: missing
+  shared_EP09_EP10_EP11_exposure_and_role_ledger:
+    state: missing
+  source_by_animal_position_depth_support_census:
+    state: blocked_on_redacted_metadata_and_identity_mapping
+  current_design_12_development_8_audit_and_precision_support:
+    state: not_evaluable
+  frozen_role_safe_development_view:
+    state: missing
+  evaluator_only_audit_view:
+    state: missing
+  CCF_orientation_axes_spacing_label_and_SEU_transform_binding:
+    state: unvalidated
+  outcome_likelihood_and_model_search_runtime:
+    state: not_started_and_not_needed_to_complete_metadata_handoff
+  identical_observed_and_99_null_controller_compute_profile:
+    state: not_started
+
+current_decision:
+  stage0_may_continue_with_tooling_synthetic_checks_and_trusted_handoff: true
+  candidate_may_open_raw_workbook_or_morphology_archives: false
+  source_population_may_be_selected: false
+  development_outcomes_may_be_opened: false
+  terminal_conclusion_reached: false
+  reason: no_valid_source_census_exists_yet_so_insufficient_support_has_not_been_adjudicated
+
+next_required_external_action:
+  owner: trusted_steward_or_permission_separated_builder
+  action: authenticate_identity_then_emit_the_content_addressed_views_in_redacted_metadata_contract
+  candidate_agent_cannot_substitute_by_opening_mixed_role_source: true

@@ -70,9 +70,9 @@ without querying canonical state again.
 - Society is reward-blind. It may review evidence but cannot rank rewards,
   select a portfolio, approve launch, authorize compute, create a ClaimCard, or
   update Landscape.
-- Native-goal launch requires an unambiguous scientist request or a
-  scientist-invoked project launcher. Drafting, checking, organizing, or making
-  an episode runnable is not launch authority.
+- Native-goal launch requires an unambiguous scientist start or resume request
+  in the current Codex task. Drafting, checking, organizing, or making an
+  episode runnable is not launch authority.
 - A native Goal is exploratory. Submission and review do not constitute
   confirmation, canonical execution, scientific acceptance, or Landscape
   transition.

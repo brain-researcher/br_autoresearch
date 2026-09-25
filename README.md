@@ -67,14 +67,15 @@ promotion; development trials do not individually become accepted findings.
 
 ### 1. Start with a question
 
-Each episode starts with `GOAL.md` and `DATASETS.md`. A formal adaptive episode
-also has a schema-valid search policy, normally `SEARCH_POLICY.yaml` (EP02 uses
-the JSON-equivalent `SEARCH_POLICY.json`). An explicit scientist invocation of
-`bin/codex-episode launch` starts the episode. Data checks, runtime
-qualification, search validation, falsification, configuration lock, and
-held-out evaluation then occur inside that episode and are recorded under its
-`outputs/`. Root readiness projections and Brain Researcher canonical bindings
-may support later review or claim governance, but they are not launch gates.
+Each episode starts with `GOAL.md`, `DATASETS.md`, and a search policy, normally
+`SEARCH_POLICY.yaml` (EP02 uses JSON). Each episode validates the fields its
+executor consumes; there is no portfolio-wide schema gate. An explicit
+scientist instruction in a Codex task starts the episode. The task names one
+episode, reads its local contract, treats `inputs/` as read-only, and records
+durable work under its `outputs/`. Data checks, runtime qualification,
+falsification, configuration lock, and held-out evaluation occur inside that
+task. Brain Researcher review, reward, and shared-claim governance remain
+separate from local episode startup.
 
 The Goal can be specific:
 
@@ -271,14 +272,10 @@ Large imaging data and temporary compute files stay outside Git.
   historical prior identities, direct physical paths, and current policy
   references. The current EP01 is `episode01_narps_deep_search`; the old NARPS
   runs are frozen in the [historical prior archive](_examples/historical_prior_records/).
-- [Adaptive-evidence policy](ADAPTIVE_EVIDENCE_POLICY.yaml) fail-closes the
-  portfolio so fixed tests and unexecuted search designs cannot be counted as
-  realized adaptive autoresearch.
-- [Adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md),
-  [controller interface](ADAPTIVE_CONTROLLER_INTERFACE.md), and
-  [depth audit](EPISODE_DEPTH_AUDIT.md) define the 19 direct EP01--EP17 except
-  EP18, plus EP19--EP20, contracts, append-only lineage, and one-shot audit
-  boundary. EP18 remains the sole incomplete, uncounted draft.
+- [Adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md) and
+  [controller interface](ADAPTIVE_CONTROLLER_INTERFACE.md) define the search,
+  append-only lineage, and one-shot audit boundary. A design becomes realized
+  evidence only when its episode records the corresponding run artifacts.
 - [Unnumbered examples](_examples/README.md) retain reusable design provenance;
   the NARPS deep-search example now has one formal EP01 instantiation.
 - [LANDSCAPE.md](LANDSCAPE.md) summarizes the research areas we are exploring.

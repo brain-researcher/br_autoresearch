@@ -32,12 +32,12 @@ amodal, purely semantic, or vision-independent coding.
 The EEG release and the authorized THINGS image archives have been acquired
 and verified, so the sources can support a future outcome-blind setup phase
 that reconstructs events, builds the exact image-event manifest, and assigns
-participant roles. EP18 remains an incomplete local draft: no episode-managed
-run may launch until its input/output guards and seven workspace projections
-exist. After that scaffold is complete, EEG-informed candidate comparison may
-begin only after the manifest is validated, participant roles are frozen, the
-development view is provisioned, and audit EEG is evaluator-only as specified
-in `DATASETS.md`.
+participant roles. EP18 remains an incomplete local draft rather than a formal
+episode because its input/output guards and seven workspace projections are
+missing. After that scaffold is complete, EEG-informed candidate comparison
+may begin only after the manifest is validated, participant roles are frozen,
+the development view is provisioned, and audit EEG is evaluator-only as
+specified in `DATASETS.md`.
 
 ## Why this episode is needed
 

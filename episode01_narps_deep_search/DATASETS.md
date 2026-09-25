@@ -2,9 +2,10 @@
 
 ## Status
 
-This is a pre-launch data contract. It records known identities, exposure
-roles, and the firewall that must exist before execution. It does not authorize
-source access, materialization, computation, or audit opening.
+This data contract records known identities, exposure roles, and the firewall
+required before candidate-discriminating work and protected audit access. An
+explicit scientist instruction may start the episode, but this file alone does
+not authorize source access, materialization, computation, or audit opening.
 
 ## Role table
 
@@ -27,7 +28,7 @@ The machine-readable prior declaration is
 It pins the repository revision, representative artifact hashes, legacy
 canonical identities, exposure status, and required materialization set.
 
-The current packet is manifest-only. Before launch, a controller-owned step
+The current packet is manifest-only. Before candidate search, a controller-owned step
 must copy every declared small artifact into a content-addressed, read-only
 packet under this episode, verify all hashes, and record aggregate byte counts.
 It must not symlink, hardlink, or read live sibling outputs during the search.
@@ -39,9 +40,9 @@ The two prior records have different canonical states. `narps_prior_v1` was
 observed complete with `closed_no_candidate`; `narps_prior_v2` was observed at
 `AWAITING_REWARD`. Its returned `record_reward` action expired on
 2026-08-18 and is not replayable authority. This episode neither resolves nor
-inherits either state. A fresh canonical prepare must create a new identity; a
-collision, if the service actually reports one, is reconciled separately rather
-than by acting on the legacy record from this workspace.
+inherits either state. If this episode later enters Brain Researcher review,
+it must use a new record; any service-reported collision is reconciled
+separately rather than by acting on a legacy record from this workspace.
 
 ## Development source: NARPS `ds001734`
 
@@ -55,7 +56,7 @@ than by acting on the legacy record from this workspace.
 
 Historical inventories reported 108 participants, 54 EI and 54 ER, four
 expected runs per participant, and 432 runs in `MNI152NLin2009cAsym` 2-mm
-space. These counts are priors to revalidate, not launch facts.
+space. These counts are priors to revalidate, not verified input facts.
 
 | Identity field | Previously observed value |
 | --- | --- |
@@ -123,7 +124,7 @@ leave-one-subject-out stability remain visible.
 
 ### Required technical firewall
 
-Before launch, materialize distinct access surfaces:
+Before candidate search, materialize distinct access surfaces:
 
 1. `inputs/development/`: verified prior packet, immutable `ds001734` payload,
    folds, manifests, and synthetic fixtures.
@@ -134,8 +135,8 @@ Before launch, materialize distinct access surfaces:
    search workers, development evaluator, cache, log process, and ordinary
    episode workspace until a valid configuration-lock hash exists.
 
-A visible symlink, a path plus prose warning, or the current instruction-only
-launcher boundary is insufficient. The audit runner must accept exactly one
+A visible symlink, a path plus prose warning, or an instruction-only same-UID
+Codex task boundary is insufficient. The audit runner must accept exactly one
 configuration-lock hash, reject a second scientific audit transaction, disable
 undeclared mounts and network access, and record:
 
@@ -151,7 +152,7 @@ A frozen eligible retry is permitted only when the failed attempt emitted no
 candidate-discriminating value. It must reuse the same lock hash, payload root,
 runner, and command; remain inside the same logical audit transaction; and add
 a hash-chained attempt receipt. The exact eligible-failure list and maximum
-attempt count are launch-blocking and require scientist signoff.
+attempt count must be frozen with scientist signoff before audit opening.
 
 ## Compatibility checks before any audit neural access
 
@@ -171,8 +172,9 @@ Using metadata, schemas, synthetic fixtures, and development data only:
 - profile CPU, memory, concurrency, scratch, and wall time inside the frozen
   episode budget.
 
-Compatibility failure may block launch or cause a technical terminal. It may
-not expose audit map values or motivate a mechanism.
+Compatibility failure may make candidate scoring or audit opening ineligible
+and may cause a technical terminal. It may not expose audit map values or
+motivate a mechanism.
 
 ## Prohibited data use
 
@@ -186,15 +188,14 @@ not expose audit map values or motivate a mechanism.
 - Do not count prior-run cells, internal folds, public availability, or a
   filesystem checkout as new independent confirmation.
 
-## Launch-readiness checklist
+## Pre-search and audit-opening checklist
 
-- [ ] Fresh canonical read confirms that neither legacy identity/action is reused; any reported prepare collision is handled separately.
+- [ ] Legacy identities and expired actions are excluded from episode execution; any later Brain Researcher record is new.
 - [ ] Prior packet materialized locally, content-addressed, and independently verified.
 - [ ] `ds001734` identities, payloads, counts, versions, and worktree state revalidated.
 - [ ] Development source, split, environment, mask, operator, and container hashes frozen.
 - [ ] `ds000005` exposure history and complete payload commitment independently audited.
 - [ ] Contrast semantics/sign/units and all numerical thresholds scientist-signed.
 - [ ] Permission-separated evaluator and one-shot audit runner synthetically qualified; eligible retry failures and maximum attempts signed.
-- [ ] Memory, concurrency, CPU, scratch, and wall-time profile fits the registered budget.
-- [ ] Canonical adaptive program and immutable `search_policy_ref` registered.
-- [ ] Fresh canonical EP01 Goal/loop identities created; neither prior identity reused.
+- [ ] Memory, concurrency, CPU, scratch, and wall-time profile fits the frozen budget.
+- [ ] The immutable search policy is bound to the episode run before candidate scoring.

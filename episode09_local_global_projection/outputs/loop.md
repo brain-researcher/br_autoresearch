@@ -1,4 +1,5 @@
 # Loop
 
-No canonical action is inferred from this local workspace. Query the live
-Brain Researcher state before launch or resume.
+An explicit scientist instruction in a Codex task may start or resume local
+episode work. Query live Brain Researcher state only before requesting
+canonical review, reward, or a shared campaign transition.

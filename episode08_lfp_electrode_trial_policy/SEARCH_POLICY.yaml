@@ -1,9 +1,67 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep08_electrode_trial_acquisition_adaptive
 episode_id: ep08
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
+
+# Planning metadata only. The executable policy search, grid, budgets, and
+# terminal mapping below remain the primary round.
+research_program:
+  paper_question: can_a_short_all_electrode_pilot_reveal_which_electrodes_and_calibration_trials_have_unique_future_value
+  plan_ref: outputs/paper_plan.md
+  primary_round: joint_post_pilot_electrode_retention_and_trial_allocation
+  primary_roles_grid_estimand_budget_and_terminal_mapping_unchanged: true
+  followup:
+    state: proposed_not_configured_or_run
+    evidence_mode: proposed_fixed_mechanism_comparison
+    starts_after_primary_conclusion_is_fixed: true
+    automatically_launched_by_this_policy: false
+    primary_terminal_may_be_overwritten: false
+    purpose: explain_whether_gain_comes_from_quality_nonredundant_electrodes_targeted_trials_or_their_interaction
+    development_source: cross_fitted_development_sessions_only
+    primary_audit_may_select_mechanism: false
+    current_primary_audit_role_for_followup: primary_policy_only
+    generic_outputs_registered_before_primary_opening_are_descriptive_only: true
+    mechanism_selected_after_primary_conclusion_requires_new_external_confirmation: true
+    mechanism_questions:
+      - does_pilot_only_score_predict_heldout_conditional_electrode_value
+      - does_pre_action_state_predict_which_direction_trial_reduces_future_error
+      - how_does_performance_change_along_electrode_and_trial_axes_of_the_fixed_grid
+    electrode_value_target: frozen_evaluation_loss_increase_when_one_retained_electrode_is_omitted
+    trial_value_target: frozen_evaluation_loss_change_after_next_hash_queued_trial_in_a_legal_reach_direction_stratum
+    candidate_explanations:
+      - signal_quality
+      - spatial_coverage
+      - conditional_nonredundancy
+      - learned_pilot_score
+      - direction_balance
+      - uncertainty_or_residual_targeting
+    prediction_limits:
+      mechanism_count_max: 2
+      pilot_or_pre_action_information_only: true
+      whole_session_cross_fitting_required: true
+      heldout_value_targets_returned_to_policy: false
+      electrode_and_trial_units_convertible_without_cost_model: false
+    external_prediction:
+      source_manifest: null
+      requires_newly_collected_or_sequestered_third_animal: true
+      frozen_outputs:
+        - retained_electrode_conditional_value_ranking
+        - next_reach_direction_value_ranking
+        - grid_axis_sensitivity_prediction
+      target_session_outcomes_may_fit_select_or_reorder_policy: false
+      chewie_r_is_independent_animal: false
+      current_four_audit_sessions_are_fresh_followup_confirmation: false
+    separate_contract_required:
+      - mechanism_candidate_selection_and_multiplicity
+      - conditional_electrode_and_next_trial_value_definitions
+      - counterfactual_replay_and_exchangeability_checks
+      - source_exposure_geometry_and_feature_crosswalk
+      - fixed_scores_margins_uncertainty_and_invalid_action_rules
+      - compute_budget_stop_rules_and_result_table
+      - one_shot_external_session_evaluation
+    inherits_primary_budget_search_feedback_or_audit_opening: false
+    candidate_ready_implies_acquisition_mechanism: false
 
 dataset_roles:
   shared_exposure_ledger_group: lfp_ep05_ep08
@@ -150,17 +208,24 @@ audit:
   terminal_claim_scope: retrospective_internal_held_session_post_pilot_retention_and_calibration_replay
   external_claim_allowed: false
 
+reporting:
+  scientific_scope:
+    primary_policy_and_mechanism_followup_reported_separately: true
+    policy_gain_does_not_establish_electrode_or_trial_mechanism: true
+    electrode_retention_and_trial_allocation_contributions_reported_separately: true
+    every_grid_cell_session_and_primary_animal_reported: true
+    reliability_spatial_redundancy_and_trial_balance_alternatives_visible: true
+    electrode_count_may_be_converted_to_trial_count_without_cost_model: false
+  paper_figures:
+    - matched_cost_policy_frontier_over_complete_grid
+    - pilot_score_versus_conditional_electrode_value
+    - pre_action_trial_value_prediction_and_balanced_replay
+    - quality_redundancy_spatial_and_component_ablations
+    - frozen_prediction_in_newly_sequestered_sessions
+
 terminal_mapping:
   candidate_ready: candidate_ready
   closed_no_candidate: closed_no_candidate
   incomplete_search: closed_no_candidate
   unresolved: closed_no_candidate
   technical_failure: technical_failure
-
-canonical_binding:
-  loop_id: null
-  goal_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true

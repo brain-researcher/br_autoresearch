@@ -5,11 +5,10 @@
 > append chronologically. It may be supplied only as optional supplemental
 > context when explicitly declared in a frozen CandidateBundle.
 
-## Binding
+## Context
 
-- Goal handoff: not observed
-- Outer loop: not observed
-- Search policy: `../SEARCH_POLICY.yaml` (`planned_unregistered`)
+- Search policy: `../SEARCH_POLICY.yaml`
+- Episode run: not started
 
 ## Entries
 
@@ -24,5 +23,6 @@
 
 ## Remaining uncertainty
 
-- Every scientific and implementation uncertainty remains open until all
-  launch blockers in `../SEARCH_POLICY.yaml` are resolved.
+- Every scientific and implementation uncertainty remains open until the
+  applicable candidate-scoring and audit-opening conditions in
+  `../SEARCH_POLICY.yaml` are satisfied.

@@ -1,30 +1,128 @@
-# EP06 — adaptive regional recording-domain fingerprints
+# Does the LFP–population relationship differ reproducibly between M1 and PMd?
 
-## Status, protocol, and exposure boundary
+During the same reaching task, electrodes in M1 and PMd record two views of
+local activity: the LFP and the spikes of nearby neurons. In one session, a
+low-frequency LFP feature might predict the local spike-population activity
+better in M1, while another frequency might work better in PMd. A difference
+in one session, however, could just reflect a noisy array or a few unusually
+good channels.
 
-This is the current local episode contract, governed by
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md). It is not
-authority to read outcomes, run compute, create a canonical loop, submit a
-candidate, or change campaign state.
+EP06 asks whether the complete band-by-band pattern repeats across animals.
+For every session, we make one profile showing how well LMP and each registered
+LFP power band predict the simultaneously recorded population activity. We
+learn the M1-versus-PMd difference from Mihili and ask whether it labels whole
+sessions from Chewie, then reverse the animals. The signed profile contrast—
+not every band in isolation—must align across the two transfer directions, and
+any band singled out for interpretation must have the same sign in both
+animals. A high average score cannot hide a failed transfer in one direction.
 
-Outcomes from the same Dryad release were accessed previously, so a clean
-directory cannot restore freshness. The current episode inherits no prior
-action, decision, or scientific acceptance.
+Even successful classification may be misleading. In these recordings, each
+brain region is tied to its own implanted array. A classifier could therefore
+recognize missing channels, recording reliability, one spike-rich
+high-frequency band, or another hardware difference rather than a reusable
+neural relationship. The first result must show the actual signed frequency
+contrast and test it under equal channel, trial, spike-rank, and model budgets,
+without high-frequency bands, and against recording-metadata controls.
 
-## Scientific question
+This is the entry point to a larger biological question:
 
-Can a bounded adaptive search learn a frequency-by-latent profile policy that
-distinguishes simultaneously recorded M1 from PMd across sessions and transfers
-between Mihili and Chewie, and does that locked regional fingerprint generalize
-without modification to a third animal with matched simultaneous M1/PMd
-recordings?
+> If M1 and PMd have a reproducible LFP–population difference, does that
+> difference tell us which LFP frequencies will recover held-out population
+> activity better?
 
-The estimand is a predictive **M1-versus-PMd recording-domain fingerprint**
-under the released task, implanted arrays, and measurement pipeline. Region
-and array are structurally paired in these recordings, so this is not a pure
-cortical-identity estimand, universal cortical identity, causal mechanism,
-population prevalence estimate, or evidence that any frequency band has a
-uniquely synaptic origin.
+The follow-up turns the profile into a direct prediction. M1 and PMd profiles
+learned from the source animal produce two fixed sets of frequency weights. In
+the other animal, the correct-region weights, one pooled set of weights, and a
+deliberately swapped-region set combine exactly the same bandwise predictions.
+If the profile captures a useful regional difference, the correct-region
+combination should predict unseen population activity better than the pooled
+combination, and swapping M1 with PMd should make prediction worse.
+
+The intended paper must therefore show more than an M1/PMd label. It must show
+which parts of the profile differ, that their signs repeat in both animals,
+that ordinary recording-quality explanations do not account for the result,
+and that the difference has the predicted consequence for population-state
+recovery. A separately locked third-animal test would be needed to show that
+the rule extends beyond Mihili and Chewie.
+
+Even a positive result would not isolate pure cortical identity, because
+region and array cannot be separated in this dataset. It would support a
+narrower claim: under this reaching task and recording pipeline, an M1–PMd
+difference repeats in both animals and can guide prediction of local
+population activity, while remaining confounded with the two arrays. It would
+not establish a causal mechanism, a unique biological origin for any frequency
+band, or generalization to other tasks and populations.
+
+The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
+specifies the follow-up prediction, alternatives, and figure-level evidence.
+The cross-animal classification remains the first result; the follow-up cannot
+change its answer.
+
+## At a glance
+
+| Question | EP06 design |
+| --- | --- |
+| What varies? | How well LMP and each LFP power band predict the local spike-population activity in M1 and PMd. |
+| What is compared? | One complete M1 profile and one complete PMd profile for each recording session, rather than isolated bands chosen after seeing the result. |
+| What must transfer? | A rule learned from Mihili must distinguish M1 from PMd in Chewie, and the rule learned from Chewie must work in Mihili. |
+| What is held out? | Whole sessions from the other animal during cross-animal transfer, followed by two separately reserved sessions per animal for one internal audit. |
+| What is the main score? | The average of the two cross-animal balanced accuracies, reported relative to chance and alongside each direction separately. |
+| What could give a misleading positive result? | The two regions use different arrays, so missing channels, reliability, hardware metadata, or high-frequency spike contamination could reveal the label. |
+| What can the first test conclude? | Whether these recordings contain a signed M1–PMd LFP–population fingerprint that repeats between two animals. |
+| What would make a deeper finding? | The M1- and PMd-specific frequency rules must improve held-out population prediction over one pooled rule, while a swapped-region rule performs worse. |
+| What is the next test? | Freeze the regional frequency weights, compare correct, pooled, and swapped mixtures on identical predictions, then carry the unchanged rule to a separately locked third-animal study if suitable data become available. |
+
+## From a region label to an interpretable consequence
+
+Suppose the classifier calls a held-out session “M1.” That answer alone does
+not show what was learned. It could depend on one noisy band, missing channels,
+or array quality. A useful scientific result must show the actual contrast—for
+example, that the same registered low- or mid-frequency part of the profile is
+higher for M1 than PMd in both animals—while reporting every band and session.
+
+The proposed follow-up makes a prediction from the two source-region profile
+prototypes that produced that signed contrast. The contrast alone is not
+enough: subtracting PMd from M1 discards their shared level. Therefore retain
+the undifferenced M1 and PMd frequency-by-latent prototypes in the exact locked
+normalized/aligned representation supplied to the primary classifier, their
+signed difference, and their equal-region pooled prototype. A fixed,
+parameter-free softmax projection turns each prototype into one convex set of
+band weights; the exact equation is in the paper plan.
+
+In a target session, fit one base LFP-to-latent predictor per band exactly once
+on permitted training trials under the same locked recipe. Freeze those
+bandwise predictions before applying any regional rule. The correct-region,
+pooled, and swapped rules then form different fixed weighted averages of the
+**same predictions at the output level**; no coefficient, intercept, scaling,
+or regularization is refit after weighting. If the fingerprint captures a
+reusable difference, the correct-region mixture should beat the pooled mixture
+by a fixed meaningful margin and swapping M1 and PMd weights should hurt. This
+cannot be explained by a separate region-supervised model or by raw feature
+weights being absorbed into freely refit coefficients.
+
+This yields distinct outcomes:
+
+| Possible result | What it would mean |
+| --- | --- |
+| Classification transfers, the signed contrast repeats, and correct-region weights improve held-out latent prediction | The recording domains have a reusable difference with a concrete modeling consequence. Region remains confounded with array/hardware. |
+| Classification transfers but correct-region weights do not beat pooled weights | A stable label exists, but it has not shown a useful consequence for population-state recovery. |
+| Regional weights collapse to the same vector or bandwise target predictions are too collinear to distinguish mixtures | The proposed consequence is non-identifiable; do not treat a null contrast as evidence that the regional profile has no effect. |
+| Metadata-only or deliberately reliability-mismatched controls classify equally well | The result is compatible with an implant/recording-quality fingerprint; no neural regional interpretation. |
+| Only high-frequency or spike-rich channels carry the result | Bound the claim to a spike-contaminated recording feature, not a broad LFP profile. |
+| The two transfer directions disagree or the reserved sessions fail | No general two-animal fingerprint; report the narrower session result or stop. |
+
+The follow-up uses the same exposed recordings and simultaneous spikes, so it
+is explanatory evidence, not another animal replication. Its support rules,
+models, margins, multiplicity, budget, and stopping rule must be frozen before
+its outcomes are inspected. Its results cannot rewrite the original audit or
+terminal class.
+
+“Fit once in a target session” means the session-specific training step already
+required to construct each bandwise profile under a locked recipe. It does not
+mean choosing a new policy after audit outcomes appear. The executable
+follow-up contract must distinguish this mandatory within-session fit from the
+core YAML's forbidden post-reveal retraining before any shared audit opens; if
+it cannot, the follow-up moves to a successor round.
 
 ## Evidence roles and internal split
 
@@ -50,7 +148,7 @@ reaching task with adequate sessions, trials, electrodes, units, and
 authenticated LFP feature semantics. That animal is absent from the current
 release and is not claimed to have been acquired. Under the common protocol,
 the current round ends when its one-shot internal audit opens; a third-animal
-test must be a newly registered successor round with a new exposure record. A
+test must be a separately frozen successor round with a new exposure record. A
 direct generalization test must reuse the same locked candidate without
 adaptation; an adapted search would answer a different question.
 
@@ -210,23 +308,37 @@ remain ledgered and consume resource ceilings.
   two-animal claim and carries a mandatory third-animal confirmation
   requirement for any generalization claim.
 - `closed_no_candidate`: a technically valid bounded search finds no feasible
-  policy, or the locked policy fails either audit.
+  policy, or the locked policy fails the current round's single internal audit.
+- `search_exhausted_no_audit`: development finishes without a permissible
+  internal-audit opening; it maps outward to `closed_no_candidate` but is not
+  evidence that the scientific effect is absent.
 - `technical_failure`: source, pairing, guide, event, electrode/rank,
   reliability, or executable evaluation gates cannot be satisfied.
 - `policy_violation`: leakage, audit-specific adaptation, outcome-driven
   reallocation, undeclared operators, or post-reveal candidate swapping.
 
 For canonical outer status, `candidate_ready` maps to `candidate_ready`,
-`closed_no_candidate` maps to `closed_no_candidate`, and `technical_failure`
-or `policy_violation` maps to `technical_failure`.
+`closed_no_candidate` and `search_exhausted_no_audit` map to
+`closed_no_candidate`, and `technical_failure` or `policy_violation` maps to
+`technical_failure`.
 
 ## Claim boundary
 
 Passing the current-release internal audit supports only within-corpus
-cross-session and two-animal transfer under known exposure. Passing the sealed
-third-animal audit supports the locked fingerprint's transfer to that animal
-under the compatible task and measurement pipeline. Neither result estimates
+cross-session and two-animal transfer under known exposure. A later sealed
+third-animal successor round may support the locked fingerprint's transfer to
+that animal under the compatible task and measurement pipeline, but its result
+cannot rewrite this round's terminal class. Neither result estimates
 population prevalence, separates cortical area from its implanted array or
 other task/hardware confounds, assigns mechanism to frequency bands, or
 generalizes to raw LFP,
 other behaviors, species, or recording technologies.
+
+The stronger paper interpretation—a reusable regional difference in how LFP
+features recover local population dynamics—requires the separately locked
+correct-region versus pooled and swapped-region comparison in the paper plan.
+Classification accuracy alone does not establish that consequence. Even a
+successful third-animal transfer does not fully separate cortical area from
+array placement and other region-linked hardware without a design that breaks
+that confounding. No real EP06 search, audit, or follow-up was run while
+preparing this revision.

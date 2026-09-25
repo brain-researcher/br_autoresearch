@@ -2,9 +2,11 @@
 
 ## Status, protocol, and exposure boundary
 
-This is the current local episode contract. It follows
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md) and does not
-authorize outcome access, compute, or any canonical transition.
+This is the current local episode contract. An explicit scientist instruction
+naming EP04 may start bounded episode work. It follows
+[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md); this file
+alone does not authorize protected-outcome access or a Brain Researcher
+transition.
 
 Previously opened regular-shared responses and model comparisons are exposed
 development evidence and cannot become an audit. The current contract inherits
@@ -115,8 +117,9 @@ participant consistency, but produces exactly one locked candidate.
    every retained visual embedding, and low-level covariate coverage on the
    **subject-unique development images**. Object segmentations reported only
    for shared images do not satisfy this gate. If the object comparator is
-   absent, stop at readiness or approve and hash a frozen DUA-compatible
-   extractor before outcome access; do not drop the object comparison later.
+   absent, stop before neural scoring or approve and hash a frozen DUA-
+   compatible extractor before outcome access; do not drop the object
+   comparison later.
 2. **Fold freeze:** export subject-unique development/selection image IDs,
    group all repetitions, block near neighbours, and reserve identical folds
    for every pipeline.

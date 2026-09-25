@@ -2,15 +2,16 @@
 
 This document is the human-readable companion to
 [`DATA_LOCATION_MANIFEST.json`](DATA_LOCATION_MANIFEST.json). It records the
-filesystem layout observed on 2026-09-23 and the currently selected routing
-for a later migration phase.
+filesystem layout observed on 2026-09-23 and the storage changes completed on
+2026-09-24.
 
-This is **inventory only for scientific payloads**. Phase 1 created only the
-empty private namespace, its empty routing subdirectories, and an explanatory
-README. No scientific source or payload was moved, copied, linked, deleted,
-renamed, mounted, or permission-modified. A path appearing here does not grant
-data access, assign a scientific role, make an episode launch-ready, or turn a
-local artifact into canonical Brain Researcher state.
+On 2026-09-24, the private steward tree and EP17 restricted raw tree were
+renamed on the same OAK filesystem into the private `br_autoresearch_data`
+namespace. Five reviewed duplicate paths were deleted after explicit approval;
+their durable public counterparts remain under the shared data root. These
+storage changes do not grant data access, assign a scientific role, make an
+episode input ready for outcome access, or turn an artifact into accepted
+Brain Researcher evidence.
 
 ## Storage model
 
@@ -19,20 +20,20 @@ local artifact into canonical Brain Researcher state.
 | `canonical_workspace` | Lightweight Git contracts and code | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch` | same | `canonical_in_place` |
 | `canonical_historical_prior_records` | Curated, Git-tracked frozen-prior snapshot | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/_examples/historical_prior_records` | same | `canonical_in_place` |
 | `public_shared_root` | Durable public source releases | `/oak/stanford/groups/russpold/data/br_autoresearch_data` | same | `canonical_in_place` |
-| `planned_private_data_root` | Empty private destination namespace | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data` | same | `destination_namespace_created` |
+| `private_data_root` | Durable private steward and restricted-data namespace | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data` | same | `canonical_in_place` |
 | `legacy_worktree` | Mixed legacy code, inputs, outputs, and runtime history | `/oak/stanford/groups/russpold/users/zijiao/autoresearch` | none as a whole | `destination_unassigned` |
-| `legacy_steward_acquisition` | Private steward/quarantine tree | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/.steward_acquisition` | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition` | `staged_not_moved` |
-| `legacy_ep17_restricted_raw` | Restricted CNeuroMod-THINGS raw source | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw` | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw` | `staged_not_moved` |
+| `private_steward_acquisition` | Private steward/quarantine tree | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition` | same | `canonical_in_place` |
+| `ep17_restricted_raw` | Restricted CNeuroMod-THINGS raw source | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw` | same | `canonical_in_place` |
 | `recovery_ep02_boundary_semantics` | Protected EP02 recovery material | `/oak/stanford/groups/russpold/users/zijiao/.autoresearch_recovery/20260922_ep02_boundary_semantics` | none approved | `protected_hold` |
 | `scratch_autoresearch_runtime` | Legacy transient episode runtime | `/scratch/users/zijiao/autoresearch` | no durable destination | `transient_retained` |
-| `scratch_canonical_runtime` | Current launcher runtime convention | absent until needed | `/scratch/users/zijiao/br_autoresearch` | `absent_planned_target` |
+| `scratch_canonical_runtime` | Current episode runtime convention | absent until needed | `/scratch/users/zijiao/br_autoresearch` | `absent_planned_target` |
 
 The private namespace
-`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data` now exists in
-mode `2750`, with empty `manifests/` (`2750`), `restricted/` (`2700`), and
-`recovery/` (`2700`) directories plus `README.md` (`0640`). The final
-`steward_acquisition/` and restricted CNeuroMod payload directories remain
-absent. No scientific payload was materialized there.
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data` is mode
+`2750`. It contains `steward_acquisition/` (`2700`), the restricted CNeuroMod
+payload (`2550`) beneath `restricted/` (`2700`), `manifests/`, `recovery/`, and
+`README.md`. The public release library remains separate at the shared group
+data root.
 
 The canonical Git workspace is about 12 MiB and contains no data symlinks.
 Episode `inputs/` directories contain only their tracked documentation, plus
@@ -64,12 +65,14 @@ different, intentional counting scopes.
 
 EP16 needs attention: Phase 1 corrected its documentation to distinguish
 integrity verification from write sealing, but the release root and sampled
-payload remain writable at mode `2770`. The permission seal is still a
-readiness blocker, and Phase 1 made no source permission change.
+payload remain writable at mode `2770`. The permission seal is still required
+before the source can support a protected audit, and Phase 1 made no source
+permission change.
 
 The 25 scientific payload files in the sensorimotor release are hard-linked
 to the legacy EP05 input store. They are one OAK allocation, not two
-independent copies. The EP05 scratch source is a separate copy.
+independent copies. The separate EP05 scratch payload was removed in Cleanup A
+on 2026-09-24.
 
 ### Other public shared releases
 
@@ -101,11 +104,13 @@ independent copies. The EP05 scratch source is a separate copy.
 Exact byte and file counts are in the JSON manifest. Unassigned releases are
 available inventory, not implicit episode inputs.
 
-## Legacy steward tree and planned destination
+## Private steward tree
 
-`legacy_steward_acquisition` is mode `2700`, approximately 1.107 TB logical,
-and currently lives inside the old worktree. Every listed subtree has the same
-planned relative name under `planned_steward_acquisition`; none has moved.
+`private_steward_acquisition` is mode `2700`, approximately 1.107 TB logical,
+and now lives at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`.
+It was renamed from the old worktree on 2026-09-24 without copying or
+flattening its subtrees.
 
 | Logical ID | Episode | Relative subtree | Logical size | Mode |
 | --- | --- | --- | ---: | ---: |
@@ -132,7 +137,7 @@ AJILE12 dominates this tree. Its existing `ACQUISITION_COMPLETE_UTC`,
 `VERIFIED_COUNT_BYTES`, and `ASSET_MANIFEST.json` records cover 55 assets and
 845,869,698,341 payload bytes. That establishes acquisition inventory
 completion; it does **not** establish the still-incomplete EP19 role-filtered
-handoff, episode-level readiness, or launch authorization.
+handoff or authorize access to held-out outcomes.
 
 ## Legacy-contained and adjacent locations
 
@@ -148,10 +153,11 @@ different provenance, access, or cleanup semantics:
 | `legacy_ep05_public_shared_hardlink_alias` | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode05_sensorimotor_lfp/inputs/dryad_xd2547dkt_files_v5` | 9,571,575,300 bytes | 25 scientific files hard-linked to the public release; same allocation, not another OAK payload copy |
 | `legacy_brain_researcher_data` | `/oak/stanford/groups/russpold/users/zijiao/brain_researcher/data` | 46,891,683 bytes | Adjacent legacy project data; no current episode assignment or destination |
 
-The legacy worktree's 1,259,022,510,824-byte figure is an **accessible lower
-bound**, not a complete total: it includes several children listed separately
-and excludes contents that cannot be enumerated through the execute-only
-evaluator firewall.
+The Phase 1 legacy-worktree figure of 1,259,022,510,824 bytes was an
+**accessible historical lower bound**, not a complete total. It included the
+steward and EP17 trees before their 2026-09-24 relocation and excluded contents
+that could not be enumerated through the execute-only evaluator firewall; it
+must not be treated as the current worktree size.
 
 The canonical and legacy historical-prior paths are not interchangeable. The
 canonical path contains 71 tracked files. All 71 have the same relative path
@@ -165,16 +171,15 @@ artifacts.
 
 ## Restricted and recovery material
 
-EP17 restricted raw data are a separate migration unit from the steward tree:
+EP17 restricted raw data remain a separate access unit from the steward tree:
 
 ```text
-current: /oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw
-planned: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw
+current: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw
 ```
 
-The current directory is mode `2550` and approximately 138.24 GB logical. A
-later migration must preserve or tighten its access boundary. It must not be
-folded into the public shared root or exposed to a candidate worker.
+The directory remains mode `2550` and approximately 138.24 GB logical after
+the 2026-09-24 rename. It must not be folded into the public shared root or
+exposed to a candidate worker.
 
 The EP02 recovery quarantine remains at:
 
@@ -195,31 +200,28 @@ The separate restricted FALCON H1 snapshot remains at:
 
 It is about 102 MB logical, mode `2700`, and has no current episode assignment.
 
-## Scratch and cleanup candidates
+## Scratch and completed cleanup
 
 | Logical ID | Path | Logical size | Treatment |
 | --- | --- | ---: | --- |
 | `scratch_ep04` | `/scratch/users/zijiao/autoresearch/episode04_shared_scene_geometry` | 179.41 GB | Legacy runtime copy; **not** a planned final destination |
-| `scratch_ep05` | `/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp` | 10.36 GB | Includes an independent 9.60 GB source copy |
-| `scratch_things_eeg1_ingest` | `/scratch/users/zijiao/autoresearch_ingest/things_eeg1` | 59.76 GB | Ingest staging duplicate; temporary DataLad tree has 302 broken annex symlinks |
+| `scratch_ep05` | `/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp` | historical 10.36 GB | Legacy runtime retained; its nested `payload/` duplicate was removed on 2026-09-24 |
+| `scratch_things_eeg1_ingest` | `/scratch/users/zijiao/autoresearch_ingest/things_eeg1` | historical 59.76 GB | Removed on 2026-09-24; durable THINGS release retained |
 | `scratch_narps_ep02_historical` | `/scratch/users/zijiao/episode02_narps_analysis` | 3.85 GB | Frozen-prior historical checkpoints/logs |
 
-No scratch deletion is approved. Scratch and OAK are on different devices, so
-promotion or cleanup cannot be implemented as an atomic rename. A future
-cleanup must first prove that the durable copy is complete, byte-verified,
-role-correct, and independently readable.
+Cleanup A removed the exact THINGS ingest root and EP05 `payload/` leaf shown
+above. It did not remove the whole EP05 runtime, EP04 runtime, or historical
+NARPS tree. Scratch and OAK are on different devices; the completed cleanup was
+a deletion of reviewed duplicates, not a cross-filesystem rename.
 
 The separately reviewed Cleanup A allowlist and procedure are in
 [`DATA_CLEANUP_CANDIDATES.json`](DATA_CLEANUP_CANDIDATES.json) and
-[`DATA_CLEANUP_RUNBOOK.md`](DATA_CLEANUP_RUNBOOK.md). Five owner-private
-v2 planning receipts were prepared under the external `manifests/` namespace
-on 2026-09-23; each preserves the exact candidate catalog it hashes. Five
-earlier v1 planning receipts are retained there as explicitly superseded audit
-history. These records contain advisory metadata snapshots only: every
-verification gate is pending, quarantine and deletion remain unauthorized,
-and neither quarantine root exists.
+[`DATA_CLEANUP_RUNBOOK.md`](DATA_CLEANUP_RUNBOOK.md). Ten older detailed
+planning receipts remain under the external `manifests/` namespace as
+historical artifacts and are not execution dependencies. Cleanup A completed
+on 2026-09-24 without creating either quarantine root.
 
-The canonical launcher and current episode documentation now use
+Direct Codex tasks and current episode documentation use
 `$SCRATCH/br_autoresearch/<episode-name>/`. Existing
 `$SCRATCH/autoresearch/` content is legacy runtime, including the large EP04
 and EP05 trees above, a small EP02 tree, and an empty EP14 directory. EP08 now
@@ -251,14 +253,18 @@ versions, and exposure roles.
 
 ## Personal duplicates and precursors
 
-The following remain in place pending equivalence checks and explicit cleanup
-authority:
+The three reviewed personal payload duplicates were removed on 2026-09-24:
 
-| Logical ID | Current path | Candidate authoritative counterpart |
+| Logical ID | Removed path | Durable counterpart retained |
 | --- | --- | --- |
 | `personal_link_001201_full` | `/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_full` | public shared `link_long_term_intracortical/dandi-001201-0.251023.2336` |
 | `personal_link_001201_sentinels` | `/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_sentinels` | same shared release |
 | `personal_epic_ptir_coating` | `/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/epic_ptir_coating` | public shared `epic_ptir_coating/mendeley-7p3cxn7jtn-v1` |
+
+The following small precursors remain:
+
+| Logical ID | Current path | Candidate authoritative counterpart |
+| --- | --- | --- |
 | `personal_braingate_20y_t3_empty` | `/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/braingate_20y_t3` | observed empty; EP16 public shared source exists |
 | `personal_dandi_001201_empty_scaffold` | `/oak/stanford/groups/russpold/users/zijiao/data/dandi/001201` | empty version-directory scaffold; LINK public shared release exists |
 | `personal_ingest_controls` | `/oak/stanford/groups/russpold/users/zijiao/.codex_ingest_staging` | small EPIC/LFP verification metadata only |
@@ -271,42 +277,18 @@ old worktree with no approved destination:
 /oak/stanford/groups/russpold/users/zijiao/autoresearch/episode20_neurocam_prior_guided_codesign/inputs/reference_bundles
 ```
 
-## Same-filesystem preflight
+## Completed same-filesystem relocation
 
-The legacy steward tree, EP17 restricted source, public shared root, canonical
-workspace, and newly created private namespace were all on OAK device
-`3626059016`. Sherlock scratch was on device `3863872424`. The final
-`steward_acquisition/` and restricted CNeuroMod payload leaves were still
-absent; their nearest existing ancestors were re-statted under that namespace.
-
-Matching source and ancestor device IDs suggest that an atomic rename may be
-technically possible for a later OAK-to-OAK migration. It is not permission to
-perform one, and the conclusion must be rechecked against the actual final
-destination immediately before any operation.
-
-Before any future move:
-
-1. Re-stat the source, destination, and destination parent.
-2. Check ACLs, modes, ownership, quotas, free space, jobs, writers, and open
-   handles.
-3. Freeze a complete path/type/size/ownership/mode/mtime/inode/link-count and
-   symlink-target inventory; hash control files and existing checksum
-   manifests.
-4. For a same-filesystem rename, require the directory inode and Lustre FID to
-   remain unchanged. Full payload rehashing is a separate scientific-integrity
-   or duplicate-deletion gate, not transport proof for the rename itself.
-5. Deliberately preserve symlink, hardlink, sparse-file, and permission
-   semantics.
-6. Use a reversible staging name and write a rollback procedure.
-7. Independently verify the destination.
-8. Obtain explicit move authority, followed by separate deletion authority if
-   cleanup is desired.
+The steward and EP17 restricted trees were renamed within OAK on 2026-09-24.
+The destination directories retain the original directory inodes and modes;
+the old paths are absent. No compatibility symlink or duplicate payload tree
+was created.
 
 ## Open inventory exceptions
 
 EP16's observed mode-`2770` public BrainGate source still needs a write seal
-before readiness. Phase 1 corrected the contract wording but did not change
-source permissions.
+before protected audit use. Phase 1 corrected the contract wording but did not
+change source permissions.
 
 The earlier 14-versus-28 release-catalog gap, 54-versus-55 OpenNeuro count,
 scratch-root mismatch, stale EP08 scratch name, and EP19/EP20 legacy-relative
@@ -316,14 +298,12 @@ them as current defects.
 
 ## Migration state
 
-Phase 1 ends at documentation:
-
-- public shared releases and external pools stay in place;
-- legacy steward and EP17 restricted roots are `staged_not_moved`;
-- the empty private destination namespace exists, while both final planned
-  payload leaves remain absent;
-- recovery and separately restricted data are on `protected_hold`;
-- scratch and personal duplicates remain untouched pending verification;
-- no episode input has been provisioned merely by adding this manifest; and
-- no canonical MCP state, evidence role, launch gate, or scientific claim has
-  changed.
+- Public shared releases and external pools remain in place.
+- Private steward and EP17 restricted roots are now under the private
+  `br_autoresearch_data` namespace.
+- The five Cleanup A duplicates are absent; their durable counterparts remain.
+- Recovery and separately restricted data remain on `protected_hold`.
+- Other legacy runtimes, historical records, and unassigned inputs remain in
+  place.
+- Storage relocation alone did not provision episode inputs, change any
+  evidence role, open protected outcomes, or change a scientific claim.

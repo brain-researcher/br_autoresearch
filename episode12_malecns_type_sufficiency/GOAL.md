@@ -165,7 +165,7 @@ target-side fitting, unfair model capacity, or uncontrolled missing output
 makes the comparison invalid.
 
 For each type and transfer direction, the score is held-out log predictive
-density per eligible incident synapse. Neurons are weighted equally within a
+density per eligible outgoing synapse. Neurons are weighted equally within a
 type and direction; types and directions are then weighted equally. Synapses
 and edges are not treated as independent biological replicates.
 
@@ -244,21 +244,24 @@ M. Completing the null program correctly is required for a valid comparison;
 failing its scientific threshold does not by itself make the comparison
 invalid or prevent an informative T/U result.
 
-## Decisions that still need to be made
+## First-round guardrails
 
-Before development that could distinguish the explanations begins, a
-scientist must set:
+Before outcome-revealing development begins:
 
-- the numerical meaningful margin, its unit, and the simultaneous uncertainty
-  method;
-- the sensitivity rule for allowing an adequacy conclusion;
-- the development-only rule for choosing the final comparison;
-- the separate development-only rule for choosing the null generator; and
-- the development-only rule for choosing illustrative types in the main
-  figure.
+- The meaningful margin is 0.02 nats per eligible outgoing synapse; whole
+  types remain the uncertainty unit and both transfer directions are covered
+  together.
+- Adequacy requires synthetic evidence that meaningful residual structure
+  would not be missed. Otherwise the result is unresolved.
+- Choose one complete, fair T/U/M comparison from development only using
+  bilateral predictive performance. M need not win during development.
+- Choose the fitted T or U null from development only, preferring U when they
+  are comparably supported.
+- Choose and explain figure examples using development only before final
+  access. Final outcomes cannot choose examples; report every final type.
 
-These values are deliberately not invented here. Until they are set, EP12 is
-a revised design, not a ready or completed analysis.
+These are safeguards, not a fixed optimizer, resampling count, tie rule, or
+figure layout. Record executable details before outcome-revealing development.
 
 Any small real-data diagnostic must use assigned development types only.
 Before their connection values are opened, its selection rule, allowed
@@ -298,6 +301,7 @@ plan. Static synapse counts alone do not establish signal transmission,
 selective gating, or a behavioral computation. A successful primary round
 does not automatically mean the paper-level claim has been earned.
 
-This local revision does not authorize data access, computation, or formal
-acceptance. No real EP12 analysis or final evaluation was run while preparing
-it.
+An explicit scientist launch authorizes the bounded episode-managed work
+described here, subject to the data roles above. It does not itself establish
+formal acceptance, reward, or a shared scientific claim. No real EP12 analysis
+or final evaluation was run while preparing this design.

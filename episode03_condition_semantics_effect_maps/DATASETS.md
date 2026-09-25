@@ -77,11 +77,12 @@ until audit opening.
 - The methods-only redaction audit and frozen text/model cache do not yet
   exist for the episode.
 - No prospective independent audit dataset group has been acquired, sealed,
-  or registered.
+  or authenticated.
 - Audit power and represented-family requirements must be calculated after the
   development inventory; this document does not fabricate a sample count.
-- The search policy and executable evaluator are unregistered, so launch is
-  blocked even if source bytes exist elsewhere.
+- The executable evaluator has not been qualified. This blocks candidate
+  scoring and audit opening even if source bytes exist elsewhere; it does not
+  block explicit task startup.
 
 ## Storage boundary
 

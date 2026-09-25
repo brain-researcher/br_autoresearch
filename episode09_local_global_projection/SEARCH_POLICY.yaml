@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep09_dendrite_distal_arbor_adaptive
 episode_id: ep09
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -120,11 +119,3 @@ terminal_mapping:
   incomplete_search: closed_no_candidate
   unresolved: closed_no_candidate
   technical_failure: technical_failure
-
-canonical_binding:
-  loop_id: null
-  goal_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true

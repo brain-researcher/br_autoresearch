@@ -8,11 +8,10 @@ rewrite or supersede their evidence records. The two runs archived under
 `../_examples/historical_prior_records/` remain immutable, fully exposed
 development priors.
 
-This contract is `planned_unregistered`. It does not authorize data access,
-computation, canonical Goal creation, Society review, reward, launch, audit
-opening, or a scientific claim. A new canonical program, Goal handoff, and loop
-identity are required; neither legacy loop may be reused. The common adaptive
-search requirements in
+An explicit scientist instruction may start bounded episode work under this
+contract. It does not itself authorize an audit opening, Society review,
+reward, or a scientific claim, and neither legacy loop identity may be reused.
+The common adaptive search requirements in
 [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md) apply.
 
 ## Research question
@@ -214,7 +213,8 @@ the useful-effect margin in all four environments. Otherwise close
 `closed_no_development_lock` without opening the audit. These rules are
 mutually exclusive by construction and do not fall back to an ineligible raw
 incumbent. The floor, margin, interval family, and multiplicity rule are
-launch-blocking until outcome-blind calibration and scientist signoff.
+required before development-lock eligibility until outcome-blind calibration
+and scientist signoff freeze them.
 
 For an eligible mechanism, freeze exactly one winner, one diagnostic runner-up,
 the complete nonkernel comparator set, all baselines, the global `K8_ref` DAG,
@@ -237,7 +237,7 @@ Audit output cannot enqueue a trial in this program. A frozen, eligible
 infrastructure retry that emitted no candidate-discriminating value is a
 receipt-linked continuation of that same transaction, not a second scientific
 opening; its exact failure list and maximum attempt count must be signed before
-launch.
+audit access.
 
 ## Incumbent, budget, and stopping rules
 
@@ -271,8 +271,8 @@ incumbent is never itself a stop event.
 
 ## Audit decision contract
 
-The following numerical values are provisional and therefore launch-blocking
-until synthetic calibration and scientist signoff freeze them.
+The following numerical values are provisional and therefore cannot govern
+audit opening until synthetic calibration and scientist signoff freeze them.
 
 ### Kernel-sufficient positive
 
@@ -297,8 +297,8 @@ If and only if the locked winner is nonkernel, then for both audit contrasts:
   analysis; and
 - required component ablations and negative controls behave as predicted.
 
-The simultaneous family and bootstrap draw count are launch-blocking until
-frozen. The two positive classes are mutually exclusive. A selected
+The simultaneous family and bootstrap draw count must be frozen before audit
+opening. The two positive classes are mutually exclusive. A selected
 `K8_ref` mechanism definitively fails transport if either contrast's ESC upper
 bound is below `0.80`, any member of the nonkernel comparator set has a
 DeltaESC lower bound of at least `0.05`, or a required stability/control check
@@ -331,7 +331,7 @@ or unresolved result without pretending it is confirmation.
 
 ## Required artifacts
 
-The registered program must produce immutable source, exposure, split, mask,
+The episode run must produce immutable source, exposure, split, mask,
 operator, and environment manifests; an append-only `experiments.jsonl` ledger;
 hypothesis genealogy and incumbent history; synthetic calibration; the full
 score/failure table; resource accounting; configuration lock; audit receipt;

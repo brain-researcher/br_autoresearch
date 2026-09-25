@@ -4,9 +4,10 @@ EP02 asks whether physiological mesolimbic dopamine changes the magnitude of a
 signed policy update or instead acts as the signed teaching signal or a direct
 reinforcer.
 
-The launch-blocked primary audit compares six `stimLick-` with five
-`stimLick+` mice. Nine controls are development-only; four high-amplitude mice
-form a post-primary boundary diagnostic that cannot rescue the primary result.
+The primary audit, which is not yet eligible to open, compares six
+`stimLick-` with five `stimLick+` mice. Nine controls are development-only;
+four high-amplitude mice form a post-primary boundary diagnostic that cannot
+rescue the primary result.
 
 Read [`GOAL.md`](GOAL.md), [`DATASETS.md`](DATASETS.md), and
 [`SEARCH_POLICY.json`](SEARCH_POLICY.json). The access contract is in
@@ -26,7 +27,7 @@ are a sensitivity space, not the documented randomized design or an ITT
 analysis. Endpoint field/time semantics and the physical firewall also remain
 unresolved.
 
-No generated preflight packet, calibration result, receipt, signature, or
+No generated runtime-qualification packet, calibration result, receipt, signature, or
 checksum is tracked as evidence. The tracked firewall contract has null
 runtime commitments and no signer pins by design. No search or audit has
 started.

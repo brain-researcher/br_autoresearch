@@ -14,6 +14,6 @@ the role-filtered development builder or one-shot audit evaluator. Scorability
 cannot move a participant after the role hash.
 
 Do not extract archives here, mount a mixed audit archive into a candidate
-worker, or infer launch authority from the verified shared source. After an
-authorized launch, transient extraction belongs under
+worker, or infer candidate/audit access from the verified shared source. During
+episode work, transient extraction belongs under
 `$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/`.

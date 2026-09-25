@@ -1,0 +1,129 @@
+schema_version: ep11.redacted_metadata_contract.v1
+episode_id: ep11
+run_id: ep11-stage0-20260925T000506Z
+purpose: build_role_safe_identity_and_source_support_views_without_candidate_projection_outcome_exposure
+
+trusted_boundary:
+  raw_source_sha256: 7cec6a78b83f27570c524ba76db637383c6e596e919c2eb7c11ff09a0009d0a1
+  raw_source_candidate_visible: false
+  trusted_process_may:
+    - hash_bytes
+    - validate_container_and_table_shape
+    - join_authenticated_external_identity_records
+    - apply_the_allow_list_and_emit_content_addressed_views
+  trusted_process_must_not_emit:
+    - raw_unallowlisted_columns
+    - projection_derived_values_or_diagnostics
+    - errors_or_logs_containing_row_values_from_forbidden_columns
+  every_operation_logs:
+    - actor_or_service_identity
+    - code_environment_and_command_hash
+    - input_and_output_sha256
+    - input_and_emitted_schema_hash
+    - row_counts_and_join_cardinalities
+    - fields_emitted
+    - whether_values_or_diagnostics_were_candidate_visible
+    - UTC_start_and_end
+
+allow_list:
+  identity:
+    - stable_cell_id
+    - provider_cell_id
+    - provider_brain_id_proxy
+    - authenticated_independent_animal_id
+    - specimen_id_if_distinct
+    - duplicate_family_id
+  soma_and_source:
+    - source_region
+    - source_subregion_if_preregistered
+    - raw_soma_x
+    - raw_soma_y
+    - raw_soma_z
+    - ccf_soma_x
+    - ccf_soma_y
+    - ccf_soma_z
+    - cortical_layer
+    - preregistered_depth
+  design_and_provenance:
+    - sex
+    - age
+    - strain
+    - genotype_or_cre_line
+    - labeling_strategy
+    - imaging_modality
+    - hemisphere
+    - source_laboratory
+    - acquisition_batch
+    - registration_batch
+    - reconstruction_version
+  outcome_blind_qc:
+    - manual_check_status
+    - complete_axon_reconstruction_flag_with_independent_provenance
+    - registration_qc_flag_with_independent_provenance
+    - metadata_missingness_flags
+  eligibility:
+    - eligible_under_frozen_metadata_rule
+    - exclusion_reason
+
+forbidden:
+  exact_fields:
+    - Projection class
+  semantic_classes:
+    - axon_or_projection_class
+    - target_region_presence_mass_length_terminal_count_or_proportion
+    - axon_embedding_cluster_or_latent_coordinate
+    - axonal_path_topology_or_arbor_feature
+    - outcome_derived_completeness_or_review_signal_without_independent_provenance
+    - development_or_audit_projection_score
+  unknown_columns: fail_closed_and_emit_no_values_until_steward_review
+
+role_safe_outputs:
+  candidate_readiness_aggregate:
+    contains:
+      - source_by_role_animal_counts
+      - cells_per_animal_distribution
+      - position_depth_layer_coverage_and_overlap_metrics
+      - experimental_stratum_coverage_and_missingness
+      - exclusions_and_unsampled_gaps
+    excludes:
+      - audit_cell_ids
+      - row_level_audit_coordinates
+      - every_projection_outcome
+  development_metadata_view:
+    contains: allow_list_fields_for_development_cells_only
+    candidate_visible_after_shared_ledger_freeze: true
+  audit_evaluator_metadata_view:
+    contains: allow_list_fields_for_audit_cells_only
+    candidate_visible: false
+  shared_role_ledger:
+    trusted_evaluator_visible: true
+    candidate_view: aggregate_role_counts_and_development_rows_only
+
+identity_and_role_requirements:
+  provider_brain_id_is_not_assumed_to_equal_animal: true
+  independent_animal_mapping_requires_external_authentication: true
+  unresolved_or_linked_ids: collapse_or_exclude_by_frozen_rule
+  shared_EP09_EP10_EP11_ledger_required: true
+  ledger_fields:
+    - stable_cell_id
+    - authenticated_independent_animal_id
+    - duplicate_family_id
+    - eligibility_and_exclusion_reason
+    - role_development_audit_sealed_or_excluded
+    - assignment_algorithm_and_seed
+    - sibling_episode_exposure_history
+    - first_outcome_access_UTC
+    - row_hash_and_ledger_hash
+
+exposure_semantics:
+  filesystem_readability_only: not_exposure
+  trusted_hash_format_join_or_redaction_without_visible_values: not_candidate_outcome_exposure_if_fully_logged
+  candidate_visible_projection_value_geometry_summary_diagnostic_error_or_plot: outcome_exposure
+  missing_or_ambiguous_access_record: affected_animals_cannot_be_claimed_as_fresh_audit
+
+completion_rule:
+  current_12_development_8_audit_minimum_is_design_specific: true
+  counts_must_be_verified_independent_animals_within_one_source_and_common_support: true
+  all_other_frozen_cell_overlap_missingness_precision_and_stratum_rules_must_pass: true
+  failure_means_current_data_do_not_support_current_design_not_absence_of_groups: true
+  prospective_redesign_or_additional_data_allowed_before_outcome_access_or_as_a_new_round: true

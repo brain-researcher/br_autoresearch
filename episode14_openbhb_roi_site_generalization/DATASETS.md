@@ -121,7 +121,7 @@ PCA, or any transform that requires audit-site identity or audit-distribution
 statistics is prohibited. Training-site labels may be used to learn a fixed
 projection only if its `transform(X)` requires features alone.
 
-## Role table and readiness
+## Role table and access status
 
 | Role | Rows | Current exposure | Permitted use |
 | --- | ---: | --- | --- |
@@ -132,5 +132,6 @@ projection only if its `transform(X)` requires features alone.
 | Retired RAMP/private leaderboard | not an active endpoint | historical only | no selection or claim |
 
 The clean feature bundle and quick evaluator are already reported ready. A
-compliant no-network audit-label handoff and a registered adaptive controller
-are not yet created and remain launch blockers.
+compliant no-network audit-label handoff is not yet created, so the audit
+cannot open. Candidate work must also implement and qualify the adaptive
+controller before scored search.

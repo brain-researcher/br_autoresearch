@@ -1,9 +1,8 @@
 # Governance
 
-EP10 is ready to launch. The run begins by choosing a usable morphology source,
-making a whole-group development/final split, and defining how targets are
-called. These are the first scientific tasks of the run, not separate
-administrative launch gates.
+EP10 begins by choosing a usable morphology source, making a whole-group
+development/final split, and defining how targets are called. These first
+scientific tasks determine whether the subsequent search is feasible.
 
 No result is claimed here. The shared-target anatomy endpoint remains
 secondary: A, B, C, its metric, and its prediction must be chosen in

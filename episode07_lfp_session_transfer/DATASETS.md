@@ -180,8 +180,8 @@ requires a new versioned build before further search.
 The episode must materialize or deterministically address role-specific views
 and record their hashes. Candidate fitting code must not receive labels from a
 forbidden role. OS-level permission separation, encryption, separate service
-identities, and an external broker are optional implementation choices rather
-than launch prerequisites.
+identities, and an external broker are optional ways to enforce the required
+role isolation.
 
 ### Candidate development handoff
 
@@ -264,6 +264,79 @@ wholly unseen day, zero-shot transfer, cross-animal transfer, cross-implant
 transfer, cross-region transfer, raw-voltage performance, or clinical
 generalization.
 
+## Data needed to explain what transfers
+
+The first-round audit answers only whether source days add predictive value.
+The [paper plan](outputs/paper_plan.md) proposes a later mechanism study. That
+study must not broaden candidate access during the primary search or change the
+primary day/trial roles, estimand, terminal rule, or one-open audit.
+
+| Data | Proposed use after the primary conclusion is fixed | Evidence status |
+| --- | --- | --- |
+| Source days and target-development trials already assigned above | Fit separate residual-only source-bearing and calibration-only models after removing training/calibration-estimated direction-by-time means from both LFP inputs and spike targets; score the mean component separately | Mechanism development in an already exposed corpus, not confirmation |
+| Primary audit predictions and outcomes | Report the already locked primary result and only secondary readouts that were frozen before its one opening | Consumed internal audit evidence; it cannot be reopened to choose a mechanism |
+| Chewie-R records under a separately frozen manifest | Test whether conclusions are fragile to implant identity | Implant sensitivity in the same animal, not a third-animal replication |
+| Newly sequestered longitudinal sessions with compatible LFP, spikes, behavior, and calibration support | Test a frozen rule for residual transfer and for predicting which sessions benefit from source data | Required for a new-day or external-animal claim |
+
+The development mechanism view needs, for every permitted day and stratum:
+
+- native trial, direction, and time-bin identities so the target-calibration
+  direction-by-time means for both LFP inputs and spike targets can be computed
+  without evaluation outcomes, with analogous source-training-only means;
+- the exact authenticated LMP and eight power-band identities, electrode-set
+  summaries, and every transform used by the locked primary policy;
+- source-fitted and target-calibrated latent coordinates, prediction
+  components, and source-day/component ablation records; and
+- enough immutable prediction output to score native counts and
+  separately fitted within-direction/time residual predictions without
+  refitting on held-out targets; and
+- physical electrode/unit joins, feature-band identities, and spike-quality
+  summaries needed for LMP/low-frequency-only, 100--400 Hz exclusion,
+  same-electrode/unit-intersection, and quality-matched sensitivities.
+
+Subtracting one mean from both a completed full prediction and its target is
+not a residual mechanism test: it leaves their SSE unchanged. The follow-up
+must instead fit the source-bearing and calibration-only mappings to residual
+inputs and residual targets, keep their capacity and tuning opportunities
+matched, and forbid uncentered source values or a source mean template from
+entering that score.
+
+These records explain a fitted policy; they do not license matching neurons or
+numeric electrodes across days. A component is a transferable population
+coordinate only if its construction uses the allowed behavior anchors and
+target calibration. Similar-looking components found by fitting evaluation
+outcomes are target-side fits and cannot support transfer.
+
+Because the target-development outcomes have already been exposed to the
+primary evaluator, the mechanism candidate list and all ties are frozen before
+the first new mechanism-specific score or diagnostic is computed or returned.
+Only secondary audit readouts registered before the original one-shot opening
+may be reported from the consumed audit. Any mechanism chosen with development
+evidence receives its first prospective test only on newly sequestered days.
+
+### A separate firewall for the forward prediction
+
+Before any newly sequestered target outcome is opened, freeze the source days,
+target-day structural criteria, target calibration fraction, feature meanings,
+population-coordinate construction, residual definition, models, comparator,
+meaningful margins, multiplicity, missing-data rules, compute limit, and result
+table. The target-day calibration set may be used exactly as declared; the
+remaining spike targets are withheld.
+
+The forward rule must return two things without those targets: predicted
+population activity and a predicted source-benefit score for the session. The
+latter is compared with the observed source-versus-calibration-only gain only
+after the session is opened. A target session cannot be discarded because its
+predicted benefit is low or because transfer fails.
+
+No compatible fresh source is currently selected. A third animal with enough
+chronological source and target sessions would test whether the procedure
+transfers across animals while still fitting neural weights separately within
+animal. A genuinely unexposed later session in one existing animal would test
+new-day transfer but not population generalization. Public sessions, cached
+outcomes, or days inspected while choosing the mechanism remain development
+evidence and must be logged as such.
+
 ## Provisioning status and storage
 
 The numeric execution bundle is defined jointly by
@@ -274,9 +347,8 @@ shape fallback, or trial-count rule from the raw release.
 
 Acquisition is complete. Structural eligibility, numeric-value/guide checks,
 role-specific views, exposure recording, controller qualification, runtime
-profiling, and held-out evaluation remain. They are opening stages of the
-launched episode and may produce a technical terminal; they are not external
-readiness or launch gates.
+profiling, and held-out evaluation remain. They are performed during the
+episode task and may produce a technical terminal.
 
 Large immutable bytes remain outside Git. Transient computation belongs in a
 dedicated `$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`

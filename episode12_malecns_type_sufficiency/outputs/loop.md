@@ -1,4 +1,5 @@
 # Loop
 
-No canonical action is inferred from this local workspace. Query the live
-Brain Researcher state before launch or resume.
+Launch and resume follow explicit scientist instruction and the episode's local
+contract. Query live Brain Researcher state only before requesting canonical
+review, reward, or a shared campaign transition.

@@ -26,5 +26,6 @@
 
 ## Remaining uncertainty
 
-- All scientific and implementation uncertainty remains open until the launch
-  blockers in `../SEARCH_POLICY.yaml` are resolved.
+- All scientific and implementation uncertainty remains open; the source,
+  reference-model, candidate-scoring, and audit qualifications in
+  `../SEARCH_POLICY.yaml` have not been evaluated.

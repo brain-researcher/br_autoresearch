@@ -2,7 +2,7 @@
 
 ## Authority boundary
 
-This protocol is executed inside each launched episode. A local contract,
+This protocol is executed inside each explicitly started episode. A local contract,
 controller implementation, or successful development run is not scientific
 acceptance or a Landscape update, but no external registration, readiness
 promotion, evaluator service, or canonical receipt is required to begin the
@@ -52,7 +52,8 @@ Validate schemas, split isolation, evaluator behavior, nulls, metrics,
 determinism, resource metering, and audit rejection on synthetic fixtures.
 Freeze tolerances without reading candidate-discriminating held-out outcomes.
 These checks happen after the episode starts. A failed bootstrap is recorded as
-an episode-local technical terminal rather than a portfolio launch blocker.
+an episode-local technical terminal; it does not retroactively prevent task
+startup.
 
 ### Stage 1: branch coverage
 
@@ -93,7 +94,7 @@ It applies the episode's declared held-out or audit rule, emits only predeclared
 outputs, records access, and rejects subsequent development trials for the
 round. An evaluation result may change the conclusion class but cannot enqueue
 a challenger. Whether this path uses process/permission separation is an
-episode design choice, not a root launch requirement.
+episode design choice, not a root task-startup requirement.
 
 ## Trial state machine
 
@@ -142,7 +143,7 @@ A development round stops only on the first applicable frozen event:
 The first positive result, first negative result, appearance of an incumbent,
 or failure of one branch is not a stop event. A scientist may stop a run, but
 that interrupted run does not become verified adaptive-search evidence unless
-the registered terminal contract explicitly permits it.
+the frozen terminal contract explicitly permits it.
 
 ## Shared-source dependence
 
@@ -163,7 +164,7 @@ metric is visible, the audit is consumed.
 
 Episode documents may name scientific `conclusion_class` values such as
 `hybrid_supported`, `policy_improved`, `audit_failed`, or `unresolved`. Those
-labels do not invent new outer-loop states. Unless a future registered program
+labels do not invent new outer-loop states. Unless a future frozen program
 explicitly defines a compatible typed extension, the canonical bundle status
 remains one of:
 

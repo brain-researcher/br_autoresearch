@@ -1,0 +1,109 @@
+schema_version: ep11.stage0_launch_manifest.v1
+manifest_state: frozen
+episode_id: ep11
+run_id: ep11-stage0-20260925T000506Z
+launch_utc: 2026-09-25T00:05:06Z
+manifest_created_utc: 2026-09-25T00:07:54Z
+
+authority:
+  kind: explicit_user_authorized_local_episode_run
+  user_authorization_text: 好_那就继续
+  registration_status: unregistered
+  canonical_program_id: null
+  canonical_actions_authorized: false
+  scientific_acceptance_or_reward_authorized: false
+
+execution_boundary:
+  launch_mechanism: continued_in_current_Codex_task_after_explicit_user_authorization
+  nested_bin_codex_episode_session_spawned: false
+  reason_no_nested_session: avoid_duplicate_agent_while_preserving_episode_only_write_scope
+  workspace: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients
+  scratch: /scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients
+  persistent_write_scope: episode11_projection_types_vs_gradients_only
+  inputs_instruction_level_read_only: true
+
+run_state:
+  local_run_status: stage0_active
+  scientific_status: no_result
+  outcome_bearing_development: blocked
+  audit_open_count: 0
+  audit_consumed: false
+  Society_called: false
+  Landscape_transition: false
+
+stage0_scope:
+  allowed:
+    - contract_schema_and_static_validation
+    - quarantine_receipt_file_metadata_and_byte_hash_verification
+    - metadata_access_policy_and_trusted_handoff_design
+    - outcome_blind_synthetic_fixture_and_evaluator_development
+    - acceptance_of_future_content_addressed_trusted_redacted_products
+  forbidden:
+    - decoding_or_viewing_raw_workbook_cells_in_the_candidate_process
+    - opening_morphology_archive_contents
+    - viewing_axonal_geometry_projection_features_summaries_or_diagnostics
+    - candidate_discriminating_source_selection_from_projection_outcomes
+    - development_model_fitting_on_real_projection_outcomes
+    - audit_outcome_access
+    - canonical_review_reward_confirmation_or_Landscape_mutation
+
+source_revision:
+  git_HEAD: fa0498124b311ef06419ac2075b7e1aec9f50a4c
+  worktree_dirty_at_launch: true
+  prelaunch_git_status_sha256: bdb1c700b5edef2001735d7fc7aba884518a35052911767cead7f1f98a30841b
+  unrelated_dirty_paths_preserved: true
+
+frozen_document_hashes:
+  AGENTS_md: c55c9dc6d5c0f6d3a74853233407bdcccc4d2af005ca66e2cfc22df5b68aaeb0
+  ADAPTIVE_SEARCH_PROTOCOL_md: f291aa43c630f878baf055576f59759de8cf7f6bf116896f7e7eb01afdf149da
+  bin_codex_episode: 372e3eaa61233d24f39ffcb493e90bd7ec9046b3f08a2a69f7caa2d98a7e8edc
+  GOAL_md: b95d9f3e8ed2f7315326f00ee47c9143f31cf58c62ba80fa928ef4c753b0f93a
+  DATASETS_md: 89d189099b64d71a2ec558444a9ea1b3840b7790ba95d6ef8b18cdf111ec2aae
+  SEARCH_POLICY_yaml: 9abf97f6f97ac0b061b4070e6337a3eb0a80c7a67e7eea87b7186b62a7d234d5
+  redacted_metadata_contract_yaml: 7b43074e46806e90f04fda6ffb42bb2789d41e97b074db7a53074da449d0b9a2
+  readiness_status_yaml: 8d3add854ebea9700970e3dab7b2c7c1d3ddfcffeaa9d2c7596728e05c90898e
+  steward_handoff_md: dd010b535cb560e994e69273d7e61b8fee75faf866cd572c75b70c7f623c82b0
+
+source_receipt_hashes:
+  SEU_quarantine_md: 10488fadbf03b02b896e0ddbbb87539db28ba438dbb87669f1727b9f626a4a45
+  SEU_SHA256SUMS: cd5f66cc8715c46b232d16b294fd51c501c908745f6f9fb6ce7496a4113fecd1
+  Full_morphometry_xlsx: 7cec6a78b83f27570c524ba76db637383c6e596e919c2eb7c11ff09a0009d0a1
+  Allen_CCF_quarantine_md: 45f3e164f5da4496d4208855aeb2bdcfc275dfd5af116a42100b9f1152ef2810
+  Allen_CCF_SHA256SUMS: c7f5bfa6fdd473f91751204944aace06a8eaa89baab4b932f042737f8df15d07
+  Allen_annotation_25_ccf_2017_nrrd: c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42
+  Allen_average_template_25_nrrd: e4a2b483e842b4c8c1b5452d940ea59e14bc1ebaa38fe6a9c3bacac6db2a8f4b
+  Allen_structure_graph_1_json: b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386
+
+environment:
+  OS: Linux_3.10.0-1160.156.1.el7.tuxcare.els3.x86_64_x86_64_GNU_Linux
+  Python: 3.13.13
+  uv: 0.8.17
+  scheduler_available: Slurm_sbatch
+  GPU_hours_authorized: 0
+  heavy_compute_started: false
+
+access_at_launch:
+  raw_workbook_values_opened_in_this_run: false
+  morphology_archive_contents_opened_in_this_run: false
+  projection_outcomes_visible_in_this_run: false
+  audit_outcomes_visible_in_this_run: false
+  mechanical_hashing_counts_as_candidate_outcome_exposure: false
+  access_uncertainty_rule: affected_animals_not_fresh_audit
+
+pending_before_real_development:
+  - trusted_allow_list_redaction_builder_and_receipt
+  - authenticated_brain_ID_to_independent_animal_crosswalk
+  - cell_file_duplicate_and_reconstruction_lineage
+  - immutable_shared_EP09_EP10_EP11_exposure_and_role_ledger
+  - source_by_animal_position_depth_support_census
+  - design_specific_precision_and_synthetic_recovery_justification
+  - role_safe_development_and_evaluator_only_audit_views
+  - validated_CCF_orientation_ontology_and_SEU_transform_binding
+  - qualified_stage0_synthetic_evaluator_and_determinism_checks
+  - identical_observed_and_99_null_controller_compute_profile
+
+completion_semantics:
+  stage0_goal: produce_a_role_safe_development_set_for_real_projection_exploration
+  current_12_plus_8_is_design_specific_not_universal: true
+  no_supported_source_means_current_data_design_mismatch_not_absence_of_groups: true
+  prospective_redesign_before_outcome_access_or_new_round_after_exposure: allowed

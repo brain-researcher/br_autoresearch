@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "manifest_id": "br-autoresearch-data-locations-v1",
-  "observed_at": "2026-09-23T13:35:00-07:00",
+  "observed_at": "2026-09-24T10:18:46-07:00",
   "inventory_scope": "Sherlock paths used by, referenced by, or discovered while reconciling the canonical br_autoresearch workspace with the legacy autoresearch workspace",
-  "inventory_only": true,
+  "inventory_only": false,
   "mutations_performed": [
     {
       "action": "create_directory",
@@ -34,6 +34,66 @@
       "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/README.md",
       "mode": "0640",
       "payload_materialized": false
+    },
+    {
+      "action": "same_filesystem_rename",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/.steward_acquisition",
+      "destination_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
+      "device_id": "3626059016",
+      "preserved_inode": "144123848743269482",
+      "preserved_mode": "2700",
+      "source_absent_after_action": true,
+      "destination_present_after_action": true
+    },
+    {
+      "action": "same_filesystem_rename",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw",
+      "destination_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
+      "device_id": "3626059016",
+      "preserved_inode": "144123810474378061",
+      "preserved_mode": "2550",
+      "source_absent_after_action": true,
+      "destination_present_after_action": true
+    },
+    {
+      "action": "remove_duplicate_tree",
+      "logical_id": "scratch_things_eeg1_ingest",
+      "source_path": "/scratch/users/zijiao/autoresearch_ingest/things_eeg1",
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source",
+      "source_absent_after_action": true,
+      "durable_path_present_after_action": true
+    },
+    {
+      "action": "remove_duplicate_tree",
+      "logical_id": "scratch_ep05_payload",
+      "source_path": "/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp/source/zenodo_7055668/payload",
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source",
+      "source_absent_after_action": true,
+      "durable_path_present_after_action": true
+    },
+    {
+      "action": "remove_duplicate_tree",
+      "logical_id": "personal_link_001201_full",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_full",
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source",
+      "source_absent_after_action": true,
+      "durable_path_present_after_action": true
+    },
+    {
+      "action": "remove_duplicate_tree",
+      "logical_id": "personal_link_001201_sentinels",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_sentinels",
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source/sub-Monkey-N",
+      "source_absent_after_action": true,
+      "durable_path_present_after_action": true
+    },
+    {
+      "action": "remove_duplicate_tree",
+      "logical_id": "personal_epic_ptir_coating",
+      "source_path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/epic_ptir_coating",
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/epic_ptir_coating/mendeley-7p3cxn7jtn-v1/source",
+      "source_absent_after_action": true,
+      "durable_path_present_after_action": true
     }
   ],
   "authority": {
@@ -41,25 +101,29 @@
     "deletes_authorized": false,
     "existing_source_permission_changes_authorized": false,
     "external_directory_creation_authorized": true,
-    "scientific_role_changes_authorized": false
+    "scientific_role_changes_authorized": false,
+    "completed_renames_explicitly_authorized": true,
+    "completed_duplicate_removals_explicitly_authorized": true,
+    "completed_authority_does_not_extend_to_future_actions": true
   },
   "interpretation": [
     "A listed path is an observed storage location, not launch permission or scientific evidence.",
     "Logical byte counts are non-additive when a parent and its children are both listed or when files are hard-linked.",
     "Byte fields are inventory snapshots, not quota usage: release-tree totals are regular-file sums, while inaccessible protected trees are explicitly reported only as lower bounds or unknown.",
-    "A planned payload destination is a routing decision only. The empty private namespace exists, but no planned scientific payload leaf exists and no move has begun.",
+    "The private steward tree and EP17 restricted raw tree now reside under the private br_autoresearch_data root after same-filesystem renames.",
+    "The five named duplicate sources were removed after their durable counterparts were retained; this records completed cleanup and does not authorize further deletion.",
     "Recovery, evaluator-only, restricted, and audit material must retain their access boundaries during any later migration.",
     "Live Brain Researcher service state under /app/jobstore/autoresearch is outside this filesystem inventory."
   ],
   "migration_state_definitions": {
     "canonical_in_place": "Already in the selected durable location; no relocation planned.",
     "external_in_place": "Managed external shared pool; referenced in place and not owned by this migration.",
-    "staged_not_moved": "A source and destination are named, but no copy, rename, link, permission change, or deletion has occurred.",
-    "destination_namespace_created": "Only the empty destination namespace and its explanatory README exist; no scientific payload has moved.",
+    "relocated_source_absent": "A named source path is absent after its same-filesystem rename to the recorded durable destination.",
+    "duplicate_removed": "A named duplicate source is absent after authorized cleanup while its recorded durable counterpart remains present.",
     "absent_planned_target": "The destination is intentionally absent at the observation time.",
     "protected_hold": "Retain exactly in place until a separate access-aware decision is approved.",
     "transient_retained": "Scratch/runtime data remain in place; no cleanup was authorized.",
-    "duplicate_review": "A possible duplicate or superseded staging copy requires hash and completeness comparison before any cleanup decision.",
+    "duplicate_review": "A possible duplicate or superseded staging copy requires separate review before any cleanup decision.",
     "same_allocation_alias": "A legacy path and a durable path refer to the same hard-linked file allocation; removal still requires explicit review because link topology matters.",
     "destination_unassigned": "The current location is inventoried, but no destination has been approved."
   },
@@ -125,25 +189,27 @@
       ]
     },
     {
-      "logical_id": "planned_private_data_root",
-      "class": "planned_durable_private_data_root",
+      "logical_id": "private_data_root",
+      "class": "durable_private_data_root",
       "current_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data",
       "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data",
       "exists_observed": true,
       "device_id": "3626059016",
       "inode": "144123848743278183",
       "mode": "2750",
-      "migration_state": "destination_namespace_created",
+      "migration_state": "canonical_in_place",
       "notes": [
-        "Phase 1 created only this namespace, manifests/, restricted/, recovery/, and README.md; no scientific payload was materialized.",
+        "This private durable root now contains the relocated steward tree and EP17 restricted raw source in addition to manifests/, restricted/, recovery/, and README.md.",
         "This root is for private steward and restricted material that must not be placed in the Git worktree or the public shared release root.",
-        "The final steward_acquisition directory and restricted CNeuroMod payload child remain absent."
+        "The two relocated directories preserved their source inode and mode."
       ],
-      "skeleton_children": [
+      "observed_children": [
         {"relative_path": "manifests", "mode": "2750", "type": "directory"},
         {"relative_path": "restricted", "mode": "2700", "type": "directory"},
         {"relative_path": "recovery", "mode": "2700", "type": "directory"},
-        {"relative_path": "README.md", "mode": "0640", "type": "file"}
+        {"relative_path": "README.md", "mode": "0640", "type": "file"},
+        {"relative_path": "steward_acquisition", "mode": "2700", "type": "directory", "inode": "144123848743269482"},
+        {"relative_path": "restricted/cneuromod-things-1.0.1-restricted-raw", "mode": "2550", "type": "directory", "inode": "144123810474378061"}
       ]
     },
     {
@@ -155,10 +221,11 @@
       "device_id": "3626059016",
       "inode": "144123791952349829",
       "mode": "2770",
-      "observed_accessible_logical_bytes_lower_bound": 1259022510824,
+      "observed_accessible_logical_bytes_lower_bound": null,
+      "size_observation": "not_remeasured_after_completed_renames",
       "migration_state": "destination_unassigned",
       "notes": [
-        "The accessible lower bound includes the steward tree and EP17 restricted raw source listed separately, so totals must not be added.",
+        "The previous accessible lower bound included the steward tree and EP17 restricted raw source, both of which have now moved to the private durable root; the remaining worktree was not remeasured.",
         "The execute-only evaluator vault could not be enumerated; this is not a complete worktree total.",
         "The worktree remains preserved; no bulk move, reset, cleanup, or delete is implied."
       ]
@@ -267,70 +334,72 @@
     },
     {
       "logical_id": "legacy_steward_acquisition",
-      "class": "legacy_private_steward_and_quarantine",
-      "current_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/.steward_acquisition",
+      "class": "former_legacy_private_steward_source",
+      "current_path": null,
+      "former_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/.steward_acquisition",
       "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
-      "planned_destination_logical_id": "planned_steward_acquisition",
+      "destination_logical_id": "private_steward_acquisition",
+      "exists_observed": false,
+      "source_device_id": "3626059016",
+      "source_inode_before_rename": "144123848743269482",
+      "source_mode_before_rename": "2700",
+      "relocated_logical_bytes_from_prior_inventory": 1107441081281,
+      "migration_state": "relocated_source_absent",
+      "notes": [
+        "This former source is absent after a same-filesystem rename to private_steward_acquisition.",
+        "The rename preserved inode 144123848743269482 and mode 2700."
+      ]
+    },
+    {
+      "logical_id": "private_steward_acquisition",
+      "class": "durable_private_steward_and_quarantine",
+      "current_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
+      "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
       "exists_observed": true,
       "device_id": "3626059016",
       "inode": "144123848743269482",
       "mode": "2700",
       "observed_logical_bytes": 1107441081281,
-      "migration_state": "staged_not_moved",
+      "migration_state": "canonical_in_place",
       "notes": [
-        "Contains mixed-role, steward-only, DUA-bound, evaluator-sensitive, and acquisition-control material.",
-        "A later migration must preserve per-subtree permissions and must not flatten scientific roles."
-      ]
-    },
-    {
-      "logical_id": "planned_steward_acquisition",
-      "class": "planned_private_steward_and_quarantine",
-      "current_path": null,
-      "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
-      "exists_observed": false,
-      "nearest_existing_ancestor": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data",
-      "nearest_existing_ancestor_device_id": "3626059016",
-      "nearest_existing_ancestor_inode": "144123848743278183",
-      "nearest_existing_ancestor_mode": "2750",
-      "migration_state": "absent_planned_target",
-      "notes": [
-        "Must remain outside the Git worktree.",
-        "No move is valid until destination permissions, capacity, hashes, open file handles, and an explicit rollback plan are checked."
+        "Relocated here from the legacy worktree by same-filesystem rename on 2026-09-24.",
+        "Contains mixed-role, steward-only, DUA-bound, evaluator-sensitive, and acquisition-control material and remains outside the Git worktree."
       ]
     },
     {
       "logical_id": "legacy_ep17_restricted_raw",
-      "class": "restricted_episode_source",
+      "class": "former_legacy_restricted_episode_source",
       "episode_ids": ["EP17"],
-      "current_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw",
+      "current_path": null,
+      "former_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw",
       "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
-      "planned_destination_logical_id": "planned_ep17_restricted_raw",
+      "destination_logical_id": "ep17_restricted_raw",
+      "exists_observed": false,
+      "source_device_id": "3626059016",
+      "source_inode_before_rename": "144123810474378061",
+      "source_mode_before_rename": "2550",
+      "relocated_logical_bytes_from_prior_inventory": 138237732540,
+      "migration_state": "relocated_source_absent",
+      "notes": [
+        "This former source is absent after a same-filesystem rename to ep17_restricted_raw.",
+        "The rename preserved inode 144123810474378061 and mode 2550."
+      ]
+    },
+    {
+      "logical_id": "ep17_restricted_raw",
+      "class": "durable_restricted_episode_source",
+      "episode_ids": ["EP17"],
+      "current_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
+      "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
       "exists_observed": true,
       "device_id": "3626059016",
       "inode": "144123810474378061",
       "mode": "2550",
       "observed_logical_bytes": 138237732540,
-      "migration_state": "staged_not_moved",
+      "migration_state": "canonical_in_place",
       "notes": [
-        "Restricted CNeuroMod-THINGS 1.0.1 raw source.",
-        "Do not broaden access, place in public shared storage, or expose to candidate workers."
-      ]
-    },
-    {
-      "logical_id": "planned_ep17_restricted_raw",
-      "class": "planned_restricted_episode_source",
-      "episode_ids": ["EP17"],
-      "current_path": null,
-      "planned_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
-      "exists_observed": false,
-      "nearest_existing_ancestor": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted",
-      "nearest_existing_ancestor_device_id": "3626059016",
-      "nearest_existing_ancestor_inode": "144123848743278187",
-      "nearest_existing_ancestor_mode": "2700",
-      "migration_state": "absent_planned_target",
-      "notes": [
-        "The final directory was absent during Phase 1.",
-        "The destination must preserve or tighten mode 2550 and all applicable data-use restrictions."
+        "Relocated here from the legacy EP17 input tree by same-filesystem rename on 2026-09-24.",
+        "Restricted CNeuroMod-THINGS 1.0.1 raw source; access mode 2550 and its data-use restrictions remain in effect."
       ]
     },
     {
@@ -360,13 +429,14 @@
       "device_id": "3863872424",
       "inode": "198170919355651489",
       "mode": "755",
-      "observed_logical_bytes": 189764571364,
+      "observed_logical_bytes": null,
+      "size_observation": "not_remeasured_after_scratch_ep05_payload_removal",
       "migration_state": "transient_retained",
       "notes": [
-        "This is the legacy launcher/runtime convention.",
-        "The current launcher uses $SCRATCH/br_autoresearch/<episode-name>.",
-        "It contains large EP04 and EP05 trees listed separately, a small EP02 runtime tree, and an empty EP14 directory.",
-        "Scratch is not durable storage and no content was deleted."
+        "This is the legacy episode-runtime convention.",
+        "Current episode tasks use $SCRATCH/br_autoresearch/<episode-name>.",
+        "It contains the EP04 and residual EP05 runtime trees listed separately, a small EP02 runtime tree, and an empty EP14 directory.",
+        "The EP05 duplicate payload subtree was removed on 2026-09-24; other runtime content remains outside this cleanup scope."
       ]
     },
     {
@@ -379,7 +449,7 @@
       "nearest_existing_ancestor_device_id": "3863872424",
       "migration_state": "absent_planned_target",
       "notes": [
-        "The current launcher derives episode scratch as $SCRATCH/br_autoresearch/<episode-name>.",
+        "Current episode instructions place scratch at $SCRATCH/br_autoresearch/<episode-name>.",
         "The root is created on demand for runtime use and is never a durable migration destination."
       ]
     },
@@ -401,33 +471,50 @@
     },
     {
       "logical_id": "scratch_ep05",
-      "class": "legacy_runtime_and_duplicate_candidate",
+      "class": "legacy_residual_runtime_root",
       "episode_ids": ["EP05"],
       "current_path": "/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp",
       "planned_path": null,
       "exists_observed": true,
       "device_id": "3863872424",
-      "observed_logical_bytes": 10355797454,
-      "migration_state": "duplicate_review",
+      "observed_logical_bytes": null,
+      "size_observation": "not_remeasured_after_payload_removal",
+      "migration_state": "transient_retained",
       "notes": [
-        "Includes a 9595154029-byte independent source copy.",
-        "The durable public shared sensorimotor release and its provenance must be verified before any cleanup."
+        "The duplicate payload subtree is recorded separately as scratch_ep05_payload and is now absent.",
+        "Residual runtime material remains at this parent path and was not part of the completed duplicate cleanup."
+      ]
+    },
+    {
+      "logical_id": "scratch_ep05_payload",
+      "class": "removed_duplicate_payload",
+      "episode_ids": ["EP05"],
+      "current_path": "/scratch/users/zijiao/autoresearch/episode05_sensorimotor_lfp/source/zenodo_7055668/payload",
+      "planned_path": null,
+      "exists_observed": false,
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source",
+      "durable_path_exists_observed": true,
+      "migration_state": "duplicate_removed",
+      "notes": [
+        "The duplicate scratch payload source was removed on 2026-09-24.",
+        "The durable public shared payload remains present."
       ]
     },
     {
       "logical_id": "scratch_things_eeg1_ingest",
-      "class": "completed_ingest_staging_and_duplicate_candidate",
+      "class": "removed_completed_ingest_staging_duplicate",
       "episode_ids": ["EP18"],
       "current_path": "/scratch/users/zijiao/autoresearch_ingest/things_eeg1",
       "planned_path": null,
-      "exists_observed": true,
+      "exists_observed": false,
       "device_id": "3863872424",
-      "observed_logical_bytes": 59756711360,
-      "migration_state": "duplicate_review",
+      "removed_source_logical_bytes_from_prior_inventory": 59756711360,
+      "durable_path": "/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source",
+      "durable_path_exists_observed": true,
+      "migration_state": "duplicate_removed",
       "notes": [
-        "Contains a materialized staging copy corresponding to the durable THINGS-EEG1 public shared release.",
-        "The temporary DataLad tag tree contained 302 broken annex symlinks; the separate materialized copy remained present.",
-        "No cleanup was performed."
+        "The completed ingest staging duplicate was removed on 2026-09-24.",
+        "The durable THINGS-EEG1 public shared source remains present."
       ]
     },
     {
@@ -608,26 +695,29 @@
     {
       "logical_id": "personal_link_001201_full",
       "path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_full",
-      "exists_observed": true,
-      "observed_logical_bytes": 12563342400,
-      "candidate_authoritative_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336",
-      "migration_state": "duplicate_review"
+      "exists_observed": false,
+      "removed_source_logical_bytes_from_prior_inventory": 12563342400,
+      "durable_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source",
+      "durable_location_exists_observed": true,
+      "migration_state": "duplicate_removed"
     },
     {
       "logical_id": "personal_link_001201_sentinels",
       "path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/link_001201_sentinels",
-      "exists_observed": true,
-      "observed_logical_bytes": 131894812,
-      "candidate_authoritative_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336",
-      "migration_state": "duplicate_review"
+      "exists_observed": false,
+      "removed_source_logical_bytes_from_prior_inventory": 131894812,
+      "durable_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/link_long_term_intracortical/dandi-001201-0.251023.2336/source/sub-Monkey-N",
+      "durable_location_exists_observed": true,
+      "migration_state": "duplicate_removed"
     },
     {
       "logical_id": "personal_epic_ptir_coating",
       "path": "/oak/stanford/groups/russpold/users/zijiao/data/bci_poc/epic_ptir_coating",
-      "exists_observed": true,
-      "observed_logical_bytes": 136481,
-      "candidate_authoritative_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/epic_ptir_coating/mendeley-7p3cxn7jtn-v1",
-      "migration_state": "duplicate_review"
+      "exists_observed": false,
+      "removed_source_logical_bytes_from_prior_inventory": 136481,
+      "durable_location": "/oak/stanford/groups/russpold/data/br_autoresearch_data/epic_ptir_coating/mendeley-7p3cxn7jtn-v1/source",
+      "durable_location_exists_observed": true,
+      "migration_state": "duplicate_removed"
     },
     {
       "logical_id": "personal_braingate_20y_t3_empty",
@@ -651,6 +741,7 @@
       "notes": "Contains only an empty 0.251023.2336 directory scaffold at observation time."
     }
   ],
+  "steward_assets_root_location_id": "private_steward_acquisition",
   "steward_assets": [
     {
       "logical_id": "asset_ep03_neuroeffect_spatial_sources",
@@ -658,7 +749,7 @@
       "relative_path": "neuroeffect_spatial_sources_20260917T200750Z",
       "observed_logical_bytes": 44289249234,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep03_neuroeffect_promotion_control",
@@ -666,7 +757,7 @@
       "relative_path": "neuroeffect_spatial_promotion_control",
       "observed_logical_bytes": 8922,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep04_laion_mixed_role",
@@ -674,7 +765,7 @@
       "relative_path": "laion_fmri_mixed_role_20260922",
       "observed_logical_bytes": 177148547447,
       "mode": "2500",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep04_laion_raw_stimuli_dua",
@@ -682,7 +773,7 @@
       "relative_path": "laion_fmri_raw_stimuli_dua_20260922",
       "observed_logical_bytes": 3424019245,
       "mode": "0700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep09_ep10_ep11_seu_a1876",
@@ -690,7 +781,7 @@
       "relative_path": "seu_a1876_zenodo_13944322",
       "observed_logical_bytes": 3408545245,
       "mode": "2500",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep10_seu_optional_bouton",
@@ -698,7 +789,7 @@
       "relative_path": "seu_a1876_optional_bouton_zenodo_13944322",
       "observed_logical_bytes": 1419145283,
       "mode": "2550",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep09_ep10_ep11_allen_ccfv3",
@@ -706,7 +797,7 @@
       "relative_path": "allen_ccfv3_25um_2017_20260922",
       "observed_logical_bytes": 37689634,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep09_ccf_me",
@@ -714,7 +805,7 @@
       "relative_path": "ccf_me_zenodo_13801372_v2",
       "observed_logical_bytes": 736812421,
       "mode": "2550",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep17_cneuromod_images",
@@ -722,7 +813,7 @@
       "relative_path": "cneuromod_images_fmri_pinned_f8f5162_20260922",
       "observed_logical_bytes": 917908140,
       "mode": "2550",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep18_things_images",
@@ -730,7 +821,7 @@
       "relative_path": "things_images_osf_jum2f_snapshot_20260922",
       "observed_logical_bytes": 5022543110,
       "mode": "2550",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep18_things_metadata",
@@ -738,7 +829,7 @@
       "relative_path": "things_metadata_osf_jum2f_20260922",
       "observed_logical_bytes": 53306417,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep18_thingsplus_cc0",
@@ -746,7 +837,7 @@
       "relative_path": "thingsplus_cc0_osf_jum2f_20260922",
       "observed_logical_bytes": 1177428502,
       "mode": "2550",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep18_thingsplus_control",
@@ -754,7 +845,7 @@
       "relative_path": "thingsplus_cc0_control_20260922",
       "observed_logical_bytes": 9945,
       "mode": "2770",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep19_public_sources",
@@ -762,7 +853,7 @@
       "relative_path": "ep19_public_sources",
       "observed_logical_bytes": 23930919683,
       "mode": "2500",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep19_safe_commit",
@@ -770,7 +861,7 @@
       "relative_path": "ep19_safe1_commit_36fe555_20260922",
       "observed_logical_bytes": 301000,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_ep19_ajile12",
@@ -785,7 +876,7 @@
         "ASSET_MANIFEST.json"
       ],
       "mode": "2700",
-      "migration_state": "staged_not_moved",
+      "migration_state": "canonical_in_place",
       "notes": "The acquisition marker and asset manifest record 55 assets and 845869698341 payload bytes. This completes acquisition inventory, not EP19 role-filtered handoffs or episode readiness."
     },
     {
@@ -794,7 +885,7 @@
       "relative_path": "neurocam_documentary_20260922",
       "observed_logical_bytes": 3003782,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     },
     {
       "logical_id": "asset_steward_logs",
@@ -802,7 +893,7 @@
       "relative_path": "logs",
       "observed_logical_bytes": 96516,
       "mode": "2700",
-      "migration_state": "staged_not_moved"
+      "migration_state": "canonical_in_place"
     }
   ],
   "public_shared_releases": [
@@ -838,63 +929,61 @@
   "episode_bindings": [
     {"episode_id": "EP01", "location_ids": ["external_openneuro_ds001734_raw", "external_openneuro_ds001734_fmriprep", "external_openneuro_ds001734_fitlins", "external_openneuro_ds000005_fitlins", "canonical_historical_prior_records", "external_narps_shared"], "state": "external_sources_present_canonical_documentary_priors_in_place_legacy_runtime_superset_protected_not_live_input_episode_handoffs_incomplete"},
     {"episode_id": "EP02", "location_ids": ["public_shared_root", "legacy_ep02_materialized_runtime", "legacy_ep02_evaluator_firewall", "recovery_ep02_boundary_semantics"], "state": "source_present_legacy_materialization_and_firewalls_protected_runtime_not_canonical"},
-    {"episode_id": "EP03", "location_ids": ["asset_ep03_neuroeffect_spatial_sources", "asset_ep03_neuroeffect_promotion_control"], "state": "legacy_steward_staged_not_moved"},
-    {"episode_id": "EP04", "location_ids": ["asset_ep04_laion_mixed_role", "asset_ep04_laion_raw_stimuli_dua", "scratch_ep04"], "state": "legacy_steward_staged_not_moved_scratch_not_destination"},
-    {"episode_id": "EP05", "location_ids": ["public_shared_root", "legacy_ep05_public_shared_hardlink_alias", "scratch_ep05"], "state": "durable_source_present_legacy_same_allocation_alias_scratch_duplicate_review"},
+    {"episode_id": "EP03", "location_ids": ["asset_ep03_neuroeffect_spatial_sources", "asset_ep03_neuroeffect_promotion_control"], "state": "private_steward_assets_in_place"},
+    {"episode_id": "EP04", "location_ids": ["asset_ep04_laion_mixed_role", "asset_ep04_laion_raw_stimuli_dua", "scratch_ep04"], "state": "private_steward_assets_in_place_scratch_not_destination"},
+    {"episode_id": "EP05", "location_ids": ["public_shared_root", "legacy_ep05_public_shared_hardlink_alias", "scratch_ep05", "scratch_ep05_payload"], "state": "durable_source_present_legacy_same_allocation_alias_scratch_payload_duplicate_removed"},
     {"episode_id": "EP06", "location_ids": ["public_shared_root"], "state": "durable_source_present_episode_handoff_incomplete"},
     {"episode_id": "EP07", "location_ids": ["public_shared_root"], "state": "durable_source_present_episode_handoff_incomplete"},
     {"episode_id": "EP08", "location_ids": ["public_shared_root"], "state": "durable_source_present_episode_handoff_incomplete"},
-    {"episode_id": "EP09", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep09_ep10_ep11_allen_ccfv3", "asset_ep09_ccf_me"], "state": "legacy_steward_staged_not_moved"},
-    {"episode_id": "EP10", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep10_seu_optional_bouton", "asset_ep09_ep10_ep11_allen_ccfv3"], "state": "legacy_steward_staged_not_moved"},
-    {"episode_id": "EP11", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep09_ep10_ep11_allen_ccfv3"], "state": "legacy_steward_staged_not_moved"},
+    {"episode_id": "EP09", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep09_ep10_ep11_allen_ccfv3", "asset_ep09_ccf_me"], "state": "private_steward_assets_in_place"},
+    {"episode_id": "EP10", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep10_seu_optional_bouton", "asset_ep09_ep10_ep11_allen_ccfv3"], "state": "private_steward_assets_in_place"},
+    {"episode_id": "EP11", "location_ids": ["asset_ep09_ep10_ep11_seu_a1876", "asset_ep09_ep10_ep11_allen_ccfv3"], "state": "private_steward_assets_in_place"},
     {"episode_id": "EP12", "location_ids": ["public_shared_root"], "state": "durable_source_present_episode_link_absent"},
     {"episode_id": "EP13", "location_ids": [], "state": "no_empirical_dataset_by_design"},
     {"episode_id": "EP14", "location_ids": ["legacy_ep14_openbhb_inputs"], "state": "legacy_episode_input_present_destination_unassigned"},
     {"episode_id": "EP15", "location_ids": ["public_shared_root"], "state": "durable_source_present_role_handoffs_absent"},
     {"episode_id": "EP16", "location_ids": ["public_shared_root"], "state": "durable_source_present_but_writable_role_handoffs_absent"},
-    {"episode_id": "EP17", "location_ids": ["legacy_ep17_restricted_raw", "asset_ep17_cneuromod_images"], "state": "restricted_and_steward_sources_staged_not_moved"},
-    {"episode_id": "EP18", "location_ids": ["public_shared_root", "asset_ep18_things_images", "asset_ep18_things_metadata", "asset_ep18_thingsplus_cc0", "asset_ep18_thingsplus_control", "scratch_things_eeg1_ingest"], "state": "public_source_present_private_dependencies_staged_scratch_duplicate_review"},
-    {"episode_id": "EP19", "location_ids": ["asset_ep19_public_sources", "asset_ep19_safe_commit", "asset_ep19_ajile12"], "state": "legacy_steward_staged_not_moved"},
-    {"episode_id": "EP20", "location_ids": ["asset_ep20_neurocam_documentary", "legacy_ep20_reference_bundles"], "state": "legacy_steward_staged_not_moved_examples_destination_unassigned"}
+    {"episode_id": "EP17", "location_ids": ["ep17_restricted_raw", "asset_ep17_cneuromod_images"], "state": "restricted_source_and_private_steward_asset_in_place"},
+    {"episode_id": "EP18", "location_ids": ["public_shared_root", "asset_ep18_things_images", "asset_ep18_things_metadata", "asset_ep18_thingsplus_cc0", "asset_ep18_thingsplus_control", "scratch_things_eeg1_ingest"], "state": "public_source_and_private_dependencies_in_place_scratch_duplicate_removed"},
+    {"episode_id": "EP19", "location_ids": ["asset_ep19_public_sources", "asset_ep19_safe_commit", "asset_ep19_ajile12"], "state": "private_steward_assets_in_place"},
+    {"episode_id": "EP20", "location_ids": ["asset_ep20_neurocam_documentary", "legacy_ep20_reference_bundles"], "state": "private_steward_documentary_asset_in_place_examples_destination_unassigned"}
   ],
   "same_filesystem_preflight": {
     "oak_device_id": "3626059016",
     "scratch_device_id": "3863872424",
-    "legacy_steward_to_planned_private_root": {
-      "source_device_id": "3626059016",
-      "destination_namespace_root_exists_observed": true,
-      "final_destination_exists_observed": false,
-      "destination_nearest_existing_ancestor_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data",
-      "destination_nearest_existing_ancestor_device_id": "3626059016",
-      "destination_nearest_existing_ancestor_inode": "144123848743278183",
-      "destination_nearest_existing_ancestor_mode": "2750",
-      "same_filesystem_at_observation": true,
-      "conclusion": "An atomic same-filesystem rename may be technically possible later, but is neither authorized nor safe to assume until the final payload destination is created and re-statted."
+    "steward_relocation": {
+      "former_source_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/.steward_acquisition",
+      "source_exists_observed": false,
+      "destination_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
+      "destination_exists_observed": true,
+      "device_id": "3626059016",
+      "destination_inode": "144123848743269482",
+      "destination_mode": "2700",
+      "same_filesystem_rename_completed": true,
+      "source_inode_and_mode_preserved": true,
+      "conclusion": "The authorized same-filesystem rename completed; the old path is absent and the durable destination is present with the source inode and mode."
     },
-    "ep17_restricted_to_planned_private_root": {
-      "source_device_id": "3626059016",
-      "destination_namespace_root_exists_observed": true,
-      "final_destination_exists_observed": false,
-      "destination_nearest_existing_ancestor_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted",
-      "destination_nearest_existing_ancestor_device_id": "3626059016",
-      "destination_nearest_existing_ancestor_inode": "144123848743278187",
-      "destination_nearest_existing_ancestor_mode": "2700",
-      "same_filesystem_at_observation": true,
-      "conclusion": "Re-stat and verify ACLs, mode, capacity, hashes, and open handles immediately before any authorized migration."
+    "ep17_restricted_relocation": {
+      "former_source_path": "/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode17_cneuromod_model_ranking_stability/inputs/cneuromod-things-1.0.1-restricted-raw",
+      "source_exists_observed": false,
+      "destination_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw",
+      "destination_exists_observed": true,
+      "device_id": "3626059016",
+      "destination_inode": "144123810474378061",
+      "destination_mode": "2550",
+      "same_filesystem_rename_completed": true,
+      "source_inode_and_mode_preserved": true,
+      "conclusion": "The authorized same-filesystem rename completed; the old path is absent and the restricted durable destination is present with the source inode and mode."
     },
     "scratch_to_oak": {
       "same_filesystem_at_observation": false,
-      "conclusion": "Scratch cleanup or promotion cannot use an atomic rename to OAK; it requires verified copy semantics and separate deletion authorization."
+      "conclusion": "The two named scratch duplicates were removed after their OAK durable counterparts were retained; no scratch-to-OAK rename was performed."
     },
     "required_before_any_future_move": [
-      "Re-stat source, destination, and destination parent device IDs.",
-      "Record source and destination modes, ACLs, ownership, quotas, and free space.",
+      "Confirm the exact source and destination paths and that the destination does not already exist.",
+      "Record source and destination modes and ownership.",
       "Confirm no writers, Slurm jobs, or open handles are active.",
-      "Freeze a complete path, type, size, ownership, mode, mtime, inode, link-count, and symlink-target inventory; hash control files and existing checksum manifests.",
-      "For a same-filesystem rename, require the directory inode and Lustre FID to remain unchanged; full payload rehashing is a separate scientific-integrity or duplicate-deletion gate, not transport proof for the rename itself.",
-      "Preserve symlink, hardlink, sparse-file, and permission semantics deliberately.",
-      "Use a reversible staging name and write a rollback procedure.",
-      "Verify the destination independently before requesting source deletion.",
+      "For a same-filesystem rename, confirm the destination preserved the source directory inode and mode.",
       "Obtain explicit authorization for the move and separately for any deletion."
     ]
   },
@@ -917,17 +1006,17 @@
     {
       "finding": "EP19 originally used relative .steward_acquisition paths that were absent in the canonical worktree.",
       "status": "resolved_in_phase_1",
-      "resolution": "EP19 documentation now binds the manifest asset IDs and explicitly locates them under the legacy steward root until migration."
+      "resolution": "The manifest binds EP19 asset IDs under private_steward_acquisition, which resolves to the durable private steward root after the completed rename."
     },
     {
       "finding": "EP20 originally implied locally provisioned reference bundles although the examples remained only in the legacy worktree.",
       "status": "resolved_in_phase_1",
-      "resolution": "EP20 documentation now distinguishes the staged documentary asset from legacy, nonbinding reference examples."
+      "resolution": "EP20 distinguishes the documentary asset now held in the durable private steward tree from the legacy, nonbinding reference examples."
     },
     {
       "finding": "Scratch documentation previously mixed $SCRATCH/autoresearch and $SCRATCH/br_autoresearch conventions.",
       "status": "resolved_in_phase_1",
-      "resolution": "The launcher and current episode documentation now use $SCRATCH/br_autoresearch; existing $SCRATCH/autoresearch is classified as legacy runtime."
+      "resolution": "Current episode instructions use $SCRATCH/br_autoresearch; existing $SCRATCH/autoresearch is classified as legacy runtime."
     },
     {
       "finding": "EP08 documentation used the stale scratch name episode08_lfp_acquisition_policy.",

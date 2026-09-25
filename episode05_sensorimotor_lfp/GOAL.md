@@ -1,29 +1,101 @@
-# EP05 — adaptive condition-general LFP kinematics
+# Does the LFP explain why one reach was different?
 
-## Status, protocol, and exposure boundary
+A monkey can reach to the same target many times without making exactly the
+same movement. One reach may be faster, another may start later, and another
+may bend farther to the side. Target direction and time since movement began
+can describe the typical reach, but they cannot explain why two trials to the
+same target differ.
 
-This is the current local episode contract, governed by
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md). It does not
-authorize data access, compute, submission, reward, or canonical mutation.
+EP05 asks whether the M1 LFP recorded on an individual trial contains that
+missing information. Within each session, we train on seven of the eight reach
+directions and test on the eighth. From the seven training directions, we
+estimate the movement expected from direction and elapsed time. The LFP model
+must then predict how the actual held-out reach departs from that expectation.
 
-The Dryad outcomes have been accessed previously and are development evidence.
-Prior technical work did not establish scientific acceptance and cannot seed
-the adaptive trial order, thresholds, or winner. The current contract inherits
-no action or decision from that work.
+The important comparison is not whether LFP can reconstruct hand movement at
+all. A decoder can look accurate simply by repeating the typical trajectory.
+The first test asks whether adding LFP improves the prediction of the complete
+X/Y velocity trace when that direction was absent from the session's fit.
 
-## Scientific question
+Even that improvement may not belong to individual trials. Suppose every
+reach in the held-out direction curves a little more than the seven-direction
+estimate. The LFP model could learn that common correction without knowing
+which neural recording belongs to which reach. We therefore deliberately pair
+each LFP prediction with a different reach to the same target. If the score
+barely changes, the result is a direction-level correction. If the correct
+pairing is clearly better in both animals, the LFP carries information about
+the particular reach.
 
-Which compact representation of the released, post-processed M1 LFP features
-predicts trial-specific continuous hand velocity on held-out movement
-directions beyond a training-derived direction-by-time baseline, and which
-design choices remain stable when the global pipeline policy is selected using
-entire held-out sessions rather than favorable trial folds?
+This is the entry point to a larger biological question:
 
-This asks about predictive information in released features, not causal neural
-coding, online decoding, raw LFP mechanisms, or population prevalence. A
-pipeline policy (feature construction, history, model class, regularization
-rule) is shared across sessions; fitted coefficients remain session-specific.
-Cross-session transfer of fitted mappings belongs to EP07, not this episode.
+> When a reach is faster or more curved than expected, does the useful LFP
+> signal reflect the same moment-to-moment motor-population activity that is
+> visible in spikes?
+
+The intended paper should show more than a winning decoder. It should locate
+the extra prediction in speed, curvature, and time; show whether it repeats
+across sessions and animals; and distinguish a low-frequency population signal
+from task timing, high-frequency spike contamination, or a few unusually good
+recordings. If the first result holds, the next test asks whether the chosen
+LFP features predict held-out changes in the simultaneously recorded spike
+population and whether both signals predict the same correction to the reach.
+
+Even a positive result would not establish that LFP causes the movement or
+that this decoder is ready for online BCI control. It would support a narrower
+claim: in these recordings, the LFP from the correct trial helps explain how
+that reach differs from the movement expected from its direction and timing.
+
+The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
+specifies the follow-up predictions, alternatives, and figure-level evidence.
+The held-out-direction test remains the first result; the spike-population
+follow-up cannot change its answer.
+
+## At a glance
+
+| Question | EP05 design |
+| --- | --- |
+| What varies? | The speed and shape of individual reaches after accounting for target direction and elapsed time. |
+| What is compared? | A direction-and-time prediction versus the same prediction with information from that trial's LFP. |
+| What is held out? | One entire reach direction at a time within each session. Neither model sees those trials while that session's model is being fit. |
+| What must repeat? | The improvement must survive across sessions and be present in both animals, not come from one favorable recording. |
+| What checks the individual-trial claim? | Pair each LFP prediction with the wrong reach to the same target. Correct pairings must predict better than wrong pairings. |
+| What can the first test conclude? | Whether LFP helps predict reaches in a direction held out from that session's fit, and whether that help follows the individual trial. |
+| What would make a deeper finding? | Evidence that the useful LFP signal tracks the same trial-varying population activity seen in spikes and is not explained by timing or high-frequency spike contamination. |
+| What is the next test? | Keep the selected LFP representation fixed, then fit the separate follow-up maps and ask whether it predicts held-out spike-population changes and the same speed or curvature correction. |
+
+## From a prediction gain to a scientific finding
+
+Consider two reaches to the same target. Their average direction and timing are
+nearly identical, but one accelerates later and bends more. A decoder can look
+good by reproducing the average trajectory without knowing anything about that
+difference. EP05 first asks whether LFP features predict the difference itself.
+
+If they do, the next analysis asks what the useful signal is. Using only
+development sessions and a separately frozen follow-up contract, derive a
+spike-population latent from training trials and ask whether the chosen LFP
+representation predicts held-out fluctuations in that latent beyond the
+latent's own training-derived direction-by-time mean. Pass the LFP-predicted latent through a separately
+trained spike-latent-to-velocity map, then ask whether that chain and the direct
+LFP decoder make the same signed correction on the same held-out trials and
+time bins. The concrete readouts are along-path speed error,
+perpendicular/curvature error, and a time course fixed in advance; they are not
+new search targets.
+
+Four explanations must remain distinguishable:
+
+| Possible result | What it would mean |
+| --- | --- |
+| Low-frequency/LMP features predict both the spike latent and the same kinematic residual | The released LFP features contain a compact view of trial-varying motor-population activity that is useful beyond the average reach. |
+| LFP improves velocity prediction but does not track the spike-population readout | Keep the engineering prediction result; do not claim that the mechanism is shared population dynamics. |
+| The gain exists only in 100--400 Hz features or same-electrode spike-rich channels | Bound the result to a spike-contaminated/high-frequency recording feature; do not make a broad field-potential claim. |
+| The gain disappears after held-out directions, whole-session selection, or a fresh audit | The apparent decoder success did not establish a condition-general LFP signal. |
+
+The follow-up uses the already assigned development evidence for explanation;
+it is not a second independent replication. Before it runs, its models,
+readouts, margins, multiplicity, budget, and stopping rule must be frozen. A
+future sealed session tests the locked prediction once. No result in the
+follow-up may alter the original search ledger, winner, terminal class, or
+audit opening.
 
 ## Reproduction infrastructure is not search
 
@@ -147,7 +219,7 @@ are diagnostics and cannot rescue a failed held-out-direction objective.
    change after any audit score is visible.
 
 The incumbent cannot terminate the loop early. Minimum coverage, falsifiers,
-stress tests, patience, and audit readiness are separate gates.
+stress tests, patience, and audit-opening qualification are separate gates.
 At least 40% of valid post-coverage trials must be falsifiers, ablations,
 negative controls, influence guards, synthetic recovery, or direct
 replications. At least two outcome-adaptive successor cycles and two recorded
@@ -219,3 +291,11 @@ supports the locked policy's session robustness only for represented animals
 and task; population-level, cross-region, real-time, raw-LFP, causal, and
 cross-session weight-transfer claims remain out of scope. A new-animal audit
 is required before extending biological generalization.
+
+The stronger paper interpretation—compact LFP features track the
+trial-varying motor-population state that explains departures from an average
+reach—requires the separately locked spike-latent and residual-error evidence
+in the paper plan. A positive `delta_R2` alone does not establish that
+interpretation. Conversely, a useful LFP-to-spike association cannot rescue a
+failed primary kinematic test. No real EP05 analysis, audit, or follow-up was
+run while preparing this revision.

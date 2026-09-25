@@ -66,8 +66,8 @@ cerebellar mask, and Task-A/B masks and betas. This must not become a silent
 seven-participant exclusion. A common route must use assets present for all
 24, or reproducibly regenerate the missing products before roles are frozen.
 Transform direction, reference grid, interpolation, software/template
-versions, and whether an inverse is required remain unauthenticated launch
-blockers.
+versions, and whether an inverse is required remain unauthenticated
+prerequisites for scored computation.
 
 The derivative contains beta estimates, not raw time series, events/confounds,
 residual time series, or resting-state data. The task-design `rest` beta is not
@@ -154,7 +154,7 @@ reduced-N primary analysis.
 
 ## Physical firewall
 
-The acquired ZIPs mix Task A and Task B and are not launch-safe. An operator
+The acquired ZIPs mix Task A and Task B and are not role-safe. An operator
 outside the candidate/controller process must create three immutable,
 content-addressed views after role assignment:
 
@@ -306,10 +306,10 @@ MDTB declares lineage to OpenNeuro `ds002105` v1.1.0. Before roles are frozen,
 crosswalk EP03's eventual manifest against `ds002105`. A match binds EP03 and
 EP15 into one correlated exposure family and prohibits an independence claim.
 
-## Launch blockers
+## Audit-opening requirements
 
-Episode 15 is not launch-ready until all of the following are present and
-verified:
+Held-out audit access remains closed until all of the following are present
+and verified:
 
 - full local SHA-256 manifest matching the provider record;
 - license/provenance reconciliation under the conservative use rule;

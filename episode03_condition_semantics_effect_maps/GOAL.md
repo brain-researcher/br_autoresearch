@@ -2,9 +2,10 @@
 
 ## Status, protocol, and exposure boundary
 
-This is the current local episode contract. It is not yet bound to a live
-Brain Researcher Goal and grants no authority to access outcomes, launch
-compute, submit a candidate, or change canonical state. It follows
+This is the current local episode contract. An explicit scientist instruction
+naming EP03 may start bounded episode work. This file alone grants no authority
+to access protected outcomes, submit a candidate, or change Brain Researcher
+state. It follows
 [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md); this file
 adds the EP03-specific scientific and search contract.
 

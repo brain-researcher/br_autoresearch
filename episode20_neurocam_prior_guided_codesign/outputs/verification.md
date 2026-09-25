@@ -26,6 +26,6 @@
 
 - Scientific validity: not mechanically verified; reference qualification,
   simulator identifiability, statistical power, and audit independence remain
-  unresolved launch blockers.
+  unresolved scientific requirements before candidate scoring and audit.
 - Mechanical agreement does not establish novelty, causal interpretation,
   independent confirmation, or scientific acceptance.

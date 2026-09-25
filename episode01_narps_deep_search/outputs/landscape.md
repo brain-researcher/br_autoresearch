@@ -28,5 +28,5 @@
 ## Boundary
 
 - A proposed transition is not a permit, and a permit is not an applied change.
-- A local result, Society review, reward, or launch state cannot imply an
+- A local result, Society review, reward, or task state cannot imply an
   applied Landscape transition.

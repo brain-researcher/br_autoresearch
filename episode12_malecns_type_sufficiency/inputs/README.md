@@ -4,6 +4,10 @@
 
 `/oak/stanford/groups/russpold/data/br_autoresearch_data/flyem_male_cns/gcs-male-cns-v1.0-flat-connectome`
 
+The link is local provisioning and is intentionally ignored by Git. A fresh
+clone contains this README but not the link; create it before running EP12 and
+verify that the target resolves.
+
 The target is the acquisition-verified, 11-file, 31,318,683,398-byte MaleCNS
 v1.0 flat-connectome release. Its source verification records are kept with
 the shared release. Do not modify it, copy derived products into it, or change

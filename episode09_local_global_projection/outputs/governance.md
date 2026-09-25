@@ -1,5 +1,5 @@
 # Governance
 
-The current local contract is not canonically bound or authorized for launch.
-Local files do not grant outcome access, compute, reward, or scientific
+An explicit scientist instruction may start bounded episode work. Local files
+do not grant protected-outcome access, Brain Researcher reward, or scientific
 acceptance.

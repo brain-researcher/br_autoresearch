@@ -1,10 +1,9 @@
 # Native Goal launch
 
 Read this reference only when the scientist has explicitly asked to start or
-resume native-goal exploration, or has personally invoked the project launcher.
-A request to draft, inspect, repair, organize, or make an episode runnable is
-not launch authority. A scientist-invoked launcher needs no second
-confirmation.
+resume native-goal exploration in the current Codex task. A request to draft,
+inspect, repair, organize, or make an episode runnable is not launch authority.
+An explicit start or resume instruction needs no second confirmation.
 
 This is a client-native discovery lane bound to the outer campaign. It is not
 canonical confirmation or execution.

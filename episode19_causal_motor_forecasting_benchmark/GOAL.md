@@ -1,71 +1,75 @@
-# From Detection to Forecasting
+# Can EEG forecast a movement before peripheral sensors detect its onset?
 
-## A causal benchmark for prospective movement-onset forecasting and bounded model search
+Suppose a decoder raises an alarm 100 ms before the recorded movement onset.
+That sounds like a forecast, but the hand or muscles may already have started
+to change, and an acausal filter may have carried those future changes backward
+in time. A model can therefore score well while recognizing a movement that is
+already beginning rather than predicting one that is still in the future.
 
-## Authority and scope
+EP19 moves the decision earlier. Every 50 ms while a participant is still at
+risk, a model predicts when movement will begin over the next 900 ms. The main
+question concerns the 300–600 ms interval before the earliest onset found by a
+fixed panel of non-EEG sensors. All filtering, normalization, and model state
+must use only information available at the moment of the prediction.
 
-This is the local drafting contract for Episode 19. It is a conditional go to
-design, not a launch authorization. It does not register a canonical Brain
-Researcher loop, authorize data download or compute, open held-out signals, or
-establish a neural-forecasting result.
+The first test asks whether EEG adds useful information beyond what is already
+known from the cue, task context, and past peripheral signals. The same strong
+non-neural model is scored with and without real EEG. Real EEG must also beat
+retrained surrogate-EEG models with the same capacity. A high absolute score is
+not neural evidence if the non-neural history or a scrambled EEG input can
+produce it.
 
-Here, **causal** means past-only streaming computation. It does not mean that
-the model identifies a biological causal effect.
+EP19 also asks whether changing the timing of the question changes which model
+looks best. For the WAY-EEG-GAL ranking evaluated on series 8 and 9, each
+prespecified model family is fit once on the permitted training series to
+predict all horizons, then scored both near the event, at 0–300 ms, and at the
+stricter 300–600 ms horizon. Their ordering may remain stable, disappear, or
+reverse. That comparison is kept separate from a bounded search for one better
+forecasting model, so the newly selected model cannot redefine the reference
+panel it is meant to challenge.
 
-“From Detection to Forecasting” names the repair from the legacy Track A
-lineage to the scientific Track B task. The terminal rank estimand does not mix
-historical Kaggle AUROC with forecast scores; it compares near and strict
-endpoints from the same jointly trained forecasting model.
+An apparent forecast can still come from cue timing, a weak peripheral
+baseline, future-looking preprocessing, state carried across recording gaps,
+extra model capacity, or a few favorable participants. The design therefore
+uses source-specific non-neural baselines, strict state resets, hidden
+surrogate EEG, participant-level estimates, and a second task with eight
+held-out participants.
 
-The episode has two scientific objects that must remain separate:
+This is the larger scientific question:
 
-1. a **frozen reference panel** used to ask whether model conclusions change
-   between the repaired benchmark's near-event and strict-forecast horizons;
-   and
-2. an **adaptive challenger search** used to train a better forecasting model.
+> When a decoder is no longer allowed to recognize a movement that has already
+> begun, what prospective information remains in EEG, and which model
+> advantages survive the earlier prediction horizon?
 
-An adaptively discovered challenger is never inserted back into the frozen
-panel. Otherwise the search itself would redefine the ranking question.
+The intended paper should show the full transition from detection to
+forecasting. It should report how much real EEG adds at each horizon, which
+model comparisons genuinely change, whether the selected forecast stays
+calibrated, and whether the result repeats in new participants performing a
+different self-paced task. A model that succeeds only near onset supports an
+event-recognition result, not a strict forecast. A model that forecasts on the
+development task but fails in the second participant audit supports a narrower
+dataset-specific result.
 
-## Plain-language question
+Even a positive result would not identify conscious intention, prove a causal
+motor-preparation mechanism, locate the earliest biological command, or show
+that the model is useful in an online BCI. It would establish something more
+specific: under the registered sensors and past-only pipeline, EEG improves a
+calibrated 300–600 ms movement-onset forecast beyond strong non-neural and
+capacity-matched surrogate baselines.
 
-Classic movement-decoding benchmarks often reward a model for recognizing the
-time around a movement, when muscle, motion, or movement artifact may already
-be present. What remains if the model must issue a calibrated forecast hundreds
-of milliseconds before the earliest peripheral onset detectable by a frozen
-non-neural sensor panel?
+## At a glance
 
-EP19 asks two linked questions:
-
-1. How much EEG information remains beyond a strong cue, context, and
-   peripheral-signal baseline in the **300–600 ms before detected onset**?
-2. Does the ordering of a prespecified, reproducible model panel survive the
-   change from 0–300 ms near-event forecasting to 300–600 ms strict
-   forecasting?
-
-It then asks a practical third question: can a bounded, leakage-tested model
-search improve that strict forecast without weakening the baseline or changing
-the target?
-
-## Episode at a glance
-
-| Item | Frozen intent |
+| Question | EP19 design |
 | --- | --- |
-| Open development benchmark | Raw multimodal WAY-EEG-GAL, participants P1–P12, series 1–7 |
-| No-feedback lock set | WAY-EEG-GAL series 8, opened only in the joint final evaluation |
-| Additional sealed evaluation series | WAY-EEG-GAL series 9, pooled into the same joint final evaluation |
-| Second-task participant audit | 15 self-paced development participants, then 8 whole held-out participants |
-| Inferential unit | Participant; sessions, trials, and risk anchors are dependent observations |
-| Decision interval | Every eligible 50 ms while the participant is still at risk |
-| Primary endpoint | Movement onset in 300–600 ms |
-| Near-event comparator | Movement onset in 0–300 ms |
-| Longer-horizon check | Movement onset in 600–900 ms |
-| Primary score | Natural-prevalence proper binary log score on fully observed horizons; higher is better |
-| Main neural contrast | Frozen behavior/peripheral baseline plus real EEG minus the same baseline |
-| Final capacity control | Real EEG twin minus the best of eight retrained hidden surrogate-EEG twins |
-| Ranking object | WAY series 8+9 near-versus-strict horizon transitions for one jointly trained frozen panel |
-| New-model object | One separately reported challenger chosen by bounded adaptive search |
-| Audit use | One joint opening; no partial feedback and no post-audit rescue |
+| What must be predicted? | At each 50 ms decision point, the probability that movement will begin in each part of the next 900 ms. |
+| What is the main window? | Movement onset 300–600 ms in the future, before the onset detected from the registered peripheral sensors. |
+| What is compared? | A strong cue/context/peripheral-history model versus the same model with real EEG. |
+| What checks that EEG itself matters? | Real EEG must beat a zero-EEG copy and eight separately retrained surrogate-EEG models with the same capacity. |
+| What model-ranking question is asked? | On WAY-EEG-GAL series 8 and 9, whether pairwise conclusions among a frozen set of model families are retained, lost, newly visible, or reversed when moving from 0–300 ms to 300–600 ms. |
+| What is searched separately? | One challenger model that may improve the strict forecast but can never be added back into the frozen ranking panel. |
+| What is held out? | WAY-EEG-GAL series 8 and 9 for one joint opening, plus eight whole participants from a second self-paced task. |
+| What can the first study conclude? | Whether EEG contains incremental prospective information at the strict horizon and whether model conclusions depend on forecast timing. |
+| What would strengthen the result? | The forecast remains calibrated, the EEG gain survives every leakage and surrogate control, and the gain repeats after the fixed 32-event calibration in the second-task participants. |
 
 ## Three tracks
 
@@ -154,8 +158,9 @@ and 600–900 ms groups and the `>900` group fixed as reference. Calibration
 minimizes the natural-prevalence-weighted, censoring-aware 19-category NLL over
 the declared packet. The regularization strength, parameter bounds, optimizer,
 maximum iterations, convergence tolerance, and deterministic tie/failure rule
-must be frozen before launch and remain identical across models. Until those
-fields are populated, C32 is not executable and the episode remains blocked.
+must be frozen before C32 sees candidate-discriminating outcomes and remain
+identical across models. Until those fields are populated, C32 is not
+executable.
 
 The evaluator fits this four-parameter map **separately to an isolated copy of
 every scored model**, including standalone \(B_d^\star\), real EEG, zero EEG,
@@ -213,8 +218,8 @@ not a globally untouched dataset or a claim of universal zero-shot transfer.
 
 1. **Prospective neural information.** EEG improves calibrated 300–600 ms
    forecasts beyond strong past-only cue, context, and peripheral history, and
-   the improvement exceeds the launch-frozen full eight-member surrogate-EEG
-   bank at locked evaluation.
+   the improvement exceeds the full eight-member surrogate-EEG bank frozen
+   before locked evaluation.
 2. **Near-event recognition.** Performance is strong only at 0–300 ms and
    disappears after the strict safety interval.
 3. **No resolved primary EEG increment.** EEG does not clear the practical
@@ -306,7 +311,7 @@ may confirm the original timestamp or prospectively re-arm the detector, but
 can never reinstate intervening anchors. Timestamp, group delay, clock
 alignment, missing-sensor logic, and uncertainty bound are stored. The lower
 edge of the primary horizon must exceed the frozen worst-case synchronization
-and filtering uncertainty; otherwise the episode is not ready to launch.
+and filtering uncertainty; otherwise the primary forecast is ineligible.
 
 "Earliest" always means earliest under this finite sensor-and-detector panel.
 It does not mean the first biological change anywhere in the body.
@@ -345,8 +350,8 @@ frozen whole-participant development split, macro-averages the 15 held-out
 participant scores, and fits one group model on all 15 after recipe lock.
 
 Every primary neural candidate is a residual time-to-onset extension. Given a
-launch-frozen numerical constant \(\epsilon\), first sanitize \(B_d^\star\)
-once,
+numerical constant \(\epsilon\) frozen with the configuration, first sanitize
+\(B_d^\star\) once,
 
 \[
 \bar p_{B_d^\star,t,k}
@@ -388,8 +393,8 @@ optimizer credits, and calibration packet. The zero-EEG twin tests whether
 training or recalibration damages \(B_d^\star\); it is not called a
 capacity-matched neural null and must remain noninferior to \(B_d^\star\).
 
-The evaluator also constructs a launch-frozen hidden bank of four
-session-preserving block shifts and four cross-channel-coherent phase
+The evaluator also constructs a hidden bank, frozen with the configuration, of
+four session-preserving block shifts and four cross-channel-coherent phase
 randomizations. Each surrogate twin is retrained from scratch on its transformed
 training stream with paired seeds; evaluation uses the corresponding hidden
 transform. Block shifts exceed the input/state history, forecast horizon, and
@@ -669,7 +674,7 @@ Set \(J=2\) for \(C^{dev}\), which alone enters adaptive development,
 prelock eligibility, and development robustness. Set \(J=8\) for
 \(C^{final}\), which enters locked/audit neural gates, near-horizon terminal
 labels, and scientific claims. The same signed practical margin applies to both
-unless a different pair is scientist-signed before launch.
+unless a different pair is scientist-signed before outcome access.
 
 The zero-EEG recalibration diagnostic is
 
@@ -763,9 +768,9 @@ The descriptive retention fraction
 Q_{h,d}=\Delta_{m,h,d}/\Delta_{m,0:300,d}
 \]
 
-is interpreted only when the near-event denominator clears a frozen readiness
-margin. It is never clipped, never replaces raw \(\Delta\), and is not used to
-select a model.
+is interpreted only when the near-event denominator clears a frozen
+qualification margin. It is never clipped, never replaces raw \(\Delta\), and
+is not used to select a model.
 
 ## Ranking transition
 
@@ -870,7 +875,7 @@ Every eligible reference model and challenger must pass:
 - an intentionally leaked future-signal positive control is detected as
   abnormally strong;
 - a synthetic causal premovement motif is recovered at prespecified SNRs; and
-- the legacy near-event positive control reaches its frozen readiness range.
+- the legacy near-event positive control reaches its frozen qualification range.
 
 A shared evaluator/onset timing certificate or positive-control failure, or a
 leakage failure in a locked reference or finalist, is `technical_failure`. A
@@ -1067,9 +1072,9 @@ AJILE12 remains a deferred exploratory ECoG extension. Its public ECoG and
 pose-event products do not yet provide the raw filtering and timing provenance
 needed for the primary strict-streaming claim.
 
-## Launch blockers
+## Requirements before held-out evaluation
 
-EP19 remains launch-blocked until all of the following are frozen:
+Held-out evaluation remains closed until all of the following are frozen:
 
 - content-addressed WAY and self-paced source manifests plus access terms;
 - raw-signal clock, group-delay, resampling, gap, and channel certificates;
@@ -1077,11 +1082,10 @@ EP19 remains launch-blocked until all of the following are frozen:
 - the five executable reference recipes, both frozen non-neural baselines, and
   historical-artifact availability;
 - complete self-paced development/audit handoffs with evaluator isolation;
-- numeric practical, calibration, denominator-readiness, latency, and
+- numeric practical, calibration, denominator-qualification, latency, and
   participant-robustness margins signed by the scientist;
 - exact parameter/search ranges in a hashed admissible-space manifest,
   calibration events, the complete deterministic C32 calibration algorithm,
   and compute profile;
-- append-only adaptive ledger, configuration-lock schema, and audit command;
-- registered adaptive policy and canonical episode bindings; and
-- a fresh canonical-state read plus explicit launch approval.
+- append-only adaptive ledger, configuration-lock schema, and evaluator
+  procedure.

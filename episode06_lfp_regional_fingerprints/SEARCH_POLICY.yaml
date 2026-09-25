@@ -1,9 +1,93 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep06_lfp_regional_fingerprints_adaptive
 episode_id: ep06
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
+
+# Planning metadata only. The executable contract below remains the original
+# cross-animal classifier search with its deterministic 4+2 roles, primary
+# estimand, budget, terminal mapping, and single internal-audit opening.
+research_program:
+  paper_question: does_a_transferable_m1_pmd_lfp_population_fingerprint_have_a_population_recovery_consequence
+  plan_ref: outputs/paper_plan.md
+  primary_round: bidirectional_cross_animal_recording_domain_classification
+  primary_endpoint_and_terminal_mapping_unchanged: true
+  followup:
+    state: proposed_not_configured_or_run
+    evidence_mode: proposed_fixed_comparison
+    purpose: test_whether_region_specific_frequency_rules_improve_heldout_population_latent_prediction
+    starts_after_primary_development_result_is_fixed: true
+    automatically_launched_by_this_policy: false
+    primary_winner_or_terminal_may_be_overwritten: false
+    source: hash_ranked_development_sessions_only
+    source_is_independent_replication: false
+    cross_animal_directions: [mihili_to_chewie, chewie_to_mihili]
+    prediction_target: training_derived_spike_population_latent_on_heldout_trials
+    profile_to_fixed_output_mixture:
+      prototype_definition: source_development_session_balanced_out_of_fold_exact_locked_normalized_aligned_primary_classifier_input
+      source_objects_retained:
+        - m1_undifferenced_region_level_frequency_by_latent_prototype
+        - pmd_undifferenced_region_level_frequency_by_latent_prototype
+        - signed_m1_minus_pmd_contrast
+        - equal_region_pooled_undifferenced_prototype
+      signed_difference_alone_is_sufficient_for_undifferenced_weights: false
+      latent_aggregation: equal_mean_over_prespecified_common_supported_coordinates
+      band_score: aggregated_locked_profile_coordinate
+      normalization: unit_temperature_softmax_over_common_band_support
+      m1_pmd_weight_distance_nonidentity_margin_must_be_frozen: true
+      correct_pooled_weight_and_effective_mixture_separation_margins_must_be_frozen: true
+      freeze_before: any_target_animal_followup_population_recovery_score
+      target_base_predictors: one_independently_fit_locked_recipe_predictor_per_band
+      target_latent_basis_and_outcome_scale: one_training_only_fit_per_session_region_fold_shared_by_all_bands_and_rules
+      common_prediction_tensor_must_be_frozen_and_hashed_before_mixture: true
+      mixture_level: frozen_bandwise_prediction_outputs
+      coefficient_intercept_scaling_or_penalty_fit_after_mixture: forbidden
+      separate_postclassification_supervised_regional_model_allowed: false
+      pooled_rule: same_transform_on_equal_region_pooled_undifferenced_prototype
+      swapped_rule: exchange_m1_and_pmd_weight_vectors_only
+    fixed_rules:
+      - source_fitted_m1_frequency_weight_rule
+      - source_fitted_pmd_frequency_weight_rule
+      - source_fitted_pooled_frequency_weight_rule
+      - deliberately_swapped_region_rule_negative_control
+    primary_followup_contrast: correct_region_minus_fixed_pooled_prototype_reference
+    required_interpretation_checks:
+      - signed_bandwise_m1_minus_pmd_contrast_repeats
+      - correct_region_rule_beats_pooled_by_fixed_margin
+      - swapped_region_rule_does_not_match_correct_region
+      - metadata_only_hardware_confound_gate
+      - low_frequency_and_spike_bleed_sensitivities
+      - equal_trial_electrode_rank_reliability_and_capacity
+      - identical_frozen_bandwise_base_predictions_feature_support_and_output_dimension
+      - raw_feature_unit_rescaling_with_full_locked_train_only_preprocessing_replay
+      - complete_profile_to_weight_to_mixture_source_region_label_swap
+      - source_band_label_permutation_against_fixed_target_prediction_tensor
+      - zero_contrast_collapses_correct_swapped_and_pooled_weights_sanity_check
+      - independent_uniform_weight_reference
+      - bandwise_prediction_tensor_collinearity_identifiability
+      - leave_one_session_and_both_transfer_directions
+    internal_evaluation:
+      shares_existing_single_internal_audit_transaction: true
+      output_must_be_registered_before_configuration_lock: true
+      second_opening_allowed: false
+      heldout_target_outcome_or_score_driven_alignment_or_selection: false
+      session_specific_bandwise_base_fit_on_permitted_training_trials: required_by_locked_recipe
+      post_reveal_policy_hyperparameter_weight_or_support_refit: forbidden
+      core_retraining_policy_wording_must_be_disambiguated_in_executable_followup_contract_before_opening: true
+    external_evaluation:
+      source: prospective_sealed_third_matched_m1_pmd_animal
+      requires_new_registered_successor_round: true
+      pure_cortical_area_claim_supported_despite_array_confound: false
+    separate_contract_required:
+      - locked_profile_prototypes_softmax_equation_latent_aggregation_and_separation_margins
+      - bandwise_base_prediction_scaling_support_and_raw_feature_unit_rescaling_replay
+      - common_support_and_missingness
+      - fixed_models_capacity_and_comparators
+      - meaningful_margins_multiplicity_and_uncertainty
+      - synthetic_recovery_nulls_budget_and_stop_rules
+      - result_table_and_claim_mapping
+    inherits_primary_trial_budget: false
+    primary_candidate_ready_implies_paper_claim_established: false
 
 dataset_roles:
   shared_exposure_ledger_group: lfp_ep05_ep08
@@ -180,13 +264,16 @@ terminal_mapping:
   technical_failure: technical_failure
   policy_violation: technical_failure
 
-canonical_binding:
-  loop_id: null
-  goal_handoff_id: null
-  action_id: null
-  runtime_episode_id: null
-  candidate_bundle_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true
+reporting:
+  scientific_scope:
+    primary_and_explanatory_followup_reported_separately: true
+    classification_alone_supports_population_recovery_consequence: false
+    same_release_followup_is_independent_replication: false
+    metadata_adjustment_proves_pure_cortical_identity: false
+    third_animal_with_same_array_layout_breaks_region_hardware_confound: false
+  main_figures:
+    - bidirectional_cross_animal_session_level_classification
+    - signed_frequency_by_latent_regional_contrast
+    - neural_versus_hardware_and_spike_contamination_falsifiers
+    - correct_region_versus_pooled_and_swapped_population_recovery
+    - locked_internal_and_third_animal_transfer_with_limits

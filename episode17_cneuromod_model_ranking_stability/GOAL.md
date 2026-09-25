@@ -100,8 +100,9 @@ A primary image must:
 
 The expected public design has 720 shared concepts, but neither 720 concepts
 nor 3,840 common images is hard-coded as an observed local fact. If exactly 720
-eligible concepts are not recovered, the episode refuses readiness unless the
-scientist freezes a revised split before any neural outcome is opened.
+eligible concepts are not recovered, neural-outcome access remains closed
+unless the scientist freezes a revised split before any neural outcome is
+opened.
 
 ### Role assignment
 
@@ -322,8 +323,8 @@ $$
 \left(S^r_{a,s,c,g}-S^r_{b,s,c,g}\right).
 $$
 
-The atanh boundary tolerance is frozen before launch. Degenerate correlations
-are invalid rather than silently replaced.
+The atanh boundary tolerance is frozen before held-out outcome access.
+Degenerate correlations are invalid rather than silently replaced.
 
 ### Held-out explained variance
 
@@ -450,7 +451,7 @@ the same ID only if the scientific configuration is byte-identical.
 - 6,000 CPU-core-hours, 256 GPU-hours, 240 wall-clock hours, and 4 TiB
   transient scratch ceilings.
 
-Readiness failures and engineering failures do not count as valid trials.
+Qualification failures and engineering failures do not count as valid trials.
 Budget exhaustion is not scientific success.
 
 ### Outcome-linked successors
@@ -469,8 +470,8 @@ scientific operator.
 | ROI/semantic flip | Fixed-contract interaction and block stability |
 
 A branch retires only after at least two valid configurations and a direct
-falsifier or replication. A failed readiness check or one nonsignificant trial
-cannot retire a scientific branch.
+falsifier or replication. A failed qualification check or one nonsignificant
+trial cannot retire a scientific branch.
 
 ## One-shot sealed audit
 
@@ -518,8 +519,8 @@ null/equivalence region, the outcome is `closed_audit_underidentified`. It is
 non-evidential, not a negative scientific result.
 
 If metadata or structural compatibility fails before any audit outcome is
-opened, the episode remains launch-blocked. If the frozen audit pool becomes
-incommensurate after launch but before valid scoring, it closes as
+opened, audit access remains closed. If the frozen audit pool becomes
+incommensurate after audit access opens but before valid scoring, it closes as
 `closed_audit_pool_incommensurate`.
 
 ## Terminal outcomes
@@ -543,9 +544,10 @@ Scientific or non-evidential closures:
 Integrity failures are `technical_failure` or `policy_violation`, never a
 scientific null.
 
-## Launch blockers
+## Requirements before neural-outcome access
 
-Downloading the source is acquisition, not launch. EP17 remains blocked until:
+Downloading the source does not grant neural-outcome access. Candidate scoring
+and audit access remain closed until:
 
 - the THINGS/THINGSplus taxonomy release, hash, concept mapping, label-handling
   rules, group merges, and minimum cell size are frozen;
@@ -562,8 +564,7 @@ Downloading the source is acquisition, not launch. EP17 remains blocked until:
 - six to eight exact checkpoints form at least three defensible controlled
   pairs and one trained/random falsifier;
 - model exposure and EP17/EP18 split-exposure ledgers are signed;
-- the permission-separated evaluator passes a synthetic dry run;
-- the adaptive-search program has a canonical binding; and
+- the permission-separated evaluator passes a synthetic dry run; and
 - no mixed raw neural source is mounted to the search worker.
 
 ## Claim boundary

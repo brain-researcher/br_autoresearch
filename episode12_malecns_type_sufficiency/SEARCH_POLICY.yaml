@@ -1,11 +1,11 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep12_malecns_type_sufficiency_adaptive
 episode_id: ep12
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
-# Planning metadata, not an implemented follow-up controller or launch gate.
+# Planning metadata for a possible follow-up.
+# It does not implement or start that controller.
 # The executable scientific contract in this file remains the outgoing round.
 research_program:
   paper_question: when_does_a_cell_type_average_hide_input_output_pathway_organization
@@ -153,13 +153,13 @@ objectives:
 
 decision_rules:
   meaningful_margin:
-    value: null
-    unit: synapse_normalized_log_predictive_density
-    simultaneous_interval_method: null
+    value: 0.02
+    unit: nats_per_eligible_outgoing_synapse
+    simultaneous_interval_method: whole_type_paired_simultaneous_95_percent_intervals
     scope: both_transfer_directions_and_prespecified_type_aggregate
     must_be_set_before_candidate_discriminating_development: true
   adequacy_sensitivity:
-    acceptance_rule: null
+    acceptance_rule: prespecified_synthetic_tests_show_sensitivity_at_or_above_margin_and_guard_against_false_adequacy
     scenarios:
       - adequate_single_template
       - continuous_unimodal_variation
@@ -198,7 +198,7 @@ budgets:
 full_search_null:
   controller_operation: run_full_search_null
   fitted_generator: development_selected_best_fair_T_or_U_reference
-  generator_selection_rule: null
+  generator_selection_rule: development_only_best_supported_fair_T_or_U_with_U_preferred_when_comparably_supported
   generator_rule_must_be_set_before_candidate_discriminating_development: true
   run_if_any_complete_comparison_reaches_null_eligibility: true
   skip_if_no_complete_comparison_reaches_null_eligibility: true
@@ -254,7 +254,7 @@ promotion:
     invalid_comparison_reason_required: true
   selection:
     source: valid_comparison_archive
-    rule: null
+    rule: development_only_bilateral_predictive_quality_and_robustness
     uses_development_only: true
     must_resolve_ties: true
     must_be_set_before_candidate_discriminating_development: true
@@ -334,18 +334,8 @@ reporting:
     local_case_may_replace_type_aggregate_result: false
     paper_claim_requires_evidence_beyond_primary_terminal: true
   main_figure:
-    illustrative_type_selection_rule: null
+    illustrative_type_selection_rule: development_only_with_rationale_recorded_before_final_open
     uses_development_only: true
-    must_be_set_before_candidate_discriminating_development: true
+    selection_rationale_recorded_before_final_open: true
     final_type_outcomes_may_select_examples: false
     quantitative_summary_reports_every_assigned_final_type: true
-
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  outer_loop_ref: null
-  goal_handoff_ref: null
-  episode_ref: null
-  dataset_handoff_ref: null
-  search_policy_ref: null
-  launch_blocked: true

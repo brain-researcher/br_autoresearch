@@ -4,22 +4,21 @@ This directory is reserved for durable Episode 17 input contracts and becomes
 read-only after provisioning. It currently contains no neural or stimulus
 payload.
 
-The required CNeuroMod-THINGS 1.0.1 subset remains quarantined in the legacy
-worktree. The root
+The required CNeuroMod-THINGS 1.0.1 subset is stored outside this canonical
+checkout. The root
 [`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) identifies
-the current restricted tree as `legacy_ep17_restricted_raw` and the planned
-external destination as `planned_ep17_restricted_raw`. The CNeuroMod stimulus
-archive is currently under `legacy_steward_acquisition`, with
-`planned_steward_acquisition` as its planned durable root. Both source moves
-are `staged_not_moved`; both planned destinations are
-`absent_planned_target`.
+the canonical restricted tree as `ep17_restricted_raw` at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw`.
+The CNeuroMod stimulus archive is under `private_steward_acquisition` at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`.
+Both trees were relocated by same-filesystem rename on 2026-09-24 and are
+`canonical_in_place`.
 
 It includes the neural/structural subset and official release-provenance
 archive described in [`../DATASETS.md`](../DATASETS.md). Operational transfer
-logs, receipts, and checksum inventories remain with the legacy quarantines;
+logs, receipts, and checksum inventories remain with the canonical sources;
 they are not tracked in this repository, and a code-only checkout contains no
-data payload. A planned location is not a completed relocation or a verified
-episode handoff.
+data payload. A canonical storage location is not a verified episode handoff.
 
 The verified raw source still mixes development, calibration, and audit rows.
 It is restricted acquisition material, not a search-worker handoff. The trusted

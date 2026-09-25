@@ -8,4 +8,4 @@ development A+B, audit anatomy+A, and evaluator-only audit B. None is present
 here, and the Task-B-blind 12/12 role manifest has not been instantiated. The
 frozen 20-row coverage manifest is also absent. Do not add a symlink to the
 mixed shared source, copy participant maps into Git, import a published
-MDTB-fitted atlas, or infer launch permission from source availability.
+MDTB-fitted atlas, or infer outcome-access permission from source availability.

@@ -15,5 +15,5 @@ result.
   evidence or authority.
 
 Generated calibration tables, inventories, role packs, receipts, signatures,
-prelaunch assessments, and checksum sidecars belong in scratch or another
+pre-outcome assessments, and checksum sidecars belong in scratch or another
 runtime store and must not be committed.

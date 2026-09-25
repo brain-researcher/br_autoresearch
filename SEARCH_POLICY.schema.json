@@ -7,7 +7,6 @@
     "schema_version",
     "policy_id",
     "episode_id",
-    "status",
     "common_protocol_ref",
     "evidence_mode",
     "dataset_roles",
@@ -19,18 +18,12 @@
     "promotion",
     "stop",
     "audit",
-    "terminal_mapping",
-    "canonical_binding"
+    "terminal_mapping"
   ],
   "properties": {
     "schema_version": {"const": "autoresearch.adaptive_search_policy.v1"},
     "policy_id": {"type": "string", "minLength": 1},
     "episode_id": {"type": "string", "pattern": "^ep(0[1-9]|1[0-9]|2[0-1])$"},
-    "status": {
-      "const": "planned_unregistered",
-      "deprecated": true,
-      "description": "Immutable contract-authoring snapshot retained for compatibility. Never mutate this field during promotion; mutable state belongs in EPISODE_READINESS.yaml and Brain Researcher receipts."
-    },
     "common_protocol_ref": {"const": "../ADAPTIVE_SEARCH_PROTOCOL.md"},
     "evidence_mode": {"const": "adaptive_search"},
     "dataset_roles": {"type": "object", "minProperties": 2},
@@ -114,18 +107,6 @@
       "minProperties": 3,
       "additionalProperties": {
         "enum": ["candidate_ready", "closed_no_candidate", "technical_failure"]
-      }
-    },
-    "canonical_binding": {
-      "type": "object",
-      "required": ["canonical_program_id", "registered_program_policy_ref", "search_policy_ref", "launch_blocked"],
-      "deprecated": true,
-      "description": "Immutable unbound-at-authoring snapshot retained for optional canonical-confirmation compatibility. It is inert for episode-managed local launch, and a local policy cannot establish or record its own canonical binding.",
-      "properties": {
-        "canonical_program_id": {"type": "null"},
-        "registered_program_policy_ref": {"type": "null"},
-        "search_policy_ref": {"type": "null"},
-        "launch_blocked": {"const": true, "deprecated": true}
       }
     }
   },

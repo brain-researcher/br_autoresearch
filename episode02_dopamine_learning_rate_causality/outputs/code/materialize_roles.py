@@ -392,8 +392,8 @@ def public_manifest(
         "firewall_limitation": (
             "Candidate, trusted builder, evaluator packs, and the owner-readable mixed source "
             "share one Unix uid. Mode 000 audit directories deter accidental reads inside the "
-            "bounded launcher but do not create adversarial isolation; a separate principal or "
-            "external evaluator/source service remains required before launch. The candidate "
+            "bounded task but do not create adversarial isolation; a separate principal or "
+            "external evaluator/source service remains required before audit outcome access. The candidate "
             "must also have no network egress because the mixed source is publicly downloadable."
         ),
         "audit_outcome_summaries_emitted": False,
@@ -434,7 +434,7 @@ This step creates deterministic handoffs and an accidental-access guard, not
 a completed physical audit firewall.  The source, builder, and candidate all
 run as the same Unix uid, and the original mixed MAT remains owner-readable.
 The evaluator directories were set to mode `0000`, but their owner could
-restore access outside the candidate sandbox.  Before launch, an independent
+restore access outside the candidate sandbox.  Before audit outcome access, an independent
 Unix/service principal or external evaluator/key service must make both the
 audit packs **and the original mixed source** unavailable to candidate workers,
 and the candidate must have no network path to reacquire the public payload.

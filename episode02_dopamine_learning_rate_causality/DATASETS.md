@@ -3,7 +3,7 @@
 ## Status
 
 This document defines evidence roles. It does not certify a local data copy,
-authorize search, or record runtime receipts.
+open candidate or audit access, or record runtime receipts.
 
 ## Primary release
 
@@ -41,7 +41,7 @@ the full empirical script remains prohibited from candidate workspaces.
 
 | Role | Records | Mice | Trial rows | Access |
 | --- | --- | ---: | ---: | --- |
-| Development controls | `1,2,4,6,9,11,15,16,19` | 9 | 8,318 | Candidate-visible after launch gates |
+| Development controls | `1,2,4,6,9,11,15,16,19` | 9 | 8,318 | Candidate-visible after role and firewall qualification |
 | Primary `stimLick-` | `3,5,10,14,18,20` | 6 | 5,509 | Evaluator-only |
 | Primary `stimLick+` | `7,8,12,13,17` | 5 | 5,016 | Evaluator-only |
 | High-amplitude boundary | `21,22,23,24` | 4 | 2,434 | Evaluator-only, post-primary |
@@ -92,15 +92,16 @@ audit, and boundary-audit surfaces. Candidate workers may see only the first
 two.
 
 Portable source tools for structural inventory and deterministic role
-materialization are tracked under `outputs/code/`. Their launchers require an
+materialization are tracked under `outputs/code/`. The tools require an
 explicit `DUDMAN_SOURCE_MAT` and job-specific `$SCRATCH` and never publish
 generated packets into the tracked episode. Materialization integrity does
 not establish confidentiality.
 
-Launch requires distinct steward, candidate, and evaluator principals; source
-and audit-payload denial to the candidate; disabled network egress; evaluator-
-only audit mounts; and one atomic aggregate return packet. The stable contract
-is [`outputs/firewall/FIREWALL_CONTRACT.json`](outputs/firewall/FIREWALL_CONTRACT.json).
+Before candidate or audit access, the runtime must enforce distinct steward,
+candidate, and evaluator principals; source and audit-payload denial to the
+candidate; disabled network egress; evaluator-only audit mounts; and one atomic
+aggregate return packet. The stable contract is
+[`outputs/firewall/FIREWALL_CONTRACT.json`](outputs/firewall/FIREWALL_CONTRACT.json).
 The tracked contract is intentionally incomplete: the audit-pack, policy, and
 configuration-lock hashes and two distinct Ed25519 signer pins must be added
 after runtime objects are frozen. A current, doubly signed receipt is still
@@ -110,9 +111,9 @@ Generated inventories, role packs, calibration tables, receipts, signatures,
 and checksum files belong in scratch or another runtime store. Their absence
 from Git is intentional.
 
-## Launch boundary
+## Access boundary
 
-Data availability is not authorization. Endpoint semantics, randomization or
-exchangeability scope, physical separation, endpoint-faithful calibration, a
-raw-unit margin, implementation qualification, evaluator behavior, and final
-authorization remain unresolved.
+Data availability does not grant role access. Endpoint semantics, randomization
+or exchangeability scope, physical separation, endpoint-faithful calibration,
+a raw-unit margin, implementation qualification, evaluator behavior, and the
+audit-opening criteria remain unresolved.

@@ -1,71 +1,85 @@
-# Signal Reduction, Remappable Mismatch, or Observable Measurement Degradation?
+# Why does a human iBCI mapping work in one session but not another?
 
-## Failure modes of offline cross-session transport in human iBCI recordings
+Consider two cursor-control sessions recorded months apart from the same
+BrainGate participant. We fit an offline mapping to the neural activity in the
+earlier session and use it, unchanged, to predict the cursor-to-target
+direction in the later session. If its predictions are much worse there, it is
+tempting to call the result “decoder drift.” The score alone does not tell us
+what changed.
 
-## Authority and scope
+The later recording may contain less direction-related signal that this model
+can recover at all. The signal may still be present, but its relationship to
+the target-direction proxy may have changed in a way that a small amount of
+later-session data can repair. Or changes that are visible without using any
+direction labels—such as missing electrodes, invalid samples, or altered
+channel statistics—may be sufficient to reproduce the loss. More than one of
+these patterns may occur at the same time.
 
-This is the local, pre-launch procedure-drafting contract for Episode 16. It is
-`planned_unregistered`, has no canonical program or loop binding, and grants no
-compute, audit access, reward, review, or launch authority. The scientist has
-approved the scientific core for drafting only. A later launch requires a new
-explicit decision after every blocker in this document and `DATASETS.md` has
-been resolved.
+EP16 asks which of those explanations is supported when every comparison uses
+the same released feature, trial definition, direction proxy, preprocessing,
+and model family. The first decisive comparison comes before assigning a
+failure mode. For each participant, we compare mappings transported between
+sessions 1--30 days apart with mappings transported at least 180 days apart.
+We ask whether the long-lag mapping loses more performance than expected after
+accounting for how difficult the source and target sessions are on their own.
 
-Public provider summaries and participant-level prior-work exposures have been
-reviewed and are recorded in `DATASETS.md`; campaign-specific cross-session
-transport outcomes remain unopened. Thus this draft is not described as
-globally outcome-blind.
+A transported mapping can look bad simply because the later session is hard
+for every model. We therefore compare its score with both a model trained
+inside the later session and a direction-balanced null on exactly the same
+held-out trials. If long-lag transport is not worse than the near-lag
+reference, there is no normalized excess mismatch for the measurement and
+remapping explanations. The separate question of whether later sessions lose
+locally recoverable signal is still tested on its own.
 
-The episode follows [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md)
-only after registration. It estimates **operational failure signatures** of an
-offline source-session mapping. It does not reconstruct historical online
-decoders, estimate how a different decoder would have changed closed-loop
-behavior, or partition causal mechanisms into additive percentages.
+If a reproducible deficit is present, the deeper question is why. The matched
+diagnostic panel asks whether the later session's own recoverable score also
+falls, whether a label-blind emulator of its observed measurement state can
+reproduce the deficit, and whether a bounded remapping trained with 32 labelled
+later-session trials can repair it. These are competing but not mutually
+exclusive explanations. A correlation between recording quality and decoder
+performance is not enough to choose among them.
 
-## The question in plain language
+The intended paper must do more than show that an old mapping sometimes
+performs poorly. A shared explanation must pass the same diagnostic panel in
+all three held-out participants. If more than one explanation is supported,
+they are reported together; if the evidence cannot separate them, the answer
+remains inconclusive. If participants appear to have different failure
+patterns, each person's pattern must recur in two separate sets of that
+person's sessions before the difference is treated as reproducible.
 
-Across observed-target-schedule-matched longitudinal BrainGate cursor sessions, when a
-mapping learned in source session (s) transports unusually poorly to a
-long-lag target session `t`, ask three separable questions:
+Even a clean result supports only an operational statement about these offline
+analyses of the released, preprocessed recordings. It cannot identify hardware
+failure, neuron loss, or representational drift as a cause; reconstruct the
+historical online decoder; show how a different decoder would have changed
+closed-loop behavior; or establish clinical benefit. The precise endpoint,
+split, budget, and audit rules below set the boundary of that statement.
 
-1. Can a frozen emulator of the target's observable, label-blind measurement
-   state reproduce both the loss of locally recoverable signal and the
-   transport deficit?
-2. Can exactly the same small target-label budget repair the deficit using a
-   bounded remapping?
-3. Is the target session's own cross-fitted target-direction benchmark lower
-   under the same feature, label, preprocessing, and model contract?
+## At a glance
 
-A positive answer describes a signature under this contract. It is not proof
-of hardware failure, neuron loss, representational drift, or loss of movement
-information.
-
-## Episode at a glance
-
-| Item | Proposed pre-launch contract |
+| Question | EP16 design |
 | --- | --- |
-| Dataset | Dryad `10.5061/dryad.x0k6djj1h`, published version 6 |
-| Unit of biological replication | Whole participant, with every array and session kept together |
-| Development / audit | Provisional 6 / 3 participants; roles freeze after exposure regeneration and metadata-only support screening |
-| Primary neural feature | Spike-band power (`sbp`); `tx_4_5` is a mandatory sensitivity, never a best-of-threshold search |
-| Prediction target | One onset-locked cursor-to-target unit vector per whole trial |
-| Primary score | Direction-balanced held-out negative 2-D mean-squared error; higher is better |
-| Primary structure | Complete eligible directed source × target transport matrix |
-| Trial roles | Two block-disjoint 64/64 outer folds from one frozen 128-trial packet |
-| Fixed low-label budget | Nested 16 ⊂ 32 ⊂ 64 whole-target-trial packets |
-| Development search | 40--96 complete diagnostic-panel trials, CPU only |
-| Audit | One evaluator-only opening of all three participants after one panel lock |
-| Audit decision | Strict 3-of-3 adequacy/equivalence, not a participant-level (p<0.05) claim |
+| What data are used? | Published version 6 of the BrainGate Dryad release `10.5061/dryad.x0k6djj1h`. |
+| What counts as an independent biological case? | One whole participant. All of that participant's arrays and sessions stay together. |
+| What is used for development and final evaluation? | Provisionally, six whole participants for development and three for one held-out audit. Their roles freeze after the exposure record and metadata-only support check are complete. |
+| What does the model see? | Mean spike-band power (`sbp`) from one fixed onset window. `tx_4_5` is a required sensitivity check, not an alternative selected because it scores better. |
+| What must it predict? | One cursor-to-target unit vector for each complete trial, fixed at the start of the neural window. This is a task-derived proxy, not a direct intention label. |
+| What is the basic comparison? | Fit one mapping in a source session and score it in a different target session. Compare that score with a model fit inside the target session and with a null, all on the same held-out trials. |
+| Which session pairs matter most? | Every eligible directed source-to-target pair is retained. The primary contrast compares near pairs (1--30 days) with long-lag pairs (at least 180 days); 31--179 days is diagnostic only. |
+| How are trials held out? | Each session contributes one frozen 128-trial packet, split by whole blocks into two 64/64 folds whose fit and evaluation roles are reversed. |
+| How much target-session data can adaptation use? | Fixed nested packets of 16, 32, and 64 whole trials. The main low-budget decision uses exactly 32 labelled trials. |
+| How is performance scored? | Direction-balanced held-out negative 2-D mean-squared error; higher is better. |
+| How broad is development? | Forty to 96 complete panel evaluations, run on CPUs. One entire panel is selected, not whichever explanation looks most interesting. |
+| What is the final test? | After the panel is locked, one evaluator opens all three audit participants together and applies it once. A supported audit result must satisfy the same pre-set decision rule independently in all three participants; it is not a participant-population `p < 0.05` claim. |
 
-The decision path is:
+The same panel gives each participant five answers:
 
-| Question | Participant estimand | What support means | Candidate it can enable |
-| --- | --- | --- | --- |
-| Is there excess normalized mapping mismatch at long lag? | `H_i` plus robust `H_i^med` | both simultaneous lower bounds clear positive margins | measurement, remapping, composite |
-| Is there a long-lag local-signal failure route? | fractional local change `S_i` plus raw transported above-null change `D_i` | both simultaneous upper bounds clear negative margins | session-local signal reduction |
-| Does observable measurement state suffice? | admissible-pair excess `H_i^M`, its emulated error `E_i^H`, four near/long `J/R` errors, and random-null separation `Delta_i^rand` | the admissible subset contains excess mismatch and the identity-aware emulator reproduces both that excess and all four transition errors under the frozen random-control rule | measurement sufficiency, conditional on normalized mismatch |
-| Does 32-trial adaptation repair the gap? | aggregate recovery `Qbar_i`, normalized gain `K_i` for locked `m*` | both simultaneous lower bounds clear recovery margins | remappable mismatch, conditional on normalized mismatch |
-| Do participants have different resolved profiles? | replicated tri-state profile in two session partitions | at least two profiles, each internally reproduced | reproducible heterogeneity |
+| Question | What the panel checks | What a clear result can support |
+| --- | --- | --- |
+| Is there more mapping mismatch after a long gap? | The primary and robust near-versus-long comparisons must both clear their positive margins. | A real extra loss at long lags, making the measurement and remapping explanations eligible for testing. |
+| Is less usable signal recoverable in the later sessions? | Both the change in the target session's local score and the transported model's above-null score must clear their negative margins. | Under this fixed analysis, later sessions contain less usable signal rather than only a differently aligned mapping. |
+| Can changes visible in the released recording reproduce the deficit? | A label-blind emulator must reproduce the eligible long-lag loss and the required near/long score changes, while passing the matched-random channel control. | Those observed recording changes are sufficient for the chronological session pairs the emulator is allowed to address. |
+| Can a small labelled sample repair the mismatch? | The one locked remapping method, using exactly 32 labelled target trials, must clear both recovery margins. | A meaningful part of the mismatch can be repaired with that fixed low label budget. |
+| Do participants show different repeatable patterns? | At least two fully resolved failure profiles must differ across participants, and each participant's profile must repeat in two separate session partitions. | The participants have reproducibly different profiles; this does not establish population subtypes. |
 
 ## Measurement and off-policy boundary
 
@@ -444,11 +458,11 @@ competitors, logs cumulative `X` exposure, and cannot see the current or future
 sample. Whole-session transductive normalization is a full-`X` diagnostic
 upper bound; it earns no zero-label, low-cost, or deployment credit.
 
-Before launch, every bounded method needs a human-signed numeric grammar:
+Before candidate scoring, every bounded method needs a human-signed numeric grammar:
 maximum latent rank and effective degrees of freedom, ridge/shrinkage grids,
 condition-number and singular-value bounds, normalization warm-up/time
 constants, transform-norm and temporal-stability thresholds, and channel-QC
-cutoffs. All are currently unset launch blockers.
+cutoffs. All are currently unset scoring prerequisites.
 
 One complete method--hyperparameter recipe `m*` alone defines audit recovery.
 Before any candidate-discriminating score is opened, the bounded grammar is
@@ -685,7 +699,7 @@ or reduction is never treated as evidence of absence.
 
 ## Margins and inference
 
-The following are proposed human-facing anchors, not frozen launch values:
+The following are proposed human-facing anchors, not frozen decision values:
 
 | Quantity | Proposed anchor | Current status |
 | --- | ---: | --- |
@@ -706,7 +720,7 @@ tolerance, single onset offset, channel-QC rule, method bounds, rank and
 leverage thresholds, denominator gates, effect/equivalence margins, tie
 tolerance, and uncertainty rule. Synthetic qualification may reject an
 infeasible value; it cannot choose, relax, or widen a scientific margin.
-Failure to freeze the record keeps the episode launch-blocked.
+Failure to freeze the record blocks candidate scoring and audit interpretation.
 
 The participant is the inferential unit. Development uses leave-one-participant
 out emulation. Within-participant bounds use one frozen simultaneous

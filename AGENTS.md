@@ -83,9 +83,10 @@ optional supplemental context under the project-local skill contract.
   legacy records only through its verified, episode-local, content-addressed
   prior packet. Never read live sibling outputs during a run, and never reuse a
   legacy loop or Goal handoff as the new episode identity.
-- `bin/codex-episode launch` requires an explicit user invocation plus
-  `GOAL.md`, `DATASETS.md`, one search policy, and the episode's `inputs/` and
-  `outputs/` directories. The launcher does not snapshot contracts, inspect
+- Starting episode-managed work requires an explicit user instruction in a
+  Codex task. The instruction must name one episode, whose directory must
+  contain `GOAL.md`, `DATASETS.md`, one search policy, `inputs/`, and
+  `outputs/`. A Codex task does not automatically snapshot contracts, inspect
   Git state, or evaluate scientific policy. Data validation, runtime
   qualification, falsification, held-out evaluation, and any audit logic are
   executed and recorded inside the episode.
@@ -96,23 +97,20 @@ optional supplemental context under the project-local skill contract.
   observed canonical state or explicit human decisions.  Do not turn a local
   exploration result into a shared campaign claim automatically.
 
-## Launching Codex
+## Starting episode work in Codex
 
-`bin/codex-episode` starts Codex with the episode as its writable working
-directory and adds only that episode's scratch directory. `inputs/` remains an
-instruction-level read-only boundary inside the writable episode workspace;
-the launcher does not claim OS-level input isolation. The episode is
-responsible for enforcing its own data roles and recording any limitation this
-creates. Resume uses an explicit Codex session identifier and the same bounded
-workspace. The launcher does not maintain a persistent session or workflow
-state machine:
+Start a new Codex task from the repository project and explicitly name one
+episode. The initial instruction must tell Codex to read this file plus that
+episode's `GOAL.md`, `DATASETS.md`, and search policy; work only on that
+episode; treat `inputs/` as read-only; write durable artifacts under
+`outputs/`; and use `$SCRATCH/br_autoresearch/<episode-name>/` for transient
+work. Continue the same task when resuming work. Do not run two writing tasks
+against the same episode at once.
 
-```bash
-bin/codex-episode launch episodeNN_topic
-bin/codex-episode resume episodeNN_topic <codex-session-id>
-```
-
-The launcher grants bounded episode-managed exploration only. It does not
-itself call MCP, submit Slurm jobs, change Git, approve a scientific claim, or
-advance Landscape state. Brain Researcher review and reward can be requested
-afterward without becoming a prerequisite for doing the episode work.
+These are instruction-level boundaries, not OS-level input isolation. The
+episode is responsible for enforcing its data roles and recording any
+limitation. Direct Codex task startup grants bounded episode-managed
+exploration only; it does not itself call MCP, submit Slurm jobs, change Git,
+approve a scientific claim, or advance Landscape state. Brain Researcher
+review and reward can be requested afterward without becoming a prerequisite
+for doing the episode work.

@@ -1,436 +1,61 @@
 #!/usr/bin/env python3
-"""Inspect Cleanup A candidates and prepare non-authorizing receipts."""
+"""Display the read-only Cleanup A completion record."""
 
 from __future__ import annotations
 
 import argparse
-import datetime as dt
-import hashlib
 import json
-import os
 import pathlib
-import re
-import socket
-import stat
 import sys
 from typing import Any
 
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CATALOG_PATH = ROOT / "DATA_CLEANUP_CANDIDATES.json"
-RECEIPT_ROOT = pathlib.Path(
-    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/manifests"
-)
-RECEIPT_ID = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}\Z")
-QUARANTINE_ROOTS = {
-    "/scratch/users/zijiao/.autoresearch_cleanup_quarantine",
-    "/oak/stanford/groups/russpold/users/zijiao/.autoresearch_cleanup_quarantine",
-}
-SNAPSHOT_MATCH_KEYS = (
-    "device_id",
-    "inode",
-    "mode",
-    "allocated_bytes",
-    "directories",
-    "regular_files",
-    "symlinks",
-    "other",
-    "logical_file_bytes",
-    "inventory_format",
-    "inventory_sha256",
-)
+RECORD_PATH = ROOT / "DATA_CLEANUP_CANDIDATES.json"
 
 
 def fail(message: str) -> None:
     raise SystemExit(f"data-cleanup failed: {message}")
 
 
-def load_catalog(
-    path: pathlib.Path = CATALOG_PATH,
-) -> tuple[dict[str, Any], bytes, str]:
-    raw = path.read_bytes()
-    digest = hashlib.sha256(raw).hexdigest()
-    catalog = json.loads(raw)
-    if catalog.get("schema_version") != "br-autoresearch-cleanup-candidates-v1":
-        fail("unsupported candidate catalog schema")
-    authority = catalog.get("authority", {})
-    if authority.get("receipt_preparation_authorized") is not True:
-        fail("candidate catalog does not authorize receipt preparation")
-    if authority.get("quarantine_authorized") is not False:
-        fail("candidate catalog must not authorize quarantine")
-    if authority.get("permanent_deletion_authorized") is not False:
-        fail("candidate catalog must not authorize deletion")
-    candidates = catalog.get("candidates")
-    if not isinstance(candidates, list) or not candidates:
-        fail("candidate catalog is empty or malformed")
-    manifest_ref = catalog.get("location_manifest")
-    if manifest_ref != "DATA_LOCATION_MANIFEST.json":
-        fail("unexpected location manifest reference")
-    expected_manifest_hash = catalog.get("location_manifest_sha256_at_review")
-    actual_manifest_hash = hashlib.sha256(
-        (ROOT / manifest_ref).read_bytes()
-    ).hexdigest()
-    if expected_manifest_hash != actual_manifest_hash:
-        fail("location manifest changed since candidate review")
-    ids: set[str] = set()
-    for candidate in candidates:
-        validate_candidate(candidate)
-        logical_id = candidate["logical_id"]
-        if logical_id in ids:
-            fail(f"duplicate logical ID: {logical_id}")
-        ids.add(logical_id)
-    return catalog, raw, digest
+def load_report() -> dict[str, Any]:
+    with RECORD_PATH.open("r", encoding="utf-8") as stream:
+        return json.load(stream)
 
 
-def validate_literal_path(value: Any, label: str) -> pathlib.Path:
-    if not isinstance(value, str):
-        fail(f"{label} is not a string")
-    path = pathlib.Path(value)
-    if not path.is_absolute() or ".." in path.parts:
-        fail(f"{label} must be an absolute normalized path")
-    if value == "/" or any(char in value for char in "*?["):
-        fail(f"{label} is broad or contains a glob")
-    if os.path.normpath(value) != value:
-        fail(f"{label} is not normalized")
-    return path
-
-
-def is_within(path: pathlib.Path, parent: pathlib.Path) -> bool:
-    try:
-        path.relative_to(parent)
-    except ValueError:
-        return False
-    return True
-
-
-def validate_candidate(candidate: Any) -> None:
-    if not isinstance(candidate, dict):
-        fail("candidate is not an object")
-    logical_id = candidate.get("logical_id")
-    if not isinstance(logical_id, str) or not RECEIPT_ID.fullmatch(logical_id):
-        fail("invalid logical ID")
-    source = validate_literal_path(
-        candidate.get("source_path"), f"{logical_id} source"
-    )
-    quarantine_root = str(
-        validate_literal_path(
-            candidate.get("quarantine_root"), f"{logical_id} quarantine root"
-        )
-    )
-    if quarantine_root not in QUARANTINE_ROOTS:
-        fail(f"{logical_id} has an unapproved quarantine root")
-    payload = candidate.get("scientific_payload", {})
-    payload_source = validate_literal_path(
-        payload.get("source_path"), f"{logical_id} payload source"
-    )
-    authoritative = validate_literal_path(
-        payload.get("authoritative_path"), f"{logical_id} authoritative path"
-    )
-    if not is_within(payload_source, source):
-        fail(f"{logical_id} payload source is outside its cleanup source")
-    if is_within(authoritative, source) or is_within(source, authoritative):
-        fail(f"{logical_id} authoritative path overlaps its cleanup source")
-    evidence_paths = candidate.get("evidence_paths")
-    if not isinstance(evidence_paths, list) or not evidence_paths:
-        fail(f"{logical_id} has no evidence paths")
-    for index, evidence in enumerate(evidence_paths):
-        validate_literal_path(evidence, f"{logical_id} evidence path {index}")
-    snapshot = candidate.get("source_snapshot", {})
-    if any(key not in snapshot for key in SNAPSHOT_MATCH_KEYS):
-        fail(f"{logical_id} source snapshot is incomplete")
-    if candidate.get("expected_reclaim_allocated_bytes") != snapshot.get(
-        "allocated_bytes"
-    ):
-        fail(f"{logical_id} reclaim estimate differs from its source snapshot")
-    if candidate.get("quarantine_authorized") is not False:
-        fail(f"{logical_id} must not authorize quarantine")
-    if candidate.get("permanent_deletion_authorized") is not False:
-        fail(f"{logical_id} must not authorize deletion")
-
-
-def snapshot_tree(path: pathlib.Path) -> dict[str, Any]:
-    root_stat = path.lstat()
-    if stat.S_ISLNK(root_stat.st_mode) or not stat.S_ISDIR(root_stat.st_mode):
-        fail(f"source is not a real directory: {path}")
-
-    counts = {"directories": 0, "regular_files": 0, "symlinks": 0, "other": 0}
-    logical_file_bytes = 0
-    allocated_bytes = 0
-    inventory_records: list[tuple[bytes, tuple[bytes, ...]]] = []
-    stack = [path]
-    while stack:
-        current = stack.pop()
-        current_stat = current.lstat()
-        allocated_bytes += current_stat.st_blocks * 512
-        relative = (
-            b"." if current == path else os.fsencode(current.relative_to(path))
-        )
-        link_target = b""
-        if stat.S_ISLNK(current_stat.st_mode):
-            counts["symlinks"] += 1
-            kind = b"l"
-            link_target = os.fsencode(os.readlink(current))
-        elif stat.S_ISDIR(current_stat.st_mode):
-            counts["directories"] += 1
-            kind = b"d"
-            try:
-                with os.scandir(current) as entries:
-                    stack.extend(pathlib.Path(entry.path) for entry in entries)
-            except FileNotFoundError:
-                fail(f"source changed during inventory: {current}")
-        elif stat.S_ISREG(current_stat.st_mode):
-            counts["regular_files"] += 1
-            logical_file_bytes += current_stat.st_size
-            kind = b"f"
-        else:
-            counts["other"] += 1
-            kind = b"o"
-        inventory_records.append(
-            (
-                relative,
-                (
-                    kind,
-                    f"{stat.S_IMODE(current_stat.st_mode):04o}".encode(),
-                    str(current_stat.st_uid).encode(),
-                    str(current_stat.st_gid).encode(),
-                    str(current_stat.st_dev).encode(),
-                    str(current_stat.st_ino).encode(),
-                    str(current_stat.st_nlink).encode(),
-                    str(current_stat.st_size).encode(),
-                    str(current_stat.st_mtime_ns).encode(),
-                    link_target,
-                ),
-            )
-        )
-
-    final_root_stat = path.lstat()
-    if (
-        final_root_stat.st_dev != root_stat.st_dev
-        or final_root_stat.st_ino != root_stat.st_ino
-        or final_root_stat.st_mtime_ns != root_stat.st_mtime_ns
-    ):
-        fail(f"source root changed during inventory: {path}")
-
-    inventory_hash = hashlib.sha256()
-    for relative, fields in sorted(inventory_records, key=lambda item: item[0]):
-        for field in (relative, *fields):
-            inventory_hash.update(len(field).to_bytes(8, "big"))
-            inventory_hash.update(field)
-
-    return {
-        "path": str(path),
-        "device_id": str(root_stat.st_dev),
-        "inode": str(root_stat.st_ino),
-        "mode": f"{stat.S_IMODE(root_stat.st_mode):04o}",
-        "uid": root_stat.st_uid,
-        "gid": root_stat.st_gid,
-        "nlink": root_stat.st_nlink,
-        "mtime_ns": str(root_stat.st_mtime_ns),
-        **counts,
-        "logical_file_bytes": logical_file_bytes,
-        "allocated_bytes": allocated_bytes,
-        "inventory_format": "nul-safe-length-prefixed-stat-v1",
-        "inventory_sha256": inventory_hash.hexdigest(),
-    }
-
-
-def snapshot_root(path: pathlib.Path) -> dict[str, Any]:
-    root_stat = path.lstat()
-    if stat.S_ISLNK(root_stat.st_mode) or not stat.S_ISDIR(root_stat.st_mode):
-        fail(f"authoritative path is not a real directory: {path}")
-    return {
-        "path": str(path),
-        "device_id": str(root_stat.st_dev),
-        "inode": str(root_stat.st_ino),
-        "mode": f"{stat.S_IMODE(root_stat.st_mode):04o}",
-        "uid": root_stat.st_uid,
-        "gid": root_stat.st_gid,
-        "nlink": root_stat.st_nlink,
-        "mtime_ns": str(root_stat.st_mtime_ns),
-    }
-
-
-def candidate_by_id(catalog: dict[str, Any], logical_id: str) -> dict[str, Any]:
-    matches = [
-        item for item in catalog["candidates"] if item["logical_id"] == logical_id
-    ]
-    if not matches:
-        fail(f"unknown logical ID: {logical_id}")
-    return matches[0]
-
-
-def snapshot_matches(candidate: dict[str, Any], observed: dict[str, Any]) -> bool:
-    expected = candidate["source_snapshot"]
-    return all(observed[key] == expected[key] for key in SNAPSHOT_MATCH_KEYS)
-
-
-def build_receipt(
-    candidate: dict[str, Any], catalog_digest: str, receipt_id: str | None = None
-) -> dict[str, Any]:
-    if receipt_id is not None and not RECEIPT_ID.fullmatch(receipt_id):
-        fail("invalid receipt ID")
-    source = pathlib.Path(candidate["source_path"])
-    observed = snapshot_tree(source)
-    authoritative = snapshot_root(
-        pathlib.Path(candidate["scientific_payload"]["authoritative_path"])
-    )
-    matches = snapshot_matches(candidate, observed)
-    receipt_path = (
-        str(RECEIPT_ROOT / receipt_id / "preflight.json") if receipt_id else None
-    )
-    quarantine_destination = (
-        str(
-            pathlib.Path(candidate["quarantine_root"])
-            / receipt_id
-            / candidate["logical_id"]
-        )
-        if receipt_id
-        else None
-    )
-    return {
-        "schema_version": "br-autoresearch-cleanup-preflight-v2",
-        "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "generated_on_host": socket.gethostname(),
-        "generated_by_uid": os.getuid(),
-        "status": "pending_execution_time_verification",
-        "logical_id": candidate["logical_id"],
-        "receipt_id": receipt_id,
-        "receipt_path": receipt_path,
-        "candidate_catalog": str(CATALOG_PATH),
-        "candidate_catalog_copy": "candidate_catalog.json" if receipt_id else None,
-        "candidate_catalog_sha256": catalog_digest,
-        "source_snapshot_expected": candidate["source_snapshot"],
-        "source_snapshot_observed": observed,
-        "source_snapshot_matches_catalog": matches,
-        "authoritative_root_observed": authoritative,
-        "scientific_payload": candidate["scientific_payload"],
-        "proposed_quarantine_root": candidate["quarantine_root"],
-        "proposed_quarantine_destination": quarantine_destination,
-        "evidence_paths": candidate["evidence_paths"],
-        "required_equivalence": candidate["required_equivalence"],
-        "gates": {
-            "equivalence_verified": False,
-            "authoritative_copy_smoke_tested": False,
-            "two_stable_inventory_digests": False,
-            "no_relevant_slurm_jobs": False,
-            "no_local_open_handles": False,
-            "no_external_writers_attested": False,
-            "locator_scan_passed": False,
-            "quarantine_authorization_bound": False,
-        },
-        "authority": {
-            "receipt_only": True,
-            "quarantine_authorized": False,
-            "permanent_deletion_authorized": False,
-        },
-        "minimum_hold_days_after_future_quarantine": 7,
-        "inventory_is_advisory_metadata_not_content_hash": True,
-    }
-
-
-def write_all(file_fd: int, payload: bytes) -> None:
-    view = memoryview(payload)
-    while view:
-        written = os.write(file_fd, view)
-        if written == 0:
-            fail("short write while creating receipt")
-        view = view[written:]
-
-
-def write_receipt(
-    root: pathlib.Path,
-    receipt_id: str,
-    receipt: dict[str, Any],
-    catalog_bytes: bytes,
-) -> pathlib.Path:
-    if not RECEIPT_ID.fullmatch(receipt_id):
-        fail(
-            "receipt ID must use 1-64 lowercase letters, digits, dot, "
-            "underscore, or dash"
-        )
-    root_stat = root.lstat()
-    if stat.S_ISLNK(root_stat.st_mode) or not stat.S_ISDIR(root_stat.st_mode):
-        fail(f"receipt root is not a real directory: {root}")
-
-    flags = os.O_RDONLY | os.O_DIRECTORY
-    if hasattr(os, "O_NOFOLLOW"):
-        flags |= os.O_NOFOLLOW
-    root_fd = os.open(root, flags)
-    old_umask = os.umask(0o077)
-    try:
-        try:
-            os.mkdir(receipt_id, mode=0o700, dir_fd=root_fd)
-        except FileExistsError:
-            fail(f"receipt ID already exists: {receipt_id}")
-        run_fd = os.open(receipt_id, flags, dir_fd=root_fd)
-        try:
-            # Force group/other permission bits off. Some OAK directories
-            # retain an inherited setgid bit, so stat may report 2700 while
-            # access remains owner-only.
-            os.fchmod(run_fd, 0o700)
-            file_flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
-            if hasattr(os, "O_NOFOLLOW"):
-                file_flags |= os.O_NOFOLLOW
-            files = {
-                "preflight.json": (
-                    json.dumps(receipt, indent=2, sort_keys=True) + "\n"
-                ).encode(),
-                "candidate_catalog.json": catalog_bytes,
-            }
-            for name, payload in files.items():
-                file_fd = os.open(name, file_flags, 0o600, dir_fd=run_fd)
-                try:
-                    write_all(file_fd, payload)
-                    os.fsync(file_fd)
-                finally:
-                    os.close(file_fd)
-            os.fsync(run_fd)
-        finally:
-            os.close(run_fd)
-        os.fsync(root_fd)
-    finally:
-        os.umask(old_umask)
-        os.close(root_fd)
-    return root / receipt_id / "preflight.json"
+def record_by_id(records: list[dict[str, Any]], logical_id: str) -> dict[str, Any]:
+    for record in records:
+        if record["logical_id"] == logical_id:
+            return record
+    fail(f"unknown logical ID: {logical_id}")
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("list", help="list the fixed Cleanup A allowlist")
-    plan = subparsers.add_parser("plan", help="print a read-only pending receipt")
-    plan.add_argument("logical_id")
-    prepare = subparsers.add_parser(
-        "prepare-receipt", help="write one protected pending receipt; move no data"
-    )
-    prepare.add_argument("logical_id")
-    prepare.add_argument("--receipt-id", required=True)
+    commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("list", help="list the five completed cleanup records")
+    show = commands.add_parser("show", help="show one completed cleanup record")
+    show.add_argument("logical_id")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    catalog, catalog_bytes, catalog_digest = load_catalog()
+    report = load_report()
+    records = report["cleanup_records"]
+
     if args.command == "list":
-        for candidate in catalog["candidates"]:
+        for record in records:
             print(
-                f"{candidate['logical_id']}\t"
-                f"{candidate['expected_reclaim_allocated_bytes']}\t"
-                f"{candidate['source_path']}"
+                f"{record['logical_id']}\tremoved\t"
+                f"{record['estimated_reclaimed_bytes']}\t"
+                f"{record['removed_path']}"
             )
         return 0
 
-    candidate = candidate_by_id(catalog, args.logical_id)
-    receipt_id = args.receipt_id if args.command == "prepare-receipt" else None
-    receipt = build_receipt(candidate, catalog_digest, receipt_id)
-    if not receipt["source_snapshot_matches_catalog"]:
-        fail("catalogued metadata snapshot changed; review before proceeding")
-    if args.command == "plan":
-        json.dump(receipt, sys.stdout, indent=2, sort_keys=True)
-        sys.stdout.write("\n")
-        return 0
-    path = write_receipt(RECEIPT_ROOT, args.receipt_id, receipt, catalog_bytes)
-    print(path)
+    record = record_by_id(records, args.logical_id)
+    json.dump(record, sys.stdout, indent=2, sort_keys=True)
+    sys.stdout.write("\n")
     return 0
 
 

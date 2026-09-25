@@ -15,7 +15,7 @@ provisioned under `inputs/`.
 
 | Source class | Fixed role | Candidate may see outcomes? | Current state |
 | --- | --- | --- | --- |
-| NeuroCam final article and supplement | Documentary architecture and characterization anchors | Yes, before search | Documentary PDF remains in legacy-worktree quarantine as `asset_ep20_neurocam_documentary`; no episode-local handoff or rights record |
+| NeuroCam final article and supplement | Documentary architecture and characterization anchors | Yes, before search | Documentary PDF is stored under `private_steward_acquisition` as `asset_ep20_neurocam_documentary`; no episode-local handoff or rights record |
 | Episode-local reference example bundles | Nonbinding documentary context and non-candidate-discriminating simulation sanity checks only | Yes, before search | Absent from this canonical checkout; `legacy_ep20_reference_bundles` is not a provisioned EP20 input |
 | Reference calibration-anchor manifest | Fit the paper-derived reference-model ensemble | Yes | Absent; fit remains input-gated |
 | Reference qualification-anchor manifest | Public documentary anchors excluded from fitting by a frozen role | Published values are visible; the fit may not use them and candidates may not tune from qualification residuals | Absent; qualification remains input-gated and unrun |
@@ -32,16 +32,16 @@ provisioned under `inputs/`.
 The canonical checkout has no repository-local `.steward_acquisition` tree.
 The root
 [`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json) identifies the
-current documentary quarantine as `legacy_steward_acquisition`, groups its
-NeuroCam asset as `asset_ep20_neurocam_documentary`, and records
-`planned_steward_acquisition` as the planned durable external root. The asset
-move is `staged_not_moved`; the planned root is `absent_planned_target`.
+canonical private steward root as `private_steward_acquisition` at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`
+and groups its NeuroCam asset as `asset_ep20_neurocam_documentary`. The
+steward tree was relocated by same-filesystem rename on 2026-09-24.
 The two legacy JSON examples are separately inventoried as
 `legacy_ep20_reference_bundles` with no approved destination.
 
 This location record does not provision the PDF, metadata contracts, example
 bundles, raw traces, or any role-filtered handoff into EP20. It carries no
-readiness or launch-gate effect.
+effect on source qualification or protected-outcome access.
 
 ## Immutable documentary reference
 
@@ -60,16 +60,17 @@ readiness or launch-gate effect.
 | Rights policy | Verify and record separately for final article, supplement, preprint, figures, and any author-supplied files before copying or redistribution |
 | Current local payload | Absent from this episode |
 
-Before launch, freeze the final article, supplement, preprint version used for
-cross-checking, landing-page metadata, acquisition timestamps, byte sizes, and
-SHA-256 hashes. The final article is the scientific citation. The preprint can
-help document version history but cannot silently replace the final methods or
-supplement.
+Before reference fitting or candidate scoring, freeze the final article,
+supplement, preprint version used for cross-checking, landing-page metadata,
+acquisition timestamps, byte sizes, and SHA-256 hashes. The final article is
+the scientific citation. The preprint can help document version history but
+cannot silently replace the final methods or supplement.
 
 The draft-time remote hash is a reproducibility observation, not a provisioned
 input or proof that the combined author-hosted file is the official immutable
-article/supplement split. Launch still requires a rights record, acquisition
-timestamp, local read-only handoff, complete inventory, and fresh byte hashes.
+article/supplement split. Reference fitting still requires a rights record,
+acquisition timestamp, local read-only handoff, complete inventory, and fresh
+byte hashes.
 
 The published report and supplement provide aggregate documentary anchors.
 They are not raw device data, a process design kit, a transistor netlist, a
@@ -91,8 +92,9 @@ If provisioned, their intended roles would be:
 
 Such files would be nonbinding examples. They are not authoritative for the
 reference-model fit or qualification split, are not candidate-score inputs,
-cannot initialize model parameters or the search space, and have no
-launch-gate effect. They cannot substitute for raw I-V/C-V, compact-model,
+cannot initialize model parameters or the search space, and do not qualify
+reference fitting or candidate scoring. They cannot substitute for raw I-V/C-V,
+compact-model,
 PDK, netlist, mask/layout, or fabrication-outcome assets. The planned
 `NEUROCAM_ANCHORS.yaml` and `REFERENCE_ANCHOR_SPLIT.yaml` would be role
 contracts for future paper-derived calibration and qualification work; neither
@@ -216,11 +218,12 @@ aggregate-only split is:
   available under a frozen role.
 
 This proposed split is insufficient if only the aggregate text values are
-available. Before launch, outcome-blind recovery simulations must show that
+available. Before reference fitting or candidate scoring, outcome-blind
+recovery simulations must show that
 the held-out anchors discriminate incorrect scaling laws. If they do not, raw
 traces, additional devices, or an independently justified model range are
-required. Inability to provision a discriminating gate keeps the unregistered
-draft launch-blocked. If a frozen gate is actually run and fails, the terminal
+required. Inability to provision a discriminating gate leaves the reference
+model unqualified. If a frozen gate is actually run and fails, the terminal
 is `technical_reference_model_unqualified`, not a scientific negative.
 
 These paper values are public, so this is a fit holdout, not an access-hidden
@@ -248,9 +251,10 @@ The current contract has no authenticated handoff for:
 - current/power/thermal traces by operating mode; or
 - independently withheld devices.
 
-Before launch, search and correspondence exposure must be recorded even when
-no asset is obtained. An author-supplied asset receives an immutable source
-record, terms-of-use record, checksum, and role assignment before it is opened.
+Before an author-supplied asset is opened or candidate scoring begins, search
+and correspondence exposure must be recorded even when no asset is obtained.
+An author-supplied asset receives an immutable source record, terms-of-use
+record, checksum, and role assignment before it is opened.
 
 If these assets remain absent, EP20 may proceed only if the scientist accepts
 the narrower object `paper-derived NeuroCam-class reference-model ensemble`, the
@@ -375,8 +379,8 @@ it cannot replace the independent electronics shift for an unbuilt geometry.
 
 ## Empirical replay or known-input phantom
 
-An exact source has not been selected. Before launch, freeze one of the
-following source types:
+An exact source has not been selected. Before empirical replay or audit
+evaluation, freeze one of the following source types:
 
 1. a legally reusable, sufficiently dense raw ECoG recording with channel
    geometry, timestamps, reference, hardware, sample rate, and preprocessing
@@ -442,8 +446,8 @@ An unknown cost is not zero. If a candidate uses a primitive absent from the
 reference source package, the primitive is prohibited until its area, noise,
 power, timing, calibration, and manufacturing rules are frozen.
 
-If no NeuroCam PDK or netlist is obtained, launch requires a versioned,
-scientist-approved conservative surrogate rule deck. Every clearance,
+If no NeuroCam PDK or netlist is obtained, candidate compilation requires a
+versioned, scientist-approved conservative surrogate rule deck. Every clearance,
 aperture, routing, loading, and rounding bound must cite a measured anchor,
 manufacturer/datasheet limit, fabrication literature source, or a declared
 adversarial safety factor. Likewise, the power/thermal quantity remains a
@@ -458,7 +462,7 @@ biocompatibility, and lifetime remain outside EP20.
 
 ## Required role-filtered handoffs
 
-Before launch, a steward creates content-addressed handoffs for:
+Before role-specific access, a steward creates content-addressed handoffs for:
 
 1. `documentary_reference` — final article, supplement, source metadata, and
    anchor manifest;
@@ -480,7 +484,7 @@ qualification seal. Public availability of a paper, preprint, code repository,
 or dataset does not make audit access acceptable. The adaptive runtime must be
 unable to read or redownload audit content.
 
-## Exact manifests required before launch
+## Exact manifests required before outcome access
 
 The following names are reserved under read-only `inputs/`:
 
@@ -539,14 +543,15 @@ No mixed link to a source tree containing both development and audit content
 is permitted. The episode directory stores contracts and small manifests, not
 an uncontrolled duplicate of papers, device traces, or large simulations.
 
-## Current readiness
+## Current source and implementation state
 
 At drafting time:
 
 - the final paper, DOI, preprint DOI, and aggregate anchors are identified;
-- the documentary PDF remains quarantined in the legacy worktree under
-  `asset_ep20_neurocam_documentary`, with its durable move still
-  `staged_not_moved` and target still `absent_planned_target`;
+- the documentary PDF is stored under `private_steward_acquisition` as
+  `asset_ep20_neurocam_documentary` after the same-filesystem relocation on
+  2026-09-24, but is not an episode-local handoff and does not qualify reference
+  fitting or candidate scoring;
 - the five planned metadata-only paper-derived proxy contracts are absent;
 - the two legacy JSON examples are not provisioned in this canonical episode;
 - no absent contract or legacy example is configuration-lock eligible or
@@ -567,5 +572,6 @@ and example roles only. It adds no provisioned reference bundle, real I-V/C-V
 payload, compact model, PDK, raw NeuroCam trace, fabrication outcome, execution
 authority, or physical-device validation.
 
-These are launch blockers, not invitations to substitute guessed parameters or
-to weaken the claim silently.
+These gaps block reference fitting, candidate scoring, and audit access; they
+are not invitations to substitute guessed parameters or weaken the claim
+silently.

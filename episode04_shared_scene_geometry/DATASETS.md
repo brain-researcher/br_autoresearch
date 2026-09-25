@@ -6,7 +6,7 @@ This contract does not assert that absent data have been acquired. The intended
 source is the LAION-fMRI release. The episode must bind a read-only,
 content-addressed input manifest rather than read mutable run outputs.
 
-Reported launch-release structure:
+Reported source-release structure:
 
 - five participants and 30 main `task-images` sessions per participant;
 - 25,052 distinct images;
@@ -30,19 +30,20 @@ repository-local `.steward_acquisition` directory. Resolve physical paths only
 through the root
 [`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json):
 
-- `legacy_steward_acquisition` identifies the current quarantined acquisition
-  bytes in the legacy worktree;
-- `planned_steward_acquisition` is the planned durable external destination,
-  currently `absent_planned_target`; the EP04 asset moves remain
-  `staged_not_moved`; and
+- `private_steward_acquisition` identifies the canonical private steward root
+  at
+  `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`;
+  the acquisition tree was relocated there by same-filesystem rename on
+  2026-09-24; and
 - `scratch_ep04` identifies an existing legacy runtime copy under
   `$SCRATCH/autoresearch/episode04_shared_scene_geometry/`. It is a cleanup
   candidate after durable-destination verification, not a migration
   destination.
 
-No source has been moved or provisioned into this episode. These location
-records are inventory pointers, not role-filtered handoffs, readiness receipts,
-or permission to inspect neural or stimulus outcomes.
+The steward source has been relocated, but no source has been provisioned into
+this episode. These location records are inventory pointers, not role-filtered
+handoffs, scientific-qualification receipts, or permission to inspect neural
+or stimulus outcomes.
 
 ## Exposure ledger
 
@@ -82,9 +83,9 @@ human captions, object/category inventory, every retained frozen visual
 embedding, and low-level covariates. Current release notes explicitly report
 object segmentations for shared images; they do not prove object coverage for
 the 4,712 subject-unique images per participant. The central object comparator
-is a launch blocker until this matrix passes with the frozen common-eligibility
-rule. A new detector requires stimulus DUA approval, a hash-pinned frozen model,
-and complete extraction before any neural outcome is accessed.
+must not enter neural scoring until this matrix passes with the frozen common-
+eligibility rule. A new detector requires stimulus DUA approval, a hash-pinned
+frozen model, and complete extraction before any neural outcome is accessed.
 
 Primary search should use released captions, embeddings, betas, ROIs, and
 metadata. Raw packed images are not required. If a proposed operator requires
@@ -133,8 +134,8 @@ threshold, or aggregation may change.
 - The packed stimulus-image DUA is unresolved for any raw-image-dependent
   extension; such extensions remain excluded by default.
 - No new independent participant or compatible dataset has been acquired.
-- The evaluator and search policy are unregistered; canonical launch is
-  blocked.
+- The evaluator has not been qualified against the frozen search policy; this
+  blocks candidate scoring and audit opening, not explicit task startup.
 
 ## Storage boundary
 

@@ -1,80 +1,473 @@
 schema_version: autoresearch.adaptive_search_policy.v1
-policy_id: ep11_projection_modes_adaptive
+policy_id: ep11_reusable_projection_groups_adaptive
 episode_id: ep11
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
+research_program:
+  paper_question: continuous_organization_or_cross_animal_projection_division_within_one_source_population
+  plan_ref: outputs/paper_plan.md
+  primary_test: H_continuous_plus_groups_minus_C_position_plus_continuous_latent
+  model_comparison_is_the_final_biological_claim: false
+  final_biological_object: named_downstream_target_allocation_in_one_named_source_population
+  closest_prior_work:
+    - Peng_et_al_2021_projection_diversity_topography_and_cross_modality_boundary
+    - Yufeng_Liu_et_al_2024_exact_SEU_A1876_multiscale_morphometry_spatial_clustering_and_projection_motifs
+    - Lijuan_Liu_et_al_2025_potential_connectivity_barcode_spatially_tuned_c_types_MOs_and_thalamocortical_paths
+    - Xiong_et_al_2025_near_identical_F1877_arbor_and_bouton_probabilistic_connectomes
+  prior_clustering_or_subtype_separation_is_novelty: false
+  overlapping_prior_cells_are_independent_replication: false
+
 dataset_roles:
-  shared_exposure_ledger_group: seu_a1876_ep09_ep11
+  shared_exposure_ledger_group: seu_a1876_ep09_ep10_ep11
+  split_unit: verified_independent_animal
+  conservative_specimen_group_role: feasibility_or_explicitly_redesigned_cross_group_study_only
+  conservative_specimen_groups_count_toward_primary_cross_animal_minima: false
+  access_accounting:
+    filesystem_readability_alone_is_outcome_exposure: false
+    trusted_hash_format_identity_join_and_allow_list_redaction_without_candidate_visible_values_is_outcome_exposure: false
+    candidate_visible_axon_geometry_projection_values_summaries_diagnostics_errors_or_plots_is_outcome_exposure: true
+    trusted_operation_requires_actor_process_input_output_hash_field_and_visibility_log: true
+    uncertain_or_missing_access_record: affected_animals_not_fresh_audit_and_conservatively_marked_in_shared_ledger
+  source_support_census:
+    role: first_practical_action_before_projection_group_search
+    outcome_access: false
+    required_columns:
+      - candidate_source_population
+      - verified_independent_animal
+      - cells_eligible_and_excluded
+      - soma_position_and_depth_coverage
+      - layer_coverage
+      - acquisition_and_registration_batch
+      - sex_age_strain_genotype_and_cre_line
+      - labeling_strategy_imaging_modality_hemisphere_and_source_lab
+      - reconstruction_version_and_derived_feature_lineage
+      - development_audit_role
+      - local_overlap_and_intermediate_position_sampling
+    selection_uses_apparent_projection_groups: false
+    whole_release_group_count_can_substitute_for_source_specific_support: false
+    current_status: unverified
+    qualification:
+      timing: metadata_only_before_projection_outcome_access
+      unit: verified_independent_animal
+      geometry_definition:
+        coordinate_metric_partition_or_neighbor_graph: null
+        must_be_frozen_before_source_selection: true
+        may_use_projection_outcomes_or_apparent_groups: false
+      thresholds:
+        minimum_eligible_neurons_per_animal: null
+        minimum_development_animals_per_common_support_stratum: null
+        minimum_audit_animals_per_common_support_stratum: null
+        minimum_mutual_development_audit_support_fraction: null
+        minimum_cross_animal_neighbor_coverage: null
+        maximum_position_depth_support_hole: null
+        maximum_fraction_outside_common_support: null
+        maximum_missing_unknown_or_truncated_fraction: null
+        maximum_animal_batch_position_aliasing: null
+        minimum_precision_for_meaningful_H_minus_C: null
+      threshold_derivation: outcome_blind_precision_and_synthetic_recovery
+      every_threshold_and_metric_definition_nonnull_before_source_selection: true
+      applied_identically_to_every_candidate_source: true
+      twelve_development_and_eight_audit_animals_are_necessary_not_sufficient: true
   readiness:
-    source: SEU-A1876 metadata and authenticated CCFv3 assets
+    source: SEU_A1876_metadata_and_authenticated_CCFv3_assets
     outcome_access: false
   development:
-    unit: verified biological_group
-    assignment: shared_EP09_EP11_ledger
+    unit: verified_independent_animal
+    assignment: shared_EP09_EP10_EP11_ledger
     minimum_groups: 12
-    evaluation: group_held_out_spatial_block_equal
+    minimum_applies_within_selected_source_and_common_support: true
+    minimum_is_current_design_requirement_not_universal_scientific_threshold: true
+    evaluation: group_held_out_common_support_spatial_block_equal
   audit:
-    unit: complete_verified_biological_group
+    unit: complete_verified_independent_animal
     assignment: shared_sealed_role_before_outcome_access
     minimum_groups: 8
+    minimum_applies_within_selected_source_and_common_support: true
+    minimum_is_current_design_requirement_not_universal_scientific_threshold: true
     access: trusted_evaluator_once_after_lock
+  common_support:
+    freeze_from: source_by_animal_by_soma_position_and_depth_table
+    development_audit_overlap_required: true
+    local_overlap_for_group_interpretation_required: true
+    unsampled_intermediate_position_is_evidence_for_group_gap: false
+    pool_distinct_sources_to_manufacture_support: false
+    twelve_eight_counts_are_necessary_not_sufficient: true
+    qualification_thresholds_frozen_outcome_blind:
+      - minimum_effective_cells_per_animal
+      - minimum_animals_per_spatial_neighborhood_and_layer
+      - overlap_coefficient_and_maximum_unsampled_gap
+      - maximum_missing_unknown_and_truncated_fraction
+      - minimum_precision_for_meaningful_H_minus_C_gain
+      - minimum_development_animals_supporting_each_putative_group
+    every_threshold_must_be_nonnull_before_real_outcome_access: true
+    no_supported_source_after_valid_metadata_qualification: closed_insufficient_source_support
+    irreparable_identity_or_metadata_integrity_failure: technical_failure
   correlation:
     sibling_episodes: [ep09, ep10]
     independent_replication: false
 
+stage_boundaries:
+  stage0_freezes_before_candidate_discriminating_outcome_access:
+    - estimand_primary_outcome_construction_and_observation_contract
+    - source_definition_identity_roles_shared_ledger_and_common_support_rule
+    - admissible_B_P_C_D_H_grammar_and_B_predictor_whitelist
+    - candidate_hyperparameter_ranges_tuning_budget_scoring_and_selection_rule
+    - meaningful_margins_support_thresholds_falsifiers_and_audit_boundary
+  stage0_does_not_fit_scientific_models_or_fix_all_fitted_parameter_values: true
+  development_outcomes_may_within_frozen_rules:
+    - estimate_noise_nuisance_and_random_effect_parameters
+    - select_registered_residual_family_covariance_regularization_and_smoothness
+    - select_registered_latent_dimension_group_count_and_candidate_configuration
+    - drive_logged_adaptive_successor_proposals
+  every_development_selection_uses_animal_heldout_development_only_and_is_replayed_in_full_search_null: true
+  development_forbidden:
+    - change_primary_outcome_or_source_based_on_attractive_projection_groups
+    - add_unregistered_model_family_predictor_or_hyperparameter_range
+    - change_development_audit_roles_or_support_thresholds_after_outcome_access
+    - use_audit_outcomes_for_fitting_selection_or_branching
+  redesign_if_12_8_or_precision_rule_fails:
+    allowed_only_as: prospectively_versioned_design_before_outcome_access_or_new_round_after_exposure
+    examples: [narrower_question, revised_sample_size_rule_with_new_precision_basis, additional_data]
+    cannot_be_interpreted_as_absence_of_projection_groups: true
+
+primary_outcome:
+  object_id: fixed_quantitative_regional_projection_distribution_v1
+  source: authenticated_complete_axon_ccfv3
+  one_object_for_all_adjudicative_models: true
+  construction_selection:
+    default: outcome_blind_atlas_anatomy_measurement_and_reconstruction_QC_only
+    real_regional_axon_summary_access_for_source_vocabulary_resolution_zero_filter_or_normalization: forbidden
+    alternative_if_prospectively_declared: replay_entire_construction_selection_inside_every_development_fold_and_every_full_search_null_replicate
+    default_used_for_v1: true
+    target_observability_means: outcome_blind_complete_axon_reconstruction_and_registration_QC_not_regional_projection_mass
+  freeze_before_any_real_regional_projection_outcome_access:
+    - selected_source_population
+    - eligible_cells_and_common_support_domain
+    - nonoverlapping_target_vocabulary_and_atlas_resolution
+    - laterality
+    - terminal_arbor_vs_passing_tract_rule
+    - quantitative_projection_measure_and_normalization
+    - zero_missing_unknown_and_truncation_rules
+    - fixed_outcome_coordinate_map_dimension_and_base_measure
+  common_scoring:
+    metric: normalized_log_predictive_density_on_fixed_primary_outcome
+    unit: nats_per_neuron_on_frozen_outcome_measure
+    estimand: expected_marginal_per_neuron_score_for_an_equal_weight_new_animal_with_animal_effect_integrated
+    same_cells_folds_vocabulary_dimension_transform_and_weights: true
+    aggregation_order:
+      - mean_neuron_log_score_within_each_animal_by_spatial_block
+      - equal_mean_over_frozen_spatial_blocks_within_each_animal
+      - equal_mean_over_verified_independent_animals
+    spatial_block_construction: frozen_from_metadata_only_coordinate_depth_partition_before_outcome_access
+    empty_primary_block_rule: every_retained_animal_must_meet_frozen_minimum_cells_in_every_retained_block_otherwise_prospectively_exclude_block_or_animal_before_outcomes
+    post_outcome_empty_block_reweighting_or_imputation: false
+    animal_weighting: equal
+    common_support_spatial_block_weighting_within_animal: equal
+    reduced_space_density_is_primary_score: false
+    raw_density_across_dimensions_or_coordinate_measures_is_comparable: false
+    internal_low_rank_fit_allowed_only_with_normalized_density_back_on_primary_object: true
+  observation_likelihood:
+    one_frozen_support_link_zero_missing_and_base_measure_contract_shared_by_B_P_C_D_H: true
+    object: nonnegative_regional_projection_vector_with_total_mass_or_explicit_compositional_normalization
+    total_projection_mass_role: null
+    total_projection_mass_allowed_roles: [joint_outcome, conditioned_on, discarded_by_frozen_normalization]
+    dominating_measure:
+      raw_nonnegative_vector: product_over_regions_of_delta_zero_plus_lebesgue_on_positive_reals
+      normalized_composition: counting_measure_over_nonempty_active_target_sets_times_face_specific_hausdorff_measure
+    joint_likelihood_includes_active_target_set_probability: true
+    transform_id_parameters_and_basis: null
+    transform_is_bijective_on_each_scored_support_face: true
+    transform_jacobian: included_in_every_log_density_on_original_outcome_measure
+    structural_zero_and_endpoint_mass: explicit_shared_mixed_measure_not_pseudocount
+    zero_detection_and_all_zero_vector_rules: null
+    missing_unknown_and_truncated_coordinates: marginalized_under_shared_observation_rule_not_zero_imputed
+    censored_coordinates: interval_or_event_likelihood
+    normalization_denominator_unknown: marginalize_before_closure_never_renormalize_observed_subvector
+    observation_mask_and_exposure: carried_into_every_fit_score_simulation_and_null_replicate
+    support_link_transform_zero_mass_missingness_and_base_measure_frozen_before_real_outcome_access: true
+    conditional_residual_family_may_be_searched_symmetrically_within_complete_pairs_and_full_nulls: true
+  sensitivity_tracks:
+    - topology_and_path_summaries
+    - validated_provider_arbors
+    - alternative_target_resolution
+    - alternative_normalization
+  sensitivity_rules:
+    fixed_outcome_within_each_track: true
+    within_track_model_comparisons_only: true
+    eligible_for_incumbent_or_primary_terminal: false
+    may_replace_or_rescue_primary: false
+    density_ranked_against_primary_score: false
+
 grammar:
   execution: declarative_config_trusted_evaluator
-  outcome_vocabulary:
-    - authenticated_full_axon_ccfv3
-    - validated_provider_arbor_sensitivity
-  outcome_blocks:
-    - atlas_occupancy
-    - topology_path_summaries
-    - occupancy_plus_topology
-  transforms:
-    - development_fit_center_scale
-    - development_fit_pca
-    - development_fit_nonnegative_low_rank
-  representation_rank: [4, 8, 16, 32, 64]
-  anatomical_basis: [linear, spline_df4, spline_df8, low_rank_smooth_rank8]
-  model_family: [G_gaussian_gradient, U_flexible_unimodal, D_component_only, H_hybrid]
-  unimodal_family: [skew_normal, student_t_location_scale, log_concave_spline]
-  log_concave_spline_basis_df: [4, 8]
-  covariance: [diagonal, shrinkage, low_rank_plus_diagonal]
-  covariance_rank: [2, 4, 8, 16]
+  mandatory_adjudicative_model_set:
+    - B_adjustment_only
+    - P_position_driven_continuous
+    - C_position_plus_continuous_latent
+    - D_reusable_groups_with_position_gating
+    - H_continuous_plus_reusable_groups
+  diagnostic_anchors:
+    - G_gaussian
+    - U_flexible_unimodal
+  diagnostic_anchors_define_continuous_reference: false
+  model_definitions:
+    B_adjustment_only: outcome_blind_frozen_whitelist_of_declared_design_and_technical_adjustments_without_position_anatomical_proxy_unregistered_morphology_or_biological_latent_coordinate
+    P_position_driven_continuous: exactly_B_plus_smooth_projection_change_with_soma_coordinates_depth_and_registered_layer_if_not_fixed_by_source_definition
+    C_position_plus_continuous_latent: P_plus_connected_low_dimensional_continuous_residual_coordinate_without_finite_group
+    D_reusable_groups_with_position_gating: B_shared_nonposition_adjustment_and_animal_nuisance_plus_finite_fixed_projection_signatures_with_smooth_position_dependent_prevalence_and_no_within_group_position_or_latent_outcome_trajectory
+    H_continuous_plus_reusable_groups: D_shared_adjustment_nuisance_groups_and_gating_plus_C_position_and_continuous_latent_outcome_backbone_within_groups
+  B_predictor_contract:
+    selected_whitelist: null
+    whitelist_nonnull_and_frozen_before_real_projection_outcome_access: true
+    allowed_only_if_declared_and_available_without_axon_outcomes:
+      - sex_age_strain_genotype_or_cre_line_if_pooled_by_source_definition
+      - labeling_strategy_imaging_modality_hemisphere_and_source_lab
+      - acquisition_registration_reconstruction_version_and_prospectively_validated_QC
+    source_defining_strata_are_fixed_not_predictors: true
+    soma_coordinates_depth_layer_and_subregion: source_definition_or_P_never_B
+    dendritic_morphometric_or_other_biological_features: excluded_unless_separately_preregistered_in_a_redesigned_question
+    axon_projection_class_outcome_derived_or_unregistered_morphology_predictors: forbidden
+    whitelist_hash_included_in_every_pair_and_final_lock: true
+  nested_relationships:
+    P_reduces_to_B_when_position_terms_are_zero: true
+    C_reduces_to_P_when_continuous_latent_variation_is_zero: true
+    H_reduces_to_D_when_all_continuous_position_and_latent_outcome_terms_beyond_B_are_zero: true
+    H_reduces_to_C_when_all_group_specific_signatures_and_trajectories_coincide: true
+    D_and_H_share_K_canonical_label_rule_and_group_signature_parameterization: true
+    D_and_H_share_B_adjustment_animal_nuisance_group_gating_and_observation_contract: true
+  position_basis: [linear, tensor_spline_df4, tensor_spline_df8, low_rank_smooth_rank8]
+  continuous_latent:
+    dimension: [1, 2]
+    support: connected
+    map_basis: [linear, spline_df4, spline_df8]
+    density: [uniform, positive_log_spline_df4, positive_log_spline_df8]
+    permits_nonuniform_and_multipeaked_marginal_density: true
+    same_dimension_smoothness_and_density_options_in_C_and_H: true
+    paired_C_H_trial_uses_identical_dimension_basis_smoothness_density_noise_covariance_regularization_and_tuning_budget: true
+  residual_noise:
+    family: [heteroskedastic_gaussian, student_t_location_scale]
+    covariance: [diagonal, shrinkage, low_rank_plus_diagonal]
+    covariance_rank: [2, 4, 8]
+  shared_animal_dependence:
+    primary_estimand: expected_per_neuron_log_predictive_density_for_an_equal_weight_new_animal
+    not_joint_density_of_all_cells_in_a_heldout_animal: true
+    nuisance_structure: shared_hierarchical_animal_level_random_effect_on_frozen_outcome_coordinates
+    structure_and_rank: null
+    structure_rank_and_prior_frozen_from_outcome_blind_synthetic_qualification: true
+    same_random_effect_structure_and_training_rule_in_B_P_C_D_H: true
+    unseen_animal_effect: integrate_over_development_fitted_population_distribution
+    condition_on_other_heldout_animal_outcomes_or_refit_empirical_Bayes_effect: false
+    residual_dependence_within_animal_included_in_simulation_and_null_generation: true
+    uncertainty_resampling_unit: verified_independent_animal
   component_count: [2, 3, 4]
+  group_gating: [constant, smooth_soma_position_and_depth]
   regularization_strength: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
-  effective_complexity_match:
+  capacity_control:
     estimator: frozen_effective_degrees_of_freedom
-    absolute_tolerance: 2
-    relative_tolerance: 0.10
+    shared_backbone_absolute_tolerance: null
+    shared_backbone_relative_tolerance: null
+    tolerances_nonnull_before_real_search: true
+    tolerance_derivation: outcome_blind_synthetic_qualification
+    C_gets_every_continuous_capacity_available_to_H: true
+    tolerance_applies_to_shared_continuous_backbone_excluding_the_tested_finite_group_terms: true
+    C_H_pair_hash_includes_cells_folds_B_whitelist_predictors_outcome_observation_contract_backbone_hyperparameters_inner_data_and_optimizer_effort: true
+    optimizer_effort_rule: null
+    optimizer_effort_rule_nonnull_before_real_search: true
+    one_sided_failure_or_nonconvergence_invalidates_the_pair: true
+    paired_complete_model_set_per_trial: true
+  heldout_group_application:
+    definitions_fit_on_training_development_animals_only: true
+    fixed_canonical_label_rule: true
+    continuous_latent_integrated_for_predictive_score: true
+    score_integrates_over_latent_group: true
+    oracle_posterior_label_or_outcome_fitted_latent_coordinate_as_predictor: false
+    posterior_membership_and_latent_coordinate_after_scoring_are_post_score_evidence_only_and_cannot_adapt_models: true
+    heldout_refit_recluster_label_rematch_or_prevalence_recalibration: false
   ensemble:
-    maximum_members: 2
-    same_scientific_family_only: true
-    weights_from_development_only: true
+    maximum_members: 1
+    adjudicative_predictive_density_averaging: false
+    nonadjudicative_benchmark_may_determine_terminal: false
   forbidden:
     - released_projection_class
     - outcome_derived_predictors
+    - real_outcome_informed_source_or_primary_outcome_construction_under_default_v1
     - random_neuron_evidence_splits
     - arbitrary_candidate_code
     - audit_dependent_branching
+    - primary_outcome_block_or_dimension_search
+    - reduced_space_log_density_comparison
+    - per_animal_or_heldout_reclustering
+    - heldout_component_label_permutation_or_rematching
+    - heldout_outcome_informed_mixture_weight_recalibration
+    - adjudicative_configuration_density_averaging
 
 objectives:
-  primary: group_equal_spatial_block_equal_heldout_log_predictive_density
-  comparisons: [H_minus_C, D_minus_C, D_minus_H]
+  primary: animal_equal_common_support_heldout_log_predictive_density_H_minus_C
+  comparisons:
+    primary: H_minus_C
+    secondary: [P_minus_B, C_minus_P, H_minus_D]
+    descriptive: [D_minus_C]
+  interpretation:
+    P_minus_B: continuous_projection_organization_added_by_soma_position_and_depth
+    C_minus_P: continuous_residual_heterogeneity_among_nearby_position_cells
+    H_minus_C: incremental_value_of_reusable_groups_beyond_qualified_continuum
+    H_minus_D: continuous_organization_remaining_within_groups
+
+  family_reference_selection:
+    equal_admissible_search_budget_and_configuration_coverage_for_each_family: true
+    P_ref: qualified_P_with_maximum_animal_equal_development_log_predictive_density
+    B_pair_for_P_ref: B_from_the_same_complete_trial_with_shared_nuisance_noise_and_tuning_treatment_as_P_ref
+    C_ref: qualified_C_with_maximum_animal_equal_development_log_predictive_density
+    P_pair_for_C_ref: P_from_the_same_complete_trial_with_shared_nuisance_noise_and_tuning_treatment_as_C_ref
+    H_ref: qualified_H_with_maximum_animal_equal_development_log_predictive_density
+    D_pair_for_H_ref: D_from_the_same_complete_trial_K_label_signature_rule_and_group_parameterization_as_H_ref
+    deterministic_family_tie_breaks: [minimum_effective_degrees_of_freedom, ascending_canonical_configuration_hash]
+    primary_statistic: H_ref_minus_C_ref
+    same_backbone_C_for_each_H_is_a_pair_qualification_check_not_the_scientific_C_reference: true
+    selection_of_C_ref_cannot_depend_on_H_minus_C: true
+    all_family_selection_replayed_in_every_full_search_null_replicate: true
+
+  # A complete comparison first becomes eligible for provisional selection.
+  # The selected statistic can then seed the full-search null without a cycle.
+  trial_pre_null_eligibility:
+    all_required:
+      - selected_source_passes_all_frozen_source_specific_support_thresholds_including_12_development_and_8_audit_animals
+      - common_position_and_depth_support_is_frozen
+      - outcome_blind_fixed_primary_outcome_and_common_observation_likelihood_and_density_measure
+      - complete_B_P_C_D_H_set_scored_on_identical_cells_folds_and_weights
+      - each_paired_C_H_trial_has_exactly_matched_continuous_backbone_hyperparameter_options_and_tuning_treatment
+      - shared_continuous_backbone_capacity_is_fair_and_C_is_qualified
+      - shared_animal_dependence_model_is_qualified_and_new_animal_effect_is_integrated_without_heldout_outcome_conditioning
+      - model_calibration_and_numerical_checks_pass
+      - synthetic_continuous_and_group_regime_qualification_passes
+      - deterministic_replay_passes
+
+  pre_null_package_eligibility:
+    all_required:
+      - development_search_reaches_a_frozen_stop_with_required_trial_and_branch_coverage
+      - trial_pre_null_archive_is_nonempty
+      - P_ref_C_ref_and_H_ref_are_independently_selected_by_absolute_family_predictive_score_under_equal_search_budgets
+      - B_pair_for_P_ref_P_pair_for_C_ref_and_D_pair_for_H_ref_are_attached_and_valid
+      - family_selection_and_tie_break_replay_is_deterministic
+      - observed_H_ref_minus_C_ref_statistic_is_frozen
+
+  # Null completion converts the frozen pre-null selection into a valid
+  # comparison; the null p-value affects only the positive grouping claim.
+  comparison_validity:
+    all_required:
+      - pre_null_package_eligibility_passes
+      - complete_full_search_null_program_finishes
+    real_data_H_loss_invalidates_comparison: false
+    weak_group_separation_or_prevalence_invalidates_comparison: false
+    full_search_null_p_value_failure_invalidates_comparison: false
+    continuous_model_development_win_invalidates_comparison: false
+
+  # These additional conditions are required only to support reusable groups.
+  reusable_group_support:
+    all_required:
+      - valid_final_comparison
+      - animal_level_one_sided_lower_bound_for_H_minus_C_exceeds_meaningful_margin_on_audit
+      - full_search_null_monte_carlo_p_passes
+      - heldout_separation_and_effective_membership_pass
+      - every_claimed_fixed_label_has_multi_animal_development_support
+      - every_claimed_fixed_label_recurs_in_at_least_three_eligible_audit_animals
+      - similar_named_target_distribution_under_fixed_labels_standardized_to_the_same_soma_position_and_depth_support
+      - local_soma_position_overlap_supports_nearby_cell_comparison
+      - group_membership_not_explained_by_animal_batch_QC_reconstruction_territory_sex_age_strain_genotype_cre_line_labeling_modality_hemisphere_or_lab
+      - no_single_animal_or_spatial_territory_dominates_gain
+      - named_target_allocation_rule_reproduces_in_audit
+      - influence_and_selection_controls_pass
+
+  continuous_adequacy:
+    all_required:
+      - valid_final_comparison
+      - qualified_P_or_C_is_calibrated
+      - upper_bound_on_H_minus_C_is_below_meaningful_margin
+      - synthetic_sensitivity_can_detect_groups_at_or_above_margin
+      - named_continuous_target_allocation_rule_reproduces_in_audit
+    null_p_value_pass_for_groups_required: false
+    nonsignificance_alone_is_adequacy: false
+
   pareto:
-    maximize: [predictive_density, cross_group_mode_reuse, calibration]
-    minimize: [effective_capacity, group_influence, technical_decodability]
-  constraints:
-    - heldout_mode_separation
-    - minimum_component_prevalence
-    - matched_effective_complexity
-    - synthetic_regime_recovery
-    - spatial_and_technical_nulls_pass
+    maximize: [predictive_density, calibration, cross_animal_fixed_label_reuse, target_allocation_interpretability]
+    minimize: [effective_capacity, animal_influence, technical_decodability]
+
+decision_rules:
+  threshold_freeze_timing: after_outcome_blind_precision_and_synthetic_qualification_before_real_candidate_discriminating_search
+  meaningful_H_minus_C_gain:
+    value: null
+    unit: nats_per_neuron_on_frozen_outcome_measure
+    must_be_nonnull_before_real_search: true
+  meaningful_P_minus_B_C_minus_P_and_H_minus_D_gains:
+    values: null
+    units: nats_per_neuron_on_frozen_outcome_measure
+    must_be_nonnull_before_real_search: true
+  reusable_group_minimums:
+    development_animals_per_claimed_group: null
+    audit_animals_per_claimed_group: 3
+    effective_membership_per_group: null
+    standardized_target_signature_similarity: null
+    heldout_separation: null
+    calibration: null
+    technical_decoding_ceiling: null
+    maximum_single_animal_or_territory_gain_fraction: null
+    local_overlap_rule: null
+    nonnull_before_real_search: true
+  uncertainty:
+    unit: verified_independent_animal
+    interval_and_simultaneity_rule_frozen_before_real_search: true
+    positive_reusable_group_rule: one_sided_lower_confidence_bound_for_H_minus_C_exceeds_meaningful_margin
+    positive_within_group_continuum_rule: one_sided_lower_confidence_bound_for_H_minus_D_exceeds_meaningful_margin
+    no_supported_within_group_continuum_rule: one_sided_upper_confidence_bound_for_H_minus_D_is_below_meaningful_margin
+    continuous_adequacy_rule: one_sided_upper_confidence_bound_for_H_minus_C_is_below_meaningful_margin
+    multiplicity_scope_includes_H_minus_C_H_minus_D_and_named_target_allocation_claims: true
+  continuous_and_mixture_models_can_approximate_each_other: true
+  conclusion_basis: predictive_usefulness_stability_and_interpretability_among_qualified_descriptions
+
+paper_level_target_allocation:
+  selected_in: grouped_development_only_after_source_and_primary_outcome_are_frozen
+  freeze_before_audit:
+    - named_source_population_and_layer_scope
+    - named_downstream_targets
+    - allocation_contrast_and_direction
+    - soma_position_depth_domain_and_common_support
+    - effect_scale_and_meaningful_margin
+    - multiplicity_and_uncertainty_rule
+    - predicted_grouped_or_continuous_pattern
+  audit_report_requires:
+    - actual_target_distributions_by_animal
+    - soma_position_and_depth_relationship
+    - comparison_with_P_C_D_and_H_predictions
+    - what_prior_description_missed_and_what_interpretation_changes
+  aggregate_predictive_gain_alone_is_paper_claim: false
+  final_outcomes_may_choose_source_targets_or_direction: false
+
+synthetic_qualification:
+  before_real_candidate_discriminating_search: true
+  no_group_regimes_expected_not_to_promote_groups:
+    - straight_connected_continuum
+    - curved_arc_and_horseshoe_continua
+    - connected_continuum_with_strongly_nonuniform_latent_density
+    - connected_continuum_with_depleted_or_unobserved_middle_sampling
+    - smooth_spatial_gradient_with_heteroskedastic_or_heavy_tailed_noise
+    - animal_specific_position_and_layer_coverage
+    - animal_batch_QC_and_reconstruction_pseudogroups
+    - animal_correlated_residuals_and_animal_level_projection_shifts_without_groups
+  group_regimes_expected_to_support_groups:
+    - reusable_groups_without_within_group_continuum
+    - reusable_groups_with_within_group_continuum
+    - spatially_interdigitated_groups_with_common_position_support
+  observation_regimes:
+    - missing_unknown_and_zero_projection_mass
+    - truncated_or_incomplete_reconstructions
+    - unequal_cells_per_animal
+  required_model_readouts: [P_minus_B, C_minus_P, H_minus_C, H_minus_D]
+  fitted_C_null_allowed_only_after_C_passes_continuous_stress_fixtures: true
+  fitted_C_null_draws_one_shared_random_effect_and_correlated_residual_process_per_animal: true
 
 budgets:
+  valid_trial_definition: trial_pre_null_eligible_complete_B_P_C_D_H_set
   minimum_valid_trials: 48
   maximum_valid_trials: 120
   valid_trials_min: 48
@@ -89,18 +482,47 @@ budgets:
   wall_clock_hour_ceiling: 120
   gpu_hour_ceiling: 0
   gpu_count: 0
+  includes_observed_search_and_99_null_searches: true
+  allocation:
+    envelope: global_across_observed_search_99_null_searches_synthetic_qualification_and_replay
+    controller_count_observed_plus_null: 100
+    identical_cpu_core_hours_per_controller: null
+    controller_reservation_equals_100_times_identical_cap: true
+    qualification_and_replay_cpu_core_hours: null
+    controller_reservation_plus_qualification_and_replay_sum_at_most_1500_before_real_outcome_access: true
+    observed_search_cannot_consume_reserved_null_hours: true
+    observed_and_null_controller_proposal_opportunities_trial_bounds_compute_cap_and_stop_behavior_are_identical: true
+    wall_clock_120_hours_is_global_and_counts_concurrent_core_hours_toward_same_cpu_envelope: true
+    profiling_requires_at_least_4800_complete_model_set_trials_across_observed_and_99_null_controllers_plus_qualification_and_replay: true
 
 full_search_null:
   controller_operation: run_full_search_null
-  rerun_complete_controller: true
-  fitted_generator: locked_best_continuous_reference_C
+  fitted_generator: provisionally_selected_C_ref
+  generator_selection_rule: maximum_absolute_development_score_then_minimum_effective_degrees_of_freedom_then_canonical_hash_independent_of_H_minus_C
+  generator_rule_frozen_before_real_search: true
+  run_if_pre_null_package_eligibility_passes: true
+  null_eligibility: pre_null_package_eligibility
   replicates: 99
   seed_manifest_frozen: true
   initial_ledger_each_replicate: empty
-  rerun_entire_controller: true
+  initial_ledger_scope: adaptive_null_trial_proposal_history_only
+  shared_EP09_EP10_EP11_exposure_and_role_ledger_is_preserved_immutable: true
+  audit_outcomes_opened_generated_or_used_by_null_controllers: false
+  rerun_complete_controller: true
+  rerun_complete_B_P_C_D_H_search_and_selection: true
+  null_replicate_does_not_launch_another_null_calibration: true
+  preserves_source_animals_cell_counts_positions_layers_experimental_strata_batches_missingness_and_common_support: true
+  generator_draws_animal_effect_and_within_animal_correlated_residuals_from_qualified_C_ref: true
+  observed_and_null_statistic: development_H_ref_minus_C_ref_after_independent_frozen_family_selection
   identical_grammar_budgets_stop_and_promotion: true
+  schema_compatibility_interpretation: observed_and_null_controllers_have_identical_search_grammar_proposal_opportunities_trial_bounds_compute_cap_stop_promotion_and_selection_through_pre_null_selection
+  identical_grammar_trial_bounds_stop_and_lexicographic_selection_through_pre_null_selection: true
+  each_null_controller_compute_cap_equals_observed_controller_compute_cap: true
   deterministic_controller_replay_required: true
   proposal_model_version_prompt_sampling_and_seed_frozen: true
+  completion_is_required_for_comparison_validity: true
+  p_value_pass_is_required_for_reusable_group_support: true
+  p_value_pass_is_not_required_to_lock_or_audit_a_continuous_result: true
   monte_carlo_p: (1_plus_count_null_ge_observed)_divided_by_(replicates_plus_1)
   pass_threshold: 0.05
   profiling_must_fit_total_cpu_ceiling_before_outcome_access: true
@@ -108,37 +530,73 @@ full_search_null:
 branch_coverage:
   required: true
   minimum_valid_trials: 16
-  rule: balanced_G_U_D_H_outcome_block_covariance_and_unimodal_family_covering_array
+  rule: balanced_complete_B_P_C_D_H_sets_over_position_latent_noise_covariance_and_K_with_diagnostic_G_U_anchors
   readiness_rejection_must_be_logged: true
 
 required_falsifiers:
-  - fitted_continuous_null_full_search_rerun
+  - fitted_qualified_C_full_search_null_rerun
+  - animal_correlated_no_group_random_effect_calibration_and_false_group_check
+  - curved_nonuniform_and_depleted_middle_continuum_false_group_checks
   - conditional_residual_randomization
-  - moran_variogram_matched_spatial_surrogates
-  - technical_field_decodability
+  - moran_variogram_matched_soma_graph_surrogates
+  - animal_batch_QC_reconstruction_territory_sex_age_strain_genotype_cre_line_labeling_modality_hemisphere_and_lab_decodability
   - capacity_matched_noise_features
   - shuffled_group_and_outcome_controls
-  - full_axon_vs_provider_arbor_sensitivity
-  - topology_occupancy_anatomy_block_ablations
-  - leave_one_group_and_territory_influence
-  - synthetic_G_U_D_H_recovery
+  - fixed_label_direct_transfer_without_reclustering_or_rematching
+  - full_axon_vs_provider_arbor_separate_sensitivity
+  - leave_one_animal_and_spatial_territory_influence
+  - position_latent_and_group_block_ablations
+  - named_target_allocation_reproduction
 
 promotion:
   incumbent_is_terminal: false
   minimum_adaptive_successor_cycles: 2
   minimum_incumbent_challenger_decisions: 2
   post_coverage_falsifier_fraction_min: 0.40
-  coverage_required: all_retained_families_blocks_and_covariance_classes
-  full_search_null_pass_required: true
-  effective_complexity_match_required: true
-  select_from: feasible_pareto_archive
-  lock_one_configuration: true
+  every_trial_requires_complete_adjudicative_model_set: true
+  archive:
+    accepts: every_trial_pre_null_eligible_complete_B_P_C_D_H_set
+    H_development_win_required: false
+    group_separation_or_prevalence_required: false
+    invalid_comparison_reason_required: true
+  selection:
+    source: trial_pre_null_eligible_complete_model_set_archive
+    rule: independently_select_P_C_H_family_references_by_frozen_lexicographic_numeric_rule_then_attach_their_matched_B_P_D_pairs
+    per_family_lexicographic_order:
+      - maximize_animal_equal_absolute_development_log_predictive_density
+      - minimize_effective_degrees_of_freedom
+      - ascending_canonical_configuration_hash
+    P_minus_B_uses: P_ref_minus_B_pair_for_P_ref
+    C_minus_P_uses: C_ref_minus_P_pair_for_C_ref
+    primary_statistic_after_selection: H_ref_minus_C_ref
+    H_minus_D_uses: H_ref_minus_D_pair_for_H_ref
+    interpretability_is_reporting_not_selection: true
+    H_development_win_required: false
+    audit_information_allowed: false
+    must_resolve_ties: true
+    frozen_before_real_search: true
+    provisional_selection_frozen_before_full_search_null: true
+  provisionally_freeze_one_package_before_full_search_null: true
+  lock_one_complete_comparison: true
+  lock_occurs_only_after_full_search_null_completion: true
+  complete_comparison_means_frozen_B_pair_for_P_ref_P_ref_P_pair_for_C_ref_C_ref_H_ref_and_D_pair_for_H_ref_package: true
+  comparison_becomes_valid_only_after_full_search_null_completion: true
+  full_search_null_completion_required: true
+  full_search_null_p_value_pass_required_for_lock: false
   freeze:
-    - code_and_environment
-    - representation_and_vocabulary
-    - models_capacity_and_thresholds
-    - group_and_block_weights
-    - seeds_nulls_and_decision_table
+    - source_roles_common_support_and_primary_outcome
+    - common_scoring_measure_and_weights
+    - likelihood_base_measure_transform_jacobian_zero_missing_and_observation_contract
+    - source_support_geometry_metrics_thresholds_and_selection_rule
+    - B_predictor_whitelist_and_source_definition
+    - shared_animal_dependence_structure_prior_integration_rule_and_estimand
+    - complete_model_set_continuous_backbone_and_capacity
+    - C_H_pair_hash_capacity_tolerances_and_optimizer_effort_rule
+    - K_group_signatures_canonical_labels_gating_and_assignment
+    - no_refit_recluster_rematch_or_prevalence_recalibration_rule
+    - meaningful_margins_reuse_calibration_and_influence_thresholds
+    - named_target_allocation_rule
+    - code_environment_seeds_nulls_and_decision_table
 
 stop:
   before_minimum: only_readiness_or_integrity_failure
@@ -147,6 +605,13 @@ stop:
     - patience_exhausted
     - valid_trials_max_reached
     - cpu_budget_exhausted
+    - admissible_configuration_space_exhausted
+  completed_development_search_with_pre_null_package: freeze_provisional_package_then_run_full_search_null
+  completed_development_search_without_pre_null_package: closed_no_valid_comparison
+  completed_full_search_null_for_provisional_package: lock_valid_package_then_open_audit_once
+  full_search_null_stops_before_required_completion: incomplete_search
+  metadata_qualification_completed_without_supported_source: closed_insufficient_source_support
+  stopped_before_required_search_completion: incomplete_search
   budget_stop_is_scientific_success: false
 
 audit:
@@ -155,24 +620,74 @@ audit:
   lock_hash_required: true
   maximum_open_count: 1
   audit_updates_search: false
+  unit: complete_verified_independent_animal_within_selected_source_and_common_support
   owner: trusted_evaluator
   candidate_label_access: false
-  requires_unexposed_complete_groups: true
+  apply_every_locked_B_pair_for_P_ref_P_ref_P_pair_for_C_ref_C_ref_H_ref_and_D_pair_for_H_ref_model: true
+  continuous_development_winner_must_still_enter_audit: true
+  heldout_parameter_refit: false
+  heldout_reclustering: false
+  heldout_component_label_rematching: false
+  heldout_prevalence_recalibration_from_outcomes: false
+  continuous_latent_integrated_for_predictive_score: true
+  latent_group_integrated_for_predictive_score: true
+  posterior_membership_and_latent_coordinate_after_score_are_post_score_evidence_only_and_cannot_adapt_models: true
+  report_every_assigned_audit_animal: true
   rerun_or_retune_after_open: false
   correlated_with_ep09_ep10: true
 
+terminal_decision:
+  detailed_outcomes:
+    candidate_ready_reusable_groups_within_group_continuum:
+      when: valid_audit_and_every_reusable_group_support_condition_passes_and_one_sided_lower_bound_for_H_minus_D_exceeds_margin
+    candidate_ready_reusable_groups_without_supported_within_group_continuum:
+      when: valid_audit_and_every_reusable_group_support_condition_passes_and_one_sided_upper_bound_for_H_minus_D_is_below_margin_with_synthetic_sensitivity
+    candidate_ready_reusable_groups_within_group_continuum_unresolved:
+      when: valid_audit_and_every_reusable_group_support_condition_passes_but_H_minus_D_neither_exceeds_margin_nor_has_an_upper_bound_below_margin_with_synthetic_sensitivity
+    closed_continuous_organization_adequate:
+      when: valid_audit_and_every_continuous_adequacy_condition_passes
+    closed_unresolved:
+      when: valid_audit_but_neither_reusable_group_support_nor_continuous_adequacy_passes
+    closed_no_valid_comparison:
+      when: development_search_completed_but_no_pre_null_eligible_package_can_continue
+      audit_completed: false
+    closed_insufficient_source_support:
+      when: valid_metadata_qualification_completed_but_no_source_passes_every_frozen_support_threshold_including_12_development_and_8_audit_independent_animals
+      audit_completed: false
+      interpretation: current_resource_cannot_execute_current_design_not_evidence_against_groups_or_permanent_episode_abandonment
+      prospective_redesign_or_additional_data_may_start_a_new_version: true
+    incomplete_search:
+      when: stopped_before_protocol_required_search_completion
+      audit_completed: false
+    technical_failure:
+      when: unrecoverable_identity_observation_execution_role_or_audit_integrity_failure
+      audit_valid: false
+
 terminal_mapping:
-  candidate_ready_hybrid: candidate_ready
-  candidate_ready_component_only: candidate_ready
-  closed_continuous_unimodal: closed_no_candidate
+  candidate_ready_reusable_groups_within_group_continuum: candidate_ready
+  candidate_ready_reusable_groups_without_supported_within_group_continuum: candidate_ready
+  candidate_ready_reusable_groups_within_group_continuum_unresolved: candidate_ready
+  closed_continuous_organization_adequate: closed_no_candidate
   closed_unresolved: closed_no_candidate
+  closed_no_valid_comparison: closed_no_candidate
+  closed_insufficient_source_support: closed_no_candidate
+  incomplete_search: closed_no_candidate
   technical_failure: technical_failure
 
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  outer_loop_ref: null
-  goal_handoff_ref: null
-  episode_ref: null
-  search_policy_ref: null
-  launch_blocked: true
+reporting:
+  required_questions:
+    - how_much_position_and_depth_add_P_minus_B
+    - whether_nearby_cells_retain_continuous_heterogeneity_C_minus_P
+    - whether_nearby_cells_show_fixed_reusable_projection_patterns
+    - whether_groups_improve_cross_animal_prediction_H_minus_C
+    - whether_continuous_organization_remains_within_groups_H_minus_D
+  show:
+    - source_by_animal_position_depth_layer_batch_coverage_and_exclusions
+    - common_support_and_intermediate_position_sampling
+    - animal_equal_audit_prediction_calibration_and_uncertainty_for_every_model
+    - named_target_allocations_by_animal_and_soma_position
+    - fixed_group_signatures_effective_membership_and_technical_decodability
+    - continuous_latent_trajectories_with_curvature_and_sampling_density
+    - sensitivity_tracks_separately_from_primary
+    - relationship_to_Peng_2021_Yufeng_Liu_2024_Lijuan_Liu_2025_and_Xiong_2025_for_the_selected_source_and_targets
+  generic_embedding_or_predictive_gain_alone_is_paper_result: false

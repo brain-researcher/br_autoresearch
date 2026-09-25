@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep15_mdtb_topography_vs_geometry_adaptive
 episode_id: ep15
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -674,13 +673,3 @@ terminal_mapping:
   closed_unresolved: closed_no_candidate
   technical_failure: technical_failure
   policy_violation: technical_failure
-
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  outer_loop_ref: null
-  goal_handoff_ref: null
-  episode_ref: null
-  dataset_handoff_ref: null
-  search_policy_ref: null
-  launch_blocked: true

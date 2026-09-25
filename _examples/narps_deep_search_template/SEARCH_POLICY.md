@@ -2,16 +2,15 @@
 
 ## Purpose
 
-This policy makes multi-round development the registered program rather than
-asking generic Goal discovery to select two terminal tests. It has no canonical
-authority until the Brain Researcher service registers it and returns a bound
-`search_policy_ref`.
+This reference policy describes bounded multi-round development rather than a
+two-test discovery pass. A direct episode must instantiate its data roles,
+runner, and audit boundary before using it; the template itself is not run
+evidence.
 
 ## Immutable policy summary
 
 ```yaml
 policy_id: narps_adaptive_smoothing_search_v1
-policy_status: draft_unregistered
 development_dataset: ds001734
 audit_dataset: ds000005
 minimum_valid_trials: 30

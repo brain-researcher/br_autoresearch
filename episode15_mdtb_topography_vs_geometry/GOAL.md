@@ -4,11 +4,11 @@
 
 ## Authority and scope
 
-This is the current local Episode 15 design. It creates no canonical loop,
-authorizes no compute, and opens no audit Task-B outcome. Launch requires a
-canonical registration, the role-separated handoffs in `DATASETS.md`, and a
-separate explicit decision. Until then, `SEARCH_POLICY.yaml` is a design
-contract rather than an executable instruction.
+This is the current local Episode 15 design. An explicit scientist instruction
+may start bounded design, implementation, and qualification work. It does not
+open any audit Task-B outcome. Audit access requires the role-separated
+handoffs in `DATASETS.md` and completion of the scientific gates in
+`SEARCH_POLICY.yaml`.
 
 The primary scientific scope is the **cerebellum**. Cortex is outside this
 episode. MDTB is a heavily analysed public release, so the participant holdout
@@ -424,8 +424,8 @@ S_B=\sum_c\alpha_c
 
 frozen at panel lock. The geometry scale is
 \(S_K=\langle K_0,K_0\rangle_\Omega>0\). The margin values, source-split
-construction, and numerical tolerances are launch blockers, not quantities to
-be selected from development wins.
+construction, and numerical tolerances must be frozen before candidate scoring;
+they are not quantities to be selected from development wins.
 
 Inference is made on linear contrasts, not unstable ratio confidence
 intervals. Examples are

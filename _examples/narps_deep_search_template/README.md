@@ -3,8 +3,8 @@
 ## Status
 
 This is an **unnumbered reference template** prepared on 2026-09-19. It is not
-an episode and does not have a canonical loop, reward, approval, execution,
-result, or scientific status. It reserves no campaign identity.
+an episode and has no run, reward, approval, result, or scientific status. It
+reserves no campaign identity.
 
 Historical examples that motivated the template:
 
@@ -33,8 +33,8 @@ reserve, or propose one.
 
 1. The generic Goal V3 path is not sufficient: it freezes at most two selected
    tests before target outcomes and has no multi-round incumbent/challenger
-   controller. A registered program must bind `SEARCH_POLICY.md` through a
-   canonical `registered_program_policy` and `search_policy_ref`.
+   controller. An instantiated episode must freeze `SEARCH_POLICY.md` and bind
+   it to the run before candidate scoring.
 2. The external `ds000005` audit must be made technically unavailable to the
    discovery process until configuration lock. A prose instruction or visible
    filesystem path is not an adequate audit firewall.

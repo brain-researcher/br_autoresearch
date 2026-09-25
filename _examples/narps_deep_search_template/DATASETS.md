@@ -57,7 +57,7 @@ The drafting inventory additionally observed:
 | License | `CC0` in local dataset metadata |
 
 A Git commit is not by itself a content manifest for DataLad/annex payloads or
-a potentially modified worktree. Before launch, hash every BOLD, events,
+a potentially modified worktree. Before candidate search, hash every BOLD, events,
 confounds, mask, design, and contrast-definition file actually used and record
 any worktree difference from the commits above.
 
@@ -108,7 +108,7 @@ claim.
 
 ## Required audit firewall
 
-Before launch, materialize two different access surfaces:
+Before candidate search, materialize two different access surfaces:
 
 1. `inputs/development/`: lineage packet plus immutable `ds001734` references,
    available throughout search.
@@ -142,8 +142,9 @@ Without opening audit neural arrays, verify:
 - software/container availability and numerical tests; and
 - required OAK and scratch capacity.
 
-Failure of a compatibility check may change feasibility or block launch, but it
-must not reveal audit effect-map values or motivate a candidate.
+Failure of a compatibility check may make a branch or the full analysis
+technically ineligible, but it must not reveal audit effect-map values or
+motivate a candidate.
 
 ## Prohibited data use
 
@@ -165,6 +166,6 @@ must not reveal audit effect-map values or motivate a candidate.
 - [ ] Contrast crosswalk approved by a scientist before neural audit access.
 - [ ] Development fold manifest frozen.
 - [ ] Permission-separated audit runner demonstrated on synthetic fixtures.
-- [ ] Search policy registered canonically and bound by `search_policy_ref`.
+- [ ] Search policy frozen and bound to the episode run.
 - [ ] CPU, scratch, wall-time, and failure budgets accepted.
 - [ ] Audit thresholds frozen after synthetic calibration.

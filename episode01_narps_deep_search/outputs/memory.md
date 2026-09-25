@@ -17,7 +17,7 @@
 
 ## Constraints and data gaps
 
-- The prior packet, development handoff, numerical contracts, registered
+- The prior packet, development handoff, numerical contracts, executable
   controller, and permission-separated audit runner are absent.
 
 ## Promotion status

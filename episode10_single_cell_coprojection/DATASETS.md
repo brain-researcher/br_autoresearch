@@ -243,11 +243,11 @@ cell-type-specific synaptic connectivity sought by EP12.
 
 ## What the first run decides
 
-EP10 does not need a separate administrative review before launch. Its first
-stage asks whether one source supports the 12/8 group split, a repeatable
+EP10 may start directly from an explicit scientist task. Its first stage asks
+whether one source supports the 12/8 group split, a repeatable
 complete-target rule, overlapping target and position strata, any labels used
 for a mixture analysis, feasible exact normalization, and a defensible anatomy
-analysis. External resources are not needed to launch; if a genuinely
+analysis. External resources are not needed for that stage; if a genuinely
 comparable independent resource is available, its frozen transfer test is
 required for a Route A claim.
 

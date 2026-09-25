@@ -6,12 +6,11 @@ manifest, qualification contract, or reference example bundle is provisioned.
 
 The root
 [`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) records the
-current documentary source in the legacy worktree as
-`legacy_steward_acquisition`, identifies the NeuroCam PDF as
-`asset_ep20_neurocam_documentary`, and names
-`planned_steward_acquisition` as the planned durable external root. The asset
-move is `staged_not_moved`; the planned root is `absent_planned_target`. No
-source has been handed off to this directory.
+canonical private steward root as `private_steward_acquisition` at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`
+and identifies the NeuroCam PDF as `asset_ep20_neurocam_documentary`. The
+steward tree was relocated by same-filesystem rename on 2026-09-24 and is
+`canonical_in_place`. No source has been handed off to this directory.
 
 Two JSON examples exist only at `legacy_ep20_reference_bundles`, whose
 destination is unassigned, and are not canonical EP20 inputs. If a future
@@ -25,12 +24,13 @@ them under `reference_bundles/`, their intended identities are:
 Both would be nonbinding inputs for documentary context and
 non-candidate-discriminating simulation sanity checks only. Neither may
 initialize model parameters or the search space, enter reference calibration,
-reference qualification, candidate scoring, or any launch gate. They cannot
+reference qualification, candidate scoring, or audit evaluation. They cannot
 substitute for raw I-V/C-V, a compact model, PDK, netlist, mask/layout, or
 fabrication outcomes.
 
 Absent contracts and legacy-only examples are not configuration-lock eligible
-and do not authorize a fit, qualification run, candidate score, or launch. No
+and do not provide the data or contracts required for a fit, qualification run,
+candidate score, or audit opening. No
 NeuroCam article payload, raw trace, simulator, design-rule package, empirical
 replay, sealed audit asset, compact model, PDK, or fabrication outcome is
 present here.
@@ -44,7 +44,8 @@ visible but role-locked out of fitting; public availability does not grant the
 controller access to an independently acquired evaluator-only raw trace, a
 sealed plausibility partition, or an audit asset.
 
-Before launch, this directory must contain frozen, hashed versions of at least:
+Before candidate scoring or audit access, this directory must contain frozen,
+hashed versions of at least:
 
 - `SOURCE_MANIFEST.json` and `NEUROCAM_ANCHORS.yaml`;
 - `REFERENCE_ANCHOR_SPLIT.yaml`, `REFERENCE_MODEL_CONTRACT.yaml`, and
@@ -70,11 +71,11 @@ The repository intentionally ignores per-episode `inputs/` payloads except for
 this README. Any future contract or example bundle must therefore be
 provisioned and verified separately with the trusted provisioning environment;
 committing the tracked documentation alone neither supplies a self-contained
-reference bundle nor promises a repository-local preflight check.
+reference bundle nor promises a repository-local qualification check.
 
 No candidate output, cache, fitted model, generated field, qualification
 residual, audit QC, partial score, or result may be written under `inputs/`.
-After an authorized qualification run, the trusted qualifier writes
+After a trusted qualification run, the qualifier writes
 `outputs/reference_model_ensemble_manifest.json` and
 `outputs/reference_qualification_receipt.json`; those immutable runtime
 artifacts are never input manifests and do not exist in this draft.

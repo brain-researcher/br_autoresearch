@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep04_shared_scene_geometry_adaptive
 episode_id: ep04
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -165,14 +164,3 @@ terminal_mapping:
   search_exhausted_no_audit: closed_no_candidate
   technical_failure: technical_failure
   policy_violation: technical_failure
-
-canonical_binding:
-  loop_id: null
-  goal_handoff_id: null
-  action_id: null
-  runtime_episode_id: null
-  candidate_bundle_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true

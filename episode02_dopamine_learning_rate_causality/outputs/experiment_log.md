@@ -10,12 +10,13 @@
 - Recorded two legacy structural diagnostics as exposed and permanently
   excluded them from scientific decisions.
 - Added a reusable outcome-blind endpoint-calibration engine and tests.
-- Kept the episode `planned_unregistered` and launch-blocked.
+- Recorded that implementation existed but scientific audit opening remained
+  blocked.
 
 No adaptive trial or audit has occurred. Runtime inventories, calibration
 packets, receipts, signatures, and checksums are intentionally not tracked.
 
-## 2026-09-23 — Portable pre-launch implementation migrated
+## 2026-09-23 — Portable pre-outcome implementation migrated
 
 - Added the sanitized, outcome-free cohort-map contract.
 - Added portable Phase-0 inventory, deterministic role materialization,
@@ -29,4 +30,5 @@ packets, receipts, signatures, and checksums are intentionally not tracked.
   record outside the tracked specification.
 
 This was an engineering/specification migration only. It did not read an
-audit outcome, run adaptive search, or authorize launch.
+audit outcome, run adaptive search, or authorize candidate scoring or audit
+access.

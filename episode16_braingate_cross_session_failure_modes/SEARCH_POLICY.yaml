@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep16_braingate_cross_session_failure_modes_adaptive
 episode_id: ep16
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -273,7 +272,7 @@ grammar:
     zero_label_receives_labels: false
     transductive_branch_supports_deployment_claim: false
     bounded_method_grammar:
-      status: launch_blocked_pending_human_signed_numeric_bounds
+      status: candidate_execution_blocked_pending_human_signed_numeric_bounds
       required:
         - maximum_latent_rank
         - maximum_effective_degrees_of_freedom
@@ -333,9 +332,9 @@ grammar:
       - waveform_summary
       - impedance_with_missingness_indicator
     identity_aware_emulator:
-      operator_status: launch_blocked_pending_freeze
+      operator_status: candidate_execution_blocked_pending_freeze
       operator: E_Ms_to_Mt
-      label_blind_measurement_partial_order: launch_blocked_pending_freeze
+      label_blind_measurement_partial_order: candidate_execution_blocked_pending_freeze
       primary_transition_direction: chronological_s_before_t
       primary_transition_classes: [near, long]
       degradation_admissible_rule: M_t_observably_no_better_than_M_s_under_frozen_partial_order
@@ -527,7 +526,7 @@ objectives:
     - better_common_score_reliability
     - lower_complexity_then_runtime
   margins:
-    status: launch_blocked_pending_human_signed_record
+    status: candidate_scoring_blocked_pending_human_signed_record
     proposed_anchors_not_frozen:
       harmful_long_lag_H_min: 0.10
       low_budget_Q_min: 0.50
@@ -750,7 +749,7 @@ stop:
     - cpu_or_wall_clock_budget_exhausted
   budget_or_patience_stop_is_scientific_success: false
   no_viable_three_person_audit_set: closed_task_support_incommensurate
-  unresolved_human_signed_margins: remain_launch_blocked
+  unresolved_human_signed_margins: blocks_candidate_scoring
 
 audit:
   mode: one_shot_whole_participant_strict_adequacy
@@ -864,13 +863,3 @@ terminal_mapping:
   closed_task_support_incommensurate: closed_no_candidate
   closed_unexplained_or_unresolved: closed_no_candidate
   technical_failure: technical_failure
-
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  outer_loop_ref: null
-  goal_handoff_ref: null
-  episode_ref: null
-  dataset_handoff_ref: null
-  search_policy_ref: null
-  launch_blocked: true

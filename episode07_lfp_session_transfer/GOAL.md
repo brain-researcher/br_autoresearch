@@ -1,22 +1,139 @@
-# EP07 — forward cross-session LFP transfer
+# Can earlier recording days help predict neural activity on a new day?
 
-This episode is governed by [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.md).
+Take the M1 part of the study. Imagine two rightward reaches made on a new
+recording day. At the same moment after movement onset, the usual
+direction-and-time response is the same for both trials. Yet their LFPs and
+population spike counts may rise or fall together in different ways. Earlier
+recording days contain many examples of these signals, but the recorded
+neurons, electrode signals, and numeric scale have changed by the time the new
+day begins. The same design is applied separately to PMd activity before
+movement.
+
+EP07 asks whether those earlier days are still useful after the new day has
+provided its own small calibration set. Three earlier days from the same
+animal, implant, and cortical region are used to help predict population spike
+counts on untouched trials from a later day. The later day contributes only a
+nominal 20% of its trials for calibration.
+
+The first comparison is deliberately demanding. The source-day model must
+beat both a direction-by-time average and an equally tuned model that receives
+the same new-day calibration trials but no earlier-day data. Beating only the
+average would show that neural signals help within a day; it would not show
+that historical recordings add anything once today's calibration data are
+available.
+
+Even a win over both comparisons may have a simple explanation. More old data
+could improve the average response for each reach direction, stabilize the
+fit simply by adding more examples, or align the day's average population
+pattern. None of those results shows that a trial-to-trial relationship
+between LFP and population spiking survived across days. The first score must
+therefore lead to a second question:
+
+> After the usual response for reach direction and time is removed, can a
+> relationship learned on earlier days still use the LFP to predict which
+> new-day trial has more or less population spiking?
+
+The intended paper should show more than a higher cross-day prediction score.
+It should identify whether the useful part of an earlier day is an average
+reach template, an aligned population pattern, or a relationship between LFP
+and spiking on the same trial. It should also show whether the answer repeats
+across target days and animals, whether it survives without 100--400 Hz
+spike-rich features, and whether a rule fixed in advance can predict when
+earlier days will help on a new session whose held-out outcomes have not been
+examined.
+
+Even a positive result would not show that the same neurons or electrode
+weights remain stable, that LFP causes population spiking, or that an online
+BCI will improve. It would support a narrower claim: in these two animals and
+six fixed target days, earlier days add useful information after limited
+same-day calibration for whichever prespecified setting the evidence supports—
+M1 during movement, PMd before movement, or both.
+
+The [paper plan](outputs/paper_plan.md) gives the follow-up tests, closest prior
+work, result-dependent branches, and figure sequence. The primary transfer
+test remains the first result. Later mechanism analyses cannot turn a failed
+or ambiguous transfer result into a positive one.
+
+## At a glance
+
+| Question | EP07 design |
+| --- | --- |
+| What changes from day to day? | The recorded neurons, electrode signals, and signal scale can change even when the animal, implant, region, and reaching task stay the same. |
+| What information is available? | Three earlier recording days plus a nominal 20% of the later day's trials for calibration. Neuron and numeric channel identities are not matched across days. |
+| What is predicted? | Population spike counts on untouched later-day trials, separately for M1 during movement and PMd before movement. |
+| What is the hard comparison? | The model using earlier days must beat both a direction-and-time average and an equally tuned model that uses the same later-day calibration trials but no earlier days. |
+| What must repeat? | The improvement must survive across the six fixed later days and be supported in both animals, rather than depend on one favorable recording day. |
+| What can the first test conclude? | Whether historical recordings add predictive information after limited same-day calibration. It cannot yet say what information transferred. |
+| What would make a deeper finding? | Evidence that the transferable signal is a trial-specific LFP--population relationship, rather than only an average reach pattern, the stabilizing effect of extra training examples, or high-frequency spike contamination. |
+| What is the next test? | Remove the direction-and-time average before fitting, then ask whether earlier days still improve prediction and which LFP and population components carry that gain. |
+| What is the external prediction? | Before held-out neural outcomes are examined, use the permitted calibration data to predict whether earlier days will help on a new session and which population dimensions will benefit. |
+
+## From a transfer gain to a scientific finding
+
+Consider two reaches to the same target at the same time after movement onset.
+Their mean response is identical by construction, but their LFP and population
+spiking may differ from trial to trial. A source-bearing model could win because
+old sessions estimate the direction-by-time mean more accurately. Alternatively,
+it could win because old sessions teach a relationship that predicts which of
+the two trials has higher or lower population activity. Those are different
+findings and require different tests.
+
+After the primary conclusion is fixed, the proposed follow-up creates a true
+residual-only prediction task; it does not merely subtract the same mean from a
+finished prediction and its target. Direction-by-time means are estimated from
+permitted training/calibration trials. Those means are removed from both LFP
+features and spike-count targets before either the source-bearing or matched
+calibration-only residual model is fit. The residual models cannot see
+uncentered neural values, a source-day mean template, or held-out outcomes.
+Their predictions are scored directly against held-out spike residuals, while
+the mean component is scored separately. It then asks which source-trained
+population dimensions and LFP feature blocks carry reproducible residual gain.
+
+The mechanism development set has already been outcome-exposed. Candidate
+components, ties, margins, and ablations must therefore be frozen before any
+new mechanism-specific score or diagnostic is computed or revealed—not
+pretended to be frozen before the data were ever accessed. The consumed primary
+audit can contribute only generic secondary outputs declared before its
+single opening; it cannot select this mechanism. A visually appealing latent
+trajectory is not enough.
+
+A trial-specific field-potential interpretation additionally requires an
+LMP/low-frequency-only result, explicit exclusion of 100--400 Hz power,
+same-electrode/unit-intersection analysis, and spike-quality matching. If the
+gain exists only in high-frequency or spike-rich features, report that boundary
+rather than calling it general LFP--spike coupling.
+
+The follow-up also has to make a forward prediction. Using only source days and
+the target calibration set, it should estimate whether source information will
+help that target day and which population dimensions will benefit. That rule is
+trained and cross-checked on development days, frozen, and then tested on newly
+sequestered sessions. Reusing the current audit trials after seeing their result
+would be explanation of this corpus, not external validation.
+
+The possible paper-level outcomes are deliberately different:
+
+| Follow-up result | What it would mean | What not to claim |
+| --- | --- | --- |
+| Source gain remains after direction-by-time means are removed, localizes to prespecified LFP/population components, and predicts new sessions | A trial-specific LFP--population relationship is reusable across days within the tested scope | The same neural weights, electrodes, or single neurons are stable |
+| Source gain is confined to the mean reach trajectory or aligned low-dimensional geometry | Earlier days reuse stable task structure, but evidence for transferable trial-specific coupling is absent | A general moment-to-moment neural mechanism |
+| Source gain is explained by generic shrinkage, target calibration, one source day, or one target day | The proposed stable relationship is not supported; retain only the narrower result that survives the controls | A robust cross-day principle |
+| No primary gain, or the result is imprecise | Stop or report the bounded negative/unresolved result | A mechanism rescued by post hoc component analyses |
 
 ## Authority and history boundary
 
 This directory is the current local scientific contract. The contract alone
-does not start compute or establish a finding; explicit invocation of the
-episode launcher starts the work. Earlier uses of this Dryad corpus remain
-development history: no earlier score, winning setting, review, or conclusion
-may seed the trial order or prior. At episode bootstrap, bind the search policy,
-exposure record, input identities, and exact contract-byte snapshot before any
-candidate-discriminating score is used.
+does not start compute or establish a finding; an explicit scientist
+instruction in a Codex task starts the work. Earlier uses of this Dryad corpus
+remain development history: no earlier score, winning setting, review, or
+conclusion may seed the trial order or prior. At episode bootstrap, bind the
+search policy, exposure record, input identities, and exact contract-byte
+snapshot before any candidate-discriminating score is used.
 
 EP05--EP08 share source dependence and therefore use one exposure ledger. A
 new trial split inside this already exposed release is an internal audit of a
 newly locked procedure, not independent replication.
 
-## Scientific question and unit of transfer
+## Exact unit of transfer
 
 Within a fixed animal, implant, and cortical region, can a single bounded
 policy use earlier recording days to improve prediction of trial-specific
@@ -291,7 +408,7 @@ event:
 - the finite admissible configuration space is exhausted;
 - seven consecutive valid successor pairs add less than `0.002 R2` to both
   streams' prior best eligible primary scores; or
-- a registered resource or technical stop occurs.
+- a declared resource or technical stop occurs.
 
 Stopping successor proposal always leads to frozen finalist selection and all
 10 falsifier pairs if the required search completed and a feasible finalist

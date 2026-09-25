@@ -436,7 +436,7 @@ class CurrentPacketTests(unittest.TestCase):
         self.assertFalse(calibration["audit_opening_authorized"])
         self.assertEqual(manifest["scientist_signoff"]["status"], "UNSIGNABLE_NO_ELIGIBLE_RULE")
 
-    def test_policy_binds_prelaunch_packet_only_as_nonbinding_evidence(self) -> None:
+    def test_policy_pins_prelaunch_packet_only_as_nonbinding_evidence(self) -> None:
         policy = json.loads(POLICY.read_text())
         manifest_path = PRELAUNCH / "PRELAUNCH_EVIDENCE_MANIFEST.json"
         observed = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
@@ -444,11 +444,8 @@ class CurrentPacketTests(unittest.TestCase):
         self.assertEqual(pin["manifest_sha256"], observed)
         self.assertFalse(pin["binding_authority"])
         self.assertFalse(pin["launch_authorized"])
-        nonbinding = policy["canonical_binding"]["nonbinding_prelaunch_artifact_hashes"]
-        self.assertEqual(nonbinding["prelaunch_evidence_manifest"], observed)
-        required = policy["canonical_binding"]["required_manifest_hashes"]
-        self.assertIsNone(required["endpoint_faithful_small_n_calibration"])
-        self.assertIsNone(required["scientist_calibration_signoff"])
+        self.assertFalse(policy["dataset_roles"]["runtime_role_handoff"]["launch_authorized"])
+        self.assertFalse(policy["small_n_calibration"]["positive_audit_opening_authorized"])
 
 
 if __name__ == "__main__":

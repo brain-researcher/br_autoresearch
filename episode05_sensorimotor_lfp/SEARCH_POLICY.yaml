@@ -1,9 +1,74 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep05_sensorimotor_lfp_adaptive
 episode_id: ep05
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
+
+# Planning metadata only. The executable contract below remains the original
+# residual-velocity adaptive search, with its existing roles, budget, primary
+# estimand, terminal classes, and one-shot audit.
+research_program:
+  paper_question: do_compact_m1_lfp_features_track_trial_specific_departures_from_the_average_reach
+  plan_ref: outputs/paper_plan.md
+  primary_round: heldout_direction_residual_velocity_search
+  primary_endpoint_and_terminal_mapping_unchanged: true
+  behavioral_comparator_clarification:
+    type: cyclic_direction_by_elapsed_time_function
+    fitted_on: seven_permitted_directions_only
+    evaluated_at: heldout_direction_angle
+    empirical_heldout_direction_mean_used: false
+    exact_basis_interpolation_support_and_code_must_be_frozen_before_search: true
+  trial_identity_interpretation:
+    purpose: separate_correct_trial_pairing_from_systematic_heldout_direction_template_correction
+    construction: observed_delta_r2_minus_frozen_center_of_within_direction_whole_trial_pairing_null
+    fitted_models_and_transforms_held_fixed: true
+    whole_trial_trajectories_permuted_within_heldout_direction_only: true
+    permutation_count_center_margin_aggregation_and_invalid_rules_must_be_frozen: true
+    required_for_paper_phrase_trial_specific: true
+    changes_primary_endpoint_or_terminal_mapping: false
+  followup:
+    state: proposed_not_configured_or_run
+    evidence_mode: proposed_fixed_comparison
+    purpose: explain_whether_primary_gain_tracks_trial_varying_spike_population_state
+    starts_after_primary_development_result_is_fixed: true
+    automatically_launched_by_this_policy: false
+    primary_winner_or_terminal_may_be_overwritten: false
+    source: exposed_m1_development_sessions_only
+    source_is_independent_replication: false
+    lfp_representation: primary_locked_candidate_without_followup_retuning
+    predictor_input: released_postprocessed_lfp_features
+    explanatory_target: train_only_spike_population_latent_on_heldout_trials
+    shared_kinematic_target: xy_velocity_residual_beyond_train_only_direction_by_time
+    fixed_residual_readouts:
+      - along_path_speed_error
+      - perpendicular_curvature_error
+      - prespecified_time_resolved_xy_error
+    comparisons:
+      - direction_and_elapsed_time_only
+      - matched_low_frequency_or_lmp
+      - matched_high_frequency
+      - spike_population_latent
+      - lfp_to_spike_latent_to_velocity_chain
+      - lfp_plus_spike_population_latent
+    required_interpretation_checks:
+      - lfp_and_spike_predictions_make_same_signed_velocity_correction
+      - temporal_offset_and_whole_trial_pairing_nulls
+      - matched_channel_trial_and_capacity_budgets
+      - same_electrode_unit_intersection_spike_bleed_sensitivity
+      - recording_quality_and_session_influence
+    prospective_evaluation:
+      uses_primary_audit_opening: true
+      policy_or_threshold_adaptation_after_reveal: false
+      new_animal_required_for_broader_biological_generalization: true
+    separate_contract_required:
+      - latent_rank_smoothing_and_alignment
+      - residual_decomposition_and_support_rules
+      - fixed_models_capacity_and_comparators
+      - meaningful_margins_multiplicity_and_uncertainty
+      - synthetic_recovery_nulls_budget_and_stop_rules
+      - result_table_and_claim_mapping
+    inherits_primary_trial_budget: false
+    primary_candidate_ready_implies_paper_claim_established: false
 
 dataset_roles:
   shared_exposure_ledger_group: lfp_ep05_ep08
@@ -162,13 +227,16 @@ terminal_mapping:
   technical_failure: technical_failure
   policy_violation: technical_failure
 
-canonical_binding:
-  loop_id: null
-  goal_handoff_id: null
-  action_id: null
-  runtime_episode_id: null
-  candidate_bundle_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true
+reporting:
+  scientific_scope:
+    primary_and_explanatory_followup_reported_separately: true
+    positive_delta_r2_alone_supports_shared_population_state_claim: false
+    spike_latent_association_may_rescue_failed_primary: false
+    exposed_followup_is_independent_replication: false
+    online_or_causal_bci_claim_allowed: false
+  main_figures:
+    - heldout_direction_trial_specific_velocity_gain
+    - residual_components_and_feature_source
+    - lfp_spike_latent_shared_prediction_and_falsifiers
+    - locked_future_session_audit
+    - compact_feature_resource_consequence_and_limits

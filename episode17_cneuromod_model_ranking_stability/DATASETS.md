@@ -1,19 +1,17 @@
 # Dataset Contract — Episode 17
 
-## Readiness in one sentence
+## Source and access status
 
 CNeuroMod-THINGS 1.0.1 is the only neural source. Its required 128.145 GiB
 neural/structural subset and release-provenance archive are currently
-quarantined in the legacy worktree, outside this canonical checkout. The root
-location manifest identifies that tree as `legacy_ep17_restricted_raw`. Its
-migration remains `staged_not_moved`; the external destination
-`planned_ep17_restricted_raw` is still `absent_planned_target`. Operational
-acquisition logs, checksums, and the transfer program remain with the legacy
-source and are intentionally not versioned in this code repository. EP17
-remains **not analysis-ready and not
-launch-authorized** until the move is durably verified and outcome-blind role
-assignment, role-filtered handoffs, and the remaining scientific contracts are
-complete.
+stored outside this canonical checkout at
+`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw`.
+The root location manifest identifies that tree as `ep17_restricted_raw`; it
+was relocated by same-filesystem rename on 2026-09-24. Operational acquisition
+logs, checksums, and the transfer program remain with the restricted source and
+are intentionally not versioned in this code repository. Candidate scoring and
+audit access remain closed until outcome-blind role assignment, role-filtered
+handoffs, and the remaining scientific contracts are complete.
 
 Provisioning source bytes is not permission to inspect neural arrays.
 
@@ -22,17 +20,16 @@ Provisioning source bytes is not permission to inspect neural arrays.
 [`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json) is the only
 repository record that maps the logical locations below to machine paths:
 
-- `legacy_ep17_restricted_raw` is the current restricted neural/structural
-  quarantine in the legacy worktree, with migration `staged_not_moved`;
-- `planned_ep17_restricted_raw` is its planned external restricted-data
-  destination and remains `absent_planned_target`;
-- `legacy_steward_acquisition` contains the current quarantined CNeuroMod
-  stimulus archive; its asset move is `staged_not_moved`; and
-- `planned_steward_acquisition` is the planned durable destination for that
-  steward asset and remains `absent_planned_target`.
+- `ep17_restricted_raw` is the canonical restricted neural/structural source at
+  `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw`;
+  and
+- `private_steward_acquisition` contains the CNeuroMod stimulus archive at
+  `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`.
 
-Neither current source is an episode-ready handoff. No path listed in the
-manifest changes the access boundary or lifts a readiness gate.
+Both trees were relocated by same-filesystem rename on 2026-09-24.
+
+Neither current source is a role-filtered episode handoff. No path listed in
+the manifest changes the access boundary or opens protected neural outcomes.
 
 ## Frozen source
 
@@ -81,9 +78,9 @@ the missing-intermediate problem that affected the former NSD design.
 It does not create external biological replication. The four people are the
 only biological units, and the audit reuses those same people.
 
-## Verified legacy source inventory
+## Verified restricted source inventory
 
-The legacy quarantined source contains the four participants' B/C/D matrices,
+The canonical restricted source contains the four participants' B/C/D matrices,
 public D-ceiling maps, GLMsingle designs, masks and run metadata, restricted
 per-trial annotation sources, and anatomical `aparcaseg` candidates required
 by this episode. The neural/structural subset is approximately 128.145 GiB;
@@ -98,7 +95,7 @@ that workspace rather than being duplicated as tracked manifests, receipt
 files, or checksum sidecars.
 
 The fMRI stimulus archive was transferred separately and is not included in
-the neural-source byte total above. The legacy-steward-held, pinned
+the neural-source byte total above. The private-steward-held, pinned
 `images_fmri.zip` is 917,286,854 bytes. Its research/noncommercial terms were
 accepted and recorded on 2026-09-22.
 The archive remains encrypted and unextracted in steward quarantine; controlled
@@ -106,7 +103,7 @@ extraction, per-image hashing, exact event-image alignment, and a role-safe
 feature handoff remain feature-computation blockers. None weakens the
 neural-data seal.
 
-## Legacy acquisition state and access boundary
+## Acquisition state and access boundary
 
 Source provisioning completed on 2026-09-21 against the frozen release and
 gitlink identities above. The required files and provenance archive were
@@ -114,17 +111,17 @@ verified before the final tree was made read-only; its annex links resolve
 inside the same restricted tree. No MAT, NIfTI, HDF5, or annotation array was
 parsed as part of acquisition.
 
-The exact transfer logs and integrity inventory are operational records in the
-legacy quarantine. They are not launch instructions and are not carried by
-Git. A new checkout must receive a separately verified, role-filtered handoff;
-it must not infer data availability or its location from repository files.
+The exact transfer logs and integrity inventory are operational records beside
+the restricted source. They are not episode inputs and are not carried by Git.
+A new checkout must receive a separately verified, role-filtered handoff; it
+must not infer data-role access from repository files.
 
 The raw source remains mixed-role and restricted after transfer. It must not be
 mounted to the adaptive search worker.
 
 ## Neural products
 
-For every participant, the legacy quarantined source contains:
+For every participant, the canonical restricted source contains:
 
 | Stage | File | Scientific interpretation |
 | --- | --- | --- |
@@ -240,7 +237,7 @@ nonterminal diagnostics and never trigger refitting on audit data.
 ## ROI and geometry contract
 
 The acquired `aparcaseg` volumes are candidate anatomical sources, not yet a
-frozen visual-ROI definition. Before launch:
+frozen visual-ROI definition. Before neural-outcome scoring:
 
 1. freeze the parcel-to-visual-ROI crosswalk;
 2. resample labels to each GLMsingle T1w mask with nearest-neighbor
@@ -299,9 +296,9 @@ claim that the world has never inspected the data. A valid audit requires:
 6. one evaluator opening across all four participants; and
 7. no post-open subset rescue, margin change, or rerun.
 
-## Remaining data-readiness blockers
+## Requirements before neural-outcome access
 
-EP17 cannot launch until:
+Candidate scoring and audit access remain closed until:
 
 - controlled extraction of the acquired pinned stimulus archive and exact
   per-image hash/event-ID alignment are complete;
@@ -318,8 +315,8 @@ EP17 cannot launch until:
 - the EP17/EP18 exposure decision is signed; and
 - the trusted evaluator passes an outcome-free synthetic dry run.
 
-Failure before neural outcome access is a readiness refusal and produces no
-scientific terminal. Narrow, valid audit evidence that contradicts
+A qualification failure before neural outcome access produces no scientific
+terminal. Narrow, valid audit evidence that contradicts
 development may close as `closed_heldout_concept_nonreplication`; wide audit
 bounds close as `closed_audit_underidentified`. Integrity failures are
 technical failures, not null results.

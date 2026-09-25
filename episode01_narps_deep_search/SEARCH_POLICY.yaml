@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep01_narps_adaptive_smoothing_search_v1
 episode_id: ep01
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -88,7 +87,7 @@ grammar:
     stage: group_map
     operator: exactly_matched_8mm_Gaussian
     boundary_normalization_resampling_and_grid_manifest: null
-    unresolved_manifest_is_launch_blocking: true
+    unresolved_manifest_blocks_candidate_scoring: true
   stage_specific_kernel_operators_are_mechanism_hypotheses: true
   every_DeltaESC_uses_global_K8_ref: true
   spatial_operator_and_stage:
@@ -166,7 +165,7 @@ objectives:
     denominator_floor: null
     nonfinite_and_degenerate_environment_rule: null
     metric_and_degeneracy_contract: null
-    unresolved_fields_are_launch_blocking: true
+    unresolved_fields_block_candidate_scoring: true
   ranking:
     coordinates:
       - minimum_environment_DeltaESC
@@ -177,7 +176,7 @@ objectives:
     canonical_configuration_hash_tie_direction: lexicographically_lowest
     environment_compensation_across_direction_reversal: prohibited
     deterministic_tie_resolution: true
-    unresolved_complexity_functional_is_launch_blocking: true
+    unresolved_complexity_functional_blocks_candidate_scoring: true
   secondary:
     - spatial_correlation
     - normalized_RMS_difference
@@ -281,7 +280,7 @@ budgets:
   finalists_max: 3
   finalists_max_excludes_required_no_change_and_global_K8_ref_baselines: true
   audit_openings_max: 1
-  unresolved_memory_and_concurrency_limits_are_launch_blocking: true
+  unresolved_memory_and_concurrency_limits_block_controller_execution: true
   stage_valid_trial_ranges:
     coverage: [12, 20]
     adaptive_targeted_recomputation: [12, 24]
@@ -365,7 +364,7 @@ development_lock:
     simultaneous_interval_family: null
     development_kernel_ESC_floor: null
     development_useful_DeltaESC_margin: null
-    unresolved_fields_are_launch_blocking: true
+    unresolved_fields_block_development_lock: true
     family_selection_precedence:
       - select_highest_ranked_nonkernel_finalist_passing_nonkernel_lock_rule
       - otherwise_select_global_exact_K8_ref_only_if_exact_K8_ref_lock_rule_passes
@@ -488,14 +487,14 @@ audit:
     every_attempt_requires_hash_chained_receipt: true
     exact_eligible_infrastructure_failures: null
     maximum_attempts_within_single_opening: null
-    unresolved_retry_list_is_launch_blocking: true
-    unresolved_maximum_attempt_count_is_launch_blocking: true
+    unresolved_retry_list_blocks_audit_opening: true
+    unresolved_maximum_attempt_count_blocks_audit_opening: true
   uncertainty:
     method: paired_subject_bootstrap
     confidence_level: 0.95
     draw_count: null
     simultaneous_family: null
-    unresolved_fields_are_launch_blocking: true
+    unresolved_fields_block_audit_opening: true
   provisional_thresholds:
     status: requires_outcome_blind_synthetic_calibration_and_scientist_signoff
     kernel_sufficient:
@@ -562,58 +561,3 @@ terminal_discrimination:
     when: selected_nonkernel_mechanism_passes_every_frozen_pipeline_audit_rule_for_both_contrasts
   candidate_ready_kernel_sufficient:
     when: selected_global_K8_ref_mechanism_passes_every_frozen_kernel_audit_rule_for_both_contrasts
-
-canonical_binding:
-  loop_id: null
-  goal_handoff_id: null
-  action_id: null
-  runtime_episode_id: null
-  candidate_bundle_id: null
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  legacy_canonical_records_require_identity_nonreuse_check: true
-  prepare_collision_requires_separate_reconciliation_if_observed: true
-  legacy_loop_ids_are_prior_only_and_not_reusable: true
-  launch_blocked: true
-  required_manifest_hashes:
-    prior_packet: null
-    development_source: null
-    development_split: null
-    development_environment: null
-    contrast_sign_unit_crosswalk: null
-    exposure_ledger: null
-    comparison_mask: null
-    global_exact_K8_ref_operator: null
-    metric_degeneracy_interval_threshold_contract: null
-    development_lock_eligibility_contract: null
-    full_development_shortlist_and_nonkernel_comparator_set: null
-    complexity_functional: null
-    synthetic_fixtures: null
-    code: null
-    environment: null
-    audit_metadata_commitment: null
-    audit_payload_merkle_root: null
-    audit_runner: null
-    audit_retry_policy: null
-    resource_profile: null
-    scientist_signoff_receipt: null
-  unresolved_launch_blockers:
-    - content_addressed_prior_packet_absent_or_unverified
-    - ds001734_payload_and_worktree_manifest_not_revalidated
-    - ds000005_exposure_lineage_and_payload_commitment_not_verified
-    - contrast_semantics_sign_and_unit_crosswalk_unsigned
-    - development_fold_environment_mask_and_operator_manifests_unfrozen
-    - exact_global_K8_reference_DAG_unfrozen
-    - complexity_functional_and_total_order_unfrozen
-    - development_lock_eligibility_margins_and_interval_family_unsigned
-    - ESC_degeneracy_interval_and_threshold_calibration_unsigned
-    - permission_separated_evaluator_and_audit_runner_absent
-    - evaluator_synthetic_rejection_tests_absent
-    - audit_retry_failure_list_unfrozen
-    - audit_retry_maximum_attempt_count_unfrozen
-    - code_environment_and_container_hashes_absent
-    - memory_and_concurrency_limits_unfrozen
-    - compute_profile_not_verified_within_budget
-    - registered_adaptive_program_binding_absent
-    - scientist_signoff_absent

@@ -3,12 +3,12 @@
 ## Status and authority boundary
 
 This is an unnumbered design reference, not an episode proposal. It does not
-authorize data access, computation, canonical Goal creation, Society review,
-reward, launch, or a scientific claim. The two source examples remain frozen
+start an episode-managed run or authorize data access, computation, Society
+review, reward, or a scientific claim. The two source examples remain frozen
 and are never edited or reinterpreted as confirmation.
 
-If instantiated, this design must run as a **registered search program** whose
-immutable policy is `SEARCH_POLICY.md`. Do not run it through generic bounded
+If instantiated, this design must run as a **bounded search program** whose
+immutable episode-local policy is `SEARCH_POLICY.md`. Do not run it through generic bounded
 Goal discovery: that route would again collapse the work to at most two
 one-shot tests.
 
@@ -162,7 +162,7 @@ network architecture search, and unlogged hand edits are outside the grammar.
 
 ## Multi-round development program
 
-### Stage 0: readiness and synthetic calibration
+### Stage 0: qualification and synthetic calibration
 
 Inventory all sources without opening audit neural arrays. Validate map algebra,
 kernel implementation, resampling, masks, uncertainty, and trial-ledger logic
@@ -173,7 +173,7 @@ Freeze audit thresholds after this outcome-blind calibration.
 
 Run 12--20 valid trials using cached NARPS derivatives and bounded subject/map
 subsets. Every operator family A--E must receive at least two valid trials or a
-recorded input-readiness rejection. Promote a trial only from grouped
+recorded input-qualification rejection. Promote a trial only from grouped
 out-of-fold performance across contrast, task-version, and subject-fold
 environments. The adaptive kernel grid is S0/S4/S8; mechanisms may use these
 levels to learn a dose-response relationship.
@@ -272,7 +272,7 @@ substituting the runner-up or changing thresholds.
 
 ## Required search artifacts
 
-The registered program must produce, at minimum:
+The episode run must produce, at minimum:
 
 - immutable source, split, and exposure manifests;
 - `experiments.jsonl`, append-only and one row per attempted trial;

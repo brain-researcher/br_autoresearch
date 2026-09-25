@@ -1,7 +1,7 @@
 # Verification projection
 
-> Specification verification only; this file grants no launch or scientific
-> authority.
+> Specification verification only; this file grants no candidate-scoring,
+> audit-access, or scientific authority.
 
 ## Tracked checks
 
@@ -21,7 +21,8 @@
   non-Ed25519 rejection, signer independence, commitment matching, and
   freshness checks.
 - Calibration prerequisite inspection remains nonbinding even when synthetic
-  fixture files declare readiness; no generated result is tracked or binding.
+  fixture files declare qualification; no generated result is tracked or
+  binding.
 - Runtime-packet test classes skip cleanly when ignored artifacts are absent.
 
 ## Remaining runtime verification

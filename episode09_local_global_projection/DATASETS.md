@@ -78,9 +78,10 @@ inference artifacts under separate permissions. Hash every join and transform.
 The primary archives are not yet provisioned episode-locally; exact
 CCF annotation/structure graph and registration code are unpinned; biological
 animal/specimen mapping and batch metadata are unresolved; qualifying-arbor
-and valid-nondetection rules are unvalidated; the shared EP09/10/11 role and
-exposure ledger does not exist; and canonical policy bindings are null. Each
-blocks launch. Optional CCF-ME absence does not block the primary analysis.
+and valid-nondetection rules are unvalidated; and the shared EP09/10/11 role
+and exposure ledger does not exist. Each blocks candidate scoring or protected
+audit access, not explicit task startup. Optional CCF-ME absence does not block
+the primary analysis.
 
 Large payloads remain outside Git or behind immutable read-only references.
 Transient expansions and feature matrices belong in

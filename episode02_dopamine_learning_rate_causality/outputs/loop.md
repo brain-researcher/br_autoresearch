@@ -1,6 +1,6 @@
 # Loop projection
 
-No canonical loop, Goal handoff, configuration lock, or audit opening exists.
+No episode run, configuration lock, or audit opening exists.
 
 ```text
 scientific specification
@@ -10,7 +10,8 @@ scientific specification
   -> presign margins and validate an endpoint-faithful decision rule
   -> verify trusted receipts and sign a separate policy amendment
   -> qualify implementation and evaluator
-  -> search only after explicit authorization
+  -> search after explicit scientist instruction
 ```
 
-The current state is `planned_unregistered`; search and audit are blocked.
+Implementation and outcome-blind qualification may start in an explicit Codex
+task. Audit outcomes remain closed until the requirements above pass.

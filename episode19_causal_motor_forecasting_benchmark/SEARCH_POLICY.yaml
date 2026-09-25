@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep19_causal_motor_forecasting_benchmark_adaptive
 episode_id: ep19
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -748,7 +747,7 @@ objectives:
     - better_primary_horizon_log_score_than_best_eligible_reference
     - lower_parameter_count_latency_and_compute
   margins:
-    status: launch_blocked_pending_scientist_signed_record
+    status: candidate_scoring_blocked_pending_scientist_signed_record
     required_before_candidate_EEG_scores:
       - delta_fixed_primary_min
       - G_zero_primary_min
@@ -979,7 +978,7 @@ stop:
   budget_or_patience_stop_is_scientific_success: false
   no_valid_causal_onset_or_clock_certificate: technical_failure
   no_scorable_locked_evaluation_support: technical_failure
-  unresolved_scientist_signed_margins: remain_launch_blocked
+  unresolved_scientist_signed_margins: blocks_candidate_scoring
 
 audit:
   mode: one_joint_campaign_sealed_WAY_and_second_task_participant_evaluation
@@ -1007,7 +1006,7 @@ audit:
   post_lock_change_to_model_baseline_onset_horizon_margin_C32_algorithm_or_C32_budget: prohibited
   audited_model_specific_C32_parameter_fit_under_frozen_algorithm_and_budget: permitted
   exact_success_rule:
-    status: launch_blocked_pending_scientist_signed_margins
+    status: audit_interpretation_blocked_pending_scientist_signed_margins
     terminal_gate_source_order: [WAY, global_latency_resource, self_paced, challenger_improvement, reference_rank]
     required_elements:
       - WAY_participant_macro_delta_fixed_G_zero_and_C_surrogate_final_each_clear_own_margin
@@ -1074,13 +1073,3 @@ terminal_mapping:
   closed_unresolved: closed_no_candidate
   technical_failure: technical_failure
   policy_violation: technical_failure
-
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  outer_loop_ref: null
-  goal_handoff_ref: null
-  episode_ref: null
-  dataset_handoff_ref: null
-  search_policy_ref: null
-  launch_blocked: true

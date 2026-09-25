@@ -1,4 +1,5 @@
 # Loop
 
-No canonical loop or adaptive-controller binding exists for Episode 15. Query
-live Brain Researcher state before any registration, launch, or resume action.
+Start or resume Episode 15 through an explicit scientist instruction in its
+Codex task. Query live Brain Researcher state only before requesting review,
+reward, or a shared campaign transition.

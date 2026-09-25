@@ -42,7 +42,7 @@ The same release was outcome-exposed in historical EP05 work. Treat every
 current-release neural outcome as exposed unless an itemized ledger proves a
 narrower fact. The deterministic four-session internal holdout is therefore a
 procedural internal audit, not fresh confirmation. Neither a new split nor the
-unlaunched historical EP06 proposal resets exposure.
+fact that the historical EP06 proposal was never executed resets exposure.
 
 ## Required immutable asset pack
 
@@ -86,7 +86,7 @@ not available operators.
 ## External third-animal confirmation firewall
 
 No qualifying external data are currently identified or acquired. A future,
-separately registered confirmation source must provide simultaneous M1 and PMd
+separately frozen confirmation source must provide simultaneous M1 and PMd
 recordings from a third animal under a compatible task and authenticated
 feature pipeline. Before any neural outcome access:
 
@@ -96,13 +96,61 @@ feature pipeline. Before any neural outcome access:
   round's search and internal-audit workers;
 - freeze how the original two animals form prototypes/reference objects and
   how the third animal is scored; and
-- create a new canonical round/exposure record and execute the already locked
-  policy once, with no representation, alignment, hyperparameter, threshold,
+- create a new round with its own exposure record and execute the already
+  locked policy once, with no representation, alignment, hyperparameter, threshold,
   exclusion, or stopping change for a direct generalization test.
 
 New sessions from Mihili or Chewie cannot satisfy the third-animal requirement.
 An exact infrastructure retry is allowed only if no score was released and all
 hashes remain unchanged.
+
+## Data needed to explain a transferable fingerprint
+
+The [paper plan](outputs/paper_plan.md) proposes a later fixed comparison. It
+does not create another opening of the four internal-audit sessions and does
+not make any current-release outcome fresh.
+
+| Source | Proposed role | Condition before use |
+| --- | --- | --- |
+| Eight hash-ranked development sessions | Retain the undifferenced M1 and PMd prototypes in the exact locked normalized/aligned profile representation that produced the primary signed contrast; derive correct-region and equal-region pooled convex output-mixture weights | Begin only after the primary development result is fixed; keep both cross-animal directions; freeze the prototype support, projection equation, bandwise base-predictor recipe, and margins before target-animal follow-up population-recovery scores |
+| Four reserved current-release sessions | In the same single internal-audit transaction, test the locked signed contrast and correct-region versus pooled/swapped prediction if that output was declared before lock | No partial score release, second opening, new alignment, band selection, or threshold change |
+| Array/QC/impedance/channel metadata | Test whether non-neural recording properties reproduce the region label or the apparent advantage | Use a frozen metadata-only model and matched-support analysis; never call metadata adjustment proof of pure cortical origin |
+| Prospective third animal with simultaneous M1/PMd | Apply the unchanged classifier, signed contrast, and region-specific consequence in a successor round | Bind task, hardware, sessions, trials, guides, region labels, and exposure before outcomes; use no target-driven alignment or selection |
+
+The follow-up target is the held-out spike-population latent already defined
+from simultaneous spikes. A signed difference alone cannot recover two
+undifferenced regional profiles, so the immutable pack must retain the
+source-only M1 prototype, PMd prototype, their signed difference, and their
+equal-region pooled prototype on one common band-by-latent support. These are
+the exact normalized/aligned profile coordinates supplied to the locked
+primary classifier, not a different pre-normalization precursor. The paper plan
+gives the deterministic prototype-to-convex-weight equation.
+
+For every `(target session, region, fold)`, fit one target-training latent basis
+and outcome scale shared across every band and rule. Then fit one base predictor
+per supported band once on its permitted training trials with the same trial
+support, electrode budget, mapping family, regularization recipe, and output
+dimension. Restore predictions to the shared target-latent units and freeze the
+complete held-out tensor. Correct-region, pooled, and swapped rules combine those
+same bandwise predictions at the output level; no joint coefficient, intercept,
+bandwise scaling, or penalty is learned after the fixed source weights are
+applied. The swapped rule exchanges M1 and PMd weight vectors only. Common-band
+support, weight/effective-mixture separation margins, a uniform reference, and
+the raw-feature unit-rescaling replay are frozen before target follow-up scores.
+
+Every transform that sees neural values—including reliability shrinkage,
+latent axes, scaling, band weighting, and any Procrustes map—must be fit on the
+permitted source/training data. Held-out target outcomes or scores cannot select bands, resolve
+feature-guide ambiguity, align components, choose support, or decide which
+sessions to report. A zero or missing band is not evidence of a regional
+absence; missingness and unsupported profile mass must be reported.
+
+M1 and PMd are recorded by different arrays. Metadata matching can identify
+measured hardware explanations but cannot remove unmeasured region-linked
+array effects. Even a third animal recorded with the same region/array layout
+repeats that structural confounding. A pure cortical-area claim would require
+a design that breaks or independently measures it; it cannot be obtained by
+stronger classifier performance in this release.
 
 ## Missing assets and blockers
 
@@ -115,8 +163,8 @@ hashes remain unchanged.
   behind a permission boundary.
 - No third matched M1/PMd animal dataset has been identified, acquired, or
   sealed; population/generalization candidacy is therefore blocked.
-- The search evaluator and policy are unregistered, so canonical launch is
-  blocked.
+- The search evaluator has not been qualified against the frozen policy; this
+  blocks scored search and audit opening, not explicit task startup.
 
 ## Storage and compute boundary
 

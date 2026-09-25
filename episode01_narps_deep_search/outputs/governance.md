@@ -31,7 +31,7 @@
 
 - Society applicability/status: not observed for the new EP01
 - Scientist reward: not observed for the new EP01
-- Launch approval: not observed for the new EP01
+- Scientist confirmation: not observed for the new EP01
 
 ## Execution boundary
 

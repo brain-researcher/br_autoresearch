@@ -2,7 +2,6 @@
   "schema_version": "autoresearch.adaptive_search_policy.v1",
   "policy_id": "ep02_dudman_dopamine_learning_rate_causality_adaptive_v1",
   "episode_id": "ep02",
-  "status": "planned_unregistered",
   "common_protocol_ref": "../ADAPTIVE_SEARCH_PROTOCOL.md",
   "evidence_mode": "adaptive_search",
   "scientific_scope": {
@@ -155,7 +154,7 @@
     }
   },
   "coordinate_and_outcome_contract": {
-    "status": "launch_blocked_until_outcome_blind_semantics_receipts_are_frozen",
+    "status": "candidate_scoring_and_audit_opening_blocked_until_outcome_blind_semantics_receipts_are_frozen",
     "superseded_phase0_v1_prelaunch_exposure": {
       "timing": "uncommitted_local_packet_before_any_candidate_search_or_controller_execution",
       "fields": [
@@ -622,7 +621,7 @@
       "result_storage": "runtime_only_not_tracked"
     },
     "endpoint_faithful_recalibration_required_after_score_receipts": {
-      "status": "launch_blocking",
+      "status": "audit_opening_blocking",
       "must_model": [
         "bounded_sessionwise_binomial_or_beta_binomial_mouse_scores",
         "tied_and_discrete_scores",
@@ -832,39 +831,5 @@
     "technical_audit_integrity_failure": "technical_failure",
     "policy_violation": "technical_failure",
     "technical_failure": "technical_failure"
-  },
-  "canonical_binding": {
-    "canonical_program_id": null,
-    "registered_program_policy_ref": null,
-    "search_policy_ref": null,
-    "launch_blocked": true,
-    "tracked_runtime_binding_artifacts": [],
-    "runtime_bindings_required_before_launch": [
-      "authoritative_endpoint_semantics",
-      "randomization_and_exclusion_scope",
-      "permission_separated_role_handoff",
-      "finite_admissible_configuration",
-      "qualified_author_port_and_independent_implementation",
-      "endpoint_faithful_calibration_and_scientist_decision",
-      "no_partial_output_evaluator",
-      "resource_profile_and_replay_environment",
-      "exposure_ledger"
-    ],
-    "unresolved_launch_blockers": [
-      "permission_separated_firewall_against_same_uid_and_public_network_reacquisition",
-      "trialID_seshID_and_lickState_semantics_receipts",
-      "documented_small_cohort_randomization_and_postcollection_exclusion_roster_or_explicit_noncausal_sensitivity_only_contract",
-      "raw_trace_axis_receipt_for_required_secondary_replication",
-      "author_port_synthetic_and_independent_reimplementation_qualification",
-      "candidate_safe_sanitized_author_code_pack_excluding_empirical_Figure_1_script_and_missing_workspace_assets",
-      "finite_admissible_configuration_manifest_and_hash",
-      "endpoint_faithful_small_n_calibration_replacing_the_nonbinding_generic_diagnostic",
-      "presigned_absolute_raw_margin_and_development_scale_reliability_floor",
-      "small_n_calibration_scientist_signoff",
-      "independently_reviewed_no_partial_output_evaluator",
-      "resource_profile_within_frozen_ceilings",
-      "clean_tracked_GOAL_DATASETS_and_policy_contract",
-      "canonical_adaptive_program_registration_and_nonnull_refs"
-    ]
   }
 }

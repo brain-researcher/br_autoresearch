@@ -1,0 +1,44 @@
+schema_version: ep11.stage0_synthetic_validation.v1
+run_id: ep11-stage0-20260925T000506Z
+executed_utc: 2026-09-25T00:13:29Z
+real_data_access: false
+tool:
+  path: tools/validate_redacted_metadata.py
+  sha256: 274bf5d1bf4c9b9f02d8f012557d3060622f2056a7a4ebfbe0c8d73423123ecf
+  Python: 3.13.13
+tests:
+  - fixture: fixtures/synthetic_pass_12_8.csv
+    sha256: 86968e4a522a4aecfcd2e06ad494fdae40e744f6168aa5c9da1d8e64f59ad745
+    expected: valid_and_passes_current_count_floor_only
+    observed_exit_code: 0
+    observed: pass
+    development_animals: 12
+    audit_animals: 8
+    full_support_qualification: not_evaluated
+  - fixture: fixtures/synthetic_fail_role_leak.csv
+    sha256: b489dbf8bbbcdbb2ba2df2b856416d4e22a70a5dfbbea6f9ac3a07e549493779
+    expected: reject_one_animal_in_multiple_roles
+    observed_exit_code: 2
+    observed: pass
+  - fixture: fixtures/synthetic_fail_forbidden_field.csv
+    sha256: a0e875566ad9ec0333243b93e1558bd61d0bf0ae8515887357e62ac4f5b7dcbe
+    expected: reject_non_allow_list_projection_class_column
+    observed_exit_code: 2
+    observed: pass
+qualification_scope:
+  establishes:
+    - content_hash_required_before_decode
+    - real_trusted_steward_mode_requires_redaction_receipt
+    - exact_allow_list_and_required_columns
+    - whole_animal_role_exclusivity
+    - independent_animal_count_floor_reporting
+    - aggregate_output_without_cell_or_animal_identifiers
+    - row_level_audit_metadata_remains_inside_trusted_boundary
+  does_not_establish:
+    - authenticity_of_real_animal_mapping
+    - minimum_cells_per_animal
+    - local_position_depth_overlap_or_maximum_gap
+    - precision_for_the_meaningful_effect
+    - CCF_binding
+    - real_source_readiness
+    - any_projection_organization_result

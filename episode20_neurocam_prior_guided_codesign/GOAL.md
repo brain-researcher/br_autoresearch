@@ -1,67 +1,81 @@
-# Design the Sensor for the Signal
+# Can a constrained NeuroCam redesign recover cortical voltage fields more faithfully?
 
-## Robust virtual co-design of a NeuroCam-derived micro-ECoG system
+A NeuroCam-class array cannot maximize spatial coverage and sampling speed at
+the same time. Scanning all 4,096 pixels covers the array's full field of view,
+but each pixel is revisited more slowly. Concentrating measurements on fewer
+rows or source groups captures faster changes but leaves other locations less
+well observed. Electrode size creates a related choice: a larger pad averages
+over more tissue, whereas a smaller pad may preserve a focal event more
+precisely.
 
-## Authority and scope
+EP20 asks whether those choices can be made more intelligently without making
+the device larger, adding wires or conversion work, increasing latency, or
+exceeding the same modeled power/thermal budget.
+The candidate may combine a legal pattern of small and large pads with a legal
+row/source acquisition schedule, and the reconstruction software may learn
+the exact measurement pattern. The question is whether that pair recovers
+broad activity, focal field transients, and propagating waves better than the
+best eligible version of the published NeuroCam architecture under the same
+resource limits.
 
-This is the local drafting contract for Episode 20. It is a conditional go to
-design, not a canonical registration, data-acquisition authorization, compute
-authorization, audit opening, fabrication order, or scientific result. The
-common adaptive-search requirements in
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md) apply.
+The first decisive comparison is therefore not a new design against the
+original reconstruction code. One locked co-designed candidate must be tested
+on the same cortical fields and device draws as every resource-matched
+NeuroCam operating mode, including NeuroCam with equally optimized software.
+It must also beat its own hardware with conventional reconstruction and every
+registered simple pad or scan heuristic given the same software and tuning
+budget. These comparisons separate a genuine co-design benefit from a better
+decoder, a hardware-only improvement, or an easy baseline.
 
-The episode is deliberately virtual. Its strongest eligible positive outcome
-is a design hypothesis that survives a frozen, paper-derived reference-model
-ensemble and a permission-separated virtual audit. It cannot establish that a
-new physical device outperforms NeuroCam. A physical comparison requires a
-separate episode with fabricated hardware or access to independently withheld
-devices and measurements.
+An apparent win can still be misleading. A design may favor broad rhythms
+while erasing focal events, exploit the exact simulator used during training,
+or rely on idealized noise and crosstalk that do not survive fabrication
+rounding. It may also look better only because one NeuroCam operating mode was
+chosen as the reference after the result was known. The result therefore has
+to hold across the complete frozen reference frontier, across registered
+signal and device conditions, and under a sealed change in both the cortical
+field generator and the device model. Before audit, one qualified empirical
+ECoG or known-input physical replay must also be selected and frozen; none is
+currently selected. That replay is a catastrophic-plausibility check, not a
+validation of the unbuilt geometry.
 
-EP19 asks whether prospective motor decoding survives after the observation
-operator is fixed. EP20 moves one methodological level upstream and asks how
-the observation operator should be designed. This is narrative continuity,
-not shared evidence: EP20 does not depend on an EP19 result and shares no
-development or audit outcome with it.
+If the candidate survives those tests, the deeper question is what the sensor
+redesign actually preserves. Does multiscale electrode geometry recover both
+broad and local spatial structure? Does nonuniform scan allocation retain fast
+events without sacrificing slower waves? Or can optimized software on the
+uniform NeuroCam array recover the same information, making new hardware
+unnecessary?
 
-## Plain-language question
+The intended paper must do more than report one higher reconstruction score.
+It should show which hardware and software changes contribute the gain, where
+the gain appears across broad activity, focal events, and waves, where the
+candidate still loses, and which physical experiment would most directly test
+the proposed explanation. The final output should be a compiled pad map, scan
+schedule, reconstruction recipe, resource ledger, and failure map that another
+team could take into device validation.
 
-NeuroCam reads a 64-by-64 array through 64 gate lines and 64 source lines. That
-architecture is not a neutral container. It fixes how spatial coverage,
-per-pixel sampling rate, scan skew, noise, and crosstalk trade against one
-another.
+This remains a virtual design study. A positive result would support the
+narrow claim that one compiled design is worth fabrication or device testing
+because it beat the complete optimized NeuroCam reference frontier within the
+registered model ensemble and resource constraints. It would not show that a
+fabricated device outperforms NeuroCam, is safe or stable in chronic use, or is
+ready for foundry sign-off or in-vivo deployment.
 
-Suppose cortical-surface voltage fields contain broad components, focal
-events, and propagating waves. Under the same array area, row-column topology,
-array leads, external conversion load, latency, power proxy, and manufacturing
-rules backed by either a PDK or a frozen conservative surrogate deck, can a
-small set of legal electrode-geometry and scan-allocation changes
-be trained jointly with reconstruction software to preserve more of that
-field than the strongest legal NeuroCam reference mode?
+## At a glance
 
-The decisive comparison is not joint co-design versus a weak original
-pipeline. It is joint co-design versus:
-
-1. the complete registered NeuroCam operating frontier;
-2. that frontier with equally optimized software;
-3. redesigned hardware with a frozen conventional reconstruction rule; and
-4. simple heuristic hardware designs with the same software family and tuning
-   budget.
-
-## Episode at a glance
-
-| Item | Frozen intent |
+| Question | EP20 design |
 | --- | --- |
-| Scientific object | Circuit-constrained virtual hardware-software co-design |
-| Named reference | Paper-derived NeuroCam-class 64-by-64 Ln-IZO TFT micro-ECoG system |
-| Primary target | Cortical-surface potential on a common dense reference grid |
-| Primary score | Minimum simultaneous 95% lower bound for equal-weight macro `R2_SSE` gain against every eligible `D0`/`D1` frontier member, with stratum-wise noninferiority |
-| Main hardware grammar | Reference uniform pads, two-scale interleaved pads, two-scale tiled pads, and legal row/source-group acquisition schedules |
-| Fixed topology | 64-by-64 pixel lattice, 150-micrometre pitch, one-TFT row-column addressing, at most 64 gate plus 64 source array lines |
-| Software comparison | Conventional causal reconstruction versus one pre-hardware-selected, capacity-capped `s1` family from three registered subclasses |
-| Development evidence | Registered surface-field mechanisms, source-to-surface models, and paper-calibrated device/process ensembles |
-| Audit evidence | One sealed structural-generator and device-model shift, plus a frozen empirical or physical-replay diagnostic |
-| Positive outcome | `candidate_ready_virtual_codesign_specification`, mapped to outer `candidate_ready` |
-| Claim limit | Worthy of fabrication or device testing; no physical-superiority claim |
+| What problem is being tested? | Whether electrode geometry, scan allocation, and reconstruction software can jointly preserve more of a cortical voltage field than an optimized NeuroCam reference. |
+| What stays fixed? | The 64-by-64 lattice, 150-micrometre pitch, one-TFT row-column circuit, array area, and limit of 64 gate plus 64 source lines, together with matched conversion, latency, and power/thermal proxies. |
+| What may change? | A legal uniform or two-scale pad pattern, a legal row/source acquisition schedule, and a capacity-capped reconstruction rule trained for that measurement pattern. |
+| What is reconstructed? | The 1--100 Hz cortical-surface voltage field on the same dense reference grid for every design. |
+| What is the reference? | Every eligible operating point of the paper-derived NeuroCam architecture, first with conventional reconstruction and then with equally optimized software. |
+| What must the candidate beat? | The complete matched NeuroCam frontier, its own hardware-only version, and every registered simple hardware heuristic evaluated with the same software family and budget. |
+| What must repeat? | The advantage must survive broad, focal, and propagating-wave signals and the registered device, noise, and resource conditions without an important stratum becoming meaningfully worse. |
+| What checks simulator exploitation? | A sealed, independently implemented change in both the cortical-field generator and the device model. |
+| What is the empirical plausibility gate? | Before audit, one qualified empirical ECoG or known-input phantom replay must be selected and frozen. It may expose catastrophic model mismatch but cannot validate the unbuilt geometry. |
+| What can a positive virtual result conclude? | That a specific compiled design is a justified candidate for fabrication or device testing. |
+| What can it not conclude? | That fabricated hardware outperforms NeuroCam, is chronically safe or stable, or is ready for manufacture or in-vivo use. |
 
 ## Scientific estimand
 
@@ -301,8 +315,8 @@ The promoting software grammar contains:
 The exact parameter ceiling and training-step budget are frozen in the
 admissible-space manifest before candidate-discriminating development. The
 current planning ceiling is five million trainable parameters per
-reconstructor; a lower profiled ceiling may be frozen before launch, but it
-cannot change after outcome access.
+reconstructor; a lower profiled ceiling may be frozen before outcome access,
+but it cannot change afterward.
 
 Software-subclass selection is completed and hashed before any `D2`, `D3`, or
 `D4` candidate-hardware outcome is exposed. For subclass `s`, its frozen score
@@ -500,7 +514,7 @@ error, 0.05 for wave-speed relative error, 0.01 for normalized transient
 proper-log-score utility, 0.01 for uncertainty ECE, and 0.01 for normalized
 downstream-task utility. Transient AUROC is diagnostic only. Exact signs,
 normalizations, estimators, and simultaneous-interval construction are frozen
-before launch and cannot change after development outcome access.
+before development outcome access and cannot change afterward.
 
 If a Pareto archive contains several feasible candidates, choose the maximum
 development worst-environment paired gain. Break a tie within `0.005` by lower
@@ -559,7 +573,7 @@ by `../TRIAL_LEDGER.schema.json`.
 
 ## Search stages
 
-1. **Readiness and qualification.** Freeze source manifests, design rules,
+1. **Source and reference qualification.** Freeze source manifests, design rules,
    resource model, development/audit roles, reference modes, generator bank,
    metrics, and qualification tolerances. Pass the reference-model gate.
 2. **Reference frontier.** Evaluate every `D0` and `D1` operating mode with
@@ -763,10 +777,10 @@ Primary references:
   sensors*, Nature Communications 12 (2021),
   <https://doi.org/10.1038/s41467-021-26442-1>.
 
-## Launch blockers
+## Requirements before candidate scoring and audit
 
-The episode remains launch-blocked until all of the following exist and are
-frozen:
+Candidate scoring and audit access remain closed until all of the following
+exist and are frozen:
 
 - immutable published-paper, supplement, and characterization-source
   manifests with hashes and rights records;
@@ -793,7 +807,7 @@ frozen:
   manifests named in `DATASETS.md`;
 - a trusted evaluator that returns only predeclared audit outputs;
 - profiled compute demonstrating that minimum evidence fits the ceiling;
-- human sign-off on the scientific margins and claim text; and
-- non-null canonical program, registered-policy, and search-policy bindings.
+- human sign-off on the scientific margins and claim text.
 
-Until then, this directory is a local research contract only.
+Until then, this directory defines the research design; no candidate or audit
+result exists.

@@ -4,24 +4,24 @@ EP01--EP17 except EP18, plus EP19--EP20, are the 19 current formal episode
 slots. Each slot has one direct `GOAL.md`, `DATASETS.md`, and search policy;
 EP02 uses `SEARCH_POLICY.json` and the other 18 use `SEARCH_POLICY.yaml`. There
 is no parallel restart tree or numbered local revision chain. EP18 is the sole
-incomplete local draft, so it is not counted or launchable. The two old NARPS
+incomplete local draft, so it is not counted as a formal episode. The two old NARPS
 directories remain immutable prior records rather than current episodes.
 
 Local files describe the intended research contract. Explicit scientist
 invocation starts an episode-managed run; Brain Researcher MCP remains
-available for later review, reward, and accepted scientific transitions. All
-current policies are unregistered. Their legacy `launch_blocked` fields are
-inert authoring metadata and are not consulted by the local launcher.
+available for later review, reward, and accepted scientific transitions.
+Episode policy files contain scientific execution rules, not registration or
+local-launch state.
 
-## Episode-managed launch
+## Episode-managed work
 
-`bin/codex-episode` is deliberately thin. It checks only the direct-child
-workspace, required core files, scratch location, and active-process lock,
-then starts or resumes Codex in that bounded workspace. Contract versioning,
-data validation, runtime checks, adaptive search, falsification, and held-out
-evaluation belong to the episode rather than the launcher. The older readiness
-projections remain optional records for a future confirmatory/canonical
-workflow; they do not authorize or block local episode execution.
+An explicit scientist instruction in a Codex project task names one episode
+and starts or resumes its work. The task reads the root instructions and that
+episode's Goal, dataset contract, and search policy; it keeps durable artifacts
+under the episode's `outputs/` and transient work under the episode's scratch
+directory. Contract versioning, data validation, runtime checks, adaptive
+search, falsification, and held-out evaluation belong to the episode; they are
+checked and recorded there as the task proceeds.
 
 ## Current episodes
 
@@ -55,9 +55,8 @@ so no audit opening or positive mechanistic terminal is authorized. Endpoint and
 time-axis semantics, the assignment mechanism or a presigned conditional-
 exchangeability basis, endpoint-faithful calibration with an absolute raw-unit
 margin, scientist signoff, the author-code port/configuration and resource
-profile, a permission-separated evaluator, and canonical registration remain
-unresolved for EP02's own confirmatory stage; they do not block starting the
-episode.
+profile, and a permission-separated evaluator remain unresolved for EP02's own
+confirmatory stage; they do not block starting the episode.
 
 ## Shared governance
 
@@ -101,6 +100,6 @@ example remains as design provenance.
 Zero episodes currently count as realized adaptive-search evidence. The direct
 contracts, including the new EP01, are structurally deep enough, but none has a
 realized append-only trial lineage, configuration lock, or held-out result.
-`ADAPTIVE_EVIDENCE_POLICY.yaml` remains a post-run classification policy. These
-checks are performed inside a launched episode and may legitimately end it as
-`technical_failure` or `closed_no_candidate`; they are not prelaunch gates.
+A design alone is not evidence. Realization checks occur inside the episode
+task and may legitimately end it as `technical_failure` or
+`closed_no_candidate`; they are not task-startup gates.

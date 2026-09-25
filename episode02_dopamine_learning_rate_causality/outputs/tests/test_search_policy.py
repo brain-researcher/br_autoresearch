@@ -37,12 +37,10 @@ class SearchPolicyTests(unittest.TestCase):
             self.assertIn(key, self.policy)
         for key in ("schema_version", "common_protocol_ref", "evidence_mode"):
             self.assertEqual(self.policy[key], self.schema["properties"][key]["const"])
-        status_schema = self.schema["properties"]["status"]
-        if "const" in status_schema:
-            self.assertEqual(self.policy["status"], status_schema["const"])
-        else:
-            self.assertIn(self.policy["status"], status_schema["enum"])
-        self.assertEqual(self.policy["status"], "planned_unregistered")
+        self.assertNotIn("status", self.policy)
+        self.assertNotIn("status", self.schema["properties"])
+        self.assertNotIn("canonical_binding", self.policy)
+        self.assertNotIn("canonical_binding", self.schema["properties"])
         self.assertEqual(self.policy["episode_id"], "ep02")
 
     def test_roles_are_disjoint_and_cover_all_source_records(self) -> None:
@@ -150,7 +148,6 @@ class SearchPolicyTests(unittest.TestCase):
         self.assertFalse(
             calibration["provisional_endpoint_shaped_engine"]["label_endpoint_faithful_before_receipt_resolution_allowed"]
         )
-        self.assertEqual(self.policy["canonical_binding"]["tracked_runtime_binding_artifacts"], [])
 
     def test_mouse_is_only_inferential_and_resampling_unit(self) -> None:
         scope = self.policy["scientific_scope"]
@@ -228,7 +225,7 @@ class SearchPolicyTests(unittest.TestCase):
         self.assertIsNone(score["development_scale_minimum_raw_probability_gain"])
         self.assertIsNone(score["minimum_absolute_raw_between_arm_gain"])
         recalibration = self.policy["small_n_calibration"]["endpoint_faithful_recalibration_required_after_score_receipts"]
-        self.assertEqual(recalibration["status"], "launch_blocking")
+        self.assertEqual(recalibration["status"], "audit_opening_blocking")
         self.assertFalse(recalibration["generic_gaussian_rule_alone_may_authorize_audit"])
 
     def test_boundary_never_rescues_primary(self) -> None:
@@ -254,14 +251,14 @@ class SearchPolicyTests(unittest.TestCase):
         mapped = set(self.policy["terminal_mapping"])
         self.assertEqual(declared, mapped)
 
-    def test_launch_remains_blocked_for_physical_and_canonical_reasons(self) -> None:
-        binding = self.policy["canonical_binding"]
-        self.assertTrue(binding["launch_blocked"])
-        self.assertIsNone(binding["canonical_program_id"])
-        blockers = " ".join(binding["unresolved_launch_blockers"])
-        self.assertIn("same_uid", blockers)
-        self.assertIn("canonical", blockers)
-        self.assertIn("scientist_signoff", blockers)
+    def test_audit_remains_closed_without_firewall_and_calibration(self) -> None:
+        handoff = self.policy["dataset_roles"]["runtime_role_handoff"]
+        self.assertEqual(handoff["physical_firewall_status"], "BLOCKED_PENDING_EXTERNAL_PROVISIONING")
+        self.assertFalse(handoff["launch_authorized"])
+        calibration = self.policy["small_n_calibration"]
+        self.assertIsNone(calibration["binding_rule"])
+        self.assertFalse(calibration["positive_audit_opening_authorized"])
+        self.assertFalse(calibration["positive_mechanistic_terminal_authorized"])
 
 
 if __name__ == "__main__":

@@ -29,9 +29,9 @@ firewall. Outcome-blind generic calibration v2 returned `selected_rule: null`
 a positive mechanistic terminal. Endpoint/time semantics, a documented
 assignment mechanism or presigned conditional-exchangeability basis,
 endpoint-faithful calibration with an absolute raw-unit margin, scientist
-signoff, an author-code port/configuration and resource profile, a separated
-evaluator, and canonical registration remain blockers. This can be only a
-publication-exposed reanalysis, not independent replication.
+signoff, an author-code port/configuration and resource profile, and a
+permission-separated evaluator remain blockers for opening the audit. This can
+be only a publication-exposed reanalysis, not independent replication.
 
 ### Visual-model relations under measurement contracts
 
@@ -89,7 +89,7 @@ scientific acceptance.
 ## Portfolio maps
 
 - `EPISODE_REGISTRY.yaml` records formal episode identity, immutable prior-run
-  identity, reserved IDs, and lifecycle status.
+  identity, reserved IDs, and current policy paths.
 - `portfolios/foundation20/CROSSWALK.md` records direct, bounded, partial,
   adjacent, and missing Foundation-20 coverage.
 - `portfolios/foundation20/SPLIT_EXPOSURE_LEDGER.yaml` records shared-data

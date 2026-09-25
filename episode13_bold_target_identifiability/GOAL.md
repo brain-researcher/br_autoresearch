@@ -2,9 +2,10 @@
 
 ## Authority and exposure boundary
 
-This is the current local Episode 13 contract. It does not authorize launch,
-compute, reward, or a canonical state transition. Prior exact cases and their
-answers are exposed development facts; no deleted local artifact is a runtime
+This is the current local Episode 13 contract. It defines the scientific
+question and constraints; it grants no compute or locked-audit access and does
+not award a reward or establish a result. Prior exact cases and their answers
+are exposed development facts; no deleted local artifact is a runtime
 dependency.
 
 The episode follows

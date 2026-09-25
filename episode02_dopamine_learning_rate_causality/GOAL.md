@@ -2,14 +2,16 @@
 
 ## Status
 
-EP02 is a formal local research specification in `planned_unregistered`
-state. It is not launch-ready: no adaptive trial, configuration lock, audit
-opening, canonical binding, reward, or scientific result exists. The
-machine-readable contract is [`SEARCH_POLICY.json`](SEARCH_POLICY.json).
+EP02 is a formal local research specification. No adaptive trial,
+configuration lock, audit opening, reward, or scientific result exists. An
+explicit scientist task may implement and qualify the episode, while audit
+outcomes remain closed until its scientific and isolation requirements pass.
+The machine-readable contract is
+[`SEARCH_POLICY.json`](SEARCH_POLICY.json).
 
 Generated inventories, calibration packets, receipts, signatures, and
-checksums are runtime records. They are not tracked evidence and cannot
-authorize execution by their presence.
+checksums are runtime records. Their presence alone is not evidence that an
+audit-opening condition passed.
 
 The repository does track portable, fail-closed implementations for Phase-0
 inventory, deterministic role materialization, generic and provisional
@@ -97,7 +99,7 @@ There may be one aggregate evaluator opening after configuration lock. The
 optional high-amplitude boundary diagnostic is contained inside that same
 transaction. Audit feedback cannot update search or expose individual mice.
 
-## Portable pre-launch implementations
+## Portable prospective implementations
 
 [`COHORT_MAP.json`](COHORT_MAP.json) is a sanitized, outcome-free mapping from
 published one-based source indices to the four evidence roles. The Phase-0
@@ -122,7 +124,7 @@ amendment after endpoint semantics, design support, safety/power criteria, and
 scientist signoff are frozen. No calibration result is tracked in this
 episode.
 
-## Launch conditions
+## Candidate-scoring and audit-opening conditions
 
 1. Provision the permission-separated, no-reacquisition firewall in
    [`outputs/firewall/FIREWALL.md`](outputs/firewall/FIREWALL.md).

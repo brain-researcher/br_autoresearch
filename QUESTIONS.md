@@ -1,9 +1,10 @@
 # Questions for future episodes
 
-This is a backlog, not an automatic launch queue. The authoritative coverage
-map is `portfolios/foundation20/CROSSWALK.md`.
+This is a backlog, not an automatic execution queue. Starting episode work
+still requires an explicit scientist instruction that names the episode. The
+authoritative coverage map is `portfolios/foundation20/CROSSWALK.md`.
 
-## Formal pre-launch contract — F20-17
+## Current scientific qualification — F20-17
 
 The new local EP02 is
 `episode02_dopamine_learning_rate_causality`, now a counted formal adaptive
@@ -11,13 +12,12 @@ contract rather than a backlog draft. Its materialization integrity passed,
 but the role handoff is `materialized_unsealed` because the same UID can read
 the provider source and a network-enabled worker can reacquire it. Generic
 calibration v2 returned `selected_rule: null` (0 of 216 eligible), so no primary
-audit opening or positive terminal is authorized. The next readiness work is
+audit opening or positive terminal is authorized. The next qualification work is
 to freeze endpoint/time semantics and the assignment or conditional-
 exchangeability contract, establish a real role firewall, run endpoint-
 faithful calibration with a presigned absolute raw-unit margin and independent
 validation, obtain scientist signoff, finish the author-code port/configuration
-and resource profile, and bind a permission-separated evaluator and canonical
-program.
+and resource profile, and freeze a permission-separated evaluator contract.
 
 ## Highest-priority incomplete Foundation question
 

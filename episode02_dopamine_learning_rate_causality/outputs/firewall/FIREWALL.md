@@ -12,8 +12,9 @@ null or absent. It is a provisioning template, not a receipt. Those values
 must be filled only after the corresponding runtime objects are frozen.
 
 Mode bits, POSIX ACLs controlled by the same uid, a Slurm job under that uid,
-or a candidate-launched container are useful accidental-access controls, but
-they do not satisfy this contract. Launch therefore remains unauthorized.
+or a candidate container are useful accidental-access controls, but they do
+not satisfy this contract. Candidate scoring and audit access therefore remain
+unavailable.
 
 ## Provisioning handoff
 

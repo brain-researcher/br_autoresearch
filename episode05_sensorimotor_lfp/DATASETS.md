@@ -12,7 +12,7 @@ be reverified from a provider-bound manifest.
 
 The publication analysis reference is BeNeuroLab commit
 `cbda8e2e6106f5eb5ff98e18a689c595179ac5db`; the best-recoverable TrialData
-compatibility tree reported during prior readiness work is
+compatibility tree reported during prior compatibility work is
 `d5e5eeb1af592cf88c03599df7433878f9d11bbe`. Neither identifier proves a
 turnkey environment or author-confirmed dependency pin.
 
@@ -86,6 +86,13 @@ from training sessions. Within every evaluated session:
 - collapse bins, X/Y, trials, directions, and repeated seeds to one session
   estimate before animal-balanced aggregation.
 
+For clarity, leave-one-direction-out means that no trial from the evaluation
+direction can be used to build its behavioral comparator. The comparator is a
+cyclic direction-by-elapsed-time function fit on the seven permitted
+directions and evaluated at the held-out angle. The circular basis,
+interpolation/extrapolation behavior, support rule, and code identity must be
+frozen before search; it is not an empirical mean of withheld trials.
+
 The exposed corpus supplies internal development/selection only. A frozen
 outer-session score is useful for honest generalization estimation but not
 fresh confirmation.
@@ -95,7 +102,7 @@ fresh confirmation.
 No audit source is currently identified or acquired. If compatible future
 sessions become available:
 
-- register their animal/task/hardware relationship and claim boundary before
+- freeze their animal/task/hardware relationship and claim boundary before
   seeing neural outcomes;
 - bind hashes and structural eligibility while neural values/comparison scores
   remain inaccessible to the search worker;
@@ -110,7 +117,50 @@ An exact retry is allowed only for a proven infrastructure failure with no
 released score and unchanged hashes. Once any score is revealed, no alternate
 pipeline may be audited.
 
-## Missing assets and launch blockers
+## Data needed to explain a positive kinematic result
+
+The [paper plan](outputs/paper_plan.md) proposes a later explanatory round. It
+does not expand access during adaptive search and does not turn the exposed
+Dryad sessions into fresh evidence.
+
+| Source | Proposed role | Condition before use |
+| --- | --- | --- |
+| Exposed M1 development sessions | Test whether the locked LFP representation predicts training-derived spike-population latents and the same held-out velocity residuals | Start only after the primary development result is fixed; freeze the latent construction, residual readouts, models, margins, candidate, and comparison anchors first |
+| Simultaneous spike and LFP fields from the immutable pack | Separate low-frequency/LMP signal from high-frequency or same-electrode spike bleed-through | Preserve physical-electrode and unit joins; fit every latent and transform inside training data; retain the prespecified same-electrode/unit-intersection sensitivity |
+| Future compatible whole sessions | Test the already locked LFP-to-kinematic prediction once | Keep outcomes sealed until the primary configuration lock; do not use follow-up outcomes to select the primary policy |
+| Future compatible sessions from a new animal | Test whether the explanatory relationship extends beyond Mihili and Chewie | Freeze a new source and claim boundary before neural access; do not count additional Chewie implants or sessions as another animal |
+
+The primary residual target remains X/Y velocity after the training-only
+cyclic direction-by-time baseline described above. The explanatory readouts decompose that same
+residual into along-path speed and perpendicular/curvature components using a
+formula frozen from training behavior; they are not alternate outcomes chosen
+after seeing which looks strongest. Speed and acceleration remain diagnostic
+under the primary contract.
+
+To distinguish trial-paired information from a systematic correction to the
+seven-direction interpolation, preserve complete evaluation-trial predictions
+and stable trial/direction IDs. With all fits fixed, permute whole predicted
+trajectories only among trials of the same held-out direction. Report, per
+session, observed `delta_R2` minus the frozen center of that null distribution.
+Its permutation count, center, meaningful margin, aggregation, and invalid-cell
+rule must be fixed before candidate-discriminating use. This readout gates only
+the stronger “trial-specific” interpretation; it does not replace the primary
+endpoint or terminal mapping.
+
+Spike-population latents are simultaneous measurements from the same trials,
+not independent biological replication. They may explain a candidate only if
+their rank, smoothing, temporal support, normalization, and alignment are fit
+without evaluation-trial information. An LFP feature may not be called
+low-frequency evidence if its construction or channel selection depends on
+high-frequency power, unit quality, or test outcomes.
+
+The future-session audit stays the sole one-shot audit in the current primary
+round. Any later new-animal explanatory test needs a separate frozen contract,
+exposure record, budget, and opening rule. Reusing a current-release
+holdout, changing folds, or hiding an already exposed score does not create
+independent confirmation.
+
+## Missing assets and scientific gates
 
 - No adaptive read-only source pack or session-fold manifest is bound here.
 - Provider/local hashes, guide semantics, event conventions, complete-trial
@@ -119,8 +169,8 @@ pipeline may be audited.
   frozen, outcome-independent audit.
 - Historical outcome exposure must be captured in the episode provenance.
 - No fresh compatible whole-session audit dataset has been acquired or sealed.
-- The adaptive evaluator and policy are unregistered; canonical launch is
-  blocked.
+- The adaptive evaluator has not been qualified against the frozen policy;
+  this blocks scored search and audit opening, not explicit task startup.
 
 ## Storage and compute boundary
 

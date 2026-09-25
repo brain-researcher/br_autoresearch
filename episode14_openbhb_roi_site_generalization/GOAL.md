@@ -2,12 +2,12 @@
 
 ## Authority and history
 
-This is the current local Episode 14 contract. It does not authorize use of
-public validation labels, create a leaderboard submission, or bind a canonical
-Brain Researcher program. Pinned data preparation and quick baselines are
-exposed development history. The episode follows
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md) only after a
-canonical registration and explicit launch decision.
+This is the current local Episode 14 contract. An explicit scientist
+instruction may start bounded episode work, but it does not authorize use of
+public validation labels or create a leaderboard submission. Pinned data
+preparation and quick baselines are exposed development history. The episode
+follows [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md)
+during candidate search and evaluation.
 
 ## Adaptive scientific question
 
@@ -41,11 +41,12 @@ Public validation labels are upstream-public but deliberately absent from the
 candidate workspace. Looking them up, reconstructing participant identities,
 or using them for selection invalidates the audit.
 
-Before launch, an exposure ledger must name every human, process, cache, and
-prior artifact that could have accessed public validation age, `siteXacq`, or
-row identities. If a candidate/controller actor or its accessible context has
-seen a row-level join or score, the 757 rows are development-exposed and cannot
-serve as this audit; no-network execution cannot restore freshness.
+Before the public-validation rows can be treated as an audit, an exposure
+ledger must name every human, process, cache, and prior artifact that could
+have accessed their age, `siteXacq`, or row identities. If a
+candidate/controller actor or its accessible context has seen a row-level join
+or score, the 757 rows are development-exposed and cannot serve as this audit;
+no-network execution cannot restore freshness.
 
 ## Declarative pipeline grammar
 

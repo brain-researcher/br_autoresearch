@@ -10,5 +10,5 @@ substitute for that review.
 
 Firewall review must additionally verify two distinct Ed25519 signer
 identities and keys, episode/source/audit-pack/policy/configuration bindings,
-and a current bounded receipt interval. Declared JSON readiness alone is not
+and a current bounded receipt interval. A declared JSON field alone is not
 scientist or infrastructure authority.

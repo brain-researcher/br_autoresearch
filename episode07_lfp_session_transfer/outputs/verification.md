@@ -12,6 +12,6 @@
   stage.
 - Outcome computation: not run.
 - One-shot audit: not opened.
-- Launch status: an explicitly invoked episode-managed bootstrap may implement
+- Task status: an explicitly invoked episode-managed bootstrap may implement
   and validate the missing runtime pieces, but scored adaptive search remains
   blocked until the executable linter and all gates above pass.

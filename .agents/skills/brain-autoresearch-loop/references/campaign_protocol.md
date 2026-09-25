@@ -54,10 +54,9 @@ Negative and technical terminals are Society-ineligible and do not call
 Society.
 
 The lane name is conventional, not a magic phrase: any unambiguous scientist
-request to start this native-goal exploration, or the scientist's own launcher
-invocation, is sufficient. Drafting, readiness, or setup requests alone do not
-authorize launch, and an agent must not invoke the launcher to manufacture that
-authority.
+request in the current Codex task to start or resume this native-goal
+exploration is sufficient. Drafting, readiness, or setup requests alone do not
+authorize launch, and an agent must not infer launch authority from them.
 
 Prepare only against the authenticated owner’s `codex_autoresearch_v1` loop at
 `DISCOVERING`, and bind the exact source revision into the handoff. Submit must

@@ -1,7 +1,6 @@
 schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep20_neurocam_prior_guided_codesign_adaptive
 episode_id: ep20
-status: planned_unregistered
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
@@ -14,7 +13,10 @@ dataset_roles:
     candidate_access: visible_before_search
     source_manifest: inputs/SOURCE_MANIFEST.json
     anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
-    current_local_payload: documentary_source_legacy_quarantine_staged_not_moved_no_episode_handoff
+    storage_location_id: private_steward_acquisition
+    storage_root: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition
+    storage_relocation: same_filesystem_rename_completed_2026-09-24
+    current_local_payload: documentary_source_in_private_steward_no_episode_handoff
   reference_examples:
     role: nonbinding_documentary_and_non_candidate_discriminating_simulation_sanity_context_only
     access: visible_before_search
@@ -120,7 +122,7 @@ dataset_roles:
     - empirical_replay_plausibility
     - hardware_rules
   mixed_development_and_audit_mount: prohibited
-  current_readiness: documentary_source_legacy_quarantine_staged_not_moved_proxy_contracts_and_examples_absent_fit_qualification_trace_design_rules_audit_and_replay_absent_launch_blocked
+  current_execution_state: documentary_source_relocated_to_private_steward_no_episode_handoff_proxy_contracts_and_examples_absent_fit_qualification_trace_design_rules_audit_and_replay_absent
 
 reference_model_qualification:
   required_before_candidate_discriminating_scores: true
@@ -251,7 +253,7 @@ grammar:
     reference_pad_um: [70, 135]
     alternate_dimensions: null
     exact_clearances: null
-    frozen_finite_catalogue_required_before_launch: true
+    frozen_finite_catalogue_required_before_candidate_scoring: true
     continuous_relaxation_may_be_scored: false
     discrete_compiled_post_rounding_design_required: true
   readout_families:
@@ -297,7 +299,7 @@ grammar:
     uncertainty_output_required: true
     candidate_parameter_count_planning_max: 5000000
     exact_parameter_and_training_step_ceiling: null
-    exact_ceiling_required_before_launch: true
+    exact_ceiling_required_before_candidate_training: true
     native_event_inputs:
       - value
       - timestamp
@@ -814,55 +816,3 @@ terminal_discrimination:
       trigger: minimum_evidence_complete_but_no_positive_specific_negative_or_exhaustive_frontier_negative_rule_is_satisfied
     candidate_ready_virtual_codesign_specification:
       trigger: exactly_one_locked_D3_passes_every_promotion_constraint_falsifier_and_plausibility_gate_in_the_one_shot_audit
-
-canonical_binding:
-  canonical_program_id: null
-  registered_program_policy_ref: null
-  search_policy_ref: null
-  launch_blocked: true
-  required_manifest_hashes:
-    source_manifest: null
-    neurocam_anchor_manifest: null
-    reference_anchor_split: null
-    reference_model_contract: null
-    reference_qualification_contract: null
-    frozen_hardware_grammar: null
-    design_rules: null
-    resource_model: null
-    software_budget: null
-    development_environments: null
-    development_device_ensemble: null
-    development_draw_manifest: null
-    audit_commitment: null
-    audit_hidden_payload_merkle_root: null
-    audit_dependency_report: null
-    empirical_development_replay_manifest: null
-    empirical_plausibility_replay_manifest: null
-    exposure_ledger: null
-    evaluator_contract: null
-  runtime_artifact_hashes:
-    reference_model_ensemble_manifest: null
-    reference_qualification_receipt: null
-    one_shot_audit_receipt: null
-  unresolved_launch_blockers:
-    - immutable_article_supplement_and_source_hashes
-    - proposed_fit_versus_qualification_anchor_split_absent_and_not_frozen_for_execution
-    - frequency_response_test_amplitude_conflict_and_curve_tolerance
-    - raw_trace_or_accepted_aggregate_only_reference_limit
-    - DAQ_ADC_AFE_marker_reference_and_bit_rate_accounting
-    - exact_reduced_mode_spatial_subsets_channel_identities_and_marker_semantics
-    - finite_design_rule_backed_alternative_pad_catalogue
-    - PDK_or_scientist_approved_conservative_surrogate_rule_deck
-    - defensible_bounded_power_and_thermal_proxy
-    - complete_resource_compiler_and_rejection_fixtures
-    - executable_development_generators_with_parameter_provenance
-    - independently_implemented_permission_separated_audit
-    - exact_empirical_replay_or_known_input_phantom_source
-    - disjoint_development_and_sealed_plausibility_replay_partitions
-    - empirical_plausibility_failure_threshold
-    - exact_software_capacity_training_and_selection_budget
-    - outcome_blind_margin_and_interval_width_calibration
-    - trusted_one_shot_evaluator
-    - profiled_compute_within_frozen_ceiling
-    - scientist_signoff_on_margins_and_claim_text
-    - registered_adaptive_program_binding

@@ -1,9 +1,9 @@
 # Dataset Contract — Episode 19
 
 This contract pins the sources, roles, timing provenance, and access boundaries
-for a planned, unregistered episode. It does not provision data, open held-out
-signals, authorize compute, or establish that the sources are scientifically
-ready. Shared adaptive-search rules are in
+for Episode 19. It does not provision data, open held-out signals, start
+computation, or establish that the sources are scientifically qualified.
+Shared adaptive-search rules are in
 [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md).
 
 ## Source and role summary
@@ -13,7 +13,7 @@ ready. Shared adaptive-search rules are in
 | WAY-EEG-GAL Figshare collection v2 | open development, no-feedback series-8 lock, and public series-9 additional campaign-sealed evaluation | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
 | Kaggle Grasp-and-Lift EEG Detection | historical task/split/metric specification only | not a scientific source handoff |
 | Self-paced/free-choice EEG reaching Figshare v1 | 15-participant development set plus 8-participant whole-person replication set | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
-| AJILE12 DANDI published version | deferred exploratory ECoG extension only | Acquisition complete for 55 archives in legacy-worktree quarantine; no role-filtered handoff |
+| AJILE12 DANDI published version | deferred exploratory ECoG extension only | Acquisition complete for 55 archives in the private steward root; no role-filtered handoff |
 
 No candidate may substitute a preprocessed mirror, notebook cache, or moving
 dataset draft for a pinned source below.
@@ -24,16 +24,15 @@ The canonical checkout has no repository-local `.steward_acquisition` tree.
 Resolve these sources through
 [`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json):
 
-- `legacy_steward_acquisition` is the current legacy-worktree quarantine;
+- `private_steward_acquisition` is the canonical private steward root at
+  `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`;
 - `asset_ep19_public_sources`, `asset_ep19_safe_commit`, and
-  `asset_ep19_ajile12` identify the EP19 acquisitions within that quarantine;
-  and
-- `planned_steward_acquisition` is their planned durable external root and
-  remains `absent_planned_target`.
+  `asset_ep19_ajile12` identify the EP19 acquisitions within that root.
 
-The EP19 assets remain `staged_not_moved`. These identifiers describe storage
-inventory only: they are not extracted, role-filtered episode handoffs and do
-not change the launch-blocked state.
+The steward tree was relocated by same-filesystem rename on 2026-09-24. These
+identifiers describe storage inventory only: the assets are not extracted,
+role-filtered episode handoffs, and the relocation does not open protected
+outcomes.
 
 ## WAY-EEG-GAL
 
@@ -48,7 +47,7 @@ not change the launch-blocked state.
 | Descriptor | `10.1038/sdata.2014.47` |
 | Official utilities | `https://github.com/luciw/way-eeg-gal-utilities` |
 | Conservative license policy | CC BY 4.0 |
-| Read-only local source | Logical asset `asset_ep19_public_sources` in the root location manifest; currently quarantined under `legacy_steward_acquisition`, not an episode handoff |
+| Read-only local source | Logical asset `asset_ep19_public_sources` under `private_steward_acquisition` in the root location manifest; not an episode handoff |
 
 The descriptor reports a CC BY 4.0 release, while the current Figshare API
 reports CC0 for the child records. EP19 uses the more conservative CC BY 4.0
@@ -82,8 +81,8 @@ Use only the continuous participant archives:
 The source provides 32-channel EEG at 500 Hz, five EMG channels at 4 kHz,
 three-dimensional hand/wrist/object kinematics and force-related signals at
 500 Hz, cue state, and event timing. Exact per-file shapes, clocks, units,
-missing channels, and alignment are readiness facts to verify from the pinned
-source; they are not inferred from the paper alone.
+missing channels, and alignment are source-qualification facts to verify from
+the pinned source; they are not inferred from the paper alone.
 
 Third-party filtered arrays, extracted competition tables, and previously
 normalized tensors are prohibited for the strict forecasting track.
@@ -203,7 +202,7 @@ endpoint's full upper edge. Outcome-dependent truncation is ineligible.
 | Bytes | 13,591,548,048 |
 | MD5 | `3b7c3039c5c9fb6abf1429a830301711` |
 | License | CC BY 4.0 |
-| Read-only local source | Logical asset `asset_ep19_public_sources` in the root location manifest; currently quarantined under `legacy_steward_acquisition`, not an episode handoff |
+| Read-only local source | Logical asset `asset_ep19_public_sources` under `private_steward_acquisition` in the root location manifest; not an episode handoff |
 
 The release contains 23 people, 49 sessions, and 6,808 trials, with raw
 continuous BrainVision EEG, four EOG channels, audio/TRIG, and three-axis wrist
@@ -430,9 +429,9 @@ Official references:
 - <https://doi.org/10.1038/s41597-022-01280-y>
 - <https://github.com/BruntonUWBio/ajile12-nwb-data>
 
-## Acquisition and readiness gates
+## Source qualification and access conditions
 
-Training cannot start until all applicable checks pass:
+Candidate training and scoring begin only after all applicable checks pass:
 
 - every official source object matches its pinned manifest;
 - all 108 WAY continuous series and 12 `AllLifts` files are present;
@@ -446,14 +445,15 @@ Training cannot start until all applicable checks pass:
 - public/header-only structure is compatible with the frozen evaluator; exact
   C32 packets and endpoint support are constructed only inside the one-shot
   evaluator after lock, and insufficient support is a nonreplaceable technical
-  failure rather than a pre-lock outcome-bearing readiness query;
+  failure rather than a pre-lock outcome-bearing support query;
 - every audit and campaign-sealed evaluation packet is evaluator-only; and
 - the exposure ledger confirms that no held-out event-level signal, QC, or
   score entered model design.
 
-## Current local inventory and readiness
+## Current local inventory and handoff state
 
-The legacy-worktree quarantine represented by `asset_ep19_public_sources` now
+The canonical private-steward inventory represented by
+`asset_ep19_public_sources` now
 contains 12 official WAY participant archives and the official Freewill
 archive: 13 archives totaling 23,930,807,095 bytes. All
 provider byte sizes and MD5 values passed, and all 13 local SHA-256 values were
@@ -462,18 +462,18 @@ acquisition-verified. These archives remain unextracted, outside episode
 `inputs/`, and unavailable to candidate workers.
 
 All 55 AJILE12 archives (845,869,698,341 expected bytes) remain in their
-separate legacy deferred-extension quarantine as `asset_ep19_ajile12`. Its move
-is `staged_not_moved`, while the planned destination is
-`absent_planned_target`. The acquisition has an `ACQUISITION_COMPLETE_UTC`
-marker, an asset manifest, and a verified count/byte receipt for all 55 assets
-and 845,869,698,341 payload bytes. Acquisition completion is not a role-filtered
-EP19 handoff or readiness receipt, and AJILE12 remains ineligible for the
-primary claim regardless.
+separate deferred-extension area as `asset_ep19_ajile12` under the canonical
+private steward root. Their storage relocation completed by same-filesystem
+rename on 2026-09-24. The acquisition has an `ACQUISITION_COMPLETE_UTC` marker,
+an asset manifest, and a verified count/byte receipt for all 55 assets and
+845,869,698,341 payload bytes. Acquisition completion and storage relocation
+are not a role-filtered EP19 handoff or source-qualification receipt, and AJILE12 remains
+ineligible for the primary claim regardless.
 
 No signal or event-level audit outcome was read during acquisition. Public
 metadata, source code, archive inventory, and aggregate paper information are
 design exposure and must be entered in the future ledger. The seven
 permission-separated handoffs above remain absent.
 
-The current readiness label is
-`source_acquired_in_quarantine_role_filtered_handoffs_absent_launch_blocked`.
+The current source state is
+`source_acquired_in_quarantine_role_filtered_handoffs_absent`.

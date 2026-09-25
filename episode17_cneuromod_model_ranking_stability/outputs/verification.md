@@ -31,14 +31,14 @@ scientific result.
   80-concept development folds; 24 development uncertainty blocks; twelve
   audit blocks; and 15 mandatory initial trials for three pairs × five edges.
 - The terminal-driving contract universe must be frozen before scoring, and
-  the taxonomy release, crosswalk, and label rules are explicit launch
-  blockers. This prevents post-score contract deletion and informal semantic
-  regrouping.
+  the taxonomy release, crosswalk, and label rules are explicit prerequisites
+  for candidate scoring. This prevents post-score contract deletion and
+  informal semantic regrouping.
 
 ## Governance and remaining boundary
 
 - No MAT, NIfTI, HDF5, or annotation payload was parsed. No neural score,
-  candidate result, audit outcome, canonical transition, or Git operation was
+  candidate result, audit outcome, external state transition, or Git operation was
   produced. The pinned CNeuroMod subset is a provisioned, read-only DataLad
   tree. The separately acquired THINGS stimulus archive remains encrypted and
   unextracted in steward quarantine; a central-directory-only
@@ -46,12 +46,12 @@ scientific result.
 - The restricted raw bundle deliberately co-locates all concept roles. Read-
   only storage is not audit blindness: it must never be mounted to a search
   worker. Frozen, materialized, role-filtered handoffs remain mandatory.
-- The latest read-only canonical refresh found profile
-  `codex_autoresearch_v1` and 19 loops, with no EP17 match. No registration,
-  checkpoint, reward, authorization, or launch was submitted.
-- EP17 remains launch-blocked on the frozen taxonomy, controlled stimulus
-  extraction and exact per-image/event hash alignment, exact common-image
-  eligibility and 480/120/120 roles, separated
+- A historical read-only state check found profile `codex_autoresearch_v1` and
+  19 loops, with no EP17 match. No checkpoint, reward, or external state change
+  was submitted; that observation neither starts nor blocks a local task.
+- Candidate scoring and audit access remain closed pending the frozen taxonomy,
+  controlled stimulus extraction and exact per-image/event hash alignment,
+  exact common-image eligibility and 480/120/120 roles, separated
   handoffs, B/C/D alignment and stage-specific ceilings, ROI/support/model/
   exposure/margin manifests, the terminal-contract universe, EP17/EP18
   exposure governance, and a permission-separated evaluator.

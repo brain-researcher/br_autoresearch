@@ -10,12 +10,12 @@ separate THINGSplus-CC0 control archive have been acquired, hash-verified, and
 preserved read-only. The THINGS metadata snapshot is acquired and
 hash-verified in steward quarantine, but its payload is currently
 owner-writable; setup must verify it against the recorded checksums before use
-and freeze the exact input hashes. EP18 is therefore source-ready for a future
-outcome-blind setup phase, but no episode-managed run may launch until its
-input/output guards and seven workspace projections exist. The exact
-image-event join, participant roles, role-filtered views, feature records, and
-alternative partitions are outputs to build and freeze during the episode,
-not missing external datasets.
+and freeze the exact input hashes. The sources can support an outcome-blind
+setup phase, but EP18 is not yet a formal episode because its input/output
+guards and seven workspace projections do not exist. The exact image-event
+join, participant roles, role-filtered views, feature records, and alternative
+partitions are outputs to build and freeze during the episode, not missing
+external datasets.
 
 ## Current status
 
@@ -301,17 +301,17 @@ history. Establish overlap from acquired files, not filenames or an assumed
 upper bound. EP18 may provide new EEG evidence, but it is not an independent
 stimulus-family confirmation of EP17.
 
-## Readiness
+## Draft status
 
 The EEG and image archives have been acquired, hash-verified, and preserved
 read-only. The metadata snapshot is acquired and hash-verified but must be
 checked against its recorded hashes when consumed. These sources make
 outcome-blind setup feasible, but EP18 remains an incomplete local draft and
-no episode-managed run may launch until its input/output guards and seven
-workspace projections exist. Once that scaffold is complete, freeze the exact
-event join, participant roles, development view, primary channel transform,
-and admissible upstream feature menu before EEG-driven candidate comparison,
-and verify that the development runtime cannot access audit EEG. Before audit,
-freeze the finalist feature and partition records, complete the shared
-EP17/EP18 exposure ledger, and let only the evaluator open the audit view. The
-qualification conditions in [GOAL.md](GOAL.md) must also pass.
+is not yet a formal episode because its input/output guards and seven workspace
+projections are missing. Once that scaffold is complete, freeze the exact event
+join, participant roles, development view, primary channel transform, and
+admissible upstream feature menu before EEG-driven candidate comparison, and
+verify that the development runtime cannot access audit EEG. Before audit,
+freeze the finalist feature and partition records, complete the shared EP17/EP18
+exposure ledger, and let only the evaluator open the audit view. The qualification
+conditions in [GOAL.md](GOAL.md) must also pass.

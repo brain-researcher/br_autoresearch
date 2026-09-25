@@ -4,7 +4,8 @@
 
 The [paper plan](outputs/paper_plan.md) translates this design into candidate-
 specific claims, decisive alternatives, outcome routes, and a contingent
-figure sequence. It does not authorize execution or presume a positive result.
+figure sequence. It does not grant data-role or final-outcome access or presume
+a positive result.
 
 ## Scientific question
 
@@ -134,7 +135,7 @@ The run begins by establishing:
   target resolution, competing explanations, development and evaluation roles,
   detectable effect and precision, and exact-normalization and null-search cost.
 
-These are the first scientific tasks after launch, not a separate launch gate.
+These are the first scientific tasks in the episode.
 If one coherent source lacks independent biological groups, overlapping
 spatial support, or reliable complete-set observation, EP10 must change data,
 narrow its claim, or stop before expensive search. Combining incomparable

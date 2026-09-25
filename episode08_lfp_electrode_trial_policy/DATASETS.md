@@ -46,15 +46,15 @@ The immutable input pack must provide:
 The contract must identify exactly eight common reach directions, reserve two
 hash-selected non-evaluation trials per direction for the fixed 16-trial
 all-electrode pilot, and freeze disjoint calibration-acquisition and evaluation
-pools. If that common direction/pilot support does not exist, the episode stops
-at readiness rather than redefining the pilot after outcomes.
+pools. If that common direction/pilot support does not exist, stop before
+neural utility is calculated rather than redefining the pilot after outcomes.
 
 The audit must determine whether each primary animal supports at least four
 development and two sealed sessions and whether every retained session
 supports the common `{4,8,16} × {32,64,128}` post-pilot grid plus a
-full-resource ceiling check. If not, stop at readiness or freeze a revised
-contract before any neural utility is calculated. Do not drop a budget cell
-after seeing its score.
+full-resource ceiling check. If not, stop before neural utility is calculated
+or freeze a revised contract first. Do not drop a budget cell after seeing its
+score.
 
 ## Firewall and sequential replay
 
@@ -87,13 +87,76 @@ and incremental cost, missing-geometry fallback, tie-break, and serialized
 state hash so a later replay can prove there was no future information,
 backfill, or cache leakage.
 
+## Data needed to explain why the policy works
+
+The primary audit can show that a policy wins at matched electrode and trial
+counts. The [paper plan](outputs/paper_plan.md) proposes a later mechanism
+round asking whether the pilot identifies nonredundant electrodes and
+high-value calibration trials. That round is separate: it cannot change the
+primary grid, policy, decoder, session split, or terminal result.
+
+For each development session, preserve the following records without exposing
+evaluation targets to the policy:
+
+- physical-electrode identity and geometry, pilot-time artifact, missingness,
+  line-noise, stationarity, repeatability, and pairwise redundancy summaries;
+- every pilot-only selector score and the exact retained set at `E = 4, 8, 16`;
+- the ordered acquisition queue, policy state before each action, predicted
+  value of every legal reach-direction action, chosen action, and trusted
+  calibration reward afterward;
+- fixed-decoder predictions needed for prespecified electrode-removal and
+  next-trial replay comparisons on the untouched evaluation set; and
+- the nine grid-cell scores, full-resource ceiling, random-seed distribution,
+  and failure/fallback record for every session.
+
+These records support cross-fitted mechanism development only. Held-out
+conditional electrode value is an evaluation label: for a fixed retained set,
+it is the change in evaluation loss when one retained electrode is omitted and
+the frozen decoder procedure is replayed. It may test a pilot-only prediction,
+but it may not be returned to the selector, used as an audit ranker label, or
+used to replace an electrode. The analogous next-trial value is computed by a
+trusted replay on a frozen evaluation set; it cannot become a policy reward in
+the session being evaluated.
+
+### Evidence roles for the acquisition principle
+
+| Source | Allowed role | Claim limit |
+| --- | --- | --- |
+| Eight development sessions | Cross-fit pilot scores, conditional-value predictions, and electrode-versus-trial sensitivity summaries | Mechanism development in an exposed corpus |
+| Four primary audit sessions | Primary one-shot policy evaluation only; generic outputs declared before opening may be described but cannot test a mechanism selected afterward | Consumed internal held-session evidence, not mechanism confirmation |
+| Chewie-R | Separately frozen implant sensitivity | Not an independent animal and cannot promote the policy |
+| A newly collected or sequestered third animal | Test the frozen pilot-only predictions and joint policy | Required for an external-animal acquisition claim |
+
+This chooses one unambiguous timeline. The explanatory mechanism is selected
+after the primary conclusion, using cross-fitted development sessions only.
+Therefore no result from the four consumed primary audit sessions can promote,
+select, or confirm it. Its first confirmatory evaluation must come from the new
+sealed external source described below.
+
+A fresh external pack must contain whole-session roles, physical geometry,
+the same authenticated LFP feature meanings or a frozen crosswalk, eight reach
+directions, enough trials for the pilot and full grid, a structural neuron
+roster, and a sequential replay interface. It must be sequestered before the
+mechanism rule and all margins are selected. The policy may be refit on that
+animal's declared development sessions only if the external contract says so;
+it cannot tune on external audit sessions.
+
+The released source contains preprocessed LFP features rather than a complete
+prospective hardware power trace. EP08 can study post-pilot retention of
+recorded physical electrodes and retrospective calibration replay. It cannot
+infer surgical placement, amplifier power savings, wireless bandwidth, or the
+real-time burden of requesting a behavior without additional measurements and
+a separate cost model. Electrode count and trial count therefore remain two
+axes; no conversion between them is implied.
+
 ## Missing blockers
 
 The authenticated asset pack, exact geometry coverage, prospective
 development/audit session manifest, within-session trial roles, sequential
-replay evaluator, permission-separated audit store, and canonical bindings
-are not yet established and block launch. The absent third animal blocks
-external generalization but need not block an explicitly internal episode.
+replay evaluator, and permission-separated audit store are not yet established.
+They block neural scoring or audit opening, not explicit task startup. The
+absent third animal blocks external generalization but need not block an
+explicitly internal episode.
 
 Large inputs stay outside Git or under immutable read-only references.
 Transient caches belong in

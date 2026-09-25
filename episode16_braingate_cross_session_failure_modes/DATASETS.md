@@ -1,8 +1,9 @@
 # Dataset Contract — Episode 16
 
 This contract pins the public BrainGate longitudinal array-performance release
-for a planned, unregistered episode. It provisions no new data, opens no audit
-neural outcome, and authorizes no compute. Shared adaptive-search rules are in
+for Episode 16. It provisions no new data and opens no audit neural outcome.
+An explicit scientist instruction may start bounded implementation and
+qualification work. Shared adaptive-search rules are in
 [`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md).
 
 ## Fixed release
@@ -34,14 +35,14 @@ archives passed non-extracting `tar -tzf` checks. The controlling records are:
 - `source_metadata/archive_verification.json`.
 
 Those transfer and archive checks establish package identity, not scientific
-readiness. The shared source remains outside this episode and is never copied,
+qualification. The shared source remains outside this episode and is never copied,
 committed, or directly mounted into a candidate worker.
 
 The 2026-09-23 location inventory observed the release root and payload as mode
 `2770`, writable by the owning user/group. The source therefore must not be
 described as operationally read-only until a separately authorized permission
-seal and receipt exist. This mismatch is a readiness blocker; Phase 1 does not
-change the source permissions.
+seal and receipt exist. This mismatch blocks protected audit use; Phase 1 does
+not change the source permissions.
 
 ## Released cohorts must remain distinct
 
@@ -235,8 +236,8 @@ At least four of the six development participants must independently pass the
 same scorable packet and rank gates before adaptive development can count a
 complete panel. Exposed but unsupported participants remain on the development
 side and in the exposure ledger; they are not counted as completed evidence.
-Fewer than four keeps the episode launch-blocked rather than silently reducing
-development diversity.
+Fewer than four prevents scored candidate execution rather than silently
+reducing development diversity.
 
 This split is not yet instantiated. The current names and 6/3 wording are a
 provisional design, not a claim that three scientifically scorable audit
@@ -354,8 +355,8 @@ establish stable neuron identity.
 ## Required physical handoffs
 
 The mixed participant archives cannot be mounted directly into either a
-candidate worker or a nominal audit process. Before launch an operator must
-create three immutable, content-addressed handoffs:
+candidate worker or a nominal audit process. Before candidate or audit data
+access, an operator must create three immutable, content-addressed handoffs:
 
 1. **Development full:** all permitted decoding/yield material for the six
    development participants.
@@ -416,9 +417,10 @@ combine deidentified timing with external personal information, or redistribute
 large derived participant-level neural matrices through Git. Cite the dataset
 and associated article in every scientific output.
 
-## Launch blockers
+## Candidate-scoring and audit-opening requirements
 
-The episode cannot launch until all of the following exist and are reviewed:
+Candidate scoring and audit access remain closed until all of the following
+exist and are reviewed:
 
 - target-only observed-schedule/support matrix, frozen coordinate tolerance,
   ambiguity rules, regenerated exposure ledger, and exact 6/3 role manifest;
@@ -441,8 +443,7 @@ The episode cannot launch until all of the following exist and are reviewed:
   allocation;
 - profiled trial-summary cache and verified CPU/wall ceilings;
 - permission-separated one-shot evaluator and audit firewall;
-- registered adaptive controller/program binding; and
-- a fresh canonical state read plus explicit scientist launch approval.
+- implemented and replay-qualified adaptive controller.
 
 Source availability, local file verification, or this dataset contract alone
-does not authorize extraction, search, audit access, or launch.
+does not authorize extraction, candidate scoring, or audit access.

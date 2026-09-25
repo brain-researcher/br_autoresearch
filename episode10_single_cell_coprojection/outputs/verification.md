@@ -27,5 +27,5 @@
   uncertainty are frozen before final evaluation.
 - Outcome computation: not run.
 - Final evaluation: not opened.
-- Launch readiness: ready. Data qualification is the first stage after launch,
-  and scientific outcome analysis has not started.
+- Task startup: allowed by explicit scientist instruction. Data qualification
+  is the first stage, and scientific outcome analysis has not started.

@@ -203,14 +203,14 @@ def render_feasibility(report: dict[str, Any]) -> str:
         f"| `{item['check_id']}` | {item['status']} | {item['detail']} |"
         for item in gate["checks"]
     )
-    blockers = "\n".join(f"- {item}" for item in gate["launch_blockers"])
+    blockers = "\n".join(f"- {item}" for item in gate["audit_opening_blockers"])
     return f"""# Dudman Phase-0 feasibility gate
 
 ## Verdict
 
 **{gate['verdict']}** — the dataset can support a whole-animal development /
 evaluator-role design, but this result does **not** establish a physical seal
-or authorize launch or audit access.
+or authorize candidate scoring or audit access.
 
 ## Frozen source
 
@@ -497,7 +497,7 @@ def build_report(args: argparse.Namespace) -> dict[str, Any]:
             "launch_authorized": False,
             "canonical_state_changed": False,
             "checks": checks,
-            "launch_blockers": [
+            "audit_opening_blockers": [
                 "Replace same-uid staging with a separate-principal or external evaluator firewall; candidate workers must not read or reacquire the original MAT file or evaluator packs.",
                 "Resolve or explicitly freeze the trialID codebook and 701-sample time-axis/alignment contract without using audit effects.",
                 "Replace the nonbinding generic calibration with endpoint-faithful binomial/beta-binomial calibration, absolute raw margins, independent validation, and scientist signoff.",
