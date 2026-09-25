@@ -1,6 +1,6 @@
 schema_version: ep11.stage0_synthetic_validation.v1
 run_id: ep11-stage0-20260925T000506Z
-executed_utc: 2026-09-25T00:13:29Z
+executed_utc: 2026-09-25T02:14:31Z
 real_data_access: false
 tool:
   path: tools/validate_redacted_metadata.py
@@ -25,6 +25,15 @@ tests:
     expected: reject_non_allow_list_projection_class_column
     observed_exit_code: 2
     observed: pass
+  - fixture: fixtures/synthetic_pass_12_8.csv
+    sha256: 86968e4a522a4aecfcd2e06ad494fdae40e744f6168aa5c9da1d8e64f59ad745
+    mode: trusted-steward
+    trusted_receipt: fixtures/synthetic_trusted_receipt.json
+    trusted_receipt_sha256: 9268850e2b9b544c7d8037c065c205dea5fb7b0dfbd2ae9b1d02960fa6a89300
+    expected: valid_only_when_receipt_hash_and_safety_attestations_match
+    observed_exit_code: 0
+    observed: pass
+    real_data_access: false
 qualification_scope:
   establishes:
     - content_hash_required_before_decode

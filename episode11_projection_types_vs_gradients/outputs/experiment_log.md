@@ -72,3 +72,19 @@ canonical Brain Researcher receipts.
 - Full record: [`stage0/synthetic_validation.yaml`](stage0/synthetic_validation.yaml).
 - `canonical_payload`: `event_id=0004|utc=2026-09-25T00:13:29Z|type=synthetic_metadata_validator_qualification|prev=7d8cc20e75d5378cec62f81a656e95f36a8d1dc8b8576a3220566a842eb7dab2|tool_sha256=274bf5d1bf4c9b9f02d8f012557d3060622f2056a7a4ebfbe0c8d73423123ecf|positive=pass|role_leak=rejected|forbidden_field=rejected|real_data_access=false`
 - Event SHA-256: `5fd5b9d117feff67a32fbcafcdf99eb837d2775902b24c9ea258745398969e2e`.
+
+## Event 0005 — Synthetic trusted-receipt path qualification
+
+- UTC: `2026-09-25T02:14:31Z`
+- Type: `trusted_receipt_path_synthetic_qualification`
+- Previous event SHA-256:
+  `5fd5b9d117feff67a32fbcafcdf99eb837d2775902b24c9ea258745398969e2e`.
+- The trusted-steward execution path accepted the positive synthetic table only
+  when paired with a matching content hash and safety receipt. The emitted
+  report contained aggregate counts and coordinate bounds, but no cell or
+  animal identifiers.
+- Receipt: [`stage0/fixtures/synthetic_trusted_receipt.json`](stage0/fixtures/synthetic_trusted_receipt.json),
+  SHA-256 `9268850e2b9b544c7d8037c065c205dea5fb7b0dfbd2ae9b1d02960fa6a89300`.
+- No real metadata or projection outcome was read.
+- `canonical_payload`: `event_id=0005|utc=2026-09-25T02:14:31Z|type=trusted_receipt_path_synthetic_qualification|prev=5fd5b9d117feff67a32fbcafcdf99eb837d2775902b24c9ea258745398969e2e|receipt_sha256=9268850e2b9b544c7d8037c065c205dea5fb7b0dfbd2ae9b1d02960fa6a89300|result=pass|real_data_access=false`
+- Event SHA-256: `1b923d53d8464406a236b2ea64ff61a500cf5d4df94f7400f9af0c644fb201fc`.

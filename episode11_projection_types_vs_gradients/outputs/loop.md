@@ -2,8 +2,9 @@
 
 Local run `ep11-stage0-20260925T000506Z` is at Stage 0. Completed work is
 limited to contract validation, mechanical acquisition-receipt verification,
-access semantics, the redacted-metadata contract, a synthetic candidate-side
-validator with two leakage-rejection fixtures, and the steward handoff.
+access semantics, the redacted-metadata contract, a synthetic trusted-side
+validator with two leakage-rejection fixtures and an exercised safety-receipt
+path, and the steward handoff.
 
 Current state: `stage0_active / awaiting_trusted_handoff`. The next executable
 scientific step is not projection modeling; it is a permission-separated

@@ -7,13 +7,16 @@ experiment-log events; it does not rewrite the launch record.
 - `launch_manifest.yaml` and `launch_manifest.sha256`: frozen local launch.
 - `readiness_status.yaml`: readiness snapshot at launch.
 - `readiness_status.0002.yaml`: state after synthetic metadata-validator checks.
+- `readiness_status.0003.yaml`: state after the synthetic trusted-receipt path
+  was exercised end to end.
 - `redacted_metadata_contract.yaml`: trusted allow-list and role-safe outputs.
 - `steward_handoff.md`: required permission-separated deliverables.
 - `tools/validate_redacted_metadata.py`: trusted-side validator that turns a
   content-addressed, allow-listed row table into identifier-free aggregate
   support; only that aggregate may cross to the candidate process, and the
   tool must never receive the raw workbook.
-- `fixtures/`: synthetic-only positive and leakage-rejection cases.
+- `fixtures/`: synthetic-only positive, leakage-rejection, and trusted-receipt
+  cases.
 - `synthetic_validation.yaml`: exact code/fixture hashes and observed results.
 
 No file in this directory is a projection outcome or a canonical Brain

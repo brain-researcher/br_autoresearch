@@ -17,14 +17,16 @@
     semantics: passed;
   - all Stage-0 YAML duplicate-key parsing and validator Python AST parsing:
     passed;
-  - four-event experiment-log hash chain and launch-manifest hash: passed;
+  - five-event experiment-log hash chain and launch-manifest hash: passed;
   - local Markdown-link resolution: passed; and
   - `git diff --check -- episode11_projection_types_vs_gradients`: passed.
-- Synthetic candidate-safe metadata-validator checks:
+- Synthetic trusted-side metadata-validator checks:
   - allow-listed 12-development/8-audit fixture: accepted while full support
     remained explicitly unadjudicated;
   - one animal assigned to both roles: rejected; and
-  - forbidden `Projection class` column: rejected.
+  - forbidden `Projection class` column: rejected; and
+  - trusted-steward mode with a matching synthetic safety receipt: accepted,
+    emitting identifier-free aggregates only.
 - Checked artifact SHA-256 values:
   - `GOAL.md`: `b95d9f3e8ed2f7315326f00ee47c9143f31cf58c62ba80fa928ef4c753b0f93a`;
   - `SEARCH_POLICY.yaml`: `9abf97f6f97ac0b061b4070e6337a3eb0a80c7a67e7eea87b7186b62a7d234d5`;

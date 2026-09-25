@@ -1,0 +1,33 @@
+schema_version: ep11.stage0_readiness_status.v1
+episode_id: ep11
+run_id: ep11-stage0-20260925T000506Z
+status_utc: 2026-09-25T02:14:31Z
+supersedes_snapshot: readiness_status.0002.yaml
+local_run_status: stage0_active
+scientific_status: no_result
+outcome_bearing_development: blocked
+audit_open_count: 0
+
+newly_completed:
+  trusted_receipt_path_on_synthetic_input: pass
+  receipt_input_hash_binding: pass
+  receipt_safety_attestations: pass
+  identifier_free_aggregate_output: pass
+  real_data_access: false
+
+still_pending:
+  - trusted_allow_list_redaction_builder_and_real_receipt
+  - authenticated_brain_ID_to_independent_animal_crosswalk
+  - cell_file_duplicate_and_reconstruction_lineage
+  - immutable_shared_EP09_EP10_EP11_exposure_and_role_ledger
+  - source_by_animal_position_depth_support_census
+  - full_support_overlap_missingness_stratum_and_precision_qualification
+  - role_safe_development_and_evaluator_only_audit_views
+  - validated_CCF_orientation_ontology_and_SEU_transform_binding
+  - projection_model_synthetic_qualification_and_compute_profile
+
+current_decision:
+  stage0_active_awaiting_trusted_handoff: true
+  terminal_conclusion_reached: false
+  raw_workbook_or_morphology_candidate_access_authorized: false
+  development_outcome_access_authorized: false
