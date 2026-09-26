@@ -1,30 +1,8 @@
 # Research memory
 
-> Client-maintained workspace projection only. This is not Brain Researcher memory.
-> Workflow policy: do not promote it outside this workspace without a separate,
-> scientist-requested memory write.
+No experimental lesson is recorded because EP20 has not run.
 
-## Reusable local lessons
-
-- Not yet established. Every lesson must cite an `outputs/` evidence ref.
-
-## Approaches not carried forward
-
-- None recorded. Each entry must state its scope, reason, and an `outputs/` evidence ref.
-- A local exploratory failure does not establish scientific invalidation.
-
-## Observed failure modes
-
-- None recorded. Record the local context and supporting `outputs/` evidence ref.
-
-## Constraints and data gaps
-
-- Not yet assessed from executed evidence.
-
-## Open questions
-
-- Not yet assessed from executed evidence.
-
-## Promotion status
-
-- Not requested.
+The planning lesson is that the virtual study must keep three claims separate:
+a paper-derived reference can support model-based comparison, an independent
+virtual audit can test transfer across implementations, and only fabricated
+hardware can establish physical superiority or chronic performance.

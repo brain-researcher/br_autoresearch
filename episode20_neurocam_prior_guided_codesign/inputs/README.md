@@ -1,81 +1,51 @@
 # Episode 20 inputs
 
-`inputs/` is read-only after provisioning. In this canonical checkout it
-contains only this README: no NeuroCam payload, metadata contract, anchor
-manifest, qualification contract, or reference example bundle is provisioned.
+This directory currently contains documentation only. No NeuroCam source
+file, fitted reference model, simulator, empirical replay, hardware rule deck,
+or audit material has been provisioned for EP20.
 
-The root
-[`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) records the
-canonical private steward root as `private_steward_acquisition` at
-`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`
-and identifies the NeuroCam PDF as `asset_ep20_neurocam_documentary`. The
-steward tree was relocated by same-filesystem rename on 2026-09-24 and is
-`canonical_in_place`. No source has been handed off to this directory.
+## Documentary source
 
-Two JSON examples exist only at `legacy_ep20_reference_bundles`, whose
-destination is unassigned, and are not canonical EP20 inputs. If a future
-trusted provisioning step copies, hashes, and role-labels
-them under `reference_bundles/`, their intended identities are:
+The NeuroCam article and supplement are currently stored outside the episode:
 
-- `neurocam_paper_direct_v1.json` is labeled `reference` and `example`;
-- `neurocam_figure_derived_v1.json` is labeled `reference`, `example`, and
-  `estimation`.
+    /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/neurocam_documentary_20260922
 
-Both would be nonbinding inputs for documentary context and
-non-candidate-discriminating simulation sanity checks only. Neither may
-initialize model parameters or the search space, enter reference calibration,
-reference qualification, candidate scoring, or audit evaluation. They cannot
-substitute for raw I-V/C-V, a compact model, PDK, netlist, mask/layout, or
-fabrication outcomes.
+That location is steward storage, not permission to use the material. Before
+EP20 opens it, record the citation and rights, confirm the article and
+supplement version, and assign each extracted value to documentary,
+calibration, or qualification use.
 
-Absent contracts and legacy-only examples are not configuration-lock eligible
-and do not provide the data or contracts required for a fit, qualification run,
-candidate score, or audit opening. No
-NeuroCam article payload, raw trace, simulator, design-rule package, empirical
-replay, sealed audit asset, compact model, PDK, or fabrication outcome is
-present here.
+Two legacy JSON examples also exist outside this directory. They may be used
+only as nonbinding documentary context if a scientist approves that role.
+They may not fit or qualify the reference model, initialize the search, score
+a candidate, or substitute for raw device evidence.
 
-[`../DATASETS.md`](../DATASETS.md) requires content-addressed, role-filtered
-handoffs for documentary reference, reference calibration, reference
-qualification, development signal and device ensembles, virtual audit,
-empirical replay, and hardware rules. Do not mount one mixed source tree for
-development and audit roles. Published documentary qualification values remain
-visible but role-locked out of fitting; public availability does not grant the
-controller access to an independently acquired evaluator-only raw trace, a
-sealed plausibility partition, or an audit asset.
+## What must be ready before candidate scoring
 
-Before candidate scoring or audit access, this directory must contain frozen,
-hashed versions of at least:
+- an approved article and supplement with clearly sourced anchors;
+- a calibration-versus-qualification assignment and trusted qualification
+  result;
+- fixed hardware, resource, software, endpoint, and randomization rules;
+- executable development signal and device models with predeclared draws;
+- separate development and sealed empirical sources or partitions; and
+- a separately permissioned audit owner and location, opening time, and
+  allowed final report.
 
-- `SOURCE_MANIFEST.json` and `NEUROCAM_ANCHORS.yaml`;
-- `REFERENCE_ANCHOR_SPLIT.yaml`, `REFERENCE_MODEL_CONTRACT.yaml`, and
-  `REFERENCE_QUALIFICATION.yaml`;
-- `FROZEN_HARDWARE_GRAMMAR.yaml`, `DESIGN_RULES.yaml`, and
-  `RESOURCE_MODEL.yaml`;
-- `SOFTWARE_BUDGET.yaml`;
-- `DEVELOPMENT_ENVIRONMENTS.yaml`, `DEVELOPMENT_DEVICE_ENSEMBLE.yaml`, and
-  `DEVELOPMENT_DRAW_MANIFEST.json`;
-- `AUDIT_COMMITMENT.json` and `EVALUATOR_CONTRACT.yaml` for the independently
-  implemented audit;
-- disjoint `EMPIRICAL_DEVELOPMENT_REPLAY_MANIFEST.json` and
-  `EMPIRICAL_PLAUSIBILITY_REPLAY_MANIFEST.json` records;
-- `EXPOSURE_LEDGER.json` identifying every role and permitted reader.
+These records may be short, human-readable files. EP20 does not require
+particular filenames.
 
-Their required semantics and unresolved fields are specified in
-[`../SEARCH_POLICY.yaml`](../SEARCH_POLICY.yaml). These files are planned
-interfaces, not present inputs. A filename, reported aggregate, legacy example,
-or estimate is not evidence that a primary payload, fitted model,
-qualification result, or real device asset exists.
+## Access and write rules
 
-The repository intentionally ignores per-episode `inputs/` payloads except for
-this README. Any future contract or example bundle must therefore be
-provisioned and verified separately with the trusted provisioning environment;
-committing the tracked documentation alone neither supplies a self-contained
-reference bundle nor promises a repository-local qualification check.
+- Provisioned scientific payloads are read-only. This README may be updated as
+  source roles and availability change.
+- Development and audit material must not share a mount or readable directory.
+- The adaptive runtime may not read sealed parameters, traces, previews,
+  scores, or quality-control output before candidate lock.
+- Generated fields, fitted models, caches, scores, qualification results, and
+  audit reports belong under `outputs/`, never `inputs/`.
+- Large governed sources may remain outside the repository when this file and
+  `../DATASETS.md` give a clear location and scientific role.
 
-No candidate output, cache, fitted model, generated field, qualification
-residual, audit QC, partial score, or result may be written under `inputs/`.
-After a trusted qualification run, the qualifier writes
-`outputs/reference_model_ensemble_manifest.json` and
-`outputs/reference_qualification_receipt.json`; those immutable runtime
-artifacts are never input manifests and do not exist in this draft.
+For the full source-role explanation, see [`../DATASETS.md`](../DATASETS.md).
+For the search rules, see
+[`../SEARCH_POLICY.yaml`](../SEARCH_POLICY.yaml).

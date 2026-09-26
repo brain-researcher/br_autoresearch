@@ -1,813 +1,374 @@
-# Can a constrained NeuroCam redesign recover cortical voltage fields more faithfully?
+# Can a constrained NeuroCam redesign recover cortical voltage fields better?
 
-A NeuroCam-class array cannot maximize spatial coverage and sampling speed at
-the same time. Scanning all 4,096 pixels covers the array's full field of view,
-but each pixel is revisited more slowly. Concentrating measurements on fewer
-rows or source groups captures faster changes but leaves other locations less
-well observed. Electrode size creates a related choice: a larger pad averages
-over more tissue, whereas a smaller pad may preserve a focal event more
-precisely.
+NeuroCam uses a 64 × 64 multiplexed electrode array to observe cortical
+surface voltage. Its architecture creates a basic trade-off: reading more
+pixels gives wider spatial coverage, while revisiting fewer rows or source
+groups gives better temporal resolution. Electrode size creates a second
+trade-off between spatial averaging and sensitivity to local events.
 
-EP20 asks whether those choices can be made more intelligently without making
-the device larger, adding wires or conversion work, increasing latency, or
-exceeding the same modeled power/thermal budget.
-The candidate may combine a legal pattern of small and large pads with a legal
-row/source acquisition schedule, and the reconstruction software may learn
-the exact measurement pattern. The question is whether that pair recovers
-broad activity, focal field transients, and propagating waves better than the
-best eligible version of the published NeuroCam architecture under the same
-resource limits.
+EP20 asks whether a legal change to electrode geometry and scan allocation,
+paired with reconstruction software that knows the resulting measurement
+pattern, can improve that trade-off. The candidate must remain inside the
+published NeuroCam footprint and row-column topology and must not gain extra
+wires, conversion work, latency, or modeled power and thermal capacity.
 
-The first decisive comparison is therefore not a new design against the
-original reconstruction code. One locked co-designed candidate must be tested
-on the same cortical fields and device draws as every resource-matched
-NeuroCam operating mode, including NeuroCam with equally optimized software.
-It must also beat its own hardware with conventional reconstruction and every
-registered simple pad or scan heuristic given the same software and tuning
-budget. These comparisons separate a genuine co-design benefit from a better
-decoder, a hardware-only improvement, or an easy baseline.
+The test is deliberately harder than comparing new hardware with old
+software. One locked co-designed candidate must beat:
 
-An apparent win can still be misleading. A design may favor broad rhythms
-while erasing focal events, exploit the exact simulator used during training,
-or rely on idealized noise and crosstalk that do not survive fabrication
-rounding. It may also look better only because one NeuroCam operating mode was
-chosen as the reference after the result was known. The result therefore has
-to hold across the complete frozen reference frontier, across registered
-signal and device conditions, and under a sealed change in both the cortical
-field generator and the device model. Before audit, one qualified empirical
-ECoG or known-input physical replay must also be selected and frozen; none is
-currently selected. That replay is a catastrophic-plausibility check, not a
-validation of the unbuilt geometry.
+- every eligible published NeuroCam operating point with conventional
+  reconstruction;
+- the same NeuroCam frontier with equally optimized software;
+- the candidate hardware with conventional software; and
+- every registered simple hardware or scheduling heuristic given the same
+  software family and tuning budget.
 
-If the candidate survives those tests, the deeper question is what the sensor
-redesign actually preserves. Does multiscale electrode geometry recover both
-broad and local spatial structure? Does nonuniform scan allocation retain fast
-events without sacrificing slower waves? Or can optimized software on the
-uniform NeuroCam array recover the same information, making new hardware
-unnecessary?
+All comparisons use the same cortical fields, device draws, nuisance draws,
+evaluation masks, and resource envelopes. The result must also survive a
+sealed change in both the field generator and the device model.
 
-The intended paper must do more than report one higher reconstruction score.
-It should show which hardware and software changes contribute the gain, where
-the gain appears across broad activity, focal events, and waves, where the
-candidate still loses, and which physical experiment would most directly test
-the proposed explanation. The final output should be a compiled pad map, scan
-schedule, reconstruction recipe, resource ledger, and failure map that another
-team could take into device validation.
-
-This remains a virtual design study. A positive result would support the
-narrow claim that one compiled design is worth fabrication or device testing
-because it beat the complete optimized NeuroCam reference frontier within the
-registered model ensemble and resource constraints. It would not show that a
-fabricated device outperforms NeuroCam, is safe or stable in chronic use, or is
-ready for foundry sign-off or in-vivo deployment.
+This is a virtual design study. A positive result can justify fabricating or
+physically testing one compiled design. It cannot show that an unbuilt device
+outperforms fabricated NeuroCam hardware, is safe or stable in chronic use,
+or is ready for foundry sign-off or in-vivo deployment.
 
 ## At a glance
 
 | Question | EP20 design |
 | --- | --- |
-| What problem is being tested? | Whether electrode geometry, scan allocation, and reconstruction software can jointly preserve more of a cortical voltage field than an optimized NeuroCam reference. |
-| What stays fixed? | The 64-by-64 lattice, 150-micrometre pitch, one-TFT row-column circuit, array area, and limit of 64 gate plus 64 source lines, together with matched conversion, latency, and power/thermal proxies. |
-| What may change? | A legal uniform or two-scale pad pattern, a legal row/source acquisition schedule, and a capacity-capped reconstruction rule trained for that measurement pattern. |
-| What is reconstructed? | The 1--100 Hz cortical-surface voltage field on the same dense reference grid for every design. |
-| What is the reference? | Every eligible operating point of the paper-derived NeuroCam architecture, first with conventional reconstruction and then with equally optimized software. |
-| What must the candidate beat? | The complete matched NeuroCam frontier, its own hardware-only version, and every registered simple hardware heuristic evaluated with the same software family and budget. |
-| What must repeat? | The advantage must survive broad, focal, and propagating-wave signals and the registered device, noise, and resource conditions without an important stratum becoming meaningfully worse. |
-| What checks simulator exploitation? | A sealed, independently implemented change in both the cortical-field generator and the device model. |
-| What is the empirical plausibility gate? | Before audit, one qualified empirical ECoG or known-input phantom replay must be selected and frozen. It may expose catastrophic model mismatch but cannot validate the unbuilt geometry. |
-| What can a positive virtual result conclude? | That a specific compiled design is a justified candidate for fabrication or device testing. |
-| What can it not conclude? | That fabricated hardware outperforms NeuroCam, is chronically safe or stable, or is ready for manufacture or in-vivo use. |
+| What varies? | A legal uniform or two-scale pad pattern, a legal row/source acquisition schedule, and a capacity-capped reconstruction rule. |
+| What stays fixed? | The 64 × 64 lattice, 150-micrometre pitch, approximately 9.6 × 9.6 mm active area, one-TFT row-column topology, and no more than 64 gate plus 64 source lines. |
+| What is reconstructed? | Cortical-surface voltage on one common dense grid in the primary 1–100 Hz band. |
+| What is the main score? | Paired change in field reconstruction R² against every eligible member of the locked NeuroCam reference frontier. |
+| What prevents an easy win? | Equal software capacity, training effort, data, seeds, conversion, latency, bitrate, and modeled physical-resource accounting. |
+| What checks overfitting? | Registered falsifiers plus a one-shot audit using independently implemented signal and electronics models. |
+| What is the empirical check? | A development D0/D1 replay stress plus a disjoint post-lock catastrophic-plausibility replay; neither validates an unbuilt geometry. |
+| What would success mean? | One virtual co-design specification is worth fabrication or device testing. |
 
-## Scientific estimand
+## First-round figure concept
 
-For a finite registered evaluation-stratum set `E`, let `D` be a compiled
-hardware and software design and let `B(e)` contain every preregistered `D0`
-and `D1` NeuroCam reference member eligible under stratum `e`'s resource
-envelope. For each reference member `b`, the paired stratum estimand is
+This first-round figure is a map of the planned comparison, not a result.
+Every arm receives the same simulated cortical fields, device draws, masks,
+and resource envelope. The values and waveforms are synthetic illustrations;
+the figure contains no experiment output and provides no evidence that a
+candidate passed any gate.
 
-\[
-\delta_{e,b}(D)
-=
-R^2_{\mathrm{SSE}}(D;e)
--
-R^2_{\mathrm{SSE}}(b;e).
-\]
+![Conceptual EP20 co-design and audit figure using synthetic data](outputs/ep20_conceptual_main_figure.png)
 
-For each reference member define its eligible support
-`E_b = {e in E : b in B(e)}`. The confirmatory member-specific macro gain uses
-the frozen equal stratum-family weights renormalized within that support, and
-the frontier-wide estimand is the least gain against any eligible reference
-member:
+The figure emphasizes the two questions EP20 must answer separately: whether
+co-design beats the full D0/D1 NeuroCam frontier and matched D2/D4 controls,
+and whether that advantage survives an independent one-shot audit after
+exactly one D3 candidate is locked.
 
-\[
-\bar\delta_b(D)
-=
-\sum_{e\in\mathcal E_b}
-\frac{w_e}{\sum_{j\in\mathcal E_b}w_j}\delta_{e,b}(D),
-\qquad
-\Delta_{\mathrm{frontier}}(D)
-=
-\min_{b\in\mathcal B}\bar\delta_b(D).
-\]
+## The published reference
 
-A contrast is never imputed outside a member's registered resource-envelope
-support. Every support, weight, and eligibility mapping is frozen before
-candidate-hardware scores.
+The named reference is the NeuroCam report and supplement described in
+[DATASETS.md](DATASETS.md). The paper reports a 64 × 64 Ln-IZO TFT array with
+150-micrometre pitch, approximately 9.6 × 9.6 mm active area, 70 × 135
+micrometre gold sensing pads, 64 shared gate lines, and 64 shared source
+lines.
 
-Promotion uses multiplicity-adjusted simultaneous lower bounds for every
-member-specific macro gain, not a sample-wise oracle that changes reference
-mode per scene. A separate robustness guard applies the simultaneous lower
-bound to every registered `e` by `b` contrast. During development, search and
-winner ranking use the minimum cell-mean paired gain across `e` and `b`; that
-robust search objective is not substituted for the confirmatory macro
-estimand.
+Three reported dynamic operating points anchor the reference:
 
-This is paired regret relative to a complete reference frontier, not absolute
-utility pooled across incomparable signal families. Each candidate and every
-reference member receive identical cortical fields, device draws, nuisance
-draws, and evaluation masks.
-
-The primary target is the cortical-surface potential, not the unobserved
-transmembrane-current source. Source recovery is an explicitly synthetic
-diagnostic and cannot determine promotion.
-
-## Competing explanations
-
-1. **Uniform-reference robustness.** Once conversion, scan, and device shifts
-   are matched, the uniform 64-by-64 reference remains the most robust design.
-2. **Software sufficiency.** Optimized reconstruction on the reference
-   hardware recovers essentially all attainable gain, so redesigning hardware
-   is unwarranted.
-3. **Multiscale-geometry benefit.** A legal two-scale pad pattern improves the
-   broad-versus-local spatial trade-off after pad impedance, spatial averaging,
-   and device noise are accounted for.
-4. **Rate-allocation benefit.** A legal row/source-group schedule improves the
-   spatial-versus-temporal trade-off without adding array lines, ADC work, or
-   latency.
-5. **Hardware-software complementarity.** A compiled hardware change and a
-   measurement-aware reconstructor together outperform either component alone.
-6. **Simulator exploitation.** Apparent gain disappears under an independently
-   implemented forward model, device scaling law, nuisance family, or
-   fabrication rounding.
-7. **Underidentification.** Public characterization and planned replay data do
-   not constrain the model ensemble enough to distinguish these explanations.
-
-## Reference architecture and operating frontier
-
-The named reference is derived from the published NeuroCam report and its
-supplement. The paper describes a 64-by-64 Ln-IZO TFT array with 150
-micrometre pixel pitch, approximately 9.6-by-9.6 mm active area, 70-by-135
-micrometre gold sensing pads, 64 shared gate lines, and 64 shared source lines.
-
-The publication reports several distinct operating points, including:
-
-| Dynamic mode | Pixels acquired | Effective rate per pixel | Reported RMS noise |
+| Mode | Pixels acquired | Effective rate per pixel | Reported RMS noise |
 | --- | ---: | ---: | ---: |
-| `24S x 16G` | 384 | 1000 S/s | 8.8 +/- 4.2 microvolts |
-| `24S x 64G` | 1536 | 250 S/s | 12.6 +/- 8.4 microvolts |
-| `64S x 64G` | 4096 | 250 S/s | 63.6 +/- 24.1 microvolts |
+| 24S × 16G | 384 | 1000 S/s | 8.8 ± 4.2 microvolts |
+| 24S × 64G | 1536 | 250 S/s | 12.6 ± 8.4 microvolts |
+| 64S × 64G | 4096 | 250 S/s | 63.6 ± 24.1 microvolts |
 
-It also reports a representative channel gain of 0.78 +/- 0.12, a channel
-3-dB frequency above approximately 1 kHz, source-line-neighbour crosstalk near
--12.6 dB, gate-line-neighbour crosstalk near -37.2 dB, and more distant
-crosstalk near -45 dB. These are characterization anchors, not a complete
-generative electronics model.
+The paper also reports a representative channel gain of 0.78 ± 0.12, a
+single-channel 3-dB frequency above roughly 1 kHz, source-line neighbour
+crosstalk near −12.6 dB, gate-line neighbour crosstalk near −37.2 dB, and
+more distant crosstalk near −45 dB. These are documentary anchors, not a
+complete digital twin.
 
-The 1-kHz single-channel frequency response must not be confused with the
-250-S/s effective full-array frame rate. A full 64-row scan with the reported
-62.5-microsecond row dwell spans approximately 4 ms and has a nominal
-per-pixel Nyquist frequency near 125 Hz. Full-array claims about higher
-high-gamma frequencies or single-neuron action potentials are prohibited.
-Focal `spike` in this episode means an epileptiform or other field transient,
+The 1-kHz channel response does not imply 1-kHz full-array imaging. With the
+reported 62.5-microsecond row dwell, a full 64-row scan takes about 4 ms and
+has a nominal per-pixel Nyquist frequency near 125 Hz. EP20 therefore promotes
+only on the 1–100 Hz cortical-surface field. A registered 100–400 Hz
+reduced-mode analysis is diagnostic only and cannot rescue a failed primary
+result. Here, “focal transient” means an epileptiform or other field event,
 never a sorted single-neuron spike.
 
-The promoting field-reconstruction band is 1--100 Hz. Frequencies from
-100--400 Hz may be examined only in the registered reduced-mode high-rate
-diagnostic; that diagnostic cannot promote a design or rescue failure in the
-primary band.
+## Why co-design might help
 
-`NeuroCam` is a named reference architecture here, not a claim that it is the
-best micro-ECoG system on every physical or scientific axis. Before audit, all
-registered reference modes and software subclasses are evaluated on the same
-environments and locked. Promotion is tested simultaneously against every
-eligible member under the matched resource envelope; no audit-dependent member
-is substituted after seeing the candidate result. A sample-wise pointwise
-oracle envelope across registered modes is reported only as a labelled
-diagnostic and never defines the primary contrast.
+A uniform array and uniform scan spend the same kind of measurement effort
+everywhere. A two-scale pad pattern might preserve broad spatial structure
+with some electrodes while retaining local structure with others. A
+nonuniform but legal schedule might revisit informative rows or source groups
+more often. Software that receives the exact pad, timing, and device state
+could then reconstruct an irregular measurement stream without pretending it
+came from a uniform movie.
 
-## Generative and measurement model
+That story has several plausible alternatives:
 
-The simulator keeps neural source, cortical-surface potential, electrode
-interface, electronics, acquisition action, and software distinct:
+| Explanation | What the result would mean |
+| --- | --- |
+| Uniform-reference robustness | Once noise, conversion, timing, and device shifts are matched, the published uniform architecture remains the best robust choice. |
+| Software sufficiency | Better reconstruction on NeuroCam recovers nearly all available gain; new hardware is unnecessary. |
+| Geometry benefit | A legal two-scale pad pattern improves the broad-versus-local spatial trade-off. |
+| Rate-allocation benefit | A legal schedule improves the spatial-versus-temporal trade-off without extra resources. |
+| Hardware-software complementarity | The compiled hardware change and its measurement-aware decoder work better together than either component alone. |
+| Simulator exploitation | The apparent gain disappears under an independent forward model, electronics law, nuisance family, or fabrication rounding. |
+| Underidentification | Available public data cannot constrain the reference model well enough to distinguish these explanations. |
 
-\[
-(S,Z)\sim P_e,
-\qquad
-\phi=L_{\gamma,p}S,
-\]
+## The five-way comparison
 
-\[
-v=E_{h,\zeta}\phi,
-\qquad
-a_t=\pi_h(y_{<t},q_{\le t}),
-\]
+Every candidate is evaluated through the same nested ladder:
 
-\[
-y_t
-=
-Q_{b(a_t)}
-\left[
-R_{h,\eta,a_t}(v_{0:t})+n_t
-\right],
-\qquad
-(\widehat\phi,\widehat Z,\widehat\sigma)
-=f_s(y_{\le t},a_{\le t}).
-\]
-
-Here:
-
-- `S` is an optional latent neural-source field;
-- `Z` is a task or mechanism label generated jointly with the field;
-- `phi` is voltage on a common dense cortical-surface reference grid;
-- `L` is a source-to-surface transfer model with tissue and placement state;
-- `E` models pad aperture averaging, contact impedance, reference convention,
-  curvature, and contact gaps;
-- `R` models TFT gain, row-column timing, line RC, settling, switching
-  transients, saturation, crosstalk, drift, and missing pixels;
-- `eta` is a slowly varying device/process state drawn conditionally on the
-  compiled hardware;
-- `n_t` is stochastic measurement noise conditional on geometry, operating
-  mode, and scan history;
-- `a_t` is either a frozen schedule or a causal bounded acquisition action;
-  and
-- `q_t` contains only hardware state and information available at time `t`.
-
-Some development mechanisms generate `phi` directly. Separate structural
-audit mechanisms generate `S` and then apply an independently implemented
-`L`. This separation prevents an inverse method from being evaluated only on
-the exact forward operator used to train it.
-
-All voltages are referenced. The reference electrode, common-mode convention,
-and any guard cost are fixed and counted; absolute unreferenced potential is
-not an observable.
-
-## Fixed, searchable, and prohibited design components
-
-| Fixed before development | Searchable in EP20 | Prohibited from promotion |
-| --- | --- | --- |
-| Ln-IZO process class and flexible substrate | One of three registered pad-pattern families | Material composition or transistor chemistry |
-| 64-by-64 lattice and 150-micrometre pitch | Discrete legal small/large pad catalogue entries | Changing pixel count, pitch, or active area |
-| One-TFT row-column addressing | Legal row order, dwell catalogue, and source-bank schedule | Hierarchical routing or extra addressing lines |
-| At most 64 gate plus 64 source array lines | Uniform, fixed heterogeneous, or bounded causal revisit policy | Extra on-array buffer, memory, or free local compute |
-| Frozen reference and guard convention | Capacity-capped reconstruction rule | Arbitrary analog mixing matrix |
-| Matched AFE, conversion, bit-rate, latency, and power proxies | Registered precision/oversampling mode already supported by the resource model | New variable-resolution ADC or uncosted gain path |
-| Common evaluation grid and masks | Candidate-specific weights trained under equal budget | Candidate-specific target, metric, or audit family |
-
-The legal pad catalogue is finite. It is derived from a frozen design-rule
-manifest and includes the reference pad plus at most two alternative pad
-classes. A continuous relaxation may propose a design internally, but only
-the compiled, rounded, discrete design is scored or promoted.
-
-A row action addresses an entire legal gate group. A candidate cannot pretend
-to revisit an arbitrary pixel independently when the row-column circuit
-cannot do so. Likewise, source-bank precision is charged according to the
-registered external ADC/AFE resource model.
-
-Arbitrary learned analog projection
-
-\[
-y_k=\sum_j A_{kj}x_j
-\]
-
-is outside the promoting grammar. Sparse, local, or nonnegative coefficients
-alone do not prove circuit realizability, and digital post-ADC mixing cannot
-claim a conversion saving. Analog mixing may appear only as a labelled
-non-promoting future-work diagnostic after all primary work is complete.
-
-## Software grammar
-
-Every hardware design is evaluated with the same software-family and training
-rules. `Same software` means the same architecture, input contract, parameter
-ceiling, optimizer, data volume, selection budget, seeds, and calibration
-rule. Weights are retrained for each measurement operator; reusing weights
-trained on an incompatible geometry is not a fair hardware-only control.
-
-The promoting software grammar contains:
-
-1. **Conventional reference (`s0`).** A fixed causal linear-Gaussian
-   state-space or kriging rule operating on native timestamped observations,
-   with a measurement-compatible adapter but no learned hardware-specific
-   representation.
-2. **Measurement-aware reconstructor (`s1`).** Three preregistered subclasses
-   are evaluated on the complete reference frontier before any redesigned-
-   hardware score is returned: a regularized physics-informed linear inverse,
-   a regularized low-rank-plus-local structured state-space inverse, and a
-   compact causal nonlinear inverse. The frozen selection rule chooses one
-   subclass for all `D3`/`D4` comparisons; every evaluated `D1` point remains
-   in the incumbent frontier. Each subclass receives value, timestamp,
-   measurement identity, hardware state, gain state, scan state, and
-   device-calibration state.
-3. **Uncertainty head.** The registered reconstructor must emit calibrated
-   field uncertainty under missing, irregular, and device-shifted observations.
-4. **Transfer probes.** Frozen linear or low-rank probes assess event presence,
-   source zone, and wave direction from the reconstructed representation.
-   Transfer probes cannot update hardware or select the episode winner.
-
-The exact parameter ceiling and training-step budget are frozen in the
-admissible-space manifest before candidate-discriminating development. The
-current planning ceiling is five million trainable parameters per
-reconstructor; a lower profiled ceiling may be frozen before outcome access,
-but it cannot change afterward.
-
-Software-subclass selection is completed and hashed before any `D2`, `D3`, or
-`D4` candidate-hardware outcome is exposed. For subclass `s`, its frozen score
-is the minimum across resource envelopes of the equal-signal-family,
-equal-device-stratum macro `R2_SSE` of `D1(s)`; the highest score wins, with
-ties resolved by lower parameter count and then lexicographically lowest
-recipe hash. Exact weights and normalization live in `SOFTWARE_BUDGET.yaml`.
-The selection receives no extra calls and cannot be revisited because a
-hardware candidate performs poorly.
-
-`RESOURCE_MODEL.yaml` assigns every arm a frozen resource-envelope ID. For
-each candidate envelope it names the eligible `D0` members, the same-mode `D0`
-for every `D1`, the unique interaction-matched `D1` using the selected `s1`,
-and every eligible registered `D4` heuristic.
-`D2` always uses the identical compiled `D3` hardware and operating recipe
-with `s0`. A missing or multiply defined matched `D1` invalidates the trial.
-Every eligible `D4`, not merely a development-selected favourite, is carried
-into the one-shot audit.
-
-## Nested design ladder
-
-| Design | Hardware | Software rule | Purpose |
+| Arm | Hardware | Software | Question answered |
 | --- | --- | --- | --- |
-| `D0` | Registered NeuroCam operating frontier | Conventional `s0` | Paper-derived reference analysis frontier |
-| `D1` | Same NeuroCam frontier | All registered `s1` subclasses under equal budget | Maximum software-only gain and pre-hardware subclass selection |
-| `D2` | Compiled redesigned geometry or legal readout | Conventional `s0` plus frozen compatible adapter | Hardware-only gain |
-| `D3` | Compiled redesigned geometry/readout | Separately trained selected `s1` subclass | Joint co-design candidate |
-| `D4` | Registered heuristic multiscale/readout controls | Separately trained selected `s1` subclass under the same budget | Whether learned search beats simple engineering rules |
+| **D0** | Complete registered NeuroCam operating frontier | Conventional s0 | What does the paper-derived reference do with a standard analysis? |
+| **D1** | Same complete NeuroCam frontier | Every registered s1 subclass under equal budget | Is software alone sufficient? |
+| **D2** | Compiled candidate hardware | Conventional s0 with a compatible adapter | Does hardware alone help? |
+| **D3** | Same compiled candidate hardware | The s1 subclass selected before any candidate-hardware result | Does true co-design help? |
+| **D4** | Every registered resource-matched simple heuristic | The same selected s1 family and budget | Is a simple geometry or schedule enough? |
 
-The primary frontier gate is simultaneous against every eligible locked
-`D0`/`D1` member within the matched resource envelope. `D3` must also exceed
-its matched `D1` and `D2`, plus every resource-eligible `D4` control; beating
-one weak conventional pipeline does not establish co-design value.
+The full D0/D1 frontier is locked before any D2, D3, or D4 outcome. All three
+registered s1 subclasses are evaluated on the reference: a physics-informed
+linear inverse, a structured state-space inverse, and a compact causal
+nonlinear inverse. One subclass is selected by the frozen rule, and that
+choice cannot be revisited after candidate hardware results appear.
 
-For a locked scalar primary utility, the four-cell contrast
+Software capacity, optimizer, training steps, data, seed allocation, and
+selection-call credit are matched across D1, D3, and D4. Each hardware
+operator is trained separately; reusing favourable D3 weights for a
+comparator is prohibited.
 
-\[
-I_{\mathrm{co}}
-=U(h_1,s_1)-U(h_1,s_0)-U(h_0,s_1)+U(h_0,s_0)
-\]
+## How the test works
 
-is reported only as held-out descriptive complementarity. It depends on the
-utility scale, is influenced by adaptive selection of `h1`, and is not a
-causal decomposition or proof of a physical interaction mechanism.
+1. **Provision and qualify the reference.** Freeze documentary anchors,
+   calibration-versus-qualification roles, the reference-model grammar, and
+   outcome-blind tolerances. A trusted qualifier must pass the held-out gate
+   before any candidate score exists.
+2. **Freeze the experiment.** Lock the finite hardware grammar, design rules,
+   resource model, software budget, development environments, seeds,
+   endpoints, margins, randomization plan, and permission-separated audit plan.
+3. **Build the reference frontier.** Evaluate every registered D0 and D1
+   operating point and select the s1 subclass without seeing candidate
+   hardware outcomes.
+4. **Complete the 16-arm coverage panel.** Run one D0 arm, three D1 arms, four
+   D2 arms, four D3 arms, and four D4 arms before adaptive patience can count.
+5. **Search and try to break the result.** Propose legal compiled successors
+   from development outcomes only. After coverage, at least 40% of valid
+   trials are reserved for falsifiers and ablations.
+6. **Lock exactly one candidate.** A candidate may lock only after every
+   development gate passes. If more than one qualifies, use the frozen
+   tie-break rule.
+7. **Open the audit once.** Compare the locked candidate, full reference
+   frontier, and matched controls on sealed virtual worlds. Apply the disjoint
+   empirical or phantom payload only as a global catastrophic-plausibility
+   check; it does not compare unbuilt geometries. No post-audit successor is
+   allowed.
 
-## Reference-model qualification gate
+The search uses one global compiled hardware specification. A resource
+envelope may select a registered operating recipe, but the study may not
+choose different hardware after seeing the signal family or device condition.
 
-No candidate search begins until a reference-model ensemble passes an
-incumbent-reproduction gate. The ensemble is fitted only to the designated
-calibration anchors and then tested on operating modes, trace segments, or
-characterization summaries withheld from its fit.
+## What is measured
 
-At minimum the gate checks:
+The primary endpoint is field reconstruction R² in the 1–100 Hz band on a
+common space-time mask. For each eligible reference member, the score is the
+paired D3-minus-reference difference on identical generated worlds. Scenes
+are aggregated within structural signal/device cells first, device strata are
+weighted equally within signal families, and signal families are weighted
+equally. Pixels and time points are not treated as independent replicates.
 
-- array geometry, pad aperture, addressing, and scan timing;
-- gain distribution and representative frequency response;
-- all three registered dynamic mode rate/noise anchors;
-- anisotropic first-neighbour and distant crosstalk anchors;
-- settling and row-switch behaviour when raw traces become available;
-- missing-pixel and gain-yield summaries only if a provenance-backed target is
-  acquired; otherwise these remain adversarial stress dimensions, not
-  qualification anchors; and
-- monotonic resource accounting across source/gate configurations.
+The confirmatory estimate is a member-specific macro gain over that member’s
+registered resource support. The frontier score is the least favourable of
+those gains. Promotion uses one-sided simultaneous 95% paired intervals
+against every eligible locked member; it never picks a different comparator
+for each scene after seeing the outcome.
 
-Pass tolerances, which anchors are fitted, and which anchors are held out must
-be frozen before fitting. The planning tolerances are exact cardinalities; at
-most 2% relative error for sample rate and throughput; at most 0.05 and 0.03
-absolute error for the reported gain central value and dispersion; an
-at-least-800-Hz representative cutoff check, with no unsupported upper bound;
-at most 20% and 30% relative
-error for the reported noise central value and dispersion; at most 3 dB error
-for nearest-neighbour crosstalk;
-distant crosstalk no greater than -42 dB; and exact recovery of the registered
-directional-crosstalk and operating-mode trade-off orderings. These tolerances
-remain provisional until outcome-blind fixture calibration and scientist
-sign-off. A full frequency-response curve gate remains unset until the
-1-mVpp/10-mVpp source conflict and curve-extraction tolerance are resolved.
+Required secondary endpoints cover:
 
-The current aggregate publication does not by itself identify a
-transistor-level model, arbitrary-layout RC law, power model, yield model, or
-analog-mixing circuit. If the frozen reference ensemble fails qualification,
-the episode returns `technical_reference_model_unqualified`; it does not widen
-uncertainty until a candidate appears favourable.
+- focal-event localization error;
+- propagation direction and speed;
+- transient-detection proper log-score utility;
+- uncertainty coverage, sharpness, and calibration;
+- worst signal-family and device-stratum gain;
+- performance after discrete fabrication rounding;
+- latency, conversions, bitrate, power, thermal, routing, and yield proxies;
+  and
+- transfer to a frozen downstream probe.
 
-Passing this gate licenses only the phrase `paper-calibrated NeuroCam-derived
-model ensemble`. It does not license `validated digital twin`,
-`fabrication-ready`, or physical equivalence.
+Transient AUROC, latent-source recovery, the 100–400 Hz reduced-mode result,
+and a descriptive hardware-software interaction score are diagnostics. None
+can promote a candidate or rescue failure of the field endpoint.
 
-## Signal and nuisance environments
+## What counts as a positive result
 
-The prior is an executable family, not a list of verbal labels. Every
-environment manifest fixes amplitude, temporal spectrum, spatial spectrum,
-correlation length, event rate, propagation speed, boundary conditions,
-nonstationarity, mixture weight, reference convention, and nuisance range.
+A D3 candidate advances only if all of the following hold in development and
+again where applicable in the one-shot audit:
 
-Development must cover at least:
+| Gate | Required lower bound or margin |
+| --- | ---: |
+| D3 versus every eligible D0/D1 frontier member | At least 0.010 in R² |
+| D3 versus its matched D1 software-only comparator | At least 0.005 |
+| D3 versus its matched D2 hardware-only comparator | At least 0.005 |
+| D3 versus every eligible D4 heuristic | At least 0.005 |
+| Every registered stratum-by-reference contrast | At least −0.005 |
+| Localization-error noninferiority | 0.15 mm |
+| Wave-direction-error noninferiority | 5 degrees |
+| Wave-speed-relative-error noninferiority | 0.05 |
+| Transient log-score-utility noninferiority | 0.01 |
+| Uncertainty-ECE noninferiority | 0.01 |
+| Downstream normalized-utility noninferiority | 0.01 |
 
-- broad correlated oscillatory fields;
-- focal field transients with no single-neuron interpretation;
-- simple translating and expanding waves;
-- broad-plus-local multiscale mixtures;
-- multiple interacting sources;
-- silent-region surprise events; and
-- common-mode, line-noise, reference-drift, contact-gap, motion-like, and
-  missing-pixel nuisances.
+Endpoint calculations and margins require outcome-blind fixture calibration
+and scientist signoff. All hardware and resource constraints must still pass
+after discrete rounding and compilation.
 
-The audit uses sealed structural changes, not merely new random seeds. It must
-include at least one independently implemented source-to-surface model, one
-independently implemented electronics scaling or coupling law, one
-nonstationary or moving-source family absent from development, one altered
-spatial-spectrum family, and one unseen combination of crosstalk, noise,
-drift, and process variation. Empirical replay cannot substitute for the
-independent virtual electronics shift because it cannot evaluate an unbuilt
-candidate geometry.
+If several designs satisfy every development gate, choose the one with the
+best worst-environment paired gain. Designs within 0.005 are tied; prefer
+lower modeled conversion energy, then lower scan latency, then the
+lexicographically lowest design ID assigned before scoring. Exactly one design
+is locked.
 
-Real high-density ECoG replay can test ecological waveform and spectrum
-coverage but is not dense cortical-surface ground truth for arbitrary new pad
-geometries. It is therefore a required plausibility diagnostic, not the sole
-promotion endpoint. If a known-input PBS/phantom replay becomes available, it
-may provide a stronger electronics qualification endpoint under a separately
-frozen role.
+## Possible scientific answers
 
-The development replay partition is evaluated only on `D0`/`D1` software and
-simulator-envelope stress. Its outcomes may falsify software stability or the
-simulated signal envelope, but they cannot score, rank, retire, or route a
-`D2`/`D3`/`D4` hardware successor. The sealed plausibility partition opens with
-the audit and likewise supplies no alternative-geometry ground truth.
-
-## Objectives and reporting
-
-### Primary field objective
-
-For a common dense reference grid and frozen scoring mask,
-
-\[
-R^2_{\mathrm{SSE}}
-=
-1-
-\frac{\sum_{r,t}(\phi(r,t)-\widehat\phi(r,t))^2}
-{\sum_{r,t}(\phi(r,t)-\overline\phi_{\mathrm{train}})^2}.
-\]
-
-The training-fold mean is used in the denominator. Space-time samples are
-repeated measurements; uncertainty is aggregated first within a generated
-field, then within a structural-generator/device cell, and finally with equal
-weight across registered mechanism families. The resampling unit is a whole
-paired generated scene-by-device-draw world shared across `D0`--`D4`, never an
-individual pixel or time point.
-
-### Required secondary endpoints
-
-- focal-event localization error in millimetres on the common surface grid;
-- wave-direction angular error and propagation-speed relative error;
-- transient detection proper log score;
-- 50%, 80%, 90%, and 95% field-interval coverage and sharpness;
-- worst-family and worst-device paired regret;
-- performance after fabrication rounding and dead-pixel draws;
-- latency, conversion load, output bit-rate, and power/thermal proxies; and
-- fixed-probe transfer utility for the registered secondary labels.
-
-Field reconstruction is primary. A candidate cannot trade an arbitrarily
-large field loss for a simulated task gain. The task probes are reported on a
-separate frontier and cannot rescue a failed field endpoint.
-
-## Promotion rule
-
-Exactly one compiled `D3` design may be locked.
-`candidate_ready_virtual_codesign_specification` requires all of the following
-in the one-shot audit:
-
-1. the reference-model qualification gate was passed before search;
-2. the one-sided multiplicity-adjusted simultaneous 95% paired
-   cluster-bootstrap lower bound for the equal-weight macro `Delta R2_SSE` is
-   at least `0.010` against every eligible preregistered `D0`/`D1` frontier
-   member;
-3. the corresponding overall lower bounds versus the matched `D1` and `D2`,
-   and simultaneously versus every resource-eligible registered `D4` control,
-   are each at least `0.005`;
-4. the simultaneous 95% lower bound for every registered signal-mechanism by
-   device-stratum by resource-envelope by eligible-reference contrast is at
-   least `-0.005`;
-5. localization, wave, transient, uncertainty, and downstream-transfer
-   endpoints satisfy their frozen noninferiority margins;
-6. the exact compiled, rounded design satisfies every area, line, AFE,
-   conversion, bit-rate, latency, power/thermal-proxy, and reliability-proxy
-   constraint;
-7. the result survives the mandatory component ablations and influence
-   checks; and
-8. the sealed empirical replay or known-input physical-replay partition shows
-   no prespecified catastrophic plausibility failure.
-
-The provisional secondary noninferiority margins relative to the matched
-control are 0.15 mm for localization error, 5 degrees for wave-direction
-error, 0.05 for wave-speed relative error, 0.01 for normalized transient
-proper-log-score utility, 0.01 for uncertainty ECE, and 0.01 for normalized
-downstream-task utility. Transient AUROC is diagnostic only. Exact signs,
-normalizations, estimators, and simultaneous-interval construction are frozen
-before development outcome access and cannot change afterward.
-
-If a Pareto archive contains several feasible candidates, choose the maximum
-development worst-environment paired gain. Break a tie within `0.005` by lower
-conversion-energy proxy, then lower scan latency, then lexicographically lowest
-canonical design hash. Audit never chooses among multiple candidates.
-
-## Pre-audit development lock
-
-Configuration lock is evaluated only after a valid development stop. A `D3`
-is development-lock eligible only if all of these pre-audit conditions hold:
-
-1. reference qualification, 32 valid trials, exact 16-arm coverage, two
-   adaptive successor cycles, two incumbent/challenger decisions, the 40%
-   post-coverage falsifier share, ledger integrity, and deterministic replay
-   are complete;
-2. under the development interval family, its macro lower bound is at least
-   `0.010` versus every resource-eligible `D0`/`D1` member, at least `0.005`
-   versus the resource-map matched `D1` and `D2`, and at least `0.005`
-   simultaneously versus every eligible `D4`;
-3. every development stratum-by-reference simultaneous lower bound is at least
-   `-0.005`, and every registered secondary noninferiority margin passes;
-4. the rounded compiled design passes every hardware and resource constraint,
-   mandatory development falsifier, ablation, and influence check; and
-5. the development empirical partition passes its software-stability and
-   simulator-envelope stress without contributing to hardware ranking.
-
-If several designs qualify, the frozen tie rule above selects exactly one. If
-none qualifies, no audit opens. Neither the sealed plausibility result nor any
-virtual-audit outcome is a pre-lock prerequisite; those are knowable only after
-the selected candidate and complete comparison bundle are immutable.
-
-## Trial and fairness contract
-
-One valid trial is one fully specified, compiled hardware/readout design plus
-one software recipe evaluated on the complete common development environment
-bank. It includes all frozen training seeds and paired reference reruns. An
-internal continuous relaxation, architecture sweep, or hyperparameter search
-is charged to that trial's compute budget and cannot hide an unbounded search.
-
-A trial is invalid if it:
-
-- fails the hardware constraint compiler;
-- is scored before discrete fabrication rounding;
-- changes the environment bank, metric, target, or reference frontier;
-- receives more software capacity, training steps, calibration data, or
-  feedback than its matched comparator;
-- uses future signal in an acquisition action;
-- reads an audit generator, parameter, trace, score, or diagnostic; or
-- duplicates a prior compiled design and software recipe.
-
-Every adaptive successor records `parent_trial_ids`, changed and unchanged
-operators, directional prediction, falsifier, expected information gain,
-expected cost, outcome evidence refs, successor-cycle ID, and a
-`proposal_context_hash` over the complete visible ledger prefix, as required
-by `../TRIAL_LEDGER.schema.json`.
-
-## Search stages
-
-1. **Source and reference qualification.** Freeze source manifests, design rules,
-   resource model, development/audit roles, reference modes, generator bank,
-   metrics, and qualification tolerances. Pass the reference-model gate.
-2. **Reference frontier.** Evaluate every `D0` and `D1` operating mode with
-   common paired environments and equal software budgets.
-3. **Branch coverage.** Complete the exact 16-arm manifest in
-   [`SEARCH_POLICY.yaml`](SEARCH_POLICY.yaml): one `D0` frontier arm, three
-   `D1` software arms, four `D2` hardware arms, four matched `D3` co-design
-   arms, and four registered `D4` heuristic arms. No adaptive-patience count
-   begins before all 16 valid arms are complete.
-4. **Adaptive search.** Propose compiled successors from development outcomes
-   only. Maintain a feasible Pareto archive, but keep one nonterminal incumbent.
-5. **Falsification and ablation.** Spend at least 40% of post-coverage trials
-   on prior shift, structural-model alternatives, device misspecification,
-   decoder capacity matching, fabrication rounding, component removal, and
-   direct replication.
-6. **Configuration lock.** Apply the explicit pre-audit development-lock rule,
-   then freeze exactly one eligible `D3` winner, the full reference frontier,
-   every resource-eligible `D4`, diagnostic runner-up if permitted, code,
-   environment, resource compiler, design hash, software weights and training
-   recipe, metrics, thresholds, report template, and audit command.
-7. **One-shot audit.** A permission-separated evaluator opens the complete
-   sealed audit once and emits only the predeclared aggregate and per-family
-   outputs.
-
-## Mandatory falsifiers and ablations
-
-- reference-model structural ensemble, not just parameter resampling;
-- independent source-to-surface operator and altered tissue/placement state;
-- unseen spatial spectrum and propagation regime;
-- surprise source outside the high-rate or large-pad region;
-- mode-dependent noise, crosstalk, settling, drift, and contact-gap shifts;
-- matched random and simple checkerboard/tiled geometry controls;
-- pad-geometry-only, schedule-only, software-only, and uncertainty-head
-  ablations;
-- causal acquisition replay proving no future access;
-- equal-capacity and equal-training-budget software twins;
-- fabrication rounding, dead-pixel, gain-yield, and leave-one-device-model-out
-  influence;
-- reversal of the large-pad/small-pad spatial assignment;
-- source/reference convention sensitivity;
-- development empirical-partition spectral-envelope, amplitude-range, and
-  missingness stress; and
-- direct reruns of the incumbent and selected candidate with common seeds.
-
-The 40% falsification requirement refers to development trials. It does not
-permit viewing or adapting to the sealed audit.
-
-## Budget and stopping
-
-Run at least 32 and at most 64 valid trials after the reference-model
-qualification gate. Qualified patience is 12 consecutive eligible valid
-`D3` opportunities, each with its complete linked `D0`--`D4` ladder, after
-minimum trials, exact branch coverage, two adaptive successor cycles, two
-incumbent-challenger decisions, and the required falsification fraction,
-without at least `0.010` improvement in development worst-environment paired
-gain or a new feasible Pareto point. Standalone `D0`, `D1`, `D2`, `D4`, retry,
-qualification, and falsifier executions do not increment patience. At most 12
-engineering failures may be repaired outside scientific patience.
-The thirteenth engineering failure stops the episode as `technical_failure`;
-it is not converted into a scientific conclusion.
-
-The planning resource ceiling is 4,000 aggregate CPU-core-hours, 960 GPU-hours,
-336 wall-clock hours, 512 GB peak memory, 128 GB peak memory per trial, and
-4,096 GB scratch, with at most 8 concurrent GPUs and 128 concurrent CPU cores.
-Profiling must show
-that reference qualification, all mandatory reference modes, minimum branch
-coverage, and the audit can fit before candidate-discriminating outcomes are
-opened. Hitting a resource ceiling at any stage yields `incomplete_search`, not
-evidence for or against a hardware design. Exhausting the finite space before
-minimum evidence is also incomplete unless the compiler has exhaustively
-proved every `D3` branch infeasible. After minimum evidence, exhaustion uses
-the terminal cascade: `closed_complete_incumbent_frontier_not_beaten` applies
-only if every feasible `D3` fails the explicit development frontier
-superiority inequalities; other non-locking cases remain `closed_unresolved`
-unless a more specific rule applies.
-
-The first positive score, appearance of an incumbent, or failure of one branch
-is not a stop event. Search stops only on the first frozen maximum, resource,
-qualified-patience, exhaustion, or all-branches-infeasible event.
-
-## Configuration lock and one-shot audit
-
-The lock bundle hashes:
-
-- every source, exposure, role, and environment manifest;
-- the fitted reference-model ensemble and qualification receipt;
-- finite hardware and software grammar;
-- design-rule and resource compiler versions;
-- complete append-only trial ledger and proposal lineage;
-- all reference, heuristic, incumbent, and diagnostic design hashes;
-- compiled layouts, schedules, ADC/AFE allocations, and post-rounding costs;
-- training code, environments, weights, seeds, and capacity receipts;
-- metrics, aggregation, intervals, margins, tie and retry rules;
-- disjoint development and sealed empirical-replay partition hashes,
-  non-overlap proof, diagnostic, and failure threshold;
-- exact audit runner and report template; and
-- terminal mapping and claim text.
-
-The evaluator accepts only that lock hash. It opens the audit at most once.
-An audit result may change the conclusion class but cannot enqueue a new trial,
-replace the winner, relax a constraint, or change a margin. A mechanical retry
-is allowed only under the common protocol's no-output infrastructure rule.
-
-## Terminal conclusion classes
-
-The following cascade is evaluated from top to bottom; the first satisfied
-rule wins, and every rule implicitly requires that no higher-precedence rule
-has fired. All scientific comparison rules use the same multiplicity-adjusted
-one-sided 95% paired interval family used for promotion.
-
-| Conclusion class | Outer status | Meaning |
+| Outcome | Evidence required | Permitted interpretation |
 | --- | --- | --- |
-| `policy_violation` | `technical_failure` | A forbidden action or post-outcome contract mutation invalidates the episode |
-| `technical_reference_model_unqualified` | `technical_failure` | The reference ensemble fails its frozen pre-candidate qualification gate |
-| `technical_audit_or_support_integrity_failure` | `technical_failure` | Leakage, lock mismatch, duplicate audit opening, or invalid support/evaluator state |
-| `technical_failure` | `technical_failure` | Inputs, compiler, execution, or deterministic replay are invalid |
-| `incomplete_search` | `closed_no_candidate` | A resource ceiling occurs at any stage, or another authorized stop/exhaustion occurs before minimum evidence without exhaustive compiler-infeasibility proof |
-| `closed_resource_or_fabrication_constraint_failure` | `closed_no_candidate` | The frozen compiler exhaustively proves every legal `D3` grammar branch infeasible after rounding |
-| `closed_software_only_sufficient` | `closed_no_candidate` | At least one eligible audited `D1` improves on its same-mode `D0` and is noninferior to `D3`, so hardware redesign is not justified |
-| `closed_hardware_only_no_joint_gain` | `closed_no_candidate` | Audited `D2` improves on `D0` and is noninferior to `D3`, so the joint claim fails |
-| `closed_heuristic_hardware_sufficient` | `closed_no_candidate` | A registered audited `D4` is noninferior to `D3` within the frozen margin |
-| `closed_robustness_or_transfer_failure` | `closed_no_candidate` | Frontier and matched-control macro gates pass, but a stratum, secondary, falsifier, or plausibility gate fails |
-| `closed_development_only_candidate` | `closed_no_candidate` | Every development lock rule passes, but an audit frontier or matched-control gate fails without a more specific equivalence label |
-| `closed_complete_incumbent_frontier_not_beaten` | `closed_no_candidate` | After minimum evidence, the finite admissible `D3` space is exhausted and every feasible design fails the explicit development frontier-superiority inequalities |
-| `closed_unresolved` | `closed_no_candidate` | Minimum evidence is complete, but no positive, specific negative, or exhaustive frontier-negative rule is satisfied |
-| `candidate_ready_virtual_codesign_specification` | `candidate_ready` | One locked compiled `D3` passes every virtual promotion, falsifier, constraint, and plausibility gate |
+| Candidate ready | One locked D3 passes the complete frontier, matched controls, every stratum, secondary endpoints, falsifiers, resource checks, empirical plausibility gate, and sealed audit. | This virtual specification is justified for fabrication or device testing. |
+| Software is sufficient | An eligible D1 improves over its matching D0 and is equivalent to or better than D3 under the registered control rule. | Optimized reconstruction explains the apparent benefit; hardware redesign is not supported. |
+| Hardware alone is sufficient | D2 improves over matched D0 and is equivalent to or better than D3. | The physical change may help, but a special co-designed decoder is not supported. |
+| A simple heuristic is sufficient | An eligible D4 is equivalent to or better than D3. | The complex search did not beat a registered simple rule. |
+| Robustness or transfer failure | The headline frontier comparisons pass, but a stratum, secondary endpoint, falsifier, rounding check, or plausibility gate fails. | The gain is too fragile to advance. |
+| Development-only candidate | Development lock passes, but the one-shot audit fails without a more specific control explanation. | The candidate did not generalize beyond the development models. |
+| Complete frontier not beaten | After minimum evidence, the finite admissible D3 space is exhausted and every feasible design fails an explicit frontier-superiority inequality. | No legal candidate in the frozen space beat the complete incumbent frontier. |
+| Unresolved | Minimum evidence is complete, but no positive or specific negative rule is satisfied. | The experiment is informative but does not distinguish the remaining explanations. |
 
-For the three specific-control labels, `noninferior to D3` means the lower
-bound for `U(control)-U(D3)` is at least `-0.005`. The software-only and
-hardware-only labels additionally require the lower bound for `D1-D0` or
-`D2-D0`, respectively, to be at least zero. A maximum- or patience-based stop
-after minimum evidence is `closed_unresolved` unless a more specific frozen
-rule applies; it is not silently promoted to proof that the complete frontier
-cannot be beaten.
+### When the test is not interpretable
 
-`candidate_ready_virtual_codesign_specification` is a local scientific
-conclusion class. The canonical outer status remains `candidate_ready`; the
-richer label does not invent a new server state.
+| Status | What happened | What may be said |
+| --- | --- | --- |
+| Reference unqualified | The frozen paper-derived model failed its pre-candidate qualification gate. | The candidate comparison never became scientifically valid. |
+| Access or policy failure | Protected audit material leaked, a predeclared rule changed, support was invalid, or the evaluator failed. | No scientific comparison may be claimed. |
+| Technical failure | Inputs, compilation, execution, or repeated engineering repairs failed. | Report the failure; do not turn it into a biological or design conclusion. |
+| Incomplete search | A resource ceiling occurs at any stage, or another authorized stop occurs before minimum evidence. | The search ended without resolving the hypothesis. |
+| All branches infeasible | The frozen compiler proves every D3 grammar branch violates post-rounding design or resource rules. | The registered design space is infeasible under these constraints. |
 
-## Deliverables and claim boundary
+[SEARCH_POLICY.yaml](SEARCH_POLICY.yaml) defines how competing outcomes are
+resolved.
 
-A positive virtual episode delivers:
+## What makes the comparison valid
 
-- a compiled electrode-pad map and row/source acquisition schedule;
-- an explicit external AFE/ADC allocation and resource ledger;
-- the measurement-aware reconstruction recipe and calibration contract;
-- the complete D0-D4 paired comparison and descriptive complementarity result;
-- a reference-model qualification report and model-uncertainty envelope;
-- an audit report over sealed mechanisms and device shifts;
-- failure maps showing where the candidate loses; and
-- a ranked physical-validation plan.
+- The same field realizations, device/process states, nuisance draws, masks,
+  and resource envelopes are paired across D0–D4.
+- Reference eligibility is fixed before candidate outcomes. Contrasts outside
+  a member’s registered support are excluded, never imputed.
+- Cortical-surface voltage is the primary target; latent sources and
+  downstream tasks are secondary diagnostics.
+- Pad averaging is applied exactly once, all voltages have an explicit
+  reference, and causal schedules use only past observations and current
+  hardware state.
+- Electrode geometry, impedance, settling, crosstalk, noise, scan history,
+  and missing pixels are modeled jointly rather than as independent knobs.
+- Unknown physical costs are not treated as zero. A new primitive is illegal
+  until its area, timing, noise, power, calibration, and manufacturing rules
+  are frozen.
+- The sealed audit changes implementation lineage, not merely random seeds.
+- Development and sealed empirical replay partitions are disjoint by subject,
+  device, session, or independently replayed waveform.
+- Ordinary ECoG is not dense ground truth for an unbuilt electrode geometry.
+  It can expose implausible spectra, amplitudes, missingness, or software
+  behaviour, but it cannot validate physical superiority.
 
-It may support:
+If only aggregate public characterization remains available, the study is
+limited to a paper-derived NeuroCam-class reference-model ensemble. It may not
+claim an exact NeuroCam digital twin, transistor-accurate reproduction, or
+matched physical power, yield, reliability, or chronic lifetime.
 
-> Within the registered paper-derived NeuroCam model ensemble, resource
-> constraints, and sealed virtual audit, a compiled co-designed architecture
-> improved cortical-surface field recovery over the complete optimized
-> NeuroCam reference frontier and simple heuristic controls.
+## Required falsification
 
-It may not support:
+The registered falsifiers ask whether the result depends on an easy reference,
+a friendly spectrum, an ideal device, or a hidden resource advantage. They
+include:
 
-- superiority over a fabricated NeuroCam device;
-- chronic safety, stability, biocompatibility, or reliability;
-- fabrication readiness or foundry sign-off;
-- superiority for unregistered species, cortical regions, or behaviours;
-- recovery of unique biological current sources from surface voltage;
-- recording of single-neuron spikes in full-array dynamic mode; or
-- a universal claim that multiscale electrodes or adaptive scanning are best.
+- sweeping the full D0/D1 operating frontier;
+- shifting spatial spectrum, correlation length, propagation speed,
+  direction, curvature, and broad/local mixtures;
+- placing focal events in previously silent or unexpected regions;
+- replacing the source-to-surface operator and jointly shifting noise,
+  crosstalk, RC, settling, drift, saturation, contact gaps, and dead pixels;
+- matching decoder capacity, training steps, seeds, and selection credit;
+- independently retraining D1, D3, and D4;
+- comparing random and simple geometry/schedule controls;
+- reversing large/small pad assignment;
+- geometry-only, schedule-only, software-only, and uncertainty-head ablations;
+- checking pad averaging, causality, reference convention, discrete rounding,
+  common-seed replication, and independent evaluator confirmation;
+- stressing spectra, amplitudes, and missingness on the development empirical
+  partition for D0 and D1 only; and
+- leaving out each signal family and device stratum in turn.
 
-The next physical stage would require, in order, known-input analog replay,
-PBS/phantom device testing, a withheld fabricated tile, a full fabricated
-array, and appropriately governed in-vivo comparison. None is authorized by
-this episode.
+These are evidence, not optional follow-up analyses.
 
-## Prior work and novelty boundary
+## Search budget and stopping
 
-Adaptive electrode selection on Neuropixels establishes that signal context
-can guide use of a limited readout budget. General differentiable sensor
-placement and computational electrophysiological-sensor layout optimization
-also predate this episode. EP20 therefore does not claim novelty for `sensor
-placement plus reconstruction` in the abstract.
+| Limit | Value |
+| --- | ---: |
+| Valid trials | 32 minimum; 64 maximum |
+| Patience after all prerequisites | 12 eligible D3 opportunities |
+| Minimum adaptive history | 2 successor cycles and 2 incumbent/challenger decisions |
+| Post-coverage falsification share | At least 40% |
+| Repairable engineering failures | 12; the thirteenth is a technical failure |
+| Aggregate CPU budget | 4,000 core-hours |
+| GPU budget | 960 GPU-hours |
+| Wall-clock budget | 336 hours |
+| Parallelism | At most 8 GPUs and 128 CPU cores |
+| Memory | 512 GB overall; 128 GB per trial |
+| Scratch | 4,096 GB |
 
-Its intended contribution is narrower: a row-column-circuit-constrained,
-device-shift-audited decomposition of software-only, hardware-only, heuristic,
-and joint co-design gain for a NeuroCam-derived two-dimensional micro-ECoG
-reference.
+Patience begins only after the exact 16-arm panel, 32-trial minimum, successor
+and decision requirements, and falsification share are complete. Only a
+complete eligible D3 opportunity with its linked ladder counts. Patience
+resets after either at least 0.010 improvement in development
+worst-environment paired gain or a new feasible Pareto point. Reaching a
+resource ceiling is neither scientific success nor scientific failure.
 
-Primary references:
+## Audit and claim boundary
 
-- Xie et al., *High-resolution spatial mapping of electrocorticographic
-  activities with NeuroCam: a 4096-channel, multiplexed flexible thin-film
-  transistor array*, Science Bulletin 70 (2025), 4133-4137,
-  <https://doi.org/10.1016/j.scib.2025.11.030>.
-- Choi et al., *Optimal Adaptive Electrode Selection to Maximize
-  Simultaneously Recorded Neuron Yield*, NeurIPS 2020,
-  <https://proceedings.neurips.cc/paper/2020/hash/445e1050156c6ae8c082a8422bb7dfc0-Abstract.html>.
-- Liu et al., *Enhancing deep learning-based field reconstruction with a
-  differentiable learning framework*, Nature Machine Intelligence 7 (2025),
-  <https://doi.org/10.1038/s42256-025-01063-1>.
-- Kim et al., *Computational design and optimization of electro-physiological
-  sensors*, Nature Communications 12 (2021),
-  <https://doi.org/10.1038/s41467-021-26442-1>.
+Before audit, the lock binds the candidate, every reference and control, all
+compiled recipes, software weights, seeds, endpoints, margins, randomization,
+resource rules, and permitted audit report. The steward then opens the sealed
+payload once. The adaptive controller receives only that report. Audit
+outcomes cannot select a replacement candidate or modify the predeclared
+rules.
 
-## Requirements before candidate scoring and audit
+**Strongest permitted positive sentence:** Under the frozen paper-derived
+NeuroCam reference ensemble, registered cortical-field and device conditions,
+matched software budget, and modeled resource constraints, one compiled
+virtual hardware-software design outperformed every eligible NeuroCam
+reference member and registered heuristic control, including in the one-shot
+structural audit.
 
-Candidate scoring and audit access remain closed until all of the following
-exist and are frozen:
+That sentence must be followed by the limitation that the candidate is
+unfabricated and has not established physical superiority, chronic safety,
+manufacturability, or in-vivo performance.
 
-- immutable published-paper, supplement, and characterization-source
-  manifests with hashes and rights records;
-- raw calibration traces or an explicitly accepted aggregate-only reference
-  limitation;
-- exact spatial subsets, channel identities, and marker semantics for every
-  registered reduced NeuroCam operating mode;
-- an exact fitted-versus-held-out reference-qualification split, a resolved
-  frequency-response test-amplitude conflict, and frozen tolerances;
-- a finite legal pad catalogue backed by a PDK or scientist-approved,
-  provenance-bearing conservative surrogate design-rule deck;
-- a complete resource compiler for array lines, AFE/ADC work, conversions,
-  bit-rate, latency, defensibly bounded power/thermal proxy, and routing
-  burden;
-- executable development signal and device generators with registered
-  parameter provenance and separate hashed manifests;
-- an independently implemented, permission-separated audit generator and
-  device-model ensemble, hidden-payload Merkle root, and dependency report;
-- exact, legally usable empirical ECoG replay or known-input phantom sources
-  with disjoint development-stress and sealed plausibility partitions;
-- outcome-blind structural calibration showing that the proposed margins and
-  sample counts are resolvable;
-- the frozen admissible-space, environment, split, exposure, and audit
-  manifests named in `DATASETS.md`;
-- a trusted evaluator that returns only predeclared audit outputs;
-- profiled compute demonstrating that minimum evidence fits the ceiling;
-- human sign-off on the scientific margins and claim text.
+## Current status — 2026-09-26
 
-Until then, this directory defines the research design; no candidate or audit
-result exists.
+EP20 is specified but not ready to execute.
+
+- The final article, DOI, preprint DOI, and aggregate documentary anchors have
+  identified, and the documentary PDF is in the private steward store.
+- EP20 use and rights have not been approved, and the calibration-versus-
+  qualification assignment has not been prepared.
+- The fitted reference ensemble, trusted qualifier, legal alternative-pad
+  catalogue, development models, resource compiler, empirical replay, and
+  independent audit engine do not yet exist.
+- Raw NeuroCam traces, the exact reduced-mode channel map and marker semantics,
+  a PDK, netlist, layout, DAQ code, and operating-mode power traces remain
+  unavailable. Their absence narrows the study to a paper-derived reference
+  ensemble; it does not by itself require pretending those assets exist.
+- The two legacy examples remain documentary-only and are not EP20 inputs.
+- No experiment, candidate score, reference qualification, search, or audit
+  has been run.
+
+The missing approvals, role assignment, qualified reference, executable
+development environment, resource rules, and independent audit block
+candidate scoring. Missing device evidence narrows the permitted claim. None
+of these gaps is permission to guess parameters or treat unknown cost as zero.
+
+For provenance and access roles, see [DATASETS.md](DATASETS.md). For the
+complete search rules, see [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml).

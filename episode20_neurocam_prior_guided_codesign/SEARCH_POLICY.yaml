@@ -1,4 +1,6 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+# Authoritative machine-readable execution contract.
+# Start with GOAL.md for the scientific story and DATASETS.md for provenance.
+# Exact values, order-sensitive lists, and terminal precedence remain here.
 policy_id: ep20_neurocam_prior_guided_codesign_adaptive
 episode_id: ep20
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -11,107 +13,60 @@ dataset_roles:
     pubmed_id: PMID:41309324
     role: documentary_architecture_and_characterization_anchors_only
     candidate_access: visible_before_search
-    source_manifest: inputs/SOURCE_MANIFEST.json
-    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
-    storage_location_id: private_steward_acquisition
-    storage_root: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition
-    storage_relocation: same_filesystem_rename_completed_2026-09-24
-    current_local_payload: documentary_source_in_private_steward_no_episode_handoff
+    storage_root: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/neurocam_documentary_20260922
   reference_examples:
     role: nonbinding_documentary_and_non_candidate_discriminating_simulation_sanity_context_only
     access: visible_before_search
-    bundle_directory: inputs/reference_bundles
-    bundles:
-      paper_direct:
-        path: inputs/reference_bundles/neurocam_paper_direct_v1.json
-        labels: [reference, example]
-        estimation_only: false
-      figure_derived:
-        path: inputs/reference_bundles/neurocam_figure_derived_v1.json
-        labels: [reference, example, estimation]
-        estimation_only: true
     allowed_uses:
       - documentary_context
       - non_candidate_discriminating_simulation_sanity_check
     prohibited_uses:
-      - prior_initialization
-      - model_parameter_prior
-      - search_space_initialization
       - reference_model_calibration
       - reference_model_qualification
       - candidate_scoring
-      - launch_gate_lifting
-      - substitution_for_raw_iv_cv
-      - substitution_for_compact_model
-      - substitution_for_pdk_netlist_or_layout
       - substitution_for_fabrication_outcomes
-    authoritative_for_reference_fit: false
-    authoritative_for_reference_qualification: false
-    launch_gate_effect: none
-    current_payload: absent_from_canonical_episode_legacy_examples_not_provisioned
   reference_model_calibration:
     role: fit_paper_derived_neurocam_class_reference_model_ensemble
     access: development_visible
-    source_manifest: inputs/SOURCE_MANIFEST.json
-    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
-    anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
-    model_contract: inputs/REFERENCE_MODEL_CONTRACT.yaml
-    current_payload: paper_derived_proxy_metadata_contracts_absent_not_fit_ready
   reference_model_qualification:
     role: public_documentary_anchors_withheld_from_reference_fit_by_frozen_role
     access: published_values_visible_role_locked_fit_execution
     qualification_is_fit_holdout_not_secret_external_validation: true
-    gate_output: frozen_pass_fail_receipt_and_predeclared_residual_summary
+    gate_output: pass_fail_and_predeclared_residual_summary
     candidate_tuning_from_outputs: prohibited
-    source_manifest: inputs/SOURCE_MANIFEST.json
-    anchors_manifest: inputs/NEUROCAM_ANCHORS.yaml
-    anchor_split_manifest: inputs/REFERENCE_ANCHOR_SPLIT.yaml
-    qualification_contract: inputs/REFERENCE_QUALIFICATION.yaml
-    current_payload: role_contract_absent_input_gated_not_run
   development_signal_environments:
     role: outcome_visible_adaptive_development
     access: frozen_aggregate_evaluator
     direct_generator_parameter_access_after_freeze: prohibited
-    manifest: null
-    current_payload: absent
   development_device_ensemble:
     role: outcome_visible_adaptive_development
     access: frozen_aggregate_evaluator
     conditional_on_compiled_design: true
-    manifest: null
-    current_payload: absent
   virtual_audit:
     role: one_shot_structural_signal_forward_and_device_shift
     access: permission_separated_evaluator_only_after_lock
     implementation_independent_of_development_required: true
     same_generator_new_seed_is_structural_audit: false
-    commitment_manifest: null
-    current_payload: absent
   empirical_replay_development:
     role: development_spectral_amplitude_missingness_and_software_stress
     access: frozen_development_evaluator
     permitted_design_arms: [D0, D1]
     may_score_rank_or_compare_alternative_hardware_geometry_or_readout: false
     may_select_retire_or_update_D2_D3_D4_hardware_successor: false
-    permitted_ledger_effect: software_stability_or_simulator_envelope_falsifier_only
-    source_manifest: null
-    current_payload: absent
+    permitted_effect: software_stability_or_simulator_envelope_falsifier_only
   empirical_replay_plausibility:
     role: post_lock_catastrophic_plausibility_diagnostic_not_dense_surface_truth
     access: sealed_until_configuration_lock
     may_promote_without_primary_virtual_endpoints: false
-    source_manifest: null
-    current_payload: absent
   empirical_partition_contract:
-    separate_sources_or_disjoint_content_addressed_partitions_required: true
+    separate_sources_or_disjoint_partitions_required: true
     minimum_partition_unit: whole_subject_device_session_or_independent_replayed_waveform
     overlapping_trace_windows_across_roles: prohibited
     development_to_plausibility_summary_or_normalization_leakage: prohibited
   physical_candidate_validation:
     role: deferred_future_episode_only
     permitted_in_ep20: false
-    current_payload: absent
-  required_role_filtered_handoffs:
+  required_separate_roles:
     - documentary_reference
     - reference_calibration
     - reference_qualification
@@ -122,7 +77,6 @@ dataset_roles:
     - empirical_replay_plausibility
     - hardware_rules
   mixed_development_and_audit_mount: prohibited
-  current_execution_state: documentary_source_relocated_to_private_steward_no_episode_handoff_proxy_contracts_and_examples_absent_fit_qualification_trace_design_rules_audit_and_replay_absent
 
 reference_model_qualification:
   required_before_candidate_discriminating_scores: true
@@ -198,9 +152,8 @@ reference_model_qualification:
     - quantization
     - missing_and_dead_pixels
     - conditional_noise
-    - deterministic_replay
     - compiler_rejection
-  fixture_checks_are_execution_integrity_not_documentary_anchor_qualification: true
+  fixture_checks_do_not_qualify_documentary_anchors: true
   missing_pixel_and_yield_anchor_required_only_if_provenanced_target_is_acquired: true
   tolerances_require_outcome_blind_synthetic_calibration_and_scientist_signoff: true
   failure_before_candidate_scores: technical_reference_model_unqualified
@@ -236,14 +189,6 @@ grammar:
     reference_ground_guard_cost_fixed_and_counted: true
     new_on_array_memory_or_compute: false
     adc_afe_circuit_family_fixed: true
-  hardware_grammar_manifest: inputs/FROZEN_HARDWARE_GRAMMAR.yaml
-  hardware_grammar_hash: null
-  design_rules_manifest: inputs/DESIGN_RULES.yaml
-  design_rules_hash: null
-  resource_model_manifest: inputs/RESOURCE_MODEL.yaml
-  resource_model_hash: null
-  software_budget_manifest: inputs/SOFTWARE_BUDGET.yaml
-  software_budget_hash: null
   geometry_families:
     - published_uniform_reference
     - interleaved_two_scale_same_lattice
@@ -290,10 +235,9 @@ grammar:
       selection_metric: maximize_minimum_across_resource_envelopes_of_equal_family_macro_D1_R2_SSE
       within_envelope_aggregation: frozen_equal_signal_family_and_device_stratum_weights
       resource_envelope_aggregation: minimum
-      tie_break: lower_capacity_then_lexicographically_lowest_recipe_hash
-      exact_formula_and_resource_weights_manifest: inputs/SOFTWARE_BUDGET.yaml
+      tie_break: lower_capacity_then_lexicographically_lowest_recipe_id
       selected_subclass: null
-      selected_subclass_hash_required_before_candidate_hardware_scores: true
+      selected_subclass_locked_before_candidate_hardware_scores: true
       all_evaluated_D1_points_remain_in_incumbent_frontier: true
       reselection_after_candidate_hardware_outcome: prohibited
     uncertainty_output_required: true
@@ -331,18 +275,11 @@ grammar:
       hardware: all_registered_resource_matched_heuristic_controls
       software: same_pre_hardware_selected_s1_architecture_and_training_budget_separately_trained
   comparator_matching:
-    manifest: inputs/RESOURCE_MODEL.yaml
     frozen_before_candidate_hardware_scores: true
-    required_fields:
-      - resource_envelope_id
-      - eligible_D0_member_ids
-      - matched_D0_member_id_by_D1_member_id
-      - selected_s1_matched_D1_member_id
-      - eligible_D4_member_ids
-      - latency_conversion_bitrate_power_and_routing_receipt
     D0_and_D1_match_rule: exact_frozen_resource_envelope_id_and_no_candidate_specific_relaxation
     D2_match_rule: identical_compiled_D3_hardware_and_operating_recipe_with_s0
     D4_match_rule: every_registered_heuristic_with_same_resource_envelope_id
+    resource_rule: latency_conversion_bitrate_power_and_routing_are_compared_under_the_same_envelope
     missing_or_multiple_selected_D1_match: invalid_trial
   incumbent_frontier:
     includes_D0_and_D1: true
@@ -355,41 +292,7 @@ grammar:
     single_weak_full_array_baseline_only: prohibited
   trial_atom:
     counted_atom: one_complete_design_arm_across_all_development_signal_device_cells_and_frozen_seeds
-    ledger_schema_ref: ../TRIAL_LEDGER.schema.json
-    all_ledger_schema_required_fields_mandatory: true
-    required_fields:
-      - trial_id
-      - timestamp_utc
-      - previous_record_hash
-      - record_hash
-      - parent_trial_ids
-      - proposal_mode
-      - proposal_context_hash
-      - outcome_evidence_refs
-      - successor_cycle_id
-      - configuration_lock_hash
-      - stage
-      - hypothesis
-      - directional_prediction
-      - falsifier
-      - changed_operator
-      - unchanged_operators
-      - expected_information_gain
-      - expected_cost
-      - config
-      - hashes
-      - state
-      - resources
-      - belief_update
-      - successor_rationale
-      - disposition
-    required_episode_fields:
-      - config.ladder_id
-      - config.design_arm
-      - hashes.compiled_hardware
-      - hashes.software_recipe
-      - hashes.environment_manifest
-      - hashes.resource_receipt
+    recording_rule: record_the_trial_and_parent_ids_hypothesis_changed_operators_D0_D4_arm_hardware_software_environment_resources_outcome_belief_update_and_disposition_in_one_human_readable_entry
     valid_design_arms: [D0, D1, D2, D3, D4]
     complete_linked_D0_D4_ladder_required_for_lock: true
     may_not_split_atom_by:
@@ -401,9 +304,8 @@ grammar:
       - scheduler_job
     not_new_valid_trials:
       - qualification
-      - byte_identical_cached_reference
+      - cached_reference_reuse
       - duplicate_configuration
-      - deterministic_score_replay
       - engineering_retry
       - audit
   hardware_constraint_compiler:
@@ -555,9 +457,8 @@ budgets:
 branch_coverage:
   required: true
   minimum_valid_trials: 16
-  rule: complete_the_exact_sixteen_arm_D0_D4_coverage_manifest_before_adaptive_patience
-  readiness_rejection_must_be_logged: true
-  exact_manifest:
+  rule: complete_the_exact_sixteen_arm_D0_D4_coverage_before_adaptive_patience
+  required_arms:
     - D0_complete_reference_frontier_with_s0
     - D1_reference_frontier_physics_informed_linear
     - D1_reference_frontier_structured_state_space
@@ -602,7 +503,7 @@ required_falsifiers:
   - reference_and_common_mode_convention_sensitivity
   - development_empirical_partition_spectral_amplitude_and_missingness_stress
   - direct_common_seed_replication_of_incumbent_and_candidate
-  - independent_evaluator_replay
+  - independent_evaluator_confirmation
 
 promotion:
   incumbent_is_terminal: false
@@ -626,7 +527,6 @@ promotion:
   require_all_hardware_and_resource_constraints_after_rounding: true
   require_all_mandatory_falsifiers: true
   require_leave_one_family_and_device_influence_checks: true
-  require_deterministic_score_replay: true
   require_empirical_or_phantom_plausibility_diagnostic: true
   empirical_plausibility_catastrophic_failure_threshold: null
   launch_requires_empirical_threshold_freeze: true
@@ -636,7 +536,7 @@ promotion:
     equivalence_width: 0.005
     secondary: lower_conversion_energy_proxy
     tertiary: lower_scan_latency
-    final: lexicographically_lowest_canonical_design_hash
+    final: lexicographically_lowest_preassigned_design_id
 
 development_lock:
   required_before_configuration_lock: true
@@ -646,7 +546,7 @@ development_lock:
     - reference_model_qualification_passed
     - minimum_32_valid_trials_and_exact_16_arm_coverage_complete
     - minimum_two_adaptive_successor_cycles_and_two_incumbent_challenger_decisions_complete
-    - post_coverage_falsifier_fraction_and_deterministic_replay_passed
+    - post_coverage_falsifier_fraction_complete
     - D3_vs_each_eligible_D0_D1_member_macro_simultaneous_lcb_at_least_0.010
     - D3_vs_resource_map_matched_D1_and_D2_macro_lcb_each_at_least_0.005
     - D3_vs_each_resource_eligible_D4_macro_simultaneous_lcb_at_least_0.005
@@ -661,7 +561,7 @@ development_lock:
   no_lock_if_no_development_eligible_candidate: true
 
 stop:
-  before_minimum: prohibited_except_reference_qualification_policy_integrity_evaluator_or_unrecoverable_technical_failure_resource_ceiling_engineering_failure_ceiling_admissible_space_exhaustion_or_exhaustive_D3_compiler_infeasibility
+  before_minimum: prohibited_except_reference_qualification_policy_or_evaluator_failure_resource_ceiling_engineering_failure_ceiling_admissible_space_exhaustion_or_exhaustive_D3_compiler_infeasibility
   patience_starts_after_minimum: true
   patience_requires_branch_coverage: true
   patience_requires_falsifier_fraction: true
@@ -689,7 +589,6 @@ stop:
 
 audit:
   configuration_lock_required: true
-  lock_hash_required: true
   maximum_open_count: 1
   audit_updates_search: false
   evaluator: permission_separated_trusted_runner
@@ -734,7 +633,7 @@ audit:
 terminal_precedence:
   - policy_violation
   - technical_reference_model_unqualified
-  - technical_audit_or_support_integrity_failure
+  - technical_audit_or_support_failure
   - technical_failure
   - incomplete_search
   - closed_resource_or_fabrication_constraint_failure
@@ -759,7 +658,7 @@ terminal_mapping:
   closed_unresolved: closed_no_candidate
   incomplete_search: closed_no_candidate
   technical_reference_model_unqualified: technical_failure
-  technical_audit_or_support_integrity_failure: technical_failure
+  technical_audit_or_support_failure: technical_failure
   policy_violation: technical_failure
   technical_failure: technical_failure
 
@@ -774,10 +673,10 @@ terminal_discrimination:
       trigger: any_forbidden_action_audit_leak_or_post_outcome_contract_mutation
     technical_reference_model_unqualified:
       trigger: frozen_reference_qualification_attempted_and_failed_before_candidate_hardware_scores
-    technical_audit_or_support_integrity_failure:
-      trigger: lock_mismatch_duplicate_open_invalid_support_artifact_or_evaluator_integrity_failure
+    technical_audit_or_support_failure:
+      trigger: changed_predeclared_rules_duplicate_open_invalid_support_or_evaluator_failure
     technical_failure:
-      trigger: unrecoverable_input_compiler_execution_deterministic_replay_failure_or_engineering_failure_count_above_12_not_classified_above
+      trigger: unrecoverable_input_compiler_or_execution_failure_or_engineering_failure_count_above_12_not_classified_above
     incomplete_search:
       trigger: resource_ceiling_at_any_stage_or_other_authorized_stop_or_space_exhaustion_before_complete_minimum_evidence_without_exhaustive_D3_compiler_infeasibility_proof
     closed_resource_or_fabrication_constraint_failure:

@@ -1,12 +1,11 @@
 # Outputs
 
-This is the clean output workspace for the Episode 20 drafting contract. No
-experiment has started, no reference model has been qualified, no adaptive
-search has run, no audit asset has been opened, and no candidate or scientific
-conclusion has been evaluated.
+EP20 is still at the study-design stage. No reference model has qualified, no
+candidate search has run, and no audit material has been opened.
 
-Only the seven required workspace projections live here. They are readable
-client-side displays and grant no execution, review, scientific, memory,
-Society, ClaimCard, or Landscape authority. Transient computation belongs in
-episode-specific scratch during the episode task; candidate and audit access
-remain subject to the scientific role and qualification conditions.
+**ep20_conceptual_main_figure.png** is the synthetic overview used in
+`../GOAL.md`. It illustrates the planned D0–D4 comparison and sealed audit; it
+contains no measured performance and identifies no winning design.
+
+The remaining files summarize current status and will be updated only when
+real qualification, search, or review work occurs.
