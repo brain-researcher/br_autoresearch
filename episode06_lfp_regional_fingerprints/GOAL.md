@@ -138,6 +138,9 @@ within each animal by
 - if all six sessions per animal are not eligible, stop at the frozen
   sample-size/identifiability gate rather than outcome-guided reallocation.
 
+This algorithmic hash is retained only to assign session roles without using
+neural outcomes; it is not a file-checksum or acquisition requirement.
+
 All current-release outcomes are conservatively exposure-tainted by related
 historical work. Thus this internal audit tests procedure and within-corpus
 session transfer; it is not independent confirmation.
@@ -233,7 +236,8 @@ area 2 cannot rescue or strengthen the primary M1/PMd decision.
    ridge, CCA, prototype, and regularized-classifier anchors before
    exploitation.
 3. **Adaptive development:** make one mechanism-led operator change per trial;
-   record parent, hypothesis, complete DAG/hash, per-session profiles,
+   record parent, hypothesis, complete configuration and parentage,
+   per-session profiles,
    cross-animal scores, constraints, runtime, and failure reason. Maintain a
    nonterminal incumbent and robustness/complexity Pareto archive.
 4. **Successive fidelity:** prune only on frozen inner session folds. Every
@@ -243,14 +247,16 @@ area 2 cannot rescue or strengthen the primary M1/PMd decision.
    leave-one-session influence, reliability matching, electrode/trial budget
    matching, low-frequency-only, spike-bleed-through, window, mapping, and
    profile-block ablations.
-6. **Configuration lock:** choose exactly one policy and hash source/session
-   manifests, code, environment, feature semantics, folds, transforms,
-   hyperparameter rule, nulls, thresholds, seeds, and output schema.
+6. **Configuration lock:** choose exactly one policy and freeze the source
+   release, eligible sessions, executable policy/code, feature semantics,
+   folds, transforms, hyperparameter rule, nulls, thresholds, seeds, and
+   required outputs in one write-once record.
 7. **One-shot internal audit:** reveal the four reserved current-release
    sessions together and score the locked policy once. No candidate or rule
    changes follow this reveal.
-8. **External-confirmation handoff:** end the current round, preserve its lock
-   hash and audit receipt, and specify a future third-animal successor round.
+8. **External-confirmation handoff:** end the current round, preserve its
+   write-once configuration and audit record, and specify a future third-animal
+   successor round.
    That successor may apply the identical locked policy once; the new animal
    cannot update the representation, alignment, decision rule, thresholds, or
    stopping logic in a direct generalization test.
@@ -297,9 +303,9 @@ headline accuracy.
 - per-trial memory ceiling: **128 GB**;
 - scratch-storage ceiling: **750 GB**.
 
-Structural QC, deterministic session allocation, fixtures, and exact reruns
-after proven infrastructure failure do not count as scientific hypotheses but
-remain ledgered and consume resource ceilings.
+Structural QC, deterministic session allocation, fixtures, and a rerun after a
+proven infrastructure failure that released no score do not count as
+scientific hypotheses but remain logged and consume resource ceilings.
 
 ## Terminal classes
 

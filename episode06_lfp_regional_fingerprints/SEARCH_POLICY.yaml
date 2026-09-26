@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep06_lfp_regional_fingerprints_adaptive
 episode_id: ep06
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -19,7 +18,7 @@ research_program:
     starts_after_primary_development_result_is_fixed: true
     automatically_launched_by_this_policy: false
     primary_winner_or_terminal_may_be_overwritten: false
-    source: hash_ranked_development_sessions_only
+    source: outcome_blind_development_sessions_only
     source_is_independent_replication: false
     cross_animal_directions: [mihili_to_chewie, chewie_to_mihili]
     prediction_target: training_derived_spike_population_latent_on_heldout_trials
@@ -39,7 +38,7 @@ research_program:
       freeze_before: any_target_animal_followup_population_recovery_score
       target_base_predictors: one_independently_fit_locked_recipe_predictor_per_band
       target_latent_basis_and_outcome_scale: one_training_only_fit_per_session_region_fold_shared_by_all_bands_and_rules
-      common_prediction_tensor_must_be_frozen_and_hashed_before_mixture: true
+      common_prediction_tensor_must_be_frozen_before_mixture: true
       mixture_level: frozen_bandwise_prediction_outputs
       coefficient_intercept_scaling_or_penalty_fit_after_mixture: forbidden
       separate_postclassification_supervised_regional_model_allowed: false
@@ -92,7 +91,7 @@ research_program:
 dataset_roles:
   shared_exposure_ledger_group: lfp_ep05_ep08
   development:
-    source: hash_ranked_four_of_six_eligible_mihili_and_four_of_six_chewie_l_sessions
+    source: outcome_blind_four_of_six_eligible_mihili_and_four_of_six_chewie_l_sessions
     use: adaptive_search_and_nested_session_selection
     freshness: historically_exposed
   selection:
@@ -100,12 +99,12 @@ dataset_roles:
     use: constrained_global_policy_selection
     freshness: internal_only
   internal_audit:
-    source: hash_ranked_two_of_six_eligible_sessions_per_primary_animal
+    source: outcome_blind_two_of_six_eligible_sessions_per_primary_animal
     use: one_shot_locked_within_corpus_session_transfer
     freshness: exposure_tainted_procedural_audit
     available: conditional_on_structural_eligibility_and_firewall
   audit:
-    source: hash_ranked_two_of_six_eligible_sessions_per_primary_animal
+    source: outcome_blind_two_of_six_eligible_sessions_per_primary_animal
     use: one_shot_locked_within_corpus_session_transfer
     freshness: exposure_tainted_procedural_audit
     available: conditional_on_structural_eligibility_and_firewall
@@ -243,8 +242,8 @@ stop:
 audit:
   mode: one_shot_after_configuration_lock
   configuration_lock_required: true
-  lock_hash_required: true
-  source: four_hash_reserved_current_release_sessions
+  configuration_lock_write_once: true
+  source: four_outcome_blind_reserved_current_release_sessions
   maximum_open_count: 1
   audit_updates_search: false
   claim: procedural_within_corpus_session_transfer_only

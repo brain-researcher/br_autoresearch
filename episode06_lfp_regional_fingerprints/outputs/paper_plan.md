@@ -102,7 +102,7 @@ D[b,l]      = P[M1,b,l] - P[PMd,b,l]
 P[pool,b,l] = 0.5 * (P[M1,b,l] + P[PMd,b,l]).
 ```
 
-`D` alone is not enough to recover two undifferenced profiles; the immutable output
+`D` alone is not enough to recover two undifferenced profiles; the locked output record
 must retain `P[M1]`, `P[PMd]`, `D`, and `P[pool]`. On the structurally frozen
 common band set `B*` and latent set `L*`, apply the same parameter-free
 band-marginal projection to each prototype:
@@ -136,7 +136,7 @@ For each `(target session, region, fold)`, fit one target-training latent basis
 and outcome scaler, shared by every band and rule. Then fit each supported band's base
 LFP-to-latent predictor once, without giving the fit a rule identity or source
 weight. Restore all base predictions to the same target-latent units and freeze
-and hash the common held-out tensor `Yhat[region,b,t,l]`. Only then form
+the common held-out tensor `Yhat[region,b,t,l]`. Only then form
 
 ```text
 Yhat_rule[t,l] = sum over b in B* w[rule,b] * Yhat[b,t,l].
@@ -169,7 +169,7 @@ activity.
 
 ### 4. Use the one internal opening correctly
 
-The four hash-reserved sessions can test both the primary classifier and the
+The four outcome-blind reserved sessions can test both the primary classifier and the
 follow-up consequence only if all follow-up outputs and decision rules are
 declared before the single configuration lock. Reveal all four together.
 Do not inspect classifier scores first and then decide whether to compute the
@@ -212,7 +212,7 @@ Chewie-R implant are not a third animal.
 | Flexible latents or mappings create separability | TME/smoothness/dimensionality-matched surrogate and capacity-matched mapping/null procedure | No profile-specific evidence |
 | Band names or numeric column order leak the label | Authenticated guides and full band-label/profile permutation through fitting | Invalid regional interpretation |
 | One animal or session drives the result | Both directional transfers and leave-one-session influence | Narrow or reject transfer claim |
-| Correct-region weighting only has more freedom | Hash one common bandwise prediction tensor, then apply all fixed convex mixtures without any post-mixture fit | No consequence beyond model flexibility |
+| Correct-region weighting only has more freedom | Freeze one common bandwise prediction tensor, then apply all fixed convex mixtures without any post-mixture fit | No consequence beyond model flexibility |
 | Feature units or band labels manufacture the mixture result | Replay positive diagonal raw-feature unit changes through the full locked train-only preprocessing/base fit, source paired-region label swap through `P -> w -> mixture`, source band-label permutation against the fixed target tensor, a `D = 0` collapse sanity check, and a separate uniform-weight reference | Reject or narrow the claimed profile-to-mixture link |
 | Base band predictions are too collinear to distinguish mixtures | Freeze a prediction-tensor identifiability diagnostic and weight-distance margin | Call the consequence non-identifiable rather than evidence for or against regional utility |
 | Area 2 appears to extend the hierarchy | Keep Han/Lando as recording-domain specificity only because area, animal, and task are confounded | No three-region ordering or cortical hierarchy claim |
@@ -248,7 +248,7 @@ null count, compute budget, stopping events, and result labels. The primary
 | 1. Does the label transfer? | Whole-session M1/PMd discrimination works in both animal directions | Paired session design, both directional accuracies, permutation reference, every session |
 | 2. What is the fingerprint? | A named signed frequency-by-latent contrast repeats | All bands and sessions, effect direction, reliability, influence, development-only highlight rule |
 | 3. Neural profile or array artifact? | The contrast survives its strongest measured alternatives | Metadata-only model, matched support, low-frequency/high-frequency and spike-bleed tests, TME and band-label nulls |
-| 4. Does the fingerprint matter? | A fixed band-marginal projection of the profile improves held-out population recovery | Undifferenced region prototypes and equation, one hashed bandwise prediction tensor, pooled/correct/swapped `R2_SSE`, identifiability and rescaling/null checks, both transfer directions |
+| 4. Does the fingerprint matter? | A fixed band-marginal projection of the profile improves held-out population recovery | Undifferenced region prototypes and equation, one frozen bandwise prediction tensor, pooled/correct/swapped `R2_SSE`, identifiability and rescaling/null checks, both transfer directions |
 | 5. Where does it generalize? | The complete locked statement survives reserved sessions and, if available, a third animal | One-shot audit accounting, all failures, third-animal result, explicit unresolved region–array confounding |
 
 The abstract should ultimately state the actual signed contrast, the

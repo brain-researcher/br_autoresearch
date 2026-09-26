@@ -7,7 +7,8 @@ source is the public Dryad release for Gallego-Carracedo et al. (2022), DOI
 `10.5061/dryad.xd2547dkt`, dataset ID 93309, metadata version 7 / internal ID
 194056, with version-5 file payload / internal ID 192175. Historical inventory
 reports 24 MATLAB sessions plus a 1,020-byte README (25 objects totaling
-9,571,571,204 bytes). Reverify every provider/local byte and digest.
+9,571,571,204 bytes). Confirm this named provider release, accessible object
+inventory, and license before use.
 
 The reference publication code is BeNeuroLab commit
 `cbda8e2e6106f5eb5ff98e18a689c595179ac5db`. It is provenance, not proof of a
@@ -32,6 +33,9 @@ structural eligibility, the planned 4+2 design is not silently repaired; stop
 for scientist review of power and identifiability without inspecting regional
 scores.
 
+This algorithmic hash defines only the outcome-blind role assignment. It is not
+a source-file checksum or a readiness gate.
+
 Chewie-L and Chewie-R are the same biological animal. Sessions, regions,
 electrodes, bands, trials, bins, folds, seeds, and profile elements are not
 independent animals.
@@ -44,12 +48,13 @@ narrower fact. The deterministic four-session internal holdout is therefore a
 procedural internal audit, not fresh confirmation. Neither a new split nor the
 fact that the historical EP06 proposal was never executed resets exposure.
 
-## Required immutable asset pack
+## Required scientific source record
 
-Provision a read-only, content-addressed pack containing:
+Before scoring, provision the source read-only and record only the information
+needed to establish its scientific use:
 
-1. exact provider/local manifests, SHA-256 values, versions, and licenses for
-   all source objects and code/dependencies;
+1. provider release and dataset IDs, local locations, licenses, and the
+   analysis-code version actually used;
 2. animal, implant, session, array, region, trial, event, direction, physical
    electrode, unit, and feature-guide tables;
 3. source-to-derived trial IDs proving simultaneous M1/PMd fields share trials,
@@ -59,8 +64,8 @@ Provision a read-only, content-addressed pack containing:
 5. per-session structural support for 15 complete-nine-class physical
    electrodes, at least the frozen minimum spike rank, balanced directions,
    and enough whole trials;
-6. historical-outcome exposure ledger; deterministic development/internal
-   audit session manifest; and per-file access controls; and
+6. historical-outcome exposure record, deterministic development/internal
+   audit session mapping, and per-file access controls; and
 7. synthetic fixtures for MATLAB indexing, history direction, smoothing,
    held-out prediction, profile normalization, region permutation, and nulls.
 
@@ -77,7 +82,7 @@ not available operators.
 - Keep simultaneous M1/PMd trials paired, complete trials intact, and session
   estimates separate until animal-level summaries.
 - The four internal-audit sessions reside outside the search worker's readable
-  outcome path until the configuration-lock receipt exists.
+  outcome path until the write-once configuration lock exists.
 - Reveal all four internal-audit sessions together for one deterministic run;
   hide partial results and permit no candidate/rule change afterward.
 - Historical exposure means a firewall can prevent new adaptive leakage but
@@ -90,7 +95,7 @@ separately frozen confirmation source must provide simultaneous M1 and PMd
 recordings from a third animal under a compatible task and authenticated
 feature pipeline. Before any neural outcome access:
 
-- bind animal/task/hardware/session provenance, license, hashes, eligibility,
+- bind animal/task/hardware/session provenance, license, eligibility,
   trial pairing, guides, and exposure statement;
 - keep neural bytes and comparison summaries inaccessible to the completed
   round's search and internal-audit workers;
@@ -101,8 +106,8 @@ feature pipeline. Before any neural outcome access:
   exclusion, or stopping change for a direct generalization test.
 
 New sessions from Mihili or Chewie cannot satisfy the third-animal requirement.
-An exact infrastructure retry is allowed only if no score was released and all
-hashes remain unchanged.
+An infrastructure retry is allowed only if no score was released and the
+locked source cohort, role assignment, policy, and code remain unchanged.
 
 ## Data needed to explain a transferable fingerprint
 
@@ -119,7 +124,7 @@ not make any current-release outcome fresh.
 
 The follow-up target is the held-out spike-population latent already defined
 from simultaneous spikes. A signed difference alone cannot recover two
-undifferenced regional profiles, so the immutable pack must retain the
+undifferenced regional profiles, so the locked analysis record must retain the
 source-only M1 prototype, PMd prototype, their signed difference, and their
 equal-region pooled prototype on one common band-by-latent support. These are
 the exact normalized/aligned profile coordinates supplied to the locked
@@ -152,25 +157,28 @@ repeats that structural confounding. A pure cortical-area claim would require
 a design that breaks or independently measures it; it cannot be obtained by
 stronger classifier performance in this release.
 
-## Missing assets and blockers
+## Current readiness: revise
 
-- No adaptive content-addressed source pack is bound here.
-- Provider/local hashes, trial pairing, guide semantics, events, electrode and
-  spike-rank support, reliability, dependencies, and licenses must be verified.
-- The exact deterministic 4+2 session-ID manifest has not been generated from
-  an authenticated eligibility inventory.
+- The named Dryad release is not provisioned in `inputs/`.
+- Animal/session/region mapping, trial pairing, guide semantics, events,
+  electrode and spike-rank support, reliability, and license remain to be
+  confirmed.
+- The deterministic 4+2 session allocation has not been materialized from an
+  eligible six-session roster for each primary animal.
 - The four current-release internal-audit response objects are not yet placed
   behind a permission boundary.
 - No third matched M1/PMd animal dataset has been identified, acquired, or
   sealed; population/generalization candidacy is therefore blocked.
-- The search evaluator has not been qualified against the frozen policy; this
-  blocks scored search and audit opening, not explicit task startup.
+- The evaluator has not passed the targeted indexing, leakage, held-out
+  prediction, and null fixtures; this blocks scored search and audit opening,
+  not explicit task startup.
 
 ## Storage and compute boundary
 
 Large immutable inputs remain outside Git and are exposed read-only. Durable
-manifests, code, trial ledger, predictions, lock receipts, and reports belong
-in the episode workspace; transient arrays belong in a dedicated
+source/cohort records, code, trial ledger, predictions, the write-once
+configuration record, and reports belong in the episode workspace; transient
+arrays belong in a dedicated
 `$SCRATCH/br_autoresearch/episode06_lfp_regional_fingerprints/` path.
 Historical EP05/EP06 directories may supply
 explicitly declared provenance only and must not be modified.
