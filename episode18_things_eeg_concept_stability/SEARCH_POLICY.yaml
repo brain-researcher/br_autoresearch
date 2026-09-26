@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep18_things_eeg_concept_stability_adaptive
 episode_id: ep18
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -70,11 +69,8 @@ dataset_roles:
       categorical_encoding: one_indicator_per_observed_level
       categorical_standardized_difference: audit_minus_development_proportion_divided_by_eligible_pooled_Bernoulli_SD
       zero_variance_field: drop_and_record
-    tie_break:
-      digest: sha256
-      salt: ep18_participant_split_v1
-      rule: lexicographically_smallest_digest_of_sorted_audit_IDs
-    exact_ID_manifest_frozen_before_EEG_derived_work: true
+    tie_break: lexicographically_smallest_sorted_audit_ID_tuple
+    participant_IDs_frozen_before_EEG_derived_work: true
     eligible_count_not_46: technical_failure_without_preoutcome_contract_amendment
 
   repeated_image_session:
@@ -117,10 +113,10 @@ grammar:
     exemplars_per_concept: 12
     repeated_images: 200
     repeated_presentations_per_image: 12
-    schema_aware_parser_required: true
+    required_event_fields_units_and_ranges_validated: true
     event_sample_onset_and_E1_marker_agreement_required: true
     BrainVision_marker_to_array_index_convention_must_be_frozen: true
-    exact_event_image_join_and_hash_required: true
+    exact_event_image_join_verified_and_frozen: true
     repeated_image_concept_recovery_uses_validated_stim_path_join: true
 
   participant_folds:
@@ -148,7 +144,7 @@ grammar:
         - lower_effective_degrees_of_freedom
         - lower_rank
         - stronger_regularization
-        - lexicographic_configuration_hash
+        - lexicographic_ordered_configuration_ID
       stronger_regularization_key: larger_minimum_log10_penalty_then_larger_sum_of_log10_penalties_then_lexicographic_penalty_vector
 
   sensor_space:
@@ -159,7 +155,7 @@ grammar:
     extra_sub49_sub50_channels:
       role: sensitivity_only
       terminal_driving: false
-    exact_channel_order_interpolation_rule_none_contrast_basis_and_transform_hash_required: true
+    channel_order_interpolation_rule_none_and_contrast_basis_frozen: true
 
   preprocessing:
     target_sample_rate_hz: 250
@@ -170,10 +166,10 @@ grammar:
       FIR_cutoff_hz: 100
       FIR_window: Kaiser_beta_8.6
       group_delay_compensation_source_samples: 200
-      coefficient_SHA256_and_impulse_fixture_required: true
+      coefficient_recipe_frozen_before_scoring: true
     event_to_250Hz_grid: two_adjacent_sample_fractional_linear_impulse_preserving_exact_source_sample_time
     highpass_filter: none
-    anti_alias_coefficients_and_hash_frozen_before_scoring: true
+    anti_alias_recipe_frozen_before_scoring: true
     maximum_filter_support_each_side_ms: 1000
     raw_padding_each_side_ms: 1000
     raw_padding_windows_must_not_overlap_another_scored_sequence: true
@@ -227,10 +223,10 @@ grammar:
         - category53_multihot
       family_weighting: rescale_each_nonempty_family_to_Frobenius_norm_sqrt_1854_then_concatenate
       same_prepared_matrix_used_by_linear_label_readout_and_RBF_kernel: true
-      exact_matrix_crosswalk_column_order_and_SHA256_required: true
+      matrix_crosswalk_column_order_and_values_frozen_before_EEG_use: true
     upstream_encoder_or_raw_feature_selection_uses_EP18_EEG: false
-    exact_checkpoint_revision_weight_hash_license_training_lineage_preprocessing_layer_pooling_and_dimension_required: true
-    manifest_frozen_before_candidate_discriminating_EEG_scores: true
+    checkpoint_ID_revision_license_training_lineage_preprocessing_layer_pooling_and_dimension_required: true
+    feature_registry_frozen_before_candidate_discriminating_EEG_scores: true
     no_postscore_checkpoint_or_model_zoo_expansion: true
 
     pinned_learned_extractors:
@@ -260,7 +256,6 @@ grammar:
         revision: e8e487298228002f3d8a82e0cd5c8ea9c567f57f
         outputs: [final_pooled_image_embedding]
     pinned_revision_change_after_policy_freeze: prohibited
-    local_weight_file_SHA256_and_extracted_matrix_SHA256_required: true
     unresolved_or_incompatible_license: candidate_discriminating_EEG_scores_prohibited
 
     handcrafted_image_features:
@@ -273,7 +268,7 @@ grammar:
         - Sobel_edge_density_and_orientation_16_bin_histogram
         - Gabor_mean_and_SD_for_frequencies_0.05_0.10_0.20_and_orientations_0_45_90_135_degrees
         - center_of_mass_second_moments_and_quadrant_luminance_contrast
-      implementation_and_numeric_test_fixture_hash_required: true
+      implementation_frozen_before_candidate_discriminating_EEG_scores: true
 
     human_label_features:
       concept_name_embedding: all_mpnet_model_above_on_exact_normalized_concept_name_without_prompt
@@ -282,7 +277,7 @@ grammar:
         - category27_manual.tsv
         - category53_wide-format.tsv
       source: acquired_THINGS_metadata_snapshot
-      exact_table_SHA256_row_crosswalk_missing_value_and_multilabel_encoding_required: true
+      source_table_version_row_crosswalk_missing_value_and_multilabel_encoding_required: true
 
     core_image_panel:
       required_families:
@@ -299,9 +294,9 @@ grammar:
       substitutions_for_core_families: prohibited
       terminal_driving: true
 
-    unresolved_extractor_manifest:
+    unresolved_extractor_record:
       candidate_discriminating_EEG_scores_allowed: false
-      reason: exact_model_ID_revision_and_weight_hashes_must_first_be_recorded
+      reason: model_ID_revision_and_required_source_terms_must_first_be_recorded
 
     downstream_reduction:
       method: training_only_centering_and_PCA
@@ -457,7 +452,7 @@ grammar:
         tie_order:
           - smaller_absolute_df_gap
           - stronger_penalty
-          - lexicographic_configuration_hash
+          - lexicographic_ordered_configuration_ID
 
   matched_partitions:
     bank_size_K: 8
@@ -502,11 +497,11 @@ grammar:
           - target_indicator
           - validated_response_indicator
         outside_sequence: explicit_boundary_mask_not_wraparound
-        vector_construction: concatenate_standardized_fields_in_fixed_event_offset_then_feature_manifest_order_with_boundary_mask_bits
+        vector_construction: concatenate_standardized_fields_in_fixed_event_offset_then_frozen_feature_registry_order_with_boundary_mask_bits
         continuous_field_standardization: mean_and_population_SD_over_all_main_events_without_EEG
         zero_variance_continuous_field: drop_and_record
       PCA_fit_pool: all_22248_images_without_EEG
-      exact_matching_feature_manifest_and_transform_hash_required: true
+      matching_feature_record_and_transform_frozen_before_partition_generation: true
 
     metric_construction:
       unit: one_scalar_per_participant_outer_fold_group_feature_family_and_registered_metric
@@ -554,8 +549,8 @@ grammar:
 
     generation:
       PRNG: numpy_PCG64DXSM
-      seed_salt: ep18_pseudo_bank_v1
-      seed_derivation: first_8_bytes_big_endian_of_sha256_salt_participant_k_start
+      seed_offset: 180018
+      seed_derivation: participant_numeric_ID_times_1000003_plus_k_times_1009_plus_start_plus_seed_offset_modulo_2_to_64
       starts_per_bank_member: 64
       bounded_swaps_per_start: 100000
       legal_start: seeded_random_block_stratified_partition_with_distinct_true_concepts
@@ -563,7 +558,8 @@ grammar:
       objective:
         first: lexicographically_minimize_sorted_normalized_constraint_exceedances
         second: minimize_sum_squared_standardized_metric_discrepancies
-        third: lexicographically_minimize_sha256_of_partition_membership
+        third: lexicographically_minimize_canonical_partition_membership_tuple
+      canonical_partition_order: sort_image_IDs_within_each_group_then_sort_group_tuples
       accept_move: strict_lexicographic_objective_improvement_only
       acceptance: every_registered_tolerance_passes_in_every_outer_fold
       diversity_failure_against_earlier_bank_member: reject_and_continue_to_next_frozen_start
@@ -594,7 +590,7 @@ grammar:
       source: outer_training_blocks_only
       residual_source: frozen_nuisance_only_model
       estimator: Ledoit_Wolf_shrinkage
-      implementation_version_and_numeric_fixture_hash_required: true
+      covariance_recipe_frozen_before_candidate_comparison: true
       residual_pooling: concatenate_all_retained_outer_training_samples_after_nuisance_fit_with_each_sample_once
       residual_centering: subtract_pooled_training_residual_mean
       inverse_square_root: symmetric_principal_eigendecomposition
@@ -815,7 +811,7 @@ grammar:
       effective_concept_count_min: 927
     broad_category_guard:
       taxonomy: category27_manual.tsv
-      exact_source_hash_and_concept_crosswalk_required: true
+      source_table_version_and_concept_crosswalk_required: true
       multilabel_rule: leave_category_out_removes_every_concept_tagged_with_that_category
       terminal_rule: every_leave_one_category_primary_and_minimum_partition_point_estimate_positive
 
@@ -856,22 +852,23 @@ grammar:
       - sensor
       - partition
     compute_sharding_across_Slurm_jobs: allowed
-    counted_trial_requires_complete_hash_verified_merge_of_every_shard: true
+    counted_trial_requires_complete_merge_with_all_registered_participant_fold_shards: true
     sealed_scientific_failure_record_with_complete_M_label_cap_output_remains_a_valid_baseline_phase_trial: true
-    unique_key: complete_scientific_configuration_hash
-    parent_trial_and_visible_ledger_prefix_hash_required: true
-    byte_identical_engineering_retry_may_reuse_trial_ID: true
+    configuration_ID: ordered_tuple_of_declared_scientific_operator_names_and_values
+    unique_key: configuration_ID
+    parent_trial_and_visible_ledger_position_required: true
+    unchanged_scientific_configuration_engineering_retry_may_reuse_trial_ID: true
 
   successor_grammar:
     exactly_one_scientific_operator_changes_per_successor: true
     operator_semantics: replace_only_the_named_admissible_selector_set_singleton_operators_fix_that_value_and_full_grid_operators_keep_selection_nested_inside_training_folds
     required_fields:
       - parent_scored_trial
-      - visible_ledger_prefix_hash
+      - visible_ledger_position
       - directional_prediction
       - competing_explanation
       - changed_operator
-      - unchanged_operator_manifest
+      - unchanged_operator_values
       - native_falsifier
       - expected_information_gain
       - expected_cost
@@ -928,7 +925,7 @@ grammar:
       unqualified_stop_or_no_lock_eligible_trial: closed_search_exhausted_without_scientific_release_or_audit
     locked_scientific_release:
       adaptive_trials_after_release: 0
-      source: hash_verified_complete_trial_atom_of_the_irreversibly_selected_baseline
+      source: complete_trial_atom_of_the_irreversibly_selected_baseline
       common_image_label_temporal_recipe: immutable
       release_once:
         - categorical_and_pseudo_scores
@@ -977,19 +974,19 @@ objectives:
     direction: minimize
     eligible_pool: lock_eligible_baseline_trials_only
     trial_vector: one_outer_CV_participant_loss_per_each_of_30_development_participants
-    selection_rule: choose_the_lowest_30_participant_mean_then_retain_trials_with_mean_at_most_that_mean_plus_its_sample_SD_over_sqrt_30_then_lower_effective_df_rank_stronger_penalty_and_hash
+    selection_rule: choose_the_lowest_30_participant_mean_then_retain_trials_with_mean_at_most_that_mean_plus_its_sample_SD_over_sqrt_30_then_lower_effective_df_rank_stronger_penalty_and_ordered_configuration_ID
     global_complexity_tie_aggregation:
       effective_df: equal_mean_over_30_participants_times_6_outer_folds
       realized_rank: equal_mean_of_the_sum_of_realized_family_and_temporal_ranks_over_the_same_180_cells
       stronger_penalty: larger_mean_of_log10_image_label_and_RBF_penalties_over_the_same_180_cells
-      final_tie: lexicographically_smallest_complete_configuration_hash
+      final_tie: lexicographically_smallest_ordered_configuration_ID
     concept_true_vs_pseudo_or_negative_control_contrasts_enter_incumbent_selection: false
     concept_true_vs_pseudo_or_negative_control_contrasts_enter_patience_or_branch_retirement: false
 
   baseline_phase_constraints:
     image_and_task_positive_controls_pass: true
     M_label_cap_design_rank_conditioning_and_fit_pass: true
-    exact_reproducible_refit_from_immutable_inputs: true
+    refit_uses_the_same_frozen_inputs_and_procedure: true
   postlock_scientific_qualification:
     effective_df_capacity_match_passes: true
     all_eight_matched_partitions_and_postselection_rechecks_pass: true
@@ -1038,7 +1035,7 @@ branch_coverage:
 synthetic_qualification:
   required_before_real_candidate_discriminating_scores: true
   generator_contract:
-    event_rows_masks_folds_and_sequence_boundaries: exact_development_manifests_with_no_EEG_values
+    event_rows_masks_folds_and_sequence_boundaries: exact_development_records_with_no_EEG_values
     PRNG: numpy_PCG64DXSM
     seed_salt: ep18_synthetic_fixture_v1
     sensor_noise: 61D_zero_mean_Gaussian_AR1_with_rho_0.8_unit_marginal_variance_and_equicorrelation_0.2
@@ -1070,8 +1067,8 @@ synthetic_qualification:
     - all_eight_fold_specific_pseudo_matching_rules
     - null_false_positive_and_injection_recovery
     - audit_rejection_without_configuration_lock
-    - audit_rejection_of_mutated_hash_or_second_open
-    - deterministic_score_replay_and_resource_metering
+    - audit_rejection_of_changed_lock_or_second_open
+    - deterministic_seeds_and_resource_metering
   may_change_scientific_margin_formula: false
 
 required_falsifiers:
@@ -1109,7 +1106,7 @@ promotion:
   development_only_positive_is_candidate_ready: false
   finalist_selected_by_M_label_cap_prediction_loss_not_concept_contrast: true
   freeze:
-    - source_event_image_and_participant_manifests
+    - source_event_image_and_participant_records
     - exact_30_16_participant_roles_and_permissions
     - EP17_EP18_exposure_ledger
     - channel_order_interpolation_rule_none_reference_and_61D_contrast_basis
@@ -1121,7 +1118,7 @@ promotion:
     - K8_matched_and_random_partition_banks
     - loss_covariance_margins_uncertainty_and_influence_procedures
     - audit_adequacy_and_precision_rules
-    - code_environment_seeds_complete_ledger_and_audit_command
+    - analysis_code_version_seeds_complete_ledger_and_audit_command
 
 stop:
   before_minimum: forbidden_except_integrity_policy_access_or_total_technical_impossibility
@@ -1142,7 +1139,7 @@ stop:
 audit:
   mode: one_shot_whole_participant_participant_refit_replication
   configuration_lock_required: true
-  lock_hash_required: true
+  immutable_write_once_lock_record_required: true
   maximum_open_count: 1
   audit_updates_search: false
   participants_required: 16
@@ -1191,7 +1188,7 @@ audit:
     may_qualify_or_rescue_primary: false
   mechanical_retry:
     allowed_only_if_no_audit_prediction_metric_or_diagnostic_was_emitted: true
-    code_configuration_and_input_hashes_must_be_identical: true
+    locked_procedure_and_inputs_must_be_unchanged: true
   postopen_mutation_refit_rescue_margin_change_or_rerun: prohibited
 
 terminal_mapping:

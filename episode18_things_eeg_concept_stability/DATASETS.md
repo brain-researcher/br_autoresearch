@@ -9,10 +9,11 @@ The complete EEG release, authorized original THINGS image archive, and
 separate THINGSplus-CC0 control archive have been acquired, hash-verified, and
 preserved read-only. The THINGS metadata snapshot is acquired and
 hash-verified in steward quarantine, but its payload is currently
-owner-writable; setup must verify it against the recorded checksums before use
-and freeze the exact input hashes. The sources can support an outcome-blind
-setup phase, but EP18 is not yet a formal episode because its input/output
-guards and seven workspace projections do not exist. The exact image-event
+owner-writable; setup must identify the recorded source version and use a
+read-only working copy. Further integrity checks are needed only if a concrete
+inconsistency appears. The sources can support an outcome-blind setup phase,
+but EP18 is not yet a formal episode because its input/output guards and seven
+workspace projections do not exist. The exact image-event
 join, participant roles, role-filtered views, feature records, and alternative
 partitions are outputs to build and freeze during the episode, not missing
 external datasets.
@@ -23,7 +24,7 @@ external datasets.
 | --- | --- |
 | Complete EEG release | Ready and read-only |
 | Original THINGS image archive and terms | Verified in steward quarantine; encrypted/unextracted; controlled extraction is an episode setup task |
-| THINGS metadata | Acquisition-verified in steward quarantine; currently owner-writable, so verify recorded checksums at use |
+| THINGS metadata | Acquisition-verified in steward quarantine; currently owner-writable, so use the recorded source version through a read-only working copy |
 | THINGSplus-CC0 control archive | Acquisition-verified and read-only; not a substitute for the exact event-image join |
 | Exact image-event join | Build and validate during setup; freeze before feature extraction and model fitting |
 | 30/16 participant roles | Assign outcome-blind during setup; freeze before EEG-derived work |
@@ -63,7 +64,7 @@ and redistribution terms do not follow from the EEG release's CC0 license. The
 original archive was acquired separately under recorded research/noncommercial
 terms and remains encrypted and unextracted in steward quarantine. During
 EP18 setup, the authorized coding workflow may create a read-only working
-extraction and join every event to an exact, hashed image using stimulus and
+extraction and join every event to an exact, identified image using stimulus and
 event metadata. This operation does not require audit EEG values. Extracted
 images, archive credentials, and large derived features remain outside Git and
 retain the source terms.
@@ -238,17 +239,18 @@ metadata, never EEG. Their finalist records must be frozen before audit
 access.
 
 1. **Image index and exact event join.** Include event path, concept ID,
-   exemplar ID, canonical image identity, source-metadata hashes, and exact
+   exemplar ID, canonical image identity, source metadata version, and exact
    local image match for every main and repeated image.
 2. **Feature record and matrices.** For every family, record the source or
-   checkpoint, software version, weights hash, license, training-data lineage,
+   checkpoint and revision, software version, license, training-data lineage,
    image preprocessing, selected layers, pooling, and output dimension. Align
    rows to the exact image index. An image-derived job receives only pixels and
    an opaque image ID; paths, folders, filenames, concept fields, and prompts
    made from those fields are unavailable to it. Concept-name and human
    concept features are generated in a separate label-feature job. Freeze that
    job's missing-value indicators, column drops, 1,854-concept centering and
-   scaling, equal-family weighting, column order, crosswalk, and matrix hash.
+   scaling, equal-family weighting, column order, crosswalk, and frozen matrix
+   values.
    Upstream encoders and raw feature choices cannot use EP18 EEG.
 3. **Participant roles, channels, and folds.** Record the fixed 30/16 IDs,
    assignment rule, 62-channel list and order, the primary interpolation
@@ -304,9 +306,10 @@ stimulus-family confirmation of EP17.
 ## Draft status
 
 The EEG and image archives have been acquired, hash-verified, and preserved
-read-only. The metadata snapshot is acquired and hash-verified but must be
-checked against its recorded hashes when consumed. These sources make
-outcome-blind setup feasible, but EP18 remains an incomplete local draft and
+read-only. The metadata snapshot is acquired and hash-verified; when consumed,
+use its recorded source version through a read-only working copy. These
+sources make outcome-blind setup feasible, but EP18 remains an incomplete local
+draft and
 is not yet a formal episode because its input/output guards and seven workspace
 projections are missing. Once that scaffold is complete, freeze the exact event
 join, participant roles, development view, primary channel transform, and
