@@ -53,8 +53,9 @@ changes are not trials.
 
 1. **Methods-only semantic input:** signed standardized contrast template;
    frozen lexical n-grams; frozen ontology indicators; one of a small,
-   hash-pinned set of general-purpose text encoders; or a registered
-   concatenation of lexical, ontology, and one encoder block.
+   prespecified set of general-purpose text encoders named by stable model
+   version; or a registered concatenation of lexical, ontology, and one
+   encoder block.
 2. **Semantic transforms:** no reduction, train-fold PCA, train-fold PLS, or a
    signed compositional transform that separately encodes positive condition,
    negative condition, and their difference.
@@ -104,9 +105,11 @@ pipeline must be chosen before audit.
 
 ## Adaptive loop
 
-1. **Preflight:** authenticate the 51-group manifest, group participant and
-   derivative lineages, freeze text redaction/taxonomy/polarity, and pass
-   synthetic leakage and sign fixtures.
+1. **Readiness:** verify the 51 groups, participant and derivative lineages,
+   map source/space compatibility, and condition/contrast target
+   observability; freeze text redaction/taxonomy/polarity; and pass the
+   synthetic leakage and sign fixtures. Repeat a check only after a concrete
+   failure or a relevant input or logic change.
 2. **Coverage trials:** run the family prototype, lexical, ontology, one frozen
    encoder, voxel-basis, and atlas-basis anchors so every major operator family
    is tested before exploitation.
@@ -122,8 +125,10 @@ pipeline must be chosen before audit.
    with cluster exclusion, duplicate exclusion, influence analysis, nuisance
    controls, reliability strata, and fixed seed replication.
 6. **Configuration lock:** select exactly one pipeline using the prespecified
-   primary objective and constraints; hash code, environment, manifests,
-   operator DAG, weights, thresholds, and prediction schema.
+   primary objective and constraints, then write an immutable, write-once
+   record of stable input, code, environment, and model version identifiers,
+   the operator DAG, weights, thresholds, prediction fields, and deterministic
+   tie rules.
 7. **One-shot audit:** after verifying the prospective corpus remains sealed,
    execute the locked pipeline and comparator once. No retraining choice,
    threshold change, fallback model, or candidate swap is permitted from audit
@@ -169,7 +174,7 @@ away by a better headline score.
 - per-trial memory ceiling: **128 GB**;
 - scratch-storage ceiling: **1,000 GB**.
 
-Preflight fixtures, deterministic reruns of an identical trial after a proven
+Readiness fixtures, deterministic reruns of an identical trial after a proven
 infrastructure failure, and audit execution do not count as new hypotheses.
 They still consume resource ceilings and remain in the append-only ledger.
 

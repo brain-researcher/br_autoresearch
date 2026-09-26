@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep03_condition_semantics_adaptive
 episode_id: ep03
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -24,7 +23,7 @@ grammar:
     - signed_standardized_contrast_template
     - train_fold_lexical_ngrams
     - frozen_ontology_indicators
-    - hash_pinned_frozen_text_encoder
+    - prespecified_versioned_frozen_text_encoder
     - registered_lexical_ontology_encoder_concat
   semantic_transforms:
     - none
@@ -113,7 +112,7 @@ promotion:
   post_coverage_falsifier_fraction_min: 0.40
   low_fidelity_rule: dominated_trials_may_be_pruned_only_on_frozen_inner_folds
   finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_development_groups
-  lock_rule: select_exactly_one_feasible_pipeline_then_hash_code_environment_manifests_dag_and_thresholds
+  lock_rule: select_exactly_one_feasible_pipeline_then_write_once_lock_stable_input_code_environment_and_model_versions_dag_weights_thresholds_prediction_fields_and_tie_rules
 
 stop:
   before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
@@ -128,7 +127,9 @@ stop:
 audit:
   mode: one_shot_after_configuration_lock
   configuration_lock_required: true
-  lock_hash_required: true
+  lock_record_write_once: true
+  stable_preoutcome_identifiers_required: true
+  deterministic_tie_rule_required: true
   maximum_open_count: 1
   audit_updates_search: false
   retraining: forbidden
