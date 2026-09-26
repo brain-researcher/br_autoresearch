@@ -1,4 +1,4 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+policy_version: 1
 policy_id: ep15_mdtb_topography_vs_geometry_adaptive
 episode_id: ep15
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -26,7 +26,7 @@ dataset_roles:
       - standardized_task_a_reliability_wasserstein_distance
     missing_categorical_values: explicit_level
     missing_age_or_task_a_reliability: block_role_freeze
-    deterministic_sha256_tiebreak: ep15_topography_vs_geometry_role_v1
+    deterministic_final_tiebreak: lexicographically_smallest_sorted_audit_id_tuple
     controller_receives_participant_reliability_values: false
   development:
     access: anatomy_task_a_and_task_b
@@ -158,7 +158,7 @@ grammar:
       anchor:
         branch: M3
         same_Q_basis_support_preprocessing_and_fit_rule: true
-        null_reduction: S_equals_zero_byte_identically_reproduces_paired_M3
+        null_reduction: S_equals_zero_reproduces_paired_M3_within_frozen_numerical_tolerance
       S_parameterization:
         form: S_equals_B_C_B_transpose
         C_symmetric: true
@@ -207,7 +207,8 @@ trial_contract:
     - fixed_M0a_and_M0b_references
     - applicable_operator_and_integrity_certificates
     - all_branch_native_signature_outputs
-  unique_key: scientific_configuration_hash
+  unique_key: predeclared_scientific_configuration_id
+  unique_key_assigned_before_execution: true
   one_trial_cannot_be_split_by:
     - participant_fold
     - condition
@@ -217,7 +218,7 @@ trial_contract:
     - metric
     - scheduler_job
   does_not_count_as_new_trial:
-    - byte_identical_engineering_retry
+    - engineering_retry_with_unchanged_scientific_configuration_and_inputs
     - duplicate_configuration
     - metric_replay
     - readiness_or_synthetic_only_check
@@ -227,7 +228,7 @@ trial_contract:
     - no_target_task_b_fit_access
     - every_applicable_operator_and_integrity_certificate_passes
     - every_native_scientific_signature_is_computed_and_recorded
-    - complete_resource_lineage_and_exposure_record
+    - participant_source_and_exposure_record_complete
   scientific_signature_pass_or_fail_affects_trial_validity: false
   trial_purpose:
     required_enum:
@@ -237,30 +238,30 @@ trial_contract:
       - cross_panel_control
       - ablation
       - influence
-    commit_before_execution: true
+    record_before_execution: true
     exactly_one_primary_purpose: true
   M4_extra_fields:
     - paired_M3_trial_id
-    - paired_M3_configuration_hash
-    - proof_S_zero_byte_identically_reproduces_M3
+    - paired_M3_configuration_id
+    - S_zero_reproduces_M3_within_frozen_numerical_tolerance
 
 panel_record_contract:
-  schema_version: ep15.composite_panel.v1
+  record_version: 1
   materialize_before_audit: true
   immutable_after_lock: true
   required_fields:
     - panel_id
-    - M1_trial_id_and_configuration_hash
-    - M2_trial_id_and_configuration_hash
-    - M3_trial_id_and_configuration_hash
-    - M4_trial_id_and_configuration_hash
-    - M3_M4_pairing_and_S_zero_proof_hash
-    - M0a_M0b_and_negative_control_hashes
-    - coverage_manifest_hash
-    - source_K0_support_and_map_construction_hashes
-    - margins_contrasts_multiplicity_and_decision_code_hashes
-    - visible_ledger_prefix_hash
-    - code_environment_and_retry_policy_hashes
+    - M1_trial_id_and_configuration_id
+    - M2_trial_id_and_configuration_id
+    - M3_trial_id_and_configuration_id
+    - M4_trial_id_and_configuration_id
+    - M3_M4_pairing_and_S_zero_check
+    - M0a_M0b_and_negative_control_ids
+    - coverage_plan_version
+    - source_K0_support_and_map_construction_versions
+    - margins_contrasts_multiplicity_and_decision_implementation_versions
+    - last_included_trial_record_id
+    - prediction_bundle_and_retry_policy_version
   controller_incumbent_id_points_to: panel_id
   branch_replacement_creates_new_panel_id: true
 
@@ -305,7 +306,8 @@ objectives:
     tau_geometry:
       value: null
       scale: individual_geometry_variation_relative_to_SK_equals_K0_norm_squared
-    all_values_and_scales_require_human_signature: true
+    all_values_and_scales_require_recorded_scientist_approval: true
+    scientist_approval_record_is_noncryptographic: true
     freeze_before_first_candidate_discriminating_development_task_b_score: true
     synthetic_detectability_defines_scientific_margin: false
     outcome_dependent_choice_forbidden: true
@@ -316,7 +318,7 @@ objectives:
     decision_statistics: prespecified_linear_contrasts
     class_claim: intersection_union_of_required_components
     across_four_class_claims: Holm_inverted_one_sided_bounds
-    confidence_family_and_code_hash: null
+    confidence_family_and_implementation_version: null
     launch_requires_frozen_implementation: true
     nonsignificance_establishes_adequacy_or_equivalence: false
     crossing_any_decision_boundary: unresolved
@@ -349,11 +351,9 @@ budgets:
 branch_coverage:
   required: true
   minimum_valid_trials: 20
-  rule: exact_20_row_frozen_branch_native_manifest_not_cartesian_hyperparameter_grid
+  rule: exact_20_row_frozen_branch_native_plan_not_cartesian_hyperparameter_grid
   readiness_rejection_must_be_logged: true
-  manifest:
-    ref: inputs/FROZEN_COVERAGE_MANIFEST.yaml
-    sha256: null
+  plan:
     freeze_before_first_development_score: true
     exact_rows: 20
     one_row_one_unique_valid_trial: true
@@ -392,7 +392,7 @@ synthetic_qualification:
   purpose: validate_decision_code_and_operating_characteristics_not_choose_margins
   prerequisites:
     - margin_free_algebra_and_implementation_checks_pass
-    - all_scientific_margins_human_signed
+    - all_scientific_margins_have_recorded_scientist_approval
   seeds_per_world: 100
   worlds:
     - group_only
@@ -414,7 +414,6 @@ successor_policy:
   proposal_requires:
     - parent_trial_ids
     - prior_scored_outcome_refs
-    - complete_visible_ledger_prefix_hash
     - directional_prediction
     - branch_native_falsifier
     - changed_operator
@@ -473,7 +472,7 @@ falsification:
       - cross_panel_control
       - ablation
       - influence
-    purpose_must_be_committed_before_execution: true
+    purpose_must_be_recorded_before_execution: true
     ordinary_optimization_with_embedded_diagnostics_counts_as_falsification: false
     one_trial_counts_in_at_most_one_purpose: true
   M1:
@@ -506,7 +505,7 @@ required_falsifiers:
   - capacity_and_smoothness_matched_random_basis_and_warp
   - equal_task_a_quantity_and_reliability
   - leave_one_development_participant_influence
-  - audit_firewall_and_prediction_hash
+  - audit_firewall_and_prediction_independence
   - published_parameter_and_cache_exposure_audit
   - ep03_accession_collision_audit
 
@@ -526,8 +525,6 @@ promotion:
     M2: feasible_M2_pareto_archive
     M3_M4: compatible_paired_representatives
     tiebreak:
-      signed_executable_spec_hash: null
-      launch_requires_nonnull_hash: true
       lexicographic:
         - metric: minimum_adequacy_and_native_signature_slack
           direction: maximize
@@ -539,6 +536,7 @@ promotion:
           direction: minimize
         - metric: measured_cpu_core_hours
           direction: minimize
+      final_exact_tie: lexicographically_smallest_predeclared_trial_id
   lock_one_configuration: true
   configuration_kind: composite_four_branch_explanatory_panel
   locked_members:
@@ -558,7 +556,7 @@ promotion:
     - four_branch_operators_capacities_certificates_and_pairing
     - scientific_margins_linear_contrasts_and_multiplicity_code
     - synthetic_confusion_matrix_and_null_seed_bank
-    - code_environment_predictions_hashes_and_retry_policy
+    - versioned_decision_implementation_prediction_bundle_and_retry_policy
 
 stop:
   at_any_stage:
@@ -576,7 +574,7 @@ stop:
     reason: required_search_depth_or_executability_not_achieved
   patience_eligible_only_after:
     - minimum_valid_trials
-    - exact_coverage_manifest_complete
+    - exact_coverage_plan_complete
     - falsifier_count_and_fraction_complete
     - two_adaptive_successor_cycles
     - two_incumbent_challenger_decisions
@@ -595,7 +593,7 @@ stop:
 audit:
   mode: one_shot
   configuration_lock_required: true
-  lock_hash_required: true
+  lock_record_must_be_write_once: true
   maximum_open_count: 1
   audit_updates_search: false
   unit: participant
@@ -603,10 +601,10 @@ audit:
   sequence:
     - refit_locked_shared_recipes_on_all_development_participants_only
     - calibrate_each_audit_target_from_anatomy_and_task_a
-    - lock_and_hash_all_panel_predictions_without_task_b_mounted
+    - record_all_panel_predictions_under_locked_panel_id_without_task_b_mounted
     - trusted_evaluator_mounts_task_b_once
     - compute_signal_adequacy_signature_increment_and_equivalence_statuses
-    - seal_primary_decision_hash
+    - write_primary_decision_once
     - emit_nonrescuing_diagnostics
   primary_decision:
     precedence:

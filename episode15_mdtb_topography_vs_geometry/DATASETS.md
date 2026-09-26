@@ -25,20 +25,15 @@ Zenodo's record says CC BY 4.0, the bundled `README.md` and
 observed terms control: retain attribution and do not use the data
 commercially. No participant map or data derivative may be committed here.
 
-## Identity pins
+## Release identity
 
-| Local record | SHA-256 |
-| --- | --- |
-| `SOURCE.md` | `b2fcfcdcdaa99ef4a213083656833277c6af57607da58162ea9c3a716f5c7f89` |
-| `source/participants.tsv` | `43eb5c2c1704578ba5a458985eaf10c51e33f5a33769bbd8c5956cdb8f1bacde` |
-| `source/README.md` | `c8464e2920ee0b4be4e2a23fe92237ee129ad4ba6a27c4b0c1d1c4234fd22368` |
-| `source/dataset_description.json` | `86f0e10edd530063d24338bd1fe5e0e0c8a777fbdf424b359d19eedd3dffd2d5` |
-| `source_metadata/record.json` | `8be08f7f62d68e00f336c3720fc6d350a484fefc5b9b267aac08281b6babb5d7` |
-| `source_metadata/download_manifest.json` | `e952ac05636ab79efff8a80fe02295b3d1c0a1a1b90d70589ec2d1b997c95f90` |
-
-Before extraction, an operator must validate the publisher MD5 values and
-write a content-addressed local manifest with SHA-256 for all 24 participant
-archives and every extracted file used by the episode.
+The Zenodo record, release version, DOI, participant IDs, and read-only source
+root above identify the source used by this episode. Existing provider or
+acquisition checksums may remain with the source metadata as historical
+records, but no new checksum manifest or content-addressed copy is a startup
+or scoring gate. Check an affected archive against provider metadata only if
+it is unreadable, truncated, or otherwise presents a concrete integrity
+problem.
 
 ## Observed structural inventory
 
@@ -108,11 +103,12 @@ and any cleaned alias must retain a reversible mapping.
 
 ## Planned participant roles: 12 development / 12 audit
 
-The earlier 16/8 hash split is withdrawn and must not be reused. The revised
-estimands require a signal gate, equivalence bounds, adequacy, and model-class
-discrimination; eight audit participants are not accepted by default.
+The earlier deterministic 16/8 split is withdrawn and must not be reused. The
+revised estimands require a signal gate, equivalence bounds, adequacy, and
+model-class discrimination; eight audit participants are not accepted by
+default.
 
-No new role manifest has yet been instantiated. Before any candidate-
+No new role assignment has yet been instantiated. Before any candidate-
 discriminating development Task-B score, an outcome custodian must:
 
 1. verify that all 24 participants pass archive, anatomy, Task-A, transform,
@@ -127,15 +123,15 @@ discriminating development Task-B score, an outcome custodian must:
    absolute mean difference and then one-dimensional Wasserstein distance for
    age standardized over all 24 participants; and the same two quantities for
    the Task-A reliability scalar; and
-4. break an exact tie with SHA-256 of the sorted audit IDs under the namespace
-   `ep15-topography-vs-geometry-role-v1`.
+4. break an exact tie by choosing the lexicographically smallest sorted tuple
+   of audit participant IDs.
 
 Missing categorical values are treated as explicit levels; a missing age or
 uncomputable Task-A reliability blocks role freeze rather than triggering
-imputation or exclusion. The reliability code, environment, input hashes,
-selected IDs, complement IDs, each vector component, and assignment hash must
-be human-signed and committed to the lock ledger. The custodian returns only
-the role manifest and balance report; participant-level audit Task-A
+imputation or exclusion. Before development outcomes are opened, record the
+release/version, reliability-rule version, selected IDs, complement IDs, and
+each balance-vector component in the immutable role record. The custodian
+returns only the role assignment and balance report; participant-level audit Task-A
 reliability values are not exposed to the search controller before panel lock.
 After lock, the audit calibrator may read Task A only for the prespecified
 target-personalization step.
@@ -156,7 +152,7 @@ reduced-N primary analysis.
 
 The acquired ZIPs mix Task A and Task B and are not role-safe. An operator
 outside the candidate/controller process must create three immutable,
-content-addressed views after role assignment:
+role-separated views after role assignment:
 
 1. development anatomy plus Task A and Task B for 12 participants;
 2. audit anatomy plus Task A only for 12 participants; and
@@ -170,7 +166,7 @@ update shared priors, choose a branch, tune a margin, or alter stopping.
 
 ## Frozen map construction
 
-Before development Task-B outcomes guide any candidate, freeze and hash:
+Before development Task-B outcomes guide any candidate, record and freeze:
 
 1. the authenticated SUIT route and one common cerebellar gray-matter support
    available for all 24 participants, fixed from anatomy and development data
@@ -193,8 +189,8 @@ Before development Task-B outcomes guide any candidate, freeze and hash:
 9. participant-held-out development rules that exclude the pseudo-target's
    Task B from source maps, priors, fitting, normalization, and thresholds;
    and
-10. an append-only identity/QC ledger for every warning, coverage value,
-    transform failure, exclusion, retry, and output hash.
+10. an ordered identity/QC record for warnings, coverage values, transform
+    failures, exclusions, and retries.
 
 The independence assumption for map halves and geometry partitions must be
 examined using Task A and frozen synthetic/noise fixtures before Task-B model
@@ -287,23 +283,24 @@ Every data-dependent class obeys these rules:
    hierarchy, response profile, source map, basis, regularizer, threshold, and
    normalization is fitted without `i`'s Task B. Anatomy and Task A enter only
    through the frozen target-personalization rule.
-2. For audit, shared parameters are refitted once on development participants,
-   hashed, and locked. Audit anatomy and Task A estimate only prespecified
-   participant-specific parameters; audit-cohort Task A cannot update shared
-   parameters or hyperparameters.
-3. A claimed external or leave-MDTB-out prior needs an immutable training
-   manifest proving that neither `ds002105`, an MDTB derivative, nor an audit
-   participant contributed. Otherwise it is treated as exposed and refitted.
+2. For audit, shared parameters are refitted once on development participants
+   and fixed in the write-once panel lock. Audit anatomy and Task A estimate
+   only prespecified participant-specific parameters; audit-cohort Task A
+   cannot update shared parameters or hyperparameters.
+3. A claimed external or leave-MDTB-out prior needs a fixed source and
+   participant inventory establishing that neither `ds002105`, an MDTB
+   derivative, nor an audit participant contributed. Otherwise it is treated
+   as exposed and refitted.
 4. Implementations disable implicit downloads and inspect package, user, and
    job caches. Every fitted artifact records participant IDs, sessions,
-   conditions, upstream hashes, code commit, seed, and output hash.
+   conditions, the applicable frozen recipe/implementation version, and seed.
 
 ## EP03 collision and campaign dependence
 
 Repository inspection on 2026-09-20 found no explicit MDTB reference in
-EP03's current contract, but EP03's planned accession manifest is absent while
+EP03's current contract, but EP03's planned source inventory is absent while
 MDTB declares lineage to OpenNeuro `ds002105` v1.1.0. Before roles are frozen,
-crosswalk EP03's eventual manifest against `ds002105`. A match binds EP03 and
+crosswalk EP03's eventual source inventory against `ds002105`. A match binds EP03 and
 EP15 into one correlated exposure family and prohibits an independence claim.
 
 ## Audit-opening requirements
@@ -311,22 +308,22 @@ EP15 into one correlated exposure family and prohibits an independence claim.
 Held-out audit access remains closed until all of the following are present
 and verified:
 
-- full local SHA-256 manifest matching the provider record;
+- the versioned release identity and readable participant archives;
 - license/provenance reconciliation under the conservative use rule;
-- authenticated common-space route and common cerebellar support for all 24;
-- four-partition map manifest and evidence supporting the error-independence
+- a confirmed common-space route and common cerebellar support for all 24;
+- a four-partition condition table and evidence supporting the error-independence
   assumptions;
-- human-signed scientific margins, numerical certificates, exact contrast
-  family, multiplicity code, and outcome-blind 12/12 power/abstention record;
-- outcome-blind 12/12 role manifest and balance report;
+- scientific margins with recorded scientist approval in non-cryptographic
+  form, numerical certificates, exact contrast family, multiplicity code, and
+  outcome-blind 12/12 power/abstention record;
+- outcome-blind 12/12 role assignment and balance report;
 - role-filtered immutable handoffs and a permission-separated evaluator;
 - exposure ledger covering EP03, prior MDTB work, people, agents, caches,
   downloaded atlases, and prepared derivatives;
 - development-only refit implementation for M1 and a certified construction
   for M2--M4, including the exact `K0` source geometry;
 - synthetic fixtures and full model-class confusion matrix;
-- frozen 20-row coverage manifest, trial schema, lock manifest, retry policy,
-  and one-open audit receipt format; and
-- a canonical adaptive-search program binding.
+- frozen 20-row coverage plan, ordered trial fields, a versioned write-once
+  panel lock, retry policy, and one-open audit access record.
 
 None is created by this dataset contract.

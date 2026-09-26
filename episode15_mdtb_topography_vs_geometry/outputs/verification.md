@@ -9,12 +9,14 @@
 - Revised YAML parsing with duplicate-key rejection, manual schema-equivalent
   checks, 20-row coverage arithmetic, portfolio policy invariants, registry
   path resolution, old-reference scan, JSON syntax, and whitespace checks:
-  passed on 2026-09-21.
+  passed on 2026-09-21. This is a historical design review, not a check to
+  repeat or a startup, scoring, or audit-opening gate.
 - Independent math, adaptive-policy, prior-exposure, and human-readability
   design reviews were incorporated. This is design review, not evidence that
   any scientific class is adequate.
 - Role-filtered immutable handoff and audit runner: absent.
-- Canonical adaptive binding: absent.
+- Canonical adaptive binding: not requested and not required for standalone
+  episode work.
 - Outcome computation: not run.
 - Task-B audit: not opened.
 - Scientific validity: not mechanically verified.

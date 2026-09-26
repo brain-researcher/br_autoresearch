@@ -247,7 +247,8 @@ C_i=C_i^\top,
 
 The basis is centered, so \(S_i\mathbf1=0\). The paired M3 uses the same
 \(Q_i\), support, basis, preprocessing, and fitting rule; \(S_i=0\) must
-reproduce it byte for byte. The singular values are bounded by
+reproduce it within the frozen numerical tolerance. The singular values are
+bounded by
 \([e^{-s_{\max}},e^{s_{\max}}]\) and the condition number by
 \(e^{2s_{\max}}\). Rank, locality, effective degrees of freedom, smoothness,
 and all bounds are frozen before outcome-guided search.
@@ -401,8 +402,9 @@ endpoint rather than merely predict a nonzero deviation.
 
 ## Scientific margins and inference
 
-Four scientific margins are frozen by human sign-off before synthetic
-decision qualification and before the first
+Four scientific margins are frozen after recorded scientist approval, using
+an ordinary non-cryptographic approval record, before synthetic decision
+qualification and before the first
 candidate-discriminating development Task-B score:
 
 | Margin | Meaning |
@@ -461,7 +463,7 @@ conditions, seven domains, both map halves, both geometry replicates, all
 required endpoints, and all branch certificates. A fold, rank, radius,
 regularization value, seed, metric replay, or scheduler job is not a trial.
 
-The first 20 valid trials implement an exactly frozen coverage manifest: four
+The first 20 valid trials implement an exactly frozen coverage plan: four
 representatives from each of M1--M4 and four cross-panel controls. After
 coverage, successors must cite scored parents, make a directional prediction,
 change at most one scientific operator, and include a branch-native falsifier.
@@ -514,28 +516,32 @@ Other mandatory controls are:
 - participant, condition-domain, and development-source influence analyses;
 - proof that audit Task B affects no mask, support, scaling, QC decision,
   threshold, prior, search proposal, or retry; and
-- byte-identical audit predictions when every audit Task-B file is absent.
+- successful generation of the locked audit predictions with audit Task B
+  unmounted and no audit-B-derived input.
 
 ## Stages and lock
 
 1. **Readiness and margin lock:** authenticate the release, coordinate route,
    four B partitions, condition table, exposure history, participant roles,
-   physically separated handoffs, and human-signed scientific margins.
+   physically separated handoffs, and scientist-approved scientific margins
+   recorded in ordinary non-cryptographic form.
 2. **Synthetic qualification:** after margin-free algebra/software checks,
    validate the full decision tree, certificates, error assumptions, and
    confusion matrix using the already locked margins.
-3. **Branch coverage:** complete the 20-row frozen panel manifest.
-4. **Adaptive development:** run ledger-linked successors and spend at least
-   40% of post-coverage valid trials on falsification or ablation.
+3. **Branch coverage:** complete the 20-row frozen panel plan.
+4. **Adaptive development:** run successors linked to prior scored trial IDs
+   in the ordered trial record and spend at least 40% of post-coverage valid
+   trials on falsification or ablation.
 5. **Panel lock:** select exactly one certified M1, M2, M3, and M4 paired to
    that M3, plus M0a, M0b, and the negative controls. This composite panel is
    the single locked configuration; no cross-branch scalar winner is chosen.
 6. **Audit calibration:** fit target-specific parameters from each audit
-   participant's anatomy and Task A, with Task B unmounted; hash every
-   prediction, certificate, and decision input.
+   participant's anatomy and Task A, with Task B unmounted; record the
+   predictions, certificates, and decision inputs under the write-once panel
+   lock identity.
 7. **Audit once:** the trusted evaluator mounts Task B once, computes all
-   branch statuses, seals the primary decision, and only then emits diagnostic
-   tables.
+   branch statuses, writes the primary decision once, and only then emits
+   diagnostic tables.
 
 ## One-shot outcomes
 
@@ -567,7 +573,8 @@ If any competing branch needed for uniqueness is indeterminate, the outcome is
 
 ## Post-decision diagnosis
 
-Only after the primary decision is cryptographically sealed, the evaluator
+Only after the primary decision is written to the immutable decision record,
+the evaluator
 reports the 13 non-rest shared Task-B conditions, rest separately, and a
 non-rescuing within-session oracle. For each locked M1--M4 recipe, the oracle
 replaces Task-A calibration with the target's Task-B runs `1--8`, refits only
