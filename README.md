@@ -258,6 +258,36 @@ known, and what still needs to be checked. Imaging data do not go into Git.
 The search policy freezes the admissible grammar, objectives, branch coverage,
 budgets, falsifiers, stopping rule, and one-shot audit boundary.
 
+## ASTRA episode export
+
+Every new or resumed direct episode can be represented as a validated
+[ASTRA](https://astra-spec.org/latest/about/) analysis without changing the
+authority boundary of the run.  The exporter comes from Brain Researcher with
+the `astra` extra installed and writes only under the named episode:
+
+```bash
+bin/export-astra \
+  --workspace episode11_projection_types_vs_gradients \
+  --stage plan
+```
+
+At terminal closeout, name the actual selected evidence artifacts and state the
+reviewed finding, refutation, or limitation explicitly:
+
+```bash
+bin/export-astra \
+  --workspace episode11_projection_types_vs_gradients \
+  --stage terminal \
+  --output-ref outputs/verification.md \
+  --finding "The frozen comparison remained inconclusive." \
+  --created-at 2026-09-26T19:30:00Z
+```
+
+Both commands validate against `astra-spec==0.0.14` before writing
+`outputs/astra/v0.0.14/astra.yaml`.  The result is a non-authoritative
+interoperability projection.  It does not approve execution, accept a claim,
+record reward, or update the Landscape.
+
 Once the Goal looks right, open a pull request. I will review the proposal,
 merge accepted episodes, and run them together on Sherlock. I currently have
 the model-token budget to support these runs.
