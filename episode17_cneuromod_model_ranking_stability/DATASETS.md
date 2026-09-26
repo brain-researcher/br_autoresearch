@@ -8,10 +8,10 @@ stored outside this canonical checkout at
 `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw`.
 The root location manifest identifies that tree as `ep17_restricted_raw`; it
 was relocated by same-filesystem rename on 2026-09-24. Operational acquisition
-logs, checksums, and the transfer program remain with the restricted source and
-are intentionally not versioned in this code repository. Candidate scoring and
-audit access remain closed until outcome-blind role assignment, role-filtered
-handoffs, and the remaining scientific contracts are complete.
+records remain with the restricted source and are intentionally not versioned
+in this code repository. Candidate scoring and audit access remain closed until
+outcome-blind role assignment, role-filtered handoffs, and the remaining
+scientific contracts are complete.
 
 Provisioning source bytes is not permission to inspect neural arrays.
 
@@ -89,17 +89,16 @@ it as provenance. Neither payload is part of a code-only checkout.
 
 The root location manifest records the restricted source by logical identifier;
 the machine path remains outside Git and is disclosed only to the trusted
-builder; downstream consumers receive
-approved, role-filtered handoffs. Source-level acquisition evidence stays with
-that workspace rather than being duplicated as tracked manifests, receipt
-files, or checksum sidecars.
+builder; downstream consumers receive approved, role-filtered handoffs.
+Source-level provisioning records stay with that workspace and are not
+duplicated into this episode or treated as launch gates.
 
 The fMRI stimulus archive was transferred separately and is not included in
 the neural-source byte total above. The private-steward-held, pinned
 `images_fmri.zip` is 917,286,854 bytes. Its research/noncommercial terms were
 accepted and recorded on 2026-09-22.
-The archive remains encrypted and unextracted in steward quarantine; controlled
-extraction, per-image hashing, exact event-image alignment, and a role-safe
+The archive remains encrypted and unextracted in steward quarantine;
+controlled extraction, exact provider image-ID/event alignment, and a role-safe
 feature handoff remain feature-computation blockers. None weakens the
 neural-data seal.
 
@@ -111,10 +110,10 @@ verified before the final tree was made read-only; its annex links resolve
 inside the same restricted tree. No MAT, NIfTI, HDF5, or annotation array was
 parsed as part of acquisition.
 
-The exact transfer logs and integrity inventory are operational records beside
-the restricted source. They are not episode inputs and are not carried by Git.
-A new checkout must receive a separately verified, role-filtered handoff; it
-must not infer data-role access from repository files.
+Provisioning records remain beside the restricted source. They are not episode
+inputs and are not carried by Git. A new checkout must receive an explicitly
+approved, role-filtered handoff; it must not infer data-role access from
+repository files.
 
 The raw source remains mixed-role and restricted after transfer. It must not be
 mounted to the adaptive search worker.
@@ -162,7 +161,7 @@ An image is primary-eligible only if:
 - its immutable image and concept IDs agree across all four participants;
 - its required presentations are structurally complete in all four;
 - its trial mapping agrees across B, C, and D; and
-- it passes prespecified, outcome-independent integrity rules.
+- it passes prespecified, outcome-independent structural eligibility rules.
 
 The publication-level expectation is 720 common concepts. Public summaries
 also suggest that `sub-01`, `sub-02`, and `sub-03` have 4,320 unique
@@ -190,7 +189,7 @@ frozen tolerances. Candidate features and neural values cannot influence
 balance or tie-breaking.
 
 The taxonomy is a versioned input, not an informal label source. Before role
-assignment, freeze its release, exact file and hash, concept-ID crosswalk,
+assignment, freeze its release, provider file identifier, concept-ID crosswalk,
 unmapped and multilabel handling, group-merging rule, and minimum cell size.
 The same frozen mapping must be used for both split balance and any terminal-
 driving semantic stratum. The source annotation TSVs remain restricted mixed
@@ -212,8 +211,9 @@ and uncertainty blocks.
 | Sealed audit | role-filtered B/C/D values for audit concepts only | trusted evaluator after lock |
 
 Handoffs are ordinary materialized files, not symlinks back into the mixed raw
-source. Each has a content manifest, immutable hash, owner/group, permission
-report, and no-unexpected-link check.
+source. Each records its role and intended readers; a direct owner/group,
+permission, and link-target check must confirm the access boundary before the
+handoff is released.
 
 ## Response and repeat contract
 
@@ -242,7 +242,7 @@ frozen visual-ROI definition. Before neural-outcome scoring:
 1. freeze the parcel-to-visual-ROI crosswalk;
 2. resample labels to each GLMsingle T1w mask with nearest-neighbor
    interpolation;
-3. record source and target affine, shape, orientation, and checksums;
+3. compare source and target affine, shape, orientation, and voxel mapping;
 4. intersect with voxels finite across B/C/D before outcome scoring; and
 5. predeclare empty/small-ROI refusal thresholds.
 
@@ -263,7 +263,7 @@ A central-directory audit found that all 8,640 CNeuroMod entries map by name to
 the full archive but differ in both uncompressed size and CRC32, so the exact
 CNeuroMod archive cannot be reconstructed by selecting and renaming full-THINGS
 entries. The trusted builder must therefore extract the pinned CNeuroMod source
-under the accepted terms, hash every image, align it to the event image IDs,
+under the accepted terms, align each provider image ID to the event image ID,
 and materialize only the role-safe feature artifacts needed by the episode.
 File names or concept labels are not substitutes for pixels.
 
@@ -278,15 +278,15 @@ Before any EP17 audit neural outcome is opened, either:
 2. freeze EP18's complete stimulus roles, feature controls, and decision rule,
    then label later evidence as correlated/design-exposed.
 
-Downloading and hashing EP17 source files does not open a neural outcome and
-does not, by itself, consume the EP18 design seal.
+Provisioning EP17 source files does not open a neural outcome and does not, by
+itself, consume the EP18 design seal.
 
 ## Audit firewall
 
 CNeuroMod is public, so the seal is prospective campaign governance, not a
 claim that the world has never inspected the data. A valid audit requires:
 
-1. a signed human/agent/cache/publication exposure ledger;
+1. a frozen human/agent/cache/publication exposure record;
 2. one primary relation and at most two disclosed secondary checks;
 3. a lock binding models, features, final development-only voxel
    coefficients, contracts, ROIs, margins, concept blocks, code, environment,
@@ -301,9 +301,10 @@ claim that the world has never inspected the data. A valid audit requires:
 Candidate scoring and audit access remain closed until:
 
 - controlled extraction of the acquired pinned stimulus archive and exact
-  per-image hash/event-ID alignment are complete;
-- the versioned THINGS/THINGSplus taxonomy, hashes, concept crosswalk,
-  label-handling rules, group merges, and minimum cell size are frozen;
+  provider image-ID/event-ID alignment are complete;
+- the versioned THINGS/THINGSplus taxonomy, provider source identifier,
+  concept crosswalk, label-handling rules, group merges, and minimum cell size
+  are frozen;
 - the local events-derived common image/concept universe is frozen;
 - the 480/120/120 roles, six folds, 24 development uncertainty blocks, and
   twelve audit blocks pass balance and completeness checks;
@@ -311,12 +312,12 @@ Candidate scoring and audit access remain closed until:
 - B/C/D trial axes, response units, geometry, and voxel indices align;
 - B/C/D stage-specific ceiling feasibility passes;
 - the anatomical ROI crosswalk and spatial quota supports are frozen;
-- the exact checkpoint/exposure manifest exists;
-- the EP17/EP18 exposure decision is signed; and
+- the controlled checkpoint panel and exposure labels are frozen;
+- the EP17/EP18 exposure decision is frozen; and
 - the trusted evaluator passes an outcome-free synthetic dry run.
 
 A qualification failure before neural outcome access produces no scientific
 terminal. Narrow, valid audit evidence that contradicts
 development may close as `closed_heldout_concept_nonreplication`; wide audit
-bounds close as `closed_audit_underidentified`. Integrity failures are
-technical failures, not null results.
+bounds close as `closed_audit_underidentified`. Identity or access-boundary
+failures are technical failures, not null results.

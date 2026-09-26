@@ -106,8 +106,8 @@ opened.
 
 ### Role assignment
 
-Using metadata only, concepts are deterministically assigned by a versioned
-hash-and-balance procedure to:
+Using metadata only, concepts are deterministically assigned by one frozen,
+versioned balance procedure to:
 
 - 480 development concepts;
 - 120 support/calibration concepts; and
@@ -116,10 +116,10 @@ hash-and-balance procedure to:
 The procedure balances frozen THINGS/THINGSplus taxonomy strata, the
 five-versus-six-exemplar pattern, participant acquisition order, session
 coverage, and repetition lag. Before role assignment, the taxonomy input is
-pinned by release, file hash, concept mapping, unmapped and multilabel rules,
-group-merging rule, and minimum cell size. Balance tolerances and tie-breaking
-are fixed in the role-manifest generator. Candidate-model embeddings cannot
-define or repair the split.
+pinned by release and provider file identifier, concept mapping, unmapped and
+multilabel rules, group-merging rule, and minimum cell size. Balance tolerances
+and tie-breaking are fixed in the role-assignment procedure. Candidate-model
+embeddings cannot define or repair the split.
 
 Every image, repetition, participant row, beta stage, and derived neural value
 inherits its concept's role. No concept can cross roles. Development concepts
@@ -130,9 +130,9 @@ the eligibility gate passes.
 
 ### Permission boundary
 
-The source B/C/D files physically mix all roles. Acquisition may copy and hash
-those bytes into a restricted raw area, but the adaptive search worker never
-receives that area. A trusted splitter creates:
+The source B/C/D files physically mix all roles. Provisioning may place those
+bytes in a restricted raw area, but the adaptive search worker never receives
+that area. A trusted splitter creates:
 
 1. a metadata-only handoff;
 2. a builder-only calibration-neural handoff;
@@ -146,10 +146,10 @@ repetition lag, plus a provider-defined schedule-exception flag. Recognition
 responses, correctness, reaction times, and other behavioral outcomes are
 excluded from role assignment.
 
-The role manifest and handoff hashes are immutable. File permissions are a
-required implementation control, while the no-outcome-access rule is the
-scientific audit boundary. Raw calibration values cannot be used for candidate
-fitting, selection, or scoring.
+The role assignments are immutable once frozen. Materialized handoffs and file
+permissions enforce who can read each role, while the no-outcome-access rule is
+the scientific audit boundary. Raw calibration values cannot be used for
+candidate fitting, selection, or scoring.
 
 ## Controlled model-pair panel
 
@@ -167,9 +167,10 @@ to eight unique checkpoints, including random checkpoints. Reusing a
 checkpoint across controlled pairs is allowed only when each pair still
 isolates one contrast; the resulting comparisons are explicitly dependent.
 
-Every checkpoint needs a version, weight hash, license, parameter count,
-training-corpus lineage, preprocessing recipe, eligible layers, feature shape,
-and target-stimulus exposure status. The admissible exposure labels are:
+Every checkpoint needs an immutable provider checkpoint identifier, license,
+parameter count, training-corpus lineage, preprocessing recipe, eligible
+layers, feature shape, and target-stimulus exposure status. The admissible
+exposure labels are:
 
 - `lineage_audited_no_known_target_exposure`;
 - `known_related_corpus_exposure`;
@@ -204,8 +205,9 @@ fixed. Any stage-specific voxel replacement turns the comparison into a
 Within each preregistered anatomical ROI:
 
 - $A_{all}$: all common finite atlas voxels;
-- $A_N$: the mean estimand over a bank of $K$ deterministic hashed anatomical
-  subsets of size $N$, with frozen subparcel and spatial-bin quotas; and
+- $A_N$: the mean estimand over a bank of $K$ deterministically seeded
+  anatomical subsets of size $N$, with frozen subparcel and spatial-bin quotas;
+  and
 - $R_N$: the top reliability voxels selected only from calibration concepts,
   under the identical $N$, subparcel, and spatial-bin quotas.
 
@@ -254,11 +256,12 @@ successors, not substitutes for these five anchors.
 
 ### Frozen terminal contract universe
 
-Before the first candidate-discriminating neural score, freeze one hashed
-`eligible_terminal_contract_manifest` for every controlled pair and score
-family. It enumerates the exact contract vertices and directed edges that may
-drive a stable-relation or reversal terminal, the outcome-blind applicability
-rule for each entry, and its exact development-to-audit homologous mapping.
+Before the first candidate-discriminating neural score, freeze one immutable,
+versioned `eligible_terminal_contract_manifest` for every controlled pair and
+score family. It enumerates the exact contract vertices and directed edges
+that may drive a stable-relation or reversal terminal, the outcome-blind
+applicability rule for each entry, and its exact development-to-audit
+homologous mapping.
 
 At minimum, wherever the score is mathematically defined, the manifest
 contains both endpoints of all five required isolated edges above. A vertex
@@ -299,8 +302,8 @@ outer fold, every learned operation is fit inside its training concepts:
 No voxel, ROI, image, layer, rank, or regularization choice may use an
 outer-fold score. The final audit predictor is refit once on all development
 concepts using a predeclared outer-fold-to-final aggregation and tie-break
-rule. Its feature transform, hyperparameters, and voxel coefficients are hashed
-before the audit handoff is opened.
+rule. Its feature transform, hyperparameters, and voxel coefficients enter the
+write-once final lock before the audit handoff is opened.
 
 ### Correlation score
 
@@ -369,9 +372,10 @@ stratum; their scales are never combined.
 
 Preregistered anatomical ROIs and one externally defined THINGS/THINGSplus
 semantic grouping may support conditionality claims. The taxonomy release,
-file hash, concept mapping, unmapped and multilabel handling, group-merging
-rule, minimum cell size, pooling rule, and interaction margin are frozen before
-neural scores. Candidate-model embeddings cannot define a scientific stratum.
+provider file identifier, concept mapping, unmapped and multilabel handling,
+group-merging rule, minimum cell size, pooling rule, and interaction margin
+are frozen before neural scores. Candidate-model embeddings cannot define a
+scientific stratum.
 
 A relation that differs by ROI or semantic group is scientific
 specialization. It is not pipeline fragility and does not count as an
@@ -436,8 +440,8 @@ required score outputs, uncertainty outputs, and native falsifiers. A trial
 cannot be split into extra counts by participant, ROI, concept block,
 repetition, fold, seed, subset-bank member, score scale, or scheduler job.
 
-The unique key is a scientific-configuration hash. An engineering retry keeps
-the same ID only if the scientific configuration is byte-identical.
+The unique key is a deterministic scientific-configuration ID. An engineering
+retry keeps the same ID only when every scientific setting is unchanged.
 
 ### Depth and budgets
 
@@ -458,8 +462,8 @@ Budget exhaustion is not scientific success.
 
 Every successor must name its scored parent, directional prediction,
 competing explanation, native falsifier, expected information gain and cost,
-retirement condition, visible-ledger prefix hash, and exactly one changed
-scientific operator.
+retirement condition, the pre-successor ledger revision, and exactly one
+changed scientific operator.
 
 | Observed pattern | Required next attack |
 | --- | --- |
@@ -479,15 +483,15 @@ After development stops, lock exactly one terminal-driving primary relation
 and at most two secondary checks. Secondary checks are disclosed but cannot
 rescue the primary.
 
-The lock binds:
+The write-once lock binds:
 
-- model and checkpoint hashes;
+- immutable model and checkpoint identifiers;
 - image preprocessing, features, layer, PCA rank, and ridge choices;
 - final voxel coefficients fitted only on development concepts;
 - B/C/D, ROI, support, NC, and score contracts;
 - concept roles, audit blocks, response aggregation, and exclusions;
 - all practical margins, adequacy widths, and uncertainty seeds;
-- evaluator code, environment, permissions, and expected output schema; and
+- evaluator code, environment, permissions, and declared score fields; and
 - the EP17/EP18 exposure decision.
 
 The trusted evaluator opens the sealed handoff once and applies the frozen
@@ -505,7 +509,7 @@ The primary relation passes only if:
    corresponding participant-level margin for every signed component;
 3. every leave-one-participant mean retains the required direction;
 4. every leave-one-audit-block mean retains the required direction;
-5. integrity, exposure, and exact-score-contract checks pass; and
+5. role-access, exposure, and exact-score-contract checks pass; and
 6. no audit neural outcome influenced fitting or selection.
 
 ### Negative versus uninformative audit
@@ -541,16 +545,17 @@ Scientific or non-evidential closures:
 - `closed_audit_underidentified`; and
 - `closed_audit_pool_incommensurate`.
 
-Integrity failures are `technical_failure` or `policy_violation`, never a
-scientific null.
+Role-identity or access-boundary failures are `technical_failure` or
+`policy_violation`, never a scientific null.
 
 ## Requirements before neural-outcome access
 
 Downloading the source does not grant neural-outcome access. Candidate scoring
 and audit access remain closed until:
 
-- the THINGS/THINGSplus taxonomy release, hash, concept mapping, label-handling
-  rules, group merges, and minimum cell size are frozen;
+- the THINGS/THINGSplus taxonomy release, provider file identifier, concept
+  mapping, label-handling rules, group merges, and minimum cell size are
+  frozen;
 - the 720-concept eligibility and exact four-person image intersection are
   verified from events;
 - the 480/120/120 role manifest and role-filtered handoffs are frozen;
@@ -558,12 +563,12 @@ and audit access remain closed until:
 - B/C/D stage-specific NC estimators are frozen and calibration-feasible;
 - all ROIs, $N$, $K$, spatial quotas, folds, grids, margins, tolerances,
   audit-adequacy widths, simultaneous-bound estimator, and seeds are frozen,
-  with every numeric scientific threshold signed by the scientist;
-- the hashed eligible terminal contract manifest and every exact
+  with every numeric scientific threshold set before candidate scores;
+- the immutable, versioned eligible terminal contract manifest and every exact
   development-to-audit homologous mapping are frozen before candidate scores;
 - six to eight exact checkpoints form at least three defensible controlled
   pairs and one trained/random falsifier;
-- model exposure and EP17/EP18 split-exposure ledgers are signed;
+- model exposure and the EP17/EP18 split-exposure decision are frozen;
 - the permission-separated evaluator passes a synthetic dry run; and
 - no mixed raw neural source is mounted to the search worker.
 

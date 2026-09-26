@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep17_cneuromod_model_ranking_stability_adaptive
 episode_id: ep17
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -40,7 +39,6 @@ dataset_roles:
     availability_ref: DATASETS.md
     operational_records: steward_managed_with_provisioned_source_not_tracked_in_git
     mixed_raw_files_allowed_in_restricted_staging: true
-    source_integrity_verification_before_role_freeze: allowed
     mixed_raw_files_visible_to_search_worker: false
     role_filtered_handoffs_required: true
   prospective_collision:
@@ -77,7 +75,7 @@ grammar:
       support_calibration: 120
       sealed_audit: 120
     all_images_repetitions_participants_and_stages_follow_concept_role: true
-    assignment_method: deterministic_versioned_hash_and_balance
+    assignment_method: deterministic_versioned_balance
     balance_fields:
       - external_THINGS_or_THINGSplus_taxonomy
       - five_vs_six_exemplar_status
@@ -89,7 +87,7 @@ grammar:
     taxonomy_manifest:
       release: null
       file: null
-      sha256: null
+      provider_source_identifier: null
       concept_ID_crosswalk: null
       unmapped_rule: null
       multilabel_rule: null
@@ -126,7 +124,7 @@ grammar:
       contents: role_filtered_audit_neural_values
       visible_to_search_worker: false
       owner: trusted_evaluator
-    immutable_hashes_and_permissions_required: true
+    immutable_role_assignments_and_permissions_required: true
   model_registry:
     promotion_pairs_required: 3
     promotion_pairs_max: 4
@@ -148,7 +146,7 @@ grammar:
       requirement: each_pair_still_isolates_one_axis_and_dependence_is_declared
       creates_independent_replication: false
     required_fields:
-      - checkpoint_sha256
+      - immutable_checkpoint_identifier
       - architecture
       - objective
       - training_data_lineage
@@ -167,7 +165,7 @@ grammar:
       - exposure_unknown
     known_target_exposure_promotion_eligible: false
     exposure_unknown_clean_claim_allowed: false
-    launch_requires_named_hashed_lineage_clean_panel: true
+    launch_requires_named_lineage_audited_panel: true
   linking:
     primary: voxelwise_ridge_encoding
     frozen_scope: linear_voxel_encoding_only
@@ -193,7 +191,7 @@ grammar:
       fit_data: all_development_concepts_only
       outer_fold_to_final_hyperparameter_aggregation_rule: null
       launch_requires_aggregation_and_tie_break_rule: true
-      hash_feature_transform_hyperparameters_and_voxel_coefficients_before_audit: true
+      write_once_lock_feature_transform_hyperparameters_and_voxel_coefficients_before_audit: true
       audit_refit: prohibited
     mandatory_linking_falsifier:
       count: 1
@@ -218,7 +216,7 @@ grammar:
       terminal_driving: false
     semantic_grouping:
       source: external_THINGS_or_THINGSplus_taxonomy
-      release_file_hash_and_concept_crosswalk: null
+      release_source_identifier_and_concept_crosswalk: null
       unmapped_multilabel_and_group_merge_rules: null
       groups_and_minimum_cell_size: null
       identical_manifest_to_role_balance: true
@@ -242,13 +240,13 @@ grammar:
         terminal_driving: false
     support_levels:
       A_all: common_finite_anatomical_atlas_support
-      A_N: bank_mean_of_deterministic_hashed_N_subsets_with_fixed_spatial_quotas
+      A_N: bank_mean_of_deterministically_seeded_N_subsets_with_fixed_spatial_quotas
       R_N: calibration_repeat_reliability_top_N_with_identical_spatial_quotas
       N_per_ROI: null
-      hashed_subset_bank_size_K: null
+      subset_bank_size_K: null
       subparcel_and_spatial_bin_definitions: null
       quota_manifest: null
-      launch_requires_N_K_bins_quotas_hashes_and_aggregation: true
+      launch_requires_N_K_bins_quotas_seed_and_aggregation: true
       quota_mismatch_is_support_policy_composite: true
     noise_ceiling:
       estimation_pool: support_calibration_concepts_only
@@ -315,7 +313,7 @@ grammar:
     pooled_scale_envelope: prohibited
     correlation_vs_variance_disagreement: metric_target_dependence
     raw_vs_normalized_variance_disagreement: ceiling_treatment_sensitivity
-    launch_requires_scientist_signed_margins: true
+    launch_requires_margins_frozen_before_scores: true
   folds_and_degeneracy:
     candidate_independent: true
     identical_folds_and_image_weights_within_pair: true
@@ -367,7 +365,7 @@ grammar:
       - response_construction
       - audit_mapping
     eligible_terminal_contract_manifest:
-      hash_required: true
+      immutable_version_required: true
       freeze_before_first_candidate_discriminating_neural_score: true
       scope: every_controlled_pair_x_score_family
       enumerates_exact_vertices_edges_and_signed_components: true
@@ -406,9 +404,9 @@ grammar:
       - support_bank_member
       - score_scale
       - scheduler_job
-    unique_key: scientific_configuration_hash
-    engineering_retry_reuses_id_only_if_byte_identical: true
-    parent_trial_and_visible_ledger_prefix_hash_required: true
+    unique_key: deterministic_scientific_configuration_id
+    engineering_retry_reuses_id_only_if_scientific_configuration_unchanged: true
+    parent_trial_and_pre_successor_ledger_revision_required: true
   successor_grammar:
     common_required_fields:
       - parent_scored_trial
@@ -418,7 +416,7 @@ grammar:
       - exactly_one_changed_scientific_operator
       - unchanged_operator_manifest
       - expected_information_gain_and_cost
-      - visible_ledger_prefix_hash
+      - pre_successor_ledger_revision
       - retirement_condition
     branches:
       low_reliability_only:
@@ -509,7 +507,7 @@ required_falsifiers:
   - null_and_trained_vs_random_pair_recovery
   - deliberately_leaky_concept_fold_and_support_pipeline_must_be_detected
   - frozen_480_120_120_global_concept_role_manifest
-  - frozen_hashed_A_N_bank_and_identical_spatial_quotas
+  - frozen_deterministically_seeded_A_N_bank_and_identical_spatial_quotas
   - repeat_split_reliability_and_stage_specific_B_C_D_noise_ceilings
   - no_clipping_and_NC_floor_sensitivity
   - participant_and_candidate_independent_concept_block_influence
@@ -523,13 +521,13 @@ promotion:
   minimum_incumbent_challenger_decisions: 2
   post_coverage_falsifier_fraction_min: 0.40
   balanced_contract_edge_coverage_required: true
-  branch_retirement_certificate_required: true
+  branch_retirement_reason_required: true
   development_only_positive_is_candidate_ready: false
   primary_relation_count: 1
   secondary_checks_max: 2
   freeze:
-    - CNeuroMod_release_commits_object_hashes_and_handoffs
-    - taxonomy_release_file_hash_concept_crosswalk_label_rules_group_merges_and_minimum_cell_size
+    - CNeuroMod_release_identifiers_and_role_filtered_handoffs
+    - taxonomy_release_source_identifier_concept_crosswalk_label_rules_group_merges_and_minimum_cell_size
     - exact_common_image_eligibility_and_480_120_120_concept_roles
     - six_development_folds_24_development_uncertainty_blocks_and_twelve_audit_blocks
     - controlled_model_pair_checkpoint_and_exposure_manifests
@@ -541,12 +539,12 @@ promotion:
     - uncertainty_seed_and_concept_block_manifest
     - primary_and_secondary_relation_ids
     - eligible_terminal_contract_manifest_and_exact_development_to_audit_homologous_mapping
-    - evaluator_code_environment_permissions_and_output_schema
+    - evaluator_code_environment_permissions_and_declared_score_fields
     - EP17_EP18_exposure_decision
 
 stop:
   preexecution_qualification_failure: blocks_candidate_execution_without_terminal
-  after_candidate_execution_before_minimum: only_integrity_policy_evaluator_or_frozen_audit_pool_failure
+  after_candidate_execution_before_minimum: only_identity_access_policy_evaluator_or_frozen_audit_pool_failure
   patience_starts_after_minimum_and_complete_coverage: true
   after_minimum:
     - patience_exhausted
@@ -560,7 +558,7 @@ stop:
 audit:
   mode: one_shot_same_participant_concept_disjoint_heldout_stimulus_replication
   configuration_lock_required: true
-  lock_hash_required: true
+  configuration_lock_write_once: true
   maximum_open_count: 1
   audit_updates_search: false
   source: cneuromod_things_same_four_participants
@@ -595,11 +593,11 @@ audit:
     specialization_interaction_and_both_strata_cross_margins: true
     linking_encoding_and_CKA_cross_opposite_margins: true
     exact_score_margin_response_predictor_and_pool_mapping_required: true
-    integrity_and_exposure_gates_pass: true
+    role_access_and_exposure_gates_pass: true
   negative_classification:
     heldout_concept_nonreplication_requires_adequate_bounds: true
     adequacy_width_threshold_by_score_scale: null
-    launch_requires_numeric_scientist_signed_adequacy_thresholds: true
+    launch_requires_numeric_adequacy_thresholds_frozen_before_scores: true
     adequate_patterns:
       - practical_equivalence
       - opposite_margin_crossing

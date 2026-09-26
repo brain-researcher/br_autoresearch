@@ -14,19 +14,14 @@ scientific result.
 - The final source tree is restricted and read-only. Its annex links resolve
   within that tree; no neural or behavioral array was parsed during source
   acquisition.
-- Transfer logs, integrity inventories, and checksum receipts are retained by
-  the steward beside the provisioned source and intentionally omitted from
-  this code repository. These verification notes do not make a code checkout
-  a data handoff.
+- Provisioning records stay beside the source and are not duplicated as
+  episode launch gates. These notes do not make a code checkout a data handoff.
 
 ## Contract checks
 
 - The old NSD episode directory and old EP04/EP17 shared-data labels have no
   remaining references. The only neural source in EP17 is CNeuroMod-THINGS
   1.0.1.
-- All 19 formal registry paths resolve. Strict duplicate-key YAML parsing, JSON syntax,
-  EP17 role/fold/block/budget/no-refit cross-field checks, shell syntax,
-  control-character, trailing-whitespace, and stale-reference checks pass.
 - Counts agree: 480 development + 120 calibration + 120 audit concepts; six
   80-concept development folds; 24 development uncertainty blocks; twelve
   audit blocks; and 15 mandatory initial trials for three pairs × five edges.
@@ -50,11 +45,12 @@ scientific result.
   19 loops, with no EP17 match. No checkpoint, reward, or external state change
   was submitted; that observation neither starts nor blocks a local task.
 - Candidate scoring and audit access remain closed pending the frozen taxonomy,
-  controlled stimulus extraction and exact per-image/event hash alignment,
+  controlled stimulus extraction and exact provider image-ID/event alignment,
   exact common-image eligibility and 480/120/120 roles, separated
   handoffs, B/C/D alignment and stage-specific ceilings, ROI/support/model/
-  exposure/margin manifests, the terminal-contract universe, EP17/EP18
+  exposure/margin records, the terminal-contract universe, EP17/EP18
   exposure governance, and a permission-separated evaluator.
 
-These checks establish acquisition and contract integrity only. They do not
-establish model-ranking stability or any other scientific conclusion.
+These checks establish source availability and the intended access boundary
+only. They do not establish model-ranking stability or any other scientific
+conclusion.

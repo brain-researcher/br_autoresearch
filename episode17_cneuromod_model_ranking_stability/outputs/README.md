@@ -6,5 +6,5 @@ model-pair conclusion has been evaluated. Transient computation belongs in
 episode-specific scratch during the episode task; protected neural outcomes
 remain unavailable until the role and qualification conditions pass.
 
-Operational source-provisioning logs and integrity records remain with the
-steward-managed payload and are intentionally not tracked as episode outputs.
+Source-provisioning records remain with the steward-managed payload and are
+not duplicated here or treated as episode launch gates.
