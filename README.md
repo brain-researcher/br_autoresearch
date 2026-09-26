@@ -77,6 +77,16 @@ falsification, configuration lock, and held-out evaluation occur inside that
 task. Brain Researcher review, reward, and shared-claim governance remain
 separate from local episode startup.
 
+Readiness work is deliberately lean.  Episodes check the facts that can change
+the scientific answer or permit safe execution—for example independent-group
+mapping, overlap, leakage, source support, endpoint observability, and required
+atlas compatibility.  They do not create new SHA manifests, custom schema
+machinery, receipt chains, or repeated preflight runs by default.  Extra
+engineering checks are added only in response to a concrete inconsistency or
+when the active scientific stage genuinely depends on that exact mechanism. A
+readiness review should lead directly to proceed, revise, or stop, not to a
+larger validation project.
+
 The Goal can be specific:
 
 > Do condition-description features reduce held-out-dataset map error beyond a
@@ -259,9 +269,12 @@ Sherlock.
 ## Repository record
 
 Each formal episode has one current Goal, dataset contract, and search policy.
-Once a run starts, its trials and failures belong in the append-only ledger and
-current output workspace; superseded local version directories are not kept.
-Large imaging data and temporary compute files stay outside Git.
+Once candidate-scoring adaptive execution starts, its scored trials,
+challenger decisions, and execution failures belong in the ordered trial log
+and current output workspace; acquisition and preliminary readiness need only
+the lean decision record required by the scientific question. Superseded local
+version directories are not kept. Large imaging data and temporary compute
+files stay outside Git.
 
 - [CAMPAIGN.md](CAMPAIGN.md) lists formal episode slots, their current status,
   immutable prior runs, and reserved IDs.

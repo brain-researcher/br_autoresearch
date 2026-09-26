@@ -1,9 +1,20 @@
 ---
 name: brain-autoresearch-loop
-description: Run or resume the single persistent, human-gated Brain Researcher autoresearch loop from the current Codex conversation, including Society review, scientist reward and launch approval, visible MCP checkpoints, and explicitly requested native-goal exploration in an already-open GOAL.md/DATASETS.md workspace. Use for outer-loop control, approved registered dispatch, reviewed next-round continuation, or explicit native-goal exploration; not for implicit goals, direct compute, or background service launch.
+description: Operate the canonical, human-gated Brain Researcher campaign, including Society/reward, registered handoffs, and confirmation. Use only when the scientist explicitly requests canonical binding; exclude standalone episode launch or continuation, an ordinary Codex /goal, readiness, and direct compute.
 ---
 
 # Brain Autoresearch Loop
+
+## Applicability gate
+
+Use this skill only when the scientist explicitly asks to bind work to the
+canonical Brain Researcher loop, Society/reward process, registered handoff, or
+confirmation workflow.  A request such as `launch ep10`, `continue ep10`, or
+`/goal launch ep10` is standalone episode-managed work unless the scientist
+also names that canonical binding.  For standalone work, follow the repository
+`AGENTS.md`; do not call `server_info`, inspect a loop profile, prepare an MCP
+Goal handoff, or write a session snapshot merely because the Codex task has a
+persistent goal.
 
 Use the current Codex conversation as the visible control shell for one
 human-gated campaign. The canonical Brain Researcher MCP service owns campaign
@@ -45,7 +56,7 @@ to. Read each selected reference completely before acting.
 | Inspect, explain, diagnose, or report status | This entrypoint | Query canonical state read-only and hand off the observed next action. |
 | TASK_DRAFT | [Campaign protocol](references/campaign_protocol.md) | Follow only the returned drafting or scientist-decision action. |
 | Start a new outer campaign or apply a generic loop action | [Campaign protocol](references/campaign_protocol.md) | Follow the persisted profile, state machine, and human gate. |
-| Explicitly start or resume native-goal exploration; no handoff yet | [Native Goal launch](references/native_goal_launch.md) | Verify the open episode, prepare the handoff, and create the host goal exactly once. |
+| Explicitly bind native-goal exploration to the canonical campaign; no handoff yet | [Native Goal launch](references/native_goal_launch.md) | Verify the open episode, prepare the handoff, and create the host goal exactly once. |
 | DISCOVERING, V3 handoff, before terminal outcomes | [V3 discovery](references/discovery_v3.md) and [workspace projections](references/workspace_projections.md) | Freeze outcome-blind selection provenance, then run bounded exploration. |
 | DISCOVERING, already-frozen V1 or V2 handoff, before terminal outcomes | [V1/V2 compatibility discovery](references/discovery_compatibility.md) | Preserve the exact historical contract and skip V3-only requirements. |
 | DISCOVERING with a terminal bundle, rejected submission, or interrupted bridge | [Terminal submission and review](references/terminal_submission_review.md) | Validate, submit, or replay only the exact state-authorized terminal. |
@@ -70,9 +81,10 @@ without querying canonical state again.
 - Society is reward-blind. It may review evidence but cannot rank rewards,
   select a portfolio, approve launch, authorize compute, create a ClaimCard, or
   update Landscape.
-- Native-goal launch requires an unambiguous scientist start or resume request
-  in the current Codex task. Drafting, checking, organizing, or making an
-  episode runnable is not launch authority.
+- Canonical native-goal launch requires an unambiguous scientist request to
+  bind the start or resume action to the canonical campaign in the current
+  Codex task. Drafting, checking, organizing, making an episode runnable, or a
+  standalone start/resume request is not canonical launch authority.
 - A native Goal is exploratory. Submission and review do not constitute
   confirmation, canonical execution, scientific acceptance, or Landscape
   transition.

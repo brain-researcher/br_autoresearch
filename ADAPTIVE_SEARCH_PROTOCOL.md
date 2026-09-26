@@ -9,6 +9,13 @@ promotion, evaluator service, or canonical receipt is required to begin the
 episode. Brain Researcher registration remains optional post-run governance for
 review, reward, or confirmation claims.
 
+This protocol governs candidate-discriminating adaptive execution only after
+the episode reaches that stage.  It is not an acquisition or preliminary
+readiness checklist.  Apply the minimum-necessary rule in `AGENTS.md`: preserve
+the scientific decisions and role boundary, but do not add hashes, schemas,
+receipts, manifests, reruns, or synthetic checks unless the active scientific
+stage actually needs them.
+
 ## Why search is long but not unbounded
 
 An agent can generate hypotheses indefinitely; a finite dataset cannot supply
@@ -26,7 +33,10 @@ correct. Therefore:
 
 ## Immutable before candidate-discriminating development
 
-Freeze and hash:
+Record and freeze the scientifically consequential decisions in the lightest
+durable form that makes their pre-outcome timing clear.  A normal versioned
+document or ordered trial log is sufficient; cryptographic hashing is not a
+generic requirement:
 
 1. scientific estimand, observation and leakage units;
 2. source identities, eligibility, development roles, audit identity, and
@@ -34,26 +44,30 @@ Freeze and hash:
 3. operator grammar and prohibited operations;
 4. metrics, constraints, environment aggregation, uncertainty, and meaningful
    improvement thresholds;
-5. trial schema, branch-coverage requirement, promotion and tie rules;
+5. trial fields consumed by the executor, branch-coverage requirement,
+   promotion and tie rules;
 6. minimum/maximum valid trials, failed-attempt allowance, patience, CPU/GPU,
    memory, storage, and wall ceilings;
-7. synthetic calibration, negative controls, mandatory falsifiers, and
-   ablations;
-8. configuration-lock manifest, trusted audit command, retry policy, terminal
+7. any activated synthetic calibration, negative controls, mandatory
+   falsifiers, and ablations;
+8. configuration-lock record, held-out invocation, retry policy, terminal
    classes, and claim boundary.
 
 The exact sequence of admissible hypotheses is deliberately not frozen.
 
 ## Program stages
 
-### Stage 0: episode bootstrap and synthetic calibration
+### Stage 0: targeted bootstrap and any activated calibration
 
-Validate schemas, split isolation, evaluator behavior, nulls, metrics,
-determinism, resource metering, and audit rejection on synthetic fixtures.
-Freeze tolerances without reading candidate-discriminating held-out outcomes.
-These checks happen after the episode starts. A failed bootstrap is recorded as
-an episode-local technical terminal; it does not retroactively prevent task
-startup.
+Check only the inputs and behavior needed by the episode's next executable
+step, plus direct leakage and role-isolation risks.  Use a small synthetic
+fixture only when executor logic, a metric, or a null implementation genuinely
+needs a smoke test.  Do not build a generic schema, determinism, resource-
+metering, or rejection battery.  Freeze any scientifically meaningful
+tolerance without reading candidate-discriminating held-out outcomes.  A
+failed item produces the direct proceed/revise/stop action or, when execution
+is genuinely impossible, an episode-local technical terminal; it does not
+justify a larger bootstrap framework or retroactively prevent task startup.
 
 ### Stage 1: branch coverage
 
@@ -67,10 +81,10 @@ Each proposed challenger must name its parent, directional prediction,
 falsifier, changed operator, unchanged operators, expected information gain,
 and expected cost. Development outcomes may update beliefs and choose the next
 admissible challenger. A counted successor must also reference at least one
-previously committed scored record and hash the complete ledger prefix visible
-when it was proposed; a prespecified grid row cannot be relabeled as
-outcome-adaptive later. The incumbent is a development state, never a terminal
-candidate.
+previously recorded score and be entered before its own execution.  Ordinary
+ordered records are enough to establish this sequence; no ledger-prefix hash
+is required.  A prespecified grid row cannot be relabeled as outcome-adaptive
+later. The incumbent is a development state, never a terminal candidate.
 
 ### Stage 3: falsification, ablation, and replication
 
@@ -82,19 +96,27 @@ failure retires that branch while another admissible branch and budget remain.
 ### Stage 4: configuration lock
 
 After a valid stop event, freeze exactly one winner, declared baselines,
-diagnostic runner-up if allowed, code, environment, data/split manifests,
-operator DAG, hyperparameters, seeds, metrics, thresholds, retry rules, report
-template, complete ledger, and audit command. A runner-up cannot replace the
-winner after audit access.
+diagnostic runner-up if allowed, scientifically consequential operator choices,
+hyperparameters, seeds when relevant, metrics, thresholds, split roles, retry
+rules, report fields, and held-out invocation in one simple lock record.  Bind
+code, environment, or file inventories only when their variation can change
+the result or an observed inconsistency requires it.  A runner-up cannot
+replace the winner after held-out access.  The lock record must be uniquely
+identified and write-once or explicitly versioned before that access; a
+cryptographic hash is optional.
 
 ### Stage 5: held-out evaluation
 
-The episode's locked evaluation path accepts only the configuration-lock hash.
+The episode's locked evaluation path accepts only the selected lock identity,
+which resolves to the exact immutable/versioned record, and checks the
+scientifically consequential settings against that record.
 It applies the episode's declared held-out or audit rule, emits only predeclared
 outputs, records access, and rejects subsequent development trials for the
-round. An evaluation result may change the conclusion class but cannot enqueue
-a challenger. Whether this path uses process/permission separation is an
-episode design choice, not a root task-startup requirement.
+round. A cryptographic lock hash or access receipt is optional unless the
+episode's actual trust boundary requires it. An evaluation result may change
+the conclusion class but cannot enqueue a challenger. Whether this path uses
+process/permission separation is an episode design choice, not a root task-
+startup requirement.
 
 ## Trial state machine
 
@@ -109,9 +131,10 @@ PROPOSED
 ```
 
 Engineering repair may reuse a trial identifier only when the scientific
-configuration and all data roles are byte-identical. Otherwise it is a new
-trial. Records are append-only and hash-chained; correction creates a new
-record that supersedes rather than rewrites an old one.
+configuration, scientifically relevant source/release and consumed inputs, and
+all data roles are unchanged. Otherwise it is a new trial. Scored adaptive
+records are append-only; a correction creates a new record that supersedes
+rather than rewrites an old one. A hash chain is not required.
 
 ## Minimum realized-search evidence
 
@@ -123,7 +146,8 @@ Before an episode can count as adaptive-autoresearch evidence, it must have:
   and were committed after those outcomes but before their own execution;
 - recorded at least two incumbent/challenger decisions;
 - satisfied the episode's minimum 40% post-coverage falsifier/ablation share;
-- verified ledger integrity and deterministic score replay;
+- verified the chronological trial record and directly verified or recomputed
+  the score supporting the selected comparison, without replaying every trial;
 - locked configuration before audit access;
 - opened the audit no more than once; and
 - recorded zero post-audit mutations.
@@ -158,7 +182,10 @@ multiply one audit bank into several independent confirmations.
 A mechanical retry is allowed only when the runner proves that no audit label,
 metric, prediction join, or candidate-discriminating diagnostic was emitted,
 and the frozen policy names the exact infrastructure failure. Once any audit
-metric is visible, the audit is consumed.
+metric is visible, the audit is consumed.  A trusted runner's log is sufficient
+when it exhaustively covers every declared output channel; otherwise inability
+to establish non-exposure consumes the audit.  Do not create a separate
+receipt or attestation layer by default.
 
 ## Terminal encoding
 

@@ -27,8 +27,52 @@ write authority to any other OAK location.
 - A successful exploration run is not a scientific acceptance.  Do not record
   reward, approve confirmation, execute confirmation, or apply a Landscape
   transition unless the canonical MCP state explicitly authorizes it.
-- Never replay an action from local notes or an old terminal.  Query canonical
-  state again, especially when resuming an episode.
+- Never replay a canonical campaign action from local notes or an old terminal.
+  Query canonical state again before a canonical mutation or replay.  This is
+  not a preflight requirement for standalone episode continuation.
+
+## Minimum necessary checks
+
+The default for every episode is the smallest check that answers a scientific
+or operational question.  A check is required only when it is:
+
+- an explicit scientific eligibility or validity condition in the episode's
+  frozen goal, dataset contract, or search policy;
+- necessary for access control, safety, or correct use of the actual data or
+  executable code; or
+- a targeted diagnostic prompted by a concrete inconsistency or failure that
+  has actually been observed.
+
+Do not add checksum or SHA manifests, custom or strict schema validators,
+content-addressed copies, duplicate-key policing, attestation or receipt
+chains, exact-interpreter bindings, repeated qualification reruns, or extra
+provenance artifacts as generic readiness work.  Provider-supplied identifiers
+and checksums may be recorded when already available, but generating more of
+them is not a launch gate unless the active stage's scientific invariant
+genuinely depends on exact file identity or an observed integrity problem makes
+it necessary.  The fact that an additional check could provide more assurance
+is not, by itself, a reason to perform it.
+
+Preserve checks that bear directly on the scientific claim: biological-group
+identity and independence, duplicate or cross-episode overlap, leakage and
+development/final separation, adequate group support, source and atlas
+compatibility needed to score the endpoint, and the distinction between
+detected, verified absent, and unknown outcomes.  Test these directly and
+summarize them in the lightest useful pass/revise/stop table or note.  When one
+fails, move to the scientific next action (revise the resource, narrow the
+claim, or stop); do not respond by building a larger validation framework.
+
+Frozen requirements remain mandatory at the scientific stage they govern.
+Modeling, lock, audit, and confirmation controls do not become acquisition or
+readiness gates merely because they appear in the same policy.  The underlying
+scientific invariant remains frozen, but a SHA, schema, receipt, or other
+engineering implementation is not automatically scientifically essential even
+when an older episode document says `must`.  A lighter representation may
+replace it only when identity, timing, and access guarantees remain equivalent
+and that equivalence is decided before candidate-discriminating outcome access.
+If the named mechanism itself enforces a frozen identity or access boundary,
+retain it unless the scientist explicitly amends that contract.  Do not
+retroactively rewrite prior records merely to normalize them.
 
 ## Required episode documents (project-local policy)
 
@@ -106,6 +150,21 @@ episode; treat `inputs/` as read-only; write durable artifacts under
 `outputs/`; and use `$SCRATCH/br_autoresearch/<episode-name>/` for transient
 work. Continue the same task when resuming work. Do not run two writing tasks
 against the same episode at once.
+
+A request to launch or continue an episode is standalone episode-managed work
+by default.  It does not opt into the canonical Brain Researcher campaign,
+Society/reward workflow, or MCP Goal handoff merely because the request uses
+the word `goal` or the Codex `/goal` command.  Use the project-local
+`$brain-autoresearch-loop` skill and its canonical-state preflight only when the
+scientist explicitly asks to bind the episode to that canonical workflow (for
+example by naming the Brain Researcher loop, Society review, reward, registered
+handoff, or canonical confirmation).  Canonical state is not a prerequisite
+for standalone data acquisition, qualification, analysis, or continuation.
+
+For standalone work, missing optional workflow artifacts, hashes, schemas,
+receipts, snapshots, or projection refreshes are not blockers.  Keep the seven
+required projections current at material milestones, but do not let projection
+maintenance delay the next scientific action.
 
 These are instruction-level boundaries, not OS-level input isolation. The
 episode is responsible for enforcing its data roles and recording any

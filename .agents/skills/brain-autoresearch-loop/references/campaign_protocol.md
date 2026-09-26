@@ -53,10 +53,11 @@ approval, independent confirmation, claim adjudication, or Landscape update.
 Negative and technical terminals are Society-ineligible and do not call
 Society.
 
-The lane name is conventional, not a magic phrase: any unambiguous scientist
-request in the current Codex task to start or resume this native-goal
-exploration is sufficient. Drafting, readiness, or setup requests alone do not
-authorize launch, and an agent must not infer launch authority from them.
+The lane name is conventional, not a magic phrase, but the scientist must
+explicitly request binding to the canonical Brain Researcher native-goal
+campaign.  A standalone episode start/resume, including a Codex `/goal`
+request, is not sufficient. Drafting, readiness, or setup requests alone also
+do not authorize canonical launch, and an agent must not infer that authority.
 
 Prepare only against the authenticated owner’s `codex_autoresearch_v1` loop at
 `DISCOVERING`, and bind the exact source revision into the handoff. Submit must

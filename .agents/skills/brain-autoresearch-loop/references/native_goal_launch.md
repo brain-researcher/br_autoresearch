@@ -1,9 +1,12 @@
 # Native Goal launch
 
-Read this reference only when the scientist has explicitly asked to start or
-resume native-goal exploration in the current Codex task. A request to draft,
-inspect, repair, organize, or make an episode runnable is not launch authority.
-An explicit start or resume instruction needs no second confirmation.
+Read this reference only when the scientist has explicitly asked to bind
+native-goal exploration to the canonical Brain Researcher campaign in the
+current Codex task.  A standalone `launch ep10`, `continue ep10`, or Codex
+`/goal` request does not activate this route.  A request to draft, inspect,
+repair, organize, or make an episode runnable is also not canonical launch
+authority.  An explicit canonical start or resume instruction needs no second
+confirmation.
 
 This is a client-native discovery lane bound to the outer campaign. It is not
 canonical confirmation or execution.

@@ -248,8 +248,11 @@ not count toward the 28 curated-release total.
 
 The OpenNeuro, HCP, and small NARPS roots were mode `2770`; the NARPS
 pupillometry root was mode `0755`. They are not immutable merely because they
-are shared. Episode-level manifests must still bind exact files, hashes,
-versions, and exposure roles.
+are shared. Episode records must identify the stable source or release,
+version when available, and exposure roles.  Exact-file inventories or hashes
+are needed only for a mutable or ambiguous source, an observed integrity
+problem, or a stage-specific scientific lock that genuinely depends on exact
+file identity; they are not a generic readiness requirement.
 
 ## Personal duplicates and precursors
 

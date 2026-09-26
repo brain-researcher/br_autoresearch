@@ -19,9 +19,12 @@ An explicit scientist instruction in a Codex project task names one episode
 and starts or resumes its work. The task reads the root instructions and that
 episode's Goal, dataset contract, and search policy; it keeps durable artifacts
 under the episode's `outputs/` and transient work under the episode's scratch
-directory. Contract versioning, data validation, runtime checks, adaptive
-search, falsification, and held-out evaluation belong to the episode; they are
-checked and recorded there as the task proceeds.
+directory. Scientific data qualification, checks required by the executable
+path, adaptive search, falsification, and held-out evaluation belong to the
+episode and are recorded there as the task proceeds.  They follow the minimum-
+necessary rule in `AGENTS.md`; extra contract-versioning layers, new hash/schema
+machinery, receipt chains, and repeated preflight runs are not default
+deliverables or startup gates.
 
 ## Current episodes
 
