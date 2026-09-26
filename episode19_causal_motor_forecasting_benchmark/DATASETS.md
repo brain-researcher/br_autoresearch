@@ -51,15 +51,16 @@ outcomes.
 
 The descriptor reports a CC BY 4.0 release, while the current Figshare API
 reports CC0 for the child records. EP19 uses the more conservative CC BY 4.0
-attribution and redistribution policy and records the discrepancy in the
-future `SOURCE.md`.
+attribution and redistribution policy; this paragraph is the discrepancy
+record.
 
-The collection DOI alone is not an integrity manifest. The steward acquisition
-has retained all 12 child API records and frozen their article IDs, file IDs,
-file names, byte sizes, MD5 values, API JSON, and acquisition timestamp. Before
-use, a trusted builder must carry those records, the legacy child DOI strings,
-and later collection modification timestamps into the signed episode source
-manifest and verify the extracted inventory.
+The versioned collection DOI, 12 child article/file IDs, filenames, and byte
+inventory identify the intended release. The steward acquisition also retains
+the provider API records, MD5 values, and acquisition timestamp as historical
+transfer metadata. Before use, a trusted builder directly confirms that the
+extracted inventory matches those provider records. No additional checksum or
+source-verification artifact is a readiness gate unless a concrete source
+inconsistency appears.
 
 Official references:
 
@@ -68,8 +69,8 @@ Official references:
 - <https://github.com/luciw/way-eeg-gal-utilities>
 
 The utilities repository is citation-only at drafting time. No moving branch
-may enter preprocessing; any future code use requires an exact commit, license,
-environment, and semantic check in the source manifest.
+may enter preprocessing; any future code use requires a pinned commit, license,
+and direct semantic-compatibility check recorded with the executable recipe.
 
 ### Expected raw inventory
 
@@ -125,11 +126,11 @@ The archival winning implementation is pinned to repository commit
 `36fe555d523c3ca3f201e765b1b1004dc5383dd2` under its BSD-3-Clause license:
 <https://github.com/alexandrebarachant/Grasp-and-lift-EEG-challenge/tree/36fe555d523c3ca3f201e765b1b1004dc5383dd2>.
 `Safe1` is the preferred positive-control stack. Its exact commit, source
-archive, commit API response, repository metadata, BSD-3-Clause license, and
-local SHA-256 values are now acquisition-verified in steward quarantine. It is
-not yet executable benchmark infrastructure: the episode manifest must record
-whether execution uses native Python 2.7/Theano or a separately validated,
-explicitly labeled semantic port.
+archive, repository metadata, and BSD-3-Clause license are recorded in steward
+quarantine; existing local SHA-256 values remain historical acquisition
+metadata rather than a launch gate. It is not yet executable benchmark
+infrastructure: the execution note must state whether it uses native Python
+2.7/Theano or a separately validated, explicitly labeled semantic port.
 
 The public multimodal Figshare release contains only series 1–9. Kaggle series
 10 is an unpublished EEG-only private-leaderboard series without public raw
@@ -177,8 +178,8 @@ The detector must satisfy all of the following:
 7. Ambiguous/missing onsets are removed by a rule frozen before candidate EEG
    scores. Manual movement of an onset to improve results is prohibited.
 
-All EEG, EMG, peripheral, and cue clocks must be reconciled in a signed timing
-certificate. A future-to-past impulse response above numerical tolerance makes
+All EEG, EMG, peripheral, and cue clocks must pass the direct timing validation.
+A future-to-past impulse response above numerical tolerance makes
 the affected pipeline ineligible.
 
 For both sources, the 19-category target uses 18 left-closed, right-open 50-ms
@@ -214,18 +215,19 @@ sessions: 43 sessions use 250 Hz and the six sessions of `sub-13`/`sub-15` use
 1,000 Hz. Those two participants have additional numbered empty physical
 channels in the header; they do not add EEG signals. The archive contains 240
 raw `.eeg` runs while the paper reports 238 valid runs, so a frozen event/valid-
-run manifest—not filename count—must determine eligibility. This structural
-inspection did not open signal samples or event-level outcomes and belongs in
-the exposure ledger with its source and inventory hash. This narrow structural
-exposure is whitelisted; signal-derived or event-derived audit QC remains
-prohibited.
+run table—not filename count—must determine eligibility. This structural
+inspection did not open signal samples or event-level outcomes and is recorded
+in the held-out access record with the provider release ID. This narrow
+structural exposure is whitelisted; signal-derived or event-derived audit QC
+remains prohibited.
 
 The API currently reports version 1, while the landing record has a 2026-09-17
-modification date. Acquisition has pinned the versioned DOI, file ID, byte
-size, MD5, version-1 API JSON, and an independent local SHA-256. During
-controlled extraction, the trusted builder must additionally retain and verify
-the archive's internal `CHANGES` record. The unversioned DOI alone is not
-sufficient.
+modification date. Acquisition recorded the versioned DOI, file ID, byte size,
+MD5, version-1 API JSON, and an independent local SHA-256. Those completed
+checks are historical transfer metadata; EP19 does not require another
+checksum layer. During controlled extraction, the trusted builder must also
+check the archive's internal `CHANGES` record so the scientific source version
+is unambiguous. The unversioned DOI alone is not sufficient.
 
 Official references:
 
@@ -333,8 +335,9 @@ agreement diagnostic only.
 
 The primary onset is recomputed from raw XYZ accelerometry with the frozen
 one-sided detector family, thresholds fitted only on the 15 development
-participants, gap resets, and timing certificate. C32 cannot alter detector
-parameters. The same provisional-crossing `pending` rule used for WAY applies.
+participants, gap resets, and direct timing validation. C32 cannot alter
+detector parameters. The same provisional-crossing `pending` rule used for WAY
+applies.
 The non-neural baseline may use past accelerometry, EOG,
 cue/start state, time since cue, fixed spatial setup, and stillness duration,
 but never future samples. `TgtID` or the ultimately chosen cup is known from
@@ -349,45 +352,47 @@ globally pristine or unseen-task source.
 
 ## Required permission-separated handoffs
 
-Large payloads remain outside Git. `inputs/` receives only content-addressed,
-role-filtered manifests or read-only mounts created by an authorized operator.
+Large payloads remain outside Git. `inputs/` receives only role-filtered,
+read-only packs keyed by the pinned provider release IDs, or read-only mounts
+created by an authorized operator.
 The required handoffs are:
 
-1. **WAY structural pack:** immutable source manifest, clocks, shapes, channel
-   identities, cue/trial/series boundaries, and hashes without signal-derived
-   candidate scores.
+1. **WAY structural pack:** provider release record, clocks, shapes, channel
+   identities, cue/trial/series boundaries, and stable row IDs without
+   signal-derived candidate scores.
 2. **WAY development pack:** P1–P12 series 1–7 and required `AllLifts` rows.
 3. **WAY joint-final-evaluation pack:** P1–P12 series 8 and 9, held only by the
    trusted final evaluator.
 4. **Self-paced metadata pack:** participant/session/run/channel/sampling
-   inventory and the frozen role manifest without audit event or QC outcomes.
+   inventory and the frozen role table without audit event or QC outcomes.
 5. **Self-paced development pack:** complete data for the 15 development
    participants.
 6. **Self-paced audit pack:** complete packets for all eight audit participants,
    mounted only inside the no-egress trusted evaluator after lock.
 7. **Legacy artifact pack:** any permissible Kaggle labels, metric code,
    historical submissions, or entrant implementations, including the pinned
-   `Safe1` code, each with license, provenance, and hash. Missing artifacts
-   narrow the compatibility claim.
+   `Safe1` code, each with license, source URL, and pinned code revision.
+   Missing artifacts narrow the compatibility claim.
 
 No mixed source directory may be symlinked into `inputs/`. Candidate workers
 must never receive an audit packet, audit path, audit file list beyond the
-frozen structural manifest, or partial evaluator output.
+frozen structural inventory, or partial evaluator output.
 
 ## Audit firewall
 
-Before any audit outcome is opened, hash and freeze:
+Before any audit outcome is opened, write once in the immutable final lock:
 
 - participant and series/session roles;
-- complete human/agent/cache/paper exposure ledger;
-- raw-source manifests and timing certificates;
+- the complete held-out access and prior-exposure record;
+- provider source records and timing-validation results;
 - onset/stillness implementation, horizons, exclusions, and natural-risk
   weights;
 - common channels, resampling, normalization, calibration events, and model
   states permitted to update;
 - reference models, challenger, seeds, practical margins, uncertainty rule,
   and terminal decision table; and
-- the evaluator image, no-egress policy, exact command, and output schema.
+- the evaluator version and executable procedure, no-egress policy, and
+  complete-output contract.
 
 The evaluator opens WAY series 8, WAY series 9, and all eight self-paced audit
 participants in one joint operation. It returns only the complete
@@ -433,7 +438,8 @@ Official references:
 
 Candidate training and scoring begin only after all applicable checks pass:
 
-- every official source object matches its pinned manifest;
+- the provider release IDs and expected inventories match the selected
+  official releases;
 - all 108 WAY continuous series and 12 `AllLifts` files are present;
 - EEG, EMG, kinematic, force, cue, and event clocks reconcile within a frozen
   bound;
@@ -447,8 +453,8 @@ Candidate training and scoring begin only after all applicable checks pass:
   evaluator after lock, and insufficient support is a nonreplaceable technical
   failure rather than a pre-lock outcome-bearing support query;
 - every audit and campaign-sealed evaluation packet is evaluator-only; and
-- the exposure ledger confirms that no held-out event-level signal, QC, or
-  score entered model design.
+- the held-out access record confirms that no held-out event-level signal, QC,
+  or score entered model design.
 
 ## Current local inventory and handoff state
 
@@ -456,23 +462,24 @@ The canonical private-steward inventory represented by
 `asset_ep19_public_sources` now
 contains 12 official WAY participant archives and the official Freewill
 archive: 13 archives totaling 23,930,807,095 bytes. All
-provider byte sizes and MD5 values passed, and all 13 local SHA-256 values were
-independently rechecked. The exact `Safe1` commit source and license are also
-acquisition-verified. These archives remain unextracted, outside episode
-`inputs/`, and unavailable to candidate workers.
+provider byte sizes and MD5 values passed at acquisition, and all 13 local
+SHA-256 values were independently rechecked then. These frozen historical
+checks are not repeated launch gates. The exact `Safe1` commit source and
+license are also acquisition-verified. These archives remain unextracted,
+outside episode `inputs/`, and unavailable to candidate workers.
 
 All 55 AJILE12 archives (845,869,698,341 expected bytes) remain in their
 separate deferred-extension area as `asset_ep19_ajile12` under the canonical
 private steward root. Their storage relocation completed by same-filesystem
 rename on 2026-09-24. The acquisition has an `ACQUISITION_COMPLETE_UTC` marker,
-an asset manifest, and a verified count/byte receipt for all 55 assets and
-845,869,698,341 payload bytes. Acquisition completion and storage relocation
-are not a role-filtered EP19 handoff or source-qualification receipt, and AJILE12 remains
+plus a recorded inventory of all 55 assets and 845,869,698,341 payload bytes.
+Acquisition completion and storage relocation are not a role-filtered EP19
+handoff or scientific qualification, and AJILE12 remains
 ineligible for the primary claim regardless.
 
 No signal or event-level audit outcome was read during acquisition. Public
 metadata, source code, archive inventory, and aggregate paper information are
-design exposure and must be entered in the future ledger. The seven
+design exposure and must be entered in the held-out access record. The seven
 permission-separated handoffs above remain absent.
 
 The current source state is

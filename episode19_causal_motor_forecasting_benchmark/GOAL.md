@@ -340,7 +340,8 @@ each source, first discard any recipe that fails the frozen causal or
 calibration gates. Select one common family/configuration by the highest
 participant-macro natural-prevalence binary log score at 300–600 ms. Break exact
 ties, in order, by lower censor-aware 19-category NLL, lower parameter count,
-lower measured latency, and lexicographically smaller configuration hash. WAY
+lower measured latency, and lexicographically smaller stable configuration ID
+assigned before scoring. WAY
 uses only participant-local, complete-series out-of-fold predictions from
 series 1–6: eligible anchors are pooled by natural time within participant,
 then participants are macro-averaged. It then fits separate weights per
@@ -455,7 +456,7 @@ neural transform is visible and calls:
 
 ```text
 fit(role_filtered_training_stream, neural_transform_handle, seed)
-freeze() -> model_hash
+lock() -> stable_model_id
 reset(random_stream_token, regime, minimal_structural_metadata)
 calibrate(participant_specific_packet, permitted_parameter_mask)
 step(causal_observation_t) -> time_to_onset_distribution[19]
@@ -544,7 +545,8 @@ channel dropout.
   complete-series out-of-fold eligible anchors by natural time; participants
   are then equally weighted. Select one common configuration per family by the
   lowest such NLL; break exact ties, in order, by lower parameter count, lower
-  measured latency, and lexicographically smaller configuration hash. Then fit
+  measured latency, and lexicographically smaller stable configuration ID
+  assigned before scoring. Then fit
   separate weights for every WAY
   participant. Per-participant configuration selection is prohibited.
   The selected full twin panel counts as one scientific trial. Each adaptive
@@ -569,13 +571,14 @@ another trial.
 
 Every successor is proposed before execution and records:
 
-- its parent scored trial and visible ledger-prefix hash;
+- its parent scored trial ID and the visible trial-history boundary;
 - the concrete failure pattern and competing explanation;
 - exactly one primary operator change;
 - directional predictions for all three horizons;
 - one native falsifier and a retirement condition;
 - unchanged operators, parameter count, latency, and compute estimate; and
-- code, configuration, and environment hashes.
+- the pinned code revision, stable configuration ID, and execution-environment
+  description.
 
 Changing the onset, horizon, baseline, negative sampling, audit split, or
 reference-panel membership is not an admissible model successor. The search
@@ -586,24 +589,26 @@ reserved for falsification, ablation, influence, or direct replication.
 A patience opportunity is one complete adaptive challenger that passes every
 non-comparative integrity and eligibility gate and would be able to replace the
 incumbent except for the incumbent-score comparison. It resets the counter only
-when its WAY series-7 primary log score exceeds the incumbent by the scientist-
-signed development improvement margin; otherwise it increments the counter.
+when its WAY series-7 primary log score exceeds the incumbent by the development
+improvement margin frozen before candidate outcomes; otherwise it increments
+the counter.
 Coverage panels, required falsifiers, ablations, influence checks, direct
-replications, invalid submissions, and exact retries neither increment nor
-reset patience, although they still consume their declared trial, feedback, and
-resource budgets. Patience cannot stop the search until the 24-trial minimum,
+replications, invalid submissions, and same-trial infrastructure retries
+neither increment nor reset patience, although they still consume their
+declared trial, feedback, and resource budgets. Patience cannot stop the search
+until the 24-trial minimum,
 required branch coverage, mandatory prelock falsifiers, and the 40% post-
 coverage falsification fraction are complete.
 
-The frozen admissible-space manifest enumerates every legal operator and
-configuration before outcomes are read. Exhausting that manifest, the 40-call
+The write-once admissible-space policy enumerates every legal operator and
+configuration before outcomes are read. Exhausting that policy, the 40-call
 feedback quota, or a compute ceiling before the 24-trial minimum is a technical
 execution failure, not a negative neuroscience result. After the minimum, such
 exhaustion closes development and reduces the set of otherwise valid distinct
 challengers in this exact order:
 
 1. if any challenger passes every promotion-eligibility gate and clears the
-   signed improvement margin, lock the best such challenger;
+   frozen improvement margin, lock the best such challenger;
 2. otherwise, if any challenger's eligibility or—after eligibility passes—its
    improvement comparison is unresolved, return `closed_unresolved`;
 3. otherwise, if at least one challenger passes every eligibility gate but all
@@ -673,8 +678,8 @@ C^{(J)}_{m,h,d}
 Set \(J=2\) for \(C^{dev}\), which alone enters adaptive development,
 prelock eligibility, and development robustness. Set \(J=8\) for
 \(C^{final}\), which enters locked/audit neural gates, near-horizon terminal
-labels, and scientific claims. The same signed practical margin applies to both
-unless a different pair is scientist-signed before outcome access.
+labels, and scientific claims. The same frozen practical margin applies to both
+unless a different pair is fixed by the scientist before outcome access.
 
 The zero-EEG recalibration diagnostic is
 
@@ -743,7 +748,7 @@ predictions; a frozen reference is never removed after audit. This gate measures
 marginal calibration, not full conditional calibration.
 
 A neural-information claim requires \(\Delta_{m,300:600,d}\),
-\(G_{m,300:600,d}\), and \(C^{final}_{m,300:600,d}\) to exceed their separately signed
+\(G_{m,300:600,d}\), and \(C^{final}_{m,300:600,d}\) to exceed their separately frozen
 practical margins, while \(m^{zero}\) remains noninferior to \(B_d^\star\).
 Here \(G\) is a training/recalibration diagnostic; \(C^{final}\), not \(G\), is the
 input-dependent capacity control. Calibration and participant robustness must
@@ -751,7 +756,7 @@ also pass. At the joint evaluation, simultaneous 95% participant
 bootstrap lower and upper bounds cover \(\Delta\), \(G\), and \(C^{final}\) in both
 sources at the primary horizon plus the three WAY near-horizon contrasts used
 by the near-only terminal. A gate passes only when its lower bound clears its
-signed margin, is a resolved failure only when its upper bound lies below that
+frozen margin, is a resolved failure only when its upper bound lies below that
 margin, and is otherwise unresolved. The shared correction does not alter the
 source-ordered cascade: WAY bounds are decided first and self-paced bounds only
 after WAY passes. AUROC and AUPRC are secondary outside Track A.
@@ -850,7 +855,7 @@ The final joint evaluation does not choose a favorable reference after seeing
 the data. It forms five paired participant-level differences between the locked
 challenger and each eligible frozen reference on pooled WAY series 8+9. One
 simultaneous 95% participant bootstrap family covers all five. The final
-improvement gate passes only if every lower bound clears the same signed final
+improvement gate passes only if every lower bound clears the same frozen final
 margin, is a resolved failure if any upper bound lies below that margin, and is
 otherwise unresolved. This challenger family is separate from the neural-gate
 and pairwise reference-ranking families.
@@ -877,7 +882,7 @@ Every eligible reference model and challenger must pass:
 - a synthetic causal premovement motif is recovered at prespecified SNRs; and
 - the legacy near-event positive control reaches its frozen qualification range.
 
-A shared evaluator/onset timing certificate or positive-control failure, or a
+A shared evaluator/onset timing validation or positive-control failure, or a
 leakage failure in a locked reference or finalist, is `technical_failure`. A
 candidate-specific pre-lock leakage failure only invalidates that submission
 and consumes its declared budgets; the search must still satisfy its valid-
@@ -886,9 +891,9 @@ EEG information is absent.
 
 ## Development and lock sequence
 
-1. **Metadata and provenance.** Freeze source versions, hashes, clocks, channel
-   maps, participant roles, and the exposure ledger without opening held-out
-   signals.
+1. **Sources and roles.** Freeze provider release IDs, clocks, channel maps,
+   participant roles, and the held-out access record without opening held-out
+   signals. Do not add a generic checksum or provenance layer.
 2. **Causal qualification.** Validate the onset detector, streaming operators,
    synthetic fixtures, and deliberate leak sentinels.
 3. **Baseline lock.** Select \(B_{\mathrm{WAY}}^\star\) and
@@ -900,9 +905,10 @@ EEG information is absent.
    falsifiers using WAY series 1–6 for fit and aggregate series-7 board
    feedback, plus frozen five-fold whole-participant evaluation on only the 15
    designated self-paced development participants.
-6. **Configuration lock.** Freeze one challenger, the reference panel, onset
-   code, channel rules, folds, seeds, margins, calibration packets, evaluator,
-   and exact audit command in a content hash.
+6. **Configuration lock.** Write once one challenger, the reference panel,
+   onset code, channel rules, folds, seeds, margins, calibration packets,
+   evaluator version, and executable audit procedure. The lock is immutable
+   after any final outcome is opened; no content hash is required.
 7. **Joint one-shot evaluation.** Final WAY recipes refit on series 1–7; final
    self-paced group recipes fit only on its 15 development participants. The
    trusted evaluator opens WAY series 8, WAY series 9, and all eight self-paced
@@ -928,12 +934,12 @@ EEG information is absent.
   reference edge is practically equivalent, so there is no initial ordering
   whose retention can be tested.
 - `closed_near_event_but_not_primary_strict`: all three WAY near-horizon
-  \(\Delta\), \(G\), and \(C^{final}\) gates clear their signed near margins, but the WAY
-  primary-horizon \(\Delta\) upper bound is below its signed margin. The
+  \(\Delta\), \(G\), and \(C^{final}\) gates clear their frozen near margins, but the WAY
+  primary-horizon \(\Delta\) upper bound is below its frozen margin. The
   600–900 ms pattern is reported descriptively and does not change this
   primary-endpoint label.
 - `closed_no_resolved_eeg_increment_at_primary_horizon`: the WAY primary-
-  horizon \(\Delta\) upper bound is below its signed margin and the named
+  horizon \(\Delta\) upper bound is below its frozen margin and the named
   near-horizon pattern above does not hold. This is a bounded non-detection of
   incremental value, not proof that the non-neural baseline is sufficient.
 - `closed_neural_specificity_gate_failure`: WAY \(\Delta\) clears its margin,
@@ -950,7 +956,7 @@ EEG information is absent.
 - `closed_no_challenger_improvement`: the benchmark and neural gates are valid,
   no otherwise valid challenger's prelock state remains unresolved, and at least
   one such challenger passes every promotion-eligibility gate, but all eligible
-  challengers are resolved below the signed development improvement margin after
+  challengers are resolved below the frozen development improvement margin after
   a valid bounded search; the same label also applies when the locked challenger
   fails the separate final WAY improvement margin against the best eligible
   frozen reference.
@@ -992,7 +998,7 @@ otherwise pass**; an unresolved member can never hide a resolved failure in the
 same stage. Evaluate WAY first: a resolved WAY
 primary \(\Delta\) failure maps to
 `closed_near_event_but_not_primary_strict` only when all three WAY near-horizon
-gates clear their signed margins, and otherwise to
+gates clear their frozen margins, and otherwise to
 `closed_no_resolved_eeg_increment_at_primary_horizon`. If WAY \(\Delta\) passes,
 a resolved WAY \(G\) or \(C^{final}\) failure gives
 `closed_neural_specificity_gate_failure`; after all three pass, a resolved WAY
@@ -1028,7 +1034,7 @@ movement (<https://doi.org/10.1016/j.clinph.2010.07.010>), and many readiness-
 potential studies precede it. EP19 therefore makes no priority claim for
 "predicting movement before onset." Its new object is the conjunction of a
 continuous natural-risk forecast, a strong past-only peripheral baseline,
-source-specific timing certificates, hidden retrained nulls, a frozen ranking
+source-specific timing validation, hidden retrained nulls, a frozen ranking
 transition, and one-shot whole-participant replication. A 2026 handwriting
 study likewise found that access to movement-onset timing materially changes
 decoding accuracy, reinforcing why onset knowledge must be part of the audited
@@ -1076,16 +1082,17 @@ needed for the primary strict-streaming claim.
 
 Held-out evaluation remains closed until all of the following are frozen:
 
-- content-addressed WAY and self-paced source manifests plus access terms;
-- raw-signal clock, group-delay, resampling, gap, and channel certificates;
+- provider release IDs, direct source inventories, and access terms for WAY
+  and the self-paced source;
+- raw-signal clock, group-delay, resampling, gap, and channel validation;
 - exact sequential onset/stillness code and ambiguous-onset rule;
 - the five executable reference recipes, both frozen non-neural baselines, and
   historical-artifact availability;
 - complete self-paced development/audit handoffs with evaluator isolation;
 - numeric practical, calibration, denominator-qualification, latency, and
-  participant-robustness margins signed by the scientist;
-- exact parameter/search ranges in a hashed admissible-space manifest,
+  participant-robustness margins fixed by the scientist before outcomes;
+- exact parameter/search ranges in the write-once admissible-space policy,
   calibration events, the complete deterministic C32 calibration algorithm,
   and compute profile;
-- append-only adaptive ledger, configuration-lock schema, and evaluator
-  procedure.
+- complete trial/feedback history with stable pre-outcome IDs, the immutable
+  write-once configuration lock, and the evaluator procedure.
