@@ -1,7 +1,13 @@
 # Verification
 
-- Current Goal, dataset contract, and search policy: present.
-- Outcome computation: not run.
-- One-shot audit: not opened.
-- Audit opening: unavailable until the role-separated handoff and local
-  scientific qualification in `DATASETS.md` and `GOAL.md` are complete.
+| Readiness question | Status |
+| --- | --- |
+| Source revisions, participant counts, atlas dimensions, row/header alignment, and split roles are explicitly checkable | pass |
+| Overlapping development views are not treated as independent cohorts and all fit-only/leakage rules remain explicit | pass |
+| Audit labels remain evaluator-only behind a dated exposure review, no-network firewall, and write-once winner lock | pass |
+| Outcome computation or one-shot audit has started | no |
+
+No checksum inventory, schema-version gate, signed ledger, receipt chain, or
+exact-environment binding is required. Audit opening remains unavailable until
+the role-separated handoff and scientific qualification in `DATASETS.md` and
+`GOAL.md` are complete.

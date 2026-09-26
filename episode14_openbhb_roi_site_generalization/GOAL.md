@@ -30,7 +30,8 @@ acquisition protocol at a familiar physical site is still a domain shift.
   re-evaluated with the frozen five-fold multinomial logistic site probe. The
   quick probe uses three folds; both probes use fold-fit standardization,
   L2 multinomial logistic regression with `C=1`, balanced class weights,
-  `lbfgs`, `max_iter=2000`, and hash-seeded folds. This remains development
+  `lbfgs`, `max_iter=2000`, and folds generated from the declared fixed seed.
+  This remains development
   selection, not the final audit.
 - **One-shot audit:** 757 public-validation participants—362 internal and 395
   external—whose age/site labels are available only to a trusted evaluator
@@ -41,8 +42,8 @@ Public validation labels are upstream-public but deliberately absent from the
 candidate workspace. Looking them up, reconstructing participant identities,
 or using them for selection invalidates the audit.
 
-Before the public-validation rows can be treated as an audit, an exposure
-ledger must name every human, process, cache, and prior artifact that could
+Before the public-validation rows can be treated as an audit, a dated exposure
+review must name every human, process, cache, and prior artifact that could
 have accessed their age, `siteXacq`, or row identities. If a
 candidate/controller actor or its accessible context has seen a row-level join
 or score, the 757 rows are development-exposed and cannot serve as this audit;
@@ -112,8 +113,9 @@ never comparable with locked-probe success and never authorizes audit access.
 
 ## Stages
 
-1. **Integrity and fixed baselines:** reproduce input hashes, row/header
-   alignment, age-median, raw ridge, and PCA-ridge baselines; freeze evaluator,
+1. **Inputs and fixed baselines:** verify the declared source revisions,
+   participant counts, row/header alignment, age-median, raw ridge, and
+   PCA-ridge baselines; freeze evaluator,
    seeds, split roles, metric signs, and leakage tests.
 2. **Stage 1 coverage — 24 configurations:** run a balanced design covering
    both atlases, raw versus neuro-derived blocks, no-reduction versus linear
@@ -127,8 +129,9 @@ never comparable with locked-probe success and never authorizes audit access.
    candidates without outcome peeking; rerun them with the frozen expensive
    five-fold multinomial logistic probe on development only.
 5. **Winner lock:** choose exactly one pipeline by the prespecified ordering
-   and freeze configuration, code/environment, feature headers, folds, seeds,
-   preprocessing state rules, thresholds, probes, controls, and audit command.
+   and place its configuration, code revision, feature headers, folds, seeds,
+   preprocessing state rules, thresholds, probes, controls, and audit command
+   in a dated write-once record.
 6. **Audit once:** in a no-network clean process without raw cache, mount audit
    features to the locked candidate and labels only to the trusted evaluator;
    score all 757 rows once and emit a sealed result. No post-audit model
@@ -191,7 +194,7 @@ resampling `siteXacq` groups and then participants within sampled groups.
 4. its one-sided 95% bootstrap upper bound is at most **0.01**.
 
 If both point rules pass but either uncertainty rule fails, the result is
-`closed_unresolved`. These thresholds, probe folds, bootstrap seed manifest,
+`closed_unresolved`. These thresholds, probe folds, bootstrap seed list,
 and baseline predictions are locked before labels are mounted.
 
 After the 757-row audit is opened, the valid terminals are:

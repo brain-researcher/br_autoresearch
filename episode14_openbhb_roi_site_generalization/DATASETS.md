@@ -45,19 +45,13 @@ All pinned ROI values were reported finite with no missing cells. Train and
 validation feature headers must match exactly within atlas, and Desikan/
 Destrieux rows must align by the opaque row mapping before concatenation.
 
-## Integrity pins
+## Prepared-bundle readiness
 
-| File | SHA-256 |
-| --- | --- |
-| `participants.tsv` | `da647311922a78ec18b211c4791efe691ed6d696cab120808c72b7d926e927d8` |
-| train Desikan CSV | `9aa3e34c915a3f222445148404d15816f63383992b9d104c0838664709ba3a83` |
-| validation Desikan CSV | `26615a9d630269b6379bfaa00d4308837282ec751dc766617dc8be1046b26634` |
-| train Destrieux CSV | `380520ed6ce6469c590af251c5c9f11c07d4af1c79ac80b26a94289734400de6` |
-| validation Destrieux CSV | `a573c7c71424654b1797a3f2e11a291aa8e988758da239bb11f15176908f4d79` |
-| RAMP split JSON | `7fa3889da7927af8269f8b6e9f7f1c18463aea4b2f886dd33d24d7c7f08d32d6` |
-
-The episode must verify these identities against the existing source
-manifest before search. Participant IDs and sessions are never model inputs.
+Before search, verify directly that the prepared bundle matches the declared
+OpenBHB and RAMP revisions, row counts, atlas feature counts, headers, opaque
+row alignment, and three development split definitions above. Stop on a
+concrete mismatch. No checksum inventory or separate source manifest is a
+launch gate. Participant IDs and sessions are never model inputs.
 
 ## Development roles
 
@@ -91,7 +85,7 @@ and validation targets were deliberately not retained in the episode
 workspace. This is an accidental-leakage boundary rather than cryptographic
 secrecy because labels are public upstream.
 
-Before treating those rows as audit evidence, create a signed exposure ledger
+Before treating those rows as audit evidence, record a dated exposure review
 covering prior human access, browser/download caches, upstream scripts,
 participant mappings, model notes, quick baselines, and every agent context.
 Any row-level target/domain join or validation score visible to a
@@ -100,8 +94,8 @@ only as exposed development evidence until a new audit source exists.
 
 For a valid audit:
 
-1. freeze one winning configuration, evaluator, environment, feature headers,
-   metrics, thresholds, and command;
+1. place one winning configuration, evaluator revision, feature headers,
+   metrics, thresholds, seeds, and command in a dated write-once record;
 2. start a clean process with network egress disabled;
 3. do not mount browser caches, Hugging Face caches, the upstream raw source,
    `participants.tsv`, or participant-ID mappings;
@@ -110,11 +104,11 @@ For a valid audit:
 5. run all 757 participants once and atomically emit the sealed metrics; and
 6. revoke the label mount and prohibit tuning, model selection, or rerun.
 
-The audit evaluator alone creates hash-seeded five-fold probe predictions and
+The audit evaluator alone creates fixed-seed five-fold probe predictions and
 10,000 hierarchical bootstrap draws that resample `siteXacq` and then
 participants. Candidate jobs see neither replicate-level results nor partial
 metrics. The baseline/candidate refits, folds, seeds, point margins, one-sided
-interval rules, and terminal table are part of the lock hash.
+interval rules, and terminal table are fixed in the write-once lock record.
 
 ComBat, site-wise centering/scaling, target-domain normalization, transductive
 PCA, or any transform that requires audit-site identity or audit-distribution

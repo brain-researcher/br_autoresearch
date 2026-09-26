@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep14_openbhb_cpu_adaptive
 episode_id: ep14
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -138,11 +137,11 @@ promotion:
   select_from: locked_probe_feasible_pareto_candidates
   lock_one_configuration: true
   freeze:
-    - config_code_and_environment
+    - config_and_code_revision
     - feature_headers_and_fold_roles
     - seeds_and_fit_only_state_rules
     - probe_metrics_thresholds_and_controls
-    - audit_command_and_firewall_manifest
+    - audit_command_and_firewall_settings
 
 stop:
   before_minimum: only_integrity_leakage_or_evaluator_failure
@@ -156,7 +155,7 @@ stop:
 audit:
   mode: one_shot
   configuration_lock_required: true
-  lock_hash_required: true
+  configuration_lock_rule: dated_write_once_record_before_label_access
   maximum_open_count: 1
   audit_updates_search: false
   rows: 757
@@ -164,14 +163,14 @@ audit:
   network_egress: disabled
   raw_source_and_cache_mounted: false
   candidate_age_site_or_role_label_access: false
-  public_label_exposure_ledger_required: true
+  dated_public_label_exposure_review_required: true
   test_site_dependent_transform: prohibited
   retune_blend_threshold_change_or_rerun: false
   refit_training_rows: 3227
   external_rows: 395
   bootstrap:
     replicates: 10000
-    seed_manifest_frozen: true
+    seed_list_locked_before_label_access: true
     hierarchy: [siteXacq, participant]
     interval: one_sided_95_percent
   candidate_ready_rules:
