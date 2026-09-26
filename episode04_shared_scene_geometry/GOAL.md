@@ -35,8 +35,9 @@ voxels, RDM edges, sessions, and repetitions are not independent people.
   cited to motivate operators or used in a fixed reproduction report, but
   never score, rank, prune, or promote adaptive trials.
 - **One-shot boundary audit:** the 371 shared OOD images only if a complete
-  exposure ledger proves their neural responses and candidate-comparison
-  summaries remained sealed through configuration lock. If that test fails,
+  exposure record establishes that their neural responses and
+  candidate-comparison summaries remained sealed through configuration lock.
+  If that test fails,
   the OOD pool is development/prior evidence and audit requires a new,
   independently sealed compatible dataset or acquisition.
 
@@ -51,8 +52,8 @@ these operator families:
 
 1. **Representation blocks:** human-caption MPNet; object/category inventory;
    OpenCLIP; DINOv2; PEcore; SigLIP2; or registered low-level image covariates.
-   Use released, hash-pinned embeddings and metadata; training or fine-tuning a
-   foundation model is out of scope.
+   Use released, version-identified embeddings and metadata; training or
+   fine-tuning a foundation model is out of scope.
 2. **Caption construction:** mean of human-caption embeddings, token/word
    average, signed relation/action/object sub-blocks from one pinned parser, or
    a registered caption-minus-object residual. AI-generated captions are
@@ -75,10 +76,10 @@ these operator families:
    not search arbitrary voxel masks.
 
 Raw stimulus access, new detector execution, or new embeddings are outside
-this grammar unless their DUA, provenance, frozen model, and complete coverage
-are separately approved before search. Arbitrary code mutation, outcome-based
-caption editing, per-audit-category model selection, and nearest-neighbour
-access across folds are forbidden.
+this grammar unless their DUA, source/model identity, frozen settings, and
+complete coverage are separately approved before search. Arbitrary code
+mutation, outcome-based caption editing, per-audit-category model selection,
+and nearest-neighbour access across folds are forbidden.
 
 ## Objective and constraints
 
@@ -110,14 +111,15 @@ participant consistency, but produces exactly one locked candidate.
 
 ## Adaptive loop
 
-1. **Lineage and method gate:** bind release, beta/trial/image joins, exposure
-   ledger, ROI masks, caption and embedding manifests, licenses, and synthetic
-   reproductions of standardization, repetition averaging, RSA, and encoding.
+1. **Readiness gate:** identify the release, verify beta/trial/image joins,
+   evidence-slice exposure status, ROI masks, feature availability, licenses,
+   and focused checks of standardization, repetition averaging, RSA, and
+   encoding.
    Before any neural score, verify image-ID-aligned caption, object/category,
    every retained visual embedding, and low-level covariate coverage on the
    **subject-unique development images**. Object segmentations reported only
    for shared images do not satisfy this gate. If the object comparator is
-   absent, stop before neural scoring or approve and hash a frozen DUA-
+   absent, stop before neural scoring or approve and freeze a DUA-
    compatible extractor before outcome access; do not drop the object
    comparison later.
 2. **Fold freeze:** export subject-unique development/selection image IDs,
@@ -126,9 +128,9 @@ participant consistency, but produces exactly one locked candidate.
 3. **Coverage stage:** evaluate fixed anchors spanning caption, object, each
    visual embedding, RSA, encoding, and one registered shared-component model.
 4. **Adaptive stage:** one hypothesis-led operator change per trial; append the
-   parent, mechanism, full DAG/hash, fold predictions, scores, constraints,
-   runtime, and failure reason to the ledger. Update a nonterminal incumbent
-   and Pareto archive.
+   parent, mechanism, deterministic pipeline ID and settings, fold predictions,
+   scores, constraints, runtime, and failure reason to the ledger. Update a
+   nonterminal incumbent and Pareto archive.
 5. **Successive fidelity:** prune only on frozen partial folds. Every promoted
    finalist is rerun across all five participants, eligible subject-unique
    images, registered ROIs, seeds, and mandatory falsifiers.
@@ -136,9 +138,9 @@ participant consistency, but produces exactly one locked candidate.
    source-stratum balance, nearest-neighbour exclusion, ROI specificity,
    caption-count matching, feature-capacity matching, and participant
    influence.
-7. **Configuration lock:** choose one executable pipeline and freeze the code,
-   environment, feature hashes, ROI/split manifests, rank/regularization,
-   aggregation, nulls, thresholds, and expected output schema.
+7. **Configuration lock:** choose one executable pipeline and record a
+   write-once lock identifying its code/model versions, feature set, ROI/split
+   IDs, rank/regularization, aggregation, nulls, and thresholds.
 8. **One-shot audit:** an independent custodian verifies the OOD/new-data
    firewall, then runs the locked pipeline once. No OOD-category-specific
    tuning, candidate swap, threshold change, or second look is allowed.
