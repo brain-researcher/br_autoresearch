@@ -7,14 +7,29 @@ The intended source is the public Dryad release for Gallego-Carracedo et al.
 (2022), DOI `10.5061/dryad.xd2547dkt`, dataset ID 93309, metadata version 7 /
 internal ID 194056, with version-5 file payload / internal ID 192175.
 Historical inventories report 24 MATLAB session files plus a 1,020-byte README
-(25 objects; 9,571,571,204 bytes). Every byte, guide, and session identity must
-be reverified from a provider-bound manifest.
+(25 objects; 9,571,571,204 bytes). Confirm the provider release identifiers and
+this object inventory, then verify guide semantics and session identities from
+the files actually used.
 
 The publication analysis reference is BeNeuroLab commit
 `cbda8e2e6106f5eb5ff98e18a689c595179ac5db`; the best-recoverable TrialData
 compatibility tree reported during prior compatibility work is
 `d5e5eeb1af592cf88c03599df7433878f9d11bbe`. Neither identifier proves a
 turnkey environment or author-confirmed dependency pin.
+
+## Synthetic prelaunch status
+
+The 2026-09-26 prelaunch used generated state-machine fixtures only. It did not
+open or list any object in the Dryad release, inspect LFP or kinematic values,
+run publication code, or identify a prospective audit source. Its durable
+artifacts are under `outputs/executor_qualification/`.
+
+This synthetic no-access record does not erase the older exposure. The complete
+reused Dryad release remains conservatively classified as outcome-exposed.
+Real development still requires a read-only source location, frozen group and
+session folds, qualified scientific evaluator, reproduction gate, cost profile,
+and sealed future audit described below. Exact unresolved items are tracked in
+`outputs/executor/REAL_DATA_GATES.md`.
 
 ## Known recording inventory
 
@@ -28,7 +43,7 @@ The original contracts report:
 | Han | 5 | area 2 | outside primary M1 search |
 | Lando | 3 | area 2 | outside primary M1 search |
 
-These counts are planning facts, not a final eligibility manifest. Chewie-L
+These counts are planning facts, not a final eligibility table. Chewie-L
 and Chewie-R are one animal. Sessions, trials, bins, directions, channels, and
 folds are repeated observations, not additional animals.
 
@@ -51,25 +66,27 @@ its sessions fresh.
 | sensitivity only | PMd, area 2, Chewie implant contrasts where prespecified | bounded specificity/context checks, not primary rescue | exposed |
 | prospective audit | future compatible whole sessions sealed before outcome access | one locked run after configuration lock | absent |
 
-## Required immutable input pack
+## Required lean input qualification
 
-Create a new read-only pack from independently verified source bytes; do not
-read mutable historical output trees. It must include:
+Use a read-only copy of the identified provider release; do not read mutable
+historical output trees. Before real analysis, record only what is needed to
+establish the scientific source and grouping:
 
-1. provider and local path/size/SHA-256 manifest for all 25 release objects;
+1. provider release identifiers, the local read-only location, and the
+   expected 25-object count and total size;
 2. animal, implant, session, region, array, trial, direction, event, channel,
-   unit, and band-guide inventory with source-to-derived trial IDs;
-3. authenticated `bin_size`, `tgtDir`, trial-result status, `idx_tgtOnTime`,
+   unit, and band-guide mapping with stable source-to-derived trial IDs;
+3. confirmed `bin_size`, `tgtDir`, trial-result status, `idx_tgtOnTime`,
    `idx_goCueTime`, `idx_movement_on`, `idx_endTime`, velocity, spike, LFP, and
    guide fields;
-4. proof that simultaneous arrays share trials, events, time bases, and
+4. a direct check that simultaneous arrays share trials, events, time bases, and
    behavior where such comparisons are used;
-5. publication code/dependency identities, licenses, clean compatibility
-   implementation, synthetic fixtures, and expected outputs; and
-6. an explicit capsule manifest for any historical artifact consulted, with
-   its prior-outcome exposure recorded before search.
+5. the publication code revision, licenses, known compatibility limitations,
+   targeted synthetic fixtures, and expected reproduction outputs; and
+6. a list of any historical artifacts consulted, with their prior-outcome
+   exposure recorded before search.
 
-The historical source-provisioning receipts may help reconstruct the pack, but
+Historical source-provisioning records may help locate the release, but
 their presence is not permission to modify or silently import old results.
 
 ## Development and selection roles
@@ -104,18 +121,20 @@ sessions become available:
 
 - freeze their animal/task/hardware relationship and claim boundary before
   seeing neural outcomes;
-- bind hashes and structural eligibility while neural values/comparison scores
-  remain inaccessible to the search worker;
+- record provider/source version, stable animal/session IDs, and structural
+  eligibility while neural values/comparison scores remain inaccessible to
+  the search worker;
 - prohibit audit-session metadata from changing features, windows, ranks,
   models, exclusions, thresholds, patience, or the winner;
-- release the sealed sessions only after a signed configuration-lock receipt;
+- release the sealed sessions only after the dated, write-once configuration
+  lock is recorded;
   and
 - run the locked policy once, withholding partial session scores until the
   complete audit succeeds or fails.
 
 An exact retry is allowed only for a proven infrastructure failure with no
-released score and unchanged hashes. Once any score is revealed, no alternate
-pipeline may be audited.
+released score and the same locked source sessions, policy, and code revision.
+Once any score is revealed, no alternate pipeline may be audited.
 
 ## Data needed to explain a positive kinematic result
 
@@ -126,7 +145,7 @@ Dryad sessions into fresh evidence.
 | Source | Proposed role | Condition before use |
 | --- | --- | --- |
 | Exposed M1 development sessions | Test whether the locked LFP representation predicts training-derived spike-population latents and the same held-out velocity residuals | Start only after the primary development result is fixed; freeze the latent construction, residual readouts, models, margins, candidate, and comparison anchors first |
-| Simultaneous spike and LFP fields from the immutable pack | Separate low-frequency/LMP signal from high-frequency or same-electrode spike bleed-through | Preserve physical-electrode and unit joins; fit every latent and transform inside training data; retain the prespecified same-electrode/unit-intersection sensitivity |
+| Simultaneous spike and LFP fields from the qualified read-only source | Separate low-frequency/LMP signal from high-frequency or same-electrode spike bleed-through | Preserve physical-electrode and unit joins; fit every latent and transform inside training data; retain the prespecified same-electrode/unit-intersection sensitivity |
 | Future compatible whole sessions | Test the already locked LFP-to-kinematic prediction once | Keep outcomes sealed until the primary configuration lock; do not use follow-up outcomes to select the primary policy |
 | Future compatible sessions from a new animal | Test whether the explanatory relationship extends beyond Mihili and Chewie | Freeze a new source and claim boundary before neural access; do not count additional Chewie implants or sessions as another animal |
 
@@ -162,12 +181,13 @@ independent confirmation.
 
 ## Missing assets and scientific gates
 
-- No adaptive read-only source pack or session-fold manifest is bound here.
-- Provider/local hashes, guide semantics, event conventions, complete-trial
-  joins, session eligibility, and licensing must be reverified.
+- No adaptive read-only source location or frozen group/session fold table is
+  recorded here.
+- Provider release identity, guide semantics, event conventions,
+  complete-trial joins, session eligibility, and licensing must be verified.
 - The publication dependency boundary and reproduction tolerances require a
   frozen, outcome-independent audit.
-- Historical outcome exposure must be captured in the episode provenance.
+- Historical outcome exposure must be stated in the episode record.
 - No fresh compatible whole-session audit dataset has been acquired or sealed.
 - The adaptive evaluator has not been qualified against the frozen policy;
   this blocks scored search and audit opening, not explicit task startup.
@@ -175,8 +195,7 @@ independent confirmation.
 ## Storage and compute boundary
 
 Large source data stay outside Git and are exposed read-only. Durable code,
-manifests, ledgers, predictions, receipts, and reports belong under the eventual
-episode workspace. Transient arrays belong in a dedicated
+group/split tables, trial records, predictions, and reports belong under the
+eventual episode workspace. Transient arrays belong in a dedicated
 `$SCRATCH/br_autoresearch/episode05_sensorimotor_lfp/` directory. Expensive
-computation uses Slurm; neither
-prior run artifacts are writable episode storage.
+computation uses Slurm; prior run artifacts are not writable episode storage.

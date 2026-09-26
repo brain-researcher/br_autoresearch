@@ -50,6 +50,26 @@ specifies the follow-up predictions, alternatives, and figure-level evidence.
 The held-out-direction test remains the first result; the spike-population
 follow-up cannot change its answer.
 
+## Prelaunch status
+
+The search controller has now been tested without opening any real recording.
+It can reject an illegal per-session winner, require the 10-trial coverage
+stage, keep at least 40% of post-coverage trials for falsification, wait through
+the 12-trial patience tail, lock one global policy, and permit at most one
+synthetic audit opening. Six generated scenarios exercise every outer terminal
+class, and their hash-chained journals can be replayed.
+
+Those journals describe the completed synthetic implementation only. Their
+hash chain, replay machinery, and receipts are not prerequisites for real-data
+qualification or search.
+
+That is an engineering prelaunch result, not evidence that LFP predicts a
+reach. The direction-by-time comparator, real LFP estimators, session-level
+delta-R2, whole-trial pairing null, publication reproduction, and prospective
+audit have not run. The executable boundary and remaining decisions are listed
+in [the executor README](outputs/executor/README.md) and
+[real-data gates](outputs/executor/REAL_DATA_GATES.md).
+
 ## At a glance
 
 | Question | EP05 design |
@@ -191,15 +211,15 @@ are diagnostics and cannot rescue a failed held-out-direction objective.
 1. **Infrastructure gate:** authenticate source/code, freeze eligibility and
    event conventions, pass synthetic index/leakage/metric fixtures, and freeze
    the publication reproduction result without search.
-2. **Session-role freeze:** create immutable animal/implant/session manifests
-   and nested whole-session folds. Within each outer session, all transforms
-   and tuning use only the remaining sessions and that session's permitted
-   training trials/directions.
+2. **Session-role freeze:** write one animal/implant/session table and the
+   nested whole-session folds before outcome-guided search. Within each outer
+   session, all transforms and tuning use only the remaining sessions and that
+   session's permitted training trials/directions.
 3. **Coverage stage:** run direction-by-time, LMP, canonical low/high bands,
    linear regularized, reduced-rank, and one nonlinear anchor before adaptive
    exploitation.
 4. **Adaptive stage:** make one mechanism-led operator change per trial;
-   append hypothesis, parent, full configuration/hash, session predictions,
+   record hypothesis, parent, full configuration, session predictions,
    objective, constraints, runtime, and failure reason. Maintain a nonterminal
    incumbent and complexity/robustness Pareto archive.
 5. **Successive fidelity:** early pruning may use a frozen subset of inner
@@ -210,9 +230,10 @@ are diagnostics and cannot rescue a failed held-out-direction objective.
    leave-one-session and leave-one-animal description, trial/channel matching,
    low-frequency-only, spike-bleed-through, temporal-offset, and target
    residualization ablations.
-7. **Configuration lock:** choose one global policy, then hash source/split
-   manifests, code, environment, operator DAG, feature guides, windows, model
-   rule, thresholds, seeds, and output schema.
+7. **Configuration lock:** choose one global policy, then write a dated,
+   write-once record of the provider release, animal/session split table, code
+   revision, operator DAG, feature guides, windows, model rule, thresholds,
+   seeds, and required result fields.
 8. **One-shot prospective audit:** run the locked policy on all sealed audit
    sessions once. Session-specific coefficients may be fit under the locked
    training recipe; no policy choice, threshold, exclusion, or candidate may

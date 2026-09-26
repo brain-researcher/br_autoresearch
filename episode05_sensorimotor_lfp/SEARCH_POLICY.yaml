@@ -1,4 +1,4 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+policy_version: 1
 policy_id: ep05_sensorimotor_lfp_adaptive
 episode_id: ep05
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -194,7 +194,7 @@ promotion:
   reproduction_counts_as_search: false
   coverage_rule: run_behavior_lmp_low_high_linear_reduced_rank_and_nonlinear_anchors
   finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_eligible_sessions_directions_and_falsifiers
-  lock_rule: select_one_global_policy_then_hash_source_splits_code_environment_dag_guides_windows_thresholds_and_schema
+  lock_rule: select_one_global_policy_then_write_once_source_version_group_splits_code_revision_dag_guides_windows_thresholds_seeds_and_result_fields
 
 stop:
   before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
@@ -209,7 +209,6 @@ stop:
 audit:
   mode: one_shot_after_configuration_lock
   configuration_lock_required: true
-  lock_hash_required: true
   maximum_open_count: 1
   audit_updates_search: false
   source_required: prospective_compatible_future_whole_sessions

@@ -146,7 +146,8 @@ number of permutations, and joint decision rule before explanatory outcomes.
 ### 4. Test the locked prediction in future sessions
 
 If a compatible future-session audit is available, add the explanatory
-readouts to the output schema **before** the single primary configuration lock.
+readouts to the prespecified result table **before** the single primary
+configuration lock.
 Open all sealed audit sessions once. Session-specific coefficients may be fit
 under the locked recipe, but the LFP block, spike-latent rule, decomposition,
 thresholds, exclusions, and model comparisons cannot change.
