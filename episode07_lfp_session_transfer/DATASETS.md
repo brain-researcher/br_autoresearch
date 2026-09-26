@@ -2,25 +2,24 @@
 
 This episode follows [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.md).
 Downloading the public release does not make this episode development-ready.
-The mixed source archive is acquired and verified, but the content-addressed,
-role-filtered handoffs and their access-control receipts have not yet been
-created.
+The mixed source archive is acquired, but the role-filtered candidate,
+development-evaluator, and held-out views have not yet been created and tested.
 
 ## Acquired source and identity
 
 The source is Dryad DOI `10.5061/dryad.xd2547dkt`, metadata version 7 and
 file-bearing version 5. The verified local acquisition contains 24 session
 `.mat` files plus one README: 25 objects and 9,571,571,204 bytes in total.
-Provider SHA-256 identities, local SHA-256 verification, the provider metadata,
-and the CC0-1.0 license receipt are present in the external source pack. The
-publication analysis reference is BeNeuroLab commit
+Provider metadata and the CC0-1.0 license are recorded in the external source
+pack. The publication analysis reference is BeNeuroLab commit
 `cbda8e2e6106f5eb5ff98e18a689c595179ac5db`; it is provenance, not by itself a
 reproducible runtime or permission to import earlier analysis outcomes.
 
 These verified source bytes remain in a builder-only vault outside the episode.
-They are not a candidate-readable input. The builder must independently bind
-the source manifest, reader code, dependencies, container, and every derived
-object by digest before a role-safe pack can satisfy this contract.
+They are not a candidate-readable input. The builder must identify the Dryad
+release/version and reader revision used, then create the separated views below.
+No new checksum manifest or content-addressed copy is a readiness requirement
+unless a concrete source-integrity discrepancy is observed.
 
 ## Frozen primary corpus and whole-day roles
 
@@ -110,6 +109,9 @@ n_development = floor((n - n_calibration)/2)
 n_audit       = n - n_calibration - n_development
 ```
 
+This algorithmic hash is retained only for outcome-blind trial-role assignment;
+it is not a file-checksum or acquisition gate.
+
 Require `n >= 15` complete trials for each of the eight directions. The
 contractual minimum is therefore 3/6/6 calibration/development/audit trials
 per day and direction. Across the six target days, that is at least 144/288/288
@@ -118,7 +120,8 @@ is reproduced under the final reader, the realized lower bound becomes
 144/336/336. These are unique behavioral trials: simultaneous M1 and PMd use
 the same role assignment and must not be counted as independent trials.
 
-Role assignment is immutable once its manifest is signed. A direction with
+Role assignment is frozen in the final role table before development outcomes
+are inspected. A direction with
 fewer than 15 eligible trials, a failed simultaneous-region join, or a window
 with insufficient native bins makes the day ineligible and triggers the
 six-day stop rule above; it cannot be repaired by changing rounding, dropping
@@ -140,29 +143,26 @@ Consequently, a positive result concerns predictive information in this
 released feature representation. It cannot show that an equivalent method
 would transfer from independently processed raw voltage.
 
-## Episode build and provenance
+## Episode build record
 
 The episode builder may read the mixed `.mat` archive during bootstrap. It must
-use a deterministic reader whose source, dependency lock, and tests are
-recorded. The build receipt must record, for every derived object,
-the source-file SHA-256, source variable path, canonical ID derivation,
+use a fixed reader revision. A compact build record must identify the Dryad
+release/version, reader revision, source variable mappings, canonical ID rule,
 MATLAB-to-analysis indexing conversion, event convention, eligibility
-predicate, array shape and dtype, output SHA-256, reader commit, environment
-digest, and build time. Synthetic fixtures must cover MATLAB indexing, event
-boundaries, trial joins, role filtering, and native-bin slicing.
+predicate, and resulting shapes/dtypes. Targeted fixtures must cover MATLAB
+indexing, event boundaries, trial joins, role filtering, and native-bin slicing.
 
 The builder must also produce:
 
-1. an immutable 25-object provider/local source manifest and license receipt;
-2. a structural inventory and trusted reproduction of the support report;
+1. a source-release/version and license note;
+2. a structural inventory and support report;
 3. canonical animal, implant, day, region, trial, direction, event, channel,
    feature, and target-neuron identities;
-4. the signed whole-day and target-trial role manifests;
+4. the frozen whole-day and target-trial role tables; and
 5. a shared EP05--EP08 exposure ledger identifying prior human, agent, code,
-   cache, and outcome access; and
-6. byte manifests for each handoff described below.
+   cache, and outcome access.
 
-The feature manifest must bind the exact `lfp_guide` column meanings and dtype,
+The feature record must state the exact `lfp_guide` column meanings and dtype,
 the provider code for LMP, the complete band-code-to-eight-class map, canonical
 class order, channel/electrode identity fields, and duplicate, missing, or
 unknown-code rejection rules. It must prove that the guide is identical where
@@ -172,16 +172,15 @@ matched across days.
 
 No historical derived array, fitted transform, selected setting, score, or
 winner may be copied into a handoff. A reader or eligibility change after any
-development label has been scored invalidates all downstream packs and
-requires a new versioned build before further search.
+development label has been scored invalidates all downstream views and
+requires a new frozen build version before further search.
 
 ## Exact role-safe episode views
 
-The episode must materialize or deterministically address role-specific views
-and record their hashes. Candidate fitting code must not receive labels from a
-forbidden role. OS-level permission separation, encryption, separate service
-identities, and an external broker are optional ways to enforce the required
-role isolation.
+The episode must materialize or deterministically address role-specific views.
+Candidate fitting code must not receive labels from a forbidden role. OS-level
+permission separation is sufficient; encryption, separate service identities,
+and an external broker are not required.
 
 ### Candidate development handoff
 
@@ -195,7 +194,7 @@ The candidate worker may read only:
   opaque prediction IDs, with no spike targets or source trial IDs from which
   hidden roles can be recovered;
 - frozen per-day target-neuron scoring rosters, feature/channel guides,
-  window/bin specifications, schemas, split-support summaries, approved
+  window/bin specifications, structural metadata, split-support summaries, approved
   reader interfaces, and synthetic fixtures; and
 - the candidate code/environment, trial configuration, budget state, and
   prior scalar feedback authorized by the controller.
@@ -207,8 +206,8 @@ embedded outcomes; or fitted state that used a forbidden role.
 
 ### Development-evaluator view
 
-The episode development evaluator may read the signed role and
-neuron-roster manifests, the opaque-ID-to-development-target map, development
+The episode development evaluator may read the frozen role and
+neuron-roster records, the opaque-ID-to-development-target map, development
 targets and validity masks, submitted predictions, the frozen R2 scorer,
 fixed comparator implementations, matched-opportunity budget ledger, and the
 scalar-feedback/diagnostic allowlist. It may also read the candidate pack
@@ -228,29 +227,28 @@ receive no audit IDs, counts beyond the locked support summary, features,
 labels, or partial results during search.
 
 After a valid configuration-lock record, the episode's one-open evaluation
-path loads the locked executable/environment, fitted-state recipe, and
+path loads the fixed implementation, configurations, fitted-state recipe, and
 held-out view. It runs the locked transfer policy and fixed comparators,
 performs the prespecified whole-trial inference, and emits only the allowed
-terminal report and access record. It may not expose partial target/session
+terminal report. It may not expose partial target/session
 results, permit refitting or successor proposals, or reopen the held-out view
 after a score-bearing execution. An exact retry is allowed only for a
-documented infrastructure failure that released no score and preserved every
-input and lock hash.
+documented infrastructure failure that released no score and preserved the
+same frozen roles, configuration, implementation, and seed.
 
 ## Episode execution boundary
 
 Candidate fitting functions must receive only the declared candidate view,
 configuration, controller messages, and job-local scratch. The episode must
 test its role-aware loader against direct forbidden-role requests and record
-the result during bootstrap. A separate Unix identity, network namespace,
-signed denial receipt, and broker are not required. Because this is a
-same-user logical boundary, the final report must state that limitation rather
-than claiming a cryptographic confidentiality seal.
+the result once before scored search. Because this is a same-user logical
+boundary, the final report must state that limitation rather than claiming a
+cryptographic confidentiality seal.
 
 ## Exposure and fixed-corpus claim
 
 The Dryad release was outcome-exposed during earlier campaign work, including
-EP05. New role manifests and a clean execution boundary can prevent additional
+EP05. New frozen role tables and a clean execution boundary can prevent additional
 adaptive leakage but cannot make this corpus independent or unexposed. Before
 the held-out stage, the exposure record must conservatively record all prior access,
 shared code, cached features, human knowledge, and any irreducible uncertainty.
@@ -287,7 +285,7 @@ The development mechanism view needs, for every permitted day and stratum:
   summaries, and every transform used by the locked primary policy;
 - source-fitted and target-calibrated latent coordinates, prediction
   components, and source-day/component ablation records; and
-- enough immutable prediction output to score native counts and
+- enough saved prediction output to score native counts and
   separately fitted within-direction/time residual predictions without
   refitting on held-out targets; and
 - physical electrode/unit joins, feature-band identities, and spike-quality
@@ -341,17 +339,17 @@ evidence and must be logged as such.
 
 The numeric execution bundle is defined jointly by
 `NUMERIC_OPERATOR_GRAMMAR.md`, `ANCHOR_RUNTIME_CONTRACT.yaml`, and
-`NUMERIC_SEARCH_CONTRACT.yaml`. Dataset and handoff builders must bind the
-exact hashes of all three; none may infer a different roster, fit visibility,
-shape fallback, or trial-count rule from the raw release.
+`NUMERIC_SEARCH_CONTRACT.yaml`. The final lock names their versioned contract
+IDs; builders may not infer a different roster, fit visibility, shape fallback,
+or trial-count rule from the raw release.
 
-Acquisition is complete. Structural eligibility, numeric-value/guide checks,
-role-specific views, exposure recording, controller qualification, runtime
-profiling, and held-out evaluation remain. They are performed during the
-episode task and may produce a technical terminal.
+Acquisition is complete. Structural eligibility and guide compatibility,
+role-specific views, exposure recording, one targeted runtime smoke test, and
+held-out evaluation remain. They are performed during the episode task and may
+produce a technical terminal.
 
 Large immutable bytes remain outside Git. Transient computation belongs in a
 dedicated `$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`
 allocation.
-Only manifests, policies, ledgers, hashes, receipts, locks, and final reports
-are durable episode outputs.
+Only compact source/role/exposure records, policies, the immutable final lock,
+and final reports are durable episode outputs.

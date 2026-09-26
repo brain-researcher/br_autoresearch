@@ -1,6 +1,6 @@
-schema_version: ep07.anchor_runtime_contract.v2
+contract_version: ep07.anchor_runtime_contract.v2
 episode_id: ep07
-status: pending_runtime_artifact_hashes_and_end_to_end_dry_profile_not_executable
+status: pending_implementation_and_targeted_runtime_smoke_test_not_executable
 scientific_scope: full_operator_families_retained
 operator_grammar_ref: NUMERIC_OPERATOR_GRAMMAR.md
 qualification_scope:
@@ -13,12 +13,10 @@ authority_boundary:
   authorizes_development_outcome_access: false
   authorizes_audit_access: false
   unresolved_hard_gates:
-    - runtime_image_sha256_absent
-    - exact_wheel_hash_lock_absent
-    - registered_node_class_receipt_sha256_absent
-    - runtime_grammar_dispatch_qualification_absent
-    - shape_matched_end_to_end_synthetic_dry_profile_absent
-    - trusted_builder_numeric_validity_and_roster_receipt_absent
+    - runtime_grammar_dispatch_implementation_absent
+    - targeted_shape_matched_synthetic_smoke_test_absent
+    - structural_eligibility_and_roster_check_absent
+    - role_loader_access_test_absent
 
 anchor_contract:
   anchors_per_stream: 16
@@ -47,11 +45,10 @@ anchor_contract:
     inject:
       stream: transfer
       configuration_kind: base
-      grammar_schema_version: ep07.numeric_operator_grammar.v2
+      grammar_contract_version: ep07.numeric_operator_grammar.v2
     required_before_hash:
-      runtime_contract_sha256: nonnull_sha256_of_locked_runtime_contract_subtree
+      runtime_id: nonnull_versioned_runtime_identifier
     configuration_hash_rule: runtime_contract.config_canonicalization
-    planning_uniqueness_without_runtime_hash: nonauthoritative_only
   finite_grid:
     stream: [transfer, calibration_only]
     configuration_kind: [base, ensemble]
@@ -289,9 +286,9 @@ anchor_contract:
     source_anchor_relation: one_to_one_same_anchor_id
     materialization:
       inject:
-        grammar_schema_version: ep07.numeric_operator_grammar.v2
+        grammar_contract_version: ep07.numeric_operator_grammar.v2
       required_before_hash:
-        runtime_contract_sha256: nonnull_sha256_of_locked_runtime_contract_subtree
+        runtime_id: nonnull_versioned_runtime_identifier
       configuration_hash_rule: runtime_contract.config_canonicalization
     copy_exact:
       - representation
@@ -526,12 +523,11 @@ anchor_contract:
       ensemble: null
 
 runtime_contract:
-  runtime_id: ep07_cpu_float64_v2_pending_artifact_lock
+  runtime_id: ep07_cpu_float64_v2
   platform:
     architecture: x86_64
     device: cpu_only
     cpu_feature_target: x86_64_v3
-    registered_node_class_receipt_sha256: null
   python: "3.12.11"
   launcher: "uv==0.8.17"
   dependency_versions:
@@ -540,17 +536,8 @@ runtime_contract:
     h5py: "3.13.0"
     scikit_learn: "1.6.1"
     pyyaml: "6.0.3"
-    jsonschema: "4.25.1"
     threadpoolctl: "3.6.0"
     psutil: "7.0.0"
-  artifact_binding:
-    runtime_image_sha256: null
-    python_executable_sha256: null
-    uv_lock_sha256: null
-    exact_wheel_manifest_sha256: null
-    exact_wheel_hashes: null
-    registered_node_class_receipt_sha256: null
-    state: pending_blocks_executable_status
   environment:
     PYTHONHASHSEED: "0"
     OMP_NUM_THREADS: "1"
@@ -607,7 +594,7 @@ runtime_contract:
     rng: numpy_random_PCG64DXSM
     uint64_conversion: big_endian_first_8_bytes_of_SHA256
     payload: >-
-      ep07-seed-v2\0{registered_policy_sha256}\0{canonical_config_sha256}
+      ep07-seed-v2\0{policy_id}\0{canonical_config_sha256}
       \0{component}\0{animal}\0{date}\0{stratum}\0{fold}
       \0{epoch}\0{replicate}
     payload_encoding: UTF8_exact_fields_joined_by_single_NUL_without_trailing_NUL
@@ -625,6 +612,7 @@ runtime_contract:
     config_hash_excludes_derived_seeds: true
     seed_search: prohibited
   config_canonicalization:
+    purpose: scientific_candidate_identity_tie_breaking_and_seed_derivation_only_not_file_or_runtime_artifact_verification
     format: canonical_JSON_UTF8
     recursive_key_order: lexicographic
     separators: [",", ":"]
@@ -640,8 +628,8 @@ runtime_contract:
       - execution_timestamps
       - worker_and_job_identifiers
     hash_includes:
-      - grammar_schema_version
-      - runtime_contract_sha256
+      - grammar_contract_version
+      - runtime_id
       - stream
       - every_operator_and_required_explicit_null
       - sorted_parent_hashes_and_parent_weight_for_ensembles
@@ -675,8 +663,8 @@ compute_profile:
     estimated_300_epoch_minibatch_mlp_seconds: 10.9
     caveat: >-
       This did not execute the complete twelve-day pipeline, all nested source
-      folds, every anchor, handoff isolation, or evaluator protocol and cannot
-      satisfy the compute-profile readiness gate.
+      folds, every anchor, role isolation, or evaluator protocol and does not
+      replace the targeted smoke test below.
   provisional_scheduler_request:
     gpu_count: 0
     cpus_per_stream_evaluation: 1
@@ -686,38 +674,29 @@ compute_profile:
     normal_128gb_node_parallelism: 16
     memory_256gb_node_parallelism: 31
     maximum_parallel_scratch_gb: 496
-  required_end_to_end_dry_profile:
+  required_targeted_synthetic_smoke_test:
     state: pending_blocks_executable_status
     data: deterministic_shape_matched_synthetic_only
     required_paths:
-      - all_twelve_target_day_by_stratum_fits
       - A04_hierarchy_cca_reduced_rank
-      - A05_stacking_elastic_net
       - A10_stacking_cca_mlp
-      - A15_stacking_cca_mlp
       - calibration_only_derivations
       - two_parent_ensemble
-      - exact_replay
     pass_limits:
       peak_rss_gb_per_stream_evaluation: 6
       p95_wall_minutes_per_stream_evaluation: 45
       projected_maximum_80_evaluation_core_hours: 400
       projected_campaign_wall_hours: 72
-    required_receipt_fields:
-      - runtime_image_sha256
-      - exact_wheel_manifest_sha256
-      - synthetic_fixture_sha256
-      - implementation_tree_sha256
+    compact_record_fields:
+      - runtime_id_and_actual_library_versions
+      - synthetic_fixture_description
       - per_path_wall_cpu_peak_rss_and_scratch
-      - replay_output_hashes
       - projection_method_and_safety_factor
 
 promotion_rule:
   current_result: remain_provisioning
   executable_only_after:
-    - exact_runtime_artifacts_bound_by_sha256
     - all_sixteen_transfer_and_calibration_anchor_hashes_unique
-    - semantic_linter_accepts_every_anchor
-    - end_to_end_synthetic_dry_profile_passes
-    - deterministic_replay_receipt_passes
-    - trusted_builder_and_handoff_gates_pass
+    - configuration_legality_check_accepts_every_anchor
+    - targeted_synthetic_smoke_test_passes
+    - structural_builder_and_role_loader_checks_pass

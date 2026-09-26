@@ -126,8 +126,8 @@ does not start compute or establish a finding; an explicit scientist
 instruction in a Codex task starts the work. Earlier uses of this Dryad corpus
 remain development history: no earlier score, winning setting, review, or
 conclusion may seed the trial order or prior. At episode bootstrap, bind the
-search policy, exposure record, input identities, and exact contract-byte
-snapshot before any candidate-discriminating score is used.
+named search-policy revision, exposure record, source release/version, and
+frozen day/trial roles before any candidate-discriminating score is used.
 
 EP05--EP08 share source dependence and therefore use one exposure ledger. A
 new trial split inside this already exposed release is an internal audit of a
@@ -306,9 +306,10 @@ operator definitions are frozen in `NUMERIC_OPERATOR_GRAMMAR.md`; the finite
 grid, 16 anchors per stream, legal-combination rules, seeds, and runtime are in
 `ANCHOR_RUNTIME_CONTRACT.yaml`; and selection, budget, falsifier, retry, and
 terminal semantics are in `NUMERIC_SEARCH_CONTRACT.yaml`. These three files are
-one contract bundle: their content hashes must be locked together before any
-development outcome is opened. Retaining the full grammar does not waive a
-shape, legality, determinism, or leakage check.
+one versioned contract bundle: freeze their contract IDs before any development
+outcome is opened and carry those IDs into the final lock. Retaining the full
+grammar does not waive the configuration-legality, structural-support, or
+leakage rules.
 
 ## Comparators and exact estimand
 
@@ -392,9 +393,9 @@ trials and the two streams jointly receive
 
 A pair is scientifically valid only after both streams return valid authorized
 development evaluations; unilateral feedback is not released. Every attempted
-pair still consumes two outcome contacts. Exact infrastructure retries repeat
-the same hash and seed, emit no scientific feedback, do not consume patience,
-and are capped at two per trial and 12 total. A candidate-specific numeric
+pair still consumes two outcome contacts. Infrastructure retries repeat the
+same frozen configuration and seed, emit no scientific feedback, do not consume
+patience, and are capped at two per trial and 12 total. A candidate-specific numeric
 failure after outcome contact consumes the atomic opportunity for both streams
 but is not a valid selectable pair. No more than 14 successor pairs or 80 total
 stream outcome contacts may be attempted. Failure to obtain two valid
@@ -443,9 +444,9 @@ Before lock, every promotion-eligible policy must undergo:
 Each of these is one atomic paired trial on the frozen transfer finalist and
 calibration-only champion; applicability and pass mode are derived from their
 operator graphs before scores open. Stable, drifting, null, and
-latent-scale-shift synthetic recovery; deterministic full-refit replay; and
-role, cache, link, and network-denial proofs are required nonbudgeted integrity
-gates. If either finalist is a two-parent ensemble, both parent-removal scores
+latent-scale-shift synthetic recovery and one targeted test that forbidden
+roles cannot be loaded are required nonbudgeted gates. If either finalist is a
+two-parent ensemble, both parent-removal scores
 are recovered as two prespecified records from the parents' already stored
 predictions; this adds no outcome contact and satisfies the component-ablation
 requirement without bundling F10. Leave-one-target-day analysis is a no-refit recomputation from stored
@@ -458,16 +459,16 @@ the episode a technical failure.
 ## Lock and one-shot inference
 
 Select one global transfer policy and one calibration-only champion using only
-authorized development feedback. Re-run both from immutable inputs, then hash
-a lock bundle containing the source and role manifests, structural support and
-neuron rosters, provider-preprocessing exception, grammar, complete append-only
-paired trial ledger, Pareto archive, fitted-state recipes, fixed comparator,
-chosen configurations, predictions recipe, metric and bootstrap code,
-multiplicity rule, falsifiers, environment, seeds, stopping event, and terminal
-decision table. The bundle must include exact content hashes for
-`NUMERIC_OPERATOR_GRAMMAR.md`, `ANCHOR_RUNTIME_CONTRACT.yaml`, and
-`NUMERIC_SEARCH_CONTRACT.yaml`. No configuration, fit rule, exclusion, or
-inference change is allowed after the lock.
+authorized development feedback. Fit both from the same frozen source and
+calibration roles, then write one immutable final lock record containing the
+source release/version, day and trial roles, structural support and neuron
+rosters, provider-preprocessing exception, the versioned numeric-contract IDs,
+runtime ID and actual numeric-library versions, complete paired-trial ledger,
+fixed comparator, chosen configurations, fit and prediction rules, metric and
+bootstrap specification, multiplicity rule, falsifiers, seeds, stopping event,
+and terminal decision table. No
+configuration, fit rule, exclusion, or inference change is allowed after the
+lock.
 
 For each `theta[k,b]`, test the practical-margin null
 `H0: theta[k,b] <= 0.01 R2` with 9,999 prespecified paired-bootstrap

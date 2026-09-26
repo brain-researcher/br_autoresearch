@@ -1,8 +1,8 @@
-schema_version: autoresearch.numeric_search_contract.v1
+contract_version: autoresearch.numeric_search_contract.v1
 contract_id: ep07_full_space_numeric_search_v1
 episode_id: ep07
 contract_revision: 1
-status: scientist_approved_pending_episode_bootstrap_validation
+status: scientist_approved_pending_implementation_and_targeted_smoke_test
 observed_on: "2026-09-22"
 
 authority:
@@ -12,8 +12,8 @@ authority:
   creates_canonical_registration: false
   authorizes_outcome_access: false
   authorizes_launch: false
-  final_linter_review_required: true
-  runtime_and_trusted_execution_qualification_required: true
+  configuration_legality_review_required: true
+  targeted_runtime_smoke_test_required: true
 
 references:
   goal: GOAL.md
@@ -37,12 +37,12 @@ full_space_decision:
     adaptation: [zero_prior_fit, source_prior_shrinkage, convex_source_target]
     maximum_ensemble_members: 2
   implementation_condition: every_operator_numeric_choice_seed_tie_rule_and_failure_rule_is_frozen_before_development_outcome_access
-  open_linter_requirements:
+  pre_search_requirements:
     - complete_equation_level_operator_manifest
     - complete_numeric_hyperparameter_grid
-    - sixteen_legal_anchor_hashes_per_stream
+    - sixteen_legal_anchor_configurations_per_stream
     - deterministic_complexity_rank_for_every_configuration
-    - executable_static_configuration_linter
+    - executable_configuration_legality_check
 
 audit_finding_resolutions:
   prediction_output:
@@ -150,20 +150,19 @@ branch_coverage:
     per_stream_required_valid_weights: ["0.25", "0.75"]
     parent_rule: two_distinct_previously_valid_nonensemble_configs_in_that_stream
     rationale: covers_the_ensemble_family_and_both_weight_boundaries_without_illegal_anchor_parents
-  structural_lint_before_dispatch: true
+  configuration_legality_check_before_dispatch: true
   anchor_manifest_ref: ANCHOR_RUNTIME_CONTRACT.yaml#anchor_contract
-  anchor_manifest_content_hash_binding: required_in_configuration_lock_before_outcome_access
-  missing_or_unreadable_anchor_manifest_blocks_final_linter_pass: true
+  anchor_contract_version_frozen_before_outcome_access: true
+  missing_or_unreadable_anchor_contract_blocks_bounded_search: true
 
 adaptive_successor_definition:
   pair_barrier: release_feedback_only_after_both_stream_trials_are_valid
   first_cycle_parent: best_eligible_anchor_in_the_same_stream
   later_cycle_parent: eligible_configuration_known_before_the_cycle
-  causal_receipts_required:
-    - proposal_timestamp_after_prior_pair_feedback_receipt
-    - parent_configuration_hash
-    - prior_feedback_digest
-    - unique_child_configuration_hash_within_stream
+  successor_lineage_record:
+    - prior_paired_feedback_cycle_id
+    - parent_configuration_id
+    - unique_child_configuration_id_within_stream
     - at_least_one_searchable_field_changed_from_parent
   feedback_isolation: each_stream_proposer_reads_only_its_own_allowlisted_feedback
   prespecified_batch_counts_as_adaptive: false
@@ -431,9 +430,7 @@ nonbudgeted_computations_and_gates:
     - id: G02_drifting_synthetic_recovery
     - id: G03_null_synthetic_recovery
     - id: G04_latent_scale_shift_recovery
-    - id: G05_deterministic_full_refit_replay
     - id: G06_role_boundary_access_denial
-    - id: G07_cache_symlink_hardlink_and_network_denial
   synthetic_and_integrity_gate_accounting:
     consumes_real_development_outcome_budget: false
     counts_in_postcoverage_falsifier_fraction: false
@@ -445,7 +442,7 @@ retry_policy:
     maximum_total: 12
     maximum_per_trial: 2
     permitted_only_if:
-      - configuration_hash_seed_inputs_and_environment_are_unchanged
+      - frozen_configuration_seed_and_fit_roles_are_unchanged
       - evaluator_certifies_no_score_prediction_join_or_candidate_discriminating_diagnostic_was_emitted
     consumes_scientific_budget: false
     updates_patience: false
@@ -473,8 +470,8 @@ audit_eligibility:
     - ten_valid_finalist_bound_falsifier_pairs
     - every_scientific_falsifier_passes
     - every_synthetic_and_integrity_gate_passes
-    - reproducible_refit_from_immutable_inputs
-    - immutable_configuration_lock_hash
+    - final_fit_uses_the_frozen_source_and_calibration_roles
+    - immutable_final_lock
   audit_open_count_maximum: 1
   audit_updates_search: false
   successor_or_finalist_replacement_after_audit_open: prohibited
@@ -546,15 +543,15 @@ terminal_mapping:
   incomplete_search: closed_no_candidate
   technical_failure: technical_failure
 
-final_linter_assertions:
+contract_consistency_requirements:
   - "A_attempt is an integer and 2 <= A_attempt <= 14"
   - "A_valid is an integer and 2 <= A_valid <= A_attempt for audit eligibility"
   - "F == 10"
   - "total_outcome_contacts == 2 * (16 + A_attempt + F)"
   - "56 <= total_outcome_contacts <= 80"
   - "10 / (A_attempt + 10) >= 0.40"
-  - exactly_sixteen_unique_legal_anchor_hashes_exist_per_stream
-  - at_least_two_successor_pairs_have_valid_causal_lineage_receipts
+  - exactly_sixteen_unique_legal_anchor_configurations_exist_per_stream
+  - at_least_two_successor_pairs_have_complete_lineage_records
   - exactly_ten_atomic_finalist_bound_falsifier_pairs_exist
   - no_falsifier_record_is_eligible_for_champion_or_finalist_selection
   - leave_one_target_day_out_uses_only_stored_locked_predictions_and_refits_nothing

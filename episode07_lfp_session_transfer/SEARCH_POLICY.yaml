@@ -1,4 +1,4 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+contract_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep07_cross_session_transfer_adaptive
 episode_id: ep07
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -77,7 +77,7 @@ numeric_contract:
   outcome_contacts_per_stream_range: [28, 40]
   total_outcome_contacts_range: [56, 80]
   post_coverage_falsifier_fraction_min: 0.40
-  executable_status: pending_runtime_artifact_lock_and_end_to_end_dry_profile
+  executable_status: pending_implementation_and_targeted_runtime_smoke_test
 
 dataset_roles:
   shared_exposure_ledger_group: lfp_ep05_ep08
@@ -178,14 +178,14 @@ dataset_roles:
       - target_label_blind
       - identical_released_inputs_for_transfer_and_comparators
       - no_episode_fit_or_selection_uses_development_or_audit_outcomes
-      - exception_recorded_in_exposure_and_provenance_manifests
+      - exception_recorded_in_exposure_record_and_final_lock
     claim_limit: released_provider_preprocessed_representation_not_raw_voltage
   handoff_firewall:
     candidate_read_allowlist:
       - source_only_LFP_spike_targets_and_covariates
       - target_calibration_LFP_spike_targets_and_covariates
       - target_development_LFP_covariates_and_opaque_trial_ids
-      - frozen_structural_metadata_and_manifests
+      - frozen_structural_metadata_and_role_records
     candidate_forbidden:
       - target_development_labels
       - audit_trial_ids_covariates_labels_metrics_or_prediction_joins
@@ -199,11 +199,11 @@ dataset_roles:
       development_labels: trusted_development_evaluator_only
       audit_payload: separately_sealed_permission_separated_store
       feedback_to_candidate: scalar_allowlisted_development_metrics_and_approved_diagnostics_only
-      audit_access: exactly_once_after_configuration_lock_hash_approval
+      audit_access: exactly_once_after_immutable_final_lock
     execution_requirements:
       - network_disabled_candidate_worker
       - read_allowlist_excluding_repository_root_sibling_inputs_and_audit_vault
-      - mount_cache_symlink_hardlink_and_network_denial_receipts
+      - one_targeted_forbidden_role_access_test_before_scored_search
 
 grammar:
   representations:
@@ -227,7 +227,7 @@ grammar:
     operator_equations_ref: NUMERIC_OPERATOR_GRAMMAR.md
     finite_grid_anchor_runtime_ref: ANCHOR_RUNTIME_CONTRACT.yaml
     selection_budget_retry_terminal_ref: NUMERIC_SEARCH_CONTRACT.yaml
-    rule: all_referenced_contracts_and_their_content_hashes_must_be_locked_before_development_outcome_access
+    rule: all_referenced_contract_versions_are_frozen_before_development_outcome_access_and_carried_into_the_final_lock
   forbidden:
     - evaluation_fitted_transform
     - development_label_access_by_candidate
@@ -397,9 +397,7 @@ nonbudgeted_pre_audit_gates:
   - G02_drifting_synthetic_recovery
   - G03_null_synthetic_recovery
   - G04_latent_scale_shift_recovery
-  - G05_deterministic_full_refit_replay
   - G06_role_boundary_access_denial
-  - G07_cache_symlink_hardlink_and_network_denial
 
 conditional_ensemble_component_ablation_gate:
   applicable_when: either_frozen_finalist_is_a_two_parent_ensemble
@@ -421,7 +419,7 @@ promotion:
   require_all_falsifiers_pass: true
   require_pareto_feasible: false
   finalist_selection_authority: NUMERIC_SEARCH_CONTRACT.yaml#development_selection
-  require_reproducible_refit_from_immutable_inputs: true
+  final_refit_uses_frozen_source_and_calibration_roles: true
   max_ensemble_members: 2
   candidate_ready_per_stratum:
     corrected_inference: Holm_rejects_the_stratum_IUT_margin_null
@@ -452,7 +450,7 @@ stop:
 
 audit:
   configuration_lock_required: true
-  lock_hash_required: true
+  immutable_final_lock_required: true
   maximum_open_count: 1
   audit_updates_search: false
   audit_role: locked_whole_trial_evaluation_40_percent

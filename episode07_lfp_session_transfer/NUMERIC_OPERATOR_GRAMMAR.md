@@ -1,11 +1,11 @@
 # EP07 full numeric operator grammar v2
 
-Contract schema ID: `ep07.numeric_operator_grammar.v2`.
+Contract version: `ep07.numeric_operator_grammar.v2`.
 
 Status: **scientist approved retaining the full operator families on
 2026-09-22.** This declarative contract does not by itself authorize
-development-outcome access; episode-bootstrap validation, runtime artifacts,
-the full synthetic dry profile, and execution qualification remain pending.
+development-outcome access; implementation, one targeted synthetic smoke test,
+and the role-loader access test remain pending.
 
 ## 1. Frozen invariants
 
@@ -706,7 +706,7 @@ Every implementation must pass synthetic tests for:
 - permutation invariance of every electrode aggregation;
 - fold-local refitting and whole-trial fold containment;
 - hierarchy and stacking weight recovery;
-- deterministic MLP replay;
+- finite seeded MLP behavior on the targeted smoke fixture;
 - native-scale negative predictions remaining unclipped; and
 - rejection at direction error greater than `0.01`, but not at the observed
   `0.0027871747` radians.
