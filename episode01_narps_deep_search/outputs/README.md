@@ -7,5 +7,7 @@ opened.
 Only the seven required workspace projections are initialized here. They are
 readable client-side displays and grant no execution, review, reward,
 scientific, memory, Society, ClaimCard, or Landscape authority. An authorized
-run will add its hash-chained trial ledger and declared scientific artifacts;
-transient computation belongs in episode-specific scratch.
+run will add its chronological trial record and declared scientific artifacts;
+transient computation belongs in episode-specific scratch. Generic checksum,
+schema, receipt, attestation, and exact-environment reports are not required
+startup artifacts.

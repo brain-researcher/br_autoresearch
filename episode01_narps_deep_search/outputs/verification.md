@@ -6,26 +6,27 @@
 
 ## Verification scope
 
-- verifier: local contract checks
+- verifier: lean local contract review
 - state: formal local specification; no scientific run or audit has started
-- exact prior-artifact identities live only in the anti-leakage lineage
-  contract and are not duplicated in this projection
+- exact prior-artifact identities remain in the read-only anti-leakage lineage
+  declaration and are not duplicated here
 
-## Mechanical verification
+## Current control status
 
 | Check | Status | Scope or limitation |
 | --- | --- | --- |
-| Required tree and seven projections | passed | Exact seven-file projection set plus top-level contracts and guards; no scientific payload |
-| Unique-key YAML and JSON parsing | passed | PyYAML unique-key loader for changed YAML and standard JSON parser for schemas/manifest |
-| Search-policy schema | passed | JSON Schema Draft 2020-12 validation with `jsonschema`; structure, not scientific validity |
-| Budget, coverage, ledger, audit, and terminal assertions | passed | 30/60/12 trials, 12/12/6 stage minima, 15 failures, 2,500 CPU-hours, 0 GPU-hours, 96 wall-hours, 1,536 GiB scratch; 12 coverage slots; common ledger fields; nine terminal classes; one scientific audit transaction |
-| Decision-contract cross-check | passed | Lock prerequisites equal the stop-policy depth gates; family-selection precedence, nonempty nonkernel comparator set, patience reset, incomplete routes, and no-output retry semantics are explicit |
-| Registry and evidence-policy identity | passed | Exactly one current EP01 at the new path, formal EP02 is the independent Dudman contract, EP18 is the sole incomplete and uncounted draft, two NARPS prior IDs remain unambiguous, and the current portfolio count is 19 |
-| Prior artifact identity | passed | All 23 declared files match the identities in the lineage contract at both their current archive paths and frozen historical revision; the packet remains metadata-only and is insufficient for outcome evaluation |
-| Legacy relocation integrity | passed | All 70 tracked blobs are byte-identical after the path-only move; file counts, byte totals, and three historical input symlinks are unchanged; both old root paths are absent |
-| Ignore-boundary check | passed | All 646 legacy local-only payload entries remain ignored; prior manifest is trackable; future `inputs/prior_lineage/materialized/` payload remains ignored |
-| Audit-input exclusion | passed locally | New inputs contain no neural-array extension; repository inspection cannot substitute for an OS/service firewall |
-| Cross-contract links and whitespace | passed | New relative Markdown links resolve; checked files have no trailing whitespace |
+| Legacy identity and exposure | declared | Two distinct exposed prior identities are frozen in the lineage input; only an artifact actually used needs one identity match and an episode-local copy |
+| Development subjects and grouped split | not run | Direct subject/run eligibility and outcome-blind fold checks are required before scoring |
+| Scoring endpoint | not run | Contrasts, units, mask, S0/S8 paths, exact `K8_ref`, degeneracy rule, and uncertainty must be frozen before use |
+| Adaptive chronology | not run | Each successor must cite a prior scored trial and the latest scored sequence visible before execution |
+| Configuration lock | not reached | One immutable, versioned lock must freeze winner, comparators, code version, data roles, split, scoring rules, thresholds, and report fields |
+| Audit separation | not run | A permission-separated runner must hide audit neural arrays until lock and allow only one scientific opening |
+
+The original contract bootstrap recorded additional YAML-schema, hash,
+inventory, relocation, and ignore-boundary checks. Those observations are not
+scientific evidence and are not repeated readiness or launch gates. This
+projection now reports only controls that bear directly on identity, leakage,
+endpoint validity, adaptive timing, or the frozen audit.
 
 ## Scientific boundary
 

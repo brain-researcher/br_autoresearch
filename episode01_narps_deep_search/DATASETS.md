@@ -13,8 +13,8 @@ not authorize source access, materialization, computation, or audit opening.
 | --- | --- | --- | --- |
 | `narps_prior_v1` and `narps_prior_v2` | Historical development lineage | Fully exposed | Hypothesis generation, historical reproduction, ingestion tests; never new evidence |
 | OpenNeuro `ds001734` | Adaptive development | Fully exposed by the prior runs | Search, grouped folds, ablation, reliability, and full-development replication |
-| Synthetic fixtures | Outcome-blind calibration | Generated | Operator/metric recovery, degeneracy tests, ledger tests, audit-runner rejection tests |
-| OpenNeuro `ds000005` | One-shot external transport audit | Metadata/schema visible; neural arrays forbidden to discovery | Exactly one locked evaluation through a permission-separated runner |
+| Synthetic fixtures | Outcome-blind calibration | Generated | Operator/metric recovery, degeneracy tests, and targeted audit-boundary tests |
+| OpenNeuro `ds000005` | One-shot external transport audit | Identity, metadata, counts, and contrast names visible; neural arrays forbidden to discovery | Exactly one locked evaluation through a permission-separated runner |
 
 No partition of `ds001734` is untouched confirmation. Its subject folds are
 algorithmic development checks inside an exposed dataset. `ds000005` is
@@ -25,16 +25,24 @@ status is procedure-sealed for this program rather than globally pristine.
 
 The machine-readable prior declaration is
 [`inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json`](inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json).
-It pins the repository revision, representative artifact hashes, legacy
-canonical identities, exposure status, and required materialization set.
+It records the repository revision, legacy canonical identities, exposure
+status, and hashes of selected legacy artifacts. Those existing hashes are
+retained because the two prior runs had overlapping historical names and live
+elsewhere in the repository: matching a hash once for each small artifact
+actually imported is the lightest direct way to prove which exposed prior was
+used. This is an identity and leakage control, not a general checksum policy.
 
-The current packet is manifest-only. Before candidate search, a controller-owned step
-must copy every declared small artifact into a content-addressed, read-only
-packet under this episode, verify all hashes, and record aggregate byte counts.
-It must not symlink, hardlink, or read live sibling outputs during the search.
-Large historical maps are deliberately excluded. They may be reused only from
-an immutable controller-provisioned snapshot with a complete file manifest;
-otherwise they are recomputed from the pinned `ds001734` source.
+Candidate search does not require materializing every declared legacy file.
+If a legacy artifact is actually consumed, copy that artifact into the
+episode-local, read-only prior packet and match it once to the identity already
+declared in the lineage manifest. That episode-local copy plus its one-time
+match to the existing lineage hash is the verified content-addressed prior
+packet required by repository policy. Unused files need not be materialized,
+and no new hashes are generated. Do not create a second manifest, aggregate
+byte-count receipt, independent-review gate, or repeated verification pass.
+The run must not symlink, hardlink, or read live sibling outputs. Large
+historical maps remain excluded; recompute them from the identified
+`ds001734` source unless a scientist explicitly provides a read-only snapshot.
 
 The two prior records have different canonical states. `narps_prior_v1` was
 observed complete with `closed_no_candidate`; `narps_prior_v2` was observed at
@@ -66,25 +74,29 @@ space. These counts are priors to revalidate, not verified input facts.
 | fMRIPrep version | `21.0.2` |
 | License | `CC0` in the locally observed metadata |
 
-A Git commit does not content-address DataLad/annex payloads or prove a clean
-worktree. Before development, hash every BOLD, events, confounds, mask, design,
-and contrast-definition file actually used, record all worktree differences,
-and freeze a source Merkle root.
+A provider version or Git commit does not by itself establish scientific
+usability. Before development scoring, record the source version and the paths
+actually used, directly check retained subject/run completeness and file
+readability, and record any source-tree difference that changes those inputs.
+Per-file hashes and a source Merkle root are not required unless a concrete
+identity discrepancy is observed.
 
-### Required development manifests
+### Required development records
 
-The following must be generated outcome-blind, independently reviewed, hashed,
-and bound in `SEARCH_POLICY.yaml` before candidate-discriminating work:
+Record the following outcome-blind definitions once before they are used for
+candidate scoring. A concise table or configuration file is sufficient; no
+custom schema, independent attestation, or checksum layer is required:
 
-- source and payload inventory with file bytes and hashes;
+- source/version and the retained participant/run inventory;
 - participant/run eligibility and exclusion reasons;
-- opaque-hash, task-version-stratified subject folds;
+- deterministic, task-version-stratified subject folds created without
+  outcome values;
 - gain/loss and EI/ER environment definitions and weights;
 - S0, S8, and global exact-`K8_ref` operator DAGs;
 - comparison mask, resampling, edge-shell, and degeneracy rules;
 - contrast units/sign crosswalk and nuisance construction;
-- software/container, code, seed, and resource-metering manifests; and
-- synthetic fixtures with expected scores and failure modes.
+- versioned analysis code, seeds, and the resource ceilings; and
+- any synthetic fixture actually used, with its expected score or failure mode.
 
 Every scored trial reports all four primary environments separately plus the
 frozen aggregate. Fold creation uses identifiers and declared stratifiers, not
@@ -124,39 +136,35 @@ leave-one-subject-out stability remain visible.
 
 ### Required technical firewall
 
-Before candidate search, materialize distinct access surfaces:
+Maintain two direct access roles:
 
-1. `inputs/development/`: verified prior packet, immutable `ds001734` payload,
-   folds, manifests, and synthetic fixtures.
-2. `inputs/audit_manifest/`: dataset identity, schema, counts, source Merkle
-   commitment, contrast names, and compatibility receipts only. It contains no
-   readable BOLD, effect, variance, residual, or group-map arrays.
-3. An external trusted audit surface unavailable to the proposal model,
-   search workers, development evaluator, cache, log process, and ordinary
-   episode workspace until a valid configuration-lock hash exists.
+1. A development surface containing the identified `ds001734` inputs,
+   deterministic folds, frozen scoring definitions, and only the legacy prior
+   artifacts actually used.
+2. A protected audit surface unavailable to the proposal model, search
+   workers, development evaluator, caches, logs, and ordinary episode
+   workspace until an immutable configuration-lock version exists. Before
+   then, those processes may see only `ds000005` identity, metadata, counts,
+   contrast names, and compatibility information that contains no neural
+   array values.
 
 A visible symlink, a path plus prose warning, or an instruction-only same-UID
-Codex task boundary is insufficient. The audit runner must accept exactly one
-configuration-lock hash, reject a second scientific audit transaction, disable
-undeclared mounts and network access, and record:
+task boundary is insufficient. The permission-separated audit runner must
+reject access before lock and reject a new scientific opening after any
+candidate-discriminating output has been visible. Keep one simple access log
+with the lock version, opening/start/end times, whether outcome information was
+emitted, and any concrete infrastructure failure. Payload Merkle roots,
+complete file manifests, report schemas, receipt chains, exact runner or
+interpreter attestations, and generic network/mount audits are not required.
 
-- exact source commit, payload Merkle root, and file manifest;
-- received configuration-lock and ledger-prefix hashes;
-- first and last payload-access timestamps;
-- emitted metric/diagnostic schema and whether anything candidate-
-  discriminating became visible;
-- infrastructure failures and whether a retry is mechanically eligible; and
-- permanent rejection of subsequent development records.
-
-A frozen eligible retry is permitted only when the failed attempt emitted no
-candidate-discriminating value. It must reuse the same lock hash, payload root,
-runner, and command; remain inside the same logical audit transaction; and add
-a hash-chained attempt receipt. The exact eligible-failure list and maximum
-attempt count must be frozen with scientist signoff before audit opening.
+A retry is permitted only for a concrete infrastructure failure that emitted
+no candidate-discriminating value. Record it as a continuation of the same
+logical opening, reuse the immutable scientific configuration, and do not
+change the candidate, data, contrasts, thresholds, or uncertainty procedure.
 
 ## Compatibility checks before any audit neural access
 
-Using metadata, schemas, synthetic fixtures, and development data only:
+Using metadata, any targeted synthetic fixture, and development data only:
 
 - verify subject/run completeness and events/confounds/design readability;
 - obtain scientist signoff on semantic, sign, and unit correspondence between
@@ -167,10 +175,11 @@ Using metadata, schemas, synthetic fixtures, and development data only:
 - verify contrast estimability for every retained run;
 - validate deterministic bootstrap, interval multiplicity, LOSO, and
   half-split code on synthetic data;
-- prove rejection before lock and after a consumed transaction, plus acceptance
-  only of a receipt-linked eligible continuation; and
-- profile CPU, memory, concurrency, scratch, and wall time inside the frozen
-  episode budget.
+- demonstrate rejection before lock and after a consumed transaction, and
+  permit continuation only after a recorded no-outcome infrastructure failure;
+  and
+- make a practical CPU, memory, scratch, and wall-time estimate before the
+  relevant Slurm launch.
 
 Compatibility failure may make candidate scoring or audit opening ineligible
 and may cause a technical terminal. It may not expose audit map values or
@@ -188,14 +197,23 @@ motivate a mechanism.
 - Do not count prior-run cells, internal folds, public availability, or a
   filesystem checkout as new independent confirmation.
 
-## Pre-search and audit-opening checklist
+## Minimal readiness checkpoints
 
-- [ ] Legacy identities and expired actions are excluded from episode execution; any later Brain Researcher record is new.
-- [ ] Prior packet materialized locally, content-addressed, and independently verified.
-- [ ] `ds001734` identities, payloads, counts, versions, and worktree state revalidated.
-- [ ] Development source, split, environment, mask, operator, and container hashes frozen.
-- [ ] `ds000005` exposure history and complete payload commitment independently audited.
-- [ ] Contrast semantics/sign/units and all numerical thresholds scientist-signed.
-- [ ] Permission-separated evaluator and one-shot audit runner synthetically qualified; eligible retry failures and maximum attempts signed.
-- [ ] Memory, concurrency, CPU, scratch, and wall-time profile fits the frozen budget.
-- [ ] The immutable search policy is bound to the episode run before candidate scoring.
+Before development scoring:
+
+- [ ] Legacy records are treated only as exposed priors, expired actions are not replayed, and no live sibling output is read.
+- [ ] Each legacy artifact actually used is an episode-local copy matching its existing lineage identity; unused legacy files need not be materialized.
+- [ ] The `ds001734` source/version, retained subjects and runs, exclusions, and readable inputs are recorded.
+- [ ] Subject split, environments, contrasts, mask, S0/S8 pathways, exact-`K8_ref` operator, metric, and degeneracy rule are frozen.
+- [ ] The chronological trial record and proposal-before-execution rule are active.
+
+Before the one-shot audit opening:
+
+- [ ] Contrast semantics, sign, units, numerical thresholds, and simultaneous uncertainty rule are frozen and scientist-approved.
+- [ ] One immutable configuration-lock version names the selected mechanism, comparator set, code version, data roles, split, scoring definitions, and report fields.
+- [ ] The permission-separated runner rejects pre-lock access and search workers cannot see audit neural arrays.
+- [ ] A practical resource estimate fits the episode budget.
+
+These checkpoints are performed once at the stage they govern. Generic
+checksum manifests, schema validators, receipts, attestations, and repeated
+preflights are not additional gates.

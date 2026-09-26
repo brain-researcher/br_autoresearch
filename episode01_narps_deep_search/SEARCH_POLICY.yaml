@@ -1,4 +1,4 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+policy_version: 1
 policy_id: ep01_narps_adaptive_smoothing_search_v1
 episode_id: ep01
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -6,7 +6,10 @@ evidence_mode: adaptive_search
 
 prior_lineage:
   manifest: inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json
-  materialization_status: manifest_only_not_launch_ready
+  current_status: manifest_only
+  launch_rule: materialize_only_legacy_artifacts_actually_used
+  imported_artifact_identity_rule: match_once_to_existing_lineage_identity
+  verified_content_addressed_packet: episode_local_copy_plus_one_time_match_to_existing_lineage_hash
   role: fully_exposed_development_prior
   counts_as_new_evidence: false
   live_sibling_reads_during_run: prohibited
@@ -39,38 +42,38 @@ dataset_roles:
     outcome_exposure: fully_exposed
     permitted_use: hypothesis_generation_historical_reproduction_and_ingestion_tests
     counts_as_trial_or_confirmation: false
-    current_payload: manifest_only_packet_not_materialized
+    current_payload: manifest_only
+    materialization_blocks_search_only_when_artifact_is_actually_used: true
   development_ds001734:
     source: OpenNeuro_ds001734_v1_0_5
     doi: 10.18112/openneuro.ds001734.v1.0.5
     role: outcome_visible_adaptive_development
     access: controller_provisioned_read_only_handoff
     outcome_exposure: fully_exposed_by_prior_runs
-    source_manifest: null
-    split_manifest: null
-    environment_manifest: null
-    mask_manifest: null
-    operator_manifest: null
-    current_payload: historical_paths_observed_handoff_not_frozen
+    source_record: null
+    split_definition: null
+    environment_definition: null
+    mask_definition: null
+    operator_definition: null
+    current_payload: historical_paths_observed_inputs_not_yet_qualified
   synthetic_fixtures:
-    role: outcome_blind_calibration_and_integrity_tests
+    role: outcome_blind_scoring_calibration_and_audit_boundary_tests
     access: development_visible
-    fixture_manifest: null
+    fixture_record: null
     current_payload: absent
   audit_ds000005:
     source: OpenNeuro_ds000005
     role: one_shot_external_transport_audit
     access: permission_separated_evaluator_only_after_configuration_lock
-    discovery_visible_fields: identity_schema_counts_commitments_and_contrast_names_only
+    discovery_visible_fields: identity_metadata_counts_contrast_names_and_non_neural_compatibility_only
     required_candidate_discriminating_neural_arrays_visible_before_lock: false
     current_prelock_visibility_enforced: false
     independently_collected: true
     globally_pristine: false
     campaign_procedure_sealed_required: true
-    audit_manifest: null
-    audit_payload_merkle_root: null
+    metadata_record: null
     audit_runner_ref: null
-    current_payload: locally_present_but_no_role_filtered_handoff_or_firewall
+    current_payload: locally_present_but_no_permission_separated_runner
   mixed_development_and_audit_mount: prohibited
 
 grammar:
@@ -86,8 +89,8 @@ grammar:
     input: M0_after_group_aggregation
     stage: group_map
     operator: exactly_matched_8mm_Gaussian
-    boundary_normalization_resampling_and_grid_manifest: null
-    unresolved_manifest_blocks_candidate_scoring: true
+    boundary_normalization_resampling_and_grid_definition: null
+    unresolved_definition_blocks_candidate_scoring: true
   stage_specific_kernel_operators_are_mechanism_hypotheses: true
   every_DeltaESC_uses_global_K8_ref: true
   spatial_operator_and_stage:
@@ -171,9 +174,11 @@ objectives:
       - minimum_environment_DeltaESC
       - median_environment_DeltaESC
       - negative_complexity
-      - canonical_configuration_hash
+      - stable_configuration_id
     complexity_functional: null
-    canonical_configuration_hash_tie_direction: lexicographically_lowest
+    stable_configuration_id_assignment: deterministic_from_complete_admissible_configuration_before_any_candidate_score_or_outcome_is_read
+    stable_configuration_id_immutable_after_assignment: true
+    stable_configuration_id_tie_direction: lexicographically_lowest
     environment_compensation_across_direction_reversal: prohibited
     deterministic_tie_resolution: true
     unresolved_complexity_functional_blocks_candidate_scoring: true
@@ -195,21 +200,18 @@ objectives:
     - audit_thresholds_and_interval_family_frozen_before_development
 
 trial_contract:
-  schema_ref: ../TRIAL_LEDGER.schema.json
   ledger_path: outputs/experiments.jsonl
-  append_only: true
-  hash_chained: true
+  chronological_append_only: true
+  proposal_must_precede_execution: true
   required_common_fields:
     - trial_id
     - timestamp_utc
-    - previous_record_hash
-    - record_hash
     - parent_trial_ids
     - proposal_mode
-    - proposal_context_hash
+    - latest_scored_trial_sequence_visible_at_proposal
     - outcome_evidence_refs
     - successor_cycle_id
-    - configuration_lock_hash
+    - configuration_lock_version
     - stage
     - hypothesis
     - directional_prediction
@@ -219,7 +221,6 @@ trial_contract:
     - expected_information_gain
     - expected_cost
     - config
-    - hashes
     - state
     - resources
     - belief_update
@@ -232,14 +233,14 @@ trial_contract:
     - coverage_slot_id
     - counts_as_valid_trial
     - valid_trial_sequence_number
-    - coverage_satisfied_record_hash
+    - coverage_satisfied_record_sequence
     - post_coverage
     - falsifier_credit_category
     - counts_toward_falsifier_numerator
     - engineering_failure_attempt_number
     - retry_of_trial_id
-    - comparison_mask_hash
-    - global_exact_K8_ref_operator_hash
+    - comparison_mask_id
+    - global_exact_K8_ref_operator_version
     - per_environment_metrics
     - per_environment_uncertainty
     - controls
@@ -260,11 +261,11 @@ trial_contract:
     - AUDIT_OPENED
     - AUDITED
   outcome_adaptive_successor_requires_prior_scored_record: true
-  outcome_adaptive_successor_requires_complete_visible_prefix_hash: true
+  outcome_adaptive_successor_records_latest_visible_scored_sequence: true
   corrections_create_superseding_record: true
   coverage_slot_id_maximum_per_trial: 1
   duplicate_or_retry_records_never_receive_new_coverage_or_falsifier_credit: true
-  engineering_retry_reuses_scientific_trial_only_when_config_and_roles_are_byte_identical: true
+  engineering_retry_reuses_scientific_trial_only_when_declared_config_and_data_roles_are_unchanged: true
 
 budgets:
   minimum_valid_trials: 30
@@ -274,13 +275,11 @@ budgets:
   cpu_core_hour_ceiling: 2500
   gpu_hour_ceiling: 0
   wall_clock_hour_ceiling: 96
-  max_parallel_cores: null
-  max_memory_gb_per_trial: null
   max_scratch_gib: 1536
   finalists_max: 3
   finalists_max_excludes_required_no_change_and_global_K8_ref_baselines: true
   audit_openings_max: 1
-  unresolved_memory_and_concurrency_limits_block_controller_execution: true
+  slurm_resources_requested_for_each_actual_launch: true
   stage_valid_trial_ranges:
     coverage: [12, 20]
     adaptive_targeted_recomputation: [12, 24]
@@ -324,7 +323,7 @@ promotion:
   minimum_incumbent_improvement_delta_esc: 0.01
   challenger_replacement_rule: improve_minimum_environment_DeltaESC_by_at_least_0_01_or_do_not_decrease_it_and_match_within_0_01_while_resolving_a_declared_falsifier_at_lower_complexity
   tolerance_rule_never_replaces_with_lower_minimum_environment_DeltaESC: true
-  total_order_after_primary_rule: median_environment_DeltaESC_then_lower_frozen_complexity_then_lexicographically_lowest_canonical_configuration_hash
+  total_order_after_primary_rule: median_environment_DeltaESC_then_lower_frozen_complexity_then_lexicographically_lowest_stable_configuration_id
   low_fidelity_rule: broad_screen_may_retire_only_on_frozen_grouped_folds_and_cannot_satisfy_full_replication
   finalist_rule: incumbent_plus_at_most_two_challengers_with_no_change_and_global_exact_K8_ref_baselines
   nonkernel_comparator_set:
@@ -394,20 +393,19 @@ development_lock:
     - frozen_nonkernel_comparator_set_complete_and_nonempty
     - component_ablations_and_negative_controls_complete
     - independent_primary_metric_replay_within_frozen_tolerance
-    - append_only_ledger_integrity_verified
-    - deterministic_score_replay_verified
+    - chronological_trial_record_complete_through_stop
   lock_contents:
     - winner
     - diagnostic_runner_up
     - complete_frozen_nonkernel_comparator_set
     - no_change_and_global_exact_K8_ref_baselines
-    - code_and_environment
-    - data_split_environment_mask_and_operator_manifests
+    - versioned_analysis_code
+    - data_roles_subject_split_environment_mask_and_operator_definitions
     - hyperparameters_and_seeds
     - metric_degeneracy_uncertainty_and_threshold_rules
-    - audit_retry_and_report_schema
-    - audit_command
-    - complete_ledger_prefix
+    - audit_no_outcome_retry_rule_and_report_fields
+    - protected_audit_access_rule
+    - complete_chronological_trial_record_through_lock
 
 stop:
   deterministic_first_applicable: true
@@ -430,8 +428,7 @@ stop:
     - frozen_nonkernel_comparator_set_complete_and_nonempty
     - component_ablations_and_negative_controls_complete
     - independent_primary_metric_replay_within_frozen_tolerance
-    - append_only_ledger_integrity_verified
-    - deterministic_score_replay_verified
+    - chronological_trial_record_complete_through_stop
   qualified_patience_requires:
     - every_development_depth_gate_satisfied
   patience_reset_predicate: incumbent_replaced_under_frozen_challenger_replacement_rule
@@ -453,7 +450,7 @@ stop:
   first_positive_negative_or_incumbent_is_stop_event: false
   valid_terminal_classes:
     - policy_violation
-    - technical_audit_integrity_failure
+    - technical_audit_boundary_failure
     - technical_failure
     - incomplete_search
     - closed_no_development_lock
@@ -467,9 +464,9 @@ audit:
   dataset: OpenNeuro_ds000005
   primary_contrasts: [paragain, paraloss]
   configuration_lock_required: true
-  lock_hash_required: true
+  immutable_lock_version_required: true
   maximum_open_count: 1
-  opening_unit: one_lock_hash_bound_scientific_audit_transaction
+  opening_unit: one_lock_version_bound_scientific_audit_transaction
   audit_updates_search: false
   zero_post_audit_development_mutations_required: true
   permission_separated_runner_required: true
@@ -483,12 +480,9 @@ audit:
     permitted_only_if_no_candidate_discriminating_value_was_emitted: true
     continuation_of_same_logical_opening: true
     counts_as_additional_scientific_opening: false
-    same_lock_hash_payload_root_runner_and_command_required: true
-    every_attempt_requires_hash_chained_receipt: true
-    exact_eligible_infrastructure_failures: null
-    maximum_attempts_within_single_opening: null
-    unresolved_retry_list_blocks_audit_opening: true
-    unresolved_maximum_attempt_count_blocks_audit_opening: true
+    immutable_scientific_configuration_reused: true
+    candidate_data_contrasts_thresholds_and_uncertainty_unchanged: true
+    simple_access_log_required: true
   uncertainty:
     method: paired_subject_bootstrap
     confidence_level: 0.95
@@ -513,16 +507,16 @@ audit:
     exact_K8_ref_selected:
       - either_contrast_simultaneous_paired_95pct_UCB_exact_K8_ref_ESC_strictly_less_than_0_80
       - any_nonkernel_comparator_either_contrast_simultaneous_paired_95pct_LCB_DeltaESC_at_least_0_05
-      - required_stability_or_negative_control_fails_without_integrity_breach
+      - required_stability_or_negative_control_fails_without_audit_boundary_breach
     nonkernel_selected:
       - either_contrast_simultaneous_paired_95pct_UCB_DeltaESC_strictly_less_than_0_10
-      - required_stability_ablation_or_negative_control_fails_without_integrity_breach
+      - required_stability_ablation_or_negative_control_fails_without_audit_boundary_breach
     result: closed_development_only
   unresolved_rule: valid_audit_is_neither_positive_nor_definitive_transport_failure
 
 terminal_precedence:
   - policy_violation
-  - technical_audit_integrity_failure
+  - technical_audit_boundary_failure
   - technical_failure
   - incomplete_search
   - closed_no_development_lock
@@ -533,7 +527,7 @@ terminal_precedence:
 
 terminal_mapping:
   policy_violation: technical_failure
-  technical_audit_integrity_failure: technical_failure
+  technical_audit_boundary_failure: technical_failure
   technical_failure: technical_failure
   incomplete_search: closed_no_candidate
   closed_no_development_lock: closed_no_candidate
@@ -545,8 +539,8 @@ terminal_mapping:
 terminal_discrimination:
   policy_violation:
     when: forbidden_access_mutation_or_policy_breach_invalidates_round
-  technical_audit_integrity_failure:
-    when: audit_firewall_lock_binding_open_count_or_receipt_integrity_fails
+  technical_audit_boundary_failure:
+    when: audit_separation_lock_binding_or_one_opening_boundary_fails
   technical_failure:
     when: sixteenth_engineering_failure_invalid_inputs_or_every_branch_technically_unusable
   incomplete_search:
@@ -554,7 +548,7 @@ terminal_discrimination:
   closed_no_development_lock:
     when: every_development_depth_gate_and_valid_stop_are_satisfied_but_no_configuration_is_lock_eligible
   closed_development_only:
-    when: valid_lock_and_audit_meet_one_exact_definitive_transport_failure_rule_without_integrity_breach
+    when: valid_lock_and_audit_meet_one_exact_definitive_transport_failure_rule_without_audit_boundary_breach
   closed_unresolved:
     when: valid_lock_and_audit_meet_neither_positive_rule_nor_any_exact_definitive_transport_failure_rule
   candidate_ready_pipeline_noncommutative:

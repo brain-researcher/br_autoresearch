@@ -17,8 +17,12 @@
 
 ## Constraints and data gaps
 
-- The prior packet, development handoff, numerical contracts, executable
-  controller, and permission-separated audit runner are absent.
+- The lineage declaration exists, but any legacy artifact actually used still
+  needs an episode-local copy matching its already recorded identity.
+- Development source eligibility, grouped splits, numerical scoring
+  definitions, and the permission-separated audit runner remain unresolved.
+- These are addressed once at the scientific stage they govern; generic
+  checksum/schema/receipt preflights are not separate prerequisites.
 
 ## Promotion status
 

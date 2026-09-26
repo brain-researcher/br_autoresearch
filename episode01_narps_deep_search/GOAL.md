@@ -91,8 +91,13 @@ lexicographically by:
 (minimum-environment DeltaESC,
  median-environment DeltaESC,
  lower value under the frozen complexity functional,
- lexicographically lower canonical configuration hash)
+ lexicographically lower stable configuration ID)
 ```
+
+The stable configuration ID is assigned deterministically from the complete
+admissible configuration before any candidate score or outcome is read and is
+immutable thereafter; it cannot be chosen or renamed to win a post-outcome
+tie.
 
 Thus a large gain in one environment cannot compensate for a direction
 reversal in another. Spatial correlation, normalized RMS difference,
@@ -155,11 +160,15 @@ search, and unlogged manual edits are prohibited.
 
 ### Stage 0: readiness and synthetic calibration
 
-Without opening audit neural arrays, validate source inventories, folds, map
-algebra, exact-kernel implementation, masks, degeneracy handling, uncertainty,
-ledger transitions, resource metering, and audit rejection on synthetic
-fixtures. Freeze the final audit thresholds and simultaneous-interval family
-only after outcome-blind calibration and scientist signoff.
+Without opening audit neural arrays, make one lean readiness pass over the
+scientific controls needed for scoring: subject/run eligibility, grouped
+folds, contrast and unit correspondence, map algebra, the exact-kernel
+reference, masks, degeneracy handling, uncertainty, and the protected-audit
+access boundary. Use synthetic fixtures only where they answer one of those
+questions. Generic checksums, custom schemas, exact interpreter capture, and
+repeated preflight runs are not readiness gates. Freeze the final audit
+thresholds and simultaneous-interval family only after outcome-blind
+calibration and scientist signoff.
 
 ### Stage 1: branch coverage
 
@@ -173,7 +182,7 @@ readiness-rejected, or engineering-failed attempts do not count.
 
 Run 12--24 valid targeted-recomputation and composition trials. Development
 outcomes may choose admissible successors. Each counted successor
-must reference a prior scored record, commit to the complete ledger prefix
+must reference a prior scored record, record the latest scored trial sequence
 visible at proposal time, and be proposed before its own execution. At least
 two outcome-linked successor cycles and two incumbent/challenger decisions are
 required. The first improvement is an incumbent, not a terminal candidate.
@@ -218,26 +227,29 @@ and scientist signoff freeze them.
 
 For an eligible mechanism, freeze exactly one winner, one diagnostic runner-up,
 the complete nonkernel comparator set, all baselines, the global `K8_ref` DAG,
-the complexity functional, code, environment, data/split/operator manifests,
-masks, hyperparameters, seeds, metrics, thresholds, uncertainty procedure,
-retry rules, report template, audit command, and the complete hash-chained
-ledger. When `K8_ref` wins, the runner-up is the highest-ranked member of the
+the complexity functional, versioned code, data roles, subject split,
+environment/mask/operator definitions, hyperparameters, seeds, metrics,
+thresholds, uncertainty procedure, permitted no-outcome retry rule, and report
+fields in one immutable, versioned lock record. The chronological trial record
+through the lock must be complete, but it does not need a hash chain or custom
+schema. When `K8_ref` wins, the runner-up is the highest-ranked member of the
 nonkernel comparator set. The runner-up cannot replace the winner after audit
 access.
 
 ### Stage 5: one-shot external transport audit
 
-A permission-separated runner opens `ds000005` in one lock-hash-bound audit
+A permission-separated runner opens `ds000005` in one lock-version-bound audit
 transaction. It recomputes the frozen S0/S8 pathways for `paragain` and
 `paraloss` without mechanism tuning or candidate substitution, then emits only
 declared point estimates, simultaneous paired subject-bootstrap intervals,
-deterministic-half checks, leave-one-subject-out guards, controls, and access
-receipts. Any visible candidate-discriminating metric consumes the audit.
+deterministic-half checks, leave-one-subject-out guards, controls, and a simple
+access log. Any visible candidate-discriminating metric consumes the audit.
 Audit output cannot enqueue a trial in this program. A frozen, eligible
 infrastructure retry that emitted no candidate-discriminating value is a
-receipt-linked continuation of that same transaction, not a second scientific
-opening; its exact failure list and maximum attempt count must be signed before
-audit access.
+recorded continuation of that same transaction, not a second scientific
+opening. It must reuse the locked scientific configuration and may not expose
+partial results or reopen mechanism choice; no receipt chain or predeclared
+catalogue of infrastructure failures is required.
 
 ## Incumbent, budget, and stopping rules
 
@@ -245,7 +257,7 @@ audit access.
   coordinate improves by at least `0.01 DeltaESC`, or does not decrease it and
   lies within `0.01` while resolving a declared falsifier with lower frozen
   complexity. Remaining ties use median DeltaESC, then complexity, then the
-  lexicographically lowest configuration hash.
+  lexicographically lowest stable configuration ID.
 - Minimum valid development trials: **30**.
 - Maximum valid development trials: **60**.
 - Stage minima are **12 coverage, 12 adaptive, and 6 falsification trials**;
@@ -302,12 +314,12 @@ opening. The two positive classes are mutually exclusive. A selected
 `K8_ref` mechanism definitively fails transport if either contrast's ESC upper
 bound is below `0.80`, any member of the nonkernel comparator set has a
 DeltaESC lower bound of at least `0.05`, or a required stability/control check
-fails without an integrity breach. A selected nonkernel mechanism definitively
-fails if either contrast's DeltaESC upper bound is below `0.10` or a required
-stability/ablation/control check fails without an integrity breach. Those cases
-are `closed_development_only`; an audit that is neither positive nor
-definitively negative is `closed_unresolved`. Neither case permits runner-up
-substitution, threshold changes, or a resumed search.
+fails without an audit-boundary breach. A selected nonkernel mechanism
+definitively fails if either contrast's DeltaESC upper bound is below `0.10` or
+a required stability/ablation/control check fails without an audit-boundary
+breach. Those cases are `closed_development_only`; an audit that is neither
+positive nor definitively negative is `closed_unresolved`. Neither case
+permits runner-up substitution, threshold changes, or a resumed search.
 
 ## Terminal classes
 
@@ -316,7 +328,7 @@ Terminal precedence is fixed:
 | Precedence | Conclusion class | Outer status | Meaning |
 | ---: | --- | --- | --- |
 | 1 | `policy_violation` | `technical_failure` | Leakage, forbidden mutation, or policy breach invalidates the round. |
-| 2 | `technical_audit_integrity_failure` | `technical_failure` | Audit firewall, lock binding, or receipt integrity failed. |
+| 2 | `technical_audit_boundary_failure` | `technical_failure` | Audit separation, lock binding, or one-opening boundary failed. |
 | 3 | `technical_failure` | `technical_failure` | Inputs, execution, or every branch became technically unusable. |
 | 4 | `incomplete_search` | `closed_no_candidate` | Resource/interruption prevented audit, or max/exhaustion arrived before all depth gates; not a scientific negative. |
 | 5 | `closed_no_development_lock` | `closed_no_candidate` | All development depth gates completed but no mechanism was eligible to lock. |
@@ -331,12 +343,16 @@ or unresolved result without pretending it is confirmation.
 
 ## Required artifacts
 
-The episode run must produce immutable source, exposure, split, mask,
-operator, and environment manifests; an append-only `experiments.jsonl` ledger;
-hypothesis genealogy and incumbent history; synthetic calibration; the full
-score/failure table; resource accounting; configuration lock; audit receipt;
-audit report; ablations and controls; a conservative `RESULT.md`; a
-schema-valid terminal bundle; and the seven local workspace projections.
+The episode run must produce a concise source/exposure record; frozen subject
+split and environment/mask/operator definitions; a chronological
+`experiments.jsonl` record with proposal timing; hypothesis genealogy and
+incumbent history; the outcome-blind calibration actually used; the full
+score/failure table; resource accounting; one immutable, versioned
+configuration lock; a protected-audit access log and report; ablations and
+controls; a conservative `RESULT.md`; a terminal summary; and the seven local
+workspace projections. Checksums, custom schema reports, receipt chains, and
+exact-environment attestations are not required unless a concrete identity or
+execution discrepancy makes a targeted check necessary.
 
 ## Claim boundary
 
