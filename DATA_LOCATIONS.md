@@ -13,6 +13,13 @@ storage changes do not grant data access, assign a scientific role, make an
 episode input ready for outcome access, or turn an artifact into accepted
 Brain Researcher evidence.
 
+On 2026-09-26, the complete legacy workspace was retired by an atomic
+same-filesystem rename into the private recovery namespace. The old
+`/oak/stanford/groups/russpold/users/zijiao/autoresearch` path is absent. This
+was deliberately recoverable: unique data, permissions, hardlinks, dirty
+state, and local-only Git history were preserved without adding checksum or
+schema machinery.
+
 ## Storage model
 
 | Logical ID | Role | Current path | Planned path | State |
@@ -21,7 +28,7 @@ Brain Researcher evidence.
 | `canonical_historical_prior_records` | Curated, Git-tracked frozen-prior snapshot | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/_examples/historical_prior_records` | same | `canonical_in_place` |
 | `public_shared_root` | Durable public source releases | `/oak/stanford/groups/russpold/data/br_autoresearch_data` | same | `canonical_in_place` |
 | `private_data_root` | Durable private steward and restricted-data namespace | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data` | same | `canonical_in_place` |
-| `legacy_worktree` | Mixed legacy code, inputs, outputs, and runtime history | `/oak/stanford/groups/russpold/users/zijiao/autoresearch` | none as a whole | `destination_unassigned` |
+| `legacy_worktree` | Retired mixed legacy code, inputs, outputs, and runtime history | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926` | same | `retired_to_private_recovery` |
 | `private_steward_acquisition` | Private steward/quarantine tree | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition` | same | `canonical_in_place` |
 | `ep17_restricted_raw` | Restricted CNeuroMod-THINGS raw source | `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw` | same | `canonical_in_place` |
 | `recovery_ep02_boundary_semantics` | Protected EP02 recovery material | `/oak/stanford/groups/russpold/users/zijiao/.autoresearch_recovery/20260922_ep02_boundary_semantics` | none approved | `protected_hold` |
@@ -147,10 +154,10 @@ different provenance, access, or cleanup semantics:
 
 | Logical ID | Path | Observed size | Treatment |
 | --- | --- | ---: | --- |
-| `legacy_historical_prior_records` | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/_examples/historical_prior_records` | 3,551,956,575 bytes | Immutable legacy runtime archive with unique artifacts; not an ordinary duplicate; `protected_hold` |
-| `legacy_ep02_materialized_runtime` | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode02_dopamine_learning_rate_causality` | 164,792,628 bytes | Current Dudman EP02 legacy materialization/runtime; destination unassigned |
-| `legacy_ep02_evaluator_firewall` | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/.evaluator_vault/episode02_dopamine_learning_rate_causality` | unknown | Mode `0100`; unreadable and unenumerated; `protected_hold` |
-| `legacy_ep05_public_shared_hardlink_alias` | `/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode05_sensorimotor_lfp/inputs/dryad_xd2547dkt_files_v5` | 9,571,575,300 bytes | 25 scientific files hard-linked to the public release; same allocation, not another OAK payload copy |
+| `legacy_historical_prior_records` | `br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/_examples/historical_prior_records` | 3,551,956,575 bytes | Immutable legacy runtime archive with unique artifacts; not an ordinary duplicate; `protected_hold` |
+| `legacy_ep02_materialized_runtime` | `br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/episode02_dopamine_learning_rate_causality` | 164,792,628 bytes | Current Dudman EP02 legacy materialization/runtime; destination unassigned |
+| `legacy_ep02_evaluator_firewall` | `br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/.evaluator_vault/episode02_dopamine_learning_rate_causality` | unknown | Mode `0100`; unreadable and unenumerated; `protected_hold` |
+| `legacy_ep05_public_shared_hardlink_alias` | `br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/episode05_sensorimotor_lfp/inputs/dryad_xd2547dkt_files_v5` | 9,571,575,300 bytes | 25 scientific files hard-linked to the public release; same allocation, not another OAK payload copy |
 | `legacy_brain_researcher_data` | `/oak/stanford/groups/russpold/users/zijiao/brain_researcher/data` | 46,891,683 bytes | Adjacent legacy project data; no current episode assignment or destination |
 
 The Phase 1 legacy-worktree figure of 1,259,022,510,824 bytes was an
@@ -165,9 +172,9 @@ and identical content in the legacy archive, but the legacy path contains 714
 regular files and three symlinks in total: 643 regular runtime artifacts are
 absent from the canonical subset. The canonical EP01 lineage manifest resolves
 the canonical path, not the live legacy path. Consequently, the legacy archive
-cannot enter ordinary duplicate cleanup. Retiring it would require an explicit
-governance decision and a content-addressed cold archive for its unique
-artifacts.
+cannot enter ordinary duplicate cleanup. The 2026-09-26 whole-root recovery
+relocation preserves it intact; any future selective or permanent deletion
+still requires a separate explicit decision.
 
 ## Restricted and recovery material
 
@@ -272,12 +279,12 @@ The following small precursors remain:
 | `personal_dandi_001201_empty_scaffold` | `/oak/stanford/groups/russpold/users/zijiao/data/dandi/001201` | empty version-directory scaffold; LINK public shared release exists |
 | `personal_ingest_controls` | `/oak/stanford/groups/russpold/users/zijiao/.codex_ingest_staging` | small EPIC/LFP verification metadata only |
 
-The legacy OpenBHB prepared input and EP20 example bundles also remain in the
-old worktree with no approved destination:
+The legacy OpenBHB prepared input and EP20 example bundles are preserved in the
+retired recovery tree and still have no episode-specific destination:
 
 ```text
-/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode14_openbhb_roi_site_generalization/inputs/openbhb
-/oak/stanford/groups/russpold/users/zijiao/autoresearch/episode20_neurocam_prior_guided_codesign/inputs/reference_bundles
+/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/episode14_openbhb_roi_site_generalization/inputs/openbhb
+/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/recovery/legacy_autoresearch_worktree_20260926/episode20_neurocam_prior_guided_codesign/inputs/reference_bundles
 ```
 
 ## Completed same-filesystem relocation
