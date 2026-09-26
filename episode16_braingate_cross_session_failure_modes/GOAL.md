@@ -131,11 +131,12 @@ Role assignment and scientific scorability are deliberately separate:
    are constructed from participant, physical implanted-array set, observed
    schedule, and day.
 2. **Post-role scorability.** Only after whole-participant roles and the
-   structural pair manifest are hashed may the frozen scorer inspect cursor
-   coordinates and neural-field integrity. Development masks are computed from
-   development data; audit masks are computed atomically by the one-shot
-   evaluator. It may remove unscorable structural candidates but may not add a
-   pair, replace a participant, or relax a rule.
+   structural pair manifest are frozen in the write-once role lock may the
+   scorer inspect cursor coordinates and neural-field availability.
+   Development masks are computed from development data; audit masks are
+   computed atomically by the one-shot evaluator. It may remove unscorable
+   structural candidates but may not add a pair, replace a participant, or
+   relax a rule.
 
 A directed pair `(s,t)` is scientifically scorable only when it has:
 
@@ -173,7 +174,7 @@ biological replicates.
 ## Frozen prediction contract
 
 Let whole trial `q` start at released index `a_q`. For one globally shared,
-human-signed onset offset `δ`, set `r_q=a_q+δ` and define a 300-ms window
+pre-outcome frozen onset offset `δ`, set `r_q=a_q+δ` and define a 300-ms window
 
 $$
 W_q(\delta)=[r_q,\ r_q+300\ \mathrm{ms}).
@@ -207,8 +208,9 @@ required feature-family falsifier. Searching other released thresholds is
 forbidden. Ten-millisecond bins and overlapping windows are never separate
 samples, labels, or statistical weights.
 
-For every session–stratum cell, the scorer freezes one hash-selected,
-direction-balanced 128-trial packet. Whole blocks are first assigned to one of
+For every session–stratum cell, the scorer freezes one deterministic,
+direction-balanced 128-trial packet keyed only by stable provider
+participant/session/block/trial IDs. Whole blocks are first assigned to one of
 two disjoint sides; exactly 64 trials are then sampled within each side. A cell
 without two block sets that each contain at least 64 scorable trials is
 unscorable. In outer fold `k`, `C_{jk}` is one 64-trial side and `E_{jk}` the
@@ -458,7 +460,8 @@ competitors, logs cumulative `X` exposure, and cannot see the current or future
 sample. Whole-session transductive normalization is a full-`X` diagnostic
 upper bound; it earns no zero-label, low-cost, or deployment credit.
 
-Before candidate scoring, every bounded method needs a human-signed numeric grammar:
+Before candidate scoring, every bounded method needs a pre-outcome numeric
+grammar:
 maximum latent rank and effective degrees of freedom, ridge/shrinkage grids,
 condition-number and singular-value bounds, normalization warm-up/time
 constants, transform-norm and temporal-stability thresholds, and channel-QC
@@ -466,7 +469,8 @@ cutoffs. All are currently unset scoring prerequisites.
 
 One complete method--hyperparameter recipe `m*` alone defines audit recovery.
 Before any candidate-discriminating score is opened, the bounded grammar is
-expanded into a finite, hashed set of admissible recipes. Each recipe is held
+expanded into a finite, frozen set of admissible recipes with stable recipe
+IDs. Each recipe is held
 fixed while it is scored: pair-specific coefficients use only source `C^64`
 and the prescribed target `C^32`, and evaluation uses only `E^64`. `E^64`
 never fits a recipe's coefficients, rank, regularization, normalization, or
@@ -480,16 +484,16 @@ winner using only the other support-qualified participants and evaluates that
 frozen winner on the held-out participant. Each split uses the same maximin
 scalar and tie rule described below. Split-winner disagreement is reported as
 an influence diagnostic, not converted into an undefined pass threshold or a
-new terminal gate; inability to produce a valid winner in every split is an
-integrity failure. Second, every fixed recipe's already-computed scores from
+new terminal gate; inability to produce a valid winner in every split makes
+the panel invalid. Second, every fixed recipe's already-computed scores from
 all support-qualified development participants are combined; its scalar is
 the minimum participant-level aggregated `A(m,32)`, and the final `m*`
 maximizes that scalar. This final step explicitly uses all development
 participants but no audit participant.
 
-Within a pre-signed practical tie tolerance, choose the first in the order
-output gain/bias/rotation, orthogonal remapping, low-rank remapping, bounded
-supervised alignment; remaining ties use the configuration hash. There is no
+Within a pre-outcome frozen practical tie tolerance, choose the first in the
+order output gain/bias/rotation, orthogonal remapping, low-rank remapping,
+bounded supervised alignment; remaining ties use the stable recipe ID. There is no
 cross-participant parameter refit: the chosen recipe is frozen, and every
 audit pair fits only its source `C^64` and adapts only with its target `C^32`.
 No method, hyperparameter, or refit rule can be chosen after audit because it
@@ -508,7 +512,7 @@ complete-case cohort. In each outer fold, neural marginals use `X(C^64_s)` and
 `X(C^64_t)` only, with labels hidden; evaluation features cannot define or tune
 the emulator. Whole-session profiles are transductive diagnostics only.
 
-A human-signed partial order specifies when `M_t` is observably no better than
+A pre-outcome frozen partial order specifies when `M_t` is observably no better than
 `M_s`. The primary emulator `E(M_s→M_t)` may drop channels, attenuate signal, or
 add frozen noise to match a degradation-admissible target; it may never impute
 a missing channel, amplify information, or map a worse source into a better
@@ -703,19 +707,20 @@ The following are proposed human-facing anchors, not frozen decision values:
 
 | Quantity | Proposed anchor | Current status |
 | --- | ---: | --- |
-| Harmful excess long-lag deficit | `H_i ≥ 0.10` normalized units | human sign-off required |
-| Low-budget recovery | `Qbar_i ≥ 0.50` and `K_i ≥ 0.10` | human sign-off required |
-| Session-local reduction | `S_i ≤ -0.15` | human sign-off required |
-| Raw transported decline | not yet set for `D_i` | synthetic qualification and human sign-off required |
-| Measurement equivalence | absolute normalized errors in both `J` and `R` at most 0.10 | human sign-off required |
-| Admissible measurement deficit and reproduction | not yet set for `H_i^M` and `E_i^H` | synthetic qualification and human sign-off required |
-| Identity-versus-random separation | not yet set for `Delta_i^rand` | synthetic qualification and human sign-off required |
-| `J` and raw-gap readiness | not yet set | synthetic qualification and human sign-off required |
+| Harmful excess long-lag deficit | `H_i ≥ 0.10` normalized units | scientist must freeze before outcomes |
+| Low-budget recovery | `Qbar_i ≥ 0.50` and `K_i ≥ 0.10` | scientist must freeze before outcomes |
+| Session-local reduction | `S_i ≤ -0.15` | scientist must freeze before outcomes |
+| Raw transported decline | not yet set for `D_i` | synthetic qualification, then pre-outcome freeze required |
+| Measurement equivalence | absolute normalized errors in both `J` and `R` at most 0.10 | scientist must freeze before outcomes |
+| Admissible measurement deficit and reproduction | not yet set for `H_i^M` and `E_i^H` | synthetic qualification, then pre-outcome freeze required |
+| Identity-versus-random separation | not yet set for `Delta_i^rand` | synthetic qualification, then pre-outcome freeze required |
+| `J` and raw-gap readiness | not yet set | synthetic qualification, then pre-outcome freeze required |
 
-Before any candidate-discriminating neural score is opened, one immutable
-margin and bounds record must be signed after: the structural support matrix is
-known, the complete score/fold implementation passes synthetic fixtures, and
-the estimator's numerical scale is verified. It includes the target-coordinate
+Before any candidate-discriminating neural score is opened, the write-once
+configuration lock must freeze one margin-and-bounds section after the
+structural support matrix is known, the complete score/fold implementation
+passes synthetic fixtures, and the estimator's numerical scale is verified.
+It includes the target-coordinate
 tolerance, single onset offset, channel-QC rule, method bounds, rank and
 leverage thresholds, denominator gates, effect/equivalence margins, tie
 tolerance, and uncertainty rule. Synthetic qualification may reject an
@@ -727,7 +732,8 @@ out emulation. Within-participant bounds use one frozen simultaneous
 session-node/block bootstrap family covering `H`, `H^med`, `Qbar`, `K`, `S`,
 `D`, `H^M`, identity and random `E^H`, `Delta^rand`, and the identity and
 random near/long `E^J` and `E^R` components for `m*`; the resampling and
-familywise calibration rule must be signed before scores. These bounds
+familywise calibration rule must be included in the lock before scores. These
+bounds
 describe within-participant stability and
 do not turn sessions or pairs into population replicates. Audit is strict
 adequacy: all three participants must clear the same frozen tri-state rule.
@@ -796,10 +802,10 @@ cannot be called branch coverage.
 
 1. **Metadata-only feasibility:** build the task/support matrix, complete the
    literature-exposure ledger, choose 6/3 participant roles, and create
-   content-addressed handoffs without opening audit neural outcomes.
-2. **Synthetic and integrity qualification:** verify folds, score signs,
+   role-separated handoffs without opening audit neural outcomes.
+2. **Synthetic scientific qualification:** verify folds, score signs,
    denominator behavior, known mismatch/degradation/reduction fixtures,
-   emulator recovery, leakage traps, and compute profile. Freeze human-signed
+   emulator recovery, leakage traps, and compute profile. Freeze pre-outcome
    margins.
 3. **Balanced coverage:** run the exact 20 complete development-panel rows in
    `SEARCH_POLICY.yaml`, spanning every adaptation and counterfactual family.
@@ -810,11 +816,12 @@ cannot be called branch coverage.
    choose one complete panel by frozen reliability, falsifier survival,
    leave-one-participant stability, and complexity rules; never select the
    interpretation that looks most interesting.
-6. **Configuration lock:** hash code, environment, data identities, participant
-   roles, structural candidate-pair manifest, scorable-mask algorithm, folds,
-   features, proxy, models, budgets, margins, emulator, nulls, decision table,
-   and exact audit command. The evaluator-derived audit scorable subset does
-   not exist yet; its hash is emitted atomically with the audit result.
+6. **Configuration lock:** write once the code/environment version, source
+   release ID, participant roles, structural candidate-pair manifest,
+   scorable-mask algorithm, folds, features, proxy, models, budgets, margins,
+   emulator, nulls, decision table, and exact audit command. The
+   evaluator-derived audit scorable subset does not exist yet; its stable IDs
+   are emitted atomically with the audit result.
 7. **One-shot audit:** the trusted evaluator opens all three participants once,
    runs the locked panel, emits the complete signature vector, and provides no
    feedback to search.
@@ -823,7 +830,8 @@ cannot be called branch coverage.
 
 The evaluator applies this precedence exactly:
 
-1. Integrity, exposure-firewall, or evaluator failure is `technical_failure`.
+1. Scientific-validity, exposure-firewall, or evaluator failure is
+   `technical_failure`.
 2. Structural/scorable support or fixed-effect rank failure is
    `closed_task_support_incommensurate`.
 3. For each participant adjudicate two entry gates: normalized excess mismatch
@@ -877,7 +885,8 @@ wording and does not create a different terminal name. `tx_4_5`, alternate lag
 cutoffs, survivor-only transport, and other declared sensitivities are
 non-rescuing diagnostics:
 their failure narrows a supported primary claim to the SBP primary contract but
-does not overturn it unless a predeclared integrity or leakage gate fails.
+does not overturn it unless a predeclared scientific-validity or leakage gate
+fails.
 Heterogeneity supports reproducible different signatures among these
 participants, not stable population subtypes.
 

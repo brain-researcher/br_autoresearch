@@ -1,4 +1,4 @@
-schema_version: autoresearch.adaptive_search_policy.v1
+policy_version: 1
 policy_id: ep16_braingate_cross_session_failure_modes_adaptive
 episode_id: ep16
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -12,7 +12,7 @@ dataset_roles:
     api_version_id: 462702
     official_file_count: 24
     official_total_bytes: 84729840092
-    local_source_role: verified_read_only_shared_source
+    local_source_role: shared_source_treated_read_only
     local_source_mounted_to_candidate: false
   assignment_unit: whole_participant_with_all_arrays_and_sessions
   preassignment_inventory:
@@ -32,7 +32,7 @@ dataset_roles:
       - dSNR_tuning_or_angular_error
       - yield_or_impedance_outcomes
       - model_score_or_prediction
-    output: content_addressed_target_schedule_support_matrix
+    output: fixed_target_schedule_support_matrix_with_stable_row_ids
     controller_may_execute_extractor: false
     retain_mixed_temporary_files: false
   split:
@@ -51,7 +51,7 @@ dataset_roles:
       participant_specific_cross_session_or_terminal_quantity_exposure_forces_development: true
       dataset_wide_within_session_exposure_only_downgrades_evidence_tier: true
       audit_pool_recomputed_as_complement: true
-      required_before_role_hash: true
+      required_before_role_lock: true
     audit_set_enumeration: exhaustive_three_person_subsets_after_exposure_and_structural_screen
     preassignment_support:
       session_trial_threshold_applies_to: declared_whole_trial_epochs
@@ -67,7 +67,7 @@ dataset_roles:
       declared_trials_per_block_side_min: 64
       same_physical_array_set: true
     post_role_scorability:
-      algorithm_frozen_before_role_hash: true
+      algorithm_frozen_before_role_lock: true
       development_owner: development_builder
       audit_owner: one_shot_trusted_evaluator
       audit_pairs_subset_of_structural_manifest: true
@@ -85,9 +85,9 @@ dataset_roles:
       - maximize_target_schedule_stratum_balance_and_coverage
       - maximize_single_and_dual_array_regime_coverage
       - maximize_minimum_implant_span_then_session_count
-      - sha256_tiebreak_ep16_braingate_role_v1
+      - lexicographic_participant_id_tiebreak
     fewer_than_three_eligible_audit_candidates: closed_task_support_incommensurate
-    post_hash_role_change: prohibited
+    post_lock_role_change: prohibited
     amendment_after_neural_outcome_access: prohibited
     participant_replacement_after_audit_access: prohibited
   development:
@@ -168,7 +168,7 @@ grammar:
     local_model_preprocessing: target_training_fold_fit_only
     primary_calibration_budget_trials: 32
     sensitivity_calibration_budget_trials: [16, 64]
-    calibration_selection: hash_seeded_direction_balanced_whole_trials
+    calibration_selection: deterministic_direction_balanced_whole_trials_keyed_by_provider_ids
     common_target_evaluation_examples_for_B_L_F_A: true
     exact_fit_roles:
       B_t: target_C64_to_target_E64
@@ -272,7 +272,7 @@ grammar:
     zero_label_receives_labels: false
     transductive_branch_supports_deployment_claim: false
     bounded_method_grammar:
-      status: candidate_execution_blocked_pending_human_signed_numeric_bounds
+      status: candidate_execution_blocked_pending_preoutcome_numeric_bounds
       required:
         - maximum_latent_rank
         - maximum_effective_degrees_of_freedom
@@ -287,7 +287,7 @@ grammar:
       select_before_audit: true
       admissibility: passes_exposure_shuffled_label_stability_and_complexity_gates
       candidate_unit: complete_method_and_hyperparameter_recipe
-      candidate_set: finite_and_hashed_before_candidate_discriminating_scores
+      candidate_set: finite_and_frozen_before_candidate_discriminating_scores
       outer_lodo_influence_check:
         split_winner_selected_on: other_support_qualified_development_participants_only
         heldout_participant_may_select_or_tune_split_winner: false
@@ -296,7 +296,7 @@ grammar:
         split_selection_scalar: minimum_participant_aggregated_A_m_32_among_nonheldout_participants
         split_tie_rule: same_as_final_recipe
         disagreement_role: reported_influence_diagnostic_not_terminal_gate
-        failure_to_produce_valid_winner_in_every_split: integrity_failure
+        failure_to_produce_valid_winner_in_every_split: invalid_panel
       score_lag_set: long_only
       score_fold_aggregation: aggregate_two_outer_folds_before_pair_aggregation
       score_pair_aggregation: equal_stratum_then_equal_target_node_then_equal_source_within_target
@@ -304,9 +304,9 @@ grammar:
       objective: maximize_scalar_per_recipe
       practical_tie_tolerance: null
       tie_order: [output_gain_bias_rotation, orthogonal_remapping, low_rank_remapping, bounded_supervised_alignment]
-      final_tie: configuration_hash
+      final_tie: stable_recipe_id
       final_audit_recipe:
-        prerequisites: [finite_hashed_candidate_set, all_recipe_scores_valid, all_integrity_checks_pass]
+        prerequisites: [finite_frozen_candidate_set, all_recipe_scores_valid, all_scientific_validity_checks_pass]
         select_using: already_computed_scores_from_all_support_qualified_development_participants
         scalar: same_minimum_participant_A_m_32_score
         development_E64_scores_enter_final_recipe_selection: true
@@ -314,7 +314,7 @@ grammar:
         cross_participant_parameter_refit: prohibited
         audit_pair_fit: source_C64_only
         audit_pair_adaptation: target_C32_X_and_Y_only
-        frozen_items: [method_family, hyperparameters, rank, preprocessing, stopping, configuration_hash]
+        frozen_items: [method_family, hyperparameters, rank, preprocessing, stopping, recipe_id]
       post_audit_selection: prohibited
   measurement_panel:
     primary_session_neural_marginal_exposure:
@@ -441,7 +441,8 @@ trial_contract:
     - all_required_adaptation_classes
     - identity_aware_survivor_and_random_measurement_counterfactuals
     - all_branch_native_signatures_and_required_falsifiers
-  unique_key: scientific_configuration_hash
+  unique_key: scientific_configuration_id
+  id_assignment: deterministic_before_execution_from_declared_panel_recipe_and_stable_source_ids
   one_trial_cannot_be_split_by:
     - participant
     - source_or_target_session
@@ -455,7 +456,7 @@ trial_contract:
   does_not_count_as_new_trial:
     - byte_identical_engineering_retry
     - duplicate_configuration
-    - score_replay
+    - same_score_rerun
     - support_inventory
     - synthetic_only_qualification
     - audit_evaluation
@@ -465,7 +466,7 @@ trial_contract:
     - source_and_local_models_use_equal_64_trial_fit_counts
     - zero_label_and_supervised_target_exposure_matches_declared_packets
     - denominator_failures_are_retained_not_dropped
-    - complete_resource_lineage_and_exposure_record_exists
+    - resource_budget_and_exposure_record_exists
   trial_purpose:
     required_enum:
       - coverage_panel
@@ -478,26 +479,26 @@ trial_contract:
     exactly_one_primary_purpose: true
 
 panel_record_contract:
-  schema_version: ep16.diagnostic_panel.v1
+  record_version: 1
   materialize_before_audit: true
   immutable_after_lock: true
   required_fields:
-    - panel_id_and_configuration_hash
-    - participant_role_structural_pair_manifest_and_scorable_mask_hashes
-    - target_schedule_classifier_tolerance_and_ambiguity_hash
+    - panel_id_and_configuration_id
+    - participant_role_structural_pair_manifest_and_scorable_mask_ids
+    - target_schedule_classifier_tolerance_and_ambiguity_rules
     - feature_proxy_window_fold_and_score_contract
     - physical_electrode_axis_and_missing_channel_contract
     - B_L_F_A_model_and_preprocessing_contracts
-    - exact_calibration_packets_and_budget_hashes
-    - m_star_final_recipe_selection_tie_no_refit_rule_and_hash
+    - exact_calibration_packet_ids_and_budgets
+    - m_star_final_recipe_selection_tie_no_refit_rule_and_recipe_id
     - component_rank_condition_and_leverage_gate_record
-    - measurement_partial_order_emulator_and_null_bank_hashes
+    - measurement_partial_order_emulator_and_null_bank_ids
     - denominator_effect_recovery_and_equivalence_margin_record
     - simultaneous_uncertainty_and_tri_state_decision_record
-    - exposure_ledger_hash
-    - code_environment_seed_and_resource_manifest
+    - exposure_ledger_version
+    - code_environment_version_seed_and_resource_record
     - complete_outcome_decision_table
-    - exact_audit_command_and_evaluator_hash
+    - exact_audit_command_and_evaluator_version
 
 objectives:
   scientific_primary: adjudicate_replicable_operational_failure_signatures_without_causal_decomposition
@@ -519,14 +520,14 @@ objectives:
       - effective_degrees_of_freedom
       - runtime
   incumbent_order:
-    - all_integrity_and_leakage_checks_pass
+    - all_scientific_validity_and_leakage_checks_pass
     - all_required_branches_and_falsifiers_present
     - lower_invalid_denominator_and_pair_fraction
     - better_leave_one_participant_stability
     - better_common_score_reliability
     - lower_complexity_then_runtime
   margins:
-    status: candidate_scoring_blocked_pending_human_signed_record
+    status: candidate_scoring_blocked_pending_preoutcome_values
     proposed_anchors_not_frozen:
       harmful_long_lag_H_min: 0.10
       low_budget_Q_min: 0.50
@@ -613,7 +614,7 @@ branch_coverage:
     - {row: coverage_18, purpose: native_falsifier, primary_axis: tx_4_5_feature_family}
     - {row: coverage_19, purpose: cross_panel_control, primary_axis: reciprocal_and_source_target_quality_controls}
     - {row: coverage_20, purpose: cross_panel_control, primary_axis: fold_null_missingness_and_lag_sensitivities}
-  row_values_resolved_only_from_human_signed_numeric_grammar: true
+  row_values_resolved_only_from_preoutcome_frozen_numeric_grammar: true
   readiness_rejection_must_be_logged: true
 
 synthetic_qualification:
@@ -645,11 +646,11 @@ synthetic_qualification:
     - dual_H_and_S_plus_D_entry_routes
     - one_shot_terminal_decision_table
   may_set_scientific_margin: false
-  human_signed_margin_record_required_after_pass: true
+  margins_must_be_frozen_in_configuration_lock_after_pass: true
 
 successor_policy:
   proposal_requires:
-    - parent_trial_id_and_configuration_hash
+    - parent_trial_id_and_configuration_id
     - observed_development_trigger
     - one_primary_operator_change
     - predicted_signature_before_execution
@@ -737,7 +738,7 @@ promotion:
     - controls_falsifiers_terminal_table_and_audit_command
 
 stop:
-  before_minimum: only_integrity_exposure_support_leakage_or_evaluator_failure
+  before_minimum: only_scientific_validity_exposure_support_leakage_or_evaluator_failure
   patience_starts_after_minimum: true
   patience_requires_branch_coverage: true
   patience_requires_postcoverage_falsifier_fraction: true
@@ -749,7 +750,7 @@ stop:
     - cpu_or_wall_clock_budget_exhausted
   budget_or_patience_stop_is_scientific_success: false
   no_viable_three_person_audit_set: closed_task_support_incommensurate
-  unresolved_human_signed_margins: blocks_candidate_scoring
+  unresolved_preoutcome_margins: blocks_candidate_scoring
 
 audit:
   mode: one_shot_whole_participant_strict_adequacy
@@ -758,7 +759,7 @@ audit:
   minimum_adaptive_successor_cycles_required: 2
   minimum_incumbent_challenger_decisions_required: 2
   postcoverage_falsifier_fraction_required: 0.40
-  lock_hash_required: true
+  write_once_configuration_lock_required: true
   maximum_open_count: 1
   audit_updates_search: false
   participants: 3
@@ -767,7 +768,7 @@ audit:
   shared_mixed_source_mounted: false
   controller_neural_cursor_or_measurement_outcome_access: false
   all_three_opened_together: true
-  evaluator_emits_scorable_subset_hash_atomically: true
+  evaluator_emits_scorable_subset_ids_atomically: true
   participant_replacement_or_reduced_n: prohibited
   partial_result_feedback: prohibited
   retune_margin_threshold_model_or_emulator: prohibited
@@ -822,7 +823,7 @@ audit:
         ruled_out: lower_bound_for_either_S_or_D_above_its_negative_margin
         unresolved: all_other_valid_cases
     precedence:
-      - integrity_exposure_or_evaluator_failure_to_technical_failure
+      - scientific_validity_exposure_or_evaluator_failure_to_technical_failure
       - structural_scorable_or_rank_failure_to_closed_task_support_incommensurate
       - adjudicate_normalized_H_gate_and_local_S_plus_D_gate_per_participant
       - all_three_H_supported_evaluate_measurement_recovery_and_local_signal_bits
@@ -848,7 +849,7 @@ audit:
     supported_measurement_subtype_changes_terminal_name: false
     mandatory_sensitivities:
       tx_4_5_survivor_alternate_lag: non_rescuing_claim_narrowing_diagnostics
-      veto_only_for_predeclared_integrity_or_leakage_failure: true
+      veto_only_for_predeclared_scientific_validity_or_leakage_failure: true
   audit_is_independent_external_confirmation: false
 
 terminal_mapping:

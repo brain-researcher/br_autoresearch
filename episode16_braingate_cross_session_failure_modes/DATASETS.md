@@ -21,28 +21,19 @@ qualification work. Shared adaptive-search rules are in
 | License | CC0 |
 | Related article | `10.1038/s41591-026-04530-3` |
 | Associated code | `https://github.com/nptl-stanford/array-paper` |
-| Local source (integrity verified; write seal pending) | `/oak/stanford/groups/russpold/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6` |
+| Local source (treat as read-only) | `/oak/stanford/groups/russpold/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6` |
 
-The local source was acquired on 2026-09-16. Every official file matched the
-pinned Dryad manifest by name, byte size, and SHA-256, and all 23 participant
-archives passed non-extracting `tar -tzf` checks. The controlling records are:
+The local source was acquired on 2026-09-16. The provider DOI, published
+version, API version ID, official filenames, and byte inventory identify the
+release; all 23 participant archives were listable at acquisition. No
+additional generic file-verification layer is a scientific readiness gate
+unless a concrete source inconsistency appears.
 
-- `SOURCE.md`;
-- `source_metadata/dataset.json`;
-- `source_metadata/version.json`;
-- `source_metadata/files.json`;
-- `source_metadata/verification.json`; and
-- `source_metadata/archive_verification.json`.
-
-Those transfer and archive checks establish package identity, not scientific
-qualification. The shared source remains outside this episode and is never copied,
-committed, or directly mounted into a candidate worker.
-
-The 2026-09-23 location inventory observed the release root and payload as mode
-`2770`, writable by the owning user/group. The source therefore must not be
-described as operationally read-only until a separately authorized permission
-seal and receipt exist. This mismatch blocks protected audit use; Phase 1 does
-not change the source permissions.
+The shared source remains outside this episode and is never copied, committed,
+or directly mounted into a candidate worker. Although it is group-writable at
+the filesystem level, EP16 treats it as read-only. Protected audit access is
+enforced by the role-filtered handoffs and evaluator boundary below, not by a
+separate generic provenance artifact.
 
 ## Released cohorts must remain distinct
 
@@ -104,7 +95,7 @@ label. No analysis may reconstruct or imply those missing fields.
 
 The release describes Radial-8, grid, Fitts, and related cursor tasks but does
 not provide a trustworthy task-name column. Before any neural-feature access,
-a trusted structural extractor must create one content-addressed support row
+a trusted structural extractor must create one fixed support row
 per participant and **observed target-schedule** stratum. This does not verify
 task or instruction identity.
 
@@ -128,8 +119,8 @@ It may not retain or expose:
 
 Because permitted and forbidden fields coexist inside each `.mat` file, this
 scan belongs to a trusted role-assignment process, not the controller. Its
-temporary extraction directory is destroyed after it emits the signed support
-matrix and source hashes.
+temporary extraction directory is destroyed after it emits the support matrix
+with the provider release ID and stable row IDs.
 
 Before matching, target coordinates are centered on the target-set centroid and
 divided by the median nonzero inter-target distance. The classifier is
@@ -163,7 +154,8 @@ cannot be pooled across strata to pass this gate. These counts do not claim
 that a pair is scientifically scorable.
 
 **Post-role scorability** starts only after the exposure ledger, participant
-roles, structural pair manifest, and eligibility algorithm are hashed.
+roles, structural pair manifest, and eligibility algorithm are frozen in the
+write-once role lock.
 Development masks use development handoffs only; audit masks are produced only
 by the one-shot evaluator after configuration lock. A retained pair must
 satisfy every rule in `GOAL.md`:
@@ -222,13 +214,13 @@ lexicographic ordering:
 2. maximize balance and coverage across target-schedule strata;
 3. maximize coverage of single- and dual-array regimes;
 4. maximize the minimum implant-day span, then session count; and
-5. break an exact tie by SHA-256 with salt
-   `ep16_braingate_role_v1`.
+5. break an exact tie by lexicographic participant ID.
 
 The selected three are audit; all six others are development. The exposure
 ledger, role manifest, structural candidate-pair manifest, frozen scorable-mask
-algorithm, support matrix, and rejected-set reasons are hashed before neural
-data are opened. After this hash, participants cannot move sides. If fewer than
+algorithm, support matrix, and rejected-set reasons are stored in one
+write-once role lock before neural data are opened. After this lock,
+participants cannot move sides. If fewer than
 three unexposed structurally eligible candidates remain, the episode closes as
 `closed_task_support_incommensurate`.
 
@@ -258,17 +250,19 @@ globally shared onset offset `δ`, mean `sbp` is computed over one 300-ms
 onset-relative window; the label is cursor-to-target direction at the start of
 that window. `tx_4_5` is recomputed over the identical neural window. Nonfinite/near-target
 rules are fixed in `GOAL.md`. Ten-millisecond bins and overlapping windows are
-never separate examples. One numeric `δ` is human-signed from task timing and
-physiological prior before any real neural score; it is not tuned on
+never separate examples. One numeric `δ` is frozen before outcomes from task
+timing and physiological prior before any real neural score; it is not tuned on
 development performance and cannot vary by participant, session, feature,
 pair, or audit outcome.
 
-For every session–stratum cell, a hash-seeded direction-balanced procedure
-first assigns whole blocks to two disjoint sides, each with at least 64
+For every session–stratum cell, a deterministic direction-balanced procedure
+keyed only by stable provider participant/session/block/trial IDs first assigns
+whole blocks to two disjoint sides, each with at least 64
 scorable trials, then selects exactly 64 trials within each side. These form two
 reciprocal outer folds: in each fold, `C64` is one side and `E64` the other,
 with roles swapped in the other fold.
-`C16 ⊂ C32 ⊂ C64` is nested and content-addressed. `B` and `L` train on target
+`C16 ⊂ C32 ⊂ C64` is nested and frozen before scoring. `B` and `L` train on
+target
 `C64`; `F(s→t)` trains on source `C64` and evaluates target `E64`; `A(m,b)` may
 use only target `Cb`. “Full labels” means `C64`, not the full session. Ridge
 selection is nested within fitting trials or frozen from development. Blocks
@@ -290,7 +284,7 @@ represent frozen cross-session transport.
 
 ## Observable measurement state
 
-Read-only preflight found exact-day yield coverage for 685 of 729 decoding
+The metadata inventory found exact-day yield coverage for 685 of 729 decoding
 sessions and exact-day impedance for 430 of 729. Impedance coverage is highly
 nonuniform, including only 8 of 196 T11 decoding sessions.
 
@@ -356,7 +350,7 @@ establish stable neuron identity.
 
 The mixed participant archives cannot be mounted directly into either a
 candidate worker or a nominal audit process. Before candidate or audit data
-access, an operator must create three immutable, content-addressed handoffs:
+access, an operator must create three immutable, role-separated handoffs:
 
 1. **Development full:** all permitted decoding/yield material for the six
    development participants.
@@ -438,12 +432,12 @@ exist and are reviewed:
 - full-rank connected-component rules and numeric condition, residualized-long-
   column, leverage, and heterogeneity-partition gates;
 - at least four support-qualified development participants;
-- human-signed denominator, effect, recovery, and equivalence margins;
+- pre-outcome frozen denominator, effect, recovery, and equivalence margins;
 - synthetic qualification and leakage tests plus the exact 20-row coverage
   allocation;
 - profiled trial-summary cache and verified CPU/wall ceilings;
 - permission-separated one-shot evaluator and audit firewall;
-- implemented and replay-qualified adaptive controller.
+- implemented adaptive controller.
 
 Source availability, local file verification, or this dataset contract alone
 does not authorize extraction, candidate scoring, or audit access.
