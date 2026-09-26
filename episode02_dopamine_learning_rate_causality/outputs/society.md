@@ -8,7 +8,8 @@ independently validated calibration rule, the bounded search ledger, and an
 independently reviewed aggregate evaluator. No local generated artifact is a
 substitute for that review.
 
-Firewall review must additionally verify two distinct Ed25519 signer
-identities and keys, episode/source/audit-pack/policy/configuration bindings,
-and a current bounded receipt interval. A declared JSON field alone is not
-scientist or infrastructure authority.
+Firewall review should directly verify the named candidate, evaluator, and
+steward roles; the source release and record-role mapping; denial of candidate
+access to audit payloads; the final-lock version; and the evaluator's atomic
+aggregate-only output. No signature, checksum, or custom receipt format is a
+review prerequisite.

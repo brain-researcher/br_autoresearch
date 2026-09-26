@@ -1,43 +1,33 @@
 {
-  "contract_id": "ep02_permission_separated_firewall_v1",
-  "contract_hash_serialization": "UTF-8 JSON with sorted keys, no insignificant whitespace, ensure_ascii=false",
+  "contract_id": "ep02_role_separated_firewall_v2",
   "episode_id": "ep02",
-  "current_environment_status": "BLOCKED_PENDING_EXTERNAL_PROVISIONING",
-  "clock_skew_seconds_max": 300,
-  "configuration_lock_sha256": null,
-  "policy_sha256": null,
-  "primary_audit_pack_root_sha256": null,
-  "receipt_validity_seconds_max": 86400,
-  "required_checks": [
-    "separate_principals",
-    "candidate_source_denial",
-    "candidate_evaluator_pack_denial",
-    "candidate_network_egress_denial",
-    "evaluator_network_egress_denial",
-    "evaluator_only_mount",
-    "atomic_no_partial_output"
+  "status": "BLOCKED_PENDING_ROLE_SEPARATION",
+  "scope": "audit_access_only_not_source_qualification_or_outcome_blind_development",
+  "source_release": "Janelia Figshare article 21816054 version 1",
+  "candidate_visible_roles": [
+    "development_full",
+    "audit_structural_outcome_blind_aggregate_only"
   ],
-  "required_distinct_principals": [
-    "candidate",
-    "evaluator",
-    "steward"
+  "evaluator_only_roles": [
+    "primary_audit_evaluator_only",
+    "post_primary_boundary_evaluator_only"
   ],
-  "required_signer_roles": [
-    "infrastructure_operator",
-    "data_steward"
+  "required_access_controls": [
+    "distinct_candidate_evaluator_and_steward_roles",
+    "candidate_cannot_read_or_reacquire_mixed_source_or_audit_payloads",
+    "evaluator_only_audit_mount_after_final_lock",
+    "candidate_and_evaluator_network_egress_disabled_during_audit",
+    "one_atomic_aggregate_output_with_no_partial_feedback",
+    "primary_terminal_committed_before_optional_boundary_access"
   ],
-  "same_uid_controls_are_sufficient": false,
-  "schema_version": "ep02.dudman.permission_firewall_contract.v1",
-  "source_sha256": "1039b9555ef50b80e01cc923b372a7960daade774fdb6a236c34cafcedf75866",
-  "trusted_signers": {},
-  "trusted_signers_status": "PENDING_SCIENTIST_AND_INFRASTRUCTURE_PIN",
-  "signed_payload_serialization": "UTF-8 JSON receipt_payload with sorted keys, no insignificant whitespace, ensure_ascii=false",
-  "verification_rule": "all_required_checks_pass; episode, source, audit-pack, policy, and configuration commitments match; receipt is current; and two distinct independently pinned Ed25519 keys verify",
-  "weak_controls_that_never_satisfy_this_contract_alone": [
-    "chmod_or_posix_acl_under_the_candidate_uid",
-    "slurm_job_running_as_the_candidate_uid",
-    "apptainer_or_namespace_launched_by_the_candidate_uid",
-    "an_unattested_local_negative_access_probe",
-    "a_self_authored_json_receipt"
-  ]
+  "final_lock": {
+    "required": true,
+    "form": "versioned_write_once_record",
+    "must_precede_audit_mount": true
+  },
+  "verification": {
+    "method": "one_direct_pass_revise_note_by_the_responsible_operator_and_data_steward",
+    "repeat_only_if_access_source_mapping_lock_or_evaluator_changes_or_a_concrete_failure_occurs": true,
+    "custom_schema_hash_signature_or_receipt_required": false
+  }
 }

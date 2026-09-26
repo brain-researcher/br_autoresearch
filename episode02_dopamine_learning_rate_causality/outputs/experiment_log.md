@@ -32,3 +32,16 @@ packets, receipts, signatures, and checksums are intentionally not tracked.
 This was an engineering/specification migration only. It did not read an
 audit outcome, run adaptive search, or authorize candidate scoring or audit
 access.
+
+## 2026-09-26 — Readiness machinery simplified
+
+- Removed generic checksum, strict-schema, manifest-chain, signed-receipt, and
+  attestation requirements from the active policy and access contract.
+- Retained the release/index cohort identity, mouse-level independence,
+  development/audit separation, endpoint and randomization gaps, one-shot
+  aggregate evaluator, and versioned write-once final lock.
+- Kept the older hash/receipt implementation files as nonbinding history; they
+  are no longer required for qualification, development work, or audit
+  authorization.
+
+No outcome was inspected, and the earlier dated log entries were left intact.

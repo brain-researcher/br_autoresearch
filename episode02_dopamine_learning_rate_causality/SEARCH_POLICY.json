@@ -1,6 +1,6 @@
 {
-  "schema_version": "autoresearch.adaptive_search_policy.v1",
-  "policy_id": "ep02_dudman_dopamine_learning_rate_causality_adaptive_v1",
+  "policy_revision": 2,
+  "policy_id": "ep02_dudman_dopamine_learning_rate_causality_adaptive_v2",
   "episode_id": "ep02",
   "common_protocol_ref": "../ADAPTIVE_SEARCH_PROTOCOL.md",
   "evidence_mode": "adaptive_search",
@@ -16,7 +16,6 @@
   "source_pins": {
     "dataset": {
       "doi": "10.25378/janelia.21816054.v1",
-      "source_payload_sha256": "1039b9555ef50b80e01cc923b372a7960daade774fdb6a236c34cafcedf75866",
       "source_payload_bytes": 271014539,
       "mixed_role_source_may_enter_candidate_workspace": false
     },
@@ -25,9 +24,6 @@
       "role": "task_acquisition_intervention_and_model_specification"
     },
     "official_documentary_evidence": {
-      "full_text_xml_sha256": "0e228404c08fc41a4d1715a6107a0741216b8cb5b508080ea0d6478bb1248c8d",
-      "supplementary_table_1_sha256": "bb637651bd82b454b05cafe82e662012937524afa6a0d54ac9edac8fb7011a6d",
-      "reporting_summary_sha256": "388145418aa3a74a4be2254bbc4dd2b3977514e6a573d1204291fcab6d68ca12",
       "reporting_summary_facts": [
         "randomization_within_repeated_2_to_4_mouse_cohorts",
         "four_mice_removed_after_initial_collection_for_poor_signals_associated_with_mistargeted_fibres_or_insufficient_expression",
@@ -37,19 +33,19 @@
     },
     "sanitized_cohort_map": {
       "ref": "COHORT_MAP.json",
-      "sha256": "0a29751c0b26fe453fc7cb556173544586bffb53ccbc09efd79fc0b52cd0cf90",
+      "source_release": "Janelia_Figshare_21816054_v1",
       "contains_outcome_values": false
     },
     "author_code": {
       "repository": "https://github.com/dudmanj/RNN_learnDA",
       "commit": "3627746957975632cddb05bf8f6b26a4b6f901b6",
       "license": "MIT",
-      "files": {
-        "dlRNN_train_learnDA.m": "c0274010d0c1c5f57cb4a2039d9cf10950bc0b233d42214a01bd0afce9bb9ae8",
-        "ModelComparisonScript.m": "9856c90c1146c794fce0877168afd2bb36791c0bb9ee9ea835d0dd7a61fa4d3d",
-        "dlRNN_criticEngine.m": "8fa0808c3556da1da8a915a6b9dfe11ccd3d6bb84eb50589072bb5abcbfb6372",
-        "dlRNN_train_cuedDAstim.m": "10517c267cd86ac842b4b63a3a3d4a16a7d4cbfdc5c803febc8db3584bd09ef4"
-      },
+      "files": [
+        "dlRNN_train_learnDA.m",
+        "ModelComparisonScript.m",
+        "dlRNN_criticEngine.m",
+        "dlRNN_train_cuedDAstim.m"
+      ],
       "reuse_role": "pinned_mechanism_specification_and_synthetic_reference_oracle_only",
       "empirical_Figure_1_script_in_candidate_workspace": false,
       "direct_pipeline_reuse_without_repair": false
@@ -58,7 +54,6 @@
       "repository": "https://github.com/DudLab/TONIC",
       "commit": "f78fdbf4bca0e5c16859f885550b4e274fc3459d",
       "documentary_role": "repository_named_as_analysis_code_in_the_official_reporting_summary",
-      "TNC_CreateGaussian_sha256": "a9b9a4590e69cc23bc8f722a2b6de769d2b965e1d7c096bbcf84f875a3ff5587",
       "release_specific_field_codebook_found": false,
       "license_status": "no_repository_license_file_located_so_formula_may_be_used_as_an_oracle_but_code_may_not_be_copied_without_license_resolution"
     }
@@ -86,7 +81,7 @@
       "within_mouse_trials": "nested_repeated_measurements"
     },
     "audit_structural": {
-      "role": "candidate_visible_outcome_blind_schema_and_aggregate_counts_only",
+      "role": "candidate_visible_outcome_blind_aggregate_structure_only",
       "candidate_mount": "runtime_steward_provisioned_path",
       "outcome_arrays_present": false,
       "per_mouse_outcome_summaries_present": false,
@@ -138,23 +133,21 @@
       "runtime_handoff_required": true,
       "candidate_may_read_steward_or_evaluator_paths": false,
       "firewall_contract_ref": "outputs/firewall/FIREWALL_CONTRACT.json",
-      "firewall_verifier_ref": "outputs/code/verify_permission_firewall.py",
-      "external_receipt_template_ref": "outputs/firewall/EXTERNAL_RECEIPT_TEMPLATE.json",
-      "tracked_contract_is_incomplete_template": true,
-      "required_runtime_commitments": [
-        "primary_audit_pack_root_sha256",
-        "policy_sha256",
-        "configuration_lock_sha256",
-        "two_distinct_ed25519_signer_ids_and_key_fingerprints",
-        "bounded_observation_and_expiry_times"
+      "required_access_controls": [
+        "candidate_cannot_read_mixed_source_or_evaluator_payloads",
+        "evaluator_receives_audit_payloads_only_after_final_lock",
+        "candidate_and_evaluator_network_egress_disabled_during_audit",
+        "evaluator_returns_one_atomic_aggregate_packet_with_no_partial_feedback"
       ],
-      "physical_firewall_status": "BLOCKED_PENDING_EXTERNAL_PROVISIONING",
-      "launch_authorized": false,
-      "runtime_packaging_alone_implies_launch_readiness": false
+      "physical_firewall_status": "BLOCKED_PENDING_ROLE_SEPARATION",
+      "development_access_authorized": false,
+      "audit_access_authorized": false,
+      "legacy_hash_and_signed_receipt_helpers_required": false,
+      "runtime_packaging_alone_implies_access_authorization": false
     }
   },
   "coordinate_and_outcome_contract": {
-    "status": "candidate_scoring_and_audit_opening_blocked_until_outcome_blind_semantics_receipts_are_frozen",
+    "status": "candidate_scoring_requires_verified_endpoint_semantics_and_audit_opening_requires_the_final_lock_and_role_separation",
     "superseded_phase0_v1_prelaunch_exposure": {
       "timing": "uncommitted_local_packet_before_any_candidate_search_or_controller_execution",
       "fields": [
@@ -171,11 +164,11 @@
       ],
       "cannot_be_reintroduced_by_policy_amendment": true
     },
-    "required_receipts_before_any_development_magnitude_access": [
-      "trialID_codebook_receipt",
-      "seshID_training_day_semantics_receipt",
-      "lickState_750ms_trigger_semantics_receipt",
-      "raw_701_sample_axis_and_event_alignment_receipt"
+    "required_definitions_before_development_magnitude_access": [
+      "trialID_codebook",
+      "seshID_training_day_semantics",
+      "lickState_750ms_trigger_semantics",
+      "raw_701_sample_axis_and_event_alignment"
     ],
     "failure_to_resolve_trialID_seshID_or_lickState_semantics": "technical_input_underidentified_without_search",
     "failure_to_resolve_raw_trace_axis": "technical_input_underidentified_without_search_because_raw_continuous_lick_replication_is_a_terminal_gate",
@@ -216,9 +209,9 @@
       "per_trial_independence_assumption": false
     },
     "secondary_endpoints": {
-      "raw_delay_period_lick_rate": "required_replication_in_the_same_verified_750ms_pre_reward_trigger_window_after_axis_receipt",
+      "raw_delay_period_lick_rate": "required_replication_in_the_same_verified_750ms_pre_reward_trigger_window_after_axis_definition",
       "reward_collection_latency": "directional_nonpromotion_falsifier",
-      "NAc_cue_response": "mechanistic_secondary_integral_0_to_1s_after_cue_after_axis_receipt",
+      "NAc_cue_response": "mechanistic_secondary_integral_0_to_1s_after_cue_after_axis_definition",
       "NAc_reward_response": "stimulation_manipulation_check_integral_0_to_2s_after_reward_nonpromotion",
       "VTA_and_DS": "coverage_limited_site_specificity_diagnostics_only",
       "provider_prepLick_and_rewDA": "parity_only_never_terminal"
@@ -257,7 +250,7 @@
       "unit_time_constant_ms": {
         "article_methods": 25,
         "pinned_dlRNN_train_learnDA_code": 30,
-        "resolution": "both_are_parity_variants_until_an_outcome_blind_specification_receipt_selects_or_reconciles_them"
+        "resolution": "both_are_parity_variants_until_an_outcome_blind_specification_decision_selects_or_reconciles_them"
       },
       "activation": "tanh",
       "calibrated_stimulation_rule": {
@@ -336,12 +329,12 @@
       "seed_count_per_configuration": 5,
       "author_anchor_configuration_always_included": true,
       "cartesian_grid_exhaustive_search": false,
-      "admissible_configuration_manifest_required": true
+      "admissible_configuration_list_frozen_before_search": true
     },
     "observation_models": {
       "primary": "sessionwise_binomial_likelihood_for_verified_pre_reward_lick_state",
       "latency": "right_censored_positive_distribution_with_frozen_family",
-      "NAc": "frozen_gaussian_or_student_t_trace_summary_likelihood_after_alignment_receipt",
+      "NAc": "frozen_gaussian_or_student_t_trace_summary_likelihood_after_alignment_definition",
       "mouse_effects": "hierarchical_or_partial_pooling_fitted_on_training_mice_only",
       "held_mouse_parameters": "population_predictive_only_no_held_mouse_outcome_fit"
     },
@@ -401,7 +394,7 @@
         "median_over_nine_held_mouse_log_score_gain",
         "mean_over_nine_held_mouse_log_score_gain",
         "negative_frozen_complexity",
-        "lexicographically_lowest_configuration_hash"
+        "lexicographically_lowest_configuration_id"
       ],
       "trial_count_weighting_across_mice": "equal_mouse",
       "trial_count_weighting_within_mouse": "natural_observed_eligible_trials"
@@ -432,15 +425,13 @@
     ]
   },
   "trial_contract": {
-    "schema_ref": "../TRIAL_LEDGER.schema.json",
     "ledger_path": "outputs/experiments.jsonl",
     "append_only": true,
-    "hash_chained": true,
-    "unique_key": "canonical_scientific_configuration_hash",
+    "unique_key": "scientific_configuration_id",
     "counted_atom": "complete_nine_mouse_LOSO_panel",
     "duplicate_or_byte_identical_retry_counts_as_new_valid_trial": false,
     "outcome_adaptive_successor_requires_prior_scored_record": true,
-    "outcome_adaptive_successor_requires_complete_visible_prefix_hash": true,
+    "outcome_adaptive_successor_requires_complete_visible_ledger_prefix": true,
     "required_episode_fields": [
       "mechanism_family",
       "strongest_alternative",
@@ -453,10 +444,9 @@
       "valid_trial_sequence_number",
       "per_mouse_fold_completion_without_per_mouse_score_exposure",
       "aggregate_objective_coordinates",
-      "resource_receipt",
+      "measured_resources",
       "belief_update",
-      "successor_cycle_id",
-      "proposal_context_hash"
+      "successor_cycle_id"
     ]
   },
   "budgets": {
@@ -550,10 +540,10 @@
       "post_coverage_falsifier_fraction_satisfied",
       "all_mandatory_falsifiers_completed",
       "author_port_and_independent_reimplementation_qualified",
-      "primary_coordinate_and_score_receipts_frozen",
-      "randomization_mechanism_or_conditional_exchangeability_receipt_frozen",
-      "endpoint_faithful_small_n_binding_rule_and_terminal_wording_scientist_signed",
-      "append_only_ledger_integrity_verified",
+      "primary_coordinate_and_score_definitions_frozen",
+      "randomization_mechanism_or_conditional_exchangeability_basis_recorded",
+      "endpoint_faithful_small_n_binding_rule_and_terminal_wording_scientist_approved",
+      "append_only_ledger_complete",
       "deterministic_score_replay_verified"
     ]
   },
@@ -574,19 +564,20 @@
       "all_required_falsifiers_and_ablations_pass"
     ],
     "no_eligible_target_action": "closed_no_development_lock_without_audit",
+    "lock_form": "versioned_write_once_record_frozen_before_any_audit_outcome_access",
     "lock_contents": [
       "target_candidate_and_distinct_family_runner_up",
       "complete_frozen_strong_rival_panel",
       "author_anchor_constant_rate_and_no_learning_baselines",
-      "code_container_environment_and_seed_schedule",
-      "development_and_audit_structural_manifest_hashes",
-      "admissible_configuration_manifest_and_complete_ledger_prefix",
-      "coordinate_codebook_missingness_and_score_manifests",
-      "randomization_mechanism_and_exchangeability_assumption_receipt",
+      "code_version_dependencies_and_seed_schedule_sufficient_to_rerun",
+      "development_and_audit_source_release_role_and_record_lists",
+      "admissible_configuration_list_and_complete_ledger_prefix",
+      "coordinate_codebook_missingness_and_score_definitions",
+      "randomization_mechanism_and_exchangeability_assumption",
       "development_center_and_scale_without_audit_values",
       "all_control_and_intervention_counterfactual_predictions",
       "small_n_test_margin_influence_and_abstention_rules",
-      "evaluator_report_schema_retry_rule_and_exact_command"
+      "evaluator_output_fields_retry_rule_and_command"
     ]
   },
   "small_n_calibration": {
@@ -599,14 +590,14 @@
     "positive_audit_opening_authorized": false,
     "positive_mechanistic_terminal_authorized": false,
     "prerequisite_inventory": {
-      "role": "record_declared_runtime_states_and_hashes_only",
-      "cryptographic_authority_verification_implemented_here": false,
+      "role": "short_outcome_blind_readiness_note",
       "can_make_a_rule_binding": false,
-      "separate_signed_policy_amendment_required": true
+      "explicit_scientist_approval_required": true,
+      "custom_schema_hash_or_receipt_required": false
     },
     "provisional_endpoint_shaped_engine": {
       "implementation_ref": "outputs/code/calibrate_endpoint_small_n.py",
-      "label_endpoint_faithful_before_receipt_resolution_allowed": false,
+      "label_endpoint_faithful_before_definition_resolution_allowed": false,
       "all_462_labels_role": "unblocked_conditional_exchangeability_sensitivity_only",
       "result_storage": "runtime_only_not_tracked",
       "binding_authority": false
@@ -620,7 +611,7 @@
       "standardization_unit": "sample_SD_reestimated_from_nine_development_controls_in_each_replicate",
       "result_storage": "runtime_only_not_tracked"
     },
-    "endpoint_faithful_recalibration_required_after_score_receipts": {
+    "endpoint_faithful_recalibration_required_after_endpoint_definitions": {
       "status": "audit_opening_blocking",
       "must_model": [
         "bounded_sessionwise_binomial_or_beta_binomial_mouse_scores",
@@ -640,9 +631,9 @@
       "frozen_endpoint_semantics_and_per_mouse_numerator_denominator",
       "frozen_trial_inclusion_missingness_and_abstention_rules",
       "presigned_absolute_raw_unit_margin_and_development_scale_floor",
-      "hash_bound_assignment_mechanism_or_exchangeability_receipt",
+      "documented_assignment_mechanism_or_conditional_exchangeability_basis",
       "endpoint_faithful_binomial_or_beta_binomial_calibration_with_independent_validation",
-      "scientist_signed_binding_rule_and_terminal_wording"
+      "scientist_approved_binding_rule_and_terminal_wording"
     ]
   },
   "stop": {
@@ -691,15 +682,16 @@
       "presign_an_absolute_raw_unit_margin_and_development_scale_reliability_floor",
       "recover_and_bind_the_2_to_4_mouse_randomization_block_roster_within_block_allocations_and_four_postcollection_exclusions_or_limit_the_462_label_result_to_a_noncausal_unblocked_exchangeability_sensitivity",
       "obtain_scientist_signoff_on_the_binding_rule_and_terminal_wording",
-      "amend_and_hash_bind_this_policy_before_any_primary_outcome_opening"
+      "freeze_a_new_policy_revision_and_versioned_write_once_final_lock_before_any_primary_outcome_opening"
     ],
     "configuration_lock_required": true,
-    "lock_hash_required": true,
+    "immutable_versioned_lock_required": true,
+    "lock_hash_required": false,
     "maximum_open_count": 1,
     "logical_opening_includes_optional_post_primary_boundary_stage": true,
     "maximum_evaluator_payload_roles_within_the_one_opening": 2,
     "audit_updates_search": false,
-    "opening_unit": "one_lock_hash_bound_eleven_mouse_primary_transaction",
+    "opening_unit": "one_final_lock_bound_eleven_mouse_primary_transaction",
     "permission_separated_runner_required": true,
     "runtime_network_egress": "disabled",
     "candidate_or_controller_mount_of_primary_payload": "prohibited",
@@ -710,12 +702,12 @@
     "primary_estimand": "delta_rate",
     "inference": {
       "test": "provisional_one_sided_462_label_enumeration_is_an_unblocked_all_11_conditional_exchangeability_sensitivity_only_until_the_documented_small_cohort_randomization_space_is_reconstructed",
-      "randomization_mechanism_receipt_required": true,
+      "randomization_mechanism_or_exchangeability_basis_required": true,
       "current_documentary_support": "article_methods_state_random_assignment_before_training_and_the_official_reporting_summary_specifies_repeated_2_to_4_mouse_cohorts_with_randomization_within_cohort_plus_four_postcollection_exclusions_for_poor_signal_or_targeting",
       "current_missing_design_information": "released_record_to_randomization_cohort_map_within_cohort_arm_counts_allocation_probabilities_and_excluded_mouse_group_and_timing",
       "all_462_allocations_are_the_documented_randomization_space": false,
       "unblocked_462_sensitivity_is_intention_to_treat": false,
-      "receipt_discloses_blocking_unequal_assignment_or_attrition": "replace_the_462_space_with_the_documented_design_and_repeat_outcome_blind_calibration_before_any_audit_or_close_technical_input_underidentified",
+      "recovered_design_discloses_blocking_unequal_assignment_or_attrition": "replace_the_462_space_with_the_documented_design_and_repeat_outcome_blind_calibration_before_any_audit_or_close_technical_input_underidentified",
       "sharp_zero_null": "for_every_mouse_the_potential_outcome_under_stimLick_minus_equals_its_potential_outcome_under_stimLick_plus",
       "sharp_practical_null": "for_every_mouse_stimLick_minus_potential_outcome_equals_stimLick_plus_potential_outcome_plus_the_frozen_practical_margin",
       "weak_average_effect_null_claimed_exactly_tested": false,
@@ -750,21 +742,21 @@
       "classifier_is_deterministic_first_applicable": true
     },
     "output_packet": [
-      "lock_and_payload_commitment_hashes",
-      "integrity_and_open_count_receipt",
+      "final_lock_version_and_input_identity_status",
+      "access_integrity_and_open_count_status",
       "group_level_mouse_count_and_abstention_counts",
       "group_level_means_and_delta_in_development_SD_units",
       "positive_direction_p_zero_and_p_margin",
       "sign_reflected_negative_direction_p_zero_and_p_margin",
       "minimum_leave_one_mouse_out_delta",
       "predeclared_aggregate_secondary_and_falsifier_states",
-      "optional_post_primary_boundary_diagnostic_state_bound_to_the_primary_subpacket_hash",
+      "optional_post_primary_boundary_diagnostic_state_linked_to_the_committed_primary_subpacket",
       "single_primary_conclusion_class"
     ],
     "mechanical_retry": {
       "permitted_only_if_no_candidate_discriminating_value_was_emitted": true,
       "continuation_of_same_logical_opening": true,
-      "same_lock_payload_runner_and_command_hashes_required": true,
+      "same_final_lock_payload_identity_runner_and_command_required": true,
       "maximum_attempts_within_opening": 2,
       "eligible_failures": ["scheduler_preemption_before_payload_decryption", "verified_storage_read_failure_before_any_score", "verified_evaluator_crash_before_any_score"]
     },
@@ -809,7 +801,7 @@
   "terminal_decision_contract": {
     "policy_violation": "forbidden_access_post_outcome_mutation_or_unregistered_audit_open",
     "technical_input_underidentified": "required_codebook_trigger_semantics_coordinate_or_nonzero_development_scale_cannot_be_frozen_without_outcome_adaptation",
-    "technical_audit_integrity_failure": "lock_payload_open_count_or_evaluator_receipt_mismatch",
+    "technical_audit_integrity_failure": "final_lock_input_identity_access_boundary_or_open_count_mismatch",
     "technical_failure": "unrecoverable_execution_or_deterministic_replay_failure_not_classified_above",
     "incomplete_search": "resource_or_authorized_stop_before_every_development_depth_gate",
     "closed_no_development_lock": "valid_development_stop_but_no_rate_gate_candidate_satisfies_every_lock_gate",

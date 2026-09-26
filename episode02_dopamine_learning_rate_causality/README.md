@@ -15,10 +15,11 @@ Read [`GOAL.md`](GOAL.md), [`DATASETS.md`](DATASETS.md), and
 sanitized role map is [`COHORT_MAP.json`](COHORT_MAP.json).
 
 The tracked source surface includes portable Phase-0 inventory, deterministic
-role materialization, generic small-`n` stress calibration, provisional
-endpoint-shaped binomial/beta-binomial calibration, and an external signed-
-receipt firewall verifier. Their Slurm wrappers derive the episode path at
-runtime and write job artifacts only beneath `$SCRATCH`.
+role materialization, generic small-`n` stress calibration, and provisional
+endpoint-shaped binomial/beta-binomial calibration. The older cryptographic
+firewall verifier is retained as implementation history but is not a launch or
+audit requirement. Slurm wrappers derive the episode path at runtime and write
+job artifacts only beneath `$SCRATCH`.
 
 The official Reporting Summary documents randomization within repeated
 2–4-mouse cohorts and four removals after collection, but the released data do
@@ -27,7 +28,7 @@ are a sensitivity space, not the documented randomized design or an ITT
 analysis. Endpoint field/time semantics and the physical firewall also remain
 unresolved.
 
-No generated runtime-qualification packet, calibration result, receipt, signature, or
-checksum is tracked as evidence. The tracked firewall contract has null
-runtime commitments and no signer pins by design. No search or audit has
-started.
+No generated runtime-qualification packet or calibration result is tracked as
+evidence. Readiness is recorded directly against the scientific and access
+conditions; no custom receipt, signature, or checksum layer is required. No
+search or audit has started.

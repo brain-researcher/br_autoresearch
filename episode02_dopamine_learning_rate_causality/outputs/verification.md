@@ -14,21 +14,21 @@
 - Audit opening and positive mechanistic terminals are currently disabled.
 - The tracked cohort map is outcome-free and agrees with the policy's disjoint
   9/6/5/4 source-index partition.
-- Phase-0, role-materialization, generic-calibration, provisional endpoint-
-  shaped calibration, and firewall-verification source is portable; launchers
-  derive their episode path and write to job-scoped `$SCRATCH`.
-- Firewall tests exercise real Ed25519 verification, tamper rejection,
-  non-Ed25519 rejection, signer independence, commitment matching, and
-  freshness checks.
-- Calibration prerequisite inspection remains nonbinding even when synthetic
-  fixture files declare qualification; no generated result is tracked or
-  binding.
-- Runtime-packet test classes skip cleanly when ignored artifacts are absent.
+- `DATASETS.md` and the policy identify the Figshare release, while the cohort
+  map records the published source indices; no generated digest is needed to
+  establish that mapping.
+- Role-materialization and calibration helpers remain available, but their
+  manifests, schemas, hashes, receipts, and exact runtime details are not
+  qualification gates.
+- The audit access boundary is checked directly once provisioned and repeated
+  only if the access layout changes or a concrete failure is observed.
+- The final configuration is a versioned write-once record frozen before audit
+  access; a lock hash is not required.
 
 ## Remaining runtime verification
 
 Endpoint semantics, the randomization/exclusion roster, physical access
 separation, implementation qualification, calibration operating
 characteristics, evaluator behavior, and final authorization must be verified
-in the authorized runtime. Their future runtime records are not part of this
-tracked projection.
+at the stage where each becomes relevant. A short pass/revise note is enough;
+no extra schema, checksum, or attestation layer is required.

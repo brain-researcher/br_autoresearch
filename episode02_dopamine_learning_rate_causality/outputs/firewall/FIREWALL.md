@@ -1,56 +1,46 @@
-# Permission-separated firewall
+# Role-separated audit firewall
 
-## Current status and tracked template
+## Current status
 
-**BLOCKED.** The present workspace does not provide independently attested
-separation between candidate, steward, and evaluator principals. Network
-denial and an evaluator-only mount are also unprovisioned.
+**AUDIT ACCESS BLOCKED PENDING ROLE SEPARATION.** The present workspace has not
+yet provisioned distinct candidate, evaluator, and steward roles, candidate
+denial from audit payloads, evaluator-only mounts, or network denial during the
+audit. This status blocks audit access only. It does not block source
+qualification, outcome-blind implementation work, or development work whose
+own endpoint and access requirements are satisfied.
 
-The tracked `FIREWALL_CONTRACT.json` is deliberately incomplete: audit-pack,
-policy, and configuration-lock commitments and both trusted signer pins are
-null or absent. It is a provisioning template, not a receipt. Those values
-must be filled only after the corresponding runtime objects are frozen.
+`FIREWALL_CONTRACT.json` is a concise statement of the required access
+boundary. It is not a schema or receipt template.
 
-Mode bits, POSIX ACLs controlled by the same uid, a Slurm job under that uid,
-or a candidate container are useful accidental-access controls, but they do
-not satisfy this contract. Candidate scoring and audit access therefore remain
-unavailable.
+## Required controls
 
-## Provisioning handoff
+Provision these controls before audit access:
 
-An infrastructure operator and data steward must perform the following
-outside the candidate principal:
+1. Assign distinct candidate, evaluator, and steward roles. The candidate must
+   not be able to assume an evaluator or steward role.
+2. Keep the mixed source and audit packs in storage the candidate cannot read,
+   traverse, remount, or change. Give the candidate only development data and
+   outcome-blind aggregate structural information.
+3. Disable network egress for the candidate and evaluator during the audit so
+   the public mixed-role payload cannot be reacquired.
+4. Mount the eleven-mouse primary audit pack only for the evaluator and only
+   after the versioned write-once final lock is frozen.
+5. Return one atomic aggregate packet. Do not return mouse-, arm-, fold-,
+   metric-, or QC-level feedback that could update the search.
+6. Commit the primary conclusion inside the evaluator transaction before any
+   optional boundary-payload access; the boundary diagnostic cannot change or
+   rescue the primary terminal.
 
-1. Provision distinct candidate, evaluator, and steward principals. The
-   candidate must not be able to assume either other principal.
-2. Put the mixed source and evaluator packs in steward/evaluator-owned storage
-   for which the candidate lacks read, directory-traverse, ACL-change, and
-   ownership rights. Do not candidate-mount those paths.
-3. Give the candidate only the development pack, audit-structural packet,
-   public commitments, frozen code, and frozen configuration.
-4. Disable network egress for both candidate and evaluator runtimes so the
-   public Figshare payload cannot be reacquired during the run.
-5. Mount the primary and optional boundary packs only in the evaluator after
-   the configuration lock. The evaluator must emit one atomic aggregate
-   packet and no partial mouse, arm, fold, metric, or QC feedback.
-6. Pin one Ed25519 public-key fingerprint for the independent infrastructure
-   operator and a different key and signer identity for the independent data
-   steward. Both must attest the same episode, source, audit-pack, policy,
-   configuration-lock, runtime identities, and external evidence IDs.
-7. Set an observation and expiry time. The portable verifier accepts at most
-   the contract's 24-hour validity window and five-minute clock skew.
+## Lean verification
 
-Changing signer pins changes the contract and requires renewed review.
+The responsible operator and data steward record one short pass/revise note
+identifying the people or runtime roles, source release, record-role mapping,
+candidate-visible locations, evaluator-only locations, network state, final
+lock version, and evaluator output path. Directly test candidate denial and the
+aggregate-only evaluator behavior. No checksum bundle, signature, key pin,
+custom schema, or receipt chain is required.
 
-## Verification
-
-After provisioning, both signers sign the canonical `receipt_payload` in
-`EXTERNAL_RECEIPT_TEMPLATE.json`. `verify_permission_firewall.py` checks the
-contract and payload bindings, three distinct runtime principals, distinct
-signer identities and key fingerprints, validity interval, all required
-checks, and both Ed25519 signatures. It reads no outcome file.
-
-A self-authored local file or a negative probe made from inside the candidate
-runtime cannot attest that runtime's confinement. Completed contracts,
-receipts, assessments, and checksum sidecars belong in the runtime evidence
-store, not in the tracked episode specification.
+Repeat the check only if the access layout, source release, record-role map,
+final lock, or evaluator behavior changes, or if a concrete inconsistency is
+observed. Same-user mode bits or a candidate-launched container are not enough
+when that same candidate can undo them.

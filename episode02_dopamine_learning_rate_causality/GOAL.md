@@ -9,14 +9,16 @@ outcomes remain closed until its scientific and isolation requirements pass.
 The machine-readable contract is
 [`SEARCH_POLICY.json`](SEARCH_POLICY.json).
 
-Generated inventories, calibration packets, receipts, signatures, and
-checksums are runtime records. Their presence alone is not evidence that an
-audit-opening condition passed.
+The scientific readiness questions are whether the source records map to the
+declared mice and roles, the endpoint can be scored, the development and audit
+roles are separated, and the evaluator can return only the prespecified
+aggregate result. Extra checksum, schema, receipt, or attestation artifacts do
+not establish readiness and are not required.
 
-The repository does track portable, fail-closed implementations for Phase-0
-inventory, deterministic role materialization, generic and provisional
-endpoint-shaped calibration, and external firewall-receipt verification.
-Their presence is capability, not evidence that any runtime gate passed.
+The repository retains portable Phase-0, role-materialization, calibration,
+and firewall-verification implementations created during specification work.
+They are optional legacy helpers, not launch gates; a simpler implementation
+may be used if it preserves the same scientific role and access boundaries.
 
 ## Scientific question
 
@@ -103,8 +105,8 @@ transaction. Audit feedback cannot update search or expose individual mice.
 
 [`COHORT_MAP.json`](COHORT_MAP.json) is a sanitized, outcome-free mapping from
 published one-based source indices to the four evidence roles. The Phase-0
-inventory and role materializer consume that tracked contract but write all
-inventories, arrays, commitments, and access receipts to runtime storage.
+inventory and role materializer can consume that mapping, but neither their
+generated metadata nor an exact implementation is required for readiness.
 
 [`outputs/code/calibrate_small_n.py`](outputs/code/calibrate_small_n.py)
 provides a generic whole-mouse stress calibration.
@@ -115,18 +117,15 @@ shaped binomial/beta-binomial calibration engine. It models ties, variable
 denominators, overdispersion, missingness, one-arm alternatives, a raw-unit
 margin, and independent selection and validation streams.
 
-Neither engine is a decision rule. Its local prerequisite inventory records
-declared states and hashes but deliberately performs no cryptographic
-authority verification. Authorized runs write generated tables and reports to
-scratch or another runtime store. A binding threshold may enter this policy
-only through a separately reviewed, cryptographically verified and signed
-amendment after endpoint semantics, design support, safety/power criteria, and
-scientist signoff are frozen. No calibration result is tracked in this
-episode.
+Neither engine is a decision rule. A binding threshold may enter the final
+policy only after endpoint semantics, design support, safety/power criteria,
+and scientist approval are frozen without inspecting audit outcomes. Any
+generated tables and reports stay in runtime storage. No calibration result is
+tracked in this episode.
 
 ## Candidate-scoring and audit-opening conditions
 
-1. Provision the permission-separated, no-reacquisition firewall in
+1. Provision the role-separated, no-reacquisition access boundary in
    [`outputs/firewall/FIREWALL.md`](outputs/firewall/FIREWALL.md).
 2. Freeze endpoint, trial, session, missingness, denominator, and time-axis
    semantics from authoritative documentation.
@@ -134,12 +133,17 @@ episode.
    episode to a noncausal unblocked sensitivity analysis.
 4. Freeze the raw effect margin and development-scale reliability floor.
 5. Independently validate endpoint-faithful calibration; amend the policy only
-   if an eligible rule exists and the scientist signs its terminal wording.
+   if an eligible rule exists and the scientist approves its terminal wording.
 6. Qualify the implementation, finite search space, resources, and
    no-partial-output evaluator.
-7. Bind the final configuration and obtain required audit authorization.
+7. Freeze a versioned, write-once final configuration and obtain required
+   audit authorization.
 
-Until every applicable condition passes, search and audit remain prohibited.
+Apply each condition only at the stage it governs. Source qualification and
+outcome-blind implementation work do not wait for calibration, final-lock, or
+audit-opening controls. Development scoring requires the endpoint definitions
+and development-role isolation it actually uses. Audit outcomes remain closed
+until all audit-opening conditions pass.
 
 ## Claim boundary
 
