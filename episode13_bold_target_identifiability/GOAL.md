@@ -114,9 +114,9 @@ recorded dead end.
    parallel search exact small-dimensional counterexamples. A counterexample
    is minimized, replayed, entered into the permanent corpus, and used to
    produce a single declared repair.
-5. **Theorem lock:** freeze one theorem or precise refutation, its assumptions,
-   proof, certificates, verifier implementation, generated-case rule, and
-   invocation environment.
+5. **Theorem lock:** place one theorem or precise refutation, its assumptions,
+   proof, certificates, verifier revision, generated-case rule, seed, and
+   audit command in a dated write-once record.
 6. **Audit once:** run the separately authored verifier and frozen generated
    cases exactly once against the locked package. No audit result may silently
    alter the theorem; failure invalidates the lock and requires a new episode.

@@ -58,7 +58,7 @@ Before comparison with prior results, the episode must freeze an independently a
 - deterministic generated-case rule and any seed;
 - exhaustive bounded enumeration domain, if used;
 - malformed-shape/rational and non-idempotence rules; and
-- output schema for proof obligations, counterexamples, and certificates.
+- required fields for proof obligations, counterexamples, and certificates.
 
 The audit checker may not import, execute, copy constants from, or use expected
 labels from any prior evaluator. Agreement with prior results is a regression
@@ -83,8 +83,8 @@ certificate, never by floating-point tolerance or the incumbent conjecture.
 ## Storage and execution boundary
 
 All current outputs, if later authorized, must include the conjecture ledger,
-exact case corpus, minimized
-counterexamples, proof versions, independent checker, lock manifest, and
-one-shot audit record. CPU execution belongs
+exact case corpus, minimized counterexamples, proof versions, independent
+checker, dated write-once theorem/audit lock record, and one-shot audit record.
+CPU execution belongs
 on an authorized compute node; no participant data, images, raw BOLD, or GPU
 training is part of this contract.

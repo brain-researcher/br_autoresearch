@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep13_bold_identifiability_cegis
 episode_id: ep13
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -111,7 +110,7 @@ promotion:
     - proof_and_certificates
     - independent_checker
     - generated_case_rule_and_seed
-    - invocation_environment
+    - audit_command
 
 stop:
   before_minimum: only_specification_or_checker_integrity_failure
@@ -127,7 +126,7 @@ stop:
 audit:
   mode: one_shot
   configuration_lock_required: true
-  lock_hash_required: true
+  configuration_lock_rule: dated_write_once_record_before_audit_access
   maximum_open_count: 1
   audit_updates_search: false
   owner: independent_exact_verifier
