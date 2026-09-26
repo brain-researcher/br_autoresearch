@@ -1,0 +1,89 @@
+{
+  "assignment_policy": {
+    "seed": 20260926,
+    "tie_break": "metadata_only_fixed_seed_integer_priority_exact_mip_gap",
+    "transgenic_line_coverage": "soft_lexicographic_final_then_development_fixed_before_assignment_tie_break"
+  },
+  "axon_tree_rows_opened": false,
+  "constraints": {
+    "distinct_development_neighbor_groups_per_retained_cell": 2,
+    "minimum_development_groups_with_2plus_cells": 8,
+    "minimum_overall_retention_within_each_role": 0.95,
+    "minimum_per_group_retention": 0.9,
+    "shared_EP11_units_forced_unassigned": 15
+  },
+  "geometry_condition": {
+    "candidate_cells_with_2plus_neighbor_groups": 825,
+    "depth_projection_convention": "exact_polyline_closest_point_primary",
+    "normalized_depth_tolerance": 0.2,
+    "pareto_alternative_not_selected": {
+      "normalized_depth_tolerance": 0.1,
+      "tangential_radius_um": 750
+    },
+    "selection_rule": "radius_first_lexicographic_over_prespecified_finite_grid",
+    "tangential_radius_um": 500
+  },
+  "geometry_eligible_cells": 837,
+  "independent_animal_identity_certified": false,
+  "input_cells": 837,
+  "primary_cells": 833,
+  "projection_outcomes_opened": false,
+  "released_fMOST_sample_units": 76,
+  "role_assignment_emitted": true,
+  "roles": {
+    "development_groups": 12,
+    "development_primary_cells": 209,
+    "development_supported_fraction": 0.9569377990430622,
+    "development_supported_primary_cells": 200,
+    "final_groups": 8,
+    "final_primary_cells": 54,
+    "final_supported_fraction": 1.0,
+    "final_supported_primary_cells": 54,
+    "unassigned_groups": 56
+  },
+  "shared_EP11_fMOST_ids": [
+    "221224",
+    "221227",
+    "221299",
+    "221366",
+    "221428",
+    "221471",
+    "221478",
+    "221479",
+    "221481",
+    "221512",
+    "221513",
+    "221726",
+    "221728",
+    "221752",
+    "233794"
+  ],
+  "solver": {
+    "development_lines": [
+      "C57BL/6J",
+      "Cux2-Cre",
+      "Ntsr1-Cre_GN220",
+      "PlexinD1-2A-CreER",
+      "Rbp4-Cre_KL100",
+      "Tle4-2A-CreER",
+      "Tlx3-Cre_PL56"
+    ],
+    "final_lines": [
+      "C57BL/6J",
+      "Cux2-Cre",
+      "Ntsr1-Cre_GN220",
+      "PlexinD1-2A-CreER",
+      "Rbp4-Cre_KL100",
+      "Tle4-2A-CreER",
+      "Tlx3-Cre_PL56",
+      "Wfs1-Tg2-CreERT2"
+    ],
+    "immediate_role_rerun_identical": true,
+    "maximum_development_line_coverage": 7,
+    "maximum_final_line_coverage": 8,
+    "solver_objective": 81914343.0,
+    "solver_status": "exact_optimum_reproduced_assignment_frozen",
+    "solver_status_code": 0
+  },
+  "status": "frozen_before_projection_outcomes"
+}

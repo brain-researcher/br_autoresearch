@@ -1,0 +1,118 @@
+{
+  "schema_version": "ep10.stage0_source_manifest.v1",
+  "episode_id": "ep10",
+  "run_id": "ep10-stage0-20260926T063634Z",
+  "observed_at_utc": "2026-09-26T06:36:34Z",
+  "source_root": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition",
+  "candidate_visible": false,
+  "assets": [
+    {
+      "asset_id": "asset_ep09_ep10_ep11_seu_a1876",
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_zenodo_13944322",
+      "role": "mixed_role_steward_quarantine",
+      "mode": "2500",
+      "regular_file_count": 10,
+      "regular_file_bytes": 3408532957,
+      "doi": "10.5281/zenodo.13944322",
+      "license": "CC-BY-4.0",
+      "provider_record_sha256": "e934e798e843acf9bd1eef85e03a815f8604f63e3b4a5f3cacfa615d3498b83c",
+      "quarantine_sha256": "10488fadbf03b02b896e0ddbbb87539db28ba438dbb87669f1727b9f626a4a45",
+      "checksum_receipt_sha256": "cd5f66cc8715c46b232d16b294fd51c501c908745f6f9fb6ce7496a4113fecd1",
+      "payloads": [
+        {
+          "name": "Full_morphometry.xlsx",
+          "bytes": 181376,
+          "sha256": "7cec6a78b83f27570c524ba76db637383c6e596e919c2eb7c11ff09a0009d0a1"
+        },
+        {
+          "name": "Full_morphology_CCFv3.zip",
+          "bytes": 1536231503,
+          "sha256": "4dbaa09604a88295c8390570178133f9b31310fbfb7bd1a9a0d1ec44829c31c2",
+          "observed_swc_entries": 1876
+        },
+        {
+          "name": "Full_morphology_RAW.zip",
+          "bytes": 1679789577,
+          "sha256": "8631f71372897e61e27e7994bbd597cfe78b9253df48e739717f3cfec5bca505",
+          "observed_swc_entries": 1876
+        },
+        {
+          "name": "Axonal_arbor_CCFv3.zip",
+          "bytes": 24463661,
+          "sha256": "f9694a02c7ea10602cb8ef7ab0a2a62e76d0fec2b636ab0a69ef791b6f15c242",
+          "observed_swc_entries": 1876,
+          "analysis_role": "sensitivity_only"
+        },
+        {
+          "name": "Dendritic_arbor_CCFv3.zip",
+          "bytes": 167855052,
+          "sha256": "50278fb314906bd12efda6d001f195acc5dc03b64dcb4f7198591c957340aed0",
+          "observed_swc_entries": 1876
+        }
+      ],
+      "provider_files_not_locally_acquired": [
+        "Soma_morphometry.xlsx",
+        "Local_morphometry_15K_CCFv3.zip",
+        "Local_morphometry_15K_RAW.zip",
+        "Axonal_tract_CCFv3.zip",
+        "Axonal_bouton_RAW.zip"
+      ]
+    },
+    {
+      "asset_id": "asset_ep10_seu_optional_bouton",
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_optional_bouton_zenodo_13944322",
+      "role": "optional_sensitivity_source_disabled_at_launch",
+      "mode": "2550",
+      "regular_file_count": 5,
+      "regular_file_bytes": 1419132995,
+      "payload": {
+        "name": "Axonal_bouton_CCFv3.zip",
+        "bytes": 1419124590,
+        "sha256": "93c51a0cad32a66b545a2490d203cc5a89b77f44f204d0bd9102047aaea23863",
+        "observed_swc_entries": 1876
+      },
+      "quarantine_notice_present": false,
+      "interpretation": "putative_boutons_are_not_synapses"
+    },
+    {
+      "asset_id": "asset_ep09_ep10_ep11_allen_ccfv3",
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922",
+      "role": "source_only_atlas_quarantine",
+      "mode": "2700",
+      "regular_file_count": 11,
+      "regular_file_bytes": 37677346,
+      "quarantine_sha256": "45f3e164f5da4496d4208855aeb2bdcfc275dfd5af116a42100b9f1152ef2810",
+      "checksum_receipt_sha256": "c7f5bfa6fdd473f91751204944aace06a8eaa89baab4b932f042737f8df15d07",
+      "payloads": [
+        {
+          "name": "annotation_25_ccf_2017.nrrd",
+          "sha256": "c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42"
+        },
+        {
+          "name": "average_template_25.nrrd",
+          "sha256": "e4a2b483e842b4c8c1b5452d940ea59e14bc1ebaa38fe6a9c3bacac6db2a8f4b"
+        },
+        {
+          "name": "structure_graph_1.json",
+          "sha256": "b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386"
+        }
+      ],
+      "header_observation": {
+        "space": "left-posterior-superior",
+        "sizes": [528, 320, 456],
+        "spacing_um": [25, 25, 25],
+        "origin": [0, 0, 0],
+        "structure_count": 1327
+      },
+      "transform_compatibility_validated": false
+    }
+  ],
+  "access_boundary": {
+    "archives_mounted_or_symlinked": false,
+    "swc_contents_opened": false,
+    "voxel_payloads_opened": false,
+    "bouton_contents_opened": false,
+    "final_outcomes_opened": false,
+    "shared_ep09_ep10_ep11_role_ledger_frozen": false
+  }
+}

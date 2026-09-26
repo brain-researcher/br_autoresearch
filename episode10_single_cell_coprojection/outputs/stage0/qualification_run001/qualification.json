@@ -1,0 +1,121 @@
+{
+  "atlas": {
+    "nrrd_headers": [
+      {
+        "header": {
+          "dimension": "3",
+          "encoding": "gzip",
+          "endian": "little",
+          "sizes": "528 320 456",
+          "space": "left-posterior-superior",
+          "space directions": "(25,0,0) (0,25,0) (0,0,25)",
+          "space origin": "(0,0,0)",
+          "type": "unsigned int"
+        },
+        "header_bytes_returned": 310,
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/annotation_25_ccf_2017.nrrd",
+        "voxel_payload_decoded": false
+      },
+      {
+        "header": {
+          "dimension": "3",
+          "encoding": "gzip",
+          "endian": "little",
+          "sizes": "528 320 456",
+          "space": "left-posterior-superior",
+          "space directions": "(25,0,0) (0,25,0) (0,0,25)",
+          "space origin": "(0,0,0)",
+          "type": "unsigned short"
+        },
+        "header_bytes_returned": 312,
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/average_template_25.nrrd",
+        "voxel_payload_decoded": false
+      }
+    ],
+    "seu_transform_compatibility_validated": false,
+    "shared_header_geometry": true,
+    "structure_graph": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/structure_graph_1.json",
+      "sha256": "b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386",
+      "structure_node_count": 1327,
+      "success": true
+    },
+    "voxel_payloads_opened": false
+  },
+  "decision": "revise_resource_strategy_before_outcome_search",
+  "eligible_sources_by_group_count_only": [],
+  "final_outcomes_opened": false,
+  "identity_issue_count": 0,
+  "metadata": {
+    "emitted_headers": [
+      "Morphology Name",
+      "fMOST Brain ID",
+      "Soma_X(Raw brain, in voxel)",
+      "Soma_Y(Raw brain, in voxel)",
+      "Soma_Z(Raw brain, in voxel)",
+      "Soma_X(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "Soma_Y(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "Soma_Z(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "isManuallyChecked",
+      "Soma region",
+      "Cortical Lamination of soma"
+    ],
+    "forbidden_headers": [
+      "Projection class"
+    ],
+    "group_interpretation": "conservative_specimen_group_not_verified_animal",
+    "observed_headers": [
+      "Morphology Name",
+      "fMOST Brain ID",
+      "Soma_X(Raw brain, in voxel)",
+      "Soma_Y(Raw brain, in voxel)",
+      "Soma_Z(Raw brain, in voxel)",
+      "Soma_X(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "Soma_Y(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "Soma_Z(CCFv3_1\ud835\udf07\ud835\udc5a)",
+      "isManuallyChecked",
+      "Soma region",
+      "Projection class",
+      "Cortical Lamination of soma"
+    ],
+    "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_zenodo_13944322/archives/Full_morphometry.xlsx",
+    "projection_class_values_decoded": false,
+    "projection_class_values_emitted": false,
+    "row_count": 1876,
+    "sha256": "7cec6a78b83f27570c524ba76db637383c6e596e919c2eb7c11ff09a0009d0a1",
+    "sheet_count": 1,
+    "unique_conservative_specimen_groups": 39,
+    "unique_normalized_cell_ids": 1876
+  },
+  "morphology_outcomes_opened": false,
+  "morphology_zip": {
+    "identity_sets_match": true,
+    "member_names_inspected": true,
+    "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_zenodo_13944322/archives/Full_morphology_CCFv3.zip",
+    "swc_contents_opened": false,
+    "swc_member_count": 1876,
+    "unique_normalized_cell_ids": 1876
+  },
+  "priority_source_group_gate_passed": false,
+  "priority_source_support": {
+    "cells": 75,
+    "complete_ccf_positions": 75,
+    "conservative_specimen_groups": 17,
+    "maximum_final_groups_after_minimum_development": 5,
+    "minimum_total_groups": 20,
+    "nonempty_soma_layer": 47,
+    "source": "MOp",
+    "supports_12_development_8_final": "false"
+  },
+  "qualifier_structurally_valid": true,
+  "requirements": {
+    "minimum_development_groups": 12,
+    "minimum_final_groups": 8,
+    "minimum_total_groups_per_source": 20,
+    "priority_source": "MOp"
+  },
+  "schema_version": "ep10.stage0_qualification_result.v1",
+  "scientific_validity_established": false,
+  "separate_development_and_final_views_emitted": false,
+  "shared_ep09_ep10_ep11_role_ledger_frozen": false
+}

@@ -1,0 +1,86 @@
+schema_version: ep10.stage0_qualification.v1
+episode_id: ep10
+run_id: ep10-stage0-20260926T063634Z
+phase: outcome_blind_resource_qualification
+
+authority:
+  explicit_scientist_start_observed: true
+  launch_request: >-
+    launch ep10 /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection
+  standalone_episode_managed: true
+  canonical_loop_bound: false
+  canonical_goal_handoff_observed: false
+  society_authorized: false
+  confirmation_authorized: false
+  landscape_transition_authorized: false
+
+workspace:
+  episode_root: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection
+  persistent_write_scope: outputs
+  inputs_read_only: true
+  transient_root: /scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection
+
+metadata:
+  source: Full_morphometry.xlsx
+  conservative_group_field: fMOST Brain ID
+  conservative_group_interpretation: specimen_group_not_yet_verified_animal
+  cell_identity_field: Morphology Name
+  allowed_fields:
+    - Morphology Name
+    - fMOST Brain ID
+    - Soma_X(Raw brain, in voxel)
+    - Soma_Y(Raw brain, in voxel)
+    - Soma_Z(Raw brain, in voxel)
+    - Soma_X(CCFv3_1𝜇𝑚)
+    - Soma_Y(CCFv3_1𝜇𝑚)
+    - Soma_Z(CCFv3_1𝜇𝑚)
+    - isManuallyChecked
+    - Soma region
+    - Cortical Lamination of soma
+  forbidden_fields:
+    - Projection class
+  forbidden_field_rule: skip_cell_before_value_decode_and_never_emit
+
+permitted_stage0_access:
+  - metadata workbook package structure and allowed metadata values
+  - morphology ZIP member names and normalized identity sets
+  - acquisition receipts and recorded checksums
+  - NRRD text headers without voxel payloads
+  - Allen structure graph identifiers and hierarchy
+
+forbidden_stage0_access:
+  - Projection class values
+  - SWC contents or derived target calls
+  - bouton contents
+  - candidate target-pair or target-set counts
+  - development/final assignment before a shared EP09-EP11 ledger is frozen
+  - final-group outcomes
+
+invariants:
+  minimum_development_groups: 12
+  minimum_final_groups: 8
+  minimum_total_groups_per_source: 20
+  pool_sources_to_manufacture_support: false
+  unknown_is_absence: false
+  full_reconstructions_are_primary: true
+  provider_arbors_are_sensitivity_only: true
+  putative_boutons_are_synapses: false
+  final_open_count: 0
+
+qualification_outputs:
+  - qualification.json
+  - source_group_support.csv
+  - identity_issues.csv
+  - result_manifest.sha256
+
+decision_rule:
+  proceed: >-
+    one biologically coherent source has at least 12 development and 8 final
+    conservative groups, lineage is authenticated, the shared EP09-EP11 role
+    ledger is frozen, the redacted views exist, and atlas compatibility passes
+  revise: >-
+    metadata are usable but group support, lineage, redacted handoff, or atlas
+    compatibility is insufficient before morphology outcome access
+  stop: >-
+    no candidate resource can support a defensible complete-set question or
+    trusted separation without changing the scientific estimand

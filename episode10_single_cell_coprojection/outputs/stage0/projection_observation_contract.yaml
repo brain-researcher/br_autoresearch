@@ -1,0 +1,401 @@
+episode_id: ep10
+artifact_role: frozen_outcome_blind_projection_observation_definition
+status: frozen_before_any_EP10_projection_outcome_access
+real_SWC_or_projection_outcomes_opened_by_this_work: false
+
+scope:
+  resource: Gao_whole_cortex_projectome
+  source_population: provider_MOp_layers_harmonized_to_Allen_MOp
+  replicate_unit: released_one_to_one_fMOST_and_provider_sample_pair
+  replicate_claim: cross_brain_sample_unit_not_certified_cross_animal
+  primary_reconstruction_scope:
+    provider_type: Axon_and_dendrite
+    expected_cells_before_full_tree_QC: 833
+  sensitivity_reconstruction_scope:
+    provider_type: Axon_only
+    expected_cells_before_full_tree_QC: 4
+    frozen_role_distribution: {development: 0, final: 1, unassigned: 3}
+    status: unavailable_under_current_frozen_roles
+    development_access: forbidden
+    disposition: >-
+      omit this sensitivity without opening unassigned cells, promoting a unit,
+      or using the single final cell to define a development rule
+  frozen_role_ledger: outputs/stage0/gao_mop_frozen_roles.csv
+  roles: {development_groups: 12, final_groups: 8, unassigned_groups: 56}
+  shared_EP11_units: remain_unassigned
+
+frozen_common_support_and_attrition:
+  geometry_condition:
+    tangential_radius_um: 500
+    normalized_depth_tolerance: 0.20
+    minimum_distinct_development_neighbor_groups: 2
+  development_role_cells: 209
+  development_acquisition_cells: 200
+  development_primary_common_support_cells: 200
+  development_outside_primary_common_support_cells: 9
+  primary_model_and_candidate_domain: >-
+    only the fixed 200-cell development common-support set; the other nine
+    development cells are absent from acquisition and construction and cannot
+    enter QC, M0, M1, M2, candidate selection, precision, or null calibration
+  common_support_cells_by_group:
+    "212074": 6
+    "220187": 36
+    "220188": 25
+    "220190": 17
+    "221091": 33
+    "221225": 40
+    "221418": 12
+    "221514": 5
+    "221539": 1
+    "221588": 10
+    "221751": 13
+    "233281": 2
+  structural_QC_attrition_gate:
+    denominator: fixed_200_cell_development_common_support_set
+    minimum_overall_eligible_cells: 190
+    minimum_overall_fraction: 0.95
+    per_group_rule: ceiling_of_0.90_times_frozen_common_support_cells
+    minimum_eligible_cells_by_group:
+      "212074": 6
+      "220187": 33
+      "220188": 23
+      "220190": 16
+      "221091": 30
+      "221225": 36
+      "221418": 11
+      "221514": 5
+      "221539": 1
+      "221588": 9
+      "221751": 12
+      "233281": 2
+    all_12_development_groups_must_remain_represented: true
+    failure_action: >-
+      revise or stop the complete-set endpoint before candidate search; do not
+      replace a cell or group, promote an unassigned unit, alter the observation
+      rule, or relax an attrition threshold
+  development_primary_common_support:
+    geometry_condition: exact_polyline_radius_500um_depth_tolerance_0.20
+    required_distinct_development_neighbor_groups: 2
+    development_role_rows: 209
+    development_acquisition_and_constructor_rows: 200
+    primary_model_eligible_rows: 200
+    unsupported_development_rows_not_acquired_or_opened: 9
+    row_level_indicator: primary_common_support
+    primary_model_indicator: primary_model_eligible
+
+atlas:
+  annotation_asset: annotation_25_ccf_2017.nrrd
+  ontology_asset: structure_graph_1.json
+  ontology_id: 1
+  root_structure_id: 997
+  grey_structure_id: 8
+  nrrd_header:
+    type: unsigned_int
+    dimension: 3
+    space: left-posterior-superior
+    sizes: [528, 320, 456]
+    spacing_um: [25, 25, 25]
+    space_directions_um:
+      - [25, 0, 0]
+      - [0, 25, 0]
+      - [0, 0, 25]
+    origin_um: [0, 0, 0]
+    array_axis_order: {axis_0: AP, axis_1: DV, axis_2: ML}
+    pynrrd_index_order: F
+  provider_coordinate_binding:
+    swc_x_y_z: [AP_um, DV_um, ML_um]
+    provenance: inherited_from_released_CCFv3_registered_Gao_SWC_coordinates
+    annotation_index: floor_each_coordinate_divided_by_25_um
+    voxel_domains_are_half_open: true
+    upper_coordinate_bounds_are_exclusive: true
+    valid_coordinate_bounds_um:
+      AP: [0, 13200]
+      DV: [0, 8000]
+      ML: [0, 11400]
+    ML_midline_um: 5700
+    left_rule: ML_less_than_5700
+    right_rule: ML_greater_than_or_equal_to_5700
+    outcome_blind_hemisphere_check:
+      canonical_soma_rows_checked: 837
+      provider_soma_agreements: 837
+      disagreements: 0
+      checked_before_axon_tree_access: true
+
+full_atlas_QC_map:
+  artifact: outputs/stage0/allen_target_vocabulary.csv
+  purpose: fixed_atlas_mapping_QC_and_prespecified_sensitivity_only
+  selection_uses_real_axon_outcomes: false
+  named_anatomical_targets: 28
+  laterality_levels: [ipsilateral, contralateral]
+  fixed_coordinates: 56
+  residual_outcome_coordinates: 0
+  hierarchy_rule:
+    named_target: map_each_grey_structure_to_its_unique_selected_ancestor
+    cortical_layers_collapsed: true
+    named_mapping_is_nonoverlapping: true
+    unclaimed_grey_is_QC_only: true
+    named_plus_unclaimed_QC_partition_is_exhaustive_within_grey: true
+  MOp_specific_change:
+    replaced_EP11_anchor: {allen_structure_id: 500, acronym: MO}
+    replacement_anchor: {allen_structure_id: 993, acronym: MOs}
+    reason: prevent_source_local_MOp_axon_from_becoming_a_modeled_projection_target
+    MOp_and_generic_MO: unclaimed_grey_QC_only
+    contralateral_MOp: omitted_by_scope_not_an_observed_zero
+  post_outcome_target_filtering_merging_or_replacement: forbidden
+  per_cell_omitted_40_outcomes_before_candidate_freeze: sealed_and_not_emitted
+
+primary_exact_model_panel:
+  role: sole_target_vocabulary_for_M0_M1_M2_and_candidate_selection
+  selection_basis:
+    - prespecified_motor_routing_biology
+    - exact_normalization_compute_feasibility
+    - no_real_projection_outcome_or_target_prevalence
+  anatomical_targets_in_order: [MOs, SS, ACA, STR, TH, MB, P, MY]
+  anatomical_target_count: 8
+  laterality_levels: [ipsilateral, contralateral]
+  coordinate_count: 16
+  coordinate_order_inherited_from_full_map: true
+  coordinate_ids:
+    - allen_993_MOs__ipsilateral
+    - allen_993_MOs__contralateral
+    - allen_453_SS__ipsilateral
+    - allen_453_SS__contralateral
+    - allen_31_ACA__ipsilateral
+    - allen_31_ACA__contralateral
+    - allen_477_STR__ipsilateral
+    - allen_477_STR__contralateral
+    - allen_549_TH__ipsilateral
+    - allen_549_TH__contralateral
+    - allen_313_MB__ipsilateral
+    - allen_313_MB__contralateral
+    - allen_771_P__ipsilateral
+    - allen_771_P__contralateral
+    - allen_354_MY__ipsilateral
+    - allen_354_MY__contralateral
+  exact_subset_count_maximum: 12870
+  exact_subset_count_maximum_occurs_at_K: 8
+  full_56_coordinates_may_enter_primary_models_or_candidate_selection: false
+  omitted_coordinates_may_replace_a_panel_coordinate_after_development_access: false
+  claim_scope: complete_target_sets_within_this_fixed_16_coordinate_panel
+
+SWC_interpretation:
+  columns: [node_id, node_type, x_um, y_um, z_um, radius_um, parent_id]
+  comments_and_blank_lines: ignored
+  columns_after_first_seven: ignored_and_counted_for_QC
+  node_types:
+    soma: [1]
+    axon: [0, 2]
+    excluded_dendrite: [3]
+    ignored_markers: [10, 11, 12]
+    any_other_type: global_unknown_and_exclusion
+    release_specific_convention: >-
+      Gao released CCFv3 SWCs use both type 0 and type 2 for axonal nodes;
+      treating type 0 as axonal is release-specific and is not a generic SWC rule
+  required_tree_checks:
+    - all_coordinates_and_radii_are_finite
+    - radii_are_nonnegative
+    - node_IDs_are_unique_integers
+    - exactly_one_root_has_parent_minus_one
+    - the_unique_root_is_soma_type_1
+    - exactly_one_soma_type_1_node_exists_and_it_is_the_unique_root
+    - no_nonroot_soma_type_1_node_exists
+    - every_nonroot_parent_exists
+    - every_node_has_exactly_one_parent_path_to_the_root
+    - no_cycle
+    - at_least_one_positive_length_axon_edge_exists
+  node_transition_rule:
+    soma_1_to_axon_0_or_2: include_as_axon_edge
+    soma_1_to_dendrite_3: allow_but_exclude_from_axon_analysis
+    soma_1_to_marker_10_11_or_12: allow_terminal_marker_but_ignore_for_axon_analysis
+    axon_0_or_2_to_axon_0_or_2: include_as_axon_edge
+    axon_0_or_2_to_marker_10_11_or_12: allow_terminal_marker_but_ignore_for_axon_analysis
+    dendrite_3_to_dendrite_3: allow_but_exclude_from_axon_analysis
+    dendrite_3_to_marker_10_11_or_12: allow_terminal_marker_but_ignore_for_axon_analysis
+    axon_0_or_2_to_dendrite_3: global_unknown_and_exclusion
+    dendrite_3_to_axon_0_or_2: global_unknown_and_exclusion
+    marker_10_11_or_12_with_any_child: global_unknown_and_exclusion
+    any_transition_with_child_soma_1: global_unknown_and_exclusion
+    any_transition_not_explicitly_allowed_above: global_unknown_and_exclusion
+  axon_edge_rule:
+    include_when_child_type_is_0_or_2_and_parent_type_is_0_1_or_2: true
+    radius_is_used_for_target_calls: false
+  rooted_axon_leaf: >-
+    an axon type 0 or 2 node with no child of any node type after the complete
+    transition rule passes; its incoming axon edge must have positive length to
+    support a terminal-bearing detection
+
+registration_and_complete_observation_eligibility:
+  checks_are_frozen_before_outcomes: true
+  required:
+    - provider_hemisphere_agrees_with_registered_soma_side
+    - registered_soma_is_in_bounds_and_maps_to_Allen_MOp_or_a_layer_descendant
+    - every_positive_length_axon_subsegment_is_conserved_by_exact_atlas_allocation
+    - every_nonzero_annotation_structure_ID_exists_in_the_pinned_ontology
+    - no_positive_axon_length_is_outside_the_atlas_volume_or_in_annotation_zero
+    - every_rooted_axon_leaf_maps_to_named_or_unclaimed_Allen_grey_matter
+  terminal_leaf_in_fiber_tract_ventricle_groove_retina_or_other_nongrey: global_unknown_and_exclusion
+  any_failed_required_check: all_coordinates_unknown_and_cell_excluded
+  provider_reconstruction_label_alone_proves_biological_completeness: false
+  eligible_call_interpretation: observed_in_the_eligible_released_reconstruction_only
+  biological_absence_or_synaptic_absence_is_not_established: true
+
+segment_allocation:
+  method: exact_line_clipping_at_every_crossed_25um_voxel_and_ML_midline_plane
+  do_not_assign_a_whole_edge_by_endpoint_or_midpoint: true
+  each_positive_length_subsegment_uses_its_annotation_voxel_structure_ID: true
+  laterality_reference: registered_soma_hemisphere
+  midline_crossing_segments_are_split: true
+  numerical_zero_tolerance_um: 1.0e-9
+  recognized_QC_only_categories:
+    - unclaimed_grey
+    - fiber_tracts_structure_1009
+    - ventricular_systems_structure_73
+    - grooves_structure_1024
+    - retina_structure_304325711
+    - other_nongrey
+    - annotation_zero
+    - outside_volume
+
+binary_target_observation:
+  biological_quantity: reconstructed_terminal_bearing_axon_presence_in_a_fixed_target_and_side
+  terminal_bearing_component: >-
+    a connected set of positive-length clipped axon subsegments assigned to one
+    target coordinate whose closure contains a rooted axon leaf and whose final
+    positive-length incoming leaf-edge subsegment is assigned to that coordinate
+  detected: at_least_one_terminal_bearing_component_exists
+  passing_only: positive_attributed_axon_length_exists_but_no_terminal_bearing_component_exists
+  not_observed_in_the_eligible_released_reconstruction: >-
+    the cell passes global complete-observation eligibility and no
+    terminal-bearing component exists; passing_only remains a separate flag
+  descriptive_subcategories_with_binary_value_zero:
+    - passing_only
+    - no_occupancy
+  zero_value_semantics: not_observed_in_the_eligible_released_reconstruction
+  zero_is_biological_or_synaptic_absence: false
+  unknown: any_global_tree_registration_or_complete_observation_failure
+  unknown_is_zero: false
+  passing_only_is_detected: false
+  putative_terminal_leaf_is_a_synapse_or_bouton: false
+  minimum_length_or_tip_count_threshold_selected_from_real_outcomes: forbidden
+  provider_projection_class_or_regional_summary_used: false
+
+complete_set_definition:
+  cell_domain: >-
+    development rows with primary_common_support=yes and
+    primary_model_eligible=yes that also pass global observation eligibility
+  frozen_development_support_domain_before_tree_QC: 200
+  unsupported_development_rows_absent_from_acquisition_constructor_S_i_K_i_and_Omega_i: 9
+  eligible_cell_V_i: all_16_primary_panel_coordinates
+  S_i: all_detected_coordinates_in_V_i
+  K_i: cardinality_of_S_i
+  Omega_i: every_size_K_i_subset_of_V_i
+  exact_normalization: required_for_every_model
+  K_zero_and_K_one_are_valid_observations: true
+  full_map_calls_outside_V_i_affect_S_i_or_K_i: false
+  globally_unknown_cell_has_S_i_or_K_i: false
+  same_cells_V_i_S_i_K_i_and_Omega_i_for_M0_M1_M2: true
+
+target_boundary_sensitivity:
+  primary: native_half_open_Allen_25um_target_masks
+  sensitivity: one_voxel_internal_boundary_erosion
+  erosion_definition: >-
+    remove the one-voxel-thick 6-neighbor internal boundary layer from each
+    named target mask, then reconstruct terminal-bearing calls without changing
+    the vocabulary, panel, cell eligibility, or roles
+  operation_order:
+    - construct_each_bilateral_anatomical_target_mask_from_the_pinned_ontology
+    - apply_six_neighbor_internal_erosion_before_laterality_assignment
+    - split_retained_subsegments_at_the_frozen_ML_midline
+    - assign_ipsilateral_or_contralateral_relative_to_the_registered_soma
+  interior_voxel_rule: >-
+    the voxel and all six axial neighbors must be in bounds and map to the same
+    named anatomical target before laterality splitting
+  boundary_neighbor_categories:
+    - outside_volume
+    - annotation_zero
+    - non_grey
+    - unclaimed_grey
+    - any_other_named_target
+  midline_is_an_erosion_boundary_before_laterality_split: false
+  removed_boundary_voxels: excluded_from_the_eroded_sensitivity_not_reassigned
+  voxel_width_um: 25
+  sensitivity_is_primary_or_may_replace_primary: false
+  use_to_choose_merge_or_drop_targets: forbidden
+  report_call_changes_and_candidate_dependence: required
+  execution_stage: sealed_post_candidate_only
+  emitted_by_pre_candidate_constructor: false
+
+branched_terminal_sensitivity:
+  sensitivity: same_coordinate_branched_terminal
+  detected: >-
+    one coordinate component contains terminal incoming subsegments for at
+    least two rooted axon leaves descended from one axon branch node with at
+    least two axon children, with the connecting paths from that branch node
+    to those leaves remaining within the same coordinate
+  sensitivity_only: true
+  sensitivity_is_primary_or_may_replace_primary: false
+  use_to_choose_merge_drop_or_redefine_targets: forbidden
+  report_call_changes_and_candidate_dependence: required
+  execution_stage: sealed_post_candidate_only
+  emitted_by_pre_candidate_constructor: false
+
+pre_candidate_development_exposure:
+  input_rows: exactly_200_primary_common_support_development_rows
+  global_eligibility_QC_rows: exactly_those_200_rows
+  primary_model_rows_before_global_tree_QC: 200
+  unsupported_development_rows_not_downloaded_or_opened: 9
+  exposed_per_cell:
+    - global_eligibility_status
+    - frozen_primary_common_support_and_primary_model_eligibility
+    - primary_16_detected_passing_only_or_no_occupancy_status_for_eligible_primary_model_rows
+    - S_i_and_K_i_for_eligible_primary_model_rows
+  blank_for_globally_ineligible_rows:
+    - primary_16_status
+    - S_i
+    - K_i
+  forbidden_before_candidate_freeze:
+    - per_cell_omitted_40_coordinate_outcomes
+    - raw_axon_or_target_lengths
+    - branch_counts
+    - component_counts
+    - terminal_leaf_counts
+    - one_voxel_erosion_calls
+    - branched_terminal_sensitivity_calls
+  pre_candidate_constructor_emits_only:
+    - primary_16_target_calls.csv
+    - cell_eligibility_qc.csv
+    - aggregate_summary.json
+
+role_and_access_boundary:
+  role_assignment_precedes_target_outcomes: true
+  development_constructor_input: development_role_only
+  final_constructor_input: trusted_one_shot_evaluation_only_after_full_lock
+  unassigned_units_enter_development_or_final: false
+  candidate_may_view_final_S_i_K_i_target_calls_QC_or_errors_before_lock: false
+  structural_QC_errors_from_final_that_reveal_route_or_target: trusted_only
+  provider_class_class1_class2_and_regional_projection_summaries: forbidden
+  realized_route_branchpoint_shared_path_or_terminal_tree_as_M0_M1_M2_predictor: forbidden
+
+irreversibility_after_any_development_target_access:
+  replace_a_failed_development_or_final_cell_or_group: forbidden
+  promote_an_unassigned_unit: forbidden
+  change_roles: forbidden
+  change_target_vocabulary_or_panel: forbidden
+  change_laterality_boundary_or_detection_rule: forbidden
+  tune_completeness_or_registration_thresholds: forbidden
+  shrink_merge_or_reorder_coordinates: forbidden
+  change_K_eligibility_from_observed_K: forbidden
+  insufficient_support_or_excess_unknowns: revise_or_stop_without_replacement
+
+interpretation_boundary:
+  permitted: >-
+    terminal-bearing targets observed in the eligible released reconstruction
+    within the fixed motor-routing panel
+  not_established:
+    - synaptic_connectivity
+    - bouton_presence_or_count
+    - biological_absence
+    - functional_coordination
+    - causal_or_developmental_wiring_program
+    - cross_animal_replication_without_an_author_certified_crosswalk
+  full_tree_branch_and_terminal_anatomy: outcome_characterization_only_after_candidate_freeze

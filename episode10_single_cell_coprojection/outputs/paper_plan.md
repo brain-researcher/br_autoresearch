@@ -90,7 +90,7 @@ locked-final anatomy.
 
 The first analysis stage asks whether EP10 has a valid estimand and enough
 independent biological-group and position support. It checks sample overlap, repeatable
-target calls, non-detection versus unknown, independent-label provenance,
+target calls, reconstruction-level non-observation versus unknown, independent-label provenance,
 detectable effects, and exact-normalization/null cost. If the shared-target
 endpoint may be pursued, it checks whether atlas-aligned coordinates and
 terminal profiles can be extracted repeatably without selecting A, B, or C or
@@ -105,8 +105,9 @@ manufacture support. No candidate effects are scanned in this phase.
 
 For every eligible neuron, freeze the target vocabulary, laterality,
 observation rule, complete detected target set, and detected target count `K`.
-Unknown is not absence. M0, M1, and M2 score the same complete sets on the same
-neurons with exact normalization conditional on `K`.
+Zero means not observed in the eligible released reconstruction, not biological
+absence; unknown is not zero. M0, M1, and M2 score the same complete sets on
+the same neurons with exact normalization conditional on `K`.
 
 | Model | Information included | Question |
 | --- | --- | --- |
@@ -281,7 +282,7 @@ but are not candidate-ready biological outcomes under the current plan.
 | No useful M2 gain and no supported explanation | Close without a paper candidate under the current question |
 | Development A+B/A+C support is insufficient | Mark the shared-target endpoint ineligible; retain the unchanged target-set primary endpoint without the within-A claim |
 | An activated endpoint has too few qualifying final events | Report it as inconclusive, retain it in the results, and do not reselect A, B, or C; Route A is not supported for that candidate |
-| Observation or non-detection is indefensible | Stop or reformulate; unknown cannot become absence |
+| Reconstruction-level non-observation is indefensible | Stop or reformulate; unknown cannot become zero or biological absence |
 | Animal identity or common-position support is unresolved | Use the conservative specimen scope or stop the cross-animal claim |
 | External data are incomparable | Retain internal scope and report failed comparability; do not remap after outcomes |
 | Candidate-specific novelty review finds no distinct contribution | Reframe as replication/extension or stop that candidate |
@@ -294,7 +295,7 @@ evidence that co-projection organization is absent.
 
 | Figure | Claim the evidence must earn | Proposed content |
 | --- | --- | --- |
-| **1. The observable population** | One coherent source, target vocabulary, and group/position domain support the analysis | Source and targets; group-by-position coverage; detection/non-detection/unknown examples; exclusions and observation workflow |
+| **1. The observable population** | One coherent source, target vocabulary, and group/position domain support the analysis | Source and targets; group-by-position coverage; detection/reconstruction-level-zero/unknown examples; exclusions and observation workflow |
 | **2. Distinguishing the competing explanations** | The calibrated comparison tests whether residual association, routing, or known composition is adequate | M0/M1/M2 schematic; gain and bounds by group; calibration; full-search null; influence and source-family results |
 | **3. One named combination and its explanations** | The frozen relationship reproduces in a defined domain, or one measured explanation accounts for it | Probability contrasts; applicability map; common support; independent labels; residual bound; every frozen candidate |
 | **4. Route-contingent explanation** | Route A earns a full-axon implementation claim, or Route B earns a calibrated spatial/population explanation with a useful residual bound | Route A: fixed-rule trees, branch summaries, and the shared-target panel when activated. Route B: the successful explanatory variable, overlap, prediction, residual bound, and failure regions; no positive anatomy panel is required. |

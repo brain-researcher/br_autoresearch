@@ -1,0 +1,1448 @@
+{
+  "benchmark": "EP10 synthetic fixed-K binary pairwise exact normalizer",
+  "created_at_utc": "2026-09-26T20:33:11.076232+00:00",
+  "normalization_semantics": {
+    "enumeration_order": "itertools.combinations lexicographic order",
+    "exactness": "every fixed-K state is exhaustively enumerated; reported log partitions are float64 values, not symbolic values",
+    "log_partition": "log(sum_{x: sum(x)=K} exp(log_weight(x)))",
+    "log_weight": "sum_i h_i*x_i + sum_{i<j} J_ij*x_i*x_j",
+    "memory_strategy": "stream one combination at a time",
+    "state": "binary vector x with sum(x)=K"
+  },
+  "outcome_blind": {
+    "morphology_files_read": false,
+    "projection_outcomes_read": false,
+    "synthetic_coefficients_only": true
+  },
+  "preflight_limits": {
+    "coefficient_construction_cap_bytes": 16777216,
+    "coefficient_estimate_guard_factor": 2,
+    "coefficient_estimate_scope": "approximate Python payload for coexisting list and tuple matrices; the byte-cap gate uses the reported 2x guarded value",
+    "maximum_dimension": 64,
+    "primary_coefficient_construction_estimate_bytes": 9440,
+    "primary_guarded_coefficient_bytes": 18880,
+    "primary_total_state_cap": 65536,
+    "wide_coefficient_construction_estimate_bytes": 95360,
+    "wide_fixed_k_state_cap": 4000000,
+    "wide_guarded_coefficient_bytes": 190720
+  },
+  "primary_panel": {
+    "by_k": [
+      {
+        "configuration_count": 1,
+        "configurations_per_second": 73130.72187978886,
+        "enumerated_configuration_count": 1,
+        "exact_log_partition_nats": 0.0,
+        "k": 0,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 1.3674143701791763e-05,
+        "working_set_estimate": {
+          "accumulator_bytes": 589,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 40,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 72,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 16,
+          "naive_log_weight_float64_materialization_bytes": 8
+        }
+      },
+      {
+        "configuration_count": 16,
+        "configurations_per_second": 400379.15551516,
+        "enumerated_configuration_count": 16,
+        "exact_log_partition_nats": 2.764747654997553,
+        "k": 1,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 3.996212035417557e-05,
+        "working_set_estimate": {
+          "accumulator_bytes": 573,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 48,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 80,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 256,
+          "naive_log_weight_float64_materialization_bytes": 128
+        }
+      },
+      {
+        "configuration_count": 120,
+        "configurations_per_second": 845208.114846848,
+        "enumerated_configuration_count": 120,
+        "exact_log_partition_nats": 4.769230179473526,
+        "k": 2,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.00014197686687111855,
+        "working_set_estimate": {
+          "accumulator_bytes": 557,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 56,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 88,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 1920,
+          "naive_log_weight_float64_materialization_bytes": 960
+        }
+      },
+      {
+        "configuration_count": 560,
+        "configurations_per_second": 625281.8588264411,
+        "enumerated_configuration_count": 560,
+        "exact_log_partition_nats": 6.296167613700703,
+        "k": 3,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.0008955961093306541,
+        "working_set_estimate": {
+          "accumulator_bytes": 541,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 64,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 96,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 8960,
+          "naive_log_weight_float64_materialization_bytes": 4480
+        }
+      },
+      {
+        "configuration_count": 1820,
+        "configurations_per_second": 500485.92872222955,
+        "enumerated_configuration_count": 1820,
+        "exact_log_partition_nats": 7.457728058596192,
+        "k": 4,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.00363646587356925,
+        "working_set_estimate": {
+          "accumulator_bytes": 525,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 72,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 104,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 29120,
+          "naive_log_weight_float64_materialization_bytes": 14560
+        }
+      },
+      {
+        "configuration_count": 4368,
+        "configurations_per_second": 416460.9489062172,
+        "enumerated_configuration_count": 4368,
+        "exact_log_partition_nats": 8.312035751407633,
+        "k": 5,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.01048837834969163,
+        "working_set_estimate": {
+          "accumulator_bytes": 509,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 80,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 112,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 69888,
+          "naive_log_weight_float64_materialization_bytes": 34944
+        }
+      },
+      {
+        "configuration_count": 8008,
+        "configurations_per_second": 368359.36891834193,
+        "enumerated_configuration_count": 8008,
+        "exact_log_partition_nats": 8.892481654427037,
+        "k": 6,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.021739639807492495,
+        "working_set_estimate": {
+          "accumulator_bytes": 493,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 88,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 120,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 128128,
+          "naive_log_weight_float64_materialization_bytes": 64064
+        }
+      },
+      {
+        "configuration_count": 11440,
+        "configurations_per_second": 341709.7123209437,
+        "enumerated_configuration_count": 11440,
+        "exact_log_partition_nats": 9.218479887672622,
+        "k": 7,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.03347870893776417,
+        "working_set_estimate": {
+          "accumulator_bytes": 477,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 96,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 128,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 183040,
+          "naive_log_weight_float64_materialization_bytes": 91520
+        }
+      },
+      {
+        "configuration_count": 12870,
+        "configurations_per_second": 324741.92006912257,
+        "enumerated_configuration_count": 12870,
+        "exact_log_partition_nats": 9.30012835010657,
+        "k": 8,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.039631471037864685,
+        "working_set_estimate": {
+          "accumulator_bytes": 461,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 104,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 136,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 205920,
+          "naive_log_weight_float64_materialization_bytes": 102960
+        }
+      },
+      {
+        "configuration_count": 11440,
+        "configurations_per_second": 294852.57814665773,
+        "enumerated_configuration_count": 11440,
+        "exact_log_partition_nats": 9.140249742926306,
+        "k": 9,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.0387990502640605,
+        "working_set_estimate": {
+          "accumulator_bytes": 445,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 112,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 144,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 183040,
+          "naive_log_weight_float64_materialization_bytes": 91520
+        }
+      },
+      {
+        "configuration_count": 8008,
+        "configurations_per_second": 256062.25401329945,
+        "enumerated_configuration_count": 8008,
+        "exact_log_partition_nats": 8.734963422737911,
+        "k": 10,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.031273644883185625,
+        "working_set_estimate": {
+          "accumulator_bytes": 429,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 120,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 152,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 128128,
+          "naive_log_weight_float64_materialization_bytes": 64064
+        }
+      },
+      {
+        "configuration_count": 4368,
+        "configurations_per_second": 224155.23313917572,
+        "enumerated_configuration_count": 4368,
+        "exact_log_partition_nats": 8.073071708104784,
+        "k": 11,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.01948649575933814,
+        "working_set_estimate": {
+          "accumulator_bytes": 413,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 128,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 160,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 69888,
+          "naive_log_weight_float64_materialization_bytes": 34944
+        }
+      },
+      {
+        "configuration_count": 1820,
+        "configurations_per_second": 197410.25589356266,
+        "enumerated_configuration_count": 1820,
+        "exact_log_partition_nats": 7.133969173185423,
+        "k": 12,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.009219379164278507,
+        "working_set_estimate": {
+          "accumulator_bytes": 397,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 136,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7237,
+          "iterator_bytes": 168,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 29120,
+          "naive_log_weight_float64_materialization_bytes": 14560
+        }
+      },
+      {
+        "configuration_count": 560,
+        "configurations_per_second": 176549.04659412333,
+        "enumerated_configuration_count": 560,
+        "exact_log_partition_nats": 5.882914640432307,
+        "k": 13,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.003171923104673624,
+        "working_set_estimate": {
+          "accumulator_bytes": 397,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 144,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7253,
+          "iterator_bytes": 176,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 8960,
+          "naive_log_weight_float64_materialization_bytes": 4480
+        }
+      },
+      {
+        "configuration_count": 120,
+        "configurations_per_second": 158727.19026712197,
+        "enumerated_configuration_count": 120,
+        "exact_log_partition_nats": 4.260175343784947,
+        "k": 14,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.0007560141384601593,
+        "working_set_estimate": {
+          "accumulator_bytes": 397,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 152,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7269,
+          "iterator_bytes": 184,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 1920,
+          "naive_log_weight_float64_materialization_bytes": 960
+        }
+      },
+      {
+        "configuration_count": 16,
+        "configurations_per_second": 140219.22016952126,
+        "enumerated_configuration_count": 16,
+        "exact_log_partition_nats": 2.151561677612745,
+        "k": 15,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 0.00011410703882575035,
+        "working_set_estimate": {
+          "accumulator_bytes": 397,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 160,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7285,
+          "iterator_bytes": 192,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 256,
+          "naive_log_weight_float64_materialization_bytes": 128
+        }
+      },
+      {
+        "configuration_count": 1,
+        "configurations_per_second": 111004.01364623178,
+        "enumerated_configuration_count": 1,
+        "exact_log_partition_nats": -0.7283333333333326,
+        "k": 16,
+        "process_max_rss_after_bytes": 12541952,
+        "process_max_rss_before_bytes": 12541952,
+        "wall_seconds": 9.008683264255524e-06,
+        "working_set_estimate": {
+          "accumulator_bytes": 397,
+          "coefficient_model_bytes": 6368,
+          "combination_tuple_bytes": 168,
+          "estimated_peak_steady_state_streaming_payload_bytes": 7301,
+          "iterator_bytes": 200,
+          "iterator_pool_tuple_bytes": 168,
+          "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+          "naive_dense_binary_uint8_materialization_bytes": 16,
+          "naive_log_weight_float64_materialization_bytes": 8
+        }
+      }
+    ],
+    "coordinate_binding": "frozen order from outputs/stage0/projection_observation_contract.yaml",
+    "coordinate_ids": [
+      "allen_993_MOs__ipsilateral",
+      "allen_993_MOs__contralateral",
+      "allen_453_SS__ipsilateral",
+      "allen_453_SS__contralateral",
+      "allen_31_ACA__ipsilateral",
+      "allen_31_ACA__contralateral",
+      "allen_477_STR__ipsilateral",
+      "allen_477_STR__contralateral",
+      "allen_549_TH__ipsilateral",
+      "allen_549_TH__contralateral",
+      "allen_313_MB__ipsilateral",
+      "allen_313_MB__contralateral",
+      "allen_771_P__ipsilateral",
+      "allen_771_P__contralateral",
+      "allen_354_MY__ipsilateral",
+      "allen_354_MY__contralateral"
+    ],
+    "dimension": 16,
+    "enumerated_total_configurations": 65536,
+    "expected_total_configurations": 65536,
+    "k_range": [
+      0,
+      16
+    ],
+    "wall_seconds_all_k": 0.21576095698401332
+  },
+  "replicated_timing": {
+    "purpose": "repeat the outcome-blind exact-normalization workload to measure throughput at the 99-null planning scale; this is not a benchmark of a complete null-search rerun",
+    "repetitions": 99,
+    "runs": [
+      {
+        "primary_all_k_wall_seconds": 0.21576095698401332,
+        "repetition": 1,
+        "seed": 20260926,
+        "suite_wall_seconds": 6.5794337671250105,
+        "wide_fixed_k_wall_seconds": 6.36089502600953
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19999565090984106,
+        "repetition": 2,
+        "seed": 20260927,
+        "suite_wall_seconds": 6.597547648008913,
+        "wide_fixed_k_wall_seconds": 6.3952417322434485
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19732278864830732,
+        "repetition": 3,
+        "seed": 20260928,
+        "suite_wall_seconds": 6.607880792580545,
+        "wide_fixed_k_wall_seconds": 6.40846956288442
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19685258902609348,
+        "repetition": 4,
+        "seed": 20260929,
+        "suite_wall_seconds": 6.594109026249498,
+        "wide_fixed_k_wall_seconds": 6.3949629492126405
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1979811219498515,
+        "repetition": 5,
+        "seed": 20260930,
+        "suite_wall_seconds": 6.60249495273456,
+        "wide_fixed_k_wall_seconds": 6.402377719990909
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19761556386947632,
+        "repetition": 6,
+        "seed": 20260931,
+        "suite_wall_seconds": 6.639855378773063,
+        "wide_fixed_k_wall_seconds": 6.440166138112545
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20197980711236596,
+        "repetition": 7,
+        "seed": 20260932,
+        "suite_wall_seconds": 6.624171318020672,
+        "wide_fixed_k_wall_seconds": 6.419961955863982
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1973444619216025,
+        "repetition": 8,
+        "seed": 20260933,
+        "suite_wall_seconds": 6.651018355041742,
+        "wide_fixed_k_wall_seconds": 6.451582822017372
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19738009897992015,
+        "repetition": 9,
+        "seed": 20260934,
+        "suite_wall_seconds": 6.5885393507778645,
+        "wide_fixed_k_wall_seconds": 6.389018137939274
+      },
+      {
+        "primary_all_k_wall_seconds": 0.200085393153131,
+        "repetition": 10,
+        "seed": 20260935,
+        "suite_wall_seconds": 6.58702277392149,
+        "wide_fixed_k_wall_seconds": 6.384897110052407
+      },
+      {
+        "primary_all_k_wall_seconds": 0.2001978550106287,
+        "repetition": 11,
+        "seed": 20260936,
+        "suite_wall_seconds": 6.596450694836676,
+        "wide_fixed_k_wall_seconds": 6.393991683144122
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19781625596806407,
+        "repetition": 12,
+        "seed": 20260937,
+        "suite_wall_seconds": 6.593512963037938,
+        "wide_fixed_k_wall_seconds": 6.393641017377377
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1977013349533081,
+        "repetition": 13,
+        "seed": 20260938,
+        "suite_wall_seconds": 6.581596644129604,
+        "wide_fixed_k_wall_seconds": 6.38184771174565
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19738914212211967,
+        "repetition": 14,
+        "seed": 20260939,
+        "suite_wall_seconds": 6.581425213254988,
+        "wide_fixed_k_wall_seconds": 6.381956384982914
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975874211639166,
+        "repetition": 15,
+        "seed": 20260940,
+        "suite_wall_seconds": 6.586088779848069,
+        "wide_fixed_k_wall_seconds": 6.38644540682435
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1974409450776875,
+        "repetition": 16,
+        "seed": 20260941,
+        "suite_wall_seconds": 6.6281932312995195,
+        "wide_fixed_k_wall_seconds": 6.428715304005891
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19705694634467363,
+        "repetition": 17,
+        "seed": 20260942,
+        "suite_wall_seconds": 6.587403754238039,
+        "wide_fixed_k_wall_seconds": 6.388196683023125
+      },
+      {
+        "primary_all_k_wall_seconds": 0.21159014897421002,
+        "repetition": 18,
+        "seed": 20260943,
+        "suite_wall_seconds": 6.624300266150385,
+        "wide_fixed_k_wall_seconds": 6.410362002905458
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19852076517418027,
+        "repetition": 19,
+        "seed": 20260944,
+        "suite_wall_seconds": 6.587114532943815,
+        "wide_fixed_k_wall_seconds": 6.386516383849084
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19724883092567325,
+        "repetition": 20,
+        "seed": 20260945,
+        "suite_wall_seconds": 6.57758908579126,
+        "wide_fixed_k_wall_seconds": 6.37828248180449
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19768012687563896,
+        "repetition": 21,
+        "seed": 20260946,
+        "suite_wall_seconds": 6.613508845679462,
+        "wide_fixed_k_wall_seconds": 6.413706974126399
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20122671779245138,
+        "repetition": 22,
+        "seed": 20260947,
+        "suite_wall_seconds": 6.578113338910043,
+        "wide_fixed_k_wall_seconds": 6.374775138683617
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1976082120090723,
+        "repetition": 23,
+        "seed": 20260948,
+        "suite_wall_seconds": 6.625572818797082,
+        "wide_fixed_k_wall_seconds": 6.4259022902697325
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1970759341493249,
+        "repetition": 24,
+        "seed": 20260949,
+        "suite_wall_seconds": 6.6126722251065075,
+        "wide_fixed_k_wall_seconds": 6.413531125057489
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975389258004725,
+        "repetition": 25,
+        "seed": 20260950,
+        "suite_wall_seconds": 6.566467326134443,
+        "wide_fixed_k_wall_seconds": 6.366882194764912
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19756444171071053,
+        "repetition": 26,
+        "seed": 20260951,
+        "suite_wall_seconds": 6.592970960773528,
+        "wide_fixed_k_wall_seconds": 6.393370778299868
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19927453296259046,
+        "repetition": 27,
+        "seed": 20260952,
+        "suite_wall_seconds": 6.580832207109779,
+        "wide_fixed_k_wall_seconds": 6.37919559283182
+      },
+      {
+        "primary_all_k_wall_seconds": 0.2106368630193174,
+        "repetition": 28,
+        "seed": 20260953,
+        "suite_wall_seconds": 6.6395908878184855,
+        "wide_fixed_k_wall_seconds": 6.426752170082182
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19857971835881472,
+        "repetition": 29,
+        "seed": 20260954,
+        "suite_wall_seconds": 6.552376633044332,
+        "wide_fixed_k_wall_seconds": 6.3517318069934845
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19718562671914697,
+        "repetition": 30,
+        "seed": 20260955,
+        "suite_wall_seconds": 6.592110001016408,
+        "wide_fixed_k_wall_seconds": 6.392876219935715
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1971909087151289,
+        "repetition": 31,
+        "seed": 20260956,
+        "suite_wall_seconds": 6.6347157950513065,
+        "wide_fixed_k_wall_seconds": 6.435412544757128
+      },
+      {
+        "primary_all_k_wall_seconds": 0.201765445061028,
+        "repetition": 32,
+        "seed": 20260957,
+        "suite_wall_seconds": 6.580181452911347,
+        "wide_fixed_k_wall_seconds": 6.376374272629619
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19785611890256405,
+        "repetition": 33,
+        "seed": 20260958,
+        "suite_wall_seconds": 6.6392043749801815,
+        "wide_fixed_k_wall_seconds": 6.439295001793653
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19783556973561645,
+        "repetition": 34,
+        "seed": 20260959,
+        "suite_wall_seconds": 6.581290207337588,
+        "wide_fixed_k_wall_seconds": 6.381414575036615
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975766341201961,
+        "repetition": 35,
+        "seed": 20260960,
+        "suite_wall_seconds": 6.583943843841553,
+        "wide_fixed_k_wall_seconds": 6.384319373872131
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1969187529757619,
+        "repetition": 36,
+        "seed": 20260961,
+        "suite_wall_seconds": 6.609062236268073,
+        "wide_fixed_k_wall_seconds": 6.409901101142168
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1973171909339726,
+        "repetition": 37,
+        "seed": 20260962,
+        "suite_wall_seconds": 6.561251629143953,
+        "wide_fixed_k_wall_seconds": 6.361866083927453
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19674665061756968,
+        "repetition": 38,
+        "seed": 20260963,
+        "suite_wall_seconds": 6.5790182570926845,
+        "wide_fixed_k_wall_seconds": 6.380213998258114
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20097723184153438,
+        "repetition": 39,
+        "seed": 20260964,
+        "suite_wall_seconds": 6.629279232118279,
+        "wide_fixed_k_wall_seconds": 6.42625130712986
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19762499118223786,
+        "repetition": 40,
+        "seed": 20260965,
+        "suite_wall_seconds": 6.60838011931628,
+        "wide_fixed_k_wall_seconds": 6.40871964301914
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1973898890428245,
+        "repetition": 41,
+        "seed": 20260966,
+        "suite_wall_seconds": 6.574761397205293,
+        "wide_fixed_k_wall_seconds": 6.375329892151058
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975222988985479,
+        "repetition": 42,
+        "seed": 20260967,
+        "suite_wall_seconds": 6.631863325368613,
+        "wide_fixed_k_wall_seconds": 6.432256969157606
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20368368411436677,
+        "repetition": 43,
+        "seed": 20260968,
+        "suite_wall_seconds": 6.603989295195788,
+        "wide_fixed_k_wall_seconds": 6.398206510115415
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1970468182116747,
+        "repetition": 44,
+        "seed": 20260969,
+        "suite_wall_seconds": 6.5789992031641304,
+        "wide_fixed_k_wall_seconds": 6.379908136092126
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19765398418530822,
+        "repetition": 45,
+        "seed": 20260970,
+        "suite_wall_seconds": 6.574077951256186,
+        "wide_fixed_k_wall_seconds": 6.3743845340795815
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19732185499742627,
+        "repetition": 46,
+        "seed": 20260971,
+        "suite_wall_seconds": 6.601992079056799,
+        "wide_fixed_k_wall_seconds": 6.402472882997245
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19871746189892292,
+        "repetition": 47,
+        "seed": 20260972,
+        "suite_wall_seconds": 6.5961189372465014,
+        "wide_fixed_k_wall_seconds": 6.3953383709304035
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19761506281793118,
+        "repetition": 48,
+        "seed": 20260973,
+        "suite_wall_seconds": 6.592265925835818,
+        "wide_fixed_k_wall_seconds": 6.392602833919227
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19748521083965898,
+        "repetition": 49,
+        "seed": 20260974,
+        "suite_wall_seconds": 6.560154096223414,
+        "wide_fixed_k_wall_seconds": 6.3606089958921075
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19694487703964114,
+        "repetition": 50,
+        "seed": 20260975,
+        "suite_wall_seconds": 6.594667281024158,
+        "wide_fixed_k_wall_seconds": 6.395684496965259
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19671353604644537,
+        "repetition": 51,
+        "seed": 20260976,
+        "suite_wall_seconds": 6.593168715015054,
+        "wide_fixed_k_wall_seconds": 6.394306323025376
+      },
+      {
+        "primary_all_k_wall_seconds": 0.2047509760595858,
+        "repetition": 52,
+        "seed": 20260977,
+        "suite_wall_seconds": 6.599245427176356,
+        "wide_fixed_k_wall_seconds": 6.392387227155268
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19730389676988125,
+        "repetition": 53,
+        "seed": 20260978,
+        "suite_wall_seconds": 6.564274108968675,
+        "wide_fixed_k_wall_seconds": 6.364916023798287
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19905184535309672,
+        "repetition": 54,
+        "seed": 20260979,
+        "suite_wall_seconds": 6.5975789008662105,
+        "wide_fixed_k_wall_seconds": 6.39647063286975
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19737142929807305,
+        "repetition": 55,
+        "seed": 20260980,
+        "suite_wall_seconds": 6.590550079010427,
+        "wide_fixed_k_wall_seconds": 6.390918137039989
+      },
+      {
+        "primary_all_k_wall_seconds": 0.200516015291214,
+        "repetition": 56,
+        "seed": 20260981,
+        "suite_wall_seconds": 6.57601425005123,
+        "wide_fixed_k_wall_seconds": 6.373380969744176
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19702413259074092,
+        "repetition": 57,
+        "seed": 20260982,
+        "suite_wall_seconds": 6.577323207166046,
+        "wide_fixed_k_wall_seconds": 6.378210469614714
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20341275678947568,
+        "repetition": 58,
+        "seed": 20260983,
+        "suite_wall_seconds": 6.6115772989578545,
+        "wide_fixed_k_wall_seconds": 6.406098267994821
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975134490057826,
+        "repetition": 59,
+        "seed": 20260984,
+        "suite_wall_seconds": 6.593478892929852,
+        "wide_fixed_k_wall_seconds": 6.393920788075775
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19800428207963705,
+        "repetition": 60,
+        "seed": 20260985,
+        "suite_wall_seconds": 6.580258457921445,
+        "wide_fixed_k_wall_seconds": 6.3802155195735395
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19726997101679444,
+        "repetition": 61,
+        "seed": 20260986,
+        "suite_wall_seconds": 6.592396458145231,
+        "wide_fixed_k_wall_seconds": 6.39306935062632
+      },
+      {
+        "primary_all_k_wall_seconds": 0.197360766120255,
+        "repetition": 62,
+        "seed": 20260987,
+        "suite_wall_seconds": 6.60246500140056,
+        "wide_fixed_k_wall_seconds": 6.403012175112963
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1972439312376082,
+        "repetition": 63,
+        "seed": 20260988,
+        "suite_wall_seconds": 6.575239580124617,
+        "wide_fixed_k_wall_seconds": 6.375927352812141
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19764682091772556,
+        "repetition": 64,
+        "seed": 20260989,
+        "suite_wall_seconds": 6.6098401439376175,
+        "wide_fixed_k_wall_seconds": 6.4099345612339675
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19732186663895845,
+        "repetition": 65,
+        "seed": 20260990,
+        "suite_wall_seconds": 6.5706888739950955,
+        "wide_fixed_k_wall_seconds": 6.3712830930016935
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1973424036987126,
+        "repetition": 66,
+        "seed": 20260991,
+        "suite_wall_seconds": 6.639131087809801,
+        "wide_fixed_k_wall_seconds": 6.439735142048448
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19760369090363383,
+        "repetition": 67,
+        "seed": 20260992,
+        "suite_wall_seconds": 6.632549587171525,
+        "wide_fixed_k_wall_seconds": 6.432849281933159
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20079678762704134,
+        "repetition": 68,
+        "seed": 20260993,
+        "suite_wall_seconds": 6.6315807001665235,
+        "wide_fixed_k_wall_seconds": 6.42873070994392
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20925182895734906,
+        "repetition": 69,
+        "seed": 20260994,
+        "suite_wall_seconds": 6.582116363104433,
+        "wide_fixed_k_wall_seconds": 6.370780255179852
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975878570228815,
+        "repetition": 70,
+        "seed": 20260995,
+        "suite_wall_seconds": 6.573096928186715,
+        "wide_fixed_k_wall_seconds": 6.373442599084228
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19702059170231223,
+        "repetition": 71,
+        "seed": 20260996,
+        "suite_wall_seconds": 6.573474220000207,
+        "wide_fixed_k_wall_seconds": 6.374404333066195
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19723272137343884,
+        "repetition": 72,
+        "seed": 20260997,
+        "suite_wall_seconds": 6.587840111926198,
+        "wide_fixed_k_wall_seconds": 6.388567148242146
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19621503865346313,
+        "repetition": 73,
+        "seed": 20260998,
+        "suite_wall_seconds": 6.605491694994271,
+        "wide_fixed_k_wall_seconds": 6.4070034166798
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1975127630867064,
+        "repetition": 74,
+        "seed": 20260999,
+        "suite_wall_seconds": 6.607232844922692,
+        "wide_fixed_k_wall_seconds": 6.407648688647896
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19695059303194284,
+        "repetition": 75,
+        "seed": 20261000,
+        "suite_wall_seconds": 6.575510140974075,
+        "wide_fixed_k_wall_seconds": 6.376493792980909
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19737697578966618,
+        "repetition": 76,
+        "seed": 20261001,
+        "suite_wall_seconds": 6.5742755979299545,
+        "wide_fixed_k_wall_seconds": 6.374829120002687
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19635478081181645,
+        "repetition": 77,
+        "seed": 20261002,
+        "suite_wall_seconds": 6.539801670238376,
+        "wide_fixed_k_wall_seconds": 6.341414038091898
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19837456801906228,
+        "repetition": 78,
+        "seed": 20261003,
+        "suite_wall_seconds": 6.5010275091044605,
+        "wide_fixed_k_wall_seconds": 6.300607165787369
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19364963471889496,
+        "repetition": 79,
+        "seed": 20261004,
+        "suite_wall_seconds": 6.478552098851651,
+        "wide_fixed_k_wall_seconds": 6.282848136033863
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1957794763147831,
+        "repetition": 80,
+        "seed": 20261005,
+        "suite_wall_seconds": 6.508885354734957,
+        "wide_fixed_k_wall_seconds": 6.311115976888686
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19487951090559363,
+        "repetition": 81,
+        "seed": 20261006,
+        "suite_wall_seconds": 6.471605162601918,
+        "wide_fixed_k_wall_seconds": 6.274713246151805
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1937000947073102,
+        "repetition": 82,
+        "seed": 20261007,
+        "suite_wall_seconds": 6.487678878940642,
+        "wide_fixed_k_wall_seconds": 6.291727528907359
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19551494717597961,
+        "repetition": 83,
+        "seed": 20261008,
+        "suite_wall_seconds": 6.542286726646125,
+        "wide_fixed_k_wall_seconds": 6.344728664960712
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19571832288056612,
+        "repetition": 84,
+        "seed": 20261009,
+        "suite_wall_seconds": 6.551871147938073,
+        "wide_fixed_k_wall_seconds": 6.354102263227105
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19717914424836636,
+        "repetition": 85,
+        "seed": 20261010,
+        "suite_wall_seconds": 6.539459450170398,
+        "wide_fixed_k_wall_seconds": 6.340213528834283
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19566830433905125,
+        "repetition": 86,
+        "seed": 20261011,
+        "suite_wall_seconds": 6.559823519084603,
+        "wide_fixed_k_wall_seconds": 6.3621237189508975
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19712278014048934,
+        "repetition": 87,
+        "seed": 20261012,
+        "suite_wall_seconds": 6.618242577183992,
+        "wide_fixed_k_wall_seconds": 6.418995867948979
+      },
+      {
+        "primary_all_k_wall_seconds": 0.20496483566239476,
+        "repetition": 88,
+        "seed": 20261013,
+        "suite_wall_seconds": 6.523434374947101,
+        "wide_fixed_k_wall_seconds": 6.316377501003444
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1954966690391302,
+        "repetition": 89,
+        "seed": 20261014,
+        "suite_wall_seconds": 6.522039622999728,
+        "wide_fixed_k_wall_seconds": 6.324502574279904
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19387929420918226,
+        "repetition": 90,
+        "seed": 20261015,
+        "suite_wall_seconds": 6.527843509800732,
+        "wide_fixed_k_wall_seconds": 6.331939767114818
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19481055298820138,
+        "repetition": 91,
+        "seed": 20261016,
+        "suite_wall_seconds": 6.484866377897561,
+        "wide_fixed_k_wall_seconds": 6.2878564591519535
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1914455951191485,
+        "repetition": 92,
+        "seed": 20261017,
+        "suite_wall_seconds": 6.506091306917369,
+        "wide_fixed_k_wall_seconds": 6.312610480003059
+      },
+      {
+        "primary_all_k_wall_seconds": 0.1933399890549481,
+        "repetition": 93,
+        "seed": 20261018,
+        "suite_wall_seconds": 6.48568827426061,
+        "wide_fixed_k_wall_seconds": 6.290249239187688
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19584173010662198,
+        "repetition": 94,
+        "seed": 20261019,
+        "suite_wall_seconds": 6.514655095990747,
+        "wide_fixed_k_wall_seconds": 6.316773215774447
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19533273670822382,
+        "repetition": 95,
+        "seed": 20261020,
+        "suite_wall_seconds": 6.428161319810897,
+        "wide_fixed_k_wall_seconds": 6.2307987390086055
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19640652928501368,
+        "repetition": 96,
+        "seed": 20261021,
+        "suite_wall_seconds": 6.495129972230643,
+        "wide_fixed_k_wall_seconds": 6.2967387228272855
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19228160101920366,
+        "repetition": 97,
+        "seed": 20261022,
+        "suite_wall_seconds": 6.497548410668969,
+        "wide_fixed_k_wall_seconds": 6.303227371070534
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19689333904534578,
+        "repetition": 98,
+        "seed": 20261023,
+        "suite_wall_seconds": 6.4484662231989205,
+        "wide_fixed_k_wall_seconds": 6.249528149142861
+      },
+      {
+        "primary_all_k_wall_seconds": 0.19336374197155237,
+        "repetition": 99,
+        "seed": 20261024,
+        "suite_wall_seconds": 6.452600680757314,
+        "wide_fixed_k_wall_seconds": 6.257202192209661
+      }
+    ],
+    "seed_first": 20260926,
+    "seed_last": 20261024,
+    "suite_wall_seconds_max": 6.651018355041742,
+    "suite_wall_seconds_median": 6.583943843841553,
+    "suite_wall_seconds_min": 6.428161319810897,
+    "total_wall_seconds": 650.9874886032194
+  },
+  "runtime": {
+    "hostname": "sh02-06n59.int",
+    "process_peak_rss_bytes_after_payload_assembly": 12992512,
+    "python_version": "3.11.16",
+    "slurm_job_id": "45412269"
+  },
+  "synthetic_coefficient_specification": {
+    "field_denominator": 300,
+    "generator": "documented integer modular formulas in this script",
+    "pair_denominator": 800,
+    "seed": 20260926
+  },
+  "wide_panel": {
+    "all_k_combinatorial_counts": [
+      {
+        "configuration_count_decimal": "1",
+        "fits_json_safe_integer": true,
+        "k": 0
+      },
+      {
+        "configuration_count_decimal": "56",
+        "fits_json_safe_integer": true,
+        "k": 1
+      },
+      {
+        "configuration_count_decimal": "1540",
+        "fits_json_safe_integer": true,
+        "k": 2
+      },
+      {
+        "configuration_count_decimal": "27720",
+        "fits_json_safe_integer": true,
+        "k": 3
+      },
+      {
+        "configuration_count_decimal": "367290",
+        "fits_json_safe_integer": true,
+        "k": 4
+      },
+      {
+        "configuration_count_decimal": "3819816",
+        "fits_json_safe_integer": true,
+        "k": 5
+      },
+      {
+        "configuration_count_decimal": "32468436",
+        "fits_json_safe_integer": true,
+        "k": 6
+      },
+      {
+        "configuration_count_decimal": "231917400",
+        "fits_json_safe_integer": true,
+        "k": 7
+      },
+      {
+        "configuration_count_decimal": "1420494075",
+        "fits_json_safe_integer": true,
+        "k": 8
+      },
+      {
+        "configuration_count_decimal": "7575968400",
+        "fits_json_safe_integer": true,
+        "k": 9
+      },
+      {
+        "configuration_count_decimal": "35607051480",
+        "fits_json_safe_integer": true,
+        "k": 10
+      },
+      {
+        "configuration_count_decimal": "148902215280",
+        "fits_json_safe_integer": true,
+        "k": 11
+      },
+      {
+        "configuration_count_decimal": "558383307300",
+        "fits_json_safe_integer": true,
+        "k": 12
+      },
+      {
+        "configuration_count_decimal": "1889912732400",
+        "fits_json_safe_integer": true,
+        "k": 13
+      },
+      {
+        "configuration_count_decimal": "5804731963800",
+        "fits_json_safe_integer": true,
+        "k": 14
+      },
+      {
+        "configuration_count_decimal": "16253249498640",
+        "fits_json_safe_integer": true,
+        "k": 15
+      },
+      {
+        "configuration_count_decimal": "41648951840265",
+        "fits_json_safe_integer": true,
+        "k": 16
+      },
+      {
+        "configuration_count_decimal": "97997533741800",
+        "fits_json_safe_integer": true,
+        "k": 17
+      },
+      {
+        "configuration_count_decimal": "212327989773900",
+        "fits_json_safe_integer": true,
+        "k": 18
+      },
+      {
+        "configuration_count_decimal": "424655979547800",
+        "fits_json_safe_integer": true,
+        "k": 19
+      },
+      {
+        "configuration_count_decimal": "785613562163430",
+        "fits_json_safe_integer": true,
+        "k": 20
+      },
+      {
+        "configuration_count_decimal": "1346766106565880",
+        "fits_json_safe_integer": true,
+        "k": 21
+      },
+      {
+        "configuration_count_decimal": "2142582442263900",
+        "fits_json_safe_integer": true,
+        "k": 22
+      },
+      {
+        "configuration_count_decimal": "3167295784216200",
+        "fits_json_safe_integer": true,
+        "k": 23
+      },
+      {
+        "configuration_count_decimal": "4355031703297275",
+        "fits_json_safe_integer": true,
+        "k": 24
+      },
+      {
+        "configuration_count_decimal": "5574440580220512",
+        "fits_json_safe_integer": true,
+        "k": 25
+      },
+      {
+        "configuration_count_decimal": "6646448384109072",
+        "fits_json_safe_integer": true,
+        "k": 26
+      },
+      {
+        "configuration_count_decimal": "7384942649010080",
+        "fits_json_safe_integer": true,
+        "k": 27
+      },
+      {
+        "configuration_count_decimal": "7648690600760440",
+        "fits_json_safe_integer": true,
+        "k": 28
+      },
+      {
+        "configuration_count_decimal": "7384942649010080",
+        "fits_json_safe_integer": true,
+        "k": 29
+      },
+      {
+        "configuration_count_decimal": "6646448384109072",
+        "fits_json_safe_integer": true,
+        "k": 30
+      },
+      {
+        "configuration_count_decimal": "5574440580220512",
+        "fits_json_safe_integer": true,
+        "k": 31
+      },
+      {
+        "configuration_count_decimal": "4355031703297275",
+        "fits_json_safe_integer": true,
+        "k": 32
+      },
+      {
+        "configuration_count_decimal": "3167295784216200",
+        "fits_json_safe_integer": true,
+        "k": 33
+      },
+      {
+        "configuration_count_decimal": "2142582442263900",
+        "fits_json_safe_integer": true,
+        "k": 34
+      },
+      {
+        "configuration_count_decimal": "1346766106565880",
+        "fits_json_safe_integer": true,
+        "k": 35
+      },
+      {
+        "configuration_count_decimal": "785613562163430",
+        "fits_json_safe_integer": true,
+        "k": 36
+      },
+      {
+        "configuration_count_decimal": "424655979547800",
+        "fits_json_safe_integer": true,
+        "k": 37
+      },
+      {
+        "configuration_count_decimal": "212327989773900",
+        "fits_json_safe_integer": true,
+        "k": 38
+      },
+      {
+        "configuration_count_decimal": "97997533741800",
+        "fits_json_safe_integer": true,
+        "k": 39
+      },
+      {
+        "configuration_count_decimal": "41648951840265",
+        "fits_json_safe_integer": true,
+        "k": 40
+      },
+      {
+        "configuration_count_decimal": "16253249498640",
+        "fits_json_safe_integer": true,
+        "k": 41
+      },
+      {
+        "configuration_count_decimal": "5804731963800",
+        "fits_json_safe_integer": true,
+        "k": 42
+      },
+      {
+        "configuration_count_decimal": "1889912732400",
+        "fits_json_safe_integer": true,
+        "k": 43
+      },
+      {
+        "configuration_count_decimal": "558383307300",
+        "fits_json_safe_integer": true,
+        "k": 44
+      },
+      {
+        "configuration_count_decimal": "148902215280",
+        "fits_json_safe_integer": true,
+        "k": 45
+      },
+      {
+        "configuration_count_decimal": "35607051480",
+        "fits_json_safe_integer": true,
+        "k": 46
+      },
+      {
+        "configuration_count_decimal": "7575968400",
+        "fits_json_safe_integer": true,
+        "k": 47
+      },
+      {
+        "configuration_count_decimal": "1420494075",
+        "fits_json_safe_integer": true,
+        "k": 48
+      },
+      {
+        "configuration_count_decimal": "231917400",
+        "fits_json_safe_integer": true,
+        "k": 49
+      },
+      {
+        "configuration_count_decimal": "32468436",
+        "fits_json_safe_integer": true,
+        "k": 50
+      },
+      {
+        "configuration_count_decimal": "3819816",
+        "fits_json_safe_integer": true,
+        "k": 51
+      },
+      {
+        "configuration_count_decimal": "367290",
+        "fits_json_safe_integer": true,
+        "k": 52
+      },
+      {
+        "configuration_count_decimal": "27720",
+        "fits_json_safe_integer": true,
+        "k": 53
+      },
+      {
+        "configuration_count_decimal": "1540",
+        "fits_json_safe_integer": true,
+        "k": 54
+      },
+      {
+        "configuration_count_decimal": "56",
+        "fits_json_safe_integer": true,
+        "k": 55
+      },
+      {
+        "configuration_count_decimal": "1",
+        "fits_json_safe_integer": true,
+        "k": 56
+      }
+    ],
+    "bounded_streaming_case": {
+      "configuration_count": 3819816,
+      "configurations_per_second": 600515.4910403134,
+      "declared_state_cap": 4000000,
+      "dimension": 56,
+      "enumerated_configuration_count": 3819816,
+      "exact_log_partition_nats": 15.272387607708952,
+      "k": 5,
+      "process_max_rss_after_bytes": 12800000,
+      "process_max_rss_before_bytes": 12541952,
+      "status": "completed",
+      "wall_seconds": 6.36089502600953,
+      "working_set_estimate": {
+        "accumulator_bytes": 397,
+        "coefficient_model_bytes": 66688,
+        "combination_tuple_bytes": 80,
+        "estimated_peak_steady_state_streaming_payload_bytes": 67765,
+        "iterator_bytes": 112,
+        "iterator_pool_tuple_bytes": 488,
+        "method": "sys.getsizeof recursive model payload plus one combination tuple, the iterator's coordinate pool, one itertools iterator, and one accumulator; this steady-state estimate excludes interpreter, allocator overhead, and coefficient-construction temporaries",
+        "naive_dense_binary_uint8_materialization_bytes": 213909696,
+        "naive_log_weight_float64_materialization_bytes": 30558528
+      }
+    },
+    "dimension": 56
+  }
+}

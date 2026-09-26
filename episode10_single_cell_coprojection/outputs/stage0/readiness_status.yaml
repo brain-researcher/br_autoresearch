@@ -1,0 +1,83 @@
+episode_id: ep10
+run_id: ep10-stage0-20260926T063634Z
+observed_at_utc: "2026-09-26T20:44:49Z"
+state: observation_contract_frozen_awaiting_authenticated_development_transfer
+
+launch:
+  explicit_start_observed: true
+  episode_managed_run_started: true
+  heavy_compute_started: true
+  outcome_compute_started: false
+  slurm_job_ids: [45396282, 45398661, 45401314, 45412269]
+  scratch_root_created: true
+
+access:
+  trusted_metadata_structure_opened: true
+  allowed_metadata_aggregate_probe_run: true
+  trusted_qualifier_real_run_completed: true
+  current_qualification_artifact: outputs/stage0/qualification_run005/qualification.json
+  gao_qualification_artifact: outputs/stage0/gao_mop_qualification.md
+  gao_geometry_artifact: outputs/stage0/mop_geometry_support.csv
+  gao_frozen_role_artifact: outputs/stage0/gao_mop_frozen_roles.csv
+  gao_projection_observation_contract: outputs/stage0/projection_observation_contract.yaml
+  gao_development_manifest: outputs/stage0/gao_mop_development_manifest.csv
+  exact_normalization_benchmark_artifact: outputs/stage0/exact_normalization_benchmark.json
+  gao_public_metadata_downloaded: true
+  gao_safe_metadata_support_table_emitted: true
+  gao_swc_files_downloaded: false
+  gao_soma_root_rows_opened: true
+  gao_axon_tree_rows_opened: false
+  forbidden_data_cells_dereferenced_by_current_qualifier: false
+  projection_class_values_emitted: false
+  swc_contents_opened: gao_canonical_soma_root_rows_only
+  morphology_target_outcomes_opened: false
+  final_group_outcomes_opened: false
+  audit_open_count: 0
+
+gates:
+  episode_contracts_present: pass
+  named_source_release_recorded: pass
+  source_archives_read_only: pass
+  metadata_forbidden_field_redaction_contract: pass
+  trusted_qualifier_tests: pass_9_of_9
+  trusted_qualifier_real_run: pass_mechanical
+  metadata_to_ccfv3_swc_identity_join: pass_1876_of_1876
+  cell_lineage_authenticated: partial_filename_identity_only
+  conservative_group_identity_verified_as_animal: pending
+  shared_ep09_ep10_ep11_role_ledger: not_applicable_to_selected_Gao_resource
+  gao_shared_ep10_ep11_role_ledger: pass_15_overlap_units_forced_EP10_unassigned
+  role_safe_development_manifest: pass_200_common_support_cells_12_groups_no_shared_units
+  separate_physical_development_and_final_views: pending_development_transfer_final_absent
+  atlas_header_compatibility: pass_annotation_template_geometry
+  atlas_to_seu_transform_compatibility: missing
+  target_observation_rule: definition_frozen_terminal_bearing_binary_calls_16_coordinate_primary_panel_empirical_QC_pending
+  exact_normalization_cost_benchmark: pass_99_outcome_blind_synthetic_suites_650_99_seconds_total_6_58_seconds_median_not_a_full_null_search
+  seu_MOp_12_development_8_final_support: fail_17_total_specimen_groups
+  gao_MOp_12_development_8_final_count_support: pass_76_fMOST_sample_units
+  gao_MOp_sample_join: pass_76_of_76_unique
+  gao_independent_animal_identity: unresolved_no_public_animal_mouse_or_donor_key
+  gao_exact_soma_position_support: pass_837_of_837_atlas_geometry_eligible
+  gao_MOp_common_support: pass_radius_500um_depth_tolerance_0_20_development_domain_200_of_209_primary_cells
+  gao_MOp_role_allocation: pass_frozen_12_development_8_final_56_unassigned
+  gao_development_structural_attrition_gate: frozen_pending_minimum_190_of_200_and_prespecified_per_group_minima_across_all_12_groups
+  gao_reconstruction_QC: pending_SWC_acquisition
+  gao_Axon_only_sensitivity: unavailable_0_development_1_final_3_unassigned_never_open_for_development
+  gao_ep11_fMOST_overlap: pass_15_shared_units_forced_EP10_unassigned
+
+next_action: >-
+  use an attended authenticated Sherlock DTN session to acquire only the
+  200-file development manifest and run the frozen structural/observation QC.
+  Primary
+  modeling remains restricted to the fixed 200-cell common-support domain and
+  proceeds only if at least 190 cells and every prespecified per-group minimum
+  remain eligible; otherwise revise or stop without replacement. Treat zero as
+  not observed in the eligible released reconstruction, never biological
+  absence. Keep the 55 final and 573 unassigned files absent, omit Axon_only
+  sensitivity, and keep every final outcome sealed. Establish precision and
+  99-null cost before candidate search. Do not call the 76 released units
+  independent animals without an author-certified crosswalk.
+
+boundary: >-
+  Stage-0 startup is exploratory local qualification only. It is not adaptive
+  model search, Society review, reward, confirmation, scientific acceptance,
+  or a Landscape transition.

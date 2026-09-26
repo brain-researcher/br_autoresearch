@@ -1,0 +1,94 @@
+{
+  "schema_version": "ep10.stage0_launch_identity.v1",
+  "episode_id": "ep10",
+  "run_id": "ep10-stage0-20260926T063634Z",
+  "started_at_utc": "2026-09-26T06:36:34Z",
+  "qualified_at_utc": "2026-09-26T07:10:28Z",
+  "verified_at_utc": "2026-09-26T07:12:25Z",
+  "workspace": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection",
+  "scratch_workspace": "/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/stage0/ep10-stage0-20260926T063634Z",
+  "host": "sh04-ln04.stanford.edu",
+  "execution_class": "light_login_node_outcome_blind_metadata_qualification",
+  "python_module_loaded": "python/3.12.1",
+  "python_executable": "/share/software/user/open/python/3.12.1/bin/python3",
+  "python_version": "3.12.1",
+  "python_sys_version": "3.12.1 (main, Jan 12 2024, 16:49:08) [GCC 12.1.0]",
+  "slurm_job_id": null,
+  "heavy_compute_started": false,
+  "canonical_loop_id": null,
+  "goal_handoff_id": null,
+  "canonical_state_observed_at_utc": "2026-09-26T07:13:00Z",
+  "canonical_loop_list_count": 19,
+  "standalone_episode_managed": true,
+  "hashes": {
+    "GOAL.md": "b69f2d34776ef6d18f6465474718c8225dd80e2174e99c6434c9f21f7b12825e",
+    "DATASETS.md": "0db694f0466ce9dad60d7401668d05b91882b386a91f1570a360825abbd9f0c0",
+    "SEARCH_POLICY.yaml": "26ba6cc0f6dd31a7bc24e8d0d0502936d70e5b716cb4eb09e7e6717d99895116",
+    "outputs/stage0/qualification_contract.yaml": "a54a25fad4ebf6da5f5530ba28f7bddc4a9adaabf2b4346b8c68a4be01cfb0d7",
+    "outputs/stage0/source_manifest.json": "a2b1560461a45a9c50a82db990f83198adf8f030e682352823b65239eeaafb63",
+    "outputs/stage0/tools/qualify_resource.py": "714278b90646be89861492cc847c8176bf0dc8571d93fa5f83fc5bc848488186",
+    "outputs/stage0/tests/test_qualify_resource.py": "4e70599db49693792309bb78d4a84c2c0563cd0c933cbcf5792ec4a101037998",
+    "outputs/stage0/qualification_run005/qualification.json": "db4cf133dd9ccc055af0f72961a369f0b76d0021d8ec112b7a33887e1fedecae",
+    "outputs/stage0/qualification_run005/source_group_support.csv": "6421fc196a10ccefb2905b08e02c8fc9d2d708765b3f970cb256d9c872e65712",
+    "outputs/stage0/qualification_run005/identity_issues.csv": "70cc00fb00c9276e001aa8be82e575de74acb851524116933a45cacf292058fa",
+    "outputs/stage0/qualification_run005/result_manifest.sha256": "abe331d355ca9db65e1e13cbf3c798405b64056553265cd560824bc37d39209d"
+  },
+  "engineering_history": [
+    {
+      "artifact": "outputs/stage0/qualification_run001",
+      "status": "superseded_diagnostic",
+      "reason": "shared-string retention was hardened so forbidden data-cell indexes are not dereferenced"
+    },
+    {
+      "artifact": "outputs/stage0/qualification_run002",
+      "status": "superseded_redacted_diagnostic",
+      "reason": "the durable diagnostic was redacted before handoff to remove forbidden-column occupancy; later qualifiers reject non-allowlisted metadata and omit occupancy"
+    },
+    {
+      "artifact": "outputs/stage0/qualification_run003",
+      "status": "superseded_diagnostic",
+      "reason": "the allowlist guard was extended to reject populated columns without headers before shared-string lookup"
+    },
+    {
+      "artifact": "outputs/stage0/qualification_run004",
+      "status": "superseded_diagnostic",
+      "reason": "runtime provenance was hardened to bind the executable and version explicitly, and the NRRD test was upgraded to reject any payload read attempt"
+    },
+    {
+      "artifact": "outputs/stage0/qualification_run005",
+      "status": "current_qualification_evidence",
+      "forbidden_data_cells_dereferenced": false,
+      "forbidden_column_occupancy_reported": false
+    }
+  ],
+  "observed_result": {
+    "metadata_rows": 1876,
+    "unique_cells": 1876,
+    "unique_conservative_specimen_groups": 39,
+    "ccfv3_swc_name_join": "1876_of_1876",
+    "identity_issue_count": 0,
+    "priority_source": "MOp",
+    "priority_source_cells": 75,
+    "priority_source_conservative_groups": 17,
+    "minimum_total_groups": 20,
+    "maximum_final_groups_after_12_development": 5,
+    "decision": "revise_resource_strategy_before_outcome_search"
+  },
+  "access_boundary": {
+    "projection_class_values_decoded_by_durable_qualifier": false,
+    "projection_class_values_emitted": false,
+    "swc_contents_opened": false,
+    "voxel_payloads_opened": false,
+    "morphology_outcomes_opened": false,
+    "final_outcomes_opened": false,
+    "shared_role_ledger_frozen": false
+  },
+  "authority_boundary": {
+    "local_exploration_started": true,
+    "society_review": false,
+    "scientist_reward": false,
+    "confirmation_execution": false,
+    "scientific_acceptance": false,
+    "landscape_transition": false
+  }
+}
