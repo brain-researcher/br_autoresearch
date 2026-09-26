@@ -8,6 +8,6 @@ candidate search, human-approved immutable references must expose the exact
 SEU-A1876 RAW and CCFv3 morphology payloads, Allen CCF assets, brain/calibration
 metadata, and provider-method provenance specified in `../DATASETS.md`.
 
-Record source identity, version, bytes, local SHA-256, access time, license,
-and provisioning method for every input. Never consume a mutable sibling
-episode's live `outputs/` directory.
+Record the provider release, file names, license/access terms, read-only local
+location, and provisioning method. Never consume a mutable sibling episode's
+live `outputs/` directory.

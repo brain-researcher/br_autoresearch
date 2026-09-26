@@ -108,9 +108,9 @@ useful effect `delta_morph` and interval procedure are frozen before audit.
 5. **Falsification stage:** run block ablations, label and feature controls,
    batch/location matching, and leave-one-group influence on every promotion
    candidate.
-6. **Lock/audit:** select one paired `M0/M1` pipeline, refit from immutable
-   development inputs, freeze all measurement and inference code, hash the
-   bundle, and open the group-sealed audit once.
+6. **Lock/audit:** select one paired `M0/M1` pipeline, refit from the frozen
+   development inputs, record all measurement and inference choices in a
+   write-once lock, and open the group-sealed audit once.
 
 ## Required falsifiers and ablations
 
@@ -142,13 +142,14 @@ hours, 64 concurrent cores, and 1 TB scratch. Resource exhaustion is
 
 ## Lock, one-shot audit, and terminal boundary
 
-The lock bundle includes source hashes, parsers, atlas/coordinate contract,
-outcome rule, cell/group/duplicate/exposure ledger, group roles, grammar,
-append-only trial ledger, all out-of-fold predictions, Pareto archive, chosen
-`M0/M1`, capacity proof, calibration, `delta_morph`, intervals, multiplicity,
-falsifiers, environment, seeds, and artifact hashes. Audit groups open exactly
-once; the resulting score cannot alter representation, model, threshold, or
-target set.
+The write-once lock identifies the source releases and read-only locations,
+parsers, atlas/coordinate contract, outcome rule, cell/group/duplicate/exposure
+ledger, group roles, grammar, append-only trial ledger, all out-of-fold
+predictions, Pareto archive, chosen `M0/M1`, capacity proof, calibration,
+`delta_morph`, intervals, multiplicity, falsifiers, seeds, and frozen artifact
+locations. It is completed before audit access and cannot be amended after the
+audit opens. Audit groups open exactly once; the resulting score cannot alter
+representation, model, threshold, or target set.
 
 `candidate_ready` requires the frozen group-level interval to exceed
 `delta_morph`, concordant prespecified source-family signs, no single-group or

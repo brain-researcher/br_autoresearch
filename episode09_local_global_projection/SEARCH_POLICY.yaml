@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep09_dendrite_distal_arbor_adaptive
 episode_id: ep09
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -106,8 +105,8 @@ stop:
 
 audit:
   configuration_lock_required: true
+  configuration_lock_mode: write_once_before_audit
   shared_episode_contracts_lock_before_any_open: true
-  lock_hash_required: true
   maximum_open_count: 1
   audit_updates_search: false
   audit_role: sealed_biological_groups

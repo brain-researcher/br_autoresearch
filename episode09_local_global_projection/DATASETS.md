@@ -4,22 +4,22 @@ This episode follows [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.
 
 ## Fixed real sources
 
-| Source/file | Identity | Role |
+| Source/file | Release | Role |
 | --- | --- | --- |
 | SEU-A1876 | Zenodo `13944322` | primary same-cell dendrite and axon source |
-| `Full_morphometry.xlsx` | 181,376 B; MD5 `dcad84366865aa6ffc4d5b010159dd9b` | identities, brain IDs, soma, layer, QC |
-| `Full_morphology_RAW.zip` | 1,679,789,577 B; MD5 `40139b77ca8752aa28cff487e0517bae` | primary native dendrites |
-| `Full_morphology_CCFv3.zip` | 1,536,231,503 B; MD5 `a5d2242516268a301e0efc16438990dd` | CCF full axons and transform checks |
-| `Axonal_arbor_CCFv3.zip` | 24,463,661 B; MD5 `6b6d903884043d574320f07b8f220451` | candidate distal-arbor outcome source |
-| `Dendritic_arbor_CCFv3.zip` | 167,855,052 B; MD5 `e7169d0a34b7afde11e426530675cae3` | secondary method sensitivity |
+| `Full_morphometry.xlsx` | file in Zenodo `13944322` | identities, brain IDs, soma, layer, QC |
+| `Full_morphology_RAW.zip` | file in Zenodo `13944322` | primary native dendrites |
+| `Full_morphology_CCFv3.zip` | file in Zenodo `13944322` | CCF full axons and transform checks |
+| `Axonal_arbor_CCFv3.zip` | file in Zenodo `13944322` | candidate distal-arbor outcome source |
+| `Dendritic_arbor_CCFv3.zip` | file in Zenodo `13944322` | secondary method sensitivity |
 | Allen Mouse CCF | exact CCFv3 annotation/ontology to be pinned | atlas assignment and geometry |
 | CCF-ME | Zenodo `13801372`, version 2 | optional M2 sensitivity after lineage audit |
 
-Verify provider sizes and MD5 values, compute local SHA-256 hashes, pin reuse
-terms, and preserve immutable archives. Released metadata report 1,876 unique
-morphologies across 39 `fMOST Brain ID` values, 92 soma regions, 1,736 manually
-checked cells, and 308 cells missing `Projection class`; these are inventory
-counts, not an eligible sample.
+Record the provider release, file names, reuse terms, and read-only local
+locations. Released metadata report 1,876 unique morphologies across 39
+`fMOST Brain ID` values, 92 soma regions, 1,736 manually checked cells, and 308
+cells missing `Projection class`; these are inventory counts, not an eligible
+sample.
 
 ## Exposure and shared-outcome caveat
 
@@ -62,16 +62,18 @@ forbidden predictors, split fields, and imputation aids.
 Predictors must come from native dendrites plus prospectively available soma,
 source, layer, independent label, quality, and acquisition records. Any CCF
 dendrite feature is a locked sensitivity. External morphology representations
-require cell/SWC hash, topology, geometry, and publication-lineage deduplication.
+require verified cell/SWC identity mapping, topology and geometry comparison,
+and publication-lineage deduplication.
 
 ## Firewall
 
-Provision immutable read-only payloads for SEU-A1876, Allen CCFv3, provider
-methods/code, biological metadata, and the shared split ledger. A trusted
-evaluator constructs development predictions and scalar/group diagnostics;
-candidate jobs do not receive group-audit outcomes or target prevalence.
-Seal audit mappings, outcomes, feature caches derived from them, metrics, and
-inference artifacts under separate permissions. Hash every join and transform.
+Provision read-only payloads for SEU-A1876, Allen CCFv3, provider methods/code,
+biological metadata, and the shared split ledger. A trusted evaluator
+constructs development predictions and scalar/group diagnostics; candidate
+jobs do not receive group-audit outcomes or target prevalence. Seal audit
+mappings, outcomes, feature caches derived from them, metrics, and inference
+artifacts under separate permissions. Use the verified cell/group ledger and
+frozen coordinate transform for every join.
 
 ## Missing blockers
 
@@ -86,4 +88,5 @@ the primary analysis.
 Large payloads remain outside Git or behind immutable read-only references.
 Transient expansions and feature matrices belong in
 `$SCRATCH/br_autoresearch/episode09_local_global_projection/`; durable
-outputs are manifests, parsers/tests, ledgers, lock artifacts, and reports.
+outputs are source and role records, parsers/tests, ledgers, the write-once lock,
+and reports.
