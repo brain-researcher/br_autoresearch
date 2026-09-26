@@ -136,7 +136,7 @@ and two audit sessions per animal, subject to a frozen feasibility rule.
 
 Within every session, freeze a direction-stratified evaluation set that is
 never available to the selector or decoder. Every policy then receives the
-same **16-trial pilot**—two hash-selected calibration trials in each of the
+same **16-trial pilot**—two seed-selected calibration trials in each of the
 eight frozen directions—recorded on every structurally eligible electrode.
 The pilot reveals LFP and calibration spike targets, is charged and reported
 separately, and cannot contain evaluation trials. A policy locks its retained
@@ -156,7 +156,7 @@ Electrode retention and trial allocation are ordered stages. The retention
 stage selects a subset from the pilot-observed physical electrodes and then
 closes permanently. A trial action chooses only one of the eight reach-direction
 strata; the trusted replay returns the next whole trial in that direction's
-frozen hash order. The fixed movement epoch is part of every trial and is not a
+frozen seeded order. The fixed movement epoch is part of every trial and is not a
 separate action dimension.
 Whole electrodes carry all three primary LFP features: LMP, 100–200-Hz power,
 and 200–400-Hz power. The decoder, neural target roster, epoch (`+150` to
@@ -168,7 +168,7 @@ Candidate policies may compose only:
 1. **Reliability selectors:** artifact fraction, missingness, line-noise,
    stationarity, and repeatability estimated from currently acquired LFP;
 2. **Spatial-diversity selectors:** farthest-first, coverage, or D-optimal
-   selection using authenticated electrode geometry, with an explicit
+   selection using verified electrode geometry, with an explicit
    geometry-missing fallback;
 3. **Redundancy-aware selectors:** correlation pruning, facility-location,
    log-determinant, or conditional-variance gain computed from acquired LFP;
@@ -223,8 +223,11 @@ latency are secondary objectives. No ambiguous two-dimensional AUC is used.
 
 ## Search stages
 
-1. **Preflight:** authenticate sources, freeze session/trial roles, verify
-   geometry and resource support, and pass sequential-replay/leakage fixtures.
+1. **Preflight:** confirm the source/version, animal and M1 session mapping,
+   duplicates and EP05 overlap, geometry, target availability, and resource
+   support; then freeze session/trial roles and pass the sequential-replay and
+   leakage fixtures. Record one pass/revise/stop decision and repeat only after
+   a concrete failed item changes.
 2. **Baseline stage:** run the identical pilot, then evaluate all random,
    geometric, reliability, and fixed trial-allocation baselines with common
    seeds and the same no-backfill rule.
@@ -236,7 +239,7 @@ latency are secondary objectives. No ambiguous two-dimensional AUC is used.
    animals, and required falsifiers; retain a Pareto archive over utility,
    robustness, and cost.
 6. **Lock/audit:** select one global policy, freeze its fitted-development
-   state and sequential action code, replay from immutable inputs, then apply
+   state and sequential action code, replay from the unchanged inputs, then apply
    it unchanged to the sealed sessions and open evaluation outcomes once.
 
 ## Required falsifiers and ablations
@@ -271,12 +274,13 @@ hours, 48 concurrent cores, and 750 GB scratch. Hitting a resource limit yields
 
 ## Lock, one-shot audit, and terminal boundary
 
-The lock bundle must hash the source and role manifests, exposure ledger,
-grammar, full trial/action ledger, baseline seeds, decoder, selected policy,
-all policy-time features, fitted development state, resource grid, metrics,
-intervals, falsifiers, environment, and terminal rules. No adaptation to
-sealed-session evaluation outcomes is allowed. The audit opens once; any
-post-audit improvement belongs to a future dataset and policy version.
+Before audit access, create one write-once configuration record that names the
+source/version and role mappings, exposure exclusions, grammar, complete
+trial/action history, baseline seeds, decoder, selected policy, policy-time
+features, fitted development state, resource grid, metrics, intervals,
+falsifiers, and terminal rules. No adaptation to sealed-session evaluation
+outcomes is allowed. The audit opens once; any post-audit improvement belongs
+to a future dataset and policy version.
 
 `candidate_ready` requires the locked policy to exceed the strongest
 cost-matched baseline by at least the frozen meaningful margin in the

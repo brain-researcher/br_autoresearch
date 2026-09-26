@@ -1,4 +1,3 @@
-schema_version: autoresearch.adaptive_search_policy.v1
 policy_id: ep08_electrode_trial_acquisition_adaptive
 episode_id: ep08
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
@@ -28,7 +27,7 @@ research_program:
       - does_pre_action_state_predict_which_direction_trial_reduces_future_error
       - how_does_performance_change_along_electrode_and_trial_axes_of_the_fixed_grid
     electrode_value_target: frozen_evaluation_loss_increase_when_one_retained_electrode_is_omitted
-    trial_value_target: frozen_evaluation_loss_change_after_next_hash_queued_trial_in_a_legal_reach_direction_stratum
+    trial_value_target: frozen_evaluation_loss_change_after_next_seed_queued_trial_in_a_legal_reach_direction_stratum
     candidate_explanations:
       - signal_quality
       - spatial_coverage
@@ -43,7 +42,7 @@ research_program:
       heldout_value_targets_returned_to_policy: false
       electrode_and_trial_units_convertible_without_cost_model: false
     external_prediction:
-      source_manifest: null
+      source_and_role_record: null
       requires_newly_collected_or_sequestered_third_animal: true
       frozen_outputs:
         - retained_electrode_conditional_value_ranking
@@ -102,13 +101,12 @@ grammar:
   electrode_lock_after_pilot: true
   later_electrode_addition: forbidden
   earlier_trial_backfill: forbidden
-  within_direction_trial_order: frozen_hash_queue
+  within_direction_trial_order: frozen_seeded_queue
   adaptive_trial_reward: trusted_nested_cv_calibration_loss_change
   action_semantics:
-    initial_trial_action: direction_balanced_lowest_hash_stratum
-    tie_break: lowest_frozen_hash
+    initial_trial_action: direction_balanced_first_seeded_stratum
+    tie_break: frozen_seeded_order
     missing_geometry_fallback: reliability_plus_redundancy_without_spatial_terms
-    state_serialization: canonical_json_sha256
     pilot_cost_reported_separately: true
   policy_time_state:
     - static_geometry_and_qc_all_electrodes
@@ -201,7 +199,7 @@ stop:
 
 audit:
   configuration_lock_required: true
-  lock_hash_required: true
+  configuration_lock_write_once: true
   maximum_open_count: 1
   audit_updates_search: false
   audit_role: held_out_sessions_and_locked_within_session_evaluation

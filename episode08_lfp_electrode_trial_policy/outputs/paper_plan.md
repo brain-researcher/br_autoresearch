@@ -42,7 +42,7 @@ made a correct prediction about **conditional value**, not just signal quality.
 
 Now suppose the early decoder predicts seven reach directions well but has
 large cross-validated residuals for upward reaches. If the policy requests an
-upward trial and that next hash-queued trial reduces untouched-trial error more
+upward trial and that next seed-queued trial reduces untouched-trial error more
 than the balanced allocator's next request, the trial decision also has a
 testable explanation. Neither conclusion follows merely from inspecting which
 electrodes or directions the winning policy happened to choose.
@@ -126,7 +126,7 @@ a quality-control rule, not a new principle of spatial complementarity.
 ### 3. Test whether pre-action state predicts next-trial value
 
 At a frozen acquisition state `h`, each legal action requests the next
-hash-queued whole trial from one reach-direction stratum. For mechanism evaluation,
+seed-queued whole trial from one reach-direction stratum. For mechanism evaluation,
 the trusted replay can branch from the same state, add exactly one legal next
 trial for each candidate stratum, refit the fixed decoder, and score all
 branches on the same untouched evaluation trials. Define
@@ -142,7 +142,7 @@ diversity. Compare the chosen action with direction-balanced and frozen-random
 actions at identical queue depth.
 
 This is retrospective replay. It assumes trials within a direction are
-exchangeable under the frozen hash order. It does not show how a person or
+exchangeable under the frozen seeded order. It does not show how a person or
 animal would respond if an online system requested a different movement. Any
 future real-time or human-burden claim needs a prospective interaction study.
 

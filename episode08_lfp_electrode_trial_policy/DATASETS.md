@@ -4,16 +4,16 @@ This episode follows [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.
 
 ## Real source and primary cohort
 
-Use the authenticated Foundation LFP asset pack derived from Dryad DOI
+Use the Foundation LFP asset pack derived from Dryad DOI
 `10.5061/dryad.xd2547dkt`, metadata version 7 and file-bearing version 5, with
-the associated BeNeuroLab code pinned at
+the associated BeNeuroLab code revision
 `cbda8e2e6106f5eb5ff98e18a689c595179ac5db`.
 
 The primary cohort is six Mihili and six Chewie-L M1 sessions. Chewie-R is an
 implant sensitivity, not an independent animal replication. Planning notes
 suggest roughly 46–64 usable physical electrodes in primary sessions, but
 exact counts, coordinates, unit intersections, and trial support must be
-regenerated from authenticated bytes.
+confirmed from the acquired files and metadata.
 
 ## Exposure and evidence status
 
@@ -31,20 +31,20 @@ missing and is mandatory for an external-animal claim.
 
 ## Required records
 
-The immutable input pack must provide:
+The acquired input pack must provide:
 
-- source/provider hashes, stable animal/implant/session/trial/channel IDs,
-  reuse terms, code and environment pins;
+- source DOI/version, stable animal/implant/session/trial/channel IDs, reuse
+  terms, and the associated code revision;
 - successful center-out reach events, direction labels, exact movement epoch,
   sampling and filter support;
 - physical-electrode membership and geometry, with missing-coordinate flags;
-- LMP, 100–200-Hz and 200–400-Hz feature identities plus raw provenance;
+- LMP, 100–200-Hz and 200–400-Hz feature definitions and source mapping;
 - one structurally eligible fixed neuron roster per session and spike outcome
   construction independent of selector performance; and
 - synthetic sequential-acquisition fixtures and a clean replay interface.
 
 The contract must identify exactly eight common reach directions, reserve two
-hash-selected non-evaluation trials per direction for the fixed 16-trial
+seed-selected non-evaluation trials per direction for the fixed 16-trial
 all-electrode pilot, and freeze disjoint calibration-acquisition and evaluation
 pools. If that common direction/pilot support does not exist, stop before
 neural utility is calculated rather than redefining the pilot after outcomes.
@@ -56,12 +56,22 @@ full-resource ceiling check. If not, stop before neural utility is calculated
 or freeze a revised contract first. Do not drop a budget cell after seeing its
 score.
 
+Qualification is one outcome-blind readiness pass. Map every file to an
+animal, implant, independent whole session, trial, physical electrode, and M1
+source region; exclude duplicate or derivative sessions and any EP05 overlap
+that would violate the declared evidence roles. For each session, classify
+geometry, events, LFP features, and the population-spike target as `detected`,
+`verified_absent`, or `unknown`; only `detected` items can support scoring.
+Freeze the development/audit and within-session roles before inspecting any
+policy-discriminating outcome. Repeat this pass only after a concrete failed
+item changes.
+
 ## Firewall and sequential replay
 
 Assign whole sessions from structural identifiers before outcome-derived
 utility exists. Within every session, freeze pilot, acquisition-pool, and
 evaluation trials separately. Within each direction, acquisition-pool trials
-are hash-ordered under a frozen seed; an allocator chooses a stratum and
+follow a frozen seeded order; an allocator chooses a stratum and
 receives only its next queued trial. This assumes retrospective
 within-direction exchangeability and does not identify a causal advantage for
 real-time trial scheduling.
@@ -83,9 +93,9 @@ Store sealed-session mappings and evaluation outcomes under a
 permission-separated audit path. Candidate jobs receive opaque IDs and scalar
 development scores. The action ledger must record time, available information,
 electrode-lock event, queued-trial position, action, nested-CV reward, pilot
-and incremental cost, missing-geometry fallback, tie-break, and serialized
-state hash so a later replay can prove there was no future information,
-backfill, or cache leakage.
+and incremental cost, missing-geometry fallback, tie-break, and the policy
+state presented at the decision so a later replay can test for future
+information, backfill, or cache leakage.
 
 ## Data needed to explain why the policy works
 
@@ -134,7 +144,7 @@ select, or confirm it. Its first confirmatory evaluation must come from the new
 sealed external source described below.
 
 A fresh external pack must contain whole-session roles, physical geometry,
-the same authenticated LFP feature meanings or a frozen crosswalk, eight reach
+the same verified LFP feature meanings or a frozen crosswalk, eight reach
 directions, enough trials for the pilot and full grid, a structural neuron
 roster, and a sequential replay interface. It must be sequestered before the
 mechanism rule and all margins are selected. The policy may be refit on that
@@ -151,7 +161,7 @@ axes; no conversion between them is implied.
 
 ## Missing blockers
 
-The authenticated asset pack, exact geometry coverage, prospective
+The asset pack, exact geometry coverage, prospective
 development/audit session manifest, within-session trial roles, sequential
 replay evaluator, and permission-separated audit store are not yet established.
 They block neural scoring or audit opening, not explicit task startup. The
@@ -161,5 +171,5 @@ explicitly internal episode.
 Large inputs stay outside Git or under immutable read-only references.
 Transient caches belong in
 `$SCRATCH/br_autoresearch/episode08_lfp_electrode_trial_policy/`; durable
-artifacts are limited to manifests, action/trial ledgers, lock bundles, and
-reports.
+artifacts are limited to source/role records, action/trial records, the final
+configuration lock, and reports.
