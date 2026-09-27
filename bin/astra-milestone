@@ -58,4 +58,7 @@ else
   exporter="$root_dir/bin/export-astra"
 fi
 
+if [[ ${#export_args[@]} -eq 0 ]]; then
+  exec "$exporter" --workspace "$episode_dir" --stage "$stage"
+fi
 exec "$exporter" --workspace "$episode_dir" --stage "$stage" "${export_args[@]}"
