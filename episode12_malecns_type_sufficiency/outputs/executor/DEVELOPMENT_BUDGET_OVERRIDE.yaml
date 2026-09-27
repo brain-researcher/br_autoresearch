@@ -1,0 +1,20 @@
+schema_version: ep12.development_budget_override.v1
+episode_id: ep12
+authorized_date: 2026-09-25
+authorization_source: explicit_user_instruction_in_active_EP12_Codex_task
+scope: minimum_full_development_search_including_observed_and_required_99_null_searches
+measured_planning_core_hours: 2750.224361392
+user_rounded_planning_core_hours: 2750
+original_policy_cpu_core_hour_ceiling: 1000
+original_cpu_ceiling_enforced_for_this_scope: false
+cpu_budget_stop_disabled_until_minimum_full_search_complete: true
+new_hard_cpu_ceiling: null
+unchanged_limits:
+  minimum_valid_trials: 36
+  maximum_valid_trials: 96
+  cpu_cores_per_trial_max: 32
+  memory_gib_per_trial_max: 192
+  wall_hours_per_trial_max: 12
+  wall_clock_hour_ceiling: 120
+  gpu_hour_ceiling: 0
+final_connectivity_access_authorized: false

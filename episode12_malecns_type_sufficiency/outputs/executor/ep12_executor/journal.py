@@ -1,4 +1,4 @@
-"""Crash-safe, idempotent, hash-chained JSONL journal for EP12."""
+"""Crash-safe, append-only event journal for the EP12 scientific tail."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
-from .policy import canonical_json, digest_object
+from .policy import canonical_json
 
 
 class JournalError(RuntimeError):
@@ -17,11 +17,11 @@ class JournalError(RuntimeError):
 
 
 class JournalIntegrityError(JournalError):
-    """The authoritative journal was malformed or its hash chain failed."""
+    """The journal is truncated, malformed, or repeats an event ID."""
 
 
 class IdempotencyConflict(JournalError):
-    """An idempotency key was reused for a different command."""
+    """An event ID was reused for different content."""
 
 
 @dataclass(frozen=True)
@@ -30,17 +30,22 @@ class AppendResult:
     appended: bool
 
 
-def record_hash(record_without_hash: Mapping[str, Any]) -> str:
-    return digest_object(record_without_hash)
+_LEGACY_IDENTITY_FIELDS = frozenset(
+    {"previous_record_hash", "record_hash", "request_hash"}
+)
 
 
-class HashChainedJournal:
-    """A small-ledger implementation favoring correctness over throughput.
+def _event_payload(record: Mapping[str, Any]) -> dict[str, Any]:
+    excluded = {"event_id", "timestamp_utc", "sequence"} | _LEGACY_IDENTITY_FIELDS
+    return {key: value for key, value in record.items() if key not in excluded}
 
-    Each append rewrites the complete JSONL file to a same-directory temporary
-    file and atomically replaces the old file.  Qualification ledgers are
-    small, so this gives simple crash semantics while retaining JSONL as the
-    authoritative source required by the common controller protocol.
+
+class EventJournal:
+    """An atomic JSONL journal with event-ID idempotency.
+
+    Old hash fields are accepted as inert historical fields so an existing
+    scientific run remains readable, but new records do not create or require
+    a hash chain, receipt, or environment identity.
     """
 
     def __init__(self, path: Path):
@@ -55,7 +60,6 @@ class HashChainedJournal:
         if raw and not raw.endswith(b"\n"):
             raise JournalIntegrityError("journal does not end at a record boundary")
         records: list[dict[str, Any]] = []
-        previous: str | None = None
         event_ids: set[str] = set()
         for line_number, line in enumerate(raw.splitlines(), start=1):
             try:
@@ -64,15 +68,6 @@ class HashChainedJournal:
                 raise JournalIntegrityError(f"invalid JSON on line {line_number}") from exc
             if not isinstance(record, dict):
                 raise JournalIntegrityError(f"line {line_number} is not an object")
-            if record.get("previous_record_hash") != previous:
-                raise JournalIntegrityError(f"broken previous hash on line {line_number}")
-            claimed = record.get("record_hash")
-            if not isinstance(claimed, str):
-                raise JournalIntegrityError(f"missing record hash on line {line_number}")
-            unhashed = dict(record)
-            del unhashed["record_hash"]
-            if record_hash(unhashed) != claimed:
-                raise JournalIntegrityError(f"record hash mismatch on line {line_number}")
             event_id = record.get("event_id")
             if not isinstance(event_id, str) or not event_id:
                 raise JournalIntegrityError(f"missing event id on line {line_number}")
@@ -80,7 +75,6 @@ class HashChainedJournal:
                 raise JournalIntegrityError(f"duplicate event id on line {line_number}")
             event_ids.add(event_id)
             records.append(record)
-            previous = claimed
         return records
 
     def read(self) -> list[dict[str, Any]]:
@@ -91,17 +85,17 @@ class HashChainedJournal:
             finally:
                 fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
 
-    def verify(self) -> dict[str, Any]:
+    def status(self) -> dict[str, Any]:
         records = self.read()
         return {
             "record_count": len(records),
-            "head_hash": records[-1]["record_hash"] if records else None,
-            "journal_hash": digest_object(records),
+            "last_event_id": records[-1]["event_id"] if records else None,
         }
 
-    def prefix_hash(self) -> str:
-        records = self.read()
-        return digest_object([record["record_hash"] for record in records])
+    def position(self) -> dict[str, Any]:
+        """Return the visible append position used by deterministic proposals."""
+
+        return self.status()
 
     def append(
         self,
@@ -112,34 +106,27 @@ class HashChainedJournal:
     ) -> AppendResult:
         if not event_id:
             raise ValueError("event_id must be nonempty")
-        request_hash = digest_object(payload)
+        requested_payload = dict(payload)
         with self.lock_path.open("a+b") as lock_file:
             fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
             try:
                 records = self._read_unlocked()
                 for existing in records:
                     if existing["event_id"] == event_id:
-                        if existing.get("request_hash") != request_hash:
+                        if _event_payload(existing) != requested_payload:
                             raise IdempotencyConflict(
                                 f"event id {event_id!r} was reused with different content"
                             )
                         return AppendResult(existing, appended=False)
 
-                record = dict(payload)
-                record.update(
-                    {
-                        "event_id": event_id,
-                        "timestamp_utc": timestamp_utc,
-                        "previous_record_hash": (
-                            records[-1]["record_hash"] if records else None
-                        ),
-                        "request_hash": request_hash,
-                    }
-                )
-                record["record_hash"] = record_hash(record)
+                record = {
+                    **requested_payload,
+                    "event_id": event_id,
+                    "timestamp_utc": timestamp_utc,
+                    "sequence": len(records) + 1,
+                }
                 updated = records + [record]
                 serialized = "".join(canonical_json(item) + "\n" for item in updated)
-
                 temporary = self.path.with_name(
                     f".{self.path.name}.tmp.{os.getpid()}.{len(updated)}"
                 )

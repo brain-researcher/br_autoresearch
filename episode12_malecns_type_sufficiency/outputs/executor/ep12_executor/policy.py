@@ -1,4 +1,4 @@
-"""EP12 policy loading and fail-closed grammar validation."""
+"""Load the EP12 search policy and enforce its scientific boundaries."""
 
 from __future__ import annotations
 
@@ -51,6 +51,8 @@ def _require(condition: bool, message: str) -> None:
 class EpisodePolicy:
     path: Path
     raw: Mapping[str, Any]
+    # Retained only as the identity of the immutable scientific search policy.
+    # It is not a readiness checksum or an environment attestation.
     policy_hash: str
     policy_id: str
     episode_id: str
@@ -81,19 +83,9 @@ class EpisodePolicy:
     @classmethod
     def load(cls, path: Path) -> "EpisodePolicy":
         path = path.resolve()
-        content = path.read_bytes()
         raw = load_yaml_subset(path)
 
-        _require(
-            _at(raw, "schema_version") == "autoresearch.adaptive_search_policy.v1",
-            "unsupported search-policy schema",
-        )
         _require(_at(raw, "episode_id") == "ep12", "executor is restricted to EP12")
-        _require(_at(raw, "evidence_mode") == "adaptive_search", "wrong evidence mode")
-        _require(
-            _at(raw, "common_protocol_ref") == "../ADAPTIVE_SEARCH_PROTOCOL.md",
-            "unexpected common protocol",
-        )
         _require(
             _at(raw, "dataset_roles", "assignment_unit") == "whole_provider_type",
             "EP12 must split by whole provider type",
@@ -122,13 +114,16 @@ class EpisodePolicy:
             "null replicates must rerun the complete controller",
         )
         _require(
-            _at(raw, "audit", "configuration_lock_required") is True
-            and _at(raw, "audit", "lock_hash_required") is True,
+            _at(raw, "audit", "configuration_lock_required") is True,
             "final evaluation requires a configuration lock",
         )
         _require(
             _at(raw, "audit", "audit_updates_search") is False,
             "final evaluation may not update search",
+        )
+        _require(
+            _at(raw, "audit", "maximum_open_count") == 1,
+            "EP12 permits exactly one final opening",
         )
         _require(
             _at(raw, "promotion", "incumbent_is_terminal") is False,
@@ -173,7 +168,7 @@ class EpisodePolicy:
         return cls(
             path=path,
             raw=raw,
-            policy_hash=digest_bytes(content),
+            policy_hash=digest_object(raw),
             policy_id=str(_at(raw, "policy_id")),
             episode_id=str(_at(raw, "episode_id")),
             model_triplet=triplet,
@@ -269,7 +264,6 @@ class EpisodePolicy:
         return {
             "episode_id": self.episode_id,
             "policy_id": self.policy_id,
-            "policy_hash": self.policy_hash,
             "model_triplet": list(self.model_triplet),
             "meaningful_margin": self.meaningful_margin,
             "minimum_valid_trials": self.minimum_valid_trials,

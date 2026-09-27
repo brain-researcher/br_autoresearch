@@ -1,0 +1,155 @@
+schema_version: ep12.scientific_contract.v2
+contract_id: ep12_outgoing_tum_post36_v2
+status: frozen_for_post36_qualification_and_null_execution
+lineage:
+  predecessor_contract_ref: SCIENTIFIC_CONTRACT.yaml
+  predecessor_contract_sha256: f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006
+  transition_spec_ref: CONTRACT_TRANSITION_SPEC.json
+  transition_id: ep12_post36_representation_rank_v1
+real_connectivity_access_authorized: development_only
+final_connectivity_access_authorized: false
+primary_question: residual_discrete_modes_beyond_type_template_and_two_bounded_continuous_references
+claim_boundary: reproducible_groups_beyond_the_qualified_linear_and_smooth_curved_continuous_references
+
+input_object:
+  focal_unit: neuron
+  response: canonical_outgoing_partner_type_count_vector
+  count_total: retained_and_conditioned_on
+  biological_replication_unit: whole_provider_type
+  within_type_weighting: equal_neuron
+  endpoint_bins:
+    known_partner_type: explicit
+    unknown: explicit
+    untyped: explicit
+    fragment: explicit
+    proofreading: explicit
+    missing_annotation: explicit
+    out_of_vocabulary: explicit
+  unreconstructed_connections: not_imputed
+  internal_pooling_rule: must_decode_to_same_canonical_target_before_scoring
+
+annotation_only_eligibility:
+  provider_type_field: type
+  provider_type_required_nonempty: true
+  focal_status_field: status
+  focal_status_allowed: [Traced]
+  side_field: somaSide
+  allowed_sides: [L, R]
+  minimum_neurons_per_side: 5
+  nonlateral_or_missing_side_rows: outside_focal_estimand_with_reason
+  assignment_unit: whole_provider_type
+  development_fraction: 0.80
+  final_fraction: 0.20
+  split_seed_derivation: sha256_of_ep12_role_split_v1
+  split_balance_fields: [minimum_side_count_decile]
+
+covariates:
+  common_to_T_U_M: true
+  source_side_fit_only: true
+  continuous_annotation_allowlist: [somaLocation, assignedOlHex1, assignedOlHex2, mcnsSerial]
+  categorical_annotation_allowlist: [somaNeuromere, serialMotif, statusLabel]
+  development_quality_allowlist: [pre, post, downstream, synweight, rank, status_fine]
+  missing_value_indicators_required: true
+  constant_or_unavailable_field: omit_with_recorded_reason
+  forbidden: [group, instance, provider_group, provider_instance]
+
+likelihood:
+  family: conditional_multinomial
+  formula: y_i_given_N_i_p_i_is_Multinomial_N_i_p_i
+  latent_composition_coordinates: fixed_orthonormal_ILR
+  fit_pseudocount: 0.5
+  raw_counts_used_for_scoring: true
+  score: heldout_log_predictive_density_per_observed_outgoing_count
+
+models:
+  shared_type_hierarchy: type_specific_baseline_and_common_frozen_algorithm
+  T:
+    definition: type_template_plus_prespecified_nuisance
+    latent_distribution: point_mass
+  U_linear:
+    definition: bounded_low_rank_linear_logistic_normal
+    latent_dimension_max: 2
+    latent_distribution: single_unimodal_Gaussian
+  U_curved:
+    definition: bounded_smooth_connected_logistic_normal_curve
+    latent_dimension: 1
+    decoder_basis: cubic_probabilists_Hermite
+    polynomial_degree: 3
+    latent_distribution: single_unimodal_Gaussian
+  U_reference:
+    candidates: [U_linear, U_curved]
+    selection: deterministic_source_side_cross_validated_predictive_density
+  M:
+    definition: two_or_three_group_offsets_with_shared_within_group_continuous_variation
+    component_counts: [2, 3]
+    shared_covariance_across_components: true
+    source_selection: deterministic_source_side_cross_validated_predictive_density
+
+capacity_fairness:
+  same_likelihood: true
+  same_canonical_target: true
+  same_partner_bins: true
+  same_nuisance_design: true
+  same_ILR_basis: true
+  same_integration_draws_and_numerical_tolerance: true
+  M_group_covariance_shared: true
+  reference_is_best_qualified_T_or_U: true
+  complexity_tiebreak: prefer_fewer_parameters_within_numerical_tolerance
+  target_side_may_select_model: false
+
+execution_parameters:
+  source_cross_validation_folds: 2
+  predictive_integration_draws_per_proposal: 256
+  latent_factor_rank: 2
+  nuisance_ridge_penalty: 0.1
+  mixture_initialization: deterministic_seeded_kmeans
+  mixture_initializations: 5
+  mixture_max_iterations: 150
+  mixture_covariance_floor: 0.0001
+  curved_quadrature_nodes: 9
+  numeric_threads_per_worker: 1
+  simultaneous_bootstrap_replicates: 1999
+  integration_stability_diagnostic: compare_128_256_and_512_draws_on_generated_counterexamples
+
+transfer_scoring:
+  directions: [left_to_right, right_to_left]
+  fit_source_side_only: true
+  target_latent_coordinate: marginalized
+  target_group: marginalized
+  target_refit_recluster_or_alignment: forbidden
+  target_diagnostic_posterior_may_change_model: false
+  aggregate_order: neuron_then_type_then_direction_equal_weight
+
+uncertainty:
+  unit: whole_provider_type
+  directions_resampled_together: true
+  interval: paired_simultaneous_95_percent_max_t
+  bootstrap_replicates: 1999
+  seed_derivation: sha256_of_contract_and_result_table
+  numerical_replay_tolerance_absolute: 0.000001
+
+mode_support:
+  separation: lower_simultaneous_bound_on_component_symmetric_KL_above_zero
+  prevalence: effective_membership_exceeds_fitted_component_parameter_rank
+  prevalence_parameter_rank_definition: representation_latent_effective_rank
+  cross_side_matching: label_invariant_Hungarian_partner_contrast_match
+  cross_side_match_acceptance: lower_simultaneous_bound_on_matched_contrast_cosine_above_zero
+  partner_identifiability: at_least_one_same_sign_partner_contrast_interval_excludes_zero_in_both_source_fits
+  prediction_gain: lower_simultaneous_bound_above_policy_margin_in_both_directions
+  null_probability: policy_full_search_null_threshold
+
+unscorable_final_reason_codes:
+  - zero_observed_target_count
+  - source_side_below_frozen_support_after_integrity_filter
+  - canonical_partner_mapping_failure
+  - nonfinite_fit_after_frozen_retries
+  - predictive_integration_tolerance_failure
+  - endpoint_mass_reconciliation_failure
+
+engineering_discretion:
+  - optimizer
+  - predictive_integration_approximation
+  - deterministic_seed_values
+  - numerical_retry_schedule
+  - logging_and_receipts
+  - Slurm_layout

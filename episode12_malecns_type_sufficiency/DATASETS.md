@@ -128,10 +128,21 @@ and the evidence supporting that outcome.
 Design-freeze status (2026-09-24): the EP12 directory contained a study design,
 not a working episode-specific executor. Launch update (2026-09-25): the
 synthetic control plane and its durable qualification now live under
-`outputs/executor/` and `outputs/executor_qualification/`. The real scientific
-estimators, scientific data-shape qualification, full-search null, and
-real-data path remain unimplemented or disabled, so this update does not claim
-that a scientific run has occurred.
+`outputs/executor/` and `outputs/executor_qualification/`. A bounded fixed
+T/U/M implementation and its generated-data qualification now live under
+`outputs/executor/` and `outputs/prelaunch/`; current generated qualification
+has not passed. A subsequent explicit instruction opened development-only
+connectivity. The durable exposure/materialization record and first complete
+real fixed-method T/U/M trial are under `outputs/development_run001/`; the 204
+final types remain locked. The full adaptive grammar, mode-support program,
+full-search null, and final evaluator remain incomplete, so this update does
+not claim a final scientific result.
+
+Subsequent status (2026-09-26): `outputs/development_run002/` contains a
+provisionally archived 18+9+9 prefix with 36 valid development-only trials.
+Scientific qualification and required post-36 falsifiers remain incomplete;
+no procedure is locked, the 99-search null has not run, and final-role focal
+connectivity remains unauthorized and unopened.
 
 ## Data needed for the circuit follow-up
 

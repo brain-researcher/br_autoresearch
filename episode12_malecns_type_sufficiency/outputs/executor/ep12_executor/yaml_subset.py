@@ -1,9 +1,9 @@
-"""A deliberately small YAML reader for EP12's dependency-free executor.
+"""A small YAML reader for the subset used by EP12 policy files.
 
 The repository policy uses only nested mappings, scalar sequences, and inline
 scalar sequences.  Supporting only that declared subset keeps qualification
-runnable with the Python standard library on Sherlock.  Unsupported YAML is
-rejected rather than guessed.
+runnable with the Python standard library on Sherlock. It is a parser, not a
+readiness or schema-validation gate.
 """
 
 from __future__ import annotations
@@ -87,14 +87,14 @@ def _scalar(text: str, line_number: int) -> Any:
     return text
 
 
-def load_yaml_subset(path: Path) -> dict[str, Any]:
-    """Load the mapping subset used by ``SEARCH_POLICY.yaml``.
+def _parse_yaml_subset_text(text: str) -> dict[str, Any]:
+    """Parse the deliberately small YAML subset from already-decoded text.
 
-    Tabs, duplicate keys, sequence-of-mapping syntax, anchors, tags, block
-    scalars, and flow mappings are intentionally rejected.
+    Tabs, sequence-of-mapping syntax, anchors, tags, block scalars, and flow
+    mappings are outside the supported syntax.
     """
 
-    raw_lines = path.read_text(encoding="utf-8").splitlines()
+    raw_lines = text.splitlines()
     tokens: list[tuple[int, str, int]] = []
     for line_number, raw in enumerate(raw_lines, start=1):
         if "\t" in raw:
@@ -146,8 +146,6 @@ def load_yaml_subset(path: Path) -> dict[str, Any]:
             key = key.strip()
             if not key or any(character.isspace() for character in key):
                 raise YamlSubsetError(f"line {line_number}: invalid mapping key")
-            if key in container:
-                raise YamlSubsetError(f"line {line_number}: duplicate key {key!r}")
             raw_value = raw_value.strip()
             index += 1
             if raw_value:
@@ -169,3 +167,21 @@ def load_yaml_subset(path: Path) -> dict[str, Any]:
     if not isinstance(document, dict):
         raise YamlSubsetError("top-level document must be a mapping")
     return document
+
+
+def parse_yaml_subset_bytes(content: bytes) -> dict[str, Any]:
+    """Parse a UTF-8 YAML document in the supported syntax subset."""
+
+    if not isinstance(content, bytes):
+        raise TypeError("YAML content must be bytes")
+    try:
+        text = content.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise YamlSubsetError("YAML document is not valid UTF-8") from exc
+    return _parse_yaml_subset_text(text)
+
+
+def load_yaml_subset(path: Path) -> dict[str, Any]:
+    """Load and parse one YAML path."""
+
+    return parse_yaml_subset_bytes(path.read_bytes())

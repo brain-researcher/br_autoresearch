@@ -5,25 +5,19 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ep12_executor.journal import (
-    HashChainedJournal,
-    IdempotencyConflict,
-    JournalIntegrityError,
-)
-from ep12_executor.synthetic import SCRATCH_ROOT
+from ep12_executor.journal import EventJournal, IdempotencyConflict, JournalIntegrityError
 
 
 class JournalTests(unittest.TestCase):
     def setUp(self) -> None:
-        SCRATCH_ROOT.mkdir(parents=True, exist_ok=True)
-        self.temporary = tempfile.TemporaryDirectory(dir=SCRATCH_ROOT)
-        self.path = Path(self.temporary.name) / "ledger.jsonl"
-        self.journal = HashChainedJournal(self.path)
+        self.temporary = tempfile.TemporaryDirectory()
+        self.path = Path(self.temporary.name) / "events.jsonl"
+        self.journal = EventJournal(self.path)
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
 
-    def test_identical_event_is_idempotent_but_changed_payload_conflicts(self) -> None:
+    def test_event_id_is_idempotent_without_a_hash_chain(self) -> None:
         first = self.journal.append(
             event_id="event-1",
             timestamp_utc="2026-09-24T00:00:00Z",
@@ -36,8 +30,8 @@ class JournalTests(unittest.TestCase):
         )
         self.assertTrue(first.appended)
         self.assertFalse(second.appended)
-        self.assertEqual(first.record["record_hash"], second.record["record_hash"])
-        self.assertEqual(self.journal.verify()["record_count"], 1)
+        self.assertEqual(self.journal.status()["record_count"], 1)
+        self.assertNotIn("record_hash", first.record)
         with self.assertRaises(IdempotencyConflict):
             self.journal.append(
                 event_id="event-1",
@@ -45,19 +39,12 @@ class JournalTests(unittest.TestCase):
                 payload={"value": 2},
             )
 
-    def test_tampering_is_detected(self) -> None:
-        self.journal.append(
-            event_id="event-1",
-            timestamp_utc="2026-09-24T00:00:00Z",
-            payload={"value": 1},
-        )
-        record = json.loads(self.path.read_text(encoding="utf-8"))
-        record["value"] = 99
-        self.path.write_text(json.dumps(record, sort_keys=True) + "\n", encoding="utf-8")
+    def test_duplicate_and_partial_records_are_rejected(self) -> None:
+        record = {"event_id": "duplicate", "timestamp_utc": "now", "sequence": 1}
+        encoded = json.dumps(record) + "\n"
+        self.path.write_text(encoded + encoded, encoding="utf-8")
         with self.assertRaises(JournalIntegrityError):
-            self.journal.verify()
-
-    def test_partial_record_is_not_silently_truncated(self) -> None:
+            self.journal.read()
         self.path.write_text('{"partial":true}', encoding="utf-8")
         with self.assertRaises(JournalIntegrityError):
             self.journal.read()

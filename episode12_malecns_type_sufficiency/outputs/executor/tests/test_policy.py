@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-import itertools
 import tempfile
 import unittest
 from pathlib import Path
 
-from ep12_executor.controller import balanced_coverage_configs
-from ep12_executor.policy import ConfigurationError, EpisodePolicy
-from ep12_executor.synthetic import EPISODE_ROOT, SCRATCH_ROOT
+from ep12_executor.adaptive_search import coverage_configurations, coverage_proof
+from ep12_executor.policy import ConfigurationError, EpisodePolicy, PolicyError
+from ep12_executor.runtime import EPISODE_ROOT, SCRATCH_ROOT
 
 
 class PolicyTests(unittest.TestCase):
@@ -27,28 +26,22 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(self.policy.maximum_open_count, 1)
         self.assertFalse(self.policy.contract_summary()["real_data_enabled"])
 
-    def test_synthetic_covering_array_has_all_required_pairs(self) -> None:
-        rows = balanced_coverage_configs(self.policy)
+    def test_real_development_covering_array_has_all_required_pairs(self) -> None:
+        rows = coverage_configurations(self.policy)
         self.assertEqual(len(rows), 18)
-        factors = (
-            "partner_vocabulary",
-            "representation",
-            "covariance",
-            "component_count",
+        self.assertTrue(coverage_proof(self.policy, rows)["all_required_pairs_covered"])
+        self.assertEqual({row["data_mode"] for row in rows}, {"development"})
+        self.assertEqual(
+            {row["stage"] for row in rows},
+            {"coverage"},
         )
-        for left_index, left in enumerate(factors):
-            for right in factors[left_index + 1 :]:
-                observed = {(row[left], row[right]) for row in rows}
-                expected = set(
-                    itertools.product(
-                        self.policy.grammar_choices[left],
-                        self.policy.grammar_choices[right],
-                    )
-                )
-                self.assertEqual(observed, expected)
+        self.assertEqual(
+            {row["regularization"] for row in rows},
+            set(self.policy.grammar_choices["regularization"]),
+        )
 
     def test_real_mode_and_forbidden_annotation_are_rejected(self) -> None:
-        config = balanced_coverage_configs(self.policy)[0]
+        config = coverage_configurations(self.policy)[0]
         real_config = dict(config)
         real_config["data_mode"] = "real"
         with self.assertRaises(ConfigurationError):
@@ -67,6 +60,17 @@ class PolicyTests(unittest.TestCase):
             policy_path = Path(temporary) / "bad.yaml"
             policy_path.write_text("schema_version: &anchor bad\n", encoding="utf-8")
             with self.assertRaises(Exception):
+                EpisodePolicy.load(policy_path)
+
+    def test_more_than_one_final_opening_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory(dir=SCRATCH_ROOT) as temporary:
+            policy_path = Path(temporary) / "unsafe.yaml"
+            text = (EPISODE_ROOT / "SEARCH_POLICY.yaml").read_text(encoding="utf-8")
+            policy_path.write_text(
+                text.replace("  maximum_open_count: 1\n", "  maximum_open_count: 2\n"),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(PolicyError, "exactly one final opening"):
                 EpisodePolicy.load(policy_path)
 
 

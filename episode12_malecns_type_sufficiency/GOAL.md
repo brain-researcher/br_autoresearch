@@ -285,9 +285,23 @@ that EP12 can run through to a result, synthetic tests must demonstrate:
 
 Launch update (2026-09-25): `outputs/executor/` now implements and tests the
 synthetic control plane, and `outputs/executor_qualification/` durably records
-all six terminal/recovery scenarios above. This update does not claim that the
-scientific T/U/M estimators, five required data-shape tests, full-search null,
-or real-data path are qualified; those remain gated before outcome access.
+all six terminal/recovery scenarios above. The pre-outcome implementation now
+also contains an executable fixed T/U/M method, bounded linear and curved U
+references, generated biological counterexamples, annotation-only roles, and
+measured numerical/cost checks under `outputs/prelaunch/`. Its current
+qualification status is failing, not passing. After a later explicit user
+instruction, development-only MaleCNS access began: the role firewall
+materialized 816 development types while retaining 204 final types behind the
+lock, and `outputs/development_run001/` records one complete real T/U/M
+development configuration. This is not completion of the adaptive search.
+The wider grammar, mode-support gates, full-search null, and one-shot final
+evaluation remain incomplete or locked.
+
+Subsequent status (2026-09-26): the 18+9+9 development prefix is complete and
+provisionally archived as 36 valid development-only trials. Scientific
+qualification and the required post-36 falsifiers remain incomplete; no
+procedure is locked, the 99-search null has not run, and final access remains
+unauthorized and unopened.
 
 Documentation or a passing structural check is not evidence that the study
 ran. A real result requires durable trial records, the selected procedure,

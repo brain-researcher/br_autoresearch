@@ -1,8 +1,7 @@
-"""EP12 synthetic-qualified adaptive controller."""
+"""EP12 scientific execution helpers."""
 
-from .controller import Episode12Controller
 from .policy import EpisodePolicy
 
-__all__ = ["Episode12Controller", "EpisodePolicy"]
+__all__ = ["EpisodePolicy"]
 
 __version__ = "0.1.0"
