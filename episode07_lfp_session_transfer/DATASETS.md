@@ -1,355 +1,175 @@
-# EP07 dataset contract
+# EP07 data: what is available and how it answers the question
 
-This episode follows [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.md).
-Downloading the public release does not make this episode development-ready.
-The mixed source archive is acquired, but the role-filtered candidate,
-development-evaluator, and held-out views have not yet been created and tested.
+EP07 uses the public motor-cortex LFP and population-spiking release from
+Dryad DOI `10.5061/dryad.xd2547dkt` (metadata version 7, file-bearing version
+5). The release has been used in earlier work, so the present study can provide
+a careful internal test but not an independent replication.
 
-## Acquired source and identity
+No neural analysis has started for this episode. The remaining preparation is
+to confirm that the named sessions support the planned time windows, reach
+directions, trial counts, LFP features, and population-spike targets.
 
-The source is Dryad DOI `10.5061/dryad.xd2547dkt`, metadata version 7 and
-file-bearing version 5. The verified local acquisition contains 24 session
-`.mat` files plus one README: 25 objects and 9,571,571,204 bytes in total.
-Provider metadata and the CC0-1.0 license are recorded in the external source
-pack. The publication analysis reference is BeNeuroLab commit
-`cbda8e2e6106f5eb5ff98e18a689c595179ac5db`; it is provenance, not by itself a
-reproducible runtime or permission to import earlier analysis outcomes.
+## The recordings used in the primary study
 
-These verified source bytes remain in a builder-only vault outside the episode.
-They are not a candidate-readable input. The builder must identify the Dryad
-release/version and reader revision used, then create the separated views below.
-No new checksum manifest or content-addressed copy is a readiness requirement
-unless a concrete source-integrity discrepancy is observed.
+The primary corpus contains twelve simultaneous M1/PMd recording days from
+Mihili and Chewie-L. The first three days from each animal supply historical
+training data; the next three are new days on which transfer is tested.
 
-## Frozen primary corpus and whole-day roles
-
-The primary corpus is the twelve simultaneous M1/PMd recording days from
-Mihili and Chewie-L. Whole recording days are assigned forward in time. M1 and
-PMd from the same day always have the same role.
-
-| Animal | `source_only` recording days | `target_only` recording days |
+| Animal | Earlier days | New days |
 | --- | --- | --- |
 | Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-06, 2014-03-07 |
 | Chewie-L | 2016-09-29, 2016-10-05, 2016-10-06 | 2016-10-07, 2016-10-14, 2016-10-21 |
 
-This gives six unique source days and six unique target days, or twelve
-day-by-region data units in each role. Transfer is permitted only from M1
-to M1 or PMd to PMd within the same animal and implant. No trial from a
-`target_only` day may enter a source fit for any other target. A target's
-calibration trials are its only target outcomes available for fitting.
+Transfer is permitted only within the same animal, implant, and cortical
+region. A trial from a new day never enters the historical fit for another new
+day. M1 and PMd from the same behavioral trial always receive the same data
+role.
 
-Chewie-R is a separate-implant sensitivity and is not a third animal. It does
-not enter primary search, selection, inference, or trial counts. Any later
-Chewie-R analysis must use a separately frozen sensitivity manifest and cannot
-change the selected policy. Area 2, incomplete days, and all other release
-sessions are outside the EP07 claim. If either primary animal lacks all six
-eligible days, stop for redesign before scoring outcomes; do not substitute a
-different day, implant, or animal.
+Chewie-R represents another implant in Chewie. It may later be used to ask
+whether the result is sensitive to implant identity, but it is not an
+independent animal and does not contribute to the primary comparison.
 
-## Structural eligibility and target-trial roles
+## The two neural settings
 
-The frozen planning contract expects every primary day to contain eight
-directions, at least 17 complete trials per direction, native 30-ms bins, and
-support for both prespecified windows:
+Use the provider's native 30-ms bins:
 
-- M1 execution: `[movement onset + 150 ms, movement onset + 450 ms)`, exactly
-  10 native bins; and
-- PMd preparation: `[go cue - 450 ms, go cue)`, exactly 15 native bins.
+- **M1 during movement:** 150--450 ms after movement onset, 10 bins.
+- **PMd before movement:** 450 ms before the go cue up to the go cue, 15 bins.
 
-These values are feasibility assumptions, not episode evidence. During episode
-bootstrap and before any score is released, the episode builder must verify
-them from authenticated bytes and lock an exact support summary containing
-session, direction, eligible-trial, event, bin, region, channel, and
-target-neuron counts. No interpolation or conversion to 50-ms bins is
-permitted.
+Because region and task epoch change together, an M1/PMd difference cannot by
+itself be interpreted as a preparation-versus-execution effect.
 
-A whole behavioral trial is eligible only when `result == R`, `bin_size ==
-0.03` seconds, its stable source identity, animal, implant, day, simultaneous
-M1/PMd records, and one of eight authenticated reach directions join, its
-required event indices are finite integers, both frozen native windows fit,
-the declared matrix/guide shapes match, all required LFP/spike-window values
-are finite, and spike counts are nonnegative integers. A failure in either
-stratum excludes the whole simultaneous trial before hashing. This fixed rule
-may inspect identities, structure, and validity only; it may not inspect
-variability, magnitude, residuals, or candidate/comparator scores. All fitted
-statistics, feature transforms, PCA/alignment state, residual means, and model
-caches are downstream of role assignment and may use only their permitted
-roles.
+The response is the released native-bin population spike count. The inputs are
+the released LMP and band-power features. These LFP features were processed by
+the provider at the session level and raw voltage is not available here. All
+models therefore use the same released features unchanged, and conclusions
+are limited to that offline representation.
 
-Direction labels are the nearest circular multiple of `pi/4` with error at
-most `0.01` radians. Convert the provider's one-based MATLAB event indices to
-zero-based once; for zero-based movement index `m` and go-cue index `g`, take
-the Python time-axis slices `M1[m+5:m+15]` and `PMd[g-15:g]`.
+## Which trials and neurons are eligible?
 
-The scored response is the provider-released native-bin spike count unchanged.
-For each target day and region, include every authenticated unit-guide entry
-whose identity and order are identical across all eligible trials and whose
-spike row is present throughout every required window. Canonically order this
-roster by the unit-guide tuple and freeze it from guide values and array shapes
-before role assignment or any target spike value is available to a model. Do
-not select neurons from calibration, development, or audit values; do not drop
-low- or zero-variance neurons. A guide mismatch makes the day ineligible, and a
-zero joint scoring denominator is a technical failure. Transfer and both
-comparators use exactly this same roster and native count scale.
+A behavioral trial is included only when:
 
-Construct an analogous outcome-blind source-neuron roster independently for
-each source day and region: every eligible source trial must carry the same
-authenticated unit-guide tuples in the same canonical order and the required
-spike rows/windows must be structurally present. Do not intersect or match
-neurons across days. Each source PCA uses only its own source-day roster; only
-the resulting behavior-anchored latent coordinates may be aligned across days.
+- the reach was successful;
+- animal, implant, date, reach direction, and simultaneous M1/PMd records
+  agree;
+- the movement and go-cue indices support both planned windows;
+- required LFP and spike-count arrays are present and finite; and
+- spike counts are nonnegative integers.
 
-Within every `target_only` day and direction, order whole trials by a
-deterministic hash of the committed split seed and canonical trial ID, then
-set:
+The eight reach directions are assigned to the nearest multiple of 45 degrees,
+with at most 0.01 radians of circular error. A failure in either M1 or PMd
+excludes the whole simultaneous trial. Eligibility depends only on identity,
+timing, and data availability. Neural magnitude, variability, model fit, and
+prediction error never determine inclusion.
+
+Each new day and region keeps the neurons that are consistently present across
+all eligible trials for that day. Earlier days keep their own neuron sets.
+Neurons and numeric electrode labels are not matched across days. If a model
+uses a shared low-dimensional representation, it must learn that representation
+from the permitted earlier-day and calibration data.
+
+Every primary day must contain all eight directions and at least 15 complete
+trials per direction. If either animal lacks the required six eligible days,
+the study stops for redesign before neural scores are examined. Days,
+directions, or time windows are not replaced after seeing results.
+
+## How new-day trials are divided
+
+Within each new day and reach direction, trials are shuffled once using the
+predeclared ordinary seed `ep07-target-role-split-v1`. The resulting order is
+saved before neural outcomes are examined. Trials are then divided as follows:
 
 ```text
 n_calibration = floor(0.2*n + 0.5)
 n_development = floor((n - n_calibration)/2)
-n_audit       = n - n_calibration - n_development
+n_held_out    = n - n_calibration - n_development
 ```
 
-This algorithmic hash is retained only for outcome-blind trial-role assignment;
-it is not a file-checksum or acquisition gate.
+At the minimum of 15 trials, this gives 3 calibration, 6 development, and 6
+held-out trials per direction. All time bins, neurons, features, and predictions
+from one behavioral trial share its role.
 
-Require `n >= 15` complete trials for each of the eight directions. The
-contractual minimum is therefore 3/6/6 calibration/development/audit trials
-per day and direction. Across the six target days, that is at least 144/288/288
-unique whole-trial assignments. If the outcome-blind observation of `n >= 17`
-is reproduced under the final reader, the realized lower bound becomes
-144/336/336. These are unique behavioral trials: simultaneous M1 and PMd use
-the same role assignment and must not be counted as independent trials.
+- **Calibration trials** are visible to both the history-assisted and
+  today-only models.
+- **Development trials** provide the aggregate feedback used to compare model
+  choices, but their spike targets are not available to model-fitting code.
+- **Held-out trials** remain unseen until the model choices and statistical
+  analysis are final.
 
-Role assignment is frozen in the final role table before development outcomes
-are inspected. A direction with
-fewer than 15 eligible trials, a failed simultaneous-region join, or a window
-with insufficient native bins makes the day ineligible and triggers the
-six-day stop rule above; it cannot be repaired by changing rounding, dropping
-the direction, borrowing trials, or redefining the window.
+Trial order is not searched. Trials are never moved between roles because of a
+neural value, model score, missing result in another role, or a more favorable
+split.
 
-## Frozen provider-preprocessing exception
+## What each analysis stage may use
 
-The release contains provider-preprocessed LFP feature matrices, not raw
-voltage. In particular, session-wide centering and zero-phase
-filtering/smoothing cannot be reconstructed independently inside the EP07
-trial roles. Treat the released representation as one frozen,
-target-label-blind provider exception shared identically by the transfer and
-both comparator streams. EP07 may not re-filter, re-reference, infer raw
-phase, or claim a raw-signal inductive benchmark. No additional
-session-wide statistic may be fit across calibration, development, or audit
-roles.
+The history-assisted model may use:
 
-Consequently, a positive result concerns predictive information in this
-released feature representation. It cannot show that an equivalent method
-would transfer from independently processed raw voltage.
+- LFP features, spike targets, behavior, and timing from the three earlier days
+  assigned to the same animal (six earlier days in the study as a whole);
+- LFP features, spike targets, behavior, and timing from each new day's
+  calibration trials; and
+- LFP features and behavioral information, but not spike targets, from that
+  day's development trials when predictions are requested.
 
-## Episode build record
+The today-only comparison receives the same new-day information and the same
+number of model-development opportunities, but no earlier-day observations or
+fitted state. The direction-and-time comparison uses only calibration trials
+from the new day.
 
-The episode builder may read the mixed `.mat` archive during bootstrap. It must
-use a fixed reader revision. A compact build record must identify the Dryad
-release/version, reader revision, source variable mappings, canonical ID rule,
-MATLAB-to-analysis indexing conversion, event convention, eligibility
-predicate, and resulting shapes/dtypes. Targeted fixtures must cover MATLAB
-indexing, event boundaries, trial joins, role filtering, and native-bin slicing.
+Held-out LFP features and spike targets are kept apart from model development.
+After all choices are final, the selected models are scored once on the same
+held-out trials. No partial held-out result may be used to modify a model,
+exclude a day, or request another candidate.
 
-The builder must also produce:
-
-1. a source-release/version and license note;
-2. a structural inventory and support report;
-3. canonical animal, implant, day, region, trial, direction, event, channel,
-   feature, and target-neuron identities;
-4. the frozen whole-day and target-trial role tables; and
-5. a shared EP05--EP08 exposure ledger identifying prior human, agent, code,
-   cache, and outcome access.
-
-The feature record must state the exact `lfp_guide` column meanings and dtype,
-the provider code for LMP, the complete band-code-to-eight-class map, canonical
-class order, channel/electrode identity fields, and duplicate, missing, or
-unknown-code rejection rules. It must prove that the guide is identical where
-the contract requires it across trials within a day. Shape or dtype alone is
-not enough to infer feature semantics, and numeric electrode IDs are never
-matched across days.
-
-No historical derived array, fitted transform, selected setting, score, or
-winner may be copied into a handoff. A reader or eligibility change after any
-development label has been scored invalidates all downstream views and
-requires a new frozen build version before further search.
-
-## Exact role-safe episode views
-
-The episode must materialize or deterministically address role-specific views.
-Candidate fitting code must not receive labels from a forbidden role. OS-level
-permission separation is sufficient; encryption, separate service identities,
-and an external broker are not required.
-
-### Candidate development handoff
-
-The candidate worker may read only:
-
-- `source_only` LFP feature arrays, spike targets, permitted behavioral
-  covariates, events, directions, stable trial IDs, and structural metadata;
-- target-calibration LFP features, spike targets, permitted covariates,
-  events, directions, stable trial IDs, and calibration role labels;
-- target-development LFP features and permitted covariates keyed only by
-  opaque prediction IDs, with no spike targets or source trial IDs from which
-  hidden roles can be recovered;
-- frozen per-day target-neuron scoring rosters, feature/channel guides,
-  window/bin specifications, structural metadata, split-support summaries, approved
-  reader interfaces, and synthetic fixtures; and
-- the candidate code/environment, trial configuration, budget state, and
-  prior scalar feedback authorized by the controller.
-
-It must not contain development spike targets; any audit ID, feature, target,
-role, support summary, or metric; mixed source `.mat` files; other release
-days; sibling episode data; prior winners or scores; evaluator code with
-embedded outcomes; or fitted state that used a forbidden role.
-
-### Development-evaluator view
-
-The episode development evaluator may read the frozen role and
-neuron-roster records, the opaque-ID-to-development-target map, development
-targets and validity masks, submitted predictions, the frozen R2 scorer,
-fixed comparator implementations, matched-opportunity budget ledger, and the
-scalar-feedback/diagnostic allowlist. It may also read the candidate pack
-through a read-only evaluator mount when it must reproduce a configuration.
-It returns only authorized aggregate scores and diagnostics; it never returns
-trial-, bin-, neuron-, direction-, or session-level outcomes from which hidden
-targets can be reconstructed. Development data are never mounted in the
-candidate process.
-
-### Held-out evaluation view
-
-The audit payload is a separately encrypted or permission-sealed pack
-containing the target-audit LFP features, permitted covariates, opaque IDs,
-spike targets, validity masks, role map, target-neuron rosters, and complete
-scoring metadata for all six target days and both strata. Candidate workers
-receive no audit IDs, counts beyond the locked support summary, features,
-labels, or partial results during search.
-
-After a valid configuration-lock record, the episode's one-open evaluation
-path loads the fixed implementation, configurations, fitted-state recipe, and
-held-out view. It runs the locked transfer policy and fixed comparators,
-performs the prespecified whole-trial inference, and emits only the allowed
-terminal report. It may not expose partial target/session
-results, permit refitting or successor proposals, or reopen the held-out view
-after a score-bearing execution. An exact retry is allowed only for a
-documented infrastructure failure that released no score and preserved the
-same frozen roles, configuration, implementation, and seed.
-
-## Episode execution boundary
-
-Candidate fitting functions must receive only the declared candidate view,
-configuration, controller messages, and job-local scratch. The episode must
-test its role-aware loader against direct forbidden-role requests and record
-the result once before scored search. Because this is a same-user logical
-boundary, the final report must state that limitation rather than claiming a
-cryptographic confidentiality seal.
-
-## Exposure and fixed-corpus claim
-
-The Dryad release was outcome-exposed during earlier campaign work, including
-EP05. New frozen role tables and a clean execution boundary can prevent additional
-adaptive leakage but cannot make this corpus independent or unexposed. Before
-the held-out stage, the exposure record must conservatively record all prior access,
-shared code, cached features, human knowledge, and any irreducible uncertainty.
-
-The held-out result is therefore a locked internal whole-trial evaluation on
-six fixed target days from two fixed animals. It supports, at most, the added value of
-source-day information for future trials from these same target days after
-target calibration, separately within animal, implant, and region. It does
-not support independent confirmation, population inference, prediction on a
-wholly unseen day, zero-shot transfer, cross-animal transfer, cross-implant
-transfer, cross-region transfer, raw-voltage performance, or clinical
-generalization.
+This separation is procedural rather than a claim of cryptographic secrecy.
+The final report must state that the public release and earlier campaign work
+were already outcome-exposed.
 
 ## Data needed to explain what transfers
 
-The first-round audit answers only whether source days add predictive value.
-The [paper plan](outputs/paper_plan.md) proposes a later mechanism study. That
-study must not broaden candidate access during the primary search or change the
-primary day/trial roles, estimand, terminal rule, or one-open audit.
+The first study asks only whether earlier days help. If they do, the proposed
+follow-up needs enough retained information to distinguish three explanations:
 
-| Data | Proposed use after the primary conclusion is fixed | Evidence status |
-| --- | --- | --- |
-| Source days and target-development trials already assigned above | Fit separate residual-only source-bearing and calibration-only models after removing training/calibration-estimated direction-by-time means from both LFP inputs and spike targets; score the mean component separately | Mechanism development in an already exposed corpus, not confirmation |
-| Primary audit predictions and outcomes | Report the already locked primary result and only secondary readouts that were frozen before its one opening | Consumed internal audit evidence; it cannot be reopened to choose a mechanism |
-| Chewie-R records under a separately frozen manifest | Test whether conclusions are fragile to implant identity | Implant sensitivity in the same animal, not a third-animal replication |
-| Newly sequestered longitudinal sessions with compatible LFP, spikes, behavior, and calibration support | Test a frozen rule for residual transfer and for predicting which sessions benefit from source data | Required for a new-day or external-animal claim |
+1. a better direction-and-time mean;
+2. reusable low-dimensional population geometry; and
+3. trial-specific LFP--population coupling after the mean response is removed.
 
-The development mechanism view needs, for every permitted day and stratum:
+For that follow-up, preserve for every permitted day:
 
-- native trial, direction, and time-bin identities so the target-calibration
-  direction-by-time means for both LFP inputs and spike targets can be computed
-  without evaluation outcomes, with analogous source-training-only means;
-- the exact authenticated LMP and eight power-band identities, electrode-set
-  summaries, and every transform used by the locked primary policy;
-- source-fitted and target-calibrated latent coordinates, prediction
-  components, and source-day/component ablation records; and
-- enough saved prediction output to score native counts and
-  separately fitted within-direction/time residual predictions without
-  refitting on held-out targets; and
-- physical electrode/unit joins, feature-band identities, and spike-quality
-  summaries needed for LMP/low-frequency-only, 100--400 Hz exclusion,
-  same-electrode/unit-intersection, and quality-matched sensitivities.
+- trial, direction, and time-bin identities needed to estimate means from
+  training or calibration data only;
+- the exact LMP and power-band identities used by the selected model;
+- source-fitted and target-calibrated population coordinates;
+- predictions needed to refit and score a genuine residual-only model;
+- omission results for each earlier day and retained model component; and
+- electrode proximity and spike-quality summaries needed to distinguish a
+  low-frequency field-potential result from high-frequency spike-rich content.
 
-Subtracting one mean from both a completed full prediction and its target is
-not a residual mechanism test: it leaves their SSE unchanged. The follow-up
-must instead fit the source-bearing and calibration-only mappings to residual
-inputs and residual targets, keep their capacity and tuning opportunities
-matched, and forbid uncentered source values or a source mean template from
-entering that score.
+The residual analysis must remove direction-and-time means from both LFP
+inputs and spike-count targets before fitting. Subtracting a mean from an
+already completed prediction and target would not test a mechanism.
 
-These records explain a fitted policy; they do not license matching neurons or
-numeric electrodes across days. A component is a transferable population
-coordinate only if its construction uses the allowed behavior anchors and
-target calibration. Similar-looking components found by fitting evaluation
-outcomes are target-side fits and cannot support transfer.
+The current development data can be used to choose and refine this explanation,
+but cannot independently confirm it. Confirmation requires a genuinely new
+recording day whose non-calibration spike outcomes remain unseen until the
+explanation and prediction rule have been chosen.
 
-Because the target-development outcomes have already been exposed to the
-primary evaluator, the mechanism candidate list and all ties are frozen before
-the first new mechanism-specific score or diagnostic is computed or returned.
-Only secondary audit readouts registered before the original one-shot opening
-may be reported from the consumed audit. Any mechanism chosen with development
-evidence receives its first prospective test only on newly sequestered days.
+## Current readiness and storage
 
-### A separate firewall for the forward prediction
+The public source has been identified, but the following scientific checks are
+still required before scoring:
 
-Before any newly sequestered target outcome is opened, freeze the source days,
-target-day structural criteria, target calibration fraction, feature meanings,
-population-coordinate construction, residual definition, models, comparator,
-meaningful margins, multiplicity, missing-data rules, compute limit, and result
-table. The target-day calibration set may be used exactly as declared; the
-remaining spike targets are withheld.
+- confirm the twelve named days and their M1/PMd pairing;
+- confirm eight directions and at least 15 complete trials per direction;
+- confirm both native-bin time windows and event-index conversion;
+- verify the meanings of LMP and the released band-power features;
+- build the per-day neuron sets without using outcome values;
+- save the earlier-day, calibration, development, and held-out assignments;
+- document previous access to this public corpus; and
+- run one small end-to-end test showing that development and held-out spike
+  targets cannot enter candidate fitting.
 
-The forward rule must return two things without those targets: predicted
-population activity and a predicted source-benefit score for the session. The
-latter is compared with the observed source-versus-calibration-only gain only
-after the session is opened. A target session cannot be discarded because its
-predicted benefit is low or because transfer fails.
-
-No compatible fresh source is currently selected. A third animal with enough
-chronological source and target sessions would test whether the procedure
-transfers across animals while still fitting neural weights separately within
-animal. A genuinely unexposed later session in one existing animal would test
-new-day transfer but not population generalization. Public sessions, cached
-outcomes, or days inspected while choosing the mechanism remain development
-evidence and must be logged as such.
-
-## Provisioning status and storage
-
-The numeric execution bundle is defined jointly by
-`NUMERIC_OPERATOR_GRAMMAR.md`, `ANCHOR_RUNTIME_CONTRACT.yaml`, and
-`NUMERIC_SEARCH_CONTRACT.yaml`. The final lock names their versioned contract
-IDs; builders may not infer a different roster, fit visibility, shape fallback,
-or trial-count rule from the raw release.
-
-Acquisition is complete. Structural eligibility and guide compatibility,
-role-specific views, exposure recording, one targeted runtime smoke test, and
-held-out evaluation remain. They are performed during the episode task and may
-produce a technical terminal.
-
-Large immutable bytes remain outside Git. Transient computation belongs in a
-dedicated `$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`
-allocation.
-Only compact source/role/exposure records, policies, the immutable final lock,
-and final reports are durable episode outputs.
+Large source files remain outside Git. Temporary computation belongs in
+`$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`; only compact data
+descriptions, trial-role tables, model results, and reports belong in this
+episode directory.

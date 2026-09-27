@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">EP16 scientific concept figure</title>
+  <desc id="desc">Synthetic concept mockup showing an intracortical mapping across near and long session gaps, null, transported, and target-local evidence, three competing operational explanations, and bounded scientific interpretations.</desc>
+  <defs>
+    <style type="text/css">
+      .bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:1.5;rx:15}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.3;rx:10}.bluebox{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.5;rx:10}.orangebox{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5;rx:10}.greenbox{fill:#ecfdf5;stroke:#34d399;stroke-width:1.5;rx:10}.purplebox{fill:#faf5ff;stroke:#c084fc;stroke-width:1.5;rx:10}.redbox{fill:#fef2f2;stroke:#f87171;stroke-width:1.5;rx:10}
+      .title{font-family:Arial,sans-serif;font-size:25px;font-weight:700;fill:#0f172a}.head{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.sub{font-family:Arial,sans-serif;font-size:15px;font-weight:700;fill:#334155}.text{font-family:Arial,sans-serif;font-size:14px;fill:#334155}.small{font-family:Arial,sans-serif;font-size:13px;fill:#475569}.tiny{font-family:Arial,sans-serif;font-size:13px;fill:#64748b}
+      .axis{stroke:#94a3b8;stroke-width:1.5;fill:none}.blue{stroke:#2563eb;stroke-width:3;fill:none}.orange{stroke:#ea580c;stroke-width:3;fill:none}.green{stroke:#059669;stroke-width:3;fill:none}.purple{stroke:#7e22ce;stroke-width:3;fill:none}.gray{stroke:#94a3b8;stroke-width:3;stroke-dasharray:6 5;fill:none}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1500" height="900"/>
+  <text x="750" y="38" text-anchor="middle" class="title">EP16 — Why does an intracortical BCI mapping fail across sessions?</text>
+  <rect x="560" y="49" width="380" height="29" rx="15" fill="#e2e8f0" stroke="#94a3b8"/>
+  <text x="750" y="69" text-anchor="middle" class="small">CONCEPT MOCKUP · SYNTHETIC PATTERNS · NOT RESULTS</text>
+
+  <rect x="20" y="92" width="455" height="600" class="panel"/>
+  <text x="40" y="126" class="head">A  Same direction, later session</text>
+  <text x="40" y="151" class="small">Apply one source mapping unchanged to later neural patterns.</text>
+  <g transform="translate(42,176)">
+    <rect x="0" y="0" width="390" height="120" class="bluebox"/>
+    <text x="16" y="27" class="sub">Source session — learn the mapping</text>
+    <g transform="translate(20,42)" stroke="#fff" stroke-width="2"><rect x="0" y="0" width="32" height="32" fill="#1d4ed8"/><rect x="34" y="0" width="32" height="32" fill="#93c5fd"/><rect x="68" y="0" width="32" height="32" fill="#dbeafe"/><rect x="102" y="0" width="32" height="32" fill="#60a5fa"/><rect x="0" y="34" width="32" height="32" fill="#bfdbfe"/><rect x="34" y="34" width="32" height="32" fill="#2563eb"/><rect x="68" y="34" width="32" height="32" fill="#60a5fa"/><rect x="102" y="34" width="32" height="32" fill="#dbeafe"/></g>
+    <path d="M190 75L259 75" class="arrow"/><circle cx="315" cy="75" r="36" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><path d="M315 75L342 51" class="blue"/><path d="M337 49L342 51L340 57" class="blue"/>
+    <text x="315" y="112" text-anchor="middle" class="tiny">cursor-to-target direction</text>
+  </g>
+  <g transform="translate(42,314)">
+    <rect x="0" y="0" width="390" height="132" class="greenbox"/>
+    <text x="16" y="27" class="sub">Near session — old mapping still reads it</text>
+    <g transform="translate(20,43)" stroke="#fff" stroke-width="2"><rect x="0" y="0" width="32" height="32" fill="#2563eb"/><rect x="34" y="0" width="32" height="32" fill="#bfdbfe"/><rect x="68" y="0" width="32" height="32" fill="#dbeafe"/><rect x="102" y="0" width="32" height="32" fill="#60a5fa"/><rect x="0" y="34" width="32" height="32" fill="#93c5fd"/><rect x="34" y="34" width="32" height="32" fill="#1d4ed8"/><rect x="68" y="34" width="32" height="32" fill="#60a5fa"/><rect x="102" y="34" width="32" height="32" fill="#dbeafe"/></g>
+    <path d="M190 76L259 76" class="arrow"/><circle cx="315" cy="76" r="36" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><path d="M315 76L342 52" class="green"/><path d="M337 50L342 52L340 58" class="green"/>
+    <text x="315" y="119" text-anchor="middle" class="small">correct</text>
+  </g>
+  <g transform="translate(42,464)">
+    <rect x="0" y="0" width="390" height="155" class="orangebox"/>
+    <text x="16" y="27" class="sub">Long-gap session — what failed?</text>
+    <g transform="translate(20,43)" stroke="#fff" stroke-width="2"><rect x="0" y="0" width="32" height="32" fill="#fed7aa"/><rect x="34" y="0" width="32" height="32" fill="#1d4ed8"/><rect x="68" y="0" width="32" height="32" fill="#93c5fd"/><rect x="102" y="0" width="32" height="32" fill="#dbeafe"/><rect x="0" y="34" width="32" height="32" fill="#fb923c"/><rect x="34" y="34" width="32" height="32" fill="#60a5fa"/><rect x="68" y="34" width="32" height="32" fill="#2563eb"/><rect x="102" y="34" width="32" height="32" fill="#ffedd5"/></g>
+    <path d="M190 76L259 76" class="arrow"/><circle cx="315" cy="76" r="36" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><path d="M315 76L286 54" class="orange"/><path d="M291 53L286 54L288 60" class="orange"/>
+    <path d="M315 76L342 52" class="gray"/>
+    <text x="315" y="119" text-anchor="middle" class="small">old mapping ≠ target-local fit</text>
+    <text x="195" y="145" text-anchor="middle" class="tiny">same participant · physical arrays · target schedule</text>
+  </g>
+  <text x="237" y="654" text-anchor="middle" class="small">Is the long-gap mismatch larger than the near-session mismatch?</text>
+
+  <rect x="490" y="92" width="485" height="600" class="panel"/>
+  <text x="510" y="126" class="head">B  Is long-gap transport worse?</text>
+  <text x="510" y="151" class="small">Score all three mappings on exactly the same target-session trials.</text>
+  <g transform="translate(520,177)">
+    <rect x="0" y="0" width="424" height="126" class="card"/>
+    <text x="16" y="29" class="sub">Three views of the same target session</text>
+    <rect x="24" y="53" width="105" height="49" class="card"/><text x="76" y="74" text-anchor="middle" class="sub">Null</text><text x="76" y="94" text-anchor="middle" class="tiny">no neural map</text>
+    <rect x="159" y="53" width="105" height="49" class="bluebox"/><text x="211" y="74" text-anchor="middle" class="sub">Transported</text><text x="211" y="94" text-anchor="middle" class="tiny">source map fixed</text>
+    <rect x="294" y="53" width="105" height="49" class="purplebox"/><text x="346" y="74" text-anchor="middle" class="sub">Target-local</text><text x="346" y="94" text-anchor="middle" class="tiny">fit in target</text>
+  </g>
+  <text x="625" y="337" text-anchor="middle" class="sub">Near session</text><text x="839" y="337" text-anchor="middle" class="sub">Long-gap session</text>
+  <g transform="translate(536,356)">
+    <rect x="0" y="0" width="178" height="210" class="greenbox"/>
+    <line x1="24" y1="175" x2="154" y2="175" class="axis"/>
+    <rect x="35" y="126" width="24" height="49" fill="#cbd5e1"/><rect x="77" y="68" width="24" height="107" fill="#60a5fa"/><rect x="119" y="40" width="24" height="135" fill="#c084fc"/>
+    <text x="47" y="195" text-anchor="middle" class="tiny">N</text><text x="89" y="195" text-anchor="middle" class="tiny">X</text><text x="131" y="195" text-anchor="middle" class="tiny">L</text>
+    <path d="M91 61L130 38" class="gray"/><text x="20" y="26" class="small">modest gap</text>
+  </g>
+  <path d="M724 461L748 461" class="arrow"/>
+  <g transform="translate(756,356)">
+    <rect x="0" y="0" width="178" height="210" class="orangebox"/>
+    <line x1="24" y1="175" x2="154" y2="175" class="axis"/>
+    <rect x="35" y="126" width="24" height="49" fill="#cbd5e1"/><rect x="77" y="118" width="24" height="57" fill="#60a5fa"/><rect x="119" y="39" width="24" height="136" fill="#c084fc"/>
+    <text x="47" y="195" text-anchor="middle" class="tiny">N</text><text x="89" y="195" text-anchor="middle" class="tiny">X</text><text x="131" y="195" text-anchor="middle" class="tiny">L</text>
+    <path d="M91 111L130 38" class="orange"/><text x="20" y="26" class="small">larger gap?</text>
+  </g>
+  <rect x="520" y="584" width="424" height="71" class="card"/>
+  <text x="732" y="610" text-anchor="middle" class="sub">Primary scientific contrast</text>
+  <text x="732" y="634" text-anchor="middle" class="small">Does the long gap lose more of the locally recoverable signal?</text>
+
+  <rect x="990" y="92" width="490" height="600" class="panel"/>
+  <text x="1010" y="126" class="head">C  Competing signatures</text>
+  <g transform="translate(1010,151)">
+    <rect x="0" y="0" width="450" height="147" class="bluebox"/><text x="16" y="27" class="head">1 — Less local signal</text>
+    <line x1="25" y1="105" x2="190" y2="105" class="axis"/><rect x="50" y="48" width="34" height="57" fill="#c084fc"/><rect x="112" y="76" width="34" height="29" fill="#60a5fa"/>
+    <path d="M221 78L259 78" class="arrow"/><line x1="279" y1="105" x2="425" y2="105" class="axis"/><rect x="298" y="70" width="34" height="35" fill="#c084fc"/><rect x="360" y="87" width="34" height="18" fill="#60a5fa"/>
+    <text x="16" y="122" class="small">Local and transported signal both fall;</text>
+    <text x="16" y="140" class="small">this does not rule out concurrent remapping.</text>
+  </g>
+  <g transform="translate(1010,311)">
+    <rect x="0" y="0" width="450" height="147" class="purplebox"/><text x="16" y="27" class="head">2 — Observable recording change</text>
+    <g fill="#94a3b8"><circle cx="44" cy="65" r="9"/><circle cx="76" cy="65" r="4"/><circle cx="108" cy="65" r="9"/><circle cx="140" cy="65" r="4"/><circle cx="44" cy="98" r="4"/><circle cx="76" cy="98" r="9"/><circle cx="108" cy="98" r="4"/><circle cx="140" cy="98" r="9"/></g>
+    <path d="M184 82L226 82" class="arrow"/><path d="M252 89 C290 43 330 122 369 70 S411 49 432 76" class="purple"/>
+    <text x="16" y="122" class="small">Reproduces near/long local signal and transport loss,</text>
+    <text x="16" y="140" class="small">including extra long-gap loss; beats matched random damage.</text>
+  </g>
+  <g transform="translate(1010,471)">
+    <rect x="0" y="0" width="450" height="183" class="greenbox"/><text x="16" y="27" class="head">3 — Remappable mismatch</text>
+    <line x1="25" y1="112" x2="191" y2="112" class="axis"/><rect x="46" y="45" width="32" height="67" fill="#c084fc"/><rect x="96" y="89" width="32" height="23" fill="#60a5fa"/><rect x="146" y="55" width="32" height="57" fill="#34d399"/>
+    <text x="62" y="134" text-anchor="middle" class="tiny">local</text><text x="112" y="134" text-anchor="middle" class="tiny">old</text><text x="162" y="134" text-anchor="middle" class="tiny">repair</text>
+    <path d="M213 84L257 84" class="arrow"/><path d="M279 104 C314 62 353 124 390 79 S419 69 432 78" class="green"/>
+    <text x="16" y="153" class="small">Local signal remains available; one fixed low-label method</text>
+    <text x="16" y="171" class="small">repairs part of the gap.</text>
+  </g>
+
+  <rect x="20" y="708" width="1460" height="158" class="panel"/>
+  <text x="40" y="742" class="head">D  Scientific interpretation — mechanisms may coexist</text>
+  <rect x="42" y="758" width="268" height="72" class="bluebox"/><text x="176" y="783" text-anchor="middle" class="sub">Later-session signal loss</text><text x="176" y="804" text-anchor="middle" class="small">The target session contains less</text><text x="176" y="821" text-anchor="middle" class="small">recoverable directional signal.</text>
+  <rect x="325" y="758" width="268" height="72" class="purplebox"/><text x="459" y="783" text-anchor="middle" class="sub">Recording-state sufficiency</text><text x="459" y="804" text-anchor="middle" class="small">Measured changes reproduce local,</text><text x="459" y="821" text-anchor="middle" class="small">transport, and extra-gap loss.</text>
+  <rect x="608" y="758" width="268" height="72" class="greenbox"/><text x="742" y="783" text-anchor="middle" class="sub">Low-label remappable</text><text x="742" y="804" text-anchor="middle" class="small">One fixed small-label method restores</text><text x="742" y="821" text-anchor="middle" class="small">a meaningful part of the gap.</text>
+  <rect x="891" y="758" width="268" height="72" class="orangebox"/><text x="1025" y="783" text-anchor="middle" class="sub">No reproducible extra loss</text><text x="1025" y="804" text-anchor="middle" class="small">A pre-set absence/equivalence</text><text x="1025" y="821" text-anchor="middle" class="small">rule is met.</text>
+  <rect x="1174" y="758" width="282" height="72" class="card"/><text x="1315" y="783" text-anchor="middle" class="sub">Unresolved</text><text x="1315" y="804" text-anchor="middle" class="small">Uncertainty or instability prevents</text><text x="1315" y="821" text-anchor="middle" class="small">a replicated profile.</text>
+  <text x="750" y="854" text-anchor="middle" class="tiny">Shared profile: same conclusion in all 3 people. Heterogeneity: ≥2 distinct profiles, each repeated in both time partitions and full data; predictive, not causal.</text>
+</svg>

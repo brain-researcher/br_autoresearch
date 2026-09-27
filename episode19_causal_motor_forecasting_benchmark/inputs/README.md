@@ -1,31 +1,25 @@
 # Episode 19 inputs
 
-`inputs/` is read-only after provisioning. No role-filtered WAY-EEG-GAL or
-self-paced EEG handoff is currently present here. Their verified, unextracted
-mixed source archives remain outside the episode under the canonical private
-steward root. The deferred AJILE12 materialization also remains outside the
-episode and is not a primary-task fallback.
+This directory is read-only and intentionally contains no mixed source
+archive. The WAY-EEG-GAL, self-paced reaching, historical code, and deferred
+AJILE12 sources remain in shared research storage until episode-specific data
+views are prepared.
 
-The root
-[`DATA_LOCATION_MANIFEST.json`](../../DATA_LOCATION_MANIFEST.json) names the
-canonical private steward root `private_steward_acquisition` at
-`/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`
-and groups these assets as `asset_ep19_public_sources`,
-`asset_ep19_safe_commit`, and `asset_ep19_ajile12`. The steward tree was
-relocated by same-filesystem rename on 2026-09-24 and is
-`canonical_in_place`. None of those logical locations is a provisioned EP19
-input or role-qualified handoff.
+Before signal scoring, EP19 needs these separated views:
 
-`../DATASETS.md` requires content-addressed, role-filtered structural,
-development, no-feedback lock, and evaluator-only audit handoffs. Do not link a
-mixed public download or shared source tree into this directory. Public access
-does not grant held-out access to a candidate or controller.
+1. WAY series 1–7 for development;
+2. WAY series 8–9 for the final held-out evaluation;
+3. all data from the 15 self-paced development participants; and
+4. all data from the eight self-paced held-out participants for the same final
+   evaluation.
 
-No candidate output, cache, fitted model, onset result, audit QC, or score may
-be written under `inputs/`.
+No such view is currently present. Public availability does not make a held-out
+series or participant available to development code.
 
-Before candidate scoring, this directory must also contain
-`FROZEN_ADMISSIBLE_SPACE.yaml` and its signed SHA-256 record. That manifest
-enumerates every legal search operator and exact configuration range; its hash
-is frozen before any candidate EEG outcome is returned. It is intentionally
-absent until the admissible space is frozen.
+This directory will also need one readable file listing the finite model
+changes and numeric ranges allowed during development. That list must be set
+before a candidate EEG score is returned. A plain, readable table is enough.
+
+Do not write fitted models, onset results, scores, caches, or temporary outputs
+under `inputs/`. Authorized temporary extraction belongs in episode-specific
+scratch.

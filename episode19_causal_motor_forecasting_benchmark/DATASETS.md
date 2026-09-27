@@ -1,486 +1,216 @@
-# Dataset Contract — Episode 19
+# Data used in Episode 19
 
-This contract pins the sources, roles, timing provenance, and access boundaries
-for Episode 19. It does not provision data, open held-out signals, start
-computation, or establish that the sources are scientifically qualified.
-Shared adaptive-search rules are in
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md).
+EP19 combines two EEG movement datasets for different scientific purposes.
+WAY-EEG-GAL supplies the main forecasting and model-order comparison. A second
+self-paced reaching dataset tests whether the EEG increment repeats in new
+people on a different task. Historical Kaggle material provides an
+implementation check only, and AJILE12 is outside the primary study.
 
-## Source and role summary
+No held-out signal has been examined for EP19.
 
-| Source | Fixed role | Current local state |
+## Sources and roles
+
+| Source | Scientific role | Current state |
 | --- | --- | --- |
-| WAY-EEG-GAL Figshare collection v2 | open development, no-feedback series-8 lock, and public series-9 additional campaign-sealed evaluation | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
-| Kaggle Grasp-and-Lift EEG Detection | historical task/split/metric specification only | not a scientific source handoff |
-| Self-paced/free-choice EEG reaching Figshare v1 | 15-participant development set plus 8-participant whole-person replication set | acquisition-verified, unextracted steward quarantine; role-filtered handoffs absent |
-| AJILE12 DANDI published version | deferred exploratory ECoG extension only | Acquisition complete for 55 archives in the private steward root; no role-filtered handoff |
-
-No candidate may substitute a preprocessed mirror, notebook cache, or moving
-dataset draft for a pinned source below.
-
-### Physical-location record
-
-The canonical checkout has no repository-local `.steward_acquisition` tree.
-Resolve these sources through
-[`DATA_LOCATION_MANIFEST.json`](../DATA_LOCATION_MANIFEST.json):
-
-- `private_steward_acquisition` is the canonical private steward root at
-  `/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition`;
-- `asset_ep19_public_sources`, `asset_ep19_safe_commit`, and
-  `asset_ep19_ajile12` identify the EP19 acquisitions within that root.
-
-The steward tree was relocated by same-filesystem rename on 2026-09-24. These
-identifiers describe storage inventory only: the assets are not extracted,
-role-filtered episode handoffs, and the relocation does not open protected
-outcomes.
+| WAY-EEG-GAL Figshare collection v2 | Main development, model-order comparison, and held-out series evaluation | Acquired but not prepared as episode-specific data views |
+| Self-paced/free-choice EEG reaching Figshare v1 | Fifteen-person development and eight-person replication | Acquired but not prepared as episode-specific data views |
+| Kaggle Grasp-and-Lift EEG Detection | Historical task and implementation compatibility only | No scientific outcome role |
+| AJILE12 DANDI release | Deferred exploratory ECoG extension | Not eligible for the primary claim |
 
 ## WAY-EEG-GAL
 
-### Immutable source
+### Source facts
 
-| Item | Fixed value |
+| Item | Value |
 | --- | --- |
-| Dataset | WAY-EEG-GAL: multimodal grasp-and-lift recordings |
+| Dataset | WAY-EEG-GAL multimodal grasp-and-lift recordings |
 | Figshare collection | `10.6084/m9.figshare.c.988376.v2` |
-| Participant records | 12 child records, each currently version 1 |
-| Participant ZIP bytes | 10,339,259,047 total |
-| Descriptor | `10.1038/sdata.2014.47` |
+| Participant records | 12, each currently version 1 |
+| Participant archive size | 10,339,259,047 bytes total |
+| Dataset article | `10.1038/sdata.2014.47` |
 | Official utilities | `https://github.com/luciw/way-eeg-gal-utilities` |
-| Conservative license policy | CC BY 4.0 |
-| Read-only local source | Logical asset `asset_ep19_public_sources` under `private_steward_acquisition` in the root location manifest; not an episode handoff |
+| Conservative reuse rule | CC BY 4.0 attribution |
 
-The descriptor reports a CC BY 4.0 release, while the current Figshare API
-reports CC0 for the child records. EP19 uses the more conservative CC BY 4.0
-attribution and redistribution policy; this paragraph is the discrepancy
-record.
+The dataset article reports CC BY 4.0, whereas current child records may show a
+different public license. EP19 follows the more conservative CC BY 4.0 rule.
 
-The versioned collection DOI, 12 child article/file IDs, filenames, and byte
-inventory identify the intended release. The steward acquisition also retains
-the provider API records, MD5 values, and acquisition timestamp as historical
-transfer metadata. Before use, a trusted builder directly confirms that the
-extracted inventory matches those provider records. No additional checksum or
-source-verification artifact is a readiness gate unless a concrete source
-inconsistency appears.
+The expected continuous source contains:
 
-Official references:
+- 108 files covering 12 participants and series 1–9;
+- 12 participant event/metadata files;
+- 32 EEG channels sampled at 500 Hz;
+- five EMG channels sampled at 4 kHz;
+- three-dimensional hand, wrist, and object kinematics at 500 Hz;
+- force-related signals at 500 Hz; and
+- cue state and event timing.
 
-- <https://doi.org/10.6084/m9.figshare.c.988376.v2>
-- <https://doi.org/10.1038/sdata.2014.47>
-- <https://github.com/luciw/way-eeg-gal-utilities>
-
-The utilities repository is citation-only at drafting time. No moving branch
-may enter preprocessing; any future code use requires a pinned commit, license,
-and direct semantic-compatibility check recorded with the executable recipe.
-
-### Expected raw inventory
-
-Use only the continuous participant archives:
-
-- `HS_P{1..12}_S{1..9}.mat`: 108 participant-by-series files; and
-- `P{1..12}_AllLifts.mat`: 12 event/metadata files.
-
-The source provides 32-channel EEG at 500 Hz, five EMG channels at 4 kHz,
-three-dimensional hand/wrist/object kinematics and force-related signals at
-500 Hz, cue state, and event timing. Exact per-file shapes, clocks, units,
-missing channels, and alignment are source-qualification facts to verify from
-the pinned source; they are not inferred from the paper alone.
-
-Third-party filtered arrays, extracted competition tables, and previously
-normalized tensors are prohibited for the strict forecasting track.
-
-Track A historical compatibility uses the native 32-channel montage expected
-by the archived implementation. Tracks B and C use the frozen 29-channel
-intersection listed below. A result cannot silently move between these channel
-contracts.
+Exact clocks, units, missing channels, and alignment must be checked directly
+before analysis. Third-party filtered arrays, notebook caches, or previously
+normalized tensors cannot substitute for the continuous source.
 
 ### Series roles
 
-Every participant P1–P12 follows the same time-ordered contract:
+Every WAY participant follows the same time order:
 
 | Series | Role |
 | --- | --- |
-| 1–6 | fit, inner selection, and local qualification folds |
-| 7 | rate-limited aggregate-feedback development board |
-| 8 | campaign-sealed no-feedback lock set |
-| 9 | public but campaign-sealed additional evaluation, pooled with series 8 |
+| 1–6 | Participant-specific fitting, inner selection, and timing checks |
+| 7 | Rate-limited aggregate development feedback |
+| 8 | No-feedback held-out series |
+| 9 | Additional public held-out series, evaluated together with series 8 |
 
-After configuration lock, the frozen recipe may refit on series 1–7 only. The
-trusted evaluator opens every participant's series 8 and 9 together with the
-second-task participant audit. Series 8 and 9 are public and prior-exposed; they are campaign
-seals, not globally private or independent confirmation. No series may be
-subdivided into random windows that cross train, feedback, or evaluation roles.
+After development, each participant's final weights may be refit on that
+person's series 1–7. Series 8 and 9 are then evaluated together with no partial
+result returned. The public status of these series makes them campaign-held-out
+rather than globally untouched data.
 
-### Historical Kaggle boundary
+The scientific models use this common 29-channel intersection:
 
-The Kaggle competition defines the legacy compatibility task:
+`Fp1, Fp2, F7, F3, Fz, F4, F8, FC5, FC1, FC2, FC6, T7, C3, C4, T8, TP9,
+CP5, CP1, CP2, CP6, TP10, P7, P3, Pz, P4, P8, O1, Oz, O2`.
 
-- participant series 1–8 as training;
-- series 9–10 as test;
-- six framewise event labels expanded approximately plus/minus 150 ms;
-- no use of future samples in a prediction; and
-- mean column-wise event AUROC.
+The historical compatibility analysis may use the original 32-channel montage,
+but it cannot be mixed into the scientific 29-channel comparison.
 
-Official page: <https://www.kaggle.com/competitions/grasp-and-lift-eeg-detection/data>.
+### Onset and past-only history
 
-The archival winning implementation is pinned to repository commit
-`36fe555d523c3ca3f201e765b1b1004dc5383dd2` under its BSD-3-Clause license:
-<https://github.com/alexandrebarachant/Grasp-and-lift-EEG-challenge/tree/36fe555d523c3ca3f201e765b1b1004dc5383dd2>.
-`Safe1` is the preferred positive-control stack. Its exact commit, source
-archive, repository metadata, and BSD-3-Clause license are recorded in steward
-quarantine; existing local SHA-256 values remain historical acquisition
-metadata rather than a launch gate. It is not yet executable benchmark
-infrastructure: the execution note must state whether it uses native Python
-2.7/Theano or a separately validated, explicitly labeled semantic port.
+The primary onset is rebuilt from the raw non-EEG sensors. Provider
+`HandStart` is an agreement check, not the primary onset. EEG cannot define the
+event it is asked to forecast.
 
-The public multimodal Figshare release contains only series 1–9. Kaggle series
-10 is an unpublished EEG-only private-leaderboard series without public raw
-EMG, kinematics, force, or complete outcome lineage. Competition artifacts
-remain subject to Kaggle rules and are not redistributed as the immutable
-scientific source.
+The detector must specify, before candidate EEG scoring:
 
-Consequently, EP19 can reproduce a pre-audit legacy-compatible bridge on
-series 1–6 to 7 and compare a frozen reference panel. The exact 1–8-to-9 public
-compatibility run occurs only after the joint scientific evaluation and cannot
-promote or rescue a model. EP19 cannot claim to have rerun the private
-leaderboard or reordered historical entrants unless their exact code, features,
-weights, and predictions become independently executable.
+- the sensor hierarchy and combination rule;
+- one-sided filters and their group delays;
+- baseline, threshold, dwell, and confirmation rules;
+- cross-sensor clock reconciliation;
+- how ambiguous or missing onsets are excluded; and
+- a worst-case timing bound smaller than 300 ms.
 
-## WAY onset and causal history
+Object motion, grip force, and load force are consistency checks rather than
+alternative outcomes chosen because they favour a model.
 
-Provider `HandStart` is a secondary agreement check, not the primary forecast
-target. The primary peripheral onset is reconstructed from continuous raw
-signals as
+## Self-paced/free-choice reaching
 
-\[
-\tau_{WAY}=\min(\tau_{EMG,1},\ldots,\tau_{EMG,5},\tau_{wrist}).
-\]
+### Source facts
 
-Here, `wrist` is the P4 marker velocity computed with backward differences.
-Object motion, grip force, and load force are frozen consistency checks rather
-than target-defining channels.
-
-The detector must satisfy all of the following:
-
-1. Resting location, scale, and thresholds are fit only on WAY series 1–7
-   pre-cue samples; series 8–9 can never tune them.
-2. Filtering, envelope construction, derivatives, normalization, resampling,
-   and state updates are one-sided and replayable sample by sample.
-3. A candidate crossing must satisfy a frozen dwell/confirmation rule. The
-   first provisional crossing immediately puts the stream in `pending`, during
-   which no anchors are emitted. Future samples may confirm the first-crossing
-   label or prospectively re-arm after a failed crossing, but intervening
-   anchors are never reinstated.
-4. The at-risk/stillness decision at anchor \(t\) uses only signals at or before
-   \(t\).
-5. Gaps and series boundaries reset every filter and model state.
-6. Development signal injection estimates clock error and detector latency;
-   the frozen safety bound must remain below the 300 ms primary-horizon edge.
-7. Ambiguous/missing onsets are removed by a rule frozen before candidate EEG
-   scores. Manual movement of an onset to improve results is prohibited.
-
-All EEG, EMG, peripheral, and cue clocks must pass the direct timing validation.
-A future-to-past impulse response above numerical tolerance makes
-the affected pipeline ineligible.
-
-For both sources, the 19-category target uses 18 left-closed, right-open 50-ms
-intervals, \([50(k-1),50k)\) ms, plus `>900 ms`. When acquisition ends at an
-outcome-independent censoring time inside a bin, the censor time is floored to
-the last complete 50-ms boundary. Training then sums only masses whose interval
-starts at or after that boundary, plus `>900`; the straddling partial bin is
-discarded. Binary endpoint scoring still requires observation through the
-endpoint's full upper edge. Outcome-dependent truncation is ineligible.
-
-## Self-paced/free-choice EEG reaching audit
-
-### Immutable source
-
-| Item | Fixed value |
+| Item | Value |
 | --- | --- |
 | Dataset DOI | `10.6084/m9.figshare.28632599.v1` |
-| Descriptor | `10.1038/s41597-025-06039-9` |
+| Dataset article | `10.1038/s41597-025-06039-9` |
 | File | `Freewill_EEG_Reaching_Grasping.zip` |
 | Figshare file ID | `57518986` |
-| Bytes | 13,591,548,048 |
-| MD5 | `3b7c3039c5c9fb6abf1429a830301711` |
-| License | CC BY 4.0 |
-| Read-only local source | Logical asset `asset_ep19_public_sources` under `private_steward_acquisition` in the root location manifest; not an episode handoff |
-
-The release contains 23 people, 49 sessions, and 6,808 trials, with raw
-continuous BrainVision EEG, four EOG channels, audio/TRIG, and three-axis wrist
-accelerometry. Twenty-one participants were recorded at 250 Hz; `sub-13` and
-`sub-15` were recorded at 1,000 Hz.
-
-Already exposed header-only verification found the same first 31 EEG channels in all 49
-sessions: 43 sessions use 250 Hz and the six sessions of `sub-13`/`sub-15` use
-1,000 Hz. Those two participants have additional numbered empty physical
-channels in the header; they do not add EEG signals. The archive contains 240
-raw `.eeg` runs while the paper reports 238 valid runs, so a frozen event/valid-
-run table—not filename count—must determine eligibility. This structural
-inspection did not open signal samples or event-level outcomes and is recorded
-in the held-out access record with the provider release ID. This narrow
-structural exposure is whitelisted; signal-derived or event-derived audit QC
-remains prohibited.
-
-The API currently reports version 1, while the landing record has a 2026-09-17
-modification date. Acquisition recorded the versioned DOI, file ID, byte size,
-MD5, version-1 API JSON, and an independent local SHA-256. Those completed
-checks are historical transfer metadata; EP19 does not require another
-checksum layer. During controlled extraction, the trusted builder must also
-check the archive's internal `CHANGES` record so the scientific source version
-is unambiguous. The unversioned DOI alone is not sufficient.
-
-Official references:
-
-- <https://doi.org/10.6084/m9.figshare.28632599.v1>
-- <https://doi.org/10.1038/s41597-025-06039-9>
-
-### Whole-participant roles
-
-Roles are fixed from public metadata before signal or event-level access:
-
-- **audit:** `sub-01`, `sub-05`, `sub-07`, `sub-10`, `sub-13`, `sub-16`,
-  `sub-19`, `sub-23`;
-- **development:** `sub-02`, `sub-03`, `sub-04`, `sub-06`, `sub-08`, `sub-09`,
-  `sub-11`, `sub-12`, `sub-14`, `sub-15`, `sub-17`, `sub-18`, `sub-20`,
-  `sub-21`, `sub-22`.
-
-The eight-person audit set has both sexes represented equally, at least two
-sessions per participant, and one 1,000-Hz participant. `sub-15` in development
-exposes the training pipeline to the second sampling lineage without exposing
-the held-out 1,000-Hz participant.
-
-Before any self-paced EEG outcome is read, the 15 development participants are
-assigned to one frozen five-fold whole-participant partition. Each model-search
-trial returns only the fold-complete aggregate; participant or fold feedback is
-withheld. The final audit-facing group encoder is fitted on all 15 only after
-the recipe is locked.
-
-All sessions, runs, EEG, accelerometry, events, and QC for an audit participant
-stay evaluator-only. A participant cannot be replaced after any audit signal,
-event, QC statistic, or model score is opened. Participant is the inferential
-unit; session and run are dependence/block units.
-
-### Common channels and replication regimes
-
-The prespecified intersection has 29 EEG channels:
-
-`Fp1 Fp2 F7 F3 Fz F4 F8 FC5 FC1 FC2 FC6 T7 C3 C4 T8 TP9 CP5 CP1 CP2 CP6 TP10 P7 P3 Pz P4 P8 O1 Oz O2`
-
-Channel order, instantaneous common-average reference, missing-channel mask,
-and resampling state are frozen before audit. No interpolation using future
-samples is allowed.
-
-The audit regimes are distinct:
-
-Canonical audit-facing group encoders are fitted only on the 15 designated
-self-paced development participants under the locked recipe. No signal from an
-audit participant may enter pre-lock or C0/C32 encoder fitting, self-supervised
-pretraining, model selection, or normalization-state initialization. The only
-exceptions are the frozen four-parameter C32 calibration and the isolated,
-non-promoting Cfull diagnostic copies defined below; neither mutates a canonical
-checkpoint. Direct WAY-to-self-paced weight transfer is a separate
-non-promoting diagnostic, not the primary C32 estimand.
-
-- **C32, primary:** independently for each audit participant, the evaluator
-  selects the earliest 32 complete eligible reach trials in chronological
-  acquisition order under the frozen valid-run/QC rule. The participant-
-  specific packet contains the full causal input history, every eligible risk
-  anchor and censoring target in those trials, and their onset targets—not just
-  32 timestamps. All models receive that same packet. Supervised updates are
-  limited to one global temperature plus three free coarse-horizon logit
-  offsets (the fourth group is the reference); the encoder, spatial projection,
-  and 19 free category biases cannot update. Unlabeled channel affine state may
-  update only sample by sample. The map is fitted separately to isolated copies
-  of standalone \(B_d^\star\), real, zero, and every surrogate/reference/
-  challenger model using the identical packet and frozen algorithm; parameters
-  are model-specific, while all canonical checkpoints remain unchanged;
-- **C0, stringent secondary:** no audit labels and no audit EEG weight update;
-  only development-initialized causal normalization state may update from past
-  unlabeled samples, never from full-session or future statistics; and
-- **Cfull, diagnostic:** for a participant with at least four complete valid
-  runs, use the earliest half of runs (chronological, rounded down) as a local-
-  refit prefix and score only the later half. Within the prefix, complete runs
-  are divided chronologically as close as possible to 80/20, with at least one
-  training and one validation run. The inner split selects only the epoch
-  count. Every fit starts from an isolated copy of the locked checkpoint and
-  uses the frozen seed schedule for minibatch order and stochastic operators.
-  The evaluator then resets a diagnostic copy to that checkpoint and fine-tunes
-  the unchanged recipe on the full prefix for exactly the selected count.
-  Architecture, preprocessing graph, loss, optimizer, hyperparameters, twin
-  construction, and seed schedule stay fixed; every otherwise trainable weight
-  in the diagnostic copies of the source-specific baseline and real, zero, and
-  surrogate twins may update from the prefix only. Canonical \(B_d^\star\), C0,
-  C32, and their stored predictions are never mutated. Cfull estimates an upper
-  bound and cannot promote or rescue a claim. Fewer than
-  four valid runs is prespecified as insufficient Cfull support, not silently
-  repaired by a trial-level split.
-
-C32 and Cfull are never described as zero-shot. For C32, the entire stream
-prefix through the 32nd event plus its complete filter/history guard is excluded
-from scoring; no anchor between calibration events is reused. C0 and C32 are
-compared on the identical post-C32 suffix. Cfull has a different, explicitly
-labeled score support and is never compared as if it shared that suffix. No
-Cfull suffix label, suffix-derived normalization statistic, or suffix early-
-stopping result may enter the local refit.
-Calibrated parameters persist within participant, filter/recurrent state resets
-at each session, and C0/C32/Cfull run in isolated evaluator copies. Audit
-participants are opened together only after the model, regimes, evaluator, and
-outputs are locked.
-
-### Self-paced onset and claim limit
-
-The provider's `AccStartIndex` used a zero-phase 10-Hz low-pass filter,
-derivative thresholding, and manual adjustment. It is therefore a secondary
-agreement diagnostic only.
-
-The primary onset is recomputed from raw XYZ accelerometry with the frozen
-one-sided detector family, thresholds fitted only on the 15 development
-participants, gap resets, and direct timing validation. C32 cannot alter
-detector parameters. The same provisional-crossing `pending` rule used for WAY
-applies.
-The non-neural baseline may use past accelerometry, EOG,
-cue/start state, time since cue, fixed spatial setup, and stillness duration,
-but never future samples. `TgtID` or the ultimately chosen cup is known from
-the completed movement and is prohibited at forecast time.
-
-This source has no EMG. It can replicate prediction before
-accelerometer-detectable wrist motion beyond measured past non-neural history;
-it cannot confirm prediction before all peripheral muscle activation. The
-published aggregate ERP/classification results and use of 15 development
-participants mean this is a second-task whole-participant campaign seal, not a
-globally pristine or unseen-task source.
-
-## Required permission-separated handoffs
-
-Large payloads remain outside Git. `inputs/` receives only role-filtered,
-read-only packs keyed by the pinned provider release IDs, or read-only mounts
-created by an authorized operator.
-The required handoffs are:
-
-1. **WAY structural pack:** provider release record, clocks, shapes, channel
-   identities, cue/trial/series boundaries, and stable row IDs without
-   signal-derived candidate scores.
-2. **WAY development pack:** P1–P12 series 1–7 and required `AllLifts` rows.
-3. **WAY joint-final-evaluation pack:** P1–P12 series 8 and 9, held only by the
-   trusted final evaluator.
-4. **Self-paced metadata pack:** participant/session/run/channel/sampling
-   inventory and the frozen role table without audit event or QC outcomes.
-5. **Self-paced development pack:** complete data for the 15 development
-   participants.
-6. **Self-paced audit pack:** complete packets for all eight audit participants,
-   mounted only inside the no-egress trusted evaluator after lock.
-7. **Legacy artifact pack:** any permissible Kaggle labels, metric code,
-   historical submissions, or entrant implementations, including the pinned
-   `Safe1` code, each with license, source URL, and pinned code revision.
-   Missing artifacts narrow the compatibility claim.
-
-No mixed source directory may be symlinked into `inputs/`. Candidate workers
-must never receive an audit packet, audit path, audit file list beyond the
-frozen structural inventory, or partial evaluator output.
-
-## Audit firewall
-
-Before any audit outcome is opened, write once in the immutable final lock:
-
-- participant and series/session roles;
-- the complete held-out access and prior-exposure record;
-- provider source records and timing-validation results;
-- onset/stillness implementation, horizons, exclusions, and natural-risk
-  weights;
-- common channels, resampling, normalization, calibration events, and model
-  states permitted to update;
-- reference models, challenger, seeds, practical margins, uncertainty rule,
-  and terminal decision table; and
-- the evaluator version and executable procedure, no-egress policy, and
-  complete-output contract.
-
-The evaluator opens WAY series 8, WAY series 9, and all eight self-paced audit
-participants in one joint operation. It returns only the complete
-participant-level sufficient
-statistics and terminal inputs after both components finish. No partial score,
-fold result, QC failure tied to outcome, or model ranking is returned early.
-Audit data never update the search. A failed audit packet is a technical
-failure; it is not replaced.
-
-## AJILE12 is deferred
-
-| Item | Fixed reference |
-| --- | --- |
-| DANDI version | `0.220127.0436` |
-| DOI | `10.48324/dandi.000055/0.220127.0436` |
-| Descriptor | `10.1038/s41597-022-01280-y` |
-| Official repository | `https://github.com/BruntonUWBio/ajile12-nwb-data` |
-| Assets | 55 day-level NWB files |
-| Bytes | 845,869,698,341 |
-| Participants | 12 |
+| Archive size | 13,591,548,048 bytes |
 | License | CC BY 4.0 |
 
-Only the published version may be referenced; the moving DANDI `draft` is
-prohibited. The public `ElectricalSeries` was processed from 1 kHz to 500 Hz
-with DC/median removal, two-sided-looking discontinuity handling, band/notch
-filtering, downsampling, and common-median reference. Public pose-derived
-events additionally use future movement confirmation, speed selection, and
-manual review; raw video is not public.
+The release contains 23 people, 49 sessions, and 6,808 trials. It includes raw
+continuous BrainVision EEG, four EOG channels, audio and trigger channels, and
+three-axis wrist accelerometry. Twenty-one participants were recorded at
+250 Hz; `sub-13` and `sub-15` were recorded at 1,000 Hz.
 
-AJILE12 cannot support the primary strict-causal claim unless an authorized
-future handoff supplies prefilter 1-kHz ECoG, exact filter/padding/resampling
-and discontinuity code, a certified zero future-to-past impulse response, and
-reconstructable continuous pose onset lineage. Until then it is restricted to
-exploratory offline association and is not an audit fallback.
+All 49 session headers contain the same first 31 EEG channels. The six sessions
+from `sub-13` and `sub-15` include extra numbered empty physical channels, not
+additional EEG signals. The archive contains 240 raw EEG runs, while the paper
+reports 238 valid runs; eligibility must therefore follow the event and
+valid-run information rather than filename count.
 
-Official references:
+The scientific analysis uses the same 29-channel intersection listed for WAY.
+Resampling and channel order must be set before held-out evaluation, and no
+interpolation may use future samples.
 
-- <https://doi.org/10.48324/dandi.000055/0.220127.0436>
-- <https://doi.org/10.1038/s41597-022-01280-y>
-- <https://github.com/BruntonUWBio/ajile12-nwb-data>
+### Participant roles
 
-## Source qualification and access conditions
+Fifteen people develop the second-task procedure and group encoder:
 
-Candidate training and scoring begin only after all applicable checks pass:
+`sub-02, sub-03, sub-04, sub-06, sub-08, sub-09, sub-11, sub-12, sub-14,
+sub-15, sub-17, sub-18, sub-20, sub-21, sub-22`.
 
-- the provider release IDs and expected inventories match the selected
-  official releases;
-- all 108 WAY continuous series and 12 `AllLifts` files are present;
-- EEG, EMG, kinematic, force, cue, and event clocks reconcile within a frozen
-  bound;
-- all 49 self-paced raw BrainVision sessions, triggers, accelerometry, and BIDS
-  identities are complete;
-- the one-sided onset detector passes injected-signal timing recovery and
-  future-to-past impulse tests;
-- the common 29-channel contract and both sampling lineages are executable;
-- public/header-only structure is compatible with the frozen evaluator; exact
-  C32 packets and endpoint support are constructed only inside the one-shot
-  evaluator after lock, and insufficient support is a nonreplaceable technical
-  failure rather than a pre-lock outcome-bearing support query;
-- every audit and campaign-sealed evaluation packet is evaluator-only; and
-- the held-out access record confirms that no held-out event-level signal, QC,
-  or score entered model design.
+Eight whole participants are held out:
 
-## Current local inventory and handoff state
+`sub-01, sub-05, sub-07, sub-10, sub-13, sub-16, sub-19, sub-23`.
 
-The canonical private-steward inventory represented by
-`asset_ep19_public_sources` now
-contains 12 official WAY participant archives and the official Freewill
-archive: 13 archives totaling 23,930,807,095 bytes. All
-provider byte sizes and MD5 values passed at acquisition, and all 13 local
-SHA-256 values were independently rechecked then. These frozen historical
-checks are not repeated launch gates. The exact `Safe1` commit source and
-license are also acquisition-verified. These archives remain unextracted,
-outside episode `inputs/`, and unavailable to candidate workers.
+All sessions, runs, EEG, EOG, triggers, and accelerometry from a participant
+stay on the same side. A person is never replaced because of their result.
 
-All 55 AJILE12 archives (845,869,698,341 expected bytes) remain in their
-separate deferred-extension area as `asset_ep19_ajile12` under the canonical
-private steward root. Their storage relocation completed by same-filesystem
-rename on 2026-09-24. The acquisition has an `ACQUISITION_COMPLETE_UTC` marker,
-plus a recorded inventory of all 55 assets and 845,869,698,341 payload bytes.
-Acquisition completion and storage relocation are not a role-filtered EP19
-handoff or scientific qualification, and AJILE12 remains
-ineligible for the primary claim regardless.
+During development, the 15 people use one five-fold whole-participant split.
+The final group model is fit on all 15 only after the model recipe has been
+chosen. The eight held-out participants cannot enter feature learning,
+self-supervised training, model selection, onset tuning, or normalization-state
+initialization.
 
-No signal or event-level audit outcome was read during acquisition. Public
-metadata, source code, archive inventory, and aggregate paper information are
-design exposure and must be entered in the held-out access record. The seven
-permission-separated handoffs above remain absent.
+### What the second task can establish
 
-The current source state is
-`source_acquired_in_quarantine_role_filtered_handoffs_absent`.
+The self-paced source has wrist accelerometry but no EMG. Its onset is rebuilt
+from raw three-axis accelerometry with the same past-only principles used for
+WAY. A successful result supports forecasting before accelerometer-detectable
+wrist motion. It cannot establish forecasting before any measured muscle
+activation.
+
+The primary held-out condition uses each participant's first 32 complete
+eligible movements in chronological order for four-parameter calibration. The
+whole prefix and a sufficient history guard are excluded from scoring. The
+remaining suffix is shared by the zero-label and 32-label comparisons.
+
+The four parameters are one positive temperature and three coarse-horizon
+offsets for 0–300, 300–600, and 600–900 ms, with `>900 ms` as reference. The
+encoder and spatial projection remain unchanged. A full local refit on the
+first half of complete runs is descriptive only.
+
+## Historical compatibility
+
+The Kaggle task used participant series 1–8 for training, series 9–10 for test,
+six event labels expanded approximately 150 ms on either side of event times,
+and mean column-wise event AUROC.
+The public WAY multimodal source contains only series 1–9; the private series 10
+does not provide the full public multimodal record needed by EP19.
+
+The public winning repository is
+`https://github.com/alexandrebarachant/Grasp-and-lift-EEG-challenge`. Its compact
+`Safe1` analysis is the preferred positive control. Any native Python 2.7 and
+Theano execution must be distinguished from a modern semantic port.
+
+Before the scientific final evaluation, EP19 may run a series-1–6 to series-7
+compatibility check and report `HandStart` separately. A series-1–8 to series-9
+historical comparison may run only afterward and has no role in the prospective
+EEG conclusion. EP19 cannot claim to reproduce the private Kaggle leaderboard
+without the original entrants' complete code, features, weights, and
+predictions.
+
+## Deferred AJILE12 extension
+
+AJILE12 published version `10.48324/dandi.000055/0.220127.0436` remains an
+exploratory ECoG extension. The available ECoG and pose-event products do not
+currently establish the raw filtering and timing information required for the
+primary strict-streaming claim. AJILE12 cannot replace either main source if
+one fails.
+
+## Data separation during the study
+
+Development analyses receive WAY series 1–7 and the 15 self-paced development
+participants. WAY series 8–9 and all data from the eight self-paced held-out
+participants are used only after the onset rules, models, calibration procedure,
+scores, margins, and controls have been set.
+
+The two held-out components are evaluated together. Development receives no
+participant-level, fold-level, surrogate-specific, file-order, calibration, or
+partial quality information from that evaluation. A held-out result cannot
+trigger a replacement model, participant, onset rule, or second evaluation.
+
+## Current readiness
+
+The named archives have been acquired but remain unprepared for EP19 analysis.
+Before signal scoring, the study still needs:
+
+- episode-specific development and held-out data views;
+- direct clock, channel, sampling, gap, and series-boundary checks;
+- exact onset and stillness code for each source;
+- the five executable reference model recipes;
+- source-specific non-neural baselines;
+- the complete four-parameter 32-event calibration procedure;
+- a finite set of allowed model changes and all numeric margins;
+- the five-fold assignment for the 15 self-paced development participants; and
+- synthetic tests that expose future-information leakage and recover a known
+  prospective EEG signal.
+
+No scientific forecast, model ordering, or second-task replication has yet
+been evaluated.

@@ -1,350 +1,241 @@
-# Does the LFP–population relationship differ reproducibly between M1 and PMd?
+# Is the M1–PMd LFP fingerprint reusable, or just an array label?
 
-During the same reaching task, electrodes in M1 and PMd record two views of
-local activity: the LFP and the spikes of nearby neurons. In one session, a
-low-frequency LFP feature might predict the local spike-population activity
-better in M1, while another frequency might work better in PMd. A difference
-in one session, however, could just reflect a noisy array or a few unusually
-good channels.
+M1 and PMd were recorded at the same time while each animal performed the same
+reaching task. In each region we have two views of local activity: LFP features
+and spikes from nearby neurons. EP06 asks whether the relationship between those
+two signals differs between M1 and PMd in a way that repeats across animals.
 
-EP06 asks whether the complete band-by-band pattern repeats across animals.
-For every session, we make one profile showing how well LMP and each registered
-LFP power band predict the simultaneously recorded population activity. We
-learn the M1-versus-PMd difference from Mihili and ask whether it labels whole
-sessions from Chewie, then reverse the animals. The signed profile contrast—
-not every band in isolation—must align across the two transfer directions, and
-any band singled out for interpretation must have the same sign in both
-animals. A high average score cannot hide a failed transfer in one direction.
+For each session and region, we build one frequency profile: how well does LMP
+or each registered LFP band predict held-out spike-population activity after
+accounting for reach direction and elapsed time? We learn the M1-versus-PMd
+difference from Mihili and test whole sessions from Chewie, then reverse the
+animals. Both directions must work; a strong average cannot hide failure in one
+animal.
 
-Even successful classification may be misleading. In these recordings, each
-brain region is tied to its own implanted array. A classifier could therefore
-recognize missing channels, recording reliability, one spike-rich
-high-frequency band, or another hardware difference rather than a reusable
-neural relationship. The first result must show the actual signed frequency
-contrast and test it under equal channel, trial, spike-rank, and model budgets,
-without high-frequency bands, and against recording-metadata controls.
+A classifier score is only the first result. Because each region is tied to a
+different implanted array, a model might recognize missing channels, recording
+quality, or spike leakage rather than a reusable neural relationship. The study
+must therefore show the signed frequency difference, test the strongest array
+and recording alternatives, and ask whether the difference improves prediction
+of held-out population activity.
 
-This is the entry point to a larger biological question:
+## The scientific logic
 
-> If M1 and PMd have a reproducible LFP–population difference, does that
-> difference tell us which LFP frequencies will recover held-out population
-> activity better?
+![EP06 conceptual figure showing paired recording domains, signed frequency profiles, bidirectional animal transfer, controls, and the correct-versus-pooled-versus-swapped prediction test](outputs/ep06_question.svg)
 
-The follow-up turns the profile into a direct prediction. M1 and PMd profiles
-learned from the source animal produce two fixed sets of frequency weights. In
-the other animal, the correct-region weights, one pooled set of weights, and a
-deliberately swapped-region set combine exactly the same bandwise predictions.
-If the profile captures a useful regional difference, the correct-region
-combination should predict unseen population activity better than the pooled
-combination, and swapping M1 with PMd should make prediction worse.
+Like the EP12 concept figure, this mockup makes the scientific alternatives
+visible with synthetic patterns. It shows the M1 and PMd frequency profiles,
+their reciprocal cross-animal transfer, and how correct, pooled, and swapped
+weights distinguish a useful fingerprint from a transferable label alone.
+The competing-explanation panel gives the recording-artifact alternative equal
+visual status. These are illustrative patterns, not EP06 results; session
+roles and numerical decision rules remain in the study text.
 
-The intended paper must therefore show more than an M1/PMd label. It must show
-which parts of the profile differ, that their signs repeat in both animals,
-that ordinary recording-quality explanations do not account for the result,
-and that the difference has the predicted consequence for population-state
-recovery. A separately locked third-animal test would be needed to show that
-the rule extends beyond Mihili and Chewie.
+Even the strongest positive result would remain a **recording-domain** result.
+This dataset cannot separate cortical region from its implanted array. A third
+animal can test whether the rule repeats again, but a design that breaks the
+region–array link would be needed to claim a pure cortical-area effect.
 
-Even a positive result would not isolate pure cortical identity, because
-region and array cannot be separated in this dataset. It would support a
-narrower claim: under this reaching task and recording pipeline, an M1–PMd
-difference repeats in both animals and can guide prediction of local
-population activity, while remaining confounded with the two arrays. It would
-not establish a causal mechanism, a unique biological origin for any frequency
-band, or generalization to other tasks and populations.
-
-The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
-specifies the follow-up prediction, alternatives, and figure-level evidence.
-The cross-animal classification remains the first result; the follow-up cannot
-change its answer.
+No real EP06 analysis, reserved-session test, or third-animal test has run under this
+plan.
 
 ## At a glance
 
 | Question | EP06 design |
 | --- | --- |
-| What varies? | How well LMP and each LFP power band predict the local spike-population activity in M1 and PMd. |
-| What is compared? | One complete M1 profile and one complete PMd profile for each recording session, rather than isolated bands chosen after seeing the result. |
-| What must transfer? | A rule learned from Mihili must distinguish M1 from PMd in Chewie, and the rule learned from Chewie must work in Mihili. |
-| What is held out? | Whole sessions from the other animal during cross-animal transfer, followed by two separately reserved sessions per animal for one internal audit. |
-| What is the main score? | The average of the two cross-animal balanced accuracies, reported relative to chance and alongside each direction separately. |
-| What could give a misleading positive result? | The two regions use different arrays, so missing channels, reliability, hardware metadata, or high-frequency spike contamination could reveal the label. |
-| What can the first test conclude? | Whether these recordings contain a signed M1–PMd LFP–population fingerprint that repeats between two animals. |
-| What would make a deeper finding? | The M1- and PMd-specific frequency rules must improve held-out population prediction over one pooled rule, while a swapped-region rule performs worse. |
-| What is the next test? | Freeze the regional frequency weights, compare correct, pooled, and swapped mixtures on identical predictions, then carry the unchanged rule to a separately locked third-animal study if suitable data become available. |
+| What varies? | How well LMP and each registered LFP band predict local spike-population activity in M1 and PMd. |
+| What is the first comparison? | Learn the complete M1–PMd profile difference in one animal and classify whole sessions from the other animal, in both directions. |
+| What is held out? | Whole sessions from the other animal, followed by two separately reserved sessions per animal for one final test. |
+| What must repeat? | The signed profile difference and classification must agree in both animal-transfer directions. |
+| What could mislead us? | Region is tied to array, so hardware, missing channels, reliability, or high-frequency spike leakage may reveal the label. |
+| What makes the result useful? | M1- and PMd-specific frequency weights must predict held-out population activity better than one pooled rule; swapping the regional weights should hurt. |
+| What remains unproven? | Pure cortical identity, causality, online BCI value, and generalization beyond these animals and this recording pipeline. |
 
-## From a region label to an interpretable consequence
+## The first result: does the fingerprint transfer?
 
-Suppose the classifier calls a held-out session “M1.” That answer alone does
-not show what was learned. It could depend on one noisy band, missing channels,
-or array quality. A useful scientific result must show the actual contrast—for
-example, that the same registered low- or mid-frequency part of the profile is
-higher for M1 than PMd in both animals—while reporting every band and session.
+For each session, region, and registered LFP feature block, fit a model on
+training trials that predicts a training-derived spike-population summary.
+Evaluate untouched whole trials and subtract what reach direction and elapsed
+time already explain. Then reduce all trials, time bins, electrodes, and latent
+coordinates to one profile for each region in each session.
 
-The proposed follow-up makes a prediction from the two source-region profile
-prototypes that produced that signed contrast. The contrast alone is not
-enough: subtracting PMd from M1 discards their shared level. Therefore retain
-the undifferenced M1 and PMd frequency-by-latent prototypes in the exact locked
-normalized/aligned representation supplied to the primary classifier, their
-signed difference, and their equal-region pooled prototype. A fixed,
-parameter-free softmax projection turns each prototype into one convex set of
-band weights; the exact equation is in the paper plan.
+The primary test has two equal parts:
 
-In a target session, fit one base LFP-to-latent predictor per band exactly once
-on permitted training trials under the same locked recipe. Freeze those
-bandwise predictions before applying any regional rule. The correct-region,
-pooled, and swapped rules then form different fixed weighted averages of the
-**same predictions at the output level**; no coefficient, intercept, scaling,
-or regularization is refit after weighting. If the fingerprint captures a
-reusable difference, the correct-region mixture should beat the pooled mixture
-by a fixed meaningful margin and swapping M1 and PMd weights should hurt. This
-cannot be explained by a separate region-supervised model or by raw feature
-weights being absorbed into freely refit coefficients.
+1. learn the M1–PMd rule from Mihili's development sessions and classify
+   Chewie's development sessions; and
+2. learn the rule from Chewie and classify Mihili.
 
-This yields distinct outcomes:
+Report the two balanced accuracies separately and their equal-weight mean above
+chance. Also show the signed M1-minus-PMd profile in every session. A result is
+not convincing if the classifier transfers but the apparent frequency
+difference changes sign between animals.
 
-| Possible result | What it would mean |
+## The deeper result: does the fingerprint help prediction?
+
+After the first result is fixed, turn the two source-animal profiles into three
+fixed ways of combining the same bandwise predictions in the other animal:
+
+| Rule | What it asks |
 | --- | --- |
-| Classification transfers, the signed contrast repeats, and correct-region weights improve held-out latent prediction | The recording domains have a reusable difference with a concrete modeling consequence. Region remains confounded with array/hardware. |
-| Classification transfers but correct-region weights do not beat pooled weights | A stable label exists, but it has not shown a useful consequence for population-state recovery. |
-| Regional weights collapse to the same vector or bandwise target predictions are too collinear to distinguish mixtures | The proposed consequence is non-identifiable; do not treat a null contrast as evidence that the regional profile has no effect. |
-| Metadata-only or deliberately reliability-mismatched controls classify equally well | The result is compatible with an implant/recording-quality fingerprint; no neural regional interpretation. |
-| Only high-frequency or spike-rich channels carry the result | Bound the claim to a spike-contaminated recording feature, not a broad LFP profile. |
-| The two transfer directions disagree or the reserved sessions fail | No general two-animal fingerprint; report the narrower session result or stop. |
+| Correct region | Do source-learned M1 weights help target M1, and source-learned PMd weights help target PMd? |
+| Pooled | Is one common frequency rule sufficient for both regions? |
+| Swapped region | Does deliberately giving M1 the PMd rule and PMd the M1 rule make prediction worse? |
 
-The follow-up uses the same exposed recordings and simultaneous spikes, so it
-is explanatory evidence, not another animal replication. Its support rules,
-models, margins, multiplicity, budget, and stopping rule must be frozen before
-its outcomes are inspected. Its results cannot rewrite the original audit or
-terminal class.
+All three rules use the same target trials, electrodes, latent dimensions, and
+bandwise predictions. Only the fixed frequency weights differ. The proposed
+explanation predicts that the correct-region rule beats the pooled rule by a
+meaningful amount in both transfer directions and that the swapped rule performs
+worse. If the regional weights are nearly identical, or the bandwise predictions
+are too similar for the rules to differ, the follow-up is inconclusive rather
+than evidence for or against a regional effect.
 
-“Fit once in a target session” means the session-specific training step already
-required to construct each bandwise profile under a locked recipe. It does not
-mean choosing a new policy after audit outcomes appear. The executable
-follow-up contract must distinguish this mandatory within-session fit from the
-core YAML's forbidden post-reveal retraining before any shared audit opens; if
-it cannot, the follow-up moves to a successor round.
+This follow-up explains the first result; it is not a new animal replication
+and cannot change whether the original classifier transferred.
 
-## Evidence roles and internal split
+## Evidence roles and the session split
 
-The current source has six simultaneous M1/PMd sessions for Mihili and six for
-Chewie-L. After structural eligibility is frozen, rank canonical session IDs
-within each animal by
-`SHA256("ep06-adaptive" || animal || canonical_session_id)`:
+The current release reports six simultaneous M1/PMd sessions for Mihili and six
+for Chewie-L. After structural eligibility is checked, order each animal's six
+sessions by acquisition date, using the provider session name only to break a
+tie. The roles are fixed by position:
 
-- the lowest four eligible sessions per animal are adaptive development and
-  nested session-level selection;
-- the highest two eligible sessions per animal are a one-shot **internal
-  audit** opened only after configuration lock; and
-- if all six sessions per animal are not eligible, stop at the frozen
-  sample-size/identifiability gate rather than outcome-guided reallocation.
+| Animal | Development and model selection | Reserved final test |
+| --- | --- | --- |
+| Mihili | positions 1, 2, 4, and 5 | positions 3 and 6 |
+| Chewie-L | positions 1, 2, 4, and 5 | positions 3 and 6 |
 
-This algorithmic hash is retained only to assign session roles without using
-neural outcomes; it is not a file-checksum or acquisition requirement.
+Record the resulting session names in `DATASETS.md` before any regional score is
+inspected. Do not move a session because its result is inconvenient. If either
+animal has fewer than six structurally eligible paired sessions, stop for a
+scientific review of sample size instead of reallocating sessions after looking
+at outcomes.
 
-All current-release outcomes are conservatively exposure-tainted by related
-historical work. Thus this internal audit tests procedure and within-corpus
-session transfer; it is not independent confirmation.
+The eight development sessions support model comparison. The four reserved
+sessions are opened together once after one analysis is final. Because related
+historical work already exposed this release, that reserved-session test checks a fixed procedure
+within the same corpus; it is not independent confirmation.
 
-An **external generalization confirmation round** requires an independently
-sealed third animal recorded simultaneously from M1 and PMd under a compatible
-reaching task with adequate sessions, trials, electrodes, units, and
-authenticated LFP feature semantics. That animal is absent from the current
-release and is not claimed to have been acquired. Under the common protocol,
-the current round ends when its one-shot internal audit opens; a third-animal
-test must be a separately frozen successor round with a new exposure record. A
-direct generalization test must reuse the same locked candidate without
-adaptation; an adapted search would answer a different question.
+Chewie-R is another implant in the same animal, not a third animal. Han and
+Lando contain area-2 recordings under a confounded animal/task design and may be
+used only for a clearly labelled recording-domain sensitivity analysis. A true
+external transfer test requires a separately sealed third animal with
+simultaneous M1 and PMd recordings.
 
-## One session-level fingerprint
+## Models we will compare
 
-For each session, region, and registered feature block, fit a training-trial
-mapping from LFP features to a training-derived spike-population latent. Score
-untouched trials with `R2_SSE`, preserving negative values, and subtract the
-training-derived direction-by-elapsed-time baseline. Collapse trials, bins,
-channels, folds, and seeds into one feature profile per region/session before
-regional classification.
+Every trial uses one rule for all sessions. The bounded choices are:
 
-Profile shape and magnitude remain separate. The primary discrimination uses
-shape after the registered centering/shrinkage rule; magnitude is a secondary
-axis and cannot rescue unstable shape.
+1. **Time window:** the primary execution window is 150–450 ms after movement
+   onset; a small behavior-defined preparation/execution set may be compared.
+2. **LFP features:** LMP and the registered 0.5–4, 4–8, 8–12, 12–25, 25–50,
+   50–100, 100–200, and 200–400 Hz bands, either alone, in registered contiguous
+   groups, or as the full profile.
+3. **Electrode summary:** the same 15-electrode budget in both regions, using a
+   mean, median, training-only reliability weighting, or training-only PCA.
+4. **Spike-population summary:** training-only PCA or reduced-rank summaries
+   with a finite dimension schedule supported in both regions.
+5. **LFP-to-population model:** ridge, reduced-rank regression, PLS, or
+   regularized CCA, always evaluated on held-out whole trials.
+6. **Profile comparison:** centered shape, reliability-adjusted shape, or a
+   fixed combination of shape and overall magnitude.
+7. **Across-session alignment:** none, training-session robust scaling, or a
+   training-only orthogonal alignment.
+8. **Region classifier:** nearest prototype, shrinkage Mahalanobis, or
+   regularized logistic classification.
+9. **Ensemble:** at most two already evaluated complementary rules.
 
-## Bounded scientific operator grammar
+Band edges, reserved-session-specific alignment, separate winners for each animal,
+unpaired M1/PMd trials, electrodes chosen from held-out outcomes, raw-phase
+analyses, and arbitrary new model families are outside this study.
 
-One trial is a declarative global fingerprint policy chosen from:
+## What a convincing result must survive
 
-1. **Analysis window:** the primary `+150 ms` to `+450 ms` execution interval,
-   or one of a small set of event-defined preparation/execution windows frozen
-   from behavior before neural search. The primary question may not migrate to
-   whichever window scores best.
-2. **Feature block:** LMP and authenticated power classes 0.5--4, 4--8, 8--12,
-   12--25, 25--50, 50--100, 100--200, and 200--400 Hz; individual classes,
-   registered contiguous low/mid/high groupings, or the full nine-class
-   profile. Numeric matrix order is never semantic identity.
-3. **Electrode aggregation:** fixed 15-electrode matched budget, train-only
-   reliability shrinkage, robust mean/median, or train-only PCA across eligible
-   physical electrodes. M1 and PMd receive identical capacity rules.
-4. **Spike latent:** train-only PCA or reduced-rank latent with dimension from
-   a finite schedule capped by shared session support. Region-specific outcome
-   dimensions cannot be selected from audit performance.
-5. **LFP-to-latent mapping:** ridge, reduced-rank regression, PLS, or regularized
-   CCA evaluated on held-out whole trials. Scaling and regularization are
-   training-only.
-6. **Profile normalization:** centered unit-L2 shape, reliability-shrunk shape,
-   or joint shape-plus-magnitude with a frozen magnitude weight.
-7. **Session/animal alignment:** none, training-session robust scaling, or a
-   train-only orthogonal/Procrustes alignment using region labels only in the
-   training animals/sessions.
-8. **Region decision rule:** nearest prototype with correlation/cosine
-   distance, shrinkage Mahalanobis, or regularized logistic classification.
-9. **Ensemble:** convex combination of at most two already evaluated
-   complementary policies.
+- classification above the complete-analysis label-shuffle reference in both
+  animal-transfer directions;
+- the same signed M1–PMd profile direction in both animals;
+- leave-one-session analysis showing that no single session determines the
+  result;
+- paired trials and equal trial, electrode, spike-rank, reliability, and model
+  capacity in the two regions;
+- a model using recording metadata alone;
+- low-frequency-only, high-frequency-exclusion, and same-electrode/unit checks;
+- a whole-trial LFP-to-spike pairing shuffle;
+- direction-and-time behavioral baselines;
+- band-label shuffles and smoothness/dimensionality-matched surrogate
+  population activity; and
+- the area-2 sensitivity reported without claiming a three-region hierarchy.
 
-Arbitrary band edges, audit-specific alignment, per-animal winners, unpaired
-M1/PMd trials, bin-level splits, outcome-chosen electrodes, raw-phase analyses,
-and arbitrary code mutation are forbidden.
+Failure of a required control blocks the neural regional interpretation even if
+the headline classifier accuracy is high.
 
-## Objective and constraints
+## Study sequence
 
-The primary development objective is the mean of the two cross-animal
-balanced accuracies minus 0.5: train the global fingerprint rule on development
-sessions from Mihili and classify M1 versus PMd development sessions from
-Chewie, then reverse. Nested session folds provide policy selection without
-using a scored session to tune its transforms.
+1. Confirm the source, the paired M1/PMd trials, events, electrodes, units, and
+   frequency labels. Run small known-answer tests for indexing, held-out
+   prediction, and the planned shuffles.
+2. Write the session-role table from the predeclared acquisition-order rule.
+3. Run the fixed low-frequency, full-profile, ridge, CCA, prototype, and
+   regularized-classifier starting comparisons.
+4. Change one scientific choice at a time. Every trial records its question,
+   full analysis choices, per-session results, controls, runtime, and failure
+   reason. The current best model is provisional.
+5. Retest each finalist on all eight development sessions, both transfer
+   directions, and all required controls.
+6. Challenge the best model and at most three alternatives with session
+   influence, matching, frequency, spike-contamination, time-window, mapping,
+   and profile ablations.
+7. Choose one final analysis and record its source sessions, features, models,
+   thresholds, and required outputs before opening the reserved sessions.
+8. Open all four reserved sessions together and run that analysis once. No
+   candidate, exclusion, or threshold may change after a reserved result is
+   visible.
+9. If a suitable third animal later becomes available, test the unchanged rule
+   in a separately planned study.
 
-A policy is feasible only if:
-
-- balanced accuracy is above chance in both transfer directions under the
-  complete-procedure region-label permutation null;
-- M1-minus-PMd contrast vectors align in sign/direction across animals;
-- no single development session determines the result;
-- paired trial identity, equal regional capacity, and minimum reliability pass;
-- low-frequency-only and same-electrode/unit-intersection sensitivities retain
-  the frozen minimum direction; and
-- TME/smoothness-matched surrogate and band-label nulls do not explain the
-  effect.
-
-Area-2 profiles from Han and Lando are a prespecified recording-domain
-specificity analysis only. Region is confounded with animal/task there, so
-area 2 cannot rescue or strengthen the primary M1/PMd decision.
-
-## Multi-stage adaptive loop
-
-1. **Preflight:** authenticate source, guides, paired M1/PMd trial IDs, events,
-   electrodes, spike ranks, licenses, and synthetic indexing/leakage/null
-   fixtures; then freeze the deterministic 4+2 session split.
-2. **Coverage stage:** evaluate fixed-profile, low-frequency, full-profile,
-   ridge, CCA, prototype, and regularized-classifier anchors before
-   exploitation.
-3. **Adaptive development:** make one mechanism-led operator change per trial;
-   record parent, hypothesis, complete configuration and parentage,
-   per-session profiles,
-   cross-animal scores, constraints, runtime, and failure reason. Maintain a
-   nonterminal incumbent and robustness/complexity Pareto archive.
-4. **Successive fidelity:** prune only on frozen inner session folds. Every
-   finalist runs on all eight development sessions, both animal-transfer
-   directions, fixed seeds, and all mandatory falsifiers.
-5. **Stress stage:** incumbent plus at most three challengers undergo
-   leave-one-session influence, reliability matching, electrode/trial budget
-   matching, low-frequency-only, spike-bleed-through, window, mapping, and
-   profile-block ablations.
-6. **Configuration lock:** choose exactly one policy and freeze the source
-   release, eligible sessions, executable policy/code, feature semantics,
-   folds, transforms, hyperparameter rule, nulls, thresholds, seeds, and
-   required outputs in one write-once record.
-7. **One-shot internal audit:** reveal the four reserved current-release
-   sessions together and score the locked policy once. No candidate or rule
-   changes follow this reveal.
-8. **External-confirmation handoff:** end the current round, preserve its
-   write-once configuration and audit record, and specify a future third-animal
-   successor round.
-   That successor may apply the identical locked policy once; the new animal
-   cannot update the representation, alignment, decision rule, thresholds, or
-   stopping logic in a direct generalization test.
-
-An incumbent is never a terminal result. Minimum trials, operator coverage,
-falsifiers, stress tests, patience, configuration lock, and the audit gate are
-independent requirements.
-At least 40% of valid post-coverage trials must be falsifiers, ablations,
-negative controls, influence guards, synthetic recovery, or direct
-replications. At least two outcome-adaptive successor cycles and two recorded
-incumbent/challenger decisions are required before lock.
-
-## Mandatory falsifiers and ablations
-
-- complete-procedure M1/PMd label permutation at paired-session/trial level;
-- band-label/profile permutation through prototype/classifier construction;
-- within-direction whole-trial LFP-to-latent pairing permutation;
-- TME or smoothness/dimensionality-matched surrogate latent;
-- direction-by-time and elapsed-time-only baselines;
-- low-frequency-only and high-frequency-exclusion analyses;
-- same-electrode/unit-intersection spike-bleed-through sensitivity;
-- matched electrode, trial, spike-rank, and reliability budgets;
-- array/QC/impedance/missing-channel metadata-only prediction and matching,
-  reported as a hardware-confound falsifier rather than a neural comparator;
-- feature-group, mapping-family, normalization, and alignment ablations;
-- leave-one-development-session influence and both transfer directions; and
-- Area-2 recording-domain specificity reported without regional inference.
-
-A mandatory falsifier failure makes the pipeline infeasible regardless of
-headline accuracy.
+At least 40% of valid trials after the starting comparisons must be controls,
+ablations, influence checks, known-answer recovery tests, or direct repeats.
+At least two evidence-led successor trials and two explicit best-model versus
+challenger decisions are required before the final analysis is chosen.
 
 ## Budget and stopping
 
 - minimum valid scientific trials: **20**;
 - maximum valid scientific trials: **48**;
-- patience after the minimum: **10** valid trials without material constrained
-  primary improvement;
+- after the minimum, stop after **10** valid trials without a meaningful
+  improvement that also passes the controls;
 - CPU ceiling: **1,200 core-hours**;
 - GPU ceiling: **0 GPU-hours**;
-- wall-clock ceiling: **96 hours** from first scientific trial;
-- finalists: at most **4** including the incumbent;
-- internal audit openings: **1**;
+- wall-clock ceiling: **96 hours** from the first scientific trial;
+- finalists: at most **4**;
+- reserved-session evaluations: **1**;
 - maximum parallel CPU cores: **32**;
-- per-trial memory ceiling: **128 GB**;
+- memory ceiling per trial: **128 GB**; and
 - scratch-storage ceiling: **750 GB**.
 
-Structural QC, deterministic session allocation, fixtures, and a rerun after a
-proven infrastructure failure that released no score do not count as
-scientific hypotheses but remain logged and consume resource ceilings.
+Source checks, role assignment, small known-answer tests, and a retry after a
+proven technical failure do not count as scientific trials, but they still use
+the resource budget.
 
-## Terminal classes
+## How the study can end
 
-- `candidate_ready`: one locked policy passes development and the one-shot
-  internal audit. It is eligible only for the bounded within-corpus,
-  two-animal claim and carries a mandatory third-animal confirmation
-  requirement for any generalization claim.
-- `closed_no_candidate`: a technically valid bounded search finds no feasible
-  policy, or the locked policy fails the current round's single internal audit.
-- `search_exhausted_no_audit`: development finishes without a permissible
-  internal-audit opening; it maps outward to `closed_no_candidate` but is not
-  evidence that the scientific effect is absent.
-- `technical_failure`: source, pairing, guide, event, electrode/rank,
-  reliability, or executable evaluation gates cannot be satisfied.
-- `policy_violation`: leakage, audit-specific adaptation, outcome-driven
-  reallocation, undeclared operators, or post-reveal candidate swapping.
-
-For canonical outer status, `candidate_ready` maps to `candidate_ready`,
-`closed_no_candidate` and `search_exhausted_no_audit` map to
-`closed_no_candidate`, and `technical_failure` or `policy_violation` maps to
-`technical_failure`.
+| Result | Meaning |
+| --- | --- |
+| One final rule passes development, every required control, and the reserved-session test | Supports only the bounded two-animal, within-corpus recording-domain claim. |
+| A valid search finds no rule that passes, or the final rule fails on the reserved sessions | No supported candidate under this design. |
+| Development finishes but the reserved sessions cannot be opened | Report the development result only; do not imply confirmation. |
+| The source, pairing, feature meanings, or scoring cannot be established | The scientific question was not tested. |
+| Outcomes influenced the split, model choices, or later adaptation | Treat the comparison as invalid, not as scientific evidence. |
 
 ## Claim boundary
 
-Passing the current-release internal audit supports only within-corpus
-cross-session and two-animal transfer under known exposure. A later sealed
-third-animal successor round may support the locked fingerprint's transfer to
-that animal under the compatible task and measurement pipeline, but its result
-cannot rewrite this round's terminal class. Neither result estimates
-population prevalence, separates cortical area from its implanted array or
-other task/hardware confounds, assigns mechanism to frequency bands, or
-generalizes to raw LFP,
-other behaviors, species, or recording technologies.
+A successful reserved-session test supports a reproducible recording-domain
+fingerprint across Mihili and Chewie in this task and feature pipeline. The
+correct-versus-pooled-versus-swapped comparison is additionally required to say
+that the fingerprint has a useful population-prediction consequence.
 
-The stronger paper interpretation—a reusable regional difference in how LFP
-features recover local population dynamics—requires the separately locked
-correct-region versus pooled and swapped-region comparison in the paper plan.
-Classification accuracy alone does not establish that consequence. Even a
-successful third-animal transfer does not fully separate cortical area from
-array placement and other region-linked hardware without a design that breaks
-that confounding. No real EP06 search, audit, or follow-up was run while
-preparing this revision.
+Neither result establishes that cortical area caused the difference, that a
+particular band has a unique biological origin, that the relationship works
+online, or that it generalizes to raw LFP, other behaviors, species, or
+recording technologies. A separately sealed third-animal test is required for
+any claim beyond these two animals, and even that would not by itself separate
+region from array hardware.

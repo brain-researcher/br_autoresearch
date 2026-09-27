@@ -1,241 +1,134 @@
-policy_version: 1
-policy_id: ep05_sensorimotor_lfp_adaptive
-episode_id: ep05
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+episode: EP05
+title: Does the LFP explain why one reach was different?
+status: planned; no real-data analysis has run under this revision
 
-# Planning metadata only. The executable contract below remains the original
-# residual-velocity adaptive search, with its existing roles, budget, primary
-# estimand, terminal classes, and one-shot audit.
-research_program:
-  paper_question: do_compact_m1_lfp_features_track_trial_specific_departures_from_the_average_reach
-  plan_ref: outputs/paper_plan.md
-  primary_round: heldout_direction_residual_velocity_search
-  primary_endpoint_and_terminal_mapping_unchanged: true
-  behavioral_comparator_clarification:
-    type: cyclic_direction_by_elapsed_time_function
-    fitted_on: seven_permitted_directions_only
-    evaluated_at: heldout_direction_angle
-    empirical_heldout_direction_mean_used: false
-    exact_basis_interpolation_support_and_code_must_be_frozen_before_search: true
-  trial_identity_interpretation:
-    purpose: separate_correct_trial_pairing_from_systematic_heldout_direction_template_correction
-    construction: observed_delta_r2_minus_frozen_center_of_within_direction_whole_trial_pairing_null
-    fitted_models_and_transforms_held_fixed: true
-    whole_trial_trajectories_permuted_within_heldout_direction_only: true
-    permutation_count_center_margin_aggregation_and_invalid_rules_must_be_frozen: true
-    required_for_paper_phrase_trial_specific: true
-    changes_primary_endpoint_or_terminal_mapping: false
-  followup:
-    state: proposed_not_configured_or_run
-    evidence_mode: proposed_fixed_comparison
-    purpose: explain_whether_primary_gain_tracks_trial_varying_spike_population_state
-    starts_after_primary_development_result_is_fixed: true
-    automatically_launched_by_this_policy: false
-    primary_winner_or_terminal_may_be_overwritten: false
-    source: exposed_m1_development_sessions_only
-    source_is_independent_replication: false
-    lfp_representation: primary_locked_candidate_without_followup_retuning
-    predictor_input: released_postprocessed_lfp_features
-    explanatory_target: train_only_spike_population_latent_on_heldout_trials
-    shared_kinematic_target: xy_velocity_residual_beyond_train_only_direction_by_time
-    fixed_residual_readouts:
-      - along_path_speed_error
-      - perpendicular_curvature_error
-      - prespecified_time_resolved_xy_error
-    comparisons:
-      - direction_and_elapsed_time_only
-      - matched_low_frequency_or_lmp
-      - matched_high_frequency
-      - spike_population_latent
-      - lfp_to_spike_latent_to_velocity_chain
-      - lfp_plus_spike_population_latent
-    required_interpretation_checks:
-      - lfp_and_spike_predictions_make_same_signed_velocity_correction
-      - temporal_offset_and_whole_trial_pairing_nulls
-      - matched_channel_trial_and_capacity_budgets
-      - same_electrode_unit_intersection_spike_bleed_sensitivity
-      - recording_quality_and_session_influence
-    prospective_evaluation:
-      uses_primary_audit_opening: true
-      policy_or_threshold_adaptation_after_reveal: false
-      new_animal_required_for_broader_biological_generalization: true
-    separate_contract_required:
-      - latent_rank_smoothing_and_alignment
-      - residual_decomposition_and_support_rules
-      - fixed_models_capacity_and_comparators
-      - meaningful_margins_multiplicity_and_uncertainty
-      - synthetic_recovery_nulls_budget_and_stop_rules
-      - result_table_and_claim_mapping
-    inherits_primary_trial_budget: false
-    primary_candidate_ready_implies_paper_claim_established: false
+scientific_question:
+  primary: >-
+    Does an individual trial's M1 LFP improve prediction of its complete X/Y
+    velocity beyond the movement expected from reach direction and elapsed time?
+  explanation_if_positive: >-
+    Does the useful LFP signal track the same trial-varying motor-population
+    activity that is visible in simultaneously recorded spikes?
 
-dataset_roles:
-  shared_exposure_ledger_group: lfp_ep05_ep08
-  infrastructure_reproduction:
-    source: exposed_dryad_release_and_pinned_publication_code
-    use: fixed_pass_mismatch_technical_failure_gate_not_search
-    counts_as_trial: false
+evidence:
   development:
-    source: all_structurally_eligible_exposed_m1_sessions
-    use: nested_whole_session_policy_search
-    freshness: historically_exposed
-  selection:
-    source: frozen_outer_session_folds_within_exposed_release
-    use: animal_balanced_constrained_policy_selection
-    freshness: internal_only
-  audit:
-    source: prospective_compatible_future_whole_sessions
-    use: one_shot_locked_policy_evaluation
-    freshness: must_be_sealed
-    available: false
+    source: all eligible M1 sessions in the previously exposed Dryad release
+    role: model development and comparison only
+  future_test:
+    source: compatible whole sessions kept unseen during development
+    role: evaluate the final analysis once
+    currently_available: false
+  biological_replication:
+    rule: report Mihili and Chewie separately; Chewie implants are one animal
+    broader_claim: requires a future session from a new animal
 
-grammar:
-  lfp_blocks:
-    - lmp
-    - authenticated_single_power_band
-    - registered_low_frequency_block
-    - registered_high_frequency_block
-    - registered_all_band_block
-    - lmp_plus_one_registered_band_block
-  channel_transforms:
-    - fixed_matched_electrode_mean
-    - fixed_matched_electrode_median
-    - train_only_channel_pca
-    - train_only_reliability_weighting
-    - deterministic_train_only_top_k_from_finite_schedule
-  temporal_representations:
-    - current_bin
-    - registered_finite_history_schedule
-  targets:
-    primary: xy_velocity_residual_beyond_train_only_direction_by_time
-    diagnostic:
-      - speed
-      - acceleration
-  feature_transforms:
-    - train_only_standardization
-    - train_only_pca
-    - train_only_pls
-    - registered_lfp_by_elapsed_time_tensor_product
+primary_comparison:
+  evaluation_unit: one whole session, summarized separately within each animal
+  split: train on seven reach directions and test on the eighth
+  baseline: cyclic direction-by-elapsed-time prediction fit without the held-out direction
+  candidate: the same baseline plus an LFP prediction of the remaining X/Y velocity error
+  score: improvement in full-trajectory R-squared over the baseline on identical trials
+  trial_specific_check: >-
+    Keep every fitted model fixed and pair each predicted trajectory with a
+    different trial to the same target. Correct trial pairings must score better.
+
+model_choices:
+  lfp_features:
+    - local motor potential
+    - one documented power band
+    - prespecified low-frequency, high-frequency, or all-band blocks
+    - local motor potential plus one band block
+  channel_summaries:
+    - fixed mean or median across matched electrodes
+    - training-only principal components
+    - training-only reliability weights
+    - training-only top-k choice from a short prespecified list
+  temporal_inputs:
+    - current bin
+    - a prespecified finite history window
   predictors:
-    - ridge
-    - elastic_net
-    - reduced_rank_regression
-    - pls_regression
-    - linear_kernel_ridge
-    - rbf_kernel_ridge
-  ensemble:
-    max_members: 2
-    rule: convex_blend_of_pre_evaluated_complementary_pipelines
-  forbidden:
-    - per_session_winner_selection
-    - arbitrary_window_search
-    - bin_level_random_split
-    - test_direction_preprocessing
-    - cross_session_weight_transfer_claim
-    - arbitrary_code_mutation
+    - ridge or elastic-net regression
+    - reduced-rank or partial-least-squares regression
+    - linear or radial-basis kernel ridge
+  not_allowed:
+    - choosing a different winning method for each session
+    - searching arbitrary time windows
+    - splitting individual time bins across training and test sets
+    - fitting preprocessing on the held-out direction
+    - claiming online or cross-session weight transfer from these offline tests
 
-objectives:
-  primary:
-    name: animal_balanced_session_level_delta_r2_sse_over_direction_by_time
-    direction: maximize
-  secondary:
-    - session_consistency
-    - low_frequency_robustness
-    - model_complexity
-    - random_trial_ceiling
-  constraints:
-    - publication_reproduction_gate_pass
-    - positive_frozen_summary_in_both_eligible_m1_animals
-    - frozen_majority_of_sessions_positive
-    - whole_trial_pairing_null_pass
-    - leave_one_session_and_budget_matching_pass
-    - behavior_and_elapsed_time_increment_positive
-    - temporal_offset_and_feature_label_controls_pass
-    - not_exclusively_high_frequency_or_spike_bleed_through
+minimum_model_set:
+  - direction-and-time baseline
+  - local motor potential
+  - canonical low-frequency and high-frequency blocks
+  - regularized linear model
+  - reduced-rank model
+  - one nonlinear reference
 
-budgets:
-  minimum_valid_trials: 28
-  maximum_valid_trials: 64
-  patience_valid_trials: 12
-  cpu_core_hour_ceiling: 2000
-  gpu_hour_ceiling: 0
-  wall_clock_hour_ceiling: 120
-  max_parallel_cores: 32
-  max_memory_gb_per_trial: 128
-  max_scratch_gb: 750
-  finalists_max: 4
-  audit_openings_max: 1
+requirements_for_a_positive_result:
+  - the prespecified animal-level summary is positive in both animals
+  - the prespecified majority of eligible sessions is positive
+  - correct trial pairings beat wrong pairings within the same reach direction
+  - the result survives leaving out each session in turn
+  - the result survives matched trial and channel counts
+  - behavior-only and elapsed-time-only models do not explain the gain
+  - temporal-offset and feature-label negative controls pass
+  - the gain is not confined to 100-400 Hz power or same-electrode spike contamination
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 10
-  rule: behavior_lmp_low_high_linear_reduced_rank_and_nonlinear_anchors
-  readiness_rejection_must_be_logged: true
+development_process:
+  initial_stage: run every model in the minimum model set
+  later_trials: change one interpretable scientific choice at a time
+  finalist_limit: 4
+  final_choice: one analysis recipe used for every session
+  future_test_rule: no feature, model, threshold, exclusion, or candidate change after any future score is visible
+  control_fraction_after_initial_stage: 0.40
+  adaptive_rounds_before_final_choice: 2
+  leader_challenger_comparisons_before_final_choice: 2
 
-required_falsifiers:
-  - fixed_publication_fidelity_gate
-  - direction_by_time_and_elapsed_time_baselines
-  - within_direction_whole_trial_evaluation_pairing
-  - whole_trial_lfp_behavior_shuffle
-  - registered_temporal_offsets
-  - lmp_band_low_high_all_block_ablations
-  - matched_electrode_channel_and_trial_budgets
-  - same_electrode_unit_intersection_sensitivity
-  - target_residualization_ablation
-  - leave_one_session_and_both_animal_signs
-  - capacity_matched_random_or_phase_surrogate
+budget:
+  minimum_scientific_trials: 28
+  maximum_scientific_trials: 64
+  patience_after_minimum_without_material_improvement: 12
+  cpu_core_hours: 2000
+  gpu_hours: 0
+  wall_clock_hours: 120
+  maximum_parallel_cpu_cores: 32
+  memory_gb_per_trial: 128
+  scratch_gb: 750
+  future_session_evaluations: 1
 
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  reproduction_counts_as_search: false
-  coverage_rule: run_behavior_lmp_low_high_linear_reduced_rank_and_nonlinear_anchors
-  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_eligible_sessions_directions_and_falsifiers
-  lock_rule: select_one_global_policy_then_write_once_source_version_group_splits_code_revision_dag_guides_windows_thresholds_seeds_and_result_fields
+study_outcomes:
+  supported_in_future_sessions: >-
+    One global analysis passes development, all required controls, and the
+    single evaluation on compatible sessions kept unseen during development.
+  no_supported_candidate: >-
+    No model survives the comparisons and controls, or the final model fails
+    on the future sessions.
+  development_only: >-
+    Development finishes on the exposed public recordings but no sealed future
+    session is available; any result remains exploratory.
+  no_scientific_answer: >-
+    The source, event meanings, eligibility, reproduction, or scoring cannot be
+    established reliably, or the planned separation of evidence is broken.
 
-stop:
-  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
-  after_minimum: patience_or_max_trials_or_resource_ceiling
-  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
-  valid_terminal_classes:
-    - candidate_ready
-    - closed_no_candidate
-    - search_exhausted_no_audit
-    - technical_failure
-    - policy_violation
-audit:
-  mode: one_shot_after_configuration_lock
-  configuration_lock_required: true
-  maximum_open_count: 1
-  audit_updates_search: false
-  source_required: prospective_compatible_future_whole_sessions
-  exposed_dryad_sessions_eligible_as_fresh_audit: false
-  session_specific_fit_under_locked_recipe: allowed
-  policy_adaptation: forbidden
-  candidate_swap: forbidden
-  threshold_or_exclusion_change: forbidden
-  partial_score_visibility: forbidden
+follow_up_if_primary_is_positive:
+  source: exposed M1 development sessions, not independent replication
+  lfp_input: the final primary LFP representation without follow-up retuning
+  question: >-
+    Does that LFP representation predict held-out changes in a training-derived
+    spike-population state, and do both signals predict the same speed or
+    curvature correction?
+  required_alternatives:
+    - direction and elapsed time alone
+    - matched low-frequency and high-frequency features
+    - temporal offsets and wrong-trial pairings
+    - matched channel, trial, and model capacity
+    - same-electrode spike-contamination sensitivity
+  boundary: the follow-up cannot change the answer to the primary kinematic test
 
-terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_candidate: closed_no_candidate
-  search_exhausted_no_audit: closed_no_candidate
-  technical_failure: technical_failure
-  policy_violation: technical_failure
-
-reporting:
-  scientific_scope:
-    primary_and_explanatory_followup_reported_separately: true
-    positive_delta_r2_alone_supports_shared_population_state_claim: false
-    spike_latent_association_may_rescue_failed_primary: false
-    exposed_followup_is_independent_replication: false
-    online_or_causal_bci_claim_allowed: false
-  main_figures:
-    - heldout_direction_trial_specific_velocity_gain
-    - residual_components_and_feature_source
-    - lfp_spike_latent_shared_prediction_and_falsifiers
-    - locked_future_session_audit
-    - compact_feature_resource_consequence_and_limits
+claim_limits:
+  - offline post-processed LFP features only
+  - no causal claim
+  - no online BCI claim
+  - no raw-voltage claim
+  - no broad population claim without a new-animal test

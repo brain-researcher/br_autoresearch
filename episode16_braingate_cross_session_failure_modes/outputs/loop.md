@@ -1,34 +1,19 @@
-# Loop projection
+# Current study stage
 
-> Client-maintained projection of observed persisted outer-loop state. Persisted
-> MCP state remains authoritative. This file does not grant reward, approval,
-> execution, Society, scientific, ClaimCard, memory, or Landscape authority. It
-> is not a CandidateBundle review artifact and must never be declared in
-> a frozen CandidateBundle's `output_artifacts`.
+## Where EP16 is now
 
-## Binding
+EP16 has a science-first question, one four-panel study figure, a compact
+methods policy, and
+a four-figure paper plan. It remains before data analysis.
 
-- observed_at: not observed
-- source: not observed
-- loop_id: not observed
-- goal_handoff_id: not observed
-- revision: not observed
+## Next scientific steps
 
-## Observed state
+1. Check observed target schedules and near/long pair support without neural
+   scores.
+2. Choose the six development and three held-out participants.
+3. Fill the numeric values still marked `null` in `../SEARCH_POLICY.yaml`.
+4. Demonstrate the intended results and failure cases with synthetic examples.
+5. Only then consider development-data scoring.
 
-- Stage: not observed
-- next_action: not observed
-- terminal_status: not observed
-- current human gate: not observed
-
-## Observed transition timeline
-
-| observed_at | source | from | to | evidence ref |
-| --- | --- | --- | --- | --- |
-| not observed | not observed | not observed | not observed | not observed |
-
-## Boundary
-
-- Copy only facts returned by the persisted loop or Goal MCP read surfaces.
-- This projection must not infer a transition, action, or authority that MCP has
-  not returned.
+The final held-out evaluation is not the next step and cannot be used to guide
+development.

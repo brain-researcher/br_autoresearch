@@ -1,45 +1,17 @@
-# Society projection
+# External review status
 
-> Client-maintained, stage-aware projection of observed MCP facts.
-> Its review content begins only after packet freeze.
-> Persisted MCP Goal and Society records remain authoritative. This file does
-> not grant Society, reward, approval, execution, scientific, ClaimCard, memory,
-> or Landscape authority. It is not a CandidateBundle review artifact and must
-> never be declared in a frozen CandidateBundle's `output_artifacts`.
+No external scientific review has been requested or completed for EP16.
 
-This projection does not grant Society authority.
+When review is eventually requested, reviewers should focus on:
 
-## Binding
+- whether the near-versus-long comparison really removes ordinary source- and
+  target-session difficulty;
+- whether the recording-state emulator can support a sufficiency claim rather
+  than a correlation claim;
+- whether 32-label recalibration is compared at equal data and model capacity;
+- whether three held-out participants can support the proposed common-pattern
+  or within-person heterogeneity conclusions; and
+- whether the offline claim boundaries are stated prominently.
 
-- Goal handoff: not observed
-- Outer loop: not observed
-- Review packet: not observed
-- Direction: not observed
-- observed_at: not observed
-- source: not observed
-
-## Society status
-
-- Applicability: not observed
-- Called: not observed
-- Native panel snapshot: not observed
-- Server-owned decision: not observed
-- Strongest objections: not observed
-- Required confirmation changes: not observed
-
-## Stage rule
-
-- Before `autoresearch_goal_review_prepare`: Society has not been called; do
-  not write a verdict.
-- For `closed_no_candidate` or `technical_failure`: replace the status above
-  with `Society: not eligible and not called`.
-- After `candidate_ready` review begins: update this projection only with
-  observed MCP facts returned by `autoresearch_goal_get`,
-  `autoresearch_goal_review_prepare`, or `autoresearch_goal_review_submit`.
-  Do not infer, compose, or promote a verdict from local prose.
-
-## Boundary
-
-- A Society decision is not scientist reward, portfolio selection, launch
-  approval, execution, scientific acceptance, or Landscape transition.
-- This projection is a readable delivery artifact, not a second Society record.
+This file contains no verdict and grants no permission to run or interpret the
+study.

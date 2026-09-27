@@ -1,30 +1,24 @@
 # Research memory
 
-> Client-maintained workspace projection only. This is not Brain Researcher memory.
-> Workflow policy: do not promote it outside this workspace without a separate,
-> scientist-requested memory write.
+## Reusable lessons from the design
 
-## Reusable local lessons
-
-- Not yet established. Every lesson must cite an `outputs/` evidence ref.
-
-## Approaches not carried forward
-
-- None recorded. Each entry must state its scope, reason, and an `outputs/` evidence ref.
-- A local exploratory failure does not establish scientific invalidation.
-
-## Observed failure modes
-
-- None recorded. Record the local context and supporting `outputs/` evidence ref.
-
-## Constraints and data gaps
-
-- Not yet assessed.
+- A poor cross-session score is not yet a failure mechanism; compare it with a
+  later-session model and a null on the same trials.
+- Establish the extra long-gap loss before trying to explain it.
+- Less locally recoverable signal, observable recording change, and low-budget
+  remappability are compatible explanations and must be tested separately.
+- Session pairs are repeated measurements. The participant is the biological
+  unit.
+- A pattern across participants is persuasive only when the same pre-set rule
+  is used for each person.
 
 ## Open questions
 
-- Not yet assessed.
+- Do at least three outcome-unexposed participants have enough comparable near-
+  and long-gap session pairs?
+- What onset offset and target-schedule tolerance are scientifically defensible?
+- What raw-score decline and recording-emulation margins should accompany the
+  proposed normalized anchors?
+- Can the complete panel fit within the resource limits?
 
-## Promotion status
-
-- Not requested.
+These are design questions, not scientific results.

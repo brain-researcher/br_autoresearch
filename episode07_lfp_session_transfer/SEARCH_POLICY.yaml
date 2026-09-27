@@ -1,531 +1,236 @@
-contract_version: autoresearch.adaptive_search_policy.v1
-policy_id: ep07_cross_session_transfer_adaptive
-episode_id: ep07
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+episode: EP07
+title: Can earlier recording days help predict neural activity on a new day?
+status: planned_not_run
 
-# Planning metadata only. The executable search and its terminal decision
-# remain the primary forward-transfer round defined below.
-research_program:
-  paper_question: what_lfp_to_population_information_survives_from_earlier_days_after_target_day_calibration
-  plan_ref: outputs/paper_plan.md
-  primary_round: source_bearing_transfer_vs_direction_time_mean_and_matched_calibration_only
-  primary_estimand_budget_roles_and_terminal_rules_unchanged: true
-  followup:
-    state: proposed_not_configured_or_run
-    evidence_mode: proposed_fixed_mechanism_comparison
-    starts_after_primary_conclusion_is_fixed: true
-    automatically_launched_by_this_policy: false
-    primary_terminal_may_be_overwritten: false
-    purpose: distinguish_mean_reach_reuse_aligned_population_geometry_and_trial_specific_lfp_spike_residual_transfer
-    discovery_source: source_days_and_assigned_target_development_trials_only
-    primary_audit_outcomes_may_select_mechanism: false
-    candidate_mechanisms:
-      - direction_by_time_mean_reuse
-      - behavior_anchored_low_dimensional_geometry
-      - within_direction_time_trial_residual_coupling
-    candidate_feature_blocks:
-      - lmp
-      - authenticated_power_band_families
-      - locked_source_fitted_population_dimensions
-    candidate_mechanism_count_max: 2
-    development_targets_are_already_exposed_to_primary_evaluator: true
-    mechanism_selection_and_ties_fixed_before_any_new_mechanism_specific_score_or_diagnostic: true
-    primary_audit_can_supply_only_secondary_outputs_registered_before_its_single_opening: true
-    mechanism_endpoints:
-      - separately_scored_direction_time_template_component
-      - separately_fit_residual_only_source_gain_over_matched_calibration_only_reference
-      - lfp_inputs_and_spike_targets_residualized_before_model_fit
-      - no_algebraic_recentering_of_completed_full_predictions
-      - source_day_and_component_omission_influence
-      - calibration_visible_prediction_of_target_session_source_benefit
-    required_signal_boundary_checks:
-      - lmp_or_low_frequency_only
-      - exclude_100_400_hz_power
-      - same_electrode_unit_intersection
-      - spike_quality_matched_support
-      - high_frequency_only_result_is_spike_rich_feature_boundary
-    external_prediction:
-      source_manifest: null
-      requires_newly_sequestered_target_sessions: true
-      source_weights_fit_within_animal_implant_and_region: true
-      frozen_rule_predicts_activity_and_session_level_source_benefit: true
-      target_outcomes_may_fit_or_select_rule: false
-      same_consumed_primary_audit_is_new_confirmation: false
-      chewie_r_is_third_animal_replication: false
-    separate_contract_required:
-      - mechanism_candidate_selection_and_multiplicity
-      - residual_definition_and_component_accounting
-      - source_and_target_session_manifest_with_exposure_history
-      - calibration_visible_transferability_predictors
-      - fixed_models_comparators_margins_and_uncertainty
-      - source_day_component_and_behavior_template_falsifiers
-      - spike_bleed_and_frequency_boundary_checks
-      - compute_budget_stop_rules_and_result_table
-      - one_shot_external_evaluation
-    inherits_primary_budget_search_feedback_or_audit_opening: false
-    positive_primary_implies_mechanism_claim: false
+scientific_question: >-
+  After a new recording day provides a nominal 20 percent calibration sample,
+  do three earlier days from the same animal, implant, and cortical region add
+  predictive information about population spiking on untouched new-day trials?
 
-numeric_contract:
-  scientist_decision: retain_full_declared_model_space
-  operator_grammar_ref: NUMERIC_OPERATOR_GRAMMAR.md
-  anchor_runtime_contract_ref: ANCHOR_RUNTIME_CONTRACT.yaml
-  numeric_search_contract_ref: NUMERIC_SEARCH_CONTRACT.yaml
-  anchors_per_stream: 16
-  adaptive_successor_pairs_range: [2, 14]
-  finalist_falsifier_pairs: 10
-  outcome_contacts_per_stream_range: [28, 40]
-  total_outcome_contacts_range: [56, 80]
-  post_coverage_falsifier_fraction_min: 0.40
-  executable_status: pending_implementation_and_targeted_runtime_smoke_test
+primary_settings:
+  m1_movement:
+    region: M1
+    window: 150 to 450 ms after movement onset
+    native_bin_ms: 30
+    bins: 10
+  pmd_preparation:
+    region: PMd
+    window: 450 ms before the go cue up to the go cue
+    native_bin_ms: 30
+    bins: 15
 
-dataset_roles:
-  shared_exposure_ledger_group: lfp_ep05_ep08
-  prior_exposure: true
-  source_training: prespecified_source_only_days_within_the_same_animal_implant_and_region
-  target_calibration_fraction: 0.20
-  adaptive_development_fraction: 0.40
-  locked_evaluation_fraction: 0.40
-  split_unit: whole_trial_stratified_within_target_day_and_direction
-  primary_domains: [mihili_m1, chewie_l_m1, mihili_pmd, chewie_l_pmd]
-  assignment_unit: whole_recording_day
-  assignment_rule: first_three_days_source_only_last_three_days_target_only_forward_in_time
-  primary_session_roles:
-    mihili:
-      source_only: ["2014-02-17", "2014-02-18", "2014-03-03"]
-      target_only: ["2014-03-04", "2014-03-06", "2014-03-07"]
-    chewie_l:
-      source_only: ["2016-09-29", "2016-10-05", "2016-10-06"]
-      target_only: ["2016-10-07", "2016-10-14", "2016-10-21"]
-  simultaneous_region_rule: M1_and_PMd_from_the_same_recording_day_must_have_the_same_role
-  global_nonoverlap_invariant: no_trial_from_any_target_only_day_may_enter_any_source_fit
-  primary_animals: [mihili, chewie_l]
-  sensitivity_domains: [chewie_r_m1]
-  sensitivity_may_satisfy_primary_replication: false
-  cross_animal_transfer: prohibited
-  cross_region_transfer: prohibited
-  target_trial_split:
-    split_unit: whole_trial_stratified_within_target_day_and_direction
-    split_seed_utf8: ep07-target-role-split-v1
-    ordering_payload: canonical_JSON_UTF8_array_of_split_seed_animal_id_session_date_direction_id_authenticated_trial_id
-    ordering: ascending_SHA256_hex_digest_then_authenticated_trial_id_as_collision_tiebreak
-    minimum_complete_trials_per_direction: 15
-    n_calibration: "floor(0.2*n + 0.5)"
-    n_development: "floor((n - n_calibration)/2)"
-    n_audit: "n - n_calibration - n_development"
-    minimum_result_at_n_15:
-      calibration: 3
-      development: 6
-      audit: 6
-    expected_directions_per_primary_day: 8
-    missing_primary_day_or_insufficient_direction_support: analysis_ineligible_requires_policy_revision
-  eligibility_and_response:
-    assignment_timing: before_target_trial_hashing_and_before_any_candidate_or_comparator_fit
-    whole_simultaneous_trial_predicate:
-      result: exactly_R
-      bin_size_seconds: 0.03
-      joined_identities: [animal, implant, day, behavioral_trial, M1, PMd, reach_direction]
-      direction_mapping: nearest_circular_multiple_of_pi_over_4_labeled_0_through_7
-      maximum_direction_error_radians: 0.01
-      event_indices: finite_integers_with_each_frozen_window_supported_on_its_native_axis
-      provider_event_indexing: MATLAB_one_based_converted_exactly_once_to_zero_based
-      python_time_slices: {m1_execution: "M1[movement+5:movement+15]", pmd_preparation: "PMd[go_cue-15:go_cue]"}
-      arrays_and_guides: declared_two_dimensional_shapes_and_consistent_time_axes
-      required_window_values: all_LFP_and_spike_values_finite_in_both_strata
-      spike_values: nonnegative_integers
-      either_stratum_failure: exclude_the_whole_simultaneous_trial
-    eligibility_must_not_use: [variability, magnitude, residuals, model_scores, comparator_scores]
-    scored_response: provider_released_native_bin_spike_count_unchanged
-    prediction_scale: original_target_neuron_native_count_scale
-    forbidden_primary_response_transforms: [square_root, logarithm, smoothing, clipping, variance_normalization]
-  target_roles:
-    calibration:
-      fraction_nominal: 0.20
-      visible_to_candidate: true
-      outcomes_may_fit_target_state: true
-    development:
-      fraction_nominal: 0.40
-      visible_to_candidate: covariates_and_opaque_trial_ids_only
-      outcomes_visible_to: trusted_development_evaluator_only
-    audit:
-      fraction_nominal: 0.40
-      visible_before_lock: false
-      outcomes_visible_to: permission_separated_one_open_audit_evaluator_only
-  strata:
-    m1_execution:
-      region: M1
-      event: movement_onset
-      half_open_window_ms: "[movement_onset+150,movement_onset+450)"
-      native_bin_width_ms: 30
-      native_bin_count: 10
-    pmd_preparation:
-      region: PMd
-      event: go_cue
-      half_open_window_ms: "[go_cue-450,go_cue)"
-      native_bin_width_ms: 30
-      native_bin_count: 15
-    resampling_or_interpolation: prohibited
-  evaluation_evidence: internal_locked_whole_trial_holdout
-  provider_preprocessing_exception:
-    allowed: true
-    scope: frozen_provider_released_representation_only
-    known_non_role_reconstructible_steps:
-      - session_wide_centering
-      - zero_phase_filtering
-      - smoothing
-    conditions:
-      - performed_by_provider_before_episode_role_assignment
-      - target_label_blind
-      - identical_released_inputs_for_transfer_and_comparators
-      - no_episode_fit_or_selection_uses_development_or_audit_outcomes
-      - exception_recorded_in_exposure_record_and_final_lock
-    claim_limit: released_provider_preprocessed_representation_not_raw_voltage
-  handoff_firewall:
-    candidate_read_allowlist:
-      - source_only_LFP_spike_targets_and_covariates
-      - target_calibration_LFP_spike_targets_and_covariates
-      - target_development_LFP_covariates_and_opaque_trial_ids
-      - frozen_structural_metadata_and_role_records
-    candidate_forbidden:
-      - target_development_labels
-      - audit_trial_ids_covariates_labels_metrics_or_prediction_joins
-      - mixed_raw_Dryad_payload
-      - sibling_episode_raw_inputs_features_scores_winners_or_caches
-      - prior_episode_selected_settings_or_trial_order
-      - symlinks_or_hardlinks_to_any_forbidden_source
-      - network_reacquisition
-      - mutable_shared_cache
-    evaluator_separation:
-      development_labels: trusted_development_evaluator_only
-      audit_payload: separately_sealed_permission_separated_store
-      feedback_to_candidate: scalar_allowlisted_development_metrics_and_approved_diagnostics_only
-      audit_access: exactly_once_after_immutable_final_lock
-    execution_requirements:
-      - network_disabled_candidate_worker
-      - read_allowlist_excluding_repository_root_sibling_inputs_and_audit_vault
-      - one_targeted_forbidden_role_access_test_before_scored_search
+recording_days:
+  mihili:
+    earlier_days: ["2014-02-17", "2014-02-18", "2014-03-03"]
+    new_days: ["2014-03-04", "2014-03-06", "2014-03-07"]
+  chewie_l:
+    earlier_days: ["2016-09-29", "2016-10-05", "2016-10-06"]
+    new_days: ["2016-10-07", "2016-10-14", "2016-10-21"]
+  rules:
+    - M1 and PMd from the same day always share the same role.
+    - A new-day trial never enters an earlier-day fit.
+    - Fitting never crosses animal, implant, or cortical-region boundaries.
+    - Chewie-R is an implant sensitivity, not an independent animal.
 
-grammar:
-  representations:
-    feature_classes: [lmp, eight_authenticated_power_bands]
-    temporal_bins_ms: [30]
-    temporal_bin_rule: native_bins_only_no_resampling_or_interpolation
-    electrode_aggregation: [moments_quantiles, robust_histogram, low_rank_set_encoder]
-  latent_alignment:
-    ranks: [4, 8, 12, 16]
-    whitening: [false, true]
-    methods: [none, orthogonal_procrustes, regularized_cca]
-  nuisance: [direction_time_residual, additive_direction_time, combined]
-  source_pooling: [equal_session, reliability_weighted, calibration_similarity, hierarchical_shrinkage, leave_one_source_stacking]
-  mappings: [ridge, elastic_net, reduced_rank_ridge, shallow_mlp]
-  adaptation: [zero_prior_fit, source_prior_shrinkage, convex_source_target]
-  max_ensemble_members: 2
-  one_global_policy_rule: one_frozen_policy_shared_across_all_eligible_target_days_no_session_specific_winner
-  fit_visibility: source_only_and_target_calibration_only
-  configuration_seed_rule: deterministic_seed_derived_from_policy_hash_and_configuration_hash
-  numeric_hyperparameters_and_tie_order:
-    operator_equations_ref: NUMERIC_OPERATOR_GRAMMAR.md
-    finite_grid_anchor_runtime_ref: ANCHOR_RUNTIME_CONTRACT.yaml
-    selection_budget_retry_terminal_ref: NUMERIC_SEARCH_CONTRACT.yaml
-    rule: all_referenced_contract_versions_are_frozen_before_development_outcome_access_and_carried_into_the_final_lock
-  forbidden:
-    - evaluation_fitted_transform
-    - development_label_access_by_candidate
-    - per_session_winner_selection
-    - numeric_channel_matching_across_days
-    - cross_animal_or_cross_region_transfer
-    - target_day_trials_in_any_source_fit
-    - free_form_feature_code
-    - raw_waveform_deep_network
-    - episode_level_reprocessing_that_crosses_target_trial_roles
+new_day_trial_split:
+  unit: whole behavioral trial within each day and reach direction
+  ordinary_seed: ep07-target-role-split-v1
+  method: >-
+    Shuffle once with the predeclared seed, save the resulting table before
+    outcomes are examined, allocate 20 percent to calibration, and divide the
+    remainder as evenly as possible between development and held-out testing.
+  counts:
+    calibration: floor(0.2*n + 0.5)
+    development: floor((n - calibration)/2)
+    held_out: n - calibration - development
+  minimum_complete_trials_per_direction: 15
+  minimum_counts_per_direction:
+    calibration: 3
+    development: 6
+    held_out: 6
+  reach_directions: 8
+  no_role_changes_after_outcomes: true
 
-comparators:
-  fixed:
-    direction_time_mean:
-      comparator_id: target_calibration_direction_by_time_mean
-      fit_data: target_calibration_only
-      development_feedback: none_except_predeclared_score_reporting_within_paired_evaluation
-    calibration_only_champion:
-      comparator_id: target_calibration_only_matched_search_champion
-      source_information: prohibited
-      fit_data: target_calibration_only
-      legal_model_families: same_representation_nuisance_mapping_and_target_adaptation_families_as_transfer_when_source_free
-      evaluator_budget: exactly_equal_to_transfer_stream
-      selection: one_global_calibration_only_policy_no_session_specific_winner
-  common_information_rule: every_comparator_uses_the_same_target_calibration_trials_target_neuron_roster_and_provider_representation_as_transfer
+data_rules:
+  response: provider-released native-bin spike counts on the original scale
+  inputs:
+    - LMP
+    - eight released power-band classes
+  primary_representation: provider-preprocessed offline LFP features
+  eligibility_uses_only:
+    - successful reach status
+    - matching animal, implant, day, direction, M1, and PMd identities
+    - supported movement and go-cue windows
+    - present finite LFP and spike values
+    - nonnegative integer spike counts
+  eligibility_must_not_use:
+    - neural magnitude or variability
+    - model residuals
+    - candidate or comparison scores
+  neuron_rule: >-
+    Keep the consistently present neurons within each day and region without
+    using outcome values; do not match neuron identities across days.
 
-paired_evaluator_budget:
-  counting_unit: one_outcome_contacting_stream_trial
-  streams: [transfer, calibration_only_champion]
-  anchors_per_stream: 16
-  anchor_total: 32
-  adaptive_successor_pairs_minimum: 2
-  adaptive_successor_pairs_maximum: 14
-  finalist_bound_falsifier_pairs_exact: 10
-  evaluations_per_pair_per_stream: 1
-  evaluations_per_pair_total: 2
-  selectable_configurations_per_stream_range: [18, 30]
-  outcome_contacts_per_stream_range: [28, 40]
-  total_outcome_contacts_range: [56, 80]
-  minimum_audit_eligible_valid_trials: 56
-  total_formula: "2 * (16 + adaptive_successor_pairs + 10)"
-  allocation_rule: every_successor_and_falsifier_round_is_paired_and_no_score_dependent_unpaired_budget_is_allowed
-  falsifier_selection_rule: all_ten_pairs_are_bound_to_the_single_frozen_finalists_and_never_enter_selection
-  capacity_statement: controls_tuning_opportunity_not_model_capacity
+models:
+  lfp_representation:
+    - moments and quantiles across electrodes
+    - robust histograms
+    - low-rank permutation-invariant set encoder
+  population_rank: [4, 8, 12, 16]
+  alignment:
+    - none
+    - behavior-guided orthogonal alignment
+    - regularized correlation alignment
+  direction_and_time_adjustment:
+    - residualize
+    - include as predictors
+    - combine the two approaches
+  earlier_day_weighting:
+    - equal
+    - reliability based
+    - calibration similarity based
+    - hierarchical shrinkage
+    - leave-one-day stacking
+  mapping:
+    - ridge
+    - elastic net
+    - reduced-rank ridge
+    - shallow two-layer network with width at most 64
+  ensemble:
+    maximum_models: 2
+    members_must_already_be_evaluated: true
+  excluded:
+    - raw-waveform networks
+    - non-native temporal summaries
+    - cross-animal or cross-region inputs
+    - matching numeric channel identities across days
+    - a different winner for each session, animal, or setting
+    - any choice based on held-out outcomes
 
-metrics_and_estimands:
-  audit_unit: whole_target_trial
-  nonindependent_subunits: [native_bins, neurons, directions, calibration_repeats]
-  target_neuron_roster:
-    membership: every_authenticated_unit_guide_entry_present_with_identical_identity_and_order_across_all_eligible_trials_and_required_windows_of_the_target_day_and_region
-    construction_inputs: authenticated_unit_guide_values_and_array_shapes_only
-    forbidden_construction_inputs: [calibration_spike_values, development_spike_values, audit_spike_values, variability, residuals, scores]
-    canonical_order: lexicographic_canonical_unit_guide_tuple
-    freeze_time: before_target_trial_hashing_and_before_any_target_spike_value_is_available_to_a_model
-    guide_mismatch: target_day_structurally_ineligible_no_intersection_roster
-    individual_low_or_zero_variance_neuron: retain
-    sharing: identical_roster_for_transfer_and_all_comparators
-  source_neuron_roster:
-    membership: every_authenticated_source_day_unit_guide_entry_present_with_identical_identity_and_order_across_all_eligible_source_trials_and_required_windows
-    construction_inputs: authenticated_unit_guide_values_and_array_shapes_only
-    canonical_order: lexicographic_canonical_unit_guide_tuple_within_source_day_and_region
-    cross_day_neuron_matching: prohibited
-    outcome_value_filtering: prohibited
-  zero_joint_audit_denominator: technical_failure_no_posthoc_neuron_or_session_exclusion
-  day_level_r2:
-    name: R2_SSE
-    aggregation: one_joint_SSE_over_all_audit_trials_native_bins_and_frozen_target_neurons_within_target_day_and_stratum
-    formula: "R2[s,k,m] = 1 - sum_{t,q,j}(y[s,k,t,q,j]-yhat[m,s,k,t,q,j])^2 / sum_{t,q,j}(y[s,k,t,q,j]-mean_audit_{t,q}(y[s,k,t,q,j]))^2"
-    computed_once_per_model_day_and_stratum: true
-  comparator_increment:
-    formula: "Delta[s,k,b] = R2[s,k,transfer] - R2[s,k,b]"
-    comparators: [target_calibration_direction_by_time_mean, target_calibration_only_matched_search_champion]
-  animal_balanced_comparator_estimand:
-    formula: "theta[k,b] = mean_{a in {mihili,chewie_l}} mean_{s in three_target_days(a)} Delta[s,k,b]"
-    fixed_session_weights: equal_within_animal_then_equal_between_animals
-  intersection_union_estimand:
-    formula: "theta[k] = min_b theta[k,b]"
-    interpretation: transfer_increment_against_each_and_both_prespecified_comparators
+comparisons:
+  direction_time_mean: >-
+    Mean response for reach direction and native time bin, estimated from the
+    new day's calibration trials only.
+  today_only_model: >-
+    Equally tuned model using the same new-day calibration and development
+    opportunities but no earlier-day observations or fitted state.
+  history_assisted_model: >-
+    Model using the three earlier days plus the same new-day calibration data.
+  requirement: The history-assisted model must beat both comparisons.
 
-objectives:
-  primary: animal_balanced_mean_delta_r2_against_each_prespecified_comparator
-  adaptive_stream_scores:
-    transfer_before_calibration_champion_freezes: equal_stratum_animal_balanced_increment_over_fixed_direction_time_mean
-    calibration_only: equal_stratum_animal_balanced_absolute_r2
-    transfer_final_selection_after_calibration_champion_freezes: equal_stratum_mean_of_minimum_comparator_wise_increment
-  secondary_report_only: [lower_tail_session_delta, within_session_ceiling_retention, simplicity]
-  candidate_margin_r2: 0.01
-  minimum_meaningful_improvement: 0.01
-  search_patience_resolution_r2: 0.002
-  constraints:
-    max_primary_animal_regression_r2: 0.005
-    require_majority_sessions_each_primary_animal: true
-    matched_target_information_budget: true
-    matched_evaluator_opportunities: true
-    multiplicity_family: [m1_execution, pmd_preparation]
-    multiplicity_alpha_one_sided: 0.05
+primary_measure:
+  metric: joint R2_SSE across all held-out trials, native bins, and eligible neurons
+  negative_values_are_reported: true
+  averaging:
+    - compute the difference for each new day and each comparison
+    - average the three days within each animal
+    - give Mihili and Chewie-L equal weight
+    - keep M1 and PMd separate
+  meaningful_margin_r2: 0.01
 
-budgets:
-  minimum_valid_trials: 56
-  maximum_valid_trials: 80
-  maximum_outcome_contacts: 80
-  patience_valid_trials: 14
-  valid_trial_counting: total_across_the_two_paired_streams
-  max_invalid_retries: 12
-  cpu_core_hour_ceiling: 800
-  gpu_hour_ceiling: 0
-  wall_clock_hour_ceiling: 96
-  parallel_core_ceiling: 32
-  memory_gb_ceiling: 256
-  scratch_gb_ceiling: 500
-  minimum_falsification_fraction_after_branch_coverage: 0.40
+search_budget:
+  paired_streams:
+    - history-assisted
+    - today-only
+  starting_models_per_stream: 16
+  adaptive_successor_pairs:
+    minimum_valid: 2
+    maximum_attempted: 14
+  planned_alternative_explanation_pairs: 10
+  evaluations_per_stream:
+    minimum: 28
+    maximum: 40
+  total_evaluations:
+    minimum: 56
+    maximum: 80
+  post_starting_check_fraction_minimum: 0.4167
+  patience:
+    consecutive_valid_pairs: 7
+    improvement_r2: 0.002
+    note: This controls search duration and is not the scientific effect threshold.
+  retry_limits:
+    same_model_attempts: 2
+    total_infrastructure_retries: 12
+  resources:
+    hardware: CPU only
+    aggregate_cpu_hours: 800
+    wall_clock_hours: 96
+    concurrent_cores: 32
+    temporary_storage_gb: 500
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 32
-  anchors_per_stream: 16
-  rule: paired_anchors_cover_all_base_alignment_pooling_mapping_representation_adaptation_levels_and_numeric_boundaries_in_each_stream_where_legally_applicable
-  ensemble_anchor_coverage: not_applicable_requires_previously_valid_parents
-  ensemble_successor_coverage: weights_0_25_and_0_75_must_each_receive_one_valid_successor_evaluation_per_stream_before_finalist_selection
-  readiness_rejection_must_be_logged: true
+planned_alternative_explanation_checks:
+  - shuffle earlier-day labels
+  - break earlier-day trial correspondence
+  - break calibration-trial correspondence
+  - remove earlier-day information
+  - retain only the direction-and-time template
+  - replace learned source weights with equal weights
+  - omit earlier-day position 1
+  - omit earlier-day position 2
+  - omit earlier-day position 3
+  - remove the first active optional component in a predeclared order
 
-inference:
-  family: fixed_policy_paired_whole_trial_bootstrap
-  bootstrap_replicates: 9999
-  plus_one_denominator: 10000
-  rng_algorithm: numpy_PCG64DXSM
-  rng_seed_uint64: 7007999
-  refit_in_bootstrap: false
-  resampling:
-    unit: whole_audit_trial
-    stratification: within_each_target_day_and_direction
-    draws_per_cell: original_number_of_audit_trials_in_that_target_day_and_direction
-    replacement: true
-    pairing: keep_all_native_bins_neurons_and_all_transfer_and_comparator_predictions_from_a_trial_together
-    cross_stratum_coupling: use_the_same_resampled_authenticated_trial_ids_for_simultaneous_M1_and_PMd_data
-    recompute_each_replicate: day_level_R2_comparator_deltas_animal_means_and_theta_from_the_resampled_trials
-  comparator_tests:
-    null: "H0[k,b]: theta[k,b] <= 0.01_R2"
-    alternative: "H1[k,b]: theta[k,b] > 0.01_R2"
-    centered_plus_one_p_formula: "p[k,b] = (1 + count(theta_star[k,b] - theta_hat[k,b] >= theta_hat[k,b] - 0.01)) / 10000"
-  intersection_union:
-    formula: "p_IUT[k] = max_b p[k,b]"
-    meaning: a_stratum_can_pass_only_if_transfer_clears_the_margin_against_both_comparators
+additional_checks:
+  simulated_cases:
+    - stable relationship
+    - drifting relationship
+    - no relationship
+    - shifted latent scale
+  data_separation: >-
+    Demonstrate once that development and held-out spike targets cannot enter
+    candidate fitting.
+  failed_scientific_check: The selected model is ineligible; do not substitute a runner-up.
+
+held_out_evaluation:
+  timing: after all model and analysis choices are final
+  openings: 1
+  uncertainty:
+    method: paired whole-trial bootstrap within day and reach direction
+    samples: 9999
+    seed: 7007999
   multiplicity:
-    method: one_sided_Holm_stepdown
-    family: [m1_execution, pmd_preparation]
-    family_size: 2
-    alpha: 0.05
-    equal_p_value_tie_order: [m1_execution, pmd_preparation]
-    exact_rule: sort_the_two_p_IUT_values_ascending_test_the_smaller_at_0.025_and_only_if_rejected_test_the_larger_at_0.05
-  inference_scope: exchangeable_repeat_trials_within_fixed_day_by_direction_cells_and_observed_cell_sizes_from_the_six_fixed_target_days_not_new_direction_composition_sessions_animals_implants_or_regions
+    method: one-sided Holm across M1 and PMd
+    familywise_alpha: 0.05
+  support_requires:
+    - improvement greater than 0.01 R2 against both comparisons
+    - positive mean improvement in both animals
+    - positive improvement on at least two of three new days in each animal
+    - positive result after omitting each new day in turn
+    - all planned scientific and data-separation checks pass
 
-required_falsifiers:
-  - F01_source_session_label_shuffle
-  - F02_source_trial_correspondence_shuffle
-  - F03_target_calibration_correspondence_shuffle
-  - F04_zero_source_ablation
-  - F05_direction_time_template_only
-  - F06_equal_source_weight_replacement
-  - F07_leave_source_day_position_1_out
-  - F08_leave_source_day_position_2_out
-  - F09_leave_source_day_position_3_out
-  - F10_active_component_ablation
+possible_results:
+  - support in M1 only
+  - support in PMd only
+  - support in both settings
+  - positive but ambiguous or insufficiently robust
+  - no model clears the prespecified rule
+  - study incomplete because required search or resources were not completed
+  - study invalid because data separation or inference failed
 
-nonbudgeted_pre_audit_gates:
-  - G01_stable_synthetic_recovery
-  - G02_drifting_synthetic_recovery
-  - G03_null_synthetic_recovery
-  - G04_latent_scale_shift_recovery
-  - G06_role_boundary_access_denial
+follow_up_if_primary_result_supports_transfer:
+  question: >-
+    Does earlier-day information transfer only an average reach response or a
+    trial-specific LFP-population relationship after direction and time are removed?
+  residual_test: >-
+    Estimate direction-and-time means from permitted training or calibration
+    trials, remove them from both LFP inputs and spike targets before fitting,
+    and compare new residual-only history-assisted and today-only models.
+  signal_controls:
+    - LMP or low-frequency features only
+    - exclude all 100 to 400 Hz power
+    - account for electrode proximity to recorded units
+    - match spike-quality and channel-support summaries
+  prediction: >-
+    Use only earlier days and new-day calibration to predict whether history
+    will help, then test that prediction on genuinely new recording days.
 
-conditional_ensemble_component_ablation_gate:
-  applicable_when: either_frozen_finalist_is_a_two_parent_ensemble
-  records: [C01_remove_first_parent, C02_remove_second_parent]
-  source: already_stored_scored_parent_predictions_no_new_outcome_contact
-  pass_rule: ensemble_primary_score_not_less_than_each_parent_only_score
-
-leave_one_target_day_out:
-  mode: no_refit_computation_from_stored_locked_audit_predictions
-  search_or_falsifier_budget: false
-
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  require_global_shared_policy: true
-  transfer_finalist_must_be_source_bearing: true
-  require_all_falsifiers_pass: true
-  require_pareto_feasible: false
-  finalist_selection_authority: NUMERIC_SEARCH_CONTRACT.yaml#development_selection
-  final_refit_uses_frozen_source_and_calibration_roles: true
-  max_ensemble_members: 2
-  candidate_ready_per_stratum:
-    corrected_inference: Holm_rejects_the_stratum_IUT_margin_null
-    comparator_wise_within_animal_sign: "for every comparator b and animal a, mean_{s in target_days(a)} Delta[s,k,b] > 0"
-    comparator_wise_session_majority: "for every animal a, at least two of its three target days have Delta[s,k,b] > 0 for both comparators b"
-    comparator_wise_leave_one_target_day: "for every comparator b and each of six omissions, theta_LOTO[k,b] > 0 after recomputing the affected animal mean over its other two target days"
-    required_falsifiers: all_pass
-    leakage_and_role_audits: all_pass
-  stratum_logic:
-    one_corrected_stratum_passes: candidate_ready_for_that_exact_region_epoch_stratum_only
-    both_corrected_strata_pass: candidate_ready_with_support_in_both_prespecified_strata_not_phase_general
-    region_epoch_confound: prohibits_phase_general_or_region_independent_claim
-
-stop:
-  before_two_adaptive_successor_pairs: forbidden_except_registered_resource_or_technical_impossibility
-  patience_applies_to: adaptive_successor_pairs_only
-  anchors_and_falsifiers_count_toward_patience: false
-  patience_delta: 0.002
-  patience_unit: 14_consecutive_valid_evaluations_equal_to_7_complete_paired_rounds
-  candidate_margin_must_not_be_used_for_patience: 0.01
-  require_grammar_family_coverage: true
-  after_normal_successor_stop: freeze_calibration_only_champion_first_then_source_bearing_transfer_finalist_then_run_all_ten_finalist_bound_falsifier_pairs
-  after_registered_resource_stop: incomplete_search_without_finalist_or_falsifier_phase
-  after_technical_stop: technical_failure_without_finalist_or_falsifier_phase
-  resource_exhaustion_result: incomplete_search
-  budget_stop_is_scientific_success: false
-  budget_stop_is_scientific_negative: false
-
-audit:
-  configuration_lock_required: true
-  immutable_final_lock_required: true
-  maximum_open_count: 1
-  audit_updates_search: false
-  audit_role: locked_whole_trial_evaluation_40_percent
-  bootstrap_policy_ref: inference
-  no_refit_or_successor_after_open: true
-  retry_allowed_only_if_no_audit_label_metric_prediction_join_or_candidate_discriminating_diagnostic_was_emitted: true
-  terminal_claim_scope: source_prior_value_for_calibrated_target_sessions_on_internal_held_trials
-
-terminal_decision:
-  candidate_ready_m1_only:
-    condition: m1_execution_passes_all_promotion_rules_and_pmd_preparation_does_not
-    outer_status: candidate_ready
-    claim: transfer_increment_supported_for_M1_execution_in_the_six_fixed_target_days_only
-  candidate_ready_pmd_only:
-    condition: pmd_preparation_passes_all_promotion_rules_and_m1_execution_does_not
-    outer_status: candidate_ready
-    claim: transfer_increment_supported_for_PMd_preparation_in_the_six_fixed_target_days_only
-  candidate_ready_both:
-    condition: both_strata_pass_all_promotion_rules
-    outer_status: candidate_ready
-    claim: support_in_both_prespecified_region_epoch_strata_without_phase_generalization
-  audit_failed:
-    condition: valid_audit_neither_stratum_passes_each_stratum_has_theta_hat_min_over_comparators_at_or_below_0.01_and_no_prespecified_audit_robustness_guard_fails
-    outer_status: closed_no_candidate
-    interpretation: failed_to_clear_the_practical_margin_not_evidence_of_no_signal
-  unresolved:
-    condition: valid_audit_neither_stratum_passes_but_at_least_one_stratum_has_theta_hat_min_over_comparators_above_0.01_or_fails_a_prespecified_robustness_guard
-    outer_status: closed_no_candidate
-    interpretation: suggestive_or_heterogeneous_fixed_corpus_result_not_candidate_ready
-  development_exhausted_no_eligible_policy:
-    condition: required_anchors_and_successor_search_completed_and_either_no_feasible_finalist_exists_or_one_finalist_froze_all_ten_falsifier_pairs_completed_and_at_least_one_scientific_falsifier_failed
-    audit_must_remain_closed: true
-    runner_up_substitution: prohibited
-    outer_status: closed_no_candidate
-  incomplete_search:
-    condition: not_technical_failure_not_development_exhausted_and_required_anchors_two_valid_successor_pairs_or_conditional_finalist_bound_falsifier_evidence_not_completed
-    audit_must_remain_closed: true
-    outer_status: closed_no_candidate
-  technical_failure:
-    condition: leakage_broken_split_premature_audit_access_zero_joint_denominator_or_invalid_audit_execution
-    outer_status: technical_failure
-
-claim_boundary:
-  allowed: added_value_of_source_session_information_for_an_already_calibrated_target_session_on_future_trials_from_the_six_fixed_target_days_within_animal_implant_and_region
-  prohibited:
-    - independent_confirmation
-    - wholly_unseen_target_session_generalization
-    - zero_shot_transfer
-    - new_session_or_new_animal_population_inference
-    - cross_animal_transfer
-    - cross_region_transfer
-    - phase_generalization
-    - raw_signal_or_raw_voltage_benchmark_claim
-    - clinical_generalization
-
-reporting:
-  scientific_scope:
-    primary_transfer_and_mechanism_followup_reported_separately: true
-    primary_candidate_ready_is_not_mechanism_evidence: true
-    mean_geometry_and_trial_residual_results_reported_separately: true
-    every_fixed_target_day_and_both_comparators_reported: true
-    failed_external_predictions_reported: true
-  paper_figures:
-    - primary_transfer_gain_against_both_comparators
-    - mean_trajectory_versus_trial_residual_decomposition
-    - locked_lfp_block_population_dimension_and_source_day_controls
-    - forward_prediction_of_which_new_sessions_benefit
-    - scope_limits_and_calibration_consequence
-
-terminal_mapping:
-  candidate_ready_m1_only: candidate_ready
-  candidate_ready_pmd_only: candidate_ready
-  candidate_ready_both: candidate_ready
-  audit_failed: closed_no_candidate
-  development_exhausted_no_eligible_policy: closed_no_candidate
-  incomplete_search: closed_no_candidate
-  unresolved: closed_no_candidate
-  technical_failure: technical_failure
+claim_limits:
+  supported_claim: >-
+    Earlier days add predictive information after limited same-day calibration
+    in the supported setting, within these two animals and six fixed new days.
+  not_supported:
+    - stable single-neuron or electrode identity
+    - causal influence of LFP on spiking
+    - transfer to an unseen session, animal, implant, or raw-voltage pipeline
+    - online or clinical BCI improvement
+    - a general preparation-versus-execution difference

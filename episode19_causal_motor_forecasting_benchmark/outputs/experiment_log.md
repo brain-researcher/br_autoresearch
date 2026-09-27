@@ -1,29 +1,22 @@
 # Experiment log
 
-> Client-maintained exploratory projection. This file grants no execution,
-> review, scientific, memory, or Landscape authority. Preserve existing entries
-> and append new entries in chronological order.
-> It is not a required Society review artifact. If explicitly declared in
-> a frozen CandidateBundle's `output_artifacts`, it may be supplied only as optional
-> supplemental context; declare primary result artifacts separately.
+## Current entry
 
-## Binding
+- Stage: scientific design and readability revision
+- Primary question: does EEG add information about movement onset 300–600 ms
+  ahead beyond cue, context, and past peripheral sensors?
+- Secondary question: do the same model families change order between 0–300
+  and 300–600 ms?
+- Work completed: the prediction target, comparisons, controls, calibration,
+  budgets, and paper plan are stated in reader-facing form.
+- Signal analysis: not started
+- Held-out results examined: none
+- Scientific result: none
 
-- Goal handoff: not observed
-- Outer loop: not observed
-- Workspace: current already-open Native Goal workspace
+## Next entry should record
 
-## Entries
+The next entry should describe direct clock, channel, sampling, gap, and onset
+checks for both datasets. It should not contain candidate EEG scores.
 
-### Entry 1
-
-- Stage: not observed
-- Question or attempt: not observed
-- Action: not observed
-- Outcome: not observed
-- Evidence refs: not observed
-- Failure or deviation: none observed
-
-## Remaining uncertainty
-
-- Not yet assessed.
+Future entries should distinguish scientific trials from software repairs and
+duplicate runs.

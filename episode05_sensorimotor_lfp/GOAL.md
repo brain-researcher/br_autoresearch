@@ -12,6 +12,18 @@ directions and test on the eighth. From the seven training directions, we
 estimate the movement expected from direction and elapsed time. The LFP model
 must then predict how the actual held-out reach departs from that expectation.
 
+## The scientific logic
+
+![EP05 conceptual figure showing the reach residual, correct-versus-wrong-trial LFP comparison, and result-dependent interpretation](outputs/ep05_question.svg)
+
+Like the EP12 concept figure, this mockup starts with the phenomenon rather
+than the protocol. Synthetic trajectories show two reaches to the same target,
+the residual that remains after removing direction and elapsed time, and the
+correct-versus-wrong-trial pairing that distinguishes a common directional
+correction from trial-specific information. The last panel maps the evidence
+to bounded scientific interpretations. None of the drawn patterns is an EP05
+result; numerical decision rules remain in the study text.
+
 The important comparison is not whether LFP can reconstruct hand movement at
 all. A decoder can look accurate simply by repeating the typical trajectory.
 The first test asks whether adding LFP improves the prediction of the complete
@@ -48,27 +60,8 @@ that reach differs from the movement expected from its direction and timing.
 The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
 specifies the follow-up predictions, alternatives, and figure-level evidence.
 The held-out-direction test remains the first result; the spike-population
-follow-up cannot change its answer.
-
-## Prelaunch status
-
-The search controller has now been tested without opening any real recording.
-It can reject an illegal per-session winner, require the 10-trial coverage
-stage, keep at least 40% of post-coverage trials for falsification, wait through
-the 12-trial patience tail, lock one global policy, and permit at most one
-synthetic audit opening. Six generated scenarios exercise every outer terminal
-class, and their hash-chained journals can be replayed.
-
-Those journals describe the completed synthetic implementation only. Their
-hash chain, replay machinery, and receipts are not prerequisites for real-data
-qualification or search.
-
-That is an engineering prelaunch result, not evidence that LFP predicts a
-reach. The direction-by-time comparator, real LFP estimators, session-level
-delta-R2, whole-trial pairing null, publication reproduction, and prospective
-audit have not run. The executable boundary and remaining decisions are listed
-in [the executor README](outputs/executor/README.md) and
-[real-data gates](outputs/executor/REAL_DATA_GATES.md).
+follow-up cannot change its answer. No real EP05 analysis has run under this
+revised plan.
 
 ## At a glance
 
@@ -91,7 +84,7 @@ good by reproducing the average trajectory without knowing anything about that
 difference. EP05 first asks whether LFP features predict the difference itself.
 
 If they do, the next analysis asks what the useful signal is. Using only
-development sessions and a separately frozen follow-up contract, derive a
+development sessions and a separate follow-up plan chosen in advance, derive a
 spike-population latent from training trials and ask whether the chosen LFP
 representation predicts held-out fluctuations in that latent beyond the
 latent's own training-derived direction-by-time mean. Pass the LFP-predicted latent through a separately
@@ -108,21 +101,20 @@ Four explanations must remain distinguishable:
 | Low-frequency/LMP features predict both the spike latent and the same kinematic residual | The released LFP features contain a compact view of trial-varying motor-population activity that is useful beyond the average reach. |
 | LFP improves velocity prediction but does not track the spike-population readout | Keep the engineering prediction result; do not claim that the mechanism is shared population dynamics. |
 | The gain exists only in 100--400 Hz features or same-electrode spike-rich channels | Bound the result to a spike-contaminated/high-frequency recording feature; do not make a broad field-potential claim. |
-| The gain disappears after held-out directions, whole-session selection, or a fresh audit | The apparent decoder success did not establish a condition-general LFP signal. |
+| The gain disappears after held-out directions, whole-session selection, or a future-session test | The apparent decoder success did not establish a condition-general LFP signal. |
 
 The follow-up uses the already assigned development evidence for explanation;
-it is not a second independent replication. Before it runs, its models,
-readouts, margins, multiplicity, budget, and stopping rule must be frozen. A
-future sealed session tests the locked prediction once. No result in the
-follow-up may alter the original search ledger, winner, terminal class, or
-audit opening.
+it is not a second independent replication. Before it runs, choose its models,
+readouts, margins, multiplicity, budget, and stopping rule in advance. A future
+sealed session then tests the final prediction once. No follow-up result may
+rewrite the answer to the first kinematic test.
 
-## Reproduction infrastructure is not search
+## First reproduce the published benchmark
 
-Before any adaptive trial, run a fixed publication-fidelity suite for the M1
-spike-latent/LFP profile and M1 X/Y velocity decoder using the pinned paper
-code, best-recoverable dependency boundary, and synthetic fixtures. Its output
-is `pass`, `mismatch`, or `technical_failure`.
+Before trying new models, rerun the published M1 LFP-to-population and X/Y
+velocity analyses with the reference paper code and small known-answer test
+cases. Record whether the published result is reproduced, differs materially,
+or cannot be run for a technical reason.
 
 - Compatibility work, scheduler retries, and exact reproductions never count
   toward the 28 scientific trials.
@@ -130,7 +122,7 @@ is `pass`, `mismatch`, or `technical_failure`.
 - A mismatch is a reportable scientific limitation and blocks a positive
   adaptive candidate; it is not permission to optimize the benchmark.
 - Search begins only after the source is technically evaluable and the
-  reproduction result is frozen.
+  reproduction result is recorded before search.
 
 ## Evidence roles and independence
 
@@ -142,19 +134,20 @@ is `pass`, `mismatch`, or `technical_failure`.
 - **Selection unit:** one session estimate after collapsing X/Y, directions,
   trial folds, channels, and time bins. Animals are the biological replication
   level; Chewie implants remain nested in one animal.
-- **Prospective audit:** compatible future whole sessions whose neural outcomes
-  and comparison scores are sealed until lock. New sessions from an existing
+- **Future-session test:** compatible future whole sessions whose neural outcomes
+  and comparison scores remain unseen until the final analysis is chosen. New sessions from an existing
   animal test session robustness; a new animal is required to strengthen
   biological generalization. No such data are claimed to exist here.
 
 Randomly withholding trials or renaming sessions from the exposed Dryad
 release does not create independent confirmation.
 
-## Bounded scientific operator grammar
+## Models we will compare
 
-Every scientific trial is one declarative, session-invariant pipeline from:
+Every scientific trial uses one analysis recipe for all sessions. A recipe may
+choose from:
 
-1. **LFP block:** LMP; one authenticated stored power band; a registered
+1. **LFP block:** LMP; one documented stored power band; a registered
    low-frequency, high-frequency, or all-band block; or LMP plus one registered
    band block. Stored band identities come from guides, not numeric columns.
 2. **Channel/electrode transform:** fixed matched-electrode mean/median,
@@ -181,18 +174,18 @@ are retained. Arbitrary windows, per-session winner selection, test-direction
 scaling, bin-level random splits, foundation-model training, and arbitrary code
 mutation are forbidden.
 
-## Objective and constraints
+## What counts as a convincing result
 
 For each session, compute held-out-direction
 `delta_R2 = R2_SSE(candidate full velocity) - R2_SSE(direction-by-time baseline)`
 on identical complete trials. The primary objective is the animal-balanced
 mean of session-level `delta_R2`, with the exact within-animal aggregation and
-minimum practical gain frozen before search.
+minimum practical gain chosen before search.
 
 A promotable policy must:
 
 - have a positive prespecified summary in both eligible M1 animals and the
-  frozen majority of their eligible sessions;
+  prespecified majority of their eligible sessions;
 - survive a within-direction whole-trial evaluation-pairing null with all
   fitted transforms held fixed;
 - remain positive under leave-one-session influence and matched trial/channel
@@ -206,47 +199,44 @@ Random-trial performance is a within-condition ceiling. Publication
 `r_corr_squared`, phase atlases, speed/acceleration, and reduced-resource curves
 are diagnostics and cannot rescue a failed held-out-direction objective.
 
-## Multi-stage adaptive loop
+## How the study moves from first test to conclusion
 
-1. **Infrastructure gate:** authenticate source/code, freeze eligibility and
-   event conventions, pass synthetic index/leakage/metric fixtures, and freeze
-   the publication reproduction result without search.
-2. **Session-role freeze:** write one animal/implant/session table and the
-   nested whole-session folds before outcome-guided search. Within each outer
-   session, all transforms and tuning use only the remaining sessions and that
-   session's permitted training trials/directions.
-3. **Coverage stage:** run direction-by-time, LMP, canonical low/high bands,
-   linear regularized, reduced-rank, and one nonlinear anchor before adaptive
-   exploitation.
-4. **Adaptive stage:** make one mechanism-led operator change per trial;
-   record hypothesis, parent, full configuration, session predictions,
-   objective, constraints, runtime, and failure reason. Maintain a nonterminal
-   incumbent and complexity/robustness Pareto archive.
-5. **Successive fidelity:** early pruning may use a frozen subset of inner
-   development sessions. Every finalist is rerun across every eligible
-   development session, both animals, all held-out directions, fixed seeds,
-   and mandatory nulls.
-6. **Stress stage:** incumbent plus at most three challengers undergo
-   leave-one-session and leave-one-animal description, trial/channel matching,
-   low-frequency-only, spike-bleed-through, temporal-offset, and target
-   residualization ablations.
-7. **Configuration lock:** choose one global policy, then write a dated,
-   write-once record of the provider release, animal/session split table, code
-   revision, operator DAG, feature guides, windows, model rule, thresholds,
-   seeds, and required result fields.
-8. **One-shot prospective audit:** run the locked policy on all sealed audit
-   sessions once. Session-specific coefficients may be fit under the locked
-   training recipe; no policy choice, threshold, exclusion, or candidate may
-   change after any audit score is visible.
+1. **Check the source and the benchmark.** Confirm animal, session, event, trial,
+   and feature identities; run small indexing and leakage tests; then record the
+   publication-reproduction result.
+2. **Set the splits before looking for a winner.** Write one readable
+   animal/implant/session table and the whole-session folds. Within a scored
+   session, fit every transformation on the allowed training sessions, trials,
+   and directions only.
+3. **Cover the main explanations first.** Compare the direction-and-time
+   baseline, LMP, canonical low- and high-frequency blocks, a regularized linear
+   model, a reduced-rank model, and one nonlinear reference.
+4. **Improve one scientific idea at a time.** Each later trial changes one
+   interpretable choice and records why it was tried, what it changed, and how
+   every session responded. The current best model is provisional.
+5. **Retest every finalist fairly.** Run each finalist on every eligible
+   development session, both animals, every held-out direction, and all required
+   controls.
+6. **Challenge the strongest models.** Test dependence on one session, the
+   number of trials and channels, high-frequency activity, timing, and the way
+   the movement baseline is removed.
+7. **Fix one final analysis.** Before any new session is opened, record the
+   exact source sessions, splits, features, windows, model, thresholds, and
+   required outputs in one dated plan.
+8. **Test it once on sealed future sessions.** Session-specific coefficients
+   may be fit by the fixed recipe, but the scientific choices cannot change
+   after any future-session result is visible.
 
-The incumbent cannot terminate the loop early. Minimum coverage, falsifiers,
-stress tests, patience, and audit-opening qualification are separate gates.
-At least 40% of valid post-coverage trials must be falsifiers, ablations,
-negative controls, influence guards, synthetic recovery, or direct
-replications. At least two outcome-adaptive successor cycles and two recorded
-incumbent/challenger decisions are required before lock.
+The current leading model cannot end the study early. The initial model set,
+alternative-explanation checks, stress tests, and the 12-trial patience period
+must all be completed. At least 40% of trials after the initial model set must
+test alternatives, remove model components, run negative controls, measure
+session influence, recover known answers, or directly repeat a result. Before
+choosing the final model, complete at least two rounds in which the next model
+is motivated by the preceding development result, and compare the leader with
+a plausible challenger at least twice.
 
-## Mandatory falsifiers and ablations
+## Checks that can overturn a positive result
 
 - fixed publication-fidelity result and method fixtures;
 - direction-by-time and elapsed-time-only behavioral baselines;
@@ -261,8 +251,8 @@ incumbent/challenger decisions are required before lock.
 - capacity-matched random features or phase-randomized surrogate permitted by
   the released representation.
 
-A failed mandatory falsifier blocks promotion rather than becoming another
-optimizable metric.
+A failed required alternative-explanation check blocks promotion rather than
+becoming another quantity to optimize.
 
 ## Budget and stopping
 
@@ -273,50 +263,45 @@ optimizable metric.
 - CPU ceiling: **2,000 core-hours**;
 - GPU ceiling: **0 GPU-hours**;
 - wall-clock ceiling: **120 hours** from the first scientific trial;
-- finalists: at most **4** including the incumbent;
-- audit openings: **1**;
+- finalists: at most **4** including the current leading model;
+- future-session evaluations: **1**;
 - maximum parallel CPU cores: **32**;
 - per-trial memory ceiling: **128 GB**;
 - scratch-storage ceiling: **750 GB**.
 
-Reproduction, structural QC, synthetic fixtures, and exact infrastructure
-retries are ledgered separately and do not inflate trial depth. The search may
+Reproduction, structural QC, small known-answer tests, and exact infrastructure
+retries are recorded separately and do not inflate trial depth. The search may
 stop before 28 trials only for resource exhaustion, technical impossibility,
 or policy violation.
 
-## Terminal classes
+## How the study can end
 
-- `candidate_ready`: the reproduction gate passes, the locked global policy
-  meets every development constraint, and it passes the prospective one-shot
-  audit.
-- `closed_no_candidate`: technically valid deep search finds no feasible
-  policy or the locked policy fails audit.
-- `search_exhausted_no_audit`: search completes on the exposed public corpus
-  but no sealed future whole-session audit exists.
-- `technical_failure`: source authenticity, guides/events, publication
-  compatibility, session eligibility, or executable scoring cannot be
-  established after bounded recovery.
-- `policy_violation`: outcome-dependent benchmark tuning, session cherry
-  picking, audit leakage, undeclared operators, or post-audit adaptation.
-
-For canonical outer status, `candidate_ready` maps to `candidate_ready`;
-`closed_no_candidate` and `search_exhausted_no_audit` map to
-`closed_no_candidate`; and `technical_failure` or `policy_violation` map to
-`technical_failure`.
+- **Supported in a future-session test:** the publication benchmark is
+  reproduced, one global analysis passes every development check, and its
+  prediction succeeds when evaluated once on sealed compatible sessions.
+- **No supported candidate:** the study is technically valid, but no model
+  survives the comparisons and controls, or the final model fails on the
+  future sessions.
+- **Development result only:** development finishes on the previously exposed
+  public recordings, but no sealed future session is available. The result is
+  explicitly exploratory.
+- **No scientific answer:** the source, event meanings, session eligibility,
+  reproduction, or scoring cannot be established reliably, or outcomes were
+  used in a way that invalidates the planned comparison.
 
 ## Claim boundary
 
 Development success supports an exploratory statement about stable predictive
-information within this released M1 corpus. A successful fresh-session audit
-supports the locked policy's session robustness only for represented animals
+information within this released M1 corpus. A successful future-session test
+supports the final analysis's session robustness only for represented animals
 and task; population-level, cross-region, real-time, raw-LFP, causal, and
-cross-session weight-transfer claims remain out of scope. A new-animal audit
+cross-session weight-transfer claims remain out of scope. A new-animal test
 is required before extending biological generalization.
 
 The stronger paper interpretation—compact LFP features track the
 trial-varying motor-population state that explains departures from an average
-reach—requires the separately locked spike-latent and residual-error evidence
+reach—requires the separately planned spike-latent and residual-error evidence
 in the paper plan. A positive `delta_R2` alone does not establish that
 interpretation. Conversely, a useful LFP-to-spike association cannot rescue a
-failed primary kinematic test. No real EP05 analysis, audit, or follow-up was
-run while preparing this revision.
+failed primary kinematic test. No real EP05 analysis, future-session test, or
+follow-up was run while preparing this revision.

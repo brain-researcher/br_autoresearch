@@ -1,3 +1,4 @@
 # Society
 
-Society has not been called for the current episode contract.
+No external scientific review has been requested for EP08, and no claim has
+been accepted.

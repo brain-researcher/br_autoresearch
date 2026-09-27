@@ -1,19 +1,22 @@
 # Episode 16 inputs
 
-`inputs/` is read-only. It intentionally contains no symlink or copy of the
-84.73-GB mixed Dryad source.
+This directory is read-only and intentionally empty. The 84.73-GB Dryad
+release remains in shared research storage rather than being copied into the
+episode.
 
-`../DATASETS.md` requires three operator-created, content-addressed handoffs:
-development full data, audit structural metadata, and evaluator-only audit
-data. None exists yet. The target-schedule-only structural support scan and 6/3
-participant role manifest have not been instantiated. The actual sequence is:
-regenerate the
-terminal-relevant exposure ledger, freeze the target-schedule-only structural
-support and 6/3 roles, then apply the immutable scorable-mask algorithm inside
-the role-filtered development builder or one-shot audit evaluator. Scorability
-cannot move a participant after the role hash.
+Before neural scoring, the study needs three clearly separated data views:
 
-Do not extract archives here, mount a mixed audit archive into a candidate
-worker, or infer candidate/audit access from the verified shared source. During
-episode work, transient extraction belongs under
-`$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/`.
+1. full data for the six development participants;
+2. target-schedule and trial-count information for choosing the three held-out
+   participants without neural scores; and
+3. full data for those three participants, available only for the final
+   pre-specified evaluation.
+
+None of those episode-specific views has been prepared. The next data step is
+the outcome-blind target-schedule and near/long pair-support check described in
+`../DATASETS.md`. That check determines whether a six-person development set
+and a three-person held-out set are scientifically possible.
+
+Do not extract the complete release here or give development code access to
+held-out neural data. Temporary extraction for authorized episode work belongs
+in `$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/`.

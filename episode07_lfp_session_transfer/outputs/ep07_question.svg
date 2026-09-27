@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">EP07 scientific concept figure</title>
+  <desc id="desc">Synthetic concept mockup showing trial-level LFP and population-spike residuals on a new day, matched history-assisted and today-only predictions, three competing explanations, and bounded scientific interpretations.</desc>
+  <defs>
+    <style type="text/css">
+      .bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:1.5;rx:15}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.3;rx:10}.bluebox{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.5;rx:10}.orangebox{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5;rx:10}.greenbox{fill:#ecfdf5;stroke:#34d399;stroke-width:1.5;rx:10}.purplebox{fill:#faf5ff;stroke:#c084fc;stroke-width:1.5;rx:10}.redbox{fill:#fef2f2;stroke:#f87171;stroke-width:1.5;rx:10}
+      .title{font-family:Arial,sans-serif;font-size:25px;font-weight:700;fill:#0f172a}.head{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.sub{font-family:Arial,sans-serif;font-size:15px;font-weight:700;fill:#334155}.text{font-family:Arial,sans-serif;font-size:14px;fill:#334155}.small{font-family:Arial,sans-serif;font-size:13px;fill:#475569}.tiny{font-family:Arial,sans-serif;font-size:13px;fill:#64748b}
+      .axis{stroke:#94a3b8;stroke-width:1.5;fill:none}.mean{stroke:#94a3b8;stroke-width:3;stroke-dasharray:7 6;fill:none}.blue{stroke:#2563eb;stroke-width:3;fill:none}.orange{stroke:#ea580c;stroke-width:3;fill:none}.green{stroke:#059669;stroke-width:3;fill:none}.purple{stroke:#7e22ce;stroke-width:3;fill:none}.black{stroke:#0f172a;stroke-width:3;fill:none}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1500" height="900"/>
+  <text x="750" y="38" text-anchor="middle" class="title">EP07 — What from an earlier recording day is still useful on a new day?</text>
+  <rect x="560" y="49" width="380" height="29" rx="15" fill="#e2e8f0" stroke="#94a3b8"/>
+  <text x="750" y="69" text-anchor="middle" class="small">CONCEPT MOCKUP · SYNTHETIC PATTERNS · NOT RESULTS</text>
+
+  <rect x="20" y="92" width="455" height="600" class="panel"/>
+  <text x="40" y="126" class="head">A  Trial residuals on a new day</text>
+  <text x="40" y="151" class="small">Same direction and time; LFP and spikes still fluctuate together.</text>
+  <g transform="translate(42,176)">
+    <rect x="0" y="0" width="390" height="188" class="bluebox"/>
+    <text x="16" y="27" class="sub">Trial A — above the usual response</text>
+    <text x="16" y="56" class="small">LFP</text><line x1="70" y1="54" x2="365" y2="54" class="axis"/><path d="M70 54 C105 18 136 94 172 48 S238 24 273 66 S331 83 365 42" class="blue"/>
+    <text x="16" y="111" class="small">spikes</text><line x1="70" y1="108" x2="365" y2="108" class="axis"/>
+    <g stroke="#2563eb" stroke-width="2"><line x1="88" y1="83" x2="88" y2="107"/><line x1="101" y1="92" x2="101" y2="107"/><line x1="127" y1="78" x2="127" y2="107"/><line x1="139" y1="88" x2="139" y2="107"/><line x1="170" y1="76" x2="170" y2="107"/><line x1="184" y1="90" x2="184" y2="107"/><line x1="215" y1="81" x2="215" y2="107"/><line x1="244" y1="74" x2="244" y2="107"/><line x1="258" y1="86" x2="258" y2="107"/><line x1="292" y1="79" x2="292" y2="107"/><line x1="316" y1="89" x2="316" y2="107"/><line x1="343" y1="77" x2="343" y2="107"/></g>
+    <path d="M70 153 C116 118 165 173 218 135 S309 117 365 149" class="blue"/><path d="M70 153 C116 142 165 159 218 148 S309 142 365 151" class="mean"/>
+    <text x="16" y="164" class="tiny">population</text><text x="272" y="177" class="tiny">solid − dashed</text>
+  </g>
+  <g transform="translate(42,379)">
+    <rect x="0" y="0" width="390" height="188" class="orangebox"/>
+    <text x="16" y="27" class="sub">Trial B — below the usual response</text>
+    <text x="16" y="56" class="small">LFP</text><line x1="70" y1="54" x2="365" y2="54" class="axis"/><path d="M70 54 C105 84 136 18 172 62 S238 89 273 42 S331 24 365 70" class="orange"/>
+    <text x="16" y="111" class="small">spikes</text><line x1="70" y1="108" x2="365" y2="108" class="axis"/>
+    <g stroke="#ea580c" stroke-width="2"><line x1="101" y1="91" x2="101" y2="107"/><line x1="139" y1="95" x2="139" y2="107"/><line x1="184" y1="89" x2="184" y2="107"/><line x1="229" y1="94" x2="229" y2="107"/><line x1="273" y1="88" x2="273" y2="107"/><line x1="316" y1="94" x2="316" y2="107"/><line x1="352" y1="90" x2="352" y2="107"/></g>
+    <path d="M70 153 C116 170 165 124 218 164 S309 178 365 147" class="orange"/><path d="M70 153 C116 142 165 159 218 148 S309 142 365 151" class="mean"/>
+    <text x="16" y="164" class="tiny">population</text><text x="272" y="177" class="tiny">solid − dashed</text>
+  </g>
+  <rect x="42" y="587" width="390" height="68" class="card"/>
+  <text x="237" y="613" text-anchor="middle" class="sub">Question</text><text x="237" y="636" text-anchor="middle" class="small">Can earlier days teach this signed LFP–spike relationship?</text>
+
+  <rect x="490" y="92" width="485" height="600" class="panel"/>
+  <text x="510" y="126" class="head">B  What must history beat?</text>
+  <text x="510" y="151" class="small">Compare every model on the same untouched new-day trials.</text>
+  <g transform="translate(518,177)">
+    <rect x="0" y="0" width="80" height="65" class="bluebox"/><rect x="90" y="0" width="80" height="65" class="bluebox"/><rect x="180" y="0" width="80" height="65" class="bluebox"/>
+    <text x="40" y="29" text-anchor="middle" class="sub">earlier</text><text x="40" y="49" text-anchor="middle" class="small">day</text><text x="130" y="29" text-anchor="middle" class="sub">earlier</text><text x="130" y="49" text-anchor="middle" class="small">day</text><text x="220" y="29" text-anchor="middle" class="sub">earlier</text><text x="220" y="49" text-anchor="middle" class="small">day</text>
+    <rect x="292" y="0" width="122" height="65" class="orangebox"/><text x="353" y="29" text-anchor="middle" class="sub">new-day</text><text x="353" y="49" text-anchor="middle" class="small">calibration</text>
+    <path d="M262 33L285 33" class="arrow"/>
+  </g>
+  <path d="M725 248L725 282" class="arrow"/>
+  <rect x="518" y="290" width="430" height="211" class="card"/>
+  <text x="733" y="317" text-anchor="middle" class="sub">Untouched new-day population response</text>
+  <line x1="544" y1="430" x2="921" y2="430" class="axis"/>
+  <path d="M544 430 C588 364 628 477 676 402 S761 362 808 438 S879 462 921 393" class="black"/>
+  <path d="M544 430 C588 371 628 467 676 407 S761 369 808 433 S879 454 921 399" class="green"/>
+  <path d="M544 430 C588 399 628 450 676 421 S761 396 808 438 S879 443 921 414" class="blue"/>
+  <path d="M544 430 C588 419 628 438 676 425 S761 416 808 432 S879 435 921 424" class="mean"/>
+  <line x1="550" y1="340" x2="588" y2="340" class="black"/><text x="598" y="345" class="small">observed target</text>
+  <line x1="550" y1="363" x2="588" y2="363" class="green"/><text x="598" y="368" class="small">history-assisted</text>
+  <line x1="758" y1="340" x2="796" y2="340" class="blue"/><text x="806" y="345" class="small">today-only</text>
+  <line x1="758" y1="363" x2="796" y2="363" class="mean"/><text x="806" y="368" class="small">direction × time mean</text>
+  <text x="733" y="479" text-anchor="middle" class="tiny">Synthetic overlay illustrates the comparison, not an expected winner.</text>
+  <rect x="518" y="522" width="430" height="133" class="purplebox"/>
+  <text x="733" y="549" text-anchor="middle" class="sub">A history result is specific only if it beats both</text>
+  <rect x="540" y="570" width="180" height="58" class="card"/><text x="630" y="594" text-anchor="middle" class="sub">today-only</text><text x="630" y="615" text-anchor="middle" class="tiny">same calibration and tuning</text>
+  <rect x="746" y="570" width="180" height="58" class="card"/><text x="836" y="594" text-anchor="middle" class="sub">direction × time</text><text x="836" y="615" text-anchor="middle" class="tiny">new-day mean template</text>
+
+  <rect x="990" y="92" width="490" height="600" class="panel"/>
+  <text x="1010" y="126" class="head">C  What could have transferred?</text>
+  <g transform="translate(1010,151)">
+    <rect x="0" y="0" width="450" height="147" class="card"/><text x="16" y="27" class="head">A — Average task structure</text>
+    <path d="M24 92 C79 45 132 46 190 92" class="mean"/><path d="M24 94 C79 48 132 49 190 94" class="blue"/>
+    <path d="M245 83L414 83" class="axis"/><path d="M245 83 C289 81 332 85 374 82 S402 84 414 83" class="orange"/>
+    <text x="16" y="125" class="small">The mean reach transfers; trial residuals do not.</text>
+  </g>
+  <g transform="translate(1010,311)">
+    <rect x="0" y="0" width="450" height="147" class="purplebox"/><text x="16" y="27" class="head">G — Shared population geometry</text>
+    <ellipse cx="102" cy="82" rx="72" ry="31" fill="none" stroke="#7e22ce" stroke-width="2" transform="rotate(-18 102 82)"/><circle cx="62" cy="94" r="6" fill="#c084fc"/><circle cx="87" cy="78" r="6" fill="#c084fc"/><circle cx="116" cy="73" r="6" fill="#c084fc"/><circle cx="142" cy="59" r="6" fill="#c084fc"/>
+    <path d="M195 83L245 83" class="arrow"/><ellipse cx="337" cy="82" rx="72" ry="31" fill="none" stroke="#2563eb" stroke-width="2" transform="rotate(-18 337 82)"/><circle cx="297" cy="94" r="6" fill="#60a5fa"/><circle cx="322" cy="78" r="6" fill="#60a5fa"/><circle cx="351" cy="73" r="6" fill="#60a5fa"/><circle cx="377" cy="59" r="6" fill="#60a5fa"/>
+    <text x="16" y="128" class="small">Alignment transfers a trajectory, not necessarily trial coupling.</text>
+  </g>
+  <g transform="translate(1010,471)">
+    <rect x="0" y="0" width="450" height="183" class="greenbox"/><text x="16" y="27" class="head">R — Reusable residual coupling</text>
+    <path d="M24 70 C53 34 82 104 113 62 S165 36 196 74" class="blue"/><path d="M24 125 C53 89 82 159 113 117 S165 91 196 129" class="blue"/>
+    <path d="M221 98L256 98" class="arrow"/>
+    <path d="M274 70 C303 34 332 104 363 62 S415 36 432 62" class="orange"/><path d="M274 125 C303 89 332 159 363 117 S415 91 432 117" class="orange"/>
+    <text x="16" y="158" class="small">After removing means, earlier-day LFP still predicts spike residuals.</text>
+  </g>
+
+  <rect x="20" y="708" width="1460" height="158" class="panel"/>
+  <text x="40" y="742" class="head">D  Scientific interpretation</text>
+  <rect x="42" y="758" width="340" height="72" class="greenbox"/><text x="212" y="783" text-anchor="middle" class="sub">Residual coupling survives</text><text x="212" y="804" text-anchor="middle" class="small">History adds a reusable trial-specific</text><text x="212" y="821" text-anchor="middle" class="small">LFP–population relationship.</text>
+  <rect x="400" y="758" width="340" height="72" class="purplebox"/><text x="570" y="783" text-anchor="middle" class="sub">Mean or geometry only</text><text x="570" y="804" text-anchor="middle" class="small">History transfers average or aligned structure,</text><text x="570" y="821" text-anchor="middle" class="small">but not residual coupling.</text>
+  <rect x="758" y="758" width="340" height="72" class="card"/><text x="928" y="783" text-anchor="middle" class="sub">No resolved history gain</text><text x="928" y="804" text-anchor="middle" class="small">Earlier days do not clear the margin</text><text x="928" y="821" text-anchor="middle" class="small">after same-day calibration.</text>
+  <rect x="1116" y="758" width="340" height="72" class="orangebox"/><text x="1286" y="783" text-anchor="middle" class="sub">Unresolved</text><text x="1286" y="804" text-anchor="middle" class="small">Day or animal patterns disagree,</text><text x="1286" y="821" text-anchor="middle" class="small">or uncertainty is too wide.</text>
+  <text x="750" y="854" text-anchor="middle" class="tiny">Offline within-animal prediction only — no LFP-to-spike causality, stable-neuron identity, online-BCI benefit, unseen-session transfer, or new-animal claim.</text>
+</svg>

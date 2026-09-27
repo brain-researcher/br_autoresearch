@@ -1,229 +1,215 @@
-policy_id: ep08_electrode_trial_acquisition_adaptive
-episode_id: ep08
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+episode: EP08
+title: Can a short pilot tell us what to record next?
+status: planned_not_run
 
-# Planning metadata only. The executable policy search, grid, budgets, and
-# terminal mapping below remain the primary round.
-research_program:
-  paper_question: can_a_short_all_electrode_pilot_reveal_which_electrodes_and_calibration_trials_have_unique_future_value
-  plan_ref: outputs/paper_plan.md
-  primary_round: joint_post_pilot_electrode_retention_and_trial_allocation
-  primary_roles_grid_estimand_budget_and_terminal_mapping_unchanged: true
-  followup:
-    state: proposed_not_configured_or_run
-    evidence_mode: proposed_fixed_mechanism_comparison
-    starts_after_primary_conclusion_is_fixed: true
-    automatically_launched_by_this_policy: false
-    primary_terminal_may_be_overwritten: false
-    purpose: explain_whether_gain_comes_from_quality_nonredundant_electrodes_targeted_trials_or_their_interaction
-    development_source: cross_fitted_development_sessions_only
-    primary_audit_may_select_mechanism: false
-    current_primary_audit_role_for_followup: primary_policy_only
-    generic_outputs_registered_before_primary_opening_are_descriptive_only: true
-    mechanism_selected_after_primary_conclusion_requires_new_external_confirmation: true
-    mechanism_questions:
-      - does_pilot_only_score_predict_heldout_conditional_electrode_value
-      - does_pre_action_state_predict_which_direction_trial_reduces_future_error
-      - how_does_performance_change_along_electrode_and_trial_axes_of_the_fixed_grid
-    electrode_value_target: frozen_evaluation_loss_increase_when_one_retained_electrode_is_omitted
-    trial_value_target: frozen_evaluation_loss_change_after_next_seed_queued_trial_in_a_legal_reach_direction_stratum
-    candidate_explanations:
-      - signal_quality
-      - spatial_coverage
-      - conditional_nonredundancy
-      - learned_pilot_score
-      - direction_balance
-      - uncertainty_or_residual_targeting
-    prediction_limits:
-      mechanism_count_max: 2
-      pilot_or_pre_action_information_only: true
-      whole_session_cross_fitting_required: true
-      heldout_value_targets_returned_to_policy: false
-      electrode_and_trial_units_convertible_without_cost_model: false
-    external_prediction:
-      source_and_role_record: null
-      requires_newly_collected_or_sequestered_third_animal: true
-      frozen_outputs:
-        - retained_electrode_conditional_value_ranking
-        - next_reach_direction_value_ranking
-        - grid_axis_sensitivity_prediction
-      target_session_outcomes_may_fit_select_or_reorder_policy: false
-      chewie_r_is_independent_animal: false
-      current_four_audit_sessions_are_fresh_followup_confirmation: false
-    separate_contract_required:
-      - mechanism_candidate_selection_and_multiplicity
-      - conditional_electrode_and_next_trial_value_definitions
-      - counterfactual_replay_and_exchangeability_checks
-      - source_exposure_geometry_and_feature_crosswalk
-      - fixed_scores_margins_uncertainty_and_invalid_action_rules
-      - compute_budget_stop_rules_and_result_table
-      - one_shot_external_session_evaluation
-    inherits_primary_budget_search_feedback_or_audit_opening: false
-    candidate_ready_implies_acquisition_mechanism: false
+scientific_question: >-
+  After 16 pilot reaches recorded on all eligible electrodes, can one common
+  rule choose 4, 8, or 16 electrodes and the direction of each additional
+  calibration trial, then beat random, spatial, and signal-quality rules at
+  exactly the same electrode and trial budget?
 
-dataset_roles:
-  shared_exposure_ledger_group: lfp_ep05_ep08
-  primary_animals: [mihili, chewie_l]
-  sensitivity_domains: [chewie_r_implant]
-  development_target_sessions_per_animal: 4
-  audit_target_sessions_per_animal: 2
-  session_split_unit: whole_session
-  within_session_evaluation: direction_stratified_locked_trials
-  fixed_all_electrode_pilot_trials: 16
-  fixed_pilot_trials_per_direction: 2
-  pilot_directions_required: 8
-  pilot_excludes_evaluation_trials: true
-  evaluation_evidence: internal_held_session_audit
-  external_claim_requirement: third_lineage_independent_animal
-  prior_exposure: true
+data:
+  primary_animals: [Mihili, Chewie-L]
+  sessions_per_animal: 6
+  development_sessions_per_animal: 4
+  held_sessions_per_animal: 2
+  primary_region: M1
+  movement_window: 150 to 450 ms after movement onset
+  sensitivity_only: Chewie-R implant
+  evidence_strength: internal held-session test in an already used public corpus
+  external_claim_requires: newly collected or sequestered sessions from a third animal
 
-grammar:
-  electrode_selectors:
-    - reliability
-    - spatial_diversity
-    - redundancy_aware
-    - learned_linear_ranker
-    - learned_shallow_boosting
-    - offline_contextual_ranker
-  trial_allocators:
-    - direction_balanced
-    - uncertainty_weighted
-    - residual_diversity
-    - d_optimal
-    - bounded_ucb
-  combination_rules: [fixed_weighted_pilot_score_then_allocate, learned_pilot_ranker_then_allocate]
-  maximum_lookahead_steps: 2
-  electrode_budgets: [4, 8, 16]
-  post_pilot_trial_budgets: [32, 64, 128]
-  middle_anchor: 8x64
-  full_resource_role: ceiling_and_equivalence_only
-  electrode_lock_after_pilot: true
-  later_electrode_addition: forbidden
-  earlier_trial_backfill: forbidden
-  within_direction_trial_order: frozen_seeded_queue
-  adaptive_trial_reward: trusted_nested_cv_calibration_loss_change
-  action_semantics:
-    initial_trial_action: direction_balanced_first_seeded_stratum
-    tie_break: frozen_seeded_order
-    missing_geometry_fallback: reliability_plus_redundancy_without_spatial_terms
-    pilot_cost_reported_separately: true
-  policy_time_state:
-    - static_geometry_and_qc_all_electrodes
-    - all_electrode_pilot_summaries
-    - locked_retained_electrode_set
-    - acquired_selected_electrode_lfp_and_calibration_target
-  lfp_features: [lmp, power_100_200_hz, power_200_400_hz]
-  shared_decoder: reduced_rank_ridge
-  forbidden:
-    - audit_evaluation_target_access
-    - realized_future_utility
-    - evaluation_spikes_as_policy_reward
-    - non_cross_fitted_development_utility_labels
-    - per_session_policy_selection
-    - arbitrary_band_column_selection
-    - numeric_channel_matching_across_sessions
-    - selector_specific_decoder_capacity
-    - free_form_policy_code
+common_pilot:
+  trials: 16
+  reach_directions: 8
+  trials_per_direction: 2
+  electrodes_visible: all structurally eligible physical electrodes
+  evaluation_trials_excluded: true
 
-objectives:
-  primary: equal_cell_animal_balanced_mean_delta_r2_sse_over_strongest_cost_matched_baseline
-  primary_grid: 3x3_E_4_8_16_by_post_pilot_N_32_64_128
-  aggregation: equal_cells_then_sessions_then_equal_animals
-  secondary: [full_resource_equivalence, strongest_baseline_gain, policy_complexity, acquisition_latency]
-  minimum_meaningful_improvement: 0.005
-  required_anchor_budgets: [low_4x32, middle_8x64]
-  constraints:
-    beat_strongest_cost_matched_baseline_each_primary_animal: true
-    audit_animal_means_positive: true
-    audit_sessions_improved_min: 3
-    audit_sessions_total: 4
-    identical_cost_and_evaluation_trials: true
-    no_material_full_budget_loss: true
-    leave_one_animal_out_transfer_stress: true
-    utility_labels_whole_session_cross_fitted: true
+acquisition_choices:
+  electrode_counts: [4, 8, 16]
+  additional_trial_counts: [32, 64, 128]
+  complete_grid_cells: 9
+  electrode_choice_timing: once, immediately after the common pilot
+  later_electrode_addition: false
+  historical_nonpilot_backfill: false
+  trial_action: choose one of the eight reach directions
+  within_direction_order: >-
+    Use one ordinary seeded order chosen before policy scores; a direction
+    choice reveals only the next recorded trial in that order.
+  lookahead_steps_maximum: 2
+  pilot_cost_reported_separately: true
 
-budgets:
-  minimum_valid_trials: 40
-  maximum_valid_trials: 112
-  patience_valid_trials: 20
-  max_invalid_retries: 16
-  cpu_core_hour_ceiling: 1200
-  gpu_hour_ceiling: 0
-  wall_clock_hour_ceiling: 120
-  parallel_core_ceiling: 48
-  memory_gb_ceiling: 256
-  scratch_gb_ceiling: 750
-  minimum_falsification_fraction_after_branch_coverage: 0.40
+information_available_at_choice_time:
+  before_electrode_selection:
+    - static electrode geometry and quality information
+    - summaries from the common all-electrode pilot
+  during_trial_selection:
+    - the retained electrode set
+    - LFP and spike targets from calibration trials already acquired
+    - current direction counts and calibration fit summaries
+  never_available:
+    - future acquisition trials
+    - untouched evaluation spike targets
+    - realized future electrode or trial value
+    - a session-specific winning method
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 20
-  rule: every_retention_selector_and_trial_allocator_family_with_fixed_baselines
-  readiness_rejection_must_be_logged: true
+electrode_selectors:
+  - reliability and signal quality
+  - spatial diversity and array coverage
+  - redundancy-aware selection
+  - simple linear learned ranking
+  - shallow learned ranking
+  - offline contextual ranking
 
-required_falsifiers:
-  - repeated_cost_matched_random_selection
-  - development_utility_label_permutation
-  - electrode_geometry_shuffle
-  - reliability_diversity_learned_score_and_allocator_ablations
-  - redundancy_and_quality_matched_baselines
-  - reverse_animal_transfer
-  - leave_one_development_session_out
-  - leave_one_animal_out_policy_transfer
-  - sequential_action_information_replay_audit
-  - spike_contamination_and_low_frequency_sensitivities
-  - saturating_clustered_redundant_trial_limited_and_null_synthetic_worlds
+trial_allocators:
+  - direction balanced
+  - uncertainty weighted
+  - residual diversity
+  - information gain
+  - bounded upper confidence
 
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  require_one_global_transferable_policy: true
-  require_all_falsifiers_pass: true
-  require_anchor_budget_success: true
-  require_reproducible_sequential_replay: true
-  require_electrode_lock_before_trial_allocation: true
-  require_three_of_four_audit_sessions_improve: true
+shared_prediction_model:
+  decoder: reduced-rank ridge
+  lfp_features:
+    - LMP
+    - 100 to 200 Hz power
+    - 200 to 400 Hz power
+  same_decoder_capacity_for_every_method: true
+  same_population_target_for_every_method: true
+  same_evaluation_trials_for_every_method: true
 
-stop:
-  before_minimum: forbidden_except_technical_impossibility
-  patience_starts_after_minimum: true
-  patience_delta: 0.005
-  require_selector_and_allocator_family_coverage: true
-  require_baseline_seed_completion: true
-  resource_exhaustion_result: incomplete_search
-  budget_stop_is_scientific_success: false
-  budget_stop_is_scientific_negative: false
+comparisons:
+  - repeated uniform-random electrodes with balanced-random trials
+  - geometry-only farthest-first electrodes
+  - reliability-only electrode ranking
+  - full-resource decoder as a ceiling check
+  - development-only hindsight best case as an upper bound
 
-audit:
-  configuration_lock_required: true
-  configuration_lock_write_once: true
-  maximum_open_count: 1
-  audit_updates_search: false
-  audit_role: held_out_sessions_and_locked_within_session_evaluation
-  terminal_claim_scope: retrospective_internal_held_session_post_pilot_retention_and_calibration_replay
-  external_claim_allowed: false
+primary_measure:
+  metric: held-out R2_SSE difference from the strongest cost-matched simple rule
+  aggregation:
+    - give all nine grid cells equal weight within session
+    - average sessions within each animal
+    - give Mihili and Chewie-L equal weight
+  meaningful_improvement_r2: 0.005
+  required_scarce_resource_cells:
+    - 4 electrodes and 32 additional trials
+    - 8 electrodes and 64 additional trials
+  report_every_grid_cell_session_and_animal: true
+  keep_electrode_and_trial_axes_separate: true
 
-reporting:
-  scientific_scope:
-    primary_policy_and_mechanism_followup_reported_separately: true
-    policy_gain_does_not_establish_electrode_or_trial_mechanism: true
-    electrode_retention_and_trial_allocation_contributions_reported_separately: true
-    every_grid_cell_session_and_primary_animal_reported: true
-    reliability_spatial_redundancy_and_trial_balance_alternatives_visible: true
-    electrode_count_may_be_converted_to_trial_count_without_cost_model: false
-  paper_figures:
-    - matched_cost_policy_frontier_over_complete_grid
-    - pilot_score_versus_conditional_electrode_value
-    - pre_action_trial_value_prediction_and_balanced_replay
-    - quality_redundancy_spatial_and_component_ablations
-    - frozen_prediction_in_newly_sequestered_sessions
+search_budget:
+  diverse_family_coverage_evaluations_minimum: 20
+  valid_evaluations_minimum: 40
+  valid_evaluations_maximum: 112
+  patience_after_minimum:
+    consecutive_valid_evaluations: 20
+    score_improvement_r2: 0.005
+    also_continue_for_new_feasible_utility_robustness_cost_point: true
+  failed_engineering_runs_retry_maximum: 16
+  post_coverage_alternative_check_fraction_minimum: 0.40
+  adaptive_successor_cycles_minimum: 2
+  incumbent_challenger_decisions_minimum: 2
+  resources:
+    hardware: CPU only
+    aggregate_cpu_hours: 1200
+    gpu_hours: 0
+    wall_clock_hours: 120
+    concurrent_cores: 48
+    memory_gb: 256
+    temporary_storage_gb: 750
 
-terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_candidate: closed_no_candidate
-  incomplete_search: closed_no_candidate
-  unresolved: closed_no_candidate
-  technical_failure: technical_failure
+required_family_coverage:
+  - every electrode-selector family
+  - every trial-allocator family
+  - repeated simple comparisons
+  - every planned alternative-explanation check
+
+alternative_explanation_checks:
+  - repeated random choices with matched action counts and compute
+  - permuted development electrode-value labels
+  - shuffled electrode locations for spatial methods
+  - remove reliability, diversity, learned score, and adaptive trial components in turn
+  - redundancy-matched and quality-matched comparisons
+  - reverse animal transfer
+  - omit each development session in turn
+  - train on one animal and apply to the other
+  - verify step by step that each decision used only information then available
+  - low-frequency-only and spike-contamination sensitivities
+  - saturating, spatially clustered, redundant, trial-limited, and null simulations
+
+held_session_evaluation:
+  timing: after one global method and all analysis choices are final
+  evaluations: 1
+  successful_primary_result_requires:
+    - mean gain of at least 0.005 R2_SSE over the strongest cost-matched simple rule
+    - positive mean gain in both primary animals
+    - improvement in at least 3 of 4 held sessions
+    - success at both prespecified scarce-resource cells in both animals
+    - no material loss relative to the full-resource ceiling under the chosen equivalence margin
+    - robustness to influential-session and leave-one-animal checks
+    - every required alternative-explanation and information-timing check passes
+  possible_results:
+    - reproducible joint electrode-and-trial policy
+    - positive but ambiguous or insufficiently robust result
+    - no method clears the prespecified rule
+    - study incomplete because required coverage or resources were not completed
+    - analysis invalid because data separation or scoring failed
+
+electrode_value_explanation:
+  outcome: >-
+    Increase in untouched-trial loss when one retained electrode is removed
+    while calibration data and the decoder procedure remain unchanged.
+  predictors_visible_in_pilot:
+    - reliability and missingness
+    - spatial coverage relative to the retained set
+    - correlation or conditional variance relative to the retained set
+    - the selected learned pilot score, if it survives primary controls
+  development_method: whole-session cross-fitting
+  decisive_comparison: prediction of removal value versus reliability alone
+
+next_direction_explanation:
+  outcome: >-
+    Decrease in untouched-trial loss after adding the next prespecified trial
+    from one legal reach direction to the current calibration state.
+  predictors_visible_before_choice:
+    - direction-wise calibration counts
+    - cross-validated calibration error
+    - uncertainty
+    - residual diversity
+  comparisons:
+    - direction-balanced choice
+    - random choice at the same point in the recorded order
+  interpretation_limit: retrospective prediction, not a causal online intervention
+
+resource_axis_explanation:
+  report:
+    - performance change from 4 to 8 electrodes at each trial count
+    - performance change from 32 to 64 trials at each electrode count
+    - interaction between electrode and trial steps
+  forbidden_claim: an electrode equals a number of trials without a separate measured cost model
+
+external_confirmation:
+  required_source: independent third animal with compatible M1 data
+  test_every_eligible_session: true
+  must_predict:
+    - conditional electrode-value ordering
+    - next-direction value ordering
+    - shape or prespecified steps of the nine-cell performance surface
+    - matched-budget joint policy performance
+  current_four_held_sessions_confirm_later_explanation: false
+
+claim_limits:
+  supported_claim: >-
+    In these recordings, a common 16-trial pilot guides post-pilot electrode
+    retention and calibration-trial allocation better than cost-matched simple
+    rules under the supported budgets.
+  not_supported:
+    - from-scratch electrode placement
+    - causal or biological electrode importance
+    - measured power or bandwidth savings
+    - a universal electrode count
+    - real-time behavioral control
+    - clinical BCI performance
+    - generalization to a new animal without the third-animal test

@@ -1,33 +1,30 @@
-# Verification projection
+# Readiness check
 
-> Client-maintained record of mechanical verification only. This file does not
-> grant scientific, Society, reward, approval, execution, ClaimCard, memory, or
-> Landscape authority. It is not a CandidateBundle review artifact and must
-> never be declared in a frozen CandidateBundle's `output_artifacts`.
+## Document checks completed
 
-## Verification scope
+- The question begins with the scientific comparison rather than process
+  machinery.
+- One EP12-style SVG shows synthetic near/long session codes, matched scores,
+  three visibly distinct mechanism signatures, and bounded interpretations
+  without implying observed success.
+- `GOAL.md`, `DATASETS.md`, and `SEARCH_POLICY.yaml` agree on the 1–30 day and
+  at-least-180 day gaps, six/three participant roles, 128-trial packets, and
+  32-label primary recalibration.
+- The proposed margins, search budgets, required controls, and claim limits are
+  stated explicitly.
+- `paper_plan.md` gives each planned figure one scientific judgment and defines
+  what happens after positive, negative, mixed, and unresolved results.
 
-- verifier: direct scientific-readiness checks only
-- state: formal local specification; no experiment or audit has started
+## Scientific readiness still pending
 
-## Current readiness
+| Requirement | Status |
+| --- | --- |
+| Comparable target schedules and sufficient near/long pairs | Not checked |
+| Final six development and three held-out participants | Not chosen |
+| Remaining numeric thresholds | Not set |
+| Synthetic recovery and leakage tests | Not run |
+| Real development analysis | Not started |
+| Final held-out evaluation | Not started |
 
-| Scientific question | Status | Evidence or limitation |
-| --- | --- | --- |
-| Provider release and compatible fields identified | documented | `DATASETS.md`; source remains read-only to EP16 |
-| Whole-participant independence and 6/3 roles | pending | exposure screen and metadata-only support assessment have not run |
-| Near/long pair support and endpoint scorability | pending | no participant role may be finalized until these direct checks pass |
-| Development/final separation | specified, not instantiated | the one-shot evaluator boundary remains required |
-| Candidate scoring or final audit | not run | no neural outcome has been opened |
-
-Future verification should test these scientific controls directly. Generic
-file-format, repository-hygiene, and provenance checks are not readiness gates
-unless a concrete inconsistency requires a targeted diagnostic.
-
-## Scientific boundary
-
-- Scientific validity: not mechanically verified.
-- Execution, evaluator opening, Society review, and audit state: not established
-  by this projection.
-- Mechanical agreement does not establish novelty, causal interpretation,
-  independent confirmation, or scientific acceptance.
+Passing document checks does not establish that the data support the study or
+that any scientific conclusion is true.

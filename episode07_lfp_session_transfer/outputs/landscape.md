@@ -1,4 +1,3 @@
 # Landscape
 
-No finding, claim, or Landscape transition is recorded for the current
-episode contract.
+No EP07 finding or campaign-level claim has been recorded.

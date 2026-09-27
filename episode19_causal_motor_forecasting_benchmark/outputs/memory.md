@@ -1,30 +1,24 @@
 # Research memory
 
-> Client-maintained workspace projection only. This is not Brain Researcher memory.
-> Workflow policy: do not promote it outside this workspace without a separate,
-> scientist-requested memory write.
+## Reusable lessons from the design
 
-## Reusable local lessons
-
-- Not yet established. Every lesson must cite an `outputs/` evidence ref.
-
-## Approaches not carried forward
-
-- None recorded. Each entry must state its scope, reason, and an `outputs/` evidence ref.
-- A local exploratory failure does not establish scientific invalidation.
-
-## Observed failure modes
-
-- None recorded. Record the local context and supporting `outputs/` evidence ref.
-
-## Constraints and data gaps
-
-- Not yet assessed.
+- A prediction timestamp before a recorded onset is not enough; filtering,
+  normalization, state, and labels must all obey past-only information flow.
+- A strong absolute EEG-model score is not neural evidence without a strong
+  non-neural baseline and separately trained capacity-matched surrogates.
+- The model-order question must compare the same fitted families across
+  horizons rather than two independently selected winners.
+- New-participant replication is stronger when calibration is small and
+  explicit: one temperature and three offsets from 32 events.
+- Historical event detection and strict forecasting are different scientific
+  tasks.
 
 ## Open questions
 
-- Not yet assessed.
+- Can timing uncertainty be bounded below 300 ms in both sources?
+- Does the 29-channel intersection behave consistently across sample rates?
+- What practical EEG-increment, calibration, model-pair, and latency margins
+  should be set before scoring?
+- Can the full reference and surrogate panel fit within the resource limits?
 
-## Promotion status
-
-- Not requested.
+These are design questions, not scientific results.

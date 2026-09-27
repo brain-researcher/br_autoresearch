@@ -1,34 +1,19 @@
-# Loop projection
+# Current study stage
 
-> Client-maintained projection of observed persisted outer-loop state. Persisted
-> MCP state remains authoritative. This file does not grant reward, approval,
-> execution, Society, scientific, ClaimCard, memory, or Landscape authority. It
-> is not a CandidateBundle review artifact and must never be declared in
-> a frozen CandidateBundle's `output_artifacts`.
+## Where EP19 is now
 
-## Binding
+EP19 has a science-first question, one four-panel scientific SVG, a compact
+methods policy, and a four-figure paper plan. It remains before signal
+analysis.
 
-- observed_at: not observed
-- source: not observed
-- loop_id: not observed
-- goal_handoff_id: not observed
-- revision: not observed
+## Next scientific steps
 
-## Observed state
+1. Check clocks, channels, sampling, acquisition gaps, and source completeness.
+2. Specify and test each source's sensor-based onset detector.
+3. Prepare separate development and held-out data views.
+4. Fill the numeric values still marked `null` in `../SEARCH_POLICY.yaml`.
+5. Test past-only information flow and known synthetic signals.
+6. Only then consider development EEG scoring.
 
-- Stage: not observed
-- next_action: not observed
-- terminal_status: not observed
-- current human gate: not observed
-
-## Observed transition timeline
-
-| observed_at | source | from | to | evidence ref |
-| --- | --- | --- | --- | --- |
-| not observed | not observed | not observed | not observed | not observed |
-
-## Boundary
-
-- Copy only facts returned by the persisted loop or Goal MCP read surfaces.
-- This projection must not infer a transition, action, or authority that MCP has
-  not returned.
+The final held-out evaluation is not the next step and cannot guide model
+development.

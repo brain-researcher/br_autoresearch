@@ -1,542 +1,264 @@
 # Can earlier recording days help predict neural activity on a new day?
 
-Take the M1 part of the study. Imagine two rightward reaches made on a new
-recording day. At the same moment after movement onset, the usual
-direction-and-time response is the same for both trials. Yet their LFPs and
-population spike counts may rise or fall together in different ways. Earlier
-recording days contain many examples of these signals, but the recorded
-neurons, electrode signals, and numeric scale have changed by the time the new
-day begins. The same design is applied separately to PMd activity before
-movement.
+Imagine two reaches in the same direction on a new recording day. At the same
+moment after movement onset, their usual direction-and-time response is the
+same. Yet their LFPs and population spike counts may rise or fall together in
+different ways. EP07 asks whether earlier recording days help predict those
+new-day differences after the new day has supplied only a small calibration
+sample.
 
-EP07 asks whether those earlier days are still useful after the new day has
-provided its own small calibration set. Three earlier days from the same
-animal, implant, and cortical region are used to help predict population spike
-counts on untouched trials from a later day. The later day contributes only a
-nominal 20% of its trials for calibration.
+The decisive comparison is not merely whether a cross-day model beats an
+average response. It must also beat an equally tuned model that sees the same
+new-day calibration trials but no earlier-day data. Only then can we say that
+history added information beyond what could be learned from today's sample.
 
-The first comparison is deliberately demanding. The source-day model must
-beat both a direction-by-time average and an equally tuned model that receives
-the same new-day calibration trials but no earlier-day data. Beating only the
-average would show that neural signals help within a day; it would not show
-that historical recordings add anything once today's calibration data are
-available.
+![EP07 conceptual figure showing synthetic new-day LFP and population residuals, matched history and today-only predictions, competing transfer explanations, and bounded interpretations](outputs/ep07_question.svg)
 
-Even a win over both comparisons may have a simple explanation. More old data
-could improve the average response for each reach direction, stabilize the
-fit simply by adding more examples, or align the day's average population
-pattern. None of those results shows that a trial-to-trial relationship
-between LFP and population spiking survived across days. The first score must
-therefore lead to a second question:
+Like the EP12 concept figure, this mockup begins with synthetic signal patterns
+rather than the day-allocation protocol. It shows trial-level LFP and
+population residuals, the three predictions made on the same untouched
+new-day response, and the visibly different signatures expected from average
+task structure, aligned population geometry, and reusable residual coupling.
+The final strip states the bounded interpretations. None of the traces is an
+EP07 result; exact days and decision rules remain in the study text.
 
-> After the usual response for reach direction and time is removed, can a
-> relationship learned on earlier days still use the LFP to predict which
-> new-day trial has more or less population spiking?
+## The scientific question
 
-The intended paper should show more than a higher cross-day prediction score.
-It should identify whether the useful part of an earlier day is an average
-reach template, an aligned population pattern, or a relationship between LFP
-and spiking on the same trial. It should also show whether the answer repeats
-across target days and animals, whether it survives without 100--400 Hz
-spike-rich features, and whether a rule fixed in advance can predict when
-earlier days will help on a new session whose held-out outcomes have not been
-examined.
+Within one animal, implant, and cortical region, can three earlier recording
+days improve prediction of population spiking on a later day after the model
+has seen only a nominal 20% of that later day's trials?
 
-Even a positive result would not show that the same neurons or electrode
-weights remain stable, that LFP causes population spiking, or that an online
-BCI will improve. It would support a narrower claim: in these two animals and
-six fixed target days, earlier days add useful information after limited
-same-day calibration for whichever prespecified setting the evidence supports—
-M1 during movement, PMd before movement, or both.
+The study is run separately for:
 
-The [paper plan](outputs/paper_plan.md) gives the follow-up tests, closest prior
-work, result-dependent branches, and figure sequence. The primary transfer
-test remains the first result. Later mechanism analyses cannot turn a failed
-or ambiguous transfer result into a positive one.
+- M1 activity from 150 to 450 ms after movement onset; and
+- PMd activity from 450 ms before the go cue up to the go cue.
 
-## At a glance
+The same analysis choices are used for every day and both settings. Model
+parameters are fitted separately within animal, implant, and region; neural
+signals are never pooled across those boundaries.
 
-| Question | EP07 design |
-| --- | --- |
-| What changes from day to day? | The recorded neurons, electrode signals, and signal scale can change even when the animal, implant, region, and reaching task stay the same. |
-| What information is available? | Three earlier recording days plus a nominal 20% of the later day's trials for calibration. Neuron and numeric channel identities are not matched across days. |
-| What is predicted? | Population spike counts on untouched later-day trials, separately for M1 during movement and PMd before movement. |
-| What is the hard comparison? | The model using earlier days must beat both a direction-and-time average and an equally tuned model that uses the same later-day calibration trials but no earlier days. |
-| What must repeat? | The improvement must survive across the six fixed later days and be supported in both animals, rather than depend on one favorable recording day. |
-| What can the first test conclude? | Whether historical recordings add predictive information after limited same-day calibration. It cannot yet say what information transferred. |
-| What would make a deeper finding? | Evidence that the transferable signal is a trial-specific LFP--population relationship, rather than only an average reach pattern, the stabilizing effect of extra training examples, or high-frequency spike contamination. |
-| What is the next test? | Remove the direction-and-time average before fitting, then ask whether earlier days still improve prediction and which LFP and population components carry that gain. |
-| What is the external prediction? | Before held-out neural outcomes are examined, use the permitted calibration data to predict whether earlier days will help on a new session and which population dimensions will benefit. |
+## What would count as a useful answer?
 
-## From a transfer gain to a scientific finding
+The first result answers whether earlier days add predictive value. A positive
+result then leads to a second question: what information survived the change
+of day?
 
-Consider two reaches to the same target at the same time after movement onset.
-Their mean response is identical by construction, but their LFP and population
-spiking may differ from trial to trial. A source-bearing model could win because
-old sessions estimate the direction-by-time mean more accurately. Alternatively,
-it could win because old sessions teach a relationship that predicts which of
-the two trials has higher or lower population activity. Those are different
-findings and require different tests.
+There are three scientifically different possibilities:
 
-After the primary conclusion is fixed, the proposed follow-up creates a true
-residual-only prediction task; it does not merely subtract the same mean from a
-finished prediction and its target. Direction-by-time means are estimated from
-permitted training/calibration trials. Those means are removed from both LFP
-features and spike-count targets before either the source-bearing or matched
-calibration-only residual model is fit. The residual models cannot see
-uncentered neural values, a source-day mean template, or held-out outcomes.
-Their predictions are scored directly against held-out spike residuals, while
-the mean component is scored separately. It then asks which source-trained
-population dimensions and LFP feature blocks carry reproducible residual gain.
+1. **Average reach structure.** Earlier days improve the expected response for
+   a reach direction and time point.
+2. **Shared population geometry.** A low-dimensional population pattern can be
+   aligned across days even though the recorded neurons differ.
+3. **Trial-specific coupling.** After the expected direction-and-time response
+   is removed, LFP fluctuations still predict whether population spiking on a
+   particular trial is above or below expectation.
 
-The mechanism development set has already been outcome-exposed. Candidate
-components, ties, margins, and ablations must therefore be frozen before any
-new mechanism-specific score or diagnostic is computed or revealed—not
-pretended to be frozen before the data were ever accessed. The consumed primary
-audit can contribute only generic secondary outputs declared before its
-single opening; it cannot select this mechanism. A visually appealing latent
-trajectory is not enough.
+The third possibility is the strongest claim, but it also requires the
+strongest controls. A result carried only by 100--400 Hz power or by
+spike-rich electrodes will be reported as that narrower signal boundary, not
+as general field-potential coupling.
 
-A trial-specific field-potential interpretation additionally requires an
-LMP/low-frequency-only result, explicit exclusion of 100--400 Hz power,
-same-electrode/unit-intersection analysis, and spike-quality matching. If the
-gain exists only in high-frequency or spike-rich features, report that boundary
-rather than calling it general LFP--spike coupling.
+## Recording days and trial roles
 
-The follow-up also has to make a forward prediction. Using only source days and
-the target calibration set, it should estimate whether source information will
-help that target day and which population dimensions will benefit. That rule is
-trained and cross-checked on development days, frozen, and then tested on newly
-sequestered sessions. Reusing the current audit trials after seeing their result
-would be explanation of this corpus, not external validation.
+The primary study uses twelve simultaneous M1/PMd recording days from two
+animals. Earlier and later days are assigned chronologically.
 
-The possible paper-level outcomes are deliberately different:
-
-| Follow-up result | What it would mean | What not to claim |
-| --- | --- | --- |
-| Source gain remains after direction-by-time means are removed, localizes to prespecified LFP/population components, and predicts new sessions | A trial-specific LFP--population relationship is reusable across days within the tested scope | The same neural weights, electrodes, or single neurons are stable |
-| Source gain is confined to the mean reach trajectory or aligned low-dimensional geometry | Earlier days reuse stable task structure, but evidence for transferable trial-specific coupling is absent | A general moment-to-moment neural mechanism |
-| Source gain is explained by generic shrinkage, target calibration, one source day, or one target day | The proposed stable relationship is not supported; retain only the narrower result that survives the controls | A robust cross-day principle |
-| No primary gain, or the result is imprecise | Stop or report the bounded negative/unresolved result | A mechanism rescued by post hoc component analyses |
-
-## Authority and history boundary
-
-This directory is the current local scientific contract. The contract alone
-does not start compute or establish a finding; an explicit scientist
-instruction in a Codex task starts the work. Earlier uses of this Dryad corpus
-remain development history: no earlier score, winning setting, review, or
-conclusion may seed the trial order or prior. At episode bootstrap, bind the
-named search-policy revision, exposure record, source release/version, and
-frozen day/trial roles before any candidate-discriminating score is used.
-
-EP05--EP08 share source dependence and therefore use one exposure ledger. A
-new trial split inside this already exposed release is an internal audit of a
-newly locked procedure, not independent replication.
-
-## Exact unit of transfer
-
-Within a fixed animal, implant, and cortical region, can a single bounded
-policy use earlier recording days to improve prediction of trial-specific
-target-day population activity after seeing only a nominal 20% target calibration
-trials, by more than both a direction-by-time mean and an equally tuned model
-that receives target calibration but no source-day information?
-
-The selected configuration is one global policy shared by every primary
-target day and both prespecified region/epoch strata. Its fitted parameters
-remain animal-, implant-, and region-specific: neural observations are never
-pooled or transferred across animals, implants, or regions. The search may not
-select a different configuration for a session, animal, or stratum.
-
-## Frozen forward day roles
-
-Recording-day roles are global and chronological:
-
-| Animal | `source_only` days | `target_only` days |
+| Animal | Earlier days used for model fitting | Later days used for calibration and evaluation |
 | --- | --- | --- |
 | Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-06, 2014-03-07 |
 | Chewie-L | 2016-09-29, 2016-10-05, 2016-10-06 | 2016-10-07, 2016-10-14, 2016-10-21 |
 
-M1 and PMd records from the same day always have the same role. A trial from
-any `target_only` day is forbidden from every source fit, including when a
-different target day is being scored. Target calibration may adapt a source
-fit only through the declared target-adaptation operator; it does not convert
-the target day into a source day. No day may change role or replace a named
-day after any neural value or score is opened.
+M1 and PMd from the same recording day always receive the same role. No trial
+from a later day may be used as an earlier-day training example. Chewie-R is
+reserved for an implant-sensitivity analysis in the same animal; it is not a
+third-animal replication and cannot determine the primary result.
 
-All six named days for each primary animal must be structurally eligible. Each
-target day must contain the required M1 and PMd data, all eight authenticated
-reach directions, complete event timing, support for the structural-only
-target-neuron roster defined below, and at least 15 complete trials in every
-direction. If either animal
-lacks this support, stop for redesign before outcomes or scores are exposed; do not
-silently weaken the threshold or substitute a day. Chewie-R is excluded from
-the primary estimand and does not count as a third animal. Any later
-Chewie-R analysis is explicitly labeled an implant sensitivity and cannot
-choose, rescue, or promote a policy.
-
-## Frozen windows and released-representation exception
-
-Use the provider's native 30-ms bins without interpolation, rebinning, or
-overlapping summaries:
-
-- M1 execution: `[movement onset + 150 ms, movement onset + 450 ms)`, exactly
-  10 native bins; and
-- PMd preparation: `[go cue - 450 ms, go cue)`, exactly 15 native bins.
-
-The half-open intervals above are the two prespecified strata. Region and task
-epoch are confounded, so even a result in both strata is not evidence of a
-general preparation-versus-execution effect.
-
-The public payload contains provider-preprocessed LFP representations, not raw
-voltage. Its session-wide centering and zero-phase filtering/smoothing cannot
-be reconstructed separately within role. This is one frozen,
-target-label-blind exception: the authenticated released arrays are used
-unchanged and identically by the transfer stream and both comparators. No
-candidate may tune or repeat that preprocessing. The exception must be
-recorded in the lock bundle, and every claim is limited to this released,
-offline representation; this is not a raw-signal or strictly inductive
-benchmark.
-
-## Frozen response, eligibility, and neuron roster
-
-The scored response `y` is the provider-released native-bin spike-count array,
-unchanged. A fit may center or project targets only inside a declared model
-using source-only and target-calibration observations; every prediction must be
-mapped back to the original target neuron's native count scale before scoring.
-No square-root, log, smoothing, clipping, variance normalization, or other
-response transform may change the primary scoring target.
-
-Before role assignment, the episode's deterministic builder applies one fixed
-validity rule to whole behavioral trials. `result` must equal `R`; `bin_size`
-must equal 0.03 s;
-animal, implant, day, direction, and simultaneous M1/PMd identities must join;
-the required event indices must be finite integers; both frozen windows must
-fit their native time axes; spike/LFP matrices and guides must have the declared
-two-dimensional shapes; and every required LFP and spike value in both windows
-must be finite. Spike counts must also be nonnegative integers. If either
-stratum fails, the whole simultaneous trial is ineligible. This predicate may
-inspect identities, structure, and validity, never variability, magnitude,
-model residuals, or candidate/comparator scores.
-
-Map `tgtDir` to labels 0--7 by the nearest circular multiple of `pi/4`, with
-maximum absolute circular error `0.01` radians. Convert each provider MATLAB
-event index from one-based to zero-based exactly once. If `m` and `g` are the
-resulting movement and go-cue indices, the Python time-axis slices are
-`M1[m+5:m+15]` and `PMd[g-15:g]`; each must contain exactly 10 and 15 bins.
-
-For each target day and region, the target-neuron roster is every authenticated
-unit-guide entry whose identity and ordering are identical across all eligible
-trials and whose spike row is present in every required native window. Roster
-construction reads unit-guide metadata and shapes only; it cannot use any
-calibration, development, or audit spike value. A guide mismatch makes the day
-structurally ineligible rather than inducing an intersection or outcome-based
-neuron subset. The roster is ordered lexicographically by the canonical
-unit-guide tuple, frozen before target-trial hashing, and shared by every model.
-Individual low- or zero-variance neurons are never dropped. Only a zero joint
-`R2_SSE` denominator for the full frozen roster is a technical failure.
-
-## Deterministic target-trial roles
-
-For each of the six `target_only` days and each reach direction, order complete
-whole trials by ascending SHA-256 of the canonical-JSON UTF-8 array
-`["ep07-target-role-split-v1", animal_id, session_date, direction_id,
-authenticated_trial_id]`. Resolve a digest tie by the authenticated trial
-identifier. For `n` eligible trials assign, in that order,
+Within each later day and reach direction, complete trials are placed in one
+fixed order using the predeclared seed `ep07-target-role-split-v1`. The order
+is saved before any model comparison. A nominal 20% of trials are used for
+calibration; the remainder is divided as evenly as possible between model
+development and held-out evaluation:
 
 ```text
 n_calibration = floor(0.2*n + 0.5)
 n_development = floor((n - n_calibration)/2)
-n_audit       = n - n_calibration - n_development
+n_held_out    = n - n_calibration - n_development
 ```
 
-The minimum `n = 15` therefore supplies at least 3/6/6
-calibration/development/audit trials. All bins, neurons, input features, and
-predictions belonging to a whole trial inherit its role. When M1 and PMd share
-a behavioral trial, they inherit the same role. No resampling, seed search,
-backfilling, exclusion based on neural values, or role-specific neuron
-selection is allowed.
+Each direction must have at least 15 complete trials, giving at least 3
+calibration, 6 development, and 6 held-out trials. A whole behavioral trial
+keeps the same role across every time bin, neuron, feature, M1, and PMd.
+Trial order is never searched, and no trial is reassigned because of its neural
+value or prediction error.
 
-- **Calibration:** candidate-visible. Both model streams may fit target
-  scaling, target latent alignment, residual means, and declared adaptation.
-- **Adaptive development:** the episode evaluator keeps labels and
-  candidate-discriminating diagnostics outside candidate fitting code and
-  returns only the authorized aggregate feedback.
-- **Locked audit:** trial identifiers, covariates, outcomes, predictions joined
-  to outcomes, metrics, and candidate-discriminating diagnostics remain sealed
-  until one policy, comparators, inference code, and terminal rule are locked.
-  It opens once.
+## Signals and eligibility
 
-## Bounded scientific grammar
+The prediction target is the provider-released spike count in native 30-ms
+bins. Predictions are scored on that original count scale. The analysis does
+not smooth, transform, or selectively remove neurons according to their
+outcomes.
 
-Each configuration is a declarative composition of only these operators:
+A trial is included only when it is a successful reach, its animal, implant,
+day, direction, M1 and PMd records agree, both time windows are present, and
+the required LFP and spike values are finite. Spike counts must be nonnegative
+integers. Eligibility is determined from identities and data availability,
+never from neural magnitude, variability, model score, or residual.
 
-1. **LFP representation:** authenticated LMP plus the eight stored band-power
-   classes at native 30-ms resolution; electrode aggregation by moments and
-   quantiles, robust histograms, or a low-rank permutation-invariant set
-   encoder fitted on source days plus target calibration only. Numeric channel
-   identity is never matched across days.
-2. **Latent construction and alignment:** spike PCA rank in `{4, 8, 12, 16}`
-   subject to structural support; optional training-only whitening;
-   behavior-anchored orthogonal Procrustes, regularized CCA, or no rotation.
-   Rank, shrinkage, eigenvalue floors, and reference construction are bounded
-   configuration fields.
-3. **Nuisance handling:** direction-by-time residualization, additive
-   direction/time covariates, or their frozen combination. All nuisance
-   quantities are fitted on source days or target calibration only.
-4. **Source pooling:** equal-session pooling, reliability-weighted pooling,
-   target-calibration similarity weighting, hierarchical coefficient
-   shrinkage, or leave-one-source stacking. Fitted pooling weights may use only
-   source observations and target calibration; authorized development feedback
-   may select among already declared configurations but may not fit a hidden
-   meta-weight.
-5. **Mapping and adaptation:** ridge, elastic net, reduced-rank ridge, or a
-   shallow two-layer MLP with width at most 64; target update as zero-prior
-   fit, source-prior shrinkage, or convex source/target interpolation.
-6. **Ensembling:** at most two already evaluated, diversity-qualified
-   candidates and one weight from the frozen finite grid. The full ensemble is
-   declared before scoring and consumes one ordinary successor evaluation.
+Each later day keeps the neurons that are consistently present across all
+eligible trials for that day and region. Earlier days keep their own neuron
+sets. Neuron identities are not matched across days; cross-day models may
+align only population coordinates learned from permitted training and
+calibration data.
 
-The grammar excludes raw-waveform networks, non-native temporal summaries,
-arbitrary feature code, cross-animal or cross-region inputs, numeric channel
-matching, per-session or per-stratum winner selection, evaluation-fitted
-preprocessing, and any representation selected from audit outcomes.
+The public release contains preprocessed LFP features rather than raw voltage.
+Those released features are used unchanged for every model. Any conclusion is
+therefore about this offline representation, not about raw-voltage processing
+or an online system.
 
-The full family set above is retained by scientist decision. Its equation-level
-operator definitions are frozen in `NUMERIC_OPERATOR_GRAMMAR.md`; the finite
-grid, 16 anchors per stream, legal-combination rules, seeds, and runtime are in
-`ANCHOR_RUNTIME_CONTRACT.yaml`; and selection, budget, falsifier, retry, and
-terminal semantics are in `NUMERIC_SEARCH_CONTRACT.yaml`. These three files are
-one versioned contract bundle: freeze their contract IDs before any development
-outcome is opened and carry those IDs into the final lock. Retaining the full
-grammar does not waive the configuration-legality, structural-support, or
-leakage rules.
+## Models considered
 
-## Comparators and exact estimand
+The bounded model family varies only choices that address the scientific
+question:
 
-Freeze two comparators for every target day and stratum:
+- LMP and the eight released power-band classes, summarized across electrodes
+  without matching electrode numbers between days;
+- population ranks of 4, 8, 12, or 16 when the data support them;
+- no alignment, behavior-guided orthogonal alignment, or regularized
+  correlation-based alignment;
+- direction-and-time adjustment, explicit direction/time predictors, or both;
+- equal, reliability-based, calibration-similarity, shrinkage, or
+  leave-one-day source weighting;
+- ridge, elastic-net, reduced-rank ridge, or a shallow two-layer network with
+  width at most 64; and
+- an ensemble of at most two already evaluated models.
 
-1. `direction_time_mean`: the direction-by-native-time-bin mean fitted only
-   from that day's calibration trials; and
-2. `calibration_only_champion`: a model fitted only from that day's
-   calibration trials, selected from the same legal representation, nuisance,
-   mapping, target-adaptation, and capacity families as the transfer stream
-   wherever those families remain meaningful without a source fit. It receives
-   the exactly matched development-feedback budget below and no source-day
-   observations or fitted source state.
+Raw-waveform networks, cross-animal or cross-region inputs, matching numeric
+channel IDs across days, choosing a different winner for each session, and
+using held-out outcomes to choose preprocessing or model structure are not
+allowed.
 
-Let `k` be M1 or PMd, `s` one of the six fixed target days, and `b` one of the
-two comparators. For model `m`, compute one session-level score
+## The two comparisons
 
-```text
-R2[s,k,m] = 1 -
-  sum_(t,q,j) (y[s,k,t,q,j] - yhat[m,s,k,t,q,j])^2
-  / sum_(t,q,j) (y[s,k,t,q,j] - ybar[s,k,j])^2
-```
+Every history-assisted model is judged against both:
 
-where `t`, `q`, and `j` index all eligible evaluation trials, native bins, and
-the frozen target neurons, and `ybar[s,k,j]` is neuron `j`'s mean across those
-evaluation trials and bins. This is one joint `R2_SSE`, not an average of
-trial-, direction-, bin-, or neuron-level scores. Preserve negative values; a
-zero joint denominator is a technical failure and cannot trigger post-hoc
-neuron or day exclusion. Trials, directions, bins, neurons, latent dimensions,
-seeds, folds, and calibration repeats are not independent audit units. Define
+1. a direction-by-time mean estimated from that later day's calibration
+   trials; and
+2. an equally tuned today-only model that receives the same calibration data
+   and development opportunities but no earlier-day observations or fitted
+   state.
 
-```text
-Delta[s,k,b] = R2_transfer[s,k] - R2_comparator[b,s,k]
+Performance is measured with one joint `R2_SSE` across all held-out trials,
+native time bins, and eligible neurons within a day and region. Negative scores
+remain visible. Differences are first calculated for each later day, then
+averaged across the three days within each animal, and finally averaged equally
+across the two animals. M1 and PMd remain separate. Both comparators are always
+reported; a favorable comparison with only one is insufficient.
 
-theta[k,b] = (1/2) * sum over animals a of
-             ((1/3) * sum over the three target days s of animal a
-                      Delta[s,k,b])
+## Search size and stopping
 
-theta[k] = min over comparators b of theta[k,b]
-```
+The history-assisted and today-only model streams receive exactly the same
+number of development evaluations:
 
-The comparator axis is never collapsed by subtracting the best comparator
-separately in each session. All estimates, uncertainty, sign checks, and
-influence checks are computed and reported for each `b`; `theta[k]` is only
-the conjunction summary. Development uses the same day- and animal-balanced
-construction on development trials. Its primary policy-selection score is the
-equal-stratum mean of the two development `theta[k]` values; session lower
-tails, within-animal effects, retention relative to a same-split
-within-session ceiling, and simplicity are report-only diagnostics except where
-the frozen finalist tie order explicitly names a quantity. They do not define
-an additional Pareto eligibility rule. During successor proposal, before the calibration-only champion is
-known, the transfer stream instead receives only its equal-stratum increment
-over the fixed direction/time mean; the calibration-only stream receives its
-own equal-stratum absolute R2. After the calibration-only champion freezes,
-all stored transfer predictions are deterministically rescored against both
-comparators for the one final selection. Thus patience has no circular
-dependence on a future champion.
+1. 16 diverse starting models in each stream;
+2. between 2 and 14 paired adaptive successors, one new model per stream in
+   each pair; and
+3. exactly 10 paired alternative-explanation checks on the two selected
+   finalists.
 
-## Matched adaptive-search budget
+Each stream therefore receives 28--40 outcome-contacting evaluations, or
+56--80 jointly. At least 41.67% of post-starting-model evaluations are devoted
+to alternative explanations. After at least two valid successor pairs, the
+adaptive stage stops when it reaches 14 pairs, exhausts the allowed model
+space, or seven consecutive valid pairs improve neither stream by at least
+`0.002 R2`. That value controls search patience only; it is not the scientific
+effect threshold.
 
-The transfer and calibration-only streams receive exactly matched tuning
-opportunities:
+The resource limit is CPU only: at most 800 aggregate CPU-hours, 96 wall-clock
+hours, 32 concurrent cores, and 500 GB temporary storage. Running out of
+resources means the search is incomplete; it is not evidence for or against
+the scientific hypothesis.
 
-1. evaluate 16 prespecified, diverse anchor pairs;
-2. attempt `A` feedback-dependent successor pairs, where `2 <= A <= 14`, with
-   one new transfer configuration and one new calibration-only configuration
-   per atomic pair and at least two valid pairs required;
-3. select and freeze the calibration-only champion first, then select one
-   feasible source-bearing transfer finalist against that fixed champion and
-   the fixed direction/time mean; and
-4. run exactly 10 additional paired trials, each bound to those two frozen
-   finalists and to one of the prespecified falsifier transforms `F01`--`F10`.
+## Alternative explanations that must be checked
 
-Only the `16 + A` anchors and successors in each stream are selectable. The 10
-falsifier trials per stream are diagnostic and never enter either archive.
-Therefore each stream receives `16 + A + 10 = 28..40` outcome-contacting
-trials and the two streams jointly receive
-`2 * (16 + A + 10) = 56..80`. The falsifier share after anchor coverage is
-`10 / (A + 10)`, at least `10/24 = 41.67%`. The fixed
-`direction_time_mean` consumes no tuning opportunity.
+Before held-out evaluation, the selected models must survive the ten planned
+checks:
 
-A pair is scientifically valid only after both streams return valid authorized
-development evaluations; unilateral feedback is not released. Every attempted
-pair still consumes two outcome contacts. Infrastructure retries repeat the
-same frozen configuration and seed, emit no scientific feedback, do not consume
-patience, and are capped at two per trial and 12 total. A candidate-specific numeric
-failure after outcome contact consumes the atomic opportunity for both streams
-but is not a valid selectable pair. No more than 14 successor pairs or 80 total
-stream outcome contacts may be attempted. Failure to obtain two valid
-successor pairs or to complete any required phase yields `incomplete_search`
-unless an integrity violation requires `technical_failure`.
+1. shuffle earlier-day labels;
+2. break earlier-day trial correspondence;
+3. break calibration-trial correspondence;
+4. remove earlier-day information entirely;
+5. reduce the model to a direction-and-time template;
+6. replace learned source weights with equal weights;
+7. omit the first earlier day;
+8. omit the second earlier day;
+9. omit the third earlier day; and
+10. remove the first active component among alignment, whitening, feature
+    scope, aggregation, nuisance adjustment, and source-coordinate structure.
 
-After two valid successor pairs, stop adaptive proposal on the first applicable
-event:
+Stable, drifting, null, and scale-shift simulations must also recover their
+known answers. These checks test whether an apparent gain depends on a broken
+correspondence, one influential day, generic regularization, or one optional
+component. A failed scientific check makes that finalist ineligible; it does
+not trigger a search for a more convenient runner-up.
 
-- 14 paired successor opportunities have been attempted;
-- the finite admissible configuration space is exhausted;
-- seven consecutive valid successor pairs add less than `0.002 R2` to both
-  streams' prior best eligible primary scores; or
-- a declared resource or technical stop occurs.
+## Held-out decision
 
-Stopping successor proposal always leads to frozen finalist selection and all
-10 falsifier pairs if the required search completed and a feasible finalist
-exists. Falsifier trials neither reset nor advance patience. A failed
-scientific falsifier makes the single finalist ineligible; it does not permit
-runner-up substitution.
+All analysis choices are made from the permitted earlier-day, calibration, and
+development data before held-out outcomes are viewed. The selected
+history-assisted model and today-only model are then evaluated once on the
+held-out trials.
 
-The `0.002 R2` value is only search resolution/patience; no falsifier,
-promotion, or audit decision uses it. It is not the scientific audit margin.
-A resource stop, authorized interruption, or failure
-to finish the 16 anchors per stream and required coverage produces
-`incomplete_search`; it never licenses audit access or a scientific negative.
+For each region/epoch setting, the history-assisted model must exceed both
+comparators by more than `0.01 R2`. Uncertainty is estimated with 9,999 paired
+whole-trial bootstrap samples within day and reach direction. M1 and PMd are
+the two prespecified tests and use one-sided Holm control at familywise
+`alpha = 0.05`.
 
-Resource envelope: CPU only; at most 800 aggregate CPU-hours, 96 wall-clock
-hours, 32 concurrent cores, and 500 GB scratch.
+A setting is supported only when all of the following hold:
 
-## Required falsifiers and robustness work
+- the `0.01 R2` margin is cleared against both comparators after multiplicity
+  control;
+- the mean improvement is positive in both Mihili and Chewie-L;
+- at least two of three later days improve within each animal;
+- the conclusion remains positive after omitting each later day in turn; and
+- all required alternative-explanation and data-separation checks pass.
 
-Before lock, every promotion-eligible policy must undergo:
+The final report distinguishes support in M1 only, PMd only, both, an
+ambiguous result, a clean failure to clear the rule, an incomplete search, and
+a technical failure. An incomplete or technically invalid run is never
+interpreted as evidence that transfer is absent. Once held-out results have
+been examined, they cannot be used to revise the same study and try again.
 
-- `F01` source-day-label shuffle;
-- `F02` source-trial-correspondence shuffle;
-- `F03` target-calibration-correspondence shuffle;
-- `F04` zero-source ablation;
-- `F05` direction/time-template-only reduction;
-- `F06` equal-source-weight replacement;
-- `F07`--`F09` omission of source-day positions 1, 2, and 3; and
-- `F10` the first applicable active-component ablation in the frozen priority
-  order (alignment, whitening, feature scope, aggregation, nuisance, then
-  source-coordinate permutation).
+## From prediction gain to explanation
 
-Each of these is one atomic paired trial on the frozen transfer finalist and
-calibration-only champion; applicability and pass mode are derived from their
-operator graphs before scores open. Stable, drifting, null, and
-latent-scale-shift synthetic recovery and one targeted test that forbidden
-roles cannot be loaded are required nonbudgeted gates. If either finalist is a
-two-parent ensemble, both parent-removal scores
-are recovered as two prespecified records from the parents' already stored
-predictions; this adds no outcome contact and satisfies the component-ablation
-requirement without bundling F10. Leave-one-target-day analysis is a no-refit recomputation from stored
-locked audit predictions, not another search or falsifier trial.
+If the primary test succeeds, the follow-up fits a genuine residual-only
+prediction problem. Direction-and-time means are estimated only from the
+permitted earlier-day and calibration trials and removed from both LFP inputs
+and spike-count targets before either model is fit. Predictions are scored
+directly against held-out spike residuals. This distinguishes a reusable
+trial-specific relationship from a better estimate of the average reach
+trajectory.
 
-A failed scientific negative control or robustness test makes a policy
-ineligible. A failed access, split, identity, or leakage-integrity proof makes
-the episode a technical failure.
+The follow-up then asks which LFP bands and population dimensions carry the
+gain, whether it remains when 100--400 Hz features are excluded, whether it is
+robust to electrode proximity and spike-quality differences, and whether a
+small rule based only on source data plus new-day calibration can predict
+which later days will benefit.
 
-## Lock and one-shot inference
+That explanation is developed on the already exposed corpus. Its first real
+confirmation must use newly sequestered recording days. The current held-out
+trials cannot become fresh confirmation of an explanation chosen after their
+results were seen.
 
-Select one global transfer policy and one calibration-only champion using only
-authorized development feedback. Fit both from the same frozen source and
-calibration roles, then write one immutable final lock record containing the
-source release/version, day and trial roles, structural support and neuron
-rosters, provider-preprocessing exception, the versioned numeric-contract IDs,
-runtime ID and actual numeric-library versions, complete paired-trial ledger,
-fixed comparator, chosen configurations, fit and prediction rules, metric and
-bootstrap specification, multiplicity rule, falsifiers, seeds, stopping event,
-and terminal decision table. No
-configuration, fit rule, exclusion, or inference change is allowed after the
-lock.
+## Claim boundary
 
-For each `theta[k,b]`, test the practical-margin null
-`H0: theta[k,b] <= 0.01 R2` with 9,999 prespecified paired-bootstrap
-replicates generated by NumPy `PCG64DXSM` from unsigned 64-bit seed `7007999`.
-Within every target day and direction, resample whole audit trials with
-replacement, drawing the original number of audit trials in that cell. Use
-the same sampled trial indices for transfer and both comparators and, for a
-simultaneous behavioral trial, across M1 and PMd; keep every bin, neuron, and
-prediction from a sampled trial together; refit nothing. Recompute each
-session `R2_SSE`, `Delta[s,k,b]`, and the animal-balanced estimand in every
-replicate. With `theta_hat` the observed estimate, use the centered plus-one
-p-value
+A successful primary result would show that earlier days add predictive
+information after limited same-day calibration for the supported M1/PMd
+setting in these two animals and six fixed later days. It would not show that
+the same neurons or electrode weights remain stable, that LFP causes spiking,
+that the method transfers to a new session or animal, or that an online BCI
+would improve.
 
-```text
-p[k,b] = (1 + count(theta_star[k,b] - theta_hat[k,b]
-                    >= theta_hat[k,b] - 0.01)) / 10000
-```
-
-For the intersection-union claim within a stratum, set
-`p_IUT[k] = max_b p[k,b]`. Apply one-sided Holm correction at familywise
-`alpha = 0.05` across the two fixed strata, M1 and PMd: test the smaller
-`p_IUT` at `0.025`, and only if it rejects test the larger at `0.05`; equal
-p-values are ordered M1 then PMd. This is paired whole-trial bootstrap
-inference for exchangeable repeat trials within the fixed day-by-direction
-cells, retaining their observed cell sizes, from these six fixed target days.
-It is not an exact randomization test and does not sample sessions, direction
-composition, or animals.
-
-## Candidate rule and exact terminal semantics
-
-A stratum `k` passes only if all of the following hold:
-
-1. its Holm-adjusted `p_IUT[k] <= 0.05`, so the `0.01 R2` margin null is
-   rejected against each comparator;
-2. for each comparator separately, the within-animal mean `Delta` is positive
-   in both Mihili and Chewie-L;
-3. in each animal, at least two of its three target days have positive
-   `Delta[s,k,b]` against both comparators;
-4. every leave-one-target-day-out animal-balanced estimate is positive against
-   each comparator, recomputing the affected animal mean over its two remaining
-   days; and
-5. every required scientific falsifier and robustness check passes, with all
-   integrity checks valid.
-
-The frozen local conclusion and outer status are assigned in this precedence
-order:
-
-| Condition | Local conclusion | Outer status |
-| --- | --- | --- |
-| Any forbidden access, broken day/trial role, input or lock mismatch, leakage-integrity failure, post-lock mutation, premature/duplicate audit opening, or invalid inference | `technical_failure` | `technical_failure` |
-| A valid audit has at least one passing stratum | `candidate_ready_m1_only`, `candidate_ready_pmd_only`, or `candidate_ready_both` | `candidate_ready` |
-| No stratum passes, but at least one has `min_b theta_hat[k,b] > 0.01 R2`, or a prespecified scientific robustness guard prevents a clean margin interpretation | `unresolved` | `closed_no_candidate` |
-| A valid audit finishes, neither stratum has `min_b theta_hat[k,b] > 0.01 R2`, and no robustness ambiguity invokes `unresolved` | `audit_failed` | `closed_no_candidate` |
-| Required development search completed, but no feasible finalist exists or the single frozen finalist fails any scientific falsifier | `development_exhausted_no_eligible_policy` | `closed_no_candidate` |
-| Audit was not opened because minimum paired coverage, falsifiers, or an authorized resource/search requirement was not completed | `incomplete_search` | `closed_no_candidate` |
-
-The current outer protocol has no separate incomplete state; its outward
-mapping to `closed_no_candidate` is administrative and is not evidence of no
-transfer signal. Likewise, `audit_failed` means only that this frozen
-candidate rule did not pass; it is not a population null. Once any audit
-metric or candidate-discriminating audit diagnostic is visible, the audit is
-consumed and cannot trigger successor search.
-
-If exactly one stratum passes, the claim names only that region/epoch stratum.
-If both pass, report support in both prespecified strata, not a phase-general
-effect. Even a successful audit supports only the added value of earlier-day
-information for an already calibrated target day and future trials drawn from
-the six fixed target days in these two animals, implants, windows, and the
-provider-preprocessed representation. It does not establish generalization to
-a new session, animal, implant, region, raw signal, online setting, or clinical
-use.
+The [paper plan](outputs/paper_plan.md) describes the explanatory tests and
+their result-dependent branches. No follow-up analysis may turn a failed or
+ambiguous primary result into a positive one.

@@ -1,4 +1,4 @@
 # Experiment log
 
-No experiment has started under the current `GOAL.md`, `DATASETS.md`, and
-`SEARCH_POLICY.yaml` contract.
+No experiment has started. The source pack is absent, and no electrode value,
+trial value, policy score, or held-session result has been computed.

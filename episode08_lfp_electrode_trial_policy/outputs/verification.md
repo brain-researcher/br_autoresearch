@@ -1,16 +1,21 @@
 # Verification
 
-Overall readiness: **revise**. The source pack is absent, so no neural outcome
-has been computed and the one-shot audit remains closed.
+- The EP12-style SVG shows the pilot-visible puzzle, the joint electrode/trial
+  decision, the nine matched settings, visibly distinct explanations, and
+  bounded outcomes with explicitly synthetic patterns.
 
-| Scientific readiness check | Status |
+Overall readiness: **not ready for neural scoring**. The source pack is absent,
+so no policy or held-session result has been computed.
+
+| Scientific readiness question | Current answer |
 | --- | --- |
-| Animal, implant, M1 session, trial, and physical-electrode mapping | Revise — unavailable until the source pack is acquired |
-| Independent support for four development and two audit sessions per primary animal and the full frozen grid | Revise — support is unknown |
-| Duplicate, derivative, and EP05 overlap exclusions | Revise — overlap is unknown |
-| Geometry, events, LFP features, and population targets classified as `detected`, `verified_absent`, or `unknown` | Revise — coverage is unknown |
-| Development/audit and within-session outcome separation | Revise — freeze roles before policy-discriminating outcome access |
+| Are the six Mihili and six Chewie-L M1 sessions available and independent? | Unknown until the source is acquired |
+| Can each animal supply four development and two held sessions? | Unknown |
+| Does every retained session support eight directions, the common 16-trial pilot, and all nine budget cells? | Unknown |
+| Are physical electrodes, geometry, events, LFP features, and population targets identifiable? | Unknown |
+| Are duplicate, derived, or conflicting EP05 sessions excluded? | Unknown |
+| Are development, acquisition-pool, and evaluation outcomes separated? | Not yet established |
 
-Run this outcome-blind table once after acquisition. Repeat only after a
-concrete failed item changes; candidate scoring and audit opening remain
-subject to `DATASETS.md`, `GOAL.md`, and `SEARCH_POLICY.yaml`.
+Answer these questions once after acquisition, before any method is scored. If
+a required session or grid cell lacks support, revise the scientific design
+before examining neural performance.

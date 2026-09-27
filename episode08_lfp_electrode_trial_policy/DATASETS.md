@@ -1,175 +1,175 @@
-# EP08 dataset contract
+# EP08 data: what the pilot can and cannot teach us
 
-This episode follows [the common adaptive protocol](../ADAPTIVE_SEARCH_PROTOCOL.md).
+EP08 uses the Foundation LFP source derived from Dryad DOI
+`10.5061/dryad.xd2547dkt` (metadata version 7, file-bearing version 5). The
+source contains motor-cortex LFP features, population spiking, reach events,
+and electrode information needed to study post-pilot acquisition choices.
 
-## Real source and primary cohort
+The required source pack is not currently present in this episode. No neural
+score has been computed. Before analysis, the source must be acquired and the
+scientifically necessary session, electrode, event, feature, and trial support
+must be confirmed.
 
-Use the Foundation LFP asset pack derived from Dryad DOI
-`10.5061/dryad.xd2547dkt`, metadata version 7 and file-bearing version 5, with
-the associated BeNeuroLab code revision
-`cbda8e2e6106f5eb5ff98e18a689c595179ac5db`.
+## Primary animals and sessions
 
-The primary cohort is six Mihili and six Chewie-L M1 sessions. Chewie-R is an
-implant sensitivity, not an independent animal replication. Planning notes
-suggest roughly 46–64 usable physical electrodes in primary sessions, but
-exact counts, coordinates, unit intersections, and trial support must be
-confirmed from the acquired files and metadata.
+The intended primary cohort is six Mihili and six Chewie-L M1 execution
+sessions. If the data support the design, four whole sessions per animal are
+used to develop one acquisition policy and two whole sessions per animal are
+reserved for the final internal test.
 
-## Exposure and evidence status
+Whole-session separation matters because a policy should work in a new
+session, not merely on new trials drawn from a session that helped train it.
+The exact session assignment must be saved before any policy-discriminating
+score is examined.
 
-The source outcomes were used previously. Prior scores, selected channels,
-scaling surfaces, caches, and human observations must be listed in
-`exposure_ledger.json` and cannot initialize this episode.
-New held-session and within-session role manifests create a procedural
-firewall for the search agent, but they do not make the public corpus an
-independent confirmation source.
+Chewie-R is another implant in Chewie. It may test sensitivity to implant
+identity but cannot stand in for an independent third animal.
 
-Current data can support only an **internal held-session audit**. A third
-animal with compatible M1 LFP, population spiking, electrode geometry, events,
-and acquisition metadata—collected or sequestered before policy selection—is
-missing and is mandatory for an external-animal claim.
+## What every session must contain
 
-## Required records
+Each retained session needs:
 
-The acquired input pack must provide:
+- stable animal, implant, session, trial, and physical-electrode identities;
+- successful center-out reaches in the same eight directions;
+- movement timing for the fixed 150--450 ms post-movement window;
+- physical-electrode membership and geometry, with missing locations stated;
+- LMP, 100--200 Hz power, and 200--400 Hz power with verified meanings;
+- one population-spike target set chosen without reference to selector
+  performance; and
+- enough separate trials for the pilot, calibration choices, and untouched
+  evaluation at every supported budget.
 
-- source DOI/version, stable animal/implant/session/trial/channel IDs, reuse
-  terms, and the associated code revision;
-- successful center-out reach events, direction labels, exact movement epoch,
-  sampling and filter support;
-- physical-electrode membership and geometry, with missing-coordinate flags;
-- LMP, 100–200-Hz and 200–400-Hz feature definitions and source mapping;
-- one structurally eligible fixed neuron roster per session and spike outcome
-  construction independent of selector performance; and
-- synthetic sequential-acquisition fixtures and a clean replay interface.
+The common pilot uses exactly two non-evaluation trials from each of the eight
+directions, for 16 trials total, recorded on all eligible electrodes. If this
+support is absent, the study stops for redesign before electrode or trial value
+is calculated.
 
-The contract must identify exactly eight common reach directions, reserve two
-seed-selected non-evaluation trials per direction for the fixed 16-trial
-all-electrode pilot, and freeze disjoint calibration-acquisition and evaluation
-pools. If that common direction/pilot support does not exist, stop before
-neural utility is calculated rather than redefining the pilot after outcomes.
+Every retained session must also support the complete grid:
 
-The audit must determine whether each primary animal supports at least four
-development and two sealed sessions and whether every retained session
-supports the common `{4,8,16} × {32,64,128}` post-pilot grid plus a
-full-resource ceiling check. If not, stop before neural utility is calculated
-or freeze a revised contract first. Do not drop a budget cell after seeing its
-score.
+```text
+electrodes retained:             4, 8, or 16
+additional post-pilot trials:   32, 64, or 128
+```
 
-Qualification is one outcome-blind readiness pass. Map every file to an
-animal, implant, independent whole session, trial, physical electrode, and M1
-source region; exclude duplicate or derivative sessions and any EP05 overlap
-that would violate the declared evidence roles. For each session, classify
-geometry, events, LFP features, and the population-spike target as `detected`,
-`verified_absent`, or `unknown`; only `detected` items can support scoring.
-Freeze the development/audit and within-session roles before inspecting any
-policy-discriminating outcome. Repeat this pass only after a concrete failed
-item changes.
+A full-resource fit is kept as a ceiling check. A difficult grid cell is not
+removed after its score is known.
 
-## Firewall and sequential replay
+## Data roles within a session
 
-Assign whole sessions from structural identifiers before outcome-derived
-utility exists. Within every session, freeze pilot, acquisition-pool, and
-evaluation trials separately. Within each direction, acquisition-pool trials
-follow a frozen seeded order; an allocator chooses a stratum and
-receives only its next queued trial. This assumes retrospective
-within-direction exchangeability and does not identify a causal advantage for
-real-time trial scheduling.
+The trial pool is divided into three nonoverlapping parts before policy scores
+are examined:
 
-At policy time, the only permitted state is static geometry/QC for all
-eligible electrodes; all-electrode pilot summaries; the locked retained set;
-and, after each acquired calibration trial, selected-electrode LFP plus that
-trial's calibration target. The evaluator computes nested-CV calibration-loss
-reward and owns all future acquisition records and evaluation spikes. No
-evaluation target can generate a ranker label, action, or bandit reward.
+1. **Pilot:** the same 16 all-electrode reaches for every method.
+2. **Acquisition pool:** later calibration trials from which a method may
+   request one reach direction at a time.
+3. **Untouched evaluation:** trials used only after model choices are final.
 
-Development marginal-utility labels must be produced with whole-session
-cross-fitting: the label/ranker used for one development session is trained on
-the other development sessions. The audit ranker is fitted once on all eight
-development sessions and transferred unchanged. Electrode retention closes
-after the pilot; later addition and historical-trial backfill are invalid.
+Within each direction, acquisition trials are placed in one ordinary seeded
+order before any method is scored. A direction choice reveals only the next
+trial in that order. This lets the analysis walk through recorded data as if
+trials arrived one at a time while preventing a method from selecting a
+particularly favorable future trial.
 
-Store sealed-session mappings and evaluation outcomes under a
-permission-separated audit path. Candidate jobs receive opaque IDs and scalar
-development scores. The action ledger must record time, available information,
-electrode-lock event, queued-trial position, action, nested-CV reward, pilot
-and incremental cost, missing-geometry fallback, tie-break, and the policy
-state presented at the decision so a later replay can test for future
-information, backfill, or cache leakage.
+This retrospective construction assumes that recorded trials within a
+direction are exchangeable enough for the stated question. It does not create
+a causal experiment in which a person or animal was asked to perform a new
+movement online.
 
-## Data needed to explain why the policy works
+## What a policy may know at each decision
 
-The primary audit can show that a policy wins at matched electrode and trial
-counts. The [paper plan](outputs/paper_plan.md) proposes a later mechanism
-round asking whether the pilot identifies nonredundant electrodes and
-high-value calibration trials. That round is separate: it cannot change the
-primary grid, policy, decoder, session split, or terminal result.
+Before choosing electrodes, a method may use:
 
-For each development session, preserve the following records without exposing
-evaluation targets to the policy:
+- static electrode geometry and quality information; and
+- summaries from the common 16-trial all-electrode pilot.
 
-- physical-electrode identity and geometry, pilot-time artifact, missingness,
-  line-noise, stationarity, repeatability, and pairwise redundancy summaries;
-- every pilot-only selector score and the exact retained set at `E = 4, 8, 16`;
-- the ordered acquisition queue, policy state before each action, predicted
-  value of every legal reach-direction action, chosen action, and trusted
-  calibration reward afterward;
-- fixed-decoder predictions needed for prespecified electrode-removal and
-  next-trial replay comparisons on the untouched evaluation set; and
-- the nine grid-cell scores, full-resource ceiling, random-seed distribution,
-  and failure/fallback record for every session.
+The retained electrode set is then final for that session. During later trial
+selection, the method may also use the selected-electrode LFP and spike target
+from calibration trials already acquired. It cannot use future acquisition
+trials or any evaluation spike target.
 
-These records support cross-fitted mechanism development only. Held-out
-conditional electrode value is an evaluation label: for a fixed retained set,
-it is the change in evaluation loss when one retained electrode is omitted and
-the frozen decoder procedure is replayed. It may test a pilot-only prediction,
-but it may not be returned to the selector, used as an audit ranker label, or
-used to replace an electrode. The analogous next-trial value is computed by a
-trusted replay on a frozen evaluation set; it cannot become a policy reward in
-the session being evaluated.
+Learned electrode-value labels for one development session must come from a
+model trained without that session. The final rule for the four untouched
+sessions is fitted once using the eight development sessions and applied
+without session-specific model selection.
 
-### Evidence roles for the acquisition principle
+The final test data are kept separate from candidate fitting. Candidate methods
+receive only the pilot, acquired calibration data, and aggregate development
+feedback allowed by the study. Once the global method and analysis are final,
+all four untouched sessions are scored together. Partial results do not return
+to model development.
 
-| Source | Allowed role | Claim limit |
+## What must be retained to explain a successful policy
+
+For each development session, preserve:
+
+- physical electrode identities, geometry, and pilot-time reliability,
+  missingness, line-noise, stationarity, repeatability, and redundancy
+  summaries;
+- every pilot-only electrode score and retained set at 4, 8, and 16
+  electrodes;
+- the ordered calibration pools and the information available before every
+  direction choice;
+- the predicted value of each legal direction, the chosen direction, and the
+  calibration improvement observed afterward;
+- common-decoder predictions needed for electrode-removal and alternative
+  next-direction comparisons on untouched trials; and
+- the complete nine-cell performance surface, full-resource ceiling,
+  repeated-random distribution, and every failure or missing-geometry
+  fallback.
+
+These records support two explanatory predictions:
+
+1. **Conditional electrode value:** for a fixed retained set, how much
+   untouched-trial loss increases when one electrode is removed.
+2. **Next-direction value:** at a fixed acquisition state, how much loss
+   decreases after the next trial from each possible reach direction is added.
+
+Neither value may be returned to the policy in the session being evaluated.
+They are outcomes used to test predictions made from the pilot or pre-choice
+state, not rewards available when the original choice was made.
+
+## Evidence strength
+
+The source outcomes have been used previously. New session and trial
+separation can prevent additional adaptive leakage, but cannot make this public
+corpus independent evidence.
+
+| Data source | Scientific role | Claim limit |
 | --- | --- | --- |
-| Eight development sessions | Cross-fit pilot scores, conditional-value predictions, and electrode-versus-trial sensitivity summaries | Mechanism development in an exposed corpus |
-| Four primary audit sessions | Primary one-shot policy evaluation only; generic outputs declared before opening may be described but cannot test a mechanism selected afterward | Consumed internal held-session evidence, not mechanism confirmation |
-| Chewie-R | Separately frozen implant sensitivity | Not an independent animal and cannot promote the policy |
-| A newly collected or sequestered third animal | Test the frozen pilot-only predictions and joint policy | Required for an external-animal acquisition claim |
+| Eight development sessions | Choose the acquisition policy and develop electrode/trial explanations using whole-session cross-fitting | Internal development evidence |
+| Four untouched primary sessions | Test the original matched-budget policy once | Internal held-session evidence, not fresh confirmation of a later explanation |
+| Chewie-R | Test sensitivity to another implant in the same animal | Not independent-animal evidence |
+| Newly collected or sequestered sessions from a third animal | Test the chosen electrode-value and next-direction predictions and the joint policy | Required for an external-animal acquisition claim |
 
-This chooses one unambiguous timeline. The explanatory mechanism is selected
-after the primary conclusion, using cross-fitted development sessions only.
-Therefore no result from the four consumed primary audit sessions can promote,
-select, or confirm it. Its first confirmatory evaluation must come from the new
-sealed external source described below.
+The current source contains preprocessed LFP features rather than a prospective
+hardware power trace. EP08 can study retention of already recorded electrodes
+and retrospective calibration choices. It cannot infer surgical placement,
+amplifier power, wireless bandwidth, or real-time behavioral burden without
+additional measurements.
 
-A fresh external pack must contain whole-session roles, physical geometry,
-the same verified LFP feature meanings or a frozen crosswalk, eight reach
-directions, enough trials for the pilot and full grid, a structural neuron
-roster, and a sequential replay interface. It must be sequestered before the
-mechanism rule and all margins are selected. The policy may be refit on that
-animal's declared development sessions only if the external contract says so;
-it cannot tune on external audit sessions.
+## Readiness before neural scoring
 
-The released source contains preprocessed LFP features rather than a complete
-prospective hardware power trace. EP08 can study post-pilot retention of
-recorded physical electrodes and retrospective calibration replay. It cannot
-infer surgical placement, amplifier power savings, wireless bandwidth, or the
-real-time burden of requesting a behavior without additional measurements and
-a separate cost model. Electrode count and trial count therefore remain two
-axes; no conversion between them is implied.
+The following checks remain because they directly affect the scientific claim:
 
-## Missing blockers
+- acquire the Foundation LFP source pack;
+- confirm the twelve primary sessions and their independence;
+- identify duplicate, derived, or overlapping sessions, including relevant
+  EP05 use;
+- verify eight directions, the 16-trial pilot, and support for all nine budget
+  cells in every retained session;
+- verify physical-electrode membership and state which sessions have usable
+  geometry;
+- verify movement events, LFP feature meanings, and population-spike targets;
+- save the development-session, held-session, pilot, acquisition-pool, and
+  evaluation assignments before policy scores; and
+- demonstrate once that future acquisition trials and evaluation spike targets
+  cannot influence an earlier action.
 
-The asset pack, exact geometry coverage, prospective
-development/audit session manifest, within-session trial roles, sequential
-replay evaluator, and permission-separated audit store are not yet established.
-They block neural scoring or audit opening, not explicit task startup. The
-absent third animal blocks external generalization but need not block an
-explicitly internal episode.
+If a primary animal cannot provide four development and two held sessions with
+the complete supported grid, revise the design before scoring rather than
+silently dropping sessions or budget cells.
 
-Large inputs stay outside Git or under immutable read-only references.
-Transient caches belong in
-`$SCRATCH/br_autoresearch/episode08_lfp_electrode_trial_policy/`; durable
-artifacts are limited to source/role records, action/trial records, the final
-configuration lock, and reports.
+Large source files remain outside Git. Temporary computation belongs in
+`$SCRATCH/br_autoresearch/episode08_lfp_electrode_trial_policy/`; only compact
+data descriptions, session/trial assignments, policy results, and reports
+belong in this episode directory.

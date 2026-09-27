@@ -1,29 +1,21 @@
 # Experiment log
 
-> Client-maintained exploratory projection. This file grants no execution,
-> review, scientific, memory, or Landscape authority. Preserve existing entries
-> and append new entries in chronological order.
-> It is not a required Society review artifact. If explicitly declared in
-> a frozen CandidateBundle's `output_artifacts`, it may be supplied only as optional
-> supplemental context; declare primary result artifacts separately.
+## Current entry
 
-## Binding
+- Stage: scientific design and readability revision
+- Question: does a mapping trained in one BrainGate session suffer an extra
+  loss after at least 180 days, and if so, what explains it?
+- Work completed: the question, three diagnostic branches, controls, budgets,
+  and paper plan have been stated in reader-facing form.
+- Data analysis: not started
+- Held-out participant results examined: none
+- Scientific result: none
 
-- Goal handoff: not observed
-- Outer loop: not observed
-- Workspace: local planned draft; no Native Goal handoff observed
+## Next entry should record
 
-## Entries
+The next entry should describe the target-schedule and near/long pair-support
+check. It should state which participants meet the structural requirements and
+why, without reporting neural scores.
 
-### Entry 1
-
-- Stage: not observed
-- Question or attempt: not observed
-- Action: not observed
-- Outcome: not observed
-- Evidence refs: not observed
-- Failure or deviation: none observed
-
-## Remaining uncertainty
-
-- Not yet assessed.
+Future entries should be chronological and distinguish a completed scientific
+comparison from a software repair or duplicate run.

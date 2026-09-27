@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">EP06 scientific concept figure</title>
+  <desc id="desc">Synthetic concept mockup showing M1 and PMd recording domains, cross-animal signed frequency profiles, pooled, reusable, and recording-artifact explanations, and bounded scientific interpretations.</desc>
+  <defs>
+    <style type="text/css">
+      .bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:1.5;rx:15}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.3;rx:10}.bluebox{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.5;rx:10}.orangebox{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5;rx:10}.greenbox{fill:#ecfdf5;stroke:#34d399;stroke-width:1.5;rx:10}.purplebox{fill:#faf5ff;stroke:#c084fc;stroke-width:1.5;rx:10}.redbox{fill:#fef2f2;stroke:#f87171;stroke-width:1.5;rx:10}
+      .title{font-family:Arial,sans-serif;font-size:25px;font-weight:700;fill:#0f172a}.head{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.sub{font-family:Arial,sans-serif;font-size:15px;font-weight:700;fill:#334155}.text{font-family:Arial,sans-serif;font-size:14px;fill:#334155}.small{font-family:Arial,sans-serif;font-size:13px;fill:#475569}.tiny{font-family:Arial,sans-serif;font-size:13px;fill:#64748b}
+      .axis{stroke:#94a3b8;stroke-width:1.5;fill:none}.blue{stroke:#2563eb;stroke-width:3;fill:none}.orange{stroke:#ea580c;stroke-width:3;fill:none}.gray{stroke:#94a3b8;stroke-width:3;stroke-dasharray:6 5;fill:none}.red{stroke:#dc2626;stroke-width:3;fill:none}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect class="bg" width="1500" height="900"/>
+  <text x="750" y="38" text-anchor="middle" class="title">EP06 — Is the M1–PMd LFP-to-population fingerprint transferable and useful?</text>
+  <rect x="560" y="49" width="380" height="29" rx="15" fill="#e2e8f0" stroke="#94a3b8"/>
+  <text x="750" y="69" text-anchor="middle" class="small">CONCEPT MOCKUP · SYNTHETIC PATTERNS · NOT RESULTS</text>
+
+  <rect x="20" y="92" width="455" height="600" class="panel"/>
+  <text x="40" y="126" class="head">A  Same reach, two domains?</text>
+  <text x="40" y="151" class="small">M1 and PMd are recorded together on the same trials.</text>
+  <g transform="translate(50,177)">
+    <rect x="0" y="0" width="150" height="124" class="bluebox"/>
+    <text x="75" y="25" text-anchor="middle" class="sub">M1 / array A</text>
+    <g fill="#60a5fa"><circle cx="39" cy="53" r="7"/><circle cx="67" cy="53" r="7"/><circle cx="95" cy="53" r="7"/><circle cx="123" cy="53" r="7"/><circle cx="39" cy="80" r="7"/><circle cx="67" cy="80" r="7"/><circle cx="95" cy="80" r="7"/><circle cx="123" cy="80" r="7"/></g>
+    <text x="75" y="108" text-anchor="middle" class="small">LFP + nearby spikes</text>
+  </g>
+  <g transform="translate(275,177)">
+    <rect x="0" y="0" width="150" height="124" class="orangebox"/>
+    <text x="75" y="25" text-anchor="middle" class="sub">PMd / array B</text>
+    <g fill="#fb923c"><circle cx="39" cy="53" r="7"/><circle cx="67" cy="53" r="7"/><circle cx="95" cy="53" r="7"/><circle cx="123" cy="53" r="7"/><circle cx="39" cy="80" r="7"/><circle cx="67" cy="80" r="7"/><circle cx="95" cy="80" r="7"/><circle cx="123" cy="80" r="7"/></g>
+    <text x="75" y="108" text-anchor="middle" class="small">LFP + nearby spikes</text>
+  </g>
+  <path d="M205 239L267 239" class="arrow"/>
+  <text x="236" y="225" text-anchor="middle" class="tiny">same trials</text>
+  <rect x="43" y="326" width="389" height="232" class="card"/>
+  <text x="238" y="352" text-anchor="middle" class="sub">Held-out LFP-based population-prediction gain</text>
+  <line x1="77" y1="513" x2="407" y2="513" class="axis"/><line x1="77" y1="513" x2="77" y2="378" class="axis"/>
+  <path d="M79 479 C126 460 147 409 190 430 S254 486 294 458 S351 392 405 409" class="blue"/>
+  <path d="M79 491 C127 481 153 466 193 475 S252 443 294 428 S351 455 405 469" class="orange"/>
+  <text x="78" y="537" class="tiny">LMP</text><text x="158" y="537" class="tiny">low</text><text x="251" y="537" class="tiny">mid</text><text x="367" y="537" class="tiny">high</text>
+  <line x1="102" y1="573" x2="145" y2="573" class="blue"/><text x="154" y="578" class="small">M1 profile</text>
+  <line x1="265" y1="573" x2="308" y2="573" class="orange"/><text x="317" y="578" class="small">PMd profile</text>
+  <rect x="43" y="602" width="389" height="53" class="redbox"/>
+  <text x="238" y="626" text-anchor="middle" class="sub">Permanent limitation</text><text x="238" y="646" text-anchor="middle" class="small">region and implanted array are inseparable here.</text>
+
+  <rect x="490" y="92" width="485" height="600" class="panel"/>
+  <text x="510" y="126" class="head">B  Does the signed profile recur?</text>
+  <text x="510" y="151" class="small">Learn in one animal; predict whole sessions in the other.</text>
+  <text x="625" y="183" text-anchor="middle" class="sub">Mihili sessions</text><text x="842" y="183" text-anchor="middle" class="sub">Chewie sessions</text>
+  <g transform="translate(535,198)" stroke="#fff" stroke-width="1">
+    <rect x="0" y="0" width="30" height="30" fill="#bfdbfe"/><rect x="31" y="0" width="30" height="30" fill="#60a5fa"/><rect x="62" y="0" width="30" height="30" fill="#dbeafe"/><rect x="93" y="0" width="30" height="30" fill="#fed7aa"/><rect x="124" y="0" width="30" height="30" fill="#fb923c"/><rect x="155" y="0" width="30" height="30" fill="#ffedd5"/>
+    <rect x="0" y="31" width="30" height="30" fill="#dbeafe"/><rect x="31" y="31" width="30" height="30" fill="#3b82f6"/><rect x="62" y="31" width="30" height="30" fill="#bfdbfe"/><rect x="93" y="31" width="30" height="30" fill="#fdba74"/><rect x="124" y="31" width="30" height="30" fill="#f97316"/><rect x="155" y="31" width="30" height="30" fill="#fed7aa"/>
+    <rect x="0" y="62" width="30" height="30" fill="#bfdbfe"/><rect x="31" y="62" width="30" height="30" fill="#2563eb"/><rect x="62" y="62" width="30" height="30" fill="#dbeafe"/><rect x="93" y="62" width="30" height="30" fill="#ffedd5"/><rect x="124" y="62" width="30" height="30" fill="#fb923c"/><rect x="155" y="62" width="30" height="30" fill="#fed7aa"/>
+    <rect x="0" y="93" width="30" height="30" fill="#dbeafe"/><rect x="31" y="93" width="30" height="30" fill="#60a5fa"/><rect x="62" y="93" width="30" height="30" fill="#bfdbfe"/><rect x="93" y="93" width="30" height="30" fill="#fdba74"/><rect x="124" y="93" width="30" height="30" fill="#ea580c"/><rect x="155" y="93" width="30" height="30" fill="#ffedd5"/>
+  </g>
+  <g transform="translate(750,198)" stroke="#fff" stroke-width="1">
+    <rect x="0" y="0" width="30" height="30" fill="#dbeafe"/><rect x="31" y="0" width="30" height="30" fill="#3b82f6"/><rect x="62" y="0" width="30" height="30" fill="#bfdbfe"/><rect x="93" y="0" width="30" height="30" fill="#fed7aa"/><rect x="124" y="0" width="30" height="30" fill="#f97316"/><rect x="155" y="0" width="30" height="30" fill="#ffedd5"/>
+    <rect x="0" y="31" width="30" height="30" fill="#bfdbfe"/><rect x="31" y="31" width="30" height="30" fill="#2563eb"/><rect x="62" y="31" width="30" height="30" fill="#dbeafe"/><rect x="93" y="31" width="30" height="30" fill="#fdba74"/><rect x="124" y="31" width="30" height="30" fill="#fb923c"/><rect x="155" y="31" width="30" height="30" fill="#fed7aa"/>
+    <rect x="0" y="62" width="30" height="30" fill="#dbeafe"/><rect x="31" y="62" width="30" height="30" fill="#60a5fa"/><rect x="62" y="62" width="30" height="30" fill="#bfdbfe"/><rect x="93" y="62" width="30" height="30" fill="#ffedd5"/><rect x="124" y="62" width="30" height="30" fill="#ea580c"/><rect x="155" y="62" width="30" height="30" fill="#fed7aa"/>
+    <rect x="0" y="93" width="30" height="30" fill="#bfdbfe"/><rect x="31" y="93" width="30" height="30" fill="#3b82f6"/><rect x="62" y="93" width="30" height="30" fill="#dbeafe"/><rect x="93" y="93" width="30" height="30" fill="#fdba74"/><rect x="124" y="93" width="30" height="30" fill="#f97316"/><rect x="155" y="93" width="30" height="30" fill="#ffedd5"/>
+  </g>
+  <path d="M721 232L744 232" class="arrow"/><path d="M744 289L721 289" class="arrow"/>
+  <text x="733" y="218" text-anchor="middle" class="tiny">M→C</text><text x="733" y="312" text-anchor="middle" class="tiny">C→M</text>
+  <text x="732" y="342" text-anchor="middle" class="tiny">cell = signed M1−PMd held-out population-prediction gain</text>
+  <rect x="566" y="350" width="14" height="14" fill="#2563eb"/><text x="587" y="362" class="tiny">M1 &gt; PMd</text>
+  <rect x="667" y="350" width="14" height="14" fill="#f97316"/><text x="688" y="362" class="tiny">PMd &gt; M1</text>
+  <text x="795" y="362" class="tiny">rows: sessions · cols: blocks</text>
+  <text x="732" y="386" text-anchor="middle" class="sub">If it transfers, does it improve prediction?</text>
+  <g transform="translate(520,397)">
+    <rect x="0" y="0" width="132" height="174" class="greenbox"/><text x="66" y="25" text-anchor="middle" class="sub">Correct</text>
+    <path d="M15 84 C42 39 73 116 116 61" class="gray"/><path d="M15 84 C42 42 73 112 116 64" class="blue"/>
+    <text x="66" y="151" text-anchor="middle" class="small">M1→M1</text><text x="66" y="168" text-anchor="middle" class="small">PMd→PMd</text>
+  </g>
+  <g transform="translate(666,397)">
+    <rect x="0" y="0" width="132" height="174" class="card"/><text x="66" y="25" text-anchor="middle" class="sub">Pooled</text>
+    <path d="M15 84 C42 39 73 116 116 61" class="gray"/><path d="M15 91 C42 60 73 101 116 76" class="orange"/>
+    <text x="66" y="160" text-anchor="middle" class="small">region removed</text>
+  </g>
+  <g transform="translate(812,397)">
+    <rect x="0" y="0" width="132" height="174" class="purplebox"/><text x="66" y="25" text-anchor="middle" class="sub">Swapped</text>
+    <path d="M15 84 C42 39 73 116 116 61" class="gray"/><path d="M15 109 C42 115 73 39 116 101" class="red"/>
+    <text x="66" y="151" text-anchor="middle" class="small">M1→PMd</text><text x="66" y="168" text-anchor="middle" class="small">PMd→M1</text>
+  </g>
+  <rect x="520" y="589" width="424" height="66" class="card"/>
+  <text x="732" y="615" text-anchor="middle" class="sub">Useful fingerprint</text><text x="732" y="638" text-anchor="middle" class="small">correct beats pooled, while swapping the labels hurts.</text>
+
+  <rect x="990" y="92" width="490" height="600" class="panel"/>
+  <text x="1010" y="126" class="head">C  Competing explanations</text>
+  <g transform="translate(1010,151)">
+    <rect x="0" y="0" width="450" height="147" class="card"/><text x="16" y="27" class="head">P — No resolved region advantage</text>
+    <path d="M24 83 C72 54 124 110 176 70" class="blue"/><path d="M24 87 C72 58 124 106 176 74" class="orange"/>
+    <path d="M224 85L416 85" class="gray"/>
+    <text x="16" y="125" class="small">Indistinguishable rules or predictions are inconclusive.</text>
+  </g>
+  <g transform="translate(1010,311)">
+    <rect x="0" y="0" width="450" height="147" class="greenbox"/><text x="16" y="27" class="head">R — Reusable domain fingerprint</text>
+    <path d="M24 96 C72 40 124 117 176 58" class="blue"/><path d="M24 68 C72 111 124 42 176 98" class="orange"/>
+    <path d="M215 83L251 83" class="arrow"/><path d="M270 96 C310 43 355 114 416 61" class="blue"/>
+    <text x="16" y="128" class="small">The signed difference recurs and correct-region weights help.</text>
+  </g>
+  <g transform="translate(1010,471)">
+    <rect x="0" y="0" width="450" height="183" class="redbox"/><text x="16" y="27" class="head">A — Array or recording artifact</text>
+    <g fill="#94a3b8"><circle cx="44" cy="67" r="8"/><circle cx="72" cy="67" r="4"/><circle cx="100" cy="67" r="8"/><circle cx="128" cy="67" r="4"/><circle cx="44" cy="98" r="4"/><circle cx="72" cy="98" r="8"/><circle cx="100" cy="98" r="4"/><circle cx="128" cy="98" r="8"/></g>
+    <path d="M186 63 C231 35 270 112 315 70 S376 39 420 76" class="red"/>
+    <text x="186" y="110" class="small">metadata / missing channels /</text><text x="186" y="130" class="small">spike-rich high-frequency feature</text>
+    <text x="16" y="158" class="small">The label transfers, but the neural-profile interpretation fails.</text>
+  </g>
+
+  <rect x="20" y="708" width="1460" height="158" class="panel"/>
+  <text x="40" y="742" class="head">D  Scientific interpretation</text>
+  <rect x="42" y="758" width="268" height="72" class="greenbox"/><text x="176" y="783" text-anchor="middle" class="sub">Reusable and useful</text><text x="176" y="804" text-anchor="middle" class="small">Transfers both ways and improves</text><text x="176" y="821" text-anchor="middle" class="small">held-out population prediction.</text>
+  <rect x="325" y="758" width="268" height="72" class="orangebox"/><text x="459" y="783" text-anchor="middle" class="sub">Transferable label only</text><text x="459" y="804" text-anchor="middle" class="small">Profile recurs; correct weights show</text><text x="459" y="821" text-anchor="middle" class="small">no resolved prediction benefit.</text>
+  <rect x="608" y="758" width="268" height="72" class="redbox"/><text x="742" y="783" text-anchor="middle" class="sub">Recording-feature bound</text><text x="742" y="804" text-anchor="middle" class="small">Metadata or spike-rich features</text><text x="742" y="821" text-anchor="middle" class="small">explain the apparent label.</text>
+  <rect x="891" y="758" width="268" height="72" class="card"/><text x="1025" y="783" text-anchor="middle" class="sub">No supported transfer</text><text x="1025" y="804" text-anchor="middle" class="small">Animal-transfer directions fail</text><text x="1025" y="821" text-anchor="middle" class="small">or the signed profile reverses.</text>
+  <rect x="1174" y="758" width="282" height="72" class="purplebox"/><text x="1315" y="783" text-anchor="middle" class="sub">Unresolved</text><text x="1315" y="804" text-anchor="middle" class="small">Uncertainty or direction disagreement</text><text x="1315" y="821" text-anchor="middle" class="small">prevents classification.</text>
+  <text x="750" y="854" text-anchor="middle" class="tiny">A positive result is still a two-animal recording-domain claim — not pure cortical-area identity, causality, or online-BCI benefit.</text>
+</svg>

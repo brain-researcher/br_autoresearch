@@ -1,38 +1,20 @@
-# Landscape projection
+# Research landscape note
 
-> Client-maintained display of observed Landscape-related facts. Persisted MCP
-> Landscape records remain authoritative. This file does not grant scientific,
-> Society, reward, approval, execution, ClaimCard, memory, or Landscape
-> authority. It is not a CandidateBundle review artifact and must never be
-> declared in a frozen CandidateBundle's `output_artifacts`.
+## What earlier work already establishes
 
-## Binding
+Premovement EEG prediction, WAY-EEG-GAL event detection, pre-onset kinematic
+reconstruction, and cross-session neural benchmarking all precede EP19. The
+episode cannot claim the first movement forecast or the first deep model on
+these signals.
 
-- observed_at: not observed
-- source: not observed
-- goal_handoff_id: not observed
-- loop_id: not observed
+## The open gap
 
-## Proposed transition
+The unresolved question is whether EEG adds information 300–600 ms before a
+sensor-defined onset after a strong past-peripheral baseline and
+capacity-matched surrogate EEG, whether model conclusions change at that
+horizon, and whether the increment repeats in new people on a second task.
 
-- Proposed change: not observed
-- Evidence refs: not observed
-- Scientific scope: exploratory only
+## Current contribution status
 
-## Permitted transition
-
-- Transition permit: not observed
-- Permit source: not observed
-- Permit status: not observed
-
-## Applied transition
-
-- Applied change: not observed
-- Applied record: not observed
-- Applied at: not observed
-
-## Boundary
-
-- A proposed transition is not a permit, and a permit is not an applied change.
-- This projection must not infer an applied transition from a result, Society
-  review, reward, or launch state.
+This is a proposed contribution, not a finding. No signal analysis has started
+and no model or EEG claim has been added to the research landscape.

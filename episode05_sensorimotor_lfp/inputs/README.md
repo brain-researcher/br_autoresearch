@@ -1,15 +1,11 @@
 # Episode 05 inputs
 
-This read-only directory contains the retained Dryad session payload,
-publication assets, and pinned reference-code trees listed in
-`../DATASETS.md`. Their presence establishes availability, not eligibility,
-freshness, or authorization to inspect outcomes.
+This read-only directory is reserved for the Dryad sessions, publication
+assets, and reference analysis code described in `../DATASETS.md`. Those
+materials have not yet been made available for the current study.
 
-The documented candidate sources, planned read-only references, access terms,
-checksums, and unresolved qualification checks are listed in `../DATASETS.md`.
-Before candidate scoring, an operator must verify provider and local hashes and
-freeze the eligible source manifest. The active episode must not write into
-this directory or replace a source after outcome access.
-
-Outcome-blind source manifests and all generated artifacts belong under
-`../outputs/`.
+Before scoring, record which release is being used, which sessions are
+eligible, which animal and implant each session belongs to, and which trials
+share behavior, LFP, and spikes. The active episode must not write into this
+directory or replace a source after outcome access. All generated results
+belong under `../outputs/`.

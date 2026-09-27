@@ -1,47 +1,25 @@
-# Governance projection
+# Study boundaries
 
-> Reconstructable display of observed MCP facts only. Persisted MCP state remains authoritative.
-> Record `observed_at` as the client observation timestamp. `source` names the
-> MCP tool (usually `autoresearch_goal_get`); `schema_version` is that response's
-> schema version.
-> `canonical_confirmation_episode_created` is a scope description, not an
-> `autoresearch_goal_get` field. Copy the exact response keys below and do not
-> infer a confirmation episode.
-> This file grants no reward, approval, execution, scientific,
-> memory, Society, ClaimCard, or Landscape authority.
+EP19 is currently a documented study design. The current files do not authorize
+opening held-out signals or running the full model search.
 
-## Observed MCP record
+## Decisions already made
 
-- observed_at: not observed
-- source: not observed
-- schema_version: not observed
-- goal_handoff_id: not observed
-- loop_id: not observed
-- revision: not observed
-- outer_stage: not observed
-- next_host_action: not observed
-- submission_state: not observed
+- Predictions occur every 50 ms over a 900-ms horizon.
+- The primary window is 300–600 ms; 0–300 ms is the near-event comparison.
+- “Causal” means past-only information flow, not causal inference.
+- WAY series 8–9 and eight whole self-paced participants are held out.
+- The self-paced primary condition allows only four calibration parameters from
+  the first 32 complete movements.
 
-## Society
+## Decisions still required before EEG scoring
 
-- Applicability: not observed
-- Status: not observed
-- Packet or outcome refs: not observed
-- Detail projection: `outputs/society.md` (not observed)
+- exact onset, stillness, synchronization, and ambiguity rules;
+- five executable reference recipes and two source-specific non-neural models;
+- the complete 32-event calibration procedure;
+- finite ranges for every allowed model change;
+- all numeric margins in `../SEARCH_POLICY.yaml`; and
+- successful synthetic timing and future-information tests.
 
-For `closed_no_candidate` or `technical_failure`, replace this section with:
-`Society: not eligible and not called`. Keep the same status in
-`outputs/society.md`; neither projection grants Society authority.
-
-## Human gates
-
-- Scientist reward: not observed
-- Launch approval: not observed
-
-## Execution and confirmation boundary
-
-- Client-native exploratory execution: see `outputs/experiment_log.md`; not asserted by MCP.
-- server_execution: not observed
-- canonical_episode_created: not observed
-- landscape_transition_created: not observed
-- scientific_acceptance: false
+No scientific acceptance, external review decision, or permission to examine a
+held-out result is implied by this summary.

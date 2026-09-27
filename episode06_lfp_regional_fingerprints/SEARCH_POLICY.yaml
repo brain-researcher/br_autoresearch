@@ -1,124 +1,69 @@
-policy_id: ep06_lfp_regional_fingerprints_adaptive
-episode_id: ep06
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+episode: EP06
+title: Is the M1-PMd LFP fingerprint reusable, or just an array label?
+status: planned; no real-data analysis has run
+question: does_the_lfp_to_population_profile_distinguish_m1_from_pmd_across_animals_survive_recording_confounds_and_improve_prediction
+paper_plan: outputs/paper_plan.md
 
-# Planning metadata only. The executable contract below remains the original
-# cross-animal classifier search with its deterministic 4+2 roles, primary
-# estimand, budget, terminal mapping, and single internal-audit opening.
-research_program:
-  paper_question: does_a_transferable_m1_pmd_lfp_population_fingerprint_have_a_population_recovery_consequence
-  plan_ref: outputs/paper_plan.md
-  primary_round: bidirectional_cross_animal_recording_domain_classification
-  primary_endpoint_and_terminal_mapping_unchanged: true
-  followup:
-    state: proposed_not_configured_or_run
-    evidence_mode: proposed_fixed_comparison
-    purpose: test_whether_region_specific_frequency_rules_improve_heldout_population_latent_prediction
-    starts_after_primary_development_result_is_fixed: true
-    automatically_launched_by_this_policy: false
-    primary_winner_or_terminal_may_be_overwritten: false
-    source: outcome_blind_development_sessions_only
-    source_is_independent_replication: false
-    cross_animal_directions: [mihili_to_chewie, chewie_to_mihili]
-    prediction_target: training_derived_spike_population_latent_on_heldout_trials
-    profile_to_fixed_output_mixture:
-      prototype_definition: source_development_session_balanced_out_of_fold_exact_locked_normalized_aligned_primary_classifier_input
-      source_objects_retained:
-        - m1_undifferenced_region_level_frequency_by_latent_prototype
-        - pmd_undifferenced_region_level_frequency_by_latent_prototype
-        - signed_m1_minus_pmd_contrast
-        - equal_region_pooled_undifferenced_prototype
-      signed_difference_alone_is_sufficient_for_undifferenced_weights: false
-      latent_aggregation: equal_mean_over_prespecified_common_supported_coordinates
-      band_score: aggregated_locked_profile_coordinate
-      normalization: unit_temperature_softmax_over_common_band_support
-      m1_pmd_weight_distance_nonidentity_margin_must_be_frozen: true
-      correct_pooled_weight_and_effective_mixture_separation_margins_must_be_frozen: true
-      freeze_before: any_target_animal_followup_population_recovery_score
-      target_base_predictors: one_independently_fit_locked_recipe_predictor_per_band
-      target_latent_basis_and_outcome_scale: one_training_only_fit_per_session_region_fold_shared_by_all_bands_and_rules
-      common_prediction_tensor_must_be_frozen_before_mixture: true
-      mixture_level: frozen_bandwise_prediction_outputs
-      coefficient_intercept_scaling_or_penalty_fit_after_mixture: forbidden
-      separate_postclassification_supervised_regional_model_allowed: false
-      pooled_rule: same_transform_on_equal_region_pooled_undifferenced_prototype
-      swapped_rule: exchange_m1_and_pmd_weight_vectors_only
-    fixed_rules:
-      - source_fitted_m1_frequency_weight_rule
-      - source_fitted_pmd_frequency_weight_rule
-      - source_fitted_pooled_frequency_weight_rule
-      - deliberately_swapped_region_rule_negative_control
-    primary_followup_contrast: correct_region_minus_fixed_pooled_prototype_reference
-    required_interpretation_checks:
-      - signed_bandwise_m1_minus_pmd_contrast_repeats
-      - correct_region_rule_beats_pooled_by_fixed_margin
-      - swapped_region_rule_does_not_match_correct_region
-      - metadata_only_hardware_confound_gate
-      - low_frequency_and_spike_bleed_sensitivities
-      - equal_trial_electrode_rank_reliability_and_capacity
-      - identical_frozen_bandwise_base_predictions_feature_support_and_output_dimension
-      - raw_feature_unit_rescaling_with_full_locked_train_only_preprocessing_replay
-      - complete_profile_to_weight_to_mixture_source_region_label_swap
-      - source_band_label_permutation_against_fixed_target_prediction_tensor
-      - zero_contrast_collapses_correct_swapped_and_pooled_weights_sanity_check
-      - independent_uniform_weight_reference
-      - bandwise_prediction_tensor_collinearity_identifiability
-      - leave_one_session_and_both_transfer_directions
-    internal_evaluation:
-      shares_existing_single_internal_audit_transaction: true
-      output_must_be_registered_before_configuration_lock: true
-      second_opening_allowed: false
-      heldout_target_outcome_or_score_driven_alignment_or_selection: false
-      session_specific_bandwise_base_fit_on_permitted_training_trials: required_by_locked_recipe
-      post_reveal_policy_hyperparameter_weight_or_support_refit: forbidden
-      core_retraining_policy_wording_must_be_disambiguated_in_executable_followup_contract_before_opening: true
-    external_evaluation:
-      source: prospective_sealed_third_matched_m1_pmd_animal
-      requires_new_registered_successor_round: true
-      pure_cortical_area_claim_supported_despite_array_confound: false
-    separate_contract_required:
-      - locked_profile_prototypes_softmax_equation_latent_aggregation_and_separation_margins
-      - bandwise_base_prediction_scaling_support_and_raw_feature_unit_rescaling_replay
-      - common_support_and_missingness
-      - fixed_models_capacity_and_comparators
-      - meaningful_margins_multiplicity_and_uncertainty
-      - synthetic_recovery_nulls_budget_and_stop_rules
-      - result_table_and_claim_mapping
-    inherits_primary_trial_budget: false
-    primary_candidate_ready_implies_paper_claim_established: false
-
-dataset_roles:
-  shared_exposure_ledger_group: lfp_ep05_ep08
+evidence_roles:
   development:
-    source: outcome_blind_four_of_six_eligible_mihili_and_four_of_six_chewie_l_sessions
-    use: adaptive_search_and_nested_session_selection
-    freshness: historically_exposed
-  selection:
-    source: frozen_nested_session_folds_with_cross_animal_transfer
-    use: constrained_global_policy_selection
-    freshness: internal_only
-  internal_audit:
-    source: outcome_blind_two_of_six_eligible_sessions_per_primary_animal
-    use: one_shot_locked_within_corpus_session_transfer
-    freshness: exposure_tainted_procedural_audit
-    available: conditional_on_structural_eligibility_and_firewall
-  audit:
-    source: outcome_blind_two_of_six_eligible_sessions_per_primary_animal
-    use: one_shot_locked_within_corpus_session_transfer
-    freshness: exposure_tainted_procedural_audit
-    available: conditional_on_structural_eligibility_and_firewall
-  external_confirmation:
-    source: prospective_third_animal_with_simultaneous_matched_m1_pmd
-    use: separate_successor_round_direct_generalization
-    freshness: must_be_independent_and_sealed
+    animals: [Mihili, Chewie-L]
+    sessions_per_animal: 4
+    positions_after_acquisition_date_order: [1, 2, 4, 5]
+    use: model_selection_and_falsification
+    freshness: historically_exposed_exploratory
+  reserved_test:
+    animals: [Mihili, Chewie-L]
+    sessions_per_animal: 2
+    positions_after_acquisition_date_order: [3, 6]
+    use: one_shot_test_of_the_final_analysis
+    freshness: same_corpus_procedural_test
+    available: conditional_on_source_checks_and_isolation
+  external_test:
+    source: future_third_animal_with_simultaneous_m1_and_pmd
+    use: separate_test_of_the_unchanged_two_animal_rule
     available: false
 
-grammar:
+session_assignment:
+  order_by: acquisition_date
+  tie_breaker: provider_session_name
+  record_session_names_before_regional_scores: true
+  reassign_after_outcome_access: false
+  if_fewer_than_six_eligible_sessions_per_animal: stop_for_scientific_review
+
+primary_test:
+  unit: one_profile_per_region_per_session
+  profile_value: held_out_lfp_prediction_of_spike_population_activity_beyond_direction_and_time
+  directions:
+    - train_mihili_test_chewie
+    - train_chewie_test_mihili
+  score: equal_mean_of_two_balanced_accuracies_minus_chance
+  report_each_direction_separately: true
+  signed_m1_minus_pmd_profile_must_agree_across_animals: true
+
+followup_test:
+  state: proposed_not_run
+  starts_after_primary_development_result_is_fixed: true
+  source_data: development_sessions_only
+  target: held_out_spike_population_activity
+  comparison:
+    - correct_region_frequency_weights
+    - pooled_frequency_weights
+    - swapped_region_frequency_weights
+  fairness_rule: use_the_same_target_trials_electrodes_latent_dimensions_band_support_and_bandwise_predictions
+  expected_pattern:
+    - correct_region_beats_pooled_by_a_fixed_meaningful_margin_in_both_directions
+    - swapped_region_performs_worse_than_correct_region
+  inconclusive_if:
+    - m1_and_pmd_weights_are_not_meaningfully_different
+    - bandwise_target_predictions_are_too_similar_to_distinguish_the_rules
+  changes_primary_result: false
+  independent_replication: false
+
+model_space:
   analysis_windows:
-    primary: execution_plus_150_to_plus_450_ms
-    alternatives: finite_behavior_defined_preparation_execution_schedule
-  feature_blocks:
+    primary: movement_onset_plus_150_to_450_ms
+    alternatives: small_behavior_defined_preparation_and_execution_set
+  lfp_features:
     - lmp
     - power_0p5_4_hz
     - power_4_8_hz
@@ -128,151 +73,115 @@ grammar:
     - power_50_100_hz
     - power_100_200_hz
     - power_200_400_hz
-    - registered_contiguous_low_mid_high_groups
-    - full_nine_class_profile
-  electrode_aggregation:
-    - fixed_matched_15_electrode_mean
-    - fixed_matched_15_electrode_median
-    - train_only_reliability_shrinkage
-    - train_only_electrode_pca
-  spike_latents:
-    - train_only_pca_finite_rank_schedule
-    - train_only_reduced_rank_finite_schedule
-  mappings:
+    - registered_contiguous_groups
+    - full_profile
+  electrode_summaries:
+    - matched_15_electrode_mean
+    - matched_15_electrode_median
+    - training_only_reliability_weighting
+    - training_only_electrode_pca
+  spike_population_summaries:
+    - training_only_pca_with_finite_rank_schedule
+    - training_only_reduced_rank_summary
+  lfp_to_population_models:
     - ridge
     - reduced_rank_regression
     - partial_least_squares
     - regularized_cca
-  profile_normalization:
+  profile_comparisons:
     - centered_unit_l2_shape
-    - reliability_shrunk_shape
-    - frozen_weight_shape_plus_magnitude
-  alignment:
+    - reliability_adjusted_shape
+    - fixed_shape_plus_magnitude
+  across_session_alignment:
     - none
     - training_session_robust_scaling
-    - train_only_orthogonal_procrustes
-  classifiers:
+    - training_only_orthogonal_alignment
+  region_classifiers:
     - nearest_prototype_correlation
     - nearest_prototype_cosine
     - shrinkage_mahalanobis
     - regularized_logistic
   ensemble:
-    max_members: 2
-    rule: convex_combination_of_pre_evaluated_complementary_policies
-  forbidden:
+    maximum_members: 2
+    rule: convex_combination_of_already_evaluated_complementary_models
+  outside_scope:
     - arbitrary_band_edges
-    - audit_specific_alignment
-    - per_animal_winner_selection
+    - reserved_session_specific_alignment
+    - separate_winner_for_each_animal
     - unpaired_m1_pmd_trials
-    - outcome_selected_electrodes
+    - electrodes_selected_from_held_out_outcomes
     - raw_phase_analysis
-    - arbitrary_code_mutation
+    - arbitrary_new_model_families
 
-objectives:
-  primary:
-    name: mean_bidirectional_cross_animal_balanced_accuracy_minus_chance
-    direction: maximize
-  secondary:
-    - m1_minus_pmd_contrast_alignment
-    - session_consistency
-    - reliability_adjusted_margin
-    - policy_complexity
-  constraints:
-    - both_cross_animal_directions_above_complete_procedure_null
-    - regional_contrast_alignment_same_direction
-    - no_single_session_dominance
-    - paired_trial_equal_capacity_and_reliability_gates_pass
-    - array_qc_metadata_only_hardware_confound_gate_pass
-    - low_frequency_and_spike_bleed_sensitivities_pass
-    - tme_surrogate_and_band_label_nulls_pass
-
-budgets:
-  minimum_valid_trials: 20
-  maximum_valid_trials: 48
-  patience_valid_trials: 10
-  cpu_core_hour_ceiling: 1200
-  gpu_hour_ceiling: 0
-  wall_clock_hour_ceiling: 96
-  max_parallel_cores: 32
-  max_memory_gb_per_trial: 128
-  max_scratch_gb: 750
-  finalists_max: 4
-  audit_openings_max: 1
-
-branch_coverage:
-  required: true
-  minimum_valid_trials: 12
-  rule: fixed_low_full_ridge_cca_prototype_and_regularized_classifier_anchors
-  readiness_rejection_must_be_logged: true
-
-required_falsifiers:
-  - paired_session_region_label_permutation_full_procedure
-  - band_label_profile_permutation
-  - within_direction_whole_trial_lfp_latent_pairing
-  - tme_or_smoothness_dimension_matched_surrogate
+required_controls:
+  - full_analysis_region_label_shuffle
+  - band_label_shuffle
+  - within_direction_whole_trial_lfp_population_pairing_shuffle
+  - smoothness_and_dimension_matched_population_surrogate
   - direction_by_time_and_elapsed_time_baselines
-  - low_frequency_and_high_frequency_exclusion
-  - same_electrode_unit_intersection_sensitivity
-  - matched_electrode_trial_rank_reliability_budgets
-  - array_qc_impedance_missing_channel_metadata_only_hardware_confound
-  - feature_mapping_normalization_alignment_ablations
-  - leave_one_session_and_bidirectional_transfer
-  - area2_recording_domain_specificity_without_region_claim
+  - low_frequency_only_and_high_frequency_exclusion
+  - same_electrode_unit_intersection
+  - matched_trial_electrode_spike_rank_reliability_and_model_capacity
+  - recording_metadata_only_classifier
+  - feature_model_normalization_and_alignment_ablations
+  - leave_one_development_session_out
+  - both_cross_animal_directions
+  - area2_recording_domain_sensitivity_without_regional_inference
 
 promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  coverage_rule: run_fixed_low_full_ridge_cca_prototype_and_regularized_classifier_anchors
-  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_eight_development_sessions_and_falsifiers
-  lock_rule: select_one_policy_before_any_internal_or_external_audit_reveal
-  external_confirmation_requires_new_registered_round: true
+  both_transfer_directions_must_pass: true
+  signed_profile_direction_must_repeat: true
+  no_single_session_may_determine_result: true
+  every_required_control_must_pass: true
+  minimum_successor_trials: 2
+  minimum_best_model_challenger_decisions: 2
+  post_starting_comparisons_control_fraction_min: 0.40
+  finalist_rule: rerun_at_most_four_models_on_all_development_sessions_and_controls
+  choose_one_final_analysis_before_reserved_test: true
 
-stop:
-  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
-  after_minimum: patience_or_max_trials_or_resource_ceiling
-  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
-  valid_terminal_classes:
-    - candidate_ready
-    - closed_no_candidate
-    - search_exhausted_no_audit
-    - technical_failure
-    - policy_violation
-audit:
-  mode: one_shot_after_configuration_lock
-  configuration_lock_required: true
-  configuration_lock_write_once: true
-  source: four_outcome_blind_reserved_current_release_sessions
-  maximum_open_count: 1
-  audit_updates_search: false
-  claim: procedural_within_corpus_session_transfer_only
-  external_generalization:
-    required_source: prospective_sealed_third_matched_m1_pmd_animal
-    requires_new_registered_successor_round: true
-    direct_test_requires_same_locked_candidate: true
-  retraining_policy: forbidden
-  candidate_swap: forbidden
-  threshold_or_exclusion_change: forbidden
-  partial_score_visibility: forbidden
+search:
+  starting_comparisons_minimum: 12
+  starting_comparisons: low_frequency_full_profile_ridge_cca_prototype_and_regularized_classifier
+  minimum_valid_trials: 20
+  maximum_valid_trials: 48
+  patience_after_minimum: 10
+  material_improvement: primary_score_improvement_above_a_prespecified_noise_tolerance_with_all_controls_passing
+  stop_before_minimum_only_for:
+    - resource_exhaustion
+    - technical_impossibility
+    - procedure_violation
 
-terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_candidate: closed_no_candidate
-  search_exhausted_no_audit: closed_no_candidate
-  technical_failure: technical_failure
-  policy_violation: technical_failure
+resources:
+  cpu_core_hours_max: 1200
+  gpu_hours_max: 0
+  wall_clock_hours_max: 96
+  parallel_cpu_cores_max: 32
+  memory_gb_per_trial_max: 128
+  scratch_gb_max: 750
+  finalists_max: 4
+  reserved_session_evaluations_max: 1
 
-reporting:
-  scientific_scope:
-    primary_and_explanatory_followup_reported_separately: true
-    classification_alone_supports_population_recovery_consequence: false
-    same_release_followup_is_independent_replication: false
-    metadata_adjustment_proves_pure_cortical_identity: false
-    third_animal_with_same_array_layout_breaks_region_hardware_confound: false
-  main_figures:
-    - bidirectional_cross_animal_session_level_classification
-    - signed_frequency_by_latent_regional_contrast
-    - neural_versus_hardware_and_spike_contamination_falsifiers
-    - correct_region_versus_pooled_and_swapped_population_recovery
-    - locked_internal_and_third_animal_transfer_with_limits
+reserved_session_test:
+  open_all_four_reserved_sessions_together: true
+  final_analysis_required_before_opening: true
+  partial_result_visibility: false
+  candidate_change_after_opening: false
+  threshold_or_exclusion_change_after_opening: false
+  session_specific_fit_allowed_only_under_final_recipe: true
+  result_changes_development_search: false
+
+result_branches:
+  supported_within_this_corpus: final_analysis_passes_development_all_controls_and_the_reserved_session_test
+  no_supported_candidate: valid_search_finds_no_acceptable_model_or_the_final_model_fails_on_reserved_sessions
+  development_only: development_finishes_but_reserved_sessions_cannot_be_evaluated
+  no_scientific_answer: source_pairing_feature_meanings_or_scoring_cannot_be_established
+  invalid_comparison: outcomes_influence_session_roles_model_choices_or_later_adaptation
+
+claim_limits:
+  reserved_test_supports: within_corpus_two_animal_recording_domain_transfer_under_this_task_and_feature_pipeline
+  population_prediction_claim_requires_followup: true
+  reserved_test_is_independent_confirmation: false
+  third_animal_required_for_broader_animal_transfer: true
+  separates_cortical_region_from_array_hardware: false
+  supports_causality_or_online_bci: false
+  supports_other_tasks_species_raw_lfp_or_recording_technologies: false

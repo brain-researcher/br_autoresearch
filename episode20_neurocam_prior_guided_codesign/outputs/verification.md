@@ -1,22 +1,34 @@
-# Verification status
+# Readiness check
 
-EP20 now documents its scientific question, source roles, comparison ladder,
-decision thresholds, resource limits, and conceptual figure. The figure is a
-synthetic design aid, not experimental evidence.
+## Document checks completed
 
-The written plan retains the key scientific safeguards:
+- The question begins with the cortical-field and hardware-software trade-off.
+- One EP12-style SVG shows the synthetic space–time measurement dilemma, the
+  five matched arms with complete comparator sets, every member-level paired
+  ΔR² test, the worst-condition gate, and distinct independent-model outcomes
+  without implying a winning candidate.
+- D0–D4 appear only after their plain-language meanings.
+- `GOAL.md`, `DATASETS.md`, and `SEARCH_POLICY.yaml` agree on fixed hardware,
+  the 1–100 Hz endpoint, five comparisons, margins, 16-arm coverage, budgets,
+  and claim limits.
+- `paper_plan.md` gives each figure one scientific judgment and defines next
+  steps for positive, negative, mixed, and uncertain results.
+- The existing PNG remains explicitly marked as an older secondary mock-up,
+  not the scientific decision figure.
 
-- D0–D4 comparisons, including the complete 16-arm coverage panel;
-- matched hardware, software, seeds, and resource envelopes;
-- calibration and qualification roles that cannot be tuned together;
-- separate development and sealed empirical sources or partitions;
-- an independently implemented, permission-separated virtual audit;
-- endpoints, margins, randomization, and stopping rules fixed before outcomes;
-  and
-- scientist approval before launch and before interpreting an audit result.
+## Scientific readiness still pending
 
-No input source has been provisioned, no reference model has qualified, and no
-candidate search, score, replay, or audit has run. Scientific readiness still
-requires approved source rights, calibrated and qualified models, identifiable
-development environments, fixed empirical splits, executable resource rules,
-an independent audit steward and engine, and scientist signoff.
+| Requirement | Status |
+| --- | --- |
+| Source-use approval | Not complete |
+| Published values divided into fitting and held-aside roles | Not complete |
+| Paper-derived reference passes held-aside checks | Not run |
+| Finite pad, scan, software, and resource rules | Not set |
+| Development cortical-field and device models | Not implemented |
+| Independent final models | Not implemented |
+| Separate physical-signal or phantom sources | Not selected |
+| Candidate search | Not started |
+| Independent final comparison | Not started |
+
+Passing document checks does not show that a virtual design is better or that
+an unbuilt device will work physically.

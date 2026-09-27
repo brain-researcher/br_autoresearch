@@ -1,3 +1,3 @@
 # Society
 
-Society has not been called for the current episode contract.
+Society was not called. No review, acceptance, or reward was requested.

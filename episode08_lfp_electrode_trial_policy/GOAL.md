@@ -1,300 +1,308 @@
 # Can a short pilot tell us what to record next?
 
-At the start of a recording session, every electrode may be available, but it
-may be impractical to keep all of them active or collect a large calibration
-set. After a few reaches, the experimenter has to make two choices: which
-electrodes are worth keeping, and which kind of reach would be most useful to
-record next.
+At the start of a recording session, all electrodes may be available, but it
+may be impractical to keep every channel active or collect a large calibration
+set. EP08 asks a concrete question: after only 16 pilot reaches recorded on all
+eligible electrodes, can we choose which 4, 8, or 16 electrodes to retain and
+which reach direction to sample next, then predict untouched neural activity
+better than simple rules with exactly the same electrode and trial budget?
 
-EP08 asks whether the same short pilot can guide both choices. Every policy
-first sees 16 trials—two reaches in each of eight directions—recorded on all
-eligible electrodes. It then keeps 4, 8, or 16 whole electrodes and chooses the
-direction of each additional calibration trial. The final decoder uses the
-selected data to predict motor-population activity on untouched trials.
+Every method begins with the same pilot: two reaches in each of eight
+directions. It then chooses a whole-electrode subset and allocates 32, 64, or
+128 additional calibration trials by reach direction. The final decoder is the
+same for every method. The alternatives are random selection, broad spatial
+coverage, and ranking electrodes only by signal quality.
 
-The first test compares these choices at exactly the same electrode and trial
-budgets. The main score gives equal weight to all nine points on the budget
-grid and compares the pilot-guided policy with random selection, broad spatial
-coverage, and simple signal-quality ranking. A positive result must also hold
-at the two prespecified scarce-resource settings, in both animals, and in at
-least three of four held-out sessions. The rule is learned on complete sessions
-and then applied without change to those four sessions.
+![EP08 conceptual figure showing the common pilot, electrode and trial choices, matched-resource performance surface, and forward tests of electrode and next-trial value](outputs/ep08_question.svg)
 
-A winning policy is not yet a scientific explanation. It may simply retain
-the cleanest electrodes, even when several carry the same information. It may
-request trials only to restore equal direction counts. It may also win on
-average because of one favorable session or one budget setting. The individual
-sessions, both animals, and every point on the budget grid therefore remain
-visible in the result.
+Like the EP12 concept figure, this mockup uses synthetic patterns to make the
+scientific alternatives visible. It starts with clean-but-redundant and
+complementary electrodes plus an uncertain reach direction, then shows the
+joint post-pilot decision and three explanations for any gain: simple
+reliability and balance, unique electrode information, or conditional
+next-trial value. The final strip separates a candidate explanatory acquisition
+principle from a policy gain alone. The 3 × 3 paired-bar matrix shows the actual
+4/8/16-electrode by +32/+64/+128-trial grid, but its bar heights are
+illustrative, not EP08 results; decision rules remain in the text.
 
-This is the entry point to a larger question:
+## The scientific question
 
-> Can a 16-trial pilot reveal which electrode or next reach will add information
-> that is not already present in the data collected so far?
+Can information visible in a 16-trial pilot reveal two kinds of future value?
 
-The intended paper should identify what the pilot actually learned. For
-electrodes, a pilot score should predict how much performance is lost when that
-electrode is removed from the retained set, not merely whether its signal is
-clean. For trials, the errors available before a choice should predict which
-reach direction will produce the largest improvement after its next trial is
-added. The study should also show whether a session benefits more from another
-electrode or from more calibration trials, without pretending that those two
-resources have the same physical cost.
+1. **Nonredundant electrode value:** an electrode is useful because it adds
+   population information not already present on the other retained
+   electrodes, not merely because its signal is clean.
+2. **Next-trial value:** the current calibration state predicts which reach
+   direction will benefit most from one additional trial.
 
-Even a positive result would not show that a selected electrode is biologically
-special, that the replayed trial request would work online, or that fewer
-channels save a measured amount of power. It would support a narrower claim:
-in these recordings, information from a 16-trial pilot can guide a fixed
-electrode-and-trial acquisition rule that predicts unseen population activity
-better than cost-matched simple rules.
-
-The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
-specifies the electrode-removal and next-trial predictions. The four current
-held-out sessions test the acquisition policy itself. Because the explanatory
-tests are designed afterward, confirming those explanations requires newly
-sealed sessions; they cannot rescue a failed first-round policy.
+The first study asks whether one pilot-guided acquisition rule improves neural
+prediction at matched budgets. The explanatory follow-up asks whether the
+rule's pilot scores actually predict these two forms of value.
 
 ## At a glance
 
 | Question | EP08 design |
 | --- | --- |
-| What does every policy see first? | The same 16 trials: two from each of eight reach directions, recorded on all structurally eligible electrodes. |
-| What is decided next? | Which 4, 8, or 16 whole electrodes to keep, followed by the reach direction of each new calibration trial. |
-| What is compared? | Pilot-guided choices versus random, spatial-coverage, and signal-quality choices with the same data budget and decoder. |
-| What is held out? | Complete sessions and a fixed set of untouched trials within each session. Those trials never guide an acquisition choice. |
-| What must repeat? | The nine-cell average and the two scarce-resource settings must pass, both animal averages must improve, and at least three of four held-out sessions must improve. Every grid cell is still reported. |
-| What can the first test conclude? | Whether one fixed pilot-based acquisition rule beats simpler cost-matched rules in these recordings. |
-| What would make a deeper finding? | Pilot measurements predict an electrode's added value and the benefit of the next trial before either outcome is revealed. |
-| What is the next test? | In the eight development sessions, cross-fit electrode-removal and alternative next-direction replays. Confirming that explanation requires newly sealed third-animal data; the four current held-out sessions test only the acquisition policy. |
+| What does every method see first? | The same 16 trials: two from each of eight reach directions, recorded on all eligible electrodes. |
+| What is chosen? | Which 4, 8, or 16 whole electrodes to retain, then the direction of each additional calibration trial. |
+| How many additional trials? | 32, 64, or 128, giving a complete 3-by-3 electrode-by-trial grid. |
+| What is predicted? | Motor-population spike activity on untouched trials from the same session. |
+| What is the fair comparison? | Random, broad spatial coverage, and signal-quality selection with the same pilot, electrode count, trial count, decoder, and evaluation trials. |
+| What must repeat? | Improvement in both animals, at least three of four held-out sessions, and the two scarce-resource settings `(4,32)` and `(8,64)`. Every grid cell remains visible. |
+| What would explain a win? | Pilot-only measurements predict later electrode-removal loss and the benefit of the next reach-direction sample. |
+| What would confirm the explanation? | The same predictions and acquisition rule work in newly sequestered sessions from a third animal. |
 
-## From a winning policy to an acquisition principle
+## Why a winning policy is not yet an explanation
 
-Imagine two electrodes with equally clean LFP. If their signals carry the same
-information, retaining both wastes a scarce channel. A third, slightly noisier
-electrode may be more valuable because it captures population activity the
-first electrode misses. The follow-up therefore asks whether a pilot-only
-score predicts an electrode's **conditional value**: how much held-out
-prediction worsens when that electrode is removed from an otherwise fixed set.
+Two electrodes can be equally clean yet carry nearly identical information.
+Keeping both may waste a scarce channel. A slightly noisier electrode may be
+more useful if it captures population variation missing from the first one.
+The explanatory test therefore asks how much prediction worsens when each
+retained electrode is removed from an otherwise unchanged set.
 
-The same distinction applies to trials. If rightward reaches are already well
-predicted but upward reaches have large calibration residuals, an adaptive
-allocator should predict that the next upward trial will reduce future error
-more than another rightward trial. That prediction must be made before the
-trial's target or evaluation outcome is seen and compared with a balanced
-allocator under the same replay queue.
+The same distinction applies to trial selection. If seven directions are
+already predicted well but upward reaches have large calibration errors, an
+adaptive method should predict that another upward trial will help more than
+another trial from an already well-estimated direction. That prediction must
+be made before the additional trial or its later evaluation benefit is known.
 
-The tested electrode counts and trial counts have different physical units.
-EP08 may compare how performance changes along each axis of the frozen grid,
-but it may not declare an electrode equivalent to a number of trials without a
-separate, prespecified cost model.
+Electrode count and trial count have different physical meanings. EP08 reports
+performance changes along each axis of the 3-by-3 grid. It does not claim that
+one electrode is worth a particular number of trials or a measured amount of
+power without a separate cost study.
 
-The possible scientific outcomes are:
+## Data and session roles
 
-| Result | Interpretation and next step |
-| --- | --- |
-| Electrode and trial choices both add reproducible gain, and pilot-only scores predict their later conditional value | Test a joint acquisition principle in a newly sequestered third animal |
-| Only electrode retention helps | Focus the claim on nonredundant sensor selection; balanced trial collection remains adequate |
-| Only trial allocation helps | Focus the claim on calibration sampling; a simpler electrode rule is sufficient |
-| Reliability alone explains the selected set | Report a quality-control result, not a new spatial or information-selection principle |
-| A policy wins one grid cell, session, or animal only | Narrow the scope or stop; do not average away the failure |
-| No policy clears the primary rule | Report the bounded negative or unresolved result; do not search post hoc for a mechanism story |
+The primary corpus is six Mihili and six Chewie-L M1 execution sessions from
+the public Foundation LFP source. If the sessions meet the structural
+requirements, four sessions per animal are used to develop one global policy
+and two per animal remain untouched until the policy and analysis are final.
+Whole sessions, not trials from the same session, separate development from
+the final test.
 
-## Authority and history boundary
+The public outcomes have been used before. This study can therefore provide a
+careful internal held-session test, but not an independent animal-level
+replication. Chewie-R is another implant in Chewie and may be used only as an
+implant-sensitivity analysis. A genuinely independent third animal is needed
+for an external generalization claim.
 
-This is the current local contract. An explicit scientist task may start
-bounded episode work, but it does not expose held-out neural outcomes or
-establish a result. Earlier LFP access must be recorded, and no prior score,
-preferred subset, threshold, or conclusion may initialize the search. Data
-roles, search rules, and the configuration lock must be fixed before
-candidate-discriminating development.
+Within every session, evaluation trials are set aside and never used to choose
+electrodes, train the acquisition rule, or fit the decoder. The 16 pilot trials
+and the later calibration trials come from a separate pool. Within each reach
+direction, that pool is placed in one ordinary seeded order before any policy
+score is known. Asking for a direction reveals only the next trial in that
+direction's order.
 
-Because only the existing two primary animals are currently available, the
-locked test described here is internal held-session evidence. A third,
-lineage-independent animal is required for an external generalization claim.
+## What happens after the pilot
 
-## Exact first-round policy test
+The electrode decision comes first and is permanent for that session. A method
+may retain 4, 8, or 16 physical electrodes, each carrying LMP, 100--200 Hz
+power, and 200--400 Hz power. It may not add an electrode later or retroactively
+use a discarded electrode on a previously collected non-pilot trial.
 
-After one fixed all-electrode calibration pilot, can an acquisition policy
-learn **which physical electrodes to retain and which reach-direction stratum to sample
-next**, under a fixed electrode-by-trial budget, so that an LFP-to-population
-mapping preserves more unseen-trial motor information than cost-matched
-random, geometric, or reliability-only acquisition?
+After electrode selection, each trial decision chooses one of the eight reach
+directions. The analysis then advances to the next prespecified recorded trial
+from that direction. This retrospective walk-through preserves what would have
+been known at each choice, but it does not show how an animal would respond to
+a real-time request.
 
-The scientific output is one transferable acquisition policy and its
-budget-performance frontier, not a post hoc list of the best electrodes in
-each recorded session. The policy must operate from information genuinely
-available at the stated acquisition step and transfer unchanged to unseen
-sessions.
+Every method uses the same reduced-rank ridge decoder, population target,
+movement window from 150 to 450 ms after movement onset, and untouched
+evaluation trials. Decoder flexibility therefore cannot masquerade as an
+acquisition advantage.
 
-## Data roles and firewall
+## Acquisition rules considered
 
-Use the six Mihili and six Chewie-L M1 execution sessions as the primary
-corpus; Chewie-R is implant sensitivity. Assign whole sessions within each
-primary animal to adaptive development or a sealed internal audit before
-neural utilities are computed. The manifest should target four development
-and two audit sessions per animal, subject to a frozen feasibility rule.
+Candidate methods may combine one electrode selector with one trial allocator.
 
-Within every session, freeze a direction-stratified evaluation set that is
-never available to the selector or decoder. Every policy then receives the
-same **16-trial pilot**—two seed-selected calibration trials in each of the
-eight frozen directions—recorded on every structurally eligible electrode.
-The pilot reveals LFP and calibration spike targets, is charged and reported
-separately, and cannot contain evaluation trials. A policy locks its retained
-electrode set after this pilot. It may then request only the next reach direction;
-an electrode added later is forbidden and no retained electrode may backfill
-an earlier non-pilot trial.
+Electrode selectors may use:
 
-Development sessions can train policy parameters and proposal logic. On audit
-sessions the policy sees only static geometry/QC, the identical pilot summary,
-and—after each permitted acquisition action—the selected-electrode LFP and its
-calibration target. Evaluation spikes never create policy reward. Audit
-evaluation outcomes are opened once after the complete action log is locked.
+- signal reliability, artifact fraction, missingness, line noise,
+  stationarity, and repeatability from data already acquired;
+- spatial diversity or array coverage, with a stated fallback when geometry is
+  unavailable;
+- redundancy measures such as correlation, conditional variance, or
+  log-determinant gain; or
+- a simple learned ranking rule trained across development sessions from
+  pilot-visible features.
 
-## Action space and bounded scientific grammar
+Trial allocators may use:
 
-Electrode retention and trial allocation are ordered stages. The retention
-stage selects a subset from the pilot-observed physical electrodes and then
-closes permanently. A trial action chooses only one of the eight reach-direction
-strata; the trusted replay returns the next whole trial in that direction's
-frozen seeded order. The fixed movement epoch is part of every trial and is not a
-separate action dimension.
-Whole electrodes carry all three primary LFP features: LMP, 100–200-Hz power,
-and 200–400-Hz power. The decoder, neural target roster, epoch (`+150` to
-`+450 ms` after movement onset), metric, and evaluation denominator are shared
-across policies.
+- balanced direction counts;
+- current calibration uncertainty;
+- residual diversity;
+- information gain; or
+- a bounded upper-confidence rule.
 
-Candidate policies may compose only:
+Lookahead is limited to two acquisition steps. One global method is selected
+for all sessions and animals; choosing a different winner for each session is
+not allowed. Learned value labels for one development session must be produced
+without using that session to train the ranker.
 
-1. **Reliability selectors:** artifact fraction, missingness, line-noise,
-   stationarity, and repeatability estimated from currently acquired LFP;
-2. **Spatial-diversity selectors:** farthest-first, coverage, or D-optimal
-   selection using verified electrode geometry, with an explicit
-   geometry-missing fallback;
-3. **Redundancy-aware selectors:** correlation pruning, facility-location,
-   log-determinant, or conditional-variance gain computed from acquired LFP;
-4. **Learned electrode selectors:** linear/ridge ranker, shallow gradient
-   boosting, or offline contextual ranking trained on cross-fitted
-   development-session marginal-utility labels, using only pilot-time
-   features;
-5. **Trial allocators:** direction-balanced, uncertainty-weighted,
-   residual-diversity, D-optimal, or bounded upper-confidence allocation over
-   reach-direction strata. For adaptive allocators, reward is the change in
-   nested-CV calibration loss computed by the trusted evaluator using acquired
-   calibration data only; and
-6. **Combination rules:** a fixed weighted pilot score or learned pilot
-   ranker followed by one trial allocator. Searchable allocator memory and
-   lookahead are capped at two acquisition steps.
+## Fair comparisons and primary measure
 
-The primary common grid is whole-electrode counts `E in {4, 8, 16}` crossed
-with post-pilot calibration-trial counts `N in {32, 64, 128}`. The pilot is an
-identical additional cost for every policy. Full-electrode/full-trial data are
-a ceiling/equivalence diagnostic, not a primary grid cell. A fixed reduced-rank
-ridge decoder with development-selected global rank/penalty is used for every
-selector so decoder flexibility cannot masquerade as acquisition-policy gain.
-Learned marginal-utility labels for session `s` must be generated by a model
-trained on other development sessions; the final audit ranker is refit once on
-all eight development sessions. Learned policies may not use audit evaluation
-targets, hidden trials, neuron identities unavailable prospectively, numeric
-channel identity across sessions, realized future utility, free-form code, or
-a per-session policy choice.
+At every `(electrodes, additional trials)` point, compare the pilot-guided
+method with:
 
-## Comparators and objective
+- repeated uniform-random electrode selection plus balanced-random trials;
+- geometry-only farthest-first electrode selection;
+- reliability-only electrode ranking;
+- the full-resource decoder as a ceiling check; and
+- a development-only hindsight best case, reported only as an upper bound.
 
-Every candidate is compared at identical `(E,N)` costs with:
+For each session and grid cell, compute the difference in held-out `R2_SSE`
+between the candidate and the strongest simple rule chosen from development
+evidence. Give all nine grid cells equal weight within a session, average
+sessions within each animal, and give Mihili and Chewie-L equal weight. The
+prespecified meaningful improvement is `0.005 R2_SSE`.
 
-- repeated uniform random electrode and balanced-random trial selection;
-- geometry-only farthest-first selection;
-- reliability-only ranking;
-- the fixed full-resource decoder; and
-- a development-only hindsight oracle, reported strictly as an upper bound.
+The complete nine-cell surface, every session, both animals, and negative
+effects are reported even when the overall average is favorable.
 
-For policy `p`, session `s`, and grid cell `(E,N)`, let
-`Delta_p,s(E,N)` be held-out `R2_SSE(p) - R2_SSE(b*)`, where `b*` is the
-strongest frozen cost-matched baseline selected on development evidence only.
-The primary objective is the equal-cell, animal-balanced mean: average the nine
-grid-cell deltas within session, sessions within animal, then the two animal
-means equally. A meaningful improvement is `0.005` mean `Delta R2_SSE`.
+## Search plan and budget
 
-Promotion also requires positive improvement at `(4,32)` and `(8,64)` in both
-primary animals, no material loss versus the full-resource ceiling under a
-frozen equivalence margin, leave-one-animal-out transfer stress, and a majority
-of development sessions improved in each animal. Complexity and acquisition
-latency are secondary objectives. No ambiguous two-dimensional AUC is used.
+The study proceeds in five scientific stages:
 
-## Search stages
+1. Confirm the animals, sessions, physical electrodes, reach directions,
+   pilot support, trial pools, LFP features, and population targets.
+2. Establish repeated random, spatial, reliability, and fixed trial-allocation
+   comparisons using common seeds and identical budgets.
+3. Evaluate at least 20 diverse methods spanning every selector and allocator
+   family.
+4. Use development results to propose bounded combinations and parameters.
+5. Stress-test the best method across subset seeds, budget settings, animals,
+   and alternative explanations, then choose one global policy for the
+   untouched sessions.
 
-1. **Preflight:** confirm the source/version, animal and M1 session mapping,
-   duplicates and EP05 overlap, geometry, target availability, and resource
-   support; then freeze session/trial roles and pass the sequential-replay and
-   leakage fixtures. Record one pass/revise/stop decision and repeat only after
-   a concrete failed item changes.
-2. **Baseline stage:** run the identical pilot, then evaluate all random,
-   geometric, reliability, and fixed trial-allocation baselines with common
-   seeds and the same no-backfill rule.
-3. **Coverage stage:** run at least 20 diverse policies spanning every
-   selector and allocator family.
-4. **Adaptive stage:** propose policy compositions and bounded parameters from
-   the append-only ledger; each trial states a mechanism and parent.
-5. **Stress stage:** rerun finalists across subset seeds, budget anchors,
-   animals, and required falsifiers; retain a Pareto archive over utility,
-   robustness, and cost.
-6. **Lock/audit:** select one global policy, freeze its fitted-development
-   state and sequential action code, replay from the unchanged inputs, then apply
-   it unchanged to the sealed sessions and open evaluation outcomes once.
+Run at least 40 and at most 112 valid method evaluations. After the minimum,
+stop when 20 consecutive valid evaluations improve neither the primary score
+by at least `0.005` nor the feasible utility/robustness/cost frontier. Coverage
+of every selector and allocator family, the simple comparisons, and all
+required alternative-explanation checks must be complete before patience can
+stop the study. At least 40% of post-coverage work is reserved for those
+checks. Up to 16 failed runs caused by engineering problems may be retried
+without counting as scientific patience.
 
-## Required falsifiers and ablations
+The resource limit is CPU only: at most 1,200 aggregate CPU-hours, 120
+wall-clock hours, 48 concurrent cores, 256 GB memory, and 750 GB temporary
+storage. Reaching a resource limit makes the study incomplete; it is not a
+positive or negative scientific result.
 
-- many-seed random selection with identical action counts and compute;
-- permutation of development marginal-utility labels for learned selectors;
-- shuffled electrode geometry for spatial policies;
-- reliability, diversity, learned-score, and trial-allocation ablations;
-- redundancy-matched and signal-quality-matched baselines;
-- reverse animal transfer and leave-one-development-session influence;
-- leave-one-animal-out selector and allocator transfer;
-- action-log replay proving that every decision used only information then
-  available;
-- spike-contamination and low-frequency-only sensitivities; and
-- synthetic saturating, spatial-clustered, redundant, trial-limited, and null
-  acquisition worlds.
+## Alternative explanations that must remain visible
 
-## Incumbent, budget, and stopping
+The selected method must be compared with:
 
-The incumbent is a nonterminal policy selected only from development evidence.
-It is not a candidate-ready result and cannot open audit data. Run at least
-**40** and at most **112** valid policy trials. Patience is **20** consecutive
-valid trials after the minimum without at least `0.005` improvement in the
-primary mean `Delta R2_SSE` or a new feasible Pareto point. All selector and
-allocator families, baseline repetitions, and required falsifiers must be
-covered before patience can stop the search. At most 16 engineering failures
-may be retried outside scientific patience.
+- many random selections with identical action counts and compute;
+- learned electrode rankings after their development value labels are
+  permuted;
+- spatial selection after electrode locations are shuffled;
+- versions with reliability, diversity, learned score, or adaptive trial
+  allocation removed;
+- subsets matched for redundancy or signal quality;
+- transfer in the reverse animal direction and omission of each development
+  session;
+- training on one animal and applying the rule to the other;
+- a step-by-step check that every decision used only information available at
+  that time;
+- low-frequency-only and spike-contamination sensitivities; and
+- simulated worlds that are saturating, spatially clustered, redundant,
+  trial-limited, or null.
 
-Resource envelope: CPU only; at most 1,200 aggregate CPU-hours, 120 wall-clock
-hours, 48 concurrent cores, and 750 GB scratch. Hitting a resource limit yields
-`incomplete_search`, not evidence that a policy does or does not work.
+These comparisons distinguish a genuine pilot-guided acquisition principle
+from signal quality alone, spatial spread alone, direction balancing, one
+favorable session, or information that would not have been available at the
+time of the decision.
 
-## Lock, one-shot audit, and terminal boundary
+## Held-session decision
 
-Before audit access, create one write-once configuration record that names the
-source/version and role mappings, exposure exclusions, grammar, complete
-trial/action history, baseline seeds, decoder, selected policy, policy-time
-features, fitted development state, resource grid, metrics, intervals,
-falsifiers, and terminal rules. No adaptation to sealed-session evaluation
-outcomes is allowed. The audit opens once; any post-audit improvement belongs
-to a future dataset and policy version.
+Before the four untouched sessions are scored, choose one global acquisition
+method, its fitted development state, the common decoder, pilot and trial
+ordering, all grid cells, comparisons, effect margins, uncertainty method,
+missing-geometry behavior, and result table. The method sees only the common
+pilot and the calibration information available after each permitted choice.
 
-`candidate_ready` requires the locked policy to exceed the strongest
-cost-matched baseline by at least the frozen meaningful margin in the
-animal-balanced nine-cell mean, improve both animal means, improve at least
-three of the four audit sessions, pass `(4,32)` and `(8,64)` anchor rules,
-survive influence and falsifier tests, and satisfy the full-resource
-equivalence check. With only four audit sessions this is descriptive internal
-evidence, not population inference. Otherwise return `closed_no_candidate`,
-`unresolved`, or `technical_failure` exactly as locked.
+A positive primary result requires all of the following:
 
-A positive result supports only retrospective, internal held-session
-generalization for **post-pilot electrode retention and calibration-trial
-allocation** in these two animals and this feature representation. It does not
-establish from-scratch electrode placement, a universal electrode count,
-online clinical performance, causal electrode importance, a new implant
-design, or external-animal generalization. The latter requires a third animal
-collected or sequestered independently of this search.
+- mean improvement of at least `0.005 R2_SSE` over the strongest
+  cost-matched simple rule across the nine-cell grid;
+- positive mean improvement in both Mihili and Chewie-L;
+- improvement in at least three of the four untouched sessions;
+- success at both `(4 electrodes, 32 trials)` and `(8 electrodes, 64 trials)`
+  in both animals;
+- no material loss relative to the full-resource ceiling under the
+  prespecified equivalence margin;
+- robustness when one animal or influential development session is omitted;
+  and
+- all required alternative-explanation and information-timing checks pass.
+
+Possible study outcomes are: a reproducible joint policy, a positive but
+ambiguous result, no policy clearing the prespecified rule, an incomplete
+study, or an invalid analysis caused by broken data separation or scoring.
+Once untouched-session results are visible, they cannot guide another search
+within the same study.
+
+## Tests that explain why the policy works
+
+### Does the pilot predict unique electrode value?
+
+For a retained set `S`, define an electrode's conditional value as:
+
+```text
+V_e = evaluation loss without electrode e - evaluation loss with the full set S
+```
+
+Both losses use the same calibration trials, untouched evaluation trials, and
+decoder procedure. Before seeing these removal losses for a session, predict
+their ordering from pilot-only reliability, geometry, redundancy, and the
+selected pilot score. A useful explanation must outperform reliability alone
+and repeat in both animals.
+
+### Does the current state predict next-trial value?
+
+At one acquisition step, separately evaluate what would have happened after
+adding the next available trial from each reach direction:
+
+```text
+V_direction = loss before the trial - loss after adding that direction's next trial
+```
+
+The method must predict this ordering before receiving those trials or their
+evaluation benefits. Candidate predictors are current direction counts,
+cross-validated calibration error, uncertainty, and residual diversity. The
+chosen direction is compared with balanced and random choices at the same
+point in the recorded trial order.
+
+These are predictive labels, not causal effects. Electrode-removal loss does
+not prove that an electrode is biologically special, and the recorded-trial
+analysis does not establish that real-time trial requests would have the same
+effect.
+
+### Which resource is limiting?
+
+Report changes along the electrode and trial axes separately, for example:
+
+```text
+electrode step at N trials = R2(8,N) - R2(4,N)
+trial step at E electrodes = R2(E,64) - R2(E,32)
+```
+
+Also test whether the benefit of more electrodes depends on trial count and
+vice versa. Do not convert these axes into a common cost without direct
+measurements of power, bandwidth, recording time, or participant burden.
+
+## External confirmation and claim boundary
+
+The four current untouched sessions test the acquisition policy itself. The
+electrode-removal and next-direction explanations are developed afterward and
+therefore require newly sequestered sessions for confirmation. The preferred
+test is a third animal with compatible M1 LFP, population spiking, physical
+electrode geometry, eight reach directions, and enough trials for the same
+pilot and grid.
+
+A successful internal result would show that, in these recordings, a common
+16-trial pilot can guide post-pilot electrode retention and calibration-trial
+allocation better than cost-matched simple rules. It would not establish
+from-scratch electrode placement, causal electrode importance, measured power
+savings, online behavioral control, a universal electrode count, or
+generalization to a new animal. The [paper plan](outputs/paper_plan.md)
+specifies how each result branch changes the final claim.
