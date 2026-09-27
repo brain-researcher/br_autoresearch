@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Stable ASTRA milestone adapter for one direct-child standalone episode.
+
+set -euo pipefail
+
+usage() {
+  printf 'Usage: bin/astra-milestone plan|terminal <episode-dir> [export options]\n' >&2
+  exit 2
+}
+
+[[ $# -ge 2 ]] || usage
+stage=$1
+episode_arg=$2
+shift 2
+[[ "$stage" == plan || "$stage" == terminal ]] || usage
+
+export_args=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --output-ref|--finding|--created-at)
+      [[ $# -ge 2 && -n ${2:-} ]] || usage
+      export_args+=("$1" "$2")
+      shift 2
+      ;;
+    --output-ref=*|--finding=*|--created-at=*)
+      [[ -n ${1#*=} ]] || usage
+      export_args+=("$1")
+      shift
+      ;;
+    *) usage ;;
+  esac
+done
+if [[ "$stage" == plan && ${#export_args[@]} -ne 0 ]]; then
+  usage
+fi
+
+root_dir=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+if [[ "$episode_arg" == /* ]]; then
+  episode_candidate=$episode_arg
+else
+  episode_candidate="$root_dir/$episode_arg"
+fi
+[[ -d "$episode_candidate" ]] || {
+  printf 'astra-milestone: episode directory does not exist: %s\n' "$episode_candidate" >&2
+  exit 2
+}
+episode_dir=$(cd -P -- "$episode_candidate" && pwd)
+[[ $(dirname -- "$episode_dir") == "$root_dir" ]] || {
+  printf 'astra-milestone: episode must be a direct child of %s\n' "$root_dir" >&2
+  exit 2
+}
+
+if command -v br-export-astra >/dev/null 2>&1; then
+  exporter=$(command -v br-export-astra)
+elif [[ -n ${HOME:-} && -x "$HOME/.local/bin/br-export-astra" ]]; then
+  exporter="$HOME/.local/bin/br-export-astra"
+else
+  exporter="$root_dir/bin/export-astra"
+fi
+
+exec "$exporter" --workspace "$episode_dir" --stage "$stage" "${export_args[@]}"

@@ -150,11 +150,16 @@ selects one direction:
    current revision.
 2. Retain episode_id and next_action. Preparation grants no execution
    authority.
-3. Only after the scientist explicitly approves that frozen episode, inspect
+3. If autoresearch_goal_confirmation_astra_materialize is exposed, call it
+   with only that episode_id. This validates and materializes the canonical
+   confirmation projection; it grants no execution or scientific authority.
+   A conflict or unavailable exporter leaves ASTRA compliance open but does
+   not change the frozen launch gate. Never pass it an OAK workspace path.
+4. Only after the scientist explicitly approves that frozen episode, inspect
    the live autoresearch_goal_confirmation_launch schema.
-4. Call it with exactly episode_id, returned action_id, expected_revision, and
+5. Call it with exactly episode_id, returned action_id, expected_revision, and
    scientist_confirmation true.
-5. Do not separately call generic canonical authorize or launch tools.
+6. Do not separately call generic canonical authorize or launch tools.
 
 A successful launch response must contain distinct run_id and canonical_run_id
 and state EXECUTING. If it instead returns successor_episode_id and
