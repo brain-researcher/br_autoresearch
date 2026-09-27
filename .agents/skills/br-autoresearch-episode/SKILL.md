@@ -1,77 +1,86 @@
 ---
 name: br-autoresearch-episode
-description: Run or resume one direct-child standalone br_autoresearch episode, including non-authoritative ASTRA plan and terminal milestone exports. Use for named OAK/Sherlock episode work; exclude canonical Society, reward, confirmation, and Landscape actions.
+description: >-
+  Run, launch, resume, or babysit one named standalone br_autoresearch episode
+  on OAK/Sherlock. Enforce staged data access and repair-first execution;
+  exclude canonical Society, reward, confirmation, and Landscape actions.
 ---
 
 # BR Autoresearch Episode
 
-Use this skill only for one explicitly named standalone episode. The repository
-`AGENTS.md` and the episode's own contracts remain authoritative for workspace,
-data-role, scientific, and execution boundaries. This skill adds the two ASTRA
-interoperability milestones; it does not create a parallel lifecycle.
+Use this skill for one explicitly named, direct-child episode. The repository
+`AGENTS.md` and the episode contracts remain authoritative. For canonical Brain
+Researcher actions—Society, reward, confirmation, registered handoff, or
+Landscape—use `$brain-autoresearch-loop` instead.
 
-If the scientist explicitly requests canonical Brain Researcher binding,
-Society, reward, confirmation, or a Landscape action, route that work through
-`$brain-autoresearch-loop` instead. Do not infer canonical authority from a
-standalone episode or its ASTRA file.
+## Start
 
-## Start or resume
+1. Read `AGENTS.md`, then the episode's `GOAL.md`, `DATASETS.md`, and single
+   `SEARCH_POLICY.yaml` or `SEARCH_POLICY.json`.
+2. Confirm `inputs/` and `outputs/` exist. Keep `inputs/` read-only, durable
+   work in `outputs/`, and temporary work in the episode-specific scratch path.
+3. Determine the current data-access stage and name the files and directories
+   that are safe to read.
+4. Choose the next executable action. For a build, launch, resume, continue, or
+   babysit request, do not stop at planning while authorized work remains.
 
-1. Resolve the named episode as a direct child of the repository root.
-2. Read `AGENTS.md`, `GOAL.md`, `DATASETS.md`, and the single
-   `SEARCH_POLICY.yaml` or `SEARCH_POLICY.json` before doing episode work.
-3. Confirm `inputs/` and `outputs/` exist and treat `inputs/` as read-only.
-4. Export the plan milestone:
+## Protect closed outcomes
 
-   ```bash
-   episode_dir=$(cd -P -- "<absolute-episode-dir>" && pwd)
-   repo_root=$(dirname -- "$episode_dir")
-   "$repo_root/bin/astra-milestone" plan "$episode_dir"
-   ```
+Data roles apply to `outputs/` as well as `inputs/`. While an outcome is closed,
+read and search only explicitly allowed paths. Never search the episode root or
+all of `outputs/` and rely on exclusions; terminal output counts as access.
+Use filesystem or runner isolation when available; instructions alone are not
+equivalent isolation.
 
-The adapter selects the deployed `br-export-astra` launcher when available and
-otherwise uses the repository entrypoint. Do not initialize modules, activate
-the release venv, or rewrite `PYTHONPATH` yourself on Sherlock.
+## Move the episode forward
 
-An ASTRA export failure leaves `ASTRA compliance: open`. Report the observed
-error and continue work allowed by the episode contract. It is not a launch,
-computation, or scientific-validity gate.
+```text
+PLAN -> CONFORMANCE -> SMOKE -> QUALIFICATION -> NEXT_AUTHORIZED_EXECUTION
+                    failure -> REPAIR -> CONFORMANCE
+consequential scientific change -> ASK_ONCE
+```
 
-## Terminal closeout
+- Before scaling synthetic work, verify that the active fitter and scorer match
+  the frozen contract. Also verify each acceptance gate's estimand, reference,
+  sampling unit, dependence assumptions, uncertainty method, and decision rule.
+  A descriptive diagnostic is not an acceptance gate.
+- Run the smallest useful smoke test, then one bounded qualification. Add
+  another pilot only when new failure evidence requires it.
+- When a test or audit finds a concrete defect, fix it next, add the focused
+  regression test, and rerun the smallest affected stage. Do not re-audit
+  unchanged code, rerun a failed qualification without a relevant change, or
+  replace the repair with more documentation.
+- Once required gates pass and execution is already authorized, submit the
+  actual job or dependency chain in the same run. A launch requires a process
+  or scheduler job ID; record it with dependencies and the next action. Prefer
+  scheduler dependencies to login-node watchers. ASTRA, plans, placeholders,
+  and dry runs do not count.
+- For babysitting, follow authorized jobs to completion or the next real
+  decision. Diagnose technical failures, repair them, and resume at the
+  smallest affected stage. Never duplicate a pending job.
 
-Export terminal ASTRA only for a genuine episode terminal, after the final
-scientific artifacts exist and before writing a terminal state marker or final
-handoff.
+## Decide or ask
 
-1. Select one or more existing regular files below this episode's `outputs/`
-   that actually support the terminal result. Prefer primary results; use a
-   verification or report file only when it contains the relevant evidence.
-2. State the observed finding, refutation, or limitation without strengthening
-   the episode's scientific status.
-3. Use the actual UTC closeout time in ISO 8601 form.
-4. Run:
+Decide contract-preserving engineering details yourself, including seeds,
+numerical methods, Slurm sizing, chunking, checkpointing, logging, and
+mechanical fixes whose behavior is already determined.
 
-   ```bash
-   episode_dir=$(cd -P -- "<absolute-episode-dir>" && pwd)
-   repo_root=$(dirname -- "$episode_dir")
-   "$repo_root/bin/astra-milestone" terminal "$episode_dir" \
-     --output-ref outputs/<actual-artifact> \
-     --finding "<observed finding, refutation, or limitation>" \
-     --created-at <actual-UTC-timestamp>
-   ```
+Ask only when proceeding would change the estimand, model family, eligibility,
+frozen threshold or meaningful margin, data role, permitted claim, or
+authorized resources—or when the requirements cannot be met with the available
+data or resources. Honor explicit delegation. Ask once with evidence, concrete
+options, trade-offs, and a recommendation.
 
-Repeat `--output-ref` when several selected artifacts jointly support the
-finding. Never invent a path, finding, or timestamp. Do not export a terminal
-projection merely because one Slurm job ended; a job may be only an
-intermediate episode step.
+## ASTRA and handoff
 
-If terminal export fails, preserve the scientific terminal and original job
-outcome. Report `ASTRA compliance: open` with the error; do not change reward,
-Landscape, canonical state, or scientific acceptance to make the projection
-pass.
+At a plan or genuine terminal milestone, read
+[references/astra.md](references/astra.md). ASTRA is non-authoritative and must
+never grant execution authority, prove scientific validity, change canonical
+state, delay execution, or bypass the read boundary.
 
-## Handoff
+Lead every handoff with the real execution state, job IDs, current blocker, and
+next action. Mention ASTRA status second; documentation is evidence, not a
+state transition.
 
-Report the ASTRA stage, `outputs/astra/v0.0.14/astra.yaml` path, validation
-warnings, or the exact open compliance error. Always label the projection as
-non-authoritative.
+Maintainers changing this skill should use
+[references/behavioral_evals.md](references/behavioral_evals.md).
