@@ -266,26 +266,25 @@ authority boundary of the run.  The exporter comes from Brain Researcher with
 the `astra` extra installed and writes only under the named episode:
 
 ```bash
-bin/export-astra \
-  --workspace episode11_projection_types_vs_gradients \
-  --stage plan
+bin/astra-milestone plan episode11_projection_types_vs_gradients
 ```
 
 At terminal closeout, name the actual selected evidence artifacts and state the
 reviewed finding, refutation, or limitation explicitly:
 
 ```bash
-bin/export-astra \
-  --workspace episode11_projection_types_vs_gradients \
-  --stage terminal \
+bin/astra-milestone terminal episode11_projection_types_vs_gradients \
   --output-ref outputs/verification.md \
   --finding "The frozen comparison remained inconclusive." \
   --created-at 2026-09-26T19:30:00Z
 ```
 
-Both commands validate against `astra-spec==0.0.14` before writing
-`outputs/astra/v0.0.14/astra.yaml`.  The result is a non-authoritative
-interoperability projection.  It does not approve execution, accept a claim,
+The adapter uses the deployed `br-export-astra` launcher on Sherlock and falls
+back to the repository `bin/export-astra` entrypoint in an environment where
+Brain Researcher has the `astra` extra installed. Both commands validate
+against `astra-spec==0.0.14` before writing
+`outputs/astra/v0.0.14/astra.yaml`. The result is a non-authoritative
+interoperability projection. It does not approve execution, accept a claim,
 record reward, or update the Landscape.
 
 Once the Goal looks right, open a pull request. I will review the proposal,

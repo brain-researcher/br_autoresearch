@@ -52,16 +52,17 @@ They are local, human-readable records—not canonical MCP evidence or
 state-transition gates. Keep them current at material milestones, but do not
 let projection maintenance delay the next scientific action.
 
-Each new or resumed episode also exports a validated ASTRA projection with
-`bin/export-astra`. Export `--stage plan` after reading the episode contracts,
-then replace it with `--stage terminal` at closeout using only selected,
-existing files under that episode's `outputs/` as evidence. The ASTRA file is
-written to `outputs/astra/v0.0.14/astra.yaml`. It is an interoperability
-projection, not canonical evidence, scientific acceptance, reward, execution
-authority, or a Landscape transition. ASTRA is expected at plan and terminal
-milestones, but it is not a launch or computation gate. An export failure
-leaves ASTRA compliance open and does not retroactively invalidate completed
-computation or authorize a different scientific outcome.
+Use `$br-autoresearch-episode` for each new or resumed standalone episode. It
+exports a validated ASTRA plan after the contracts are read and a terminal
+projection only after real closeout artifacts exist. Both milestones go
+through `bin/astra-milestone`, which selects the deployed Sherlock launcher
+when available. The ASTRA file is written to
+`outputs/astra/v0.0.14/astra.yaml`. It is an interoperability projection, not
+canonical evidence, scientific acceptance, reward, execution authority, or a
+Landscape transition. ASTRA is expected at plan and terminal milestones, but
+it is not a launch or computation gate. An export failure leaves ASTRA
+compliance open and does not retroactively invalidate completed computation or
+authorize a different scientific outcome.
 
 The six non-log files must not be listed in a `candidate_bundle.json` as
 `output_artifacts`. `experiment_log.md` may be included only as explicitly
@@ -163,8 +164,8 @@ result into a shared campaign claim automatically.
 ## Starting or resuming an episode
 
 1. Require an explicit Codex request naming one episode.
-2. Read this file plus that episode's `GOAL.md`, `DATASETS.md`, and search
-   policy.
+2. Use `$br-autoresearch-episode` and read this file plus that episode's
+   `GOAL.md`, `DATASETS.md`, and search policy.
 3. Confirm the required episode files and directories exist.
 4. Work only in that episode and do not run two writing tasks against it at
    once. Continue the same task when practical.
