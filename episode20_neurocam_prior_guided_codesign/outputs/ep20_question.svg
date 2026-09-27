@@ -1,112 +1,164 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
-  <title id="title">EP20 scientific concept figure</title>
-  <desc id="desc">Synthetic concept mockup showing the NeuroCam spatial-temporal measurement dilemma, complete five-arm comparator sets, member-level paired field-reconstruction lower bounds, worst-condition gates, and distinct scientific interpretations before fabrication.</desc>
+  <title id="title">EP20 scientific question and decisive prediction</title>
+  <desc id="desc">Synthetic schematic showing absolute field and device measurements, a two by two spatial and temporal decision rule for D0 through D3, prediction on independent held-out conditions, and a reference-model rank reversal that stops optimization.</desc>
   <defs>
     <style type="text/css">
-      .bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:1.5;rx:15}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.3;rx:10}.bluebox{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.5;rx:10}.orangebox{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5;rx:10}.greenbox{fill:#ecfdf5;stroke:#34d399;stroke-width:1.5;rx:10}.purplebox{fill:#faf5ff;stroke:#c084fc;stroke-width:1.5;rx:10}.redbox{fill:#fef2f2;stroke:#f87171;stroke-width:1.5;rx:10}
-      .title{font-family:Arial,sans-serif;font-size:25px;font-weight:700;fill:#0f172a}.head{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.sub{font-family:Arial,sans-serif;font-size:15px;font-weight:700;fill:#334155}.boxhead{font-family:Arial,sans-serif;font-size:13px;font-weight:700;fill:#334155}.text{font-family:Arial,sans-serif;font-size:14px;fill:#334155}.small{font-family:Arial,sans-serif;font-size:13px;fill:#475569}.tiny{font-family:Arial,sans-serif;font-size:13px;fill:#64748b}
-      .axis{stroke:#94a3b8;stroke-width:1.5;fill:none}.blue{stroke:#2563eb;stroke-width:3;fill:none}.orange{stroke:#ea580c;stroke-width:3;fill:none}.green{stroke:#059669;stroke-width:3;fill:none}.purple{stroke:#7e22ce;stroke-width:3;fill:none}.gray{stroke:#94a3b8;stroke-width:2.5;stroke-dasharray:6 5;fill:none}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+      .bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:1.5}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.3}.bluebox{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.5}.orangebox{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5}.greenbox{fill:#ecfdf5;stroke:#34d399;stroke-width:1.5}.purplebox{fill:#faf5ff;stroke:#c084fc;stroke-width:1.5}.redbox{fill:#fef2f2;stroke:#f87171;stroke-width:1.5}.title{font-family:Arial,sans-serif;font-size:25px;font-weight:700;fill:#0f172a}.head{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.sub{font-family:Arial,sans-serif;font-size:15px;font-weight:700;fill:#334155}.boxhead{font-family:Arial,sans-serif;font-size:14px;font-weight:700;fill:#1e293b}.text{font-family:Arial,sans-serif;font-size:14px;fill:#334155}.small{font-family:Arial,sans-serif;font-size:13px;fill:#475569}.axis{stroke:#94a3b8;stroke-width:1.5;fill:none}.grid{stroke:#64748b;stroke-width:1.6;fill:none}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}.dash{stroke:#94a3b8;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
     </style>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
-    <radialGradient id="field" cx="62%" cy="42%" r="70%"><stop offset="0%" stop-color="#ef4444"/><stop offset="22%" stop-color="#f59e0b"/><stop offset="52%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1e3a8a"/></radialGradient>
-    <radialGradient id="fieldSoft" cx="62%" cy="42%" r="80%"><stop offset="0%" stop-color="#fdba74"/><stop offset="45%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#1e40af"/></radialGradient>
   </defs>
+
   <rect class="bg" width="1500" height="900"/>
-  <text x="750" y="38" text-anchor="middle" class="title">EP20 — Can co-design improve NeuroCam’s space–time trade-off?</text>
-  <rect x="560" y="49" width="380" height="29" rx="15" fill="#e2e8f0" stroke="#94a3b8"/>
-  <text x="750" y="69" text-anchor="middle" class="small">CONCEPT MOCKUP · SYNTHETIC PATTERNS · NOT RESULTS</text>
+  <text x="750" y="38" text-anchor="middle" class="title">EP20 — Which measurable conditions favour each NeuroCam design?</text>
+  <rect x="553" y="49" width="394" height="29" rx="15" fill="#e2e8f0" stroke="#94a3b8"/>
+  <text x="750" y="69" text-anchor="middle" class="small">SCHEMATIC · SYNTHETIC EXAMPLES · NOT RESULTS</text>
 
-  <rect x="20" y="92" width="455" height="600" class="panel"/>
-  <text x="40" y="126" class="head">A  What does the current scan lose?</text>
-  <text x="40" y="151" class="small">The same field contains a broad wave and a brief focal transient.</text>
-  <g transform="translate(42,176)">
-    <rect x="0" y="0" width="390" height="151" class="card"/>
-    <text x="16" y="27" class="sub">Underlying cortical field</text>
-    <rect x="24" y="42" width="188" height="88" fill="url(#field)" rx="6"/>
-    <path d="M36 113 C76 54 121 57 163 102 S198 99 205 81" stroke="#fff" stroke-width="3" fill="none" opacity="0.9"/>
-    <circle cx="171" cy="67" r="11" fill="#fff" opacity="0.85"/><circle cx="171" cy="67" r="5" fill="#dc2626"/>
-    <line x1="248" y1="46" x2="248" y2="126" class="axis"/><path d="M248 113 C274 110 291 103 308 79 S344 35 368 90" class="orange"/>
-    <text x="308" y="140" text-anchor="middle" class="tiny">brief transient in time</text>
-  </g>
-  <g transform="translate(42,345)">
-    <rect x="0" y="0" width="185" height="140" class="bluebox"/><text x="92" y="25" text-anchor="middle" class="sub">Dense, slower scan</text>
-    <rect x="20" y="40" width="145" height="68" fill="url(#fieldSoft)" rx="5"/><path d="M28 96 C58 58 91 61 124 91 S153 88 160 75" stroke="#fff" stroke-width="3" fill="none" opacity="0.8"/>
-    <path d="M20 122L165 122" class="axis"/><path d="M25 122 C66 121 103 119 160 113" class="blue"/>
-    <text x="92" y="137" text-anchor="middle" class="tiny">space kept · time blurred</text>
-    <rect x="205" y="0" width="185" height="140" class="orangebox"/><text x="297" y="25" text-anchor="middle" class="sub">Fast selective revisit</text>
-    <rect x="225" y="40" width="145" height="68" fill="#dbeafe" rx="5"/><g fill="#f97316"><circle cx="249" cy="61" r="8"/><circle cx="291" cy="82" r="8"/><circle cx="337" cy="58" r="8"/></g><g fill="#94a3b8" opacity="0.4"><circle cx="249" cy="91" r="5"/><circle cx="291" cy="56" r="5"/><circle cx="337" cy="90" r="5"/></g>
-    <path d="M225 122L370 122" class="axis"/><path d="M230 122 C268 120 291 109 316 78 S349 91 365 114" class="orange"/>
-    <text x="297" y="137" text-anchor="middle" class="tiny">time kept · spatial gaps</text>
-  </g>
-  <g transform="translate(42,503)">
-    <rect x="0" y="0" width="390" height="105" class="purplebox"/><text x="16" y="27" class="sub">Large pads blur focal structure</text>
-    <circle cx="76" cy="65" r="28" fill="url(#field)"/><path d="M120 65L164 65" class="arrow"/><circle cx="214" cy="65" r="28" fill="url(#fieldSoft)"/><path d="M258 65L302 65" class="arrow"/><circle cx="346" cy="65" r="28" fill="#93c5fd"/>
-  </g>
-  <text x="237" y="646" text-anchor="middle" class="small">Can one legal design preserve both space and time?</text>
+  <rect x="20" y="92" width="440" height="590" rx="15" class="panel"/>
+  <text x="40" y="126" class="head">A  Measure inputs before outcomes</text>
+  <text x="40" y="151" class="small">Only pre-outcome measurements enter the rule.</text>
 
-  <g transform="translate(500 0)">
-  <rect x="490" y="92" width="485" height="600" class="panel"/>
-  <text x="510" y="126" class="head">C  Competing explanations</text>
-  <text x="510" y="151" class="small">Full-set alternatives: software-only, hardware-only, or simple rules.</text>
-  <g transform="translate(518,176)">
-    <rect x="0" y="0" width="130" height="186" class="card"/><text x="65" y="25" text-anchor="middle" class="sub">D0 references</text>
-    <rect x="15" y="40" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="68" y="40" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="15" y="83" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="68" y="83" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><text x="65" y="148" text-anchor="middle" class="small">complete published</text><text x="65" y="168" text-anchor="middle" class="tiny">frontier</text>
-    <rect x="147" y="0" width="130" height="186" class="bluebox"/><text x="212" y="25" text-anchor="middle" class="sub">D1 software set</text>
-    <rect x="162" y="40" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="215" y="40" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="162" y="83" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><rect x="215" y="83" width="47" height="37" fill="url(#fieldSoft)" rx="4"/><g fill="#ef4444" opacity="0.55"><circle cx="194" cy="57" r="4"/><circle cx="244" cy="101" r="4"/></g><text x="212" y="148" text-anchor="middle" class="small">same frontier ×</text><text x="212" y="168" text-anchor="middle" class="tiny">all optimized</text>
-    <rect x="294" y="0" width="130" height="186" class="orangebox"/><text x="359" y="25" text-anchor="middle" class="sub">D2 hardware</text><rect x="309" y="40" width="100" height="82" fill="url(#fieldSoft)" rx="5"/><g fill="#f97316"><circle cx="334" cy="61" r="5"/><circle cx="372" cy="79" r="5"/><circle cx="389" cy="55" r="5"/></g><text x="359" y="148" text-anchor="middle" class="small">one candidate</text><text x="359" y="168" text-anchor="middle" class="tiny">conventional inverse</text>
-  </g>
-  <g transform="translate(592,383)">
-    <rect x="0" y="0" width="130" height="186" class="greenbox"/><text x="65" y="25" text-anchor="middle" class="sub">D3 co-design</text><rect x="15" y="40" width="100" height="82" fill="url(#field)" rx="5"/><path d="M22 107 C45 60 71 65 95 100" stroke="#fff" stroke-width="2" fill="none"/><circle cx="83" cy="63" r="6" fill="#fff"/><text x="65" y="148" text-anchor="middle" class="small">same candidate</text><text x="65" y="168" text-anchor="middle" class="tiny">matched inverse</text>
-    <rect x="147" y="0" width="130" height="186" class="purplebox"/><text x="212" y="25" text-anchor="middle" class="sub">D4 control set</text>
-    <g fill="#bfdbfe"><rect x="162" y="40" width="47" height="37" rx="4"/><rect x="215" y="40" width="47" height="37" rx="4"/><rect x="162" y="83" width="47" height="37" rx="4"/><rect x="215" y="83" width="47" height="37" rx="4"/></g><g fill="#7e22ce"><circle cx="177" cy="56" r="4"/><circle cx="194" cy="65" r="4"/><circle cx="230" cy="55" r="4"/><circle cx="248" cy="63" r="4"/><circle cx="181" cy="102" r="4"/><circle cx="198" cy="94" r="4"/><circle cx="231" cy="101" r="4"/><circle cx="248" cy="92" r="4"/></g><text x="212" y="148" text-anchor="middle" class="small">every eligible</text><text x="212" y="168" text-anchor="middle" class="tiny">matched simple rule</text>
-  </g>
-  <rect x="518" y="589" width="424" height="66" class="redbox"/>
-  <text x="730" y="614" text-anchor="middle" class="sub">Co-design claim</text>
-  <text x="730" y="637" text-anchor="middle" class="small">D3 beats every D0/D1 setting, matched D2, and every D4.</text>
+  <rect x="42" y="174" width="396" height="142" rx="10" class="bluebox"/>
+  <text x="58" y="200" class="sub">Field scales from truth or a separate pilot</text>
+  <line x1="66" y1="275" x2="183" y2="275" class="axis"/>
+  <line x1="66" y1="275" x2="66" y2="222" class="axis"/>
+  <path d="M70 268 C91 244 113 234 135 249 S167 268 180 272" stroke="#2563eb" stroke-width="3" fill="none"/>
+  <line x1="137" y1="218" x2="137" y2="279" class="dash"/>
+  <text x="124" y="296" text-anchor="middle" class="small">k90 → lambda = 1/(2k90)</text>
+  <line x1="232" y1="275" x2="414" y2="275" class="axis"/>
+  <line x1="232" y1="275" x2="232" y2="222" class="axis"/>
+  <path d="M237 268 C263 238 288 232 313 251 S371 270 410 273" stroke="#ea580c" stroke-width="3" fill="none"/>
+  <line x1="317" y1="218" x2="317" y2="279" class="dash"/>
+  <text x="323" y="296" text-anchor="middle" class="small">f90 → tau = 1/(2f90)</text>
+  <text x="124" y="214" text-anchor="middle" class="small">spatial power · µm</text>
+  <text x="323" y="214" text-anchor="middle" class="small">temporal power · s</text>
+
+  <rect x="42" y="333" width="396" height="206" rx="10" class="card"/>
+  <text x="58" y="359" class="sub">Absolute device characterization for each frozen arm</text>
+  <text x="58" y="380" class="small">same registered probes · before reconstruction</text>
+  <text x="62" y="410" class="boxhead">Arm</text>
+  <text x="123" y="410" class="boxhead">noise uV</text>
+  <text x="196" y="410" class="boxhead">|Z| ohm</text>
+  <text x="270" y="410" class="boxhead">settle us</text>
+  <text x="355" y="410" class="boxhead">cross-talk</text>
+  <line x1="58" y1="418" x2="422" y2="418" class="axis"/>
+  <g class="small">
+    <circle cx="72" cy="439" r="7" fill="#64748b"/><text x="88" y="444">D0</text><text x="123" y="444">n_m0k</text><text x="196" y="444">Z_m0k</text><text x="270" y="444">q_m0k</text><text x="355" y="444">c_m0k</text>
+    <circle cx="72" cy="466" r="7" fill="#2563eb"/><text x="88" y="471">D1</text><text x="123" y="471">n_m1k</text><text x="196" y="471">Z_m1k</text><text x="270" y="471">q_m1k</text><text x="355" y="471">c_m1k</text>
+    <circle cx="72" cy="493" r="7" fill="#ea580c"/><text x="88" y="498">D2</text><text x="123" y="498">n_m2k</text><text x="196" y="498">Z_m2k</text><text x="270" y="498">q_m2k</text><text x="355" y="498">c_m2k</text>
+    <circle cx="72" cy="520" r="7" fill="#059669"/><text x="88" y="525">D3</text><text x="123" y="525">n_m3k</text><text x="196" y="525">Z_m3k</text><text x="270" y="525">q_m3k</text><text x="355" y="525">c_m3k</text>
   </g>
 
-  <g transform="translate(-500 0)">
-  <rect x="990" y="92" width="490" height="600" class="panel"/>
-  <text x="1010" y="126" class="head">B  Exact paired evidence</text>
-  <text x="1010" y="151" class="small">Every D3-minus-comparator lower bound must clear its own margin.</text>
-  <rect x="1010" y="176" width="450" height="316" class="card"/>
-  <text x="1235" y="202" text-anchor="middle" class="sub">Synthetic pass: every D3 adjusted lower bound &gt; 0</text>
-  <text x="1235" y="222" text-anchor="middle" class="tiny">adjusted = one-sided 95% simultaneous LCB − registered margin</text>
-  <line x1="1260" y1="232" x2="1260" y2="462" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4"/>
-  <text x="1260" y="480" text-anchor="middle" class="tiny">0</text>
-  <g class="tiny">
-    <text x="1028" y="249">D0₁</text><line x1="1290" y1="245" x2="1370" y2="245" stroke="#64748b" stroke-width="3"/><circle cx="1332" cy="245" r="5" fill="#64748b"/>
-    <text x="1028" y="267">D0₂</text><line x1="1282" y1="263" x2="1354" y2="263" stroke="#64748b" stroke-width="3"/><circle cx="1318" cy="263" r="5" fill="#64748b"/>
-    <text x="1028" y="285">⋮</text><line x1="1298" y1="281" x2="1382" y2="281" stroke="#64748b" stroke-width="3"/><circle cx="1340" cy="281" r="5" fill="#64748b"/>
-    <text x="1028" y="303">D0ₙ</text><line x1="1272" y1="299" x2="1340" y2="299" stroke="#64748b" stroke-width="3"/><circle cx="1306" cy="299" r="5" fill="#64748b"/>
-    <text x="1028" y="325">D1₁</text><line x1="1306" y1="321" x2="1388" y2="321" stroke="#2563eb" stroke-width="3"/><circle cx="1347" cy="321" r="5" fill="#2563eb"/>
-    <text x="1028" y="343">D1₂</text><line x1="1290" y1="339" x2="1372" y2="339" stroke="#2563eb" stroke-width="3"/><circle cx="1330" cy="339" r="5" fill="#2563eb"/>
-    <text x="1028" y="361">⋮</text><line x1="1315" y1="357" x2="1400" y2="357" stroke="#2563eb" stroke-width="3"/><circle cx="1358" cy="357" r="5" fill="#2563eb"/>
-    <text x="1028" y="379">D1ₙ</text><line x1="1278" y1="375" x2="1350" y2="375" stroke="#2563eb" stroke-width="3"/><circle cx="1314" cy="375" r="5" fill="#2563eb"/>
-    <text x="1028" y="401">D2</text><line x1="1296" y1="397" x2="1378" y2="397" stroke="#ea580c" stroke-width="3"/><circle cx="1337" cy="397" r="5" fill="#ea580c"/>
-    <text x="1028" y="421">D4₁</text><line x1="1285" y1="417" x2="1361" y2="417" stroke="#7e22ce" stroke-width="3"/><circle cx="1323" cy="417" r="5" fill="#7e22ce"/>
-    <text x="1028" y="439">⋮</text><line x1="1302" y1="435" x2="1380" y2="435" stroke="#7e22ce" stroke-width="3"/><circle cx="1341" cy="435" r="5" fill="#7e22ce"/>
-    <text x="1028" y="457">D4ₘ</text><line x1="1270" y1="453" x2="1342" y2="453" stroke="#7e22ce" stroke-width="3"/><circle cx="1306" cy="453" r="5" fill="#7e22ce"/>
-  </g>
-  <text x="1398" y="479" text-anchor="end" class="tiny">least-favourable member is the headline</text>
-  <text x="1235" y="515" text-anchor="middle" class="sub">The worst condition must also survive every field family</text>
-  <g transform="translate(1010,535)">
-    <rect x="0" y="0" width="105" height="61" class="bluebox"/><rect x="115" y="0" width="105" height="61" class="orangebox"/><rect x="230" y="0" width="105" height="61" class="greenbox"/><rect x="345" y="0" width="105" height="61" class="purplebox"/>
-    <text x="52" y="26" text-anchor="middle" class="sub">broad wave</text><text x="52" y="47" text-anchor="middle" class="tiny">spatial</text><text x="167" y="26" text-anchor="middle" class="sub">transient</text><text x="167" y="47" text-anchor="middle" class="tiny">temporal</text><text x="282" y="26" text-anchor="middle" class="sub">travelling</text><text x="282" y="47" text-anchor="middle" class="tiny">space + time</text><text x="397" y="26" text-anchor="middle" class="sub">defects</text><text x="397" y="47" text-anchor="middle" class="tiny">dead pixels/lines</text>
-  </g>
-  <rect x="1010" y="615" width="450" height="40" class="orangebox"/><text x="1235" y="640" text-anchor="middle" class="small">Exact margins await synthetic calibration and scientist approval.</text>
-  </g>
+  <rect x="42" y="556" width="396" height="93" rx="10" class="purplebox"/>
+  <text x="240" y="582" text-anchor="middle" class="sub">Freeze Uhat_m,d(x_m,d,k)</text>
+  <text x="240" y="606" text-anchor="middle" class="small">Predict absolute U_m,d,k = mean paired-world R²</text>
+  <text x="240" y="628" text-anchor="middle" class="small">Accepted models are scored separately — never averaged.</text>
 
-  <rect x="20" y="708" width="1460" height="158" class="panel"/>
-  <text x="40" y="742" class="head">D  Scientific interpretations across stages</text>
-  <rect x="42" y="758" width="146" height="72" class="greenbox"/><text x="115" y="783" text-anchor="middle" class="boxhead">Advance D3</text><text x="115" y="804" text-anchor="middle" class="small">Same D3 passes</text><text x="115" y="821" text-anchor="middle" class="small">all gates twice.</text>
-  <rect x="199" y="758" width="146" height="72" class="bluebox"/><text x="272" y="783" text-anchor="middle" class="boxhead">Software only</text><text x="272" y="804" text-anchor="middle" class="small">A D1 setting</text><text x="272" y="821" text-anchor="middle" class="small">matches D3.</text>
-  <rect x="356" y="758" width="146" height="72" class="orangebox"/><text x="429" y="783" text-anchor="middle" class="boxhead">Hardware alone</text><text x="429" y="804" text-anchor="middle" class="small">Matched D2</text><text x="429" y="821" text-anchor="middle" class="small">matches D3.</text>
-  <rect x="513" y="758" width="146" height="72" class="purplebox"/><text x="586" y="783" text-anchor="middle" class="boxhead">Simple rule</text><text x="586" y="804" text-anchor="middle" class="small">An eligible D4</text><text x="586" y="821" text-anchor="middle" class="small">matches D3.</text>
-  <rect x="670" y="758" width="146" height="72" class="orangebox"/><text x="743" y="783" text-anchor="middle" class="boxhead">Too fragile</text><text x="743" y="804" text-anchor="middle" class="small">A condition or</text><text x="743" y="821" text-anchor="middle" class="small">robustness gate fails.</text>
-  <rect x="827" y="758" width="146" height="72" class="redbox"/><text x="900" y="783" text-anchor="middle" class="boxhead">Final test fails</text><text x="900" y="804" text-anchor="middle" class="small">Independent model</text><text x="900" y="821" text-anchor="middle" class="small">panel fails.</text>
-  <rect x="984" y="758" width="146" height="72" class="card"/><text x="1057" y="783" text-anchor="middle" class="boxhead">No legal gain</text><text x="1057" y="804" text-anchor="middle" class="small">Evidence minimum met;</text><text x="1057" y="821" text-anchor="middle" class="small">finite space exhausted.</text>
-  <rect x="1141" y="758" width="146" height="72" class="card"/><text x="1214" y="783" text-anchor="middle" class="boxhead">Not tested</text><text x="1214" y="804" text-anchor="middle" class="small">Parity or credible</text><text x="1214" y="821" text-anchor="middle" class="small">reference fails.</text>
-  <rect x="1298" y="758" width="158" height="72" class="purplebox"/><text x="1377" y="783" text-anchor="middle" class="boxhead">Unresolved</text><text x="1377" y="804" text-anchor="middle" class="small">Required evidence</text><text x="1377" y="821" text-anchor="middle" class="small">is too uncertain.</text>
-  <text x="750" y="854" text-anchor="middle" class="tiny">Advance only if the same D3 passes primary, secondary, resource, robustness, plausibility, and independent-model gates; it remains an unfabricated virtual design.</text>
+  <rect x="480" y="92" width="500" height="590" rx="15" class="panel"/>
+  <text x="500" y="126" class="head">B  Frozen two-by-two prediction</text>
+  <text x="500" y="151" class="small">S = short lambda + pad noise/impedance gates pass.</text>
+  <text x="500" y="170" class="small">T = short tau + settling/cross-talk gates pass.</text>
+
+  <text x="730" y="193" text-anchor="middle" class="sub">Temporal branch T</text>
+  <text x="625" y="220" text-anchor="middle" class="boxhead">no</text>
+  <text x="835" y="220" text-anchor="middle" class="boxhead">yes</text>
+  <text x="499" y="299" text-anchor="middle" class="boxhead" transform="rotate(-90 499 299)">Spatial branch S</text>
+  <text x="524" y="250" text-anchor="middle" class="boxhead">no</text>
+  <text x="524" y="383" text-anchor="middle" class="boxhead">yes</text>
+
+  <rect x="545" y="230" width="190" height="128" class="card"/>
+  <rect x="735" y="230" width="190" height="128" class="bluebox"/>
+  <rect x="545" y="358" width="190" height="128" class="orangebox"/>
+  <rect x="735" y="358" width="190" height="128" class="greenbox"/>
+  <text x="640" y="265" text-anchor="middle" class="head">D0</text>
+  <text x="640" y="291" text-anchor="middle" class="boxhead">published-like</text>
+  <text x="640" y="314" text-anchor="middle" class="small">neither benefit clears cost</text>
+  <text x="640" y="337" text-anchor="middle" class="small">conventional reference</text>
+  <text x="830" y="265" text-anchor="middle" class="head">D1</text>
+  <text x="830" y="291" text-anchor="middle" class="boxhead">time only</text>
+  <text x="830" y="314" text-anchor="middle" class="small">published geometry</text>
+  <text x="830" y="337" text-anchor="middle" class="small">frozen schedule/software</text>
+  <text x="640" y="393" text-anchor="middle" class="head">D2</text>
+  <text x="640" y="419" text-anchor="middle" class="boxhead">geometry only</text>
+  <text x="640" y="442" text-anchor="middle" class="small">candidate pads</text>
+  <text x="640" y="465" text-anchor="middle" class="small">conventional rule</text>
+  <text x="830" y="393" text-anchor="middle" class="head">D3</text>
+  <text x="830" y="419" text-anchor="middle" class="boxhead">joint co-design</text>
+  <text x="830" y="442" text-anchor="middle" class="small">geometry + schedule</text>
+  <text x="830" y="465" text-anchor="middle" class="small">measurement-aware inverse</text>
+
+  <rect x="505" y="515" width="218" height="74" rx="10" class="orangebox"/>
+  <text x="614" y="542" text-anchor="middle" class="boxhead">Noise or |Z| gate fails</text>
+  <text x="614" y="565" text-anchor="middle" class="small">switch S off only · keep T</text>
+  <rect x="737" y="515" width="218" height="74" rx="10" class="bluebox"/>
+  <text x="846" y="542" text-anchor="middle" class="boxhead">Settling or cross-talk fails</text>
+  <text x="846" y="565" text-anchor="middle" class="small">switch T off only · keep S</text>
+  <rect x="505" y="594" width="450" height="66" rx="10" class="redbox"/>
+  <text x="730" y="616" text-anchor="middle" class="boxhead">Uncertain gate or mapped arm misses by &gt;0.005</text>
+  <text x="730" y="638" text-anchor="middle" class="small">Predict the adjacent-arm set or fail the separable rule;</text>
+  <text x="730" y="655" text-anchor="middle" class="small">never force D0.</text>
+
+  <rect x="1000" y="92" width="480" height="370" rx="15" class="panel"/>
+  <text x="1020" y="126" class="head">C  Predict independent winners</text>
+  <text x="1020" y="151" class="small">Freeze one representative or selection rule for every D0–D3 arm.</text>
+
+  <g>
+    <rect x="1022" y="172" width="90" height="48" rx="8" class="card"/><text x="1067" y="202" text-anchor="middle" class="boxhead">D0</text>
+    <rect x="1122" y="172" width="90" height="48" rx="8" class="bluebox"/><text x="1167" y="202" text-anchor="middle" class="boxhead">D1</text>
+    <rect x="1222" y="172" width="90" height="48" rx="8" class="orangebox"/><text x="1267" y="202" text-anchor="middle" class="boxhead">D2</text>
+    <rect x="1322" y="172" width="90" height="48" rx="8" class="greenbox"/><text x="1367" y="202" text-anchor="middle" class="boxhead">D3</text>
+  </g>
+  <path d="M1217 226 L1217 248" class="arrow"/>
+  <text x="1217" y="267" text-anchor="middle" class="small">every accepted model × same independent worlds</text>
+
+  <rect x="1022" y="286" width="212" height="143" rx="10" class="card"/>
+  <text x="1128" y="307" text-anchor="middle" class="boxhead">held-out condition map</text>
+  <line x1="1042" y1="352" x2="1214" y2="352" class="grid"/>
+  <line x1="1128" y1="320" x2="1128" y2="410" class="grid"/>
+  <text x="1085" y="423" text-anchor="middle" class="small">S=0</text><text x="1171" y="423" text-anchor="middle" class="small">S=1</text>
+  <text x="1049" y="342" class="small">T=1</text><text x="1049" y="395" class="small">T=0</text>
+  <circle cx="1087" cy="380" r="8" fill="#64748b" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="1087" cy="334" r="8" fill="#2563eb" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="1170" cy="380" r="8" fill="#ea580c" stroke="#ea580c" stroke-width="2"/>
+  <circle cx="1170" cy="334" r="8" fill="#059669" stroke="#059669" stroke-width="2"/>
+  <circle cx="1195" cy="326" r="8" fill="#059669" stroke="#0f172a" stroke-width="2"/>
+
+  <text x="1260" y="306" class="boxhead">For each point:</text>
+  <circle cx="1270" cy="331" r="7" fill="#059669"/><text x="1286" y="336" class="small">fill = predicted arm</text>
+  <circle cx="1270" cy="357" r="7" fill="#fff" stroke="#0f172a" stroke-width="2"/><text x="1286" y="362" class="small">ring = observed winner</text>
+  <text x="1260" y="388" class="small">score regret, ties,</text>
+  <text x="1260" y="407" class="small">confusion, abstention,</text>
+  <text x="1260" y="426" class="small">and gain sign vs D0</text>
+
+  <rect x="1000" y="480" width="480" height="202" rx="15" class="panel"/>
+  <text x="1020" y="514" class="head">D  Can accepted models disagree?</text>
+  <text x="1020" y="538" class="small">Both models fit calibration and held-aside published anchors.</text>
+  <text x="1040" y="566" class="boxhead">Model A</text>
+  <rect x="1110" y="552" width="52" height="18" fill="#64748b"/><rect x="1110" y="577" width="112" height="18" fill="#059669"/>
+  <text x="1230" y="567" class="small">D0</text><text x="1230" y="592" class="small">D3 winner</text>
+  <text x="1040" y="626" class="boxhead">Model B</text>
+  <rect x="1110" y="612" width="58" height="18" fill="#64748b"/><rect x="1110" y="637" width="118" height="18" fill="#2563eb"/>
+  <text x="1236" y="627" class="small">D0</text><text x="1236" y="652" class="small">D1 winner</text>
+  <path d="M1280 584 L1322 584" class="arrow"/>
+  <rect x="1330" y="550" width="126" height="106" rx="10" class="redbox"/>
+  <text x="1393" y="578" text-anchor="middle" class="sub">STOP</text>
+  <text x="1393" y="598" text-anchor="middle" class="small">different winners</text>
+  <text x="1393" y="616" text-anchor="middle" class="small">each 95% LCB</text>
+  <text x="1393" y="634" text-anchor="middle" class="small">&gt; 0.005</text>
+  <text x="1393" y="648" text-anchor="middle" class="small">measure response</text>
+
+  <rect x="20" y="708" width="1460" height="158" rx="15" class="panel"/>
+  <text x="40" y="742" class="head">E  What the evidence would mean</text>
+  <rect x="42" y="760" width="330" height="72" rx="10" class="greenbox"/>
+  <text x="207" y="786" text-anchor="middle" class="boxhead">Models agree + regret UCB &lt;= 0.005</text>
+  <text x="207" y="808" text-anchor="middle" class="small">Transferable virtual design rule supported</text>
+  <rect x="391" y="760" width="330" height="72" rx="10" class="orangebox"/>
+  <text x="556" y="786" text-anchor="middle" class="boxhead">One D3 wins but the rule misses</text>
+  <text x="556" y="808" text-anchor="middle" class="small">Model-specific virtual device only</text>
+  <rect x="740" y="760" width="330" height="72" rx="10" class="redbox"/>
+  <text x="905" y="786" text-anchor="middle" class="boxhead">Accepted models reverse the winner</text>
+  <text x="905" y="808" text-anchor="middle" class="small">No optimization; obtain discriminating data</text>
+  <rect x="1089" y="760" width="367" height="72" rx="10" class="purplebox"/>
+  <text x="1272" y="786" text-anchor="middle" class="boxhead">Tie, unresolved gate, or poor coverage</text>
+  <text x="1272" y="808" text-anchor="middle" class="small">State the uncertainty; do not force a winner</text>
+  <text x="750" y="854" text-anchor="middle" class="small">Even the strongest positive result concerns an unfabricated design; it is a reason to bench-test, not evidence of physical superiority.</text>
 </svg>

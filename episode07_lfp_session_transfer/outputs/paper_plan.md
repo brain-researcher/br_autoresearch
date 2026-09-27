@@ -89,50 +89,140 @@ model. This step answers whether history adds predictive value on untouched
 trials from the six fixed new days. It does not yet explain why and does not
 test a wholly unseen day.
 
-### 2. Fit a real residual-only prediction task
+### 2. Learn and freeze the population bridge before residualizing
+
+Every day keeps its native neuron set. Earlier-day and new-day vectors are
+never joined by unit number, waveform, electrode number, or a guessed neural
+identity. The bridge between those different neuron sets is learned while the
+behavioral anchors still exist:
+
+```text
+permitted unresidualized spike responses
+    -> one population basis within each day
+    -> direction-by-time averages in the common condition cells
+    -> source-to-new-day coordinate mapping
+    -> new-day reconstruction loading
+    -> freeze all of these objects
+```
+
+For an earlier day, “permitted” means only the trials assigned to model
+fitting in that fold. For a new day, it means only calibration trials. The
+direction-by-time averages are computed separately within each day and paired
+only by their shared task label. They identify how a source population
+coordinate should be expressed in the new day's coordinate system. Development
+and held-out spike outcomes cannot enter this construction.
+
+This ordering resolves an important ambiguity. If the direction-by-time means
+were subtracted first, those proposed behavioral anchors would all be zero and
+could not identify an alignment. The population bases, coordinate maps, and
+new-day reconstruction loading are therefore learned from **unresidualized**
+responses and frozen before the residual prediction problem begins.
+
+The rank must also be supported by the available calibration data and common
+condition cells. Check ranks 16, 12, 8, and 4 in that order, using only fitting
+and calibration responses. A rank needs all eight directions and at least
+eight native time bins (64 common anchors), at least four anchors per latent
+dimension, full centered anchor rank, an anchor condition number no greater
+than 30, and a smallest-to-largest cross-day anchor singular-value ratio of at
+least 0.05 for the new day and all three source links. Use the largest passing
+rank. If none passes, report that day's aligned residual comparison as
+unavailable; do not drop only the source that breaks identification. Here
+`A_d` is the centered `K`-by-rank matrix of unresidualized direction-by-time
+anchors in day `d`'s permitted population coordinates, with `K >= 64`. If
+`A_d = Q_d R_d` is its thin QR factorization, the stated cross-day ratio is
+`sigma_min(Q_source' Q_target) / sigma_max(Q_source' Q_target)`. A frozen
+bridge is a measurement step, not by itself evidence for residual coupling.
+
+### 3. Fit a real residual-only prediction task through that frozen bridge
 
 Subtracting the same direction-and-time mean from a completed prediction and
 its target leaves their squared error unchanged. That algebraic recentering is
 not a mechanism test. The follow-up instead fits new, capacity-matched models
-after residualization.
+after the bridge has been frozen.
 
 For every earlier day, estimate direction-and-time means for both LFP inputs
-and spike-count targets using only its training trials. For each new day,
-estimate the corresponding means from its calibration trials. Remove those
-means before fitting either residual model:
+and spike-count targets using only its fitting trials. For each new day,
+estimate the corresponding means from its calibration trials. Then remove
+those means:
 
 ```text
 x_res[t,q]   = x[t,q] - mean_allowed[x | direction(t), q]
 y_res[t,q,j] = y[t,q,j] - mean_allowed[y_j | direction(t), q]
 ```
 
-Neither residual model may see uncentered earlier-day values, an earlier-day
-mean template, development spike targets, or held-out outcomes. The
-history-assisted and today-only residual models receive matched features,
-capacity, and tuning opportunities. Their predictions are scored directly
-against held-out spike residuals; the mean component is reported separately.
+Project spike residuals with the frozen within-day bases, learn the LFP-residual
+to population-residual relationship, and reconstruct the new day's
+native-neuron residuals with its frozen calibration loading. The residual
+predictor receives only residual LFP features and the frozen bridge. It does
+not receive uncentered activity, direction or time labels, a direction-by-time
+mean value, or a mean template.
 
-### 3. Bridge changing neuron sets without pretending neurons match
+The history-assisted and today-only residual models receive matched features,
+capacity, and tuning opportunities. Their decisive scores are computed against
+held-out native-neuron spike residuals; coordinate-space scores are supporting
+diagnostics. The mean component is reported separately and cannot be added
+back to make a residual model look successful.
 
-Every day keeps its native neuron set. Earlier-day and new-day vectors are
-never joined by unit number, waveform, electrode number, or a guessed neural
-identity.
+### 4. Ask whether the correct LFP trial predicts the correct spike trial
 
-Instead:
+Small calibration samples make the estimated LFP and spike means noisy. That
+shared estimation error can remain in every “residual” and create apparent
+predictability even when the individual trials are not coupled. Residual
+prediction alone therefore does not establish trial-specific information.
+
+After every transform and prediction has been frozen, compare the two model
+streams on the same held-out residuals. Let `H` denote history-assisted and
+`T` today-only:
 
 ```text
-native residual spikes within each day
-    -> population coordinates learned from permitted data
-    -> alignment anchored by reach behavior
-    -> loading learned from the new-day calibration trials
-    -> residual spike-count predictions for the new day's neurons
+H_correct = R2_SSE({H_i}, {spike residual_i})
+T_correct = R2_SSE({T_i}, {spike residual_i})
+Delta_correct = H_correct - T_correct
+
+Delta_mismatch(p) = R2_SSE({H_p(i)}, {spike residual_i})
+                    - R2_SSE({T_p(i)}, {spike residual_i})
+
+trial_identity_gain = Delta_correct - mean_p[Delta_mismatch(p)]
 ```
 
-The mapping aligns low-dimensional coordinates, not individual neurons. The
-new-day loading and alignment may use calibration trials only. Any construction
-that uses held-out spike outcomes is a new-day fit, not evidence of transfer.
+For each `p`, apply the same within-direction whole-trial derangement to both
+prediction sets, retain all native time bins, and forbid self-pairs. Do not
+refit the means, bridge, or residual predictor for a mismatch. The comparison
+then retains the same calibration-mean error, population map, task condition,
+sample size, and any pairing signal already present in today-only; only the
+increment attributable to history is tested. Absolute history correct-versus-
+mismatch performance remains a diagnostic.
 
-### 4. Determine whether the signal is genuinely low frequency
+The preferred reusable-coupling explanation makes a discriminating prediction:
+history's correct-versus-mismatch gain will exceed today-only's corresponding
+gain. The competing explanation—shared mean-estimation error, pairing already
+available to today-only, or transfer of average aligned geometry—predicts no
+such incremental advantage. If history beats the today-only residual model but
+misses the prespecified trial-identity rule,
+report residual prediction without claiming that the right LFP trial predicts
+the right spike trial.
+
+Use 9,999 fixed-seed whole-trial derangements within each day, region, and
+direction, with self-pairs forbidden. The mismatch center is the arithmetic
+mean of the 9,999 history-minus-today-only mismatch increments. Compute the
+incremental trial-identity gain by day, average days equally within animal, then
+average the two animals equally. A trial-specific result requires simultaneous
+one-sided lower bounds above `0.01 R2` for both history-minus-today-only
+residual gain and incremental trial-identity gain, with one-sided Holm control
+across M1 and PMd. Uncertainty uses 9,999 paired whole-trial bootstrap draws
+within day and direction, keeping native time bins and neurons together and
+never refitting the frozen objects. Recompute the correct increment and
+mismatch center inside each bootstrap draw with the same derangement bank for
+both models; a draw with no self-free derangement receives the adverse infinite
+tail rather than being redrawn. All eight directions must retain at least six
+held-out trials; otherwise that day and region are unavailable for this
+explanation.
+
+The release is described as having simultaneous trial-level LFP and spikes,
+but the prepared EP07 inputs are currently absent; that correspondence and the
+alignment's condition/rank support must be verified before scoring.
+
+### 5. Determine whether the signal is genuinely low frequency
 
 High-frequency power can contain local spike-related energy. A field-potential
 interpretation therefore requires the same residual comparison under:
@@ -149,7 +239,7 @@ If transfer exists only in 100--400 Hz power or on spike-rich electrodes,
 report that boundary. A low-frequency result still establishes prediction,
 not synaptic causality or stable single-neuron identity.
 
-### 5. Identify which part of the model carries the gain
+### 6. Identify which part of the model carries the gain
 
 Keep the explanation small. Before new mechanism-specific scores are examined,
 choose at most two candidate explanations and the comparisons that could
@@ -170,8 +260,9 @@ history benefit in both animals without causing both models to fail generally.
 | One influential earlier or new day | Omit each earlier day and each new day in turn | Narrow the finding or stop |
 | High-frequency spike-rich content | Low-frequency-only, 100--400 Hz removal, proximity, and quality-matched checks | State the signal boundary; do not claim general field-potential coupling |
 | Average aligned dynamics only | Mean trajectories transfer but separately fitted residual models do not | Claim shared geometry, not trial-specific coupling |
+| Shared error from a small calibration mean or pairing already available today | Hold both frozen model streams fixed; apply the same same-direction whole-trial mismatches and compare their pairing gains | Without an incremental history pairing advantage, drop the claim that earlier days add same-trial information |
 
-### 6. Predict when history will help
+### 7. Predict when history will help
 
 An explanation becomes useful when it predicts the result before the new-day
 outcomes are known. Build a small rule from quantities available after fitting
@@ -190,7 +281,7 @@ prediction for that same day. Use a simple linear or monotone rule with at most
 two mechanism scores; six new days are too few for a flexible predictor or a
 broad generalization claim.
 
-### 7. Test the explanation on genuinely new days
+### 8. Test the explanation on genuinely new days
 
 Before viewing outcomes from a new recording day, choose the complete source
 set, eligibility rules, calibration fraction, feature meanings,
@@ -222,6 +313,7 @@ a requirement rather than a claimed result.
 | History fails cleanly in both settings | Stop the mechanism story; report the fixed-corpus boundary if useful | Earlier days did not clear the added-value margin under this calibration regime |
 | Estimate is positive but varies strongly by day or remains imprecise | Examine the planned day-influence checks and seek more new days | History may help some fixed days, but a stable relationship is unresolved |
 | Benefit is confined to the mean direction/time component | Deepen the task-structure explanation and test it on new days | Earlier days improve stable reach structure, not trial-specific coupling |
+| History improves residual prediction but its pairing gain does not exceed today-only's | Retain the bounded residual score; stop the trial-specific story | Residual prediction may reflect shared mean error, today-only pairing information, or aligned geometry; history-specific same-trial coupling is unsupported |
 | Residual benefit survives only high-frequency or spike-rich views | Report the signal boundary and stop the broad field-potential story | Spike-rich high-frequency features predict residual spiking in this corpus |
 | Low-frequency residual benefit survives controls but does not predict new-day benefit | Report an internal mechanism result with limited scope | Residual coupling is detectable internally; forward usefulness remains unverified |
 | Low-frequency residual benefit and the benefit prediction both succeed on new days | Develop the full cross-day relationship claim | A specified low-frequency LFP--population residual relationship transfers under limited calibration in the declared scope |
@@ -236,14 +328,15 @@ separated from the average response, or lacks a new-day test.
 | Figure | Scientific judgment | Required content |
 | --- | --- | --- |
 | 1. Do earlier days help? | History adds value after same-day calibration | Chronological design, both comparisons, every new day, both animals, uncertainty, and negative scores |
-| 2. What transfers? | Gain belongs to average structure, residual coupling, or both | Mean result, separately fitted residual models, and the day-specific-neurons-to-population-coordinates bridge |
+| 2. What transfers? | Gain belongs to average structure, aligned geometry, or history-specific same-trial residual coupling | Unresidualized anchors used to learn and freeze the bridge, separately fitted residual models, and history-minus-today-only correct-versus-mismatched increments |
 | 3. Is it a field-potential result? | Low-frequency information contributes beyond spike-rich contamination | Low-frequency-only model, 100--400 Hz removal, proximity and quality-matched checks |
 | 4. Can benefit be predicted in advance? | Calibration-visible measurements forecast when history helps | Day-wise cross-fitting, the prespecified score, failures as well as successes |
 | 5. Does the explanation survive a new day? | The mechanism extends beyond the data that generated it | All new sessions, activity and benefit predictions, and exact animal/implant scope |
 
 The abstract should state which M1/PMd setting was supported, whether the gain
-concerned means or separately fitted residuals, which frequency boundary
-survived, and what kind of new session was tested. It must also say that the
-study is offline, uses provider-preprocessed features, and does not establish
-clinical BCI performance, synaptic causality, or stable single-neuron or
-electrode identity.
+concerned means or separately fitted residuals, whether history's correct-
+versus-mismatch gain exceeded today-only's, which frequency boundary survived,
+and what kind of
+new session was tested. It must also say that the study is offline, uses
+provider-preprocessed features, and does not establish clinical BCI
+performance, synaptic causality, or stable single-neuron or electrode identity.

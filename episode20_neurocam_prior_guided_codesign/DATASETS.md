@@ -16,8 +16,9 @@ scored.
 | NeuroCam article and supplement | Define published architecture and characterization anchors | Identified; EP20 use and rights still need approval |
 | Calibration subset of published anchors | Fit a paper-derived NeuroCam model | Not assigned |
 | Held-aside published anchors | Check that the fitted reference reproduces measurements not used for fitting | Not assigned |
+| All reference models that pass both checks | Test whether candidate rankings are identified by the published measurements | Model family and acceptance set not constructed |
 | Development cortical-field and device models | Develop designs and run challenge tests | Not implemented |
-| Independent cortical-field and electronics models | Test one selected design under a different implementation | Not implemented |
+| Independent cortical-field and electronics models | Rerun frozen D0–D3 representatives and test the rule under every accepted reference mechanism | Not implemented |
 | Development physical-signal or phantom source | Stress spectra, amplitudes, missingness, and software stability | Not selected |
 | Separate final physical-signal or phantom source | Reject catastrophic implausibility after design selection | Not selected |
 | Design and resource rules | Decide which designs are legal and resource matched | Not prepared |
@@ -135,6 +136,27 @@ scaling laws, EP20 needs raw traces, additional devices, or a wider explicitly
 uncertain model family. It must not describe the result as an exact NeuroCam
 digital twin.
 
+### Can equally credible reference models reverse the answer?
+
+A successful held-aside check is necessary but not sufficient. Every
+predeclared noise, impedance, pad-averaging, settling, and crosstalk scaling law
+that passes calibration and the held-aside tolerances remains in an accepted
+reference-model set. Before full optimization, the same small sentinel panel of
+uniform, two-scale, and revisit candidates is evaluated under every accepted
+model using the same fields and resource budgets. After development, one
+representative or deterministic selection rule for each D0–D3 family is frozen
+across the full accepted-model set and the rank-stability check is repeated.
+
+A **material rank reversal** occurs when two accepted models prefer different
+unique designs and, within each model, the simultaneous one-sided lower bound
+for the winner versus its runner-up exceeds 0.005. If such a reversal occurs,
+published aggregate measurements do
+not identify a candidate. Report which unmeasured response—such as pad-area-
+dependent noise, impedance, history-dependent settling, or crosstalk under
+multiplexed scanning—would most reduce the disagreement. Candidate search stops
+until an added measurement resolves the reversal. Reporting one optimum per
+model is a sensitivity analysis, not an EP20 design nomination.
+
 ## Development cortical fields
 
 Development must cover these field families:
@@ -153,6 +175,30 @@ Each range needs an empirical source, a physical bound, or an explicitly
 conservative design interval. All candidates see the same field and device
 draws; unfavourable worlds are not regenerated.
 
+Each condition must expose the following **absolute inputs before any
+reconstruction result**:
+
+| Input | Required definition and unit |
+| --- | --- |
+| Spatial correlation length `lambda_k` | `1/(2*k90)`, where `k90` is the smallest radial spatial frequency containing 90% of common-mask 1–100 Hz truth or known-input pilot power; report micrometres and common-grid pixels |
+| Temporal timescale `tau_k` | `1/(2*f90)`, where `f90` is the smallest temporal frequency containing 90% of demeaned truth or known-input pilot power; report seconds |
+| Input-referred noise `noise_mdk` | RMS microvolts during the registered zero-input probe in 1–100 Hz, for every accepted model *m*, device condition *k*, and frozen D0–D3 representative *d* |
+| Interface impedance `impedance_mdk` | 90th percentile of small-signal magnitude in ohms across 1–100 Hz for every *m,d,k* combination |
+| Settling `settling_mdk` | Microseconds after the registered unit step until error enters and remains within 1%, for every *m,d,k* combination |
+| Crosstalk `crosstalk_mdk` | Largest nonnegative adjacent-line amplitude ratio during the registered 1–100 Hz multisine scan for every *m,d,k* combination; also report decibels |
+
+The first two quantities describe the field, not a candidate, and must come
+from simulated truth or a separate known-input pilot. The last four are
+candidate-indexed characterization tables measured independently or emitted by
+the frozen device model before reconstruction. They are not differences from a
+post hoc "proposed design," and none may use reconstructed R². Development and
+final implementations must use the same definitions, probe waveforms, duration,
+mask, and units. Those probe details remain to be registered. Development and
+independent condition grids must provide at least five pre-outcome conditions
+in each S/T cell under each accepted model; the counts may be increased after
+outcome-blind interval-width calibration. Without these inputs and cell support,
+EP20 can rank devices in simulations but cannot test a transferable design rule.
+
 The primary target is voltage on a common cortical-surface grid. Latent-source
 recovery is descriptive only.
 
@@ -168,9 +214,12 @@ crosstalk, noise, ADC sampling, aggregation, quantization, drift, saturation,
 missing pixels, contact gaps, and voltage reference. Each rule must be marked as
 measured, literature-derived, physics-derived, or deliberately adversarial.
 
-The selected final design is tested under separately implemented cortical-field,
-source-to-surface, and electronics models. Merely changing random draws in the
-development implementation is not an independent structural test.
+The independent test reruns one frozen representative or deterministic
+selection rule for each D0–D3 family, plus the required C4 controls, under every
+accepted reference-model mechanism on separately implemented cortical-field,
+source-to-surface, and electronics models. The four absolute characterization
+values are recomputed before reconstruction. Merely changing random draws in
+the development implementation is not an independent structural test.
 
 ## Physical-signal or phantom checks
 
@@ -205,7 +254,7 @@ conservative substitute rules supported by published anchors or explicit safety
 factors. Modeled power and thermal quantities remain proxies, not measured
 equivalence.
 
-The same rules determine which D0, D1, and D4 comparisons are eligible at each
+The same rules determine which C0, C1, and C4 comparisons are eligible at each
 resource budget. A shared process name or a short thermal image is not enough
 to assign an unknown candidate the same physical cost as the reference.
 
@@ -233,12 +282,18 @@ Still required before candidate scoring:
 - approval of article and supplement use and rights;
 - calibration and held-aside assignments for published anchors;
 - a fitted paper-derived reference and successful held-aside check;
+- the complete accepted reference-model set and a candidate rank-stability
+  result;
 - a finite legal alternative-pad catalogue and conservative resource rules;
 - executable development cortical-field, source-to-surface, and electronics
   models;
 - independently implemented final models;
-- separate development and final physical-signal or phantom data; and
-- the catastrophic-plausibility threshold and scientist approval.
+- separate development and final physical-signal or phantom data;
+- the catastrophic-plausibility threshold and scientist approval;
+- registered estimators for `lambda_k` and `tau_k`, plus independently
+  characterized noise, impedance, settling, and crosstalk for each frozen
+  D0–D3 representative and device condition; and
+- the fixed family-specific utility functions and two-by-two decision rule.
 
 Missing raw traces, a PDK, compact device model, netlist, layout, DAQ code,
 exact reduced-mode maps, marker meanings, and per-setting power data narrow the

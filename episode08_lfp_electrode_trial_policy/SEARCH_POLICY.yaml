@@ -80,11 +80,37 @@ shared_prediction_model:
   same_evaluation_trials_for_every_method: true
 
 comparisons:
+  - simple quality-and-reliability electrodes with balanced trials
+  - simple quality-and-reliability electrodes with adaptive trials
+  - conditional-value electrodes with balanced trials
+  - conditional-value electrodes with adaptive trials
   - repeated uniform-random electrodes with balanced-random trials
   - geometry-only farthest-first electrodes
   - reliability-only electrode ranking
   - full-resource decoder as a ceiling check
   - development-only hindsight best case as an upper bound
+
+factorial_comparison_at_every_budget:
+  rows:
+    simple_electrode_selection: pilot quality and reliability only
+    conditional_value_electrode_selection: >-
+      pilot quality plus predicted redundancy and complementary population information
+  columns:
+    balanced_trials: equalize direction counts without a value score
+    adaptive_trials: choose from a value score available before the next trial
+  named_performances:
+    Q_SB: simple electrodes and balanced trials
+    Q_SA: simple electrodes and adaptive trials
+    Q_CB: conditional-value electrodes and balanced trials
+    Q_CA: conditional-value electrodes and adaptive trials
+  report_in_each_of_the_nine_budget_cells:
+    electrode_contribution_under_balance: Q_CB minus Q_SB
+    trial_contribution_under_simple_electrodes: Q_SA minus Q_SB
+    combined_contribution: Q_CA minus Q_SB
+    algorithm_interaction: Q_CA minus Q_CB minus Q_SA plus Q_SB
+    electrode_contribution_under_adaptive_trials: Q_CA minus Q_SA
+    trial_contribution_under_conditional_electrodes: Q_CA minus Q_CB
+  combined_gain_alone_supports_joint_principle: false
 
 primary_measure:
   metric: held-out R2_SSE difference from the strongest cost-matched simple rule
@@ -131,7 +157,10 @@ alternative_explanation_checks:
   - permuted development electrode-value labels
   - shuffled electrode locations for spatial methods
   - remove reliability, diversity, learned score, and adaptive trial components in turn
-  - redundancy-matched and quality-matched comparisons
+  - one-for-one electrode swaps matched on pilot quality artifact rate and missingness
+  - redundancy-matched comparisons
+  - repeat next-direction value across prespecified common states and trial orders
+  - distinguish persistent error from repeatable learnable next-trial benefit
   - reverse animal transfer
   - omit each development session in turn
   - train on one animal and apply to the other
@@ -151,7 +180,10 @@ held_session_evaluation:
     - robustness to influential-session and leave-one-animal checks
     - every required alternative-explanation and information-timing check passes
   possible_results:
-    - reproducible joint electrode-and-trial policy
+    - reproducible joint electrode-and-trial principle with predicted coupling
+    - two individually useful acquisition methods without supported coupling
+    - only electrode selection contributes
+    - only trial allocation contributes
     - positive but ambiguous or insufficiently robust result
     - no method clears the prespecified rule
     - study incomplete because required coverage or resources were not completed
@@ -181,7 +213,39 @@ next_direction_explanation:
   comparisons:
     - direction-balanced choice
     - random choice at the same point in the recorded order
+  replay_design:
+    primary_policy_order_count: 1
+    additional_explanation_orders_minimum: 3
+    candidate_common_checkpoints_additional_trials: [16, 32, 64, 96]
+    final_supported_checkpoint_list_frozen_before_neural_scoring: true
+    common_states_use_balanced_outcome_independent_trajectories: true
+    every_legal_direction_branched_at_each_state: true
+  success_requires:
+    - predict average next-direction benefit across replay states and orders
+    - beat balanced allocation across replay states and orders
+    - no conclusion from one favorable future trial
+  large_error_without_repeatable_benefit: irreducible_or_unmodelled_variation
   interpretation_limit: retrospective prediction, not a causal online intervention
+
+electrode_trial_coupling_explanation:
+  preferred_explanation: >-
+    The retained electrode set changes which population components remain
+    recoverable and therefore changes which reach direction is most learnable next.
+  competing_explanation: >-
+    Electrode quality and direction balancing provide separate benefits, so a
+    quality-matched electrode swap should not change next-direction value ordering.
+  test:
+    - hold the calibration trials and replay state fixed
+    - compare simple and conditional-value sets with the same electrode count
+    - include one-for-one swaps matched on pilot quality artifact rate and missingness
+    - predict the change in direction-value ordering before branch trials are revealed
+    - test the prediction across states orders sessions and both animals
+  joint_principle_requires:
+    - resolved algorithm interaction in the factorial performance comparison
+    - predicted electrode-dependent change in next-direction ordering
+    - repeated direction benefit beyond one future trial or trial order
+  if_component_gains_are_additive_and_direction_order_is_stable: >-
+    Report two individually useful methods, not a joint acquisition principle.
 
 resource_axis_explanation:
   report:
@@ -189,6 +253,15 @@ resource_axis_explanation:
     - performance change from 32 to 64 trials at each electrode count
     - interaction between electrode and trial steps
   forbidden_claim: an electrode equals a number of trials without a separate measured cost model
+
+data_required_for_explanations:
+  required:
+    - all-electrode pilot with physical electrode identity and pilot quality measures
+    - enough electrodes for same-size quality-matched swap sets
+    - common balanced replay states supported in every retained primary session
+    - multiple legal future trials per direction across prespecified orders
+    - untouched population-spike evaluation trials shared across all branches
+  if_missing: retain only the supported policy comparison and drop the joint-mechanism claim
 
 external_confirmation:
   required_source: independent third animal with compatible M1 data

@@ -12,15 +12,17 @@ average response. It must also beat an equally tuned model that sees the same
 new-day calibration trials but no earlier-day data. Only then can we say that
 history added information beyond what could be learned from today's sample.
 
-![EP07 conceptual figure showing synthetic new-day LFP and population residuals, matched history and today-only predictions, competing transfer explanations, and bounded interpretations](outputs/ep07_question.svg)
+![EP07 conceptual figure showing synthetic new-day LFP and population residuals, matched history and today-only predictions, competing transfer explanations, and bounded interpretations](outputs/ep07_question_imagegen.png)
 
 Like the EP12 concept figure, this mockup begins with synthetic signal patterns
-rather than the day-allocation protocol. It shows trial-level LFP and
+rather than the day split. It shows trial-level LFP and
 population residuals, the three predictions made on the same untouched
-new-day response, and the visibly different signatures expected from average
-task structure, aligned population geometry, and reusable residual coupling.
-The final strip states the bounded interpretations. None of the traces is an
-EP07 result; exact days and decision rules remain in the study text.
+new-day response, and the two steps needed to distinguish a shared mean error
+from reusable coupling: learn and freeze the population bridge before
+residualizing, then ask whether history adds more correct-versus-mismatched
+trial information than the matched today-only model. The
+final strip states the bounded interpretations. None of the traces is an EP07
+result; exact days and decision rules remain in the study text.
 
 ## The scientific question
 
@@ -51,7 +53,9 @@ There are three scientifically different possibilities:
    aligned across days even though the recorded neurons differ.
 3. **Trial-specific coupling.** After the expected direction-and-time response
    is removed, LFP fluctuations still predict whether population spiking on a
-   particular trial is above or below expectation.
+   particular trial is above or below expectation. This claim additionally
+   requires the correct held-out LFP trial to predict the correct spike trial
+   better than a different held-out trial in the same reach direction.
 
 The third possibility is the strongest claim, but it also requires the
 strongest controls. A result carried only by 100--400 Hz power or by
@@ -108,7 +112,10 @@ Each later day keeps the neurons that are consistently present across all
 eligible trials for that day and region. Earlier days keep their own neuron
 sets. Neuron identities are not matched across days; cross-day models may
 align only population coordinates learned from permitted training and
-calibration data.
+calibration data. For the residual follow-up, the coordinate map is learned
+from the **unresidualized** training and calibration responses while their
+direction-by-time averages are still present. It is then frozen before any
+residual predictor is fit. Held-out spike outcomes never help define the map.
 
 The public release contains preprocessed LFP features rather than raw voltage.
 Those released features are used unchanged for every model. Any conclusion is
@@ -239,11 +246,79 @@ directly against held-out spike residuals. This distinguishes a reusable
 trial-specific relationship from a better estimate of the average reach
 trajectory.
 
+The changing neuron sets require a separate, earlier step. Within each fitting
+fold, use unresidualized spike responses from earlier-day training trials and
+new-day calibration trials to learn the population bases and their mapping.
+Common direction-by-time response averages supply the behavioral anchors;
+subtracting those averages first would erase the anchors. Freeze the bases,
+the cross-day map, and the new-day reconstruction loading. Only then remove
+the direction-by-time means, project spike residuals through the frozen map,
+and fit the LFP-to-residual predictor. The residual predictor receives LFP
+residuals, not an uncentered response, direction/time mean, or mean template.
+
+The bridge is used only when its coordinates are actually identified. For a
+new day and region, candidate ranks are checked in the order 16, 12, 8, and 4.
+The largest usable rank must have all eight directions, at least eight native
+time bins (64 common anchors), at least four anchors per dimension, full
+centered anchor rank, anchor condition number no greater than 30, and a
+cross-day smallest-to-largest anchor singular-value ratio of at least 0.05 for
+all three source-day links. Specifically, if `K` is the number of common
+direction-by-time cells (`K >= 64`), `A_d` is the `K`-by-rank matrix of
+unresidualized mean anchors projected into day `d`'s training/calibration
+population basis and centered across anchors. Write its
+thin QR factorization as `A_d = Q_d R_d`; the cross-day ratio is
+`sigma_min(Q_source' Q_target) / sigma_max(Q_source' Q_target)`. These checks
+use training and calibration responses only. If no rank passes, that day has
+no aligned residual result; a source day is not discarded merely because it
+makes the map inconvenient.
+
+A second held-out comparison asks whether **history's added value** depends on
+trial identity. Keep both frozen prediction sets fixed. Let `H_correct` and
+`T_correct` be the history-assisted and today-only residual scores with each
+LFP trial paired to its own spike trial, and define
+`Delta_correct = H_correct - T_correct`. For every within-direction whole-trial
+derangement `p`, apply the same `p` to both prediction sets and define
+`Delta_mismatch(p) = H_mismatch(p) - T_mismatch(p)`. The decisive effect is
+
+`trial-identity gain = Delta_correct - mean_p Delta_mismatch(p)`.
+
+Equivalently, history's correct-versus-mismatch pairing gain must exceed the
+today-only model's pairing gain. The absolute history correct-versus-mismatch
+score remains a diagnostic, but cannot establish history-specific coupling on
+its own. Because every term uses the same calibration means and the same
+derangement, shared mean-estimation error and any pairing signal already
+available to today-only are retained on both sides. A residual gain without
+this incremental pairing advantage supports reusable mean or population
+geometry, but not the claim that earlier days add a same-trial relationship.
+
+The comparison uses 9,999 fixed-seed, within-direction whole-trial
+derangements. Its center is the mean of the 9,999 `Delta_mismatch` values, and
+its practical margin is `0.01 R2`. A trial-specific claim requires simultaneous
+lower bounds above `0.01 R2` for both history versus today-only residual
+prediction and the incremental trial-identity gain. Within every whole-trial
+bootstrap draw, recompute `Delta_correct` and the mismatch center using the same
+paired derangement bank for both models. A bootstrap draw with no self-free
+derangement is nonestimable and contributes the adverse infinite tail rather
+than being redrawn. Effects are computed by day, averaged
+equally across the three days within each animal, and then equally across the
+two animals; M1 and PMd use the same one-sided Holm control as the primary
+test. Every direction must retain at least six held-out trials or that day's
+explanatory result is unavailable.
+
 The follow-up then asks which LFP bands and population dimensions carry the
 gain, whether it remains when 100--400 Hz features are excluded, whether it is
 robust to electrode proximity and spike-quality differences, and whether a
 small rule based only on source data plus new-day calibration can predict
 which later days will benefit.
+
+This test requires simultaneous trial identities for LFP and spikes, complete
+direction/time cells in the fitting and calibration data, and multiple
+held-out trials per direction. The selected release is described as containing
+the needed simultaneous signals, and the primary minimum gives at least six
+held-out trials per direction, but the prepared episode data views do not yet
+exist. Trial correspondence and usable condition cells must therefore be
+confirmed before scoring. If they cannot be confirmed, the residual-coupling
+claim is unavailable even if the primary history comparison can still run.
 
 That explanation is developed on the already exposed corpus. Its first real
 confirmation must use newly sequestered recording days. The current held-out

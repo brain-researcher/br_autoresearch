@@ -84,6 +84,11 @@ Primary pairs must share:
 - a 1–30 day gap or a gap of at least 180 days; and
 - enough complete trials and blocks for the fixed evaluation packet.
 
+The primary direction is chronological: the source day precedes the target
+day. The reciprocal direction is retained as a required sensitivity to
+transport asymmetry, but it does not enter the adjusted long-gap or local-
+signal estimands.
+
 Days 31–179 are descriptive only. A 14-day versus 365-day sensitivity may be
 reported but cannot replace the primary comparison.
 
@@ -106,6 +111,37 @@ trials. Each held-out participant must have at least six near-gap and six
 long-gap eligible pairs in a common schedule group. The final scoring step may
 remove a pair that lacks finite neural, cursor, target, or electrode fields; it
 may not add a new pair or replace a participant after outcomes are seen.
+
+Those pair counts do not by themselves make the long-gap effect estimable. For
+each connected participant-by-schedule component, the actual source-to-target
+pairing pattern must allow the long-gap indicator to be separated from source-
+and target-session effects: after those session terms are removed, the long-gap
+indicator must retain non-zero variation. Before neural scores are interpreted,
+the constrained design must have full rank and pass pre-set limits on condition
+number, residual long-gap information, and maximum session leverage. Failure is
+reported as insufficient support rather than handled by dropping awkward pairs
+or choosing a replacement participant.
+
+For a chronological pair `s -> t`, let `B_t`, `L_t`, and `F_st` denote the
+null, target-local, and transported scores on the same target trials. Average
+each score equally across the two reversed outer folds before defining
+`R_st = (L_t - F_st) / (L_t - B_t)`. The denominator is the target's locally
+recoverable above-null performance. If it is nonfinite or does not exceed the
+development-fixed readiness minimum, the pair and its registered connected
+component are unresolved rather than being dropped. The ratio is never clipped
+and no small constant is added to its denominator.
+
+The robust check takes a median over eligible chronological sources within
+each target and lag class, then a median over targets, then long minus near
+within each connected component. Schedule groups and components retain equal
+weight, matching the primary aggregation hierarchy.
+
+The separate local-signal comparison uses the same connected components for
+its fractional and raw-score contrasts. Within a lag class, each target session
+receives equal total weight and that weight is divided equally across its
+eligible source sessions. Components without both gap classes cannot contribute
+to either contrast. This prevents a target with many eligible sources from
+silently determining the result.
 
 ## Development and held-out participants
 
@@ -186,10 +222,11 @@ The source release and required fields are known, but EP16 is not ready for
 neural scoring. The following still need to be completed:
 
 - target-schedule and near/long support assessment;
+- source/target design-rank, conditioning, and session-leverage assessment;
 - the final six/three participant assignment;
 - the 128-trial block-aware packet builder;
 - a single onset offset and channel-quality rules;
-- numeric readiness, effect, recovery, and equivalence thresholds;
+- numeric readiness, effect, recovery, and decision thresholds;
 - synthetic checks for the score, recalibration, missing-channel emulation,
   uncertainty, and leakage controls; and
 - separate development and held-out data views.

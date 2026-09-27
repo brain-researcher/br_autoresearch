@@ -211,10 +211,131 @@ follow_up_if_primary_result_supports_transfer:
   question: >-
     Does earlier-day information transfer only an average reach response or a
     trial-specific LFP-population relationship after direction and time are removed?
-  residual_test: >-
-    Estimate direction-and-time means from permitted training or calibration
-    trials, remove them from both LFP inputs and spike targets before fitting,
-    and compare new residual-only history-assisted and today-only models.
+  frozen_population_bridge:
+    fitting_data: >-
+      Unresidualized spike responses from earlier-day training trials and the
+      new day's calibration trials only, within animal, implant, and region.
+    anchors: >-
+      Direction-by-native-time response averages in common condition cells,
+      computed only from the permitted fitting or calibration trials.
+    learned_objects:
+      - within-day population bases
+      - the mapping from each earlier-day coordinate system to the new day
+      - the new-day loading used to reconstruct native-neuron residuals
+    freeze_rule: >-
+      Freeze all three objects before fitting or scoring a residual predictor.
+      Development and held-out spike outcomes cannot define or update them.
+    important_ordering: >-
+      Learn the bridge before residualization. Subtracting direction-by-time
+      averages first would set the proposed behavioral anchors to zero.
+    identifiability:
+      candidate_ranks_in_order: [16, 12, 8, 4]
+      common_cells_required: all 8 directions and at least 8 native time bins
+      common_cells_minimum: 64
+      common_cells_per_latent_dimension_minimum: 4
+      centered_anchor_rank_must_reach_candidate_rank: true
+      centered_anchor_condition_number_maximum: 30
+      cross_day_anchor_singular_value_ratio_minimum: 0.05
+      anchor_matrix_A_day: >-
+        The K-by-r matrix of unresidualized direction-by-native-time mean
+        anchors, K at least 64, projected into day d's permitted population
+        basis and centered across anchor rows.
+      cross_day_support_matrix: >-
+        Q_source transpose times Q_target, where A_day = Q_day R_day is the
+        thin QR factorization at the candidate rank.
+      singular_value_ratio: sigma_min_cross_day_support_matrix_divided_by_sigma_max
+      selection_rule: >-
+        For each new day and region, use the largest candidate rank that passes
+        every gate for the new day and all three source-to-new-day links. The
+        gates use fitting and calibration responses only, never development or
+        held-out scores.
+      if_no_rank_passes: >-
+        The aligned residual comparison is unavailable for that day and region;
+        do not drop only the inconvenient source day or relax a gate.
+  residual_test:
+    means: >-
+      Estimate direction-and-time means separately within each day from that
+      day's permitted training or calibration trials.
+    fitting: >-
+      Remove those means from LFP inputs and spike targets, project spike
+      residuals through the frozen population bridge, and fit capacity-matched
+      history-assisted and today-only residual predictors.
+    predictor_must_not_receive:
+      - uncentered neural responses
+      - direction or time labels
+      - direction-by-time mean values or templates
+      - development or held-out spike outcomes
+    scoring: >-
+      Score predictions against held-out native-neuron spike residuals. Report
+      coordinate-space prediction only as a supporting diagnostic.
+  held_out_trial_identity_test:
+    correct_pair: >-
+      Pair each fixed history-assisted and today-only held-out prediction with
+      the spike residuals from the LFP trial that produced it.
+    mismatched_pair: >-
+      With fitted objects and predictions fixed, apply the identical whole-
+      trial derangement to both prediction sets within the same new day,
+      region, and reach direction. Preserve every time bin and forbid an
+      original trial identity from pairing with itself.
+    score: joint native_neuron residual R2_SSE across directions trials and native time bins
+    correct_increment: history_correct_score_minus_today_only_correct_score
+    mismatch_increment_per_derangement: history_mismatch_score_minus_today_only_mismatch_score_under_the_same_derangement
+    mismatch_bank:
+      draws: 9999
+      seed: ep07-residual-trial-identity-v1
+      operation: paired whole_trial_derangement_applied_identically_to_history_and_today_only_within_each_day_region_and_direction
+      self_pairs_allowed: false
+      fitted_objects_or_predictions_refit: false
+    null_center: arithmetic_mean_of_the_9999_mismatch_increment_scores
+    effect: correct_increment_minus_mismatch_increment_center
+    equivalent_effect: history_pairing_gain_minus_today_only_pairing_gain
+    absolute_history_correct_minus_mismatch_role: diagnostic_only
+    practical_margin_R2: 0.01
+    shared_mean_error_control: >-
+      Correct and mismatched pairs use exactly the same training/calibration
+      mean estimates, and the same derangement is applied to both model streams.
+      A shared mean error or pairing signal already available to today-only is
+      therefore retained on both sides of the incremental comparison.
+    interpretation: >-
+      A history residual gain without an incremental pairing advantage over
+      today-only does not show that earlier days add same-trial information; it
+      supports at most reusable mean structure or aligned population geometry.
+    aggregation: >-
+      Compute one effect per new day and region, average the three days equally
+      within animal, then average Mihili and Chewie-L equally. M1 and PMd remain
+      separate.
+    uncertainty:
+      draws: 9999
+      resampling_unit: paired whole held_out trials within new day and direction
+      keep_native_time_bins_and_neurons_together: true
+      refit_frozen_objects: false
+      mismatch_center_recomputed_inside_every_bootstrap_draw: true
+      same_fixed_seed_derangement_bank_used_for_both_model_streams: true
+      bootstrap_draw_without_a_self_free_derangement: adverse_infinite_tail_not_redrawn
+      requirement: >-
+        Simultaneous one-sided lower bounds for both the history-minus-today-only
+        residual gain and the incremental trial-identity gain must exceed 0.01 R2.
+      multiplicity: one_sided_Holm_across_M1_and_PMd_at_familywise_alpha_0p05
+    invalid_cell_rule: >-
+      Every one of the eight directions must retain at least six held-out trials.
+      Otherwise the explanatory comparison for that day and region is unavailable;
+      directions or trials cannot be dropped after their scores are known.
+  discriminating_prediction: >-
+    If earlier days add reusable trial-specific coupling, history's correct-
+    versus-mismatch pairing gain will exceed today-only's pairing gain after the
+    bridge is frozen. If shared calibration-mean error, today-only pairing
+    information, or average aligned geometry explains the score, that
+    incremental gain will not clear its margin.
+  data_requirements:
+    - verified simultaneous LFP and spike trial identities
+    - unresidualized training and calibration spike responses
+    - complete common direction-by-time cells for alignment
+    - at least six held-out trials per direction after eligibility filtering
+  current_availability: >-
+    The selected public release is described as containing simultaneous LFP and
+    spike recordings, and the planned minimum gives at least six held-out trials
+    per direction. Prepared episode views are still absent, so correspondence,
+    condition support, and bridge rank must be verified before scoring.
   signal_controls:
     - LMP or low-frequency features only
     - exclude all 100 to 400 Hz power

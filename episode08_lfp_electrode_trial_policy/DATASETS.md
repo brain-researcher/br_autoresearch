@@ -37,7 +37,11 @@ Each retained session needs:
 - one population-spike target set chosen without reference to selector
   performance; and
 - enough separate trials for the pilot, calibration choices, and untouched
-  evaluation at every supported budget.
+  evaluation at every supported budget;
+- enough remaining trials in every direction to branch from common replay
+  states and evaluate more than one possible next trial; and
+- enough eligible electrodes to form same-size, quality-matched swap sets that
+  differ in pilot-predicted redundancy or complementarity.
 
 The common pilot uses exactly two non-evaluation trials from each of the eight
 directions, for 16 trials total, recorded on all eligible electrodes. If this
@@ -69,6 +73,15 @@ order before any method is scored. A direction choice reveals only the next
 trial in that order. This lets the analysis walk through recorded data as if
 trials arrived one at a time while preventing a method from selecting a
 particularly favorable future trial.
+
+That primary order is not enough to explain adaptive trial value. Before any
+neural score is examined, the explanation analysis also fixes several ordinary
+replay orders and a common set of balanced replay states. Candidate checkpoints
+are after 16, 32, 64, and 96 additional trials; the final list includes only
+checkpoints supported by every retained primary session and is frozen after
+availability checks. At each state, every legal direction is branched using
+the same untouched evaluation trials. A conclusion cannot depend on one lucky
+future trial or one chosen order.
 
 This retrospective construction assumes that recorded trials within a
 direction are exchangeable enough for the stated question. It does not create
@@ -107,12 +120,18 @@ For each development session, preserve:
   summaries;
 - every pilot-only electrode score and retained set at 4, 8, and 16
   electrodes;
+- the simple and conditional-value retained sets, plus one-for-one swap sets
+  matched on pilot reliability, artifact rate, and missingness;
 - the ordered calibration pools and the information available before every
   direction choice;
 - the predicted value of each legal direction, the chosen direction, and the
-  calibration improvement observed afterward;
+  calibration improvement observed afterward at every prespecified replay
+  state and order;
 - common-decoder predictions needed for electrode-removal and alternative
   next-direction comparisons on untouched trials; and
+- the four performances at every budget: simple/balanced,
+  simple/adaptive, conditional-value/balanced, and
+  conditional-value/adaptive;
 - the complete nine-cell performance surface, full-resource ceiling,
   repeated-random distribution, and every failure or missing-geometry
   fallback.
@@ -127,6 +146,13 @@ These records support two explanatory predictions:
 Neither value may be returned to the policy in the session being evaluated.
 They are outcomes used to test predictions made from the pilot or pre-choice
 state, not rewards available when the original choice was made.
+
+They also support the decisive coupling test. At the same replay state, the
+calibration trials are held fixed while the retained electrode set changes.
+The analysis asks whether a quality-matched swap changes the predicted and
+observed ordering of next-direction value. If the ordering stays stable and
+the four-way performance comparison is additive, the data support separate
+electrode and trial methods rather than a joint acquisition principle.
 
 ## Evidence strength
 
@@ -157,8 +183,13 @@ The following checks remain because they directly affect the scientific claim:
   EP05 use;
 - verify eight directions, the 16-trial pilot, and support for all nine budget
   cells in every retained session;
+- verify that every retained session supports common replay checkpoints,
+  multiple prespecified within-direction orders, and legal next trials for all
+  eight directions at those checkpoints;
 - verify physical-electrode membership and state which sessions have usable
   geometry;
+- verify that quality-matched one-for-one electrode swaps can be formed at
+  each retained electrode count without using later neural outcomes;
 - verify movement events, LFP feature meanings, and population-spike targets;
 - save the development-session, held-session, pilot, acquisition-pool, and
   evaluation assignments before policy scores; and
@@ -168,6 +199,11 @@ The following checks remain because they directly affect the scientific claim:
 If a primary animal cannot provide four development and two held sessions with
 the complete supported grid, revise the design before scoring rather than
 silently dropping sessions or budget cells.
+
+If the nine-cell policy grid is supported but the repeated branch or
+quality-matched swap requirements are not, EP08 may still test the primary
+four-way policy comparison. It cannot claim that next-trial value is learnable
+or that electrode and trial selection form a joint principle.
 
 Large source files remain outside Git. Temporary computation belongs in
 `$SCRATCH/br_autoresearch/episode08_lfp_electrode_trial_policy/`; only compact

@@ -14,9 +14,13 @@ benchmarks on the same later-session trials: a mapping trained inside the later
 session and a direction-balanced null. This separates a cross-session mismatch
 from a later session that is simply difficult for every model.
 
-Only if the long-gap comparison shows an additional loss do we ask what kind
-of failure it is. The same diagnostic panel tests three explanations that may
-coexist:
+The study then keeps two questions separate. A later session can contain less
+locally recoverable direction signal even when the **fraction** of that signal
+lost by transport does not increase. That local-signal route is therefore
+tested whether or not an extra normalized transport loss is found. If an extra
+transport loss is established, the same panel asks whether observable recording
+change can reproduce it and whether a small labelled calibration set can repair
+it. The three signatures can coexist:
 
 1. the later session itself supports a weaker locally trained mapping;
 2. changes visible without direction labels—missing or noisy channels, invalid
@@ -30,7 +34,7 @@ repeats in two separate time-based partitions of that participant's sessions.
 The study is therefore about reproducible failure signatures, not about finding
 the most dramatic example of drift.
 
-![EP16 conceptual figure showing synthetic source, near, and long-gap session codes, matched target-session scores, competing mechanism signatures, and bounded interpretations](outputs/ep16_question.svg)
+![EP16 conceptual figure showing synthetic source, near, and long-gap session codes, matched target-session scores, competing mechanism signatures, and bounded interpretations](outputs/ep16_question_imagegen.png)
 
 Like the EP12 concept figure, this mockup makes the rival scientific stories
 visible with synthetic patterns. It shows one source mapping applied to near
@@ -102,20 +106,74 @@ Every later-session evaluation uses three scores on exactly the same trials:
 - **transported mapping:** what an earlier-session mapping recovers without
   retraining.
 
-The transported loss is scaled by the later-session improvement over the null.
-This asks how much of the locally recoverable signal is lost in transport. The
-primary estimate compares long-gap and near-gap pairs while accounting for
-general source-session and target-session difficulty. A simpler target-balanced
-median contrast must point in the same direction. Session pairs are repeated
-measurements; the participant remains the biological unit.
+For a chronological source-to-target pair `s -> t`, let `B_t` be the null
+score on target trials, `L_t` the target-local score, and `F_st` the unchanged
+source mapping's score on those same trials. Each score is first averaged
+equally over the two reversed outer folds. Only then define
+
+`R_st = (L_t - F_st) / (L_t - B_t)`.
+
+`R_st` is the fraction of locally recoverable above-null performance lost in
+transport. It is not clipped: a value below zero means transport beat the local
+benchmark, and a value above one means it fell below the null. If
+`L_t - B_t` is nonfinite or does not exceed the pre-set readiness minimum, the
+pair and its registered connected component are unresolved; the pair is not
+dropped, and no epsilon replacement or per-fold ratio is allowed. The
+primary estimate compares long-gap and near-gap `R_st` values while accounting
+for general source-session and target-session difficulty. A simpler
+target-balanced median contrast must also clear its pre-set positive margin.
+Session pairs are repeated measurements; the participant remains the
+biological unit.
+
+For that robust contrast, first take the median `R_st` across eligible
+chronological sources for each target within a gap class and connected
+component. Then take the median of those target-level values, form long minus
+near within the component, and aggregate schedule groups and components with
+the same equal-weight hierarchy as the adjusted estimate. Thus a target with
+many sources cannot dominate the check.
+
+### The adjusted contrast and when it can be estimated
+
+For every participant and connected target-schedule component, `R_st` is fit
+as:
+
+`transport loss = component average + source-session effect + target-session effect + long-gap effect`.
+
+The coefficient on the long-gap indicator is the adjusted long-versus-near
+contrast. It asks whether long-gap pairs lose more after allowing some sessions
+to be generally harder sources or harder targets.
+
+Having six near and six long pairs is necessary but not sufficient. The
+contrast is used only when the actual source-to-target pairing pattern contains
+both gap classes and the constrained design has full rank. In particular, the
+long-gap indicator must retain non-zero variation after the source and target
+session terms are removed. It must also pass pre-set limits on numerical
+conditioning, residual long-gap information, and the influence of any one
+session. These limits are fixed before neural scores are examined. A component
+that fails them is an unresolved support failure; it is not dropped in favour
+of a more convenient set of pairs.
+
+Uncertainty uses 9,999 session-node bootstrap draws. Each sampled occurrence of
+a session receives its own bootstrap identity; all source-to-target pairs
+implied by the sampled endpoints are rebuilt, and whole blocks/trials are then
+resampled inside each occurrence. Pairs are never sampled as independent
+observations. A draw that loses fixed-effect rank or a required denominator is
+not quietly discarded or redrawn: it enters the lower tail as minus infinity
+and the upper tail as plus infinity. If the required 95% bound is therefore
+unbounded, that participant's result is unresolved. This makes weak session
+support visible instead of conditioning uncertainty on the convenient draws.
 
 The proposed practical anchor for an important extra long-gap loss is **0.10
 normalized units**. The exact threshold and its uncertainty rule must be set
 before neural scores are examined. A failed or unstable denominator remains an
 unresolved comparison rather than being removed after the fact.
 
-Sessions are compared only when they share the same participant, physical
-array set, and observed target schedule. Schedule matching may remove
+The primary estimand uses only chronological pairs: the source session must
+precede the target session. Reversing an eligible pair is a required transport-
+asymmetry sensitivity, but that reverse score does not enter the adjusted
+long-gap contrast or either local-signal contrast. Sessions are compared only
+when they share the same participant, physical array set, and observed target
+schedule. Schedule matching may remove
 translation and scale, but not rotation or reflection. A task name is not
 assumed when the release does not provide one. Size-dependent schedules are
 excluded when target size is unavailable.
@@ -129,12 +187,22 @@ does not substitute another person after seeing outcomes.
 
 ### 1. Less locally recoverable signal
 
-We compare the later session's own above-null score with the corresponding
-source-session score. A signal-reduction result requires both a fall in the
-later-session benchmark and a fall in the transported mapping's above-null
-score. The proposed anchor is a **15% larger fractional reduction** for
-long-gap than near-gap transitions; the accompanying raw-score threshold still
-needs to be chosen before scoring.
+For session `u`, let `J_u` be its fold-averaged locally fitted score minus its
+fold-averaged null score. For a chronological source-to-target pair, the local fractional change is
+`(J_target - J_source) / J_source`; the source must first clear the fixed
+readiness threshold. The accompanying raw quantity is the transported mapping
+score on the target minus that target's null score.
+
+Within each lag class and connected schedule component, every target session
+gets equal total weight, divided equally among its eligible source sessions.
+The two diagnostic contrasts are the long-gap mean minus the near-gap mean for
+the fractional local change and for the raw transported above-null score. They
+use exactly the same components, which must contain both gap classes; schedule
+groups and then components receive equal weight. A signal-reduction result
+requires simultaneous upper bounds for both contrasts to fall below their
+negative margins in every held-out participant. The proposed fractional anchor
+is a **15% larger reduction** at long gaps; the raw-score margin still must be
+fixed before scoring.
 
 This result would mean that less direction-related signal is recoverable under
 the specified feature, trial, and model choices. It would not show that motor
@@ -180,7 +248,7 @@ budget response.
 
 | Evidence pattern | Scientific reading |
 | --- | --- |
-| No extra loss at long gaps | Under this analysis, long separation does not add a reproducible mapping deficit beyond ordinary session difficulty |
+| Extra normalized transport loss is not established | The positive long-gap margin was not cleared; this is not evidence of equivalence or absence, and the separate local-signal route can still pass |
 | Later-session benchmark also declines | Less usable direction signal is locally recoverable in later sessions |
 | Recording-state emulator reproduces the deficit | Observed channel and recording changes are sufficient for the eligible chronological transitions |
 | Thirty-two labels repair the deficit | A meaningful part of the mismatch is recoverable with a fixed low label budget |
@@ -194,7 +262,7 @@ budget response.
 - a deliberately invalid random-bin split to expose leakage;
 - `sbp` compared with the pre-set `tx_4_5` feature sensitivity;
 - source- and target-session difficulty controls;
-- reciprocal earlier-to-later and later-to-earlier comparisons;
+- reverse-direction scores reported only as a transport-asymmetry control;
 - direction and observed-target-schedule balance checks;
 - identical 16/32/64 trial-budget curves;
 - past-only normalization compared with a descriptive whole-session upper bound;

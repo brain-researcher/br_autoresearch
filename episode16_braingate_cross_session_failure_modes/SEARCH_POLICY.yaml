@@ -28,7 +28,9 @@ session_pairs:
   near_pairs_per_held_out_participant_minimum: 6
   long_pairs_per_held_out_participant_minimum: 6
   near_and_long_pairs_must_share_a_schedule_group: true
-  include_both_directions_when_eligible: true
+  primary_direction: chronological_earlier_source_to_later_target_only
+  reciprocal_direction_role: required_transport_asymmetry_sensitivity_only
+  reciprocal_pairs_enter_primary_adjusted_or_local_signal_estimands: false
   alternate_gap_sensitivity_days: [14, 365]
   alternate_gap_sensitivity_can_replace_primary: false
   schedule_matching:
@@ -76,21 +78,97 @@ same_trial_benchmarks:
   - recalibrated_earlier_session_model
 
 primary_long_gap_test:
-  quantity: transported_loss_scaled_by_later_session_score_above_null
+  score_symbols:
+    B_target: direction_balanced_null_score_on_target_evaluation_trials
+    L_target: target_local_model_score_on_the_same_target_evaluation_trials
+    F_source_target: unchanged_source_model_score_on_the_same_target_evaluation_trials
+  fold_aggregation: average_each_score_equally_over_the_two_reversed_outer_folds_before_any_subtraction_or_ratio
+  quantity: "R_source_target = (L_target - F_source_target) / (L_target - B_target)"
+  interpretation: fraction_of_target_locally_recoverable_above_null_performance_lost_in_transport
+  denominator_readiness:
+    requirement: L_target_minus_B_target_must_be_finite_and_exceed_predeclared_readiness_minimum
+    failure: pair_and_registered_connected_component_unresolved_pair_not_dropped
+    epsilon_replacement: prohibited
+  clipping: prohibited_values_below_zero_or_above_one_are_retained
+  primary_pairs: chronological_earlier_source_to_later_target_only
+  reciprocal_pairs: sensitivity_only_not_in_primary_or_local_signal_estimands
   comparison: long_gap_minus_near_gap
+  adjusted_model: normalized_transport_loss_equals_component_intercept_plus_source_session_effect_plus_target_session_effect_plus_long_gap_effect
+  fit_separately_within: connected_participant_by_observed_schedule_component
+  adjusted_contrast: coefficient_on_long_gap_indicator
+  source_and_target_effect_constraints: sum_to_zero_within_component
   adjust_for_source_session_difficulty: true
   adjust_for_target_session_difficulty: true
   weight_each_target_session_equally: true
-  robust_check: target_balanced_median_long_minus_near
+  component_identifiability:
+    both_near_and_long_pairs_required: true
+    full_constrained_design_rank_required: true
+    condition_number_maximum: null
+    residualized_long_indicator_norm_minimum: null
+    maximum_session_node_leverage: null
+    numeric_limits_set_before_neural_scores: true
+    all_claim_contributing_components_must_pass: true
+    failed_gate: unresolved_support_failure
+    pairs_may_be_dropped_to_restore_rank: false
+  component_aggregation: equal_schedule_group_then_equal_connected_component
+  uncertainty:
+    method: session_node_bootstrap_with_nested_whole_block_trial_resampling
+    draws: 9999
+    confidence_level: 0.95
+    session_nodes_sampled_with_replacement_per_participant: same_count_as_observed
+    rebuild_all_induced_source_target_pairs: true
+    account_for_sessions_used_as_source_and_target: true
+    resample_pairs_as_independent_observations: false
+    simultaneous_family:
+      - adjusted_normalized_long_gap_contrast
+      - target_balanced_robust_median_contrast
+      - fractional_local_signal_contrast
+      - raw_transported_above_null_contrast
+    simultaneous_method: one_sided_Bonferroni_bootstrap_percentile_bounds
+    familywise_alpha_within_participant: 0.05
+    repeated_node_rule: >-
+      Give every sampled occurrence of a session its own bootstrap-node identity,
+      rebuild every eligible chronological primary pair implied by the sampled
+      endpoint occurrences, and resample whole blocks and trials within each
+      occurrence.
+    nonestimable_draw_rule: >-
+      Never redraw or silently omit a replicate whose fixed-effect design loses
+      rank or whose required denominator fails. Treat it as minus infinity for
+      a lower bound and plus infinity for an upper bound; if this makes a required
+      95 percent bound infinite, that participant's conclusion is unresolved.
+  robust_check:
+    within_target_and_lag: median_R_across_eligible_chronological_sources
+    within_component_and_lag: median_across_target_level_medians
+    component_contrast: long_minus_near
+    participant_aggregation: equal_schedule_group_then_equal_connected_component
   both_primary_and_robust_check_must_clear_margin: true
   participant_is_inferential_unit: true
   session_pairs_are_not_independent_participants: true
 
 diagnostic_questions:
   locally_weaker_signal:
-    evidence:
-      - later_session_above_null_score_declines_more_at_long_gaps
-      - transported_above_null_score_also_declines
+    may_be_supported_without_extra_normalized_transport_loss: true
+    local_score_J_session: session_local_model_score_minus_same_session_null_score
+    source_readiness: source_J_must_clear_the_predeclared_readiness_minimum
+    session_scores_aggregated_equally_over_outer_folds_before_differences_or_ratios: true
+    pair_direction: chronological_earlier_source_to_later_target_only
+    reciprocal_pairs_enter_contrast: false
+    pair_fractional_local_change: (J_target_minus_J_source)_divided_by_J_source
+    pair_transported_above_null: transported_source_to_target_score_minus_target_null_score
+    pair_weighting: >-
+      Within each lag class and connected schedule component, give every target
+      session equal total weight and divide that target's weight equally among
+      its eligible source sessions.
+    component_fractional_contrast: long_mean_pair_fractional_local_change_minus_near_mean
+    component_raw_transport_contrast: long_mean_pair_transported_above_null_minus_near_mean
+    participant_aggregation: equal_schedule_group_then_equal_connected_component
+    support_set: >-
+      Use the identical connected components for the fractional and raw
+      contrasts, and require both near and long pairs in every component.
+    uncertainty: same_session_node_bootstrap_and_simultaneous_family_as_primary
+    decision: >-
+      The simultaneous upper bounds for both contrasts must be below their
+      negative margins in each held-out participant.
     fractional_reduction_anchor: -0.15
     raw_score_decline_margin: null
   observable_recording_change_sufficient:
@@ -139,6 +217,9 @@ numeric_values_required_before_neural_scoring:
   matched_random_separation_margin: null
   later_session_above_null_readiness_minimum: null
   raw_transport_gap_readiness_minimum: null
+  long_gap_design_condition_number_maximum: null
+  long_gap_residualized_indicator_norm_minimum: null
+  long_gap_maximum_session_node_leverage: null
   schedule_coordinate_tolerance: null
   onset_offset_ms: null
   channel_quality_cutoffs: null
@@ -277,6 +358,8 @@ final_held_out_evaluation:
   results_may_change_methods_or_thresholds: false
   participant_replacement: false
   shared_profile_route_requires_same_conclusion_in_each_participant: true
+  local_signal_route_is_adjudicated_without_requiring_extra_normalized_transport_loss: true
+  recording_and_recalibration_mechanism_claims_require_extra_normalized_transport_loss: true
   population_p_value_claim: false
   smallest_three_sign_exact_probability: 0.125
   heterogeneity_requires:
@@ -292,7 +375,7 @@ possible_conclusions:
   - reproducible_later_session_signal_reduction
   - reproducible_combination_of_explanations
   - reproducibly_different_participant_profiles
-  - no_additional_long_gap_loss
+  - additional_long_gap_loss_not_established_without_equivalence_claim
   - long_gap_loss_does_not_repeat_across_participants
   - explanations_differ_without_within_person_replication
   - support_or_uncertainty_prevents_an_answer

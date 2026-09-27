@@ -200,6 +200,103 @@ reference_model_order_question:
   all_pairs_share_one_simultaneous_uncertainty_rule: true
   newly_searched_model_may_join_reference_panel: false
 
+temporal_frequency_explanation:
+  role: operationally explain a strict-horizon EEG increment or horizon-dependent model-family edge
+  claim_type: dependence_on_prespecified_nonoverlapping_input_blocks_not_a_distinct_physiological_generator
+  primary_log_score_endpoint_changes: false
+  trained_before_held_out_scoring_for:
+    - all five reference model families
+    - the strongest eligible reference selected on development data
+  interpreted_for:
+    - strongest eligible reference model
+    - every resolved model-family edge that changes between the two main horizons
+  non_neural_context_and_peripheral_branch_unchanged: true
+  factorized_EEG_input:
+    cutoff_before_decision_ms: 200
+    discrete_boundary_assignment:
+      older_raw_support: samples_strictly_before_t_minus_200ms
+      recent_raw_support: samples_at_or_after_t_minus_200ms_and_strictly_before_t
+      cutoff_sample_belongs_to: recent_block_only
+    blocks:
+      older_complement_background: causal_complementary_EEG_with_raw_support_strictly_before_t_minus_200ms
+      R_recent: raw_or_broadband_EEG_on_half_open_interval_t_minus_200ms_to_t
+      O_older_slow: causal_0p5_to_8Hz_EEG_with_raw_support_strictly_before_t_minus_200ms
+    tested_R_and_O_blocks_have_nonoverlapping_raw_time_support: true
+    fixed_causal_filter_delay_warmup_gap_reset_and_boundary_rule: true
+    centered_filter_future_padding_or_cross_cutoff_window: prohibited
+    every_family_Q11_must_be_equivalent_to_its_original_full_reference_at_both_horizons: true
+    failed_equivalence: explanation_unavailable_primary_forecast_unchanged
+  factorial_conditions:
+    Q11: recent_and_older_slow_present
+    Q01: recent_absent_older_slow_present
+    Q10: recent_present_older_slow_absent
+    Q00: recent_and_older_slow_absent
+    train_every_condition_from_start: true
+    identical_input_tensor_shape_parameter_count_optimizer_epochs_and_random_seed_bank: true
+    absent_block: zeros_after_development_frozen_block_scaling_with_no_missingness_indicator
+  leakage_and_state_rules:
+    normalization_parameters: development_fit_and_frozen_never_decision_window_or_whole_session
+    recent_absent_state: >-
+      Every filter, covariance window, normalization statistic, convolutional
+      state, and recurrent update after the cutoff receives only the fixed zero
+      recent block; older state may propagate but recent raw samples may not.
+    recent_segment_mutation_test: >-
+      Arbitrarily changing raw EEG in the final 200ms must leave Q01 and Q00
+      predictions unchanged within the fixed numerical tolerance.
+    older_slow_block_mutation_test: >-
+      Arbitrarily changing only the constructed older-slow block must leave Q10
+      and Q00 predictions unchanged within the same tolerance.
+  factorial_effects:
+    recent_main_effect: "R_h = 0.5 * ((Q11_h - Q01_h) + (Q10_h - Q00_h))"
+    older_slow_main_effect: "O_h = 0.5 * ((Q11_h - Q10_h) + (Q01_h - Q00_h))"
+    interaction: "I_h = Q11_h - Q10_h - Q01_h + Q00_h"
+    report_interaction_at_both_horizons: true
+    separable_claim_requires_interaction_inside_development_fixed_equivalence_margin: true
+  decisive_prediction:
+    required_positive_contrasts:
+      - R_0_to_300ms
+      - O_300_to_600ms
+      - R_0_to_300ms_minus_O_0_to_300ms
+      - O_300_to_600ms_minus_R_300_to_600ms
+    success_rule: simultaneous one-sided lower bounds for all four contrasts exceed zero
+  model_edge_explanation:
+    reference_family_order: [past_only_filterbank_bandpower_elastic_net, past_only_covariance_riemannian_tangent_model, past_only_compact_EEGNet, dilated_past_only_temporal_convolutional_network, small_one_directional_GRU]
+    canonical_orientation: earlier_family_minus_later_family_in_reference_family_order
+    all_ten_edges_evaluated_regardless_of_held_out_edge_state: true
+    development_freeze_for_each_edge: expected_component_recent_or_older_slow_expected_sign_or_no_explanation
+    simultaneous_family: all_ten_edges_by_recent_effect_older_slow_effect_and_their_difference_by_both_horizons
+    replication_rule: >-
+      The frozen signed edge contrast must clear its simultaneous WAY lower
+      bound, its self-paced participant-macro lower bound, and have the same
+      sign in the same at least 6 of 8 held-out self-paced participants.
+    claim_rule: >-
+      A changed edge receives an explanation only when its development-frozen
+      component-effect contrast clears the simultaneous held-out bound and the
+      same signed contrast repeats in the second task. Otherwise report the
+      ranking change without an explanation.
+  preferred_explanation: >-
+    Under the factorized representation, the near-event score depends more on
+    the final 200ms block while the strict score depends more on older slow EEG.
+  competing_explanation: >-
+    Both horizons depend on the same input block, or the apparent split is due
+    to representation capacity or a recent-state leak rather than different
+    temporal support.
+  competing_pattern:
+    - the recent main effect dominates at both horizons
+    - the older-slow main effect dominates at both horizons
+    - the interaction is too large for a separable block account
+    - either block-mutation test fails
+  confirmation:
+    development_only_sources:
+      - WAY series 1 through 7
+      - all 15 self-paced development participants
+    held_out_WAY_series: [8, 9]
+    held_out_WAY_rule: all_four_decisive_contrasts_have_positive_simultaneous_lower_bounds
+    held_out_self_paced_macro_rule: all_four_contrasts_have_positive_simultaneous_lower_bounds
+    held_out_self_paced_people_rule: the_same_at_least_6_of_8_people_have_all_four_positive_contrasts
+  if_prediction_fails: retain the primary forecast result but withhold this explanation
+  other_windows_bands_saliency_and_receptive_field_plots: descriptive_only
+
 secondary_new_model_search:
   role: improve_strict_forecast_without_redefining_reference_order
   starts_from: strongest_eligible_reference
@@ -250,7 +347,34 @@ self_paced_calibration:
     scored_suffix_may_select_epoch_or_parameters: false
     may_rescue_primary_32_event_result: false
 
+secondary_probability_and_warning_results:
+  may_redefine_or_rescue_primary_log_score_result: false
+  probability_reliability:
+    bins_defined_on_development_data_and_frozen: true
+    report:
+      - observed versus predicted onset frequency
+      - calibration intercept
+      - calibration slope
+      - Brier score
+      - every participant and both sources
+  event_warning:
+    input_probability: probability of onset 300 to 600 ms ahead
+    warning_window_before_onset_ms: [300, 600]
+    fixed_using_development_data_only:
+      - probability threshold
+      - persistence rule
+      - refractory period
+      - numerical false-alarm ceiling
+    false_alarm_ceiling_per_hour_of_eligible_stillness: null
+    no_held_out_threshold_adjustment: true
+    held_out_report:
+      - false alarms per hour of eligible stillness
+      - fraction of movements with a warning 300 to 600 ms before onset
+      - first-warning lead-time distribution
+  interpretation_limit: secondary offline operating point, not demonstrated online BCI utility
+
 margins_required_before_candidate_EEG_scores:
+  probability_vector_sum_absolute_tolerance: 0.000001
   real_minus_non_neural_primary_minimum: null
   real_minus_zero_EEG_primary_minimum: null
   real_minus_surrogate_primary_minimum: null
@@ -261,7 +385,9 @@ margins_required_before_candidate_EEG_scores:
   near_event_readiness_minimum: null
   model_pair_margin_near: null
   model_pair_margin_primary: null
-  calibration_tolerance: null
+  factorized_full_reference_equivalence_margin: null
+  factorial_interaction_equivalence_margin: null
+  block_mutation_numerical_tolerance: null
   longer_horizon_non_degradation_margin: null
   participant_robustness_rule: null
   synchronization_uncertainty_max_ms: null
@@ -279,6 +405,19 @@ uncertainty:
   confidence_level: 0.95
   three_EEG_comparisons_share_simultaneous_bounds: true
   all_reference_pairs_and_both_horizons_share_simultaneous_bounds: true
+  four_factorial_main_effect_contrasts_share_simultaneous_bounds: true
+  all_ten_edges_by_recent_effect_older_slow_effect_and_their_difference_by_both_horizons_share_simultaneous_bounds: true
+  factorial_equivalence:
+    method: two_sided_participant_bootstrap_simultaneous_confidence_intervals
+    multiplicity_rule: one_max_absolute_centered_statistic_family
+    joint_scope:
+      sources: [WAY_held_out, self_paced_held_out]
+      reference_model_families: 5
+      horizons: [0_to_300ms, 300_to_600ms]
+      endpoint_types: [Q11_minus_original_full_reference, factorial_interaction]
+    Q11_reference_call: every_interval_inside_plus_or_minus_factorized_full_reference_equivalence_margin
+    separable_contribution_call: every_in_scope_interaction_interval_inside_plus_or_minus_factorial_interaction_equivalence_margin
+    margins_and_interval_rule_frozen_on_development_data: true
   point_estimates_alone_do_not_determine_a_model_order_state: true
 
 initial_coverage:
@@ -292,6 +431,9 @@ synthetic_tests_before_real_EEG_scores:
     - context_only_risk_with_no_EEG_increment
     - prospective_EEG_pattern_at_prespecified_signal_levels
     - near_event_only_movement_artifact
+    - known_recent_near_and_older_slow_strict_factorial_pattern
+    - same_input_block_drives_both_horizons
+    - recent_segment_leaks_through_filter_normalizer_covariance_or_recurrent_state
     - shifted_EEG_capacity_control
     - cue_only_timing_signal
     - participant_identity_only_signal
@@ -325,7 +467,10 @@ required_controls:
   - non_neural_baseline_vs_zero_EEG_model
   - pre_set_onset_sensitivity_range
   - raw_voltage_vs_past_only_filterbank_representation
-  - receptive_field_and_low_frequency_ablation
+  - fixed_shape_recent_by_older_slow_factorial_models
+  - final_200ms_raw_segment_mutation_invariance_for_recent_absent_models
+  - constructed_older_slow_block_mutation_invariance_for_older_slow_absent_models
+  - factorized_full_input_equivalence_to_original_full_reference
   - leave_one_development_participant_and_series_out
   - zero_label_vs_identical_32_event_calibration_packet
 
@@ -382,13 +527,17 @@ final_held_out_evaluation:
     - each_neural_comparison_positive_in_at_least_6_of_8_people
     - participant_macro_value_clears_margin_for_all_three
     - every_leave_one_participant_mean_has_positive_direction_for_all_three
-  required_reliability:
+  required_primary_validity:
     - all_past_only_information_checks_pass
-    - primary_horizon_calibration_passes_in_both_sources
+    - every_probability_vector_is_finite_nonnegative_and_sums_to_one_within_fixed_tolerance
     - zero_EEG_model_is_noninferior_to_non_neural_baseline_in_both_sources
     - participant_robustness_rule_passes
     - longer_horizon_non_degradation_rule_passes
     - p95_latency_and_resource_limits_pass
+  secondary_results_reported_without_gating_primary:
+    - participant-level probability reliability and Brier score
+    - event detection false alarms and lead time under the development-fixed warning rule
+    - held-out recent-by-older-slow factorial prediction
   new_model_requirement:
     role: secondary
     must_exceed_best_eligible_reference_by_pre_set_final_margin: true
@@ -405,10 +554,12 @@ possible_conclusions:
   - prospective_EEG_increment_with_model_order_changed
   - prospective_EEG_increment_with_model_order_uncertain
   - prospective_EEG_increment_without_an_initial_reference_order
+  - prospective_EEG_increment_with_supported_recent_versus_older_slow_explanation
+  - prospective_EEG_increment_but_input_block_explanation_not_supported
   - near_event_signal_but_no_resolved_300_to_600ms_increment
   - no_resolved_EEG_increment_at_300_to_600ms
   - real_EEG_fails_zero_or_surrogate_specificity
-  - forecast_fails_calibration_robustness_latency_or_longer_horizon_check
+  - forecast_fails_probability_validity_robustness_latency_or_longer_horizon_check
   - WAY_result_does_not_repeat_in_the_8_person_second_task
   - bounded_new_model_search_finds_no_improvement
   - required_comparison_remains_uncertain
@@ -420,6 +571,7 @@ claim_limits:
   - no_causal_motor_preparation_claim
   - no_earliest_biological_command_claim
   - no_claim_before_unmeasured_peripheral_change
+  - no_distinct_physiological_generator_claim_from_factorial_input_dependence
   - no_universal_model_order
   - no_zero_shot_new_task_claim
   - no_online_BCI_safety_or_clinical_benefit_claim
@@ -433,6 +585,12 @@ readiness:
     - exact_onset_and_stillness_rules
     - executable_reference_models_and_source_specific_non_neural_baselines
     - complete_32_event_calibration_values
+    - executable_fixed_shape_recent_by_older_slow_factorial_models
+    - factorized_full_reference_equivalence_margin_and_interaction_margin
+    - both_forbidden_block_mutation_tests_and_numerical_tolerance
+    - verified_predecision_history_and_frequency_support_in_both_sources
+    - development_fixed_warning_threshold_persistence_refractory_period_and_false_alarm_ceiling
+    - eligible_stillness_exposure_for_false_alarm_rates
     - numeric_margins_listed_above
     - finite_allowed_model_changes
     - self_paced_development_fold_assignment

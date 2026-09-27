@@ -18,12 +18,16 @@ paper should then ask what the pilot actually revealed:
    population information missing from the other retained electrodes?
 2. Can the current calibration errors predict which reach direction will
    benefit most from the next trial?
-3. Can it predict whether a session is more sensitive to adding electrodes or
+3. Does changing the retained electrode set predictably change which reach
+   direction is worth sampling next?
+4. Can it predict whether a session is more sensitive to adding electrodes or
    adding calibration trials, while keeping those resources in separate units?
 
 A method that wins only the average score is an engineering candidate. A
 method whose pilot measurements predict later electrode and trial value in new
-sessions supports an acquisition principle.
+sessions supports an acquisition principle. Calling that principle **joint**
+requires evidence that electrode choice changes the value of the next trial;
+two independent improvements are not enough.
 
 ## A concrete example
 
@@ -60,7 +64,7 @@ LFP-to-population value.
 
 ## Study sequence
 
-### 1. Test the joint acquisition rule at matched budgets
+### 1. Test the combined acquisition rule at matched budgets
 
 Use four development and two untouched sessions per animal if the data support
 that split. Give every method the same pilot and evaluate the complete grid:
@@ -74,6 +78,25 @@ Use the same reduced-rank ridge decoder, population target, and evaluation
 trials for every method. Preserve the equal-cell, animal-balanced primary score
 and the `(4,32)` and `(8,64)` scarce-resource settings. Report every grid cell
 and every session, including failures.
+
+At each of the nine fixed budgets, run this complete comparison:
+
+| | Balanced trials | Adaptive trials |
+| --- | --- | --- |
+| Simple quality-and-reliability electrodes | `Q_SB`: reference | `Q_SA`: trial-selection contribution |
+| Conditional-value electrodes | `Q_CB`: electrode-selection contribution | `Q_CA`: combined contribution |
+
+Report `Q_CB - Q_SB`, `Q_SA - Q_SB`, and `Q_CA - Q_SB`, together with the
+factorial interaction `Q_CA - Q_CB - Q_SA + Q_SB`. Also show the electrode
+contrast under adaptive trials and the trial contrast under conditional-value
+electrodes. Random and spatial selectors remain useful additional benchmarks,
+but they cannot replace one of these four cells.
+
+A combined-policy result requires `Q_CA` to beat the strongest cost-matched
+simple rule under the primary decision. If the two component gains are
+positive but the interaction is practically absent, the paper reports two
+individually useful methods. It does not yet claim a joint acquisition
+principle.
 
 This step answers whether one global method works on four internal held
 sessions. It does not show that a retained electrode is biologically special,
@@ -122,11 +145,49 @@ cross-validated calibration error, uncertainty, and residual diversity.
 Compare the selected direction with balanced and random choices at the same
 point in the recorded trial order.
 
+Do not infer learnability from a large current error or from one fortunate
+next trial. Fix common, balanced replay states before neural scoring and repeat
+the branch test across several ordinary within-direction trial orders.
+Candidate checkpoints are after 16, 32, 64, and 96 additional trials; retain
+only checkpoints supported by every primary session, and freeze that common
+list before looking at policy performance. The value score must predict
+average future benefit and beat balance across states and orders. Persistent
+error without repeatable reduction is evidence for irreducible or unmodelled
+variation, not for adaptive sampling.
+
 This is retrospective recorded-data analysis. It assumes that trials within a
 direction are reasonably exchangeable in the prespecified order. It does not
 show how an animal would respond if a real-time system requested a movement.
 
-### 4. Keep electrode and trial resources in separate units
+### 4. Test whether electrode choice changes next-trial value
+
+This is the decisive prediction for a joint acquisition principle. At a common
+replay state, keep the calibration trials fixed and change only the retained
+electrode set. Compare the simple quality-and-reliability set with the
+conditional-value set at the same electrode count. Also make one-for-one swaps
+matched on pilot reliability, artifact rate, and missingness but differing in
+pilot-predicted complementarity.
+
+Before revealing any branch trial, predict how each swap will change the
+ordering of `V_direction`. The preferred explanation is that the retained set
+changes which population components are recoverable, creating a different
+learnable deficit across reach directions. It predicts that the direction
+ordering changes in the stated way and that the corresponding realized
+benefit repeats across replay orders.
+
+The competing explanation is simpler: clean electrodes and direction balance
+are independently useful. It predicts additive performance in the four-cell
+comparison and little or no change in next-direction ordering after a
+quality-matched swap. That outcome still supports useful acquisition methods,
+but not a joint principle.
+
+The coupling claim requires enough trials to branch all legal directions from
+the same states, enough future trials to repeat the comparison across orders,
+physical electrode identities and pilot quality measures for matched swaps,
+and the same untouched population target for every branch. If those data are
+not available, keep the supported policy result and drop the coupling claim.
+
+### 5. Keep electrode and trial resources in separate units
 
 Use the nine-cell surface to report explicit step contrasts, for example:
 
@@ -146,7 +207,7 @@ rule predict the shape of a session's nine-cell surface or at least the sign of
 the prespecified step contrasts? With only eight development sessions, every
 leave-one-session and leave-one-animal failure must be reported.
 
-### 5. Test the explanation in a third animal
+### 6. Test the explanation in a third animal
 
 Before viewing outcomes in an external session, choose:
 
@@ -155,13 +216,16 @@ Before viewing outcomes in an external session, choose:
 - pilot and within-direction trial order;
 - electrode selector, trial allocator, and decoder;
 - conditional electrode and next-direction value definitions;
+- common replay states, replay orders, quality-matched swaps, and the coupling
+  prediction;
 - prediction scores, effect margins, uncertainty, and multiple-testing plan;
 - behavior when geometry or trial support is missing; and
 - the complete result table.
 
 The external study should ask whether pilot-only rules predict conditional
-electrode and trial value in every eligible held session and whether the joint
-method beats the same comparisons across the supported grid. If development
+electrode and trial value in every eligible held session, whether changing the
+retained set predicts the change in next-direction ordering, and whether the
+combined method beats all four factorial comparisons across the supported grid. If development
 sessions from the third animal are needed, they must be declared and kept
 separate from its final test sessions.
 
@@ -178,6 +242,8 @@ source is currently available.
 | Spatial spread is sufficient | Geometry-only farthest-first and shuffled locations | Claim spatial coverage only if it transfers and the location shuffle fails |
 | A learned ranker memorizes sessions | Whole-session cross-fitting, permuted value labels, and leave-one-animal transfer | Reject the learned explanation if it does not transfer |
 | Trial gain is only direction balancing | Balanced allocation with the same counts and position in the trial order | Use the simpler balanced rule; do not claim uncertainty targeting |
+| A high-error direction is irreducibly noisy | Repeat every legal next-direction branch across prespecified common states and trial orders | Do not call error learnable unless predicted benefit repeats beyond one future trial |
+| Electrode and trial methods help independently | Four-cell factorial contrasts plus quality-matched electrode swaps at fixed replay states | Report two methods; reserve “joint principle” for a predicted change in next-direction ordering |
 | One grid cell creates the average | Full nine-cell surface and session-level influence | Narrow or reject the global policy claim |
 | High-frequency features exploit spike-rich content | Low-frequency-only and spike-contamination sensitivities | Limit the signal interpretation or reject the method |
 | Recorded data stand in for an online experiment | State the exchangeability assumption and require a prospective interaction study | Keep the claim retrospective |
@@ -186,7 +252,8 @@ source is currently available.
 
 | Evidence | Next action and permitted claim |
 | --- | --- |
-| Joint method passes; both value predictions repeat and transfer to a third animal | Develop a joint acquisition principle for the declared LFP representation and protocol |
+| Joint method passes; both value predictions repeat and transfer to a third animal | Develop a joint acquisition principle for the declared LFP representation and recording setup |
+| Electrode and trial contributions pass but their interaction and coupling prediction do not | Report two individually useful acquisition methods, not a joint principle |
 | Electrode prediction succeeds but adaptive trials do not beat balance | Focus on post-pilot electrode retention and recommend balanced calibration trials |
 | Trial prediction succeeds but complex electrode selection does not beat reliability | Focus on calibration sampling and keep a simple quality rule for electrodes |
 | Method wins but neither explanatory prediction works | Report a bounded engineering result without a story about unique electrodes or informative directions |
@@ -199,11 +266,12 @@ source is currently available.
 
 | Figure | Scientific judgment | Required content |
 | --- | --- | --- |
-| 1. Does the acquisition rule work? | One global method beats all cost-matched simple rules | Sequential design, full nine-cell surface, all sessions and animals, random distribution, full-resource ceiling |
+| 1. Does the acquisition rule work? | One global method beats all cost-matched simple rules | Sequential design, four-cell factorial comparison at every one of the nine budgets, all sessions and animals, random distribution, full-resource ceiling |
 | 2. Which electrodes add unique information? | Pilot-only measurements predict conditional electrode value | Example array, signal quality and redundancy, predicted versus observed removal loss, reliability-only comparison |
-| 3. Which direction should come next? | Pre-choice information predicts next-trial value beyond balance | Choice timeline, direction-wise errors, all alternative next directions, balanced and random comparisons |
-| 4. What is the bottleneck? | Electrode and trial axes show reproducible main effects or interaction | Prespecified grid-step contrasts, no unsupported common-cost conversion, animal/session influence |
-| 5. Does the explanation transfer? | The same pilot interpretation and joint method work in a new animal | Third-animal roles chosen in advance, every held session, failures, mechanism and performance predictions |
+| 3. Which direction should come next? | Pre-choice information predicts repeatable next-trial value beyond balance | Choice timeline, direction-wise errors, all alternative next directions, prespecified replay states and orders, balanced and random comparisons |
+| 4. Are the choices coupled? | A quality-matched electrode swap predictably changes which direction is worth sampling | Fixed replay states, four factorial contrasts, predicted and observed direction-order changes, repeated future-trial branches |
+| 5. What is the bottleneck? | Electrode and trial axes show reproducible main effects or interaction | Prespecified grid-step contrasts, no unsupported common-cost conversion, animal/session influence |
+| 6. Does the explanation transfer? | The same pilot interpretation and joint method work in a new animal | Third-animal roles chosen in advance, every held session, failures, mechanism and performance predictions |
 
 The abstract should name the pilot-visible property that predicted later value,
 say whether electrode selection, trial allocation, or both mattered, and state

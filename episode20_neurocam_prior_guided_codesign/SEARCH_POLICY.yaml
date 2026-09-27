@@ -1,6 +1,6 @@
 version: 2
 episode: EP20
-question: Can a constrained NeuroCam redesign recover cortical voltage fields better?
+question: When should a constrained NeuroCam redesign recover cortical voltage fields better?
 
 documentary_reference:
   final_article_doi: 10.1016/j.scib.2025.11.030
@@ -74,6 +74,40 @@ reference_check:
   tolerances_need_synthetic_calibration_and_scientist_approval: true
   failed_reference_check_means_codesign_question_not_tested: true
 
+reference_model_equivalence_and_rank_stability:
+  retain_every_predeclared_model_that_passes_calibration_and_held_aside_checks: true
+  varying_mechanisms:
+    - pad_area_noise_and_impedance_scaling
+    - pad_averaging
+    - history_dependent_settling
+    - multiplexed_scan_crosstalk
+  checks:
+    sentinel_before_optimization:
+      - published_uniform_design
+      - one_interleaved_two_scale_design
+      - one_tiled_two_scale_design
+      - one_fixed_revisit_design
+      - one_joint_geometry_and_revisit_design
+    finalists_after_development:
+      freeze_one_representative_or_deterministic_selection_rule_for_each_family:
+        - D0
+        - D1
+        - D2
+        - D3
+      family_selection_uses_every_accepted_reference_model: true
+      same_representative_or_rule_must_pass_in_every_accepted_reference_model: true
+      scores_are_not_averaged_across_reference_models: true
+      repeat_rank_stability_check_before_independent_test: true
+  same_fields_resources_and_software_allowance_across_models: true
+  material_rank_reversal:
+    definition: two_accepted_models_have_different_unique_winners_and_each_simultaneous_one_sided_lower_bound_exceeds_the_tie_tolerance
+    within_model_winner_minus_runner_up_R2_lower_bound_minimum_exclusive: 0.005
+  if_material_reversal_remains:
+    candidate_optimization_is_informative: false
+    select_a_candidate: false
+    next_step: identify_and_obtain_the_device_measurement_that_best_separates_the_models
+    reporting_one_optimum_per_model_is_sensitivity_analysis_only: true
+
 scientific_target:
   primary: cortical_surface_voltage_on_common_dense_grid
   primary_band_hz: [1, 100]
@@ -130,27 +164,28 @@ software:
   uncertainty_output_required: true
   candidate_parameter_count_planning_maximum: 5000000
   exact_parameter_and_training_step_maximum: null
-  same_capacity_optimizer_data_steps_attempts_and_seeds_for_D1_D3_D4: true
+  same_capacity_optimizer_data_steps_attempts_and_seeds_for_C1_C3_C4: true
   train_each_hardware_operator_separately: true
   reuse_candidate_weights_for_comparators: false
 
 five_way_comparison:
-  D0_published_conventional:
+  namespace: C0_through_C4_fairness_comparison_arms
+  C0_published_conventional:
     hardware: complete_published_NeuroCam_setting_frontier
     software: conventional
-  D1_published_optimized:
+  C1_published_optimized:
     hardware: same_complete_published_frontier
     software: all_three_optimized_families_with_equal_allowance
-  D2_candidate_conventional:
+  C2_candidate_conventional:
     hardware: candidate_design_after_fabrication_rounding
     software: conventional_with_compatible_adapter
-  D3_candidate_codesign:
-    hardware: same_candidate_design_as_D2
-    software: optimized_family_chosen_from_D1_then_trained_separately
-  D4_simple_controls:
+  C3_candidate_codesign:
+    hardware: same_candidate_design_as_C2
+    software: optimized_family_chosen_from_C1_then_trained_separately
+  C4_simple_controls:
     hardware: every_registered_resource_matched_simple_geometry_or_schedule
-    software: same_optimized_family_and_allowance_as_D3
-  all_D0_and_D1_results_set_before_using_D2_D3_or_D4_results: true
+    software: same_optimized_family_and_allowance_as_C3
+  all_C0_and_C1_results_set_before_using_C2_C3_or_C4_results: true
   one_weak_reference_setting_is_not_enough: true
   choose_reference_per_scene_after_results: false
 
@@ -213,6 +248,145 @@ development_worlds:
   all_designs_share_same_fields_device_draws_nuisances_and_masks: true
   regenerate_unfavourable_worlds: false
 
+transferable_design_rule:
+  role: required_for_a_transferable_acquisition_principle
+  namespace: D0_through_D3_factorial_prediction_families_distinct_from_C_arms
+  legal_inputs_available_before_reconstruction_outcomes:
+    field_condition:
+      lambda_k:
+        meaning: one_over_twice_k90_where_k90_is_the_smallest_radial_spatial_frequency_containing_90_percent_of_common_mask_primary_band_truth_or_known_input_pilot_power
+        source: simulated_truth_or_separate_known_input_pilot_only
+        primary_unit: micrometres
+        also_report: common_grid_pixels
+      tau_k:
+        meaning: one_over_twice_f90_where_f90_is_the_smallest_temporal_frequency_containing_90_percent_of_demeaned_truth_or_known_input_pilot_power
+        source: simulated_truth_or_separate_known_input_pilot_only
+        unit: seconds
+    device_characterization_by_accepted_model_m_frozen_family_d_and_device_condition_k:
+      families: [D0, D1, D2, D3]
+      noise_mdk:
+        meaning: input_referred_RMS_noise_during_registered_zero_input_probe_in_primary_band
+        unit: microvolts
+      impedance_mdk:
+        meaning: 90th_percentile_small_signal_impedance_magnitude_across_1_to_100_Hz
+        unit: ohms
+      settling_mdk:
+        meaning: time_after_registered_unit_step_until_error_enters_and_remains_within_1_percent
+        unit: microseconds
+      crosstalk_mdk:
+        meaning: largest_nonnegative_adjacent_line_amplitude_ratio_during_registered_1_to_100_Hz_multisine_scan
+        unit: linear_amplitude_ratio
+        also_report: decibels
+      probes_and_summaries_are_frozen_before_reconstruction_outcomes: true
+  candidate_outcomes_may_define_inputs: false
+  posthoc_proposed_design_penalty_is_a_legal_input: false
+  family_representatives:
+    one_representative_or_deterministic_selection_rule_per_D0_D1_D2_D3: true
+    factorial_constraints:
+      D0: published_geometry_published_like_scan_conventional_reconstruction
+      D1: published_geometry_frozen_time_focused_legal_scan_and_software_recipe
+      D2: frozen_candidate_geometry_D0_scan_and_conventional_recipe
+      D3: D2_geometry_D1_time_focused_acquisition_and_separately_trained_measurement_aware_inverse
+      C4_role: required_simple_controls_not_a_predicted_family
+    source_comparison_arms:
+      D0: C0
+      D1: C1
+      D2: geometry_only_member_of_C2
+      D3: matched_joint_member_of_C3
+    chosen_on: development_conditions_crossed_with_every_accepted_reference_model
+    frozen_before_held_out_development_outcomes: true
+    one_global_hardware_specification_per_representative: true
+    deterministic_operating_recipe_may_depend_only_on_registered_resource_budget: true
+    adaptive_scheduler_may_use_only_frozen_past_only_inputs: true
+    representative_may_switch_hardware_or_recipe_using_condition_label_lambda_or_tau: false
+  utility_functions:
+    form: shallow_monotone_family_specific_function_within_each_accepted_model
+    observed_utility:
+      notation: U_mdk
+      definition: mean_primary_R2_over_paired_replicate_worlds_with_fixed_truth_mean_and_mask
+    predicted_utility:
+      notation: Uhat_md_of_x_mdk
+      inputs: lambda_k_tau_k_and_absolute_noise_impedance_settling_crosstalk_for_m_d_k
+      target: U_mdk
+    margins_are_applied_to_contrasts_not_utility: true
+    accepted_models_are_never_averaged: true
+    fit_on: development_conditions_separately_under_every_accepted_reference_model
+    freeze_before_held_out_development_outcomes: true
+    predicted_winner: argmax_over_D0_D1_D2_D3
+  two_by_two_branch:
+    S:
+      meaning: short_spatial_scale_and_pad_noise_and_impedance_costs_pass
+      spatial_demand: lambda_k_is_below_frozen_theta_lambda
+      pad_noise_cost: max_of_noise_D2_over_D0_and_noise_D3_over_D1_within_same_m_and_k
+      pad_impedance_cost: max_of_impedance_D2_over_D0_and_impedance_D3_over_D1_within_same_m_and_k
+      both_costs_must_be_at_or_below_their_frozen_thresholds: true
+    T:
+      meaning: short_temporal_scale_and_schedule_settling_and_crosstalk_costs_pass
+      temporal_demand: tau_k_is_below_frozen_theta_tau
+      schedule_settling_cost: max_of_settling_D1_minus_D0_and_settling_D3_minus_D2_within_same_m_and_k
+      schedule_crosstalk_cost: max_of_crosstalk_D1_minus_D0_and_crosstalk_D3_minus_D2_within_same_m_and_k
+      both_costs_must_be_at_or_below_their_frozen_thresholds: true
+    thresholds:
+      - theta_lambda
+      - theta_tau
+      - theta_pad_noise
+      - theta_pad_impedance
+      - theta_schedule_settling
+      - theta_schedule_crosstalk
+    thresholds_fit_on_development_and_frozen_before_held_out_outcomes: true
+    family_map:
+      S_false_T_false: D0
+      S_false_T_true: D1
+      S_true_T_false: D2
+      S_true_T_true: D3
+    cost_locality:
+      noise_or_impedance_failure_may_switch_off_S_but_not_T: true
+      settling_or_crosstalk_failure_may_switch_off_T_but_not_S: true
+      any_single_cost_failure_forces_D0: false
+    predicted_utility_consistency:
+      mapped_family_must_be_within_R2_of_predicted_argmax: 0.005
+      failure_means_separable_rule_failed_before_outcomes: true
+    threshold_tie_sets:
+      S_tied_T_false: [D0, D2]
+      S_tied_T_true: [D1, D3]
+      S_false_T_tied: [D0, D1]
+      S_true_T_tied: [D2, D3]
+      S_tied_T_tied: [D0, D1, D2, D3]
+  fit_on: development_conditions_only
+  held_out_development_check_required: true
+  freeze_before_independent_final_test: true
+  final_scores:
+    - simultaneous_regret_upper_bound_by_accepted_model_and_S_T_cell
+    - four_class_confusion_matrix
+    - balanced_winning_family_accuracy
+    - paired_gain_over_D0_sign_accuracy
+    - abstention_rate
+  tie_rule:
+    observed_winner_set_includes_every_family_within_R2_of_best: 0.005
+    unresolved_if_uncertainty_cannot_separate_leaders: true
+    rule_may_abstain: true
+  regret:
+    unique_prediction: observed_best_family_R2_minus_observed_R2_of_the_family_predicted_before_reconstruction
+    threshold_tie_prediction_set: observed_best_family_R2_minus_observed_R2_of_the_worst_member_of_the_predicted_set
+    summary_within_model_and_S_T_cell: equal_weight_mean_across_conditions
+    evaluate_with_simultaneous_intervals: true
+    stratify_by:
+      - accepted_reference_model
+      - S_T_cell
+  success_rule:
+    interval: one_sided_95_percent
+    predicted_family_regret_R2_upper_bound_maximum_in_every_model_and_S_T_cell: 0.005
+    minimum_preoutcome_conditions_per_S_T_cell_under_each_accepted_model: 5
+    balanced_winner_accuracy_role: descriptive
+    gain_sign_accuracy_role: descriptive
+    abstention_on_observed_non_tie_counts_as_error: true
+    accepted_reference_models_are_scored_separately_not_pooled: true
+    accepted_reference_models_are_fixed_sensitivity_cases_not_resampling_units: true
+    no_prespecified_field_family_may_show_a_confident_reversal: true
+    fix_before_independent_outcomes: true
+    resampling_unit: independent_condition_not_pixel_or_timepoint
+  candidate_average_gain_cannot_rescue_failed_rule: true
+
 primary_measurement:
   metric: cortical_surface_field_R2
   band_hz: [1, 100]
@@ -228,7 +402,7 @@ primary_measurement:
   equal_weight_device_conditions_within_signal_family: true
   equal_weight_signal_families: true
   pixels_and_timepoints_are_not_independent_replicates: true
-  compare_D3_simultaneously_with_every_eligible_D0_and_D1_setting: true
+  compare_C3_simultaneously_with_every_eligible_C0_and_C1_setting: true
   headline_gain_is_least_favourable_reference_comparison: true
   interval:
     sidedness: one_sided
@@ -238,10 +412,10 @@ primary_measurement:
     planning_draws: 10000
 
 promotion_margins:
-  D3_vs_each_D0_D1_R2_lower_bound_minimum: 0.010
-  D3_vs_matched_D1_R2_lower_bound_minimum: 0.005
-  D3_vs_matched_D2_R2_lower_bound_minimum: 0.005
-  D3_vs_each_D4_R2_lower_bound_minimum: 0.005
+  C3_vs_each_C0_C1_R2_lower_bound_minimum: 0.010
+  C3_vs_matched_C1_R2_lower_bound_minimum: 0.005
+  C3_vs_matched_C2_R2_lower_bound_minimum: 0.005
+  C3_vs_each_C4_R2_lower_bound_minimum: 0.005
   every_condition_by_reference_R2_lower_bound_minimum: -0.005
   localization_error_noninferiority_mm: 0.15
   wave_direction_error_noninferiority_degrees: 5.0
@@ -270,25 +444,26 @@ secondary_measurements:
 initial_coverage:
   valid_trials: 16
   arms:
-    - D0_complete_published_frontier_with_conventional_software
-    - D1_physics_informed_linear
-    - D1_structured_state_space
-    - D1_compact_past_only_nonlinear
-    - D2_interleaved_two_scale_geometry
-    - D2_tiled_two_scale_geometry
-    - D2_fixed_rate_precision_allocation
-    - D2_joint_geometry_and_readout
-    - D3_interleaved_two_scale_geometry
-    - D3_tiled_two_scale_geometry
-    - D3_fixed_rate_precision_allocation
-    - D3_joint_geometry_and_readout
-    - D4_checkerboard_pad_rule
-    - D4_tiled_pad_rule
-    - D4_area_matched_random_geometry
-    - D4_uniform_geometry_with_best_legal_schedule
+    - C0_complete_published_frontier_with_conventional_software
+    - C1_physics_informed_linear
+    - C1_structured_state_space
+    - C1_compact_past_only_nonlinear
+    - C2_interleaved_two_scale_geometry
+    - C2_tiled_two_scale_geometry
+    - C2_fixed_rate_precision_allocation
+    - C2_joint_geometry_and_readout
+    - C3_interleaved_two_scale_geometry
+    - C3_tiled_two_scale_geometry
+    - C3_fixed_rate_precision_allocation
+    - C3_joint_geometry_and_readout
+    - C4_checkerboard_pad_rule
+    - C4_tiled_pad_rule
+    - C4_area_matched_random_geometry
+    - C4_uniform_geometry_with_best_legal_schedule
 
 required_challenge_tests:
-  - complete_D0_D1_setting_sweep
+  - complete_C0_C1_setting_sweep
+  - candidate_rank_stability_across_every_accepted_reference_model
   - spatial_spectrum_and_correlation_length_shift
   - silent_region_focal_event
   - unseen_propagation_speed_direction_and_curvature
@@ -298,7 +473,7 @@ required_challenge_tests:
   - gain_impedance_drift_saturation_and_contact_gap_variation
   - random_and_clustered_dead_pixels_and_lines
   - matched_software_capacity_training_steps_and_selection_attempts
-  - separate_training_for_D1_D3_and_D4
+  - separate_training_for_C1_C3_and_C4
   - random_and_simple_geometry_controls
   - reverse_large_and_small_pad_assignment
   - geometry_schedule_software_and_uncertainty_ablations
@@ -311,6 +486,7 @@ required_challenge_tests:
   - development_physical_signal_spectrum_amplitude_and_missingness_stress
   - common_draw_replication_of_current_best_and_comparator
   - independent_final_model_confirmation
+  - frozen_condition_to_design_rule_on_held_out_and_independent_conditions
 
 development_requirements:
   valid_trials_minimum: 32
@@ -319,7 +495,7 @@ development_requirements:
   follow_up_cycles_minimum: 2
   current_best_vs_new_proposal_decisions_minimum: 2
   challenge_test_fraction_after_coverage_minimum: 0.40
-  patience_eligible_D3_opportunities: 12
+  patience_eligible_C3_opportunities: 12
   patience_starts_after_minimum_evidence: true
   patience_reset_R2_improvement: 0.010
   new_feasible_tradeoff_resets_patience: true
@@ -347,24 +523,26 @@ resources:
 
 selection_requirements:
   - reference_check_passes
+  - no_material_candidate_rank_reversal_across_accepted_reference_models
   - at_least_32_valid_trials_and_all_16_coverage_arms_complete
   - at_least_2_follow_up_cycles_and_2_current_best_new_proposal_decisions
   - post_coverage_challenge_fraction_at_least_0.40
-  - D3_beats_every_eligible_D0_and_D1_setting_by_0.010
-  - D3_beats_matched_D1_and_D2_by_0.005
-  - D3_beats_every_eligible_D4_by_0.005
+  - C3_beats_every_eligible_C0_and_C1_setting_by_0.010
+  - C3_beats_matched_C1_and_C2_by_0.005
+  - C3_beats_every_eligible_C4_by_0.005
   - every_condition_by_reference_lower_bound_at_least_minus_0.005
   - every_secondary_noninferiority_margin_passes
   - all_hardware_and_resource_rules_pass_after_rounding
   - all_required_challenge_and_leave_one_group_checks_pass
   - development_physical_signal_or_phantom_stress_passes
+  - frozen_condition_to_design_rule_passes_held_out_development_conditions
 
 stopping:
   before_minimum_evidence:
     scientific_stop: false
     stop_only_for_failed_reference_check_invalid_rules_unrecoverable_execution_resource_limit_or_all_designs_illegal: true
   after_minimum_evidence:
-    - twelve_eligible_D3_opportunities_without_reset
+    - twelve_eligible_C3_opportunities_without_reset
     - sixty_four_valid_trials
     - finite_candidate_space_exhausted
     - resource_limit_reached
@@ -388,30 +566,51 @@ independent_final_test:
     hidden_signal_mechanisms: 3
     device_shift_conditions_per_mechanism: 4
     paired_field_realizations_per_condition: 64
+    preoutcome_conditions_per_S_T_cell_under_each_accepted_model: 5
+    cell_support_may_be_filled_using_only_frozen_absolute_inputs_not_reconstruction_scores: true
     exact_counts_may_increase_after_interval_width_and_resource_calibration: true
   run_together_on_identical_worlds:
-    - complete_D0_frontier
-    - complete_D1_frontier
-    - matched_D2_arm
-    - selected_D3_candidate
-    - every_eligible_D4_control
+    - complete_C0_frontier
+    - complete_C1_frontier
+    - matched_C2_arm
+    - selected_C3_candidate
+    - every_eligible_C4_control
+  transferable_rule_endpoint:
+    frozen_representative_or_selection_rule_for_each_family:
+      - D0
+      - D1
+      - D2
+      - D3
+    cross_with_every_accepted_reference_model: true
+    absolute_inputs_recomputed_before_reconstruction: true
+    all_four_families_run_on_the_same_independent_conditions: true
+    observed_winner_is_argmax_primary_R2_with_registered_tie_and_uncertainty_rules: true
+    material_rank_reversal_across_accepted_models_stops_design_nomination: true
+  frozen_condition_to_design_rule_scored_before_reconstruction_results: true
+  rule_must_predict:
+    - winning_D0_D1_D2_or_D3_family
+    - sign_of_paired_gain_over_D0
   separate_physical_signal_or_phantom_check_required: true
   catastrophic_plausibility_threshold: null
   physical_signal_or_phantom_data_may_rank_unbuilt_geometries: false
 
 plain_language_result_rules:
   software_is_sufficient:
-    D1_vs_same_setting_D0_lower_bound_minimum: 0.0
-    D1_may_be_at_most_margin_worse_than_D3: 0.005
+    C1_vs_same_setting_C0_lower_bound_minimum: 0.0
+    C1_may_be_at_most_margin_worse_than_C3: 0.005
   hardware_alone_is_sufficient:
-    D2_vs_matched_D0_lower_bound_minimum: 0.0
-    D2_may_be_at_most_margin_worse_than_D3: 0.005
+    C2_vs_matched_C0_lower_bound_minimum: 0.0
+    C2_may_be_at_most_margin_worse_than_C3: 0.005
   simple_rule_is_sufficient:
-    D4_may_be_at_most_margin_worse_than_D3: 0.005
+    C4_may_be_at_most_margin_worse_than_C3: 0.005
   candidate_is_too_fragile:
     main_frontier_comparisons_pass_but_condition_secondary_rounding_or_plausibility_check_fails: true
   development_only_result:
     development_selection_passes_but_independent_final_comparison_fails: true
+  reference_models_reverse_rankings:
+    optimization_is_not_informative_until_a_discriminating_measurement_is_added: true
+  virtual_winner_without_transferable_rule:
+    candidate_passes_but_frozen_condition_rule_fails: true
   complete_frontier_not_beaten:
     minimum_evidence_and_finite_space_exhaustion_required: true
   virtual_design_advances:
@@ -426,6 +625,7 @@ claim_limits:
   - no_in_vivo_performance_claim
   - no_single_neuron_spike_claim
   - no_causal_decomposition_of_hardware_and_software_gain
+  - no_transferable_design_rule_claim_if_the_frozen_condition_prediction_fails
 
 readiness:
   state: not_ready_for_candidate_scoring
@@ -433,6 +633,7 @@ readiness:
     - source_use_and_rights_approval
     - calibration_and_held_aside_anchor_assignment
     - paper_derived_reference_and_successful_reference_check
+    - accepted_reference_model_set_and_candidate_rank_stability_check
     - finite_alternative_pad_catalogue_and_clearances
     - exact_software_capacity_and_training_limits
     - development_field_source_to_surface_and_device_models
@@ -440,3 +641,6 @@ readiness:
     - independent_final_models
     - separate_development_and_final_physical_signal_or_phantom_data
     - catastrophic_plausibility_threshold
+    - registered_lambda_and_tau_estimators
+    - absolute_noise_impedance_settling_and_crosstalk_characterization_for_each_frozen_D0_D1_D2_D3_representative
+    - four_family_utility_functions_and_fixed_two_by_two_rule

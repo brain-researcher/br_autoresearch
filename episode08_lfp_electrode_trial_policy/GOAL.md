@@ -13,17 +13,18 @@ directions. It then chooses a whole-electrode subset and allocates 32, 64, or
 same for every method. The alternatives are random selection, broad spatial
 coverage, and ranking electrodes only by signal quality.
 
-![EP08 conceptual figure showing the common pilot, electrode and trial choices, matched-resource performance surface, and forward tests of electrode and next-trial value](outputs/ep08_question.svg)
+![EP08 conceptual figure showing the common pilot, electrode and trial choices, matched-resource performance surface, and forward tests of electrode and next-trial value](outputs/ep08_question_imagegen.png)
 
 Like the EP12 concept figure, this mockup uses synthetic patterns to make the
 scientific alternatives visible. It starts with clean-but-redundant and
 complementary electrodes plus an uncertain reach direction, then shows the
 joint post-pilot decision and three explanations for any gain: simple
-reliability and balance, unique electrode information, or conditional
-next-trial value. The final strip separates a candidate explanatory acquisition
-principle from a policy gain alone. The 3 × 3 paired-bar matrix shows the actual
-4/8/16-electrode by +32/+64/+128-trial grid, but its bar heights are
-illustrative, not EP08 results; decision rules remain in the text.
+reliability and balance, two independent improvements, or a coupled electrode
+and next-trial rule. The final strip separates a candidate explanatory
+acquisition principle from a policy gain alone. The 2 × 2 algorithm table is
+repeated at each point of the actual 4/8/16-electrode by
++32/+64/+128-trial grid; all displayed patterns are illustrative, not EP08
+results, and decision rules remain in the text.
 
 ## The scientific question
 
@@ -37,7 +38,11 @@ Can information visible in a 16-trial pilot reveal two kinds of future value?
 
 The first study asks whether one pilot-guided acquisition rule improves neural
 prediction at matched budgets. The explanatory follow-up asks whether the
-rule's pilot scores actually predict these two forms of value.
+rule's pilot scores actually predict these two forms of value. It also asks a
+third, stricter question: **does changing the retained electrode set
+predictably change which reach direction is worth sampling next?** Without
+that dependency, electrode selection and trial allocation may be two useful
+methods, but they are not yet a joint acquisition principle.
 
 ## At a glance
 
@@ -47,9 +52,9 @@ rule's pilot scores actually predict these two forms of value.
 | What is chosen? | Which 4, 8, or 16 whole electrodes to retain, then the direction of each additional calibration trial. |
 | How many additional trials? | 32, 64, or 128, giving a complete 3-by-3 electrode-by-trial grid. |
 | What is predicted? | Motor-population spike activity on untouched trials from the same session. |
-| What is the fair comparison? | Random, broad spatial coverage, and signal-quality selection with the same pilot, electrode count, trial count, decoder, and evaluation trials. |
+| What is the fair comparison? | At every electrode-by-trial budget, cross simple versus conditional-value electrode selection with balanced versus adaptive trial allocation. Random and spatial rules remain additional comparisons. |
 | What must repeat? | Improvement in both animals, at least three of four held-out sessions, and the two scarce-resource settings `(4,32)` and `(8,64)`. Every grid cell remains visible. |
-| What would explain a win? | Pilot-only measurements predict later electrode-removal loss and the benefit of the next reach-direction sample. |
+| What would explain a win? | Pilot-only measurements predict later electrode-removal loss; pre-choice measurements predict repeatable next-direction benefit; and quality-matched electrode swaps predictably change which direction is worth sampling. |
 | What would confirm the explanation? | The same predictions and acquisition rule work in newly sequestered sessions from a third animal. |
 
 ## Why a winning policy is not yet an explanation
@@ -65,6 +70,25 @@ already predicted well but upward reaches have large calibration errors, an
 adaptive method should predict that another upward trial will help more than
 another trial from an already well-estimated direction. That prediction must
 be made before the additional trial or its later evaluation benefit is known.
+
+A large current error is not enough. It could be irreducible trial-to-trial
+noise, in which case one lucky next trial may appear helpful but the benefit
+will not repeat. EP08 therefore evaluates next-direction predictions at
+prespecified replay states and across several trial orders. A direction is
+learnable only when its predicted benefit repeats beyond one favorable draw.
+
+The two decisions must also be separated experimentally. At every fixed
+electrode count and trial count, EP08 evaluates all four combinations:
+
+| | Balanced trials | Adaptive trials |
+| --- | --- | --- |
+| Simple electrode selection | Reference | Trial-selection contribution |
+| Conditional-value electrode selection | Electrode-selection contribution | Combined contribution |
+
+If electrode and trial improvements are both useful but additive, the result
+supports two methods. A joint principle additionally requires the retained
+electrode set to alter the ordering of next-direction value in a way predicted
+before those future trials are revealed.
 
 Electrode count and trial count have different physical meanings. EP08 reports
 performance changes along each axis of the 3-by-3 grid. It does not claim that
@@ -115,6 +139,13 @@ acquisition advantage.
 
 Candidate methods may combine one electrode selector with one trial allocator.
 
+The factorial explanation uses two named selectors. The **simple selector**
+ranks electrodes by pilot signal quality and reliability. The
+**conditional-value selector** also uses pilot-visible redundancy and
+complementarity to predict the loss caused by removing an electrode from the
+retained set. Geometry-only and repeated-random selectors remain benchmarks,
+but they do not replace either named row of the factorial comparison.
+
 Electrode selectors may use:
 
 - signal reliability, artifact fraction, missingness, line noise,
@@ -141,8 +172,26 @@ without using that session to train the ranker.
 
 ## Fair comparisons and primary measure
 
-At every `(electrodes, additional trials)` point, compare the pilot-guided
-method with:
+At every `(electrodes, additional trials)` point, fit the same decoder for four
+prespecified combinations. Write their held-out performances as `Q_SB`
+(simple electrodes, balanced trials), `Q_SA` (simple, adaptive), `Q_CB`
+(conditional-value, balanced), and `Q_CA` (conditional-value, adaptive).
+
+Report these contrasts in every grid cell:
+
+```text
+electrode-selection contribution = Q_CB - Q_SB
+trial-selection contribution     = Q_SA - Q_SB
+combined contribution            = Q_CA - Q_SB
+algorithm interaction            = Q_CA - Q_CB - Q_SA + Q_SB
+```
+
+Also report the electrode contrast under adaptive trials (`Q_CA - Q_SA`) and
+the trial contrast under conditional-value electrodes (`Q_CA - Q_CB`). The
+interaction distinguishes a combined winner from two individually useful
+components; it does not by itself explain why they interact.
+
+Additional comparisons are:
 
 - repeated uniform-random electrode selection plus balanced-random trials;
 - geometry-only farthest-first electrode selection;
@@ -198,7 +247,10 @@ The selected method must be compared with:
 - spatial selection after electrode locations are shuffled;
 - versions with reliability, diversity, learned score, or adaptive trial
   allocation removed;
-- subsets matched for redundancy or signal quality;
+- one-for-one electrode swaps matched on pilot signal quality, artifact rate,
+  and missingness but differing in predicted complementarity;
+- next-direction benefits at prespecified common replay states and across
+  several ordinary trial orders, rather than one favorable next trial;
 - transfer in the reverse animal direction and omission of each development
   session;
 - training on one animal and applying the rule to the other;
@@ -209,7 +261,8 @@ The selected method must be compared with:
   trial-limited, or null.
 
 These comparisons distinguish a genuine pilot-guided acquisition principle
-from signal quality alone, spatial spread alone, direction balancing, one
+from signal quality alone, spatial spread alone, direction balancing,
+irreducible direction-specific noise, one fortunate future trial, one
 favorable session, or information that would not have been available at the
 time of the decision.
 
@@ -234,6 +287,14 @@ A positive primary result requires all of the following:
 - robustness when one animal or influential development session is omitted;
   and
 - all required alternative-explanation and information-timing checks pass.
+
+All four factorial combinations remain visible regardless of which method
+wins. A positive `Q_CA - Q_SB` establishes a combined-policy result, not a
+joint principle. The stronger joint interpretation additionally requires a
+resolved algorithm interaction and the electrode-dependent next-direction
+prediction described below. If both component contrasts are positive but the
+interaction is practically absent and direction order is unchanged, report
+two individually useful acquisition methods.
 
 Possible study outcomes are: a reproducible joint policy, a positive but
 ambiguous result, no policy clearing the prespecified rule, an incomplete
@@ -272,10 +333,33 @@ cross-validated calibration error, uncertainty, and residual diversity. The
 chosen direction is compared with balanced and random choices at the same
 point in the recorded trial order.
 
+The test is repeated from common, outcome-independent replay states under
+several prespecified within-direction orders. A useful score must predict the
+average ordering of future benefit and beat balance across states and orders.
+Large error without repeatable improvement is classified as irreducible or
+unmodelled variation, not as evidence that the direction should be sampled.
+
 These are predictive labels, not causal effects. Electrode-removal loss does
 not prove that an electrode is biologically special, and the recorded-trial
 analysis does not establish that real-time trial requests would have the same
 effect.
+
+### Are electrode and trial choices actually coupled?
+
+At each common replay state, hold the calibration trials fixed and compare a
+simple retained set with a conditional-value set of the same size. Include
+one-for-one swaps whose electrodes are matched on pilot quality but differ in
+predicted complementarity. Before revealing any branch trial, predict how the
+swap will change the ordering of `V_direction`.
+
+The preferred explanation predicts that the retained set changes which neural
+population components remain recoverable, so the direction with the greatest
+learnable deficit should change in a predictable way. The competing
+explanation is that electrode quality and direction imbalance help
+independently; under that account, quality-matched swaps should leave the
+next-direction ordering essentially unchanged. This prediction must repeat
+across replay states, trial orders, sessions, and both animals before EP08 uses
+the phrase **joint acquisition principle**.
 
 ### Which resource is limiting?
 

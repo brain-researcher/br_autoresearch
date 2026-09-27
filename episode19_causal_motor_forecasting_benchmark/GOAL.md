@@ -35,13 +35,13 @@ normalization, and model state at time `t` use no sample after `t`. It does not
 mean causal inference about motor preparation, conscious intention, or the
 biological cause of movement.
 
-![EP19 scientific question](outputs/ep19_question.svg)
+![EP19 scientific question](outputs/ep19_question_imagegen.png)
 
 Like the EP12 concept figure, this mockup uses synthetic traces and bars to make
 four scientific judgments visible: genuine forecasting versus near-event
-detection, the three real-EEG specificity increments, state changes in all ten
-pairwise model-family edges, and the registered eight-person second-task test.
-None of the traces, bars, or edge states is an EP19 result; exact margins and
+detection, the three real-EEG specificity increments, a recent-versus-older-
+slow factorial prediction, and the registered eight-person second-task
+test. None of the traces or bars is an EP19 result; exact margins and
 source-construction details remain in the study text.
 
 ## The study at a glance
@@ -54,9 +54,10 @@ source-construction details remain in the study text.
 | What is the longer diagnostic horizon? | Onset 600–900 ms in the future |
 | What must EEG beat? | A source-specific non-neural model, its zero-EEG counterpart, and eight separately trained surrogate-EEG counterparts |
 | What pairwise order is studied? | All ten edges among five pre-specified model families, each fit once for all horizons and compared at 0–300 and 300–600 ms; no total rank is assumed |
+| What could explain a strict-horizon advantage? | In a fixed 2 × 2 input panel, the final-200-ms block should matter more near onset while causal 0.5–8 Hz EEG ending before that block should matter more at 300–600 ms |
 | What is held out? | WAY-EEG-GAL series 8 and 9, plus eight whole participants from a second self-paced task |
 | What adaptation is allowed in the second task? | Four calibration parameters fit from the first 32 complete movements; the encoder stays unchanged |
-| What would success show? | Under the registered sensors and past-only analysis, EEG adds calibrated prospective information at 300–600 ms and the gain repeats in new participants |
+| What would success show? | Under the registered sensors and past-only analysis, EEG adds prospective information at 300–600 ms and the gain repeats in new participants |
 
 ## The primary question: does EEG add prospective information?
 
@@ -146,6 +147,83 @@ parameters, two seconds of explicit input history, and eight seconds of stored
 streaming state. A development winner cannot be inserted into the reference
 panel or redefine the model-order question.
 
+## A prediction that can explain a horizon-dependent result
+
+"Receptive-field and representation diagnostics" are not an explanation by
+themselves. EP19 therefore fixes one directional prediction before held-out
+scoring. The test first rewrites each past-only EEG input into three fixed
+blocks at decision time `t`:
+
+1. an **older complementary** background using samples strictly before
+   `t - 200 ms`;
+2. a **recent block** containing only raw or broadband EEG from
+   `[t - 200 ms, t)`; and
+3. an **older slow block** containing causal 0.5–8 Hz EEG whose raw support is
+   strictly before `t - 200 ms`.
+
+The recent and older-slow blocks therefore use non-overlapping raw time support.
+One development-fixed causal filter bank supplies the older blocks. Its delay,
+warm-up, gap reset, and boundary rule are shared by every comparison; centered
+filtering, future padding, and feature windows crossing the 200-ms boundary are
+forbidden. For every family, the full factorized input must reproduce that
+family's original full reference within a pre-set equivalence margin at both
+horizons. If it cannot,
+the explanation is unavailable even if the primary forecast remains valid.
+
+For every reference family, train the complete 2 × 2 panel from the beginning:
+
+| | Older slow absent | Older slow present |
+| --- | --- | --- |
+| Recent absent | `Q00` | `Q01` |
+| Recent present | `Q10` | `Q11` |
+
+All four models keep the same input shape, parameter count, optimizer, training
+budget, seed bank, cue/context branch, and peripheral branch. An absent EEG
+block is zero after development-frozen scaling and has no missingness flag. In
+the recent-absent models, every filter, covariance, normalization, convolution,
+and recurrent update after the cutoff must be independent of the forbidden
+raw segment. Mutating the final 200 ms must leave `Q00` and `Q01` predictions
+unchanged; mutating only the constructed older-slow block must leave `Q00` and
+`Q10` unchanged.
+
+At each horizon, average the recent contribution over the two older-slow states
+and the older-slow contribution over the two recent states. The preferred
+operational explanation requires four positive contrasts: a positive recent
+effect near onset, a positive older-slow effect at 300–600 ms, recent greater
+than older-slow near onset, and older-slow greater than recent at 300–600 ms.
+All four simultaneous lower bounds must exceed zero. The factorial interaction
+is reported; a claim of two separable contributions additionally requires it
+to remain inside a development-fixed equivalence margin.
+
+Equivalence is not decided from point estimates. The participant bootstrap
+also forms two-sided 95% simultaneous intervals for every Q11-minus-original
+reference difference and every factorial interaction: one family covers both
+held-out sources, all five model families, and both horizons. Every Q11
+interval must lie inside the pre-set full-reference margin. A separable
+two-block claim additionally requires every interaction interval in its scope
+to lie inside the pre-set interaction margin. The two margins and the
+max-statistic interval rule are frozen on development data.
+
+This is a claim about dependence on two disjoint input blocks, not proof of two
+physiological generators. The competing explanation predicts that the same
+block dominates both horizons, that the interaction prevents a separable
+account, or that a forbidden segment still enters model state.
+
+All five model families and all ten canonically oriented pairwise edges receive
+the four-condition panel before held-out scoring. Development data predeclare,
+for each edge, a recent-block explanation, an older-slow explanation, its sign,
+or no explanation. Every edge-by-block contrast belongs to one simultaneous
+inference family whether or not the held-out ranking changes. A changed edge is
+called explained only when its predeclared contrast clears that bound and
+repeats in the second task; otherwise the ranking change is simply reported.
+
+The signed pattern is developed without WAY series 8–9 or the eight self-paced
+held-out people. All four contrasts need positive simultaneous lower bounds in
+held-out WAY and in the self-paced participant-macro result, and the same six or
+more of eight held-out people must show all four positive signs. Other bands,
+windows, saliency maps, and receptive-field plots remain descriptive. Failure
+of this panel leaves the original primary log-score conclusion unchanged.
+
 ## Three data roles
 
 ### WAY-EEG-GAL: main forecasting and model-order study
@@ -201,6 +279,27 @@ No-label transfer is a stricter secondary result. A local refit using the first
 half of complete runs is a descriptive upper bound only and cannot rescue the
 primary 32-event result.
 
+## Secondary probability and warning results
+
+The primary endpoint remains the natural-prevalence log score at 300–600 ms.
+Two secondary summaries make that probabilistic gain easier to interpret
+without redefining success.
+
+First, report probability reliability after the permitted calibration:
+observed onset frequency against predicted risk in development-fixed bins,
+plus calibration intercept, calibration slope, and Brier score. Show every
+participant and both sources; a favorable average cannot hide a badly
+miscalibrated person.
+
+Second, convert the primary-horizon probability stream into event warnings
+using one threshold, persistence rule, and refractory period chosen only on
+development data to satisfy a numerical false-alarm ceiling fixed before the
+final evaluation. On held-out streams, report false alarms per hour of eligible
+stillness, the fraction of movements warned 300–600 ms before onset, and the
+distribution of first-warning lead time. No held-out threshold adjustment is
+allowed. These operating-point results are secondary and cannot rescue a
+failed primary log-score result or establish online BCI benefit.
+
 ## Controls that can overturn the result
 
 - changing any sample after time `t` must leave the prediction at `t`
@@ -221,8 +320,8 @@ primary 32-event result.
 - a synthetic prospective EEG motif must be recovered at the stated signal
   levels;
 - the legacy near-event task must reach its pre-set positive-control range;
-- raw voltage and causal filter-bank representations, receptive field, and
-  low-frequency content must be ablated;
+- the complete recent-by-older-slow 2 × 2 panel must be trained with fixed
+  shape and pass both forbidden-block mutation tests;
 - leave-one-participant and leave-one-series influence checks must agree in
   direction; and
 - no-label and identical 32-event calibration packets must be compared.
@@ -257,6 +356,8 @@ establish a positive or negative scientific result.
 | --- | --- |
 | Strict EEG increment repeats and model order is retained | Prospective EEG information is supported and the resolved reference advantages survive the stricter horizon |
 | Strict EEG increment repeats but order changes | Prospective EEG information is supported, but conclusions about model families depend on prediction horizon |
+| Strict EEG increment repeats and the factorial dissociation repeats | The tested models rely more on recent input near onset and older slow input at the strict horizon; this is an operational feature-support result, not two biological generators |
+| Strict EEG increment repeats but the factorial prediction fails | Preserve the forecasting result, but do not explain it using the proposed input-block distinction |
 | Strict EEG increment repeats but order is uncertain | The neural result is supported, but available participants do not resolve the model ordering |
 | EEG helps only at 0–300 ms | The result is near-event recognition, not the primary strict forecast |
 | Real EEG does not beat zero or surrogate EEG | Neural specificity is not supported even if absolute prediction is good |
@@ -274,7 +375,8 @@ or for applying deep learning to these data.
 The possible contribution is the conjunction of a continuous at-risk forecast,
 a strong source-specific past-peripheral baseline, capacity-matched surrogate
 EEG, a near-to-strict model-order comparison, and whole-participant replication
-in a second task.
+in a second task. A deeper explanatory contribution requires the prespecified
+recent-by-older-slow factorial pattern to repeat in those held-out people.
 
 ## Claim boundary
 
@@ -285,6 +387,7 @@ information about sensor-detected movement onset. It would not establish:
 - causal motor preparation or conscious intention;
 - the earliest biological motor command;
 - prediction before an unmeasured peripheral change;
+- distinct physiological generators for the recent and older-slow input effects;
 - a universal model ordering;
 - zero-shot transfer to a new task;
 - online BCI usefulness, safety, or clinical benefit; or
@@ -296,8 +399,9 @@ The data sources are identified, but no EP19 signal analysis has started and no
 held-out result has been examined. Before scoring, the study still needs
 source-specific timing and onset checks, separated development and held-out
 data views, the complete 32-event calibration procedure, all numeric margins,
-the finite model-search ranges, and synthetic tests of past-only information
-flow.
+the development false-alarm ceiling and warning rule, the executable four-model
+factorial panel and mutation tests, the finite model-search ranges, and synthetic tests of past-only
+information flow.
 
 Dataset details are in [DATASETS.md](DATASETS.md). Compact methods and budgets
 are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed paper story is in

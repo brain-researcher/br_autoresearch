@@ -156,6 +156,67 @@ offsets for 0–300, 300–600, and 600–900 ms, with `>900 ms` as reference. T
 encoder and spatial projection remain unchanged. A full local refit on the
 first half of complete runs is descriptive only.
 
+## Data needed for the explanation and warning analyses
+
+The source descriptions indicate that both main releases contain the pieces
+needed for the proposed follow-up: continuous raw EEG, event timing, and enough
+stream history to reconstruct past-only inputs. WAY also contains the
+peripheral streams needed for its onset and risk set; the self-paced release
+contains wrist accelerometry for the corresponding role. These facts make the
+analyses plausible, but the episode-specific data views have not yet confirmed
+their usable coverage.
+
+The recent-by-older-slow prediction requires, for every scored decision point:
+
+- at least 200 ms of valid EEG immediately before the decision and enough
+  earlier history for the unchanged model input;
+- raw or losslessly represented continuous EEG from which three fixed blocks
+  can be constructed: an older complementary background, final-200-ms raw or
+  broadband EEG, and causal 0.5–8 Hz EEG ending before that recent segment;
+- acquisition-gap and series or run boundaries, so no factorial condition carries
+  state across a discontinuity; and
+- the same cue, context, peripheral history, onset label, and risk-set status
+  for all four factorial conditions.
+
+One causal filter bank, including its delay, warm-up, gap reset, and boundary
+rule, is fixed on development data. Older blocks use raw samples strictly
+before `t - 200 ms`; the recent block uses `[t - 200 ms, t)`, so the cutoff
+sample belongs only to the recent block. No feature window may cross that
+boundary. All four conditions use the same tensor shape and
+development-frozen scaling, with an absent block replaced by fixed zeros and
+no missingness flag. In every model family, the factorized full input must first
+reproduce its original full-reference result within a pre-set equivalence margin.
+
+Those equivalence calls use participant-bootstrap, two-sided 95% simultaneous
+intervals rather than point estimates. A single max-statistic family covers
+both held-out sources, all five families, both horizons, the Q11-minus-original
+differences, and the factorial interactions. The full-reference and
+interaction margins are fixed on development data before this family is read.
+
+This representation needs an explicit state audit. A recent-absent model may
+carry state formed before the cutoff, but its filters, window summaries,
+normalizers, convolutions, and recurrent updates may not depend on final-200-ms
+raw samples. Arbitrarily mutating that segment must leave both recent-absent
+predictions unchanged. Mutating only the constructed older-slow block must
+likewise leave both older-slow-absent predictions unchanged. The episode data
+view must retain enough intermediate state to run these tests, not only final
+feature matrices.
+
+The event-warning analysis additionally requires continuous eligible-stillness
+duration, complete movement onsets, and enough negative time to estimate false
+alarms per hour. Development data choose one threshold, persistence rule,
+refractory period, and numerical false-alarm ceiling. Held-out data may only
+report detection, false alarms, and first-warning lead time under that frozen
+rule.
+
+The factorial prediction is developed using WAY series 1–7 and the 15
+self-paced development participants. It is then tested without modification in
+WAY series 8–9 and in the eight whole held-out self-paced participants. If raw
+coverage, pre-onset history, or negative at-risk duration is inadequate in a
+source, retain the primary log-score analysis but mark the affected explanation
+or warning result unavailable; do not substitute another band, cutoff, or
+false-alarm rule after outcomes are seen.
+
 ## Historical compatibility
 
 The Kaggle task used participant series 1–8 for training, series 9–10 for test,
@@ -207,6 +268,14 @@ Before signal scoring, the study still needs:
 - the five executable reference model recipes;
 - source-specific non-neural baselines;
 - the complete four-parameter 32-event calibration procedure;
+- confirmation of valid recent and older EEG history at every scored decision
+  point, including a boundary that no derived feature crosses;
+- the source-compatible causal factorization into older complementary,
+  final-200-ms, and older 0.5–8 Hz blocks, its full-reference equivalence check,
+  and both block-mutation tests;
+- eligible-stillness exposure for participant-level false-alarm rates;
+- a development-fixed warning threshold, persistence rule, refractory period,
+  and numerical false-alarm ceiling;
 - a finite set of allowed model changes and all numeric margins;
 - the five-fold assignment for the 15 self-paced development participants; and
 - synthetic tests that expose future-information leakage and recover a known

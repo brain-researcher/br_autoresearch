@@ -78,8 +78,8 @@
     <rect x="0" y="0" width="450" height="147" class="bluebox"/><text x="16" y="27" class="head">1 — Less local signal</text>
     <line x1="25" y1="105" x2="190" y2="105" class="axis"/><rect x="50" y="48" width="34" height="57" fill="#c084fc"/><rect x="112" y="76" width="34" height="29" fill="#60a5fa"/>
     <path d="M221 78L259 78" class="arrow"/><line x1="279" y1="105" x2="425" y2="105" class="axis"/><rect x="298" y="70" width="34" height="35" fill="#c084fc"/><rect x="360" y="87" width="34" height="18" fill="#60a5fa"/>
-    <text x="16" y="122" class="small">Local and transported signal both fall;</text>
-    <text x="16" y="140" class="small">this does not rule out concurrent remapping.</text>
+    <text x="16" y="122" class="small">Independent route: local and transported signal both fall;</text>
+    <text x="16" y="140" class="small">the transported-loss fraction need not increase.</text>
   </g>
   <g transform="translate(1010,311)">
     <rect x="0" y="0" width="450" height="147" class="purplebox"/><text x="16" y="27" class="head">2 — Observable recording change</text>
@@ -102,7 +102,7 @@
   <rect x="42" y="758" width="268" height="72" class="bluebox"/><text x="176" y="783" text-anchor="middle" class="sub">Later-session signal loss</text><text x="176" y="804" text-anchor="middle" class="small">The target session contains less</text><text x="176" y="821" text-anchor="middle" class="small">recoverable directional signal.</text>
   <rect x="325" y="758" width="268" height="72" class="purplebox"/><text x="459" y="783" text-anchor="middle" class="sub">Recording-state sufficiency</text><text x="459" y="804" text-anchor="middle" class="small">Measured changes reproduce local,</text><text x="459" y="821" text-anchor="middle" class="small">transport, and extra-gap loss.</text>
   <rect x="608" y="758" width="268" height="72" class="greenbox"/><text x="742" y="783" text-anchor="middle" class="sub">Low-label remappable</text><text x="742" y="804" text-anchor="middle" class="small">One fixed small-label method restores</text><text x="742" y="821" text-anchor="middle" class="small">a meaningful part of the gap.</text>
-  <rect x="891" y="758" width="268" height="72" class="orangebox"/><text x="1025" y="783" text-anchor="middle" class="sub">No reproducible extra loss</text><text x="1025" y="804" text-anchor="middle" class="small">A pre-set absence/equivalence</text><text x="1025" y="821" text-anchor="middle" class="small">rule is met.</text>
+  <rect x="891" y="758" width="268" height="72" class="orangebox"/><text x="1025" y="783" text-anchor="middle" class="sub">Extra loss not supported</text><text x="1025" y="804" text-anchor="middle" class="small">The positive-margin rule</text><text x="1025" y="821" text-anchor="middle" class="small">is not cleared; no absence claim.</text>
   <rect x="1174" y="758" width="282" height="72" class="card"/><text x="1315" y="783" text-anchor="middle" class="sub">Unresolved</text><text x="1315" y="804" text-anchor="middle" class="small">Uncertainty or instability prevents</text><text x="1315" y="821" text-anchor="middle" class="small">a replicated profile.</text>
   <text x="750" y="854" text-anchor="middle" class="tiny">Shared profile: same conclusion in all 3 people. Heterogeneity: ≥2 distinct profiles, each repeated in both time partitions and full data; predictive, not causal.</text>
 </svg>

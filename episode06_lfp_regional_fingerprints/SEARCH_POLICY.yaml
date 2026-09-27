@@ -1,7 +1,7 @@
 episode: EP06
-title: Is the M1-PMd LFP fingerprint reusable, or just an array label?
+title: Which population components can the M1-PMd LFP fingerprint recover across days?
 status: planned; no real-data analysis has run
-question: does_the_lfp_to_population_profile_distinguish_m1_from_pmd_across_animals_survive_recording_confounds_and_improve_prediction
+question: which_population_component_does_the_m1_pmd_lfp_fingerprint_recover_and_when_does_it_transfer_across_days
 paper_plan: outputs/paper_plan.md
 
 evidence_roles:
@@ -15,7 +15,7 @@ evidence_roles:
     animals: [Mihili, Chewie-L]
     sessions_per_animal: 2
     positions_after_acquisition_date_order: [3, 6]
-    use: one_shot_test_of_the_final_analysis
+    use: one_shot_test_of_the_final_analysis_across_acquisition_dates
     freshness: same_corpus_procedural_test
     available: conditional_on_source_checks_and_isolation
   external_test:
@@ -32,7 +32,10 @@ session_assignment:
 
 primary_test:
   unit: one_profile_per_region_per_session
-  profile_value: held_out_lfp_prediction_of_spike_population_activity_beyond_direction_and_time
+  target: single_trial_spike_population_residual_only
+  residual_definition: held_out_spike_response_minus_training_only_direction_by_time_mean
+  profile_value: held_out_fraction_of_residual_activity_recovered_by_each_registered_lfp_feature_block
+  component_followup_may_redefine_primary: false
   directions:
     - train_mihili_test_chewie
     - train_chewie_test_mihili
@@ -44,11 +47,22 @@ followup_test:
   state: proposed_not_run
   starts_after_primary_development_result_is_fixed: true
   source_data: development_sessions_only
-  target: held_out_spike_population_activity
+  target: primary_single_trial_spike_residual
   comparison:
     - correct_region_frequency_weights
     - pooled_frequency_weights
     - swapped_region_frequency_weights
+  weight_fit:
+    m1_pmd_and_pooled_weights: source_animal_development_sessions_only
+    swapped_rule: exact_m1_pmd_weight_permutation
+    target_training_may_fit:
+      - population_axes
+      - scaling
+      - primary_direction_by_time_template
+      - one_base_predictor_per_band
+    target_training_may_not_fit: any_frequency_combining_weight
+    calibration_use_only: support_index_H
+    evaluation_use_only: component_score_and_G
   fairness_rule: use_the_same_target_trials_electrodes_latent_dimensions_band_support_and_bandwise_predictions
   expected_pattern:
     - correct_region_beats_pooled_by_a_fixed_meaningful_margin_in_both_directions
@@ -58,6 +72,148 @@ followup_test:
     - bandwise_target_predictions_are_too_similar_to_distinguish_the_rules
   changes_primary_result: false
   independent_replication: false
+
+component_prediction:
+  role: required_for_a_separate_population_organization_claim
+  relationship_to_primary:
+    separate_unresidualized_followup: true
+    primary_remains_residual_only: true
+    followup_result_cannot_change_primary_conclusion: true
+  within_session_trial_roles:
+    training: fit_target_population_axes_scaling_primary_template_and_bandwise_base_predictors_under_the_frozen_recipe
+    calibration: estimate_H_inputs_only_without_component_scores_or_combining_weight_fits
+    evaluation: apply_frozen_projectors_and_score_the_frozen_weight_rules_once
+    unit: whole_trials_stratified_by_reach_direction
+    every_direction_present_in_every_role: true
+  projection_space:
+    response: unresidualized_spike_population_activity_in_training_defined_population_axes
+    inner_product:
+      direction_weight: equal_total_weight_per_reach_direction
+      trial_weight: equal_within_direction
+      time_weight: equal_per_analyzed_time_bin
+    projectors:
+      P_C: direction_invariant_time_subspace
+      P_D: sum_to_zero_direction_by_time_contrasts_after_removing_P_C
+      P_E: orthogonal_complement_of_P_C_and_P_D
+    orthogonality: P_C_and_P_D_are_orthogonal_under_the_declared_direction_balanced_inner_product
+    completeness: "P_C + P_D + P_E = I"
+    evaluation_value_used_to_define_projectors: false
+    training_freezes: direction_set_time_grid_contrast_coding_and_population_axes
+    evaluation_design_use: preassigned_direction_labels_and_time_bins_only
+    freeze_before_evaluation: direction_time_design_population_axes_and_projector_matrices
+  evaluation_targets:
+    observed_component: "target_k = P_k Y_eval"
+    predicted_component: "prediction_k = P_k Yhat_eval"
+    same_projector_applied_to_observed_and_predicted_activity: true
+  combining_weights:
+    fit_from: source_animal_development_sessions_only
+    component_specific_m1_pmd_and_pooled_weights: true
+    swapped: exact_m1_pmd_permutation
+    target_session_may_refit_weights: false
+  heldout_metric:
+    name: fraction_of_component_energy_prediction_score
+    formula: "S_k = 1 - sum_norm2(P_k Y_eval - P_k Yhat_eval) / sum_norm2(P_k Y_eval)"
+    norm: declared_direction_balanced_inner_product
+    target_denominator_is_identical_for_correct_pooled_and_swapped: true
+    is_explained_variance: false
+    may_be_negative: true
+    within_region_aggregation: direction_balanced_pool_of_evaluation_trials_time_bins_and_frozen_population_coordinates
+    minimum_energy_gate:
+      positive: true
+      quantity: target_denominator_divided_by_total_direction_balanced_evaluation_weight
+      fixed_from: development_and_known_answer_synthetic_qualification
+      fixed_before_final_analysis: true
+      nonfinite_or_below_gate: unscorable_and_unresolved
+      may_be_recoded_as_zero_or_failure: false
+    regional_gain: "G_region = S_correct - max(S_pooled, S_swapped)"
+    report_m1_and_pmd_before_any_average: true
+    equal_region_average_allowed_only_if_signs_agree: true
+    preserved_if: both_regional_gains_are_positive_and_equal_region_mean_is_at_least_0p01
+    failed_if: both_regional_gains_are_at_most_zero
+    unresolved_if:
+      - either_region_is_unscorable
+      - regional_gain_signs_disagree
+      - equal_region_mean_is_between_0_and_0p01
+  outer_session_assessment:
+    folds_per_transfer_direction: 4
+    nomination_data_per_fold: other_three_target_development_sessions
+    nomination_rule: largest_median_equal_region_gain
+    every_candidate_must_be_scoreable_and_region_sign_consistent_in_all_three_nomination_sessions: true
+    if_any_candidate_fails_outer_eligibility: no_nominee_for_that_fold
+    a_valid_fold_nominates_exactly_one_component_before_left_out_evaluation: true
+    left_out_training_and_calibration_allowed_under_frozen_recipe: true
+    left_out_evaluation_scores_only_the_prefold_nominee: true
+    other_two_left_out_evaluation_components_remain_unopened_for_the_fold: true
+    left_out_H_prediction_is_frozen_before_evaluation: true
+    nomination_tie_margin: 0.01
+    stability_requires:
+      - same_component_is_nominated_in_at_least_three_of_four_folds
+      - no_fold_is_tied_within_the_0p01_margin
+      - no_left_out_m1_pmd_gain_sign_contradiction
+    otherwise: unstable_selection_and_no_component_claim
+  final_nomination:
+    timing: after_outer_assessment_is_recorded
+    previously_unopened_development_components_may_then_be_scored: true
+    may_change_outer_assessment_record: false
+    may_use_all_four_target_development_sessions: true
+    common_scoreable_region_sign_consistent_sessions_required: 3
+    rule: largest_median_equal_region_gain_on_common_scoreable_sessions_with_0p01_tie_margin
+    both_transfer_directions_must_make_the_same_untied_nomination: true
+    freeze_both_directional_nominations_before_reserved_outcomes: true
+  frozen_prediction:
+    - both_transfer_directions_independently_nominate_the_same_component_family
+    - preservation_prediction_requires_both_regional_gains_positive_and_equal_region_mean_at_least_0p01
+    - failure_prediction_requires_both_regional_gains_at_most_zero
+    - every_reserved_session_prediction_is_written_before_any_evaluation_trial_is_scored
+    - at_least_three_of_four_reserved_sessions_receive_a_nonabstaining_prediction
+    - no_nonabstaining_reserved_prediction_is_wrong
+    - one_observed_outcome_class_does_not_establish_the_support_boundary
+  support_prediction:
+    calibration_visible_inputs:
+      reliability: spearman_brown_corrected_profile_correlation_between_two_fixed_direction_balanced_calibration_halves
+      profile_distance: root_mean_square_bandwise_distance_from_the_applicable_source_regional_prototype_scaled_by_development_between_session_variation
+    zero_or_nonfinite_bandwise_between_session_scale: abstain
+    nonfinite_split_half_reliability: abstain
+    cross_fitting: scored_development_session_uses_the_other_seven_sessions_for_reference_medians_and_scales
+    reserved_reference: all_eight_development_sessions
+    standardization: subtract_leave_one_out_development_median_and_divide_by_1p4826_times_median_absolute_deviation
+    if_either_standardization_scale_is_zero: abstain
+    support_index: "H_session = standardized_reliability - standardized_profile_distance"
+    fitted_coefficients: 0
+    equal_input_weights_fixed_in_advance: true
+    prediction_thresholds:
+      preservation: "H_session >= 0.25"
+      failure: "H_session <= -0.25"
+      abstain: "-0.25 < H_session < 0.25"
+    freeze_before_reserved_sessions: true
+    reserved_sessions_are_held_out_across_acquisition_dates_not_all_later: true
+    calendar_gap_alone_is_not_an_explanation: true
+  uncertainty:
+    within_session: resample_whole_evaluation_trials_stratified_by_direction
+    across_sessions: resample_sessions_within_animal_and_average_transfer_directions_equally
+    always_report_each_animal_direction_and_leave_one_session_result: true
+    support_summary: exact_counts_correct_wrong_and_abstained_with_interval_over_sessions
+    trials_time_bins_electrodes_and_coordinates_are_independent_biological_replicates: false
+  competing_explanation:
+    name: generic_recording_quality_or_array_label
+    prediction: all_component_families_move_together_and_recording_metadata_predicts_regional_gains_and_status_at_least_as_well
+  current_corpus_precision:
+    reserved_sessions: 4
+    may_not_populate_both_sides_of_support_boundary: true
+    sufficient_to_estimate_a_transferable_boundary: false
+    default_publication_role: companion_analysis_within_EP07
+    standalone_claim_requires: additional_sealed_sessions_spanning_both_outcome_classes_with_uncertainty_excluding_chance
+  failure_consequence: retain_as_a_bounded_companion_result_for_EP07_not_a_separate_population_organization_paper
+  changes_primary_result: false
+
+novelty_gate:
+  sources:
+    - source_article_and_supplements
+    - source_analysis_code
+    - later_reports_using_the_same_recordings
+  exact_claim_to_check: component_specific_lfp_to_population_recovery_with_a_frozen_cross_day_failure_prediction
+  if_already_established_or_not_precisely_testable: integrate_EP06_into_EP07
+  complete_before_scored_analysis: true
 
 model_space:
   analysis_windows:
@@ -119,6 +275,10 @@ required_controls:
   - within_direction_whole_trial_lfp_population_pairing_shuffle
   - smoothness_and_dimension_matched_population_surrogate
   - direction_by_time_and_elapsed_time_baselines
+  - projector_idempotence_orthogonality_and_sum_to_identity_known_answer
+  - direction_count_imbalance_invariance_under_declared_weights
+  - source_weight_provenance_and_exact_swap_permutation
+  - minimum_component_energy_gate_known_answer
   - low_frequency_only_and_high_frequency_exclusion
   - same_electrode_unit_intersection
   - matched_trial_electrode_spike_rank_reliability_and_model_capacity
@@ -172,6 +332,9 @@ reserved_session_test:
 
 result_branches:
   supported_within_this_corpus: final_analysis_passes_development_all_controls_and_the_reserved_session_test
+  component_prediction_supported_within_corpus: same_untied_family_is_nominated_both_ways_at_least_three_reserved_predictions_are_nonabstaining_and_none_is_wrong
+  companion_to_EP07: current_default_because_four_reserved_sessions_cannot_estimate_a_transferable_support_boundary_precisely
+  standalone_population_organization_result: requires_additional_sealed_sessions_on_both_sides_of_the_boundary_and_uncertainty_excluding_chance
   no_supported_candidate: valid_search_finds_no_acceptable_model_or_the_final_model_fails_on_reserved_sessions
   development_only: development_finishes_but_reserved_sessions_cannot_be_evaluated
   no_scientific_answer: source_pairing_feature_meanings_or_scoring_cannot_be_established
@@ -180,6 +343,8 @@ result_branches:
 claim_limits:
   reserved_test_supports: within_corpus_two_animal_recording_domain_transfer_under_this_task_and_feature_pipeline
   population_prediction_claim_requires_followup: true
+  component_followup_can_redefine_residual_primary: false
+  separate_paper_claim_requires_component_prediction_and_additional_sealed_sessions: true
   reserved_test_is_independent_confirmation: false
   third_animal_required_for_broader_animal_transfer: true
   separates_cortical_region_from_array_hardware: false
