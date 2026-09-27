@@ -163,8 +163,9 @@ selects one direction:
 
 A successful launch response must contain distinct run_id and canonical_run_id
 and state EXECUTING. If it instead returns successor_episode_id and
-next_action, stop for a new explicit scientist approval; never retry the
-predecessor or reuse expired authority.
+next_action, apply step 3 to that successor episode, then stop for a new
+explicit scientist approval. Never retry the predecessor or reuse expired
+authority; the successor has its own episode-local projection.
 
 Watch the returned MCP run_id with autoresearch_run_watch. EXECUTING means only
 that the approved provider run was accepted and bound. For terminal handling,
