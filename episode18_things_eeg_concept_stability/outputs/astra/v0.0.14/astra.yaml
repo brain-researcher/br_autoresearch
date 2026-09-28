@@ -1,0 +1,47 @@
+version: 0.0.14
+id: episode18_things_eeg_concept_stability
+name: Do different pictures of the same concept share an EEG pattern?
+description: 'Brain Researcher autoresearch episode projection. This ASTRA document
+  is non-authoritative: it records a workspace plan or result but grants no execution
+  authority, scientific acceptance, reward, or Landscape transition.'
+tags:
+- brain-researcher
+- autoresearch
+- projection
+- plan
+- non-authoritative
+inputs:
+- id: goal
+  type: data
+  description: Episode research goal contract.
+  source: GOAL.md
+- id: datasets
+  type: data
+  description: Episode dataset and access contract.
+  source: DATASETS.md
+- id: search_policy
+  type: data
+  description: Episode search and stopping policy.
+  source: SEARCH_POLICY.yaml
+decisions:
+  declared_search_policy:
+    id: declared_search_policy
+    label: Declared episode search policy
+    rationale: policy_id=ep18_things_eeg_concept_stability; evidence_mode=development_then_one_shot_participant_replication
+    default: use_declared_policy
+    options:
+      use_declared_policy:
+        id: use_declared_policy
+        label: Use declared policy
+outputs:
+- id: planned_episode_result
+  type: report
+  format: md
+  description: Planned episode result; no terminal result is asserted.
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+findings: {}

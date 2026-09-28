@@ -1,11 +1,10 @@
-# Episode 15 inputs
+# EP15 inputs
 
-Inputs are read-only. The acquired MDTB participant ZIPs mix Task A and Task B
-and must not be mounted into a candidate run.
+Inputs are read-only. The acquired MDTB participant archives mix Task A and
+Task B and must not be mounted to the development worker.
 
-`../DATASETS.md` requires three operator-created, content-addressed handoffs:
-development A+B, audit anatomy+A, and evaluator-only audit B. None is present
-here, and the Task-B-blind 12/12 role manifest has not been instantiated. The
-frozen 20-row coverage manifest is also absent. Do not add a symlink to the
-mixed shared source, copy participant maps into Git, import a published
-MDTB-fitted atlas, or infer outcome-access permission from source availability.
+[../DATASETS.md](../DATASETS.md) requires three role-filtered handoffs:
+development anatomy+A+B, audit anatomy+A, and evaluator-only audit B. None is
+present here, and the Task-B-blind 12/12 participant roles have not been
+assigned. Do not link the mixed source, commit participant maps, import an
+MDTB-fitted numeric atlas, or infer audit access from source availability.

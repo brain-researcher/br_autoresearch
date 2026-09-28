@@ -1,10 +1,8 @@
-# Outputs
+# EP17 outputs
 
-This is the clean output workspace for the Episode 17 drafting contract. No
-experiment has started, no CNeuroMod neural outcome has been opened, and no
-model-pair conclusion has been evaluated. Transient computation belongs in
-episode-specific scratch during the episode task; protected neural outcomes
-remain unavailable until the role and qualification conditions pass.
+This directory contains small, reviewable episode records and planned paper
+artifacts. It currently contains a design-stage paper plan and a synthetic
+conceptual figure; it contains no neural result.
 
-Source-provisioning records remain with the steward-managed payload and are
-not duplicated here or treated as episode launch gates.
+Future scientific outputs must respect the concept roles and reader boundary
+in [../DATASETS.md](../DATASETS.md).

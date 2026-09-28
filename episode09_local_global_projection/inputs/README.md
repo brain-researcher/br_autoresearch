@@ -1,13 +1,14 @@
-# Read-only inputs
+# EP09 inputs
 
-This directory is an instruction-level read-only boundary. Do not place
-generated files, logs, mutable caches, or edited source data here.
+Inputs are read-only. No SEU-A1876 morphology archive or Allen CCFv3 resource
+has yet been provisioned here.
 
-No scientific input is provisioned at contract-preparation time. Before
-candidate search, human-approved immutable references must expose the exact
-SEU-A1876 RAW and CCFv3 morphology payloads, Allen CCF assets, brain/calibration
-metadata, and provider-method provenance specified in `../DATASETS.md`.
+[../DATASETS.md](../DATASETS.md) requires authenticated references to the
+native dendrites, CCFv3 whole-neuron or axonal-arbor files, cell metadata,
+exact atlas annotation and structure graph, and a shared EP09/10/11 cell and
+group ledger. The ledger must establish biological groups, duplicates, roles,
+and prior outcome exposure before model scoring.
 
-Record the provider release, file names, license/access terms, read-only local
-location, and provisioning method. Never consume a mutable sibling episode's
-live `outputs/` directory.
+Do not place generated features, logs, expanded archives, mutable caches, or a
+sibling episode's live output in this directory. Do not mount audit axonal
+outcomes to the development worker.

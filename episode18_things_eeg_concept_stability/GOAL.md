@@ -1,558 +1,321 @@
-# EP18 — cross-exemplar concept-template stability in THINGS-EEG
+# Do different pictures of the same concept share an EEG pattern?
 
-This episode follows the
-[common adaptive-search protocol](../ADAPTIVE_SEARCH_PROTOCOL.md). Data facts,
-event fields, and access requirements are specified in
-[DATASETS.md](DATASETS.md).
+Imagine seeing twelve very different pictures of a dog. Ten pictures are used
+to estimate the response shared by the concept, and two new dog pictures are
+held out. Can that shared response improve prediction of the held-out EEG
+after strong visual features and features derived from the word “dog” have
+already had a fair chance to explain it?
 
-## Scientific question
+That is the question in EP18. It is not another test of whether object
+category can be decoded from EEG. Cross-exemplar category information has
+already been reported in THINGS-EEG. The harder question is whether a
+categorical template predicts better than a capacity-matched label basis
+built on the same image model, whether the same advantage survives deliberately constructed false
+groupings of the images, and whether it repeats in people who were not used
+to develop the analysis.
 
-For the fixed THINGS concept and image inventory, does a regularized
-categorical concept basis predict held-out continuous EEG better than a
-label-aware basis with matched fitting capacity, when both include the same
-image-derived feature panel? Does the true THINGS grouping also outperform
-alternative 12-image groupings matched to the same fold-specific visual and
-temporal structure?
+The intended paper should explain when a category-level response remains
+useful despite large visual differences between exemplars. A small accuracy
+gain by itself is not enough.
 
-For a concept such as `dog`, ten images train the concept-specific response
-and two different dog images test it. The question is whether that shared
-response improves prediction after pixel-derived and label-derived models have
-had comparable fitting capacity.
+The [paper plan](outputs/paper_plan.md) describes the explanatory follow-up
+and the evidence needed for each planned figure. No EEG result is claimed in
+this document.
 
-Concept-name and human concept features already identify the named concepts.
-A categorical term therefore does not introduce nominal information that was
-absent from those features. It introduces a different predictive basis and
-inductive bias. EP18 tests whether that categorical basis has out-of-sample
-predictive value under a frozen feature and readout family.
+## At a glance
 
-A positive result would support a reproducible categorical concept-template
-increment conditional on that family. It would not establish abstract,
-amodal, purely semantic, or vision-independent coding.
+| Question | EP18 design |
+| --- | --- |
+| What is being predicted? | Continuous multichannel EEG during a 10 Hz image stream. |
+| What is held out within a person? | Two of the twelve exemplars of every concept; the other ten are used for fitting. |
+| What is the strongest reference? | The same image features plus continuous label and human concept features, including a capacity-matched nonlinear label readout. |
+| What makes the test category-specific? | The true concepts must beat eight false groupings matched for visual similarity, temporal context, and fitting capacity. |
+| What is the inferential unit? | A whole participant, after averaging that participant's six held-out block pairs. |
+| What is the independent replication step? | Develop the complete procedure in 30 participants and apply it once in 16 held-out participants. |
+| What would explain the result? | The advantage should persist for the held-out exemplars that are least visually similar to their ten training exemplars. |
+| What can the study conclude? | A reproducible categorical-basis advantage, feature sufficiency, readout insufficiency, nonspecific grouping, sequence artifact, nonreplication, or an unresolved test. |
 
-The EEG release and the authorized THINGS image archives have been acquired
-and verified, so the sources can support a future outcome-blind setup phase
-that reconstructs events, builds the exact image-event join, and assigns
-participant roles. EP18 remains an incomplete local draft rather than a formal
-episode because its input/output guards and seven workspace projections are
-missing. After that scaffold is complete, EEG-informed candidate comparison
-may begin only after the join is validated, participant roles are frozen,
-the development view is provisioned, and audit EEG is evaluator-only as
-specified in `DATASETS.md`.
+## Why this study is needed
 
-## Why this episode is needed
+The original THINGS-EEG1 paper reported cross-exemplar concept structure.
+Later work showed that low-level visual statistics can create apparently
+semantic decoding, and other studies have compared perceptual, conceptual,
+vision-model, and language-model representations in THINGS EEG and MEG.
+Relevant starting points include:
 
-Cross-exemplar concept structure is not a new result by itself. The original
-THINGS-EEG1 paper reported it, and later work showed that low-level visual
-statistics can produce apparently semantic decoding. Other studies have
-compared perceptual, conceptual, vision-model, and language-model structure in
-THINGS EEG and MEG:
-
-- [Grootswagers et al. (2022)](https://doi.org/10.1038/s41597-021-01102-7)
-  introduced THINGS-EEG1 and its cross-exemplar analyses;
-- [Holm et al. (2024)](https://doi.org/10.1016/j.neuroimage.2024.120626)
-  demonstrated low-level visual confounding in THINGS-EEG; and
-- [Kim et al. (2026)](https://doi.org/10.1167/jov.26.8.2),
+- [Grootswagers et al. (2022)](https://doi.org/10.1038/s41597-021-01102-7),
+  which introduced THINGS-EEG1 and its cross-exemplar analyses;
+- [Holm et al. (2024)](https://doi.org/10.1016/j.neuroimage.2024.120626),
+  which demonstrated low-level visual confounding in THINGS-EEG; and
+- [Rong et al. (2025)](https://doi.org/10.7554/eLife.108915),
+  [Kim et al. (2026)](https://doi.org/10.1167/jov.26.8.2), and
   [Watson et al. (2026)](https://doi.org/10.1016/j.neuroimage.2026.122012),
-  and [Rong et al. (2025)](https://doi.org/10.7554/eLife.108915) examined
-  perceptual, conceptual, behavioral, vision-model, and language-model
-  contributions in related datasets.
+  which examined perceptual, conceptual, behavioral, vision-model, or
+  language-model contributions in related datasets.
 
-EP18's novelty threshold is therefore stricter: single-exemplar prediction in
-continuous 10 Hz EEG; explicit modeling of overlapping responses; a strong
-feature-and-readout sufficiency baseline; true concepts tested against visually and
-temporally matched alternatives; and replication in whole participants not
-used for development.
+EP18 therefore sets a stricter novelty threshold. The result must concern
+single held-out exemplars in continuous EEG, explicitly model overlapping
+responses, survive a strong image-and-label reference, beat matched false
+groupings, and repeat in whole participants not used for development.
+
+Even that result would show an advantage of a particular categorical basis
+and regularization scheme. It would not establish abstract, amodal, purely
+semantic, or vision-independent coding.
 
 ## Competing explanations
 
-1. **Categorical concept-template increment.** Different images with the same
-   concept share EEG structure that remains predictive after the frozen image
-   features and label-aware, capacity-matched readout.
-2. **Feature-and-readout sufficiency.** Visual, vision-language,
-   label-semantic, or human-perceptual features explain the predictable
-   structure once their readout has comparable capacity.
-3. **Partition nonspecificity.** True concepts help, but matched alternative
-   image groupings help just as much.
-4. **RSVP sequence artifact.** The apparent effect comes from neighboring
-   images, sequence position, filtering, targets, responses, or drift.
-5. **New-participant nonreplication.** A development effect does not recur
-   under the fixed procedure in audit participants.
-6. **Measurement limitation.** Reliability, design rank, or precision is
-   insufficient to distinguish these explanations.
-
-## Evidence structure
-
-The provider marks four of the 50 participants for exclusion, leaving 46
-potentially eligible participants. The planned split is:
-
-- 30 whole participants for development; and
-- 16 whole participants for audit.
-
-The deterministic assignment is generated and recorded during episode setup
-from provider metadata and fixed integrity checks. It is an episode output,
-not a missing external dataset.
-
-Exact eligibility and assignment rules are in `DATASETS.md`. Participant IDs
-must be fixed before any EEG-derived quantity is used to choose among analysis
-candidates, and no audit participant may later be replaced. The participant is
-the inferential and replication unit; folds, sequences, images, electrodes,
-and EEG samples are repeated measurements.
-
-All participants saw the same main image collection. A scored exemplar is new
-to that participant's fold-specific fit, but the image may already have been
-seen in a development participant. The primary claim is therefore
-cross-exemplar replication in new participants, not generalization to globally
-unseen images.
-
-The audit interval treats participants as the sampling unit and conditions on
-the observed 1,854 concepts and 22,248 images. It does not estimate
-generalization to unseen concepts or to a new image population.
-
-## Within-participant folds and continuous model
-
-The main session has 12 blocks. Each block presents one exemplar of every
-concept and is divided into six physical sequences. Use six fixed outer folds:
-fold \(j\) scores blocks \(j\) and \(j+6\), for \(j=0,\ldots,5\), and fits on
-the other ten blocks. Every image is assigned to a held-out fold exactly once;
-the fixed boundary mask determines which EEG samples contribute to its score.
-
-Within each fold:
-
-- adaptive preprocessing, feature reduction, covariance estimation,
-  regularization, and coefficient fitting use only the ten training blocks;
-- physical-sequence boundaries are preserved;
-- samples affected by filter or FIR boundary support are excluded from
-  scoring; and
-- no raw or transformed EEG sample contributes to both fitting and scoring.
-
-The five remaining block pairs form five inner folds. Each inner fit uses
-eight blocks and validates on two. Every permitted training-derived transform,
-feature reduction, whitening covariance, temporal rank, model rank, and
-penalty is re-estimated inside every inner-training split. For a participant
-and outer fold, the inner one-standard-error rule uses the mean and standard
-error across those five block-pair losses. After one rule is selected, it is
-refitted on all ten outer-training blocks; the two outer-held-out blocks are
-scored once. Lower-complexity and lexicographic tie rules are fixed in
-`SEARCH_POLICY.yaml`.
-
-At 10 Hz, an epoch around one image contains responses to several neighboring
-images. The primary analysis therefore predicts continuous multichannel EEG
-with one time-expanded model over every event in a physical sequence:
-
-\[
-y_p(t)
-=
-\sum_{\tau\in\mathcal T} W_{p,\tau}x_p(t-\tau)
-+
-\sum_{\tau\in\mathcal T} U_{p,\tau}z_p(t-\tau)
-+\epsilon_p(t).
-\]
-
-Here, \(x\) contains the fixed image and nuisance features, \(z\) contains true
-or alternative group membership, and \(\mathcal T\) is a fixed causal FIR or
-low-dimensional temporal basis. Every image enters at its actual event time,
-so overlapping responses are modeled jointly rather than treated as
-independent epochs.
-
-The primary pipeline may not use ordinary prestimulus baseline correction that
-folds responses to earlier images into the baseline. A two-sided filter, if
-retained, must operate within each physical sequence and discard its full edge
-influence. No filter, drift estimate, bad-channel rule, normalization,
-covariance estimate, or artifact model may learn from held-out blocks.
-
-The primary sensor space begins with the fixed set of 62 recorded channel
-labels shared by the standard montage and the `sub-49`/`sub-50` montage. Any
-participant- or fold-specific bad-channel removal and interpolation is
-prohibited in the primary analysis. Remove the across-channel mean and express
-the data in one frozen 61-dimensional orthonormal contrast basis for that
-common-average subspace.
-Estimate and regularize the whitening covariance on training blocks in this
-full-rank basis; do not invert a 62-channel common-average covariance. Channels
-outside the shared set are sensitivity analyses only and cannot select or
-rescue the primary result.
-
-## Models being compared
-
-### Image-derived model \(M_{\mathrm{image}}\)
-
-The image-derived model contains:
-
-- luminance, contrast, color, spatial frequency, texture, image geometry,
-  object extent, foreground/background structure, and composition;
-- intermediate and final representations from supervised and self-supervised
-  vision models;
-- image-encoder and automatically generated caption representations from the
-  frozen VLM panel; and
-- target onsets, validated button responses, physical-sequence position,
-  sequence boundaries, and slow drift.
-
-Every image-derived feature job receives only pixels and an opaque image ID.
-It may not read a path, filename, folder, concept name, human category, or a
-prompt constructed from those fields. Preceding and following images enter as
-their own rows at their actual event times in the joint temporal design; they
-are not copied into extra current-image columns.
-
-### Label-aware models
-
-\(M_{\mathrm{label,lin}}\) adds frozen concept-name embeddings and fixed human
-perceptual or conceptual dimensions to \(M_{\mathrm{image}}\), using the
-declared linear readout.
-
-\(M_{\mathrm{label,cap}}\) adds one nonlinear kernel slot, built only from
-those same continuous label features, to \(M_{\mathrm{label,lin}}\). It never
-receives a one-hot concept ID. On every outer-training fold, that slot's
-conditional effective degrees of freedom must match or slightly exceed those
-of the categorical slot within the frozen tolerance. It also receives the same
-temporal basis and frozen 61-dimensional output space. A candidate that cannot
-make this match is invalid; it cannot fall back to the weaker linear label
-baseline.
-
-Encoder weights, raw outputs, label features, kernels, and the admissible
-feature-family menu are fixed without EP18 EEG. Declared downstream reductions
-and penalties may use only nested training-block development EEG. A mandatory
-family cannot be removed because its removal increases the categorical effect.
-At least one independently trained expanded image panel is required, and the
-terminal decision is made on the additive expanded panel; the core-panel
-result is explanatory and cannot substitute for it.
-
-The common encoding fit is also fixed. Training-only PCA produces whitened
-component scores; a requested rank above a family's numerical rank is replaced
-by that numerical rank and recorded. After temporal expansion, each penalized
-predictor block is scaled from its training rows to unit root-mean-square
-energy. Nuisance terms are unpenalized; image blocks share one ridge penalty,
-linear label blocks share a second, and the added replacement slot has its own
-ridge penalty. All penalties use the frozen grid and scaling convention in
-`SEARCH_POLICY.yaml`. Continuous label features are normalized without EEG,
-with equal total weight for each declared feature family, before either their
-linear readout or the nonlinear label kernel is constructed.
-
-The image and label-readout recipe is selected only by its own held-out
-prediction loss. The concept and pseudo-group contrasts cannot choose a weaker
-baseline, alter branch retirement, or break a tie. The expanded panel keeps
-all core feature blocks and adds its extra encoder; a shared rank cap cannot
-silently displace core features.
-
-### Categorical and alternative-template models
-
-\(M_{\mathrm{image,true}}\) adds the regularized true-concept template to
-\(M_{\mathrm{image}}\). This comparison describes how much the template adds
-to image-derived features alone; it does not drive the terminal claim.
-
-\(M_{\mathrm{true}}\) adds one true-concept categorical slot to
-\(M_{\mathrm{label,lin}}\), while \(M_{\mathrm{pseudo},k}\) places one
-alternative grouping in that same slot. Thus \(M_{\mathrm{label,cap}}\),
-\(M_{\mathrm{true}}\), and each \(M_{\mathrm{pseudo},k}\) have matched
-capacity within the declared 5% conditional-effective-degrees-of-freedom
-tolerance: they share \(M_{\mathrm{label,lin}}\) and differ only in the added
-slot's basis. These are competing replacements for one added slot:
-\(M_{\mathrm{true}}\) does not also contain the nonlinear label-kernel slot.
-The added slots use the same temporal basis, sensor output space, penalty menu,
-tuning budget, and effective-capacity rule. An unconstrained
-`1,854 × channels × lags` lookup table is not allowed.
-
-All models use identical folds, samples, transformations, temporal support,
-nuisance terms, covariance, and fitting opportunities. Each is fitted directly
-to EEG with all of its covariates included. Fitting a baseline once and then
-searching exported EEG residuals is not allowed. Because unique label
-embeddings and a categorical basis can span overlapping predictive spaces, any
-surviving gain is interpreted as an advantage of the frozen categorical basis
-and regularization, not as new nominal information absent from the label
-features.
-
-## Matched alternative partitions
-
-Random labels test capacity but do not distinguish concepts from unmodeled
-visual clusters. The primary comparator bank therefore contains alternatives
-built without EEG.
-
-The primary bank contains exactly eight alternatives. Every alternative has
-1,854 groups of 12 images, covers all 22,248 main images exactly once, and
-places one image from every main block and 12 different true concepts in each
-group. It uses the same group term, temporal basis, regularization, and tuning
-budget as \(M_{\mathrm{true}}\).
-
-Each pseudo-group is treated exactly like a concept: its ten training-block
-images predict its two held-out images. Matching design spectrum, leverage,
-and effective degrees of freedom prevents a pseudo-grouping from being easier
-or harder to fit merely because of its numerical geometry.
-
-For every outer fold separately, the generator must match true groups on:
-
-- held-out-to-training nearest-neighbor and centroid distances in low-level,
-  vision-model, and image-derived VLM or caption spaces;
-- training and held-out within-group scatter;
-- the post-constraint design spectrum, leverage, and conditional effective
-  degrees of freedom; and
-- physical-sequence position and all image, target, and validated-response
-  context inside the complete FIR, filter, and scoring-support horizon.
-
-A partition that matches only full 12-image dispersion but fails a
-held-out-versus-training diagnostic in any outer fold is not admissible.
-
-Concept-name and concept-level human features cannot be matched: their
-within-group dispersion is zero for a true concept but not for a group of 12
-different concepts. Those continuous features remain in the shared
-\(M_{\mathrm{label,lin}}\), and the remaining semantic mismatch must be
-reported.
-
-Image order differs across participants, so a fixed generator may create a
-different literal partition for each participant. Index \(k\) denotes the same
-predeclared generator seed, objective, fold-specific tolerances, diversity
-rule, acceptance order, and retry ceiling across participants. These choices
-are frozen before any concept comparison. If eight acceptable partitions
-cannot be generated within that ceiling, the episode is underidentified; the
-tolerances may not be relaxed after EEG inspection. Achieved matching quality
-is reported for every participant, fold, and partition.
-
-Random partitions remain separate capacity diagnostics. The matched bank is a
-finite set of competing models, not an exchangeable permutation sample, and
-must not be reported as a permutation-test null.
-
-## Primary quantities and decision rule
-
-Participant \(p\)'s held-out data in outer fold \(f\) comprise 12 physical
-sequences with model-independent scoring masks \(S_{pfq}\), set by timing,
-boundary, missingness, and artifact rules. Define the whitened error in
-sequence \(q\) as
-
-\[
-E_{pfq}(M)=\frac{1}{61|S_{pfq}|}\sum_{t\in S_{pfq}}
-\left\|\Sigma_{pf}^{-1/2}
-\left[y_p(t)-\widehat y_{pfM}(t)\right]\right\|_2^2,
-\]
-
-and the primary loss as
-
-\[
-L_{pf}(M)=\frac{1}{12}\sum_{q=1}^{12}
-\frac{E_{pfq}(M)}{E_{pfq}(M_{\mathrm{nuisance}})}.
-\]
-
-Each retained continuous sample is scored exactly once. Sequences are equally
-weighted, samples are equally weighted within a sequence, and the 61 frozen
-sensor contrasts are whitened with one covariance \(\Sigma_{pf}\) estimated
-from a fixed nuisance-only model on the outer-training blocks. The same mask
-and covariance are used for every model in the fold. Division by the held-out
-nuisance-model error makes the loss a dimensionless fraction of nuisance-only
-error and is identical across candidate comparisons. Here,
-\(M_{\mathrm{nuisance}}\) contains only target, response, sequence-position,
-boundary, and drift terms. Lower loss is better; a value of 1 means no
-improvement over that nuisance-only prediction. No sample may be removed
-because of a candidate residual, concept label, or observed effect. Concept
-and category concentration are reported as influence diagnostics rather than
-silently changing the loss weights.
-
-For each fold, define
-
-\[
-d^{\mathrm{image}}_{pf}
-= L_{pf}(M_{\mathrm{image}})-L_{pf}(M_{\mathrm{image,true}}),
-\]
-
-\[
-d^{\mathrm{cap}}_{pf}
-= L_{pf}(M_{\mathrm{label,cap}})-L_{pf}(M_{\mathrm{true}}),
-\]
-
-\[
-c^{(k)}_{pf}
-= L_{pf}(M_{\mathrm{pseudo},k})-L_{pf}(M_{\mathrm{true}}).
-\]
-
-Positive \(d^{\mathrm{image}}_{pf}\) is the image-panel increment. Positive
-\(d^{\mathrm{cap}}_{pf}\) means the categorical basis improves on the
-capacity-matched label readout. Positive \(c^{(k)}_{pf}\) means the true
-grouping predicts better than matched alternative \(k\).
-
-Average the six folds before inference:
-
-\[
-d^{\mathrm{image}}_p=\frac{1}{6}\sum_f d^{\mathrm{image}}_{pf},
-\qquad
-d^{\mathrm{cap}}_p=\frac{1}{6}\sum_f d^{\mathrm{cap}}_{pf},
-\qquad
-c^{(k)}_p=\frac{1}{6}\sum_f c^{(k)}_{pf}.
-\]
-
-Let \(P_B\) be the fixed set of 16 audit participants. The audit estimands are
-equal-participant means:
-
-\[
-\Delta_{\mathrm{image}}=\frac{1}{|P_B|}\sum_{p\in P_B}d^{\mathrm{image}}_p,
-\qquad
-\Delta_{\mathrm{cap}}=\frac{1}{|P_B|}\sum_{p\in P_B}d^{\mathrm{cap}}_p,
-\qquad
-C_k=\frac{1}{|P_B|}\sum_{p\in P_B}c^{(k)}_p.
-\]
-
-A positive primary result requires all of the following:
-
-1. the cohort-level image/task positive control exceeds its fixed floor;
-2. on the frozen additive expanded image panel, the simultaneous lower audit bound
-   for \(\Delta_{\mathrm{cap}}\) exceeds practical margin \(\delta_C\);
-3. on that panel, simultaneous lower bounds for all eight \(C_k\) exceed
-   partition margin \(\delta_P\);
-4. temporal, task, sequence, and label-shift controls pass their fixed
-   margins; and
-5. leave-one-participant, held-out-block-pair, physical-sequence, and broad
-   object-category analyses remain within a fixed influence tolerance.
-
-\(\Delta_{\mathrm{image}}\) and the linear-label comparison are explanatory;
-neither can rescue failure against \(M_{\mathrm{label,cap}}\). The rules for
-\(\delta_C\) and \(\delta_P\) are fixed by the label-free image positive
-control rule in `SEARCH_POLICY.yaml`. Development reliability, injections, and
-null simulations must qualify those margins but cannot lower them, and the
-observed true-versus-pseudo effect cannot enter their calculation. The interval
-and multiplicity procedure, positive-control floors, influence tolerance,
-equivalence bounds, image panels, and matched bank are set before audit.
-
-Failure to establish \(C_k>\delta_P\) is not by itself evidence of partition
-nonspecificity. That conclusion requires adequate precision and a predeclared
-equivalence test showing that a matched alternative is comparable to, or
-better than, the true grouping; otherwise the result is underidentified.
-
-## Development and audit boundary
-
-Development may compare bounded choices in:
-
-- causal FIR versus low-rank temporal bases;
-- training-only feature reductions;
-- image and linear-label ridge penalties;
-- nonlinear label-kernel bandwidth; and
-- downstream choices within the admissible expanded-panel menu. Every panel
-  designated as required is carried into audit.
-
-The true and pseudo categorical slots always use the same frozen full penalty
-grid and nested rule. Their scores, selected penalties, and capacity-match
-status cannot change the adaptive search grammar or choose the baseline.
-
-Every candidate evaluates \(M_{\mathrm{image}}\),
-\(M_{\mathrm{label,lin}}\), \(M_{\mathrm{label,cap}}\),
-\(M_{\mathrm{true}}\), and the primary matched bank on identical folds and
-samples. Development may strengthen the image or label baseline. It may not
-choose a favorable weak baseline, create EEG-informed partitions, select a
-different winner for each participant, or inspect audit EEG to decide what to
-try next.
-
-During adaptive baseline search, the controller sees only
-\(M_{\mathrm{label,cap}}\) prediction, positive controls, conditioning,
-complexity, and resource use. Concept, pseudo-group, and concept-dependent
-control scores—and even pass/fail proxies for them—remain sealed. The baseline
-is chosen across the 30 participant-level outer-CV losses and locked
-irreversibly. Only then are the already computed scientific contrasts for that
-one locked configuration released. No further development candidate may be
-proposed after that release; a failed control closes or classifies the episode
-rather than sending the search back to a more favorable baseline.
-
-One procedure advances to audit. For each audit participant, the evaluator
-fits that procedure on ten blocks and scores the two held-out blocks in each
-outer fold. Feature families, admissible basis and rank grids,
-penalty-selection rules, masks, partitions, controls, margins, and decisions
-may not change. Coefficients and the realized rank or penalty may vary by
-participant and outer fold only through that locked nested-selection rule.
-
-This primary audit tests whether the participant-refit procedure reproduces
-the cross-exemplar increment in new participants. It is not zero-shot
-application of a development-participant EEG template. Shared-template
-transport is outside the terminal contract for this episode; if performed
-later, it is exploratory and cannot qualify, rescue, or overturn EP18.
-
-Before audit access, the locked procedure must pass a precision gate using
-development participant vectors and blinded injections under the same
-simultaneous interval rule planned for 16 participants. If the projected
-simultaneous half-width cannot distinguish \(\delta_C\) or \(\delta_P\), the
-episode closes as underidentified without opening audit EEG.
-
-Audit reliability and positive controls are evaluated only at the cohort
-level after lock. No audit participant may be excluded or replaced because of
-signal quality, reliability, or effect direction. A cohort-level failure makes
-the result underidentified rather than creating a smaller favorable sample.
-
-## Qualification before candidate comparison
-
-Before model comparison, EP18 must establish that:
-
-1. every retained participant's 12 blocks and 72 physical sequences must be
-   reconstructed unambiguously from events and raw markers;
-2. filtering, FIR construction, and boundary trimming must prevent any EEG
-   sample from entering both fitting and scoring;
-3. the time-expanded feature and group-membership design must have adequate
-   rank and conditioning under the fixed 10/2 folds;
-4. outcome-blind simulations must recover declared concept increments without
-   confusing concept, neighbor, target, response, drift, or latency terms;
-5. the matched-partition generator must meet its visual and sequence targets
-   without EEG;
-6. development-participant repeated-image reliability and image/task positive
-   controls must support a meaningful participant-level test, and the frozen
-   16-participant precision projection must resolve both practical margins;
-7. all eight fold-matched alternatives must be generated within the frozen
-   retry budget; and
-8. the 30/16 participant IDs must be frozen, the development runtime must have
-   no access to audit EEG values, and the shared EP17/EP18 exposure ledger must
-   be initialized.
-
-Failure of rank, injection recovery, reliability, matching, or precision makes
-the question underidentified. It cannot be repaired by treating folds, trials,
-or samples as independent participants.
-
-## Checks carried into audit
-
-The fixed finalist includes:
-
-- the primary matched partition bank and same-size random capacity controls;
-- every required expanded image panel;
-- negative-lag or prestimulus checks under the same preprocessing;
-- concept-label shifts longer than the complete response and filter horizon,
-  with no circular wrap across physical sequences;
-- separate target-onset and validated-response terms, sequence position, and
-  drift sensitivities;
-- filter-support and physical-sequence boundary checks;
-- the fixed influence analyses in the primary decision rule;
-- null, visual-only, concept-increment, neighbor-effect, and latency-jitter
-  simulations using the real event design; and
-- positive controls for recoverable image- and task-related EEG signal.
-
-The 200 repeated validation images are used only for signal-recovery and
-reliability qualification, positive controls, and injection calibration.
-Their repetition, adaptation, and late-session structure prevents treating
-them as a primary noise ceiling, and they cannot rescue the main result.
-Time-resolved plots are secondary. Their uncertainty and multiplicity rules
-must be set in advance, and an isolated latency peak cannot replace the global
-continuous-prediction result.
+| Explanation | What it predicts |
+| --- | --- |
+| **Concept-stable response** | A true-concept template predicts held-out EEG better than the capacity-matched label basis, beats every matched false grouping, and retains an advantage for exemplars that are distant in the frozen visual-only feature panel. |
+| **Image and label features are sufficient** | Once the strongest image and nonlinear label readout is included, the categorical template has no practically meaningful advantage. |
+| **The label readout was too weak** | A categorical advantage over a linear label model disappears when the nonlinear label model receives comparable fitting capacity. |
+| **Generic grouping is enough** | One or more visually and temporally matched false groupings predict as well as the true concepts. |
+| **RSVP sequence artifact** | Apparent concept prediction also appears at negative lags, after long within-sequence label shifts, or depends on targets, responses, drift, or sequence boundaries. |
+| **Development-only effect** | The complete effect appears in the 30 development participants but does not repeat under the frozen procedure in the 16 held-out participants. |
+| **The data cannot decide** | Reliability, rank, matched-group construction, or participant-level precision is inadequate. |
+
+These are scientific outcomes, not merely pass/fail labels. The analysis must
+be capable of returning each one without changing the question after seeing
+the result.
+
+## The decisive first test
+
+THINGS-EEG1 contains 1,854 concepts with 12 images per concept. The main
+session has 12 blocks; each block contains one image from every concept. Six
+fixed outer folds hold out block pairs `{0,6}`, `{1,7}`, …, `{5,11}`. In each
+fold, ten exemplars train the model and two different exemplars are scored.
+
+Every model is fitted directly to the same continuous EEG samples. The models
+share folds, preprocessing, nuisance terms, temporal support, sensor space,
+whitening, and tuning opportunities. The key models are:
+
+| Model | Information available | Scientific role |
+| --- | --- | --- |
+| **Image model** | Low-level image measurements and frozen vision or vision-language features | Shows how much of the EEG is predictable from the image itself. |
+| **Linear label model** | Image model plus continuous features derived from concept names and human ratings | Common reference for the added-slot comparisons. |
+| **Capacity-matched label model** | Linear label model plus a nonlinear readout of the same continuous label features | Strongest reference; rules out a gain caused only by an underpowered label readout. |
+| **True-concept model** | Linear label model plus one regularized categorical concept slot | Tests whether the categorical basis predicts held-out exemplars. |
+| **False-group models** | The same linear label model plus one matched pseudo-group slot | Tests whether any visually coherent grouping would work as well. |
+
+The nonlinear label slot, true-concept slot, and pseudo-group slots must have
+comparable effective fitting capacity. The true-concept model does not also
+receive the nonlinear label slot. This makes the comparison about which added
+basis predicts held-out EEG better, rather than which model simply has more
+parameters.
+
+For participant `p`, average each model's held-out loss across the six outer
+folds before inference. The primary participant-level contrasts are:
+
+- capacity-matched categorical-basis advantage:
+  `loss(capacity-matched label) - loss(true concept)`; and
+- partition specificity for each false grouping:
+  `loss(false grouping k) - loss(true concept)`.
+
+Positive values favor the true concept. The final claim requires the
+participant-level lower bound for the first contrast to exceed its meaningful
+margin and the lower bound for every one of the eight partition contrasts to
+exceed its margin. Folds, images, sequences, sensors, and samples are repeated
+measurements, not independent biological replicates.
+
+## Why continuous EEG must be modeled directly
+
+Images arrive every 100 ms, while an EEG response lasts much longer. An epoch
+around one image therefore contains responses to several neighboring images.
+EP18 uses one time-expanded model over each physical sequence so that every
+image enters at its actual onset and overlapping responses are estimated
+together.
+
+Physical sequences are hard signal boundaries. Filtering, detrending,
+temporal expansion, and trimming cannot borrow samples across them. Every
+training-derived transform is fitted inside the training blocks, and no raw
+or transformed sample may contribute to both fitting and scoring. Ordinary
+prestimulus baseline correction is not used because it would fold responses
+to earlier RSVP images into the current trial.
+
+This continuous model is part of the scientific test. Replacing it with
+isolated image epochs would make a category effect difficult to distinguish
+from neighboring-image structure.
+
+## False groupings that test the right alternative
+
+Random labels test capacity but do not test residual visual organization. The
+primary comparator bank therefore contains exactly eight EEG-blind false
+partitions. Each partition:
+
+- uses every one of the 22,248 main images exactly once;
+- contains 1,854 groups of 12 images;
+- places one image from every main block in each group;
+- never puts two images from the same true concept in one group; and
+- is matched to the true concepts, separately in every outer fold, for
+  held-out-to-training image-feature distance, within-group scatter, temporal
+  context, and the effective fitting capacity of the added slot.
+
+The generator and acceptance tolerances are fixed before EEG comparison. If
+all eight acceptable partitions cannot be constructed, the question is
+underidentified; the matching rule cannot be loosened after inspecting EEG.
+These partitions form a finite set of competing models, not a permutation
+null.
+
+## The explanatory prediction
+
+The primary test asks whether a categorical basis wins. The next question is
+why.
+
+For every held-out image, measure its distance from the ten training images
+of the same concept using a frozen visual-only feature panel, without EEG.
+This panel contains low-level, supervised-vision, and self-supervised-vision
+features; it excludes captions, concept names, human semantic features, and
+vision-language embeddings. Freeze the distance definition and its near,
+middle, and distant thirds before model comparison.
+
+An onset-to-next-onset error bin cannot answer this question because the EEG
+in that 100 ms interval still contains responses to earlier images. Instead,
+use a post-fit contribution ablation that preserves the complete continuous
+model. For each fitted model, remove only its added-slot prediction for
+distant held-out events over the full 0–800 ms response horizon, leave all
+other event contributions untouched, and rescore the complete physical
+sequences with the same mask. No model is refitted for this analysis.
+
+For each participant, compare the loss increase caused by removing distant
+true-concept contributions with the loss increase caused by removing the
+corresponding capacity-matched label contributions. Make the same comparison
+against each of the eight matched false-group slots. Simulations with the
+real overlapping event design must show that these ablations recover a
+distant-exemplar signal without misattributing neighboring-image effects.
+
+The preferred explanation makes a directional prediction:
+
+> If the advantage reflects a response stable across concept exemplars,
+> removing true-concept contributions for the most distant held-out images
+> should harm prediction more than removing the capacity-matched label or
+> false-group contributions. If residual visual similarity is sufficient,
+> that distant-exemplar advantage should shrink toward zero.
+
+This analysis uses the same folds, continuous model, samples, and
+participant-level aggregation as the primary test. The label comparison and
+eight false-group comparisons form a separate nine-endpoint simultaneous
+participant-level family. It is an explanatory endpoint, not a way to rescue
+a failed primary comparison. The complete rule is fixed before audit and then
+repeated in the 16 audit participants.
+
+A prespecified time-resolved analysis provides a second, weaker diagnostic.
+Image-feature prediction should dominate the earliest response, whereas a
+concept-stable advantage is expected to persist into later positive lags. A
+late advantage that also appears at negative lags or after long label shifts
+is evidence for sequence leakage, not conceptual stability. Time-resolved
+peaks cannot replace the global continuous-prediction endpoint.
+
+## Development and held-out participants
+
+The provider marks four of 50 participants for exclusion, leaving 46
+potentially eligible participants. Eligibility uses provider notes and fixed
+file, header, event, and marker checks only. It cannot use EEG quality,
+reliability, predictions, or effect direction.
+
+Thirty whole participants are assigned to development and 16 to audit before
+any EEG-derived model comparison. The participant is the replication and
+inference unit. No assigned participant may be removed, replaced, or moved
+between roles because of a later neural result.
+
+Development chooses one complete image, label, and temporal recipe using only
+prediction of the capacity-matched label model plus positive controls and
+numerical diagnostics. True-concept scores, false-group scores, and their
+pass/fail summaries remain hidden during that choice. After the baseline is
+fixed, those scientific contrasts are released once. A failed control or
+unfavorable contrast classifies the episode; it cannot send the search back
+to select a friendlier baseline.
+
+Audit opens only if the released development means clear the categorical and
+all eight false-group margins, every required development control passes, and
+development-participant simulations and uncertainty estimates show that 16
+participants can resolve the meaningful margins. Otherwise the episode is
+classified without opening audit EEG.
+
+After those conditions pass, the fixed procedure is refitted and scored
+within each audit participant using the six 10-block/2-block folds. This is
+replication in new participants, not zero-shot transfer of one person's EEG
+template.
+
+## Controls that decide what the result means
+
+The fixed procedure carries the following controls into audit:
+
+- recoverable image, task, and repeated-image signals at the cohort level;
+- negative-lag concept predictors;
+- long, noncircular within-sequence concept-label shifts;
+- explicit target, validated-response, sequence-position, boundary, and drift
+  terms;
+- synthetic null, image-only, concept, neighbor, target, drift, and latency
+  scenarios using the real event structure;
+- influence checks across participants, held-out block pairs, physical
+  sequences, broad object categories, and concepts; and
+- the required expanded image-feature panel.
+
+Failure of a positive control means that the biological comparison is not
+identified. A control effect at negative lags or shifted labels supports a
+sequence or filtering artifact. Neither outcome may be repaired by excluding
+an inconvenient participant or choosing a different feature panel.
+
+## Planned question figure
+
+The figure below is a synthetic design illustration. It contains no THINGS
+source images and no observed EEG result.
+
+![EP18 conceptual question figure](outputs/ep18_conceptual_question.png)
+
+The figure should let a reader see the complete scientific fork: different
+pictures of one concept, continuous overlapping EEG, the three fair added-slot
+comparisons, the visual-feature-distance prediction, and replication in new
+participants.
 
 ## Possible conclusions
 
-| Outcome | Interpretation | Terminal status |
+| Outcome | Evidence required | Interpretation |
 | --- | --- | --- |
-| Categorical concept-template increment | The full conjunctive decision rule passes | `candidate_ready` |
-| Feature-and-readout sufficiency | The increment is absent against the strongest required feature and capacity-matched readout, with adequate precision | `closed_no_candidate` |
-| Readout insufficiency | An increment against a linear label readout disappears against the capacity-matched label readout | `closed_no_candidate` |
-| Partition nonspecificity | With adequate precision, a matched alternative is equivalent within the fixed margin or predicts better | `closed_no_candidate` |
-| Sequence or filtering artifact | Negative lags, shifts, task terms, drift, or support checks explain the effect | `closed_no_candidate` |
-| New-participant nonreplication | A precise development effect fails in the participant-refit audit | `closed_no_candidate` |
-| Underidentified | Reliability, rank, matching, injection recovery, or participant-level precision is inadequate | `closed_no_candidate` |
-| Technical or access failure | Event reconstruction, sample separation, preprocessing, audit isolation, or the fixed procedure is violated | `technical_failure` |
+| **Reproducible categorical-basis advantage** | The true concept clears the capacity-matched margin, beats all eight matched false groups, passes sequence controls, and repeats in audit participants. | The categorical basis predicts held-out exemplars better within this THINGS inventory and model family. |
+| **Stability across visual-feature distance** | The primary result passes, and removing true-concept contributions for the distant third harms audit prediction more than removing the capacity-matched label or every false-group contribution. | The stronger explanation—that the useful response survives large changes in the prespecified visual-only feature panel—is supported. If this prediction fails, retain only the narrower predictive-basis result. |
+| **Feature and readout sufficiency** | With adequate precision, the true-concept advantage over the capacity-matched label model is smaller than the meaningful margin. | The tested image and label representation is sufficient at the study's resolution. |
+| **Readout insufficiency** | The concept wins against the linear label model but not the capacity-matched nonlinear label model. | The apparent categorical advantage was explained by a more flexible readout of continuous label features. |
+| **Partition nonspecificity** | With adequate precision, at least one matched false grouping is equivalent to or better than the true grouping. | The result does not distinguish true concepts from matched visual and temporal organization. |
+| **Sequence or filtering artifact** | Negative-lag or shifted-label controls show a meaningful effect, or the effect depends on forbidden cross-boundary information. | The apparent concept advantage is not interpretable as a stimulus-locked concept response. |
+| **New-participant nonreplication** | A precise development conjunction fails under the frozen procedure in the audit participants. | The development result did not reproduce in new participants. |
+| **Development conjunction failed** | After one baseline is fixed and its scientific contrasts are released, the categorical advantage or at least one partition contrast does not exceed its development margin. | The one-shot audit is not opened; development did not support the complete prespecified prediction. |
+| **Underidentified** | Reliability, design rank, matching, simulations, or participant-level precision is inadequate. | These data and this design do not decide the question. |
+| **Technical failure** | Event reconstruction, sample separation, access control, or fixed-procedure execution is invalid. | No scientific interpretation is permitted. |
+
+A nonsignificant comparison is not evidence of sufficiency or equivalence.
+Those conclusions require enough precision to rule out the meaningful margin.
+
+## Data readiness and access boundary
+
+The EEG release and authorized THINGS image archive are available. Before any
+EEG-driven comparison, the episode must still build and freeze the exact
+event-image join, participant assignment, development-only data view, common
+sensor transform, feature registry, and eight matched partitions.
+
+The same user account can currently reach the public files for every
+participant. Therefore the 16-person set is presently a procedural holdout,
+not a permission-blinded audit. Setup that does not inspect neural outcomes
+may proceed, but an audit described as permission-separated requires an
+evaluator or controlled mount that the development process cannot bypass by
+re-downloading the public data.
+
+EP17 and EP18 share the THINGS stimulus ecosystem. Their exposure record must
+identify exact image and concept overlap, reused features or checkpoints, and
+first-access history. EP18 may provide new EEG evidence, but it is not an
+independent stimulus-family confirmation of EP17.
 
 ## Claim boundary
 
 The strongest permitted conclusion is:
 
-> Within the fixed THINGS-EEG1 concept and image inventory, a categorical
-> true-concept template supplied a reproducible cross-exemplar predictive
-> advantage over the frozen label-aware capacity-matched basis, with the same
-> image-derived panel, and outperformed the fixed bank of fold-matched visual and
-> temporal alternatives in participants not used for development.
+> Within the fixed THINGS-EEG1 inventory, a categorical true-concept template
+> predicted held-out exemplars better than the frozen capacity-matched label
+> basis built on the same image model, outperformed the fixed bank of
+> image-feature- and time-matched alternatives, and repeated in participants
+> not used for development.
 
 This is a participant-generalization claim conditional on the observed 1,854
-concepts and 22,248 images. It is not an interval over unseen concepts or
-unseen image populations.
-
-This does not establish abstract semantics, amodal concepts, lexical coding,
-independence from every possible visual feature, causal computation, or a
-universal object ontology.
-
-EP17 and EP18 overlap in the THINGS stimulus ecosystem. EP18 may provide new
-EEG evidence, but it is not an independent stimulus-family confirmation of
-EP17. The two episodes therefore share a stimulus-exposure ledger recording
-exact image and concept overlap, feature or checkpoint reuse, and first-access
-history.
+concepts and 22,248 images. It is not a claim about unseen concepts, a new
+image population, abstract semantics, amodal representations, causal
+computation, or a universal object ontology.

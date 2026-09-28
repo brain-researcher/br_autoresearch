@@ -1,5 +1,6 @@
 # Governance
 
-An explicit scientist instruction may start bounded, episode-managed work.
-Local files grant no audit Task-B access, reward, scientific acceptance, or
-permission to mount the protected outcome view.
+The mixed source is not a role-safe input. Candidate scoring and audit Task-B
+access remain closed until the 12/12 roles, physical handoffs, scientific
+margins, model certificates, and outcome-blind qualification are complete.
+Local design revision is not scientific acceptance.

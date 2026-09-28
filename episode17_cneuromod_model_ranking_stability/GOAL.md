@@ -1,588 +1,404 @@
-# Which Visual-Model Relations Survive the Measurement Contract?
+# When does an fMRI measurement choice change which visual model wins?
 
-## Episode 17 — CNeuroMod-only model-ranking stability
+Suppose model A predicts visual-cortex responses better than model B for the
+same images and people. If B wins after denoising the beta estimates, selecting
+more reliable voxels, or dividing by a noise ceiling, what changed?
 
-## Decision snapshot
+Those operations are scientifically different:
 
-EP17 asks whether a **controlled pairwise relation between visual models** is
-stable, reverses for an identifiable measurement reason, is scientifically
-conditional, or is too weak to identify.
+- beta construction can change the response estimated at each voxel;
+- voxel selection keeps a voxel's score but changes which voxels enter the
+  regional average; and
+- positive noise-ceiling normalization keeps the voxels and predictions fixed
+  and only changes their weights. It cannot reverse A versus B within one
+  voxel, although it can reverse the regional average.
 
-The experiment uses one pinned source, CNeuroMod-THINGS 1.0.1, but gives its
-stimuli three irreversible roles before any neural outcome is inspected:
+EP17 asks whether a model relation is stable across those operations and,
+when it changes, whether the change can be predicted from where each model's
+voxelwise advantage lies. The intended paper is not a catalogue of fragile
+rankings. It should explain which measurable property of the response makes a
+particular model benefit from a particular measurement choice.
 
-| Concept role | Target count | What it may do |
-| --- | ---: | --- |
-| Development | 480 | adaptive model comparison, nested tuning, successors, and falsifiers |
-| Support/calibration | 120 | voxel reliability, support selection, and stage-specific noise ceilings |
-| Sealed audit | 120 | one application of the fully frozen development-trained predictor |
+The [paper plan](outputs/paper_plan.md) describes the explanatory prediction,
+the novelty threshold, and the evidence required for each planned figure. No
+model-ranking result is claimed here.
 
-All exemplars and repetitions of a concept, in all four participants, inherit
-the same role. The primary analysis uses only exact image IDs shared by all
-four participants and meeting a frozen repeat-completeness rule.
+## At a glance
 
-The audit is therefore a **same-participant, concept-disjoint, held-out-stimulus
-replication**. It is not an independent-dataset replication, a new-participant
-replication, or a population estimate.
-
-## Authority and scope
-
-This file is a local drafting contract. It does not register a canonical Brain
-Researcher loop, authorize scientific compute, expose sealed neural outcomes,
-or assert that one model is generally more brain-like than another.
-
-All claims are conditional on:
-
-- the registered controlled model pairs;
-- a frozen linear voxel-encoding readout;
-- the CNeuroMod-THINGS acquisition and GLMsingle products;
-- the declared anatomical ROIs and stimulus strata; and
-- the finite B/C/D, voxel-support, and ceiling-treatment contract graph.
-
-The object of inference is a **pairwise model relation under a declared
-contract**, not an absolute model leaderboard.
-
-## The scientific question
-
-For controlled model pairs, which conclusions remain practically invariant
-when we change:
-
-1. beta construction;
-2. independently defined voxel support; and
-3. reliability normalization?
-
-When a conclusion changes, can a single measurement axis explain the change?
-When it does not change, does the same signed relation survive once on sealed
-concepts that never influenced fitting?
-
-## What would count as an answer?
-
-| Explanation | Decisive pattern |
+| Question | EP17 design |
 | --- | --- |
-| Contract-robust relation | One pairwise advantage clears its practical margin under every eligible homologous contract. |
-| Beta-stage sensitivity | B→C or C→D changes the relation while images, voxels, score, and readout protocol remain fixed. |
-| Support sensitivity | Anatomical and reliability-selected supports reverse the relation at fixed size and spatial composition. |
-| Ceiling sensitivity | Raw and ceiling-normalized held-out variance reverse the relation on the identical voxel set. |
-| Scientific conditionality | A preregistered ROI or semantic-stratum interaction and both within-stratum effects clear their margins. |
-| Linking dependence | Encoding and fixed-dimensional linear CKA cross opposite signed margins on the same data. |
-| Underidentification | Bounds cannot distinguish the practical pass region from the null/equivalence region. |
-| Held-out-concept nonreplication | A development relation fails on sealed concepts with bounds narrow enough to distinguish a real negative pattern from low information. |
+| What is compared? | Controlled pairs of visual models that differ in one declared property: architecture, objective, or training data. |
+| What stays the same? | The four CNeuroMod participants, exact images, concept folds, linear readout family, and pairwise scoring rule. |
+| What changes one at a time? | Beta construction, voxel support, or noise-ceiling weighting. |
+| What is the primary score? | Held-out voxelwise explained variance, aggregated with equal participant weight. |
+| What is the explanatory prediction? | A measurement operation should favor the model whose voxelwise advantage aligns with the operation's independently defined reliability, inclusion, or weighting map. |
+| What is held out? | Concepts, not random images: 480 development, 120 support/calibration, and 120 sealed audit concepts. |
+| What does the audit establish? | Whether one frozen relation and its explanation repeat on new concepts in the same four people, without refitting the readout. |
+| What can the study conclude? | Stable relation, predicted measurement reversal, unexplained reversal, scientific conditionality, or an unresolved comparison. |
 
-A point-estimate sign flip is not a reversal. Nonsignificance is not
-equivalence. Failure to pass with wide uncertainty is not a scientific
-nonreplication.
+## Why a robustness grid is not enough
 
-## What this episode is not
+Model rankings are known to depend on analysis choices. Showing another set of
+rank flips would therefore be descriptive rather than explanatory. EP17 must
+add two things:
 
-EP17 is not:
+1. isolate one measurement operation while holding the model pair, images,
+   predictions, voxels, or weights fixed as required; and
+2. predict the direction of the ranking change from an independently defined
+   property of the measured response.
 
-- an unrestricted model-zoo search;
-- a contest between unrelated architectures with uncontrolled training data;
-- evidence that linear encoding is the uniquely correct linking hypothesis;
-- direct transfer to new people or a new dataset;
-- a claim that four intensively sampled participants represent a population;
-- a causal account of why a preprocessing stage changes a relation; or
-- permission to tune on the sealed concepts.
+The source data paper and GLMsingle processing family establish the dataset
+and the B/C/D response stages. Before a paper claim, a focused novelty review
+must compare the selected model pair and operator–advantage prediction with
+prior work on fMRI encoding-model reliability, voxel selection, noise-ceiling
+normalization, and analysis-dependent model rankings. “We tested more
+contracts” is not a sufficient contribution.
 
-## Dataset partition and audit firewall
+## Competing explanations
 
-### Eligibility universe
+| Explanation | Prediction |
+| --- | --- |
+| **Stable model relation** | The same model clears the practical margin under every eligible measurement contract, and its advantage is not confined to one reliability or spatial stratum. |
+| **Recoverable-signal effect** | A beta-stage change is largest in voxels whose repeat reliability improves at that stage; a development-fitted reliability-gain prediction repeats on sealed concepts. |
+| **Support reweighting** | Reliable-voxel selection changes the regional relation by selecting voxels where one model already has a larger fixed-prediction advantage. Development gives an exact membership decomposition; its frozen value becomes a forecast for audit concepts. |
+| **Ceiling reweighting** | Raw and normalized scores differ because inverse-ceiling weights align with one model's voxelwise advantage. Development gives an exact weight decomposition; agreement on audit concepts is a separate empirical test. |
+| **Scientific specialization** | A relation differs reproducibly by a preregistered visual ROI or external semantic stratum, not merely by a measurement operation. |
+| **Readout dependence** | Linear encoding and a fixed-dimensional representational comparison favor opposite models under the same response and support. |
+| **Unexplained measurement sensitivity** | A genuine reversal survives isolation controls, but the frozen operator–advantage prediction has the wrong sign or magnitude. |
+| **Underidentification or nonreplication** | Bounds are too wide, the comparison is not isolated, or the development relation does not survive on sealed concepts. |
 
-Before neural values are read, the trusted data builder derives an
-outcome-blind eligibility table from events and derivative metadata.
+A point-estimate sign change is not a reversal. Nonsignificance is not
+equivalence, and wide intervals are not evidence that two models are tied.
 
-A primary image must:
+## Data roles and scope
 
-1. have the same immutable image ID and concept ID in all four participants;
-2. have the prespecified number of usable presentations in every participant;
-3. map identically across B, C, and D trial axes; and
-4. pass only structural checks fixed before model features or neural values.
+EP17 uses CNeuroMod-THINGS 1.0.1 and the same four intensively sampled
+participants throughout. Whole concepts receive one role across every image,
+repetition, participant, and beta stage:
 
-The expected public design has 720 shared concepts, but neither 720 concepts
-nor 3,840 common images is hard-coded as an observed local fact. If exactly 720
-eligible concepts are not recovered, neural-outcome access remains closed
-unless the scientist freezes a revised split before any neural outcome is
-opened.
+| Role | Concepts | Use |
+| --- | ---: | --- |
+| Development | 480 | Fit and compare controlled model pairs; choose one final relation and explanation |
+| Support/calibration | 120 | Define repeat reliability, reliable-voxel support, and B/C/D noise ceilings; never fit or score a candidate model |
+| Sealed audit | 120 | Apply the frozen development predictor once, with no readout refit |
 
-### Role assignment
+The audit uses new concepts but the same four participants. It is not a new-
+participant, cross-dataset, or population replication. Participants and
+concept blocks are the uncertainty dimensions; voxels and images are not
+independent biological replicates.
 
-Using metadata only, concepts are deterministically assigned by one frozen,
-versioned balance procedure to:
+The exact four-person image intersection and 720 eligible concepts must be
+reconstructed from events before neural values are opened. Candidate model
+features cannot define or repair the split.
 
-- 480 development concepts;
-- 120 support/calibration concepts; and
-- 120 sealed-audit concepts.
+## Controlled model pairs
 
-The procedure balances frozen THINGS/THINGSplus taxonomy strata, the
-five-versus-six-exemplar pattern, participant acquisition order, session
-coverage, and repetition lag. Before role assignment, the taxonomy input is
-pinned by release and provider file identifier, concept mapping, unmapped and
-multilabel rules, group-merging rule, and minimum cell size. Balance tolerances
-and tie-breaking are fixed in the role-assignment procedure. Candidate-model
-embeddings cannot define or repair the split.
-
-Every image, repetition, participant row, beta stage, and derived neural value
-inherits its concept's role. No concept can cross roles. Development concepts
-form six fixed outer folds of 80 concepts and 24 independent uncertainty
-blocks of 20 concepts. Sealed audit concepts form twelve fixed influence and
-uncertainty blocks of 10 concepts. These counts become operative only after
-the eligibility gate passes.
-
-### Permission boundary
-
-The source B/C/D files physically mix all roles. Provisioning may place those
-bytes in a restricted raw area, but the adaptive search worker never receives
-that area. A trusted splitter creates:
-
-1. a metadata-only handoff;
-2. a builder-only calibration-neural handoff;
-3. a search-worker handoff containing development neural values plus only the
-   frozen calibration-derived reliability/support/ceiling artifacts; and
-4. an evaluator-only sealed-audit handoff.
-
-The metadata handoff exposes only an allowlist of image/concept IDs,
-presentation indices, session/run/trial positions, acquisition order, and
-repetition lag, plus a provider-defined schedule-exception flag. Recognition
-responses, correctness, reaction times, and other behavioral outcomes are
-excluded from role assignment.
-
-The role assignments are immutable once frozen. Materialized handoffs and file
-permissions enforce who can read each role, while the no-outcome-access rule is
-the scientific audit boundary. Raw calibration values cannot be used for
-candidate fitting, selection, or scoring.
-
-## Controlled model-pair panel
-
-Before any candidate-discriminating neural score is opened, freeze three
-required promotion-eligible controlled pairs and at most one optional fourth.
-Each pair isolates exactly one declared contrast:
+Freeze three required promotion-eligible model pairs and at most one optional
+pair before candidate-discriminating neural scores are opened. Each pair must
+isolate one declared contrast:
 
 - training objective at fixed architecture and image corpus;
 - architecture at fixed objective and image corpus; or
-- training diet at fixed architecture and objective.
+- training corpus at fixed architecture and objective.
 
-At least one trained-versus-deterministically-initialized random pair is a
-required falsifier and is never promotion-eligible. Across all pairs, use six
-to eight unique checkpoints, including random checkpoints. Reusing a
-checkpoint across controlled pairs is allowed only when each pair still
-isolates one contrast; the resulting comparisons are explicitly dependent.
+A trained-versus-deterministically-initialized-random pair is a mandatory
+falsifier and cannot become the paper's winner. Every checkpoint must have a
+named version, license, parameter count, training lineage, image
+preprocessing, eligible layers, and THINGS exposure status. Known exact or
+near-duplicate exposure makes a checkpoint a control rather than a clean
+promotion candidate; unknown exposure is not evidence of no exposure.
 
-Every checkpoint needs an immutable provider checkpoint identifier, license,
-parameter count, training-corpus lineage, preprocessing recipe, eligible
-layers, feature shape, and target-stimulus exposure status. The admissible
-exposure labels are:
+Within a pair, both models receive the same folds, feature-dimensionality
+rule, layer budget, PCA-rank grid, ridge grid, images, voxels, and score
+weights.
 
-- `lineage_audited_no_known_target_exposure`;
-- `known_related_corpus_exposure`;
-- `known_exact_or_near_duplicate_exposure`; and
-- `exposure_unknown`.
+## The three measurement operations
 
-Known target exposure makes a checkpoint a control, not a clean promotion
-candidate. Unknown exposure is not evidence of absence.
+For model pair A versus B, define the held-out voxelwise advantage separately
+for participant `s`, visual ROI `r`, and that participant's native voxel `v`:
 
-All models receive the same dimensionality rule, layer-selection budget, PCA
-rank grid, ridge grid, outer concept folds, and score weights within a pair.
+`d_s,r,v = R²_A,s,r,v - R²_B,s,r,v`.
 
-## Measurement-contract graph
+All maps, support choices, and reweighting calculations are made within a
+participant and ROI. Effects are averaged over voxels within `(s,r)`, then over
+a predeclared ROI set with equal ROI weight if a relation contains more than
+one ROI, and finally over the four participants with equal weight. Native
+voxels are never pooled across people as though they were independent cases.
 
-### Beta stages
+The primary paper distinguishes three ways that a regional average can change.
 
-CNeuroMod exposes one aligned GLMsingle family:
+| Operation | What changes? | What must remain fixed? | What a reversal would mean |
+| --- | --- | --- | --- |
+| **Beta B→C or C→D** | The response target at each voxel | Images, voxel identity, folds, model features, layer/PCA/ridge choice, and score | The measurement stage changed `d_s,r,v` itself |
+| **Support A_N→R_N** | Which voxels enter the mean | Stage D, one common out-of-fold voxel-prediction bank, `N`, spatial quotas, and per-voxel scores | The selected population carried a different mix of fixed voxel advantages |
+| **Raw→ceiling-normalized R²** | The positive weight applied to each voxel | Images, response, predictions, voxel set, raw R², and ceiling floor | Reweighting fixed voxel advantages changed the regional mean |
 
-| Stage | Frozen interpretation |
+`A_N` is the mean over a fixed bank of anatomical subsets of size `N`.
+Both are built separately within participant and ROI. `R_N` contains the top
+D-stage calibration-reliability voxels with exactly the same subparcel and
+spatial-bin quotas. `A_all→A_N` is reported as a size-control, not a headline
+biological result.
+
+The complete initial contract family is fixed before model scores:
+
+| Edge | Endpoint 1 | Endpoint 2 | Score and fixed anchor |
+| --- | --- | --- | --- |
+| Beta B→C | B on `A_all` | C on the same `A_all` | Raw R²; common anatomical voxels |
+| Beta C→D | C on `A_all` | D on the same `A_all` | Raw R²; common anatomical voxels |
+| Size control | D on `A_all` | D on `A_N` | Raw R²; one D-stage prediction bank |
+| Support A_N→R_N | D on `A_N` | D on `R_N` | Raw R²; equal `N` and spatial quotas |
+| Ceiling treatment | Raw D score on `V_NC` | Normalized D score on the same `V_NC` | Identical predictions and voxels |
+
+`V_NC` is the D-stage `A_all` subset that passes the outcome-independent
+response-variance rule and has a finite calibration ceiling before flooring.
+Its ceiling-quality threshold and floor are fixed before scores. An endpoint
+may be removed only for a prespecified structural or calibration failure; its
+reason remains visible. The audit uses the homologous stage, support, weights,
+and endpoint definition on the 120 audit concepts. Contracts cannot be added,
+dropped, or relabeled after a model score is seen.
+
+For beta edges, each model uses one layer, PCA rank, and ridge setting selected
+jointly for B/C/D inside development training concepts. The selection
+objective is mean inner-validation raw R² across the three stages after
+voxel-within-ROI, equal-ROI, and equal-participant aggregation. Ties choose the
+shallower registered layer, then the smaller PCA rank, then the larger ridge
+penalty. Voxel coefficients are fitted separately to B, C, and D because the
+response target differs, and all endpoint-specific coefficient banks are
+locked for audit. Stage-specific retuning is a sensitivity and cannot support
+a pure beta reversal.
+
+For support edges, generate one out-of-fold prediction bank for all eligible
+voxels before applying either support mask. If `A_N` and `R_N` use different
+layers, ranks, penalties, prediction fits, or spatial quotas, the comparison is
+support × fitting and cannot be called a support-only reversal.
+
+For ceiling edges, use the identical finite voxel set and predictions. Divide
+each voxel's raw held-out R² by `max(NC_s,r,v, tau)` and average the voxelwise
+ratios. Do not divide one ROI mean by another, clip negative R², or clip values
+above one. A positive denominator cannot change the winner within a voxel; it
+can only change the aggregate by giving voxels different weights.
+
+## The explanatory prediction: operator–advantage alignment
+
+Support/calibration concepts define an outcome-independent map within each
+participant and ROI for every operation:
+
+| Edge | Calibration-defined operator map |
 | --- | --- |
-| B | fitted HRF, without GLMdenoise or ridge regularization |
-| C | fitted HRF plus GLMdenoise, without ridge regularization |
-| D | fitted HRF plus GLMdenoise plus ridge regularization |
+| B→C | Per-voxel change in repeat reliability from B to C |
+| C→D | Per-voxel change in repeat reliability from C to D |
+| A_N→R_N | Difference between reliable-support inclusion weight and the mean anatomical-bank inclusion weight |
+| Raw→normalized | The fixed positive weight `1 / max(NC_v, tau)` |
 
-The pure beta edges are B→C and C→D. On either edge, image IDs, voxel identity,
-folds, score family, feature representation, and readout procedure remain
-fixed. Any stage-specific voxel replacement turns the comparison into a
-`beta_x_support_composite` and removes isolated-axis credit.
+Development concepts estimate the voxelwise model advantage. The analysis
+then asks whether that advantage aligns with the relevant operator map.
 
-### Voxel support
+There are two different claims, and they must not be confused:
 
-Within each preregistered anatomical ROI:
+1. **Development attribution.** For support and ceiling edges, reaggregating
+   development `d_s,r,v` under the two frozen weight vectors exactly reproduces
+   the development edge change. This is an algebraic identity within the
+   development data, not held-out evidence.
+2. **Audit forecast.** Before audit, use development `d_s,r,v` to calculate and
+   freeze a signed forecast for the audit edge. The evaluator then computes the
+   observed edge from audit `d_s,r,v`. Audit advantages never enter the
+   forecast. Agreement in sign and absolute error is therefore empirical, not
+   tautological.
 
-- $A_{all}$: all common finite atlas voxels;
-- $A_N$: the mean estimand over a bank of $K$ deterministically seeded
-  anatomical subsets of size $N$, with frozen subparcel and spatial-bin quotas;
-  and
-- $R_N$: the top reliability voxels selected only from calibration concepts,
-  under the identical $N$, subparcel, and spatial-bin quotas.
+For beta edges, the explanation is not algebraic. Calibration repeat
+reliability is the Pearson correlation between two deterministic repeat halves
+across calibration images; its Fisher-z stage difference is the operator map.
+Within each participant and ROI, fit
 
-$A_{all}\to A_N$ tests support size while representing subset variability.
-$A_N\to R_N$ tests reliability selection at fixed size and spatial
-composition. Without exact quota matching, the edge is a composite support
-policy and cannot support a pure support reversal.
+`change in d = spatial-bin intercept + beta * reliability gain`
 
-### Noise ceiling
+by ordinary least squares, with no tuned penalty. The gain map is standardized
+within `(s,r)` using calibration values only. Fit on the mean voxelwise change
+from 12 development concept blocks and predict each of the other 12 blocks,
+then reverse the halves. Participant-by-held-out-block errors, not voxel rows,
+score this cross-fit. A rank-deficient design or inadequate residual variation
+in reliability gain makes the beta explanation inapplicable rather than
+inviting another model.
 
-Stage-specific B, C, and D ceilings are recomputed from calibration concepts
-and reserved repetitions using one frozen estimator. The public D ceiling is
-a post-lock positive-control diagnostic only. Because its source computation
-may mix stimulus roles, it is never visible to the search worker and cannot
-select support, normalize a terminal score, or alter a candidate.
+After cross-fit qualification, refit that same equation to all 24 development
+blocks and freeze its audit forecast. High- and low-gain voxels are the upper
+and lower halves of the calibration gain map within each `(s,r)`; the median
+and tie rule are fixed without development or audit scores. The beta
+explanation predicts both the aggregate stage change and a larger signed
+change in the high-gain half.
 
-For a pure ceiling-treatment edge, define one common finite-NC voxel set before
-model scores. Raw and normalized held-out $R^2$ use identical betas, images,
-voxels, and predictions. Only the reported value changes:
+After development, freeze for the selected relation:
 
-$$
-R^2_{norm,v}=\frac{R^2_v}{\max(NC_{b,v},\tau_b)}.
-$$
+- the operator map and voxel set;
+- the development-only signed audit forecast and an edge-specific absolute
+  prediction-error margin;
+- the high- versus low-operator strata;
+- the exact aggregation and uncertainty rule; and
+- the participant and audit-block units used to judge the forecast.
 
-Negative raw $R^2$ and normalized values outside $[0,1]$ are retained.
-Changing voxel identity because of NC eligibility creates a
-`support_x_ceiling_composite`, not a pure ceiling effect.
+On sealed concepts, the forecast must have the same direction as the observed
+edge and absolute error no larger than its frozen margin. For a beta edge, the
+preregistered high-minus-low gain contrast must also cross its own signed
+margin. If those tests fail, the reversal may be real but the proposed
+recoverable-signal or reweighting explanation is rejected. It is reported as
+unexplained response-geometry or readout sensitivity.
 
-### Required isolated edges
+This explanatory test cannot rescue a primary relation that fails its own
+margin or audit requirement.
 
-Every required promotion pair must cover:
+## Response, fitting, and score
 
-1. B→C on fixed voxels;
-2. C→D on fixed voxels;
-3. $A_{all}\to A_N$ at fixed beta stage;
-4. $A_N\to R_N$ at fixed $N$ and spatial quotas; and
-5. raw $R^2\to R^2/NC$ on the identical $V_{NC}$.
+Within participant, beta stage, image, and voxel, average all retained
+trialwise betas with equal repetition weight. Each unique image then receives
+equal weight in fitting and scoring.
 
-With three required pairs, initial coverage is therefore 15 valid trial atoms.
+The primary linking model is voxelwise ridge regression. Every learned
+operation—feature centering, PCA, layer choice, rank, and ridge penalty—is
+nested inside development training concepts. No outer-held-out concept may
+choose a model setting.
 
-Initial isolation uses fixed anchors: beta edges use outcome-independent
-$A_{all}$; support edges use stage D; and the required ceiling-treatment edge
-uses stage D. Every mandated score is emitted, but a relation ID binds exactly
-one score scale and its own margin. Other cross-contract combinations are
-successors, not substitutes for these five anchors.
+The primary score is held-out explained variance:
 
-### Frozen terminal contract universe
-
-Before the first candidate-discriminating neural score, freeze one immutable,
-versioned `eligible_terminal_contract_manifest` for every controlled pair and
-score family. It enumerates the exact contract vertices and directed edges
-that may drive a stable-relation or reversal terminal, the outcome-blind
-applicability rule for each entry, and its exact development-to-audit
-homologous mapping.
-
-At minimum, wherever the score is mathematically defined, the manifest
-contains both endpoints of all five required isolated edges above. A vertex
-may be declared inapplicable only by a prespecified structural or
-calibration-feasibility rule evaluated before candidate scores. Its exclusion
-and reason are retained; it cannot be replaced by a more favorable vertex.
-Once any candidate score is visible, the terminal-driving set cannot be
-shrunk, expanded, or relabeled. Later contracts are diagnostics or successors
-and cannot retroactively make a relation `contract_robust`.
-
-## Linking and response contract
-
-### Primary response
-
-For participant $s$, beta stage $b$, unique image $i$, and voxel $v$, the
-primary response is the equal mean of all retained trialwise betas:
-
-$$
-\bar y_{s,b,i,v}
-=
-\frac{1}{R_{s,i}}\sum_{r=1}^{R_{s,i}}y_{s,b,i,r,v}.
-$$
-
-Each unique image then has equal weight in fitting and scoring. Trialwise,
-inverse-variance-weighted, or presentation-weighted endpoints are
-sensitivities, not substitutes for the primary estimand.
-
-### Nested development fitting
-
-The primary linking model is voxelwise ridge regression. In each development
-outer fold, every learned operation is fit inside its training concepts:
-
-1. deterministic image preprocessing and frozen feature extraction;
-2. feature centering and PCA;
-3. inner-fold layer, PCA-rank, and ridge selection; and
-4. prediction on the outer-held-out concepts.
-
-No voxel, ROI, image, layer, rank, or regularization choice may use an
-outer-fold score. The final audit predictor is refit once on all development
-concepts using a predeclared outer-fold-to-final aggregation and tie-break
-rule. Its feature transform, hyperparameters, and voxel coefficients enter the
-write-once final lock before the audit handoff is opened.
-
-### Correlation score
-
-For model $m$, participant $s$, contract $c$, and scientific stratum $g$:
-
-$$
-S^r_{m,s,c,g}
-=
-\frac{1}{|V_{s,c,g}|}
-\sum_{v\in V_{s,c,g}}
-\operatorname{atanh}\!\left(r_{m,s,v,c,g}\right).
-$$
-
-The pairwise effect is:
-
-$$
-\Delta^r_{ab,c,g}
-=
-\frac{1}{4}\sum_{s=1}^{4}
-\left(S^r_{a,s,c,g}-S^r_{b,s,c,g}\right).
-$$
-
-The atanh boundary tolerance is frozen before held-out outcome access.
-Degenerate correlations are invalid rather than silently replaced.
-
-### Held-out explained variance
-
-For an evaluation set $I$, the voxelwise held-out quantity is:
-
-$$
-R^2_{m,s,v,c,I}
-=1-
-\frac{\sum_{i\in I}(y_i-\hat y_{m,i})^2}
-     {\sum_{i\in I}(y_i-\bar y^{train}_{s,v,c})^2}.
-$$
+`R² = 1 - sum(y - y_hat)² / sum(y - training_mean)²`.
 
 The baseline mean always comes from the corresponding development training
-data, including on sealed audit concepts. Raw and ceiling-normalized pairwise
-effects are means of voxelwise differences or ratios as declared; a ratio of
-ROI means is prohibited.
+data, including when sealed audit concepts are scored. Negative held-out R²
+values are retained. Before model outputs, a voxel must have finite response
+values and nondegenerate response variance under every endpoint in its edge.
+The numerical variance threshold is fixed in qualification. A model-specific
+missing prediction or score invalidates the whole paired trial; pairwise or
+model-specific deletion is prohibited.
 
-Correlation and explained variance are different score families. Their
-numerical margins and bounds are never pooled. Disagreement between them is
-metric-target dependence, not a ceiling-only reversal.
+Pairwise effects are calculated within participant and ROI, then aggregated
+with equal ROI and participant weights as declared by the relation. The common
+prediction bank and the finite voxel set are locked before applying support or
+ceiling weights.
 
-### Fixed linking falsifier
+Held-out correlation is a sensitivity, not a substitute for R². A
+fixed-dimensional linear CKA comparison is a secondary linking falsifier. R²,
+correlation, normalized R², and CKA keep their own margins and are never pooled
+on one numerical scale.
 
-Fixed-dimensional linear CKA is mandatory for locked relations. For a
-column-centered held-out feature matrix $X^{(q)}$ and neural matrix $Y$:
+## Uncertainty and scientific decisions
 
-$$
-G(X^{(q)},Y)
-=
-\frac{\|{X^{(q)}}^T Y\|_F^2}
-{\|{X^{(q)}}^T X^{(q)}\|_F\,\|Y^T Y\|_F}.
-$$
+The primary uncertainty procedure crosses equal-weight resampling of the four
+participants with resampling of 24 development or 12 audit concept blocks.
+All exemplars and repetitions of a concept stay together. Voxelwise rows never
+create the inferential sample size.
 
-Use the locked model layer, training-only centering and PCA, one common
-prespecified rank $q$, the same held-out images, response, beta/support
-contract, and unique-image fold weights. A zero denominator invalidates the
-fold. CKA has its own signed practical margin. Linking dependence requires
-encoding and CKA to cross opposite margins under the same contract and
-stratum; their scales are never combined.
+Raw R², normalized R², correlation, CKA, and beta high-minus-low effects each
+have a separately frozen practical margin. For a raw-to-normalized reversal,
+the two endpoints retain their own margins and units. Familywise uncertainty
+is controlled with one max-t bound over their studentized statistics; the raw
+and normalized effect values are never averaged or put on one numerical
+scale.
 
-## Scientific strata are not measurement axes
+For the component-specific margin `epsilon_j`:
 
-Preregistered anatomical ROIs and one externally defined THINGS/THINGSplus
-semantic grouping may support conditionality claims. The taxonomy release,
-provider file identifier, concept mapping, unmapped and multilabel handling,
-group-merging rule, minimum cell size, pooling rule, and interaction margin
-are frozen before neural scores. Candidate-model embeddings cannot define a
-scientific stratum.
+- **stable positive:** every eligible-contract lower bound is above
+  `epsilon`;
+- **stable negative:** every upper bound is below `-epsilon`;
+- **genuine reversal:** both ends of one isolated edge cross opposite margins;
+- **practical equivalence:** every complete simultaneous interval lies inside
+  its own `[-epsilon_j, epsilon_j]`; and
+- **underidentified:** the bounds overlap both a decision region and the
+  equivalence or null region.
 
-A relation that differs by ROI or semantic group is scientific
-specialization. It is not pipeline fragility and does not count as an
-isolated-axis reversal.
+The bootstrap describes these four participants and sampled concept blocks.
+It does not establish population prevalence.
 
-## Uncertainty and identification
+## Development search and one-shot audit
 
-Participants and concepts are crossed, not nested. The primary uncertainty
-procedure uses 10,000 fixed-seed crossed bootstrap draws:
+Development covers all three required controlled pairs on the isolated beta,
+support, and ceiling edges before adaptive successors. Successors change one
+scientific operator at a time and must state a prediction, competing
+explanation, falsifier, cost, and retirement condition.
 
-1. resample the four participants with equal weight;
-2. resample the 24 development or 12 audit concept blocks with replacement;
-3. keep every exemplar and repetition of a concept together; and
-4. recompute all signed components of one relation jointly.
+The first round permits 32–72 valid trials, requires at least two adaptive
+successor cycles and two incumbent/challenger decisions, and devotes at least
+40% of post-coverage trials to falsification. Limits are 6,000 CPU-core-hours,
+256 GPU-hours, 240 wall-clock hours, and 4 TiB of transient scratch.
 
-Simultaneous max-$t$ bounds control the components of one relation within one
-score family. Frozen out-of-fold predictions and selected hyperparameters are
-treated as fixed in the primary bootstrap; a full selection-refit bootstrap is
-a nonterminal sensitivity.
+Development selects one primary relation and at most two disclosed secondary
+checks. ROI/semantic conditionality and CKA remain secondary and cannot become
+independent candidate-ready outcomes. Before audit, freeze the model pair,
+all endpoints and their exact audit mappings, prediction bank, measurement
+edge, operator map, development-only forecast, response and score, every
+component margin and adequacy-width threshold, concept blocks, uncertainty
+procedure, and evaluator.
 
-The bootstrap quantifies uncertainty over these participants and stimulus
-blocks. It does not license population inference from four people.
+The evaluator applies the frozen development voxel coefficients directly to
+all 120 sealed concepts. No layer selection, hyperparameter tuning, readout
+refit, voxel replacement, subset rescue, margin change, or second audit run is
+allowed.
 
-For a relation on one score scale, let
-$[L_{ab,c,g},U_{ab,c,g}]$ be the simultaneous bound under contract $c$.
-Its descriptive contract uncertainty envelope is:
+Audit gates depend on the selected relation. A robust relation must clear all
+frozen contract endpoints. A reversal must clear both edge endpoints in
+opposite directions and pass the frozen forecast; a beta explanation also
+requires the high-minus-low gain contrast. Secondary conditionality requires
+its interaction and both stratum effects, while linking dependence requires
+both encoding and CKA, but neither can rescue a failed primary relation.
 
-$$
-E_{ab,g}
-=
-\left[\min_c L_{ab,c,g},\;\max_c U_{ab,c,g}\right].
-$$
+The same intersection of at least three of the four participants must clear
+every signed component of the selected relation. It is not enough for
+different groups of three to clear different components. Every
+leave-one-participant and leave-one-audit-block mean must retain the required
+direction. An adequately precise nonreplication additionally requires the
+pre-audit width threshold for that score scale; wider bounds are
+underidentified, not negative evidence.
 
-This envelope is not a new confidence interval and never combines correlation,
-variance, normalized variance, or CKA scales.
+## Planned question figure
 
-For one score family and practical margin $\epsilon$:
+The figure below is a synthetic design illustration. It contains no
+CNeuroMod image or neural result.
 
-- stable positive: every eligible-contract lower bound is $>\epsilon$;
-- stable negative: every upper bound is $<-\epsilon$;
-- genuine reversal: the two ends of one isolated edge cross opposite margins;
-- practical equivalence: all simultaneous bounds lie inside
-  $[-\epsilon,\epsilon]$; and
-- resolution-limited: neither a margin nor the equivalence region is
-  identified.
+![EP17 conceptual question figure](outputs/ep17_conceptual_question.png)
 
-Specialization additionally requires the interaction
-$\Gamma=\Delta_{g_1}-\Delta_{g_2}$ and both within-stratum effects to cross
-their prespecified signed margins.
+The figure should make the three mathematical mechanisms visible: beta stages
+can change voxelwise advantages, support changes membership, and ceiling
+normalization changes positive weights only. It should then show how alignment
+between the voxelwise advantage map and the operator map predicts a held-out
+ranking change.
 
-## Adaptive-search contract
+## Possible conclusions
 
-### Trial atom
+| Outcome | Evidence required | Interpretation |
+| --- | --- | --- |
+| **Contract-robust relation** | One model clears the same signed margin under every eligible primary contract and repeats on sealed concepts. | The controlled pair relation is stable within the declared response, support, and weighting family. |
+| **Predicted measurement reversal** | Both isolated edge endpoints cross opposite margins; the frozen operator–advantage prediction has the correct direction and acceptable error on sealed concepts. | A named measurement operation predictably changed which model was favored. |
+| **Unexplained measurement reversal** | The reversal itself passes, but the operator–advantage prediction fails. | The ranking change is real within the design, but the proposed reliability or reweighting explanation is unsupported. |
+| **Secondary scientific conditionality** | A preregistered ROI or semantic interaction and both within-stratum effects clear their margins and repeat on sealed concepts. | The relation may be conditional on a named neural or stimulus stratum; this cannot rescue or replace the primary result. |
+| **Secondary readout dependence** | Encoding and fixed-dimensional CKA cross opposite margins under the same data contract. | The conclusion may depend on the linking criterion; this is disclosed as a falsifier, not an independent positive terminal. |
+| **Held-out-concept nonreplication** | Development is precise, but an adequately powered sealed-concept test supports equivalence, the opposite direction, or stable heterogeneity. | The development relation did not transfer to new concepts in the same people. |
+| **Underidentified** | Intervals are too wide, the edge is composite, or required calibration/support is inadequate. | The data do not distinguish the competing explanations. |
+| **Technical failure** | Role separation, identity alignment, fixed prediction banks, or audit execution fails. | No scientific interpretation is permitted. |
 
-One valid trial is:
+## Data readiness and access boundary
 
-> one registered model pair × one directed isolated contract edge × all four
-> development participants.
+The restricted CNeuroMod source and stimulus archive are available, but EP17
+is not analysis-ready. The stimulus archive remains encrypted and unextracted;
+the exact event-image join, four-person common universe, 480/120/120 roles,
+role-filtered handoffs, B/C/D alignment, ROI crosswalk, support sizes and
+quotas, ceiling estimator, controlled model pairs, feature grids, margins, and
+operator-prediction tolerance remain to be fixed or verified.
 
-It includes every frozen ROI and stimulus stratum, paired concept folds, all
-required score outputs, uncertainty outputs, and native falsifiers. A trial
-cannot be split into extra counts by participant, ROI, concept block,
-repetition, fold, seed, subset-bank member, score scale, or scheduler job.
+The mixed neural source must not be mounted to the search worker. A trusted
+builder may create metadata, calibration, and development artifacts; the
+sealed audit handoff remains evaluator-only until the final relation and
+prediction are frozen.
 
-The unique key is a deterministic scientific-configuration ID. An engineering
-retry keeps the same ID only when every scientific setting is unchanged.
-
-### Depth and budgets
-
-- 32 minimum and 72 maximum valid trials;
-- 15 mandatory initial coverage trials for three required pairs;
-- at least two outcome-adaptive successor cycles;
-- at least two incumbent/challenger decisions;
-- at least 40% falsification trials after initial coverage;
-- patience of 12 qualified valid trials, starting only after trial 32 and
-  complete branch coverage;
-- 6,000 CPU-core-hours, 256 GPU-hours, 240 wall-clock hours, and 4 TiB
-  transient scratch ceilings.
-
-Qualification failures and engineering failures do not count as valid trials.
-Budget exhaustion is not scientific success.
-
-### Outcome-linked successors
-
-Every successor must name its scored parent, directional prediction,
-competing explanation, native falsifier, expected information gain and cost,
-retirement condition, the pre-successor ledger revision, and exactly one
-changed scientific operator.
-
-| Observed pattern | Required next attack |
-| --- | --- |
-| Reliability-localized effect | Fixed-identity reliability strata, $A_N$ versus $R_N$, and repeat split |
-| B/C or C/D reversal | Fixed support and score scale, stage-specific NC, layer stability, and repeat split |
-| Ceiling-only reversal | Alternate frozen NC estimator/floor and no-clipping check |
-| Apparent universal stability | CKA, participant influence, concept-block influence, and semantic-stratum attacks |
-| ROI/semantic flip | Fixed-contract interaction and block stability |
-
-A branch retires only after at least two valid configurations and a direct
-falsifier or replication. A failed qualification check or one nonsignificant
-trial cannot retire a scientific branch.
-
-## One-shot sealed audit
-
-After development stops, lock exactly one terminal-driving primary relation
-and at most two secondary checks. Secondary checks are disclosed but cannot
-rescue the primary.
-
-The write-once lock binds:
-
-- immutable model and checkpoint identifiers;
-- image preprocessing, features, layer, PCA rank, and ridge choices;
-- final voxel coefficients fitted only on development concepts;
-- B/C/D, ROI, support, NC, and score contracts;
-- concept roles, audit blocks, response aggregation, and exclusions;
-- all practical margins, adequacy widths, and uncertainty seeds;
-- evaluator code, environment, permissions, and declared score fields; and
-- the EP17/EP18 exposure decision.
-
-The trusted evaluator opens the sealed handoff once and applies the frozen
-predictor directly to the 120 audit concepts. It may not refit a voxel
-coefficient, choose a layer, change support, repair a subset, alter a margin,
-or rerun after seeing a partial result.
-
-### Positive audit gate
-
-The primary relation passes only if:
-
-1. every registered signed component clears its simultaneous bound and
-   practical margin;
-2. the same intersection of at least three of four participants exceeds the
-   corresponding participant-level margin for every signed component;
-3. every leave-one-participant mean retains the required direction;
-4. every leave-one-audit-block mean retains the required direction;
-5. role-access, exposure, and exact-score-contract checks pass; and
-6. no audit neural outcome influenced fitting or selection.
-
-### Negative versus uninformative audit
-
-`closed_heldout_concept_nonreplication` is allowed only when prespecified,
-score-specific adequacy widths are narrow enough to identify practical
-equivalence, an opposite effect, or stable participant/concept heterogeneity.
-
-If the simultaneous bounds still overlap both the pass region and the
-null/equivalence region, the outcome is `closed_audit_underidentified`. It is
-non-evidential, not a negative scientific result.
-
-If metadata or structural compatibility fails before any audit outcome is
-opened, audit access remains closed. If the frozen audit pool becomes
-incommensurate after audit access opens but before valid scoring, it closes as
-`closed_audit_pool_incommensurate`.
-
-## Terminal outcomes
-
-Positive candidate terminals:
-
-- `candidate_ready_contract_robust_pair`;
-- `candidate_ready_heldout_concept_measurement_reversal`;
-- `candidate_ready_stable_conditional_specialization`; and
-- `candidate_ready_linking_criterion_dependence`.
-
-Scientific or non-evidential closures:
-
-- `closed_underidentified`;
-- `closed_no_isolated_relation`;
-- `closed_unresolved`;
-- `closed_heldout_concept_nonreplication`;
-- `closed_audit_underidentified`; and
-- `closed_audit_pool_incommensurate`.
-
-Role-identity or access-boundary failures are `technical_failure` or
-`policy_violation`, never a scientific null.
-
-## Requirements before neural-outcome access
-
-Downloading the source does not grant neural-outcome access. Candidate scoring
-and audit access remain closed until:
-
-- the THINGS/THINGSplus taxonomy release, provider file identifier, concept
-  mapping, label-handling rules, group merges, and minimum cell size are
-  frozen;
-- the 720-concept eligibility and exact four-person image intersection are
-  verified from events;
-- the 480/120/120 role manifest and role-filtered handoffs are frozen;
-- B/C/D trial axes, response units, geometry, and voxel indices align;
-- B/C/D stage-specific NC estimators are frozen and calibration-feasible;
-- all ROIs, $N$, $K$, spatial quotas, folds, grids, margins, tolerances,
-  audit-adequacy widths, simultaneous-bound estimator, and seeds are frozen,
-  with every numeric scientific threshold set before candidate scores;
-- the immutable, versioned eligible terminal contract manifest and every exact
-  development-to-audit homologous mapping are frozen before candidate scores;
-- six to eight exact checkpoints form at least three defensible controlled
-  pairs and one trained/random falsifier;
-- model exposure and the EP17/EP18 split-exposure decision are frozen;
-- the permission-separated evaluator passes a synthetic dry run; and
-- no mixed raw neural source is mounted to the search worker.
+EP17 and EP18 share the THINGS stimulus ecosystem. Before either sealed
+outcome is opened, record exact concept and image overlap, feature or
+checkpoint reuse, and first-access history. The two episodes cannot be called
+independent stimulus-family replications.
 
 ## Claim boundary
 
-A successful EP17 would show that a controlled visual-model relation survives
-specified measurement choices and one concept-disjoint test in the same four
-densely sampled people.
+A successful EP17 would show that a controlled visual-model relation is stable
+or changes for a predictable measurement reason across specified contracts
+and new concepts in the same four intensively sampled participants.
 
-It would not establish:
-
-- cross-dataset transport;
-- generalization to new participants;
-- population prevalence;
-- universal model ranking;
-- causal superiority of an architecture, objective, or training diet; or
-- correctness outside the registered linear-readout and contract family.
+It would not establish cross-dataset transport, generalization to new people,
+population prevalence, a universal model ranking, causal superiority of an
+architecture or objective, or correctness outside the registered response and
+linear-readout family.

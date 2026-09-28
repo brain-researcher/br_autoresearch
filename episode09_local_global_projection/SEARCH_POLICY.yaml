@@ -1,120 +1,645 @@
-policy_id: ep09_dendrite_distal_arbor_adaptive
+policy_id: ep09_local_dendrite_distal_target_organization
 episode_id: ep09
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+evidence_mode: grouped_development_then_one_shot_biological_group_audit
 
-dataset_roles:
-  shared_exposure_ledger_group: seu_a1876_ep09_ep11
-  split_unit: most_conservative_verified_animal_brain_specimen_group
-  minimum_development_groups: 12
-  minimum_locked_audit_groups: 8
-  audit_assignment: preoutcome_whole_group
-  evaluation_evidence: group_sealed_internal_source_audit
-  shared_outcomes_with: [ep10, ep11]
-  independent_from_shared_episodes: false
-  prior_exposure: ledger_required
+scientific_question:
+  plain_language: >-
+    Among neurons that begin in the same anatomical setting and are measured
+    equally well, does the dendritic tree near the soma foreshadow which distant
+    target families the axon reaches?
+  first_test: >-
+    Does native same-cell dendritic morphology improve distal-arbor detection
+    probabilities beyond source anatomy, soma location, layer, batch, and
+    axon-independent acquisition or dendrite quality in unseen biological groups?
+  deeper_prediction: >-
+    A development-frozen dendritic-scale by target-family contribution pattern
+    repeats in audit groups, and the dendritic increment under the true atlas
+    family organization outperforms matched shuffled hierarchies.
+  preferred_explanation: structured_cell_wide_organization
+  alternatives:
+    - residual_anatomical_or_measurement_proxy
+    - shared_morphology_class_organization_without_cell_specificity
+    - diffuse_dendritic_information_without_stable_organization
+    - anatomical_context_is_sufficient_at_the_frozen_margin
+    - unresolved_measurement_support_or_power
+  novelty_boundary: >-
+    Prediction alone is not novel enough; the contribution must separate
+    context, same-cell dendritic information, dendritic scale, and independently
+    defined target-family organization in held-out brains.
+  strongest_permitted_claim: >-
+    Native dendritic morphology contains reproducible information about
+    reconstructed distal axonal-arbor target families beyond anatomical context
+    and measurement quality, following the frozen scale-by-family pattern.
+  prohibited_claims:
+    - synaptic_connectivity
+    - physiological_communication
+    - causal_target_selection_or_growth_mechanism
+    - complete_axonal_fate
+    - universal_cell_type
+    - novelty_from_dendrite_axon_association_alone
 
-grammar:
-  context_blocks: [soma_coordinates, source_anatomy, layer_depth, independent_labels, acquisition_qc]
-  dendrite_blocks:
-    - topology_branch_order
-    - sholl_multiscale_radial
-    - path_geometry_tortuosity
-    - orientation_extent
-    - hemispheric_symmetry
+data:
+  primary_source:
+    collection: SEU_A1876
+    record: Zenodo_13944322
+    native_dendrites: Full_morphology_RAW.zip
+    ccf_whole_neurons: Full_morphology_CCFv3.zip
+    candidate_axonal_arbors: Axonal_arbor_CCFv3.zip
+    metadata: Full_morphometry.xlsx
+    atlas: Allen_Mouse_CCFv3_annotation_and_structure_graph
+  optional_sensitivity:
+    ccf_dendrites: Dendritic_arbor_CCFv3.zip
+    external_representation: CCF_ME_Zenodo_13801372_v2
+  status: not_yet_provisioned_or_role_instantiated
+
+  unit:
+    recorded_observation: cell_target_pair
+    split_and_inference: most_conservative_verified_animal_brain_or_specimen_group
+    random_neuron_split: prohibited
+
+  roles:
+    minimum_development_groups: 12
+    minimum_audit_groups: 8
+    assignment: whole_group_before_dendrite_axon_association_is_inspected
+    development_use:
+      - observation_pipeline
+      - grouped_model_selection_and_tuning
+      - fold_specific_target_support
+      - falsification
+      - hypothesis_and_margin_freeze
+    audit_use: one_evaluation_of_locked_primary_and_explanatory_predictions
+    insufficient_verified_groups: stop_or_downgrade_to_grouped_development_evidence
+
+  shared_audit:
+    episodes: [ep09, ep10, ep11]
+    one_cell_and_group_exposure_ledger: required
+    independent_results_across_these_episodes: false
+    all_role_outcome_target_and_primary_contracts_freeze_before_any_open: true
+
+  identity_and_lineage:
+    stable_cell_join_across_metadata_dendrite_and_axon: required
+    duplicate_and_derivative_detection: required
+    prior_publication_model_and_human_exposure_log: required
+    unresolved_pretrained_representation_lineage: exclude
+
+outcome:
+  endpoint: qualifying_distal_axonal_arbor_detection_by_target
+  states:
+    detected: qualifying_arbor_is_present
+    not_detected: target_is_observable_and_no_qualifying_arbor_is_present
+    uncertain: coverage_or_reconstruction_cannot_support_either_conclusion
+  uncertain_handling: missing_never_zero
+  primary_arbor_rule: null
+  primary_distal_rule: null
+  threshold_sensitivity:
+    count: small_and_frozen_before_scoring
+    may_replace_primary_result: false
+  observability_requires:
+    - authenticated_tree_and_provider_arbor_link
+    - valid_coordinate_units_axes_orientation_and_atlas_transform
+    - adequate_reconstruction_and_target_coverage
+    - no_disqualifying_clipping_or_terminal_capture_failure
+
+targets:
+  nodes: nonoverlapping_nodes_from_one_pinned_CCFv3_structure_graph
+  chosen_from: anatomy_and_observation_support_without_association_screening
+  every_eligible_target_enters: true
+  posthoc_favorable_target_selection: prohibited
+  outcome_blind_coverage:
+    minimum_observable_cells_per_target_per_group: null
+    minimum_allowed_value: 3
+    value_selected_from: outcome_blind_counts_and_development_only_precision_simulation
+    applies_to: every_development_and_audit_group
+    later_violation: technical_failure_without_target_removal_or_renormalization
+  development_prevalence_support:
+    outer_training_minimum_positive_groups: 3
+    outer_training_minimum_negative_groups: 3
+    full_development_minimum_positive_groups_for_audit_target: 4
+    full_development_minimum_negative_groups_for_audit_target: 4
+    recomputed_inside_every_outer_training_fold: true
+    held_out_group_may_set_prevalence_eligibility: false
+    all_candidates_in_one_fold_use_same_target_set: true
+    empty_fold_target_set: invalid_candidate_evaluation
+  audit_target_set:
+    frozen_from: >-
+      anatomy_candidate_vocabulary_intersected_with_full_development_prevalence_support_and_outcome_blind_coverage_in_every_assigned_group
+    audit_detection_values_used_for_selection: false
+  explanatory_families:
+    source: one_outcome_independent_nonoverlapping_anatomical_cut_of_the_Allen_ontology
+    selected_before_target_outcome_inspection: true
+    each_target_has_exactly_one_family: true
+    minimum_families: 3
+    minimum_scored_targets_per_family: 3
+    unbalanced_numeric_ontology_level_not_required: true
+
+predictors:
+  context_M0:
+    - source_region
+    - cortical_layer
+    - soma_coordinates_and_prespecified_spatial_transforms
+    - acquisition_or_reconstruction_batch
+    - acquisition_and_dendrite_quality_independent_of_axonal_geometry
+    - independent_labels_with_no_axonal_lineage
+  native_dendrite_blocks_M1:
+    - topology_and_branch_order
+    - soma_centered_multiscale_radial_profiles
+    - path_length_extent_tortuosity_and_branch_geometry
+    - orientation_and_hemispheric_symmetry
     - persistent_homology
-  transforms:
+  prohibited:
+    - any_axonal_predictor
+    - Projection_class
+    - target_detection_prevalence_from_validation_or_audit
+    - outcome_derived_subtype
+    - axon_derived_coverage_completeness_total_length_or_projection_breadth_as_predictor
+    - audit_derived_feature_screening
+    - free_form_posthoc_feature_generation
+
+model_comparison:
+  M0:
+    name: anatomical_context_and_measurement_quality
+    inputs: context_M0
+  M1:
+    name: same_context_plus_own_native_dendrites
+    inputs: [context_M0, native_dendrite_blocks_M1]
+  nuisance_bank:
+    name: same_context_plus_capacity_matched_false_dendrites
+    member_count: 20
+    construction:
+      context_model: outcome_free_cross_fitted_conditional_location_and_scale_per_dendrite_block
+      standardization: context_specific_centering_and_whitening_fitted_on_training_groups_only
+      permuted_unit: multivariate_residual_row_within_one_dendrite_block
+      permutation: >-
+        Independent no-fixed-point derangement for every dendritic block within
+        each biological group, using a different donor assignment by block.
+      purpose: preserve_within_block_structure_while_breaking_intact_cross_block_morphology
+      reconstruction: recipient_context_location_and_scale_plus_donor_standardized_block_residual
+      donor_missing_values: training_only_imputation_before_reconstruction
+      missingness: reapply_recipient_mask
+      partitions: derange_training_calibration_and_held_out_groups_separately
+      minimum_eligible_cells_per_group: 4
+      outcome_access: prohibited
+    seeds: null
+    required_diagnostics:
+      - balance_over_source_layer_soma_position_batch_and_axon_independent_QC
+      - conditional_mean_and_covariance
+      - heteroscedasticity
+      - multimodality
+      - missingness
+      - joint_support_and_overlap
+    failed_diagnostic: nuisance_gate_unresolved
+    group_with_fewer_than_4_cells: nuisance_gate_unresolved_without_postoutcome_cell_dropping
+    fitting: >-
+      Refit the development-selected M1 pipeline from scratch on each nuisance
+      block using identical training and calibration splits, but perform no
+      nuisance-specific representation, hyperparameter, or calibrator search.
+    compute_feasibility_inside_resource_ceiling_required: true
+
+  fairness:
+    identical_cells_targets_observable_pairs_and_outer_folds: true
+    identical_feature_dimension_for_dendrite_and_nuisance_blocks: true
+    M0_and_M1_identical_learner_tuning_and_search_opportunity: true
+    nuisance_uses_locked_M1_pipeline_without_separate_search: true
+    M0_and_M1_identical_calibration_data_and_tuning_opportunity: true
+    nuisance_uses_locked_calibrator_type_and_refits_its_parameters: true
+    all_imputation_scaling_screening_and_calibration_inside_training_folds: true
+    parameter_count_alone_is_not_capacity_matching: true
+
+development_search:
+  representations:
     scaling: [robust, signed_log, block_normalized]
     pca_ranks: [4, 8, 16, 32, 64]
     pls_ranks: [2, 4, 8, 16]
-  learners: [elastic_net_logistic, group_sparse_logistic, low_rank_multitarget_logistic, shallow_gradient_boosting, additive_spline]
-  calibration: [none, platt, isotonic]
-  max_ensemble_members: 2
-  paired_capacity_control: required
-  forbidden:
-    - axonal_predictor
-    - projection_class
-    - evaluation_group_prevalence
-    - outcome_derived_subtype
-    - unresolved_pretrained_representation_lineage
-    - random_neuron_split
-    - per_target_or_group_winner
-    - free_form_feature_generation
+  learners:
+    - elastic_net_logistic
+    - group_sparse_logistic
+    - low_rank_multitarget_logistic
+    - shallow_gradient_boosting
+    - additive_spline
+  calibration:
+    options: [none, shared_platt]
+    isotonic: prohibited
+    shared_platt_eligibility:
+      minimum_training_groups: 8
+      minimum_groups_with_detected_state: 4
+      minimum_groups_with_not_detected_state: 4
+      fit_from: grouped_out_of_fold_training_predictions
+    same_eligibility_for_M0_M1_and_controls: true
+    ineligible_action: use_none_for_all_compared_models
+  maximum_ensemble_members: 2
+  target_specific_or_group_specific_winner: prohibited
+  fixed_explanatory_model:
+    name: E0_E1_ridge_regularized_all_block_multitarget_logistic
+    role: scale_by_family_and_hierarchy_explanation_not_a_selectable_primary_winner
+    E0_inputs: context_M0
+    E1_inputs: [context_M0, every_prespecified_dendrite_scale_block]
+    all_scale_blocks_required_even_if_primary_winner_omits_one: true
+    base_parameters:
+      - target_intercepts
+      - shared_context_and_dendrite_coefficients
+      - regularized_target_deviations
+    hierarchy_extension: target_family_specific_dendrite_block_deviations_only_in_E1
+    hierarchy_labels_affect_E0: false
+    E0_predictions_identical_for_every_hierarchy: true
+    penalty_grid_and_nested_selection: identical_under_true_and_shuffled_families
+    structured_claim_requires_positive_E0_minus_E1_group_lower_bound: true
+  nesting:
+    outer: leave_whole_biological_groups_out
+    inner: grouped_tuning_within_outer_training_groups
+    target_support: recomputed_inside_outer_training_data
+  selection_order:
+    - pass_data_identity_support_and_leakage_requirements
+    - pass_capacity_and_calibration_fairness
+    - improve_primary_group_score
+    - pass_decisive_validity_gates
+    - prefer_simpler_model_within_the_frozen_tie_tolerance
 
-objectives:
-  primary: equal_group_delta_brier_context_minus_context_plus_dendrite
-  secondary: [worst_source_family_gain, log_loss, calibration_error, sparsity, stability]
-  minimum_meaningful_improvement: 0.001
-  constraints:
-    capacity_matched_m0_m1: true
-    beat_capacity_matched_nuisance: true
-    max_source_family_regression_brier: 0.002
-    no_single_group_dependence: true
-    delta_morph_frozen_before_audit: true
+primary_estimand:
+  probability_score: Brier
+  cell_target_score: squared_probability_error
+  within_group_order:
+    - mean_over_observable_cells_within_each_target
+    - equal_mean_over_all_frozen_targets
+  across_groups: equal_mean_over_biological_groups
+  formulae:
+    group_model_score: >-
+      B_g(m) = mean_over_targets_t(mean_over_observable_cells_i((y_git-p_git_m)^2))
+    group_family_model_score: >-
+      B_gf(m) = mean_over_targets_t_in_f(mean_over_observable_cells_i((y_git-p_git_m)^2))
+    group_native_dendrite_gain: D_g = B_g(M0) - B_g(M1)
+    overall_native_dendrite_gain: Delta_Brier = equal_group_mean(D_g)
+    real_vs_nuisance_member_j: R_gj = B_g(N_j) - B_g(M1)
+  development_fold_score: >-
+    Within each outer fold, score every candidate on the same training-supported
+    target set T_k and then weight outer folds equally even when T_k differs.
+  target_weights: equal_and_fixed
+  family_score_target_weights: equal_and_fixed_within_family
+  group_weights: equal_and_fixed
+  larger_gain_is_better: true
 
-budgets:
+primary_uncertainty:
+  unit: biological_group
+  confidence_level_one_sided: 0.95
+  primary_lower_bound: D_bar_minus_c_L_times_s_D_over_sqrt_G
+  primary_upper_bound: D_bar_plus_c_U_times_s_D_over_sqrt_G
+  tail_specific_critical_values:
+    c_L:
+      studentized_error: Z_L_equals_D_bar_minus_scenario_mean_divided_by_s_D_over_sqrt_G
+      calibration_quantile: 0.95
+    c_U:
+      studentized_error: Z_U_equals_scenario_mean_minus_D_bar_divided_by_s_D_over_sqrt_G
+      calibration_quantile: 0.95
+    each_minimum: ordinary_one_sided_Student_t_critical_value_with_G_minus_1_degrees_of_freedom
+    each_calibration_rule: >-
+      Take the maximum of the ordinary t critical value and the one-sided 99%
+      upper confidence bound for its signed-error 0.95 quantile across all frozen
+      scenarios. Separate tails are mandatory under skewed scenarios.
+  simulation_design:
+    scenarios:
+      - normal_group_contrasts
+      - skewed_group_contrasts
+      - heavy_tailed_group_contrasts
+      - variance_dependent_on_group_size_and_support
+      - null_and_positive_effects_at_the_scientific_margin
+    scenario_parameters: null
+    preserves: audit_blind_group_sizes_and_support_patterns
+    calibration:
+      replicates_per_scenario: 50000
+      seeds: null
+      role: choose_primary_and_max_t_critical_values
+    validation:
+      replicates_per_scenario: 50000
+      seeds: null
+      disjoint_from_calibration: true
+      requirement: >-
+        For each bound and each frozen scenario, the one-sided 99%
+        Clopper-Pearson lower bound on coverage is at least 0.95.
+    applies_to:
+      - primary_c_L
+      - primary_c_U
+      - nuisance_max_t
+      - hierarchy_max_t
+      - cell_identity_lower_and_upper_tails
+    parameters_counts_and_both_seed_sets_frozen_before_simulation: true
+    role_limit: does_not_certify_the_unknown_audit_population
+  assumptions:
+    - verified_independent_biological_groups
+    - equal_group_target_population
+    - fixed_target_set_and_prediction_model
+    - finite_group_contrast_variance
+    - scenario_envelope_covers_development_observed_heterogeneity
+  required_sensitivity:
+    - every_leave_one_group_out_mean_gain_is_positive
+    - absolute_leave_one_group_change_in_mean_is_at_most_delta_morph_divided_by_2
+  neuron_or_cell_target_degrees_of_freedom: prohibited
+  failed_assumption_or_simulation_coverage: unresolved_before_audit
+
+primary_decision:
+  scientific_margin_delta_morph: null
+  margin_status: must_be_justified_and_frozen_before_audit
+  success_requires:
+    - lower_primary_interval_exceeds_delta_morph
+    - all_simultaneous_real_vs_nuisance_lower_bounds_exceed_zero
+    - leave_one_group_and_influence_requirements_pass
+    - calibration_and_probability_support_requirements_pass
+    - synthetic_signal_recovery_is_adequate_at_delta_morph
+  nuisance_comparison:
+    statistic_per_member: R_gj = B_g(N_j) - B_g(M1)
+    multiplicity: one_sided_max_t_critical_value_from_separated_calibration_and_validation
+    conservative_fallback: Bonferroni_adjusted_Student_t_lower_bounds
+    gate: minimum_lower_bound_across_20_members_exceeds_zero
+  distinct_thresholds:
+    search_patience_delta: 0.001
+    scientific_margin: delta_morph
+    secondary_source_family_scope_threshold: 0.002
+
+explanatory_prediction:
+  purpose: distinguish_structured_organization_from_diffuse_prediction
+  fixed_explanatory_increment:
+    formula: D_g_E = B_g(E0) - B_g(E1)
+    required_for_any_structured_claim: one_sided_group_lower_bound_exceeds_zero
+    E1_contains_every_scale_block: true
+    primary_winner_may_remain_unchanged: true
+  dendrite_scale_blocks:
+    candidates: [soma_centered_physical_radius_shells, branch_order_ranges]
+    numeric_boundaries: null
+    frozen_after_coordinate_and_sampling_validation_without_target_outcomes: true
+  block_family_contribution:
+    formula: >-
+      L_bfg = B_gf(E1_retrained_with_block_b_conditionally_replaced) - B_gf(full_E1)
+    conditional_law:
+      conditions_on: [E0_context, all_other_dendrite_blocks]
+      learned_on: each_outer_training_fold_only
+      validated_on: held_out_development_morphology_without_axonal_outcomes
+      audit_fit: full_development_only
+      diagnostics:
+        - conditional_mean_and_covariance
+        - heteroscedasticity
+        - multimodality
+        - missingness
+        - joint_support_and_overlap
+      diagnostic_failure: block_level_explanation_unavailable
+    replacement_refits:
+      deterministic_draws: 10
+      replace_in: [training, calibration, held_out_or_audit]
+      rerun: [preprocessing, fixed_E1_fit, locked_calibration_fit]
+      postfit_test_only_permutation: prohibited
+      B_gf_replaced: mean_over_10_complete_refits
+    interpretation: unique_predictive_information_conditional_on_context_and_other_blocks_not_causal_importance
+  development_freezes:
+    - all_block_basis_and_matrix_entry_order
+    - signed_block_by_family_template
+    - development_robust_scale_per_matrix_entry
+    - required_sign_entry_set_selected_by_simultaneous_development_threshold
+    - eta_matrix_minimum_template_and_group_norm
+    - rho_matrix_cosine_similarity_margin
+    - simultaneous_sign_uncertainty_method
+  audit_replication:
+    entry_order: fixed_dendrite_block_by_target_family_vector
+    standardization: divide_development_template_and_audit_matrix_by_development_robust_entry_scales
+    similarity_measure: cosine_with_frozen_standardized_development_template
+    group_statistic: one_similarity_value_per_audit_biological_group
+    aggregate: equal_group_mean_with_the_same_small_G_lower_bound_framework
+    eta_matrix: null
+    rho_matrix: null
+    undefined_or_below_norm: explanation_unavailable_without_group_dropping
+    success_requires:
+      - development_template_norm_exceeds_eta_matrix
+      - every_audit_group_matrix_norm_exceeds_eta_matrix
+      - group_cosine_lower_bound_exceeds_rho_matrix
+      - every_required_sign_entry_repeats_under_simultaneous_intervals
+      - fixed_E1_dendritic_increment_lower_bound_exceeds_zero
+    favorable_audit_cell_selection: prohibited
+  nested_development_pseudo_audits:
+    repeat_inside_each_split:
+      - complete_primary_search_and_freeze
+      - conditional_generator_fitting_and_diagnostics
+      - E0_E1_penalty_selection_and_fit
+      - matrix_template_scaling_and_norm_estimation
+      - required_sign_entry_selection
+      - complete_replication_decision
+    calibration_and_validation_groups_or_simulation_seeds_disjoint: true
+    matched_entry_permutations_for_null: true
+    purpose: include_template_uncertainty_and_winner_selection
+
+  target_family_test:
+    model: fixed_E1_family_deviation_extension
+    E0_fit_once_and_predictions_identical_for_all_hierarchies: true
+    hierarchy_labels_affect_only_E1_family_specific_dendrite_deviations: true
+    penalty_grid_and_nested_selection_identical_under_true_and_shuffled_families: true
+    true_hierarchy: frozen_outcome_independent_Allen_anatomical_cut
+    matched_shuffle_count: 20
+    dendritic_increment_per_hierarchy: Delta_g_h = B_g(E0) - B_g(E1_h)
+    interaction_per_shuffle: Q_gj = Delta_g_true - Delta_g_shuffle_j
+    required_result: simultaneous_one_sided_group_lower_bounds_for_all_Q_gj_exceed_zero
+    multiplicity: separated_calibration_validation_max_t_with_Bonferroni_t_fallback
+    shuffled_assignment_preserves_within_frozen_bins:
+      - family_size_exactly
+      - development_target_prevalence
+      - observation_rate
+      - CCFv3_source_region_to_target_centroid_distance
+    prevalence_observation_and_distance_bins: null
+    assignments_and_seeds: null
+    fewer_than_20_valid_shuffles: hierarchy_explanation_unresolved_without_relaxation
+    context_only_hierarchy_advantage_cannot_satisfy_test: true
+
+  cell_identity_test:
+    real_input: each_cells_own_native_dendrite
+    morphology_classes:
+      source: development_dendrites_only_without_axonal_outcomes
+      selection: stability_and_reproducibility_only
+      frozen_assignment_rule_for_audit: null
+    comparator: >-
+      Replace each cell's entire standardized dendritic residual vector with a
+      no-fixed-point donor vector from the same biological group and frozen
+      morphology class; retain recipient context location, scale, and missingness.
+    differs_from_nuisance: preserves_intact_cross_block_dendritic_morphology
+    conditional_model_and_diagnostics: same_full_support_requirements_as_nuisance
+    seeds: null
+    minimum_donors_per_group_and_morphology_class: 4
+    common_analysis_set_frozen_without_outcomes: true
+    statistic: C_g = B_g(E1_swap) - B_g(E1_correct)
+    delta_cell: null
+    tail_critical_values:
+      c_C_L: separately_calibrated_and_validated_95_percent_lower_tail
+      c_C_U: separately_calibrated_and_validated_95_percent_upper_tail
+    cell_specific_rule: one_sided_95_percent_lower_bound_for_C_g_exceeds_delta_cell
+    shared_class_equivalence:
+      method: two_one_sided_5_percent_tests
+      interval: 90_percent_interval_using_c_C_L_and_c_C_U
+      rule: interval_wholly_inside_plus_or_minus_delta_cell
+    neither_superiority_nor_equivalence: identity_explanation_unresolved
+    unavailable_donors_or_failed_diagnostics: identity_explanation_unavailable
+
+validity_gates:
+  common_design_validity:
+    required_for_positive_and_informative_negative_claims: true
+    required:
+      - verified_cell_dendrite_axon_identity_and_group_provenance
+      - valid_observability_and_nondetection
+      - no_outcome_or_axonal_geometry_leakage
+      - identical_prediction_pairs_and_weights_across_paired_models
+      - nuisance_construction_and_diagnostics_are_valid_and_available
+      - group_interval_influence_and_simulation_requirements
+      - adequate_probability_support_and_calibration
+      - null_confounded_sparse_distributed_and_miscalibrated_synthetic_recovery
+      - external_representation_and_publication_lineage_review
+  positive_increment_only:
+    gate: all_simultaneous_real_vs_nuisance_lower_bounds_exceed_zero
+    failure_blocks_positive_claim: true
+    required_for_context_sufficient_negative_claim: false
+
+explanation_discriminators:
+  failure_narrows_but_does_not_rewrite_primary_result: true
+  valid_executed_contradiction: may_support_diffuse_prediction
+  unavailable_generator_statistic_donor_or_shuffle: explanation_unresolved_not_diffuse
+  required_for_cell_specific_structured_claim:
+    - scale_by_target_family_matrix_replication
+    - true_vs_shuffled_hierarchy_dendritic_increment
+    - correct_vs_matched_wrong_cell_dendrite
+
+scope_sensitivities:
+  disagreement_narrows_scope_but_is_not_automatically_a_proxy: true
+  role: modifier_that_may_coexist_with_any_valid_positive_terminal_interpretation
+  required:
+    - soma_centered_rotation_invariant_representation
+    - native_vs_CCFv3_dendrite
+    - frozen_arbor_threshold_set
+    - registration_clipping_missingness_and_coverage_strata
+    - source_family_heterogeneity
+
+source_family_scope:
+  partition: outcome_independent_nonoverlapping_cut_of_Allen_source_ontology
+  Brier_regression_flag: 0.002
+  minimum_independent_groups_per_family: null
+  multiplicity: simultaneous_intervals_across_prespecified_families
+  unsupported_family: descriptive_only
+  favorable_family_cannot_rescue_failed_overall_primary: true
+  flag_is_primary_success_gate: false
+  supported_regression_narrows_population_scope: true
+
+search_budget:
   minimum_valid_trials: 40
   maximum_valid_trials: 96
+  initial_coverage_trials: 20
+  initial_coverage_requires: >-
+    Every dendrite block, transform family, and learner family receives a fair
+    paired M0/M1 evaluation before local optimization dominates.
   patience_valid_trials: 18
-  max_invalid_retries: 16
+  patience_improvement: 0.001
+  patience_is_scientific_margin: false
+  maximum_invalid_retries: 16
+  minimum_falsification_fraction_after_initial_coverage: 0.40
   cpu_core_hour_ceiling: 1500
-  gpu_hour_ceiling: 0
   wall_clock_hour_ceiling: 120
   parallel_core_ceiling: 64
   memory_gb_ceiling: 512
   scratch_gb_ceiling: 1024
-  minimum_falsification_fraction_after_branch_coverage: 0.40
+  gpu_hour_ceiling: 0
+  budget_exhaustion: incomplete_search_not_a_scientific_result
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 20
-  rule: every_dendrite_block_transform_and_learner_family_with_capacity_matched_m0
-  readiness_rejection_must_be_logged: true
-
-required_falsifiers:
-  - context_stratified_within_group_dendrite_permutation
-  - group_preserving_target_prevalence_outcome_permutation
-  - capacity_matched_random_and_smooth_nuisance_blocks
-  - soma_location_source_and_layer_matching
-  - dendrite_feature_block_ablations
-  - native_vs_ccf_dendrite_locked_sensitivity
-  - leave_one_group_and_source_family_out
-  - batch_missingness_and_registration_influence
-  - null_confounded_sparse_distributed_and_miscalibrated_synthetic_recovery
-  - external_source_and_pretrained_representation_lineage_audit
-
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  require_paired_m0_m1: true
-  require_capacity_proof: true
-  require_all_falsifiers_pass: true
-  require_group_robust_pareto_feasibility: true
-  require_reproducible_refit_from_immutable_inputs: true
-
-stop:
-  before_minimum: forbidden_except_technical_impossibility
-  patience_starts_after_minimum: true
-  patience_delta: 0.001
-  require_feature_transform_and_learner_family_coverage: true
-  resource_exhaustion_result: incomplete_search
-  budget_stop_is_scientific_success: false
-  budget_stop_is_scientific_negative: false
+candidate_ready_requires:
+  - verified_group_provenance_and_minimum_counts
+  - authenticated_cell_dendrite_axon_identity_and_coordinate_route
+  - frozen_outcome_observability_target_and_family_rules
+  - frozen_delta_morph_and_small_group_inference
+  - frozen_conditional_generators_nuisance_bank_morphology_classes_and_swap_equivalence
+  - frozen_E0_E1_matrix_conjunction_and_hierarchy_interaction
+  - independent_calibration_and_validation_simulations_pass
+  - paired_capacity_and_calibration_fairness
+  - required_branch_coverage_and_validity_trial_fraction
+  - synthetic_sensitivity_at_the_scientific_margin
+  - focused_novelty_review
+  - reproducible_refit_from_immutable_inputs
+  - full_primary_nuisance_replacement_hierarchy_and_nested_pseudo_audit_workload_fits_budget
 
 audit:
-  configuration_lock_required: true
-  configuration_lock_mode: write_once_before_audit
-  shared_episode_contracts_lock_before_any_open: true
+  all_EP09_EP10_EP11_contracts_freeze_before_any_shared_outcome_open: true
+  prediction_and_analysis_lock: write_once_before_audit
   maximum_open_count: 1
-  audit_updates_search: false
-  audit_role: sealed_biological_groups
-  terminal_claim_scope: incremental_distal_arbor_prediction_in_unseen_groups_within_source
+  audit_updates_search_model_calibration_margin_or_target_set: false
+  audit_group_replacement: prohibited
+  failed_scientific_result_may_trigger_reopen: false
+  invalid_run_definition:
+    - frozen_input_corruption
+    - evaluator_implementation_failure_demonstrated_without_using_result_direction
+    - violated_identity_or_role_ledger
 
-terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_candidate: closed_no_candidate
-  incomplete_search: closed_no_candidate
-  unresolved: closed_no_candidate
-  technical_failure: technical_failure
+terminal_interpretation:
+  structured_cell_specific_organization:
+    requires:
+      - primary_success
+      - fixed_E1_dendritic_increment_is_positive
+      - complete_scale_by_family_replication_conjunction_passes
+      - true_hierarchy_dendritic_increment_beats_all_matched_shuffles
+      - correct_cell_advantage_lower_bound_exceeds_delta_cell
+      - all_common_design_validity_gates_pass
+    claim: reproducible_structured_cell_specific_local_to_global_organization
+  shared_morphology_class_organization:
+    requires:
+      - primary_success
+      - fixed_E1_dendritic_increment_is_positive
+      - complete_scale_by_family_replication_conjunction_passes
+      - true_hierarchy_dendritic_increment_beats_all_matched_shuffles
+      - correct_vs_swap_equivalence_interval_is_inside_delta_cell
+      - all_common_design_validity_gates_pass
+    claim: organized_morphology_target_relationship_without_established_cell_specificity
+  structured_organization_cell_specificity_unresolved:
+    requires:
+      - primary_success
+      - fixed_E1_dendritic_increment_is_positive
+      - complete_scale_by_family_replication_conjunction_passes
+      - true_hierarchy_dendritic_increment_beats_all_matched_shuffles
+      - valid_cell_identity_interval_shows_neither_superiority_nor_equivalence
+      - all_common_design_validity_gates_pass
+    claim: structured_morphology_target_organization_with_cell_specificity_unresolved
+  diffuse_prediction:
+    requires: >-
+      Primary success plus a valid, available, fully executed scale or hierarchy
+      test that contradicts the frozen prediction.
+    claim: native_dendrites_add_information_without_an_established_stable_organizational_rule
+  primary_increment_explanation_unresolved:
+    requires: >-
+      Primary success but a required generator, matrix norm/statistic, donor set,
+      or matched hierarchy is unavailable or fails predeclared diagnostics.
+    claim: incremental_dendritic_information_established_but_organization_unresolved
+  invalid_or_proxy_explanation:
+    requires: >-
+      A proposed positive result fails a common design-validity gate or the
+      positive-only directional nuisance-superiority gate.
+    claim: no_valid_incremental_dendritic_information_claim
+  context_sufficient_at_margin:
+    requires:
+      - upper_primary_interval_is_below_delta_morph
+      - synthetic_sensitivity_is_adequate
+      - all_common_design_validity_gates_pass
+      - frozen_group_inference_procedure_is_valid_and_available
+      - nuisance_construction_and_diagnostics_are_valid_and_available
+      - directional_nuisance_superiority_not_required
+    claim: context_is_adequate_at_the_prespecified_detectable_scale
+  unresolved:
+    requires: inadequate_provenance_coverage_group_count_calibration_or_sensitivity
+    claim: no_positive_or_negative_biological_conclusion
+
+terminal_modifiers:
+  scope_limited:
+    applies_to: any_valid_positive_terminal_interpretation
+    trigger: one_or_more_scope_sensitivities_change_effect_extent_or_direction
+    action: narrow_coordinate_measurement_or_population_scope_without_replacing_terminal_result
+
+launch_blockers:
+  - source_archives_and_exact_CCFv3_resources_not_provisioned
+  - biological_group_provenance_not_verified
+  - shared_EP09_EP10_EP11_role_and_exposure_ledger_not_built
+  - cell_join_coordinate_and_tree_parsing_route_not_authenticated
+  - arbor_observability_distal_target_and_ontology_rules_not_frozen
+  - exact_development_prevalence_support_not_frozen
+  - conditional_location_scale_models_diagnostics_and_independent_block_nuisance_seeds_not_frozen
+  - dendrite_only_morphology_classes_intact_swap_seeds_and_delta_cell_not_frozen
+  - 20_valid_matched_target_hierarchies_not_frozen
+  - E0_E1_eta_matrix_rho_matrix_required_signs_and_matrix_scaling_not_frozen
+  - delta_morph_delta_cell_and_tail_specific_c_L_c_U_c_C_L_c_C_U_not_frozen
+  - separated_simulation_scenarios_counts_and_calibration_validation_seeds_not_frozen
+  - calibration_eligibility_and_source_family_scope_not_frozen
+  - complete_fixed_pipeline_refit_workload_not_shown_to_fit_resource_ceiling
+  - focused_novelty_review_not_complete

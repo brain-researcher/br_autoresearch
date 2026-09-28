@@ -1,37 +1,25 @@
-# EP18 — data and split instructions
+# EP18 data: THINGS-EEG1, images, and participant roles
 
-EP18 uses THINGS-EEG1 to test whether, with the same image-derived predictors,
-a categorical concept template predicts held-out-exemplar EEG better than a
-capacity-matched basis built from continuous label and human features. The
-scientific comparison and decision rule are defined in [GOAL.md](GOAL.md).
+EP18 uses THINGS-EEG1 to ask whether a true-concept basis predicts EEG for new
+exemplars better than a capacity-matched label basis built on the same image
+model. The scientific comparisons are defined in [GOAL.md](GOAL.md); this
+file explains which data are available, how they must be divided, and what
+still has to be built before EEG-driven model comparison.
 
-The complete EEG release, authorized original THINGS image archive, and
-separate THINGSplus-CC0 control archive have been acquired, hash-verified, and
-preserved read-only. The THINGS metadata snapshot is acquired and
-hash-verified in steward quarantine, but its payload is currently
-owner-writable; setup must identify the recorded source version and use a
-read-only working copy. Further integrity checks are needed only if a concrete
-inconsistency appears. The sources can support an outcome-blind setup phase,
-but EP18 is not yet a formal episode because its input/output guards and seven
-workspace projections do not exist. The exact image-event
-join, participant roles, role-filtered views, feature records, and alternative
-partitions are outputs to build and freeze during the episode, not missing
-external datasets.
+## What is available
 
-## Current status
+| Resource | Current state | EP18 use |
+| --- | --- | --- |
+| THINGS-EEG1 `ds003825`, release `v1.2.0` | Acquired and preserved read-only | Raw continuous EEG, events, markers, and participant metadata |
+| Original THINGS images | Acquired under their source terms; archive remains in steward-controlled storage | Exact images shown in the experiment and input to image-feature extraction |
+| THINGS metadata | Acquired; consume the recorded source version through a read-only working copy | Concept names, image identities, and human feature tables |
+| THINGSplus-CC0 archive | Available as a separate control resource | Cross-checks only; it cannot replace the exact event-image join |
 
-| Component | Status |
-| --- | --- |
-| Complete EEG release | Ready and read-only |
-| Original THINGS image archive and terms | Verified in steward quarantine; encrypted/unextracted; controlled extraction is an episode setup task |
-| THINGS metadata | Acquisition-verified in steward quarantine; currently owner-writable, so use the recorded source version through a read-only working copy |
-| THINGSplus-CC0 control archive | Acquisition-verified and read-only; not a substitute for the exact event-image join |
-| Exact image-event join | Build and validate during setup; freeze before feature extraction and model fitting |
-| 30/16 participant roles | Assign outcome-blind during setup; freeze before EEG-derived work |
-| Development and audit views | Provision after assignment; audit EEG remains evaluator-only |
-| Feature and alternative-partition records | Generate under the rules below; freeze the finalist before audit |
+No large EEG, image, or feature payload belongs in Git. The episode repository
+contains the readable design and small records describing how those payloads
+are used.
 
-## EEG source and image dependency
+### Source references
 
 | Item | Source |
 | --- | --- |
@@ -41,280 +29,204 @@ external datasets.
 | Dataset DOI | <https://doi.org/10.18112/openneuro.ds003825.v1.2.0> |
 | Data paper | <https://doi.org/10.1038/s41597-021-01102-7> |
 | Official code archive | <https://doi.org/10.17605/OSF.IO/HD6ZK> |
-| License | CC0 |
+| EEG license | CC0 |
 | Preservation root | `/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0` |
 | BIDS payload | `/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source` |
-| Original THINGS archive | Steward quarantine; exact operational location is outside Git |
-| THINGS metadata | Steward quarantine; exact operational location is outside Git |
-| THINGSplus-CC0 control archive | Steward quarantine; exact operational location is outside Git |
 
-The preserved release contains 412 files and 59,435,654,496 bytes
-(55.35 GiB), including 41.40 GiB in the raw participant trees. Its `SOURCE.md`
-contains the acquisition and verification record.
-
-The release provides raw continuous BrainVision EEG, BIDS events, participant
-metadata, and public derivatives for 50 participants. The
-[EEG sidecar](https://github.com/OpenNeuroDatasets/ds003825/blob/1.2.0/task-rsvp_eeg.json)
-reports 1,000 Hz sampling, 63 recorded EEG channels, Cz reference, and no
-software filter. The primary analysis starts from the raw continuous EEG;
-provider derivatives may be used only for reproduction or diagnostics.
-
-The THINGS stimulus images are not part of the OpenNeuro payload. Their access
-and redistribution terms do not follow from the EEG release's CC0 license. The
-original archive was acquired separately under recorded research/noncommercial
-terms and remains encrypted and unextracted in steward quarantine. During
-EP18 setup, the authorized coding workflow may create a read-only working
-extraction and join every event to an exact, identified image using stimulus and
-event metadata. This operation does not require audit EEG values. Extracted
-images, archive credentials, and large derived features remain outside Git and
-retain the source terms.
+The THINGS images are not part of the OpenNeuro release and do not inherit its
+CC0 license. Extraction, feature computation, and redistribution must follow
+the image archive's recorded research terms. The conceptual figure for EP18
+therefore uses synthetic illustrations, not THINGS source images.
 
 ## Experiment structure
 
 The main experiment contains 22,248 images: 12 exemplars for each of 1,854
 concepts.
 
-| Level | Structure | EP18 role |
+| Level | Structure | Role in EP18 |
 | --- | --- | --- |
-| Main block | 12 blocks; every concept appears once per block | outer fitting and scoring unit |
-| Physical sequence | 6 per block; 309 images per sequence | continuous-signal boundary |
-| Image event | one onset every 100 ms; image shown for about 50 ms | row in the time-expanded design |
+| Main block | 12 blocks; every concept appears once per block | Defines train/test exemplars |
+| Physical sequence | 6 per block; 309 images per sequence | Hard boundary for filtering and temporal modeling |
+| Image event | One onset every 100 ms; image displayed for about 50 ms | One event in the continuous time-expanded design |
 
-Each participant therefore has 72 main physical sequences. The six outer
-folds hold out block pairs `{0,6}`, `{1,7}`, `{2,8}`, `{3,9}`, `{4,10}`, and
-`{5,11}`. A fold fits on the other ten blocks and assigns its named pair to
-held-out scoring, so every image belongs to one held-out fold.
+The six outer folds hold out block pairs `{0,6}`, `{1,7}`, `{2,8}`, `{3,9}`,
+`{4,10}`, and `{5,11}`. A fold fits on the other ten blocks, so every concept
+contributes ten training exemplars and two held-out exemplars. Every image is
+scored in exactly one outer fold.
 
-Each block contains one exemplar per concept, so every fold fits ten exemplars
-and scores two for each concept. The physical sequence remains the
-signal-processing unit: filtering, detrending, FIR construction, trimming, and
-state resets may not cross its boundary.
+The remaining five complementary block pairs form the inner folds used to
+choose preprocessing, feature rank, temporal basis, and regularization using
+training data only.
 
 ### Repeated-image session
 
-After the main session, participants saw 200 validation images 12 times each,
-once in each of 12 additional physical sequences. These rows have
-`sequencenumber` 72–83 and are separate from the 72 main sequences.
+After the main session, participants saw 200 validation images 12 times each.
+These data are reserved for signal-recovery and reliability checks. They do
+not enter the primary concept score, feature selection, candidate comparison,
+or false-group construction, and they cannot rescue a failed main result.
 
-The repeated images are reserved for measurement reliability, reproducible
-image-response checks, injection calibration, and provider-quality
-reproduction. They do not enter the primary concept score, feature selection,
-candidate comparison, or alternative-partition construction. Development
-participants may be used to qualify those procedures. Audit-participant
-repeated-image EEG remains evaluator-only until the procedure is fixed. Their
-repetition, adaptation, and late-session position prevent treating them as a
-primary noise ceiling, and they cannot rescue the main result.
+## Reconstructing events correctly
 
-## Event fields and timing
-
-The [event sidecar](https://github.com/OpenNeuroDatasets/ds003825/blob/1.2.0/task-rsvp_events.json)
-uses several names that are easy to confuse.
+Several event fields have similar names:
 
 | Field | Main-session values | Meaning |
 | --- | --- | --- |
-| `blocksequencenumber` | 0–11 | complete 1,854-concept block |
-| `sequencenumber` | 0–71 | physical EEG sequence |
-| `withinsequencenumber` | 0–5 | physical-sequence position within the block |
-| `presentationnumber` | 0–308 | image position within the physical sequence |
-| `stimnumber` | 0–11 | exemplar within the true concept |
+| `blocksequencenumber` | 0–11 | Complete 1,854-concept block |
+| `sequencenumber` | 0–71 | Physical EEG sequence |
+| `withinsequencenumber` | 0–5 | Physical-sequence position within a block |
+| `presentationnumber` | 0–308 | Image position within a physical sequence |
+| `stimnumber` | 0–11 | Exemplar number within the true concept |
 
-For the repeated-image session, `blocksequencenumber` and
-`withinsequencenumber` are `-1`.
+In release `v1.2.0`, `onset` is in seconds and `sample` is the integer sample
+at 1,000 Hz. The source `duration` value is `50`, meaning 50 ms even though a
+generic BIDS reader may interpret it as seconds. Preserve the source field and
+create an explicit `duration_seconds = 0.05` in the working event table.
 
-In `v1.2.0`, `onset` is in seconds and `sample` is the integer acquisition
-sample at 1,000 Hz. The source `duration` value is `50`, meaning 50 ms even
-though BIDS software normally expects seconds. Preserve that source value and
-create an explicit `duration_seconds = 0.05`; never let a loader interpret it
-as 50 seconds. Use `sample` as the raw-signal join and check it against
-`onset`, the BrainVision markers, `time_stimon`, and recording bounds.
+Use `sample` as the raw-signal join and compare it with `onset`, BrainVision
+markers, `time_stimon`, and recording bounds. For every eligible participant,
+confirm:
 
-For every participant retained, confirm that:
+- 12 main blocks with one event for each of 1,854 concepts;
+- 12 distinct exemplars per concept across blocks;
+- six physical sequences of 309 images per block;
+- 200 unique repeated images shown 12 times each; and
+- agreement among event order, sample timing, and raw markers.
 
-- the main session has 12 blocks of 1,854 image events;
-- every concept occurs once per block and uses 12 distinct exemplars overall;
-- every block has six physical sequences of 309 images;
-- the repeated session has 200 unique images with 12 presentations each; and
-- event order and timing agree with the raw BrainVision markers.
+These checks establish the observations that enter the analysis.
 
-Response time was updated only at screen refresh and is not highly precise.
-Use response-locked nuisance timing only after validating its reconstruction;
-otherwise use a coarser fixed response term and report the limitation.
+## Exact image-event join
 
-## Participant eligibility and assignment
+Before feature extraction or EEG modeling, build one row for every main and
+repeated image event containing:
 
-The provider marks four participants for exclusion:
+- participant and event location;
+- concept and exemplar identity;
+- canonical image identity;
+- the recorded metadata version; and
+- the exact local image match.
+
+Resolve mismatches from source metadata and experiment records, not from EEG
+responses. Freeze the join before any image-feature job or EEG-driven model
+comparison. A feature job that is declared image-only receives pixels and an
+opaque image ID; it cannot read filenames, folders, concept names, or event
+labels.
+
+## Participant eligibility and split
+
+The provider marks four of 50 participants for exclusion:
 
 | Participant | Provider note |
 | --- | --- |
-| `sub-01` | no data for the final repeated-image session |
-| `sub-06` | did not complete the experiment |
-| `sub-18` | poor signal at several documented electrodes |
-| `sub-23` | monitor problems during the experiment |
+| `sub-01` | Missing the final repeated-image session |
+| `sub-06` | Did not complete the experiment |
+| `sub-18` | Poor signal at documented electrodes |
+| `sub-23` | Monitor problems during the experiment |
 
-These exclusions leave 46 potentially eligible participants. Before assigning
-roles, eligibility may use provider flags, acquisition notes, and fixed checks
-of files, headers, events, and markers. It may not use signal-derived quality,
-reliability, model predictions, or candidate scores.
+This leaves 46 potentially eligible participants. Before assignment,
+eligibility may use provider notes and fixed checks of files, headers, events,
+and markers. It may not use neural signal quality, reliability, model
+predictions, or candidate effects.
 
-`sub-49` and `sub-50` used a 128-channel setup with only 64 channels connected.
-If both pass the fixed checks, the assignment procedure must place one in
-development and one in audit. `SEARCH_POLICY.yaml` defines one metadata-only
-assignment algorithm, seed, balance objective, and tie rule; there is no
-post-hoc choice between alternative splits. The algorithm must stop before
-EEG access if the eligible count is not exactly 46.
+Assign 30 whole participants to development and 16 whole participants to
+audit using the fixed metadata-only rule in `SEARCH_POLICY.yaml`. Because
+`sub-49` and `sub-50` used a different acquisition montage, place exactly one
+in each role if both pass the fixed integrity checks. Freeze all IDs before
+EEG-derived work. No participant may later be swapped, excluded, or replaced
+because of signal quality or effect direction.
 
-### Montage harmonization
+The participant is the inference and replication unit. Blocks, sequences,
+images, electrodes, folds, and samples are repeated measurements within a
+participant.
 
-The standard recording sidecar declares 63 EEG channels with Cz reference.
-For `sub-49` and `sub-50`, the sidecar declares a 128-channel setup with FCz
-reference, while each BrainVision header exposes 127 recorded data channels.
-Exactly 62 recorded channel labels are shared with the standard montage.
+## Common sensor space
 
-The primary analysis uses those 62 shared labels for every participant. Any
-participant- or fold-specific bad-channel removal and interpolation is
-prohibited. Subtract the across-channel mean and project into a fixed
-61-dimensional orthonormal basis for that common-average subspace. Estimate
-the fixed Ledoit-Wolf whitening covariance on training blocks in this
-full-rank basis. Additional channels from
-`sub-49` and `sub-50` are sensitivity-only and may not influence candidate
-selection or rescue the primary result. Freeze the exact channel list, order,
-the primary interpolation rule (`none`), contrast basis, and sensor-space loss
-before any EEG-derived candidate comparison.
+Most participants used a standard 63-channel EEG setup with Cz reference.
+`sub-49` and `sub-50` used a larger setup with FCz reference. Exactly 62
+recorded channel labels are shared across the two arrangements.
 
-If another participant fails a fixed integrity rule, revisit the sample size
-and split before model development; do not select a replacement after audit
-outcomes are available. The participant is the inferential and replication
-unit. Blocks, physical sequences, images, electrodes, folds, and EEG samples
-are repeated measurements within a participant.
+The primary analysis uses those 62 labels in a frozen order for every
+participant, subtracts the across-channel mean, and represents the result in
+one fixed 61-dimensional orthonormal basis. Participant- or fold-specific bad
+channel removal and interpolation are not allowed in the primary analysis.
+Extra channels from `sub-49` and `sub-50` are sensitivity analyses only.
+
+Estimate whitening from the outer-training blocks in the 61-dimensional
+space. Do not invert the singular 62-channel common-average covariance.
+
+## Continuous-data boundaries
+
+The primary analysis starts from raw continuous EEG. For every outer fold:
+
+- physical sequences remain separate during filtering, detrending, temporal
+  expansion, and trimming;
+- learned preprocessing and covariance use only the ten training blocks;
+- the held-out pair is transformed with training-derived quantities;
+- a model-independent scoring mask is shared by every compared model; and
+- no raw or transformed sample contributes to both fitting and scoring.
+
+Missingness and sample retention cannot depend on concept labels, candidate
+residuals, or observed effects. Ordinary prestimulus baseline correction is
+not used in the primary RSVP analysis.
+
+## Feature and false-group records
+
+Before candidate-discriminating EEG scores are released, record and freeze:
+
+1. the low-level image features and named vision or vision-language model
+   families used in the core and expanded panels;
+2. image preprocessing, selected layers, pooling, and output dimensions;
+3. the concept-name and human feature tables, missing-value rules, scaling,
+   and concept crosswalk;
+4. the separate visual-only distance panel used for the explanatory analysis;
+   it includes low-level, supervised-vision, and self-supervised-vision
+   features and excludes captions, label features, and vision-language
+   embeddings;
+5. the training-only reduction and regularization choices permitted by the
+   search; and
+6. the eight accepted false partitions and their image-feature, temporal, and
+   fitting-capacity diagnostics.
+
+Exact software and model versions belong in this feature record, where they
+are needed to reproduce the chosen analysis. They do not need to dominate the
+scientific question or create a generic readiness gate.
 
 ## Development and audit access
 
-The planned split is 30 whole development participants and 16 whole audit
-participants. After the fixed integrity checks, assign and record exact IDs
-before examining any signal-derived measure or beginning model development.
-Participant roles never change thereafter. Reliability, raw-signal quality,
-model fit, and effect direction cannot be used to exclude, swap, or replace a
-participant after assignment.
-
-| Location or view | Contents | Permitted use |
+| View | Contents | Permitted use |
 | --- | --- | --- |
-| Preservation source | all 50 released participants | archive only |
-| Development view | 30 eligible participants | model development |
-| Audit view | 16 eligible participants | evaluator only |
+| Preservation source | All 50 released participants | Archive and outcome-blind setup only |
+| Development view | 30 eligible participants | Model development, qualification, and finalist selection |
+| Audit view | 16 eligible participants | One application of the frozen procedure by an evaluator |
 
-The same user account can currently reach all public EEG files, so the audit is
-not yet technically sealed. A valid seal requires a separate evaluator
-principal or separately controlled mount and must prevent the development
-runtime from re-downloading audit EEG from the public provider. ACLs controlled
-by the same `zijiao` account are insufficient. Until these controls are
-verified, the state is `procedural_holdout_only`: setup may proceed, but
-EEG-driven candidate comparison remains blocked. Proceeding with a merely
-procedural holdout would require an explicit contract revision and could not
-be described as a permission-blinded audit.
+The same user account can currently retrieve the public EEG for all
+participants. The planned split is therefore only a procedural holdout until
+a separate evaluator identity or separately controlled mount prevents the
+development process from reading or re-downloading the audit EEG. ACLs under
+the same account do not create that seal.
 
-Stimulus order and task-event metadata may be used before the split to build
-EEG-blind nuisance terms and alternative partitions. Neural values, neural QC,
-predictions, and scores from audit participants may not inform development.
+Outcome-blind setup may proceed while this is unresolved. Under the current
+contract, EEG-driven candidate comparison is prohibited and the one-shot
+audit cannot open until the separation is verified.
 
-For each audit participant, the evaluator applies the fixed six-fold
-procedure: fit ten blocks and score two. This is participant-refit replication,
-not zero-shot transport of a development-participant EEG template. Audit
-reliability and positive controls are computed only after lock. If they fail,
-the cohort-level audit supports neither a positive conclusion nor a biological
-null. Individual failures never create an analyzed subset, and no participant
-is replaced.
+Audit participants use the same six-fold participant-refit procedure: ten
+blocks fit the model and two blocks are scored. This is replication in new
+participants, not transfer of a development participant's fitted EEG
+coefficients.
 
-All participants viewed the same main image collection. A scored exemplar is
-held out from that participant's fold-specific fit, but is not globally unseen
-by the development process.
+## What must exist before model comparison
 
-## Setup records to build and freeze
+The next setup stage must produce:
 
-These records are produced within EP18. The image/event join, participant
-roles, development view, and primary channel transform must be frozen before
-EEG-driven candidate comparison. The admissible upstream feature menu is fixed
-without EP18 EEG; only declared downstream choices may use training-block
-development EEG. Alternative partitions may evolve from stimuli and event
-metadata, never EEG. Their finalist records must be frozen before audit
-access.
+- a validated event table and exact image join;
+- the fixed 30/16 participant assignment and role-filtered views;
+- the common 62-channel order and 61-dimensional transform;
+- the image and label feature records;
+- the frozen visual-only distance panel and distant-event ablation rule;
+- eight acceptable EEG-blind false partitions;
+- outcome-blind simulations of overlap, leakage, and recovery; and
+- one EP17/EP18 exposure record covering image, concept, and feature reuse.
 
-1. **Image index and exact event join.** Include event path, concept ID,
-   exemplar ID, canonical image identity, source metadata version, and exact
-   local image match for every main and repeated image.
-2. **Feature record and matrices.** For every family, record the source or
-   checkpoint and revision, software version, license, training-data lineage,
-   image preprocessing, selected layers, pooling, and output dimension. Align
-   rows to the exact image index. An image-derived job receives only pixels and
-   an opaque image ID; paths, folders, filenames, concept fields, and prompts
-   made from those fields are unavailable to it. Concept-name and human
-   concept features are generated in a separate label-feature job. Freeze that
-   job's missing-value indicators, column drops, 1,854-concept centering and
-   scaling, equal-family weighting, column order, crosswalk, and frozen matrix
-   values.
-   Upstream encoders and raw feature choices cannot use EP18 EEG.
-3. **Participant roles, channels, and folds.** Record the fixed 30/16 IDs,
-   assignment rule, 62-channel list and order, the primary interpolation
-   prohibition, fixed
-   61-dimensional contrast basis, covariance regularization and sensor-space
-   loss, six held-out block pairs, and physical-sequence boundaries.
-4. **Alternative partitions.** Record the EEG-blind generator, features,
-   fold-specific tolerances, seed and acceptance order, diversity rule, retry
-   ceiling, eight accepted partitions, and matching diagnostics. Because block
-   and sequence assignments vary across participants, accepted files may be
-   participant-specific while the generator contract remains shared. Every
-   participant-specific partition uses every main image exactly once, has
-   1,854 groups of 12 images, places one image from each main block in a group,
-   and never repeats a true concept within a group. Matching must pass in all
-   six outer folds for held-out-to-training visual geometry, design spectrum,
-   leverage, effective degrees of freedom, and temporal context over the full
-   filter, FIR, target, and response horizon. Failure to build all eight within
-   the frozen retry budget is underidentification, not permission to loosen a
-   tolerance after EEG access.
-5. **EP17/EP18 exposure ledger.** Record exact image and concept overlap,
-   feature or checkpoint reuse, and first-access history.
-
-Large EEG files, images, and feature matrices remain outside Git. The episode
-directory contains the readable instructions and small records needed to
-reproduce how they were used.
-
-## Continuous-data invariants
-
-- The primary analysis begins with raw continuous EEG.
-- A physical sequence is always a signal boundary.
-- Adaptive preprocessing and learned transformations use only the ten training
-  blocks in an outer fold.
-- After filtering, FIR construction, and edge trimming, no raw or transformed
-  EEG sample may contribute to both fitting and scoring.
-- One model-independent scoring mask is frozen per participant and outer fold;
-  every retained continuous sample is scored exactly once.
-- Every model and partition in a fold uses that same mask and the same
-  training-derived whitening covariance.
-- Missingness, artifact, and retention decisions cannot use a concept label,
-  candidate residual, or observed effect.
-
-The detailed model, matched controls, and temporal falsification tests belong
-to [GOAL.md](GOAL.md).
-
-## EP17 exposure boundary
-
-EP17 and EP18 share the THINGS stimulus ecosystem. Maintain one ledger for
-exact image and concept overlap, feature or checkpoint reuse, and access
-history. Establish overlap from acquired files, not filenames or an assumed
-upper bound. EP18 may provide new EEG evidence, but it is not an independent
-stimulus-family confirmation of EP17.
-
-## Draft status
-
-The EEG and image archives have been acquired, hash-verified, and preserved
-read-only. The metadata snapshot is acquired and hash-verified; when consumed,
-use its recorded source version through a read-only working copy. These
-sources make outcome-blind setup feasible, but EP18 remains an incomplete local
-draft and
-is not yet a formal episode because its input/output guards and seven workspace
-projections are missing. Once that scaffold is complete, freeze the exact event
-join, participant roles, development view, primary channel transform, and
-admissible upstream feature menu before EEG-driven candidate comparison, and
-verify that the development runtime cannot access audit EEG. Before audit,
-freeze the finalist feature and partition records, complete the shared EP17/EP18
-exposure ledger, and let only the evaluator open the audit view. The qualification
-conditions in [GOAL.md](GOAL.md) must also pass.
+If the event structure, sample separation, design rank, false-group matching,
+reliability, or projected 16-participant precision is inadequate, the study is
+underidentified. It must not substitute folds or trials for participants or
+relax the comparison after seeing the effect.

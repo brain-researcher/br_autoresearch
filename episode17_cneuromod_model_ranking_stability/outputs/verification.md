@@ -1,56 +1,23 @@
 # Verification
 
-Validated on 2026-09-21 as a design and source-availability record, not as a
-scientific result.
+Current verification covers the design and source availability only:
 
-## Source acquisition
+- the restricted CNeuroMod 1.0.1 source contains the four planned
+  participants and B/C/D product classes;
+- `GOAL.md`, `DATASETS.md`, and `SEARCH_POLICY.yaml` use the same 480/120/120
+  concept roles and same-participant audit scope;
+- the three measurement operations have distinct fixed-prediction rules;
+- the five-edge endpoint family and its audit homologs are explicit;
+- development attribution and prospective audit forecasting are separate;
+- all operator calculations are participant-by-ROI before equal-participant
+  aggregation;
+- raw and normalized R² retain separate margins under joint studentized
+  familywise control;
+- an independent read-only scientific audit found no remaining blocker for
+  the conceptual figure;
+- the planning projection completed with no validation warning; and
+- no neural outcome was inspected during this revision.
 
-- The required CNeuroMod-THINGS 1.0.1 neural/structural subset is present in
-  steward-managed, read-only OAK storage. It covers all four frozen
-  participants and the B/C/D, structural, annotation, and anatomical source
-  classes required by the episode.
-- The frozen root and subdataset revisions were checked during provisioning,
-  and the official release archive is retained with the source as provenance.
-- The final source tree is restricted and read-only. Its annex links resolve
-  within that tree; no neural or behavioral array was parsed during source
-  acquisition.
-- Provisioning records stay beside the source and are not duplicated as
-  episode launch gates. These notes do not make a code checkout a data handoff.
-
-## Contract checks
-
-- The old NSD episode directory and old EP04/EP17 shared-data labels have no
-  remaining references. The only neural source in EP17 is CNeuroMod-THINGS
-  1.0.1.
-- Counts agree: 480 development + 120 calibration + 120 audit concepts; six
-  80-concept development folds; 24 development uncertainty blocks; twelve
-  audit blocks; and 15 mandatory initial trials for three pairs × five edges.
-- The terminal-driving contract universe must be frozen before scoring, and
-  the taxonomy release, crosswalk, and label rules are explicit prerequisites
-  for candidate scoring. This prevents post-score contract deletion and
-  informal semantic regrouping.
-
-## Governance and remaining boundary
-
-- No MAT, NIfTI, HDF5, or annotation payload was parsed. No neural score,
-  candidate result, audit outcome, external state transition, or Git operation was
-  produced. The pinned CNeuroMod subset is a provisioned, read-only DataLad
-  tree. The separately acquired THINGS stimulus archive remains encrypted and
-  unextracted in steward quarantine; a central-directory-only
-  reconstructability audit read no image pixels.
-- The restricted raw bundle deliberately co-locates all concept roles. Read-
-  only storage is not audit blindness: it must never be mounted to a search
-  worker. Frozen, materialized, role-filtered handoffs remain mandatory.
-- A historical read-only state check found profile `codex_autoresearch_v1` and
-  19 loops, with no EP17 match. No checkpoint, reward, or external state change
-  was submitted; that observation neither starts nor blocks a local task.
-- Candidate scoring and audit access remain closed pending the frozen taxonomy,
-  controlled stimulus extraction and exact provider image-ID/event alignment,
-  exact common-image eligibility and 480/120/120 roles, separated
-  handoffs, B/C/D alignment and stage-specific ceilings, ROI/support/model/
-  exposure/margin records, the terminal-contract universe, EP17/EP18
-  exposure governance, and a permission-separated evaluator.
-
-These checks establish source availability and the intended access boundary
-only. They do not establish model-ranking stability or any other scientific
-conclusion.
+Stimulus joining, role assignment, B/C/D alignment, ROI/support construction,
+model registration, prediction qualification, and reader separation remain
+future data-stage checks.

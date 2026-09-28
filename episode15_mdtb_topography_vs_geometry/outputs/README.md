@@ -1,6 +1,6 @@
-# Outputs
+# EP15 outputs
 
-This is the clean output workspace for the current Episode 15 contract. No run
-has started, no audit Task-B outcome has been opened, and `inputs/` remains
-read-only. During episode work, transient computation belongs in
-episode-specific scratch.
+This directory contains reviewable design records, a paper plan, and the
+synthetic conceptual figure `ep15_conceptual_question.png`. No model run has
+started and no audit Task-B outcome has been opened. Transient computation
+belongs in episode-specific scratch, not here.

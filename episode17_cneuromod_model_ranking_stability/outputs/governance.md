@@ -1,7 +1,8 @@
 # Governance
 
-The current local Episode 17 contract defines the scientific task but grants no
-neural-outcome or audit access and does not itself run computation, award a
-reward, or establish scientific acceptance. The user's acquisition
-authorization covers restricted-source provisioning; it does not
-grant analysis access or accept the separate THINGS image license.
+EP17 is a standalone local design. No canonical Brain Researcher action,
+scientific acceptance, reward, or Landscape transition is implied.
+
+The mixed neural source is not a development handoff. Candidate scoring and
+sealed-concept access remain closed until role-filtered handoffs and the
+scientific qualification conditions are complete.

@@ -1,7 +1,5 @@
 # Landscape
 
-No finding, claim, or canonical Landscape transition is recorded. Episode 17
-proposes to distinguish contract-robust relations, isolated measurement-axis
-reversals, scientific conditionality, held-out-concept replication, and
-underidentification. The design and the source download are not evidence for
-any of those outcomes.
+EP17 contributes a pending question about when an fMRI measurement operation
+predictably changes a controlled visual-model relation. It does not currently
+add a scientific result or revise the campaign Landscape.

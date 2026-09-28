@@ -1,3 +1,4 @@
 # Society
 
-Society has not been called for the current Episode 15 contract.
+No external review decision, reward, or shared-campaign handoff exists for
+EP15. The current work is a local scientific design revision.

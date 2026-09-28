@@ -1,3 +1,4 @@
 # Society
 
-Society has not been called for the current Episode 17 contract.
+No Society packet, review, decision, reward, or canonical handoff exists for
+EP17. Local document revision is not scientific acceptance.

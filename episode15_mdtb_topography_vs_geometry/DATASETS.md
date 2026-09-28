@@ -1,329 +1,218 @@
-# Dataset Contract — Episode 15
+# EP15 data: MDTB Task A, Task B, and participant roles
 
-This episode uses the acquired Functional Fusion MDTB v1.0 derivative release.
-It provisions nothing, authorizes no mixed-archive outcome access, and does
-not turn a public release into a pristine external confirmation source.
+EP15 uses the Functional Fusion Multi-Domain Task Battery (MDTB) v1.0
+derivative to ask why individual cerebellar task maps differ. [GOAL.md](GOAL.md)
+defines the scientific comparison; this file describes what is available, how
+participants and task sets are separated, and what still blocks analysis.
 
-## Fixed release
+## Source
 
-| Item | Fixed value |
+| Item | Value |
 | --- | --- |
-| Dataset | Functional Fusion Multi-Domain Task Battery (MDTB) |
-| Version | v1.0 |
+| Dataset | Functional Fusion MDTB |
+| Release | v1.0 |
 | Zenodo record | `16788784` |
 | DOI | `10.5281/zenodo.16788784` |
-| Publication date | 2025-08-10 |
-| Read-only shared root | `/oak/stanford/groups/russpold/data/br_autoresearch_data/functional_fusion_mdtb/zenodo-16788784-v1.0` |
-| Acquired | 2026-08-21 |
+| Raw-data lineage | OpenNeuro `ds002105`, version `1.1.0` |
 | Primary paper | King et al., *Nature Neuroscience* (2019), `10.1038/s41593-019-0436-x` |
-| Raw-data lineage declared by release | OpenNeuro `ds002105`, version `1.1.0` |
-| Conservative use rule | Attribution plus noncommercial use pending license reconciliation |
+| Read-only source | `/oak/stanford/groups/russpold/data/br_autoresearch_data/functional_fusion_mdtb/zenodo-16788784-v1.0` |
 
-Zenodo's record says CC BY 4.0, the bundled `README.md` and
-`dataset_description.json` say CC0, and a provider page has reported CC BY-NC
-3.0. Until provenance owners reconcile these statements, the most restrictive
-observed terms control: retain attribution and do not use the data
-commercially. No participant map or data derivative may be committed here.
+The source was acquired on 2026-08-21. It contains participant derivatives,
+not a ready-made EP15 input. Availability does not authorize reading audit
+Task-B maps.
 
-## Release identity
+License statements differ across the Zenodo record, bundled metadata, and a
+provider page. Until the owners reconcile them, retain attribution and use the
+data noncommercially. Do not commit participant maps or derived participant
+data to this repository.
 
-The Zenodo record, release version, DOI, participant IDs, and read-only source
-root above identify the source used by this episode. Existing provider or
-acquisition checksums may remain with the source metadata as historical
-records, but no new checksum manifest or content-addressed copy is a startup
-or scoring gate. Check an affected archive against provider metadata only if
-it is unreadable, truncated, or otherwise presents a concrete integrity
-problem.
+## What the release contains
 
-## Observed structural inventory
+The release has 24 participant archives. Every participant has:
 
-The release contains 24 participant ZIP archives totaling 14,594,246,151
-bytes, plus `README.md`, `participants.tsv`, and `dataset_description.json`
-(14,594,249,364 bytes in `source/`). Central-directory inspection on
-2026-09-20 found for every participant:
-
-- one Task-A (`ses-s1`) and one Task-B (`ses-s2`) `reginfo.tsv`;
+- one Task-A session (`ses-s1`) and one Task-B session (`ses-s2`);
 - 16 runs per task set;
-- 736 Task-A beta NIfTI files (`46 regressors x 16 runs`);
-- 784 Task-B beta NIfTI files (`49 regressors x 16 runs`);
-- a cerebellar mask and nominal `space-SUIT_xfm.nii`; and
-- anatomy, tissue maps, mean BOLD, MNI transforms, design matrices, residual
-  variance maps, and cortical surfaces.
+- 736 Task-A beta images and 784 Task-B beta images;
+- Task-A and Task-B regressor tables and design matrices;
+- a cerebellar mask and a nominal transform to SUIT space; and
+- anatomy, tissue maps, mean BOLD, variance maps, and cortical surfaces.
 
-Regressor tables are byte-identical across participants. The released design
-matrices have shapes `(9568, 752)` for Task A and `(9568, 800)` for Task B.
-
-Seven archives (`sub-04`, `sub-09`, `sub-15`, `sub-17`, `sub-19`, `sub-21`,
-and `sub-29`) contain 1,545 rather than 1,547 members. Each lacks both
-`desc-overlap_mask.nii` and `space-SUIT_inv_xfm.nii`; these are exactly the
-participants with `ses-rest=0`. All retain the nominal SUIT transform,
-cerebellar mask, and Task-A/B masks and betas. This must not become a silent
-seven-participant exclusion. A common route must use assets present for all
-24, or reproducibly regenerate the missing products before roles are frozen.
-Transform direction, reference grid, interpolation, software/template
-versions, and whether an inverse is required remain unauthenticated
-prerequisites for scored computation.
-
-The derivative contains beta estimates, not raw time series, events/confounds,
+The product contains beta estimates, not raw time series, events/confounds,
 residual time series, or resting-state data. The task-design `rest` beta is not
-resting-state fMRI. This episode cannot re-estimate the GLM, remove new motion
-confounds, or use resting-state connectivity.
+resting-state fMRI. EP15 cannot re-estimate the GLM, add a new motion model, or
+use resting-state connectivity.
 
-## Task structure and endpoint
+Seven participants lack an overlap mask and inverse SUIT transform but retain
+the forward transform, cerebellar mask, and Task-A/B betas. They are exactly
+the participants without the optional rest session. This cannot become a
+silent exclusion. EP15 must authenticate one registration route that works for
+all 24 participants or reproducibly regenerate the missing products before
+roles are assigned.
 
-After instruction regressors are excluded, each task set contains 17 task
-families. Across A and B there are 26 distinct families and 47 distinct
-conditions. Eight families and 14 conditions are shared.
+## Task structure
 
-| Role | Families | Conditions | Use |
-| --- | ---: | ---: | --- |
-| Task A only | 9 | 15 | Target calibration diversity and development diagnostics |
-| Shared A/B, including rest | 8 | 14 | Task-A calibration; locked post-decision Task-B diagnostic only |
-| Task B only | 9 source families | 18 | Primary prediction endpoint, reweighted as seven domains |
+After instruction regressors are removed, Task A and Task B contain 26 task
+families and 47 distinct conditions. Fourteen conditions are shared. The
+primary endpoint is the 18 Task-B-only conditions:
 
-Primary eligibility is `instruction == 0 && common == 0` in Task B. The source
-families and conditions are:
+| Domain | Conditions |
+| --- | --- |
+| CPRO | `CPRO` |
+| prediction | `Prediction`, `PredictViol`, `PredictScram` |
+| spatial map | `SpatialMapEasy`, `SpatialMapMed`, `SpatialMedDiff` |
+| movie | `NatureMovie`, `RomanceMovie`, `LandscapeMovie` |
+| mental rotation | `MentalRotEasy`, `MentalRotMed`, `MentalRotDiff` |
+| emotion processing | `BodyMotionIntact`, `BodyMotionScram` |
+| response alternation | `RespAltEasy`, `RespAltMed`, `RespAltDiff` |
 
-| Source family | Conditions | Primary domain |
+Each of the seven domains has weight `1/7`; conditions divide that weight
+equally within their domain. All 18 conditions remain separate when building
+the condition-geometry matrix. Maps are never averaged within a domain before
+cross-products, because opposing condition effects could cancel.
+
+The 14 shared conditions, including `rest`, are used for Task-A calibration
+where permitted and for a locked post-decision Task-B diagnostic. They do not
+enter the primary Task-B-only endpoint.
+
+## Participant roles
+
+Twelve whole participants are assigned to development and twelve to audit.
+The earlier 16/8 proposal is withdrawn. The 12/12 roles have not yet been
+instantiated.
+
+The assignment is Task-B-blind:
+
+1. verify archive, anatomy, Task A, transform, and expected-file availability
+   for all 24 participants without reading a Task-B numeric map or score;
+2. compute one Task-A-only reliability summary for each participant: the
+   median centered spatial correlation between runs 1–8 and runs 9–16 across
+   all non-instruction Task-A conditions, without excluding anyone based on
+   that value;
+3. enumerate every 12/12 assignment and balance sex, native-English status,
+   optional-rest availability, age, and Task-A reliability in a fixed order;
+4. break an exact tie with the lexicographically first sorted audit-ID tuple.
+
+Missing categorical values form their own level. Missing age or an
+uncomputable Task-A reliability blocks the split; it does not trigger
+imputation, exclusion, or participant replacement. The custodian returns the
+roles and balance report, not participant-level audit reliability values.
+
+Outcome-blind simulations must show that the complete selection and audit
+decision is usable with 12 development and 12 audit participants. Scientific
+margins cannot be widened to make that simulation pass. A different split
+would require an explicit design amendment before either role's Task-B
+outcomes are exposed.
+
+## Physical separation
+
+The participant archives mix Task A and Task B and cannot be mounted to the
+search process. After the split, a trusted operator creates three ordinary,
+role-filtered handoffs:
+
+| Handoff | Contents | Reader |
 | --- | --- | --- |
-| `CPRO` | `CPRO` | `CPRO` |
-| `prediction` | `Prediction`, `PredictViol`, `PredictScram` | `prediction` |
-| `spatialMap` | `SpatialMapEasy`, `SpatialMapMed`, `SpatialMedDiff` | `spatialMap` |
-| `natureMovie` | `NatureMovie` | `movie` |
-| `romanceMovie` | `RomanceMovie` | `movie` |
-| `landscapeMovie` | `LandscapeMovie` | `movie` |
-| `mentalRotation` | `MentalRotEasy`, `MentalRotMed`, `MentalRotDiff` | `mentalRotation` |
-| `emotionProcess` | `BodyMotionIntact`, `BodyMotionScram` | `emotionProcess` |
-| `respAlt` | `RespAltEasy`, `RespAltMed`, `RespAltDiff` | `respAlt` |
+| Development | Anatomy, Task A, and Task B for 12 development participants | Development worker |
+| Audit calibration | Anatomy and Task A for 12 audit participants | Calibrator, only after panel lock |
+| Sealed audit | Task B for the same 12 audit participants | Trusted evaluator, once after prediction lock |
 
-The seven primary domains have equal weight; conditions have equal weight
-within a domain. All 18 conditions remain separate for condition geometry,
-with domain-balanced condition-pair weights. Provider spelling is preserved,
-and any cleaned alias must retain a reversible mapping.
+The candidate workspace must not contain mixed audit archives, exposed
+MDTB-fitted atlases, or caches from which audit Task B can be reconstructed.
+Audit Task A may estimate only the participant-specific parameters of already
+locked recipes. It cannot update shared priors, choose a branch, set a margin,
+or change stopping.
 
-## Planned participant roles: 12 development / 12 audit
+Every assigned audit participant remains in the analysis. A frozen
+evaluator-side finite-value or geometry failure causes technical failure; no
+participant may be replaced and no reduced-N primary result may be substituted.
 
-The earlier deterministic 16/8 split is withdrawn and must not be reused. The
-revised estimands require a signal gate, equivalence bounds, adequacy, and
-model-class discrimination; eight audit participants are not accepted by
-default.
+## Map construction to freeze before scoring
 
-No new role assignment has yet been instantiated. Before any candidate-
-discriminating development Task-B score, an outcome custodian must:
+One common route must be used for all four model classes. Before a development
+Task-B score can favor a candidate, freeze:
 
-1. verify that all 24 participants pass archive, anatomy, Task-A, transform,
-   and expected-member checks without reading a Task-B numeric map or score;
-2. compute one frozen Task-A reliability scalar per participant as the median
-   centered spatial cross-half similarity across all non-instruction Task-A
-   conditions, using runs `1--8` versus `9--16`, with no exclusions based on
-   that scalar;
-3. enumerate all 12/12 assignments and minimize, in order, the maximum and
-   then the sum of absolute development-versus-audit count imbalances across
-   the observed levels of sex, native-English status, and `ses-rest`; the
-   absolute mean difference and then one-dimensional Wasserstein distance for
-   age standardized over all 24 participants; and the same two quantities for
-   the Task-A reliability scalar; and
-4. break an exact tie by choosing the lexicographically smallest sorted tuple
-   of audit participant IDs.
+- the authenticated SUIT transform direction, reference grid, interpolation,
+  and common cerebellar gray-matter support for all 24 people;
+- affine, orientation, coverage, missing-value, voxel-order, equal-weight, and
+  spatial-centering rules;
+- arithmetic condition maps from run-level betas with no adaptive smoothing,
+  whitening, or Task-B-derived participant scaling;
+- one optional positive global gain estimated from target Task A and applied
+  uniformly to all voxels and Task-B conditions;
+- map halves `runs 1–8` and `runs 9–16`;
+- geometry partitions `runs 1–4`, `5–8`, `9–12`, and `13–16`;
+- the primary geometry pairing and fixed non-selective sensitivity pairings;
+- the seven-domain weights and condition-pair weights; and
+- the actual development-only M3 source geometry `K0` and its positive scale.
 
-Missing categorical values are treated as explicit levels; a missing age or
-uncomputable Task-A reliability blocks role freeze rather than triggering
-imputation or exclusion. Before development outcomes are opened, record the
-release/version, reliability-rule version, selected IDs, complement IDs, and
-each balance-vector component in the immutable role record. The custodian
-returns only the role assignment and balance report; participant-level audit Task-A
-reliability values are not exposed to the search controller before panel lock.
-After lock, the audit calibrator may read Task A only for the prespecified
-target-personalization step.
+The map halves and geometry partitions rely on independent measurement error.
+Task-A and synthetic/noise checks must support that assumption before Task-B
+model comparison. Shared nuisance that invalidates the cross-products blocks
+the estimand; a favorable model score cannot waive the problem.
 
-Before this assignment, outcome-blind simulations must run the entire
-selection and audit decision tree and show acceptable correct-class and
-abstention rates for all decision edges at `n_dev=12`, `n_audit=12`. Scientific
-margins may not be widened to make the split pass. If the simulation instead
-supports 16/8, that is a contract amendment requiring human approval before
-roles or development outcomes are exposed; it is not an automatic fallback.
+For each development pseudo-target, all source maps, priors, bases, response
+profiles, regularizers, thresholds, and normalizations exclude that
+participant's Task B. For audit, they are refitted once on development
+participants and frozen before audit Task A is used.
 
-All assigned participants remain in the accounting. After lock, the evaluator
-applies the frozen finite-value, coverage, and geometry rules. An unscorable
-audit participant yields `technical_failure`; there is no replacement or
-reduced-N primary analysis.
+## Prior work and the novelty boundary
 
-## Physical firewall
+MDTB is heavily studied, and all 24 participants are publication-exposed.
+Relevant prior work already includes:
 
-The acquired ZIPs mix Task A and Task B and are not role-safe. An operator
-outside the candidate/controller process must create three immutable,
-role-separated views after role assignment:
+- King et al. (2019): participant-specific cerebellar parcellation,
+  cross-task boundary evaluation, and crossvalidated condition distances;
+- Nettekoven et al. (2024), `10.1038/s41467-024-52371-w`: hierarchical
+  probabilistic atlases personalized with one task set and evaluated on the
+  other, including novel tasks;
+- Nettekoven et al. (2026), `10.64898/2026.03.09.710558`: Task-A/rest spatial
+  covariance, individual parcellation, and B-only evaluation; and
+- Arafat et al. (2026), `10.7554/eLife.111868.1`: individualized task-map
+  prediction and crossvalidated task-by-task geometry using MDTB.
 
-1. development anatomy plus Task A and Task B for 12 participants;
-2. audit anatomy plus Task A only for 12 participants; and
-3. audit Task B for those 12 participants, mounted only to the trusted
-   one-shot evaluator after the panel and predictions are locked.
+EP15 must not claim the first cross-task individualization, generalizing
+parcellation, task-general covariance, or condition geometry. Its narrower
+question is whether Task-A-derived information distinguishes parcel
+membership, smooth relocation, geometry-preserving remapping, and bounded
+geometry change for B-only individual variation.
 
-The candidate workspace must not mount mixed audit ZIPs, derived atlas caches,
-or any path from which audit Task B can be reconstructed. Audit Task A may
-personalize only the already locked recipes after panel lock; it may not
-update shared priors, choose a branch, tune a margin, or alter stopping.
+The key novel prediction is participant-specific: Task A must predict the
+signed deviation of the full B-only condition-geometry matrix, not merely show
+that a group-average geometry exists.
 
-## Frozen map construction
-
-Before development Task-B outcomes guide any candidate, record and freeze:
-
-1. the authenticated SUIT route and one common cerebellar gray-matter support
-   available for all 24 participants, fixed from anatomy and development data
-   without audit-B intensities, audit-B header/coverage-driven selection, or
-   audit-B QC adaptation;
-2. affine/header checks, interpolation, resampling, missing-data behavior,
-   voxel ordering, equal voxel weights, and spatial centering;
-3. arithmetic condition-map aggregation from run-level betas with no
-   outcome-adaptive weighting, whitening, smoothing, or participant-specific
-   Task-B scaling, plus one common rule for an optional positive scalar fitted
-   from target Task A and applied uniformly across all voxels and conditions;
-4. map halves `runs 1--8` and `runs 9--16`;
-5. geometry partitions `runs 1--4`, `5--8`, `9--12`, and `13--16`, plus a
-   proof that every eligible condition is represented as expected;
-6. the primary geometry pairing `(1,2)` versus `(3,4)` and any fixed
-   non-selective alternative pairings;
-7. the development-only M3 source geometry `K0`, its positive scale, and a
-   source construction whose actual Gram geometry matches that definition;
-8. the seven-domain table and condition/pair weights;
-9. participant-held-out development rules that exclude the pseudo-target's
-   Task B from source maps, priors, fitting, normalization, and thresholds;
-   and
-10. an ordered identity/QC record for warnings, coverage values, transform
-    failures, exclusions, and retries.
-
-The independence assumption for map halves and geometry partitions must be
-examined using Task A and frozen synthetic/noise fixtures before Task-B model
-comparison. A shared nuisance that makes the cross-products invalid blocks the
-primary estimand; favorable Task-B results cannot waive the assumption.
-Evaluator-side audit-B header and finite-value checks may declare a frozen
-participant unscorable, but may never modify the common support or replace the
-participant.
-
-## Exposure, prior work, and novelty boundary
-
-This is a targeted direct-overlap audit as of 2026-09-21, not a claim that the
-literature has been exhausted. MDTB is repeatedly analysed, and all 24
-participants are publication-exposed.
-
-- King et al. (2019; `10.1038/s41593-019-0436-x`) derived group and
-  participant-specific cerebellar parcellations. Its lower-bound analysis fit
-  on one MDTB task set and evaluated boundaries on the other set's unique
-  tasks, reversed the direction, and found individual parcellations superior
-  to group parcellations. It also analysed crossvalidated condition
-  distances. Cross-task prediction of individual boundaries is prior work.
-- Nettekoven et al. (2024; `10.1038/s41467-024-52371-w`) fitted a hierarchical
-  probabilistic atlas using seven task datasets including MDTB. Its precision-
-  mapping analysis personalized an atlas with 1--16 first-set MDTB runs and
-  evaluated it on the second set, including novel tasks. A hierarchical
-  parcel model is therefore a mandatory incumbent, not a new endpoint.
-- Nettekoven et al. (2026; `10.64898/2026.03.09.710558`), a bioRxiv preprint
-  at the contract date, used Task A or rest in the 17 participants with rest
-  to estimate spatial covariance, individual parcellations, and connectivity,
-  then used the 18 unique B conditions for evaluation. Its primary covariance
-  is brain-location by brain-location. Its connectivity prediction also uses
-  Task-B cortical activity and is not anatomy-plus-A-only cerebellar map
-  prediction.
-- Arafat et al. (2026; eLife Reviewed Preprint
-  `10.7554/eLife.111868.1`) used all 24 participants, selected short batteries
-  from Task B, estimated individual parcellations, and predicted Task-A maps
-  with leave-one-participant-out response profiles; supplementary analyses
-  included cerebellum. It also estimated crossvalidated task-by-task Gram
-  matrices and released MDTB-derived group-average activity patterns.
-
-Consequently, this episode must not claim the first cross-task
-individualization, first generalizing parcellation, first task-general spatial
-covariance, or first crossvalidated condition geometry. Its narrower target is
-development-refit discrimination among parcel membership, smooth relocation,
-certified isometry, and bounded non-isometry for stable between-person B-only
-variation. The geometry endpoint is distinctive only as an individual
-prediction target: an A-derived model must predict B-only deviations from the
-development source geometry.
-
-Task set and session are confounded. A non-isometric result supports stable
-geometry-changing variation across sets; it does not establish task
-dependence. This remains internal mechanistic reanalysis, not confirmation.
-
-### Published-parameter firewall
-
-An artifact is audit-B-derived if any numeric value was fitted, selected,
-averaged, normalized, or otherwise computed using an assigned audit
-participant's Task B. Publication, anonymization, group averaging, resampling,
-or incorporation into an atlas does not remove that status. The firewall
-applies to parameters, derived maps, initializers, and caches, not only raw
-files.
+## Published-parameter firewall
 
 Papers, equations, algorithm descriptions, source code, anatomy-only
-templates, labels, and condition metadata may inform the frozen grammar. The
-following numeric artifacts are prohibited before the primary audit report:
+templates, labels, and condition metadata may inform the design. Numeric
+artifacts fitted or selected with an assigned audit participant's Task B may
+not enter a model, initializer, synthetic generator, support, or selection
+rule—even if they are public, anonymized, averaged, or resampled.
 
-- King-2019 full-MDTB atlases, condition/individual maps, and parcellations,
-  including `atl-MDTB10` and `con-MDTB*`;
-- released `NettekovenSym*` or `NettekovenAsym*` label/probability maps,
-  arrangement priors, emission parameters, hierarchies, response profiles,
-  checkpoints, and connectivity weights;
-- Nettekoven-2026 covariance matrices, individual parcellations, connectivity
-  weights, evaluation tables, and Task-B-selected settings;
-- Arafat-2026 task-library maps (Zenodo `18793343`), MDTB-derived Gram
-  matrices, battery rankings, cached batteries, and B-to-A predictions; and
-- any basis, warp, transform, normalization, support mask, winner, or other
-  descendant of those artifacts.
+This excludes MDTB-fitted atlases and parcellations, Nettekoven response
+profiles and covariance products, Arafat task-library maps and Gram matrices,
+and descendants of those artifacts. An exposed functional atlas is not made
+clean by refitting only its response profiles. Implementations must disable
+implicit downloads and inspect package, user, and job caches.
 
-Re-estimating only response profiles does not sanitize an exposed functional
-atlas: its arrangement prior or hierarchy may already encode audit Task B.
-An exposed initializer remains exposed. Such artifacts may be inspected only
-after the primary report as labelled descriptive oracles and cannot rescue or
-reinterpret the outcome.
+EP03 may share the OpenNeuro `ds002105` lineage. Before participant roles are
+frozen, compare its eventual source inventory with MDTB. A match makes EP03 and
+EP15 correlated exposure, not independent evidence.
 
-### Mandatory refitting and cross-fitting
+## What remains before analysis
 
-Every data-dependent class obeys these rules:
+EP15 is not analysis-ready. It still requires:
 
-1. For development pseudo-target `i`, every shared prior, emission model,
-   hierarchy, response profile, source map, basis, regularizer, threshold, and
-   normalization is fitted without `i`'s Task B. Anatomy and Task A enter only
-   through the frozen target-personalization rule.
-2. For audit, shared parameters are refitted once on development participants
-   and fixed in the write-once panel lock. Audit anatomy and Task A estimate
-   only prespecified participant-specific parameters; audit-cohort Task A
-   cannot update shared parameters or hyperparameters.
-3. A claimed external or leave-MDTB-out prior needs a fixed source and
-   participant inventory establishing that neither `ds002105`, an MDTB
-   derivative, nor an audit participant contributed. Otherwise it is treated
-   as exposed and refitted.
-4. Implementations disable implicit downloads and inspect package, user, and
-   job caches. Every fitted artifact records participant IDs, sessions,
-   conditions, the applicable frozen recipe/implementation version, and seed.
+- one verified registration route and common support for all 24 participants;
+- the fixed four-partition condition table and error-independence checks;
+- the Task-B-blind 12/12 role assignment and three permission-separated
+  handoffs;
+- scientist-approved signal, adequacy, increment, and geometry margins;
+- exact M1–M4 capacities, identifiability and operator certificates, source
+  geometry, inference implementation, and scratch limit;
+- outcome-blind synthetic qualification of the complete decision tree;
+- the published-parameter/cache and EP03 exposure review; and
+- a dry run showing that all audit predictions can be written while audit
+  Task B is unavailable.
 
-## EP03 collision and campaign dependence
-
-Repository inspection on 2026-09-20 found no explicit MDTB reference in
-EP03's current contract, but EP03's planned source inventory is absent while
-MDTB declares lineage to OpenNeuro `ds002105` v1.1.0. Before roles are frozen,
-crosswalk EP03's eventual source inventory against `ds002105`. A match binds EP03 and
-EP15 into one correlated exposure family and prohibits an independence claim.
-
-## Audit-opening requirements
-
-Held-out audit access remains closed until all of the following are present
-and verified:
-
-- the versioned release identity and readable participant archives;
-- license/provenance reconciliation under the conservative use rule;
-- a confirmed common-space route and common cerebellar support for all 24;
-- a four-partition condition table and evidence supporting the error-independence
-  assumptions;
-- scientific margins with recorded scientist approval in non-cryptographic
-  form, numerical certificates, exact contrast family, multiplicity code, and
-  outcome-blind 12/12 power/abstention record;
-- outcome-blind 12/12 role assignment and balance report;
-- role-filtered immutable handoffs and a permission-separated evaluator;
-- exposure ledger covering EP03, prior MDTB work, people, agents, caches,
-  downloaded atlases, and prepared derivatives;
-- development-only refit implementation for M1 and a certified construction
-  for M2--M4, including the exact `K0` source geometry;
-- synthetic fixtures and full model-class confusion matrix;
-- frozen 20-row coverage plan, ordered trial fields, a versioned write-once
-  panel lock, retry policy, and one-open audit access record.
-
-None is created by this dataset contract.
+Until those items are complete, candidate scoring and audit Task-B access stay
+closed. Setup failure is a readiness limitation, not evidence for or against a
+scientific class.

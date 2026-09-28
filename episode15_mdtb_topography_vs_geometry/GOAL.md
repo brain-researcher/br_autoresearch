@@ -1,631 +1,335 @@
-# Topography or Response Geometry?
+# Why do people have different cerebellar task maps?
 
-## Task-A Prediction of Individual Cerebellar Task-B Maps
+Two people can perform the same task while showing cerebellar activity in
+slightly different places. That difference could mean several very different
+things. The same functional parcels may have different boundaries; the whole
+map may be smoothly shifted; the same relationships among tasks may be
+expressed in different spatial coordinates; or the relationships among tasks
+may themselves differ between people.
 
-## Authority and scope
+EP15 asks which of those explanations is sufficient. For a new participant,
+the model sees anatomy and Task A only. It must then predict that person's maps
+for 18 Task-B-only conditions that were never used to personalize the model.
 
-This is the current local Episode 15 design. An explicit scientist instruction
-may start bounded design, implementation, and qualification work. It does not
-open any audit Task-B outcome. Audit access requires the role-separated
-handoffs in `DATASETS.md` and completion of the scientific gates in
-`SEARCH_POLICY.yaml`.
+The important result is not the model with the largest score. It is whether a
+constrained explanation accounts for the reliable individual variation and
+passes a prediction specific to its proposed mechanism.
 
-The primary scientific scope is the **cerebellum**. Cortex is outside this
-episode. MDTB is a heavily analysed public release, so the participant holdout
-is a procedure-sealed internal audit, not a pristine replication. The maximum
-claim is a model-class distinction within this release.
+The deepest alternative is a stable change in **condition geometry**: Task A
+would have to predict which pairs of unseen Task-B conditions become more or
+less similar in that participant. A gain in map similarity alone is not enough.
 
-## The question in plain language
+The [paper plan](outputs/paper_plan.md) sets out the prior-work gap, the deeper
+prediction, and the evidence required for each planned figure. No model-class
+result is claimed here.
 
-Previous MDTB studies have already shown that functional data from one task
-set can improve prediction of an individual's organization in another task
-set. This episode does not test that result again. It asks what kind of stable
-individual organization is required to explain the reliable part of unseen
-Task-B-only cerebellar maps.
+## At a glance
 
-Using target anatomy and Task A only, can stable between-person differences in
-Task-B-only maps be adequately explained by:
-
-1. individualized parcel membership and boundaries with shared parcel
-   response profiles;
-2. one smooth spatial relocation field applied to every condition;
-3. one certified isometric functional correspondence that preserves centered
-   condition geometry; or
-4. a bounded non-isometric correspondence that permits stable,
-   participant-specific changes in response geometry?
-
-The target is an **adequate constrained explanation**, not the model with the
-largest raw score. More flexible structure earns scientific credit only when
-it predicts reliable individual variation and a branch-specific signature
-that the plausible simpler explanations miss.
-
-If every Task-A-derived class is inadequate, the valid result is that reliable
-Task-B-only individual variation remains nontransportable under this
-contract. Because Task A and Task B were acquired in different sessions, that
-result alone cannot distinguish task dependence from session instability.
-
-## Episode at a glance
-
-| Item | Frozen design |
+| Question | EP15 design |
 | --- | --- |
-| Target input | Anatomy plus Task A only |
-| Sealed outcome | 18 Task-B-only maps from 12 audit participants |
-| Primary evidence | Reliable between-person map variation and individual condition-geometry variation |
-| Scientific comparison | M1 parcels, M2 smooth relocation, M3 isometry, M4 bounded non-isometry |
-| Search output | One composite panel containing one certified representative of every branch |
-| Positive result | One uniquely supported adequate class, not merely the highest score |
-| Main boundary | Internal MDTB mechanism discrimination; no task-dependence or external-replication claim |
+| What is predicted? | Eighteen Task-B-only cerebellar condition maps for a held-out participant. |
+| What may personalize the prediction? | That participant's anatomy and Task A; never that participant's Task B. |
+| What explanations compete? | Different parcel boundaries (M1), one smooth relocation (M2), geometry-preserving remapping (M3), or bounded geometry change (M4). |
+| What must be explained first? | Reliable between-person differences beyond a development-derived group prediction. |
+| What is the deeper test? | Whether Task A predicts the full signed deviation of the 18-by-18 Task-B condition-geometry matrix. |
+| What is held out? | Twelve whole participants; their Task B remains sealed until one frozen panel is evaluated. |
+| What counts as a positive answer? | One model class is adequate, passes its native signature, and is uniquely supported against the other non-nested explanations. |
+| What if no class works? | Reliable Task-B individual variation is not transportable from anatomy and Task A under this design. |
 
-## Why this is not another alignment benchmark
+## Why this is worth testing
 
-The four scientific classes form a **predeclared explanatory panel**, not a
-nested ladder. Parcel personalization, a diffeomorphic warp, and an isometry
-make different assumptions and can each alter map prediction in ways the
-others cannot. Only the paired M3/M4 construction is nested.
+Previous MDTB work has already shown cross-task individualization, including
+participant-specific cerebellar parcellations and predictions for novel tasks.
+Crossvalidated condition distances and task-by-task Gram matrices are also not
+new by themselves.
 
-Condition geometry is also not itself a new object: prior MDTB work has used
-crossvalidated condition distances and task-by-task Gram matrices. The new
-test here is narrower: can a transform learned from Task A predict a
-participant's reproducible deviation from the development-derived Task-B-only
-condition geometry, and does that deviation falsify an isometric account?
+EP15 therefore cannot contribute another alignment leaderboard. Its possible
+contribution is a model-class distinction:
 
-## Prediction contract
+- if M1 is sufficient, much of the stable difference lies at parcel
+  membership or boundaries;
+- if M2 is sufficient, one condition-invariant spatial relocation explains
+  the maps;
+- if M3 is sufficient, people share the same centered relationships among
+  conditions even though those relationships are expressed in different
+  spatial coordinates; and
+- if only M4 succeeds, Task A predicts a stable person-specific change in the
+  relationships among unseen Task-B conditions.
 
-Let `D_dev` be the development participants and let \(G_c\) be the frozen
-development-only Task-B source representation for condition \(c\). Each class
-first fits its shared parameters from development A and B,
+That last claim is deliberately hard to earn. M1 and M2 can also change a
+voxel-weighted geometry through membership or interpolation. M1 and M2 may
+also resemble one another near parcel boundaries, and a local isometry may
+resemble a smooth warp. The native signatures and matched controls must
+distinguish these cases; a score ranking cannot.
 
-\[
-\widehat\phi^{(m)}=h_m(D_{\mathrm{dev},A},D_{\mathrm{dev},B}),
-\]
+Task set and scanning session are confounded in MDTB. A failed A-to-B transfer
+cannot, by itself, distinguish task dependence from session instability. This
+is an internal mechanism test in one public release, not an external
+replication.
 
-then estimates a target participant's parameters from anatomy and Task A only,
+## The four explanations
 
-\[
-\widehat\theta_i^{(m)}
-=g_m(A_i,Y_{i,A};\widehat\phi^{(m)}),
-\]
+All classes use the same cerebellar support, Task-B source maps, Task-A input,
+condition weights, and scoring code. Each may estimate one positive global
+gain from Task A and apply it uniformly to every voxel and Task-B condition.
+Condition-, domain-, or voxel-specific target gains are prohibited.
 
-and predicts every Task-B-only condition with the same target-specific rule,
-
-\[
-\widehat Y_{i,B,c}^{(m)}
-=f_m(G_c,\widehat\phi^{(m)},\widehat\theta_i^{(m)}).
-\]
-
-For a development pseudo-target, all shared priors, bases, response profiles,
-source maps, thresholds, and normalizations are fitted without that target's
-Task B. For the final audit, they are refitted once using development
-participants only and locked before any audit participant is calibrated.
-
-No released atlas, basis, map library, prior, checkpoint, or fitted parameter
-that may contain an audit participant's Task-B information may enter a model,
-initializer, synthetic generator, or selection rule. Published algorithms may
-be reimplemented and refitted on development data.
-
-## Primary endpoint
-
-The endpoint contains all 18 Task-B-only conditions. The three movie
-conditions are collapsed into one weighting domain, producing seven
-equal-weight domains:
-
-| Domain | Conditions |
-| --- | --- |
-| `CPRO` | `CPRO` |
-| `prediction` | `Prediction`, `PredictViol`, `PredictScram` |
-| `spatialMap` | `SpatialMapEasy`, `SpatialMapMed`, `SpatialMedDiff` |
-| `movie` | `NatureMovie`, `RomanceMovie`, `LandscapeMovie` |
-| `mentalRotation` | `MentalRotEasy`, `MentalRotMed`, `MentalRotDiff` |
-| `emotionProcess` | `BodyMotionIntact`, `BodyMotionScram` |
-| `respAlt` | `RespAltEasy`, `RespAltMed`, `RespAltDiff` |
-
-Each condition has weight
-
-\[
-\alpha_c=\frac{1}{7|C_{d(c)}|}.
-\]
-
-Thus each domain has weight \(1/7\), while the 18 separate conditions remain
-available to the condition-geometry endpoint. Cross-products are calculated
-condition by condition and then weighted; maps are not averaged within a
-domain, because that would allow condition effects to cancel.
-
-The inferential unit is the participant. Voxels, conditions, domains, run
-partitions, and condition pairs are repeated measurements, not independent
-samples. The 14 shared A/B conditions, including `rest`, are excluded from the
-primary endpoint and opened only as a locked post-decision diagnostic.
-
-## Explanatory panel
-
-All classes use the same support, interpolation, Task-B source information,
-target Task-A information, and scoring code. The only global gain is one
-positive participant scalar estimated from Task A and applied uniformly to
-every voxel and every Task-B condition. The same gain rule is available to
-every class; condition-, domain-, or voxel-specific target gains are
-prohibited.
-
-| Class | Frozen role | Scientific explanation |
+| Class | What may differ between people? | Prediction that must accompany adequacy |
 | --- | --- | --- |
-| **M0a** | Anatomy/group control | No target-specific functional organization |
-| **M0b** | Group-functional control and residual origin | Development functional denoising is sufficient |
-| **M1** | Mandatory hierarchical-parcel incumbent | Shared parcel response profiles plus personalized membership/boundaries are sufficient |
-| **M2** | One Task-A-estimated smooth spatial warp | Stable continuous spatial relocation is sufficient |
-| **M3** | Certified isometric correspondence | Spatial expression varies, but centered condition geometry is shared |
-| **M4** | Bounded non-isometric challenger paired to M3 | Stable geometry-changing individual variation is required |
+| **M1: personalized parcels** | Parcel membership or boundaries; parcel response profiles remain shared | Recovery is enriched near frozen parcel boundaries after matching boundary and interior voxels for reliability; parcel interiors are already adequate |
+| **M2: smooth relocation** | One bounded smooth spatial field applied to every condition | The field repeats across Task-A halves, predicts the direction of local B-only residuals from source-map gradients, passes displacement/Jacobian/inverse checks, and beats a matched random warp |
+| **M3: shared geometry** | A certified spatial remapping that preserves centered condition inner products | Task-B maps are adequate, individual condition geometry is within the equivalence margin, and M4 adds no material benefit |
+| **M4: stable geometry change** | A bounded stretch or shear added to the paired M3 transform | Task A predicts both map residuals and the signed Task-B condition-geometry deviation, beyond M1, M2, and M3; ablating a predicted mode removes its predicted geometry pattern |
 
-Pseudo-calibration, participant derangement, random local bases, and matched
-random warps are negative controls, not scientific explanations.
+Two controls anchor the comparison. **M0a** is the raw development mean in the
+frozen anatomical space. **M0b** is a development-fit group-functional
+prediction with no target-specific input. M0b is the group reference from
+which individual residuals are measured.
 
-M0a is the raw conditionwise development mean under the frozen anatomical/SUIT
-resampling, with no functional basis or target Task A. M0b is a development-
-fit group-functional prediction with no target-specific input; its condition
-map is the \(G_c\) used below. Their difference measures group-level functional
-denoising, not individualization.
+Participant derangement, Task-A condition permutation, random local bases, and
+matched random warps are falsifiers, not alternative biological explanations.
 
-### M1 — hierarchical parcel personalization
+When reliable individual condition geometry is present, M1 and M2 must explain
+it as well as the maps. A parcel or warp result cannot be called sufficient
+while leaving the episode's central geometry target unexplained.
 
-M1 is refitted on development participants. The target's Task A changes only
-its parcel-membership probabilities or boundaries; parcel response profiles
-remain shared. Required variants test probabilistic versus hard membership
-and coarse, reference, and fine granularity.
+## What the model is allowed to learn
 
-Its native signature is boundary-localized recovery. The analysis must report
-recovery in frozen boundary neighborhoods and parcel interiors. A gain that
-occurs only in parcel interiors contradicts the proposed boundary mechanism.
-Adequacy supports the sufficiency of this constrained model, not the literal
-existence or uniqueness of discrete neural parcels.
+Let `G_c` be the development-only source map for Task-B condition `c`.
+Development uses leave-one-participant-out pseudo-targets. Shared priors,
+bases, profiles, source maps, thresholds, and normalizations are always fitted
+without the pseudo-target's Task B.
 
-### M2 — smooth spatial relocation
+For the final audit, shared quantities are refitted once using the 12
+development participants. A target participant's parameters are then fitted
+from anatomy and Task A only, and the same fitted rule predicts all 18
+Task-B-only conditions. Audit Task B cannot select a model, support, threshold,
+gain, retry, or quality rule.
 
-M2 learns one bounded diffeomorphic field from Task A and applies it unchanged
-to every Task-B condition. It must pass frozen displacement, Jacobian,
-inverse-consistency, interpolation, and Task-A-half stability checks. A
-capacity- and smoothness-matched random warp is mandatory.
+Published algorithms may be reimplemented. Numeric atlases, bases, response
+profiles, maps, checkpoints, or initializers that were fitted with an audit
+participant's Task B are prohibited, even if they are public or group
+averaged.
 
-A usual warp need not preserve voxel-weighted condition geometry; therefore a
-condition-geometry change alone does not distinguish M2 from M4.
+## First establish that there is something to explain
 
-### M3 — certified isometric correspondence
+Each Task-B condition has two independent eight-run maps. For participant `i`,
+condition `c`, and half `h`, subtract the group-functional prediction and
+spatial mean to obtain `r_i,c,h`. The reliable individual signal is the
+cross-half agreement of pairwise participant differences:
 
-Write centered condition maps as rows \(X=YH\), with
+`V_map = weighted mean over c and i<j of <r_i,c,1-r_j,c,1, r_i,c,2-r_j,c,2>`.
 
-\[
-H=I-\frac{1}{V}\mathbf 1\mathbf 1^\top.
-\]
+After subtracting model `m`'s predicted individual residual, the same
+calculation gives `R_map(m)`. When the signal gate is positive,
 
-M3 predicts \(XQ_i\), where the final operator on the registered support must
-satisfy, to a frozen numerical tolerance,
+`F_map(m) = 1 - R_map(m) / V_map`
 
-\[
-Q_i^\top Q_i=Q_iQ_i^\top=I,
-\qquad Q_i\mathbf 1=\mathbf 1.
-\]
+is the fraction of reliable between-person map variation recovered. The
+decision is made with linear contrasts, not a confidence interval on this
+ratio. Values are not clipped, and participant-specific ratios are not used.
 
-Consequently,
+If reliable between-person variation is demonstrably below the prespecified
+signal margin, there is no individual signal for these models to explain. If
+the signal interval is too wide, the result is unresolved. Conditions, voxels,
+run halves, and condition pairs never increase the biological sample size.
 
-\[
-(XQ_i)(XQ_i)^\top=XX^\top.
-\]
+## Then ask whether the relationships among tasks differ
 
-The identifiable implementation is
+Condition geometry means the pattern of similarities among the 18 Task-B-only
+condition maps. Four disjoint four-run partitions produce two independent
+crossvalidated 18-by-18 geometry estimates for each participant. Spatial means
+are removed, the development source geometry `K0` is fixed, and the one global
+gain direction parallel to `K0` is projected out.
 
-\[
-Q_i=I+B(O_i-I)B^\top,\qquad O_i\in O(k),
-\]
+The same cross-half pairwise-participant construction yields reliable
+individual geometry `V_geom` and residual geometry `R_geom(m)`. The primary M4
+prediction is the entire signed matrix deviation from `K0`, not a few
+condition pairs chosen after the result. The two independent geometry
+estimates ask whether that predicted pattern is reproducible.
 
-where the development-fixed basis \(B\) is orthonormal, centered, bounded in
-dimension and effective degrees of freedom, and has a canonical identity
-extension. The identity extension prevents arbitrary changes outside \(B\),
-but does not by itself identify \(O_i\) within \(B\). Every valid instance must
-also pass a frozen Task-A design-rank and unique-solution certificate under a
-deterministic sign/order/tie convention; unidentified active directions are
+This geometry test separates two statements:
+
+- **shared geometry:** individual deviation is small enough to fall inside a
+  prespecified equivalence margin; and
+- **predictable geometry change:** reliable deviation is present and the
+  Task-A-derived model predicts it with a material gain over the alternatives.
+
+A nonsignificant geometry effect establishes neither statement.
+
+## Why M3 and M4 are a fair pair
+
+M3 uses a development-fixed centered basis `B` and an orthogonal transform
+
+`Q_i = I + B(O_i - I)B^T`, with `Q_i^T Q_i = I` and `Q_i 1 = 1`.
+
+Therefore a centered condition matrix `X` satisfies
+
+`(X Q_i)(X Q_i)^T = X X^T`.
+
+M3 can move spatial patterns but cannot change their centered condition
+geometry. Its active Task-A subspace must have full design rank and a unique
+solution under frozen sign, order, and tie rules; unidentified directions are
 removed or fixed to identity.
 
-Weighted averages of orthogonal operators and overlapping local Procrustes
-fits followed by averaging are prohibited unless the final operator is
-reprojected and recertified. A composition is allowed only after the final
-operator again passes every certificate.
+M4 adds one bounded non-isometric component to that exact M3 instance:
 
-### M4 — bounded stable non-isometry
+`L_i = Q_i exp(S_i)`, where `S_i = B C_i B^T`.
 
-M4 is the controlled falsifier of a paired M3 instance:
+`C_i` is symmetric, trace-free, low-rank, and bounded in spectral norm. M4 uses
+the same `Q_i`, basis, support, preprocessing, and fitting rule as M3. Setting
+`S_i = 0` must reproduce M3 within a frozen numerical tolerance. Stretch or
+shear directions must pass the same Task-A rank and unique-solution check;
+unidentified directions are removed or fixed to zero. This makes the M4
+increment interpretable as the value of permitting bounded geometry change
+rather than a different pipeline or unconstrained flexibility.
 
-\[
-L_i=Q_i\exp(S_i),
-\qquad
-S_i=BC_iB^\top,
-\]
+## Fair comparisons and decisive falsifiers
 
-with
+| Alternative explanation | Required test | Interpretation if it wins |
+| --- | --- | --- |
+| There is no reliable individual signal | Independent Task-B halves and a prespecified positive-signal margin | Stop the personalization claim or report unresolved precision |
+| A group prediction is enough | M0b residual signal and adequacy comparison | No evidence that target-specific organization is needed |
+| Parcel boundaries explain the gain | Reliability-matched boundary-versus-interior recovery for M1 | Support parcel sufficiency; do not call it a new parcel ontology |
+| One spatial field explains the gain | M2 half stability, source-gradient alignment, bounds, inverse consistency, and matched random warp | Support stable relocation; do not infer its anatomical cause |
+| Geometry is shared | M3 certificate, geometry equivalence, and bounded M4 increment | Support a shared condition geometry at the tested resolution |
+| Flexible geometry merely overfits | M4 Task-A-half stability, full-matrix prediction, and development-frozen mode ablations scored against both observed B geometry replicates | Reject the stable-geometry-change explanation if these fail |
+| One person or task domain drives the result | Participant and domain influence analyses | Narrow or reject the class-level conclusion |
 
-\[
-C_i=C_i^\top,
-\quad \operatorname{tr}(C_i)=0,
-\quad \lVert C_i\rVert_2\le s_{\max},
-\quad \operatorname{rank}(C_i)\le r.
-\]
+A model is **adequate** only when the upper confidence bound on its remaining
+reliable variation falls below a margin fixed before candidate scores. A more
+flexible model receives credit only when its gain over the relevant simpler
+models also clears a separate material-increment margin.
 
-The basis is centered, so \(S_i\mathbf1=0\). The paired M3 uses the same
-\(Q_i\), support, basis, preprocessing, and fitting rule; \(S_i=0\) must
-reproduce it within the frozen numerical tolerance. The singular values are
-bounded by
-\([e^{-s_{\max}},e^{s_{\max}}]\) and the condition number by
-\(e^{2s_{\max}}\). Rank, locality, effective degrees of freedom, smoothness,
-and all bounds are frozen before outcome-guided search.
+## Data roles and endpoint
 
-The two primary subfamilies are centered-basis anisotropic stretch and
-localized low-rank stretch/shear. A voxel-diagonal stretch with
-\(S\mathbf1=0\) would be identically zero and is not an allowed branch.
-Sparsity of \(S\) is also not called locality of \(\exp(S)\); locality is
-certified on the final operator.
+The release contains 24 participants. A Task-B-blind rule assigns 12 to
+development and 12 to audit, balancing demographic fields, session-rest
+availability, and a Task-A-only reliability summary. The roles have not yet
+been instantiated.
 
-M4 earns scientific credit only if it is adequate, is stable across Task-A
-halves, and materially improves both map residual recovery and prediction of
-individual condition-geometry deviations beyond M1, M2, and the paired M3.
-A map-similarity gain alone is insufficient.
+The primary endpoint contains 18 Task-B-only conditions in seven equal-weight
+domains: CPRO, prediction, spatial map, movie, mental rotation, emotion
+processing, and response alternation. Conditions remain separate for the
+geometry matrix. The 14 conditions shared by A and B, including the task-design
+rest condition, are opened only as post-decision diagnostics and cannot rescue
+the primary outcome.
 
-## Primary estimand 1: reliable between-person map variation
+Every assigned audit participant remains in the accounting. A participant who
+fails a frozen evaluator-side finite-value or geometry check causes technical
+failure; there is no replacement or reduced-N primary analysis.
 
-Task B is divided into two frozen eight-run map halves. Let
-\(y_{i,c,h}\in\mathbb R^V\) be the map for participant \(i\), condition \(c\),
-and half \(h\in\{1,2\}\). Define the centered residual from M0b and the model's
-predicted residual as
+## Margins and uncertainty
 
-\[
-r_{i,c,h}=H(y_{i,c,h}-G_c),
-\qquad
-p_{i,c}^{(m)}=H(\widehat y_{i,c}^{(m)}-G_c),
-\]
+Four primary scientific margins are recorded with scientist approval before
+any candidate-discriminating development Task-B score:
 
-and \(e_{i,c,h}^{(m)}=r_{i,c,h}-p_{i,c}^{(m)}\). Spatial inner products are
-divided by the fixed number of support voxels.
-
-The reliable between-person signal is the condition-weighted pairwise
-cross-half U-statistic
-
-\[
-V_B=
-\sum_c\frac{\alpha_c}{n(n-1)}
-\sum_{i<j}
-\left\langle
-r_{i,c,1}-r_{j,c,1},
-r_{i,c,2}-r_{j,c,2}
-\right\rangle_V.
-\]
-
-The reliable variation remaining after model \(m\) is
-
-\[
-R_B^{(m)}=
-\sum_c\frac{\alpha_c}{n(n-1)}
-\sum_{i<j}
-\left\langle
-e_{i,c,1}^{(m)}-e_{j,c,1}^{(m)},
-e_{i,c,2}^{(m)}-e_{j,c,2}^{(m)}
-\right\rangle_V.
-\]
-
-Pairwise differencing removes any shift common to the audit cohort and the
-fixed development template. The interpretable aggregate effect is
-
-\[
-F_B^{(m)}=1-\frac{R_B^{(m)}}{V_B},
-\]
-
-but only after the registered signal gate resolves meaningful positive signal.
-Let \(S_B>0\) be the frozen reliable-map scale. Signal is present only when the
-simultaneous lower bound for
-\(V_B-\tau_{\mathrm{signal}}S_B\) is above zero; it is negligible only when
-the simultaneous upper bound is below zero; otherwise it is unresolved.
-Participant-specific ratios are prohibited. Values are not clipped. An
-observed value above one
-indicates finite-sample negative residual cross-covariance or a failed
-independence assumption, not superior-to-perfect recovery; bad overprediction
-normally reduces \(F_B\), potentially below zero.
-
-The factor \(1/[n(n-1)]\) is intentional: it is one half of the usual average
-over unordered pairs, so a pairwise squared difference estimates one
-participant-level variance rather than twice that variance.
-
-The estimand requires independent half-specific measurement error and one
-latent map per condition. Shared run nuisance can bias it and is tested in the
-frozen split diagnostics.
-
-## Primary estimand 2: individual condition geometry
-
-Two independent estimates of reliable geometry require four independent
-Task-B run partitions. The primary partition is runs `1--4`, `5--8`, `9--12`,
-and `13--16`; the first two form one geometry estimate and the last two the
-other. Alternative disjoint pairings are prespecified robustness checks and
-cannot be chosen from their results.
-
-Let \(X_{i,a}=Y_{i,a}H\in\mathbb R^{18\times V}\) contain the centered
-condition maps for partition \(a\). For disjoint partitions \(a,b\), define
-
-\[
-K_i^{ab}
-=\frac{X_{i,a}X_{i,b}^\top+X_{i,b}X_{i,a}^\top}{2V}.
-\]
-
-This crossvalidated matrix is symmetric but need not be positive semidefinite;
-its trace can be nonpositive. It is therefore never normalized by its random
-trace.
-
-Let \(K_0\) be the actual development-only source geometry used by M3, with
-its construction and positive scale frozen before search. It is not silently
-replaced by the Gram matrix of raw group-mean maps, which can be attenuated by
-heterogeneous rotations. Define domain-balanced geometry inner product and a
-linear global-gain projection by
-
-\[
-\langle A,B\rangle_\Omega=\operatorname{tr}(\Omega A\Omega B),
-\qquad
-\Omega_{cc}=\alpha_c,
-\]
-
-\[
-P_0(A)=A-
-\frac{\langle A,K_0\rangle_\Omega}
-     {\langle K_0,K_0\rangle_\Omega}K_0.
-\]
-
-For \(z_i^{ab}=P_0(K_i^{ab})\) and model prediction
-\(\widehat z_i^{(m)}=P_0(\widehat K_i^{(m)})\), define
-
-\[
-V_K=\frac{1}{n(n-1)}\sum_{i<j}
-\left\langle z_i^{12}-z_j^{12},z_i^{34}-z_j^{34}\right\rangle_\Omega,
-\]
-
-and
-
-\[
-R_K^{(m)}=\frac{1}{n(n-1)}\sum_{i<j}
-\left\langle
-(z_i^{12}-\widehat z_i^{(m)})-(z_j^{12}-\widehat z_j^{(m)}),
-(z_i^{34}-\widehat z_i^{(m)})-(z_j^{34}-\widehat z_j^{(m)})
-\right\rangle_\Omega.
-\]
-
-The geometry-recovery fraction \(F_K^{(m)}=1-R_K^{(m)}/V_K\) is reported only
-after a geometry-signal gate. Let
-\(S_K=\langle K_0,K_0\rangle_\Omega>0\). Individual geometry is materially
-present only if the simultaneous lower bound for
-\(V_K-\tau_{\mathrm{geometry}}S_K\) exceeds zero; it is equivalent to the
-shared geometry only if the simultaneous upper bound is below zero; otherwise
-the geometry status is unresolved. M3 predicts no participant-specific change
-in \(K_0\) beyond the one uniform Task-A-estimated scalar, which \(P_0\)
-removes. \(K\) is only a necessary isometric invariant on the
-18-condition row span; equivalence does not prove a global isometry. M1 and M2
-can also change voxel-weighted \(K\), so M4 must outperform them on this
-endpoint rather than merely predict a nonzero deviation.
-
-## Scientific margins and inference
-
-Four scientific margins are frozen after recorded scientist approval, using
-an ordinary non-cryptographic approval record, before synthetic decision
-qualification and before the first
-candidate-discriminating development Task-B score:
-
-| Margin | Meaning |
+| Margin | Question it answers |
 | --- | --- |
-| `tau_signal` | Minimum between-person signal relative to a frozen positive reliable-signal scale |
-| `tau_remaining` | Maximum remaining fraction for a class to count as adequate |
-| `tau_increment` | Minimum material recovery gain on the relevant dimensionless map or geometry scale |
-| `tau_geometry` | Maximum individual condition-geometry variation compatible with the M3 equivalence claim |
+| `tau_signal` | Is reliable between-person map variation large enough to explain? |
+| `tau_remaining` | How little reliable variation may remain for a class to count as adequate? |
+| `tau_increment` | How large must a recovery gain be to matter? |
+| `tau_geometry` | How much individual geometry variation is still compatible with shared geometry? |
 
-Margin-free algebra and software checks may run first. Synthetic decision
-qualification then validates operating characteristics using the already
-signed margins; it cannot choose or widen them. The
-positive map scale is the development-only crossvalidated source energy,
+Three additional branch-signature margins govern M1 boundary enrichment, M2
+source-gradient alignment over a matched random warp, and M4 mode-ablation
+gain on observed geometry. Each signature is a participant-level contrast with
+a frozen direction and simultaneous bound. In particular, an M4 ablation must
+worsen prediction of the observed geometry projection in both independent B
+replicates; changing only the model's own predicted matrix is tautological and
+does not count.
 
-\[
-S_B=\sum_c\alpha_c
-\langle HG^{\mathrm{dev}}_{c,1},HG^{\mathrm{dev}}_{c,2}\rangle_V>0,
-\]
+The numerical values are not yet fixed, so EP15 is not ready to score
+candidates. Synthetic qualification may test the operating characteristics of
+already chosen margins; it may not choose or widen them.
 
-frozen at panel lock. The geometry scale is
-\(S_K=\langle K_0,K_0\rangle_\Omega>0\). The margin values, source-split
-construction, and numerical tolerances must be frozen before candidate scoring;
-they are not quantities to be selected from development wins.
+Participant delete-one jackknife pseudovalues provide uncertainty for the
+pairwise estimands. Each class claim is the conjunction of all of its required
+components, and Holm-inverted one-sided bounds cover the four class claims.
+Any interval that crosses a decision boundary is unresolved. With only 12
+audit participants, wide intervals are a real possible outcome.
 
-Inference is made on linear contrasts, not unstable ratio confidence
-intervals. Examples are
+## Development search and one-shot audit
 
-\[
-C_{\mathrm{adequate}}^{(m)}
-=R_B^{(m)}-\tau_{\mathrm{remaining}}V_B,
-\]
+The first 20 valid development trials are fixed in advance: four scientific
+representatives from each of M1–M4 and four cross-panel controls. Later trials
+may change one scientific operator at a time and must state a prediction,
+competing explanation, native falsifier, cost, and retirement condition.
 
-\[
-C_{\mathrm{increment}}^{(m:b)}
-=R_B^{(b)}-R_B^{(m)}-\tau_{\mathrm{increment}}V_B.
-\]
+The search requires 40–96 valid trials, at least two adaptive successor cycles,
+and at least 40% post-coverage falsification or ablation. Limits are 1,200
+CPU-core-hours, 120 wall-clock hours, 32 cores and 128 GiB per trial, no GPU,
+and a scratch limit that must be fixed before launch.
 
-Adequacy requires a simultaneous one-sided upper confidence bound below zero.
-A material increment requires a simultaneous lower bound above zero; evidence
-of no material increment requires the upper bound below zero. Failure to
-reject is neither adequacy nor equivalence.
+Before any real candidate score, the complete decision code must correctly
+classify prespecified synthetic worlds—group only, parcels, smooth warp, exact
+isometry, stable non-isometry, A/B-specific geometry, and a reliability-only
+null—while abstaining in ambiguous regimes. This tests the decision procedure,
+not the scientific truth of a class.
 
-Participant delete-one jackknife pseudovalues are used for the pairwise
-estimands. Each model-class claim is an intersection-union of all required
-components; Holm-inverted one-sided bounds control the four alternative class
-claims. The exact contrast list, direction, family, and implementation are
-frozen and simulation-tested before search. Any interval crossing a decision
-boundary yields an unresolved component. With 12 audit participants, these
-bounds may be wide; conditions and voxels never inflate \(n\).
+Development locks one complete panel: one certified M1, one M2, one M3, one M4
+paired to that M3, M0a, M0b, and the negative controls. It does not choose one
+cross-branch scalar winner.
 
-## Branch signatures and adaptive depth
+For audit, the calibrator sees each audit participant's anatomy and Task A,
+writes all predictions with Task B unavailable, and freezes the panel. The
+trusted evaluator then opens audit Task B once, computes every branch's signal,
+adequacy, signature, increment, and equivalence status, and writes one primary
+decision. No refit, retry, threshold change, branch replacement, or second
+opening is allowed.
 
-One valid trial is one completely frozen scientific model or falsifier
-evaluated across every development participant-held-out fold, all 18
-conditions, seven domains, both map halves, both geometry replicates, all
-required endpoints, and all branch certificates. A fold, rank, radius,
-regularization value, seed, metric replay, or scheduler job is not a trial.
+## Planned question figure
 
-The first 20 valid trials implement an exactly frozen coverage plan: four
-representatives from each of M1--M4 and four cross-panel controls. After
-coverage, successors must cite scored parents, make a directional prediction,
-change at most one scientific operator, and include a branch-native falsifier.
+The figure below is a synthetic design illustration. It contains no MDTB map
+or participant result.
 
-- **M1 successors:** granularity, hard versus probabilistic assignment,
-  boundary width, and boundary-versus-interior recovery.
-- **M2 successors:** regularity, displacement bound, anatomy coupling,
-  split-half field stability, inverse consistency, and Jacobian behavior.
-- **M3 successors:** locality, active-subspace dimension, canonical
-  composition, split-half inverse consistency, and the exact operator
-  certificate.
-- **M4 successors:** stretch versus shear, rank and singular-value bounds,
-  Task-A-half stability, geometry recovery, smoothness-matched nulls, and
-  mode-by-mode ablation.
+![EP15 conceptual question figure](outputs/ep15_conceptual_question.png)
 
-No branch is retired because one configuration loses or another branch has a
-higher raw score. Retirement requires its coverage rows plus at least two
-valid native post-coverage falsifiers. A mandatory branch that cannot produce
-a certified representative blocks audit; it is not evidence against the
-hypothesis.
+It should show the scientific fork directly: the same Task-B maps may differ
+because boundaries or locations move while a shared code remains, or because
+Task A predicts a reproducible change in the relationships among unseen
+Task-B conditions.
 
-## Synthetic qualification and controls
+## Possible conclusions
 
-Before any candidate-discriminating development score, the complete decision
-code is run on frozen synthetic worlds:
+| Outcome | Evidence required | Meaning |
+| --- | --- | --- |
+| **Parcel sufficiency** | M1 is the only supported explanation: it is map-adequate, explains geometry when geometry signal is present, and has signal-opportunity- and reliability-matched boundary enrichment | Shared parcel profiles plus personalized membership are sufficient at the registered resolution |
+| **Smooth relocation** | M2 is the only supported explanation: it is map-adequate, explains geometry when present, is stable across Task-A halves, predicts source-gradient residual direction, and passes warp controls | One condition-invariant spatial relocation is sufficient |
+| **Shared condition geometry** | M3 is the only supported explanation: it is map-adequate, geometry lies within the equivalence margin, and M4 has no material increment | A geometry-preserving correspondence is sufficient at the tested resolution |
+| **Stable geometry change** | M4 is the only supported explanation: it is map-adequate, identifiable, and stable, and materially improves both map and full-matrix geometry prediction over M1, M2, and M3 | Task A predicts reproducible individual changes in unseen Task-B condition relationships |
+| **Multiple supported explanations** | Two or more non-nested explanations are fully supported, including their native signatures and geometry conditions | The data do not identify a unique mechanism; no simplicity rule may manufacture one |
+| **Adequate prediction without a supported mechanism** | At least one class predicts maps adequately, but every candidate mechanism decisively fails a required signature or geometry condition | Some Task-A information transports, but the proposed parcel, relocation, isometric, and non-isometric explanations are unsupported |
+| **Reliable but nontransportable** | Individual signal is present, but no Task-A-derived class is map-adequate | Stable Task-B variation remains unexplained under this input contract |
+| **No resolvable individual signal** | The upper bound places the signal below `tau_signal` | There is too little reliable between-person variation for the planned mechanism test |
+| **Unresolved** | Signal, adequacy, geometry, multiplicity, or precision crosses a decision boundary | These 12 audit participants do not decide the question |
 
-- group-only;
-- parcel-only;
-- smooth-warp-only;
-- exact isometry;
-- stable non-isometry;
-- A/B-specific geometry; and
-- reliability-only null.
+## Data readiness
 
-The output is a model-class confusion matrix, not a candidate score. Across
-100 frozen seeds per world, each stable identifiable world must receive its
-correct class in at least 90 seeds, the null may promote at most five times,
-and A/B-specific geometry may be mislabeled stable non-isometry at most five
-times. Ambiguous synthetic regimes must abstain as prespecified; they cannot
-be used to tune scientific margins.
+The Functional Fusion MDTB v1.0 derivative is present in read-only shared
+storage, and archive structure has been inspected without reading beta values.
+EP15 is not analysis-ready. Remaining work includes:
 
-Other mandatory controls are:
+- authenticating one common cerebellar registration route for all 24 people;
+- fixing the common support, interpolation, finite-value, and geometry rules;
+- instantiating the Task-B-blind 12/12 participant roles and physical handoffs;
+- fixing the source geometry, M1–M4 capacities, certificates, numerical
+  tolerances, margins, uncertainty implementation, and scratch limit;
+- completing outcome-blind synthetic qualification and the prior-exposure
+  review; and
+- demonstrating that audit predictions can be generated while audit Task B is
+  unavailable.
 
-- Task-A split-half stability for every target-specific model;
-- reliability-stratified Task-A condition-correspondence permutation;
-- target-participant identity derangement;
-- capacity- and output-smoothness-matched random local bases and warps;
-- equal-Task-A-quantity and reliability subsampling;
-- branch-specific component and mode ablations;
-- participant, condition-domain, and development-source influence analyses;
-- proof that audit Task B affects no mask, support, scaling, QC decision,
-  threshold, prior, search proposal, or retry; and
-- successful generation of the locked audit predictions with audit Task B
-  unmounted and no audit-B-derived input.
-
-## Stages and lock
-
-1. **Readiness and margin lock:** authenticate the release, coordinate route,
-   four B partitions, condition table, exposure history, participant roles,
-   physically separated handoffs, and scientist-approved scientific margins
-   recorded in ordinary non-cryptographic form.
-2. **Synthetic qualification:** after margin-free algebra/software checks,
-   validate the full decision tree, certificates, error assumptions, and
-   confusion matrix using the already locked margins.
-3. **Branch coverage:** complete the 20-row frozen panel plan.
-4. **Adaptive development:** run successors linked to prior scored trial IDs
-   in the ordered trial record and spend at least 40% of post-coverage valid
-   trials on falsification or ablation.
-5. **Panel lock:** select exactly one certified M1, M2, M3, and M4 paired to
-   that M3, plus M0a, M0b, and the negative controls. This composite panel is
-   the single locked configuration; no cross-branch scalar winner is chosen.
-6. **Audit calibration:** fit target-specific parameters from each audit
-   participant's anatomy and Task A, with Task B unmounted; record the
-   predictions, certificates, and decision inputs under the write-once panel
-   lock identity.
-7. **Audit once:** the trusted evaluator mounts Task B once, computes all
-   branch statuses, writes the primary decision once, and only then emits
-   diagnostic tables.
-
-## One-shot outcomes
-
-The evaluator first resolves integrity and the three-way reliable-signal gate,
-then computes every branch's adequacy and native signature before assigning
-one label. A positive subtype requires a unique supported non-nested
-explanation. M4 is supported only through its material paired increments over
-M3; an M3 label requires an upper bound showing that increment is below the
-materiality margin.
-
-| Outcome | Required interpretation |
-| --- | --- |
-| `candidate_ready_parcel_sufficiency` | M1 is adequate and passes its boundary signature; neither non-nested M2 nor M3 is supported, and M4 lacks its required material increments |
-| `candidate_ready_smooth_relocation` | M2 is adequate and passes warp stability, inverse, and Jacobian signatures; neither non-nested M1 nor M3 is supported, and M4 lacks its required material increments |
-| `candidate_ready_shared_isometry` | M3 is adequate; individual condition geometry is equivalent within `tau_geometry`; M1 and M2 are unsupported; M4's incremental benefit is bounded below materiality |
-| `candidate_ready_stable_nonisometry` | M4 is the unique supported class: it is adequate and stable, has material map and geometry increments over M1, M2, and paired M3, and no non-nested class remains supported |
-| `closed_multiple_adequate_explanations` | Two or more non-nested explanations remain adequate and the signatures do not distinguish them |
-| `closed_reliable_nontransportable` | Reliable individual variation exists, but no Task-A-derived class is adequate |
-| `closed_no_resolvable_individual_signal` | The upper bound establishes that between-person Task-B signal is below `tau_signal` |
-| `closed_unresolved` | Signal, adequacy, equivalence, multiplicity, or power remains indeterminate |
-
-The first four map to canonical `candidate_ready`; the four `closed_*` labels
-map to `closed_no_candidate`. Integrity, exposure, or policy violations map to
-`technical_failure`. A non-isometric model that improves but remains
-inadequate is not candidate-ready. If multiple non-nested classes are
-adequate, a generic simplicity rule may not manufacture a unique mechanism.
-If any competing branch needed for uniqueness is indeterminate, the outcome is
-`closed_unresolved`, not a positive subtype.
-
-## Post-decision diagnosis
-
-Only after the primary decision is written to the immutable decision record,
-the evaluator
-reports the 13 non-rest shared Task-B conditions, rest separately, and a
-non-rescuing within-session oracle. For each locked M1--M4 recipe, the oracle
-replaces Task-A calibration with the target's Task-B runs `1--8`, refits only
-the recipe's permitted target-specific parameters, and predicts the same
-conditions in runs `9--16`; shared development parameters remain locked.
-
-The rows below are representative patterns, not an exhaustive second decision
-tree:
-
-| A to B-only | A to shared B | B-half to B-half | Diagnostic reading |
-| --- | --- | --- | --- |
-| fail | fail | pass | More consistent with calibration/session shift |
-| fail | pass | pass | Compatible with task-set-specific residual, but session interaction remains possible |
-| fail | fail | fail | B reliability or model support is insufficient |
-| pass | pass | pass | Stable cross-task organization is supported |
-
-Every unlisted or discordant pattern is reported as diagnostically
-indeterminate.
-
-These diagnostics cannot select a class, change a margin, rescue the primary
-outcome, or authorize a rerun.
+Source availability does not authorize audit Task-B access.
 
 ## Claim boundary
 
-An M1 result supports only that shared parcel response profiles plus
-Task-A-personalized membership are sufficient at the registered resolution;
-it does not prove a literal or unique parcel ontology. An M2 result supports
-only that one stable smooth relocation field is sufficient under the frozen
-Jacobian and stability bounds; it does not identify a developmental or
-anatomical cause for that relocation.
+A successful EP15 can distinguish among constrained explanations of stable
+individual cerebellar organization within this MDTB release and show whether
+Task A predicts a specific pattern of Task-B-only condition relationships.
 
-An M3 result supports only:
-
-> Within this public single-site MDTB release, a Task-A-estimated certified
-> isometric correspondence recovered a prespecified fraction of reliable
-> between-person variation in Task-B-only cerebellar maps; individual
-> condition geometry was within the frozen equivalence margin, and the paired
-> bounded non-isometric challenger supplied no material increment.
-
-An M4 result supports only:
-
-> Within this release, Task A contained stable participant-specific
-> information that predicted reproducible changes in both Task-B-only maps and
-> condition-level geometry beyond the tested parcel, smooth-warp, and
-> isometric explanations.
-
-Neither result establishes a universal cognitive coordinate system, literal
-parcel ontology, task dependence, causal or behavioral relevance, cortical
-generalization, cross-site generalization, or external replication. In
-particular, non-isometric means stable geometry-changing variation under this
-model, not task-specific variation. A population claim over possible training
-samples would require resampling and refitting the development cohort, and a
-flagship confirmation requires a new, prospectively sealed compatible
-dataset.
+It cannot establish a literal parcel ontology, a universal cognitive
+coordinate system, task dependence, causal or behavioral relevance,
+generalization to cortex, new participants outside MDTB, another site, or an
+independent replication. A flagship confirmation would require a new,
+prospectively sealed compatible dataset.
