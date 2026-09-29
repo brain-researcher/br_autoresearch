@@ -1,219 +1,195 @@
-# Episode 01 data and exposure contract
+# EP01 data roles: NARPS cognitive-estimand audit
 
-## Status
+## Current status
 
-This data contract records known identities, exposure roles, and the firewall
-required before candidate-discriminating work and protected audit access. An
-explicit scientist instruction may start the episode, but this file alone does
-not authorize source access, materialization, computation, or audit opening.
+EP01 is at scientific-design stage. The former smoothing and derivative-
+sufficiency directions were retired before execution. No behavioral model,
+BOLD model, team-map projection, or scientific score has been run under the
+current question.
+
+The study uses three evidence layers from one public experiment plus synthetic
+recovery tests. They are complementary, not independent replications.
 
 ## Role table
 
-| Resource | Frozen role | Outcome exposure | Permitted use |
-| --- | --- | --- | --- |
-| `narps_prior_v1` and `narps_prior_v2` | Historical development lineage | Fully exposed | Hypothesis generation, historical reproduction, ingestion tests; never new evidence |
-| OpenNeuro `ds001734` | Adaptive development | Fully exposed by the prior runs | Search, grouped folds, ablation, reliability, and full-development replication |
-| Synthetic fixtures | Outcome-blind calibration | Generated | Operator/metric recovery, degeneracy tests, and targeted audit-boundary tests |
-| OpenNeuro `ds000005` | One-shot external transport audit | Identity, metadata, counts, and contrast names visible; neural arrays forbidden to discovery | Exactly one locked evaluation through a permission-separated runner |
+| Resource | Scientific role | What it can establish |
+| --- | --- | --- |
+| Exact-design simulations | Behavioral and synthetic-coordinate recovery | Whether the proposed latent mechanisms and numerical map coordinates are identifiable at the actual design and noise level |
+| NARPS original behavioral events | Mechanism decomposition | Choice-and-RT evidence for valuation asymmetry and value-independent rejection bias |
+| NARPS fMRIPrep BOLD/confounds | Controlled fMRI factorial | How gain/loss maps move when decision-state and response blocks are included under one fixed pipeline |
+| NARPS 70-team unthresholded group maps | Ecological analysis layer | Whether public team maps load differently on the frozen estimand axes |
+| NARPS team method reports | Operationalization layer | Whether declared first-level choices are associated with those shape coordinates beyond the frozen sample, group-model, and map-technical controls |
 
-No partition of `ds001734` is untouched confirmation. Its subject folds are
-algorithmic development checks inside an exposed dataset. `ds000005` is
-independently collected, but because it is public and locally present, its
-status is procedure-sealed for this program rather than globally pristine.
+No live sibling-episode output is an EP01 input. The historical NARPS episode
+records are exposed lineage only and count as no new evidence.
 
-## Historical prior lineage
+## Participant-level source: OpenNeuro `ds001734`
 
-The machine-readable prior declaration is
-[`inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json`](inputs/prior_lineage/PRIOR_LINEAGE_MANIFEST.json).
-It records the repository revision, legacy canonical identities, exposure
-status, and hashes of selected legacy artifacts. Those existing hashes are
-retained because the two prior runs had overlapping historical names and live
-elsewhere in the repository: matching a hash once for each small artifact
-actually imported is the lightest direct way to prove which exposed prior was
-used. This is an identity and leakage control, not a general checksum policy.
+The declared release is OpenNeuro `ds001734` version 1.0.5
+(`10.18112/openneuro.ds001734.v1.0.5`). It contains 108 included participants:
+54 equal-indifference (EI) and 54 equal-range (ER), each with four runs of 64
+trials. All 256 gain-by-loss combinations were presented once per participant,
+for 27,648 total trials before exclusions.
 
-Candidate search does not require materializing every declared legacy file.
-If a legacy artifact is actually consumed, copy that artifact into the
-episode-local, read-only prior packet and match it once to the identity already
-declared in the lineage manifest. That episode-local copy plus its one-time
-match to the existing lineage hash is the verified content-addressed prior
-packet required by repository policy. Unused files need not be materialized,
-and no new hashes are generated. Do not create a second manifest, aggregate
-byte-count receipt, independent-review gate, or repeated verification pass.
-The run must not symlink, hardlink, or read live sibling outputs. Large
-historical maps remain excluded; recompute them from the identified
-`ds001734` source unless a scientist explicitly provides a read-only snapshot.
+The task records four simultaneous response categories: strongly accept,
+weakly accept, weakly reject, and strongly reject. The gamble remained visible
+until response or a four-second deadline. Approximately 0.7% of trials were
+reported as no-response in the data descriptor.
 
-The two prior records have different canonical states. `narps_prior_v1` was
-observed complete with `closed_no_candidate`; `narps_prior_v2` was observed at
-`AWAITING_REWARD`. Its returned `record_reward` action expired on
-2026-08-18 and is not replayable authority. This episode neither resolves nor
-inherits either state. If this episode later enters Brain Researcher review,
-it must use a new record; any service-reported collision is reconciled
-separately rather than by acting on a legacy record from this workspace.
+### Established locations
 
-## Development source: NARPS `ds001734`
+| Component | Location | Current availability |
+| --- | --- | --- |
+| BIDS metadata and original events | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/input/ds001734` | All 108 participants x 4 original event tables present |
+| Common fMRIPrep derivatives | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734/derivatives` | All 432 MNI 2-mm preprocessed BOLD series, confounds, run masks, and QC reports present |
+| Existing standardized FitLins analysis | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses/ds001734/task-MGT` | One benchmark pipeline with run/subject gain, loss, gain-minus-loss, all-trial, and RT products |
 
-### Locally observed references
+EP01 uses each `*_events_ORIGINAL.tsv` as the behavioral source. The sibling
+`events.tsv` files are analysis-specific transformations and are not the event
+source for this study.
 
-| Component | Historical OAK location |
-| --- | --- |
-| Raw metadata/events | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/input/ds001734` |
-| fMRIPrep derivatives | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734/derivatives` |
-| FitLins products/designs | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses/ds001734` |
+The primary fMRI analysis starts from the complete fMRIPrep 21.0.2 series, not
+from the partially materialized raw BOLD collection or the older fMRIPrep 1.1.4
+annex links. Raw BOLD currently has 323 of 432 payloads materialized; no current
+EP01 claim requires the missing 109 raw payloads.
 
-Historical inventories reported 108 participants, 54 EI and 54 ER, four
-expected runs per participant, and 432 runs in `MNI152NLin2009cAsym` 2-mm
-space. These counts are priors to revalidate, not verified input facts.
+The existing FitLins products are a benchmark only. They are not substituted
+for the runwise `S00/S10/S01/S11/R11` fits because those models define the
+scientific comparison.
 
-| Identity field | Previously observed value |
-| --- | --- |
-| OpenNeuro DOI | `10.18112/openneuro.ds001734.v1.0.5` |
-| Raw checkout commit | `0ad017e7f83ecda943fb85cc93bb3a8a122b2e60` |
-| FitLins analysis checkout commit | `a3c7aeb3406634e2d11e37ddcb6efb7d4e5b99e3` |
-| fMRIPrep version | `21.0.2` |
-| License | `CC0` in the locally observed metadata |
+### Required participant-level fields
 
-A provider version or Git commit does not by itself establish scientific
-usability. Before development scoring, record the source version and the paths
-actually used, directly check retained subject/run completeness and file
-readability, and record any source-tree difference that changes those inputs.
-Per-file hashes and a source Merkle root are not required unless a concrete
-identity discrepancy is observed.
+The behavioral layer requires, for every retained trial:
 
-### Required development records
+- participant, task version, run, and trial order;
+- gain and positive loss magnitude;
+- original four-category response;
+- binary accept/reject sign;
+- response time; and
+- deadline/no-response status.
 
-Record the following outcome-blind definitions once before they are used for
-candidate scoring. A concise table or configuration file is sufficient; no
-custom schema, independent attestation, or checksum layer is required:
+The BOLD layer additionally requires original onset, BOLD series, confounds,
+mask, censoring information, and the frozen runwise design. Display-side and
+finger-mapping claims are out of scope unless the original task code supplies
+participant-level mappings; `participants.tsv` does not contain them.
 
-- source/version and the retained participant/run inventory;
-- participant/run eligibility and exclusion reasons;
-- deterministic, task-version-stratified subject folds created without
-  outcome values;
-- gain/loss and EI/ER environment definitions and weights;
-- S0, S8, and global exact-`K8_ref` operator DAGs;
-- comparison mask, resampling, edge-shell, and degeneracy rules;
-- contrast units/sign crosswalk and nuisance construction;
-- versioned analysis code, seeds, and the resource ceilings; and
-- any synthetic fixture actually used, with its expected score or failure mode.
+## Task-version and schedule structure
 
-Every scored trial reports all four primary environments separately plus the
-frozen aggregate. Fold creation uses identifiers and declared stratifiers, not
-outcome values.
+ER gains and losses both span 5--20. EI gains span 10--40 while losses span
+5--20. EI and ER are between-participant task versions. They are modeled as
+partially pooled strata and a transport stress test, not as independent
+replications. No causal claim is made without evidence that assignment was
+random.
 
-## Audit source: OpenNeuro `ds000005`
+Each task version uses eight optimized full-session sequence/onset templates,
+counterbalanced across participants. Participant remains the biological
+sampling unit. Schedule-template clustering and leave-one-template-out
+sensitivities guard against a result driven by one or two sequences.
 
-### Previously observed metadata-only identity
+The common gain range 10--20 provides a prespecified sensitivity analysis. It
+does not turn the between-participant context comparison into a within-person
+experiment.
 
-| Field | Observed value |
-| --- | --- |
-| Dataset | `ds000005`, mixed-gambles task |
-| Repository commit | `4d5640924a477a4b4402bfe04a8fde3e19e78fbe` |
-| Participants | 16 subject directories |
-| Runs | 3 per participant; 48 preprocessed BOLD filenames observed |
-| fMRIPrep | `21.0.1` in local metadata |
-| FitLins | `0.11.0.post0.dev16`; Nilearn estimator |
-| Existing derivative smoothing | 5-mm run-level smoothing; forbidden for candidate selection |
-| Space | `MNI152NLin2009cAsym` in FitLins metadata |
-| Primary contrasts | `paragain`, `paraloss` |
-| Nonprimary contrasts | `paragainvloss`, `distindiff`, `rt` |
-| License | Public Domain Dedication and License v1.0 in local metadata |
+## Many-team result source
 
-The inventory previously observed filenames for 240 effect and 240 variance
-maps across five contrasts. That observation establishes feasibility only. It
-does not make those maps development inputs and does not authorize opening
-their voxel values.
+The fixed public result release is NARPS v2.0.1 from Zenodo record 3634120,
+licensed CC BY 4.0. The immutable local source is:
 
-### Why this audit is scientifically bounded
+```text
+/oak/stanford/groups/russpold/data/br_autoresearch_data/
+  narps_results/zenodo-3634120-v2.0.1/source/results.tgz
+```
 
-`ds000005` is independently collected, uses parametric gain and loss contrasts,
-and is small enough for a CPU-only S0/S8 recomputation. It is therefore a
-useful transport test for a locked methods mechanism. With only 16
-participants, it cannot support a broad population-neuroscience claim; paired
-map-change prediction, simultaneous uncertainty, deterministic halves, and
-leave-one-subject-out stability remain visible.
+The archive already contains:
 
-### Required technical firewall
+- concatenated unthresholded team statistic maps for hypotheses 1--9;
+- team identifiers and NeuroVault collection mappings;
+- corrected decision and confidence tables;
+- rich team metadata, including first-level independent variables, RT
+  modeling, movement modeling, preprocessing, software, statistic type,
+  inference, smoothing estimates, and—where reported—participant counts,
+  exclusions, higher-level covariates, and group-model choices; and
+- public vmPFC, ventral-striatum, and amygdala masks in the threshold-
+  simulation materials, whose exact original-hypothesis provenance must be
+  qualified before any regional summary; and
+- the original NARPS harmonization and generic map-similarity products.
 
-Maintain two direct access roles:
+EP01 does not claim novelty for sign rectification, t-to-z conversion,
+resampling, smoothness estimation, map clustering, consensus maps, or generic
+associations between software/smoothing and team decisions. Those were already
+part of the original analysis.
 
-1. A development surface containing the identified `ds001734` inputs,
-   deterministic folds, frozen scoring definitions, and only the legacy prior
-   artifacts actually used.
-2. A protected audit surface unavailable to the proposal model, search
-   workers, development evaluator, caches, logs, and ordinary episode
-   workspace until an immutable configuration-lock version exists. Before
-   then, those processes may see only `ds000005` identity, metadata, counts,
-   contrast names, and compatibility information that contains no neural
-   array values.
+For cognitive decomposition, statistic-map signs must be restored so a
+positive statistic denotes a positive underlying coefficient for increasing
+positive gain or loss magnitude. This is a coefficient-direction convention,
+not a claim that `t`/`z` maps are beta maps or share effect units. The original
+"rectified" convention orients maps toward each directed regional hypothesis;
+it cannot be treated as a common loss-estimand direction.
 
-A visible symlink, a path plus prose warning, or an instruction-only same-UID
-task boundary is insufficient. The permission-separated audit runner must
-reject access before lock and reject a new scientific opening after any
-candidate-discriminating output has been visible. Keep one simple access log
-with the lock version, opening/start/end times, whether outcome information was
-emitted, and any concrete infrastructure failure. Payload Merkle roots,
-complete file manifests, report schemas, receipt chains, exact runner or
-interpreter attestations, and generic network/mount audits are not required.
+The team results are group-level repeated analyses drawn from the same NARPS
+participant pool, with team-specific exclusions and sometimes incomplete
+sample-identity reporting. They support a map-shape and method-description
+audit. They do not support:
 
-A retry is permitted only for a concrete infrastructure failure that emitted
-no candidate-discriminating value. Record it as a continuation of the same
-logical opening, reuse the immutable scientific configuration, and do not
-change the candidate, data, contrasts, thresholds, or uncertainty procedure.
+- 70-pipeline participant ranking;
+- pipeline-specific individual brain-behavior correlations;
+- independent biological replication across teams; or
+- a causal effect of any self-selected analysis choice.
 
-## Compatibility checks before any audit neural access
+Participant count, exclusions, available sample-identity summaries, higher-
+level covariates/design, and group estimator therefore enter the frozen
+technical-control set alongside mask, smoothness, statistic, software, and
+preprocessing fields. Unreported fields receive explicit missingness
+indicators. If exact sample identity or group-model details remain unavailable,
+the method analysis cannot isolate cognitive specification from unrecorded
+sample-composition differences and is labeled accordingly.
 
-Using metadata, any targeted synthetic fixture, and development data only:
+Subject COPE/VARCOPE images were optional in the original instructions and are
+available for only a small subset of teams. Reproducing many pipelines is not
+part of the primary EP01 contract.
 
-- verify subject/run completeness and events/confounds/design readability;
-- obtain scientist signoff on semantic, sign, and unit correspondence between
-  NARPS `gain_demean`/`loss_demean` and audit `paragain`/`paraloss`;
-- freeze spatial grids, affines, masks, and resampling rules;
-- demonstrate that S0 and S8 can be recomputed from fMRIPrep BOLD with
-  unchanged task regressors and auditable nuisance construction;
-- verify contrast estimability for every retained run;
-- validate deterministic bootstrap, interval multiplicity, LOSO, and
-  half-split code on synthetic data;
-- demonstrate rejection before lock and after a consumed transaction, and
-  permit continuation only after a recorded no-outcome infrastructure failure;
-  and
-- make a practical CPU, memory, scratch, and wall-time estimate before the
-  relevant Slurm launch.
+## Synthetic recovery sources
 
-Compatibility failure may make candidate scoring or audit opening ineligible
-and may cause a technical terminal. It may not expose audit map values or
-motivate a mechanism.
+Behavioral simulations reproduce the exact participant count, EI/ER offer
+matrices, four-run allocation, four-second deadline, and observed missingness.
+They vary valuation asymmetry, starting bias, drift criterion, urgency,
+nonlinear utility, and contaminant responses under the fixed candidate family.
 
-## Prohibited data use
+fMRI design simulations use the actual onsets and response times but no task
+BOLD outcomes. They estimate design efficiency, collinearity, and variance
+inflation for `S00`, `S10`, `S01`, `S11`, and `R11`.
 
-- Do not use existing `ds000005` 5-mm subject or group maps to choose a
-  mechanism, mask, threshold, floor, operator, or uncertainty procedure.
-- Do not expose audit neural arrays through a symlink, inherited mount, cache,
-  notebook, log, or environment variable.
-- Do not replace the audit dataset, add subjects, switch contrasts, promote the
-  runner-up, or resume development after an unfavorable audit.
-- Do not pool NARPS EI/ER into an unqualified gain-minus-loss claim.
-- Do not count prior-run cells, internal folds, public availability, or a
-  filesystem checkout as new independent confirmation.
+Team-projection simulations form linear combinations of the frozen, base-
+estimand-matched conditional-slope and specification-displacement templates
+under known coordinates, smoothness, scale, masks, and noise. They test only
+whether joint projection can recover the generating numerical coordinates
+before public team maps are described.
 
-## Minimal readiness checkpoints
+## Explicit non-inputs
 
-Before development scoring:
+The following are outside the current evidence set:
 
-- [ ] Legacy records are treated only as exposed priors, expired actions are not replayed, and no live sibling output is read.
-- [ ] Each legacy artifact actually used is an episode-local copy matching its existing lineage identity; unused legacy files need not be materialized.
-- [ ] The `ds001734` source/version, retained subjects and runs, exclusions, and readable inputs are recorded.
-- [ ] Subject split, environments, contrasts, mask, S0/S8 pathways, exact-`K8_ref` operator, metric, and degeneracy rule are frozen.
-- [ ] The chronological trial record and proposal-before-execution rule are active.
+- questionnaires, resting-state fMRI, diffusion MRI, and eye-gaze data, which
+  were collected in the original project but are not part of the public
+  `ds001734` release used here;
+- local shared `first_level/switch`, `first_level/pupil`, `stp_bias.csv`, or
+  other collaborator analyses;
+- NARPS Open Pipelines subject-level reruns;
+- thresholded team maps as primary measurements; and
+- `ds000005` as a mandatory replication.
 
-Before the one-shot audit opening:
+The small `ds000005` mixed-gamble sample may later test a narrow controlled-map
+transport claim, but it cannot replicate the 70-team ecology and is not
+required for the present paper.
 
-- [ ] Contrast semantics, sign, units, numerical thresholds, and simultaneous uncertainty rule are frozen and scientist-approved.
-- [ ] One immutable configuration-lock version names the selected mechanism, comparator set, code version, data roles, split, scoring definitions, and report fields.
-- [ ] The permission-separated runner rejects pre-lock access and search workers cannot see audit neural arrays.
-- [ ] A practical resource estimate fits the episode budget.
+## Data-use and inference boundary
 
-These checkpoints are performed once at the stage they govern. Generic
-checksum manifests, schema validators, receipts, attestations, and repeated
-preflights are not additional gates.
+All sources are public research data. Provisioned source payloads remain
+read-only. Durable derived reports belong under `outputs/`; large runwise fits
+and simulations belong in episode-specific scratch.
+
+The NARPS observations and team maps have been extensively exposed. Run
+splitting provides honest internal prediction and nonoverlapping
+brain-behavior estimation; it does not create fresh confirmation. Any positive
+result remains a reanalysis of one experiment and its associated analyst
+ecology.

@@ -22,11 +22,14 @@
    absolute raw-unit margin, independent validation, and scientist signoff.
    Finish the author-code port/configuration, resource profile, and separated
    evaluator before any audit opening.
-2. **ep01 NARPS smoothing mechanisms:** materialize and verify the small prior
-   packet; revalidate `ds001734`; freeze folds, masks, operators, ESC edge cases,
-   uncertainty, and thresholds; confirm that neither historical identity nor
-   its expired action is reused; and bind a locked controller plus a
-   permission-separated one-shot `ds000005` audit runner.
+2. **ep01 NARPS cognitive estimands:** run exact-design behavioral recovery and
+   bidirectional run-half prediction first; test actual-design fMRI
+   identifiability; fit runwise `S00/S10/S01/S11/R11` under one technical
+   pipeline; restore the public statistic maps to a common underlying
+   coefficient direction and deduplicate them; project them only onto cross-
+   run-stable axes; and treat associations
+   between declared methods and same-data shape coordinates as descriptive
+   rather than causal.
 3. **ep03 condition semantics:** highest leverage once the remote NeuroEffect
    corpus, methods-only text, taxonomy, duplicate groups, and hashes arrive.
 4. **ep15 MDTB topography versus geometry:** the v1.0 derivative release is

@@ -31,7 +31,7 @@ deliverables or startup gates.
 
 | EP | Current question or fixed reproduction | Valid-trial range | Episode-held-out stage |
 | --- | --- | ---: | --- |
-| EP01 | Which spatial, masking, scaling, estimation, and aggregation mechanism explains S0-to-S8 map change and transports beyond NARPS? | 30--60 | One locked `ds000005` gain/loss transport audit |
+| EP01 | Does the conditional NARPS gain/loss estimand shift systematically when valuation, decision-state, and response variables are operationalized differently? | Fixed staged program; no adaptive trials | Bidirectional nonoverlapping run-half prediction and map falsification; the 70-team archive is exposed ecological reuse, not external confirmation |
 | EP02 | Does physiological mesolimbic dopamine gate the magnitude of policy updates rather than provide a signed teaching/reinforcement signal? | 28--48 | Intended one-shot whole-mouse 6-versus-5 intervention audit; opening is currently prohibited because generic calibration v2 returned `selected_rule: null` and the role handoff is unsealed |
 | EP03 | Which condition-semantics representation transports across datasets when predicting effect-map geometry? | 30--72 | New independent dataset groups |
 | EP04 | Which language/vision components predict high-level visual-cortex geometry under sealed stimulus shift? | 24--64 | Untouched OOD pool or new compatible data |
@@ -65,9 +65,11 @@ confirmatory stage; they do not block starting the episode.
 
 ## Shared governance
 
-- EP01 treats both legacy NARPS runs and all `ds001734` outcomes as exposed
-  development lineage. They count as zero new trials and cannot satisfy its
-  one-shot external audit.
+- EP01 is a fully exposed retrospective NARPS reanalysis. Its complementary
+  run halves provide internal prediction and falsification, not independent
+  replication. The public team maps are repeated analyses drawn from the same
+  participant pool, with possible team-specific exclusions, and likewise
+  cannot serve as external confirmation.
 - EP05--EP08 share one LFP exposure/split ledger and are correlated evidence.
 - EP09--EP11 share one SEU-A1876 exposure/split ledger and are correlated
   evidence.
@@ -106,15 +108,16 @@ formal episode. Its core scientific contracts are present, but it still needs
 input/output guards and seven workspace projections before entering this
 table.
 
-The reusable design under `_examples/narps_deep_search_template/` is now
-instantiated as the new formal EP01 at `episode01_narps_deep_search/`; the
-example remains as design provenance.
+The design under `_examples/narps_deep_search_template/` is retired provenance,
+not the current scientific contract. Formal EP01 remains at
+`episode01_narps_deep_search/` with its fixed cognitive-estimand program.
 
 ## Evidence status
 
-Zero episodes currently count as realized adaptive-search evidence. The direct
-contracts, including the new EP01, are structurally deep enough, but none has a
-realized append-only trial lineage, configuration lock, or held-out result.
-A design alone is not evidence. Realization checks occur inside the episode
-task and may legitimately end it as `technical_failure` or
-`closed_no_candidate`; they are not task-startup gates.
+Zero episodes currently count as realized adaptive-search evidence. EP01 is a
+fixed staged retrospective design rather than an adaptive search and currently
+has no recovery, held-out prediction, fMRI, or team-map result. The remaining
+adaptive contracts have no realized append-only trial lineage, configuration
+lock, or held-out result. A design alone is not evidence. Realization checks
+occur inside the episode task and may legitimately end it as
+`technical_failure` or `closed_no_candidate`; they are not task-startup gates.

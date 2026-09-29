@@ -5,14 +5,18 @@ Episode-specific numbers and claims remain inside their episodes.
 
 ## Current themes
 
-### Analysis flexibility and inferential stability
+### Cognitive estimands and analysis variability
 
-Episode 01 now asks which exact-kernel, stage, masking, scaling, estimation,
-aggregation, residual, or reliability mechanism explains S0-to-S8 map change
-and transports from NARPS to one external mixed-gambles dataset. The two old
-NARPS runs remain frozen, fully exposed priors; they count as no new evidence
-and do not license an unrestricted multiverse. One configuration must be locked
-before a permission-separated `ds000005` audit.
+Episode 01 asks whether nominally identical NARPS gain/loss maps retain the
+same conditional estimand when valuation, decision-state, and response
+variables are operationalized differently. It first requires exact-design
+behavioral recovery and bidirectional held-out run-half prediction, then holds
+the technical fMRI pipeline fixed across `S00/S10/S01/S11/R11`, and finally
+projects the public team maps only onto cross-run-stable specification-
+displacement axes. The
+run halves and 70 teams are internal, dependent evidence rather than independent
+replications; `ds000005` is not required by the current design. No empirical
+result has been produced.
 
 ### Causal learning mechanisms under closed-loop perturbation
 

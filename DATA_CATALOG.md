@@ -53,8 +53,9 @@ catalogued releases declare 10,817 source files and 396,139,712,889 source bytes
 
 Important details:
 
-- NARPS v2.0.1 is retained because existing episode lineage refers to that
-  exact release. It is not silently replaced by a later Zenodo version.
+- NARPS v2.0.1 is the current EP01 source for public many-team maps and method
+  metadata as well as a lineage-pinned release. It is not silently replaced by
+  a later Zenodo version.
 - Neurosynth and neuromaps contain meta-analytic summaries and brain
   annotations rather than participant-level observations.
 - The neuromaps copy contains 86 logical public annotations represented by 123

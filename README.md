@@ -319,7 +319,8 @@ files stay outside Git.
   append-only lineage, and one-shot audit boundary. A design becomes realized
   evidence only when its episode records the corresponding run artifacts.
 - [Unnumbered examples](_examples/README.md) retain reusable design provenance;
-  the NARPS deep-search example now has one formal EP01 instantiation.
+  the NARPS deep-search example is retired and is not the current EP01
+  scientific contract.
 - [LANDSCAPE.md](LANDSCAPE.md) summarizes the research areas we are exploring.
 - [QUESTIONS.md](QUESTIONS.md) contains possible questions for future episodes.
 - [Foundation-20 crosswalk](portfolios/foundation20/CROSSWALK.md) records direct,

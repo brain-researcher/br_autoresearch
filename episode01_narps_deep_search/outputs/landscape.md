@@ -16,7 +16,10 @@
 
 - Proposed change: not observed
 - Evidence refs: not observed
-- Scientific scope: exploratory methods mechanism only
+- Scientific scope: computational separation of valuation and
+  value-independent decision bias, controlled cognitive-estimand sensitivity
+  of NARPS gain/loss maps, and descriptive projection of public many-team maps;
+  no empirical result yet
 
 ## Permitted and applied transition
 

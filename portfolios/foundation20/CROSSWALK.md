@@ -8,11 +8,11 @@ that have no active episode yet.
 
 - Direct/exact prospective operationalization: F20-02, F20-04, F20-05, and
   F20-17.
-- Bounded adaptive operationalizations: F20-01, F20-11, F20-12, F20-13, and
-  F20-19.
+- Fixed retrospective operationalization: F20-01.
+- Bounded adaptive operationalizations: F20-11, F20-12, F20-13, and F20-19.
 - Adjacent but not equivalent: ep04, ep05, ep09, ep10, ep12, and ep21.
-- Formal direct or bounded coverage: 9 of 20 questions; 11 have no formal
-  direct or bounded episode yet.
+- Formal direct, fixed, or bounded coverage: 9 of 20 questions; 11 have no
+  formal direct, fixed, or bounded episode yet.
 - Acquired data are not complete execution inputs: F20-02 has an acquired but
   role-mixed derivative release; F20-03 has a partially usable local
   derived-data canary; F20-16, F20-17, and F20-18 have acquisition-verified
@@ -22,7 +22,7 @@ that have no active episode yet.
 
 | ID | Foundation question | Current coverage | Physical episode, historical evidence, or missing asset |
 | --- | --- | --- | --- |
-| F20-01 | Analysis variability vs weakly identifiable effects | **Bounded adaptive design** | The new ep01 adaptively searches exact-kernel, stage, masking, scaling, estimation, aggregation, residual, and reliability explanations for smoothing-induced map change, then performs one locked `ds000005` transport audit. The two old NARPS runs are fully exposed priors and count as no new evidence. This episode addresses one important analysis-flexibility mechanism but does not adjudicate weak identifiability in general. |
+| F20-01 | Analysis variability vs weakly identifiable effects | **Fixed retrospective design** | ep01 tests whether the conditional NARPS gain/loss estimand shifts when valuation, decision-state, and response variables are operationalized differently. It combines exact-design behavioral recovery and held-out run-half prediction, a fixed-pipeline `S00/S10/S01/S11/R11` fMRI specification factorial, and same-data unitless shape coordinates for public team maps on cross-run-stable displacement axes. The evidence is exposed and same-experiment, so it addresses estimand ambiguity without claiming cognitive mixture proportions, independent confirmation, or weak-identifiability resolution in general. |
 | F20-02 | Shared cross-task representational geometry | **Exact prospective design** | ep15 distinguishes hierarchical parcel membership, smooth relocation, certified isometry, and bounded stable non-isometry using reliable between-person Task-B-only map and condition-geometry estimands. The source release is acquired, but the 12/12 role manifest, role-filtered handoffs, exposure verification, scientific margins, and a permission-separated audit runner are absent. ep04 and the fixed Wang neural-code-conversion reproduction in ep21 remain adjacent, not equivalent. |
 | F20-03 | Stable individual functional fingerprints | **No episode; bounded source partially provisioned** | Local `ds000114` arrays can support only a short-interval, same-scanner exploratory canary. The 280 effect rows are 20 participant-session observations x 14 uneven task-contrast cells, not 280 independent samples; their source NIfTI paths are stale and affine, masks, confounds, QC, completeness, and provenance still need recovery. Exact IBC validation remains unprovisioned. |
 | F20-04 | Condition semantics to effect-map geometry | **Exact prospective design** | ep03; NeuroEffect corpus exists remotely, but immutable Sherlock handoff and taxonomy are absent. |

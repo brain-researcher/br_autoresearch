@@ -1,18 +1,27 @@
-# Inputs
+# EP01 inputs
 
-This directory is read-only during an authorized Episode 01 run. The present
-draft contains only a lineage manifest; it contains no development or audit
-neural payload and is insufficient for outcome evaluation.
+This directory contains only the immutable declaration of the two fully
+exposed historical NARPS runs:
 
-Required pre-outcome surfaces are:
+- `prior_lineage/PRIOR_LINEAGE_MANIFEST.json`
 
-- `prior_lineage/materialized/`: verified content-addressed copies of the small
-  legacy artifacts declared in `PRIOR_LINEAGE_MANIFEST.json`;
-- `development/`: immutable `ds001734` payload references, folds, masks,
-  operators, environments, containers, and synthetic fixtures; and
-- `audit_manifest/`: metadata, schema, counts, and commitments for `ds000005`,
-  with no candidate-discriminating array.
+Those records are lineage only and provide no new evidence. EP01 does not read
+live sibling outputs.
 
-The true audit payload must remain outside this workspace and be reachable only
-by the trusted one-shot runner after configuration lock. Do not add symlinks or
-hardlinks to either legacy output tree or to the audit data.
+The active scientific sources remain at their established read-only locations:
+
+- OpenNeuro `ds001734` original event tables provide trialwise gain, loss,
+  four-category response, RT, deadline status, run, and sequence structure.
+- The complete fMRIPrep 21.0.2 derivatives provide the 432 runwise MNI 2-mm
+  BOLD series, confounds, and masks for the controlled fMRI factorial.
+- The curated NARPS v2.0.1 archive provides the concatenated unthresholded
+  group maps and team method metadata for the many-team estimand audit.
+
+The analysis must use `*_events_ORIGINAL.tsv`, not the transformed
+`events.tsv` files produced for earlier analyses. Existing FitLins, switch,
+pupil, and other collaborator products are not substituted for the new
+runwise models.
+
+No participant-level or many-team result has been generated under the current
+cognitive-estimand contract. See [`../DATASETS.md`](../DATASETS.md) for exact
+locations, roles, availability, and claim limits.

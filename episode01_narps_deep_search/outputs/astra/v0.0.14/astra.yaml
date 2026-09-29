@@ -1,0 +1,365 @@
+version: "0.0.14"
+name: EP01 NARPS cognitive-estimand audit
+
+inputs:
+  - id: goal
+    type: data
+    source: GOAL.md
+  - id: datasets
+    type: data
+    source: DATASETS.md
+  - id: search_policy
+    type: data
+    source: SEARCH_POLICY.yaml
+  - id: literature_audit
+    type: data
+    source: outputs/literature_collision_audit.md
+
+outputs:
+  - id: asset_report
+    from: public_asset_qualification.asset_report
+  - id: behavior_report
+    from: behavioral_mechanism_kill_test.behavior_report
+  - id: fmri_design_report
+    from: fmri_design_identifiability.fmri_design_report
+  - id: fmri_run_report
+    from: fmri_split_first_level.fmri_run_report
+  - id: neural_report
+    from: fmri_cross_run_falsification.neural_report
+  - id: team_map_report
+    from: team_map_harmonization.team_map_report
+  - id: projection_report
+    from: team_estimand_projection.projection_report
+  - id: integrated_claim_report
+    from: integrated_claim_audit.integrated_claim_report
+
+analyses:
+  public_asset_qualification:
+    name: Freeze participant and many-team source semantics
+    inputs:
+      - id: goal
+        from: ../goal
+      - id: datasets
+        from: ../datasets
+      - id: search_policy
+        from: ../search_policy
+      - id: literature_audit
+        from: ../literature_audit
+    outputs:
+      - id: asset_report
+        type: report
+        format: json
+        inputs: [goal, datasets, search_policy, literature_audit]
+        decisions: [event_source, participant_assets, team_assets, sign_semantics]
+    decisions:
+      event_source:
+        label: Behavioral event source
+        default: original_events_only
+        options:
+          original_events_only:
+            label: Use events_ORIGINAL.tsv for gain, loss, response, RT, onset, deadline, run, and order
+      participant_assets:
+        label: Participant-level source
+        default: complete_fmriprep_21_series
+        options:
+          complete_fmriprep_21_series:
+            label: Use all eligible original events and complete fMRIPrep 21.0.2 MNI 2-mm BOLD/confounds/masks
+      team_assets:
+        label: Many-team source
+        default: curated_v2_0_1_group_maps_and_methods
+        options:
+          curated_v2_0_1_group_maps_and_methods:
+            label: Inventory unthresholded group maps, team identities, degrees of freedom, and detailed method reports without assuming subject maps
+      sign_semantics:
+        label: Gain/loss sign convention
+        default: coefficient_direction_increasing_positive_magnitude
+        options:
+          coefficient_direction_increasing_positive_magnitude:
+            label: Restore statistic-map signs to the underlying gain/loss coefficient direction rather than reusing hypothesis-directed rectification; do not infer beta or effect units
+
+  behavioral_mechanism_kill_test:
+    name: Recover mechanisms and predict held-out behavior
+    inputs:
+      - id: asset_report
+        from: ../public_asset_qualification.asset_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: behavior_report
+        type: report
+        format: json
+        inputs: [asset_report, search_policy]
+        decisions: [recovery, robustness_rivals, deadline_likelihood, heldout_partition, mechanism_tier]
+    decisions:
+      recovery:
+        label: Exact-design recovery
+        default: nested_ddm_family_with_z_c_rivalry
+        options:
+          nested_ddm_family_with_z_c_rivalry:
+            label: Recover M0, MV, MZ, MC, MVZ, MVC and fit joint z/c arms only if simulation separates them
+      robustness_rivals:
+        label: Frozen mimicry tests
+        default: symmetric_exponential_urgency_and_anchored_power_value
+        options:
+          symmetric_exponential_urgency_and_anchored_power_value:
+            label: Test a(t)=a0 exp(-u t), u>=0, and gain/loss power exponents in [0.5,1.5] anchored at ten dollars under the same likelihood and training-only selection rule
+      deadline_likelihood:
+        label: Response likelihood
+        default: first_passage_plus_four_second_survival
+        options:
+          first_passage_plus_four_second_survival:
+            label: Model observed choice/RT with first-passage density and no-response trials with survival through the deadline
+      heldout_partition:
+        label: Primary cross-run split
+        default: runs_1_4_vs_2_3_bidirectional
+        options:
+          runs_1_4_vs_2_3_bidirectional:
+            label: Fit and score complementary time-balanced halves in both directions; retain all other partitions as sensitivity
+      mechanism_tier:
+        label: Behavioral continuation rule
+        default: full_narrow_generic_or_stop
+        options:
+          full_narrow_generic_or_stop:
+            label: Continue with two mechanisms only if valuation plus one identifiable bias beats both single-process accounts; otherwise narrow or stop
+
+  fmri_design_identifiability:
+    name: Test the fixed fMRI designs before interpreting BOLD
+    inputs:
+      - id: asset_report
+        from: ../public_asset_qualification.asset_report
+      - id: behavior_report
+        from: ../behavioral_mechanism_kill_test.behavior_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: fmri_design_report
+        type: report
+        format: json
+        inputs: [asset_report, behavior_report, search_policy]
+        decisions: [model_arms, efficiency, specification_claim]
+    decisions:
+      model_arms:
+        label: Cognitive estimand factorial
+        default: s00_s10_s01_s11_plus_r11
+        options:
+          s00_s10_s01_s11_plus_r11:
+            label: Compare legacy, decision-controlled, response-controlled, full, and response-or-deadline-locked sensitivity designs under one fixed pipeline and identical S11/R11 trial support
+      efficiency:
+        label: Actual-design simulation
+        default: gain_loss_efficiency_and_stimulus_response_separability
+        options:
+          gain_loss_efficiency_and_stimulus_response_separability:
+            label: Quantify condition, variance inflation, gain/loss efficiency, and offer/response separability using actual onsets and RTs
+      specification_claim:
+        label: Identifiability decision
+        default: drop_nonestimable_specification_claims
+        options:
+          drop_nonestimable_specification_claims:
+            label: Retain only conditional slopes and displacements whose design blocks remain estimable; never infer pure neural processes or temporal order from BOLD
+
+  fmri_split_first_level:
+    name: Fit the runwise cognitive-estimand factorial
+    inputs:
+      - id: asset_report
+        from: ../public_asset_qualification.asset_report
+      - id: behavior_report
+        from: ../behavioral_mechanism_kill_test.behavior_report
+      - id: fmri_design_report
+        from: ../fmri_design_identifiability.fmri_design_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: fmri_run_report
+        type: report
+        format: json
+        inputs: [asset_report, behavior_report, fmri_design_report, search_policy]
+        decisions: [common_pipeline, cross_fitted_difficulty, contrasts]
+    decisions:
+      common_pipeline:
+        label: Fixed technical pipeline
+        default: all_non_cognitive_steps_common
+        options:
+          all_non_cognitive_steps_common:
+            label: Hold preprocessing, confounds, HRF, filter, prewhitening, smoothing, mask, and group estimator constant across arms
+      cross_fitted_difficulty:
+        label: Behavioral input isolation
+        default: opposite_run_half_only
+        options:
+          opposite_run_half_only:
+            label: Generate each half's deadline-conditioned binary choice-entropy regressor from behavior fitted without that half; keep three-outcome entropy as sensitivity only
+      contrasts:
+        label: Fixed estimand contrasts
+        default: conditional_gain_loss_and_specification_displacements
+        options:
+          conditional_gain_loss_and_specification_displacements:
+            label: Estimate S11 gain/loss, S00-S11 total sensitivity, order-invariant decision and response omission main effects, their interaction, and R11-S11 response-or-deadline timing sensitivity on identical trial support
+
+  fmri_cross_run_falsification:
+    name: Retain only cross-run-stable conditional slopes and specification displacements
+    inputs:
+      - id: fmri_run_report
+        from: ../fmri_split_first_level.fmri_run_report
+      - id: behavior_report
+        from: ../behavioral_mechanism_kill_test.behavior_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: neural_report
+        type: report
+        format: json
+        inputs: [fmri_run_report, behavior_report, search_policy]
+        decisions: [half_swap, task_version_transport, brain_behavior_prediction, template_freeze]
+    decisions:
+      half_swap:
+        label: Complementary-half reproducibility
+        default: direction_and_continuous_map_agreement
+        options:
+          direction_and_continuous_map_agreement:
+            label: Require conditional gain/loss and specification-displacement maps to agree across the primary split and sensitivity partitions
+      task_version_transport:
+        label: EI/ER stress test
+        default: same_direction_separate_strata
+        options:
+          same_direction_separate_strata:
+            label: Require direction to agree in EI and ER without calling them independent or causal
+      brain_behavior_prediction:
+        label: Optional participant-level incremental prediction
+        default: predictor_half_neural_to_untouched_target_behavior
+        options:
+          predictor_half_neural_to_untouched_target_behavior:
+            label: Under one identifiable eta-plus-z-or-c family, use only task-version-matched LOPO whole-brain S11 gain/loss expression scores, add them to eta and logit(z)-or-c prior means, train participant-out within predictor half, and require incremental joint DDM target log score in both directions without ROI or alternative-template rescue
+      template_freeze:
+        label: Team-audit reference basis
+        default: cross_run_stable_conditional_and_displacement_templates_only
+        options:
+          cross_run_stable_conditional_and_displacement_templates_only:
+            label: Freeze only base-estimand-matched conditional slopes and specification displacements stable across halves, masks, and smoothness matching before team projection
+
+  team_map_harmonization:
+    name: Reconstruct comparable many-team base maps
+    inputs:
+      - id: asset_report
+        from: ../public_asset_qualification.asset_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: team_map_report
+        type: report
+        format: json
+        inputs: [asset_report, search_policy]
+        decisions: [base_estimands, deduplication, map_shape, technical_controls]
+    decisions:
+      base_estimands:
+        label: Coefficient-direction-aligned statistic maps
+        default: gain_ei_gain_er_loss_ei_loss_er_and_loss_context_difference
+        options:
+          gain_ei_gain_er_loss_ei_loss_er_and_loss_context_difference:
+            label: Collapse region-directed hypotheses onto five base contrasts after restoring the underlying coefficient direction; do not treat statistic maps as beta or effect units
+      deduplication:
+        label: Reused team maps
+        default: remove_file_reuse_or_numerically_equal_duplicates
+        options:
+          remove_file_reuse_or_numerically_equal_duplicates:
+            label: Deduplicate same-file or equal-support numerical reuse; never deduplicate from high spatial correlation alone
+      map_shape:
+        label: Comparable outcome
+        default: robust_within_map_standardized_shape
+        options:
+          robust_within_map_standardized_shape:
+            label: Compare continuous map shape on a common grid/mask rather than incompatible statistic amplitude or thresholds
+      technical_controls:
+        label: Non-cognitive alternatives
+        default: sample_group_model_and_map_technical_controls
+        options:
+          sample_group_model_and_map_technical_controls:
+            label: Match or adjust participant count and exclusions, available sample identity, higher-level covariates and estimator, smoothness, scale, mask, statistic, software, and preprocessing; retain missingness indicators and attribution limits
+
+  team_estimand_projection:
+    name: Validate and apply cognitive-estimand projections
+    inputs:
+      - id: neural_report
+        from: ../fmri_cross_run_falsification.neural_report
+      - id: team_map_report
+        from: ../team_map_harmonization.team_map_report
+      - id: search_policy
+        from: ../search_policy
+    outputs:
+      - id: projection_report
+        type: report
+        format: json
+        inputs: [neural_report, team_map_report, search_policy]
+        decisions: [basis_matching, projection_validation, method_coding, association_model, uncertainty, interpretation]
+    decisions:
+      basis_matching:
+        label: Team-map reference basis
+        default: match_task_version_value_dimension_and_context_difference
+        options:
+          match_task_version_value_dimension_and_context_difference:
+            label: Match EI/ER and gain/loss templates to each base estimand and construct H9 from explicit ER-minus-EI loss-template differences
+      projection_validation:
+        label: Numerical shape-coordinate recovery
+        default: synthetic_linear_combinations_spatial_holdout_and_half_swap
+        options:
+          synthetic_linear_combinations_spatial_holdout_and_half_swap:
+            label: Require known-coordinate recovery and stability across parcels, run-half templates, masks, and smoothness controls without treating it as independent cognitive validation
+      method_coding:
+        label: Cognitive method features
+        default: code_blind_to_team_coordinates
+        options:
+          code_blind_to_team_coordinates:
+            label: Code event duration, scaling, orthogonalization, RT/duration, response, and first-level regressors without viewing projection scores
+      association_model:
+        label: Incremental method prediction
+        default: nested_leave_one_team_out_multivariate_ridge
+        options:
+          nested_leave_one_team_out_multivariate_ridge:
+            label: Compare frozen technical controls with and without cognitive feature blocks using team-bundled outer folds and training-only regularization
+      uncertainty:
+        label: Analysis-ecology unit
+        default: resample_teams_not_voxels_or_hypotheses
+        options:
+          resample_teams_not_voxels_or_hypotheses:
+            label: Treat hypotheses as repeated within team and maps as repeated analyses drawn from the same NARPS participant pool with possible team-specific exclusions
+      interpretation:
+        label: Method-coordinate relation
+        default: same_data_unitless_descriptive_not_causal
+        options:
+          same_data_unitless_descriptive_not_causal:
+            label: Test added association beyond technical controls while treating coordinates as same-data unitless shapes, not causal effects, cognitive content, or mixture proportions
+
+  integrated_claim_audit:
+    name: Assign the lowest claim tier surviving all falsifiers
+    inputs:
+      - id: behavior_report
+        from: ../behavioral_mechanism_kill_test.behavior_report
+      - id: neural_report
+        from: ../fmri_cross_run_falsification.neural_report
+      - id: projection_report
+        from: ../team_estimand_projection.projection_report
+      - id: literature_audit
+        from: ../literature_audit
+    outputs:
+      - id: integrated_claim_report
+        type: report
+        format: json
+        inputs: [behavior_report, neural_report, projection_report, literature_audit]
+        decisions: [claim_tier, falsification, limits]
+    decisions:
+      claim_tier:
+        label: Surviving paper branch
+        default: full_robust_controlled_only_narrow_or_stop
+        options:
+          full_robust_controlled_only_narrow_or_stop:
+            label: Report full conditional-estimand shift, prespecified equivalence, controlled-model-only, behavioral narrowing, or stop according to prior gates
+      falsification:
+        label: Failed-layer rule
+        default: later_layers_cannot_rescue_failed_identification
+        options:
+          later_layers_cannot_rescue_failed_identification:
+            label: A favorable map or team result cannot repair failed behavioral, fMRI-design, or projection recovery
+      limits:
+        label: Claim boundary
+        default: computational_and_ecological_not_temporal_causal_or_trait
+        options:
+          computational_and_ecological_not_temporal_causal_or_trait:
+            label: Restrict conclusions to declared task, models, within-session transport, and public analysis ecology
