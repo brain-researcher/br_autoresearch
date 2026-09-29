@@ -1,0 +1,596 @@
+schema_version: ep21.fixed_protocol.v2
+episode_id: ep21
+policy_id: ep21_wang_laion_fmri_fixed_reproduction
+recorded_on: "2026-09-28"
+protocol_role: outcome_independent_resolution_table
+initial_state: protocol_unlocked
+empirical_execution_authorized: false
+neural_scoring_precondition: valid_outputs_protocol_lock_yaml_plus_later_explicit_execution_instruction
+
+freeze_rule:
+  required_artifact: outputs/protocol_lock.yaml
+  producer: pipeline_conformance
+  lock_condition: every_shared_field_and_every_field_for_each_runnable_module_is_resolved_or_the_affected_module_is_locked_not_evaluable
+  permitted_module_states: [runnable_locked, not_evaluable_locked]
+  unresolved_shared_field_action: no_neural_scoring
+  unresolved_module_field_action: affected_module_or_subclaim_not_evaluable
+  missing_asset_substitution: forbidden
+  post_lock_pre_score_change: explicit_scientist_amendment_and_regenerated_lock_required
+  consequential_change_after_any_score: terminate_ep21_and_require_new_episode
+
+lock_resolution_firewall:
+  allowed_inputs:
+    - release_participant_session_trial_repetition_and_image_identifiers
+    - declared_data_roles_and_split_membership
+    - counts_shapes_dtypes_and_finite_nan_masks_without_values
+    - coverage_missingness_and_native_mask_identifiers_without_values
+    - exact_and_near_duplicate_results_from_non_neural_stimulus_metadata
+    - licenses_data_use_terms_risk_status_and_provenance
+    - source_code_and_model_asset_identities
+    - synthetic_or_permuted_fixture_results
+  forbidden_inputs:
+    - subject_unique_neural_response_values
+    - regular_shared_neural_response_values
+    - neural_summary_statistics
+    - converted_responses_decoded_features_or_predictions
+    - reconstruction_outputs_or_identification_scores
+    - any_ep04_output_candidate_ranking_or_runtime_state
+    - every_371_ood_raw_image_feature_neural_value_or_derivative
+  lock_facing_reports_must_not_contain_neural_values: true
+
+module_resolution:
+  shared_modules:
+    - source_qualification
+    - pipeline_conformance
+    - pair_and_split_conformance
+    - source_pipeline_asset_conformance
+  empirical_modules:
+    - laion_target_decoders
+    - laion_within_source_decoders
+    - laion_content_converters
+    - laion_brain_loss_converters
+    - finding_a_feature_decoding
+    - finding_b_reconstruction
+    - finding_c_identification
+    - inter_site_decoders_and_converters
+    - finding_d_inter_site_reconstruction
+    - finding_e_inter_site_identification
+  artificial_image_module:
+    state: not_evaluable_locked
+    reason: ep04_reserves_complete_371_image_ood_payload
+
+source_identity:
+  paper:
+    doi: 10.1038/s43588-025-00826-5
+    title: Inter-individual and inter-site neural code conversion without shared stimuli
+    authorship_label: Wang_et_al_2025
+  software:
+    repository: https://github.com/KamitaniLab/InterSiteNeuralCodeConversion
+    repository_tag: V1.0.0
+    repository_commit: edbff02edd6a08d3c6c829af45a957fd14bdc460
+    zenodo_doi: 10.5281/zenodo.14910040
+    zenodo_archive_md5: bb80dcc1a038737d6d8fc2c95b3e5586
+    archive_inventory_verification: unresolved_required_before_lock
+    source_environment_and_critical_library_versions: unresolved_required_before_lock
+  fidelity_rule: authenticate_source_code_behavior_not_only_manuscript_layer_names
+
+evidence_and_exposure:
+  laion_regular_shared:
+    prior_exposure: opened_in_ep04_lineage
+    interpretation: retrospective_correlated_evidence
+    independent_confirmation: false
+  ep04:
+    outputs_as_inputs: forbidden
+    legacy_scratch_as_input: forbidden
+    ep21_outputs_for_ep04_selection_or_audit: forbidden
+  ood_371:
+    status: blocked_by_ep04_reservation
+    protocol_lock_may_change_status: false
+
+data_qualification:
+  laion:
+    release_identifier: unresolved_required_before_lock
+    license_dua_and_sherlock_risk_eligibility: unresolved_required_before_lock
+    participant_ids: unresolved_exact_five_required_before_lock
+    beta_variant: unresolved_glmsingle_single_trial_representation_required_before_lock
+    native_space: required
+    session_run_trial_image_and_repetition_joins: unresolved_required_before_lock
+    whole_visual_cortex_mask_ids: unresolved_required_before_lock
+    v1_v2_v3_v4_hvc_crosswalk: unresolved_required_before_lock_or_subarea_reports_not_evaluable
+    planning_counts:
+      participants: 5
+      subject_unique_regular_per_participant: 4712
+      regular_shared_total: 1121
+      tau_train_regular_shared: 897
+      tau_test_regular_shared: 224
+      ood_shared_blocked: 371
+    count_status: planning_only_until_authenticated
+  nsd:
+    status: unprovisioned_unqualified_optional
+    planned_participants: 4
+    exact_release_participant_ids_permissions_and_roles: unresolved_required_for_nsd_directions
+  things:
+    status: unprovisioned_unqualified_optional
+    planned_participants: 3
+    exact_release_participant_ids_permissions_and_roles: unresolved_required_for_things_directions
+
+directed_laion_pair_table:
+  source_definition: participant_providing_converter_input_activity
+  target_definition: participant_whose_native_voxel_space_and_frozen_decoder_define_output
+  construction: ordered_cartesian_product_of_five_participants_excluding_diagonal
+  expected_pair_count: 20
+  all_pairs_required: true
+  reverse_direction_distinct: true
+  pair_id_format: unresolved_deterministic_source_to_target_id_required_before_lock
+  target_decoder_is_shared_across_four_incoming_pairs: true
+  source_training_and_test_responses_are_shared_across_four_outgoing_pairs: true
+  pair_missingness_rule: unresolved_required_before_lock
+  outcome_dependent_pair_exclusion: forbidden
+
+stimulus_role_table:
+  target_decoder_train:
+    rows: target_subject_unique_regular
+    planning_images: 4712
+    participant: target
+    may_use_source_responses: false
+    may_use_tau_or_ood_rows: false
+  within_source_decoder_train:
+    rows: source_subject_unique_regular
+    planning_images: 4712
+    participant: source
+    may_use_target_responses: false
+    may_use_tau_or_ood_rows: false
+  content_converter_train:
+    rows: source_subject_unique_regular
+    planning_images: 4712
+    neural_input: source_responses
+    feature_target: true_vgg19_features_of_source_stimuli
+    target_response: absent_and_forbidden
+    may_use_tau_or_ood_rows: false
+  brain_loss_train:
+    rows: tau_train_regular_shared
+    planning_images: 897
+    neural_inputs: paired_source_and_target_responses
+    may_use_tau_test_or_ood_rows: false
+  common_method_test:
+    rows: tau_test_regular_shared
+    planning_images: 224
+    fitting_tuning_early_stopping_or_selection: forbidden
+  full_shared_no_shared_evaluation:
+    rows: all_1121_regular_shared
+    role: descriptive_content_and_within_generalization_only
+    brain_loss_score_allowed: false
+  ood:
+    rows: all_371_shared_ood
+    role: none
+    access: forbidden
+
+overlap_and_leakage_gates:
+  exact_image_id_requirements:
+    source_unique_vs_target_unique: zero
+    each_unique_training_set_vs_tau_test: zero
+    tau_train_vs_tau_test: zero
+    any_allowed_role_vs_ood: zero
+  repetition_grouping: every_presentation_of_an_image_stays_with_its_image_role_and_fold
+  near_duplicate_detector_revision_threshold_and_action: unresolved_required_before_lock_or_explicit_no_screen_with_limitation
+  near_duplicate_decision_uses_neural_values: false
+  exact_overlap_failure: stop_affected_pair_or_module_before_fit
+  evaluation_outcome_based_exclusion: forbidden
+
+response_preprocessing:
+  common:
+    native_participant_space: true
+    finite_missingness_and_zero_variance_actions: unresolved_required_before_lock
+    repetition_aggregation_order: unresolved_required_before_lock
+    ood_rows_in_any_response_derived_transform: forbidden
+  target_decoder_and_within_decoder:
+    response_centering_scaling_and_voxel_selection: fit_on_respective_subject_unique_training_rows_only
+    apply_to_tau_test_unchanged: true
+  content_converter:
+    source_response_transform: fit_on_source_subject_unique_training_rows_only
+    target_output_scale_definition: authenticate_against_frozen_target_decoder_training_scale
+    apply_to_tau_test_unchanged: true
+  brain_loss:
+    source_and_target_response_transforms: fit_on_tau_train_only
+    apply_to_tau_test_unchanged: true
+  provider_or_session_transductive_normalization:
+    status: unresolved
+    formula_stimulus_universe_and_timing: unresolved_required_before_lock
+    ood_in_reference: forbidden
+    action_if_it_uses_tau_test: disclose_as_fixed_response_only_exception_and_calibrate_or_mark_affected_endpoint_not_evaluable
+  test_response_repetition_average:
+    allowed: true
+    rule: aggregate_only_after_split_assignment_using_locked_repetitions
+  test_outcome_based_reliability_or_voxel_filter: forbidden_for_decoding_and_reconstruction
+
+roi_contract:
+  converter_and_decoder_primary_input: whole_visual_cortex_native_space
+  subarea_reports: [v1, v2, v3, v4, hvc]
+  subarea_role: secondary_unless_source_compatible_crosswalk_is_locked
+  mask_identity_and_combination_rule: unresolved_required_before_lock
+  voxel_order_and_duplicate_action: unresolved_required_before_lock
+  mask_or_voxel_selection_from_tau_test_or_ood: forbidden
+  anatomical_or_functional_equivalence_across_datasets: not_assumed
+
+vgg19_feature_contract:
+  role: content_loss_target_and_feature_decoder_target
+  implementation: unresolved_source_compatible_caffe_or_bit_exact_equivalent_required_before_lock
+  checkpoint: unresolved_required_before_lock
+  input_resize_crop_color_order_pixel_scale_and_mean: unresolved_required_before_lock
+  activation_timing: pre_rectification
+  planned_layers:
+    - conv1_1
+    - conv1_2
+    - conv2_1
+    - conv2_2
+    - conv3_1
+    - conv3_2
+    - conv3_3
+    - conv3_4
+    - conv4_1
+    - conv4_2
+    - conv4_3
+    - conv4_4
+    - conv5_1
+    - conv5_2
+    - conv5_3
+    - conv5_4
+    - fc6
+    - fc7
+    - fc8
+  exact_layer_aliases_shapes_flattening_and_normalization: unresolved_required_before_lock
+  feature_manifest_required_fields: [image_id, role, valid_mask, dtype, shape, layer, checkpoint, preprocessing]
+  evaluation_true_features_used_for_model_selection_or_reconstruction_optimization: forbidden
+
+feature_decoder_contract:
+  estimator: ridge_regression
+  planned_penalty: 100
+  penalty_source_code_confirmation: unresolved_required_before_lock
+  planned_voxel_selection:
+    count_per_feature_unit: 500
+    ranking: highest_absolute_pearson_correlation_between_training_response_and_training_feature
+    ties_and_fewer_than_500_action: unresolved_required_before_lock
+  response_and_feature_normalization_axes: unresolved_authenticate_from_source_code_before_lock
+  intercept_and_coefficient_convention: unresolved_required_before_lock
+  fitted_objects:
+    target_decoder: one_per_target_reused_for_four_incoming_pairs
+    within_source_decoder: one_per_source
+  target_decoder_freeze_precedes_content_converter_fit: true
+  hyperparameter_or_voxel_selection_using_tau_test: forbidden
+
+content_converter_contract:
+  estimator: source_paper_nonlinear_mlp
+  mapping: source_native_visual_cortex_to_target_native_visual_cortex
+  planned_architecture:
+    hidden_layers: 2
+    hidden_width_rule: half_input_width_subject_to_source_code_confirmation
+    normalization: instance_normalization
+    paper_activation: relu
+    tagged_v1_activation: leaky_relu_0_2
+    selected_activation: unresolved_outcome_blind_required_before_lock
+  content_loss:
+    decoded_feature: frozen_target_decoder_of_converted_source_response
+    target_feature: true_vgg19_feature_of_source_training_image
+    paper_layer_weight_description: inverse_squared_norm_of_true_feature
+    tagged_v1_weighting: batch_and_feature_block_normalized_inverse_squared_norm
+    exact_weighting_layer_aggregation_and_numerical_stability: unresolved_outcome_blind_required_before_lock
+  planned_training:
+    iterations: 1024
+    convolutional_sampling: one_random_feature_map_per_convolutional_layer_per_iteration
+    fully_connected_sampling: all_units_each_iteration
+    optimizer_learning_rate_batching_initialization_and_seed_list: unresolved_required_before_lock
+    checkpoint_and_failure_rule: unresolved_required_before_lock
+  validation_or_early_stopping_if_any: source_training_rows_only_and_resolved_before_lock
+  target_neural_response_to_source_training_stimulus: forbidden
+  target_decoder_parameter_update_during_converter_fit: forbidden
+  outcome_selected_architecture_restart_or_checkpoint: forbidden
+
+brain_loss_contract:
+  estimator: regularized_linear_regression
+  mapping: source_native_visual_cortex_to_target_native_visual_cortex
+  fit_rows: tau_train_only
+  paired_response_requirement: true
+  regularization_value_selection_and_intercept: unresolved_authenticate_source_method_before_lock
+  all_transforms_and_voxel_rules_fit_on_tau_train_only: true
+  evaluation_rows: tau_test_only
+  source_target_repetition_pairing_or_image_average_rule: unresolved_required_before_lock
+  reuse_tau_test_for_fit_tuning_or_refit: forbidden
+  role_in_no_shared_claim: none
+  optional_sample_matched_content_comparator:
+    fit_rows: source_side_of_tau_train_only
+    target_responses_used: false
+    same_image_and_sample_count_as_brain_loss: true
+    role: source_fidelity_method_comparison_not_no_shared_evidence
+  optional_source_unique_sample_count_control:
+    fit_rows: outcome_blind_fixed_897_image_subset_of_source_unique_training_role
+    target_responses_used: false
+    role: sample_count_sensitivity_only
+    may_replace_primary_4712_image_content_model: false
+
+brain_space_conversion_diagnostic:
+  role: secondary_support_for_target_space_interpretation
+  support: tau_test
+  metrics:
+    pattern: pearson_correlation_across_target_voxels_per_image_then_locked_average
+    profile: pearson_correlation_across_test_images_per_target_voxel_then_locked_average
+  target_response_required: true
+  raw_all_eligible_voxel_result: required
+  source_style_noise_ceiling_corrected_result:
+    role: secondary
+    repeated_response_estimator_random_pair_threshold_and_division_rule: unresolved_authenticate_before_lock
+    evaluation_selected_voxel_filter_for_other_modules: forbidden
+  cannot_by_itself_establish_target_brain_manifold_identity: true
+
+reconstruction_contract:
+  source_code_asset: unresolved_required_before_lock
+  paper_decoded_vgg19_layer_count: 8
+  tagged_v1_config_layer_count: 19
+  decoded_vgg19_layer_subset: unresolved_outcome_blind_required_before_lock
+  generator_checkpoint_and_preprocessing: unresolved_required_before_lock
+  dists_implementation_weights_and_coefficients: unresolved_required_before_lock
+  planned_optimizer: stochastic_gradient_descent_with_momentum
+  planned_iterations: 200
+  learning_schedule_initial_latent_image_range_and_seed_rule: unresolved_required_before_lock
+  optimization_target: decoded_features_only
+  true_tau_test_image_or_true_tau_test_features_in_optimization: forbidden
+  failed_or_nonfinite_reconstruction_action: unresolved_required_before_lock
+  fixed_display_manifest:
+    image_ids_pair_ids_method_order_and_layout: unresolved_outcome_blind_required_before_first_reconstruction_inspection
+    post_result_example_selection: forbidden
+    complete_failure_reporting: required
+
+identification_contract:
+  pixel_endpoint: included_source_style
+  alexnet:
+    implementation_checkpoint_and_preprocessing: unresolved_source_compatible_required_before_lock
+    planned_layers: [conv1, conv2, conv3, conv4, conv5, fc6, fc7, fc8]
+    exact_layer_aliases_shapes_flattening_and_normalization: unresolved_required_before_lock
+  similarity: pearson_correlation_between_reconstruction_and_candidate_feature_vectors
+  candidate_universe: every_other_eligible_image_in_same_locked_test_support
+  true_candidate: stimulus_that_generated_source_response
+  pairwise_rule: correct_when_true_similarity_is_greater_than_false_similarity
+  tie_action: unresolved_required_before_lock
+  per_image_score: fraction_correct_across_all_false_candidates
+  dyad_score: locked_mean_across_images
+  chance_level: 0.5
+  distractor_comparisons_as_independent_observations: forbidden
+  method_comparisons_require_identical_candidates_images_and_preprocessing: true
+
+finding_a_feature_decoding:
+  type: quantitative
+  required_methods:
+    within_source: within_source_decoder_applied_to_source_tau_test_responses
+    content_loss: target_decoder_applied_to_content_converted_source_tau_test_responses
+    brain_loss: target_decoder_applied_to_brain_loss_converted_source_tau_test_responses
+  common_support: tau_test
+  pattern_correlation:
+    unit: image
+    axes: predicted_vs_true_feature_units_within_layer
+    dyad_summary: unresolved_mean_and_fisher_transform_rule_required_before_lock
+  profile_correlation:
+    unit: feature_unit
+    axes: predicted_vs_true_values_across_tau_test_images
+    dyad_summary: unresolved_mean_and_fisher_transform_rule_required_before_lock
+  reporting: every_locked_vgg19_layer_and_locked_primary_cross_layer_summary
+  primary_directional_contrast: content_loss_minus_brain_loss_positive
+  within_comparability: governed_by_global_comparability_contract
+  full_1121_content_and_within_extension:
+    role: descriptive_secondary
+    may_include_brain_loss: false
+
+finding_b_natural_reconstruction:
+  type: qualitative
+  methods: [within_source, content_loss, brain_loss]
+  support: tau_test_or_smaller_outcome_blind_compute_subset_locked_before_reconstruction
+  procedure: reconstruction_contract
+  required_output: complete_manifest_plus_fixed_display
+  allowed_dispositions: [completed_descriptive, not_evaluable]
+  quantitative_replication_or_comparability_label: forbidden
+  cannot_be_rescued_or_adjudicated_by_finding_c: true
+
+finding_c_natural_identification:
+  type: quantitative
+  input: finding_b_reconstructions
+  procedure: identification_contract
+  methods: [within_source, content_loss, brain_loss]
+  common_support: identical_locked_finding_b_images
+  reporting: pixel_plus_each_locked_alexnet_layer_plus_locked_primary_summary
+  primary_directional_contrast: content_loss_minus_brain_loss_positive
+  within_comparability: governed_by_global_comparability_contract
+  qualitative_example_quality_as_evidence: forbidden
+
+inter_site_contract:
+  module_state: unresolved_contingent
+  within_laion_completion_depends_on_module: false
+  participant_plan: {laion: 5, nsd: 4, things: 3}
+  ordered_pair_blocks:
+    laion_to_nsd: 20
+    nsd_to_laion: 20
+    laion_to_things: 15
+    things_to_laion: 15
+  total_if_fully_qualified: 70
+  excluded_blocks: [nsd_to_things, things_to_nsd]
+  each_direction:
+    target_decoder_fit: target_participant_native_training_images_only
+    content_converter_fit: source_participant_native_training_images_only
+    required_training_overlap: zero_exact_image_id_overlap
+    evaluation: source_dataset_native_held_out_test_role
+    within_reference: source_native_decoder_on_same_source_test_support
+    identification_candidates: same_source_dataset_test_universe
+    target_test_response_required: false
+    target_brain_conversion_metric_without_target_response: forbidden
+  required_qualification:
+    - exact_releases_and_participant_ids
+    - licenses_dua_and_risk_eligibility
+    - native_preprocessing_masks_voxel_order_and_training_test_roles
+    - exact_target_decoder_assets_or_retraining_contract
+    - vgg19_alexnet_generator_and_dists_compatibility
+    - cross_dataset_exact_and_near_duplicate_audit
+    - direction_specific_missingness_and_inference
+  laion_nsd_overlap:
+    known_planning_fact: 240_nsd_origin_images_in_laion_regular_shared_pool
+    required_action: resolve_exact_role_overlap_and_lock_exclusion_or_sensitivity_before_module_runs
+    outcome_informed_action: forbidden
+  no_shared_brain_loss_comparator_fabricated_by_semantic_matching: true
+  direction_and_dataset_stratified_reporting: required
+  pooled_70_pair_success_claim: forbidden
+  unavailable_data_action: affected_direction_or_dataset_not_evaluable
+
+finding_d_inter_site_reconstruction:
+  type: qualitative
+  module: inter_site_contract
+  procedure: reconstruction_contract
+  display_ids_source_target_directions_and_layout: unresolved_outcome_blind_required_before_inspection
+  required_output: complete_manifest_plus_fixed_display_by_direction
+  allowed_dispositions: [completed_descriptive, not_evaluable]
+  quantitative_replication_or_comparability_label: forbidden
+  cannot_be_rescued_or_adjudicated_by_finding_e: true
+
+finding_e_inter_site_identification:
+  type: quantitative
+  module: inter_site_contract
+  input: finding_d_reconstructions
+  procedure: identification_contract
+  reporting_strata: [laion_to_nsd, nsd_to_laion, laion_to_things, things_to_laion]
+  within_comparability: governed_by_global_comparability_contract
+  cross_direction_pooling_for_primary_claim: forbidden
+
+comparability_contract:
+  applies_to:
+    - finding_a_content_loss_vs_within_source
+    - finding_c_content_loss_vs_within_source
+    - finding_e_inter_site_vs_matched_within_source
+  framework: unresolved_choose_non_inferiority_or_equivalence_before_lock
+  effect_scale: unresolved_endpoint_specific_required_before_lock
+  margin: unresolved_endpoint_specific_required_before_lock
+  margin_rationale: unresolved_external_outcome_independent_scientific_justification_required_before_lock
+  confidence_level_and_sidedness: unresolved_required_before_lock
+  source_target_layer_and_direction_aggregation: unresolved_required_before_lock
+  multiplicity_family: unresolved_required_before_lock
+  success_rule: unresolved_bound_relative_to_locked_margin_required_before_lock
+  confidence_interval_overlap_rule: forbidden
+  nonsignificant_difference_rule: forbidden
+  margin_selected_from_ep21_scores: forbidden
+  unresolved_margin_action: comparability_subclaim_not_evaluable_while_reporting_absolute_estimates_and_directional_contrasts
+
+primary_inference_contract:
+  biological_unit: source_participant
+  pair_metric_role: repeated_target_measure
+  primary_source_aggregation:
+    within_laion: equal_weight_mean_across_four_outgoing_targets
+    inter_site: direction_specific_equal_weight_mean_across_eligible_targets_within_target_dataset
+  episode_summary: equal_weight_mean_across_five_laion_source_participants_when_applicable
+  within_source_baseline:
+    computed_once_per_source_and_endpoint: true
+    comparison: outgoing_target_average_minus_single_within_source_value
+    duplicated_as_independent_pair_observations: forbidden
+  target_incoming_aggregation: secondary_sensitivity
+  all_source_level_effects_intervals_and_missingness: report
+  image_resampling:
+    unit: image_identity_carrying_all_repetitions
+    synchronized_across_methods: true
+    synchronized_across_outgoing_targets_on_common_support: true
+    complete_endpoint_and_source_aggregation_recomputed: true
+    resample_count_interval_type_seed_and_degenerate_action: unresolved_required_before_lock
+  image_permutation_if_used:
+    correspondence_and_null_center: unresolved_endpoint_specific_required_before_lock
+    same_permutation_across_methods_and_outgoing_targets: true
+    repetitions_and_test_fold_preserved: true
+    count_sidedness_plus_one_rule_and_seed: unresolved_required_before_lock
+    synthetic_type_i_calibration: required
+  multiple_testing:
+    method_alpha_and_family_membership: unresolved_required_before_lock
+  independent_sample_claim_for_twenty_dyads: forbidden
+  independent_sample_claim_for_images_voxels_features_or_distractors: forbidden
+  participant_population_generalization: forbidden
+
+source_style_dyadic_bootstrap:
+  role: secondary_descriptive_reproduction_of_source_group_summary
+  resamples: 1000
+  source_id_resampling: separate
+  target_id_resampling: separate
+  exclude_source_equals_target: true
+  requested_output_size_weighting_duplicate_and_empty_draw_rules: unresolved_authenticate_from_source_code_before_lock
+  preserve_endpoint_layer_method_and_direction_strata: true
+  does_not_replace_source_participant_primary_aggregation: true
+  does_not_make_dyads_independent: true
+  population_inference: forbidden
+
+qualitative_finding_rules:
+  findings: [finding_b_natural_reconstruction, finding_d_inter_site_reconstruction]
+  example_ids_and_layout_locked_before_outputs_are_inspected: true
+  report_all_requested_failures_and_missing_outputs: true
+  visual_similarity_as_statistical_evidence: forbidden
+  success_or_failure_inherited_from_identification: forbidden
+
+artificial_and_ood_disposition:
+  source_paper_artificial_shape_color_analogue: not_evaluable_under_current_contract
+  laion_candidate_pool: 371_shared_ood_images
+  raw_image_access: forbidden
+  feature_extraction: forbidden
+  neural_access: forbidden
+  prediction_reconstruction_scoring_or_summary: forbidden
+  published_category_level_description: allowed
+  regular_result_extrapolation_to_ood: forbidden
+  future_change_requires: explicit_scientist_decision_new_role_isolated_handoff_and_pre_access_contract_replacement
+
+reporting_contract:
+  findings_a_to_e_kept_separate: true
+  finding_a_c_e_outputs: quantitative_result_or_not_evaluable
+  finding_b_d_outputs: qualitative_complete_record_or_not_evaluable
+  single_episode_wide_pass_fail: forbidden
+  required_tables:
+    - exact_twenty_directed_laion_pair_table
+    - training_and_test_role_table
+    - per_dyad_scores
+    - five_source_participant_aggregates
+    - target_incoming_sensitivity
+    - source_style_dyadic_bootstrap_secondary
+    - layerwise_and_methodwise_results
+    - comparability_margin_identity_or_not_evaluable_reason
+    - all_deviations_failures_and_missingness
+    - inter_site_direction_strata_if_qualified
+  required_disclosures:
+    - adapted_not_exact_reproduction
+    - regular_evidence_is_retrospective_and_correlated_with_ep04
+    - brain_loss_uses_shared_training_stimuli
+    - all_371_ood_payloads_were_blocked
+    - inter_site_site_scanner_stimulus_task_and_preprocessing_confounding
+
+forbidden_actions:
+  - neural_scoring_before_valid_lock_and_later_execution_instruction
+  - inspect_or_derive_any_ood_payload
+  - use_ep04_outputs_or_legacy_scratch
+  - allow_shared_stimuli_between_primary_source_converter_and_target_decoder_training
+  - use_target_neural_responses_in_primary_content_loss_training
+  - fit_or_tune_brain_loss_on_tau_test
+  - score_brain_loss_on_its_tau_train_rows_as_held_out_evidence
+  - select_examples_layers_rois_pairs_participants_seeds_or_checkpoints_from_results
+  - replace_source_models_or_reconstruction_assets_after_scores
+  - silently_drop_failed_or_unfavorable_results
+  - treat_twenty_dyads_or_lower_level_units_as_independent_participants
+  - claim_comparability_without_a_locked_margin
+  - assign_quantitative_success_to_findings_b_or_d
+  - pool_inter_site_directions_as_if_they_were_one_site_independent_sample
+  - use_ep21_results_for_ep04_selection_confirmation_or_audit
+
+claim_limits:
+  strongest_positive_claim: adapted_retrospective_transfer_of_prespecified_wang_patterns_to_these_five_laion_participants_and_if_qualified_the_declared_laion_nsd_things_directions
+  excluded_claims:
+    - exact_quantitative_reproduction
+    - fresh_or_independent_confirmation
+    - population_generalization
+    - comparability_without_prospective_margin
+    - artificial_image_or_ood_generalization
+    - universal_neural_code_or_cortical_identity
+    - decoder_independent_target_brain_manifold_identity
+    - general_scanner_or_site_invariance
+    - brain_to_brain_communication
+    - ep04_confirmation_or_audit
+
+current_status:
+  stage: contract_authoring
+  empirical_payload_provisioned: false
+  source_assets_qualified: false
+  protocol_lock_exists: false
+  neural_access_or_execution_authorized: false

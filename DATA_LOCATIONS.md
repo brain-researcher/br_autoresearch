@@ -123,8 +123,8 @@ flattening its subtrees.
 | --- | --- | --- | ---: | ---: |
 | `asset_ep03_neuroeffect_spatial_sources` | EP03 | `neuroeffect_spatial_sources_20260917T200750Z` | 44.29 GB | `2700` |
 | `asset_ep03_neuroeffect_promotion_control` | EP03 | `neuroeffect_spatial_promotion_control` | 8.9 KB | `2700` |
-| `asset_ep04_laion_mixed_role` | EP04 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
-| `asset_ep04_laion_raw_stimuli_dua` | EP04 | `laion_fmri_raw_stimuli_dua_20260922` | 3.42 GB | `0700` |
+| `asset_ep04_laion_mixed_role` | EP04, EP21 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
+| `asset_ep04_laion_raw_stimuli_dua` | EP04; EP21 inventory-only pending DUA | `laion_fmri_raw_stimuli_dua_20260922` | 3.42 GB | `0700` |
 | `asset_ep09_ep10_ep11_seu_a1876` | EP09–EP11 | `seu_a1876_zenodo_13944322` | 3.41 GB | `2500` |
 | `asset_ep10_seu_optional_bouton` | EP10 | `seu_a1876_optional_bouton_zenodo_13944322` | 1.42 GB | `2550` |
 | `asset_ep09_ep10_ep11_allen_ccfv3` | EP09–EP11 | `allen_ccfv3_25um_2017_20260922` | 37.69 MB | `2700` |
@@ -139,6 +139,15 @@ flattening its subtrees.
 | `asset_ep19_ajile12` | EP19 | `ajile12_dandi_000055_0.220127.0436` | 845.87 GB | `2700` |
 | `asset_ep20_neurocam_documentary` | EP20 | `neurocam_documentary_20260922` | 3.00 MB | `2700` |
 | `asset_steward_logs` | support | `logs` | 0.10 MB | `2700` |
+
+The EP04 and EP21 LAION entries identify the same upstream bytes, not copies or
+independent evidence. EP21 still requires role-filtered handoffs separating
+regular subject-unique fitting rows, regular shared evaluation/comparator
+rows, and non-neural image features. The 371 OOD payload remains closed to
+EP21, including raw images, derived features, neural outcomes,
+reconstructions, and summaries. The NSD and THINGS fMRI sources proposed for
+the inter-site module are not present as EP21 assets in this inventory. The
+EP04 legacy Scratch tree remains EP04-only.
 
 AJILE12 dominates this tree. Its existing `ACQUISITION_COMPLETE_UTC`,
 `VERIFIED_COUNT_BYTES`, and `ASSET_MANIFEST.json` records cover 55 assets and

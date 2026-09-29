@@ -1,5 +1,5 @@
 schema_version: autoresearch.split_exposure_ledger.v1
-observed_on: "2026-09-22"
+observed_on: "2026-09-28"
 
 asset_families:
   - asset_id: narps_ds001734
@@ -44,9 +44,11 @@ asset_families:
   - asset_id: laion_fmri_scene_corpus
     episodes:
       - ep04
-    exposure: episode_outcomes_open
-    confirmation_status: governed_by_active_canonical_loop
-    rule: do not reuse or move while ep04 is active
+      - ep21
+    exposure: subject_unique_designated_development_exposed_1121_regular_shared_outcomes_open_371_shared_ood_outcomes_conditionally_unopened_pending_ep04_exposure_review
+    confirmation_status: ep04_and_ep21_are_correlated_not_independent_ep21_is_fixed_retrospective_wang_neural_code_conversion_reproduction
+    shared_requirement: redacted_ep21_structural_manifest_plus_non_neural_regular_feature_handoff_plus_role_filtered_regular_neural_scoring_handoff_with_no_371_ood_raw_images_features_responses_predictions_scores_or_comparison_summaries
+    rule: after_source_qualification_dua_clearance_and_three_role_filtered_regular_only_handoffs_ep21_may_fit_target_decoders_and_content_converters_on_disjoint_subject_unique_images_evaluate_frozen_no_shared_paths_descriptively_on_previously_opened_1121_regular_shared_images_fit_brain_loss_only_on_tau_train_and_compare_all_three_methods_only_on_disjoint_tau_test_but_must_not_supply_ep04_selection_or_audit_and_must_not_access_ep04_live_outputs_legacy_scratch_or_371_ood_raw_images_features_responses_or_derivatives
 
   - asset_id: natural_scenes_dataset_core_and_synthetic
     episodes: []

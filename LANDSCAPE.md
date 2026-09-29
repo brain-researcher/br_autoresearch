@@ -43,6 +43,19 @@ development, 120 for support/calibration, and 120 for a direct,
 no-refit audit in the same four participants. This is held-out-stimulus
 replication, not cross-dataset, new-participant, or population evidence.
 
+### Fixed reproduction of neural code conversion without shared stimuli
+
+Episode 21 tests whether Wang et al.'s content-loss neural code converter can
+preserve visual information across LAION-fMRI participants when the source
+converter and target decoder are trained on disjoint subject-unique images. A
+separate held-out shared-image branch compares content loss with a brain-loss
+converter, and a provision-dependent extension targets LAION-to/from-NSD and
+THINGS conversion. The 1,121 regular shared-image outcomes were already opened
+in the EP04 lineage, so EP21 is retrospective and correlated with EP04 rather
+than independent confirmation. The proposed artificial-image analogue cannot
+run under the current contract: all 371 OOD images and derivatives remain
+closed to EP21 and conditionally reserved for EP04.
+
 ### Semantics and cross-dataset brain-map geometry
 
 The new Episode 03 asks whether methods-derived condition semantics predict

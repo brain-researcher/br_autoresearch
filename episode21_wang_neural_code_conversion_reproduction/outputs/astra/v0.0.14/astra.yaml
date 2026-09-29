@@ -1,0 +1,573 @@
+version: "0.0.14"
+id: episode21_wang_neural_code_conversion_reproduction
+name: EP21 — Fixed Wang et al. neural-code-conversion reproduction
+description: >-
+  Fixed, adapted reproduction of inter-individual conversion in five
+  LAION-fMRI participants, with a separately provisioned LAION-to-NSD/THINGS
+  inter-site branch. The program preserves no-shared-stimulus training roles,
+  excludes the EP04-reserved OOD payload, and gives no access or execution
+  authorization. Runtime state belongs only in outputs/experiment_log.md.
+tags: [brain_researcher, autoresearch, fmri, neural_code_conversion, reproduction]
+
+inputs:
+  - id: goal
+    type: data
+    source: GOAL.md
+    description: Scientific question, evidence roles, findings, and claim limits.
+  - id: datasets
+    type: data
+    source: DATASETS.md
+    description: LAION-fMRI and contingent external-site dataset contract.
+  - id: search_policy
+    type: data
+    source: SEARCH_POLICY.yaml
+    description: Fixed execution, inference, adjudication, and stopping policy.
+  - id: protocol_table
+    type: data
+    source: PROTOCOL_TABLE.yaml
+    description: Outcome-independent fields that must be resolved before scoring.
+  - id: input_contract
+    type: data
+    source: inputs/README.md
+    description: Stable input interfaces and stage-specific access restrictions.
+  - id: conversion_structural_manifest
+    type: data
+    source: inputs/conversion_structural_manifest.json
+    description: >-
+      Redacted structural metadata for release, roles, splits, overlaps, masks,
+      shapes, missingness, exposure, and branch eligibility; no neural values.
+  - id: upstream_pipeline_asset_inventory
+    type: data
+    source: inputs/upstream_pipeline_asset_inventory.json
+    description: >-
+      Outcome-blind inventory of source revision, VGG19, AlexNet, decoders,
+      converters, generator, DISTS, and runtime assets or verified absence.
+  - id: laion_regular_feature_handoff
+    type: data
+    source: inputs/laion_regular_feature_handoff/
+    description: Authorized regular-only LAION stimuli or aligned feature payload.
+  - id: laion_regular_scoring_handoff
+    type: data
+    source: inputs/laion_regular_scoring_handoff/
+    description: Post-lock regular-only LAION neural data and native-space masks.
+  - id: external_site_feature_handoff
+    type: data
+    source: inputs/external_site_feature_handoff/
+    description: >-
+      Provisioning-contingent, non-neural NSD/THINGS stimuli or aligned features.
+  - id: external_site_scoring_handoff
+    type: data
+    source: inputs/external_site_scoring_handoff/
+    description: >-
+      Provisioning-contingent, post-lock NSD/THINGS neural data and native masks.
+
+outputs:
+  - id: laion_report
+    from: laion_reproduction_report.laion_report
+  - id: finding_d_report
+    from: finding_d_intersite_reconstruction.finding_d_report
+  - id: finding_e_report
+    from: finding_e_intersite_identification.finding_e_report
+
+analyses:
+  source_qualification:
+    name: Qualify sources, roles, and released pipeline assets
+    description: >-
+      Without mounting feature or scoring handoffs, verify data eligibility,
+      image-role separation, planned pair tables, OOD exclusion, prior exposure,
+      and asset provenance. Qualification must authenticate the V1.0.0 tag at
+      commit edbff02edd6a08d3c6c829af45a957fd14bdc460 and the corresponding
+      Zenodo identity (10.5281/zenodo.14910040), then record rather than resolve
+      as method choices: manuscript ReLU versus tagged LeakyReLU(0.2), the
+      manuscript content-loss weighting versus tagged batch/block normalized
+      inverse-squared-norm weighting, the manuscript eight-layer reconstruction
+      description versus the tagged nineteen-layer configuration, and the
+      completeness and Deeprecon-specific assumptions of the released
+      inter-site assets.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: protocol_table, from: ../protocol_table}
+      - {id: input_contract, from: ../input_contract}
+      - {id: conversion_structural_manifest, from: ../conversion_structural_manifest}
+      - {id: upstream_pipeline_asset_inventory, from: ../upstream_pipeline_asset_inventory}
+    outputs:
+      - id: qualification_report
+        type: report
+        format: json
+        description: >-
+          Outcome-blind provenance, discrepancy register, structural QC, access
+          decisions, exposure status, and verified-present/absent/unknown assets.
+        inputs:
+          - goal
+          - datasets
+          - protocol_table
+          - input_contract
+          - conversion_structural_manifest
+          - upstream_pipeline_asset_inventory
+      - id: laion_branch_qualification
+        type: report
+        format: json
+        description: >-
+          LAION eligibility, exact roles and pair support, or a fail-closed
+          disposition independent of external-site availability.
+        inputs:
+          - qualification_report
+      - id: external_branch_qualification
+        type: report
+        format: json
+        description: >-
+          Separate NSD/THINGS dataset-direction and asset availability record;
+          absence does not invalidate the LAION qualification.
+        inputs:
+          - qualification_report
+
+  pipeline_conformance:
+    name: Verify the pipeline and emit the protocol lock
+    description: >-
+      Resolve every shared field and each runnable branch from outcome-blind
+      evidence, test implementations on synthetic or permuted fixtures, and
+      lock unavailable modules or subclaims as not_evaluable. Qualification
+      discrepancies remain explicit provenance questions: no implementation is
+      chosen merely because it appears in the paper or repository.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: protocol_table, from: ../protocol_table}
+      - id: qualification_report
+        from: ../source_qualification.qualification_report
+      - id: laion_branch_qualification
+        from: ../source_qualification.laion_branch_qualification
+      - id: external_branch_qualification
+        from: ../source_qualification.external_branch_qualification
+    outputs:
+      - id: conformance_report
+        type: report
+        format: json
+        description: Synthetic conformance, calibration, and branch dispositions.
+        inputs:
+          - goal
+          - search_policy
+          - protocol_table
+          - qualification_report
+          - laion_branch_qualification
+          - external_branch_qualification
+      - id: protocol_lock
+        type: report
+        format: yaml
+        description: >-
+          Resolved common and branch-specific protocol, including locked
+          not_evaluable units; the lock does not grant empirical access.
+        inputs:
+          - goal
+          - search_policy
+          - protocol_table
+          - qualification_report
+          - laion_branch_qualification
+          - external_branch_qualification
+
+  laion_feature_preparation:
+    name: Prepare regular-only LAION feature inputs
+    description: >-
+      After the protocol lock and separate authorization, bind or extract only
+      the authenticated VGG19 and AlexNet regular-image features, preprocessing,
+      image IDs, valid masks, layers, and reconstruction-asset references. No
+      OOD object may be opened or derived.
+    inputs:
+      - {id: laion_regular_feature_handoff, from: ../laion_regular_feature_handoff}
+      - {id: upstream_pipeline_asset_inventory, from: ../upstream_pipeline_asset_inventory}
+      - id: laion_branch_qualification
+        from: ../source_qualification.laion_branch_qualification
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: laion_feature_manifest
+        type: data
+        format: json
+        description: >-
+          Image-aligned regular-only features, preprocessing identities,
+          coverage, and authenticated reconstruction dependencies.
+        inputs:
+          - laion_regular_feature_handoff
+          - upstream_pipeline_asset_inventory
+          - laion_branch_qualification
+          - protocol_lock
+
+  laion_decoder_training:
+    name: Fit frozen participant-native LAION decoders
+    description: >-
+      Under the protocol lock, fit each participant's VGG19 ridge decoders and
+      training-only 500-voxel selections on that target's authenticated 4,712
+      subject-unique regular images, excluding tau and OOD rows. Freeze each
+      decoder before converter fitting.
+    inputs:
+      - {id: laion_regular_scoring_handoff, from: ../laion_regular_scoring_handoff}
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: laion_decoder_manifest
+        type: data
+        format: json
+        description: >-
+          Frozen decoder identities, training roles, voxel selections, feature
+          layers, fits, exclusions, and failures for all qualified participants.
+        inputs: [laion_regular_scoring_handoff, laion_feature_manifest, protocol_lock]
+
+  interindividual_converter_training:
+    name: Fit all qualified directed LAION converters
+    description: >-
+      Under the protocol lock, fit the nonlinear content-loss converter for
+      every qualified source-to-target pair on the source's disjoint 4,712
+      subject-unique images and fit the linear brain-loss comparator only on
+      authenticated tau-train paired responses. Neither branch may tune on
+      tau test, and missing pairs are handled only by the locked rule.
+    inputs:
+      - {id: laion_regular_scoring_handoff, from: ../laion_regular_scoring_handoff}
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: laion_decoder_manifest
+        from: ../laion_decoder_training.laion_decoder_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: interindividual_converter_manifest
+        type: data
+        format: json
+        description: >-
+          Content-loss and brain-loss fitted-object identities, role receipts,
+          seeds, checkpoints, and complete pair-level failure accounting.
+        inputs:
+          - laion_regular_scoring_handoff
+          - laion_feature_manifest
+          - laion_decoder_manifest
+          - protocol_lock
+
+  finding_a_feature_decoding:
+    name: Test inter-individual VGG19 feature decoding
+    description: >-
+      Score within-source, content-loss, and brain-loss decoding on the common
+      locked tau-test support. Report every locked layer, pattern and profile
+      correlations, dependence-aware aggregation and inference, the directional
+      contrast, and comparability only when a valid margin was locked.
+    inputs:
+      - {id: laion_regular_scoring_handoff, from: ../laion_regular_scoring_handoff}
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: laion_decoder_manifest
+        from: ../laion_decoder_training.laion_decoder_manifest
+      - id: interindividual_converter_manifest
+        from: ../interindividual_converter_training.interindividual_converter_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: finding_a_report
+        type: report
+        format: json
+        description: >-
+          Layer-, image-, participant-, and pair-level estimates, uncertainty,
+          failures, contrasts, subclaim dispositions, and Finding A verdict.
+        inputs:
+          - laion_regular_scoring_handoff
+          - laion_feature_manifest
+          - laion_decoder_manifest
+          - interindividual_converter_manifest
+          - protocol_lock
+      - id: decoded_feature_manifest
+        type: data
+        format: json
+        description: >-
+          Locked tau-test decoded-feature artifacts for the three methods,
+          with IDs, shapes, layers, status, and no true-image optimization input.
+        inputs:
+          - laion_regular_scoring_handoff
+          - laion_feature_manifest
+          - laion_decoder_manifest
+          - interindividual_converter_manifest
+          - protocol_lock
+
+  finding_b_natural_reconstruction:
+    name: Reconstruct LAION natural images from decoded features
+    description: >-
+      Under the protocol lock, reconstruct the fixed outcome-blind image and
+      pair display set from decoded VGG19 features alone using authenticated
+      generator and DISTS assets. Record every attempt and failure; this is a
+      qualitative finding and receives no quantitative success label.
+    inputs:
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: decoded_feature_manifest
+        from: ../finding_a_feature_decoding.decoded_feature_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: finding_b_report
+        type: report
+        format: json
+        description: Fixed display record, deviations, failures, and qualitative disposition.
+        inputs: [laion_feature_manifest, decoded_feature_manifest, protocol_lock]
+      - id: laion_reconstruction_manifest
+        type: data
+        format: json
+        description: >-
+          Complete reconstruction identities, source decoded features, seeds,
+          processing, display membership, and success or failure status.
+        inputs: [laion_feature_manifest, decoded_feature_manifest, protocol_lock]
+
+  finding_c_natural_identification:
+    name: Score LAION natural-image identification
+    description: >-
+      Under the protocol lock, score Finding B reconstructions using pixel and
+      authenticated AlexNet-layer correlations against every other eligible
+      image in the same locked test universe. Aggregate distractors within
+      image and preserve repeated source and target dependence.
+    inputs:
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: laion_reconstruction_manifest
+        from: ../finding_b_natural_reconstruction.laion_reconstruction_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: finding_c_report
+        type: report
+        format: json
+        description: >-
+          Pixel- and layer-specific pairwise identification, uncertainty,
+          contrasts, failures, subclaim dispositions, and Finding C verdict.
+        inputs: [laion_feature_manifest, laion_reconstruction_manifest, protocol_lock]
+
+  artificial_analogue_disposition:
+    name: Record the closed artificial-image analogue
+    description: >-
+      Emit only the locked blocked_by_ep04_reservation or
+      not_evaluable_under_current_contract disposition. This analysis has no
+      OOD input and may not inspect raw images, features, neural values,
+      predictions, scores, EP04 outputs, or legacy Scratch state.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: artificial_analogue_report
+        type: report
+        format: json
+        description: Non-empirical OOD boundary and not-evaluable disposition.
+        inputs: [goal, datasets, protocol_lock]
+
+  external_feature_preparation:
+    name: Prepare the independently qualified external feature branch
+    description: >-
+      Only if the external branch is locked runnable and separately authorized,
+      bind or extract source-compatible NSD/THINGS VGG19 and AlexNet features,
+      held-out candidate universes, and reconstruction dependencies. An absent
+      or invalid handoff stops only the affected dataset or direction.
+    inputs:
+      - {id: external_site_feature_handoff, from: ../external_site_feature_handoff}
+      - {id: upstream_pipeline_asset_inventory, from: ../upstream_pipeline_asset_inventory}
+      - id: external_branch_qualification
+        from: ../source_qualification.external_branch_qualification
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: external_feature_manifest
+        type: data
+        format: json
+        description: >-
+          Direction-aware NSD/THINGS feature, test-universe, preprocessing, and
+          asset coverage, with independent not-evaluable dispositions.
+        inputs:
+          - external_site_feature_handoff
+          - upstream_pipeline_asset_inventory
+          - external_branch_qualification
+          - protocol_lock
+
+  external_decoder_training:
+    name: Fit participant-native NSD and THINGS decoders
+    description: >-
+      Under the protocol lock, fit each qualified external participant's fixed
+      target decoder only on that participant's native training role. Preserve
+      native masks and preprocessing and record failures by dataset and direction.
+    inputs:
+      - {id: external_site_scoring_handoff, from: ../external_site_scoring_handoff}
+      - id: external_feature_manifest
+        from: ../external_feature_preparation.external_feature_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: external_decoder_manifest
+        type: data
+        format: json
+        description: >-
+          Frozen NSD/THINGS decoder identities, training roles, voxel selections,
+          fits, exclusions, and failures for qualified participants.
+        inputs: [external_site_scoring_handoff, external_feature_manifest, protocol_lock]
+
+  intersite_converter_training:
+    name: Fit qualified LAION-to-NSD/THINGS converters
+    description: >-
+      Under the protocol lock, fit content-loss converters for each qualified
+      LAION-to-NSD, NSD-to-LAION, LAION-to-THINGS, and THINGS-to-LAION direction
+      using only the source's native training images and a frozen target decoder.
+      Enforce zero cross-training image overlap and fit no artificial brain-loss
+      comparator. NSD-to-THINGS and THINGS-to-NSD are out of scope.
+    inputs:
+      - {id: laion_regular_scoring_handoff, from: ../laion_regular_scoring_handoff}
+      - {id: external_site_scoring_handoff, from: ../external_site_scoring_handoff}
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: external_feature_manifest
+        from: ../external_feature_preparation.external_feature_manifest
+      - id: laion_decoder_manifest
+        from: ../laion_decoder_training.laion_decoder_manifest
+      - id: external_decoder_manifest
+        from: ../external_decoder_training.external_decoder_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: intersite_converter_manifest
+        type: data
+        format: json
+        description: >-
+          Direction-stratified converter identities, role and overlap receipts,
+          seeds, checkpoints, and complete pair-level failure accounting.
+        inputs:
+          - laion_regular_scoring_handoff
+          - external_site_scoring_handoff
+          - laion_feature_manifest
+          - external_feature_manifest
+          - laion_decoder_manifest
+          - external_decoder_manifest
+          - protocol_lock
+
+  finding_d_intersite_reconstruction:
+    name: Reconstruct natural images across imaging sites
+    description: >-
+      Under the protocol lock, decode and reconstruct the fixed outcome-blind
+      source images for every qualified inter-site direction using the source
+      dataset's held-out test role and the target decoder. Record every attempt
+      and failure; Finding D remains qualitative.
+    inputs:
+      - {id: laion_regular_scoring_handoff, from: ../laion_regular_scoring_handoff}
+      - {id: external_site_scoring_handoff, from: ../external_site_scoring_handoff}
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: external_feature_manifest
+        from: ../external_feature_preparation.external_feature_manifest
+      - id: laion_decoder_manifest
+        from: ../laion_decoder_training.laion_decoder_manifest
+      - id: external_decoder_manifest
+        from: ../external_decoder_training.external_decoder_manifest
+      - id: intersite_converter_manifest
+        from: ../intersite_converter_training.intersite_converter_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: finding_d_report
+        type: report
+        format: json
+        description: >-
+          Fixed direction-stratified display record, deviations, failures, and
+          qualitative Finding D disposition.
+        inputs:
+          - laion_regular_scoring_handoff
+          - external_site_scoring_handoff
+          - laion_feature_manifest
+          - external_feature_manifest
+          - laion_decoder_manifest
+          - external_decoder_manifest
+          - intersite_converter_manifest
+          - protocol_lock
+      - id: external_reconstruction_manifest
+        type: data
+        format: json
+        description: >-
+          Complete inter-site reconstruction identities, directions, decoded
+          feature sources, seeds, displays, and success or failure status.
+        inputs:
+          - laion_regular_scoring_handoff
+          - external_site_scoring_handoff
+          - laion_feature_manifest
+          - external_feature_manifest
+          - laion_decoder_manifest
+          - external_decoder_manifest
+          - intersite_converter_manifest
+          - protocol_lock
+
+  finding_e_intersite_identification:
+    name: Score inter-site natural-image identification
+    description: >-
+      Under the protocol lock, score Finding D reconstructions using the locked
+      pixel and AlexNet pairwise-identification procedure. Report each source
+      dataset, target dataset, direction, participant pair, and layer separately;
+      claim comparability only under a prospectively locked matched-support margin.
+    inputs:
+      - id: laion_feature_manifest
+        from: ../laion_feature_preparation.laion_feature_manifest
+      - id: external_feature_manifest
+        from: ../external_feature_preparation.external_feature_manifest
+      - id: external_reconstruction_manifest
+        from: ../finding_d_intersite_reconstruction.external_reconstruction_manifest
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+    outputs:
+      - id: finding_e_report
+        type: report
+        format: json
+        description: >-
+          Direction- and layer-specific identification, uncertainty, matched
+          references, failures, subclaim dispositions, and Finding E verdict.
+        inputs:
+          - laion_feature_manifest
+          - external_feature_manifest
+          - external_reconstruction_manifest
+          - protocol_lock
+
+  laion_reproduction_report:
+    name: Integrate the primary LAION reproduction and branch dispositions
+    description: >-
+      Integrate qualification, conformance, Findings A-C, and the artificial
+      analogue disposition without a scalar episode-wide pass/fail label. The
+      protocol lock supplies the external branch availability disposition;
+      Findings D-E are separately exported when their independent inputs exist,
+      so absent external handoffs cannot block this complete primary-branch
+      report. This artifact is not an integrated A-E report.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - id: qualification_report
+        from: ../source_qualification.qualification_report
+      - id: conformance_report
+        from: ../pipeline_conformance.conformance_report
+      - id: protocol_lock
+        from: ../pipeline_conformance.protocol_lock
+      - id: finding_a_report
+        from: ../finding_a_feature_decoding.finding_a_report
+      - id: finding_b_report
+        from: ../finding_b_natural_reconstruction.finding_b_report
+      - id: finding_c_report
+        from: ../finding_c_natural_identification.finding_c_report
+      - id: artificial_analogue_report
+        from: ../artificial_analogue_disposition.artificial_analogue_report
+    outputs:
+      - id: laion_report
+        type: report
+        format: md
+        description: >-
+          Bounded primary LAION Findings A-C verdict vector, external availability,
+          artificial-image disposition, deviations, failures, dependencies,
+          and claim limits; no episode-wide scalar label.
+        inputs:
+          - goal
+          - datasets
+          - qualification_report
+          - conformance_report
+          - protocol_lock
+          - finding_a_report
+          - finding_b_report
+          - finding_c_report
+          - artificial_analogue_report
+
+findings: {}

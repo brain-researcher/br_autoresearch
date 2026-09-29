@@ -1,6 +1,6 @@
 schema_version: autoresearch.episode_registry.v3
 registry_schema_ref: EPISODE_REGISTRY.schema.json
-observed_on: "2026-09-24"
+observed_on: "2026-09-28"
 contract_mode: direct_single_current_version
 
 numbering_policy:
@@ -54,6 +54,10 @@ incomplete_draft_records:
       - seven_workspace_projections
 
 shared_evidence_groups:
+  - group_id: laion_fmri_ep04_ep21
+    episode_ids: [ep04, ep21]
+    required_shared_artifact: exposure_split_ledger
+    evidence_independence: correlated_not_independent
   - group_id: lfp_ep05_ep08
     episode_ids: [ep05, ep06, ep07, ep08]
     required_shared_artifact: exposure_split_ledger
@@ -189,3 +193,11 @@ episodes:
     search_policy_ref: episode20_neurocam_prior_guided_codesign/SEARCH_POLICY.yaml
     local_role: current_adaptive_episode
     foundation_primary: null
+  - episode_id: ep21
+    path: episode21_wang_neural_code_conversion_reproduction
+    title: Neural code conversion without shared training stimuli
+    search_policy_ref: episode21_wang_neural_code_conversion_reproduction/SEARCH_POLICY.yaml
+    local_role: current_fixed_reproduction_episode
+    evidence_mode: fixed_adapted_method_reproduction
+    foundation_adjacent: [F20-02]
+    independent_confirmation: false

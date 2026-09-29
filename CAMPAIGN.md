@@ -1,8 +1,8 @@
 # Campaign index
 
-EP01--EP17 except EP18, plus EP19--EP20, are the 19 current formal episode
+EP01--EP21 except EP18 are the 20 current formal episode
 slots. Each slot has one direct `GOAL.md`, `DATASETS.md`, and search policy;
-EP02 uses `SEARCH_POLICY.json` and the other 18 use `SEARCH_POLICY.yaml`. There
+EP02 uses `SEARCH_POLICY.json` and the other 19 use `SEARCH_POLICY.yaml`. There
 is no parallel restart tree or numbered local revision chain. EP18 is the sole
 incomplete local draft, so it is not counted as a formal episode. The two old NARPS
 directories remain immutable prior records rather than current episodes.
@@ -20,15 +20,16 @@ and starts or resumes its work. The task reads the root instructions and that
 episode's Goal, dataset contract, and search policy; it keeps durable artifacts
 under the episode's `outputs/` and transient work under the episode's scratch
 directory. Scientific data qualification, checks required by the executable
-path, adaptive search, falsification, and held-out evaluation belong to the
-episode and are recorded there as the task proceeds.  They follow the minimum-
+path, fixed analysis or adaptive search as applicable, falsification, and
+held-out evaluation belong to the episode and are recorded there as the task
+proceeds. They follow the minimum-
 necessary rule in `AGENTS.md`; extra contract-versioning layers, new hash/schema
 machinery, receipt chains, and repeated preflight runs are not default
 deliverables or startup gates.
 
 ## Current episodes
 
-| EP | Current adaptive question | Valid-trial range | Episode-held-out stage |
+| EP | Current question or fixed reproduction | Valid-trial range | Episode-held-out stage |
 | --- | --- | ---: | --- |
 | EP01 | Which spatial, masking, scaling, estimation, and aggregation mechanism explains S0-to-S8 map change and transports beyond NARPS? | 30--60 | One locked `ds000005` gain/loss transport audit |
 | EP02 | Does physiological mesolimbic dopamine gate the magnitude of policy updates rather than provide a signed teaching/reinforcement signal? | 28--48 | Intended one-shot whole-mouse 6-versus-5 intervention audit; opening is currently prohibited because generic calibration v2 returned `selected_rule: null` and the role handoff is unsealed |
@@ -49,6 +50,7 @@ deliverables or startup gates.
 | EP17 | Which controlled visual-model relations are robust, measurement-sensitive, conditional, or underidentified under isolated beta/support/ceiling contracts? | 32--72 | One concept-disjoint CNeuroMod audit in the same four participants, without audit refitting |
 | EP19 | Does EEG add strict prospective movement-onset information beyond past-only peripheral/context signals, and does model rank survive the horizon change? | 24--40 | One joint WAY series 8+9 and whole-participant self-paced audit opening |
 | EP20 | Which legal NeuroCam-derived hardware/software design robustly improves a paper-derived virtual reference frontier? | 32--64 | One sealed structural/device shift plus post-lock empirical plausibility diagnostic |
+| EP21 | Can content-loss neural code conversion preserve visual information across individuals and imaging sites without shared training stimuli? | Fixed program; no adaptive trials | Retrospective evaluation on regular LAION-fMRI shared images; external-site data are unprovisioned and the 371 OOD payload remains closed and reserved for EP04 |
 
 EP02's exact role-pack materialization passed integrity checks, but its handoff
 state is `materialized_unsealed`: same-UID access to the provider source and
@@ -69,17 +71,27 @@ confirmatory stage; they do not block starting the episode.
 - EP05--EP08 share one LFP exposure/split ledger and are correlated evidence.
 - EP09--EP11 share one SEU-A1876 exposure/split ledger and are correlated
   evidence.
+- EP04 and EP21 share LAION-fMRI evidence and cannot confirm one another.
+  After source qualification, DUA clearance, and role-filtered handoffs, EP21
+  may use regular subject-unique images for decoder and no-shared-stimulus
+  converter fitting. The frozen no-shared paths may use all 1,121 previously
+  opened regular shared images for descriptive evaluation; the brain-loss
+  comparator fits only on the 897-image `tau` train partition, and the common
+  three-method comparison uses only the disjoint 224-image `tau` test partition.
+  The 371 OOD raw images, features, responses, reconstructions, and summaries
+  remain closed to EP21 and conditionally reserved for EP04.
 - EP17 no longer uses NSD and has no shared-data group with EP04. Before its
   sealed CNeuroMod concepts open, EP17 must either reserve concept-disjoint
   roles with EP18 or freeze EP18's complete stimulus roles, feature controls,
   and decision rule; later evidence is otherwise correlated/design-exposed.
-- Every episode requires branch coverage, at least two outcome-adaptive
-  successor cycles, at least two incumbent/challenger decisions, and at least
-  40% post-coverage falsification or ablation work.
-- The incumbent is nonterminal. One configuration is locked before the
-  episode's held-out evaluation, which opens at most once under its policy.
-- Continued search after audit is a new episode with a new audit source, not a
-  numbered local revision of the same run.
+- Every adaptive-search episode requires branch coverage, at least two
+  outcome-adaptive successor cycles, at least two incumbent/challenger
+  decisions, and at least 40% post-coverage falsification or ablation work.
+- In an adaptive-search episode, the incumbent is nonterminal. One
+  configuration is locked before that episode's held-out evaluation, which
+  opens at most once under its policy.
+- Continued adaptive search after audit is a new episode with a new audit
+  source, not a numbered local revision of the same run.
 
 ## Historical NARPS priors and current EP02
 

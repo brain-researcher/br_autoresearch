@@ -773,7 +773,7 @@
     },
     {
       "logical_id": "asset_ep04_laion_mixed_role",
-      "episode_ids": ["EP04"],
+      "episode_ids": ["EP04", "EP21"],
       "relative_path": "laion_fmri_mixed_role_20260922",
       "observed_logical_bytes": 177148547447,
       "mode": "2500",
@@ -781,7 +781,7 @@
     },
     {
       "logical_id": "asset_ep04_laion_raw_stimuli_dua",
-      "episode_ids": ["EP04"],
+      "episode_ids": ["EP04", "EP21"],
       "relative_path": "laion_fmri_raw_stimuli_dua_20260922",
       "observed_logical_bytes": 3424019245,
       "mode": "0700",
@@ -958,7 +958,8 @@
     {"episode_id": "EP17", "location_ids": ["ep17_restricted_raw", "asset_ep17_cneuromod_images"], "state": "restricted_source_and_private_steward_asset_in_place"},
     {"episode_id": "EP18", "location_ids": ["public_shared_root", "asset_ep18_things_images", "asset_ep18_things_metadata", "asset_ep18_thingsplus_cc0", "asset_ep18_thingsplus_control", "scratch_things_eeg1_ingest"], "state": "public_source_and_private_dependencies_in_place_scratch_duplicate_removed"},
     {"episode_id": "EP19", "location_ids": ["asset_ep19_public_sources", "asset_ep19_safe_commit", "asset_ep19_ajile12"], "state": "private_steward_assets_in_place"},
-    {"episode_id": "EP20", "location_ids": ["asset_ep20_neurocam_documentary", "legacy_ep20_reference_bundles"], "state": "private_steward_documentary_asset_in_place_examples_destination_unassigned"}
+    {"episode_id": "EP20", "location_ids": ["asset_ep20_neurocam_documentary", "legacy_ep20_reference_bundles"], "state": "private_steward_documentary_asset_in_place_examples_destination_unassigned"},
+    {"episode_id": "EP21", "location_ids": ["asset_ep04_laion_mixed_role", "asset_ep04_laion_raw_stimuli_dua"], "state": "laion_inventory_only_role_filtered_subject_unique_shared_and_feature_handoffs_absent_external_nsd_things_assets_absent_ood_payload_forbidden", "decision_recorded_on": "2026-09-28", "association_scope": "inventory_reference_for_fixed_neural_code_conversion_contract_only_not_a_new_physical_observation_or_access_authorization"}
   ],
   "same_filesystem_preflight": {
     "oak_device_id": "3626059016",
