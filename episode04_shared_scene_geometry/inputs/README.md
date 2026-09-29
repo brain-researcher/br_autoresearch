@@ -16,13 +16,12 @@ destination. This directory contains none of those bytes.
 The documented candidate sources, planned read-only references, access terms,
 and unresolved source-qualification checks are listed in `../DATASETS.md`.
 During episode setup, an operator may provision immutable references to
-separately stored sources and record their versions and hashes. The active
-episode must not write into this directory or replace a sealed source after
-outcome access.
+separately stored sources and record their released source/model identifiers.
+The active episode must not write into this directory or replace a sealed
+source after outcome access.
 
 A location-manifest entry alone does not establish a role-filtered handoff,
 permissions, integrity, scientific qualification, or access to protected
 outcomes.
 
-Outcome-blind source manifests and all generated artifacts belong under
-`../outputs/`.
+All generated scientific artifacts belong under `../outputs/`.

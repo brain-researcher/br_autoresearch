@@ -1,39 +1,47 @@
-# EP04 — adaptive shared scene geometry
+# EP04 — fixed-panel VLM–brain representational alignment
 
 ## Status, protocol, and exposure boundary
 
 This is the current local episode contract. An explicit scientist instruction
-naming EP04 may start bounded episode work. It follows
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md); this file
-alone does not authorize protected-outcome access or a Brain Researcher
-transition.
+naming EP04 may start bounded episode work. It uses the evidence-separation,
+configuration-lock, and audit rules from
+[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md); it does not
+run an adaptive primary-model search and alone does not authorize
+protected-outcome access or a Brain Researcher transition.
 
-Previously opened regular-shared responses and model comparisons are exposed
-development evidence and cannot become an audit. The current contract inherits
-no live action, approval, reward, or scientific acceptance from prior work.
+Previously opened regular-shared responses and model comparisons are excluded
+exposed evidence and cannot become development data or an audit. The current
+contract inherits no live action, approval, reward, or scientific acceptance
+from prior work.
 
 ## Scientific question
 
-Can an adaptive but bounded search learn a capacity-matched representation of
-scene relations and context that predicts held-out high-level visual-cortex
-geometry better than object-only, vision-only, or caption-only alternatives,
-and does the locked representation retain that advantage under a genuinely
-unseen image-distribution boundary?
+Which frozen vision-language-model (VLM) image-embedding geometry aligns most
+strongly with image-disjoint fMRI response geometry in high-level visual
+cortex, beyond one frozen DINOv2 vision-only comparator, and does that locked
+alignment survive a genuinely unseen image-distribution boundary? A registered
+low-level geometry is a required nuisance control. Caption and object
+geometries are optional secondary semantic anchors, not alternative primary
+endpoints.
 
-The target is representational/predictive alignment. It is not identity of
-coordinates, computation, syntax, mechanism, or evidence for a Platonic
-representation. Five participants are biological observations; images,
-voxels, RDM edges, sessions, and repetitions are not independent people.
+The primary target is direct geometry-to-geometry alignment between each
+release-supplied native VLM image embedding and fMRI activity patterns, not
+reproduction of an earlier analysis and not prediction for its own sake.
+Alignment does not imply identity of coordinates, computation, syntax,
+mechanism, or a shared Platonic representation. Five participants are the
+biological observations; images, voxels, RDM edges, sessions, and repetitions
+are not independent people.
 
 ## Evidence roles
 
-- **Adaptive development and selection:** each participant's 4,712 regular
+- **Fixed-panel development and selection:** each participant's 4,712 regular
   subject-unique images, using image-disjoint, repetition-grouped folds. These
-  outcomes may be searched repeatedly and remain development evidence.
-- **Historical prior only:** 1,121 regular images shared by all five
-  participants. Their responses were opened in the earlier round. They may be
-  cited to motivate operators or used in a fixed reproduction report, but
-  never score, rank, prune, or promote adaptive trials.
+  outcomes compare the complete prespecified panel and remain selection-exposed
+  development evidence.
+- **Excluded exposed slice:** 1,121 regular images shared by all five
+  participants. Their responses were opened in the earlier round. No
+  reproduction analysis is required or planned; these responses never score,
+  rank, or select a panel candidate.
 - **One-shot boundary audit:** the 371 shared OOD images only if a complete
   exposure record establishes that their neural responses and
   candidate-comparison summaries remained sealed through configuration lock.
@@ -45,157 +53,272 @@ An OOD audit on the same five LAION-fMRI participants tests stimulus-shift
 robustness, not participant-population generalization. A new independent
 participant/data source is required for that stronger claim.
 
-## Bounded scientific operator grammar
+## Bounded scientific analysis grammar
 
-Each trial is a declarative pipeline. It may choose only registered values from
-these operator families:
+Each fixed panel row or diagnostic may use only the following registered
+definitions:
 
-1. **Representation blocks:** human-caption MPNet; object/category inventory;
-   OpenCLIP; DINOv2; PEcore; SigLIP2; or registered low-level image covariates.
-   Use released, version-identified embeddings and metadata; training or
-   fine-tuning a foundation model is out of scope.
-2. **Caption construction:** mean of human-caption embeddings, token/word
-   average, signed relation/action/object sub-blocks from one pinned parser, or
-   a registered caption-minus-object residual. AI-generated captions are
+1. **Primary image geometries:** one release-supplied, version-identified final
+   pooled image embedding from each of OpenCLIP, PEcore, and SigLIP2. L2
+   normalization followed by cosine distance defines each native model RDM.
+   Layer search, neural fitting, foundation-model training, and fine-tuning are
+   outside the primary grammar.
+2. **Primary comparator:** one release-supplied final pooled DINOv2 image
+   embedding, frozen before neural scoring and evaluated with the identical L2
+   normalization and cosine-distance rule. It is a strong fixed vision-only
+   comparator, not an architecture-, parameter-, or training-data-matched
+   causal control.
+3. **Controls and anchors:** registered low-level image geometry is a required
+   nuisance control. Mean human-caption MPNet and object/category geometries
+   are optional secondary semantic anchors; missing caption or object coverage
+   cannot block the primary VLM-versus-DINOv2 test. AI-generated captions are
    forbidden.
-3. **Feature transform:** normalization only, train-fold PCA, train-fold PLS,
-   whitened kernel, or covariance/spectrum matching. Dimension comes from a
-   finite rank schedule and is fit without evaluation responses.
-4. **Modality combination:** no fusion, residualized incremental block,
-   banded/stacked ridge, or a convex blend of at most two already evaluated
-   blocks. The same effective-capacity rule applies to every comparator.
-5. **Neural target:** session-standardized, repetition-averaged GLMsingle beta
-   patterns in a registered ROI; either cross-validated encoding or
-   cross-validated representational-distance prediction. Preprocessing,
-   repeat selection, and voxel reliability are training-fold operations.
-6. **Readout:** ridge, fractional ridge, reduced-rank ridge, linear kernel
-   alignment, or cross-validated RSA with correlation/crossnobis distance.
-   Neural performance cannot select a new ROI definition.
-7. **ROI family:** retinotopic EVC as a negative/specificity control and the
-   frozen LAION ventral, lateral, and dorsal high-level sectors. A trial may
-   not search arbitrary voxel masks.
+4. **Geometry sensitivities:** train-image-only PCA, whitening, and
+   covariance/spectrum matching are labeled sensitivity analyses. They may not
+   replace the native cosine RDM, select the winner, or rescue a failed primary
+   endpoint. No neural-outcome-supervised transform or learned fusion may
+   define a model geometry.
+5. **Secondary predictive analysis:** train-fold PLS, ridge, fractional ridge,
+   reduced-rank ridge, or banded ridge may be used for the identical-fold
+   encoding diagnostic only. Encoding never chooses or rescues the primary VLM
+   candidate.
+6. **Neural geometry:** session-standardized, repetition-averaged GLMsingle
+   beta patterns in a registered ROI, requiring at least two valid
+   presentations per image. The primary neural RDM uses correlation distance
+   on image-disjoint evaluation images. Correlation-versus-cosine neural RDM is
+   an always-evaluable sensitivity; crossnobis is an optional sensitivity only
+   where independent repeat partitions make it valid. Preprocessing, repeat
+   selection, voxel reliability, and nuisance fitting are training-fold
+   operations.
+7. **Readout:** the primary readout is image-split cross-validated RSA between
+   the upper triangles of the native model RDM and fMRI response RDM, using a
+   frozen Spearman correlation and Fisher-z aggregation. Linear kernel
+   alignment and cross-validated ridge/reduced-rank encoding are secondary
+   convergence diagnostics. Neural performance cannot select a new ROI.
+8. **ROI family:** the frozen LAION ventral, lateral, and dorsal high-level
+   sectors define the primary ROI family. Retinotopic EVC is a descriptive
+   control whose raw RSA is reported alongside frozen ROI reliability/noise-
+   ceiling information; it is not a hard specificity or candidate-lock gate.
+   An evaluation may not search arbitrary voxel masks.
 
 Raw stimulus access, new detector execution, or new embeddings are outside
 this grammar unless their DUA, source/model identity, frozen settings, and
-complete coverage are separately approved before search. Arbitrary code
-mutation, outcome-based caption editing, per-audit-category model selection,
-and nearest-neighbour access across folds are forbidden.
+complete coverage are separately approved before fixed-panel scoring.
+Arbitrary code mutation, outcome-based caption editing, per-audit-category
+model selection, and nearest-neighbour access across folds are forbidden.
 
 ## Objective and constraints
 
-The primary development objective is the participant-balanced mean gain in
-held-out-image predictive correlation in the frozen high-level ROI family for
-the candidate shared representation relative to the strongest
-capacity-matched single-block comparator evaluated on the identical folds.
-Correlations are Fisher transformed before participant/ROI aggregation; the
-exact aggregation weights and practical minimum are frozen before search.
+For candidate model `m`, participant `p`, image fold `f`, and frozen high-level
+sector `r` (ventral, lateral, or dorsal), let `A_dev(m,p,f,r)` be the
+Fisher-transformed Spearman correlation between the upper triangles of the
+native model RDM and fMRI response RDM on the image-disjoint evaluation fold.
+Define the participant-level VLM gain over DINOv2 as
+`G_dev(m,p) = mean_f,r[A_dev(m,p,f,r) - A_dev(DINO,p,f,r)]`, with equal fold
+and sector weights. The development selection score is the unweighted mean of
+the five participant effects.
 
-A promotable trial must also:
+All development fold scores are used once in the fixed-panel candidate
+decision. They are out-of-fold within a model evaluation but selection-exposed
+because the same development results choose the winner, so they are not
+described as an unbiased final test. The decision order is fixed: compute all
+three `G_dev` scores; construct each family-wise null by taking the
+unconditional `argmax G_dev` across all three VLM rows in every null draw;
+screen every observed row against those null thresholds and all other gates;
+then select the highest-`G_dev` passing row. If no row passes, close without a
+candidate. No gate is applied inside the null-draw argmax, so the rule is not
+circular.
 
-- improve in a frozen majority of participants and not depend on one ROI;
-- retain a positive caption-context increment over object inventory;
-- retain a positive shared-component increment over the best text-only or
-  vision-only component;
-- pass image-label permutation and capacity-matched random-feature nulls;
-- remain directionally consistent under cluster/tau-like image separation and
-  near-neighbour exclusion; and
-- show the prespecified high-level-over-EVC specificity pattern as a hard
-  development feasibility constraint. Because this constraint can reject a
-  candidate, EVC is selection evidence even though it is never the primary
-  objective or an adaptively searched ROI.
+No layer, distance, transform, rank, caption, object, or encoding result may
+replace that primary candidate definition. A frozen tie is broken by lower
+native embedding dimension and then lexicographic released model identifier;
+a tie means an absolute score difference no larger than `1e-6` Fisher-z units.
 
-RSA agreement, retrieval, individual OOD categories, and ceiling-normalized
-scores are secondary diagnostics. They cannot rescue a failed predictive
-objective. The Pareto archive tracks prediction, robustness, complexity, and
-participant consistency, but produces exactly one locked candidate.
+The practical VLM-over-DINOv2 margin is `delta_min = 0.02` Fisher-z units. It
+is the smallest scientifically worthwhile increment—approximately a two-
+percentage-point correlation difference near zero—so dependent image pairs
+cannot make a negligible advantage look important; it is not a population-
+significance threshold. A development row is eligible only if its mean
+gain reaches `delta_min`, at least four of five participant gains are positive,
+every leave-one-participant-out mean is positive, and every
+leave-one-high-level-sector-out mean is positive. Its positive unsubtracted
+VLM-to-brain RSA must
+exceed the 95th percentile of 10,000 frozen whole-image label permutations,
+and its alignment must exceed the 95th percentile of 1,000 dimension- and
+pre-L2-covariance/spectrum-matched random geometries. The low-level partial-RSA,
+source-stratum,
+near-neighbour, repeat/missingness, and neural-distance sensitivity rules below
+must also pass.
 
-## Adaptive loop
+Images are split before RDM construction; RDM edges sharing an image are never
+split across folds or treated as independent inferential units. Primary native
+model geometry has no neural fit. Every fMRI preprocessing, reliability, or
+nuisance operation and every secondary transform/readout is fit on training
+images only. Label permutations act jointly on model-RDM rows and columns at
+the whole-image level within the registered source stratum; RDM edges are never
+permuted independently.
+
+The five participant effects are the complete biological evidence: each has
+weight `1/5`, all five values and leave-one-participant-out results are
+reported, and conventional participant-population significance is not claimed.
+The participants' development images differ, so development heterogeneity
+mixes participant and stimulus-sample variation. The shared OOD audit holds
+stimuli fixed across participants. Resampling whole images or frozen
+near-neighbour clusters quantifies stimulus uncertainty only; it does not turn
+images or RDM edges into additional participants.
+
+Encoding accuracy, linear kernel alignment, retrieval, caption/object RSA,
+EVC comparisons, transformed-geometry RSA, optional crossnobis, and any valid
+ceiling-normalized scores are secondary diagnostics. They cannot rescue a
+failed native-RSA objective. RSA/encoding disagreement is reported as readout
+dependence rather than silently averaged away. Raw high-level-versus-EVC
+differences are descriptive and are interpreted alongside the frozen
+reliability context, not as neural specificity. The fixed decision table
+reports alignment, robustness, and participant consistency, and produces at
+most one locked VLM candidate.
+
+## Locked OOD estimand and pass rule
+
+Before neural outcomes are opened, the locked candidate, DINOv2, registered
+low-level geometry, category labels, and common valid-image coverage must be
+complete for all 371 OOD images. The VLM and DINOv2 are then applied without
+fitting. For each participant `p`, high-level sector `r`, and prespecified OOD
+category `c`, `A_ood(m,p,r,c)` is the Fisher-transformed Spearman RSA computed
+from only the within-category RDM edges. Categories and sectors receive equal
+weight, so
+`G_ood(p) = mean_r,c[A_ood(VLM,p,r,c) - A_ood(DINO,p,r,c)]` and the audit
+summary is the unweighted mean of the five participant effects. The all-image,
+all-pair RDM is reported only as a secondary diagnostic because between-
+category separation could dominate it.
+
+The OOD audit passes only if the mean `G_ood` reaches `delta_min = 0.02`, at
+least four of five participant effects are positive, and the aggregate remains
+positive after leaving out each participant, high-level sector, or OOD category
+in turn. Positive unsubtracted VLM-to-brain RSA must also exceed the 95th
+percentile of 10,000 whole-image label permutations performed within OOD
+category, with each permutation shared across participants and ROIs. After
+partial Spearman control for the locked low-level RDM within category, the
+participant-balanced
+VLM-minus-DINOv2 gain and every leave-one-participant-out gain must remain
+positive. All categories are evaluated in one release; no category-specific
+candidate choice, threshold, exclusion, or second look is allowed. Missing
+pre-open feature/category coverage or a structurally unusable prespecified
+category makes the audit technically unevaluable rather than silently changing
+the estimand.
+
+## Fixed-panel comparison and lock procedure
 
 1. **Readiness gate:** identify the release, verify beta/trial/image joins,
    evidence-slice exposure status, ROI masks, feature availability, licenses,
    and focused checks of standardization, repetition averaging, RSA, and
-   encoding.
-   Before any neural score, verify image-ID-aligned caption, object/category,
-   every retained visual embedding, and low-level covariate coverage on the
-   **subject-unique development images**. Object segmentations reported only
-   for shared images do not satisfy this gate. If the object comparator is
-   absent, stop before neural scoring or approve and freeze a DUA-
-   compatible extractor before outcome access; do not drop the object
-   comparison later.
+   encoding. Bind exactly one released final pooled embedding and model
+   identifier for each named VLM family and for DINOv2; if multiple arrays are
+   released, use only the documented default final pooled array or stop for an
+   outcome-blind scientist choice. No layer grid remains open after this gate.
+   Before any primary neural score, verify image-ID-aligned VLM, DINOv2, and
+   low-level-covariate coverage on the **subject-unique development images**.
+   Record caption/object coverage separately; it affects only the labeled
+   secondary anchors and does not block the primary analysis.
 2. **Fold freeze:** export subject-unique development/selection image IDs,
    group all repetitions, block near neighbours, and reserve identical folds
-   for every pipeline.
-3. **Coverage stage:** evaluate fixed anchors spanning caption, object, each
-   visual embedding, RSA, encoding, and one registered shared-component model.
-4. **Adaptive stage:** one hypothesis-led operator change per trial; append the
-   parent, mechanism, deterministic pipeline ID and settings, fold predictions,
-   scores, constraints, runtime, and failure reason to the ledger. Update a
-   nonterminal incumbent and Pareto archive.
-5. **Successive fidelity:** prune only on frozen partial folds. Every promoted
-   finalist is rerun across all five participants, eligible subject-unique
-   images, registered ROIs, seeds, and mandatory falsifiers.
-6. **Stress stage:** compare the incumbent and at most three challengers under
-   source-stratum balance, nearest-neighbour exclusion, ROI specificity,
-   caption-count matching, feature-capacity matching, and participant
-   influence.
+   for every model and diagnostic.
+3. **Complete primary panel:** evaluate all three native VLM geometries and the
+   fixed DINOv2 geometry on every frozen fold, participant, and high-level ROI.
+   No partial-fold pruning or outcome-created primary candidate is allowed.
+4. **Locked controls and diagnostics:** run the low-level control, nulls,
+   influence checks, distance/repeat sensitivities, identical-fold encoding,
+   EVC context, and every available caption/object anchor.
+5. **Single candidate decision:** construct the family-wise null thresholds,
+   screen all three observed rows against every frozen constraint, and use the
+   tie-breaker to choose the highest-scoring passing row. If no VLM passes,
+   close without a candidate; do not repair it with a transformed geometry or
+   secondary endpoint.
+6. **Full rerun:** recompute the chosen row once on all eligible development
+   images, participants, high-level ROIs, fixed seeds, and mandatory
+   falsifiers. Any mismatch is a technical failure, not a new primary row.
 7. **Configuration lock:** choose one executable pipeline and record a
-   write-once lock identifying its code/model versions, feature set, ROI/split
-   IDs, rank/regularization, aggregation, nulls, and thresholds.
-8. **One-shot audit:** an independent custodian verifies the OOD/new-data
-   firewall, then runs the locked pipeline once. No OOD-category-specific
-   tuning, candidate swap, threshold change, or second look is allowed.
+   write-once lock identifying its code/model versions, native embedding,
+   normalization/distance, ROI/split/category IDs, aggregation, nulls, and
+   thresholds.
+8. **One-shot audit:** an independent custodian first verifies complete VLM,
+   DINOv2, low-level, category, and valid-image coverage without opening neural
+   outcomes, then runs the locked within-category estimator and diagnostics
+   once. No OOD-category-specific tuning, candidate swap, threshold change, or
+   second look is allowed.
 
-The incumbent is never terminal during search. A promising score does not
-permit stopping before minimum trials, coverage, falsifiers, stress tests, and
-patience are complete.
-At least 40% of valid post-coverage trials must be falsifiers, ablations,
-negative controls, influence guards, synthetic recovery, or direct
-replications. At least two outcome-adaptive successor cycles and two recorded
-incumbent/challenger decisions are required before lock.
+Panel completeness, every mandatory falsifier, both required diagnostics, the
+full rerun, and the single candidate decision are required before lock. Nulls,
+sensitivities, and diagnostics are not counted as extra primary candidates.
 
 ## Mandatory falsifiers and ablations
 
-- whole-image label permutation preserving participant/session structure;
-- caption-to-image shuffling and object-word-only caption construction;
-- object block, relation/action block, text block, vision block, and fusion
-  ablations;
-- capacity-, covariance-, and spectrum-matched random features;
-- near-neighbour exclusion and LAION/THINGS/THINGSplus source-stratified
-  results;
-- training-data-lineage/exposure sensitivity for each pretrained model;
-- EVC negative/specificity control and leave-one-high-level-ROI influence;
-- leave-one-participant influence and exact per-participant results;
-- caption-count matching and repeat-selection sensitivity; and
-- identical-fold comparison of RSA versus encoding conclusions.
+- **Image-label null:** each of 10,000 deterministic permutations relabels
+  model-RDM rows and columns relative to the fixed neural RDM, applies the same
+  source-stratified whole-image permutation to all three VLMs and DINOv2, and
+  takes the unconditional `argmax G_dev` with the frozen tie-breaker, without
+  applying any gate. The resulting family-wise 95th-percentile threshold then
+  screens every observed VLM row's positive, unsubtracted RSA—not its absolute
+  value.
+- **Random-geometry null:** each of 1,000 deterministic draws replaces every
+  VLM embedding matrix with its seeded SVD/Haar random-geometry analogue,
+  takes the same unconditional `argmax G_dev`, and records that row's positive,
+  unsubtracted RSA. Its family-wise 95th-percentile threshold screens every
+  observed row.
+- **Vision-only comparator:** the VLM-minus-DINOv2 mean must reach
+  `delta_min = 0.02`, with at least four positive participant effects and all
+  participant/sector leave-one-out means positive.
+- **Low-level nuisance control:** after fixed partial Spearman control for the
+  registered low-level RDM, the VLM-minus-DINOv2 aggregate and every
+  leave-one-participant-out aggregate must remain positive.
+- **Stimulus structure:** the gain must remain positive after frozen
+  near-neighbour-cluster exclusion and under equal weighting of the registered
+  LAION/THINGS/THINGSplus development strata.
+- **Repeat and distance sensitivity:** the gain must remain positive on the
+  frozen complete-repeat subset and when cosine replaces correlation distance
+  for the neural RDM; missing repeats follow the pre-score fixed rule.
+- **Influence reporting:** exact effects for all five participants and all
+  three high-level sectors are required; every registered leave-one-out gate
+  above must pass.
 
-Any mandatory falsifier failure blocks promotion regardless of aggregate
+An identical-fold encoding analysis and raw EVC RSA with the frozen ROI
+reliability/noise-ceiling context remain required diagnostics. Their results
+cannot select or rescue the primary RSA candidate. Readout disagreement and
+EVC reliability dependence are reported rather than silently averaged away.
+Crossnobis is additionally reported only when valid independent repeat
+partitions exist; structural
+ineligibility does not fail candidate lock because the always-evaluable neural-
+distance sensitivity above is the mandatory estimator check.
+
+Any mandatory falsifier failure blocks candidate lock regardless of aggregate
 score.
 
 ## Budget and stopping
 
-- minimum valid scientific trials: **24**;
-- maximum valid scientific trials: **64**;
-- improvement patience after the minimum: **10** valid trials;
+- fixed primary panel: **3 VLM rows plus 1 DINOv2 comparator row**;
+- candidate decisions: **1** after complete panel and falsifier evaluation;
+- eligible locked VLM candidates: **at most 1**;
+- exact full-development reruns: **1**;
 - CPU ceiling: **2,500 core-hours**;
 - GPU ceiling: **0 GPU-hours** because released embeddings are used;
-- wall-clock ceiling: **120 hours** from the first scientific trial;
-- finalists: at most **4** including the incumbent;
+- wall-clock ceiling: **120 hours** from the first panel evaluation;
 - audit openings: **1**;
 - maximum parallel CPU cores: **48**;
-- per-trial memory ceiling: **256 GB**;
+- per-evaluation memory ceiling: **256 GB**;
 - scratch-storage ceiling: **1,500 GB**.
 
 Exact reruns after proven infrastructure failure are ledgered but are not new
-hypotheses. They still consume resources. The search can stop early only for a
-hard resource ceiling, technical impossibility, or policy violation.
+model evaluations. They still consume resources. The fixed comparison ends
+after the complete panel, controls, diagnostics, decision, and full rerun, or
+earlier only for a hard resource ceiling, technical impossibility, or policy
+violation.
 
 ## Terminal classes
 
 - `candidate_ready`: one locked pipeline satisfies every development
   constraint and passes the one-shot sealed boundary audit.
-- `closed_no_candidate`: the bounded search is valid but no feasible pipeline
-  remains, or the locked candidate fails audit.
-- `search_exhausted_no_audit`: deep development finishes but neither sealed OOD
+- `closed_no_candidate`: the fixed panel is valid but no VLM passes every
+  constraint, or the locked candidate fails audit.
+- `panel_complete_no_audit`: development finishes but neither sealed OOD
   responses nor new independent compatible data are available.
 - `technical_failure`: source identity, legal access, stimulus-response joins,
   folds, ROI/beta validity, or executable evaluation cannot be established.
@@ -203,15 +326,17 @@ hard resource ceiling, technical impossibility, or policy violation.
   or post-audit adaptation invalidates the round.
 
 For canonical outer status, `candidate_ready` maps to `candidate_ready`;
-`closed_no_candidate` and `search_exhausted_no_audit` map to
+`closed_no_candidate` and `panel_complete_no_audit` map to
 `closed_no_candidate`; and `technical_failure` or `policy_violation` map to
 `technical_failure`.
 
 ## Claim boundary
 
-A successful sealed LAION OOD audit supports a shared representation's
-predictive robustness across the prespecified image shift in these five
-participants and ROIs. It does not establish a universal modality-general
-space, mechanism, participant-population generalization, foundation-model
-scaling law, or independent replication. Only an independently sealed new
-dataset can extend that boundary.
+A successful sealed LAION OOD audit supports robustness of the locked VLM
+image-embedding-to-fMRI response-geometry alignment across the prespecified
+image shift in these five participants and ROIs. It does not establish a shared
+neural/model code, mechanism, universal modality-general space,
+participant-population generalization, foundation-model scaling law, or
+independent replication. Comparing these unmatched VLM and DINOv2 checkpoints
+also cannot identify a causal benefit of multimodal training. Only an
+independently sealed new dataset can extend that boundary.

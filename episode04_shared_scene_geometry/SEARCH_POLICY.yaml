@@ -1,21 +1,23 @@
-policy_id: ep04_shared_scene_geometry_adaptive
+policy_id: ep04_vlm_brain_alignment_fixed_panel
 episode_id: ep04
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+protocol_scope: evidence_separation_configuration_lock_and_one_shot_audit_only
+evidence_mode: fixed_model_comparison
+scientific_focus: frozen_vlm_image_embedding_to_fmri_response_geometry_alignment
 
 dataset_roles:
   development:
     source: laion_fmri_4712_regular_subject_unique_images_per_participant
-    use: repetition_grouped_image_disjoint_adaptive_search
+    use: repetition_grouped_image_disjoint_fixed_panel_comparison
     freshness: development_exposed
-    core_feature_coverage_gate: caption_object_each_visual_and_low_level_on_subject_unique_images
+    core_feature_coverage_gate: every_vlm_dinov2_and_low_level_on_subject_unique_images
   selection:
-    source: frozen_subject_unique_outer_folds_across_five_participants
-    use: participant_balanced_constrained_model_selection
-    freshness: internal_only
-  historical_prior:
+    source: frozen_subject_unique_image_folds_across_five_participants
+    use: one_participant_balanced_selection_exposed_candidate_decision
+    freshness: selection_exposed_development_not_final_confirmation
+  excluded_regular_shared:
     source: laion_fmri_1121_regular_shared_images
-    use: fixed_reproduction_context_only_not_trial_scoring
+    use: no_current_episode_analysis_or_reproduction
     freshness: opened_in_prior_ep04_round
   audit:
     source: sealed_371_shared_ood_responses_or_new_independent_compatible_data
@@ -24,121 +26,244 @@ dataset_roles:
     available: false
 
 grammar:
-  representation_blocks:
-    - human_caption_mpnet
-    - object_category_inventory
+  primary_vlm_candidates:
     - openclip
-    - dinov2
     - pecore
     - siglip2
-    - registered_low_level_covariates
-  caption_constructions:
-    - mean_human_caption_embedding
-    - token_word_average
-    - pinned_relation_action_object_blocks
-    - caption_minus_object_residual
-  transforms:
-    - normalization_only
+  primary_candidate_unit: one_release_supplied_final_pooled_image_embedding_per_named_family
+  exact_checkpoint_binding: required_before_first_neural_score
+  multiple_released_arrays_rule: documented_default_final_pooled_array_or_outcome_blind_scientist_choice_before_neural_scoring
+  primary_comparator: one_release_supplied_final_pooled_dinov2_vision_only_embedding
+  required_nuisance_control: registered_low_level_image_geometry
+  optional_secondary_geometry_anchors:
+    - human_caption_mpnet
+    - object_category_inventory_if_subject_unique_coverage_is_verified
+  primary_geometry_transforms:
+    - l2_normalization_only
+  geometry_sensitivities_not_eligible_to_select_or_rescue:
+    - training_image_only_pca
+    - training_image_only_whitening
+    - training_image_only_covariance_spectrum_matching
+  primary_geometry:
+    model_rdm_distance: cosine
+    neural_rdm_distance: correlation
+    association: spearman_upper_triangle
+    aggregation: fisher_z_fold_then_equal_participant_mean
+    high_level_roi_aggregation: equal_weight_ventral_lateral_and_dorsal
+    model_geometry_fit_to_neural_outcomes: none
+    layer_distance_transform_and_rank_search: forbidden
+    development_candidate_selection: one_fixed_decision_across_complete_registered_native_vlm_panel
+    candidate_decision_sequence:
+      - compute_all_three_observed_g_dev_scores
+      - construct_familywise_nulls_with_unconditional_argmax_g_dev_across_all_three_rows_and_no_gates
+      - screen_every_observed_row_against_familywise_null_thresholds_and_all_other_frozen_gates
+      - select_highest_g_dev_passing_row_or_close_without_candidate
+    tie_breaker: lower_native_embedding_dimension_then_lexicographic_released_model_id
+    tie_tolerance_fisher_z: 0.000001
+    development_score_status: out_of_fold_per_model_but_selection_exposed_by_winner_choice
+    scored_rdm_pair_rule: both_image_endpoints_are_in_the_same_image_disjoint_evaluation_fold
+    random_edge_split: forbidden
+    rdm_edges_are_independent_samples: false
+  secondary_encoding_transforms:
     - train_fold_pca
     - train_fold_pls
-    - whitened_kernel
-    - covariance_spectrum_matching
-  combination:
-    - no_fusion
-    - residualized_increment
-    - banded_or_stacked_ridge
-    - convex_blend_max_two_evaluated_blocks
-  neural_targets:
-    - cross_validated_roi_encoding
-    - cross_validated_rdm_prediction
-  readouts:
     - ridge
     - fractional_ridge
     - reduced_rank_ridge
+    - banded_or_stacked_ridge
+  neural_targets:
+    primary: image_disjoint_evaluation_fold_roi_response_rdm
+    secondary: cross_validated_roi_encoding
+  secondary_readouts:
     - linear_kernel_alignment
-    - rsa_correlation_distance
-    - rsa_crossnobis_distance
+    - cross_validated_encoding
+    - transformed_geometry_rsa
+    - crossnobis_rsa_only_when_independent_repeat_partitions_are_valid
   roi_family:
-    - retinotopic_evc_control
-    - laion_ventral
-    - laion_lateral
-    - laion_dorsal
+    primary:
+      - laion_ventral
+      - laion_lateral
+      - laion_dorsal
+    diagnostic:
+      - retinotopic_evc_raw_with_frozen_reliability_context
   forbidden:
     - foundation_model_finetuning
+    - primary_layer_search
+    - transformed_geometry_as_primary_candidate
     - arbitrary_voxel_mask_search
     - outcome_based_caption_editing
     - cross_fold_nearest_neighbour_access
     - regular_shared_or_audit_outcome_selection
+    - regular_shared_reproduction_analysis
+    - neural_outcome_supervised_primary_geometry_transform
     - arbitrary_code_mutation
 
 objectives:
   primary:
-    name: participant_balanced_fisher_z_predictive_gain_over_best_capacity_matched_single_block
+    name: participant_balanced_fisher_z_image_disjoint_native_vlm_rsa_gain_over_fixed_dinov2
     direction: maximize
+    fold_score: fisher_z_spearman_of_native_l2_cosine_model_rdm_and_correlation_distance_fmri_rdm
+    formula: mean_p(mean_f_r(A_dev_vlm_pfr-A_dev_dinov2_pfr))
+    practical_gain_minimum_fisher_z: 0.02
+    practical_gain_rationale: smallest_scientifically_worthwhile_approximately_two_percentage_point_correlation_increment_near_zero_not_a_significance_threshold
+    development_evidence_status: fixed_panel_selection_exposed
+    biological_sampling_unit: participant
+    image_or_rdm_edge_as_independent_biological_unit: false
   secondary:
-    - cross_validated_rsa_gain
+    - cross_validated_encoding_gain
+    - linear_kernel_alignment
+    - optional_caption_and_object_geometry_anchors
+    - transformed_geometry_sensitivities
+    - raw_evc_comparison_with_frozen_reliability_context
     - participant_consistency
     - source_stratum_robustness
-    - model_complexity
   constraints:
-    - majority_of_participants_improve
-    - no_single_roi_dominance
-    - caption_context_increment_positive
-    - shared_component_increment_positive
-    - image_permutation_and_random_feature_nulls_pass
+    - mean_vlm_minus_dinov2_gain_at_least_0_02_fisher_z
+    - at_least_four_of_five_participant_gains_positive
+    - every_leave_one_participant_out_mean_positive
+    - positive_after_each_leave_one_high_level_roi_out_analysis
+    - positive_unsubtracted_vlm_to_brain_rsa_exceeds_selection_aware_image_label_permutation_null
+    - selection_aware_image_permutation_and_random_geometry_nulls_pass
+    - low_level_partial_rsa_gain_positive
     - cluster_and_near_neighbour_exclusion_direction_positive
-    - frozen_high_level_over_evc_specificity_pattern
     - subject_unique_core_comparator_coverage_gate_pass
 
+inference:
+  biological_units: five_participants
+  participant_weight: equal_one_fifth
+  required_reporting: all_five_effects_and_leave_one_participant_out
+  population_significance_claim: forbidden_at_this_sample_size
+  development_participant_difference_interpretation: mixes_participant_and_subject_unique_stimulus_sample_variation
+  fixed_stimulus_participant_comparison: shared_ood_audit_only
+  stimulus_uncertainty: resample_whole_images_or_near_neighbour_clusters_and_recompute_rdms
+  shared_ood_resampling: use_the_same_image_clusters_jointly_across_participants
+  edgewise_standard_errors_or_tests: forbidden
+
 budgets:
-  minimum_valid_trials: 24
-  maximum_valid_trials: 64
-  patience_valid_trials: 10
+  primary_vlm_rows: 3
+  primary_comparator_rows: 1
+  candidate_decisions: 1
+  exact_full_development_reruns: 1
   cpu_core_hour_ceiling: 2500
   gpu_hour_ceiling: 0
   wall_clock_hour_ceiling: 120
   max_parallel_cores: 48
-  max_memory_gb_per_trial: 256
+  max_memory_gb_per_evaluation: 256
   max_scratch_gb: 1500
-  finalists_max: 4
+  locked_vlm_candidates_max: 1
   audit_openings_max: 1
 
-branch_coverage:
+panel_coverage:
   required: true
-  minimum_valid_trials: 12
-  rule: caption_object_each_visual_block_rsa_encoding_and_shared_component_anchors
+  rule: every_registered_native_vlm_and_fixed_dinov2_under_primary_rsa_plus_required_low_level_control_and_one_identical_fold_encoding_diagnostic
   readiness_rejection_must_be_logged: true
 
 required_falsifiers:
   - whole_image_label_permutation
-  - caption_image_shuffle
-  - object_word_only_caption_control
-  - object_relation_text_vision_and_fusion_ablations
-  - capacity_covariance_spectrum_matched_random_features
-  - near_neighbour_exclusion
-  - source_stratified_analysis
-  - pretrained_model_lineage_sensitivity
-  - evc_specificity_control
-  - leave_one_roi_and_participant_influence
-  - caption_count_and_repeat_selection_sensitivity
+  - dimension_and_pre_l2_covariance_spectrum_matched_random_geometry
+  - fixed_dinov2_primary_comparison
+  - low_level_partial_rsa
+  - frozen_near_neighbour_exclusion
+  - equal_weight_source_stratified_analysis
+  - leave_one_high_level_roi_and_participant_influence
+  - repeat_missingness_and_correlation_vs_cosine_neural_rdm_sensitivity
 
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  coverage_rule: evaluate_caption_object_each_visual_block_rsa_encoding_and_shared_component_anchors
-  finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_development_participants_and_falsifiers
-  lock_rule: write_once_lock_of_one_pipeline_code_model_versions_features_rois_splits_and_thresholds
+falsifier_contracts:
+  whole_image_label_permutation:
+    draws: 10000
+    rng: numpy_pcg64_with_integer_seeds_0_through_9999
+    relabeled_object: model_rdm_rows_and_columns_relative_to_the_fixed_neural_rdm
+    unit: whole_image_identity_within_each_participant_evaluation_fold_and_registered_development_source_stratum
+    coupling: same_permutation_for_all_three_vlms_and_dinov2_within_each_participant_and_fold
+    edge_permutation: forbidden
+    selection_adjustment: unconditional_argmax_g_dev_across_all_three_vlms_with_frozen_tie_breaker_and_without_any_falsifier_or_candidate_lock_gate
+    statistic: positive_unsubtracted_participant_balanced_native_vlm_to_brain_rsa_of_the_selected_candidate
+    pass_rule: each_observed_row_is_screened_against_the_familywise_empirical_95th_percentile_before_highest_passing_row_selection
+  dimension_and_pre_l2_covariance_spectrum_matched_random_geometry:
+    draws: 1000_per_vlm
+    rng: numpy_pcg64_seed_100000_plus_1000_times_frozen_model_index_plus_draw_index
+    frozen_model_order: [openclip, pecore, siglip2]
+    generator:
+      input: raw_release_supplied_embedding_matrix_X
+      center: subtract_column_mean_mu
+      factorization: thin_svd_X_centered_equals_U_S_Vt
+      randomized_left_factor: gaussian_matrix_projected_off_intercept_then_thin_qr_with_positive_diagonal_sign_convention
+      reconstruction: X_random_equals_mu_plus_Q_S_Vt_then_rowwise_l2_normalize
+      exact_pre_l2_properties: same_row_count_dimension_column_mean_and_centered_feature_covariance_as_X
+    selection_adjustment: compare_each_random_vlm_to_fixed_dinov2_then_take_unconditional_argmax_g_dev_with_frozen_tie_breaker_and_no_gates
+    statistic: positive_unsubtracted_participant_balanced_random_geometry_to_brain_rsa_of_the_selected_candidate
+    pass_rule: each_observed_native_vlm_row_is_screened_against_the_familywise_empirical_95th_percentile_before_highest_passing_row_selection
+  fixed_dinov2_primary_comparison:
+    comparator: one_prebound_release_supplied_native_dinov2_embedding_with_identical_l2_cosine_rdm_rule
+    pass_rule: mean_gain_at_least_0_02_fisher_z_at_least_four_of_five_participants_positive_and_every_participant_and_high_level_roi_leave_one_out_mean_positive
+  low_level_partial_rsa:
+    method:
+      unit: each_evaluation_fold_roi_and_participant
+      operation: rank_model_neural_and_low_level_upper_triangles_then_residualize_model_and_neural_ranks_separately_on_intercept_plus_low_level_ranks_and_pearson_correlate_the_two_residual_vectors
+      comparison: compute_vlm_and_dinov2_partial_correlations_separately_then_subtract_after_fisher_z
+    pass_rule: aggregate_vlm_minus_dinov2_gain_and_every_leave_one_participant_out_aggregate_positive
+  frozen_near_neighbour_exclusion:
+    method: retain_one_outcome_independent_lowest_image_id_representative_per_frozen_near_neighbour_cluster_then_recompute_rdms
+    pass_rule: participant_balanced_vlm_minus_dinov2_gain_positive
+  equal_weight_source_stratified_analysis:
+    strata: [laion, things, thingsplus]
+    pass_rule: equal_stratum_weight_participant_balanced_vlm_minus_dinov2_gain_positive
+  leave_one_high_level_roi_and_participant_influence:
+    scope: all_five_development_participants_for_each_primary_panel_row_and_the_locked_candidate
+    required_result: each_participants_exact_frozen_primary_candidate_effect_comparator_effect_increment_and_decision
+    missingness: retain_one_explicit_row_per_participant_and_apply_the_pre_panel_frozen_missingness_rule_without_post_score_exclusion
+    pass_rule: all_rows_reported_and_every_participant_and_high_level_roi_leave_one_out_mean_positive
+  repeat_missingness_and_correlation_vs_cosine_neural_rdm_sensitivity:
+    construction: primary_average_of_all_valid_presentations_with_minimum_two_plus_subset_at_outcome_blind_modal_planned_repeat_count_and_cosine_neural_rdm_rerun
+    pass_rule: participant_balanced_vlm_minus_dinov2_gain_positive_in_each_rerun
+
+required_diagnostics:
+  - identical_fold_primary_rsa_vs_secondary_encoding_conclusion_comparison
+  - raw_high_level_vs_evc_comparison_with_frozen_reliability_context
+
+diagnostic_contracts:
+  identical_fold_primary_rsa_vs_secondary_encoding_conclusion_comparison:
+    shared_evaluation: identical_subject_unique_image_folds_repetition_groups_participants_registered_rois_native_vlm_candidate_and_fixed_dinov2
+    completion_required_before_lock: true
+    interpretation: disagreement_is_reported_as_readout_dependence_and_cannot_rescue_failed_primary_rsa
+  raw_high_level_vs_evc_comparison_with_frozen_reliability_context:
+    completion_required_before_lock: true
+    required_context: frozen_roi_reliability_and_provider_noise_ceiling_values_on_the_same_image_set
+    interpretation: raw_roi_difference_is_descriptive_not_specificity_evidence_and_cannot_select_or_rescue_the_candidate
+
+conditional_diagnostics:
+  crossnobis_rsa:
+    run_if: valid_independent_repeat_partitions_are_structurally_verified
+    structural_ineligibility: report_not_run_without_candidate_lock_failure
+
+falsifier_decision_contract:
+  rule_freeze: before_first_fixed_panel_neural_score
+  rule_required_for_every_required_falsifier: true
+  rule_must_define: metric_comparator_or_null_direction_pass_boundary_and_missingness_handling
+  allowed_statuses: [pass, fail, not_evaluable]
+  default_missingness: any_missing_required_row_null_draw_or_sensitivity_result_is_not_evaluable_and_blocks_candidate_lock
+  not_evaluable_blocks_candidate_lock: true
+  post_score_rule_change: forbidden
+
+candidate_lock:
+  complete_panel_required: true
+  candidate_decisions_exactly: 1
+  selection_rule: after_all_rows_are_screened_choose_highest_g_dev_passing_row_with_frozen_tie_breaker_or_close_without_candidate
+  transformed_or_secondary_candidate_substitution: forbidden
+  all_required_falsifiers_must_pass: true
+  required_falsifier_pass_rule: every_required_falsifier_must_have_a_pre_scoring_frozen_rule_and_status_pass
+  required_diagnostics_must_be_complete: true
+  coverage_rule: evaluate_every_registered_native_vlm_and_fixed_dinov2_under_primary_rsa_plus_required_low_level_control_and_one_identical_fold_encoding_diagnostic
+  full_rerun_rule: rerun_the_single_selected_row_on_all_development_participants_all_eligible_subject_unique_images_registered_high_level_rois_frozen_seeds_and_required_falsifiers
+  lock_rule: write_once_lock_of_one_native_vlm_model_id_l2_cosine_geometry_code_rois_splits_ood_categories_nulls_and_thresholds
 
 stop:
-  before_minimum: only_resource_exhaustion_technical_failure_or_policy_violation
-  after_minimum: patience_or_max_trials_or_resource_ceiling
-  material_improvement_rule: constrained_primary_improvement_above_frozen_noise_tolerance
+  normal_completion: complete_panel_controls_diagnostics_single_candidate_decision_and_exact_full_rerun
+  early_stop: only_resource_exhaustion_technical_failure_or_policy_violation
   valid_terminal_classes:
     - candidate_ready
     - closed_no_candidate
-    - search_exhausted_no_audit
+    - panel_complete_no_audit
     - technical_failure
     - policy_violation
 audit:
@@ -146,10 +271,33 @@ audit:
   configuration_lock_required: true
   write_once_lock_required: true
   maximum_open_count: 1
-  audit_updates_search: false
+  audit_updates_panel_selection: false
   preferred_source: laion_fmri_371_shared_ood_if_proven_unopened
   fallback_source: prospectively_sealed_new_compatible_data
   regular_shared_eligible: false
+  pre_open_non_neural_coverage_gate: locked_vlm_dinov2_low_level_category_and_common_valid_image_coverage_complete_for_all_371_images
+  estimand:
+    model_geometry: native_l2_normalized_cosine_rdm_for_locked_vlm_and_fixed_dinov2
+    neural_geometry: correlation_distance_rdm
+    association: within_prespecified_ood_category_spearman_upper_triangle_then_fisher_z
+    aggregation: equal_category_then_equal_high_level_roi_then_equal_participant
+    participant_effect_formula: mean_r_c(A_ood_vlm_prc-A_ood_dinov2_prc)
+    all_image_all_pair_rdm_role: secondary_diagnostic_only
+    participant_weight: equal_one_fifth
+  permutation_null:
+    draws: 10000
+    rng: numpy_pcg64_with_integer_seeds_20000_through_29999
+    relabeled_object: locked_vlm_model_rdm_rows_and_columns_relative_to_fixed_neural_rdms_within_each_ood_category
+    coupling: same_within_category_whole_image_permutation_across_participants_and_rois
+    edge_permutation: forbidden
+    statistic: positive_unsubtracted_equal_category_roi_and_participant_weighted_vlm_to_brain_rsa
+  pass_rule:
+    practical_gain_minimum_fisher_z: 0.02
+    participant_direction: at_least_four_of_five_positive
+    influence: every_participant_high_level_roi_and_ood_category_leave_one_out_aggregate_positive
+    positive_unsubtracted_alignment_null: above_95th_percentile_of_10000_within_category_whole_image_label_permutations
+    low_level_partial_rsa: apply_the_registered_rank_residual_partial_spearman_within_each_ood_category_then_require_participant_balanced_vlm_minus_dinov2_gain_and_every_leave_one_participant_out_gain_positive
+    unusable_prespecified_category: technical_failure_not_post_score_exclusion
   participant_generalization_claim_from_same_five: forbidden
   retraining: forbidden
   category_specific_tuning: forbidden
@@ -160,6 +308,6 @@ audit:
 terminal_mapping:
   candidate_ready: candidate_ready
   closed_no_candidate: closed_no_candidate
-  search_exhausted_no_audit: closed_no_candidate
+  panel_complete_no_audit: closed_no_candidate
   technical_failure: technical_failure
   policy_violation: technical_failure
