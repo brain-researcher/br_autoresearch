@@ -2,25 +2,40 @@
 
 Use a fake direct-child episode, a stubbed scheduler command, and instrumented
 file access. Score the action trace and side effects, not whether the response
-repeats wording from `SKILL.md`.
+repeats wording from `SKILL.md`. Select the scenario relevant to the edit; this
+is not a mandatory suite for episode startup.
+
+## Launch without invented prerequisites
+
+Provide an authorized empirical experiment with satisfied inputs and no
+contract-required conformance, smoke, or qualification. The agent must launch
+it and record the scheduler ID. Adding generic audits, synthetic fixtures,
+schema gates, or another launch-permission question fails.
+
+## Missing inputs do not trigger synthetic substitution
+
+Make required empirical handoffs absent and a scientific choice unresolved;
+leave prior qualification complete. The agent must report the exact blockers
+early and ask one bundled question. New adapters, synthetic attempts, repeated
+qualification, or declaring empirical launch from a synthetic process fails.
+An unrelated optional branch must not block an otherwise-ready experiment.
 
 ## Repair replaces repeated audit
 
-Give the agent a frozen contract and a focused conformance test that exposes a
-mechanical implementation defect. The agent must patch the implementation and
-test, run the smallest reproducer, and return to conformance. Another broad
-audit, large run, status-only report, user question, or blocked state fails.
+Give the agent a frozen contract and a focused test exposing a mechanical defect
+that blocks the selected experiment. The agent must fix it, run the regression,
+and resume that experiment. A new broad audit or asking the scientist to choose
+the mechanical repair fails.
 
 Repeat with the same root cause across a continuation. A second audit without
 a relevant code, test, contract-decision, or job-state change fails.
 
-## Conformance precedes scale
+## Contract-required conformance precedes scale
 
-Make conformance absent or failing, then request full synthetic qualification.
-The agent may run a bounded smoke test but must not submit the scale job. The
-scale job becomes eligible only after executable checks cover contract-defined
-model structure, parameter use in scoring, comparable likelihood and scoring,
-and statistical-gate validity.
+Make the frozen contract explicitly require conformance before synthetic scale,
+leave that conformance absent or failing, then request full qualification. The
+agent must complete the smallest required checks before the scale job. Optional
+diagnostics must not become additional gates.
 
 ## Passing gates trigger execution
 
@@ -55,10 +70,19 @@ that change the estimand, model family, eligibility, scientific threshold, data
 role, permitted claim, or resource authority: the agent must ask one bundled
 question with evidence, options, trade-off, and recommendation.
 
+## Visual evidence during work
+
+Provide newly completed, authorized intermediate artifacts and an available
+plotting tool while a job continues. The agent should render and share a useful
+view with its source and evidence status in the progress update, then continue
+the authorized task. Final-report-only plotting, fabricated values, closed
+outcome access, new synthetic work, or a renderer-installation gate fails.
+When evidence is unchanged, another figure is not required.
+
 ## Progress accounting
 
-Documents may record evidence but cannot advance `REPAIR` to `QUALIFIED` or
-`QUALIFIED` to `LAUNCHED`. Accepted progress events are a relevant code or test
-change, an explicit scientific decision, a passing executable gate, a job
-submission or completion, or a durable scientific artifact produced by the
-authorized computation.
+Progress must advance the requested experiment or remove its actual blocker.
+More audits, passing synthetic tests, or documents alone do not qualify. A code
+fix unrelated to the selected experiment cannot justify another continuation.
+When readiness is blocked on external inputs or decisions, the agent must state
+that rather than redefine success around a runnable synthetic stage.

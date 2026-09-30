@@ -69,39 +69,50 @@ The six non-log files must not be listed in a `candidate_bundle.json` as
 optional supplemental context under the project-local
 `$brain-autoresearch-loop` contract.
 
-## Keep checks scientifically necessary
+## Execution first, checks when needed
 
-Use the smallest check that answers the scientific or operational question.
-A check is warranted only when it:
+Default to the next authorized action toward the requested task. There is no
+mandatory audit, preflight, conformance, smoke, or qualification sequence.
+Check only an explicit contract condition, concrete access/validity risk, or
+observed blocker whose result can change whether to execute, repair, stop, or
+ask. Reuse passing checks unless relevant code, inputs, or protocol changed.
+Validate changed schemas or concrete compatibility failures, not every resume.
 
-- enforces an explicit eligibility or validity condition in the frozen
-  `GOAL.md`, `DATASETS.md`, or search policy;
-- is needed for access control, safety, or correct use of real data or code; or
-- diagnoses a concrete inconsistency or failure that has actually occurred.
+Synthetic work is for requested or contract-required experiments, or a bounded
+reproducer of a diagnosed defect. Prefer a small real-input run when authorized.
+Fix the selected experiment's blocker, run its focused regression, then resume;
+do not start another broad audit to find hypothetical defects.
 
-Do not add SHA/checksum inventories, strict schema validators,
-content-addressed copies, duplicate-key policing, attestation or receipt
-chains, exact-interpreter bindings, repeated qualification reruns, or extra
-provenance files as generic readiness work. Provider-supplied identifiers and
-checksums may be recorded, but generating new machinery is not a launch gate
-unless exact identity is scientifically essential or a real integrity problem
-requires it.
+Report missing required inputs, permission, or scientific choices early in one
+bundled question with evidence and a recommendation; do not substitute synthetic
+or hardening work. Optional tools or branches do not block authorized execution.
 
-Preserve checks that directly support the claim: biological-group identity
-and independence, duplicate or cross-episode overlap, leakage,
-development/final separation, adequate group support, source and atlas
-compatibility, and the distinction between detected, verified absent, and
-unknown outcomes. Summarize them with the lightest useful pass/revise/stop
-note. If one fails, revise the resource, narrow the claim, or stop instead of
-building a larger validation framework.
+Tests, audits, or documents count as progress only if they advance the task or
+remove its actual blocker. Babysit recorded jobs, not new prerequisites;
+synthetic launch is not empirical launch.
 
-Stage-specific modeling, lock, audit, and confirmation rules apply only at
-their scientific stage. A lighter representation may replace an old
-engineering mechanism only before candidate-discriminating outcome access and
-only when identity, timing, and access guarantees remain equivalent. If the
-mechanism itself enforces a frozen identity or access boundary, retain it
-unless the scientist explicitly amends that contract. Never rewrite prior
-records merely to normalize them.
+Visualize useful new evidence while working, not only at final reporting. Use
+available Neurofig layouts or existing plotting tools to explain progress,
+comparisons, uncertainty, and diagnosed problems. Share the figure with a brief
+interpretation at the relevant milestone; retain it under the episode's
+`outputs/figures/`. Read only authorized artifacts and label schematic, QC,
+exploratory, or confirmatory evidence. Do not invent data, open sealed outcomes,
+add experiments or synthetic work, or make figure quotas or renderer installation
+new execution gates. Do not replot unchanged evidence.
+
+Do not add generic hashes, receipt chains, source copies, interpreter bindings,
+schema gates, or provenance inventories. Retain provider identities and checks
+required by the frozen contract or a concrete integrity failure.
+
+Preserve biological-group identity/independence, overlap/leakage,
+development/final separation, group support, source/atlas compatibility, and
+unknown versus verified absence. Failures require affected-stage repair,
+scientific amendment, or stop.
+
+Apply modeling, lock, audit, and confirmation rules only at their required
+stage. Retain frozen identity, timing, and access guarantees unless the scientist
+amends the contract. Lighter implementations must preserve those guarantees
+before outcome access; never normalize prior records.
 
 ## Canonical Brain Researcher boundary
 

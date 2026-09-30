@@ -34,30 +34,50 @@ equivalent isolation.
 
 ## Move the episode forward
 
-```text
-PLAN -> CONFORMANCE -> SMOKE -> QUALIFICATION -> NEXT_AUTHORIZED_EXECUTION
-                    failure -> REPAIR -> CONFORMANCE
-consequential scientific change -> ASK_ONCE
-```
+Default to the next authorized experiment. There is no compulsory audit,
+preflight, conformance, smoke, or qualification chain.
 
-- Before scaling synthetic work, verify that the active fitter and scorer match
-  the frozen contract. Also verify each acceptance gate's estimand, reference,
-  sampling unit, dependence assumptions, uncertainty method, and decision rule.
-  A descriptive diagnostic is not an acceptance gate.
-- Run the smallest useful smoke test, then one bounded qualification. Add
-  another pilot only when new failure evidence requires it.
-- When a test or audit finds a concrete defect, fix it next, add the focused
-  regression test, and rerun the smallest affected stage. Do not re-audit
-  unchanged code, rerun a failed qualification without a relevant change, or
-  replace the repair with more documentation.
-- Once required gates pass and execution is already authorized, submit the
-  actual job or dependency chain in the same run. A launch requires a process
-  or scheduler job ID; record it with dependencies and the next action. Prefer
-  scheduler dependencies to login-node watchers. ASTRA, plans, placeholders,
-  and dry runs do not count.
-- For babysitting, follow authorized jobs to completion or the next real
-  decision. Diagnose technical failures, repair them, and resume at the
-  smallest affected stage. Never duplicate a pending job.
+- If dependencies are satisfied and execution is authorized, execute in this
+  run. Add a prerequisite only when the contract requires it or a concrete
+  access, validity, or implementation problem blocks this experiment. Reuse
+  passing checks unless relevant code, inputs, or protocol changed.
+- Use synthetic work for a requested or contract-required experiment, or a
+  bounded reproducer of a diagnosed defect. Prefer a small real-input run when
+  access and execution are authorized; synthetic fixtures do not establish
+  empirical readiness.
+- Repair only a diagnosed defect blocking the selected experiment. Make the
+  focused fix, run its regression, then resume. Do not start another broad or
+  adversarial audit to search for additional hypothetical blockers.
+- If required data, permission, or a scientific choice is unavailable, report
+  the exact blocker early and ask once with a recommendation. Do not substitute
+  synthetic or hardening work. Optional branches do not block unrelated work.
+- Record the process or scheduler ID and which experiment actually launched.
+  Qualification or synthetic launch is not empirical launch; ASTRA, plans,
+  placeholders, and dry runs are not execution. Prefer scheduler dependencies.
+- Babysit existing authorized jobs to completion or the next real decision;
+  repair technical failures at the smallest affected stage. Never duplicate a
+  pending job or manufacture prerequisites to keep a goal active.
+
+## Visualize while working
+
+When new authorized artifacts materially explain progress, a comparison,
+uncertainty, or a diagnosed problem, proactively plot and share them in the
+current update; do not wait for the final report. Prefer one clear primary view:
+learning/progress curves, coverage, paired effects with intervals, prediction
+and residual diagnostics, or modality-appropriate brain/QC views as relevant.
+
+Reuse available `neurofig-plotting` guidance and source-backed layouts/renderers;
+gallery examples supply style, not values or scientific claims. If unavailable,
+use an existing plotting tool rather than installing a stack or calling an
+unverified MCP renderer. Keep figures under `outputs/figures/`, identify the
+source artifacts and evidence status in the caption or ledger, and display the
+figure when the client supports it; otherwise provide its usable artifact path.
+
+Stay within the current read boundary. Do not invent observations, statistics,
+anatomy, or transforms; create new experiments or synthetic data just for a
+figure; or unlock held-out outcomes to plot. Label design diagrams as schematics
+and QC/exploratory evidence accordingly. No figure quota, dashboard, mandatory
+plotting gate, repeated unchanged render, or implicit remote upload.
 
 ## Decide or ask
 
