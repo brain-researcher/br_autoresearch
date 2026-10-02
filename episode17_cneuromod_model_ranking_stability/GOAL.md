@@ -68,8 +68,6 @@ development edge carried forward: audit agreement establishes repeatability,
 not a new predictive mechanism. The exact decomposition is elementary.
 The reviewed sources motivate a methods study; a standalone paper still needs
 a consequential empirical pattern beyond known selection sensitivity.
-[The scope review](outputs/scope_novelty_review_20261002.md) separates that
-contribution from stronger, still-open scientific directions.
 
 ## At a glance
 

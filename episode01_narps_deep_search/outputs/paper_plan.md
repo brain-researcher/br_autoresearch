@@ -62,8 +62,7 @@ test of whether those effects organize the public analyst maps. Behavioral
 and map half-splits test within-experiment prediction and stability; the team
 layer reuses the same participants and is not independent validation of the
 cognitive interpretation. Combining the layers does not by itself establish
-novelty; their specific connection must survive the stated tests. See the
-[current scope review](scope_novelty_review_20261002.md).
+novelty; their specific connection must survive the stated tests.
 
 ## Introduction logic
 
@@ -95,6 +94,40 @@ The exact remaining gap is whether a recoverable computational decomposition
 can define stable map directions, whether controlled cognitive specifications
 move maps along those directions, and whether public analyst maps exhibit the
 same structure.
+
+The NARPS public result archive v2.0.1 already supplies team maps, decisions,
+confidence, method reports, harmonization, smoothness, and generic similarity
+outputs; those operations are not contributions of EP01. Lefort-Besnard et al.
+(2025) address dependent multiverse maps and same-data consensus evidence, so
+consensus aggregation is also outside the proposed gap. HCP Multi-Pipeline and
+related reliability multiverses have subject-level multi-pipeline measures;
+NARPS public group maps cannot support comparable individual-rank claims.
+
+### Directions not pursued
+
+The 2026-09-29 literature assessment retired smoothing as a headline.
+[Mikl et al. (2008)](https://doi.org/10.1016/j.mri.2007.08.006) compared pre-GLM
+and post-GLM contrast smoothing and discussed OLS versus ReML/prewhitening
+noncommutation; [Hagler, Saygin, and Sereno (2006)](https://pmc.ncbi.nlm.nih.gov/articles/PMC1785301/)
+compared smoothing time courses with coefficient maps.
+[Worsley et al. (1996)](https://pubmed.ncbi.nlm.nih.gov/20408187/) established
+scale-space inference, while [Ball et al. (2012)](https://pubmed.ncbi.nlm.nih.gov/21404370/)
+and [Sacchet and Knutson (2013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3618861/)
+showed scale-dependent results and reward-domain localization. A `{4,6,8,10}`
+smoothing profile, pre/post timing comparison, or smoothing commutator is
+therefore insufficient as the paper's contribution.
+
+Derivative sufficiency was also retired as the headline. Fixed multilevel
+GLM reproduction from parameter estimates and covariances (Beckmann,
+Jenkinson, and Smith, 2003), transformation covariance `K Sigma K^T` (Rohde
+et al., 2005), ordinary group OLS on contrast maps under stated conditions
+(Mumford and Nichols, 2009), precision-weighted group analysis (Chen et al.,
+2012), and rich statistical-result sharing through NIDM-Results (Maumet et al.,
+2016) already provide the core precedents. Germani et al. (2025) identify
+false-positive risks when reusing heterogeneously processed contrasts. An
+operation-indexed derivative envelope with a useful covariance repair remained
+technically plausible, but the scientist selected the cognitive-estimand
+question above. These earlier directions remain inactive.
 
 ## Study 1: behavioral adjudication
 

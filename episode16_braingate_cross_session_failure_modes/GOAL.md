@@ -1,9 +1,5 @@
 # Why does a human iBCI mapping work in one session but not another?
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md) places
-this comparison against existing long-term stabilization work. Its explanatory
-outcomes are operational signatures, not separately identified causal mechanisms.
-
 Train a direction-prediction mapping on an earlier BrainGate session, then
 apply it unchanged to a later session from the same participant. If it performs
 worse, the score alone does not tell us why. The later session might contain

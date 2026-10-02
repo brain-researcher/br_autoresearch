@@ -38,7 +38,7 @@ alter the answer to the primary `delta_R2` test.
 
 | Prior work | What is already known | What EP05 would still need to add |
 | --- | --- | --- |
-| Gallego-Carracedo et al., eLife 2022, [doi:10.7554/eLife.73155](https://doi.org/10.7554/eLife.73155) | In these recordings, LFP features relate to low-dimensional spike-population dynamics; that relationship depends on frequency and cortical region and was similar across planning and execution. The paper and code also provide the direct reproduction target. | Show that LFPs predict **trial-specific continuous velocity left over after direction and time**, on withheld directions, under one cross-session policy; then connect the gain to held-out fluctuations in the spike-population state rather than merely restating an LFP–spike association. |
+| Gallego-Carracedo et al., eLife 2022, [doi:10.7554/eLife.73155](https://doi.org/10.7554/eLife.73155) | In these recordings, LFP features relate to low-dimensional spike-population dynamics; that relationship depends on frequency and cortical region and was similar across planning and execution. Its analysis concatenates trial activity; it is not merely a comparison of average responses. The paper and code also provide the direct reproduction target. | Show that LFPs predict **trial-specific continuous velocity left over after direction and time**, on withheld directions, under one cross-session policy; then connect the gain to held-out fluctuations in the spike-population state rather than merely restating an LFP–spike association. |
 | Flint et al., Journal of Neural Engineering 2013, [doi:10.1088/1741-2560/10/5/056005](https://doi.org/10.1088/1741-2560/10/5/056005) | Two monkeys used LFP-based decoders for stable online cursor control; offline prediction of hand movement could still vary. | EP05 uses a different, offline dataset and cannot claim online control. It must show condition-general residual prediction and state exactly what survives across sessions and animals. |
 | Wang et al., Journal of Neural Engineering 2014, [doi:10.1088/1741-2560/11/3/036009](https://doi.org/10.1088/1741-2560/11/3/036009) | Motor-cortical LFPs can retain directional and kinematic decoding value over long periods, but preferred directions and signal quality can change. | Separate a pipeline policy that is stable across sessions from session-specific fitted coefficients, and test whole-session influence rather than presenting the best session or feature band. |
 | Gallego et al., Nature Neuroscience 2020, [doi:10.1038/s41593-019-0555-4](https://doi.org/10.1038/s41593-019-0555-4) | Low-dimensional cortical population dynamics can remain stable across time and support kinematic decoding despite turnover in recorded units. | Test whether the useful LFP residual is aligned with those trial-varying population dynamics in this task; do not infer this merely because both signals decode movement. |
@@ -47,9 +47,6 @@ This table is a starting benchmark, not an exhaustive novelty review. Before a
 paper claim is written, record for the retained candidate: the closest decoder
 and LFP–population studies, the exact overlap, the new statement, the strongest
 rival explanation, and the observation that would refute it.
-
-The [2026-10-02 review](scope_novelty_review_20261002.md) retains the current
-question and comparison; no new model or execution condition is added.
 
 The following outcomes are **not** enough novelty by themselves:
 

@@ -1,7 +1,5 @@
 # Do nearby neurons use reusable output patterns?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 Two neurons can sit at similar positions in one well-defined source population
 yet distribute their axons differently across downstream regions.
 That diversity is already known. The open question is whether a small set of

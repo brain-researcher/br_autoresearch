@@ -4,8 +4,7 @@ Status: adapted-reproduction paper plan, narrative refreshed 2026-10-02.
 This document describes the scientific comparison and its interpretation,
 not a replication result or a live execution report. This writing update grants
 no allocation, protocol lock or data access. See the
-[scope review](scope_novelty_review_20261002.md) for the scientific boundary
-and the [execution ledger](experiment_log.md) for current authorized stages,
+[execution ledger](experiment_log.md) for current authorized stages,
 attempts and next actions.
 
 ## The question

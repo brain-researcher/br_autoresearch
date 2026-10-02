@@ -1,7 +1,5 @@
 # EP08 paper plan: conditional signal value and learnable calibration deficits
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 Status: scientific-design revision, 2026-09-30. No acquisition result,
 explanatory result, hardware saving, online benefit, or third-animal validation
 is claimed. Exploration of models, summaries and training/calibration states is

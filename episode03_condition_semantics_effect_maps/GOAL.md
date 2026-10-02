@@ -97,8 +97,7 @@ promote a candidate is not an equivalence test. With no fresh audit, all these
 comparisons remain adaptive development findings, not prospective confirmation.
 
 See [the paper plan](outputs/paper_plan.md) for the scientific argument and
-evidence sequence, and the [current review](outputs/scope_novelty_review_20261002.md)
-for the prior-work boundary and sign-consistent amendment.
+evidence sequence.
 
 ## One orientation rule for the baseline, model, and evaluator
 

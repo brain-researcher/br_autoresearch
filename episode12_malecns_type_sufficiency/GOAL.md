@@ -1,7 +1,5 @@
 # When does a cell-type average distort a circuit's wiring?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 Neurons assigned to the same cell type are often summarized by one wiring
 profile. That summary may hide meaningful differences. Some cells could
 prefer one set of downstream partners, while others of the same type prefer

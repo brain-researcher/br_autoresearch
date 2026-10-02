@@ -2,9 +2,6 @@
 
 [Current conceptual figure](ep19_question_imagegen-v2.png) · [Exact image-generation record](ep19_question_imagegen-v2-prompt.md).
 
-See the [2026-10-02 scope review](scope_novelty_review_20261002.md) for the
-source-backed gap and conditional contribution.
-
 ## Paper question
 
 Does EEG contain prospective information about movement onset 300–600 ms in

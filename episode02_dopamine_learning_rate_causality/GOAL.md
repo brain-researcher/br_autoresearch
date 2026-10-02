@@ -25,8 +25,7 @@ predictions are frozen before intervention outcomes; the protocol contrast
 does not automatically identify a unique learning rule. The drawing represents
 trigger rules, not stimulation on every trial.*
 
-The [paper plan](outputs/paper_plan.md) develops this inference boundary; the
-[2026-10-02 review](outputs/scope_novelty_review_20261002.md) retains its
+The [paper plan](outputs/paper_plan.md) develops this inference boundary and
 conditional reanalysis scope against current neighboring work. The
 operative [search policy](SEARCH_POLICY.json) retains the existing endpoint,
 model grammar, budgets, access roles, and unbound thresholds. This writing

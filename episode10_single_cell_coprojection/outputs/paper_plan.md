@@ -1,7 +1,5 @@
 # EP10 paper plan: what does "projects to A" hide?
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 Status: revised scientific design, 2026-09-30. The within-A context contrast is
 the primary of a **planned biological follow-up**, not a result or an amendment
 to frozen development execution. See [GOAL.md](../GOAL.md),
@@ -43,10 +41,10 @@ illustration of the target-combination-led design, not the current primary.
 
 | Primary source | Established finding / constraint | Candidate-specific obligation |
 | --- | --- | --- |
-| [Falasconi et al., Cell 2026](https://pubmed.ncbi.nlm.nih.gov/42777707/) | Motor-source modules, two spatial axes, and aligned wiring/cell-type composition are published. | Treat source position and module-associated composition as competitors; rediscovering spatial routing is not the main paper. |
+| [Falasconi et al., Cell 2026](https://pubmed.ncbi.nlm.nih.gov/42777707/) | Motor-source modules, two spatial axes, aligned wiring/cell-type composition, and subcortical convergence/divergence involving striatum, thalamus and brainstem are published. | Treat source position and module-associated composition as competitors; rediscovering spatial routing is not the main paper. |
 | [Gao et al., Neuron 2026; online 2025](https://pubmed.ncbi.nlm.nih.gov/41253150/) | This resource already supports published projection-defined subtypes and terminal-arbor diversity. | Establish what the exact pathway/profile prediction adds beyond source-paper analyses; same trees are not independent replication. |
 | [Liu et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-54745-6) | Diversity and stereotypy across morphological scales are published. | Do not sell generic within-target heterogeneity or another morphology cluster as a discovery. |
-| [Yuan et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-52756-x) | Co-target status already relates to laminar termination in a shared cortical target. | A generic co-target/laminar association is replication or extension. The candidate needs a consequential competing explanation, held-out prediction, and branch-level implementation. |
+| [Yuan et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-52756-x) | Co-target status already relates to laminar termination in a shared cortical target; the auditory-source comparison includes lateral-target neurons with versus without medial co-projection. | A generic co-target/laminar association is replication or extension. That observed-versus-unobserved context contrast cannot be imported as EP10's positive-only comparison. The candidate needs a consequential competing explanation, held-out prediction, and branch-level implementation. |
 | [Han et al., Nature 2018](https://www.nature.com/articles/nature26159) | Non-random target combinations are established. | A co-projection catalogue or global association score is not the contribution. |
 
 The inference from these sources is that the new paper must be **pathway- and
@@ -56,6 +54,13 @@ source/A/contexts, closest existing answer, unresolved explanation, fixed
 prediction, and interpretation changed by either outcome. If nothing distinct
 remains, present a replication/extension or stop; do not rescue novelty with
 a new atlas label.
+
+A prospective interpretation is whether source-defined motor pathways
+converging on a common downstream region have terminal organization explained
+by source position/module alone, or whether positive co-target context adds
+organization hidden by pooling. This is a literature-motivated question, not
+an established novel gap or a selected A/B/C pathway. Eligibility and common
+support must come from permitted development observations.
 
 ## Primary estimand and evidence
 

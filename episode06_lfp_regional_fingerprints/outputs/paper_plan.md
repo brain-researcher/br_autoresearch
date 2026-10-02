@@ -4,10 +4,9 @@ Status: integrated manuscript role, 2026-09-30. EP06 is a component of EP07's
 history-and-population-components paper. No real-data result, reserved-session
 test, or third-animal test is claimed; this decision does not authorize execution.
 
-The [2026-10-02 scope review](scope_novelty_review_20261002.md) retains this
-manuscript role. Its explicit pre-analysis amendment distinguishes unscoreable
-rivals from measurable rivals lacking a joint-region consequence; the three
-components and numerical margins are unchanged.
+Amendment 2026-10-02: before analysis, distinguish unscoreable rivals from
+measurable rivals lacking a joint-region consequence. The manuscript role,
+three components, and numerical margins are unchanged.
 
 ![EP06 recording-domain/component schematic, not observed results](ep06_question_imagegen-v2.png)
 

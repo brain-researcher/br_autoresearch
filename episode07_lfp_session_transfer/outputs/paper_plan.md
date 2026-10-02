@@ -5,11 +5,6 @@ recording-domain component study. No neural result, new-day replication, or
 scientific acceptance is claimed. The public corpus and earlier campaign work
 were already outcome-exposed.
 
-The [2026-10-02 scope review](scope_novelty_review_20261002.md) retains the
-open search and history-specific pairing question. It clarifies that failure
-to support a residual or pairing increment does not identify a mean-only or
-geometry mechanism.
-
 ![EP07 concept schematic, not observed results](ep07_question_imagegen-v2.png)
 
 Residual curves are schematic and the matching rows denote fixed predictions,

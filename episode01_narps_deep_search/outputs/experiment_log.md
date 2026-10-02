@@ -122,7 +122,7 @@
   lag/local covariance repair benchmark against full-covariance and
   raw-timeseries references
 - Evidence refs: `../GOAL.md`, `../DATASETS.md`, `../SEARCH_POLICY.yaml`,
-  `literature_collision_audit.md`, `paper_plan.md`,
+  `paper_plan.md` (including the consolidated retired-directions section),
   `astra/v0.0.14/astra.yaml`
 - Failure or deviation: the prior multiscale contract is superseded before
   execution because its central question closely overlaps Mikl et al. (2008),
@@ -154,7 +154,7 @@
   first-level method descriptions; no model was fit and no participant or
   team-map score was computed
 - Evidence refs: `../GOAL.md`, `../DATASETS.md`, `../SEARCH_POLICY.yaml`,
-  `literature_collision_audit.md`, `paper_plan.md`,
+  `paper_plan.md` (including the consolidated retired-directions section),
   `astra/v0.0.14/astra.yaml`
 - Failure or deviation: the derivative-sufficiency direction remains a
   defensible methods backlog item but was superseded by explicit scientist

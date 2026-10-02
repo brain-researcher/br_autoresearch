@@ -1,9 +1,5 @@
 # Why do people have different cerebellar task maps?
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md) keeps
-the competing-account design and clarifies that equally adequate explanations
-remain non-identifiable, rather than selecting one by presumed simplicity.
-
 Two people can perform the same task while showing cerebellar activity in
 slightly different places. That difference could mean several very different
 things. The same functional parcels may have different boundaries; the whole

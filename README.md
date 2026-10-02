@@ -1,5 +1,9 @@
 # Brain Researcher Autoresearch
 
+Browse the [EP01-EP21 figure gallery](FIGURES.md) for current study schematics
+and links to each episode's scientific goal. Scope, prior work, and claim limits
+are maintained in the episode documents, not separate review reports.
+
 We have Brain Researcher as an analytical tool. The next step is to see whether
 this kind of agentic workflow can be extended into autonomous, self-evolving
 research episodes.

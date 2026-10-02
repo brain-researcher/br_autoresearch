@@ -2,9 +2,6 @@
 
 [Current conceptual figure](ep16_question_imagegen-v2.png) · [Exact image-generation record](ep16_question_imagegen-v2-prompt.md).
 
-See the [2026-10-02 scope review](scope_novelty_review_20261002.md) for the
-source-backed contribution and interpretation limits.
-
 ## Paper question
 
 Across longer gaps, does a later session contain less locally recoverable

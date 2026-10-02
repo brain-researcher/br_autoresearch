@@ -65,10 +65,6 @@ The held-out-direction test remains the first result; the spike-population
 follow-up cannot change its answer. No real EP05 analysis has run under this
 revised plan.
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
-retains this question: the proposed addition is trial-specific kinematic
-information and its population consequence, not another LFP decoder.
-
 ## At a glance
 
 | Question | EP05 design |

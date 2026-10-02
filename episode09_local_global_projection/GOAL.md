@@ -1,7 +1,5 @@
 # At what biological resolution does dendrite–projectome coupling live?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 ## The question in plain language
 
 Two neurons can belong to the same cortical IT population, sit in the same source

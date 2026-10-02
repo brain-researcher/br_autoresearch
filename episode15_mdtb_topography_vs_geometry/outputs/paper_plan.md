@@ -5,9 +5,6 @@
 Status: proposed study design, 2026-09-27. No MDTB neural result or model-class
 claim is reported here.
 
-The [2026-10-02 scope review](scope_novelty_review_20261002.md) records the
-closest prior work and the conditional, statistical-account interpretation.
-
 ## The intended contribution
 
 The paper should answer a concrete question: when cerebellar task maps differ
@@ -25,6 +22,12 @@ not naturally produce.
 
 ## What is already known
 
+[King et al. (2019)](https://www.nature.com/articles/s41593-019-0436-x)
+establishes the MDTB functional-organization background.
+[Nettekoven et al. (2024)](https://www.nature.com/articles/s41467-024-52371-w)
+and the [2026 Nettekoven preprint](https://www.biorxiv.org/content/10.64898/2026.03.09.710558v1)
+place individual cerebellar organization and prediction close to this question.
+
 | Prior direction | Already established | What EP15 must add |
 | --- | --- | --- |
 | Individual cerebellar parcellation | MDTB task sets can personalize parcel boundaries and predict novel-task organization | Show whether boundary changes are sufficient after fair relocation and geometry alternatives |
@@ -32,9 +35,9 @@ not naturally produce.
 | Cross-task map prediction | Individual Task-A information can improve predictions in the other task set | Explain what stable structure carries that prediction, not simply repeat the gain |
 | Condition distances and Gram matrices | Crossvalidated task geometry has been measured in MDTB | Predict a participant's signed B-only geometry deviation from Task A |
 
-The novelty review should be updated before a paper claim, but the standard is
-already clear: neither “first personalization” nor “first condition geometry”
-is available. The potential new fact is a tested boundary between spatial
+Before a paper claim, update this prior-work comparison.
+Neither “first personalization” nor “first condition geometry” is available.
+The potential new fact is a tested boundary between spatial
 placement of a shared code and predictable individual change in that code.
 
 ## Study sequence

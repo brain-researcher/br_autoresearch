@@ -47,8 +47,7 @@ Development and OOD use different image supports and aggregations; the audit
 tests whether the registered advantage criterion is met again, not a causal
 shift effect, a percentage of alignment retained, or a formal ID–OOD interaction.
 A precise model-ranking result alone remains a bounded benchmark. A broader
-paper needs informative evidence about this boundary. See the
-[scope and novelty review](outputs/scope_novelty_review_20261002.md).
+paper needs informative evidence about this boundary.
 
 The primary target is direct geometry-to-geometry alignment between each
 release-supplied native VLM image embedding and fMRI activity patterns, not

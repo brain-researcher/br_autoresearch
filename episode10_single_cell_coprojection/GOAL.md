@@ -1,7 +1,5 @@
 # Does co-target context predict terminal organization inside a shared target?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 A neuron can reach the same cortical or subcortical region as another neuron
 without placing its terminal arbors in the same part of that region. EP10 asks
 whether that difference is predictably associated with the neuron's other

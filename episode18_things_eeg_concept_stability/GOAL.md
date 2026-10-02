@@ -22,9 +22,8 @@ The [paper plan](outputs/paper_plan.md) describes the explanatory follow-up
 and the evidence needed for each planned figure. No EEG result is claimed in
 this document.
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
-clarifies the comparison: named labels can already identify concepts in the
-continuous inputs. The categorical slot changes sharing and regularization,
+Named labels can already identify concepts in the continuous inputs.
+The categorical slot changes sharing and regularization,
 not necessarily the nominal information available. Any feature-sufficiency
 claim is relative to the tested bases, inventory and meaningful margin.
 Post-fit distant-event ablation measures importance within the fitted model,

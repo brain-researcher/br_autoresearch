@@ -4,9 +4,8 @@ This is the output workspace for EP01's NARPS cognitive-estimand study. The
 former smoothing and derivative-sufficiency designs were retired before
 execution. No scientific result has been generated under the current contract.
 
-The manuscript logic is in [`paper_plan.md`](paper_plan.md), the novelty
-boundary is in
-[`literature_collision_audit.md`](literature_collision_audit.md), and the
+The manuscript logic, prior-work boundaries and retired directions are in
+[`paper_plan.md`](paper_plan.md), and the
 three-layer question is shown in the image-generated
 [`ep01_conceptual_question-imagegen-v3.png`](ep01_conceptual_question-imagegen-v3.png), with
 [exact prompts](ep01_conceptual_question-imagegen-v3-prompt.md). Earlier figures are historical.

@@ -60,10 +60,9 @@ region–array link would be needed to claim a pure cortical-area effect.
 No real EP06 analysis, reserved-session test, or third-animal test has run under
 this plan.
 
-The [2026-10-02 review](outputs/scope_novelty_review_20261002.md) retains the
-EP07 component role and prospectively clarifies nomination: a measurable
-region-inconsistent rival is not an unscoreable rival. The explicit
-pre-analysis amendment below changes eligibility, not numerical margins.
+The pre-analysis amendment of 2026-10-02 clarifies nomination: a measurable
+region-inconsistent rival is not an unscoreable rival. The amendment below
+changes eligibility, not numerical margins or the EP07 component role.
 
 ## Paper integration does not merge outcome access
 

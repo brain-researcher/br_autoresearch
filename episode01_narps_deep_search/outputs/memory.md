@@ -112,8 +112,9 @@ not active EP01 claims:
 - An operation-indexed derivative envelope with a practical covariance repair
   remains a possible methods backlog project, not the formal EP01 question.
 
-The chronological design history is preserved in `experiment_log.md` and the
-retired section of `literature_collision_audit.md`.
+The chronological design history is preserved in `experiment_log.md`; the
+[directions not pursued](paper_plan.md#directions-not-pursued) retain the
+scientific reasons for the earlier pivots.
 
 ## Open implementation details
 

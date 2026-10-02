@@ -60,6 +60,7 @@ part of the experiment.
 | [Konkle and Alvarez, Nature Communications 2022](https://pubmed.ncbi.nlm.nih.gov/35078981/) | Self-supervised representations can fit ventral-stream geometry alongside supervised models. | SSL-versus-supervised brain fit is not new. |
 | [Conwell et al., Nature Communications 2024](https://www.nature.com/articles/s41467-024-53147-y) | Controlled visual-model comparisons; linking methods and training diets materially affect conclusions. | Neither controlled comparison nor method-dependent brain alignment is a first claim. |
 | [Prince et al., GLMsingle, eLife 2022](https://elifesciences.org/articles/77599) | Better response estimates, reliability and downstream analyses. | Better denoising or reliability is not this paper's discovery. |
+| [Methods for computing the maximum performance of computational models of fMRI responses](https://pmc.ncbi.nlm.nih.gov/articles/PMC6426260/) | Noise ceilings are an established part of computational-model evaluation. | Positive-weight reaggregation is not a new biological mechanism. |
 | [Schütt et al., eLife 2023](https://elifesciences.org/articles/82566) | Representational model inference includes measurement and selection assumptions. | Sensitivity to measurement assumptions is known; retain subject/stimulus uncertainty. |
 | [CNeuroMod-THINGS data paper](https://arxiv.org/abs/2507.09024) | Dense repeated visual measurements and supplied GLMsingle derivatives. | Dataset availability or another use of the release is not novelty. |
 
@@ -190,6 +191,14 @@ test adds a descriptive spatial association; it does not compare against a
 bin-only predictor. An incremental spatial-prediction test remains a prospective
 option. Mean blockwise R² and pooled-image R² are not silently equated.
 
+If consequential spatial heterogeneity appears, future comparisons could ask
+whether it follows anatomy, repeat reliability, or externally defined stimulus
+or functional organization. Spatial-bin-only advantage maps and within-bin
+rearrangements could preserve broad anatomy while testing local correspondence.
+A stronger explanation would predict a held-out pattern beyond the coarse
+comparator. These are prospective options, not additional audit requirements
+or ways to rescue the current endpoint after seeing outcomes.
+
 The beta audit forecast is evaluated against the equal mean of the twelve
 audit-block raw-R² stage changes, using the frozen training baseline and
 prediction bank with the registered within-block aggregation. The primary
@@ -299,6 +308,3 @@ resolve remaining checkpoint/exposure issues before scores rather than
 silently replacing a model or ROI. No extraction, neural
 access, model fitting, audit opening or canonical action was authorized by
 this writing milestone.
-
-The [October 2 scope review](scope_novelty_review_20261002.md) identifies
-open explanatory follow-ups without adding them to the executable program.

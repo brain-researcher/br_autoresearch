@@ -5,9 +5,6 @@
 Status: proposed study design, 2026-09-27. No EEG result, audit result, or
 paper claim is reported here.
 
-The [2026-10-02 scope review](scope_novelty_review_20261002.md) records the
-categorical-sharing interpretation and limits of the explanatory ablations.
-
 ## The intended contribution
 
 The opening question is whether sharing EEG responses by named concept

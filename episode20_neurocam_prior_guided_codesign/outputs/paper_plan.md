@@ -2,9 +2,6 @@
 
 [Current conceptual figure](ep20_question_imagegen-v2.png) · [Exact image-generation record](ep20_question_imagegen-v2-prompt.md).
 
-See the [2026-10-02 scope review](scope_novelty_review_20261002.md) for the
-prior-work boundary and the unchanged promotion requirement.
-
 ## Paper question
 
 Does changing NeuroCam's sensing pads recover cortical detail that better
@@ -29,6 +26,13 @@ the same anchors yet rank candidates differently. A material reversal would
 identify a missing device measurement, not an optimum. Stable rankings and
 successful independent predictions could support one virtual design for
 fabrication testing and explain where it should help. No design has been scored.
+
+[Optimal Electrode Size for Multi-Scale Extracellular-Potential Recording (2019)](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2019.00385/full)
+already addresses electrode-size, spatial-averaging and noise trade-offs.
+[Multiplexed Surface Electrode Arrays Based on Metal Oxide Thin-Film Electronics](https://pmc.ncbi.nlm.nih.gov/articles/PMC10933637/)
+makes switching and multiplexing limitations central prior work. The
+[NeuroCam source paper](https://doi.org/10.1016/j.scib.2025.11.030) supplies the
+device anchors; generic small-pad or faster-scan benefits are not new.
 
 Methods are in the [component design](component_details.md),
 [starting field/pad/scan catalogue](parameter_candidate_catalogue.md) and

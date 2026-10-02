@@ -51,10 +51,6 @@ an icon. [Imagegen prompts](outputs/ep01_conceptual_question-imagegen-v3-prompt.
 
 No empirical result is claimed in this document.
 
-The [2026-10-02 scope and novelty review](outputs/scope_novelty_review_20261002.md)
-retains this question while distinguishing cross-run prediction from the
-same-data, descriptive many-team layer.
-
 ## The remaining candidate contribution
 
 Several neighboring questions are already occupied:

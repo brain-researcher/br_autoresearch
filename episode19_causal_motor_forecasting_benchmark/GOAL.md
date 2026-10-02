@@ -384,8 +384,7 @@ establish a positive or negative scientific result.
 
 ## Relation to prior work
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
-and the paper plan make the closest contrasts explicit. [Premovement EEG
+[Premovement EEG
 prediction](https://pmc.ncbi.nlm.nih.gov/articles/PMC5558611/) predates EP19,
 and [Crell et al. (2025)](https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2025.1540155/full)
 already studies cued-to-self-paced asynchronous detection with false-alarm

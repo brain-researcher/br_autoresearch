@@ -1,9 +1,5 @@
 # When should a constrained NeuroCam redesign recover cortical voltage fields better?
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
-clarifies the virtual-design contribution and aligns the result branches with
-the existing requirement that the frozen condition-to-design rule must pass.
-
 NeuroCam uses a 64 × 64 multiplexed electrode array to observe voltage on the
 cortical surface. Its architecture creates a basic trade-off. Reading more
 pixels expands spatial coverage, while revisiting fewer rows or source groups

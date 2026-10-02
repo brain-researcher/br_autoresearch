@@ -1,7 +1,5 @@
 # What Makes a Neuroanatomical Age Representation Transfer?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 ## The question in plain language
 
 The same FreeSurfer measurements can be represented as individual ROIs,

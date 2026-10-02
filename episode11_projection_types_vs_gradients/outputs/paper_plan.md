@@ -1,7 +1,5 @@
 # EP11 paper plan — Do nearby somatosensory neurons use reusable output patterns?
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 Writing revision: 2026-09-30. This is a prospective anatomical inference plan,
 not a biological result, cohort activation or authorization to open outcomes.
 Existing execution contracts govern active work; this narrative changes no

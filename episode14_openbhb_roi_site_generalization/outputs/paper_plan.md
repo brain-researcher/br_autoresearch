@@ -1,7 +1,5 @@
 # Paper plan — what makes an anatomical age representation transfer?
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 ## The scientific question
 
 Which organization of existing FreeSurfer ROI measurements improves age

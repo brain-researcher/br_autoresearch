@@ -60,10 +60,6 @@ that claim. The current primary papers and overlap boundaries are in the
 [paper plan](outputs/paper_plan.md); this is a candidate contribution, not a
 claim of first discovery.
 
-The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
-keeps this question and the broad search intact, while distinguishing a
-supported prediction gain from an identified explanation of that gain.
-
 Consider two rightward reaches at the same native time bin. The mean-structure
 explanation predicts the same usual population response for both. The coupling
 explanation additionally predicts which reach has above- or below-usual

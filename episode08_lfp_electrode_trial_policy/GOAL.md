@@ -1,7 +1,5 @@
 # What makes the next electrode or calibration trial useful?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
-
 EP08 keeps its exploration open: **what makes electrode and calibration
 information valuable, and when can that value be predicted?** One candidate
 explanation is conditional complementarity and reducible uncertainty. At

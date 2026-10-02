@@ -1,7 +1,5 @@
 # EP09 paper plan
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 ## Working title
 
 **Within-class dendritic residuals predict exact long-range target vectors in

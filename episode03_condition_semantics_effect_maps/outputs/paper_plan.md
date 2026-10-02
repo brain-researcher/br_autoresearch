@@ -3,10 +3,9 @@
 Design milestone: 2026-09-30. This plan changes the argument, not the frozen
 operative search contract. No current-contract experiment or audit has run.
 
-Amendment 2026-10-02: the [scope review](scope_novelty_review_20261002.md)
-identified an ambiguity in complete-prediction polarity. The current Goal and
-policy now specify canonical orientation for both the family comparator and
-semantic residual, before any current-contract map computation. The loss,
+Amendment 2026-10-02: to resolve an ambiguity in complete-prediction polarity,
+the current Goal and policy specify canonical orientation for both the family
+comparator and semantic residual, before any current-contract map computation. The loss,
 model families, budgets, evidence roles, and audit decision are unchanged.
 
 ## The paper in one sentence

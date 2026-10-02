@@ -1,7 +1,5 @@
 # Paper plan — Exact identifiability of a latent BOLD target
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 ## Manuscript type
 
 A reusable proof-carrying technical reference and lemma package, not an

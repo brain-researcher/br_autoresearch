@@ -33,8 +33,7 @@ nonredundant discrimination or identification-limit result. If the only
 deliverable is the published directional effect plus better recordkeeping,
 it is a reproducibility report, not a new mechanism paper.
 
-The [2026-10-02 review](scope_novelty_review_20261002.md) retains this scope;
-current literature broadens the comparison context, not the executable panel.
+Current literature broadens the comparison context, not the executable panel.
 
 ## Three claims, three evidential objects
 

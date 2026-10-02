@@ -12,7 +12,7 @@ numerical margins remain open. This is a measurement comparison, not a causal
 self-supervision effect.
 
 - [Paper plan](paper_plan.md)
-- [Scope and novelty review, October 2](scope_novelty_review_20261002.md)
+- [Scope and novelty review, October 2 (consolidated)](paper_plan.md)
 - [Current three-operation conceptual figure, v3](ep17_conceptual_question-v3.png)
 - [Exact generation and correction prompts](ep17_conceptual_question-v3-prompt.md)
 - [Historical support-specific figure, v2](ep17_conceptual_question-v2.png)

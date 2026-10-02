@@ -203,7 +203,7 @@ contrasts so a gain is interpretable; these displays add no promotion test.
 
 ## Selection and manuscript interpretation stay conditional
 
-The 2026-10-02 [review](scope_novelty_review_20261002.md) prospectively clarifies
+The 2026-10-02 design amendment prospectively clarifies
 nomination eligibility. All three components must be numerically scoreable on
 the common nomination sessions; an unscoreable rival leaves the full comparison
 unresolved. Regional sign consistency is candidate-specific: a measured

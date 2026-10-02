@@ -1,7 +1,5 @@
 # EP12 paper plan: when does a cell-type average distort circuit wiring?
 
-[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
-
 Design revision: 2026-09-30. The outgoing execution has separate development
 history in [experiment_log.md](experiment_log.md); its final result remains
 unopened. This plan promotes circuit consequence to a scientific co-primary
@@ -54,10 +52,12 @@ be presented as the biological discovery.
 
 | Prior work | Already established | What an EP12 candidate must add |
 | --- | --- | --- |
-| Dombrovski et al., Nature 2023, [doi:10.1038/s41586-022-05562-8](https://doi.org/10.1038/s41586-022-05562-8) | Within-type output synaptic gradients support visuomotor transformations, with behavioural, physiological and connectomic evidence. | A different or substantively new circuit inference, not the general observation that spatial gradients matter. Known LC4 gradients are benchmarks, not discoveries. |
+| Dombrovski et al., Nature 2023, [doi:10.1038/s41586-022-05562-8](https://doi.org/10.1038/s41586-022-05562-8) | Within-type output synaptic gradients support visuomotor transformations, with behavioural, physiological and connectomic evidence; LC4 gradients support location-to-action mapping through differently directed escape pathways, including DNp02/DNp11. | A different or substantively new circuit inference, not the general observation that spatial gradients matter. Known LC4 gradients are benchmarks, not discoveries. |
 | Dombrovski et al., Nature 2025, [doi:10.1038/s41586-025-09037-4](https://doi.org/10.1038/s41586-025-09037-4) | Molecular gradients instruct LPLC2 input/output synapse numbers and contribute to visuomotor behaviour. | Treat continuous organization as a substantive biological alternative. MaleCNS alone cannot infer those molecular mechanisms or claim to discover their known circuit consequence. |
 | Schlegel et al., Nature 2024, [doi:10.1038/s41586-024-07686-5](https://doi.org/10.1038/s41586-024-07686-5) | Cross-connectome typing; AOTU063 illustrates a morphology-defined group with two consistent connectivity subdivisions. The paper also discusses simplifying connectome graphs by cell type. | An explicit circuit consequence beyond another split; independent-specimen evaluation is needed for a transfer claim, not for every within-specimen structural result. |
 | Cornean et al., Nature Communications 2024, [doi:10.1038/s41467-024-45971-z](https://doi.org/10.1038/s41467-024-45971-z) | Tm9 input heterogeneity, related circuit motifs, and genetic synapse labeling across individuals | A specific new organization or generalization beyond known within-type heterogeneity; output groups alone are insufficient |
+| [Namiki et al. 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9206711/) | Many near-homomorphic DNg02 cells control wingbeat amplitude through a population code. | Population coding does not establish interchangeable wiring; any new association requires candidate-specific evidence. |
+| [Stürner et al. 2025](https://www.nature.com/articles/s41586-025-08925-z) | Descending/ascending circuit analysis bridges brain and nerve-cord resources and compares identities across datasets. | Cross-resource circuit analysis is established; a new access path is not itself novelty. |
 | Berg et al., Cell 2026, [doi:10.1016/j.cell.2026.08.015](https://doi.org/10.1016/j.cell.2026.08.015), [MaleCNS project](https://male-cns.janelia.org/) | Source connectome and its published annotations and circuit analyses | Check each candidate against the source paper, supplements and existing group/instance distinctions before asserting novelty |
 
 These examples are literature benchmarks, not a predetermined candidate
@@ -73,6 +73,15 @@ review: a named candidate must add a previously untested structural association
 or a calibrated bound on the inferential cost of averaging. If its exact
 organization and consequence are already known, use it as a benchmark and
 report that status; do not silently relabel it a discovery.
+
+DNg02 is an optional illustration, not an adopted case: do individual cells
+preserve visual-input/flight-premotor-output associations that a type average
+obscures? Historical DNg02 is not guaranteed to be one current provider type;
+[FlyBase's annotation](https://flybase.org/cgi-bin/cvreport.pl?childdepth=2&cvterm=FBbt%3A00047594&rel=is_a)
+lists finer DNut007–DNut010 names. Development-role eligibility, bilateral
+support, subtype distinctions and prior circuit analyses remain unestablished.
+Do not pool finer labels to manufacture within-type replication; a known
+association remains a benchmark.
 
 ## Study sequence
 

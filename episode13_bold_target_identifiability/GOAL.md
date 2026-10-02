@@ -1,6 +1,5 @@
 # When Does a BOLD Observation Determine a Latent Target?
 
-[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
 EP13 is a reusable technical reference and lemma package based on classical
 linear estimability; the present result does not establish sufficient
 standalone research-paper novelty.
