@@ -1,34 +1,84 @@
-# Can a short pilot tell us what to record next?
+# What makes the next electrode or calibration trial useful?
 
-At the start of a recording session, all electrodes may be available, but it
-may be impractical to keep every channel active or collect a large calibration
-set. EP08 asks a concrete question: after only 16 pilot reaches recorded on all
-eligible electrodes, can we choose which 4, 8, or 16 electrodes to retain and
-which reach direction to sample next, then predict untouched neural activity
-better than simple rules with exactly the same electrode and trial budget?
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
 
-Every method begins with the same pilot: two reaches in each of eight
-directions. It then chooses a whole-electrode subset and allocates 32, 64, or
-128 additional calibration trials by reach direction. The final decoder is the
-same for every method. The alternatives are random selection, broad spatial
-coverage, and ranking electrodes only by signal quality.
+EP08 keeps its exploration open: **what makes electrode and calibration
+information valuable, and when can that value be predicted?** One candidate
+explanation is conditional complementarity and reducible uncertainty. At
+comparable signal quality, an electrode may be valuable when its available
+training/calibration signal predicts population activity not recoverable
+from the other retained electrodes. A reach direction should be valuable when
+another trial is expected to reduce uncertainty about that mapping, not merely
+when its current error is large. The retained set changes the mapping being
+estimated, so a quality-matched electrode swap can change the predicted order
+of next-direction value. That last prediction distinguishes a joint rule from
+two independently useful acquisition methods.
 
-![EP08 conceptual figure showing the common pilot, electrode and trial choices, matched-resource performance surface, and forward tests of electrode and next-trial value](outputs/ep08_question_imagegen.png)
+This is a testable application of established conditional sensor selection and
+experimental design, **not a first algorithm or a demonstrated biological
+mechanism**. The public source is absent and no neural analysis has run. The
+original matched-budget protocol is now an **optional reference scenario**,
+not the research-wide prerequisite. Its numerical decision remains unchanged.
+Additional named-rule scoring remains proposed and unactivated, detailed in the
+[acquisition-principle proposal](outputs/acquisition_principle_proposal.md).
 
-Like the EP12 concept figure, this mockup uses synthetic patterns to make the
-scientific alternatives visible. It starts with clean-but-redundant and
-complementary electrodes plus an uncertain reach direction, then shows the
-joint post-pilot decision and three explanations for any gain: simple
-reliability and balance, two independent improvements, or a coupled electrode
-and next-trial rule. The final strip separates a candidate explanatory
-acquisition principle from a policy gain alone. The 2 × 2 algorithm table is
-repeated at each point of the actual 4/8/16-electrode by
-+32/+64/+128-trial grid; all displayed patterns are illustrative, not EP08
-results, and decision rules remain in the text.
+There is **no mandatory separate 16-trial pilot**. Explore models, temporal
+summaries, training/calibration amounts and coverage, static/source-trained
+selection, and response-adaptive initialization on development sessions.
+Neither low-rank linear proxies nor a fixed initializer are preselected.
+Zero-shot electrode selection does not imply zero-shot population decoding.
+
+The [open-exploration amendment](outputs/open_exploration_design.md) separates
+two questions. Offline information-value analysis can use a declared training
+pool to predict conditional electrode/trial value. Sequential acquisition can
+use only what was actually available before each action and must count all
+initializer and later acquisition exposure. The first does not automatically
+support the second's efficiency claim. Within a selection comparison, decoder,
+target, tuning opportunity and evaluation support must be matched.
+
+![EP08: conditional electrode value, trial value and a real electrode swap](outputs/figures/ep08_episode_series-v6.png)
+
+Conceptual illustration: center-out reaching links electrode LFPs to population
+activity; the same candidate electrode can overlap or complement different
+retained sets; mapping uncertainty differs from trial variability; an electrode
+swap raises a prediction about the next useful direction with calibration data
+held fixed. The five schematic observations in each uncertainty illustration
+are not a prescribed pilot size. The swap changes electrode membership, not
+just color; it asks sensor-dependent trial value, not factorial score
+interaction. The composition retains the EP05/EP12-inspired v5 style. The
+[exact imagegen prompt](outputs/figures/ep08_episode_series-v6-prompt.md) and
+[earlier protocol overview](outputs/ep08_open_exploration-v3.png) are retained. The
+[v2 figure](outputs/ep08_conditional_value_principle-v2.png) and its
+[prompt](outputs/ep08_conditional_value_principle-v2-prompt.md) now illustrate
+only the optional 16-trial reference case. Earlier PNG/SVG assets are retained.
+
+All branches share the existing search/resource allowance and the single
+held-session opening. Development can revise candidates; the chosen final
+protocol, comparisons, endpoints and decisions are fixed before held scoring.
+The source and external third-animal data remain unavailable; no analysis or
+Git action is launched by this amendment.
+
+## Candidate predictions, not a closed hypothesis menu
+
+| Quantity known before the choice | Proposed prediction | Discriminating failure |
+| --- | --- | --- |
+| Allowed training/calibration target-linked signal left after conditioning on the retained set, with quality matched | More complementary electrodes have larger later conditional removal loss than equally clean redundant electrodes | Reliability or marginal target correlation ranks removal loss equally well |
+| Calibration geometry and uncertainty in fitted parameters, with noise and direction counts accounted for | Larger expected reduction in parameter uncertainty predicts greater repeatable next-direction benefit | High-error directions remain noisy; the proxy does not predict benefit beyond balance |
+| The same calibration trials under a quality-matched electrode swap | Recomputed pre-choice scores predict the change, or stability, of direction-value ordering | Two policy gains occur, but the predicted ordering change does not repeat |
+
+The named candidate scores use regularized, trial-cross-fitted linear proxies, not an
+estimated high-dimensional information-theoretic quantity. Sixteen pilot
+trials do not establish that these rankings are identifiable or precise.
+Whole trials are the fitting/validation units; time bins do not create extra
+pilot replicates. Fitting-only centering and target scaling, rank limits,
+shrinkage, pooled noise estimation, and direction support are specified in the
+proposal for that candidate. Other supported estimators remain open. Decoder
+capacity is matched within each selection comparison; reduced-rank ridge is
+the unchanged decoder of the optional reference scenario.
 
 ## The scientific question
 
-Can information visible in a 16-trial pilot reveal two kinds of future value?
+Can information in a declared training/calibration state reveal future value?
 
 1. **Nonredundant electrode value:** an electrode is useful because it adds
    population information not already present on the other retained
@@ -36,9 +86,9 @@ Can information visible in a 16-trial pilot reveal two kinds of future value?
 2. **Next-trial value:** the current calibration state predicts which reach
    direction will benefit most from one additional trial.
 
-The first study asks whether one pilot-guided acquisition rule improves neural
-prediction at matched budgets. The explanatory follow-up asks whether the
-rule's pilot scores actually predict these two forms of value. It also asks a
+Value analysis need not wait for short-pilot feasibility or a policy win.
+Independently, a sequential study can ask whether an available-information
+rule improves neural prediction at matched total resources. EP08 also asks a
 third, stricter question: **does changing the retained electrode set
 predictably change which reach direction is worth sampling next?** Without
 that dependency, electrode selection and trial allocation may be two useful
@@ -48,16 +98,26 @@ methods, but they are not yet a joint acquisition principle.
 
 | Question | EP08 design |
 | --- | --- |
-| What does every method see first? | The same 16 trials: two from each of eight reach directions, recorded on all eligible electrodes. |
-| What is chosen? | Which 4, 8, or 16 whole electrodes to retain, then the direction of each additional calibration trial. |
-| How many additional trials? | 32, 64, or 128, giving a complete 3-by-3 electrode-by-trial grid. |
+| What information is explored? | Declared training/calibration pools, different initial amounts and coverage, static/source-trained and response-adaptive rules. No compulsory separate pilot. |
+| What is chosen? | Development explores electrode sets, trial value and information states. Sequential action rules must be specified before comparison. |
+| What is the 16-trial design? | One optional reference: retain 4/8/16 electrodes and add 32/64/128 trials, preserving its nine-cell decision intact. |
 | What is predicted? | Motor-population spike activity on untouched trials from the same session. |
-| What is the fair comparison? | At every electrode-by-trial budget, cross simple versus conditional-value electrode selection with balanced versus adaptive trial allocation. Random and spatial rules remain additional comparisons. |
-| What must repeat? | Improvement in both animals, at least three of four held-out sessions, and the two scarce-resource settings `(4,32)` and `(8,64)`. Every grid cell remains visible. |
-| What would explain a win? | Pilot-only measurements predict later electrode-removal loss; pre-choice measurements predict repeatable next-direction benefit; and quality-matched electrode swaps predictably change which direction is worth sampling. |
+| What is the fair comparison? | Match decision-time information, actual total exposure, target, decoder and tuning; keep offline-value and sequential-efficiency claims distinct. |
+| What must repeat? | The selected branch's prospectively specified predictions and decisions across sessions/animals. The old `0.005`, 3/4 and scarce-cell conditions apply only to the reference. |
+| What would explain a win? | Allowed-data predictions of later conditional value, repeatable next-direction benefit and, for a coupling claim, sensor-dependent trial ordering. These remain hypotheses. |
 | What would confirm the explanation? | The same predictions and acquisition rule work in newly sequestered sessions from a third animal. |
 
-## Why a winning policy is not yet an explanation
+## Optional reference scenario: original 16-trial acquisition protocol
+
+**Scope of the remaining protocol sections:** pilot-only information, the
+fixed grid/decoder, family coverage, `0.005` primary decision, replay settings
+and terminal conditions below describe `reference_16_trial_acquisition` only.
+They do not gate other supported offline analyses or initializers. Global
+data separation, shared resource ceilings, one held opening and honest claim
+limits still apply to every branch. New endpoints/stopping rules need a
+prospective specification; no automatic transfer of the reference margin.
+
+### Why a winning policy is not yet an explanation
 
 Two electrodes can be equally clean yet carry nearly identical information.
 Keeping both may waste a scarce channel. A slightly noisier electrode may be
@@ -65,11 +125,12 @@ more useful if it captures population variation missing from the first one.
 The explanatory test therefore asks how much prediction worsens when each
 retained electrode is removed from an otherwise unchanged set.
 
-The same distinction applies to trial selection. If seven directions are
-already predicted well but upward reaches have large calibration errors, an
-adaptive method should predict that another upward trial will help more than
-another trial from an already well-estimated direction. That prediction must
-be made before the additional trial or its later evaluation benefit is known.
+The same distinction applies to trial selection. Two directions can have the
+same large calibration error: one because its mapping is poorly estimated,
+the other because trial-to-trial noise remains high even after its mapping is
+stable. The proposed rule favors expected reduction in the first uncertainty,
+not the largest error. It must predict benefit before the additional trial or
+its later evaluation benefit is known.
 
 A large current error is not enough. It could be irreducible trial-to-trial
 noise, in which case one lucky next trial may appear helpful but the benefit
@@ -85,10 +146,16 @@ electrode count and trial count, EP08 evaluates all four combinations:
 | Simple electrode selection | Reference | Trial-selection contribution |
 | Conditional-value electrode selection | Electrode-selection contribution | Combined contribution |
 
-If electrode and trial improvements are both useful but additive, the result
-supports two methods. A joint principle additionally requires the retained
+Two positive component gains alone support two useful methods. Evidence for
+sensor–trial coupling additionally requires the retained
 electrode set to alter the ordering of next-direction value in a way predicted
 before those future trials are revealed.
+
+Coupling and aggregate factorial interaction are different quantities: changed
+direction values can cancel in an aggregate score, and an interaction alone
+does not establish the proposed explanation. The optional reference retains
+its inherited stronger joint-claim decision; it is not a universal definition
+of coupling.
 
 Electrode count and trial count have different physical meanings. EP08 reports
 performance changes along each axis of the 3-by-3 grid. It does not claim that
@@ -266,6 +333,15 @@ irreducible direction-specific noise, one fortunate future trial, one
 favorable session, or information that would not have been available at the
 time of the decision.
 
+The named conditional-complementarity / reducible-uncertainty proposal does
+not replace this required comparison set or automatically become the selected
+policy. Its linear proxy lies within the existing redundancy-aware,
+linear-ranking, uncertainty, and information-gain candidate families. Any
+additional rule-prediction score, pair-selection criterion, effect margin, or
+confirmation decision must be specified prospectively in a separate amendment
+before its relevant outcomes are accessed. It cannot amend the primary
+`0.005 R2_SSE` decision after a failed or ambiguous policy result.
+
 ## Held-session decision
 
 Before the four untouched sessions are scored, choose one global acquisition
@@ -290,7 +366,7 @@ A positive primary result requires all of the following:
 
 All four factorial combinations remain visible regardless of which method
 wins. A positive `Q_CA - Q_SB` establishes a combined-policy result, not a
-joint principle. The stronger joint interpretation additionally requires a
+joint principle. In this optional reference, the stronger joint interpretation additionally requires a
 resolved algorithm interaction and the electrode-dependent next-direction
 prediction described below. If both component contrasts are positive but the
 interaction is practically absent and direction order is unchanged, report
@@ -332,6 +408,14 @@ evaluation benefits. Candidate predictors are current direction counts,
 cross-validated calibration error, uncertainty, and residual diversity. The
 chosen direction is compared with balanced and random choices at the same
 point in the recorded trial order.
+
+The proposed reducible-uncertainty proxy averages a possible next trial over
+the direction's **already acquired** feature distribution. It never reads the
+next recorded trial's LFP or target in order to decide whether to request it.
+Its parameter-uncertainty reduction is not the total predictive variance or an
+exact expectation of the final decoder's held-out improvement. A shrinking
+proxy is meaningful only if it predicts repeatable realized benefit in the
+branch tests; a formula alone does not establish learnability.
 
 The test is repeated from common, outcome-independent replay states under
 several prespecified within-direction orders. A useful score must predict the

@@ -1,4 +1,16 @@
-# Episode 02 data and exposure contract
+# EP02 — Evidence for a protocol contrast, not a unique learning rule
+
+This release is used for a publication-exposed mechanistic-discrimination
+reanalysis of naive trace conditioning. It cannot supply a new independent
+discovery cohort. The [scientific question](GOAL.md) is whether control-
+qualified rules make distinguishable locked predictions and what the existing
+mouse-level protocol contrast can identify.
+
+The source paper's adaptive-rate interpretation is prior knowledge, not an
+unseen target. Other tasks and learning stages do not enter this release.
+Adding modern alternative model families, new trajectory endpoints, or a
+formal rival-exclusion test would require a separate pre-outcome amendment;
+the current model grammar and terminal rules remain unchanged.
 
 ## Status
 
@@ -71,6 +83,35 @@ trial; VTA and DS coverage is partial. Records 21–24 have narrower support.
 
 Provider-derived features (`predVars`, `cuePredVars`, `rewDA`, `prepLick`, and
 `baseLick`) are parity checks only.
+
+### Estimand unit convention
+
+The mouse-level `raw_gain` is the session-8 minus session-1 preparatory lick
+probability. The primary contrast `delta_rate_raw` is the between-arm difference
+in mean raw gain and is measured in probability-gain units. The companion
+`delta_rate_std` equals `delta_rate_raw` divided by the frozen development-
+control standard deviation and is measured in development-SD units. It is not
+an independent estimand, and any standardized margin must be derived exactly
+from the presigned raw-unit margin.
+
+Despite the historical symbol `delta_rate_raw`, this is an acquisition-gain
+contrast, not an estimate of a latent learning-rate parameter. The two epochs
+alone do not identify rate separately from asymptote or expression. The
+continuous-lick, latency, motion and neural summaries keep their existing
+replication/falsifier/secondary roles; none becomes a new primary endpoint.
+
+The assigned interventions are whole closed-loop protocols: reward-time
+stimulation after no lick versus a lick in the preceding verified 750-ms
+window, with a 50% session cap in `stimLick+`. The protocol contrast is not a
+fixed-dose or per-stimulation causal effect. Realized stimulation counts
+remain excluded rather than being adjusted as if they were baseline features.
+
+Nine control mice provide model development and a reference center, not
+randomized arm-versus-control confirmation. Without the assignment and
+attrition roster, the released complete cases support only explicitly
+assumption-dependent comparisons. An unblocked label calculation is not the
+documented design, an ITT effect, or a heterogeneous average-effect confidence
+bound. A rate-gate-consistent pattern is not unique mechanism identification.
 
 ## Exposure ledger
 

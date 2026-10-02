@@ -47,16 +47,24 @@ split.
 
 ## Conceptual figure
 
-The planned main design figure will show the source response, nonlinear
-content-loss converter, target neural space, fixed target VGG19 decoder, and
-feature-space loss, alongside the shared-stimulus brain-loss comparator and
-the separate inter-site branch. It will also show that the artificial-image
-analogue is closed under the current EP04 boundary.
+![EP21: disjoint decoder/converter training and common method evaluation](outputs/ep21_neural_code_conversion_design-v3.png)
 
-![Conceptual EP21 neural-code-conversion design](outputs/ep21_neural_code_conversion_design.png)
+Conceptual design of the primary adapted reproduction. The target decoder is
+trained first; content loss then updates the source-to-target converter through
+that fixed decoder, using the source image's VGG19 features rather than a target
+neural response. All three methods share the same test support and readouts;
+the within-person baseline is within source. The brain-loss comparator alone
+uses paired shared training responses. Their different training sets/counts
+make this a training-package comparison, not an isolated loss-function effect.
 
-The figure is a design schematic and must never display or imply an observed
-EP21 result before execution.
+The five participants generate 20 dependent directed pairs. “No shared” refers
+to decoder/converter training image IDs, not the upstream provider measurement
+pipeline: accepted inherited dependence and retrospective evidence remain
+disclosed. All thumbnails and activity/feature icons are illustrative, not
+observed outcomes. Inter-site extension remains separately contingent, and the
+artificial/OOD analogue is outside this primary figure and closed to EP21.
+[Built-in image-gen prompt and edits](outputs/ep21_neural_code_conversion_design-v3-prompt.md).
+The previous figure is retained only as a historical asset.
 
 ## Corrected source and implementation anchor
 

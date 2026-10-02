@@ -1,7 +1,58 @@
-# EP11 — Continuous variation and reusable projection groups within a source population
+# Do nearby neurons use reusable output patterns?
 
-**Status:** local Stage-0 metadata/readiness qualification active; real
-projection outcomes and audit remain unopened, and no EP11 result is reported.
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
+
+Two neurons can sit at similar positions in one well-defined source population
+yet distribute their axons differently across downstream regions.
+That diversity is already known. The open question is whether a small set of
+allocation patterns adds useful, transferable information beyond a flexible
+continuous description of position, depth, and nearby-cell variation.
+
+The paper must resolve a named anatomical statement, not announce another
+cluster catalogue: **at comparable source positions, does a development-defined
+target-allocation pattern recur in held-out replicate units, or does a
+qualified continuum predict the allocation distribution just as well?**
+The intended replicate is an independently verified animal. Inventory
+identifiers alone do not establish independent animals.
+
+![EP11: nearby neurons, allocation descriptions and group transfer](outputs/ep11_conceptual_question-v2.png)
+
+*Design schematic, not observations. Target sets, colors, allocation strips
+and distributions are illustrative; no contrast, pattern or winner is
+selected. Allocation means regional axon centerline length, including passing
+grey-matter axon, not terminal mass or synapses. The group icons do not certify
+independent animals. [Imagegen prompt](outputs/ep11_conceptual_question-v2-prompt.md).*
+
+## The smallest informative paper result
+
+The biological deliverable is one principal, development-selected allocation
+rule on the existing fixed target vocabulary, with a named source, targets,
+laterality, spatial domain, effect scale, and uncertainty. For example, a
+contrast between the relative axon length assigned to two named target sets
+could change smoothly with depth, or show recurring distributional patterns
+among spatially overlapping neurons. The actual target sets and direction are
+selected only in development and frozen before audit; this example is not a
+preregistered target choice or evidence of exclusive pathways.
+
+The planned primary remains `H_ref - C_ref` on the registered regional
+axon-allocation composition. Its purpose is to distinguish the usefulness of
+two descriptions, not prove that neurons have intrinsically discrete types.
+Groups and continuous latent coordinates are integrated out when scoring new
+neurons. An outcome-derived posterior label is not an independently observed
+predictor and cannot establish prospective identification of an individual
+neuron's group.
+
+A positive group comparison needs both a meaningful held-out gain and a
+reproduced named allocation rule. A continuous answer needs absolute adequacy,
+sensitivity to meaningful group effects, and an upper bound on added group
+value. A wide interval is unresolved, not evidence for continuity. Regional
+axon length is not synapse count, terminal-arbor mass, or functional output.
+
+The [paper plan](outputs/paper_plan.md) gives the prospective manuscript
+argument. This brief does not activate a cohort or replace the execution
+contract retained below; current authority and attempts are recorded separately.
+
+## Retained execution contract
 
 ## Scientific question
 

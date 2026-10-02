@@ -1,4 +1,4 @@
-# EP04 — fixed-panel VLM–brain representational alignment
+# Does native VLM–brain alignment survive image-distribution shift?
 
 ## Status, protocol, and exposure boundary
 
@@ -16,13 +16,39 @@ from prior work.
 
 ## Scientific question
 
-Which frozen vision-language-model (VLM) image-embedding geometry aligns most
-strongly with image-disjoint fMRI response geometry in high-level visual
-cortex, beyond one frozen DINOv2 vision-only comparator, and does that locked
-alignment survive a genuinely unseen image-distribution boundary? A registered
+Can a frozen vision-language-model (VLM) image embedding retain an advantage
+over DINOv2 in its direct alignment with high-level visual-cortex geometry
+across an unseen image-distribution boundary, including differences **within**
+the prespecified OOD categories? The complete fixed panel first selects one
+native VLM geometry on image-disjoint regular-image responses; the locked OOD
+test then asks whether its advantage survives. A registered
 low-level geometry is a required nuisance control. Caption and object
 geometries are optional secondary semantic anchors, not alternative primary
 endpoints.
+
+### What this could add beyond another model ranking
+
+VLM–brain correspondence is already established. For example, a
+[2026 Nature Human Behaviour study](https://www.nature.com/articles/s41562-025-02357-5)
+compares CLIP with vision models across multiple fMRI datasets and adds
+brain-lesion evidence; [BrainSAIL, ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/file/73af055566f5514b9863315133b84eda-Paper-Conference.pdf)
+compares CLIP, DINO, and SigLIP encoding representations. A newer checkpoint or
+one more positive RSA is not sufficient novelty.
+
+EP04's candidate contribution is a **native-geometry boundary test**: the same
+locked VLM must exceed the same DINOv2 comparator on within-category OOD
+geometry, where broad separation between OOD categories cannot produce the
+primary score. This is the existing OOD endpoint, not a new architecture,
+reproduction requirement, or learned brain mapping. It does not identify why
+multimodal training helps, and within-category prediction is not automatically
+semantic or independent of low-level visual structure.
+
+Development and OOD use different image supports and aggregations; the audit
+tests whether the registered advantage criterion is met again, not a causal
+shift effect, a percentage of alignment retained, or a formal ID–OOD interaction.
+A precise model-ranking result alone remains a bounded benchmark. A broader
+paper needs informative evidence about this boundary. See the
+[scope and novelty review](outputs/scope_novelty_review_20261002.md).
 
 The primary target is direct geometry-to-geometry alignment between each
 release-supplied native VLM image embedding and fMRI activity patterns, not
@@ -31,6 +57,29 @@ Alignment does not imply identity of coordinates, computation, syntax,
 mechanism, or a shared Platonic representation. Five participants are the
 biological observations; images, voxels, RDM edges, sessions, and repetitions
 are not independent people.
+
+### Conceptual figure
+
+![EP04: direct native RSA and within-category image-shift test](outputs/ep04_conceptual_question-v2.png)
+
+The same image identities generate release-supplied VLM and DINOv2 embedding
+RDMs and participant fMRI response RDMs. Native cosine model geometry is
+compared directly with correlation-distance neural geometry by Spearman RSA,
+not by learning a model-to-brain coordinate mapping. The fixed-panel contrast
+is Fisher-transformed VLM-to-brain RSA minus DINOv2-to-brain RSA, with the
+registered low-level control and five equally weighted participant effects.
+Development holds out images within participants, not people. The conditional
+371-image OOD audit tests within-category geometry in the same five participants;
+1,121 previously exposed regular-shared images are excluded. Panel D's A/B/C
+cards are abstract category/exemplar placeholders, not actual OOD images or
+classes. The audit repeats an advantage criterion, not an ID–OOD interaction.
+[Exact imagegen prompts](outputs/ep04_conceptual_question-v2-prompt.md).
+
+This is an image-generated scientific schematic: thumbnails, colored feature
+strips, RDM entries and brain shading are illustrative, not source data or
+results. No winning model is shown. Unmatched checkpoints cannot identify a
+causal language/multimodal-training effect, and similarity does not establish
+shared mechanism, neural specificity or participant-population generalization.
 
 ## Evidence roles
 

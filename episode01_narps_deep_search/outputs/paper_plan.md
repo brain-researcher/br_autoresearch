@@ -2,6 +2,13 @@
 
 This is a prospective paper architecture. It reports no empirical result.
 
+![EP01 cognitive-specification study design](ep01_conceptual_question-imagegen-v3.png)
+
+Choices/RT motivate competing accounts; the fixed-pipeline factorial tests
+conditional map shifts within participants. The analyst archive is a
+same-participant descriptive layer, not independent confirmation. All drawing
+elements are schematic. [Imagegen prompts](ep01_conceptual_question-imagegen-v3-prompt.md).
+
 ## Proposed title
 
 **What do neural loss-aversion maps measure? Behavioral mechanisms and
@@ -25,8 +32,8 @@ operationalized as valuation, decision difficulty, choice, and response.
 ## Why this paper matters
 
 NARPS established that plausible teams can reach different maps and decisions
-from the same data. The usual interpretation is estimator or inference
-flexibility. But first-level choices can change the target itself: an impulse
+from the same data. EP01 focuses on one specific source of that variation:
+first-level choices can change the target itself. An impulse
 offer model, an RT-duration model, a model with no response phase, and a model
 that absorbs decision difficulty do not necessarily estimate the same
 cognitive quantity.
@@ -49,17 +56,24 @@ fixed-pipeline cognitive model factorial
 ecological projection of 70-team maps
 ```
 
-Behavior alone repeats prior DDM work. A controlled fMRI multiverse alone is a
-methods paper. Team-map projection alone is reverse interpretation. Their
-cross-validated conjunction is the contribution.
+Behavior alone repeats prior DDM work. The candidate contribution is a
+controlled test of cognitive-specification effects, followed by a descriptive
+test of whether those effects organize the public analyst maps. Behavioral
+and map half-splits test within-experiment prediction and stability; the team
+layer reuses the same participants and is not independent validation of the
+cognitive interpretation. Combining the layers does not by itself establish
+novelty; their specific connection must survive the stated tests. See the
+[current scope review](scope_novelty_review_20261002.md).
 
 ## Introduction logic
 
 1. Many-analyst studies show that analytic choices change conclusions.
-2. Those studies usually assume a shared scientific estimand.
+2. A shared verbal hypothesis can still be operationalized as different
+   conditional estimands; test that specific possibility rather than attributing
+   an unexamined assumption to earlier studies.
 3. In mixed gambles, observed loss aversion is itself mechanistically
    ambiguous.
-4. NARPS uniquely combines dense gain-by-loss behavior, RT, four runs, BOLD,
+4. NARPS combines dense gain-by-loss behavior, RT, four runs, BOLD,
    and an ecological archive of many analysts' maps and method descriptions.
 5. Therefore NARPS can test whether analyst heterogeneity includes cognitive-
    estimand drift rather than only technical estimation noise.

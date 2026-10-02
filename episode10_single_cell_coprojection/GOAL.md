@@ -1,267 +1,191 @@
-# EP10 — Spatial routing and reproducible target combinations in single-neuron cortical projections
+# Does co-target context predict terminal organization inside a shared target?
 
-**Status:** scientific design; no EP10 result is reported here.
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
 
-The [paper plan](outputs/paper_plan.md) translates this design into candidate-
-specific claims, decisive alternatives, outcome routes, and a contingent
-figure sequence. It does not grant data-role or final-outcome access or presume
-a positive result.
+A neuron can reach the same cortical or subcortical region as another neuron
+without placing its terminal arbors in the same part of that region. EP10 asks
+whether that difference is predictably associated with the neuron's other
+**positively observed co-targets**, beyond soma location, source layer, and
+flexible continuous geometry.
 
-## Scientific question
+The intended paper is not another co-projection catalogue. Its central result
+would concern one named pathway: when "projects to A" pools together different
+terminal implementations, which co-target context distinguishes them, which
+measured alternatives explain them, and whether the prediction survives new
+biological groups.
 
-Within one well-defined cortical source population, which combinations of
-projection targets recur across animals and soma locations? How much of each
-combination can be explained by target prevalence, spatial routing, or the
-mixture of independently identified cell populations? For combinations that
-remain, how are the targets reached through the branching structure of complete
-single-neuron axons?
+![EP10 co-target context and within-target layout](outputs/ep10_within_target_implementation-v2.png)
 
-MOp is the provisional priority for the first data pass because it can
-connect existing morphology and multi-target tracing work. It is not the chosen
-source. That choice must be made from animal coverage, soma-position overlap,
-independent labels, target observability, and reconstruction quality before
-candidate associations are examined. MOs and SSp may later test the boundary of
-a result, but they must not be pooled with MOp simply to increase sample size.
+This is a schematic of a **planned biological follow-up**, not an EP10 result.
+B and C denote recorded-positive contexts; the B+C example illustrates their
+possible overlap, not a selected cell class. A/B/C and arbor layouts are
+generic illustrations, not chosen targets or measured differences. The pooled
+and context-resolved views show the same schematic arbors. Terminal arbors
+are not synapses. [Imagegen prompt](outputs/ep10_within_target_implementation-v2-prompt.md).
+The [paper plan](outputs/paper_plan.md)
+specifies the contingent manuscript, and [DATASETS.md](DATASETS.md) states what
+the available observations can support.
 
-The biological replicate is the verified animal. If animal identity cannot be
-resolved, the analysis must use the most conservative defensible specimen
-grouping and describe any result as cross-group rather than cross-animal.
+## What changes, and what does not
 
-## Proposed contribution and novelty boundary
+The within-A terminal-profile contrast is now the **scientific primary for the
+next biological study**. It is no longer an optional panel attached to a
+target-combination paper. The co-target contrast and a branch-level explanation
+must be specified before its held-out evaluation.
 
-Non-random co-projection is already known, and complete-morphology studies
-already describe projection and path diversity. EP10 will not claim either as a
-new discovery or produce another undifferentiated target-pair atlas.
+This is a prospective biological design. Existing execution contracts and
+recorded attempts remain separate. [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml),
+[DATASETS.md](DATASETS.md) and the [execution ledger](outputs/experiment_log.md)
+govern already initiated work; this narrative changes no operative model,
+observation rule, threshold, budget, stopping decision or data-access permission.
+The terminal-profile study requires its own prospective freeze before execution.
 
-The proposed contribution links three questions: whether a few named
-combinations are stable under measured spatial variation, whether routing or
-population composition explains them, and how complete axons implement them.
-Novelty must be reassessed for the final source and targets; if prior work has
-already answered this linked question, EP10 should change direction or stop.
+The new biological endpoint is **planned, not activated or executed**. Its
+profile estimator, anatomical contrast, useful margin, uncertainty,
+multiplicity, observation sensitivities, and evaluation-access contract still
+need a separate prospective freeze. This document neither opens final groups
+nor converts exposed development data into confirmation.
+
+## The prior-work boundary
+
+Motor-cortex spatial organization is a reference to explain, not the discovery
+to claim. [Falasconi et al. (Cell, 2026)](https://pubmed.ncbi.nlm.nih.gov/42777707/)
+report 16 projection-defined motor-cortex modules, two spatial axes, and
+aligned wiring and cell-type composition. EP10 must therefore compare its
+within-target result against source-space organization, rather than call the
+rediscovery of source modules or spatial routing novel.
+
+[Gao et al. (Neuron, 2026; online 2025)](https://pubmed.ncbi.nlm.nih.gov/41253150/)
+already report projection-defined subtypes and diverse single-neuron terminal
+arborization in the resource used by the active EP10 analysis.
+[Liu et al. (2024)](https://www.nature.com/articles/s41467-024-54745-6)
+likewise establish multiscale morphological diversity and stereotypy.
+[Han et al. (2018)](https://www.nature.com/articles/nature26159) establish
+non-random target combinations. None of these broad phenomena is an EP10
+novelty claim.
 
 [Yuan et al. (2024)](https://www.nature.com/articles/s41467-024-52756-x)
-used axonal BARseq to show that, in auditory-cortex IT neurons, projection to
-another area was associated with laminar termination within a shared cortical
-target. EP10 therefore cannot claim that a generic relationship between
-co-target identity and within-target laminar distribution is new. Before a
-candidate enters locked evaluation, its dossier must state:
+already associate co-target status with laminar distribution in a shared
+auditory-cortex target. Thus even the central association is not generically
+new. The possible contribution is **candidate-specific**: a prespecified
+within-target prediction that survives flexible source geometry and eligible
+independent labels, with a full-tree account of its implementation and a
+quantified consequence of pooling. A new source area, prettier trees, or
+additional clustering is not sufficient.
 
-- which unresolved explanation it distinguishes beyond that prior association;
-- one specific held-out prediction appropriate to the proposed route—an
-  anatomical prediction for Route A or a spatial/population prediction for
-  Route B; and
-- how confirmation or refutation would change interpretation of the named
-  pathway.
+The exact source, A, and co-target contexts remain unchosen for this follow-up.
+Their dossier must identify the unresolved pathway interpretation, its closest
+published answer, and the different conclusion implied by confirmation or
+refutation. Prior sample reuse is not independent replication; source-paper
+analyses of the same trees are particularly important competitors.
 
-A laminar association alone is a replication or extension, not the core EP10
-contribution.
+## The contrast: positive contexts, not exclusive classes
 
-Clusters derived from the same projection matrix cannot establish an
-independent cell type or rule out population mixture.
+Let A denote a shared target with qualifying recorded terminal arborization.
+Define a B-context by **A and B recorded**, and a C-context by **A and C
+recorded**. Neither definition requires the other target to be absent.
 
-## A motivating example
+A neuron with A, B, and C recorded belongs to both context summaries. Keep its
+identity and the covariance between summaries; do not duplicate it as two
+independent observations or silently remove it. Report the overlap and
+effective support by biological group. No mapped observation in B or C is
+unknown, never a B-negative/C-negative biological label.
 
-Suppose neurons in anterior and posterior parts of one source can reach targets
-A, B, and C, and development data suggest that A often occurs with B. Ask in
-order whether B is common at the same detected target count, whether position
-and independently defined routing geometry predict A+B, and whether labeled
-cell populations occupy the two positions in different proportions.
+For neuron i, let q_iA(b) be its qualifying terminal-arbor length in frozen
+within-A bin b, divided by its total qualifying length in A. It describes
+**where the recorded arbor lies**, not how much A arbor the neuron has.
+Total qualifying A length is a separate quantity.
 
-The useful test is where these explanations differ—for example, where routing
-predicts less A+B but the combination remains frequent. Freeze the effect
-direction, spatial region, and common-support rule in development, then test
-final groups that did not select the rule. A location without relevant cells is
-extrapolation, not validation.
+Before outcome-discriminating anatomy, freeze one biologically interpretable
+within-target coordinate, one profile resolution, and one signed profile
+summary theta_iA (for example an anatomical first moment on a justified
+coordinate). Freeze its direction and meaningful margin before evaluation.
+A generic three-dimensional coordinate is used only where it has a defensible
+anatomical interpretation; a cortical depth contrast is not imposed on every
+target.
 
-A deeper question follows once a combination is frozen. Among neurons with
-qualifying arborization in A, does the terminal distribution inside A differ
-between an A+B group and an A+C group? Development must define whether these
-groups require B-positive/C-negative versus C-positive/B-negative cells and
-how other targets and `K` are handled. A frozen contrast in unseen final groups can
-then test whether the same regional target label conceals different output
-organization that an A-averaged projection map would blur. This is a secondary
-anatomical endpoint; it does not replace the target-set primary test. Report
-the pooled A profile beside the two context-specific profiles and use one
-development-frozen measure of how much heterogeneity pooling hides.
+The proposed primary is the difference in group-first mean theta_iA between
+the B-positive and C-positive contexts, standardized to the **same measured
+covariate distribution on common support**. Use paired biological-group
+effects and retain within-neuron overlap. It is an association between recorded
+contexts and recorded A profiles, not a causal effect of acquiring B or C.
 
-The existing grouped split, M2-minus-M1 primary endpoint, search budget,
-stopping thresholds, full-search null, and promotion decisions remain
-unchanged. The new endpoint uses the same development and final groups rather
-than creating a second split.
+Soma position, source layer, available axon-independent labels, registration,
+clipping, mapping quality, and reconstruction quality define the measured
+reference. Control recorded-positive count K_i_obs as an observation quantity,
+not biological target number. Other co-targets cannot be recoded as verified
+negatives. Predeclare how their positive overlap enters adjustment and how
+sparse overlap limits the estimand.
 
-## Three explanations to distinguish
+## The decisive comparison
 
-The explanations are not mutually exclusive. EP10 should estimate where each
-one is adequate and where residual organization remains.
+The strongest rival is a continuous source-space explanation: context B and
+context C sample different soma positions, layers, known populations, or
+observation-quality regimes, so their A profiles differ without additional
+contextual organization.
 
-| Explanation | Scientific test | Permitted interpretation |
-| --- | --- | --- |
-| **Target prevalence and spatial routing** | Predict complete target sets from single-target frequencies, soma context, smooth position effects, technical covariates, and routing quantities available for every candidate target set. | Good calibration and a narrow upper bound on residual gains support adequacy of the measured reference at the chosen resolution, not proof that all geometry has been captured. |
-| **Known population composition** | Add or stratify by layer, driver, molecular, or other labels obtained independently of the axon target matrix; check overlap and confounding among label, position, and biological group. | Attenuation within independently labeled groups supports a composition explanation. Without suitable labels, population mixture remains unexcluded. |
-| **A stable target combination** | Freeze a development-selected combination, effect direction, and applicability region; test its joint probability in unseen final groups after the measured alternatives are included. | Reproduction supports a conditional organizational pattern, not functional coordination, a cell type, or a causal wiring program. |
+| Reference | Biological question |
+| --- | --- |
+| Flexible soma/layer/independent-label and continuous-geometry predictor of q_iA | Is the measured source-space and observation reference sufficient? |
+| The same predictor with recorded-positive co-target context added | Does context add a reproducible within-A prediction on common support? |
+| Frozen full-tree path and collateral characterization | Which branch arrangement realizes the conditional profile shift, or explains it away? |
 
-The predictive implementation uses nested references: M0 represents target
-prevalence and source context, M1 adds measured routing, and M2 adds regularized
-target associations. All score the same target sets conditional on detected
-target count, `K`. Fixed-`K` M0 is not an unconditional independence model.
-M2 minus M1 is primary; M1 minus M0 is secondary.
+The primary evidence is the frozen anatomical contrast, not an aggregate
+target-pattern score. Held-out improvement of profile prediction is supporting
+evidence against an inadequate reference; it does not substitute for a
+meaningful, reproducible pathway contrast. Model capacity, calibration, and
+source-space extrapolation must be addressed before attributing improvement
+to context. Projection-derived clusters cannot serve as independent labels.
 
-Because fixed-`K` interaction coefficients can be non-unique, claims must use
-identified probability contrasts rather than raw coefficients. Position
-comparisons should use a common covariate distribution and report uncertainty.
-A non-significant interaction does not establish equality; a materially changed
-magnitude marks a boundary or heterogeneity.
+Compare the pooled group-first mean of neuron-normalized A profiles with the
+context profiles. A raw amount-weighted projection map is a different
+estimator and must be shown separately. Freeze one pooling-discrepancy summary,
+its null, useful margin, and group-level uncertainty; visible separation alone
+does not quantify what an average hides.
 
-## First analysis stage
+## What full trees add
 
-The primary endpoint requires a frozen target vocabulary and a defensible
-distinction among arborization, passing axon, verified non-detection, and
-unknown. Unknown is never absence. Conditioning on `K` does not explain why
-some neurons reach more targets than others.
+For the chosen contrast, characterize entry route into A, branch divergence,
+collateral organization, and terminal-tree layout under a frozen matched
+reference. A shared ancestor is universal and is not a finding.
 
-The run begins by establishing:
+Entry route is a prespecified alternative explanation or possible mediator,
+not automatically matched away. Analyze the source-adjusted total association
+first, then the declared entry-route comparison; neither is causal mediation.
+Report whether separate terminal trees or a continuous tree crossing an atlas
+boundary creates the profile shift. Check amount, registration, clipping, and
+boundary sensitivities, and show all-group distributions beside fixed-rule
+examples.
 
-- source-by-group and source-by-position support, including zero and excluded
-  groups;
-- that the same cell or biological group does not cross the development/final
-  split or count as an independent replication across releases;
-- reproducible target calls from complete trees, including boundary and
-  reconstruction-quality examples;
-- if the shared-target endpoint may be pursued, a repeatable method for atlas
-  alignment and terminal-profile extraction that does not yet select A, B, or C
-  or compare their contexts;
-- provenance and overlap for any independent labels; and
-- a short proceed, revise, or stop decision that names the feasible source,
-  target resolution, competing explanations, development and evaluation roles,
-  detectable effect and precision, and exact-normalization and null-search cost.
+Realized paths and terminal profiles are outcomes. They cannot enter M0/M1/M2
+as predictive geometry, choose the original target panel, or redefine the
+separately frozen observation rule. Profile coordinates may be selected for technical
+repeatability only with context labels blinded; observed B/C separation cannot
+choose the metric, direction, or candidate.
 
-These are the first scientific tasks in the episode.
-If one coherent source lacks independent biological groups, overlapping
-spatial support, or reliable complete-set observation, EP10 must change data,
-narrow its claim, or stop before expensive search. Combining incomparable
-sources, labels, or measurement types is not a remedy.
+## Execution boundary
 
-The active group allocation, exact scoring, adaptive search, calibration, and
-stopping rules remain defined in `SEARCH_POLICY.yaml`; this scientific goal does
-not replace them.
+Existing execution history belongs in the [execution ledger](outputs/experiment_log.md).
+This planned anatomical study neither relabels an already-initiated primary
+endpoint nor activates terminal-profile fitting or held-out evaluation.
 
-## Complete axons as biological evidence
+## Outcome routes and claim limits
 
-After the target definition and candidate combinations are frozen, EP10 returns
-to each complete axon tree. Prespecified summaries should ask where paths to two
-targets diverge, how much normalized path they share before divergence, which
-collaterals and terminal branches cover each target, and whether an apparent
-pair is one continuous terminal tree divided by an atlas boundary.
+| Observation in a future frozen study | Interpretation |
+| --- | --- |
+| The within-A context contrast reproduces, adds profile prediction beyond the measured continuous reference, and has robust branch-level implementation | A named recorded-positive context identifies reproducible terminal organization in A; candidate-specific novelty still needs to exceed the source papers. |
+| Source geometry or eligible independent labels explain a reproduced contrast, with a precise useful residual bound | A narrower explanation or extension of known spatial organization, not automatically a new biological paper. |
+| Contrast exists only in development, disappears with quality/boundary controls, or depends on one group | No supported implementation claim. |
+| Common support, profile reliability, positive-context overlap, or precision is inadequate | The question is unresolved; do not redefine targets after final access. |
 
-For an eligible A+B versus A+C comparison, development must also freeze one
-target-intrinsic coordinate system and one primary summary of the normalized
-terminal-arbor distribution within A. Cortical depth or layer is appropriate
-only when biologically meaningful; a three-dimensional subregion or topographic
-coordinate may be more informative elsewhere. Total qualifying arbor length in
-A is a separate outcome, not a substitute for its normalized distribution.
-Terminal-branch density, reconstruction-endpoint density, focality, centroid,
-and spread may be supporting summaries, but reconstruction endpoints are not
-synapses.
+Biological groups are verified animals only when that identity is established;
+otherwise use conservative specimen groups and cross-group wording. More cells
+do not replace group replication. A held-out public-release subset is internal
+validation, not external replication.
 
-The comparison must use biological-group-level inference on common support: the
-group is the animal when verified, or the most conservative specimen otherwise,
-with a cross-group rather than cross-animal claim. Use a frozen adjustment or
-matching rule for soma position, source layer or independent labels, `K` and
-other targets, total morphology, registration, clipping, and reconstruction
-quality. Entry route into A must be declared in advance as an alternative
-explanation or possible mediator rather than silently matched away.
-
-Every axon has a common root, so a shared ancestor is not a finding. Compare
-candidate combinations with pairs matched on distance, overall morphology, and
-observability, and show group-level distributions as well as examples.
-
-Predictive geometry and outcome anatomy must remain separate. Routing priors
-must be available for every candidate set from an independent atlas or
-development data. A test neuron's realized path, branch point, or terminal tree
-is an outcome and cannot predict its target presence. Adult morphology can show
-implementation, not a developmental decision, energetic cause, or synaptic
-mechanism.
-
-Within-A morphology is likewise an outcome. With B/C context labels blinded,
-development data may establish technical repeatability and select the most
-reliable option from a prespecified set of coordinates or profile summaries.
-Within-A morphology cannot choose A, B, or C, and the A+B versus A+C contrast
-cannot choose the coordinate, metric, or predicted direction; revise target
-calls; enter M0, M1, or M2; or serve as an independent cell label. Only a
-contrast frozen in development may be tested in final groups.
-
-## Evidence chain
-
-1. **Phenomenon and observation.** Establish animal and spatial support,
-   defensible target calls, and a small set of combinations worth explaining.
-2. **Competing explanations.** Compare calibrated predictions from prevalence,
-   spatial routing, independently measured population composition, and residual
-   association; report combination-level effect sizes and group-level
-   uncertainty, not only a global score.
-3. **Anatomical implementation.** Quantify branch and terminal organization
-   against matched structural references, test A+B versus A+C organization
-   within their shared target when activated, and examine sensitivity to target
-   boundaries.
-4. **Prediction and boundaries.** Test the frozen combination, direction, and
-   applicability region in unseen groups. When a genuinely comparable resource
-   or measurement exists, test it externally and state whether all parameters
-   transfer or only target frequencies are recalibrated.
-
-![Conceptual EP10 v2 evidence chain using synthetic data](outputs/ep10_v2_evidence_chain.png)
-
-**Figure note.** This is a study-design illustration, not an observed EP10
-result. It links combination selection, competing explanations, full-axon
-branching, and validation across groups and conditions. The conditional
-A+B/A+C comparison and pooled-versus-context profiles inside A are specified in
-the text and are not depicted in this general evidence-chain figure.
-
-Aggregate M2-minus-M1 gain supports this chain but does not validate a named
-combination. Each reported combination needs a frozen probability contrast,
-group- and position-level uncertainty, a multiplicity procedure, and a stated
-domain of common support. Likewise, a held-out subset of one public release is
-an internal cross-group test—cross-animal only when animal identities are
-verified—not automatically an independent external replication.
-
-## Possible outcomes
-
-| Outcome | What would be needed | Scientific interpretation |
-| --- | --- | --- |
-| **Combination and anatomical implementation supported** | A named relationship reproduces across final biological groups within its frozen spatial domain, survives measured alternatives, and has robust branch or terminal organization relative to matched references. Cross-animal language is used only when animal identities are verified. Eligibility and activation of the shared-target endpoint are frozen before final evaluation; if activated, its within-A prediction must also reproduce and cannot be dropped after failure. Appropriate external evidence is added when available. | A conditional, observational organization rule is supported for the specified source and measurement regime. |
-| **Space or known population composition explains the pattern** | The original pattern first reproduces; the explanatory model is calibrated, residual effects are bounded below a meaningful threshold, and the explanation predicts new final groups. | A measured routing or composition explanation may support an explanatory paper even without useful M2 gain. |
-| **Internal predictive gain only** | M2 improves a score within the available release, but named combinations, spatial boundaries, and anatomy remain unsupported; if a comparable external resource exists, transfer also fails. | This is a methods result or preliminary finding, not the intended biological paper. |
-| **Unresolved or infeasible** | Groups disagree, uncertainty is wide, the reference remains inadequate, observation is unreliable, or independent grouping and common support cannot be established. | The data do not decide the question. Failure of the design is not evidence that co-projection organization is absent. |
-
-A null test alone cannot support the second outcome. The analysis must be
-sensitive to effects of interest and precise enough to exclude a scientifically
-meaningful residual association.
-
-## Decisions still open
-
-Before outcome-discriminating development, investigators must settle the final
-source, target granularity and laterality, common-support rule, independent-label
-strategy, effect scale and meaningful margin, combination-selection and
-multiplicity procedures, branch-summary normalization and matched references,
-the shared-target coordinate and terminal-profile summary, and the standard for
-external comparability. Dataset roles must follow identity, coverage, and
-measurement quality rather than favorable associations.
-
-## Claim boundary
-
-The strongest positive claim is that, within a frozen source population,
-target vocabulary, observation rule, detected target count, and spatial domain,
-a specific reconstructed target combination shows reproducible organization
-beyond measured alternatives and is realized through a reproducible axonal
-branching pattern. When the shared-target endpoint is activated, the claim may
-also state that the terminal profile within a named target changes predictably
-with a frozen co-target context.
-
-EP10 cannot establish synaptic connectivity, shared function, a causal or
-developmental program, a new cell type, whole-brain generality, or independence
-from analyses that reuse the same cells. Any conclusion must state which
-alternatives were actually measured and which remain unresolved.
-
-Complete morphology can resolve axonal arbor topography and branch organization.
-Unlike the EP12 question, it cannot identify postsynaptic or input partners,
-synapse number or strength, or cell-type-specific synaptic connectivity. Target
-identity and terminal morphology extracted from the same reconstruction are
-complementary evidence, not independent replication.
+Morphology resolves axonal topography and branching, not postsynaptic/input
+partners, synapse number or strength, function, developmental decisions, a new
+cell type, or causal wiring. Target calls and terminal anatomy from the same
+reconstruction are complementary observations, never independent replication.
+This distinguishes EP10 from a synaptic circuit question and from a
+groups-versus-continuum organization question.

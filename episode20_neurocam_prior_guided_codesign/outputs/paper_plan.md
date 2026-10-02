@@ -1,22 +1,40 @@
 # EP20 paper plan
 
+[Current conceptual figure](ep20_question_imagegen-v2.png) · [Exact image-generation record](ep20_question_imagegen-v2-prompt.md).
+
+See the [2026-10-02 scope review](scope_novelty_review_20261002.md) for the
+prior-work boundary and the unchanged promotion requirement.
+
 ## Paper question
 
-Under which measurable spatial, temporal, and device conditions can a legal
-change to NeuroCam pad geometry and scan allocation, paired with
-measurement-aware reconstruction, improve cortical-surface voltage recovery
-without receiving extra wiring, conversion, latency, bitrate, power, thermal,
-training, or model-capacity resources?
+Does changing NeuroCam's sensing pads recover cortical detail that better
+software on the published hardware cannot? EP20 tests pad geometry and scan
+allocation for 1–100 Hz cortical-surface voltage recovery under matched
+resources. Optimized published-hardware reconstruction tests software
+sufficiency; conventional reconstruction on the same candidate hardware and
+simple geometry/schedule controls test whether the joint design adds value.
 
-The deeper question is whether measurable conditions tell us **which** design
-should win: spatial correlation length, temporal timescale, and absolute
-noise, impedance, settling, and crosstalk characterization. A paper should
-deliver a rule that predicts the preferred design family under new conditions,
-not only one promising virtual device.
+The explanatory hypothesis is that spatial and temporal demands can be
+separated: spatial scale and pad noise/impedance predict when geometry helps;
+temporal scale and settling/crosstalk predict when the time-focused recipe
+helps. These inputs should predict the published-like, time-focused,
+geometry-only or joint family **before reconstruction**. The rival is that
+wave orientation, space–time phase and coupled electronics change the preferred
+family even when the rule's inputs match. Existing challenges test this
+distinction; a large interaction alone does not refute an accurate rule.
 
-The paper should begin with the spatial-versus-temporal measurement trade-off
-and the five matched comparisons. It should not begin with optimization
-machinery or imply that a virtual design has already been fabricated.
+A second question is whether published measurements identify a design
+preference at all. Different contact and switching mechanisms may reproduce
+the same anchors yet rank candidates differently. A material reversal would
+identify a missing device measurement, not an optimum. Stable rankings and
+successful independent predictions could support one virtual design for
+fabrication testing and explain where it should help. No design has been scored.
+
+Methods are in the [component design](component_details.md),
+[starting field/pad/scan catalogue](parameter_candidate_catalogue.md) and
+[shared electrical fit and probes](electrical_model_and_probes.md). Keep broad
+literature-context controls beside deliberate fine/rapid challenges, and
+include coverage, ADC work and computation in the matched resource comparison.
 
 ## Figure 1 — The five-way fair comparison
 
@@ -75,8 +93,10 @@ software is not supported.
 ## Figure 3 — Which conditions make each design preferable?
 
 **Scientific judgment:** absolute field and device measurements predict whether
-the published-like, time-only, geometry-only, or joint family will recover the
-field best, rather than merely describing an average winner.
+the published-like, time-focused, geometry-only, or joint family will recover
+the field best, rather than merely describing an average winner. The
+time-focused factor bundles scan and reconstruction software; it does not
+isolate temporal acquisition alone.
 
 **Panels:**
 
@@ -84,10 +104,12 @@ field best, rather than merely describing an average winner.
   before reconstruction: `1/(2*k90)` in micrometres and `1/(2*f90)` in seconds,
   where the 90% cutoffs come from common-mask spatial and temporal field power;
 - one absolute characterization table for each frozen D0–D3 representative:
-  input-referred 1–100 Hz RMS noise under a zero-input probe, the 90th
-  percentile of impedance magnitude across 1–100 Hz, settling time after a unit
-  step to 1% error, and maximum adjacent-line crosstalk amplitude ratio under a
-  1–100 Hz multisine scan, repeated for every device condition;
+  equal-site input-referred 1–100-Hz RMS noise over the common panel P; maximum
+  site-level discrete Q90 impedance at integer 1–100-Hz tones; worst-panel/history
+  conditional-mean settling to 1%; and maximum same-victim input-equivalent
+  adjacent-line multisine ratio over P victims and physical neighbours. Repeat
+  for every device condition, retain unknown/censored values, and identify these
+  as panel characterizations rather than full-array maxima;
 - observed absolute utilities `U_mdk` and frozen family-specific predictors
   `Uhat_md(x_mdk)` within every accepted reference model, with no observed
   candidate score, margin-adjusted score, or post hoc "penalty" used as an
@@ -132,6 +154,20 @@ The geometry, schedule, software, uncertainty, reversal, and random-control
 ablations remain in this figure as mechanism checks. Every secondary and
 robustness requirement still has to pass.
 
+Show conditional geometry gains `U_D2-U_D0` and `U_D3-U_D1`, and bundled
+time-focused scan/software gains `U_D1-U_D0` and `U_D3-U_D2`. Their factorial
+interaction remains descriptive. D2 is not generally D3's matched C2: matched
+C2 retains the joint candidate's geometry and scan and changes reconstruction
+only. D1 comes from the published-setting C1 frontier, not a silently expanded
+set of novel schedules.
+
+Matched direction/phase conditions can retain the same radial spectral scales
+and device probes while interacting differently with a rolling scan. Test
+those conditions through the existing challenges and unchanged regret rule;
+do not add direction or phase as predictor inputs after seeing their outcomes.
+Large interaction alone does not invalidate a predictive rule, while an average
+device win cannot rescue a rule that fails its registered condition test.
+
 **If the primary gain passes but a robustness check fails:** report a fragile
 development result and do not advance it to fabrication.
 
@@ -173,8 +209,10 @@ that best separates the models.
 **If development passes but this figure fails:** conclude that the apparent
 gain did not generalize beyond the development models.
 
-**If the device passes but the rule fails:** advance, at most, one model-specific
-virtual specification; do not claim a general acquisition principle.
+**If the device passes but the rule fails:** retain a descriptive model-specific
+comparison only. Do not nominate or advance a specification under the current
+promotion rule, which already requires the frozen condition-to-design test.
+No general acquisition principle is established.
 
 **If both pass:** advance the one virtual specification to fabrication or
 device testing and state the measurable domain in which it is predicted to
@@ -184,10 +222,10 @@ help; do not claim physical superiority.
 
 | Result | Next scientific step |
 | --- | --- |
-| Virtual co-design passes twice | Fabricate or bench-test exactly that design against a matched physical reference |
+| Virtual co-design passes twice and every promotion requirement, including the frozen rule, passes | Propose fabrication or bench testing of exactly that design against a matched physical reference |
 | Frozen design rule also predicts independent winners | Test the predicted spatial, temporal, and absolute device-response boundary directly on a bench |
 | Accepted reference models reverse rankings | Measure the unresolved pad-noise, impedance, settling, or crosstalk response before any candidate search |
-| Candidate wins but the frozen rule fails | Treat it as a model-specific virtual device, not a transferable acquisition principle |
+| Candidate wins but the frozen rule fails | Report a descriptive model-specific comparison; no design promotion under the current rule |
 | Software is sufficient | Improve reconstruction on existing hardware before redesigning the array |
 | Hardware alone is sufficient | Test the simpler hardware change with conventional reconstruction |
 | Simple rule is sufficient | Prefer the simple rule and test its manufacturing tolerance |

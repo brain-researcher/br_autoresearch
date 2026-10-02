@@ -5,6 +5,16 @@ visual-model relation is stable or changes for a predictable measurement
 reason. [GOAL.md](GOAL.md) defines the scientific comparisons; this file
 describes the available data, concept roles, and remaining setup work.
 
+The 2026-09-30 paper focus nominates DINO versus category-supervised ResNet-50,
+anatomical bilateral fusiform, and the isolated D-stage `A_N → R_N` support
+edge. [GOAL.md](GOAL.md) lists three concrete pair proposals. Nominations are
+not evidence of checkpoint control, clean image exposure, atlas compatibility,
+sufficient voxel support, or executable readiness. The operative roles,
+five-edge coverage and closed outcomes below are unchanged. The 2026-10-02
+amendment permits named recipe-confounded pairs for a controlled measurement
+comparison, not causal attribution to the recipe; checkpoint and exposure
+qualification are still required.
+
 ## What is available
 
 | Resource | Current state | EP17 use |

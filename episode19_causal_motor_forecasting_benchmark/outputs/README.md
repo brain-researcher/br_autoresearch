@@ -5,10 +5,13 @@ held-out signal has been examined, and no model-order conclusion exists.
 
 The files here have three purposes:
 
-- [ep19_question.svg](ep19_question.svg) is an EP12-style scientific concept
-  figure using explicitly synthetic timing traces, three matched EEG
-  specificity increments, all ten horizon-dependent pairwise model edges, the
-  eight-person repetition test, and bounded outcomes.
+- [Current conceptual figure, v2](ep19_question_imagegen-v2.png) shows the
+  past-only forecast, sensor/context comparison and recent-by-older-slow
+  factorial with the older complement retained.
+  [Exact image-generation prompts](ep19_question_imagegen-v2-prompt.md) include
+  the inspected timing/table correction. Earlier `ep19_question.svg` and
+  `ep19_question_imagegen.png` are historical illustrations, not current
+  design figures; no trace is an observed result.
 - [paper_plan.md](paper_plan.md) turns the question into a four-figure paper
   story with explicit next steps for each result.
 - The remaining short files record current scientific readiness. They are not

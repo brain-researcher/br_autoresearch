@@ -1,32 +1,42 @@
-# Do neurons of the same type share the same downstream wiring?
+# When does a cell-type average distort a circuit's wiring?
+
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
 
 Neurons assigned to the same cell type are often summarized by one wiring
 profile. That summary may hide meaningful differences. Some cells could
 prefer one set of downstream partners, while others of the same type prefer
 another.
 
-EP12 asks whether those differences form reproducible groups. If neurons on
-the left prefer one set of downstream partners, can the same preference be
-recovered on the right? Or is the apparent grouping better explained by
-continuous variation, anatomy, connection strength, or reconstruction
-quality?
+EP12 asks two scientific co-primary questions. **Does within-type wiring
+organization repeat, and does retaining it change a concrete circuit
+inference?** A reproducible cluster without a circuit consequence is a
+candidate annotation refinement, not the intended paper-level discovery.
+
+The first question is tested by the existing outgoing T/U/M round. If neurons
+on the left prefer one set of downstream partners, can the same preference
+be recovered on the right? Or is the apparent grouping better explained by
+continuous variation, anatomy, connection strength, or reconstruction quality?
 
 We start with outgoing partner-type profiles in the pinned MaleCNS v1.0
 release. This first test measures bilateral reproducibility in one male fly.
-It is the entry point to a larger circuit question:
+The second question is tested in a separately selected and frozen circuit
+round, planned here but not executable or authorized by this revision:
 
 > When does averaging neurons of the same type hide distinct input-output
 > pathways?
 
-The intended paper should identify a specific wiring organization, explain
-what a type average misses, and test that explanation beyond the data used
-to discover it. Finding another cluster or improving a predictive score is
-an intermediate result. Neither establishes a new cell type or its function.
+The intended paper should identify a named circuit organization and quantify
+which upstream/downstream partner associations its type average misstates.
+Retaining a group, continuous coordinate, or anatomical organization must
+improve a held-out structural prediction, not merely yield a nicer partition.
+Neither endpoint establishes a new cell type or its function.
 
 The [paper plan](outputs/paper_plan.md) sets out the circuit follow-up,
 closest prior work, decisive comparisons, and evidence needed for each claim.
-The T/U/M test below remains the primary outgoing round. The follow-up is a
-separate proposed round; its results cannot change this round's conclusion.
+The T/U/M test below remains the unchanged primary **outgoing** round. Circuit
+consequence is co-primary for the proposed **paper**, not an added endpoint
+of the running outgoing search. The rounds have separate locks, statistical
+decisions and results; one cannot rescue or overwrite the other.
 
 ## At a glance
 
@@ -36,10 +46,11 @@ separate proposed round; its results cannot change this round's conclusion.
 | What is compared? | One average profile (T), one flexible continuous population (U), and two or three residual groups (M). |
 | What must repeat? | A preference learned on one body side must predict neurons of the same type on the other side. Both directions are required. |
 | What is held out? | Twenty percent of whole annotated types are reserved for one final evaluation. |
-| What is the main score? | The held-out predictive gain of M over the better fair T/U reference. |
+| What is the outgoing score? | The held-out predictive gain of M over the better fair T/U reference. |
 | What can the first round conclude? | Reproducible groups, an adequate single-population description within a fixed margin, or an unresolved result. |
-| What would make a deeper discovery? | A specified input-output organization that the type average misses, with evidence beyond the discovery data. |
-| What is the next test? | After the outgoing result is fixed, ask whether outgoing preferences predict previously unused incoming profiles, and whether the association transfers to a separately locked external source. |
+| What is the circuit co-primary question? | In at most three fixed cases, how much same-cell input-output pair mass does type averaging misstate, and can a frozen representation recover it beyond fair anatomy/continuous references? |
+| What is its status? | A planned separate statistical round; case support, meaningful margins, calibration and execution are not frozen by this narrative update. |
+| What is the transfer test? | After source-side selection and fitting, test the same circuit prediction in one compatible external specimen if available; cross-sex transfer is not same-sex replication. |
 
 ## From a wiring difference to a circuit finding
 
@@ -50,12 +61,25 @@ cell-level chains are weak or absent. This is an illustration, not an EP12
 result. Real data must establish the size and reproducibility of the
 association, including missing connections and anatomical organization.
 
-The follow-up asks whether such input-output associations exist in a small,
-explicitly selected circuit, and whether retaining a reproducible group or
-continuous coordinate improves their prediction. Anatomy, continuous
-variation, and discrete groups are competing explanations. A continuous or
-spatial organization can be biologically informative without supporting
-residual modes in the primary test.
+The circuit round asks whether such input-output associations exist in a
+small, explicitly selected circuit, and whether retaining a reproducible
+group or continuous coordinate improves their prediction. Its consequence
+endpoint is error in **neuron-equal input-output pair mass**, with incoming
+composition prediction as a supporting endpoint. It must also quantify the
+distortion from the type average itself. A better incoming score without a
+meaningful pair-mass consequence does not earn the proposed circuit claim.
+Anatomy, continuous variation, and discrete groups are competing explanations.
+A continuous or spatial organization can be biologically informative without
+supporting residual modes in the outgoing test.
+
+This is not the first proposal that within-type variation matters for circuits.
+[Dombrovski et al. 2023](https://doi.org/10.1038/s41586-022-05562-8)
+linked output synaptic gradients to visuomotor transformations;
+[Dombrovski et al. 2025](https://doi.org/10.1038/s41586-025-09037-4)
+established molecular control of LPLC2 input and output synaptic gradients.
+EP12 therefore needs a new named organization, a new consequential inference,
+or a calibrated boundary on averaging, rather than rediscovering those
+gradients or declaring their continuous alternative a nuisance.
 
 Known within-type heterogeneity and cross-brain connectivity subgroups are
 starting points in the literature, not sufficient novelty claims. Each
@@ -63,10 +87,25 @@ candidate needs a comparison with existing annotations and circuit papers.
 The paper must show what is newly learned about that circuit, or establish
 a useful, well-tested boundary on when averaging is adequate.
 
-The follow-up has its own endpoint, source manifest, calibration, budget,
+The circuit round has its own endpoint, source choices, calibration, budget,
 selection rule, and held-out evaluation. Reusing the same male or the other
 body side provides a diagnostic, not new independent confirmation. A local
 case cannot replace a failed type-aggregate outgoing test.
+
+The first circuit contribution is explicitly **within this specimen**. Cases
+come only from previously assigned development types, never final-type
+outcomes. At most three cases and their partner pairs are selected once,
+before incoming inspection; every selected case and failure is retained.
+Source-side fitting and evaluation must be separated under a qualified
+cell-block or anatomical-block scheme before the new incoming outcomes are
+opened. That split supports a conditional prediction test, not animal-level
+replication. New incoming summaries can share already exposed outgoing edges;
+unless target separation and selection-aware calibration are justified, the
+source-side evidence remains descriptive/diagnostic, not fresh confirmation.
+External evidence strengthens the scope only if homologous cells,
+partner definitions and coverage can be established without target-driven
+matching. Without a compatible fresh external source, no conserved or
+cross-animal claim is made.
 
 ## Three competing explanations
 
@@ -103,22 +142,24 @@ A valid comparison is not the same as evidence for M. A well-qualified test
 must be allowed to reach final evaluation even when T or U looks better during
 development.
 
-## First-round figure concept
+## Two-question figure concept
 
-The main figure should place left- and right-side outgoing profiles for the
-same annotated type beside the predictions of T, U, and M. Illustrative types
-are chosen by a development-only rule fixed in advance; the quantitative
-summary reports every assigned final type.
+The conceptual figure shows why cell-resolved input-output pairing can differ
+from a merged type graph, then separates the bilateral outgoing question from
+the selected circuit-consequence round. The latter compares anatomical,
+continuous and grouped explanations without depicting any winner.
 
-The mockup below uses synthetic values only. It is a design aid, not an
-observed EP12 result.
+The schematic below contains no observed values or real circuit assignments.
+It is a design aid, not an EP12 result.
 
-![Conceptual EP12 main figure using synthetic data](outputs/ep12_conceptual_main_figure.png)
+![Conceptual EP12 two-question circuit design, no observed data](outputs/ep12_conceptual_main_figure-v2.png)
 
-This planned panel tests the outgoing phenomenon. The paper plan adds named
-partners and cell-level anatomy, competing input-output explanations, and
-external evaluation. All figure claims remain hypotheses until supported by
-observed results.
+The earlier [outgoing-only mockup](outputs/ep12_conceptual_main_figure.png)
+is retained. Actual outgoing figure examples still use the frozen
+development-only rule, and every assigned final type must be reported. The
+circuit figure will report all locked cases and partner pairs; external
+outcomes may not choose the best-looking example. All illustrated claims
+remain hypotheses until supported by observed results.
 
 ## The three scientific answers
 
@@ -181,9 +222,11 @@ Provider group and instance labels cannot be used to define, initialize, fit,
 or select the candidate groups. They may be inspected only later to ask
 whether a result merely rediscovers an existing annotation.
 
-Outgoing composition is primary. Incoming composition is a later, separately
-fixed scope analysis. It cannot rescue the outgoing result and is not
-independent evidence because the same graph edges contribute to both views.
+Outgoing composition is primary in the current execution contract. Incoming
+composition belongs to the planned separate circuit co-primary round. It
+cannot rescue the outgoing result and is not independent evidence merely
+because the same graph is viewed in the other direction. Source-owned edges
+from final types can leak through incoming queries and must remain closed.
 
 Previously inspected annotation inventories remain exposed feasibility
 evidence. Revising the study cannot make previously seen information
@@ -209,6 +252,14 @@ Report the anatomical contribution as well as the adjusted residual result.
 An effect explained by location cannot support residual modes, but may
 motivate a separately tested hypothesis about spatial wiring organization.
 Do not remove an anatomical adjustment after seeing which conclusion wins.
+
+Use a **source-conditional anatomical hierarchy**: qualified spatial or coarse
+anatomical fields first; authenticated hemilineage/serial/retinotopic fields
+only where present and interpretable; otherwise explicitly state that the
+corresponding explanation remains untested. Do not infer missing metadata
+from the outcome being explained or relabel provider group/instance as an
+independent anatomical control. The current outgoing vocabulary and nuisance
+choices remain frozen; this hierarchy guides the new circuit contract.
 
 ## First-round search and null calibration
 
@@ -315,13 +366,18 @@ wiring groups within eligible curated types in this MaleCNS male**. EP12 does
 not establish new cell types, cross-animal or cross-sex generalization,
 molecular identity, causality, function, or behavior.
 
-The proposed paper-level claim concerns the accuracy of a structural
-input-output description. It requires the additional evidence in the paper
-plan. Static synapse counts alone do not establish signal transmission,
-selective gating, or a behavioral computation. A successful primary round
-does not automatically mean the paper-level claim has been earned.
+The proposed circuit co-primary claim concerns the accuracy of a structural
+input-output description in the locked cases. It requires a meaningful
+averaging distortion, a calibrated held-out consequence improvement and the
+controls in the paper plan. Its external transfer claim, if tested, names
+the exact second specimen and correspondence. Static synapse counts alone do
+not establish signal transmission, selective gating, molecular mechanism or
+behavior. A successful outgoing round does not earn the paper-level claim.
 
 An explicit scientist launch authorizes the bounded episode-managed work
 described here, subject to the data roles above. It does not itself establish
-formal acceptance, reward, or a shared scientific claim. No real EP12 analysis
-or final evaluation was run while preparing this design.
+formal acceptance, reward, or a shared scientific claim. This 2026-09-30
+narrative/figure repair runs no analysis, amends no operative model or threshold,
+and opens no incoming, external or final-role connectivity. Recorded execution
+history and the active generated-only qualification chain remain in
+`outputs/experiment_log.md`.

@@ -1,258 +1,204 @@
-# EP11 paper plan — From spatial projection continua to reusable target allocation
+# EP11 paper plan — Do nearby somatosensory neurons use reusable output patterns?
 
-**Status:** prospective plan; no source population, target pattern, or EP11
-result has been selected.
+[Scope and novelty review, 2026-10-02](scope_novelty_review_20261002.md).
 
-## Paper question
+Writing revision: 2026-09-30. This is a prospective anatomical inference plan,
+not a biological result, cohort activation or authorization to open outcomes.
+Existing execution contracts govern active work; this narrative changes no
+operative endpoint, role assignment or decision rule. Actual feasibility and
+optimizer history stay in [experiment_log.md](experiment_log.md).
 
-Within one well-sampled source population, how do individual neurons allocate
-axon across named downstream regions? Is that allocation mainly a continuous
-function of soma position and depth, does a low-dimensional continuum remain
-among nearby cells, or do spatially overlapping neurons show a small number of
-projection divisions that recur under fixed definitions in new animals?
+![EP11 scientific question schematic](ep11_conceptual_question-v2.png)
 
-The paper should not end at “a grouped model predicts better.” It must identify
-the source population, target regions, spatial relationship, held-out
-allocation rule, and prior biological description that the result changes.
+*Conceptual illustration only. A/B, colors, strips and distributions do not
+encode observed targets or results. Allocation is regional axon centerline
+length, including passing grey-matter axon, not terminal mass or synapses.
+The group icons are not evidence of independently verified animals.*
 
-## Closest prior work and the required advance
+## The paper in one paragraph
 
-[Peng et al. (2021)](https://doi.org/10.1038/s41586-021-03941-1) established
-extensive projection diversity within major projection types, topographic
-organization, and limits to fine morphology--transcriptome correspondence.
+Projection diversity and soma–axon topography are established. The useful
+question is what a projection-group description adds once continuous anatomy
+and continuous nearby-cell variation have been given a fair account. In one
+source population, trunk somatosensory cortex (`SSp-tr`), EP11 would compare
+the downstream regional allocation distributions of neurons on shared
+position/depth support. A positive result would identify one concrete,
+development-defined allocation rule that recurs in held-out replicate units
+and improves prediction beyond a qualified continuum. A sufficiently precise
+continuous result would bound the added value of the tested group description.
+Neither result would discover molecular or functional cell types.
 
-[Yufeng Liu et al. (2024)](https://doi.org/10.1038/s41467-024-54745-6)
-analyzed the exact 1,876-neuron SEU-A1876 resource, including spatially tuned
-morphology clustering, projection organization, and axonal motifs. EP11 cannot
-claim the first spatial clustering, projection-defined organization, diversity,
-or stereotypy result in this release.
+## What the proposed data must support
 
-[Lijuan Liu et al. (2025)](https://doi.org/10.1038/s41592-025-02621-6)
-constructed a 150-dimensional potential-connectivity barcode based on axon--
-dendrite overlap, defined connectivity subtypes in 31 brain regions, combined
-that estimand with soma-distance affinity for spatially tuned clustering, and
-described MOs and thalamocortical pathways. Its potential-connectivity barcode
-and EP11's regional axon-allocation vector answer different measurement
-questions; EP11 does not presume that either estimand is superior. It cannot
-claim the first connectivity subtype, separated embedding, or MOs/thalamic
-diversity result.
+The proposed Gao study uses brain/sample units only as inventory identifiers
+until independent-animal identity is established. Its intended regional outcome
+and role layout require their own prospective execution contract; a paper plan
+does not activate them. Geometry support alone cannot establish reconstruction
+eligibility, group recovery or sufficient precision.
 
-[Xiong et al. (2025)](https://doi.org/10.1038/s41592-025-02784-2) used a
-near-identical 1,877-neuron resource to build probabilistic arbor- and bouton-
-level connectomes. EP11 must distinguish regional axon allocation from
-putative synaptic connectivity and connectome modularity.
+A paper-level result requires both production recovery and adequate uncertainty
+at the biological-replicate level. More simulated draws can improve a numerical
+check but cannot increase the real number of independent replicates. More cells
+cannot silently substitute for more animals or justified replicate units.
 
-EP11 must add four things:
+## What has already been published
 
-1. an outcome-blind-frozen regional projection-distribution estimand and common
-   observed-data likelihood, distinct from but not privileged over prior
-   connectivity or morphology estimands;
-2. a fair comparison with qualified nonlinear spatial and continuous-latent
-   descriptions, including curved and unevenly sampled continua;
-3. development-defined group signatures applied without re-clustering,
-   rematching, or prevalence recalibration to held-out animals; and
-4. a named target-allocation rule whose biological interpretation changes
-   under the grouped versus continuous answer.
+[Winnubst et al. (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6754285/)
+described projection subtypes and long-range organization from complete
+axonal reconstructions. [Peng et al. (2021)](https://doi.org/10.1038/s41586-021-03941-1)
+established extensive within-type projection diversity and topographic
+organization. Neither diversity nor a separated embedding is new.
 
-For shared cells or brains, EP11 is a reanalysis, not independent replication;
-shared acquisition, reconstruction versions, or derived-feature pipelines also
-constitute shared-source evidence. The lineage dossier must quantify all five
-levels before novelty language is finalized.
+[Timonidis et al. (2023)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10722239/)
+examined motifs along a morphological continuum in somatosensory thalamus.
+It is an important nearby precedent, not a direct `SSp-tr` result. EP11
+cannot claim that considering motifs and gradients together is unprecedented.
 
-## Current source-support verdict
+[Gao et al. (2026; online 2025)](https://www.sciencedirect.com/science/article/pii/S0896627325008001)
+reported 346 projection-defined subtypes in the release that supplies the
+primary cohort, alongside modular organization and topographic relationships.
+Their classifications are a prior description, not independent validation
+labels: provider `class/class1/class2` and projection summaries remain
+excluded. The advance must be the conditional usefulness and direct held-out
+reuse of a named allocation rule, not another atlas classification.
 
-The source files are acquired only in mixed-role steward quarantine. Existing
-inventory reports 1,876 reconstructed morphologies, 39 `fMOST Brain ID` values,
-92 soma-region labels, 1--225 cells per brain ID, and cortical-layer labels for
-511 cells. These are not source-specific animal counts.
+For the A1876 sensitivity, [Yufeng Liu et al. (2024)](https://doi.org/10.1038/s41467-024-54745-6)
+already studied multiscale morphology, spatial clustering, and projection
+motifs in the exact release. [Lijuan Liu et al. (2025)](https://doi.org/10.1038/s41592-025-02621-6)
+used potential-connectivity barcodes and spatially tuned clustering;
+[Xiong et al. (2025)](https://doi.org/10.1038/s41592-025-02784-2)
+built probabilistic arbor/bouton connectomes from a near-identical resource.
+Those estimands differ from regional axon-length allocation. Shared cells or
+brains are reanalysis, never independent replication.
 
-The metadata lacks an authenticated `fMOST Brain ID` to animal/specimen map and
-the shared development/audit ledger. It also contains the forbidden
-axon-derived `Projection class`. Therefore no source population is currently
-known to satisfy the 12-development/8-audit requirement, and EP11 is not yet
-qualified for cross-animal adjudication. A trusted redacted build and lineage
-resolution come first.
+This review motivates a possible contribution; it does not certify that no
+prior study has performed a comparable held-out adjudication.
 
-## Study route
+## A concrete biological object, not a clustering score
 
-### 1. Select one sufficiently sampled source population
+The proposed Gao outcome is a 56-coordinate composition: relative axon
+centerline length in 28 fixed named Allen targets, crossed with laterality.
+Passing grey-matter axon contributes. Normalization discards total
+named-target length. This is not synapse count, terminal-arbor mass,
+physiological output, or exclusive target presence. Unknown/truncated
+coordinates remain distinct from verified zeros under the common observation
+rule.
 
-The first deliverable is a source-by-animal-by-position/depth coverage table,
-constructed without projection outcomes. For every candidate source it shows:
+For the principal anatomical claim, development selects a named allocation
+contrast within that fixed vocabulary. An interpretable example is the
+difference between summed proportions in two disjoint named target sets,
+`r(y) = sum(y_A) - sum(y_B)`. This is an example of a permitted reporting
+scale, not a selected endpoint. The report freezes the actual source, target
+sets, laterality, direction, spatial domain, meaningful effect, and
+multiplicity rule before audit. All additional claims stay within existing
+multiplicity controls; no attractive audit panel chooses the story.
 
-- verified independent animals; conservative unresolved specimen groups are
-  shown separately and cannot count toward the cross-animal minima;
-- eligible and excluded cells per animal;
-- soma-coordinate, depth, and layer coverage within each animal;
-- overlap of those distributions between development and audit roles;
-- sex, age, strain/genotype or Cre line, labeling strategy, modality,
-  hemisphere, laboratory, batch, reconstruction version, registration, and
-  completeness composition; and
-- whether positions likely to contain intermediate cells were actually
-  sampled.
+A recurring distribution of this contrast can be biologically interpretable
+without being an intrinsically discrete type. Its conditional distribution,
+uncertainty, and common spatial support matter more than colored clusters.
 
-Source selection uses this table and outcome-blind reconstruction/registration
-QC. Here “target observability” cannot include observed regional target mass.
-It does not use an embedding, cluster count, target contrast, or grouped-model
-score. Whole-release animal counts cannot substitute for counts inside the
-selected source and common-support domain. The 12 development and 8 audit
-independent animals are necessary but not sufficient: outcome-blind work first
-freezes minimum effective cells per animal, animals per neighborhood/layer,
-mutual-support and maximum-gap rules, missing/truncation tolerance, and the
-required precision. Every proposed label also needs multi-animal development
-support. A valid census with no passing source yields
-`closed_insufficient_source_support`, not a biological continuum result and not
-pooling unrelated sources.
+## Three explanations on exactly the same cells
 
-### 2. Describe position and projection allocation
-
-Before real regional outcomes, freeze one quantitative regional projection
-distribution on a named target vocabulary using atlas, measurement, and QC
-rules. Also freeze the common likelihood for structural zeros and positive
-values, transform/Jacobian, and marginalization of missing or truncated
-coordinates. Show how expected allocation changes over soma coordinates and
-depth using `P`, the position-driven continuous model, relative to adjustment-
-only `B`.
-
-The biological readout is not merely `P - B`. It is a map and uncertainty band
-for named target proportions or contrasts over the shared spatial domain. The
-report identifies where a target preference changes, where the data have
-support, and where any interpolation would be extrapolation.
-
-### 3. Test additional organization among nearby cells
-
-Use `C` to ask whether a one- or two-dimensional connected latent continuum
-accounts for residual variation among cells at similar positions. Then compare
-`H` with `C` to ask whether adding fixed reusable groups improves cross-animal
-prediction. `D` and `H` determine whether supported groups retain continuous
-within-group organization, using paired `K`, labels, and group-signature rules
-rather than two independently interpreted clusterings.
-
-Local evidence must come from overlapping soma-position neighborhoods. A
-pattern that separates animals, batches, layers with no overlap, or distinct
-sampled territories is not a reusable projection division.
-
-All models share a qualified hierarchical animal nuisance structure. Prediction
-for a new animal integrates that effect from the development distribution
-without using its other outcomes; uncertainty is animal-clustered. Simulations
-and the fitted-continuum null include animal-level shifts and correlated
-within-animal residuals so that such dependence cannot masquerade as neuron
-groups.
-
-### 4. Validate a concrete target-allocation rule
-
-Development selects a small, multiplicity-controlled allocation contrast from
-the already frozen outcome. Before audit, lock:
-
-- the source and layer scope;
-- the downstream targets and allocation scale;
-- the predicted position relationship;
-- if applicable, the fixed group signatures and label rule;
-- the common-support domain and smallest meaningful effect; and
-- the animal-level uncertainty and exclusion rules.
-
-The audit applies the complete `B/P/C/D/H` comparison and this rule directly to
-all eligible held-out animals. It reports target distributions by animal and
-position. Posterior group membership is post-score recurrence/separation
-evidence and cannot act as a predictor, refit, or relabel the model.
-
-## Candidate dossier required before audit
-
-For each development-selected candidate, record:
-
-| Item | Required content |
+| Explanation | What it would mean |
 | --- | --- |
-| Source | Exact atlas region, layer/depth scope, verified independent-animal count, and common-support domain. |
-| Targets | Named downstream regions, laterality, terminal-arbor rule, and quantitative allocation contrast. |
-| Spatial organization | Frozen coordinate/depth relationship and local-overlap evidence. |
-| Competing descriptions | Predictions from `P`, `C`, `D`, and `H` on the same outcome and cells. |
-| Prior overlap | Closest Peng, Yufeng Liu, Lijuan Liu, and Xiong result; shared cells, animals/brains, acquisition, reconstruction, or features; and the unresolved point. |
-| Decisive audit result | What would favor reusable groups, a continuum, or an unresolved conclusion. |
-| Knowledge change | The anatomical statement that becomes more accurate than the existing source-average or subtype description. |
+| Position-driven allocation | Expected allocation changes smoothly with tangential position and depth; neighborhood differences follow sampling and anatomy. |
+| Continuous nearby-cell variation | A connected latent trajectory explains variation left after measured anatomy, even if uneven sampling makes it look multimodal. |
+| Reusable patterns, possibly with internal gradients | Fixed allocation signatures add calibrated predictive information beyond both continuous accounts and recur on overlapping support. |
 
-MOs, VPM, VP, or another Liu-analyzed source is eligible only if the dossier
-states which reported allocation is being retested and what new adjudication
-EP11 supplies. Repeating its clustering is not sufficient.
+The existing matched comparisons implement these questions:
+`P_ref - B_pair_for_P_ref` describes position/depth organization;
+`C_ref - P_pair_for_C_ref` describes residual continuous variation;
+`H_ref - C_ref` is the operational primary;
+`H_ref - D_pair_for_H_ref` describes continuity within supported patterns.
 
-## Main comparisons
+C and H have equal admissible continuous-backbone capacity and each optimizes
+its own likelihood. Their family references are independently selected by
+absolute development score under equal budgets. No weak continuum is selected
+to make H look favorable.
 
-| Contrast | Paper question | Required interpretation |
-| --- | --- | --- |
-| `P - B` | How much organization follows measured soma position and depth? | A concrete topographic allocation, with held-out uncertainty and common-support boundaries. |
-| `C - P` | Do nearby cells retain continuous heterogeneity? | A low-dimensional residual trajectory, not a finite-type claim. |
-| `H - C` | Do reusable groups add stable cross-animal information? | The primary grouped-versus-continuous test under a common score. |
-| `H - D` | Does continuity remain within groups? | A boundary between group-dominant and hybrid organization. |
+New-neuron scoring integrates latent groups and coordinates. Post-score
+membership may show recurrence or separation; it is not a predictor learned
+from an independently observed property. The study therefore predicts an
+allocation distribution, not an individual neuron's group before seeing its
+axon.
 
-All log scores refer to the same fixed outcome, coordinate measure, cells,
-folds, and weights. Topology or provider-arbor sensitivities are shown
-separately and cannot select the paper route. `C_ref` and `H_ref` are selected
-independently by absolute development predictive score under equal search
-budgets, with frozen complexity/hash tie breaks; the primary contrast is
-`H_ref - C_ref`, not an `H/C` pair selected to make the continuum perform
-poorly. Incremental `P - B`, `C - P`, and `H - D` results use
-`B_pair_for_P_ref`, `P_pair_for_C_ref`, and `D_pair_for_H_ref` carried by the selected larger model rather
-than unrelated best-family fits. The complete selection is replayed in every
-full-search null.
+## The decisive transfer
 
-## Complete-result routes
+Development learns the descriptions and freezes the principal allocation
+rule. The audit applies them without re-clustering, matching labels, fitting
+new unit effects from held-out outcomes, changing prevalence, or retuning
+targets. Scores average cells within the verified replicate and then weight
+replicates equally.
 
-### Route A — Spatially overlapping reusable projection divisions
+A paper figure must show the actual named allocation by replicate and
+position, predictions from the competing descriptions, uncertainty, and where
+common support ends. A pooled-neuron likelihood improvement or a visually
+clean embedding alone is insufficient. Layer/Cre-line sampling, acquisition,
+reconstruction, and disjoint territories cannot masquerade as a local
+allocation division.
 
-The animal-level lower confidence bound for `H - C` exceeds the frozen
-meaningful margin in audit, the full-search null passes, position-standardized
-fixed signatures recur across animals, and the named target allocation is not
-decoded by experimental strata, batch, QC, or disjoint position. The paper may
-conclude that the source contains cross-animal reusable projection patterns
-beyond the tested continuous organization. `H - D` can then support internal
-gradients, exclude them within the meaningful margin, or remain unresolved;
-all three are complete grouped outcomes.
+This transfer is cross-animal only after animal identity is independently
+certified. An explicitly adopted cross-brain/sample estimand would carry
+narrower wording throughout; this revision does not activate that alternative.
 
-### Route B — Continuous organization is adequate at the tested resolution
+## Power determines whether either answer is interpretable
 
-The named target allocation transfers, `P/C` passes absolute calibration and
-trajectory checks, simulations show sensitivity to meaningful groups, and the
-audit upper bound on `H - C` lies below the frozen margin. The paper may
-conclude that the tested finite groups add less than that margin beyond a
-qualified spatial or latent continuum. It may say that a continuum accounts
-for apparent modes only when those modes and absolute fit were separately
-documented.
+First distinguish failed estimation from inadequate data. The registered
+synthetic suite must show recovery at meaningful effects under the actual
+layout; oracle labels and optimizer self-tests are not substitutes. Separately,
+replicate-level intervals must distinguish meaningful added group value under
+the fixed common-support design.
 
-This is a full scientific result, not a failed candidate. A nonsignificant
-group contrast alone is insufficient; Route B needs precision and synthetic
-sensitivity.
+If production recovery succeeds but precision still fails, stop promising
+an adjudication of groups versus a continuum. A narrower named-target
+estimand, a revised role design, or additional independent animals would be
+a prospective redesign, with a declared effect and new precision basis
+before outcome access. None is activated here, and none rescues the current
+primary after an unfavorable result. Do not enlarge neighborhoods or lower
+recurrence requirements simply to obtain a conclusion.
 
-### Route C — Unresolved or infeasible
+## What would constitute a result?
 
-Wide intervals, inadequate local overlap, model ambiguity, failure to reproduce
-the named allocation, or insufficient source-specific animals prevents either
-claim. The report identifies whether the limiting factor is sampling,
-observability, continuous-model adequacy, or cross-animal instability.
+| Outcome | Permitted anatomical conclusion |
+| --- | --- |
+| Meaningful H-over-C gain plus fixed-pattern recurrence and a reproduced named rule | Reusable allocation patterns add information beyond the tested qualified continuum in this source and support domain. |
+| Calibrated continuum, sensitivity to meaningful groups, and a tight upper bound on added group value | The tested group description adds less than the meaningful margin at this resolution. |
+| Wide interval, weak support, failed adequacy, or unrecovered fixtures | The explanations remain unresolved; neither groups nor continuity is established. |
+| Insufficient verified replicates or observation support | This resource cannot execute this design; no negative biological conclusion follows. |
 
-## Proposed figure sequence
+A supported pattern may retain internal gradients. No route proves intrinsic
+discreteness, functional channels, molecular identity, synaptic specificity,
+or whole-cortex generality.
 
-1. **Source and support.** Animal-by-position/depth coverage, exclusions,
-   outcome-blind reconstruction/registration observability, and the frozen
-   common-support domain.
-2. **Continuous topography.** Named target allocations over soma position,
-   with `B/P/C` predictions and held-out animal uncertainty.
-3. **Nearby-cell alternatives.** The same cells under connected-continuum and
-   fixed-group descriptions, including sampling density rather than only a
-   colored embedding.
-4. **Direct held-out transfer.** Frozen target and group predictions in each
-   audit animal, with no rematching, plus the primary `H - C` interval.
-5. **Mechanism boundaries and falsifiers.** Within-group gradients, technical
-   decodability, influence, curved-continuum simulations, and separate outcome
-   sensitivities.
+## Minimal empirical figure sequence
 
-Audit outcomes cannot choose the displayed source, targets, direction, spatial
-region, or example cells. Example-selection and multiplicity rules are frozen
-in development, while quantitative panels report every eligible audit animal.
+1. **Source and common support:** replicate-by-position/depth coverage,
+   layer/line sampling, reconstruction eligibility, and exclusions.
+2. **Named downstream allocation:** the principal rule over position with
+   continuous predictions, distributions, and uncertainty.
+3. **Fixed-rule held-out reuse:** the same rule in every audit replicate,
+   H-versus-C gain, fixed signatures where supported, and influence.
+4. **Interpretation boundaries:** internal gradients, difficult continua,
+   technical decoding, and separate observation sensitivities.
 
-## Claim boundary
+These are planned empirical panels, not generated results. The image at the
+top is only a conceptual schematic, with its generation prompt in
+[ep11_conceptual_question-v2-prompt.md](ep11_conceptual_question-v2-prompt.md).
 
-The grouped route supports reusable projection patterns, not molecular,
-functional, or developmental cell types. The continuous route supports a
-specific topographic or latent description within a frozen source, outcome,
-and resolution, not the universal absence of types. Neither route establishes
-synaptic connectivity or independence from prior analyses reusing the same
-cells.
+## Relationship to the other projection episodes
+
+EP09 tests correct dendrite–projectome pairing within independently defined
+classes. EP10's new scientific follow-up tests terminal implementation inside
+a shared target across positively observed co-target contexts. EP11 tests
+the usefulness of a regional allocation-pattern description beyond a flexible
+continuum. They are different questions, not three confirmations of one
+discovery. A1876 sensitivity shares data with EP09/10; Gao is a separate
+primary release, not a blanket guarantee of independent animals or pipelines.
+
+## Present handoff
+
+This is a prospective paper-design handoff. Existing execution contracts,
+scientist authority and recorded attempts remain separate; see the
+[execution ledger](experiment_log.md) for current stage and next action.
+This writing task submits no jobs, changes no compute budget and grants no
+new outcome access.

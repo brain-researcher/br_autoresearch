@@ -1,142 +1,173 @@
-policy_id: ep13_bold_identifiability_cegis
+policy_id: ep13_bold_target_identifiability_exact_theorem
 episode_id: ep13
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+evidence_mode: exact_theorem_and_certificate_replay
 
-dataset_roles:
-  empirical_dataset: none
-  history_exposed:
-    source: declared_prior_cases_without_local_artifact_dependency
-    cases: 13_valid_plus_4_invalid_controls
-    confirmation_status: development_only
-  development:
-    unit: structured_conjecture_and_exact_counterexample
-    corpus: append_only_cegis_cases
-  audit:
-    unit: independently_generated_exact_case
-    generator: separately_authored_and_frozen_before_theorem_comparison
-    epistemic_role: implementation_audit_not_universal_proof
+authority:
+  local_episode_only: true
+  canonical_scientific_acceptance: false
+  empirical_outcome_access: none
 
-grammar:
-  execution: structured_conjecture_exact_checker
-  base_criteria:
-    - row_space_membership
-    - kernel_annihilation
-    - rank_augmentation_equality
-  certificates:
-    - exact_readout_w
-    - exact_target_changing_null_delta
-    - factorized_u_v_readout
-  factorization:
-    - temporal_row_condition
-    - spatial_row_condition
-    - conjunction
-    - full_operator_only
-  case_partitions:
-    - both_targets_nonzero
-    - spatial_target_zero
-    - contrast_target_zero
-    - both_targets_zero
-    - invalid_contract
-  repairs:
-    - add_or_remove_one_assumption
-    - split_one_case_partition
-    - correct_vectorization_or_kronecker_order
-    - weaken_equivalence_to_implication
-    - replace_false_factorization_clause
-  forbidden:
-    - floating_point_evidence_as_proof
-    - empirical_HRF_or_participant_search
-    - unconstrained_theorem_generation
-    - historical_evaluator_as_oracle
+domain:
+  field: rational
+  dimensions:
+    T: positive_integer
+    Q: positive_integer
+    V: positive_integer
+    K: positive_integer
+  known:
+    A: T_by_V
+    P: Q_by_K
+    c: K_vector
+    s: V_vector
+  latent:
+    X: V_by_K
+    admissible_set: all_rational_V_by_K_matrices
+  observation: Y_equals_A_X_P_transpose
+  target: tau_equals_s_transpose_X_c
 
-objectives:
-  ordering: lexicographic
-  levels:
-    - exact_correctness_and_discharged_proof_obligations
-    - maximal_valid_scope_with_minimal_assumptions
-    - complete_edge_case_handling
-    - independently_replayable_certificates
-    - theorem_and_proof_simplicity
-  finite_case_pass_is_terminal: false
+application_model:
+  optional_factorization: A_equals_R_S_H
+  R_shape: T_by_T
+  R_idempotent_when_factorization_is_invoked: true
+  R_symmetric_required: false
+  factorization_needed_by_theorem: false
 
-budgets:
-  minimum_valid_trials: 16
-  maximum_valid_trials: 64
-  valid_trials_min: 16
-  valid_trials_max: 64
-  patience_valid_trials: 12
-  patience_active_after_trial: 16
-  cpu_core_hour_ceiling: 256
-  cpu_core_hours_max: 256
-  cpu_cores_per_trial_max: 8
-  memory_gib_per_trial_max: 32
-  wall_hours_per_trial_max: 4
-  wall_clock_hour_ceiling: 72
-  total_wall_clock_hours_max: 72
-  gpu_hour_ceiling: 0
-  gpu_count: 0
+vectorization:
+  order: column_major
+  latent_vector: x_equals_vec_X
+  observation_vector: y_equals_vec_Y
+  operator: M_equals_P_kron_A
+  target_vector: ell_equals_c_kron_s
+  identities_required:
+    - y_equals_M_x
+    - tau_equals_ell_transpose_x
+  boolean_label_only_check_is_sufficient: false
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 12
-  rule: every_base_criterion_factorization_clause_and_zero_nonzero_partition
-  readiness_rejection_must_be_logged: true
+theorem:
+  universal_quantifier: every_admissible_X
+  equivalent_criteria:
+    - tau_constant_on_every_observation_fiber
+    - ell_in_row_M
+    - kernel_M_subset_kernel_ell_transpose
+    - rank_M_with_ell_row_equals_rank_M
+    - exact_w_exists_with_M_transpose_w_equals_ell
+  separable_reduction:
+    rule: c_zero_or_s_zero_or_both_component_row_conditions
+    nonzero_branch:
+      - c_in_row_P
+      - s_in_row_A
+    zero_branch:
+      target_is_identically_zero: true
+      readout: zero
 
-required_falsifiers:
-  - rank_deficient_operator_identifiable_nonzero_target
-  - temporal_only_spatial_only_and_dual_loss
-  - all_zero_target_partitions
-  - non_square_asymmetric_kronecker_orientation
-  - non_symmetric_idempotent_residualizer
-  - exact_readout_and_null_witness_replay
-  - malformed_shape_rational_and_non_idempotent_controls
-  - frozen_bounded_exact_enumeration
-  - dual_constructed_identifiable_and_nonidentifiable_cases
-  - row_kernel_rank_certificate_factorization_ablations
+proof_obligations:
+  - vectorization_identities
+  - observation_fiber_kernel_equivalence
+  - kernel_row_space_duality
+  - rank_augmentation_equivalence
+  - exact_readout_equivalence
+  - pure_tensor_membership_for_nonzero_factors
+  - explicit_zero_factor_partition
+  - constructive_positive_certificate
+  - constructive_negative_certificate
 
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  finite_regression_suite_can_promote: false
-  accepted_evidence:
-    - complete_exact_proof
-    - exact_counterexample_plus_proved_corrected_statement
-  lock_one_statement: true
-  freeze:
-    - theorem_assumptions_and_case_partitions
-    - proof_and_certificates
-    - independent_checker
-    - generated_case_rule_and_seed
-    - audit_command
+positive_certificate:
+  component_equations:
+    - P_transpose_u_equals_c
+    - A_transpose_v_equals_s
+  scalar_readout: tau_equals_v_transpose_Y_u
+  vectorized_readout: w_equals_u_kron_v
+  nonunique_readouts_allowed: true
+  zero_target_readout: zero
 
-stop:
-  before_minimum: only_specification_or_checker_integrity_failure
-  patience_starts_after_minimum: true
-  after_minimum:
-    - exact_proof_completed
-    - exact_refutation_and_corrected_proof_completed
-    - patience_exhausted
-    - valid_trials_max_reached
-    - cpu_or_wall_clock_budget_exhausted
-  budget_stop_is_theorem: false
+negative_certificate:
+  form: rank_one_Delta_X_equals_z_d_transpose
+  requirements:
+    - A_Delta_X_P_transpose_equals_zero
+    - s_transpose_Delta_X_c_equals_one
+  implication: same_Y_different_tau
+  exact_normalization_required: true
 
-audit:
-  mode: one_shot
-  configuration_lock_required: true
-  configuration_lock_rule: dated_write_once_record_before_audit_access
-  maximum_open_count: 1
-  audit_updates_search: false
-  owner: independent_exact_verifier
-  candidate_expected_label_access: false
-  failure_invalidates_lock: true
-  repair_after_open_requires_new_episode: true
-  finite_audit_establishes_universal_theorem: false
+fixed_regression_suite:
+  epistemic_role: implementation_and_orientation_audit_only
+  cases:
+    - rank_deficient_operator_identifiable_nonzero_target
+    - temporal_loss_only
+    - spatial_loss_only
+    - simultaneous_temporal_and_spatial_loss
+    - c_zero
+    - s_zero
+    - both_target_factors_zero
+    - realized_tau_zero_but_nonidentifiable
+    - non_square_asymmetric_kronecker_orientation
+    - non_symmetric_idempotent_R_transpose_trap
+    - nonunique_valid_readout
+    - normalized_null_witness
+  invalid_inputs:
+    - incompatible_shapes
+    - malformed_rationals
+    - zero_dimensions
+    - non_square_R_when_application_factorization_is_invoked
+    - non_idempotent_R_when_application_factorization_is_invoked
+  direct_replay_required:
+    - observation_identity
+    - target_identity
+    - readout_value
+    - null_witness_value
+
+independence:
+  checker_authored_separately: true
+  forbidden_checker_inputs:
+    - historical_evaluator_code
+    - historical_constants
+    - expected_labels
+    - precomputed_certificates
+  finite_replay_establishes_universal_theorem: false
+  replay_failure_action: invalidate_package_and_repair
+
+workflow:
+  ordered_stages:
+    - freeze_statement_and_domain
+    - write_proof_package
+    - author_independent_exact_checker
+    - replay_fixed_orientation_and_edge_cases
+    - freeze_review_package
+  adaptive_conjecture_trials_required: false
+  minimum_trial_count: 0
+  patience_rule: none
+  large_compute_budget: none
+
+completion:
+  theorem_verified:
+    requires:
+      - every_proof_obligation_discharged
+      - zero_branches_explicit
+      - exact_readout_certificates_replay
+      - exact_null_certificates_replay
+      - actual_vectorization_identities_replay
+      - independent_checker_agrees
+  theorem_refuted_and_repaired:
+    requires:
+      - exact_counterexample_to_proposed_statement
+      - corrected_statement_exactly_proved
+      - corrected_certificates_replay
+  closed_unresolved:
+    when: proof_or_independent_replay_remains_incomplete
+  technical_failure:
+    when: domain_vectorization_or_checker_independence_is_ill_defined
+
+claim_limits:
+  - no_numerical_stability_claim
+  - no_noise_efficiency_claim
+  - no_uncertain_operator_claim
+  - no_HRF_validity_claim
+  - no_biological_or_causal_claim
+  - no_full_latent_recovery_claim
+  - no_restricted_latent_family_claim
+  - no_shared_latent_multi_run_claim
 
 terminal_mapping:
-  candidate_ready_theorem: candidate_ready
-  candidate_ready_refutation: candidate_ready
+  theorem_verified: candidate_ready
+  theorem_refuted_and_repaired: candidate_ready
   closed_unresolved: closed_no_candidate
   technical_failure: technical_failure

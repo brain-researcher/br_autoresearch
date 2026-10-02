@@ -1,47 +1,144 @@
-version: 0.0.14
-id: episode17_cneuromod_model_ranking_stability
-name: When does an fMRI measurement choice change which visual model wins?
-description: 'Brain Researcher autoresearch episode projection. This ASTRA document
-  is non-authoritative: it records a workspace plan or result but grants no execution
-  authority, scientific acceptance, reward, or Landscape transition.'
-tags:
-- brain-researcher
-- autoresearch
-- projection
-- plan
-- non-authoritative
+version: "0.0.14"
+name: "EP17: reliable-voxel sampling and a controlled visual-model relation"
+description: >-
+  Planned scientific worklist for the existing three-pair, five-edge contract.
+  Concrete paper nominations are not a qualified registry or execution lock.
+  No runnable recipe, active attempt or scientific finding is asserted.
 inputs:
-- id: goal
-  type: data
-  description: Episode research goal contract.
-  source: GOAL.md
-- id: datasets
-  type: data
-  description: Episode dataset and access contract.
-  source: DATASETS.md
-- id: search_policy
-  type: data
-  description: Episode search and stopping policy.
-  source: SEARCH_POLICY.yaml
-decisions:
-  declared_search_policy:
-    id: declared_search_policy
-    label: Declared episode search policy
-    rationale: policy_id=ep17_cneuromod_model_ranking_stability; evidence_mode=development_then_one_shot_concept_audit
-    default: use_declared_policy
-    options:
-      use_declared_policy:
-        id: use_declared_policy
-        label: Use declared policy
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
 outputs:
-- id: planned_episode_result
-  type: report
-  format: md
-  description: Planned episode result; no terminal result is asserted.
-  inputs:
-  - goal
-  - datasets
-  - search_policy
-  decisions:
-  - declared_search_policy
-findings: {}
+  - {id: episode_report, from: one_shot_audit.audit_report}
+analyses:
+  source_roles:
+    name: Establish the exact common image universe and concept roles
+    description: >-
+      Event-image joining and B/C/D identity/geometry alignment; exact four-person
+      720-concept support and whole-concept 480/120/120 roles; role-filtered
+      builder, searcher, scorer and evaluator handoffs. No candidate scores.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: role_views, type: data, inputs: [goal, datasets, policy]}
+  calibration_support:
+    name: Fix anatomical support reliability and positive ceiling weights
+    description: >-
+      Before candidate scores, fix anatomical ROI crosswalk, finite common
+      voxels, support size, subset bank and spatial quotas. Calibration concepts
+      alone define repeat reliability and ceilings; freeze thresholds and floors.
+      DK fusiform is nominated, not locally verified or functionally localized.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: role_views, from: ../source_roles.role_views}
+    outputs:
+      - {id: operator_maps, type: data, inputs: [policy, role_views]}
+  model_pair_registry:
+    name: Qualify three controlled model pairs and the trained-random control
+    description: >-
+      Fix checkpoint, architecture/objective/corpus, exposure status, preprocessing
+      and eligible layers before scores. The October 2 claim-specific criterion
+      allows recipe-confounded fixed pairs for measurement comparisons, not
+      causal training-property attribution. Known overlap is control-only;
+      unknown is not clean. Shared models are dependent contrasts.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: registry, type: data, inputs: [goal, policy]}
+  prediction_qualification:
+    name: Fix and qualify the common prediction-bank and scoring rules
+    description: >-
+      Nested development centering/PCA/layer/ridge selection, shared beta-stage
+      hyperparameters and endpoint-specific coefficient banks; common D bank for
+      support and ceiling. Fix all score-specific margins, error tolerances,
+      eligible endpoint/audit homologs and crossed max-t uncertainty before scores.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: role_views, from: ../source_roles.role_views}
+      - {id: operator_maps, from: ../calibration_support.operator_maps}
+      - {id: registry, from: ../model_pair_registry.registry}
+    outputs:
+      - id: qualification_report
+        type: report
+        inputs: [policy, role_views, operator_maps, registry]
+  known_answer_cases:
+    name: Recover the registered stable reversal and null patterns
+    description: >-
+      Existing synthetic recovery requirement; reject deliberately composite
+      or leaky edges and reproduce participant-by-ROI forecast versus exact
+      development attribution. No empirical outcomes or new scientific gate.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: qualification_report, from: ../prediction_qualification.qualification_report}
+    outputs:
+      - {id: recovery_report, type: report, inputs: [policy, qualification_report]}
+  initial_coverage:
+    name: Cover all three eligible pairs on the five fixed initial edges
+    description: >-
+      B-to-C, C-to-D, D anatomical size control, D matched support membership,
+      and fixed-voxel ceiling reweighting. Retain native negative R2 and each
+      score scale; no support-specific refits or normalization-induced voxel wins.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: role_views, from: ../source_roles.role_views}
+      - {id: operator_maps, from: ../calibration_support.operator_maps}
+      - {id: registry, from: ../model_pair_registry.registry}
+      - {id: qualification_report, from: ../prediction_qualification.qualification_report}
+      - {id: recovery_report, from: ../known_answer_cases.recovery_report}
+    outputs:
+      - id: coverage_report
+        type: report
+        inputs: [policy, role_views, operator_maps, registry, qualification_report, recovery_report]
+  adaptive_search:
+    name: Complete bounded development search and falsification
+    description: >-
+      Preserve 32-72 valid paired trials, two successor cycles and two incumbent
+      challenges; at least 40 percent post-coverage falsification and patience 12.
+      Development attribution and prospective audit forecasts stay distinct.
+      Existing 6000 CPU-hour/256 GPU-hour/240 wall-hour/4 TiB limits apply.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: role_views, from: ../source_roles.role_views}
+      - {id: operator_maps, from: ../calibration_support.operator_maps}
+      - {id: registry, from: ../model_pair_registry.registry}
+      - {id: coverage_report, from: ../initial_coverage.coverage_report}
+    outputs:
+      - id: search_report
+        type: report
+        inputs: [policy, role_views, operator_maps, registry, coverage_report]
+  final_relation_freeze:
+    name: Freeze one primary relation and at most two disclosed secondary checks
+    description: >-
+      Fix exact endpoints and homologs, coefficient banks, operator map,
+      development-only forecast, score-specific margins and adequacy widths,
+      concept blocks, uncertainty and evaluator before opening audit outcomes.
+      The named paper story cannot preselect success or rescue another relation.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: qualification_report, from: ../prediction_qualification.qualification_report}
+      - {id: operator_maps, from: ../calibration_support.operator_maps}
+      - {id: registry, from: ../model_pair_registry.registry}
+      - {id: search_report, from: ../adaptive_search.search_report}
+    outputs:
+      - id: frozen_relation
+        type: data
+        inputs: [policy, qualification_report, operator_maps, registry, search_report]
+  one_shot_audit:
+    name: Evaluate the frozen relation once on 120 unseen concepts
+    description: >-
+      Same four participants, no readout refit, retuning, subset rescue or rerun.
+      Apply relation-specific simultaneous bounds, forecast sign/error and
+      beta-stratum rules when applicable. Beta's forecast companion is the mean
+      audit-block change; its pooled primary edge/high-low scores are separate.
+      Support/ceiling forecasts target their aggregate edge. The same three-person intersection
+      and all participant/block omissions must retain required directions.
+      Adequacy widths distinguish nonreplication from unresolved evidence.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: role_views, from: ../source_roles.role_views}
+      - {id: frozen_relation, from: ../final_relation_freeze.frozen_relation}
+    outputs:
+      - {id: audit_report, type: report, inputs: [policy, role_views, frozen_relation]}

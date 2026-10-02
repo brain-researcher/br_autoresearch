@@ -14,15 +14,17 @@ must then predict how the actual held-out reach departs from that expectation.
 
 ## The scientific logic
 
-![EP05 conceptual figure showing the reach residual, correct-versus-wrong-trial LFP comparison, and result-dependent interpretation](outputs/ep05_question.svg)
+![EP05 conceptual figure showing same-target reach variation, seven-direction training, the correct-versus-wrong-trial control, and the conditional population follow-up](outputs/ep05_question_imagegen.png)
 
-Like the EP12 concept figure, this mockup starts with the phenomenon rather
-than the protocol. Synthetic trajectories show two reaches to the same target,
-the residual that remains after removing direction and elapsed time, and the
-correct-versus-wrong-trial pairing that distinguishes a common directional
-correction from trial-specific information. The last panel maps the evidence
-to bounded scientific interpretations. None of the drawn patterns is an EP05
-result; numerical decision rules remain in the study text.
+This schematic starts with two different reaches to the same target. It then
+separates the direction/time baseline from the LFP branch and shows how pairing
+a fixed prediction with the wrong reach tests trial identity. The population
+follow-up is conditional on the kinematic result and cannot rescue a failed
+first test. All trajectories, traces, and outcomes are illustrations, not EP05
+observations; the study text defines the numerical decision rules. The
+[generation and correction prompts](outputs/ep05_question_imagegen_prompt.md)
+are saved, and the [earlier SVG](outputs/ep05_question.svg) is retained as a
+historical design asset.
 
 The important comparison is not whether LFP can reconstruct hand movement at
 all. A decoder can look accurate simply by repeating the typical trajectory.
@@ -62,6 +64,10 @@ specifies the follow-up predictions, alternatives, and figure-level evidence.
 The held-out-direction test remains the first result; the spike-population
 follow-up cannot change its answer. No real EP05 analysis has run under this
 revised plan.
+
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
+retains this question: the proposed addition is trial-specific kinematic
+information and its population consequence, not another LFP decoder.
 
 ## At a glance
 

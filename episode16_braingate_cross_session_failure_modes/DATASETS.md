@@ -193,6 +193,14 @@ separately.
 
 ## Recording-state comparison
 
+The [component design](outputs/component_details.md) distinguishes observed
+channel loss/invalid samples from assumption-dependent attenuation and noise.
+Marginal activity variance alone does not identify signal-to-noise ratio or
+establish that a later recording state is worse. Emulator fits use fitting-
+side channel summaries, not direction labels or decoding deficits. Its
+evaluation uses transformed source trials; the observed comparison uses real
+target trials. Both retain their own matched local/transport/null benchmarks.
+
 The label-blind recording-state analysis may use electrode availability,
 finite-value rates, and pre-specified marginal quality summaries. Same-day
 yield and impedance may supplement those features when present, but their

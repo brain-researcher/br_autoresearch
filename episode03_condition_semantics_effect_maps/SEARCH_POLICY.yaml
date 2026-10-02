@@ -3,6 +3,42 @@ episode_id: ep03
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
+design_amendment_20261002:
+  scope: explicit_sign_consistency_for_existing_prototype_residual_comparison
+  stage: prospective_before_any_current_contract_map_computation
+  canonical_order: frozen_methods_and_ontology_rule_without_map_or_score_access
+  polarity: s_in_plus_or_minus_one_from_source_to_canonical_contrast
+  fit_target: Z_star_equals_s_times_normalized_source_sign_authenticated_Z
+  family_prototype: equal_dataset_group_weight_training_fold_canonical_targets
+  family_prediction: s_times_p_family
+  semantic_prediction: "s * [p_family + r(canonical_description)]"
+  operator_order: all_operators_nuisance_adjustments_and_ensembles_in_canonical_coordinates_before_single_final_sign
+  reversal: change_s_only_and_negate_both_complete_predictions
+  reversal_evidence: implementation_invariant_not_semantic_validation
+  reversal_copies: same_comparison_and_dataset_group_not_independent_examples
+  unresolved_order: existing_sign_ineligible_status_without_outcome_selected_fallback
+  permutation: permute_canonical_descriptions_within_family_keep_map_polarity_and_group
+  prototype_diagnostics: oriented_family_support_loss_and_residual_reliability
+  zero_or_canceled_prototype_as_silent_replacement: prohibited
+  unchanged: model_families_primary_loss_budgets_thresholds_roles_and_audit_rule
+
+# Narrative annotation only: operative grammar, objective, required falsifiers,
+# promotion, budgets and audit rules are unchanged by the 2026-09-30 rewrite.
+# A null gain is not evidence of equivalence without adequate precision.
+paper_framing:
+  question: what_does_signed_condition_text_add_beyond_task_family
+  proposed_contribution: incremental_sign_sensitive_map_geometry_across_independent_dataset_groups
+  target_interpretation: normalized_group_z_statistical_map_not_effect_amplitude
+  not_claimed:
+    - first_text_to_brain_mapping
+    - first_contrast_description_prediction
+    - first_statistical_map_evaluation
+    - causal_neural_mechanism
+    - null_gain_proves_task_family_sufficiency
+  evidence_status: design_only_no_current_contract_experiment
+  paper_plan: outputs/paper_plan.md
+  conceptual_figure: outputs/ep03_conceptual_question.png
+
 dataset_roles:
   development:
     source: exposed_neuroeffect_51_independent_dataset_groups
@@ -100,16 +136,39 @@ required_falsifiers:
   - trivial_lexical_only_model
   - semantic_cluster_exclusion
   - duplicate_lineage_and_near_duplicate_exclusion
+  - task_family_only_baseline
+  - train_fold_global_mean_map_baseline
   - capacity_matched_random_features
   - leave_one_group_influence
   - reliability_matched_analysis
   - semantic_block_and_ensemble_ablation
+  - nuisance_handling_ablation
+  - within_family_exchangeable_negative_control_contrast
+
+falsifier_contracts:
+  task_family_only_baseline:
+    implementation: frozen_train_fold_canonical_task_family_prototype_with_shared_polarity_restoration
+    evaluation: identical_held_out_groups_folds_mask_loss_and_group_weights_as_primary
+    pass_rule: candidate_must_pass_the_primary_pre_search_frozen_group_weighted_gain_rule
+  train_fold_global_mean_map_baseline:
+    implementation: average_canonical_oriented_eligible_maps_within_each_outer_training_group_then_equal_group_average_and_restore_requested_polarity
+    evaluation: identical_held_out_groups_folds_mask_loss_and_group_weights_as_primary
+    held_out_target_information_allowed_in_fit: false
+    pass_rule: candidate_must_beat_this_baseline_under_a_pre_search_frozen_group_weighted_decision_rule
+  within_family_exchangeable_negative_control_contrast:
+    contrast_identity: prespecified_contrast_with_scientifically_exchangeable_condition_labels_within_each_frozen_task_family
+    identity_freeze: before_first_current_contract_target_map_loading_or_scoring
+    implementation: rerun_complete_procedure_after_exchanging_only_the_prespecified_negative_control_condition_labels_within_family
+    distinct_from: within_family_signed_text_permutation_full_procedure
+    pass_rule: complete_procedure_must_not_show_positive_gain_under_the_pre_search_frozen_negative_control_rule
 
 promotion:
   incumbent_is_terminal: false
   minimum_adaptive_successor_cycles: 2
   minimum_incumbent_challenger_decisions: 2
   post_coverage_falsifier_fraction_min: 0.40
+  all_required_falsifiers_must_pass: true
+  required_falsifier_pass_rule: apply_each_pre_search_frozen_falsifier_specific_decision_rule
   low_fidelity_rule: dominated_trials_may_be_pruned_only_on_frozen_inner_folds
   finalist_rule: rerun_incumbent_and_at_most_three_challengers_on_all_development_groups
   lock_rule: select_exactly_one_feasible_pipeline_then_write_once_lock_stable_input_code_environment_and_model_versions_dag_weights_thresholds_prediction_fields_and_tie_rules

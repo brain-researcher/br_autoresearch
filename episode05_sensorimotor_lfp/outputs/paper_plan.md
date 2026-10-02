@@ -3,6 +3,13 @@
 Status: proposed study design, 2026-09-24. No real-data or future-session
 result is claimed here.
 
+![Conceptual study logic; illustrative traces are not observed data](ep05_question_imagegen.png)
+
+The current imagegen schematic separates the behavioral baseline, the fixed
+wrong-trial control, and the conditional spike-population follow-up. It does
+not select an outcome. [Exact prompts](ep05_question_imagegen_prompt.md) are
+saved; the [earlier SVG](ep05_question.svg) remains a historical asset.
+
 ## The paper question in plain language
 
 In an eight-direction reaching task, direction and elapsed time can give a
@@ -40,6 +47,9 @@ This table is a starting benchmark, not an exhaustive novelty review. Before a
 paper claim is written, record for the retained candidate: the closest decoder
 and LFP–population studies, the exact overlap, the new statement, the strongest
 rival explanation, and the observation that would refute it.
+
+The [2026-10-02 review](scope_novelty_review_20261002.md) retains the current
+question and comparison; no new model or execution condition is added.
 
 The following outcomes are **not** enough novelty by themselves:
 
@@ -100,7 +110,7 @@ representation without follow-up tuning. Construct the spike-population latent
 inside each training fold only; choose its rank schedule, smoothing, temporal
 support, alignment, and regularization before inspecting explanatory scores.
 
-Evaluate four models on the same held-out trials and directions:
+Evaluate five models on the same held-out trials and directions:
 
 | Model | Inputs beyond the behavioral baseline | Question answered |
 | --- | --- | --- |

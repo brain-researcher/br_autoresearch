@@ -25,6 +25,13 @@ soma regions, 1,736 manually checked cells, and 308 cells without a provider
 Eligibility depends on verified biological grouping, paired dendrite–axon
 identity, coordinate integrity, observability, and the frozen target rules.
 
+The number 1,736 also appears in a different and scientifically important
+lineage statement: Liu et al. 2024 report that 1,736 of the 1,876 morphologies
+are refinements of previously released neurons and 140 were newly annotated.
+These two uses of 1,736 must not be conflated. EP09 is therefore predominantly
+an adjudicative reanalysis of the Peng-2021 data lineage, not an independent
+biological replication.
+
 The data are not yet provisioned in an episode-local read-only location. Large
 archives and participant-level derived data remain outside Git.
 
@@ -38,9 +45,17 @@ An eligible cell needs all of the following:
 - source region, layer when available, soma coordinates, and acquisition or
   reconstruction batch;
 - enough native dendrite to compute the frozen morphology blocks;
-- enough axonal coverage to decide at least some target outcomes; and
+- enough axonal coverage to decide at least some target outcomes;
 - acquisition and dendrite-quality measures defined independently of axonal
-  geometry.
+  geometry;
+- a cortical IT label established by genetic, experimental, or source metadata
+  whose lineage does not use that cell's axonal target vector; and
+- original-release versus newly annotated lineage.
+
+The provider `Projection class` field is axon-derived. It cannot define the
+primary IT cohort, matching strata, predictors, or dendritic feature selection.
+If no outcome-independent IT label exists with adequate group, target, and
+donor support, the headline primary is not executable.
 
 Axon-derived coverage, completeness, total length, or projection breadth may
 determine observability or enter a stratified sensitivity analysis. They are not
@@ -96,13 +111,19 @@ or visually interesting cells.
 | Role | Minimum groups | Permitted use |
 | --- | ---: | --- |
 | Development | 12 | Build the observation pipeline, determine training-fold target support, tune models, run falsification analyses, and freeze predictions |
-| Audit | 8 | One evaluation of the locked primary and explanatory predictions in unseen biological groups |
+| Audit | 8 | One evaluation of the locked primary and explanatory predictions in held-out biological groups within SEU-A1876 |
 
 Audit axonal detections, target prevalence, and outcome-derived feature caches
 remain in a separately readable location until the full EP09/10/11 lock. The
 search process may receive audit anatomy and outcome-blind coverage only when a
 frozen recipe explicitly needs them; it may not receive detection labels or
 summaries from which those labels can be inferred.
+
+This split supports internal grouped reproducibility within the source
+collection. It is not an independent replication of Peng 2021. A
+lineage-disjoint audit using newly annotated cells is optional only if those
+cells independently satisfy the biological-group, exact-target, and matched-
+donor requirements; it is not promised in advance.
 
 ## Constructing a target observation
 
@@ -133,11 +154,13 @@ The primary arbor threshold is fixed before scoring. A small set of
 non-selectable threshold sensitivities may show how measurement definition
 affects the result, but none may replace the primary result after audit.
 
-## Target vocabulary and target families
+## Exact-target vocabulary and secondary target families
 
-Targets must be non-overlapping nodes from one pinned Allen CCFv3 structure
-graph. The vocabulary is chosen from anatomy and observation support, not from
-which targets yield a strong dendritic association.
+Primary outcomes are exact, non-overlapping nodes from one pinned Allen CCFv3
+structure graph. The vocabulary is chosen from anatomy and observation support,
+not from which targets yield a strong dendritic association. Broad families
+are prespecified explanatory summaries and hierarchy falsifiers; they cannot
+replace the exact-target primary.
 
 Two forms of support are distinct:
 
@@ -211,8 +234,10 @@ cells and grouped folds:
 - 20 frozen nuisance draws that independently derange standardized residual
   rows for each dendritic block after outcome-free, cross-fitted conditional
   location-and-scale modeling from M0 context;
-- intact whole-dendrite residual swaps within a development-frozen,
-  dendrite-only morphology class and biological group;
+- coherent whole-dendrite residual swaps within biological group, source,
+  layer, independently defined non-axon IT class, frozen soma-position and
+  quality calipers, and optionally a development-frozen dendrite-only
+  neighborhood;
 - rotation-invariant and soma-centered versions of orientation-sensitive
   features;
 - size-only and QC-only feature blocks; and
@@ -220,12 +245,12 @@ cells and grouped folds:
   development-prevalence, observation-rate, and CCFv3 source-centroid distance
   bins.
 
-Nuisance blocks and cell-identity swaps are different experiments. Nuisance
+Nuisance blocks and matched-donor swaps are different experiments. Nuisance
 generation uses a different no-fixed-point donor assignment for each dendritic
 block, preserving within-block covariance while destroying the cross-block
-coherence of an intact tree. The identity test transfers the entire standardized
-dendritic residual vector from a donor in the same frozen morphology class,
-preserving coherent morphology while breaking cell identity.
+coherence of a tree. The primary swap transfers the entire standardized
+dendritic residual vector from one tightly matched donor, preserving coherent
+cross-block morphology while breaking the recipient–dendrite pairing.
 
 Both routes fit their outcome-free conditional location, scale, whitening, and
 training-only imputation inside the training partition; transform the donor
@@ -236,9 +261,10 @@ moves across partitions and no axonal outcome enters the generator.
 Before launch, development morphology must support conditional overlap and
 joint support across source, layer, soma position, batch, and axon-independent
 QC, including mean, covariance, heteroscedasticity, multimodality, and missingness
-diagnostics. Every nuisance group and every group-by-morphology-class swap cell
-needs at least four donors. Failure makes that control unavailable rather than
-silently dropping cells after outcomes are known.
+diagnostics. Every nuisance group and every frozen source × layer × class
+matched-swap pool needs the prespecified donor count. Failure makes the headline
+primary unavailable rather than triggering looser matching or silent cell
+removal after outcomes are known.
 
 Freeze every hierarchy distance/prevalence/observation caliper and assignment
 before audit. If 20 valid hierarchy shuffles cannot be constructed, that
@@ -246,11 +272,19 @@ explanatory claim is unresolved; its constraints are not relaxed.
 
 The nuisance controls receive the one development-selected M1 pipeline and are
 refit from scratch on their false feature blocks. They do not receive separate
-adaptive searches. The scale-block analysis instead uses one fixed all-block
-E1 model, learns an outcome-free conditional replacement law inside each
-development training fold, and averages 10 complete replacement refits in which
-the block is replaced in both training and held-out data. Post-fit test-only
-permutation is not used.
+adaptive searches. The correct-versus-donor primary is different: the M1
+outcome model, preprocessing, and calibrator are fitted on correct development
+pairings and held fixed. Donor residuals are substituted only when generating
+held-out predictions, with the recipient's context and missingness preserved.
+
+The scale-block analysis similarly fits one all-block E1 on correct
+development pairings and holds it fixed during held-out evaluation. It
+replaces one block at a time using the same frozen coherent matched-donor bank
+as the primary, averaging across the frozen donor plans rather than refitting
+on swapped training data. Within a plan, donor identity remains the same
+across blocks. These are matched conditional substitutions, not unrestricted
+feature permutations, and they estimate predictive dependence rather than
+causal importance.
 
 All paired comparisons use the same cells, targets, folds, preprocessing,
 calibrator eligibility, and score weights. Tuning is identical where the
@@ -265,7 +299,7 @@ frozen audit input required to generate predictions. It may not contain:
 - audit target detections or prevalence;
 - audit-derived outcome labels, feature selections, or fitted target models;
 - reports, caches, figures, or logs that reveal audit performance;
-- target-family refinements based on audit outcomes; or
+- exact-target or target-family refinements based on audit outcomes; or
 - artifacts from EP10 or EP11 that indirectly disclose the same outcomes.
 
 A trusted evaluator joins the frozen predictions to the sealed outcomes,
@@ -279,20 +313,27 @@ The source collection and related literature already support broad claims about
 whole-neuron morphological diversity, projection motifs, and relationships
 between dendritic form and projection identity:
 
-- [Peng et al. (2024)](https://doi.org/10.1038/s41467-024-54745-6) analyze
-  neuronal diversity and stereotypy at multiple scales using SEU-A1876.
+- [Peng et al. (2021)](https://doi.org/10.1038/s41586-021-03941-1)
+  reported that within cortical IT populations, individual target-subset
+  selection appeared unrelated to soma depth or dendritic morphology.
+- [Liu et al. (2024)](https://doi.org/10.1038/s41467-024-54745-6)
+  analyze neuronal diversity and stereotypy at multiple scales using
+  SEU-A1876 and document its relationship to previously released cells.
 - [Gao et al. (2023)](https://doi.org/10.1038/s41593-023-01339-y) relate
   dendritic and axonal organization in mouse prefrontal cortex while also
   showing that simple one-to-one correspondences do not always hold.
-- [Muñoz-Castañeda et al. (2025)](https://doi.org/10.1038/s41593-025-02119-6)
+- [Liu et al. (2026; online 2025)](https://doi.org/10.1038/s41593-025-02119-6)
   build an atlas from dendritic microenvironments and examine correspondence
   with long-range projection organization.
+- [Sorensen et al. (2026)](https://doi.org/10.1038/s41586-026-10424-8)
+  directly connect local morphology, cortical location, multimodal identity,
+  and specific projection targets.
 
 EP09 cannot use “dendrites are associated with axons” as its novelty claim.
-The proposed contribution is the held-out, same-cell decomposition of context,
-native dendritic information, dendritic scale, and independently defined target
-families. A focused novelty review must verify that this exact prediction has
-not already been established in comparable data.
+The proposed contribution is the held-out comparison of the correct dendritic
+residual against coherent tightly matched donor residuals at exact-target
+resolution, followed by a scale × exact-target replication test. M1 beating M0
+is a required benchmark, not the discovery.
 
 ## Launch blockers
 
@@ -302,25 +343,28 @@ The following items must be resolved before candidate scoring:
   structure graph in read-only storage;
 - verify animal/brain/specimen provenance and build the shared EP09/10/11 role
   and exposure ledger;
+- verify an outcome-independent cortical IT label and document its provenance;
+- document original-release versus newly annotated lineage;
 - authenticate cell joins, native-to-CCF coordinate relationships, and the
   dendrite/axon parsing route;
 - freeze the distal-arbor, observability, valid-nondetection, target-vocabulary,
   and outcome-independent target/source family cuts;
 - verify the minimum development and audit group counts after all eligibility
   rules;
+- verify exact-target support and the prespecified donor count within every
+  source × layer × non-axon class × biological-group matching pool;
 - freeze `n_coverage`, positive/negative group support, family support,
   dendritic blocks, conditional-generator diagnostics, independent-block
-  nuisance seeds, dendrite-only morphology classes, intact-swap seeds, and all
-  20 shuffled hierarchies;
-- freeze E0/E1, the exact group and family scores, `delta_morph`, `delta_cell`,
-  `eta_matrix`, `rho_matrix`, required sign entries, source-family scope, and
-  calibrator eligibility;
+  nuisance seeds, coherent matched-donor plans, and all 20 shuffled
+  hierarchies;
+- freeze E0/E1, the exact group, target, and family scores, `delta_morph`,
+  `delta_cell`, `eta_matrix`, `rho_matrix`, exact-target entry order,
+  required sign entries, source-family scope, and calibrator eligibility;
 - demonstrate with separate, prespecified calibration and validation simulations
   that the planned lower-tail, upper-tail, cell-equivalence, nuisance, and
   hierarchy critical values meet their coverage requirements;
-- confirm that all fixed-pipeline nuisance, replacement, and hierarchy refits
-  fit inside the resource ceiling; and
-- complete the focused novelty review.
+- confirm that the nuisance and hierarchy refits, fixed-model matched-donor
+  predictions, and explanatory-template evaluation fit inside the resource ceiling.
 
 Optional CCF-ME absence does not block the primary analysis. Failure of a
 primary item does.

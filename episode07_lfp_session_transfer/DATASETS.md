@@ -15,6 +15,25 @@ No neural analysis has started for this episode. The remaining preparation is
 to confirm that the named sessions support the planned time windows, reach
 directions, trial counts, LFP features, and population-spike targets.
 
+## Paper integration without a new data split
+
+EP07 owns the history-and-population-components paper; EP06 is a supporting
+recording-domain component study. This decision does not merge their data
+roles. EP07 keeps its chronological three-source/three-target day assignment
+and whole-trial calibration/development/held-out split. EP06's development and
+reserved session positions are different and may expose trials still closed
+in EP07. No EP06 outcome or fitted object may enter EP07 model development.
+On this corpus, score the EP06 component only after EP07's choices are frozen
+and its single primary opening is complete, unless a scientist prospectively
+approves a compatible joint-role design before any relevant score is viewed.
+Same-corpus component evidence is not an independent replication or a new day.
+
+The EP06 common-time, direction-by-time, and trial-residual projections answer
+a frequency-rule consequence question, not EP07's history-minus-today-only
+contrast. The two are reported with their own denominators, fitting roles,
+and uncertainty. EP05 reach-deviation outcomes and EP08 acquisition-policy
+outcomes are likewise not inputs to this episode.
+
 ## The recordings used in the primary study
 
 The primary corpus contains twelve simultaneous M1/PMd recording days from

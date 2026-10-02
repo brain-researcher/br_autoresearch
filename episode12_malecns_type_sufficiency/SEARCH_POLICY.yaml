@@ -9,6 +9,10 @@ evidence_mode: adaptive_search
 research_program:
   paper_question: when_does_a_cell_type_average_hide_input_output_pathway_organization
   plan_ref: outputs/paper_plan.md
+  scientific_co_primary_questions:
+    - reproducibility_of_within_type_outgoing_organization
+    - consequential_error_of_type_averaging_for_same_cell_input_output_pairing
+  co_primary_means_separate_rounds_not_same_search_endpoint: true
   primary_round: reciprocal_outgoing_T_U_M_comparison
   primary_endpoint_and_terminal_mapping_unchanged: true
   followup:
@@ -19,16 +23,37 @@ research_program:
     automatically_launched_by_this_policy: false
     outgoing_terminal_may_be_overwritten: false
     candidate_source: previously_assigned_development_types
+    maximum_selected_cases: 3
+    case_and_partner_selection_fixed_before_incoming_inspection: true
+    selected_failed_cases_may_be_replaced: false
     final_types_may_select_followup_cases: false
     discovery_features: outgoing_profiles_only
     prediction_target: incoming_partner_composition
     input_output_views_are_independent_biological_replicates: false
-    primary_followup_score: neuron_equal_incoming_composition_brier_improvement
+    primary_followup_score: neuron_equal_input_output_pair_mass_TV_error_improvement
+    supporting_score: neuron_equal_incoming_composition_brier_improvement
+    averaging_distortion: TV_between_cellwise_pair_mass_and_product_of_observed_marginals
+    averaging_distortion_is_source_trained_prediction: false
+    meaningful_pair_mass_and_supporting_score_margins: not_yet_frozen
+    positive_incoming_score_alone_supports_circuit_claim: false
     contrasts:
       groups: versus_development_selected_best_fair_template_anatomy_or_continuous
       continuous: versus_development_selected_best_fair_template_or_anatomy
       selection_and_multiplicity_fixed_before_external_access: true
     circuit_readout: neuron_equal_input_output_pair_mass_total_variation_error
+    source_evaluation:
+      scope: conditional_within_one_male_specimen
+      fitting_and_evaluation_blocks_fixed_before_new_incoming_access: true
+      blocks_are_independent_animals: false
+      target_incoming_refit_alignment_or_partner_selection: false
+      prior_outgoing_exposure_can_be_erased: false
+      incoming_aggregation_alone_establishes_unexposed_targets: false
+      unqualified_target_separation_claim: descriptive_or_conditional_diagnostic_only
+    anatomical_metadata:
+      hierarchy: source_conditional_authenticated_fields_only
+      missing_hemilineage_serial_or_retinotopic_fields_may_be_imputed_from_outcomes: false
+      provider_group_or_instance_is_independent_anatomical_control: false
+      report_untested_rival_explanations: true
     external_evaluation:
       source_manifest: null
       matching_and_scope_fixed_before_external_connectivity_access: true
@@ -36,6 +61,8 @@ research_program:
       same_specimen_or_new_release_is_independent_replication: false
       cross_sex_transfer_is_same_sex_replication: false
       target_side_fitting_or_component_alignment_from_incoming: false
+      external_source_compatibility_or_homology_assumed: false
+      no_compatible_source_claim: within_specimen_structural_consequence_only
     separate_contract_required:
       - candidate_and_partner_selection_with_multiplicity
       - source_and_exposure_manifest_with_edge_ownership
@@ -47,6 +74,7 @@ research_program:
       - one_shot_external_evaluation_and_result_table
     inherits_primary_budget_or_null_calibration: false
     candidate_ready_implies_paper_claim_established: false
+    known_Dombrovski_2023_2025_gradients_are_novel_EP12_discoveries: false
 
 # Data are split by whole annotated type before connectivity outcomes are used.
 dataset_roles:
@@ -325,6 +353,7 @@ terminal_mapping:
 reporting:
   scientific_scope:
     primary_round_and_circuit_followup_reported_separately: true
+    circuit_consequence_is_scientific_co_primary_in_separate_planned_round: true
     all_followup_candidates_and_failures_reported: true
     local_case_may_replace_type_aggregate_result: false
     paper_claim_requires_evidence_beyond_primary_terminal: true

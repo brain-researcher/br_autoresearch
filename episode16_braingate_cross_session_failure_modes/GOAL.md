@@ -1,5 +1,9 @@
 # Why does a human iBCI mapping work in one session but not another?
 
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md) places
+this comparison against existing long-term stabilization work. Its explanatory
+outcomes are operational signatures, not separately identified causal mechanisms.
+
 Train a direction-prediction mapping on an earlier BrainGate session, then
 apply it unchanged to a later session from the same participant. If it performs
 worse, the score alone does not tell us why. The later session might contain
@@ -34,16 +38,18 @@ repeats in two separate time-based partitions of that participant's sessions.
 The study is therefore about reproducible failure signatures, not about finding
 the most dramatic example of drift.
 
-![EP16 conceptual figure showing synthetic source, near, and long-gap session codes, matched target-session scores, competing mechanism signatures, and bounded interpretations](outputs/ep16_question_imagegen.png)
+![EP16: transferred mapping, target-local signal and coexisting operational signatures](outputs/ep16_question_imagegen-v2.png)
 
-Like the EP12 concept figure, this mockup makes the rival scientific stories
-visible with synthetic patterns. It shows one source mapping applied to near
-and long-gap session codes, the null/transported/target-local comparison on the
-same target trials, and the different signatures predicted by weaker local
-signal, observable recording change, and a low-label remappable mismatch. The
-last strip states the bounded interpretations. None of the patterns is an
-EP16 result; numerical anchors, uncertainty rules, and the two valid
-participant-level replication routes remain in the study text.
+The figure compares an unchanged earlier-session mapping, a target-local
+mapping and a null on the same later-session trials. Cursor-to-target direction
+is the task proxy, not a direct intention label. The three illustrated
+signatures can coexist: less locally recoverable signal, a label-blind
+recording-state emulator sufficient to reproduce loss, and recovery with a
+fixed 32-label procedure. The earlier recording feeds the emulator; the
+repair is not the unchanged transported mapping. Drawings show no observed
+performance or identified biological mechanism. Exact margins and participant
+rules remain in the study text; [generation and correction prompts](outputs/ep16_question_imagegen-v2-prompt.md)
+are saved.
 
 ## The question in one table
 
@@ -185,6 +191,12 @@ does not substitute another person after seeing outcomes.
 
 ## Three explanations tested with the same panel
 
+[Component details](outputs/component_details.md) specify the shared fitting
+exposure, local learning curves, label-blind emulator construction and
+32-label recovery quantities. They keep method exploration open and identify
+the remaining scientific choices without changing this study's estimands or
+numerical anchors.
+
 ### 1. Less locally recoverable signal
 
 For session `u`, let `J_u` be its fold-averaged locally fitted score minus its
@@ -252,7 +264,7 @@ budget response.
 | Later-session benchmark also declines | Less usable direction signal is locally recoverable in later sessions |
 | Recording-state emulator reproduces the deficit | Observed channel and recording changes are sufficient for the eligible chronological transitions |
 | Thirty-two labels repair the deficit | A meaningful part of the mismatch is recoverable with a fixed low label budget |
-| More than one explanation passes | The mechanisms are reported together; no additive causal percentage is claimed |
+| More than one explanation passes | The operational signatures are reported together; no additive causal percentage is claimed |
 | Fully resolved patterns differ and repeat within person | These participants show reproducibly different profiles, not population subtypes |
 | Required comparisons remain uncertain | The study remains unresolved rather than choosing the most attractive story |
 

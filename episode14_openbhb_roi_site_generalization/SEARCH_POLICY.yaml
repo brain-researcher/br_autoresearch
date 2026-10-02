@@ -1,187 +1,284 @@
-policy_id: ep14_openbhb_cpu_adaptive
+policy_id: ep14_openbhb_fixed_representation_comparison
 episode_id: ep14
-common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
-evidence_mode: adaptive_search
+evidence_mode: fixed_preregistered_representation_comparison
 
-dataset_roles:
+research_program:
+  reader_question: which_neuroanatomical_representations_and_shallow_predictors_make_age_prediction_transfer
+  design_note: outputs/representation_research_design.md
+  status: open_representation_search_design_not_executable_amendment
+  site_role: generalization_environment_and_supporting_diagnostic_not_removal_objective
+  starting_hypotheses_not_search_limits:
+    - bilateral_shared_and_asymmetric_components_benefit_from_different_regularization
+    - anatomical_grouped_compression_transfers_beyond_matched_generic_compression
+  open_design_axes:
+    - allowed_ROI_measurement_family_combinations
+    - bilateral_shared_and_contrast_components
+    - provider_declared_anatomical_grouping_and_atlas_granularity
+    - generic_and_structured_dimensional_reduction
+    - shallow_predictor_families_and_nonlinear_interactions
+    - small_ensembles_as_predictive_followups_not_representation_proof
+    - optional_fit_only_site_direction_removal
+  interpretation_controls:
+    - invertible_reencoding_does_not_add_information
+    - isotropic_ridge_rotation_equivalence_requires_matched_scaling_and_metric
+    - output_dimension_predictor_capacity_and_fitting_allowance_are_reported_and_matched_where_applicable
+    - shuffled_grouping_or_pairing_controls_test_anatomical_specificity
+    - ROI_aggregation_is_not_physical_surface_coarse_graining
+  operative_frozen_comparison_changed: false
+  operative_exclusions_apply_to: fixed_R0_to_R3_reference_not_prospective_design_options
+  optional_prior_site_diagnostic:
+    status: retained_unactivated_not_main_question
+    utility_test: discarded_direction_age_prediction_with_unseen_and_within_domain_views_on_common_support
+    supporting_probe: seen_domain_site_prediction_gain_beyond_age_only_model
+    activation_requires: prospective_support_models_margins_uncertainty_and_evaluator_scope
+  execution_amendment_still_requires: candidate_ranges_resources_selection_and_confirmation_scope_before_outcome_access
+  new_holdout_endpoints_authorized: false
+  novelty_limit: shared_specific_bilateral_and_multiscale_ideas_have_precedents_and_a_MAE_winner_alone_is_not_a_new_principle
+  causal_acquisition_isolation_claim: false
+
+authority:
+  local_episode_only: true
+  canonical_scientific_acceptance: false
+  public_validation_outcome_access: conditional_after_lock
+
+current_stage:
+  development_inputs_exposed: true
+  public_validation_features_available: true
+  public_validation_targets_opened: false
+  experiment_started: false
+
+scientific_question:
+  predictor_family_and_tuning_procedure_held_fixed: true
+  fitted_alpha_may_differ_by_arm: true
+  target: chronological_age
+  shift_unit: siteXacq
+  question: improve_unseen_domain_age_MAE_without_materially_increasing_seen_domain_linear_site_decodability
+
+random_seed: 14014
+
+data_roles:
   development:
     participants: 3227
-    splits: 3_pinned_RAMP_robustness_splits
-    roles_per_split: [fit, internal_test_seen_siteXacq, external_test_unseen_siteXacq]
-    independence: overlapping_robustness_views_not_replications
-  locked_probe:
-    source: development_only
-    candidates_max: 12
-    probe: five_fold_multinomial_logistic_site_probe
-    probe_spec: fold_fit_standardize_l2_C1_balanced_lbfgs_maxiter2000
-  quick_probe:
-    source: development_only
-    probe: three_fold_multinomial_logistic_site_probe
-    probe_spec: fold_fit_standardize_l2_C1_balanced_lbfgs_maxiter2000
-  audit:
-    participants: 757
-    internal: 362
-    external: 395
-    features: opaque_rows_without_targets
-    labels: trusted_evaluator_only_after_lock
+    views: 3_RAMP_robustness_views
+    views_are_independent_replications: false
+    repeated_participant_rule: average_appearance_level_loss_or_correctness_not_predictions
+  conditional_public_holdout:
+    total_rows: 757
+    external_age_rows: 395
+    internal_site_probe_rows: 362
+    labels: trusted_evaluator_only_after_candidate_lock_and_freshness_review
 
-grammar:
-  execution: declarative_pipeline_trusted_builder
-  atlas: [desikan, destrieux, row_aligned_concatenation]
-  feature_blocks:
-    - raw_allowed_ROI
-    - atlas_bilateral_mean_difference
-    - atlas_region_aggregates
-    - measurement_family_aggregates
-    - bounded_block_interactions
-  scaler: [standard_fit_only, robust_fit_only]
-  reducer:
-    family: [none, PCA, PLS, random_fourier_features]
-    pca_rank: [16, 32, 64, 128, 256]
-    pls_rank: [4, 8, 16, 32]
-    random_fourier_components: [256, 512, 1024]
-  bounded_interactions:
-    maximum_order: 2
-    maximum_output_features: 128
-  site_free_invariance:
-    family: [none, fit_site_direction_projection]
-    removal_rank: [1, 2, 4, 8, 16]
+primary_feature_base:
+  atlas: desikan
+  numeric_ROIs: 476
+  reason: fixed_parsimonious_base_with_transparent_bilateral_pairing
+  selected_from_held_out_performance: false
+
+representations:
+  R0_raw:
+    role: reference
+    transform: raw_columns_then_final_fit_only_standardization
+  R1_bilateral_basis:
+    role: anatomical_representation
+    transform: frozen_raw_left_right_mean_and_signed_difference_then_final_fit_only_standardization
+    learned_state: none
+  R2_pca64:
+    role: generic_linear_compression_control
+    transform: fit_only_raw_standardization_then_full_SVD_PCA_then_final_fit_only_standardization
+    retained_components: 64
+    whitening: false
+  R3_site_projection:
+    role: acquisition_targeted_representation
+    source_classifier: fit_only_L2_multinomial_logistic
+    classifier_C: 1.0
+    classifier_class_weight: balanced
+    classifier_solver: lbfgs
+    classifier_max_iter: 2000
+    coefficient_processing: center_rows_then_right_singular_vectors
+    removal_rank: 4
+    nonzero_singular_value_tolerance: max_site_classes_or_features_times_machine_epsilon_times_largest_singular_value
+    deficient_rank_rule: use_full_available_nonzero_rank_and_report
+    post_projection_standardization: fit_only
     transform_accepts_site_label: false
-  age_model: [ridge, elastic_net, huber, random_fourier_ridge]
-  regularization: [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
-  ensemble:
-    maximum_members: 3
-    nonnegative_weights: true
-    weights_from_development_OOF_only: true
-  forbidden:
-    - arbitrary_candidate_code
-    - identifiers_or_metadata_as_features
-    - global_tissue_volumes_or_QC_as_features
-    - test_or_audit_site_dependent_ComBat_or_centering
-    - transductive_test_or_audit_fitting
-    - audit_label_or_distribution_access
-    - raw_MRI_GPU_or_external_participant_features
 
-objectives:
-  primary: minimize_mean_external_test_age_MAE
-  pareto:
-    minimize:
-      - mean_external_MAE
-      - worst_split_external_MAE
-      - internal_siteXacq_balanced_accuracy
-      - combined_external_MAE_times_site_BAcc_power_0_3
-      - internal_MAE
-      - runtime_and_rank
-  feasibility:
-    mean_external_MAE_relative_improvement_min: 0.02
-    mean_site_BAcc_absolute_increase_max: 0.01
-    combined_value_must_improve: true
-    external_MAE_improving_splits_min: 2
-    development_splits_total: 3
-  winner_tiebreak_order:
-    - mean_external_MAE
-    - worst_split_external_MAE
-    - combined_value
-    - site_balanced_accuracy
-    - complexity_and_runtime
-  overlap_handling:
-    repeated_participant_predictions: average_before_uncertainty
-    splits_are_independent_replications: false
+pipeline_order:
+  - refit_arm_specific_transform_inside_every_outer_and_inner_fit_role
+  - fit_final_standardizer_on_resulting_representation
+  - discard_only_exact_zero_variance_fit_columns
+  - send_same_final_standardized_representation_to_ridge_and_site_probe
 
-budgets:
-  stage1_coverage_valid_configs: 24
-  minimum_valid_trials: 48
-  maximum_valid_trials: 120
-  valid_trials_min: 48
-  valid_trials_max: 120
-  patience_valid_trials: 20
-  patience_active_after_trial: 48
-  locked_probe_candidates_max: 12
-  cpu_core_hour_ceiling: 500
-  cpu_core_hours_max: 500
-  cpu_cores_per_trial_max: 16
-  memory_gib_per_trial_max: 64
-  wall_hours_per_trial_max: 4
-  wall_clock_hour_ceiling: 120
-  total_wall_clock_hours_max: 120
-  gpu_hour_ceiling: 0
-  gpu_hours_max: 0
+common_age_model:
+  estimator: ridge
+  alpha_grid: [0.1, 1.0, 10.0, 100.0, 1000.0]
+  tuning: deterministic_leave_one_siteXacq_out_within_outer_fit_role
+  inner_score: equal_weight_mean_of_inner_held_out_siteXacq_MAEs
+  exact_tie_break: larger_alpha
+  all_learned_state_fit_on_outer_fit_role_only: true
+  held_out_rows_choose_hyperparameters: false
+  full_development_refit: rerun_same_siteXacq_held_out_tuning_separately_for_locked_candidate_and_R0_then_fit_all_3227
 
-branch_coverage:
-  required: true
-  minimum_valid_trials: 24
-  rule: balanced_stage1_atlas_feature_reduction_invariance_and_predictor_covering_array
-  readiness_rejection_must_be_logged: true
+fixed_linear_site_probe:
+  train_role: outer_fit
+  score_role: internal_test_seen_siteXacq
+  estimator: L2_multinomial_logistic
+  fold_fit_standardization: true
+  C: 1.0
+  class_weight: balanced
+  solver: lbfgs
+  max_iter: 2000
+  seed: 14014
+  input: same_final_standardized_representation_used_by_age_model
+  full_holdout_rule: train_on_all_3227_transformed_development_rows_and_score_362_internal_rows
+  epistemic_role: seen_domain_linear_decodability_guardrail_not_scanner_invariance
 
-required_falsifiers:
-  - age_median_raw_ridge_and_PCA_ridge_baselines
-  - shuffled_age_and_shuffled_site_controls
-  - fold_fit_vs_deliberately_leaky_regression_test
-  - desikan_destrieux_and_concatenation_ablations
-  - neuro_feature_reducer_and_invariance_block_ablations
-  - representation_rank_variance_finite_and_collapse_checks
-  - site_removal_vs_raw_representation
-  - per_siteXacq_and_age_range_errors
-  - leave_one_development_split_influence
-  - ensemble_member_and_weight_ablations
-  - transform_without_any_test_or_audit_site_metadata
+primary_estimand:
+  name: paired_domain_macro_external_MAE_change_vs_R0
+  unit: years
+  participant_rule: compute_absolute_error_per_appearance_then_average_repeated_participant_losses
+  domain_rule: average_participant_losses_per_held_out_siteXacq_then_equal_weight_domains
+  absolute_change: arm_MAE_minus_R0_MAE
+  relative_change: arm_minus_R0_divided_by_R0
+  lower_is_better: true
+  secondary:
+    - participant_pooled_external_MAE
+    - each_RAMP_view_external_MAE
+    - worst_domain_MAE
+    - internal_MAE
+    - age_quartile_errors
 
-promotion:
-  incumbent_is_terminal: false
-  minimum_adaptive_successor_cycles: 2
-  minimum_incumbent_challenger_decisions: 2
-  post_coverage_falsifier_fraction_min: 0.40
-  stage1_coverage_required: true
-  quick_and_locked_probe_metrics_comparable: false
-  locked_probe_tournament_required: true
-  select_from: locked_probe_feasible_pareto_candidates
-  lock_one_configuration: true
-  freeze:
-    - config_and_code_revision
-    - feature_headers_and_fold_roles
-    - seeds_and_fit_only_state_rules
-    - probe_metrics_thresholds_and_controls
-    - audit_command_and_firewall_settings
+site_guardrail:
+  metric: balanced_accuracy
+  participant_rule: compute_0_or_1_correctness_per_appearance_then_average_within_participant_and_true_class
+  contrast: arm_BAcc_minus_R0_BAcc
+  noninferiority_margin: 0.01
+  claim: fixed_linear_probe_did_not_detect_material_increase
 
-stop:
-  before_minimum: only_integrity_leakage_or_evaluator_failure
-  patience_starts_after_minimum: true
-  after_minimum:
-    - patience_exhausted
-    - valid_trials_max_reached
-    - cpu_or_wall_clock_budget_exhausted
-  budget_stop_is_scientific_success: false
+uncertainty:
+  method: paired_hierarchical_bootstrap
+  hierarchy: [siteXacq, participant]
+  interval: one_sided_95_percent_upper_bound
+  replicates: 10000
+  seed: 14014
+  domain_reporting: every_domain_plus_leave_one_domain_out_sensitivity
+  inference_scope: observed_domains_only
+  participant_resampling_creates_new_domains: false
 
-audit:
-  mode: one_shot
-  configuration_lock_required: true
-  configuration_lock_rule: dated_write_once_record_before_label_access
-  maximum_open_count: 1
-  audit_updates_search: false
-  rows: 757
-  owner: trusted_evaluator
+development_eligibility:
+  relative_age_change_point_max: -0.02
+  robustness_views_reported_separately: true
+  robustness_views_vote_on_eligibility: false
+  site_BAcc_change_point_max: 0.01
+  required_integrity:
+    - fit_only_preprocessing
+    - held_out_transform_receives_features_only
+    - finite_representation
+    - declared_rank_or_reported_deficient_rank
+    - no_representation_collapse
+
+development_selection:
+  select_exactly_one_candidate: true
+  eligible_arm_order:
+    - lowest_domain_macro_external_MAE
+    - lowest_worst_domain_MAE
+    - lower_linear_site_BAcc
+    - simpler_representation
+  no_eligible_arm_action: close_development_without_public_holdout
+  development_intervals_are_confirmatory: false
+
+hard_validity_gates:
+  - fold_fit_access_and_deliberately_leaky_preprocessing_regression
+  - finite_representation
+  - effective_rank_matches_declared_or_reported_deficient_rank
+  - no_representation_collapse
+  - held_out_transform_receives_features_only
+
+descriptive_controls_and_falsifiers:
+  eligibility_threshold_created_by_control_result: false
+  concrete_leakage_or_implementation_invalidity_blocks_lock: true
+  controls:
+    - age_median_reference
+    - shuffled_age_control
+    - seeded_rank_matched_random_direction_removal
+    - fit_site_label_permuted_direction_removal
+    - per_domain_worst_domain_and_age_quartile_reports
+    - destrieux_four_arm_sensitivity_not_used_for_selection
+
+conditional_public_holdout:
+  mode: one_shot_if_fresh
+  freshness_review_required: true
+  unknown_or_failed_freshness_action: reclassify_as_retrospective_validation_and_require_new_confirmation_source
+  candidate_and_R0_locked_before_labels: true
+  refit_development_participants: 3227
+  refit_rule: separately_retune_alpha_by_same_full_development_leave_one_siteXacq_out_rule_then_refit_each_pipeline
+  external_age_rows: 395
+  internal_site_probe_rows: 362
+  site_probe_rule: train_on_all_3227_final_representations_then_score_362_internal_rows
   network_egress: disabled
-  raw_source_and_cache_mounted: false
-  candidate_age_site_or_role_label_access: false
-  dated_public_label_exposure_review_required: true
-  test_site_dependent_transform: prohibited
-  retune_blend_threshold_change_or_rerun: false
-  refit_training_rows: 3227
-  external_rows: 395
-  bootstrap:
-    replicates: 10000
-    seed_list_locked_before_label_access: true
-    hierarchy: [siteXacq, participant]
-    interval: one_sided_95_percent
-  candidate_ready_rules:
-    external_relative_mae_reduction_min: 0.02
-    candidate_minus_baseline_external_mae_upper_bound_max: 0.0
-    site_balanced_accuracy_increase_point_max: 0.01
-    site_balanced_accuracy_increase_upper_bound_max: 0.01
-  point_pass_interval_fail_terminal: closed_unresolved
+  raw_source_cache_and_identity_mapping_mounted: false
+  candidate_receives_age_site_or_role_labels: false
+  result_emission: atomic_complete_result
+  pre_outcome_technical_repair_allowed: true
+  consumed_when_any_candidate_discriminating_outcome_is_visible: true
+  retuning_or_rerun_after_consumption: prohibited
+  confirmed_positive_rules:
+    relative_age_change_upper_bound_strictly_less_than: -0.02
+    site_BAcc_change_upper_bound_max: 0.01
+  valid_result_classification_order:
+    - holdout_guardrail_failure_if_site_BAcc_point_change_exceeds_0_01
+    - holdout_no_improvement_if_relative_age_point_change_is_zero_or_positive
+    - confirmed_representation_improvement_if_both_interval_rules_pass
+    - holdout_inconclusive_otherwise
 
-terminal_mapping:
-  candidate_ready: candidate_ready
-  closed_no_generalization: closed_no_candidate
-  closed_unresolved: closed_no_candidate
-  technical_failure: technical_failure
+sensitivity:
+  atlas: destrieux
+  repeat_representations: [R0_raw, R1_bilateral_basis, R2_pca64, R3_site_projection]
+  may_change_primary_winner: false
+  may_rescue_failed_primary_result: false
+
+excluded_design_space:
+  - adaptive_candidate_generation
+  - atlas_selection_from_external_performance
+  - concatenated_atlas_search
+  - PLS
+  - random_fourier_features
+  - elastic_net
+  - Huber_regression
+  - feature_interactions
+  - ensembles
+  - composite_MAE_times_site_BAcc_score
+  - quick_vs_locked_probe_switching
+  - test_time_adaptation
+  - transductive_preprocessing
+
+workflow:
+  ordered_analyses:
+    - prepared_bundle_check
+    - fixed_development_comparison
+    - controls_and_sensitivity
+    - candidate_lock
+    - audit_exposure_review
+    - conditional_public_holdout
+  adaptive_trials_required: false
+  patience_rule: none
+  GPU_hours: 0
+
+local_outcomes:
+  - development_no_candidate
+  - candidate_locked_audit_pending
+  - audit_ineligible_due_exposure
+  - confirmed_representation_improvement
+  - holdout_guardrail_failure
+  - holdout_no_improvement
+  - holdout_inconclusive
+  - technical_failure
+
+claim_limits:
+  - no_independent_cohort_replication_claim
+  - no_general_scanner_invariance_claim
+  - no_causal_scanner_removal_claim
+  - no_biological_aging_mechanism_claim
+  - no_clinical_utility_claim
+  - no_disease_generalization_claim
+  - no_private_leaderboard_claim
+  - no_raw_MRI_superiority_claim
+  - no_canonical_campaign_transition

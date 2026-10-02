@@ -1,5 +1,9 @@
 # When should a constrained NeuroCam redesign recover cortical voltage fields better?
 
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
+clarifies the virtual-design contribution and aligns the result branches with
+the existing requirement that the frozen condition-to-design rule must pass.
+
 NeuroCam uses a 64 × 64 multiplexed electrode array to observe voltage on the
 cortical surface. Its architecture creates a basic trade-off. Reading more
 pixels expands spatial coverage, while revisiting fewer rows or source groups
@@ -35,19 +39,22 @@ conditions.
 It would still not show that an unbuilt device outperforms fabricated NeuroCam,
 works chronically in vivo, or is ready for manufacturing.
 
-![EP20 scientific question](outputs/ep20_question_imagegen.png)
+![EP20: field/device conditions, the correct design-family mapping and model uncertainty](outputs/ep20_question_imagegen-v2.png)
 
-Like the EP12 concept figure, this mockup makes the decisive prediction visible.
-It starts from two field measurements in physical units and four independently
-characterized device responses for each frozen design family. Those inputs feed
-a two-by-two map: no spatial or temporal advantage predicts D0, temporal only
-predicts D1, spatial only predicts D2, and both predict D3. The figure then
-shows held-out conditions that must be predicted before reconstruction and the
-failure case in which two equally adequate reference models choose different
-winners. None of the points, utilities, or outcomes is an EP20 result; they are
-synthetic examples of the required test. An older
-[conceptual mock-up](outputs/ep20_conceptual_main_figure.png) is retained only
-as a secondary illustration.
+The D0–D3 table is the diagnostic factorial, not a replacement for the main
+C0–C4 comparison. Columns vary spatial benefit; rows vary the bundled scan/
+reconstruction benefit: D0 neither, D1 time-focused only, D2 geometry only,
+D3 both. Array glyphs retain the same lattice, pad count and outline; the
+small 4×4 drawings are schematic, not a proposed replacement for the actual
+64×64 architecture. Pad sizes may change within that lattice.
+
+Panel C compares the same proposed device and the same held-out field
+condition under different accepted electrical models. Waveform glyphs denote
+operators, not different test conditions or measurements. Disagreement calls
+for a discriminating measurement; rule failure permits a descriptive comparison
+only, not promotion. No virtual or physical result is shown. [Exact generation
+and correction prompts](outputs/ep20_question_imagegen-v2-prompt.md) are saved.
+Earlier concept images remain historical assets, not current design diagrams.
 
 ## The question at a glance
 
@@ -59,7 +66,7 @@ as a secondary illustration.
 | What is the main score? | Paired change in field-reconstruction R² against every eligible published-hardware reference setting |
 | What prevents an easy win? | Equal software capacity, training effort, data, seeds, conversions, latency, bitrate, and modeled physical-resource accounting |
 | What tests generality? | Registered challenge tests and one independent final comparison using separately implemented signal and electronics models |
-| What makes the result transferable? | A frozen rule uses spatial correlation length in micrometres, temporal timescale in seconds, and independently characterized noise, impedance, settling, and crosstalk to predict the preferred D0–D3 family |
+| What makes the result transferable? | A frozen rule uses 90%-power spatial and temporal scales in micrometres and seconds, and independently characterized noise, impedance, settling, and crosstalk to predict the preferred D0–D3 family |
 | What could make optimization meaningless? | Two reference models can both fit the published measurements yet rank candidate designs differently |
 | What is the empirical check? | Separate development and final physical-signal or phantom checks for spectra, amplitudes, missingness, and catastrophic implausibility; these cannot validate an unbuilt geometry |
 | What would success mean? | One virtual specification is worth fabricating, and a measurable design rule predicts where its advantage should and should not hold |
@@ -85,6 +92,12 @@ above roughly 1 kHz, source-line neighbour crosstalk near −12.6 dB, gate-line
 neighbour crosstalk near −37.2 dB, and more distant crosstalk near −45 dB.
 These values constrain a **paper-derived NeuroCam model**; they do not define a
 complete or transistor-accurate digital twin.
+
+The [compact anchor assignment](DATASETS.md) now uses transfer, static/reduced-
+mode noise and nearest-neighbour coupling for calibration, while holding full-
+array dynamic noise and distant coupling aside from fitting. This is a public-
+paper consistency check, not a blind or independent-device validation. Source
+use and unresolved measurement conventions still need resolution before fitting.
 
 The published anchors may admit more than one plausible scaling law. EP20 must
 therefore retain every predeclared reference-model variant that passes the same
@@ -131,14 +144,41 @@ families.
 C4 remains a required simple-control set but is not one of the four predicted
 families.
 
+[Component details](outputs/component_details.md) define field-to-measurement
+and inverse interfaces and the existing challenges to S/T separability. They
+also distinguish geometry-only D2 from D3's matched C2, which retains D3's scan
+as well as its geometry. The refinement keeps method choices open without
+changing numerical criteria or the operative comparisons.
+
+The [starting parameter/candidate catalogue](outputs/parameter_candidate_catalogue.md)
+now selects evidence-contextualized field controls, 28 initial condition
+classes, three proposed pad sizes and explicit scan sequences. These are
+development starting choices, not a closed search or physically qualified
+designs. The same endpoint, comparisons and trial budget remain in force.
+
+The [electrical mechanisms and probes](outputs/electrical_model_and_probes.md)
+select two contact-scaling alternatives and three persistent-state alternatives,
+plus common finite probes. These are six initial structural templates, not
+accepted reference models. Missing absolute circuit constants and physical ADC
+configuration remain unknown; the existing held-aside checks decide acceptance.
+The minimal reference fit now states which shared effective combinations the
+published measurements constrain, without separately fitting each operating mode.
+
+The [compact component choices](outputs/component_details.md) now add source
+conductivity/depth/gap sensitivities and small inverse capacity, fitting and
+causal-history allowances. These are starting choices, not a closed exploration
+or demonstrated runtime/performance limits.
+
 The full published-hardware C0/C1 frontier is established before any C2–C4
 result is used. The three optimized software families are a physics-informed
 linear inverse, a structured state-space inverse, and a compact past-only
 nonlinear inverse. One family is chosen using only C1 performance; all C1
 settings remain comparators.
 
-C1, C3, and C4 receive the same software capacity, optimizer, training steps,
-data, seeds, and number of selection attempts. Every hardware measurement
+C1, C3, and C4 use the same capacity, solver/optimizer, fitting allowance,
+data, seeds and selection attempts within the selected optimized family.
+Different families use appropriate fitting methods with shared data, seeds
+and selection allowances. Every hardware measurement
 operator is trained separately. Reusing favourable C3 weights for another arm
 is prohibited.
 
@@ -146,8 +186,12 @@ is prohibited.
 
 The physical design may use the published uniform pads, interleaved two-scale
 pads, or tiled two-scale pads on the same lattice. At most three pad classes
-are allowed. Exact alternative pad dimensions and clearances must be chosen
-before scoring; continuous idealized shapes are not final candidates.
+are allowed. The starting classes are published 70 × 135 micrometres,
+proposed 50 × 95 micrometres, and proposed 35 × 70 micrometres. Initial
+proposals use balanced half-area interleaved and tiled maps; quarter-area
+versions remain follow-ups. Exact placement and via/routing clearances still
+need resolution before scoring; geometric subfootprints alone do not establish
+physical legality. Continuous idealized shapes are not final candidates.
 
 The readout may use the published uniform scan, fixed heterogeneous row dwell
 and revisit, fixed source-bank precision allocation, or one bounded past-only
@@ -186,14 +230,26 @@ containing 90% of the demeaned field power and set `tau_k = 1/(2*f90)` in
 seconds. These definitions work for broad, focal, and travelling fields; they
 cannot be estimated from the candidate's reconstruction.
 
+These are spectral 90%-power scales, not autocorrelation decay lengths/times.
+Identical radial spatial and temporal summaries can omit orientation and
+space–time phase dependence. The already-required wave and coupled-device
+challenges therefore test, rather than assume, the rule's S/T separability.
+
 Each accepted reference model *m* also supplies an independently characterized
 table for every device condition *k* and frozen family representative *d*.
-Noise is RMS microvolts from a registered zero-input probe in 1–100 Hz;
-impedance is the 90th percentile of small-signal magnitude across 1–100 Hz in
-ohms; settling is microseconds after a unit step until error enters and stays
-within 1%; and crosstalk is the largest nonnegative adjacent-line amplitude
-ratio during a registered 1–100 Hz multisine scan, with decibels reported only
-as an additional display. These are absolute measurements or frozen model
+On a common outcome-blind neural-site panel P, noise is equal-site pooled RMS
+microvolts from a zero-input 1–100-Hz probe; impedance is the maximum site-level
+90th percentile of contact magnitude over equally weighted integer 1–100-Hz
+tones, in ohms; settling is worst-panel/history microseconds for the conditional
+mean unit-step response to enter and remain within 1%; and crosstalk is the
+largest nonnegative same-victim input-equivalent adjacent-line ratio
+`abs(H_ij/H_ii)` over panel victims, physical neighbours and registered multisine
+tones/phases. Decibels are supplementary. The
+[probe protocol](outputs/electrical_model_and_probes.md) fixes P before C1 scores
+from the verified intersection of published-setting readout masks, retains
+off-gate aggressors, and defines waveforms, times, censoring and aggregation.
+Panel characterizations are not full-array maxima; the dense primary scoring
+mask is unchanged. These are absolute measurements or frozen model
 outputs obtained without reconstruction results. A quantity such as "the
 penalty of the proposed design" is not a legal input.
 
@@ -259,9 +315,10 @@ classification summaries are descriptive because the final winner-class counts
 cannot be guaranteed in advance. Promotion rests on the simultaneous regret
 gate, with at least five pre-outcome conditions in every S/T cell under every
 accepted model and no prespecified field family showing a confident reversal.
-If one candidate wins on average but the rule fails, EP20 may still nominate a
-model-specific virtual device; it has not learned a transferable acquisition
-principle.
+If one candidate wins on average but the rule fails, that result remains a
+descriptive model-specific comparison. It cannot be nominated or advanced under
+the current promotion rule, and no transferable acquisition principle is
+established. This does not add a gate: the policy already requires the rule test.
 
 ## How the comparison is run
 
@@ -367,7 +424,7 @@ preassigned design name. Exactly one design proceeds.
 | Main comparisons pass but a condition, secondary endpoint, rounding, or plausibility check fails | The gain is too fragile to advance |
 | Development passes but the independent model test fails | The result does not generalize beyond the development models |
 | Accepted reference models reverse the candidate ranking | Published measurements do not identify a preferred design; obtain the measurement that separates the models before optimizing |
-| One candidate wins but the condition-to-design rule fails | A model-specific virtual design may remain, but no transferable acquisition principle was learned |
+| One candidate wins but the condition-to-design rule fails | Retain a descriptive model-specific comparison; do not nominate or advance a design under the current promotion rule |
 | The complete finite candidate space cannot beat the full reference frontier | No legal design in this search space improves the registered virtual comparison |
 | Evidence remains too uncertain | Report what remains unresolved rather than selecting a design |
 
@@ -475,11 +532,16 @@ biocompatibility, reliability, lifetime, or in-vivo performance.
 ## Current status
 
 EP20 is specified but not ready to run. The article and aggregate published
-measurements are identified, but source-use approval, the calibration-versus-
-held-aside split, the accepted reference-model set and rank-stability check,
+measurements and anchor roles are identified, but source-use approval, usable
+measurement contexts, the accepted reference-model set and rank-stability check,
 the paper-derived reference model, legal pad catalogue,
 development field and device models, resource rules, independent final models,
 and physical-signal or phantom data do not yet exist as episode inputs.
+
+The starting catalogue is documented, but its physical eligibility is not
+established. Published source-stream sample counts also do not identify
+internal ADC conversion work; that distinction must be resolved for resource
+parity rather than assuming equality from the nominal rate alone.
 
 Raw NeuroCam traces, exact reduced-mode channel maps, marker meanings, a PDK,
 compact transistor model, netlist, layout, DAQ code, and operating-mode power

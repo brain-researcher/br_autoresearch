@@ -1,5 +1,10 @@
 # EP19 paper plan
 
+[Current conceptual figure](ep19_question_imagegen-v2.png) · [Exact image-generation record](ep19_question_imagegen-v2-prompt.md).
+
+See the [2026-10-02 scope review](scope_novelty_review_20261002.md) for the
+source-backed gap and conditional contribution.
+
 ## Paper question
 
 Does EEG contain prospective information about movement onset 300–600 ms in
@@ -15,6 +20,22 @@ starting and forecasting one that remains in the future. Historical competition
 compatibility and the bounded new-model search belong in methods or appendices,
 not in the headline.
 
+The [component design](component_details.md) supplies the selected onset/risk
+state, exact EEG construction, source-specific baseline inputs and provisional
+calibration recipe. These are design choices, not tested implementations.
+
+## Prior work and the specific gap
+
+| Prior work | Already established | What EP19 would need to add |
+| --- | --- | --- |
+| [Prediction of human voluntary movement before it occurs](https://pmc.ncbi.nlm.nih.gov/articles/PMC5558611/) | EEG can support prediction before measured movement onset. | Establish the specified 300–600 ms increment beyond available past context/peripheral signals on a continuous natural-risk sequence. |
+| [Crell et al. (2025)](https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2025.1540155/full) | Cued-to-self-paced asynchronous EEG detection and false-alarm operating points are already studied. | Repeat the sensor-conditioned forecast and registered input-support contrasts in held-out participants under a second-task procedure. |
+
+The gap is this conjunction, not first premovement prediction, slow EEG or
+cross-task testing. Model-family ranking and new-architecture search remain
+secondary. The second source repeats the procedure with its own development-
+trained encoder; it does not test zero-shot transfer of WAY weights.
+
 ## Figure 1 — Why detection is not necessarily forecasting
 
 **Scientific judgment:** the analysis defines a genuinely prospective target
@@ -24,7 +45,8 @@ and excludes future information from preprocessing and model state.
 
 - a timeline showing decision time, 0–300, 300–600, and 600–900 ms horizons;
 - the 19-category onset distribution at 50-ms resolution;
-- sensor-derived onset and its uncertainty bound; and
+- sensor crossing, suspended decisions and later confirmation, alongside the
+  full timing uncertainty bound and causal cue availability; and
 - examples of valid one-sided filtering versus invalid centered filtering,
   future padding, whole-session normalization, and state carried across gaps.
 
@@ -47,6 +69,10 @@ eight capacity-matched surrogate-EEG models.
   at all three horizons;
 - participant-level effects and leave-one-participant influence; and
 - finite, normalized probability and longer-horizon checks.
+
+Show which peripheral/context inputs each source actually provides. Select
+its baseline before candidate EEG scores; the second task repeats this
+procedure with development-group weights, not transferred WAY weights.
 
 **Decision:** all three primary-horizon increments must clear their own pre-set
 margins. Probability validity, participant robustness, and 600–900 ms
@@ -77,6 +103,12 @@ hoc explanation.
 - WAY series 8–9 and all eight held-out self-paced participants, with the six-
   of-eight directional rule shown explicitly.
 
+Show the exact older construction `O=causal_filter(x)`, `C=x-O` and shared
+voltage scaling before family features. Q11 reconstructs voltage but still
+needs model equivalence; Q00 retains complementary EEG and is not zero-EEG.
+Keep the adapters within the original family allowances. C can retain slow
+information, so O's effect is conditional on C, not removal of all slow EEG.
+
 **Prediction:** average each block's factorial contribution over the state of
 the other block. The recent contribution is positive and larger at 0–300 ms;
 the older-slow contribution is positive and larger at 300–600 ms. Simultaneous
@@ -104,6 +136,9 @@ EEG must not change either recent-absent prediction. All four contrasts need
 positive simultaneous lower bounds in WAY and the self-paced macro result, and
 the same at least six of eight held-out people must have all four positive
 signs. Failure leaves the primary log-score conclusion unchanged.
+
+Also show constructed-O mutation invariance for older-slow-absent models;
+this is a representation intervention with C fixed, not a raw-band mutation.
 
 For model ordering, orient all ten edges by the fixed reference-family order.
 Before held-out scoring, development data assign each edge a signed recent or
@@ -157,6 +192,12 @@ movements used for four-parameter calibration.
 - event detection and first-warning lead time under one development-fixed
   threshold, persistence rule, refractory period, and false-alarm ceiling.
 
+Depict the complete prefix ending at movement 32, including naturally occurring
+eligible stillness, then the history guard and shared scored suffix. Annotate
+identity fallback if the development-fixed four-parameter fit fails; never
+drop a person/model or expose calibration quality separately from the joint
+evaluation. No-label and calibrated models have identical suffix-state starts.
+
 **Decision:** each neural comparison must be positive in at least six of eight
 people, clear its participant-macro margin, and remain positive in every
 leave-one-person mean. The encoder cannot change during the 32-event fit.
@@ -196,3 +237,8 @@ physiological generators, and it still cannot claim
 causal motor preparation, conscious intention, the earliest biological command,
 universal model superiority, zero-shot transfer, online BCI utility, or clinical
 benefit.
+
+A null means the tested models did not establish the specified increment
+beyond the measured sensor/context history, not that EEG contains no motor
+information. Lack of significance is not equivalence. A positive increment
+also cannot prove cortical origin or exclude an unmeasured peripheral change.

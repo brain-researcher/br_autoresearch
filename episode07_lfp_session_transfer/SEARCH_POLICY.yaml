@@ -1,11 +1,51 @@
 episode: EP07
-title: Can earlier recording days help predict neural activity on a new day?
+title: What do earlier recording days preserve - task structure or trial-specific coupling?
 status: planned_not_run
 
 scientific_question: >-
   After a new recording day provides a nominal 20 percent calibration sample,
   do three earlier days from the same animal, implant, and cortical region add
   predictive information about population spiking on untouched new-day trials?
+
+paper_scope:
+  owner: EP07 history-and-population-components paper
+  component_study: >-
+    EP06 supplies a separately specified recording-domain frequency-rule and
+    population-component analysis, not an independent LFP-predicts-spikes paper.
+  candidate_contribution: >-
+    Earlier days add correct-versus-mismatched trial information beyond the
+    equally tuned today-only model, after a training/calibration population
+    bridge is frozen. Stable means, latent alignment, and absolute history
+    residual prediction are not sufficient.
+  outcome_separation: >-
+    EP06 has different session and trial roles. Its outcomes and fitted state
+    cannot enter EP07 development. On this corpus, EP06 scoring follows EP07's
+    full freeze and single primary opening unless a scientist prospectively
+    approves compatible joint roles before relevant score access. Component
+    evidence remains same-corpus and cannot rescue the primary result.
+  distinct_targets:
+    EP05: trial-specific reach deviation
+    EP07: history-added population-spike prediction and its explanation
+    EP06: recording-domain frequency-rule component consequence
+    EP08: acquisition-visible predictors of marginal electrode or trial value
+  operative_rules: >-
+    Primary day/trial roles, score, margins, calibration, model family, budgets,
+    falsifiers, and held-out decision below are unchanged. Explanatory work
+    remains a planned conditional follow-up and is not a new primary endpoint.
+
+development_search_intent:
+  direction: broad_adaptive_development_search_not_preselected_finalists
+  candidate_scope: diverse_combinations_within_existing_declared_model_families
+  starting_models_role: seeds_not_fixed_final_architecture_shortlist
+  residual_architecture_chosen_before_development: false
+  bridge_freeze_scope: each_candidate_fitting_fold_before_residual_fit_or_score
+  mechanism_indicator_exploration_count_cap: null
+  mechanism_indicator_examples: not_an_exhaustive_list
+  benefit_forecast_selection: day_wise_crossfit_all_selection_scaling_and_tuning
+  simple_final_explanation: desirable_not_a_search_prerequisite
+  final_choices_frozen: before_applicable_held_out_or_new_day_evaluation
+  primary_roles_margins_falsifiers_model_structural_limits_and_budgets: unchanged
+  extra_execution_outcome_access_or_resources_authorized: false
 
 primary_settings:
   m1_movement:
@@ -299,7 +339,10 @@ follow_up_if_primary_result_supports_transfer:
     interpretation: >-
       A history residual gain without an incremental pairing advantage over
       today-only does not show that earlier days add same-trial information; it
-      supports at most reusable mean structure or aligned population geometry.
+      establishes residual predictive benefit only. Shared mean-estimation
+      error or aligned population geometry remain possible, not identified,
+      explanations. Failure to clear a margin, especially with imprecise
+      evidence, does not establish mean-only transfer or absence of coupling.
     aggregation: >-
       Compute one effect per new day and region, average the three days equally
       within animal, then average Mihili and Chewie-L equally. M1 and PMd remain
@@ -325,7 +368,8 @@ follow_up_if_primary_result_supports_transfer:
     versus-mismatch pairing gain will exceed today-only's pairing gain after the
     bridge is frozen. If shared calibration-mean error, today-only pairing
     information, or average aligned geometry explains the score, that
-    incremental gain will not clear its margin.
+    incremental gain will not clear its margin. Failure to clear the margin
+    alone does not identify which explanation holds.
   data_requirements:
     - verified simultaneous LFP and spike trial identities
     - unresidualized training and calibration spike responses

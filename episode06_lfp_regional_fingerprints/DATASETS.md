@@ -1,5 +1,21 @@
 # EP06 data plan
 
+## Manuscript role and cross-episode access order
+
+EP06 is the recording-domain component of EP07's proposed history-and-
+population-components paper, not an independent LFP-to-spikes publication.
+This is a writing decision, not merged execution authorization. Preserve the
+session and whole-trial roles below. EP07's chronological source/target and
+within-target trial roles differ, so an EP06 neural fit or score may expose
+spikes still closed in EP07.
+
+On this corpus, perform EP06 neural fitting/scoring only after EP07's full
+freeze and single primary opening, unless a scientist approves a compatible
+joint-role design prospectively before relevant scores. No sibling outcomes,
+candidate feedback, or fitted state may enter EP07 development. EP06 must
+still freeze its own final procedure before its own one-shot reserved test.
+This ordering creates neither fresh outcomes nor independent replication.
+
 ## What data are needed?
 
 The intended source is the public Dryad release for Gallego-Carracedo et al.
@@ -148,6 +164,14 @@ evaluation spikes. Training fixes the
 direction set, time grid, and contrast coding; evaluation uses only its
 preassigned direction labels and time bins to apply those operators.
 
+The [component specification](outputs/component_details.md) makes this
+role-specific construction explicit. Evaluation means are computed only as
+part of projecting observed targets for scoring; project each frozen prediction
+using its own means. Do not copy observed target means into a prediction or
+fit a new axis, contrast or target combining weight. `P_E Y_eval` removes an
+evaluation cell mean; the primary training-template residual does not, so these
+are separate targets under the existing roles.
+
 For component `k`, the held-out target is `P_k Y_eval`, and the prediction is
 `P_k Yhat_eval`. Score it as
 `1 - sum||P_k Y_eval - P_k Yhat_eval||^2 / sum||P_k Y_eval||^2` under the same
@@ -194,18 +218,26 @@ prediction. Standardization subtracts the reference median and divides by
 abstains. The single support index is standardized reliability minus
 standardized distance. No coefficient is fit to the eight session outcomes.
 
-In each outer fold, the other three target development sessions nominate one
-component by the largest median equal-region gain. All three candidates must be
-scoreable with sign-consistent regional gains in the three nomination sessions;
-top medians within 0.01 are tied. If any candidate fails this eligibility check,
-the fold has no nominee. The left-out evaluation trials score only a valid
+In each outer fold, all three components must be numerically scoreable in both
+regions of the other three target development sessions; an unscoreable rival
+leaves the full comparison unresolved, with no nominee. Among measured
+components, only candidates whose regional gains agree in sign in every
+nomination session are eligible. Choose the largest median equal-region gain
+among eligible candidates; top medians within 0.01 are tied, and an empty
+eligible set gives no nominee. A measured mixed-sign rival remains visible
+but does not veto another eligible candidate. This is the best eligible
+joint-region account, not a global numerical winner over mixed-sign rivals.
+The left-out evaluation trials score only a valid
 prefold nominee; the other two evaluation components stay unopened for the
 fold. After the four prospective folds are recorded, the previously unopened
 development components may be scored for a final nomination using all four
 target sessions; they cannot alter the outer-fold record. Final medians use the
-sessions on which all three
-candidates are scoreable and sign-consistent, with at least three of four
-sessions required. The same family must be nominated in at least
+sessions on which all three candidates are numerically scoreable in both
+regions, with at least three of four required. Sign consistency is
+candidate-specific across that common set; negative or mixed-sign rival
+measurements are not missing data. This prospective 2026-10-02 amendment
+changes nomination eligibility, not trial roles or numerical margins.
+The same family must be nominated in at least
 three of four folds, with no 0.01-margin tie or M1/PMd sign contradiction.
 Otherwise the selection is unstable and there is no component claim. Both
 transfer directions must make the same final untied nomination before reserved
@@ -255,8 +287,9 @@ Status: **revise before any scored analysis**.
 - The training/calibration/evaluation trial counts, three projectors,
   minimum-energy gate, and calibration-visible support index have not been
   qualified on the files.
-- The focused novelty decision—standalone EP06 versus an EP07 component—has not
-  been completed.
+- The manuscript ownership decision is now EP07 main line with EP06 as its
+  recording-domain component. Exact component-specific source/supplement/code
+  overlap remains a scientific limit, not a claim of guaranteed originality.
 - No suitable third-animal source has been identified or sealed.
 
 ## Storage and compute

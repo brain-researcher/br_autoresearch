@@ -1,4 +1,4 @@
-# Can earlier recording days help predict neural activity on a new day?
+# What do earlier recording days preserve: task structure or trial-specific coupling?
 
 Imagine two reaches in the same direction on a new recording day. At the same
 moment after movement onset, their usual direction-and-time response is the
@@ -12,17 +12,67 @@ average response. It must also beat an equally tuned model that sees the same
 new-day calibration trials but no earlier-day data. Only then can we say that
 history added information beyond what could be learned from today's sample.
 
-![EP07 conceptual figure showing synthetic new-day LFP and population residuals, matched history and today-only predictions, competing transfer explanations, and bounded interpretations](outputs/ep07_question_imagegen.png)
+![EP07 history added value and incremental trial-pairing question](outputs/ep07_question_imagegen-v2.png)
 
-Like the EP12 concept figure, this mockup begins with synthetic signal patterns
-rather than the day split. It shows trial-level LFP and
-population residuals, the three predictions made on the same untouched
-new-day response, and the two steps needed to distinguish a shared mean error
-from reusable coupling: learn and freeze the population bridge before
-residualizing, then ask whether history adds more correct-versus-mismatched
-trial information than the matched today-only model. The
-final strip states the bounded interpretations. None of the traces is an EP07
-result; exact days and decision rules remain in the study text.
+The traces are schematic residuals around zero, not observations. History
+uses three earlier days plus today's calibration; today-only uses the same
+calibration without earlier-day data. Matched tuning refers to those two
+streams; the direction/time template remains a comparator. Panels C/D show
+the separately fitted residual and shared-mismatch comparison, not a closed
+model menu: development search stays broad. A failed pairing increment leaves
+the mechanism unresolved. The primary test and exact decision rules remain
+below. Earlier PNG/SVG assets are historical.
+[Exact imagegen prompts](outputs/ep07_question_imagegen-v2-prompt.md).
+
+## One paper, with distinct scientific jobs
+
+EP07 owns the proposed **history-and-population-components paper**. Its primary
+question stays fixed: do earlier days help after limited same-day calibration?
+Its explanatory question is whether that benefit preserves average task
+structure or an aligned, same-trial LFP--population residual relationship.
+EP06 supplies a separately specified recording-domain component analysis, not
+a second paper whose main claim is that LFP predicts spikes.
+
+| Study | Scientific job | What it cannot substitute for |
+| --- | --- | --- |
+| EP07 | Earlier-day added value, then mean/geometry versus incremental same-trial residual coupling | EP06 classification or a favorable frequency profile cannot rescue a failed EP07 primary test. |
+| EP06 component | Ask whether source-animal recording-domain frequency rules recover common-time, direction-by-time, or trial-residual activity better than pooled or swapped rules | This is not EP07's history-minus-today-only estimand and is not an independent animal/day replication. |
+| EP05 | Does LFP add information about the deviation of a particular reach from its usual direction/time pattern? | A behavior target is distinct from EP07's spike-population target; the shared release does not make the studies independent. |
+| EP08 | Which acquisition-visible measurements predict the value of another electrode or trial under a fixed budget? | A selection-policy win is neither evidence for day-stable coupling nor a causal population mechanism. |
+
+Integration concerns paper ownership, not shared model fits or outcome access.
+EP06 and EP07 have different session/trial roles. EP06 scoring on this corpus
+must therefore wait until EP07's full analysis choices are frozen and its
+single primary opening is complete, or until a scientist approves a compatible
+prospective joint-role design before scores are seen. Reading EP06 outcomes or
+using sibling fitted state during EP07 development is not permitted. Later
+EP06 analyses remain same-corpus component evidence, never fresh confirmation
+of an explanation selected from the EP07 result.
+
+## The exact prediction that could add something
+
+LFP--population association, stable latent trajectories, and use of historical
+recordings for robust decoding are already established. The candidate advance
+is narrower: **earlier days add trial-identity information beyond what today's
+small calibration sample already provides**. A shared average trajectory, a
+good alignment, or the history model's absolute residual score cannot establish
+that claim. The current primary papers and overlap boundaries are in the
+[paper plan](outputs/paper_plan.md); this is a candidate contribution, not a
+claim of first discovery.
+
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
+keeps this question and the broad search intact, while distinguishing a
+supported prediction gain from an identified explanation of that gain.
+
+Consider two rightward reaches at the same native time bin. The mean-structure
+explanation predicts the same usual population response for both. The coupling
+explanation additionally predicts which reach has above- or below-usual
+population activity from its own LFP residual. With all predictions fixed,
+swapping the two complete LFP-derived trajectories within direction should
+remove more predictive gain from history than from today-only. The registered
+incremental pairing endpoint below makes those explanations distinguishable.
+A residual increment without that pairing increment is unresolved between
+shared mean error and aligned geometry, not proof that only the mean transfers.
 
 ## The scientific question
 
@@ -122,10 +172,16 @@ Those released features are used unchanged for every model. Any conclusion is
 therefore about this offline representation, not about raw-voltage processing
 or an online system.
 
-## Models considered
+## Open development search
 
-The bounded model family varies only choices that address the scientific
-question:
+Keep the scientific comparison explicit without choosing the winning model
+or mechanism in advance. Development search should explore diverse feature,
+alignment, source-weighting, regularization and mapping combinations within
+the declared model families. Starting models seed that search; they are not
+a fixed shortlist of final architectures. Adaptive successors can follow
+development evidence, including evidence against the preferred coupling story.
+
+The model families and structural limits for the current round are:
 
 - LMP and the eight released power-band classes, summarized across electrodes
   without matching electrode numbers between days;
@@ -143,6 +199,20 @@ Raw-waveform networks, cross-animal or cross-region inputs, matching numeric
 channel IDs across days, choosing a different winner for each session, and
 using held-out outcomes to choose preprocessing or model structure are not
 allowed.
+
+Matched tuning means equal development opportunities and permitted target-day
+information, not one preselected residual architecture or shared fitted
+parameters. Residual-model choices remain searchable before their applicable
+evaluation; the residual estimand, frozen bridge and trial-identity comparison
+do not. Explore calibration-visible mechanism indicators broadly rather than
+preselecting two. Their eventual forecasting rule must be chosen using allowed
+development feedback, with no held-out-day benefit used to predict itself.
+Six target days limit the evidence for that rule, not the number of hypotheses
+that can be explored. Any result-driven discovery remains development evidence
+until tested on genuinely new days.
+
+The existing numerical budgets below still bound this round; this writing
+clarification grants neither extra resources nor an experiment launch.
 
 ## The two comparisons
 
@@ -238,8 +308,11 @@ been examined, they cannot be used to revise the same study and try again.
 
 ## From prediction gain to explanation
 
-If the primary test succeeds, the follow-up fits a genuine residual-only
-prediction problem. Direction-and-time means are estimated only from the
+Residual candidates may be explored during matched development search; the
+primary-success condition governs the final explanatory interpretation, not
+when diverse candidates can be proposed. The conditional follow-up uses a
+genuine residual-only prediction problem. Direction-and-time means are
+estimated only from the
 permitted earlier-day and calibration trials and removed from both LFP inputs
 and spike-count targets before either model is fit. Predictions are scored
 directly against held-out spike residuals. This distinguishes a reusable
@@ -251,7 +324,9 @@ fold, use unresidualized spike responses from earlier-day training trials and
 new-day calibration trials to learn the population bases and their mapping.
 Common direction-by-time response averages supply the behavioral anchors;
 subtracting those averages first would erase the anchors. Freeze the bases,
-the cross-day map, and the new-day reconstruction loading. Only then remove
+the cross-day map, and the new-day reconstruction loading separately for each
+candidate/fitting fold; this is not a permanent preselected bridge for the
+whole search. Only then remove
 the direction-by-time means, project spike residuals through the frozen map,
 and fit the LFP-to-residual predictor. The residual predictor receives LFP
 residuals, not an uncentered response, direction/time mean, or mean template.
@@ -287,9 +362,12 @@ today-only model's pairing gain. The absolute history correct-versus-mismatch
 score remains a diagnostic, but cannot establish history-specific coupling on
 its own. Because every term uses the same calibration means and the same
 derangement, shared mean-estimation error and any pairing signal already
-available to today-only are retained on both sides. A residual gain without
-this incremental pairing advantage supports reusable mean or population
-geometry, but not the claim that earlier days add a same-trial relationship.
+available to today-only are retained on both sides. A supported residual gain
+without a supported incremental pairing advantage establishes residual
+predictive benefit, not its mechanism. Shared mean-estimation error or aligned
+population geometry remain possible explanations, not identified results.
+Imprecise pairing evidence stays unresolved; failure to clear its margin is
+not evidence that only the mean transfers.
 
 The comparison uses 9,999 fixed-seed, within-direction whole-trial
 derangements. Its center is the mean of the 9,999 `Delta_mismatch` values, and
@@ -333,6 +411,12 @@ setting in these two animals and six fixed later days. It would not show that
 the same neurons or electrode weights remain stable, that LFP causes spiking,
 that the method transfers to a new session or animal, or that an online BCI
 would improve.
+
+M1 and PMd use different arrays, and the primary settings also use different
+behavioral epochs. Neither EP06's recording-domain pattern nor an EP07
+M1--PMd contrast isolates a pure cortical-area or preparation-versus-execution
+effect. Two animals remain two animals; trials, days, bands, and population
+coordinates do not create independent animal replication.
 
 The [paper plan](outputs/paper_plan.md) describes the explanatory tests and
 their result-dependent branches. No follow-up analysis may turn a failed or

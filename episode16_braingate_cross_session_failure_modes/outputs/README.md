@@ -1,9 +1,12 @@
 # Outputs
 
-[ep16_question.svg](ep16_question.svg) is an EP12-style scientific concept
-figure. It uses explicitly synthetic session codes, matched-score patterns,
-and mechanism signatures to show the phenomenon, competing explanations, and
-bounded outcomes. It contains no observed result.
+[Current conceptual figure, v2](ep16_question_imagegen-v2.png) shows the
+direction proxy, same-target-trial comparison and coexisting operational
+signatures without invented scores or causal-mechanism claims.
+[Exact image-generation prompts](ep16_question_imagegen-v2-prompt.md) include
+the inspected correction. The earlier `ep16_question.svg` and
+`ep16_question_imagegen.png` are historical illustrations, not current
+design figures. No figure contains an observed result.
 
 EP16 is still at the study-design stage. No neural comparison has been run and
 no held-out participant result has been examined.

@@ -1,13 +1,22 @@
 # EP18 paper plan: when does a concept survive a change of picture?
 
+[Current conceptual figure](ep18_conceptual_question-v2.png) · [Exact image-generation record](ep18_conceptual_question-v2-prompt.md).
+
 Status: proposed study design, 2026-09-27. No EEG result, audit result, or
 paper claim is reported here.
 
+The [2026-10-02 scope review](scope_novelty_review_20261002.md) records the
+categorical-sharing interpretation and limits of the explanatory ablations.
+
 ## The intended contribution
 
-The opening question is simple: if a person sees different pictures of the
-same thing, is there an EEG response shared by the concept rather than by the
-particular pixels?
+The opening question is whether sharing EEG responses by named concept
+predicts unseen exemplars better than equally flexible continuous-label
+sharing and matched false groupings, under the same image model.
+
+Named labels may already identify the concepts in the continuous inputs.
+The comparison concerns the sharing and regularization basis, not a clean
+separation of conceptual from visual information or newly supplied labels.
 
 Cross-exemplar category decoding is already known, so a paper cannot stop
 there. EP18 asks a more demanding question. A true-concept template must
@@ -52,8 +61,8 @@ generic semantic-decoding result:
 These precedents narrow the claim; they do not decide the episode in advance.
 They determine what each possible result can contribute. A reproducible true-concept advantage
 would establish a narrow predictive-basis result; equivalence with the
-nonlinear label model would show that readout capacity explains the apparent
-advantage; equivalence with matched false groups would challenge the
+nonlinear label model would show that the categorical basis is not needed
+within the tested margin and model space; equivalence with matched false groups would challenge the
 specificity of earlier concept interpretations; and failure in audit would
 place a replication boundary on the complete procedure. None of these
 outcomes may be renamed after release to recover a preferred story.
@@ -116,6 +125,11 @@ physical sequence. Perform this post-fit ablation separately for the true
 concept, capacity-matched label, and each false-group model. No model is
 refitted in a distance stratum.
 
+This is fit-dependent predictive importance: correlated bases can redistribute
+their fitted contributions without changing the available information. The
+ablation is not unique variance, a causal contribution, or a substitute for
+the primary held-out model comparison. The existing contrast remains unchanged.
+
 The participant-level explanatory contrasts ask whether removing the distant
 true-concept contribution harms prediction more than removing the distant
 label contribution and more than removing each distant false-group
@@ -128,7 +142,7 @@ The competing predictions are:
 
 | Explanation | Prediction in the distant third |
 | --- | --- |
-| Stable concept response | Removing the true-concept contribution harms prediction more than removing the label or every false-group contribution |
+| Categorical sharing remains useful across visual-feature distance | Removing the true-concept contribution harms prediction more than removing the label or every false-group contribution |
 | Residual visual similarity | The distant true-versus-label contribution difference shrinks toward zero |
 | Generic grouping | At least one matched false-group contribution is indistinguishable from the true-concept contribution |
 | Sequence artifact | Negative lags, shifted labels, or neighboring-image simulations show a similar apparent effect |
@@ -169,7 +183,7 @@ be used to remove or replace an audit participant.
 | --- | --- | --- |
 | Primary result and distant-exemplar prediction both repeat | A categorical response basis remains useful across substantial distance in the prespecified visual-only panel | Develop the timing and category-level boundary as the main explanation |
 | Primary result repeats but the distant prediction fails | The categorical basis is predictive, but stability across the prespecified feature distance is not established | Retain the narrower result; do not claim a concept-stable mechanism |
-| The true concept beats the linear label basis but not the capacity-matched nonlinear basis | The first advantage reflected insufficient label-readout capacity | Report the boundary or stop the independent-paper direction |
+| The true concept beats the linear label basis and is equivalent within the margin to the capacity-matched nonlinear basis | A categorical basis is not needed relative to this tested nonlinear readout and margin | Report the boundary or stop the independent-paper direction |
 | A matched false grouping is equivalent or better | True concepts are not distinguished from matched image-feature and temporal organization | Report partition nonspecificity; do not rename the grouping effect as conceptual |
 | Negative-lag or shifted-label effect is meaningful | Temporal leakage or sequence structure explains the apparent advantage | Stop the concept interpretation |
 | The fixed development baseline does not clear the complete categorical and false-group margins | Development does not support the prespecified conjunction | Do not open the one-shot audit and do not select a friendlier baseline |

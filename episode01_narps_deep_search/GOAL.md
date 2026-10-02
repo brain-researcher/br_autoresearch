@@ -2,10 +2,10 @@
 
 ## The question in plain language
 
-NARPS is usually remembered as the study in which many teams obtained
-different answers from the same fMRI data. That summary assumes the teams were
-estimating the same scientific quantity and differed only in how they estimated
-it.
+NARPS showed that many teams obtained different answers from the same fMRI
+data. EP01 asks which part of that variation can be linked to the cognitive
+quantity specified by their first-level models, rather than treating every
+pipeline difference as a change in estimation alone.
 
 EP01 tests a sharper possibility:
 
@@ -25,8 +25,13 @@ that one pipeline is the ground truth. It asks whether nominally identical
 hypotheses became different cognitive estimands before statistical inference
 began.
 
-The [conceptual figure](outputs/ep01_conceptual_question-imagegen-v2.png) summarizes the
-three evidence layers and their claim boundary.
+![EP01 cognitive-specification study design](outputs/ep01_conceptual_question-imagegen-v3.png)
+
+The schematic connects choices/RT, the decision-state × response-control
+factorial, and within-participant map shifts. Analyst-map ecology is a
+dependent descriptive layer from the same participant pool. Brain outlines
+and traces are illustrations, not measured maps; no process is isolated by
+an icon. [Imagegen prompts](outputs/ep01_conceptual_question-imagegen-v3-prompt.md).
 
 ## At a glance
 
@@ -46,7 +51,11 @@ three evidence layers and their claim boundary.
 
 No empirical result is claimed in this document.
 
-## Why the remaining gap is paper-level
+The [2026-10-02 scope and novelty review](outputs/scope_novelty_review_20261002.md)
+retains this question while distinguishing cross-run prediction from the
+same-data, descriptive many-team layer.
+
+## The remaining candidate contribution
 
 Several neighboring questions are already occupied:
 
@@ -68,12 +77,18 @@ Several neighboring questions are already occupied:
 
 Therefore behavior-only DDM, a generic gain/loss map, generic held-out choice
 decoding, range normalization, or another map-similarity analysis is not the
-contribution. The viable contribution is their conjunction:
+contribution. The candidate advance is a specific connection between these
+layers, not their conjunction alone:
 
 1. show that the behavioral mechanisms are recoverable and predict new runs;
 2. show how cognitive model specification moves gain/loss maps under an
    otherwise fixed pipeline; and
 3. determine whether the ecological many-team maps express the same movement.
+
+The first two layers establish recoverability and within-experiment stability.
+The third describes maps from the same participant pool; it does not independently
+validate their cognitive interpretation. Whether this connection supports a
+paper depends on the eventual discriminating evidence and its uncertainty.
 
 ## Behavioral estimands
 

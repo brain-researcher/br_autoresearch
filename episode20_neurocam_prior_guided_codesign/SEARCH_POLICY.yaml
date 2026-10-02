@@ -18,6 +18,24 @@ reference_check:
   calibration_and_held_aside_anchors_are_disjoint: true
   at_least_one_operating_setting_or_curve_region_held_aside: true
   candidate_results_may_change_the_split_or_tolerances: false
+  anchor_role_assignment:
+    specification: DATASETS.md
+    state: design_roles_selected_measurement_context_and_source_use_unresolved
+    fixed_inputs: [architecture, channel_counts, dwell, nominal_rates]
+    calibration:
+      - Fig2a_PBS_array_gain
+      - Fig1f_single_gate_frequency_response
+      - FigS3b_static_23_signal_channel_noise
+      - FigS4_dynamic_24_source_16_gate_noise_summary
+      - FigS4_dynamic_24_source_64_gate_noise_summary
+      - FigS5_nearest_source_and_gate_neighbour_crosstalk
+    held_aside_from_fitting:
+      - FigS4_entire_dynamic_64_source_64_gate_noise_summary
+      - FigS5_second_neighbour_and_farther_crosstalk
+    context_only: [FigS2_gated_high_frequency_impedance, other_unassigned_curves]
+    previously_inspected_public_summaries_are_blind_or_independent_validation: false
+    held_mode_residual_normalization_or_distant_floor_may_be_fit: false
+    unresolved_required_measurement_context_may_count_as_passed: false
   published_structure:
     lattice: 64x64
     pixels: 4096
@@ -49,6 +67,8 @@ reference_check:
       approximate_raw_conversions_per_second: 6400000
       rms_noise_centre_uv: 63.6
       rms_noise_dispersion_uv: 24.1
+  approximate_raw_conversion_values_are_digitized_source_stream_proxies: true
+  physical_internal_ADC_conversion_work_and_marker_overhead: null
   planned_tolerances:
     counts_exact: true
     sample_rate_relative_error_maximum: 0.02
@@ -75,6 +95,20 @@ reference_check:
   failed_reference_check_means_codesign_question_not_tested: true
 
 reference_model_equivalence_and_rank_stability:
+  starting_mechanisms_and_probe_protocol: outputs/electrical_model_and_probes.md
+  starting_contact_templates: [E_area, E_sublinear]
+  starting_persistent_state_templates: [R1_minimal, R2_coupled_array, R3_coupled_array_plus_DAQ]
+  six_starting_structural_templates_are_not_accepted_models: true
+  minimal_shared_fit:
+    specification: outputs/electrical_model_and_probes.md
+    fitting_target: smallest_supported_shared_effective_transfer_noise_coupling_and_site_variation_combinations
+    each_anchor_uses_its_original_fixture_scan_aggregation_and_statistic: true
+    separate_mode_noise_offsets: false
+    reduced_mode_RMS_difference_identifies_switching_rate_noise: false
+    squared_RMS_summary_centres_are_component_variances: false
+    unidentified_physical_combinations: evidence_bounded_nuisance_cases_or_unresolved
+    retain_compatible_parameter_uncertainty_not_only_best_residual_fit: true
+  absolute_contact_TFT_and_DAQ_parameters_not_identified_by_aggregate_anchors: true
   retain_every_predeclared_model_that_passes_calibration_and_held_aside_checks: true
   varying_mechanisms:
     - pad_area_noise_and_impedance_scaling
@@ -137,7 +171,14 @@ candidate_scope:
     - tiled_two_scale_same_lattice
   pad_classes_maximum: 3
   published_pad_um: [70, 135]
-  alternative_pad_dimensions: null
+  alternative_pad_dimensions:
+    - [50, 95]
+    - [35, 70]
+  alternative_pad_dimensions_unit: micrometres
+  starting_catalogue: outputs/parameter_candidate_catalogue.md
+  alternative_pad_status: proposed_virtual_subfootprints_not_yet_physically_qualified
+  catalogue_dimension_increment_um: 5
+  dimension_increment_is_a_reported_process_limit: false
   exact_clearances: null
   continuous_idealized_shape_is_final_candidate: false
   fabrication_rounded_design_required: true
@@ -164,7 +205,35 @@ software:
   uncertainty_output_required: true
   candidate_parameter_count_planning_maximum: 5000000
   exact_parameter_and_training_step_maximum: null
+  starting_allowances:
+    specification: outputs/component_details.md
+    learned_parameter_cap_initial: 1000000
+    history_seconds_initial_configurations: [0.5, 2.0]
+    history_seconds_matched_follow_up: 0.1
+    history_limit_includes_recurrent_and_filter_state: true
+    gradient_update_cap_per_operator_seed: 10000
+    shared_seeds_or_world_replications: 3
+    initial_joint_configurations_per_family_maximum: 2
+    nongradient_solver_and_stopping_are_family_specific_and_matched: true
+    exact_common_fitting_recipe_frozen_after_outcome_blind_runtime_calibration: true
   same_capacity_optimizer_data_steps_attempts_and_seeds_for_C1_C3_C4: true
+  fitting_method_comparison_scope: within_selected_optimized_family_across_C1_C3_C4
+  between_family_fitting: appropriate_family_specific_solver_with_shared_data_seeds_and_selection_allowance
+  inverse_interface:
+    specification: outputs/component_details.md
+    operator_information: legal_geometry_scan_actions_and_frozen_nominal_calibration
+    hidden_realized_device_parameters_analog_state_or_truth_rule_inputs: false
+    training_validation_split_unit: whole_independent_field_device_nuisance_world
+    split_identities_shared_across_hardware_operators: true
+    normalization_and_priors_fit_on_training_worlds_only: true
+    initial_history_implementation: bounded_window_replay_from_fixed_training_prior
+    history_window: target_time_minus_H_through_target_time
+    contributing_apertures_entirely_within_history_window: true
+    inputs_published_by_common_deadline: true
+    post_target_acquisitions_allowed_due_to_reporting_delay: false
+    recurrent_covariance_cache_or_policy_state_may_retain_pre_window_observations: false
+    physical_analog_state_reset_by_inverse_history_window: false
+    target_time_deadline_relation_frozen_before_scoring: true
   train_each_hardware_operator_separately: true
   reuse_candidate_weights_for_comparators: false
 
@@ -219,6 +288,9 @@ design_legality_and_resource_parity:
     - more_than_128_array_lines
 
 development_worlds:
+  starting_parameter_and_condition_catalogue: outputs/parameter_candidate_catalogue.md
+  starting_condition_classes: 28
+  condition_classes_are_additional_hardware_trials: false
   cortical_field_families:
     - broad_correlated_fields
     - focal_field_transients
@@ -230,6 +302,18 @@ development_worlds:
   source_to_surface_models:
     - analytic_homogeneous_or_layered
     - heterogeneous_or_anisotropic
+  source_to_surface_starting_sensitivity_values:
+    specification: outputs/component_details.md
+    cortical_conductivity_S_per_m: [0.2, 0.4, 0.6]
+    CSF_conductivity_S_per_m_where_present: 1.79
+    source_depth_mm_below_ideal_surface: [0.1, 0.5, 1.5]
+    contact_gap_um_above_surface: [0, 50, 200]
+    conductivity_tensor_eigenvalue_ratio: [1, 2, 4]
+    eigenvalue_ratio_4_is_strong_stress_not_typical_cortex: true
+    tensor_geometric_mean_conductivity_held_fixed: true
+    baseline: {conductivity_S_per_m: 0.4, source_depth_mm: 0.5, contact_gap_um: 0, eigenvalue_ratio: 1}
+    initial_panel: baseline_plus_one_factor_perturbations_nine_world_configurations_not_additional_trials
+    values_are_selected_sensitivity_cases_not_NeuroCam_measurements: true
   required_source_to_surface_variation:
     - distance
     - curvature
@@ -264,19 +348,34 @@ transferable_design_rule:
         unit: seconds
     device_characterization_by_accepted_model_m_frozen_family_d_and_device_condition_k:
       families: [D0, D1, D2, D3]
+      protocol: outputs/electrical_model_and_probes.md
+      common_panel_P: maximal_intersection_of_verified_published_setting_neural_site_readout_masks_frozen_before_C1_outcomes
+      failed_sites_may_be_removed_from_P: false
+      panel_scalars_are_full_array_maxima: false
+      unknown_or_zero_gain_characterization_may_pass_cost_gate: false
       noise_mdk:
         meaning: input_referred_RMS_noise_during_registered_zero_input_probe_in_primary_band
         unit: microvolts
+        spatial_summary: sqrt_of_equal_site_mean_of_variances_over_P_not_pooled_visits
       impedance_mdk:
         meaning: 90th_percentile_small_signal_impedance_magnitude_across_1_to_100_Hz
         unit: ohms
+        frequency_summary: 90th_order_statistic_of_100_equally_weighted_integer_Hz_contact_magnitudes
+        spatial_summary: maximum_site_Q90_over_P
       settling_mdk:
         meaning: time_after_registered_unit_step_until_error_enters_and_remains_within_1_percent
         unit: microseconds
+        summary: worst_conditional_mean_response_over_P_and_registered_production_preparation_histories
+        diagnostic: transition_then_held_victim_row_with_configured_DAQ_clocks_and_censored_tail_bounds
+        actual_candidate_dwells_unchanged: true
       crosstalk_mdk:
         meaning: largest_nonnegative_adjacent_line_amplitude_ratio_during_registered_1_to_100_Hz_multisine_scan
         unit: linear_amplitude_ratio
         also_report: decibels
+        normalization: abs_H_ij_over_H_ii_same_victim_input_equivalent_leakage
+        summary: maximum_over_P_victims_all_physical_nearest_neighbour_aggressors_and_registered_tones_and_phases
+        off_gate_aggressors_remain_included: true
+        published_crosstalk_anchor_is_predicted_under_its_own_measurement_convention: true
       probes_and_summaries_are_frozen_before_reconstruction_outcomes: true
   candidate_outcomes_may_define_inputs: false
   posthoc_proposed_design_penalty_is_a_legal_input: false
@@ -631,7 +730,7 @@ readiness:
   state: not_ready_for_candidate_scoring
   remaining:
     - source_use_and_rights_approval
-    - calibration_and_held_aside_anchor_assignment
+    - assigned_anchor_measurement_context_and_source_use_decisions
     - paper_derived_reference_and_successful_reference_check
     - accepted_reference_model_set_and_candidate_rank_stability_check
     - finite_alternative_pad_catalogue_and_clearances

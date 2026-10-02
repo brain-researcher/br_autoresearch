@@ -1,47 +1,160 @@
-version: 0.0.14
+version: "0.0.14"
 id: episode09_local_global_projection
-name: Can nearby dendrites foreshadow a neuron’s distant axon targets?
-description: 'Brain Researcher autoresearch episode projection. This ASTRA document
-  is non-authoritative: it records a workspace plan or result but grants no execution
-  authority, scientific acceptance, reward, or Landscape transition.'
-tags:
-- brain-researcher
-- autoresearch
-- projection
-- plan
-- non-authoritative
+name: At what biological resolution does dendrite-projectome coupling live?
+description: >-
+  Episode-local experiment program for the correct-versus-matched-donor
+  exact-target primary. This is a prospective worklist, not an empirical
+  result, execution authorization, scientific acceptance, or campaign action.
 inputs:
-- id: goal
-  type: data
-  description: Episode research goal contract.
-  source: GOAL.md
-- id: datasets
-  type: data
-  description: Episode dataset and access contract.
-  source: DATASETS.md
-- id: search_policy
-  type: data
-  description: Episode search and stopping policy.
-  source: SEARCH_POLICY.yaml
-decisions:
-  declared_search_policy:
-    id: declared_search_policy
-    label: Declared episode search policy
-    rationale: policy_id=ep09_local_dendrite_distal_target_organization; evidence_mode=grouped_development_then_one_shot_biological_group_audit
-    default: use_declared_policy
-    options:
-      use_declared_policy:
-        id: use_declared_policy
-        label: Use declared policy
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: search_policy, type: data, source: SEARCH_POLICY.yaml}
 outputs:
-- id: planned_episode_result
-  type: report
-  format: md
-  description: Planned episode result; no terminal result is asserted.
-  inputs:
-  - goal
-  - datasets
-  - search_policy
-  decisions:
-  - declared_search_policy
+  - id: episode_report
+    from: paper_synthesis.episode_report
+analyses:
+  metadata_feasibility:
+    name: Determine whether the headline cortical IT cohort is identifiable
+    description: >-
+      Inspect only outcome-independent metadata for IT-label lineage, cell
+      identity, original-release versus newly annotated lineage, conservative
+      biological groups, and source-layer-class donor support. Do not use the
+      axon-derived Projection class. Unavailable IT or donor support leaves
+      the headline primary unavailable; it does not authorize broader claims.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+    outputs:
+      - id: feasibility_report
+        type: report
+        format: yaml
+        inputs: [goal, datasets]
+  measurement_and_roles:
+    name: Define valid exact-target measurements and whole-group roles
+    description: >-
+      Resolve dendrite-axon cell joins, native-to-CCF coordinates, distal-arbor
+      detection, observability and uncertain-as-missing rules. Instantiate
+      whole-group development and audit roles with at least 12 and 8 verified
+      groups and the shared EP09/10/11 exposure boundary. Freeze anatomy-based
+      target candidates and outcome-blind coverage rules before detections.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: search_policy, from: ../search_policy}
+      - {id: feasibility_report, from: ../metadata_feasibility.feasibility_report}
+    outputs:
+      - id: measurement_and_role_contract
+        type: report
+        format: yaml
+        inputs: [datasets, search_policy, feasibility_report]
+  grouped_development:
+    name: Select matched M0 and M1 pipelines using grouped development only
+    description: >-
+      Use the bounded search grammar with whole-group outer folds and grouped
+      inner tuning. Recompute prevalence eligibility inside outer training
+      data. M0 and M1 receive identical learner, tuning and calibration
+      opportunity. Fit the selected M1 on correct cell-dendrite pairings.
+      Audit detections and related sibling results remain closed.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: measurement_and_role_contract, from: ../measurement_and_roles.measurement_and_role_contract}
+    outputs:
+      - id: locked_prediction_pipeline
+        type: report
+        format: yaml
+        inputs: [search_policy, measurement_and_role_contract]
+  matched_donor_qualification:
+    name: Freeze coherent matched-donor plans and verify their support
+    description: >-
+      Construct outcome-free no-fixed-point donor plans within biological
+      group, source, layer and independently defined non-axon IT class, with
+      frozen position and quality calipers. Verify conditional overlap,
+      covariance, missingness and joint support. Transport the whole residual
+      into recipient context; keep the selected outcome model fixed for
+      held-out substitutions. Failed support cannot be rescued by looser
+      matching or an M1-over-M0 headline.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: measurement_and_role_contract, from: ../measurement_and_roles.measurement_and_role_contract}
+      - {id: locked_prediction_pipeline, from: ../grouped_development.locked_prediction_pipeline}
+    outputs:
+      - id: frozen_matched_donor_bank
+        type: report
+        format: yaml
+        inputs: [search_policy, measurement_and_role_contract, locked_prediction_pipeline]
+  nuisance_qualification:
+    name: Qualify and fit the twenty capacity-matched nuisance pipelines
+    description: >-
+      Derange residual rows independently by dendritic block using outcome-free
+      conditional generators. Refit the selected M1 pipeline on each false
+      feature block without nuisance-specific searches. Qualify the generators
+      and their diagnostics before any positive or informative-null claim;
+      directional nuisance superiority is required only for a positive claim.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: measurement_and_role_contract, from: ../measurement_and_roles.measurement_and_role_contract}
+      - {id: locked_prediction_pipeline, from: ../grouped_development.locked_prediction_pipeline}
+    outputs:
+      - id: frozen_nuisance_pipelines
+        type: report
+        format: yaml
+        inputs: [search_policy, measurement_and_role_contract, locked_prediction_pipeline]
+  explanation_and_inference_freeze:
+    name: Freeze exact-target structure, scientific margins and group inference
+    description: >-
+      Fit fixed all-block E0/E1 models on correct development pairings. Freeze
+      the correct-minus-donor scale-by-exact-target template, robust scales,
+      norms, signs and similarity margin. Use fixed-model held-out block
+      substitutions from the primary donor bank, not training-and-test refits.
+      Freeze the secondary twenty matched family hierarchies. Calibrate and
+      validate separate C and D tails, equivalence and simultaneous procedures
+      using the required disjoint simulations and nested pseudo-audits.
+      Justify delta_cell and delta_morph and sensitivity at both margins, and
+      establish that the full workload fits the existing resource ceiling.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: measurement_and_role_contract, from: ../measurement_and_roles.measurement_and_role_contract}
+      - {id: locked_prediction_pipeline, from: ../grouped_development.locked_prediction_pipeline}
+      - {id: frozen_matched_donor_bank, from: ../matched_donor_qualification.frozen_matched_donor_bank}
+      - {id: frozen_nuisance_pipelines, from: ../nuisance_qualification.frozen_nuisance_pipelines}
+    outputs:
+      - id: frozen_analysis_contract
+        type: report
+        format: yaml
+        inputs: [search_policy, measurement_and_role_contract, locked_prediction_pipeline, frozen_matched_donor_bank, frozen_nuisance_pipelines]
+  one_shot_group_audit:
+    name: Evaluate the locked biological-resolution prediction once
+    description: >-
+      Only after all shared EP09/10/11 contracts and role rules are frozen,
+      a trusted evaluator joins locked predictions to audit detections once.
+      Report equal-target, equal-group C_g as primary, D_g as benchmark, the
+      nuisance envelope, group influence and calibration, exact-target matrix
+      replication, and the secondary hierarchy result. Do not refit, choose
+      donors, alter targets or margins, or reopen inconvenient results.
+    inputs:
+      - {id: frozen_analysis_contract, from: ../explanation_and_inference_freeze.frozen_analysis_contract}
+      - {id: locked_prediction_pipeline, from: ../grouped_development.locked_prediction_pipeline}
+      - {id: frozen_matched_donor_bank, from: ../matched_donor_qualification.frozen_matched_donor_bank}
+      - {id: frozen_nuisance_pipelines, from: ../nuisance_qualification.frozen_nuisance_pipelines}
+    outputs:
+      - id: audit_report
+        type: report
+        format: yaml
+        inputs: [frozen_analysis_contract, locked_prediction_pipeline, frozen_matched_donor_bank, frozen_nuisance_pipelines]
+  paper_synthesis:
+    name: Write the conclusion supported by the complete decision table
+    description: >-
+      Separate within-class residual coupling, equivalence consistent with
+      shared class/neighborhood, benchmark-only information, context sufficiency,
+      unavailable primary, and unresolved evidence. Retain a narrower primary
+      if a valid structure test fails. State that source-lineage reanalysis is
+      not independent replication and that residual coupling cannot establish
+      unique identity, synapses or causal routing.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: audit_report, from: ../one_shot_group_audit.audit_report}
+    outputs:
+      - id: episode_report
+        type: report
+        format: md
+        inputs: [goal, audit_report]
 findings: {}

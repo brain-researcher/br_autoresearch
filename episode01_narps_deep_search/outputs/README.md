@@ -8,7 +8,8 @@ The manuscript logic is in [`paper_plan.md`](paper_plan.md), the novelty
 boundary is in
 [`literature_collision_audit.md`](literature_collision_audit.md), and the
 three-layer question is shown in the image-generated
-[`ep01_conceptual_question-imagegen-v2.png`](ep01_conceptual_question-imagegen-v2.png).
+[`ep01_conceptual_question-imagegen-v3.png`](ep01_conceptual_question-imagegen-v3.png), with
+[exact prompts](ep01_conceptual_question-imagegen-v3-prompt.md). Earlier figures are historical.
 The experiment
 dependency structure is in
 [`astra/v0.0.14/astra.yaml`](astra/v0.0.14/astra.yaml), with mutable run state

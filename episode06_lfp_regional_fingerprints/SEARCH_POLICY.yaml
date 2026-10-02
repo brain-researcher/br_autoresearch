@@ -1,8 +1,37 @@
 episode: EP06
-title: Which population components can the M1-PMd LFP fingerprint recover across days?
+title: Which population components benefit from a recording-domain LFP rule?
 status: planned; no real-data analysis has run
 question: which_population_component_does_the_m1_pmd_lfp_fingerprint_recover_and_when_does_it_transfer_across_days
 paper_plan: outputs/paper_plan.md
+component_details: outputs/component_details.md
+
+design_amendment_20261002:
+  stage: prospective_unstarted_no_neural_or_reserved_outcomes_opened
+  change: separate_all_rival_numerical_scoreability_from_nominee_specific_region_sign_consistency
+  rationale: measurable_mixed_sign_rival_does_not_veto_another_joint_region_candidate
+  claim: best_eligible_joint_region_component_not_global_best_over_mixed_sign_rivals
+  unchanged: primary_projectors_margins_support_index_roles_budgets_and_reserved_test
+
+manuscript_scope:
+  owner: EP07_history_and_population_components_paper
+  EP06_role: recording_domain_frequency_rule_component_consequence
+  exact_distinction: >-
+    EP06 compares source-animal correct-domain pooled and swapped frequency
+    rules on projected population activity. It does not estimate EP07's
+    history-minus-today-only pairing increment or replace either primary test.
+  access_order: >-
+    Different session/trial roles can expose EP07 closed spikes. EP06 neural
+    fitting/scoring on this corpus follows EP07 full freeze and single primary
+    opening, unless the scientist approves compatible prospective joint roles
+    before relevant scores. EP06 retains its own final freeze and one reserved
+    opening; no sibling outcomes or fitted state enter EP07 development.
+  evidence_scope: same_corpus_component_not_fresh_animal_or_day_replication
+  ownership_decision: EP06_component_not_independent_generic_LFP_to_spikes_paper
+  operative_contract: >-
+    Manuscript integration itself leaves session/trial roles, residual primary,
+    controls, component margins, support thresholds, model space and budgets
+    unchanged. The explicit 2026-10-02 nomination amendment is recorded above.
+    Neither writing change authorizes analysis or outcome access.
 
 evidence_roles:
   development:
@@ -137,9 +166,12 @@ component_prediction:
   outer_session_assessment:
     folds_per_transfer_direction: 4
     nomination_data_per_fold: other_three_target_development_sessions
-    nomination_rule: largest_median_equal_region_gain
-    every_candidate_must_be_scoreable_and_region_sign_consistent_in_all_three_nomination_sessions: true
-    if_any_candidate_fails_outer_eligibility: no_nominee_for_that_fold
+    nomination_rule: largest_median_equal_region_gain_among_region_sign_consistent_candidates
+    all_three_candidates_must_be_numerically_scoreable_in_both_regions_in_all_three_nomination_sessions: true
+    if_any_candidate_is_numerically_unscoreable: no_nominee_full_comparison_unresolved
+    nominee_eligibility: regional_gain_signs_agree_in_every_nomination_session
+    measured_mixed_sign_rival: report_as_joint_region_unsupported_without_vetoing_other_eligible_candidates
+    if_no_candidate_is_eligible: no_nominee_for_that_fold
     a_valid_fold_nominates_exactly_one_component_before_left_out_evaluation: true
     left_out_training_and_calibration_allowed_under_frozen_recipe: true
     left_out_evaluation_scores_only_the_prefold_nominee: true
@@ -156,8 +188,10 @@ component_prediction:
     previously_unopened_development_components_may_then_be_scored: true
     may_change_outer_assessment_record: false
     may_use_all_four_target_development_sessions: true
-    common_scoreable_region_sign_consistent_sessions_required: 3
-    rule: largest_median_equal_region_gain_on_common_scoreable_sessions_with_0p01_tie_margin
+    common_numerically_scoreable_sessions_for_all_three_candidates_required: 3
+    region_sign_consistency: candidate_specific_across_the_common_scoreable_sessions
+    rule: largest_median_equal_region_gain_among_eligible_candidates_on_common_scoreable_sessions_with_0p01_tie_margin
+    negative_or_mixed_sign_rival_recoded_as_missing: false
     both_transfer_directions_must_make_the_same_untied_nomination: true
     freeze_both_directional_nominations_before_reserved_outcomes: true
   frozen_prediction:

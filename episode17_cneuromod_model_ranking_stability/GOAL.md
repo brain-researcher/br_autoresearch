@@ -1,4 +1,4 @@
-# When does an fMRI measurement choice change which visual model wins?
+# Which visual-model advantages survive changes in the measured cortex?
 
 Suppose model A predicts visual-cortex responses better than model B for the
 same images and people. If B wins after denoising the beta estimates, selecting
@@ -19,17 +19,65 @@ voxelwise advantage lies. The intended paper is not a catalogue of fragile
 rankings. It should explain which measurable property of the response makes a
 particular model benefit from a particular measurement choice.
 
-The [paper plan](outputs/paper_plan.md) describes the explanatory prediction,
-the novelty threshold, and the evidence required for each planned figure. No
-model-ranking result is claimed here.
+## A concrete starting comparison
+
+The lead design is now concrete: compare the official **DINO ResNet-50**
+backbone with **Torchvision ResNet-50 `IMAGENET1K_V1`** in anatomical left and
+right fusiform cortex. Both nominally use ImageNet-1K and the same backbone
+family; their pretraining recipes are not matched interventions. They are
+named representation comparisons, not interventions on self-supervision. Ask whether
+selecting reliable voxels changes that relation, and whether a forecast made
+from development model advantages predicts the change on new concepts.
+
+For the headline operation, keep the D-stage responses, ridge prediction bank,
+voxelwise raw R², voxel count and spatial quotas fixed. Change only anatomical
+subset membership to calibration-reliability membership, `A_N → R_N`.
+If DINO's advantage concentrates in the newly emphasized voxels, the frozen
+forecast predicts a shift toward DINO; if the supervised advantage concentrates
+there, it predicts the opposite. There is no unconditional prediction that
+self-supervision wins, and no new preferred sign chosen from audit results.
+
+This distinguishes **a stable representation comparison** from **a changed
+sample of measured cortex**. Reliable selection need not recover a uniquely
+correct biological population. Anatomical fusiform is not a functionally
+localized FFA, and repeat reliability is not selectivity or mechanistic truth.
+
+The [paper plan](outputs/paper_plan.md) names the checkpoint proposals, exact
+forecast, closest literature and failure cases. This is a pre-score paper
+focus, **not an execution lock or a reduction of the operative search**:
+three eligible pairs, all five initial edges, the 32–72-trial budget and the
+one-shot audit remain required. No model-ranking result is claimed.
+
+## What the literature already closes off
+
+[Konkle and Alvarez (2022)](https://pubmed.ncbi.nlm.nih.gov/35078981/) already
+compare self-supervised and supervised ventral-stream representations.
+[Conwell et al. (2024)](https://www.nature.com/articles/s41467-024-53147-y)
+already conduct controlled visual-model comparisons and show that linking
+methods matter. [GLMsingle](https://elifesciences.org/articles/77599) already
+improves response reliability and downstream analyses. Thus neither
+self-supervision, controlled model comparison, reliability selection, nor a
+pipeline-dependent winner is a first claim.
+
+The candidate contribution is a reproducible account of **which measured
+cortical population supports a model advantage**, separating response
+estimation, voxel membership, and score weighting. A named support-selection
+forecast tests transfer to new concepts with fixed predictions and spatially
+matched supports. For fixed support weights that forecast equals the observed
+development edge carried forward: audit agreement establishes repeatability,
+not a new predictive mechanism. The exact decomposition is elementary.
+The reviewed sources motivate a methods study; a standalone paper still needs
+a consequential empirical pattern beyond known selection sensitivity.
+[The scope review](outputs/scope_novelty_review_20261002.md) separates that
+contribution from stronger, still-open scientific directions.
 
 ## At a glance
 
 | Question | EP17 design |
 | --- | --- |
-| What is compared? | Controlled pairs of visual models that differ in one declared property: architecture, objective, or training data. |
+| What is compared? | Lead proposal: DINO versus category-supervised ResNet-50; the existing three-pair controlled panel must still qualify before scores. |
 | What stays the same? | The four CNeuroMod participants, exact images, concept folds, linear readout family, and pairwise scoring rule. |
-| What changes one at a time? | Beta construction, voxel support, or noise-ceiling weighting. |
+| What changes one at a time? | Lead paper operation: D-stage anatomical versus reliable voxel support; beta and ceiling edges remain separate required comparisons. |
 | What is the primary score? | Held-out voxelwise explained variance, aggregated with equal participant weight. |
 | What is the explanatory prediction? | A measurement operation should favor the model whose voxelwise advantage aligns with the operation's independently defined reliability, inclusion, or weighting map. |
 | What is held out? | Concepts, not random images: 480 development, 120 support/calibration, and 120 sealed audit concepts. |
@@ -59,7 +107,7 @@ contracts” is not a sufficient contribution.
 | Explanation | Prediction |
 | --- | --- |
 | **Stable model relation** | The same model clears the practical margin under every eligible measurement contract, and its advantage is not confined to one reliability or spatial stratum. |
-| **Recoverable-signal effect** | A beta-stage change is largest in voxels whose repeat reliability improves at that stage; a development-fitted reliability-gain prediction repeats on sealed concepts. |
+| **Reliability-associated stage change** | The signed beta-stage change differs between calibration-defined high- and low-reliability-gain voxels and repeats on sealed concepts; the aggregate forecast alone does not establish incremental gain-map explanation. |
 | **Support reweighting** | Reliable-voxel selection changes the regional relation by selecting voxels where one model already has a larger fixed-prediction advantage. Development gives an exact membership decomposition; its frozen value becomes a forecast for audit concepts. |
 | **Ceiling reweighting** | Raw and normalized scores differ because inverse-ceiling weights align with one model's voxelwise advantage. Development gives an exact weight decomposition; agreement on audit concepts is a separate empirical test. |
 | **Scientific specialization** | A relation differs reproducibly by a preregistered visual ROI or external semantic stratum, not merely by a measurement operation. |
@@ -91,15 +139,62 @@ The exact four-person image intersection and 720 eligible concepts must be
 reconstructed from events before neural values are opened. Candidate model
 features cannot define or repair the split.
 
-## Controlled model pairs
+## Model pairs and the claim they can support
+
+**Pre-score design amendment, 2026-10-02:** eligibility now distinguishes a
+controlled measurement comparison from a controlled training intervention.
+The former is the primary EP17 question and does not require two checkpoints
+to differ in exactly one training property. Training-recipe differences are
+held fixed across a measurement edge and disclosed. A causal attribution to a
+training objective, architecture, or corpus remains outside the permitted
+claim. This replaces the original single-property eligibility requirement;
+three registered pairs, exposure rules, matching of the neural readout, five
+edges, budgets, roles, margins, and the one-shot audit are unchanged.
+
+### Concrete nominations, not a qualified registry
+
+The outcome-independent design nominates these three pairs:
+
+| Pair | Named backbone proposals | Declared contrast |
+| --- | --- | --- |
+| P1, paper lead | DINO `dino_resnet50_pretrain.pth` versus Torchvision `ResNet50_Weights.IMAGENET1K_V1` | Two fixed representations learned with different training recipes |
+| P2 | Official SwAV ResNet-50, 800-epoch standard-width release versus the same supervised backbone | A second fixed-representation contrast |
+| P3 | The same DINO versus SwAV backbones | Two fixed self-supervised representations; not an isolated objective effect |
+
+Checkpoint sources are the official [DINO](https://github.com/facebookresearch/dino),
+[SwAV](https://github.com/facebookresearch/swav) and
+[Torchvision](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.resnet50.html)
+records. Use backbones, not category heads or SSL projection heads. Do not
+silently substitute DINOv2, DINOv3, widened SwAV, or a moving `DEFAULT` weight.
+These pairs share models and are dependent contrasts, not three replications.
+
+The nominal common architecture/corpus does not certify identical training
+images, augmentation, optimization, epochs or checkpoint eligibility.
+Those differences must be disclosed; they prevent a causal objective claim.
+Under the amended criterion, these pairs may support measurement-conditional
+comparisons if the checkpoints, exposure status and matched evaluation qualify;
+they cannot identify why their training produced different representations.
+Known THINGS-image overlap remains control-only and unknown exposure remains
+unknown. If fewer than three pairs qualify, the operative panel is incomplete;
+no post-score replacement or relaxed exposure rule is authorized.
+
+The nominated anatomical scope is the Desikan–Killiany cortical fusiform
+labels `ctx-lh-fusiform` (1007) and `ctx-rh-fusiform` (2007), as defined in
+the [FreeSurfer label table](https://github.com/freesurfer/freesurfer/blob/dev/distribution/FreeSurferColorLUT.txt).
+Treat them as two hemispheric ROIs with equal ROI weight within each person,
+then equal weight over four people; hemispheres are not extra participants.
+This nomination does not establish that the local derivative is that atlas,
+has sufficient common finite voxels, or supports the required quotas. Those
+outcome-independent mappings remain open. Do not select another anatomical
+region because the nominated relation fails.
 
 Freeze three required promotion-eligible model pairs and at most one optional
 pair before candidate-discriminating neural scores are opened. Each pair must
-isolate one declared contrast:
-
-- training objective at fixed architecture and image corpus;
-- architecture at fixed objective and image corpus; or
-- training corpus at fixed architecture and objective.
+name two fixed representations, disclose architecture/corpus/recipe differences,
+and keep both checkpoints unchanged across each measurement edge. Shared
+backbone/corpus is useful matching, not proof of a single-property intervention.
+The one-factor isolation applies to the measurement operation. A future
+training-causal question would need its own matched intervention design.
 
 A trained-versus-deterministically-initialized-random pair is a mandatory
 falsifier and cannot become the paper's winner. Every checkpoint must have a
@@ -205,8 +300,9 @@ There are two different claims, and they must not be confused:
    forecast. Agreement in sign and absolute error is therefore empirical, not
    tautological.
 
-For beta edges, the explanation is not algebraic. Calibration repeat
-reliability is the Pearson correlation between two deterministic repeat halves
+For beta edges, the response and voxelwise advantage can change, unlike pure
+support reaggregation. Calibration repeat reliability is the Pearson
+correlation between two deterministic repeat halves
 across calibration images; its Fisher-z stage difference is the operator map.
 Within each participant and ROI, fit
 
@@ -220,8 +316,25 @@ score this cross-fit. A rank-deficient design or inadequate residual variation
 in reliability gain makes the beta explanation inapplicable rather than
 inviting another model.
 
+The spatial-bin intercepts imply `sum_bin(y - y_hat) = 0`. On the same
+voxel support the aggregate fitted prediction therefore equals the training
+target's mean change. Aggregate cross-fit/audit agreement tests repeatability;
+it does not demonstrate incremental explanatory value of reliability gain.
+This identity concerns the fitted block-mean target, not necessarily a score
+recomputed from pooled images. The registered high-minus-low comparison tests
+a descriptive reliability-associated spatial pattern, not superiority over a
+spatial-bin-only predictor. A direct incremental spatial-prediction comparison
+is an open follow-up, not an additional criterion in the current protocol.
+
 After cross-fit qualification, refit that same equation to all 24 development
-blocks and freeze its audit forecast. High- and low-gain voxels are the upper
+blocks and freeze its audit forecast. Its beta-specific observed target is
+the equal mean of the twelve audit-block raw-R² stage changes: compute each
+block's scores with the frozen development training mean and predictor, then
+aggregate voxels, ROIs and participants as specified above. This is a
+blockwise repeatability companion. The primary beta-edge endpoint and its
+high-minus-low contrast retain their pooled-image R² definitions; the
+companion cannot replace either. Support and ceiling forecasts retain their
+corresponding aggregate-edge targets. High- and low-gain voxels are the upper
 and lower halves of the calibration gain map within each `(s,r)`; the median
 and tie rule are fixed without development or audit scores. The beta
 explanation predicts both the aggregate stage change and a larger signed
@@ -236,12 +349,19 @@ After development, freeze for the selected relation:
 - the exact aggregation and uncertainty rule; and
 - the participant and audit-block units used to judge the forecast.
 
-On sealed concepts, the forecast must have the same direction as the observed
-edge and absolute error no larger than its frozen margin. For a beta edge, the
+On sealed concepts, the forecast must have the same direction as its declared
+observed target and absolute error no larger than its frozen margin. For beta
+this is the audit-block-mean companion, not the pooled primary edge; for
+support/ceiling it is the corresponding aggregate edge. For a beta edge, the
 preregistered high-minus-low gain contrast must also cross its own signed
 margin. If those tests fail, the reversal may be real but the proposed
-recoverable-signal or reweighting explanation is rejected. It is reported as
+reliability-associated pattern or repeatable reweighting account is unsupported.
+It is reported as
 unexplained response-geometry or readout sensitivity.
+
+Passing them supports the specified association and repeatability, not a
+causal recovery-of-signal mechanism or an independently validated gain-map
+explanation beyond spatial intercepts.
 
 This explanatory test cannot rescue a primary relation that fails its own
 margin or audit requirement.
@@ -352,13 +472,19 @@ underidentified, not negative evidence.
 The figure below is a synthetic design illustration. It contains no
 CNeuroMod image or neural result.
 
-![EP17 conceptual question figure](outputs/ep17_conceptual_question.png)
+![EP17: fixed visual models compared under response, support and weighting changes](outputs/ep17_conceptual_question-v3.png)
 
-The figure should make the three mathematical mechanisms visible: beta stages
-can change voxelwise advantages, support changes membership, and ceiling
-normalization changes positive weights only. It should then show how alignment
-between the voxelwise advantage map and the operator map predicts a held-out
-ranking change.
+The current figure shows all three measurement operations. Changing response
+estimates requires matched readout refitting; support selection holds
+predictions fixed while matching counts and spatial quotas; ceiling weighting
+holds both voxels and predictions fixed and changes positive weights. The
+small grids, traces and object drawings are illustrations, not source images
+or results. Held-out concepts test repetition in the same four people, not
+new-participant generalization or a causal effect of training. Carrying a
+fixed-weight development edge to audit remains a repeatability test, not an
+independent explanation. Contract-robust stability still requires the full
+eligible five-edge family. [Exact generation and correction prompts](outputs/ep17_conceptual_question-v3-prompt.md)
+are saved; v1 and the support-specific v2 remain historical illustrations.
 
 ## Possible conclusions
 
@@ -381,6 +507,11 @@ the exact event-image join, four-person common universe, 480/120/120 roles,
 role-filtered handoffs, B/C/D alignment, ROI crosswalk, support sizes and
 quotas, ceiling estimator, controlled model pairs, feature grids, margins, and
 operator-prediction tolerance remain to be fixed or verified.
+
+The 2026-09-30 nominations make the paper question specific; they do not
+complete those scientific decisions. No checkpoint was fetched, stimulus
+extracted, anatomical array opened, neural model fitted, or audit accessed
+for this revision.
 
 The mixed neural source must not be mounted to the search worker. A trusted
 builder may create metadata, calibration, and development artifacts; the

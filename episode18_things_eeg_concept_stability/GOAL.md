@@ -22,6 +22,14 @@ The [paper plan](outputs/paper_plan.md) describes the explanatory follow-up
 and the evidence needed for each planned figure. No EEG result is claimed in
 this document.
 
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
+clarifies the comparison: named labels can already identify concepts in the
+continuous inputs. The categorical slot changes sharing and regularization,
+not necessarily the nominal information available. Any feature-sufficiency
+claim is relative to the tested bases, inventory and meaningful margin.
+Post-fit distant-event ablation measures importance within the fitted model,
+not unique variance or a causal concept contribution.
+
 ## At a glance
 
 | Question | EP18 design |
@@ -261,12 +269,20 @@ an inconvenient participant or choosing a different feature panel.
 The figure below is a synthetic design illustration. It contains no THINGS
 source images and no observed EEG result.
 
-![EP18 conceptual question figure](outputs/ep18_conceptual_question.png)
+![EP18: shared image baseline with label, concept and false-group bases](outputs/ep18_conceptual_question-v2.png)
 
-The figure should let a reader see the complete scientific fork: different
-pictures of one concept, continuous overlapping EEG, the three fair added-slot
-comparisons, the visual-feature-distance prediction, and replication in new
-participants.
+Ten images per concept train the prediction and two are held out. Images are
+presented at 10 Hz; that number is not the EEG sampling rate. All three rows
+in panel C share image features and the linear-label baseline. Their abbreviated
+labels identify the alternative added slot: capacity-matched nonlinear label,
+categorical concept, or matched pseudo-group. The false-group comparison includes
+all eight registered partitions. Panel C's question marks show unmeasured primary comparisons.
+Panel D contains hypothetical alternative patterns, not results: “concept-stable”
+means useful categorical sharing relative to the tested bases, while
+label-basis adequacy is relative to the registered margin and inventory.
+Distant-event ablation measures fitted predictive importance, not unique or
+causal concept variance. [Exact image-edit prompt](outputs/ep18_conceptual_question-v2-prompt.md)
+is saved; no source image or observed EEG was used.
 
 ## Possible conclusions
 

@@ -1,11 +1,26 @@
 # EP21 paper plan: can neural codes be converted across people and imaging sites without shared stimuli?
 
-Status: corrected study plan, 2026-09-28. No empirical input has been
-provisioned, no neural outcome or reconstruction has been inspected, and no
-execution is authorized. This document describes the paper EP21 could support;
-it does not report a result.
+Status: adapted-reproduction paper plan, narrative refreshed 2026-10-02.
+This document describes the scientific comparison and its interpretation,
+not a replication result or a live execution report. This writing update grants
+no allocation, protocol lock or data access. See the
+[scope review](scope_novelty_review_20261002.md) for the scientific boundary
+and the [execution ledger](experiment_log.md) for current authorized stages,
+attempts and next actions.
 
 ## The question
+
+![EP21 primary adapted reproduction](ep21_neural_code_conversion_design-v3.png)
+
+Design schematic, not results: disjoint target-decoder and source-converter
+training sets, a content loss through the fixed target decoder, and common
+test images/readouts for the within-source, content-loss and brain-loss methods.
+Only brain loss uses paired shared training responses; unequal training sets
+prevent an isolated objective-effect interpretation. The no-shared claim is
+about training image IDs, not clean upstream provider measurements. Twenty
+directed pairs remain dependent observations of five participants. External
+sites are a contingent extension; OOD remains closed.
+[Image-gen prompt](ep21_neural_code_conversion_design-v3-prompt.md).
 
 Can a converter trained only on one person's images map that person's fMRI
 activity into another person's neural space well enough for the second
@@ -31,11 +46,12 @@ LAION↔NSD and LAION↔THINGS. The paper must make the training roles visible:
 - only the brain-loss comparator uses shared training stimuli, on the fixed
   `tau` train split, with evaluation restricted to disjoint `tau` test images.
 
-The strongest publishable contribution would be evidence that fine-grained
-visual information transfers under this genuinely no-shared training design.
-A negative or mixed result would be equally interpretable if the implementation
-is faithful and the uncertainty is reported at the source-participant and
-directed-dyad levels.
+The contribution is an adapted reproduction of the source pattern in this
+fixed LAION setting, not invention of no-shared-stimulus conversion. The
+no-shared claim concerns decoder/converter training image IDs; it does not
+establish independence of all upstream provider measurement estimates. A
+negative or mixed result can define a reproduction boundary if the disclosed
+adaptations, failures and source-participant/dyad uncertainty are reported.
 
 ## Corrected source and implementation anchor
 
@@ -61,12 +77,14 @@ The expected archive MD5 is `bb80dcc1a038737d6d8fc2c95b3e5586`.
 Qualification must verify the archive contents before the protocol lock; a
 moving default branch is not a reproduction identity.
 
-The paper and tagged code also require an explicit fidelity decision before
-scoring: manuscript ReLU versus tagged LeakyReLU, manuscript versus tagged
-content-loss sampling/weighting, and an eight-layer reconstruction description
-versus a tagged 19-layer configuration. These discrepancies must be resolved
-from outcome-blind source qualification or make the affected finding
-`not_evaluable`; results cannot choose the preferred interpretation.
+On 2026-09-30 the scientist adopted the V1.0.0 code-faithful choices: tagged
+LeakyReLU(0.2), normalized active-block content-loss weighting, all 19
+reconstruction layers and the tagged PyTorch AlexNet/227-pixel evaluator.
+These disclose paper/code discrepancies rather than leave a post-outcome
+choice. The existing implementation-binding record also fixes FastL2LiR0.9
+semantics, prospective BdPy0.25 and the public PyTorch true-feature definition;
+historical Caffe parity remains unverified. These decisions are not a passing
+runtime report or permission to fit a neural model.
 
 ## Planned authorship
 
@@ -114,8 +132,8 @@ from source activity and therefore requires both participants to have viewed
 the same training images. It does not test the no-shared claim.
 
 The comparator is fitted only on the authenticated shared regular `tau` train
-split and evaluated only on its disjoint `tau` test split. Planning counts are
-897 train and 224 test images; the release manifest must verify them before use.
+split and evaluated only on its disjoint `tau` test split. The structural
+metadata authenticates variant 0 with 897 train and 224 test images.
 All repetitions of an image stay on one side of the split. No test response,
 decoded feature, reconstruction, or identification score may tune the mapping.
 
@@ -123,6 +141,11 @@ The main comparison places within-individual decoding, no-shared content-loss
 conversion, and shared-stimulus brain-loss conversion on identical eligible
 `tau` test images. This is a fair held-out comparison without implying that all
 three methods used the same training information.
+
+In particular, 4,712 unique-image content training versus 897 shared-image
+brain-loss training compares training packages, not loss objective alone.
+The optional controls below retain their separate role and do not retroactively
+make the primary contrast an objective-only experiment.
 
 If locked before scoring, a separately labeled sensitivity may fit content
 loss on the source side of the same 897 `tau` train images, without target
@@ -146,6 +169,12 @@ requires a prospectively locked non-inferiority or equivalence margin. If no
 scientifically defensible margin can be fixed before scoring, report estimates
 and intervals without treating confidence-interval overlap or a nonsignificant
 difference as evidence of comparability.
+
+Current disposition, adopted 2026-09-30: comparability subclaims for A, C and E
+are `not_evaluable` because no outcome-independent scientific margin was
+supplied. Absolute estimates and signed method differences remain reportable.
+The conditional margin language below describes the evidentiary requirement,
+not an available positive-comparability branch under the current contract.
 
 ### Finding B — do the natural-image reconstructions retain recognizable content?
 
@@ -350,6 +379,17 @@ scanner/acquisition, GLMsingle preprocessing, available masks, and training
 sample structure. A positive result shows transfer of a method pattern, not
 numeric identity with the source paper.
 
+The adopted primary ROI is the fixed union of 29 independent
+retinotopy/fLoc/object masks per participant: adapted, incomplete visual
+support, not equivalence to the source whole visual cortex. The scientist
+also accepted fixed released GLMsingle v1.2 final TYPED regular-trial
+measurements despite unverified upstream exclusion of tau-test/OOD influence.
+That inherited dependence stays disclosed; no clean-measurement or cancellation
+claim follows. All direct OOD access remains closed and EP21-fitted transforms,
+voxel ranking, tuning and stopping remain training-only. This manuscript does
+not itself amend provider-measurement eligibility; separately recorded scientist
+amendments and operative contracts govern that decision.
+
 ### Small and dependent biological sample
 
 Five LAION participants generate 20 directed pairs, but repeated source and
@@ -400,7 +440,7 @@ must state this directly; natural-image performance cannot fill that gap.
 | Evidence pattern | Permitted interpretation |
 | --- | --- |
 | Finding A favors content loss over brain loss on the locked test set | No-shared content-loss conversion preserves more VGG19-decodable information than this shared-stimulus comparator in the evaluated LAION dyads |
-| A or C meets a prospectively locked non-inferiority/equivalence criterion | The named endpoint is comparable to the declared within-individual reference under that margin and support |
+| A, C or E requests formal comparability under the current no-margin disposition | The comparability subclaim is not_evaluable; report absolute estimates and signed differences without an equivalence claim |
 | A/C are positive but no valid margin was locked | Converted information is measurable and its distance from within-individual performance is estimated; formal comparability is not claimed |
 | B shows recognizable fixed examples | The qualitative displays illustrate retained content; quantitative support comes only from C |
 | The qualified D/E module is positive in all declared directions | The content-loss approach transfers across these LAION, NSD, and THINGS participant/dataset directions under the fixed pipeline |
@@ -416,10 +456,12 @@ constitute independent confirmation of EP04.
 
 ## Current stopping rule
 
-Contract authoring is the only authorized activity. Neural execution remains
-blocked until the role-filtered handoffs exist, access and risk conditions are
-qualified, official assets are pinned, synthetic conformance passes, a complete
-protocol lock exists, and the scientist separately authorizes execution.
+The existing episode contracts and separately recorded scientist authority
+govern execution; the execution ledger records stage completion and attempts.
+Provisioning or a technical repair does not itself authorize a protocol lock,
+neural fitting or scoring. The existing scientific and data-role gates apply
+before a real scoring handoff. This paper narrative changes no runtime, code,
+resource cap, stopping rule or access boundary.
 
 If image-role separation, `tau` integrity, authentic code/assets, calibrated
 inference, or the physical OOD firewall cannot be established, stop or mark the

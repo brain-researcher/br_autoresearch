@@ -35,14 +35,18 @@ normalization, and model state at time `t` use no sample after `t`. It does not
 mean causal inference about motor preparation, conscious intention, or the
 biological cause of movement.
 
-![EP19 scientific question](outputs/ep19_question_imagegen.png)
+![EP19: past-only forecasting and the recent-by-older-slow input comparison](outputs/ep19_question_imagegen-v2.png)
 
-Like the EP12 concept figure, this mockup uses synthetic traces and bars to make
-four scientific judgments visible: genuine forecasting versus near-event
-detection, the three real-EEG specificity increments, a recent-versus-older-
-slow factorial prediction, and the registered eight-person second-task
-test. None of the traces or bars is an EP19 result; exact margins and
-source-construction details remain in the study text.
+Only sensor/context and EEG history available at Now enters a forecast; the
+300–600 ms interval is the primary horizon. Variable past peripheral traces
+are allowed within the registered at-risk state. The four input combinations
+all retain the older complement C=x−O, whose raw support ends before the recent
+200 ms; “complement only” is not the zero-EEG control and can retain slow
+information. The hand and traces are illustrations, not measured movement or
+forecast performance. The second task repeats a development-trained procedure,
+not WAY weights; exact participant and margin rules remain in the text.
+[Generation and correction prompts](outputs/ep19_question_imagegen-v2-prompt.md)
+are saved.
 
 ## The study at a glance
 
@@ -118,6 +122,12 @@ acquisition gap and series or session boundary. Centered filters, future
 padding, whole-session normalization, bidirectional recurrence, and windows
 crossing a data split are prohibited.
 
+The [component design](outputs/component_details.md) now specifies the earliest
+confirmed peripheral crossing, pending/armed states and one reach per known
+start cue. It also gives source-specific baseline inputs and a four-parameter
+calibration recipe. Starting detector/calibration choices still require
+development-only checks and a pre-score freeze; no timing bound is claimed met.
+
 ## The secondary question: does model order depend on the horizon?
 
 The reference comparison contains five families:
@@ -162,6 +172,11 @@ blocks at decision time `t`:
    strictly before `t - 200 ms`.
 
 The recent and older-slow blocks therefore use non-overlapping raw time support.
+The [exact construction](outputs/component_details.md) uses a fixed causal
+filtered older component O and complement C=x−O, with Q11 reconstructing the
+standardized voltage before family features. C may retain slow information:
+the test concerns O's contribution conditional on that complement, not the
+absence of all slow EEG. Q00 is not the zero-EEG baseline.
 One development-fixed causal filter bank supplies the older blocks. Its delay,
 warm-up, gap reset, and boundary rule are shared by every comparison; centered
 filtering, future padding, and feature windows crossing the 200-ms boundary are
@@ -269,9 +284,11 @@ The primary calibration has only four free values:
   `>900 ms` group as reference.
 
 The encoder, spatial projection, and individual 50-ms category biases cannot
-change. The regularization, bounds, optimizer, iteration limit, convergence
-tolerance, and deterministic failure rule must be specified before these 32
-events are used. Each scored model receives its own four-parameter fit under
+change. The [component recipe](outputs/component_details.md) supplies provisional
+regularization, bounds, optimizer, convergence and identity-fallback settings;
+freeze them on development data before these 32 events are used. Fit the
+whole natural-prevalence prefix, not event-centered positive windows.
+Each scored model receives its own four-parameter fit under
 the same procedure; one model's calibration values are not shared with
 another.
 
@@ -367,6 +384,13 @@ establish a positive or negative scientific result.
 
 ## Relation to prior work
 
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md)
+and the paper plan make the closest contrasts explicit. [Premovement EEG
+prediction](https://pmc.ncbi.nlm.nih.gov/articles/PMC5558611/) predates EP19,
+and [Crell et al. (2025)](https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2025.1540155/full)
+already studies cued-to-self-paced asynchronous detection with false-alarm
+operating points. Neither lead time nor cross-task testing alone is the gap.
+
 Premovement EEG prediction, WAY-EEG-GAL event detection, pre-onset kinematic
 reconstruction, and cross-session neural benchmarks all predate EP19. The
 study therefore makes no priority claim for predicting movement before onset
@@ -382,7 +406,14 @@ recent-by-older-slow factorial pattern to repeat in those held-out people.
 
 A positive result would show that, under the specified sensors, onset detector,
 prediction horizons, calibration budget, and model panel, EEG adds prospective
-information about sensor-detected movement onset. It would not establish:
+information about sensor-detected movement onset.
+
+A null would mean the tested procedure did not establish the specified
+increment beyond measured sensor/context history. It would not establish
+absence of motor information in EEG, nor equivalence without the required
+precision. Conversely, a positive increment cannot exclude unmeasured
+peripheral changes as its source. These limits also apply to the following
+claims, which a positive result does not establish:
 
 - causal motor preparation or conscious intention;
 - the earliest biological motor command;
@@ -398,10 +429,10 @@ information about sensor-detected movement onset. It would not establish:
 The data sources are identified, but no EP19 signal analysis has started and no
 held-out result has been examined. Before scoring, the study still needs
 source-specific timing and onset checks, separated development and held-out
-data views, the complete 32-event calibration procedure, all numeric margins,
-the development false-alarm ceiling and warning rule, the executable four-model
-factorial panel and mutation tests, the finite model-search ranges, and synthetic tests of past-only
-information flow.
+data views, validation/freezing of the selected component/calibration procedures,
+all numeric margins, the development false-alarm ceiling and warning rule,
+the executable five-family, four-condition factorial panel and mutation tests,
+the finite model-search ranges, and synthetic tests of past-only information flow.
 
 Dataset details are in [DATASETS.md](DATASETS.md). Compact methods and budgets
 are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed paper story is in

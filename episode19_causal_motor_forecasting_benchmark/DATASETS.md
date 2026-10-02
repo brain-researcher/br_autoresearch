@@ -90,6 +90,13 @@ The detector must specify, before candidate EEG scoring:
 Object motion, grip force, and load force are consistency checks rather than
 alternative outcomes chosen because they favour a model.
 
+The [component design](outputs/component_details.md) selects the earliest
+independently confirmed EMG-or-hand-motion crossing and an online armed/pending
+state. All primary sensor paths remain required. Published `HandStart` and
+the provider's synchronization figure are agreement/context information, not
+proof that the EP19 detector meets its full timing bound.
+[WAY acquisition and event extraction](https://pmc.ncbi.nlm.nih.gov/articles/PMC4365902/).
+
 ## Self-paced/free-choice reaching
 
 ### Source facts
@@ -156,6 +163,14 @@ offsets for 0–300, 300–600, and 600–900 ms, with `>900 ms` as reference. T
 encoder and spatial projection remain unchanged. A full local refit on the
 first half of complete runs is descriptive only.
 
+Provider onset and cue annotations use zero-phase processing/manual review;
+rebuild the primary onset and cue availability from raw accelerometry/TRIG.
+The provider annotation remains an agreement check. Initial detector choices
+and the complete calibration recipe are in the [component note](outputs/component_details.md).
+The calibration packet is the whole chronological prefix, including eligible
+stillness; no suffix or guard label can enter its censoring-aware likelihood.
+[Self-paced acquisition and processing](https://www.nature.com/articles/s41597-025-06039-9).
+
 ## Data needed for the explanation and warning analyses
 
 The source descriptions indicate that both main releases contain the pieces
@@ -182,8 +197,13 @@ One causal filter bank, including its delay, warm-up, gap reset, and boundary
 rule, is fixed on development data. Older blocks use raw samples strictly
 before `t - 200 ms`; the recent block uses `[t - 200 ms, t)`, so the cutoff
 sample belongs only to the recent block. No feature window may cross that
-boundary. All four conditions use the same tensor shape and
-development-frozen scaling, with an absent block replaced by fixed zeros and
+boundary. The [exact construction](outputs/component_details.md) sets O to the
+causal filtered older component and C=x−O, then reconstructs each masked
+voltage slot before family features/state. A shared training scale preserves
+Q11 voltage reconstruction. C may retain slow information; constructed-O
+mutation with C fixed is a representation intervention, not raw-band removal.
+Q00 still contains complementary EEG. All four conditions use the same tensor
+shape and development-frozen scaling, with an absent block replaced by fixed zeros and
 no missingness flag. In every model family, the factorized full input must first
 reproduce its original full-reference result within a pre-set equivalence margin.
 
@@ -264,10 +284,10 @@ Before signal scoring, the study still needs:
 
 - episode-specific development and held-out data views;
 - direct clock, channel, sampling, gap, and series-boundary checks;
-- exact onset and stillness code for each source;
+- executable/frozen onset and stillness rules from the selected component design;
 - the five executable reference model recipes;
 - source-specific non-neural baselines;
-- the complete four-parameter 32-event calibration procedure;
+- development validation and freezing of the selected four-parameter recipe;
 - confirmation of valid recent and older EEG history at every scored decision
   point, including a boundary that no derived feature crosses;
 - the source-compatible causal factorization into older complementary,

@@ -30,6 +30,13 @@ are forbidden inputs. The entire 371-image OOD payload—including raw images,
 derived VGG/AlexNet features, neural values, reconstructions, predictions,
 scores, and summaries—remains closed to EP21.
 
-`ep21_neural_code_conversion_design.png` is a conceptual design mockup linked
-from `../GOAL.md`. It contains no observed data and is not evidence of
-execution, completion, or a scientific result.
+![Current EP21 adapted-reproduction concept](ep21_neural_code_conversion_design-v3.png)
+
+The [v3 image](ep21_neural_code_conversion_design-v3.png), linked from
+[GOAL](../GOAL.md) and [paper plan](paper_plan.md), shows disjoint decoder and
+converter training, content loss through a fixed target decoder, and common
+method readouts. [Exact built-in imagegen prompt](ep21_neural_code_conversion_design-v3-prompt.md).
+The update path has one arrowhead, from content loss back into the converter.
+It contains no observed results. The caption retains accepted upstream provider
+dependence; no blanket leakage-free claim is made. The earlier unversioned PNG
+is retained only as a historical figure.

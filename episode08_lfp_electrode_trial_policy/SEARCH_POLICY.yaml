@@ -1,12 +1,85 @@
 episode: EP08
-title: Can a short pilot tell us what to record next?
+title: What makes electrode and calibration information valuable?
 status: planned_not_run
 
+open_exploration:
+  scientist_approved: "2026-09-30"
+  specification: outputs/open_exploration_design.md
+  mandatory_separate_pilot: false
+  model_summary_initializer_menu_closed: false
+  example_dimensions:
+    - model family and temporal representation
+    - training or calibration amount and coverage
+    - static or source-trained selection without current-session responses
+    - response-adaptive selection with different initial information states
+    - conditional electrode value direction value and sensor-dependent learnability
+  regimes:
+    offline_value: declared training pool with separate evaluation; no sequential-efficiency claim
+    sequential_acquisition: only metadata development-trained state and actually acquired observations
+  zero_shot_selection_implies_zero_shot_decoding: false
+  named_linear_proxies_mandatory: false
+  numerical_new_branch_endpoints_and_margins: not_specified_not_activated
+  comparison_commitment: specify information target decoder fairness and actual exposure before scoring
+  final_lock: all selected protocols and decisions before the single shared held-session opening
+  allowance: search_budget shared across every branch and initializer; no additional resources
+  new_endpoint_patience: prospectively specify before first scored search; no automatic 0.005 transfer
+
+reference_scenario_scope:
+  id: reference_16_trial_acquisition
+  optional: true
+  numerical_protocol_preserved: true
+  scoped_top_level_sections:
+    - common_pilot
+    - acquisition_choices
+    - information_available_at_choice_time
+    - electrode_selectors
+    - trial_allocators
+    - shared_prediction_model
+    - comparisons
+    - factorial_comparison_at_every_budget
+    - primary_measure
+    - required_family_coverage
+    - alternative_explanation_checks
+    - held_session_evaluation
+    - electrode_value_explanation
+    - next_direction_explanation
+    - electrode_trial_coupling_explanation
+    - resource_axis_explanation
+    - data_required_for_explanations
+    - external_confirmation
+    - claim_limits
+  scope_rule: >-
+    These unchanged top-level sections describe only the original optional
+    reference experiment, not prerequisites or universal decisions for open
+    exploration. New branches need prospective endpoint and terminal choices.
+  missing_reference_support_stops_whole_episode: false
+  global_invariants: data roles actual information timing shared budgets one held opening and claim honesty
+
+research_program_narrative:
+  proposed_principle: conditional complementarity and reducible uncertainty
+  status: design_proposal_unactivated
+  specification: outputs/acquisition_principle_proposal.md
+  intended_discriminator: >-
+    At matched quality, allowed-data target-linked complementarity predicts later
+    conditional electrode value. Acquired-only reducible parameter uncertainty
+    predicts repeatable next-direction benefit beyond counts and persistent
+    noise. Recomputing that score after a quality-matched electrode swap
+    predicts change or stability in direction-value ordering.
+  priority_claim: no first algorithm or information-based selection claim
+  original_policy_grammar_changed: false
+  original_policy_now_optional_reference: true
+  new_explanatory_scoring_requires: separate prospective amendment before relevant outcomes
+  pilot_limit: >-
+    Sixteen trials do not guarantee reliable ranking. Use whole-trial
+    direction-supported cross-fitting, fitting-only scaling and projections,
+    rank limits, ridge or shrinkage, and pooled residual-noise estimates.
+  future_features_available_to_rule: false
+
 scientific_question: >-
-  After 16 pilot reaches recorded on all eligible electrodes, can one common
-  rule choose 4, 8, or 16 electrodes and the direction of each additional
-  calibration trial, then beat random, spatial, and signal-quality rules at
-  exactly the same electrode and trial budget?
+  Which properties of an electrode set and a training or calibration state
+  predict conditional population information and the value of another trial?
+  Explore models summaries and initial information states on development data;
+  distinguish offline value explanation from cost-accounted sequential choice.
 
 data:
   primary_animals: [Mihili, Chewie-L]

@@ -1,4 +1,15 @@
-# EP03 adaptive data contract
+# EP03 data: separating task-family recognition from contrast information
+
+The data must allow a question that a familiar-looking map cannot answer:
+does a signed comparison described in methods predict another dataset's map
+better than knowing only its task family? The number of independent dataset
+groups, the support within each family, and the reliability of their maps
+matter more than the number of contrast files.
+
+This is a design contract, not a report that the collection has been imported
+or reanalyzed. Only the episode's plain-text contracts and local status docs
+were read for the 2026-09-30 writing milestone; no map payload or protected
+outcome was accessed.
 
 ## Status and source exposure
 
@@ -16,6 +27,39 @@ intended development source is the NeuroEffect/OpenNeuro collection:
 Historical reports of approximately 2.2% improvement over a global mean map
 and 40--46% reduction in repeated-map disagreement are prior feasibility
 signals, not current results and not thresholds to optimize against.
+
+In particular, a small gain over a **global mean** does not establish gain over
+a **task-family prototype**, the current primary comparator. The reported
+repeatability change does not establish the reliability of a family-residual
+map or a noise ceiling for semantic prediction. The meaning of those reports
+has to be recovered from the original methods before it can inform precision.
+
+## What the source can identify
+
+| Data object | Scientific role | What it does not establish |
+| --- | --- | --- |
+| Methods/events and signed contrast definitions | Model input and a map-independent family/semantic taxonomy | Neural results, intended psychological mechanism, or causal intervention validity |
+| Unthresholded group Z contrast map | Sign-preserving normalized statistical-map geometry | Effect amplitude, an individual's brain state, or causal neural implementation |
+| Independent dataset group | Unit of exclusion, equal weighting, uncertainty, and influence | Independence of each contrast, voxel, paper, or derivative |
+| Authenticated repeated maps | Development reliability and sensitivity analysis | A fresh audit or interchangeable repeats without participant/processing lineage |
+| Prospective independent group | One locked evaluation of transfer after search | Freshness merely from a new filename or another release of the same participants |
+
+Z-map normalization is not an effect-size transformation and does not remove
+all processing or sampling differences. A prototype-dominated outcome is
+interpretable only with adequate group support and informative uncertainty;
+otherwise the source yields an unresolved comparison. The independent-group
+inventory and source handoff remain missing, so no such conclusion is now
+available.
+
+The 2026-10-02 sign-consistency amendment applies one methods/ontology-defined
+canonical comparison ordering to every eligible map and description. With
+source-to-canonical polarity `s`, fitting uses `Z*=s Z`; both the family
+prototype and prototype-plus-residual prediction are multiplied by `s` on
+return to the requested comparison. Reversal changes only that polarity,
+not family membership or evidence roles. Canonical ordering cannot use map
+values or scores; unresolved ordering remains sign-ineligible. The family
+baseline receives the same orientation convention as the candidate. See
+[the exact rule](GOAL.md#one-orientation-rule-for-the-baseline-model-and-evaluator).
 
 ## Read-only development handoff
 
@@ -43,6 +87,14 @@ beta, effect-size, posterior, or thresholded maps.
 `unknown` must not be recoded as `verified_absent`; only `detected` eligible
 map targets enter geometry scoring, while verified absences and unknowns are
 reported separately.
+
+The task-family taxonomy must come from methods and task definitions rather
+than target maps. Every prototype, feature vocabulary, residualization,
+semantic/map basis, and fitted readout is an outer-training-fold object.
+Splitting contrast rows at random, retaining another derivative of a held-out
+group, or creating family labels after seeing prediction performance would
+answer a different, leaky question. Semantic-cluster exclusion remains a
+required falsifier in addition to independent-dataset exclusion.
 
 ## Dataset roles
 

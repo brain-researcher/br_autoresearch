@@ -1,90 +1,108 @@
-# Formal Corpus Contract — Episode 13
+# Formal Inputs and Evidence Roles — Episode 13
 
-This episode has no empirical dataset. Its inputs are exact rational matrices,
-vectors, structured conjectures, proofs, finite regression cases, and
-replayable certificates. The common adaptive governance rules are in
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md), but finite
-case separation here is an implementation audit, not statistical validation.
+EP13 has no participant dataset, images, BOLD time series, or statistical
+train/test split. Its inputs are exact matrices, theorem statements, proofs,
+and replayable certificates.
 
-## Prior-exposure boundary
+## Fixed mathematical domain
 
-Prior work exposed 13 contract-valid cases and four invalid-input controls.
-Their evaluator, cases, labels, constants, operator construction, solver, and
-precomputed answers are development-history facts only; no local legacy file
-is retained or required by the current verifier. No new corpus, verifier, or
-audit output is asserted to exist by this contract.
+All dimensions T, Q, V, and K are positive integers. The known objects are
 
-## Exact declared family
+| Object | Shape | Status |
+| --- | --- | --- |
+| A | T x V | fixed temporal observation operator |
+| P | Q x K | fixed spatial observation operator |
+| c | length K | fixed spatial target direction |
+| s | length V | fixed temporal target direction |
+| X = B^T | V x K | unknown and free over all rational matrices |
+| Y = A X P^T | T x Q | exact observed matrix |
+| tau = s^T X c | scalar | prespecified target |
 
-Each valid finite case supplies compatible exact-rational objects for
+The phrase “admissible latent matrix” means every element of
+Q^(V x K). Nonnegative, low-rank, normalized, sparse, or singleton latent
+families are not part of this episode.
 
-`A_g = R S H_g`, `Y = A_g B_g^T P^T`, and `tau = c_g^T B_g s_g`.
+The theorem is stated for arbitrary compatible A and P. An application may
+construct A = R S H with
 
 | Object | Shape |
 | --- | --- |
-| `H_g` | `F x V` |
-| `S` | `T x F` |
-| `R` | `T x T` |
-| `P` | `Q x K` |
-| `B_g` | `K x V` |
-| `c_g` | length `K` |
-| `s_g` | length `V` |
+| H | F x V |
+| S | T x F |
+| R | T x T |
 
-`R` is square and idempotent; symmetry is not required. Rational entries use
-exact strings such as `"3"`, `"-2"`, and `"5/7"`. Floating-point
-approximations cannot support a proof or certificate. Generated regression
-cases may retain the historical dimension-at-most-four convention, but that
-finite bound never limits or proves the universal theorem.
+R must be square. Idempotence is an application-model validity rule; symmetry
+is not required. Neither idempotence nor the factorization A = R S H is needed
+for the identifiability theorem after A is fixed.
+
+## Frozen coordinate convention
+
+Use column-major vectorization:
+
+\[
+x=\operatorname{vec}(X),\quad
+y=\operatorname{vec}(Y),\quad
+M=P\otimes A,\quad
+\ell=c\otimes s.
+\]
+
+Every exact fixture must directly replay y = Mx and tau = ell^T x. A fixture
+that checks only a Boolean identifiability label is incomplete.
 
 ## Evidence roles
 
 | Role | Contents | Epistemic use |
 | --- | --- | --- |
-| `history_exposed` | declared prior cases, theorem candidate, and known outcomes; no local artifact dependency | development and regression only |
-| `cegis_development` | every generated exact case, failed proof obligation, minimized counterexample, and repair | adaptive conjecture search |
-| `proof` | exact derivation valid for arbitrary compatible finite dimensions | universal support or refutation |
-| `audit_sealed` | independently authored checker plus a frozen deterministic/exhaustive case rule, hidden from controller feedback until lock | one-shot implementation and orientation audit only |
+| exposed history | 13 previously described valid cases and four invalid controls; no retained local payload | design context only |
+| proof | exact derivation for arbitrary compatible finite dimensions | universal support |
+| examples | fixed exact positive, negative, zero, and orientation cases | implementation regression only |
+| certificates | exact readout or target-changing invisible perturbation | constructive support or refutation |
+| independent replay | separately authored rational checker and frozen fixture suite | transcription/orientation audit only |
 
-The audit generator may construct new cases from the frozen rule, but these
-are generated fixtures rather than an independent biological dataset. Once
-run, they join exposed history. A second run cannot restore a fresh audit.
+Finite examples never prove the theorem. The proof does not become stronger by
+running more randomly generated matrices.
 
-## Independence boundary
+## Required exact suite
 
-Before comparison with prior results, the episode must freeze an independently authored:
+The implementation regression suite must include:
 
-- operator/target construction and column-major vectorization convention;
-- exact row-space, rank, null-space, and certificate replay implementation;
-- deterministic generated-case rule and any seed;
-- exhaustive bounded enumeration domain, if used;
-- malformed-shape/rational and non-idempotence rules; and
-- required fields for proof obligations, counterexamples, and certificates.
-
-The audit checker may not import, execute, copy constants from, or use expected
-labels from any prior evaluator. Agreement with prior results is a regression
-comparison after the independent lock, not a source of truth.
-
-## Required case coverage
-
-Development and locked audit rules together must exercise:
-
-- non-injective `M` with an identifiable nonzero target;
-- temporal-only, spatial-only, and dual losses;
-- zero `s_g`, zero `c_g`, and both zero;
+- rank-deficient M with an identifiable nonzero target;
+- temporal-only, spatial-only, and simultaneous loss;
+- c = 0, s = 0, and both zero;
+- realized tau = 0 in a nonidentifiable model;
 - non-square asymmetric orientation cases;
-- non-symmetric idempotent `R`;
-- exact readout certificates and normalized target-changing null witnesses;
-- compatible full-rank and rank-deficient cases; and
-- incompatible shapes, malformed rationals, and non-idempotent `R`.
+- a non-symmetric idempotent R that requires R^T in the readout equation;
+- nonunique valid readouts;
+- normalized target-changing null witnesses; and
+- malformed shapes, rationals, zero dimensions, and invalid application-model
+  inputs as explicit rejections.
 
-Case labels must be derived by an exact independent oracle or directly checked
-certificate, never by floating-point tolerance or the incumbent conjecture.
+## Independence and access boundary
 
-## Storage and execution boundary
+No current checker, proof lock, or independent replay output exists. A future
+independent checker may use this frozen statement and its own implementation,
+but it must not import historical evaluator code, constants, expected labels,
+or precomputed answers.
 
-All current outputs, if later authorized, must include the conjecture ledger,
-exact case corpus, minimized counterexamples, proof versions, independent
-checker, dated write-once theorem/audit lock record, and one-shot audit record.
-CPU execution belongs
-on an authorized compute node; no participant data, images, raw BOLD, or GPU
-training is part of this contract.
+There is no protected biological outcome to open. The only future separation
+is between the authored theorem package and a separately authored replay of
+that package. A replay can find an implementation or orientation error; it
+cannot create universal evidence beyond the proof.
+
+Inputs remain read-only. Durable proof documents, exact fixtures, checker
+source, replay reports, and the conceptual figure belong under outputs/.
+Transient execution belongs under the episode-specific Scratch directory.
+
+## Scope exclusions
+
+This contract does not cover:
+
+- restricted or nonlinear latent families;
+- multiple runs sharing one latent X;
+- nonseparable or vector-valued targets;
+- uncertain A or P;
+- noise, conditioning, or estimator variance;
+- empirical HRF fitting; or
+- biological or causal interpretation.
+
+Each changes the mathematical question and requires a separate contract.

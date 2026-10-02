@@ -1,4 +1,145 @@
-# EP03 — adaptive condition semantics and effect-map geometry
+# What does a task description add beyond knowing its task family?
+
+Two experiments can both be called "working memory" while asking different
+questions: increasing memory load is not the same contrast as changing the
+category of remembered images. A convincing-looking predicted brain map might
+nevertheless recover only the common task-family pattern. EP03 asks whether
+the **signed experimental comparison**, described without its results, supplies
+reproducible spatial information beyond that pattern in another dataset.
+
+The scientific distinction is **family recognition versus contrast-specific
+information**. The paper is not another demonstration that language can be
+mapped to a brain image. It tests how much detail that mapping actually earns,
+and when apparently detailed predictions collapse to a task prototype.
+
+![EP03 conceptual question](outputs/ep03_conceptual_question.png)
+
+Both branches share the methods-defined orientation: predictions are
+`s p_family` and `s[p_family + r]`. Reversal of the complete prediction is an
+implementation invariant, not semantic evidence. Orange check icons label
+planned comparisons, not passed tests; all patterns are schematic.
+
+*Conceptual schematic, not empirical results. The illustrative working-memory
+contrasts vary load or remembered image category; "faces minus places" here
+means a category comparison within a memory task, not a claim that every
+face/place experiment belongs to that family. The two model branches and
+possible conclusions are hypotheses. Check icons name tests to perform, not
+tests already passed. The prospective audit has not been acquired.*
+
+## The comparison that would answer the question
+
+For an independent dataset group left out of fitting, compare the same
+sign-authenticated, unthresholded group Z maps with two predictions:
+
+- a task-family prototype estimated from training groups only;
+- that prototype plus the residual predicted from methods-only signed
+  condition descriptions, using the bounded operator grammar below.
+
+Both predictions use the same outcome-blind contrast orientation convention.
+The prototype and residual are learned in canonical orientation, and the
+requested polarity is applied to their **complete sum**, not to the residual
+alone. The explicit rule below is a prospective 2026-10-02 design repair;
+no current-contract computation or outcome opening has occurred.
+
+Give each independent dataset group equal weight. Contrast counts and voxels
+do not supply independent replications. The primary score remains the frozen
+group-weighted relative MSE gain over the family prototype. Global-mean,
+lexical-only, metadata-only, and capacity-matched random-feature controls
+explain whether a gain actually requires condition semantics.
+
+Three checks make the interpretation sharper than a plausible map: reversing
+the comparison must reverse its predicted sign as an implementation invariant;
+excluding semantic neighbors
+must not erase the claimed direction of transfer; and permuting descriptions
+within task family must not reproduce the gain through the complete search
+procedure. These are existing required falsifiers, not new experiments.
+Algebraically enforced sign reversal alone is not evidence that text recovers
+contrast-specific neural information.
+
+## What is and is not new
+
+[NeuroQuery (2020)](https://elifesciences.org/articles/53385) already predicts
+maps from free text and illustrates task-contrast descriptions.
+[Text2Brain (2022)](https://arxiv.org/abs/2208.00840) already evaluates IBC and
+HCP contrast descriptions and relates performance to map reliability.
+[NeuroConText (2024)](https://papers.miccai.org/miccai-2024/560-Paper3550.html)
+already reconstructs maps from IBC descriptions; its
+[2026 extension](https://pubmed.ncbi.nlm.nih.gov/41852941/) combines text/map
+retrieval and reconstruction and evaluates NeuroVault contrast descriptions.
+[Hammonds et al.'s NeuroVLM (2026, preprint v3)](https://www.biorxiv.org/content/10.64898/2026.02.06.704508v3)
+already supports text-to-neuroimage generation and evaluates statistical maps
+as well as coordinate-derived images.
+
+These verified overlaps rule out "first text-to-brain model", "first
+contrast-description prediction", and "first evaluation on statistical
+maps". EP03's proposed contribution is a **specific evaluation of incremental,
+sign-sensitive information beyond task family across independent datasets**,
+with semantic-neighbor, metadata, and complete-procedure null controls. This
+is a proposed distinction, not an exhaustive priority claim or proof of
+novelty. The frozen grammar contains lightweight predictors and frozen text
+representations; importing or training a new generative architecture is not
+authorized by this rewrite.
+
+## Outcomes worth distinguishing
+
+| Outcome | Defensible interpretation |
+| --- | --- |
+| Residual gain transfers and required falsifiers pass | Methods-only contrast semantics adds predictive geometry beyond family recognition, within supported tasks and this pipeline. |
+| The family prototype remains competitive with adequately precise estimates | Little practically useful residual information is recovered by the registered representations and sample; report the bounded comparison, not a universal claim that task family is sufficient. |
+| Gain disappears after neighbor exclusion, polarity, metadata, or permutation controls | The apparent transfer is not an eligible semantic contribution; identify the failed alternative explanation. |
+| Estimates are imprecise or map reliability/family support is insufficient | Inconclusive, even if the mean gain is zero or negative. |
+
+The prototype interpretation requires uncertainty narrow enough relative to a
+scientifically meaningful gain and usable residual-map reliability. Those
+quantities are not established by the historical feasibility reports and
+must be decided under the existing pre-search inference contract. Failing to
+promote a candidate is not an equivalence test. With no fresh audit, all these
+comparisons remain adaptive development findings, not prospective confirmation.
+
+See [the paper plan](outputs/paper_plan.md) for the scientific argument and
+evidence sequence, and the [current review](outputs/scope_novelty_review_20261002.md)
+for the prior-work boundary and sign-consistent amendment.
+
+## One orientation rule for the baseline, model, and evaluator
+
+Before target-map loading, the methods-only taxonomy assigns each comparison
+one canonical ordering and a polarity `s` in `{+1,-1}`. The rule uses documented
+experimental roles and a fixed ontology: for example task minus control,
+higher minus lower load, and a declared order for category comparisons. It
+must not choose the ordering from observed maps, fitted scores, filenames, or
+which sign yields a stronger family prototype. Ambiguous comparisons are
+reported as orientation-unresolved under the existing sign-eligibility rule.
+
+Let `Z` be the normalized, source-sign-authenticated map. Fit `Z* = s Z` in
+canonical orientation, and build each training-fold family prototype `p_f`
+with equal dataset-group weight. The candidate learns the residual `Z* - p_f`
+from the canonically ordered methods description `t*`. For the requested
+comparison, evaluate
+
+```text
+family prediction = s p_f
+semantic prediction = s [p_f + r(t*)].
+```
+
+Apply every candidate operator, nuisance adjustment, and ensemble combination
+in canonical coordinates before this single final polarity restoration.
+No unflipped intercept or correction may be added after multiplying by `s`.
+
+Reversing only the contrast keeps its family, canonical description, support,
+and fitted objects fixed and changes `s` to `-s`. Both full predictions then
+negate exactly. Reversed copies remain the same comparison and dataset group;
+they are not new training examples or independent observations. Baseline and
+candidate both receive polarity as a coordinate convention, so the comparator
+is precisely **task family plus the shared orientation convention**, not a
+sign-blind prototype. No condition-specific fitted information enters that
+baseline.
+
+The global-map control uses the same canonical fit and sign restoration.
+Within-family description permutations operate on the canonical descriptions
+without changing the map's polarity or group identity. Report oriented-family
+support, prototype loss, and residual reliability: cancellation or weak family
+support cannot be advertised as a semantic discovery. No zero baseline or
+antisymmetrization that silently cancels the prototype is substituted.
 
 ## Status, protocol, and exposure boundary
 
@@ -24,7 +165,11 @@ mechanism generalize rather than memorize dataset or publication identity?
 The unit of independence is an authenticated `independent dataset group`, not
 a contrast, map, voxel, paper release, or processing program. The primary
 outcome is a sign-preserving, mean-centered, unit-L2 unthresholded group Z-map
-in a frozen space and mask. The target is geometry, not effect amplitude.
+in a frozen space and mask. "Effect map" is shorthand for this statistical
+contrast map: Z is not an effect-size estimate. The target is its normalized
+spatial geometry, not effect amplitude, the magnitude of a neural mechanism,
+or coordinate-reporting probability. This normalization does not make
+between-study sampling or processing differences disappear.
 
 ## Evidence roles
 
@@ -87,6 +232,15 @@ For held-out group `d`, let `L_family,d` be contrast-averaged voxel MSE for the
 frozen task-family prototype and `L_model,d` the corresponding model loss.
 The primary score is the equally weighted group mean of
 `G_d = 1 - L_model,d / L_family,d`.
+
+Both predictions are evaluated on the same normalized target and held-out
+groups. The family taxonomy is made without maps or scores, its prototype is
+fit inside training folds, and only represented/eligible families contribute
+to the primary comparison. Unsupported task families belong in the declared
+leave-one-family-out diagnostic, not a silently redefined primary test.
+The loss ratio's behavior and uncertainty under the actual group support must
+be addressed by the pre-search evaluator/inference specification; this
+writing milestone supplies neither a new tolerance nor a claim of precision.
 
 A trial is feasible only if it also:
 
@@ -209,3 +363,10 @@ activity, recover individual-brain representations, predict effect amplitude,
 generalize to unseen task families, or establish population neuroscience from
 voxels as independent samples. Development-only success on the exposed
 51-group corpus must be labeled adaptive exploratory evidence.
+
+The 2026-09-30 rewrite changes the scientific framing and paper narrative,
+not the operative target, score, registered operators, mandatory falsifiers,
+budgets, promotion requirements, or one-shot audit rule. No current-contract
+experiment has run. Any future change to those decisions requires an explicit
+scientific amendment before the affected outcomes are used; prose cannot
+retroactively amend an exposed execution.

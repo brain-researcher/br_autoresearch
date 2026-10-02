@@ -83,6 +83,7 @@ prediction:
   outcome_dependent_truncation: false
 
 onset_and_risk:
+  specification: outputs/component_details.md
   onset_uses_EEG: false
   provider_event_is_primary: false
   raw_non_EEG_sensor_detector_required: true
@@ -90,11 +91,34 @@ onset_and_risk:
   future_confirmation_may_enter_model_input: false
   future_confirmation_may_restore_intervening_decision_points: false
   risk_set: past_only_streaming_stillness
-  exact_sensor_hierarchy: null
-  threshold_and_dwell_rule: null
-  ambiguity_rule: null
+  exact_sensor_hierarchy:
+    WAY: earliest_independently_confirmed_crossing_among_five_EMG_and_hand_wrist_motion_paths
+    self_paced: wrist_accelerometry_departure_from_past_stationary_baseline
+    object_motion_and_force: consistency_checks_not_replacement_outcomes
+    primary_sensor_paths_required: true
+  threshold_and_dwell_rule:
+    state: selected_starting_recipe_not_empirically_verified_or_frozen
+    trailing_summary_ms: 20
+    confirmation_ms: 40
+    entry_stillness_ms: 500
+    hysteresis: separate_high_and_low_thresholds
+    threshold_scales_and_filter_coefficients: development_stationary_sensor_noise_only_still_unset
+    provider_agreement_role: discrepancy_diagnostic_not_forced_annotation_matching
+    EEG_forecast_scores_may_choose_detector: false
+  ambiguity_rule: suspend_at_crossing_confirm_initial_time_label_only_never_restore_paused_decisions
+  detector_paths_continue_while_predictions_suspended: true
+  accepted_onset_order: earliest_accepted_crossing_timestamp_not_first_confirmation
+  one_primary_reach_per_known_start_cue: true
+  stillness_while_holding_object_may_rearm: false
+  rearm_requires: known_end_return_phase_new_start_cue_and_past_stillness
+  future_end_cue_may_select_current_risk_state: false
+  unknown_sensor_status_may_be_labeled_negative: false
   synchronization_uncertainty_max_ms: null
   required_synchronization_bound_ms_maximum: 300
+  timing_bound_is_strict: true
+  timing_bound_components: [clock_alignment, acquisition, resampling_filter_response, discretization, crossing_uncertainty]
+  confirmation_delay_shifts_label_time: false
+  provider_sync_figure_certifies_full_EP19_bound: false
   detector_development_sources:
     WAY: series_1_to_7_only
     self_paced: 15_development_participants_only
@@ -143,6 +167,13 @@ preprocessing:
     - O2
 
 non_neural_baselines:
+  specification: outputs/component_details.md
+  starting_past_sequence_seconds: 2.0
+  starting_trailing_summaries_ms: [50, 200, 1000, 2000]
+  physically_absent_sensors_are_omitted_not_quiet_zeros: true
+  transient_missingness_inputs: [availability, last_observed_age]
+  cue_information_requires_raw_past_only_availability: true
+  self_paced_weights: group_fit_on_15_development_people_not_WAY_weight_transfer
   one_selected_separately_for_each_source: true
   selected_before_candidate_EEG_scores: true
   candidate_families:
@@ -212,6 +243,7 @@ temporal_frequency_explanation:
     - every resolved model-family edge that changes between the two main horizons
   non_neural_context_and_peripheral_branch_unchanged: true
   factorized_EEG_input:
+    specification: outputs/component_details.md
     cutoff_before_decision_ms: 200
     discrete_boundary_assignment:
       older_raw_support: samples_strictly_before_t_minus_200ms
@@ -221,6 +253,19 @@ temporal_frequency_explanation:
       older_complement_background: causal_complementary_EEG_with_raw_support_strictly_before_t_minus_200ms
       R_recent: raw_or_broadband_EEG_on_half_open_interval_t_minus_200ms_to_t
       O_older_slow: causal_0p5_to_8Hz_EEG_with_raw_support_strictly_before_t_minus_200ms
+    exact_construction:
+      older_slow: development_fixed_one_sided_finite_filter_of_older_raw_support
+      older_complement: older_raw_voltage_minus_older_slow
+      shared_scaling: common_training_voltage_scale_with_mu_C_plus_mu_O_equal_mu_x
+      fixed_slots: "[C_scaled + o*O_scaled, r*R_scaled]"
+      mask_reconstruction_precedes_all_family_features_and_state: true
+      unmasked_raw_older_or_full_stream_cache_accessible: false
+      Q00_is_primary_zero_EEG_baseline: false
+      complement_may_retain_slow_information: true
+      constructed_O_mutation_with_C_fixed: representation_intervention_not_raw_band_removal
+      voltage_reconstruction_proves_model_equivalence: false
+      family_adapter: frozen_before_panel_within_original_family_capacity_and_fit_allowance_no_extra_search
+      failed_equivalence_may_expand_adapter: false
     tested_R_and_O_blocks_have_nonoverlapping_raw_time_support: true
     fixed_causal_filter_delay_warmup_gap_reset_and_boundary_rule: true
     centered_filter_future_padding_or_cross_cutoff_window: prohibited
@@ -309,6 +354,8 @@ secondary_new_model_search:
   result_is_primary_scientific_claim: false
 
 self_paced_calibration:
+  specification: outputs/component_details.md
+  recipe_state: selected_engineering_defaults_pending_development_validation_and_pre_score_freeze
   primary_condition: first_32_complete_events_per_person
   event_order: chronological
   calibration_prefix_excluded_from_scoring: true
@@ -325,19 +372,35 @@ self_paced_calibration:
     - [300, 600]
     - [600, 900]
   reference_group: over_900ms
+  probability_transform: softmax_inverse_temperature_times_stable_logits_plus_post_temperature_group_offsets
+  fitted_temperature_coordinate: positive_inverse_temperature_alpha
+  packet_contains_natural_at_risk_stillness_not_positive_event_windows_only: true
+  outcomes_beyond_prefix_end_may_enter_likelihood: false
+  guard_labels_may_update_models: false
+  same_suffix_inference_state_initialization_for_both_conditions: true
   objective: natural_prevalence_weighted_censoring_aware_19_category_negative_log_likelihood
+  zero_complete_bins:
+    right_censored: no_likelihood_information
+    observed_first_bin_onset: contributes_negative_log_first_bin_probability
   encoder_update: false
   spatial_projection_update: false
   individual_50ms_category_bias_update: false
+  feature_scaling_parameter_update: false
   fit_separately_for_each_scored_model: true
   same_packet_algorithm_and_parameter_budget_for_every_model: true
   values_required_before_use:
-    regularization_strength: null
-    parameter_bounds: null
-    optimizer: null
-    maximum_iterations: null
-    convergence_tolerance: null
-    deterministic_failure_rule: null
+    regularization_strength: 0.01
+    penalty: squared_inverse_temperature_departure_from_one_plus_sum_squared_horizon_offsets
+    parameter_bounds:
+      inverse_temperature_alpha: [0.25, 4.0]
+      each_horizon_offset: [-3.0, 3.0]
+    optimizer: float64_L_BFGS_B
+    maximum_iterations: 200
+    convergence_tolerance:
+      projected_gradient: 0.000001
+      function_change: 0.000000001
+    solution_acceptance: finite_bounded_converged_and_objective_not_worse_than_identity_beyond_1e_minus10
+    deterministic_failure_rule: retain_identity_flag_fallback_no_drop_retry_or_retuning
   zero_label_transfer_role: stricter_secondary_result
   full_local_refit:
     role: descriptive_upper_bound_only
@@ -582,9 +645,9 @@ readiness:
   remaining:
     - separated_development_and_held_out_data_views
     - direct_clock_channel_sampling_and_gap_checks
-    - exact_onset_and_stillness_rules
+    - executable_frozen_onset_and_stillness_rules_and_supported_timing_bound
     - executable_reference_models_and_source_specific_non_neural_baselines
-    - complete_32_event_calibration_values
+    - development_validated_and_pre_score_frozen_32_event_calibration_recipe
     - executable_fixed_shape_recent_by_older_slow_factorial_models
     - factorized_full_reference_equivalence_margin_and_interaction_margin
     - both_forbidden_block_mutation_tests_and_numerical_tolerance

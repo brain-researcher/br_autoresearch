@@ -1,185 +1,260 @@
-# Counterexample-Guided Exact Theorem Discovery for BOLD Targets
+# When Does a BOLD Observation Determine a Latent Target?
 
-## Authority and exposure boundary
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
+EP13 is a reusable technical reference and lemma package based on classical
+linear estimability; the present result does not establish sufficient
+standalone research-paper novelty.
 
-This is the current local Episode 13 contract. It defines the scientific
-question and constraints; it grants no compute or locked-audit access and does
-not award a reward or establish a result. Prior exact cases and their answers
-are exposed development facts; no deleted local artifact is a runtime
-dependency.
+## The question in plain language
 
-The episode follows
-[`../ADAPTIVE_SEARCH_PROTOCOL.md`](../ADAPTIVE_SEARCH_PROTOCOL.md). It treats
-AI-scale iteration as counterexample-guided inductive synthesis (CEGIS), not
-as an empirical benchmark. Exact proof or exact refutation—not the number of
-tested matrices—is the scientific terminal.
+A BOLD analysis can lose most of a latent neural matrix and still determine one
+prespecified scalar contrast exactly. EP13 asks when that happens.
 
-## Adaptive mathematical question
-
-For the exact rational finite-dimensional model
+For one fixed group or run, let
 
 \[
-A_g=RSH_g,\qquad Y=A_g B_g^\top P^\top,\qquad
-\tau=c_g^\top B_gs_g,
+X=B^\top,\qquad Y=A X P^\top,\qquad \tau=s^\top Xc.
 \]
 
-what are the weakest sufficient-and-necessary conditions under which the
-prespecified scalar `tau` is uniquely determined by `Y` for every admissible
-latent matrix `B_g`?
+X is latent. Y is observed. A is the known temporal observation operator, P is
+the known spatial observation operator, and tau is the one target fixed before
+seeing Y.
 
-With a declared vectorization convention, the starting conjecture family uses
-`M = P kron A_g` and `ell = c_g kron s_g` and relates:
+The scientific question is not whether X can be reconstructed. It is:
 
-- target membership in `row(M)`;
-- containment `ker(M) subset ker(ell^T)`;
-- rank preservation after appending `ell^T`;
-- exact readout or target-changing null certificates; and
-- factorization into temporal and spatial row-space conditions, including all
-  zero-target and non-square cases.
+> Do all latent matrices that produce the same observed Y also produce the
+> same value of tau?
 
-The system may discover a shorter proof, remove an unnecessary assumption,
-find an exact counterexample, or repair the theorem to a correct bounded
-statement. It may not replace exact algebra with floating-point agreement.
+![EP13: one scalar target and observationally indistinguishable latent matrices](outputs/ep13_conceptual_question-v2.png)
 
-## Development and audit roles
+Classical linear-estimability illustration for known operators, exact
+observations and unrestricted X. The target is identifiable iff
+`c = 0`, `s = 0`, or both `s ∈ row(A)` and `c ∈ row(P)`.
+Panel C asks whether every pair producing the same Y has the same scalar;
+colored rectangles are symbolic matrices/vectors, not numerical data.
+[Exact imagegen prompt set](outputs/ep13_conceptual_question-v2-prompt.md).
 
-- **Exposed development evidence:** the historical V3 bundle, including 13
-  valid exact cases and four invalid-input controls, plus every counterexample
-  generated during CEGIS. These cases guide conjecture repair and can never be
-  called confirmation.
-- **Exact proof workspace:** symbolic derivations and machine-replayable
-  rational certificates. This is the only source of universal support.
-- **Locked implementation audit:** a separately authored exact verifier and a
-  frozen generated-case rule, held out from controller feedback until one
-  post-lock run. It can detect implementation or orientation errors, but its
-  finite cases cannot establish a universal theorem.
+## Exact setup
 
-There is no empirical participant dataset, biological replication, or
-statistical train/test split.
+All dimensions are positive integers. The known objects are
 
-## Bounded conjecture grammar
+| Object | Shape | Role |
+| --- | --- | --- |
+| A | T x V | temporal observation operator |
+| P | Q x K | spatial observation operator |
+| s | length V | temporal target direction |
+| c | length K | spatial target direction |
+| X = B^T | V x K | latent matrix, free over all rational matrices |
+| Y | T x Q | exact observation A X P^T |
 
-Each trial is one structured conjecture package, not an arbitrary essay. Its
-grammar is limited to:
+The rational field is used so certificates can be replayed exactly. The
+mathematical equivalence holds over any field for which the stated finite-
+dimensional linear algebra is valid.
 
-- **base operator statement:** row-space membership, kernel annihilation, or
-  rank-augmentation equality for `M` and `ell`;
-- **certificate form:** exact readout `w` with `M^T w = ell`, exact
-  observation-preserving witness `delta` with `M delta = 0` and
-  `ell^T delta = 1`, or a factorized `u,v` construction;
-- **factorization clause:** temporal condition on `s_g` and `A_g`, spatial
-  condition on `c_g` and `P`, their conjunction, or an explicit statement that
-  only the full operator criterion is valid;
-- **case partition:** both targets nonzero, `s_g = 0`, `c_g = 0`, and shape/
-  validity rejection cases;
-- **assumption set:** compatible finite dimensions, exact rational entries,
-  declared vectorization, and selected model-validity assumptions such as
-  idempotence of `R`; and
-- **repair operator:** add/remove one assumption, split one case, correct a
-  Kronecker orientation, weaken an equivalence to an implication, or replace
-  a false factorized clause while retaining the strongest proven full-operator
-  result.
+If an application constructs A = R S H, that decomposition is part of the
+application model, not an assumption needed by the theorem. A square
+idempotent R may be non-symmetric. Whenever a temporal readout is expanded
+through the decomposition, the correct equation uses
+A^T = H^T S^T R^T.
 
-The grammar excludes empirical HRF fitting, numerical conditioning claims,
-approximate tolerances as proof, participant data, and unconstrained theorem
-generation outside this observation model.
+The theorem below requires X to range freely over the full V x K vector space.
+A restricted latent family would be a different problem: for an affine family
+X0 + D, the target need only annihilate invisible directions inside D.
 
-## Objective, constraints, and nonterminal incumbent
+## Coordinate convention
 
-Candidate conjectures are ordered lexicographically:
+Use column-major vectorization and freeze
 
-1. no known exact counterexample and all proof obligations discharged;
-2. greatest valid scope with the fewest assumptions;
-3. complete handling of zero, asymmetric, non-square, and invalid-input cases;
-4. independently replayable certificates; and
-5. simplest theorem and proof among equally general correct candidates.
+\[
+x=\operatorname{vec}(X),\qquad
+y=\operatorname{vec}(Y),\qquad
+M=P\otimes A,\qquad
+\ell=c\otimes s.
+\]
 
-Until a complete exact proof or exact refutation is independently replayed,
-the incumbent is a nonterminal conjecture. Passing thousands of finite cases
-does not promote it. Every failed proof obligation and counterexample is
-append-only evidence and must generate either a grammar-valid repair or a
-recorded dead end.
+Then
 
-## CEGIS stages
+\[
+y=Mx,\qquad \tau=\ell^\top x.
+\]
 
-1. **Specification lock:** freeze dimensions, vectorization, admissibility,
-   exact serialization, proof obligations, grammar, and malformed-input rules.
-2. **Independent tooling:** implement a rational checker and certificate
-   replay path without importing the historical evaluator, cases, expected
-   labels, constants, solver, or precomputed answers.
-3. **Coverage stage:** instantiate conjectures for all base criteria,
-   factorization clauses, and zero/nonzero partitions and challenge them with
-   constructive exact cases.
-4. **CEGIS loop:** for each conjecture, attempt a symbolic proof and in
-   parallel search exact small-dimensional counterexamples. A counterexample
-   is minimized, replayed, entered into the permanent corpus, and used to
-   produce a single declared repair.
-5. **Theorem lock:** place one theorem or precise refutation, its assumptions,
-   proof, certificates, verifier revision, generated-case rule, seed, and
-   audit command in a dated write-once record.
-6. **Audit once:** run the separately authored verifier and frozen generated
-   cases exactly once against the locked package. No audit result may silently
-   alter the theorem; failure invalidates the lock and requires a new episode.
-7. **Terminal adjudication:** accept only an exact proof or exact
-   counterexample/refutation with a proved corrected statement.
+The order matters. With vec(B) or vec(Y^T), a commutation matrix or a different
+Kronecker order is required. An implementation audit must replay the two
+identities above, not merely compare yes/no identifiability labels.
 
-## Mandatory falsifiers
+## Main theorem
 
-- a rank-deficient full operator with a nonzero identifiable target;
-- temporal-only, spatial-only, and simultaneous information loss;
-- `s_g = 0`, `c_g = 0`, and both zero;
-- non-square asymmetric matrices that reveal Kronecker/vectorization order;
-- a non-symmetric idempotent residualizer;
-- valid cases with nontrivial null spaces and independently replayed readout
-  or target-changing certificates;
-- incompatible shapes, malformed rationals, and non-idempotent residualizers;
-- exhaustive enumeration over a frozen bounded small-integer matrix family;
-  and
-- property-based dual construction: generate row-space targets from `M^T w`
-  and nonidentifiable targets with a certified null direction.
+For known compatible A, P, c, and s, with X ranging over all rational V x K
+matrices, the following statements are equivalent:
 
-Ablations must separately remove the row, kernel, rank, certificate, and
-factorization clauses so that no equivalence is accepted only because another
-checker supplied the answer.
+1. tau is uniquely determined by Y for every latent X.
+2. ell belongs to the row space of M.
+3. ker(M) is contained in ker(ell^T).
+4. Appending ell^T does not increase rank:
+   rank([M; ell^T]) = rank(M).
+5. There is an exact readout vector w such that M^T w = ell; then
+   tau = w^T vec(Y).
 
-## Numeric search contract
+Because both the observation and target are separable, these equivalent
+conditions reduce further to
 
-- minimum conjecture trials: **16**;
-- maximum conjecture trials: **64**;
-- patience: **12** consecutive completed conjecture trials without a strictly
-  better lexicographic incumbent, active after trial 16;
-- total compute ceiling: **256 CPU-core-hours**;
-- per-trial ceiling: **8 CPU cores**, **32 GiB RAM**, **4 wall-hours**;
-- overall wall-clock ceiling: **72 hours**;
-- GPU allocation: **0**;
-- all conjectures, assumptions, proof attempts, counterexamples, repairs,
-  exact certificates, checker outputs, and resource records are retained.
+\[
+\boxed{
+c=0\quad\text{or}\quad s=0\quad\text{or}\quad
+\bigl(c\in\operatorname{row}(P)\ \text{and}\
+s\in\operatorname{row}(A)\bigr).
+}
+\]
 
-Patience or resource exhaustion may close the search as unresolved; it can
-never turn finite coverage into a theorem.
+This disjunction is the complete result. The zero branches are not cosmetic:
+if c = 0 or s = 0, then tau is identically zero and therefore identifiable
+even when the other row-space condition fails.
 
-## Lock, one-shot audit, and terminals
+## Why the theorem is true
 
-After theorem lock, the audit verifier runs once. A failing audit produces an
-invalidated-lock record and a non-success terminal for this episode; further
-repair requires a newly registered episode with a new lock.
+Two latent vectors x1 and x2 give the same observation exactly when their
+difference lies in ker(M). Their targets agree exactly when ell^T kills that
+difference. This proves the kernel criterion. Finite-dimensional row-space/
+null-space duality gives the row-space condition, rank preservation, and
+existence of a readout.
 
-Valid terminals are:
+For nonzero c and s,
 
-- `candidate_ready_theorem`: a complete exact proof covers the declared
-  finite-dimensional family, all case partitions, and independently replayed
-  certificates; the finite audit is consistent but is not the proof;
-- `candidate_ready_refutation`: an exact minimized counterexample refutes the
-  starting conjecture and a corrected bounded statement is itself exactly
-  proved;
-- `closed_unresolved`: search budget ends without proof or complete bounded
-  refutation; or
-- `technical_failure`: the exact contract, checker independence, certificate
-  replay, or lock/audit integrity is ill-defined.
+\[
+\operatorname{row}(P\otimes A)
+=\operatorname{row}(P)\otimes\operatorname{row}(A).
+\]
 
-The result concerns only a fixed exact rational linear observation operator.
-It does not establish numerical stability, robustness to HRF or preprocessing
-uncertainty, biological validity, neural mechanism, reverse inference, or the
-assumptions of any real experiment. The two exact positive terminals map to
-canonical `candidate_ready`; unresolved maps to `closed_no_candidate`; an
-invalid exact contract or audit maps to `technical_failure`.
+A nonzero pure tensor c ⊗ s lies in that tensor-product subspace if and
+only if each factor lies in its corresponding row space. The zero-target
+branches are handled separately.
+
+The proof is short enough to write directly. Finite case search can test an
+implementation, but it is neither the proof nor a substitute for it.
+
+## Constructive positive certificate
+
+In the nonzero identifiable branch, choose exact vectors u and v satisfying
+
+\[
+P^\top u=c,\qquad A^\top v=s.
+\]
+
+Then
+
+\[
+\tau=v^\top Y u.
+\]
+
+Equivalently, w = u ⊗ v is a vectorized readout certificate. The readout
+need not be unique; any exact solution that replays correctly is valid. If
+c = 0 or s = 0, use the zero readout.
+
+## Constructive negative certificate
+
+If the row-space condition fails, exact linear algebra supplies a target-
+changing invisible perturbation.
+
+- If s is outside row(A), choose z in ker(A) with s^T z != 0 and a vector d
+  with c^T d != 0.
+- If c is outside row(P), choose d in ker(P) with c^T d != 0 and a vector z
+  with s^T z != 0.
+
+After exact normalization, the rank-one perturbation
+
+\[
+\Delta X=z d^\top
+\]
+
+satisfies
+
+\[
+A\Delta X P^\top=0,\qquad s^\top\Delta Xc=1.
+\]
+
+Thus X and X + Delta X produce the same Y but targets that differ by one. That
+pair is a complete refutation of identifiability.
+
+## Required exact examples
+
+The proof-carrying implementation must include a small fixed suite whose role
+is to detect transcription, orientation, and certificate errors:
+
+1. a rank-deficient M with an identifiable nonzero target;
+2. temporal loss only;
+3. spatial loss only;
+4. simultaneous temporal and spatial loss;
+5. c = 0, s = 0, and both zero;
+6. an observed numerical value tau = 0 that is nevertheless nonidentifiable;
+7. non-square asymmetric matrices that distinguish P kron A from A kron P;
+8. a non-symmetric idempotent residualizer that exposes an erroneous use of R
+   instead of R^T;
+9. nonunique valid readouts; and
+10. incompatible shapes, malformed rationals, zero dimensions, and invalid
+    application-model inputs as parser/model rejections rather than theorem
+    counterexamples.
+
+The suite must replay the observation identity, target identity, readout, and
+null witness. Agreement on a Boolean label alone is insufficient because a
+simultaneous coordinate permutation can preserve that label while reading the
+wrong scalar.
+
+## What is genuinely learned
+
+The useful conclusion is a target-level statement:
+
+- the full latent matrix may be nonidentifiable while one scalar target is
+  exactly identifiable;
+- temporal and spatial information loss are separately necessary only in the
+  nonzero target branch;
+- a positive conclusion includes an explicit formula for reading the target
+  from Y; and
+- a negative conclusion includes two observationally indistinguishable latent
+  matrices with different targets.
+
+This is more informative than reporting the rank of the full observation
+operator or a finite battery of passing examples.
+
+## Work program
+
+EP13 is now a direct theorem-and-verification episode, not an adaptive theorem
+search.
+
+1. **Statement freeze:** freeze dimensions, the full latent domain, the
+   column-major convention, the theorem, and application-model validity rules.
+2. **Proof package:** write the general linear criterion, separable corollary,
+   zero cases, constructive readout, and constructive null witness.
+3. **Independent exact replay:** implement a small rational checker from the
+   frozen statement without importing historical labels or evaluator code.
+4. **Orientation and edge-case suite:** replay the fixed examples above and
+   inspect certificates, not only labels.
+5. **Lock and review:** freeze one proof package and one checker revision before
+   any separately authored replay. A replay failure invalidates the package;
+   it does not trigger an adaptive trial campaign.
+
+There is no scientific reason to require 16--64 conjecture trials, patience,
+or hundreds of CPU-core-hours after the exact proof is available.
+
+## Completion and claim boundary
+
+The local theorem package is ready for scientific review only when:
+
+- every equivalence is proved over the declared full latent domain;
+- the zero branches are explicit;
+- the readout and null certificates replay exactly;
+- the orientation examples verify the actual vectorization identities;
+- an independently authored checker agrees with the frozen package; and
+- no finite suite is described as universal proof.
+
+A valid positive conclusion is an exact theorem for this fixed linear model. A
+valid negative conclusion is an exact counterexample to a proposed statement
+plus a proved corrected statement. An implementation or specification failure
+is technical failure, not scientific refutation.
+
+The result does **not** establish numerical stability, efficiency under noise,
+robustness to uncertain A or P, HRF validity, biological validity, neural
+mechanism, reverse inference, or recoverability of the full latent matrix.
+Those are separate questions and require a new contract.
+
+This episode remains local and non-canonical. No Society decision, reward,
+confirmation, or Landscape transition is implied.

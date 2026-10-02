@@ -1,5 +1,30 @@
 # Outputs
 
+## Current paper design — 2026-09-30
+
+The [scientific goal](../GOAL.md) and [paper plan](paper_plan.md) now place
+the within-A terminal-profile contrast across positively recorded co-target
+contexts at the center of a planned biological follow-up. Source-space modules,
+generic terminal diversity, and co-target laminar association are published
+baselines; the candidate must add a consequential pathway prediction and
+branch-level explanation beyond flexible continuous source geometry.
+
+![Within-target implementation schematic](ep10_within_target_implementation-v2.png)
+
+Schematic, not observed data. B/C contexts may overlap, zeros remain unknown,
+and no target or profile effect is selected here. The built-in imagegen
+[final prompt](ep10_within_target_implementation-v2-prompt.md) is saved locally.
+The explicit B+C example illustrates overlapping positive contexts; the
+pooled/context-resolved drawings use the same schematic arbor locations.
+Previous terminal and target-combination figures remain historical.
+
+The new terminal endpoint is planned, not activated; its measurement and
+evaluation-access contract remain to be frozen. Existing execution contracts
+and attempts are unchanged by this design. See the latest
+[execution-log entries](experiment_log.md) for runtime state.
+
+## Historical Stage-0 narrative
+
 EP10 Stage 0 started on 2026-09-26 UTC under run
 `ep10-stage0-20260926T063634Z`. `inputs/` remains read-only. Transient work is
 under `$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/`; durable

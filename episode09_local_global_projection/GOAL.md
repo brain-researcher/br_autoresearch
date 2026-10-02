@@ -1,91 +1,106 @@
-# Can nearby dendrites foreshadow a neuron’s distant axon targets?
+# At what biological resolution does dendrite–projectome coupling live?
+
+[Scope and novelty review, 2026-10-02](outputs/scope_novelty_review_20261002.md).
 
 ## The question in plain language
 
-Two neurons can sit in the same source region, occupy the same cortical layer, and
-look equally well reconstructed. Yet their axons may reach different parts of the
-brain.
+Two neurons can belong to the same cortical IT population, sit in the same source
+region and layer, and look equally well reconstructed, yet send axons to different
+sets of exact brain targets.
 
-EP09 asks whether the dendritic tree close to each soma contains reproducible
-information about those distant axonal destinations. The comparison is deliberately
-strict: first predict each neuron’s distal target-family detections from anatomical
-context and measurement quality alone, then ask whether adding that neuron’s own
-native dendrites improves prediction in entirely new brains.
+EP09 asks whether that remaining target variation belongs only to anatomical context
+or a shared cell class, or whether it is coupled to the particular neuron's own
+dendrite. Within held-out biological groups from SEU-A1876, the primary comparison
+gives each recipient either its own native dendritic representation or a coherent
+dendritic representation from a tightly matched peer. The axonal target vector always
+stays with the recipient.
 
-The episode is not asking whether dendrites and axons can be classified separately,
-or whether a flexible model can memorize cell types. It asks whether local input-side
-structure carries information about long-range output organization after the obvious
-anatomical and technical explanations have been held fixed.
+A context-only model and the conventional native-dendrite-versus-context comparison
+remain required benchmarks. They are not the novelty claim. The paper-level question
+is whether the correct dendrite beats matched wrong dendrites for **exact distal
+targets**, after source, layer, independently defined non-axon class, soma location,
+quality, and biological group have been held fixed.
 
 ## What would make the result scientifically useful?
 
-A small improvement in a prediction score would establish only that dendrites add
-some information. A stronger paper must also explain the organization of that
-information:
+A small M1-over-M0 improvement would establish only that dendrites add information, a
+question close prior work has already addressed. A paper-level result must establish
+the following hierarchy:
 
-1. Which part of the dendritic tree matters: near-soma branches, more distal branches,
-   branch order, orientation, or a distributed combination?
-2. Does the relevant dendritic scale depend on the independently defined family of
-   axonal targets?
-3. Does the same scale-by-target pattern recur in held-out brains?
-4. Does the result survive controls for position, morphology size, reconstruction
-   quality, batch, model capacity, and shared estimation error?
+1. The correct dendrite beats coherent matched-donor dendrites by a frozen
+   `delta_cell` margin in held-out biological groups.
+2. That advantage is present for exact atlas targets rather than only after pooling
+   them into broad families.
+3. The correct-minus-matched-donor advantage has a reproducible dendritic-scale ×
+   exact-target structure.
+4. The result survives context, quality, capacity, donor-overlap, calibration, and
+   group-influence controls.
 
-The intended contribution is therefore a reproducible rule linking local dendritic
-organization to distal target-family organization—not merely a leaderboard win for a
-larger feature set.
+The intended contribution is therefore a biological-resolution adjudication:
+anatomical context versus shared class versus within-class cell-level residual
+coupling. Even the strongest result cannot prove unique neuronal identity, because an
+unmeasured finer subtype could still explain the residual association.
 
 ## Why this is not already answered
 
-Large whole-brain morphology studies have already described variation in dendrites,
-distal axonal arbors, and projection motifs in the SEU-A1876 resource
-([Peng et al., 2024](https://doi.org/10.1038/s41467-024-54745-6)). Other single-neuron
-studies have reported associations—and important exceptions—between dendritic subtype
-and projection pattern
-([Gao et al., 2023](https://doi.org/10.1038/s41593-023-01339-y)). A newer atlas also
-links dendritic microenvironments to long-range projections
-([Muñoz-Castañeda et al., 2025](https://doi.org/10.1038/s41593-025-02119-6)).
+[Peng et al. (2021)](https://doi.org/10.1038/s41586-021-03941-1)
+reported a scoped tension that EP09 can adjudicate: within cortical L2/3, L4,
+and L5 IT populations, individual target-subset selection appeared unrelated to soma
+depth or dendritic morphology. This was a descriptive observation, not a general
+theorem of random wiring.
 
-EP09 must therefore not claim that dendrites and axons are related for the first time.
-Its narrower opening is a prospective, same-cell test that separates four questions
-usually mixed together:
+The broad relationship is no longer open. [Gao et al.
+(2023)](https://doi.org/10.1038/s41593-023-01339-y) established dendrite–axon
+correspondence and important exceptions in complete single neurons. [Liu et al.
+(2026; online 2025)](https://doi.org/10.1038/s41593-025-02119-6) linked dendritic
+microenvironments to long-range organization. Most decisively, [Sorensen et al.
+(2026)](https://doi.org/10.1038/s41586-026-10424-8) directly connected local
+morphology, cortical position, multimodal identity, and specific projection targets.
+Therefore, a basic M1-over-M0 result is a benchmark or confirmation, not the new
+discovery.
 
-- information already supplied by source anatomy and measurement quality;
-- extra information in the neuron’s own native dendritic tree;
-- whether that extra information has a stable dendritic-scale × target-family
-  structure;
-- whether the structure repeats in brains that played no role in model or hypothesis
-  selection.
-
-A focused literature check must be completed before launch. If the exact prospective
-scale-by-family prediction has already been established in comparable whole-neuron
-data, the episode should narrow its claim or join a broader morphology paper rather
-than relabel an existing result.
+The source lineage also limits the rhetoric. [Liu et al.
+(2024)](https://doi.org/10.1038/s41467-024-54745-6) report that 1,736 of the
+1,876 SEU-A1876 cells are refinements of previously released neurons and only 140 are
+newly annotated. EP09 is predominantly a prospective adjudicative reanalysis of the
+Peng-2021 data lineage. Holding out biological groups supports internal grouped
+reproducibility; it is not independent biological replication.
 
 ## Explanations that the experiment must separate
 
 | Explanation | What we should observe | What would count against it |
 |---|---|---|
-| **Structured cell-wide organization** | A neuron’s own dendrites improve distal-target prediction, particular dendritic scales matter for particular target families, and that pattern repeats in held-out brains. | Only a weak overall gain appears, the scale-by-family pattern changes across brains, or shuffled target families work equally well. |
+| **Within-class cell-level residual coupling** | The correct dendrite beats coherent matched-donor dendrites for exact targets, and the scale × exact-target advantage repeats across held-out biological groups. | Matched donors predict equally well, or the exact-target structure does not recur. |
 | **Residual context or measurement proxy** | Apparent dendritic value disappears when position, source, layer, total size, batch, and reconstruction quality are matched or when nuisance features receive the same modeling opportunity. | The own-cell dendritic advantage survives all matched controls and is not concentrated in one group. |
-| **Shared morphology-class organization** | Dendritic information and the scale-by-family pattern repeat, but a tightly matched neuron’s dendrite predicts about as well as the correct cell’s dendrite. | The correct-cell dendrite has a reproducible advantage over matched swaps. |
-| **Diffuse dendritic information** | Native dendrites improve prediction, but no stable scale-by-family organization can be recovered. | A prespecified scale-by-family pattern and ontology advantage repeat in the audit groups. |
-| **Context is sufficient** | The uncertainty interval rules out a scientifically meaningful dendritic improvement, while synthetic-signal checks show the pipeline could have detected one. | Native dendrites clear the frozen improvement margin in new brains. |
+| **Shared class or neighborhood organization** | Native dendrites beat context, but a tightly matched peer's coherent dendritic residual predicts about as well as the correct cell's. | The correct-cell dendrite has a reproducible advantage over matched donors. |
+| **Benchmark-only dendritic information** | Native dendrites improve over context, but neither correct-over-swap nor a stable exact-target structure is established. | Correct-over-swap and the frozen exact-target template both pass. |
+| **Context is sufficient** | The interval rules out the frozen meaningful M1-over-M0 gain and synthetic checks show the benchmark could have detected it. | Native dendrites clear the frozen benchmark margin in held-out groups. |
 
-These are prospective alternatives. Explanatory follow-ups may refine the scientific
-interpretation, but they may not rewrite the result of the primary comparison.
+These are prospective alternatives. A benchmark result cannot rescue a failed or
+unavailable correct-versus-matched-donor primary. A positive primary supports
+within-class cell-level residual coupling, not unique neuronal identity.
 
 ## Data and unit of analysis
 
 The primary resource is the SEU-A1876 collection of whole-neuron reconstructions in
-Allen CCFv3 space. Each eligible neuron contributes:
+Allen CCFv3 space. The decisive population is cortical L2/3, L4, and L5 IT
+neurons **only if** IT membership is available from genetic, experimental, or source
+metadata whose lineage does not use the cell's axonal target vector. The provider
+`Projection class` field is axon-derived and cannot define eligibility. If an
+outcome-independent IT definition and its matched-donor support do not exist, the
+headline primary is not executable and the episode must stop or downgrade to a broad
+benchmark study.
+
+Each eligible neuron contributes:
 
 - one native dendritic reconstruction near the soma;
 - source-region, cortical-layer, soma-location, batch, and dendrite/acquisition-quality
   descriptors that do not depend on axonal geometry;
 - a distal axonal-arbor outcome for each frozen target region;
 - a biological group identifier, preferably animal or brain and otherwise the most
-  conservative documented specimen unit.
+  conservative documented specimen unit; and
+- outcome-independent IT-label provenance plus original-release versus newly
+  annotated source lineage.
 
 The basic observation is a **cell–target pair**, but splitting and uncertainty are at
 the biological-group level. Neurons from one brain may never be divided between
@@ -100,10 +115,11 @@ For each cell and target, the outcome is:
 `uncertain` is missing, never a negative label. The endpoint is reconstructed distal
 arbor detection, not synaptic connectivity, transmission strength, or causal influence.
 
-## The first paired test
+## The primary biological test
 
-Every eligible cell and every frozen target enters the comparison. There is no
-post-hoc selection of targets with favorable results.
+Every eligible cortical IT cell and every frozen exact target enters the comparison.
+There is no post-hoc selection of targets with favorable results. Broad target
+families are explanatory summaries, not the primary outcome resolution.
 
 ### M0: anatomical context only
 
@@ -111,6 +127,7 @@ M0 predicts distal target detections using information available without seeing 
 cell’s dendritic tree:
 
 - source region and cortical layer;
+- independently defined non-axon class;
 - soma coordinates and prespecified spatial transforms;
 - batch or specimen descriptors;
 - acquisition and dendrite-reconstruction quality known without measuring axonal
@@ -120,19 +137,41 @@ Axon-derived coverage or completeness may decide whether a target is observable 
 may stratify a sensitivity analysis. It never enters M0 because even a target-blind
 axon summary can reveal projection extent or breadth.
 
-### M1: the same context plus the neuron’s own dendrites
+### M1-correct: the same context plus the neuron's own dendrite
 
-M1 receives every M0 variable plus outcome-blind summaries of the native dendritic
+M1-correct receives every M0 variable plus outcome-blind summaries of the native dendritic
 tree. Candidate summaries may cover topology, Sholl-like radial profiles, path length,
 branch order, tortuosity, orientation, and prespecified topological descriptors. All
 feature definitions, transformations, and missingness rules are learned or frozen
 using development data only.
 
-M0 and M1 must use the same cells, targets, outer folds, prediction family, tuning
+M0 and M1-correct must use the same cells, targets, outer folds, prediction family, tuning
 opportunity, calibration opportunity, and adaptive-search exposure. The comparison is
 about the information source, not unequal model capacity.
 
-### N0: capacity-matched nuisance dendrites
+### M1-swap: the same fitted model plus a coherent matched-donor dendrite
+
+Development selects and fits the M1 pipeline using correct development cell–dendrite
+pairings. For primary evaluation, the outcome model and calibrator remain fixed. Each
+held-out recipient is evaluated repeatedly after replacing its entire commonly
+observed standardized dendritic residual representation with that of a prespecified
+matched donor while retaining the recipient's context, exact target vector, and
+missingness support.
+
+Donors are matched within biological group × source × layer × independently defined
+non-axon IT class, with frozen calipers on soma position and axon-independent quality.
+A stable development-only dendritic neighborhood may be added to tighten matching but
+cannot use axonal information. Multiple frozen no-fixed-point donor plans are averaged
+so the result cannot depend on one convenient derangement. No outcome model is refit
+on swapped training pairings for this primary comparison.
+
+Because the residual is transported into the recipient's context and recipient
+missingness is reapplied, this comparator is called a **coherent matched-donor
+dendritic residual**, not a literal untouched native dendrite. Failed overlap,
+covariance, missingness, or donor-count diagnostics make the primary unavailable.
+Matching is never loosened after outcomes are inspected.
+
+### N0: supporting capacity-matched nuisance dendrites
 
 A larger feature block can improve prediction even when its entries are biologically
 meaningless. N0 is therefore a bank of 20 deterministic false-dendrite blocks, not one
@@ -149,7 +188,7 @@ calibration, and held-out groups are generated separately, and outcomes are neve
 Training-only imputation supplies a donor value before the recipient’s original
 missingness mask is reapplied.
 
-The development search selects one M1 representation, learner, calibrator, and set of
+The development search selects one M1-correct representation, learner, calibrator, and set of
 hyperparameters. Each nuisance member then receives that locked pipeline and is refit
 on its own false features; nuisance members do not run 20 additional searches. Thus
 they match the chosen model’s capacity without pretending to have search exposure that
@@ -158,10 +197,10 @@ the resource budget does not provide.
 For nuisance member \(j\), define
 
 \[
-R_{gj}=B_g(N_j)-B_g(M1).
+R_{gj}=B_g(N_j)-B_g(M1_{\mathrm{correct}}).
 \]
 
-Positive values favor the real dendrite. M1 must have a positive simultaneous lower
+Positive values favor the real dendrite. M1-correct must have a positive simultaneous lower
 bound against every frozen nuisance member. The 20 generation seeds and conditional
 model freeze after development morphology validation. Diagnostics must show overlap
 and balance across source, layer, soma position, batch, and axon-independent QC, and
@@ -212,22 +251,41 @@ B_{gf}(m)=\frac{1}{|T_f|}\sum_{t\in T_f}
 \left(y_{git}-\hat p_{git}^{(m)}\right)^2,
 \]
 
-where \(T_f\) is the frozen subset of scored targets in family \(f\). The group-level
-dendritic gain is
+where \(T_f\) is the frozen subset of scored targets in family \(f\). This family score
+is secondary. The exact-target score used to build the explanatory matrix is
 
 \[
-D_g=B_g(M0)-B_g(M1),
+B_{gt}(m)=\frac{1}{n_{gt}}\sum_{i\in O_{gt}}
+\left(y_{git}-\hat p_{git}^{(m)}\right)^2.
 \]
 
-so positive values favor M1. The primary estimate gives every biological group equal
-weight:
+For frozen matched-donor plan \(j\), the group-level correct-cell advantage is
 
 \[
-\Delta_{\mathrm{Brier}}=\frac{1}{G}\sum_g D_g.
+C_{gj}=B_g(M1_{\mathrm{swap},j})-B_g(M1_{\mathrm{correct}}),
+\qquad
+C_g=\frac{1}{J}\sum_{j=1}^{J}C_{gj}.
+\]
+
+Positive values favor the recipient's correct dendrite. The headline primary estimand
+gives every biological group equal weight:
+
+\[
+\Delta_{\mathrm{cell}}=\frac{1}{G}\sum_g C_g.
+\]
+
+The conventional group-level native-dendrite gain remains a required supporting
+benchmark:
+
+\[
+D_g=B_g(M0)-B_g(M1_{\mathrm{correct}}),
+\qquad
+\Delta_{\mathrm{morph}}=\frac{1}{G}\sum_gD_g.
 \]
 
 This order prevents a large brain, a common target, or a target with unusually complete
-coverage from dominating the result.
+coverage from dominating either comparison. The same recipient cells, targets, and
+observable pairs must be used for M0, M1-correct, and every M1-swap plan.
 
 For development fold \(k\), \(T_k\) contains only candidate targets with the frozen
 coverage in every group participating in that fold and at least three positive and
@@ -241,41 +299,51 @@ audit detections remain sealed.
 
 ## What counts as a positive primary result
 
-The primary success rule is frozen before any shared audit outcome is opened. It must
-require all of the following:
+The primary success rule is frozen before any shared audit outcome is opened. It
+requires all of the following:
 
-1. the group-level uncertainty interval for \(\Delta_{\mathrm{Brier}}\) clears a positive
-   scientific margin, `delta_morph`;
-2. simultaneous lower bounds for \(R_{gj}\) clear zero against all 20 frozen
-   nuisance members;
-3. the conclusion survives every leave-one-group-out summary and is not driven by one
-   brain;
-4. probability calibration and score support pass their prespecified checks;
-5. synthetic-signal tests show that the locked pipeline could recover an effect at the
-   scientific margin under the available group structure.
+1. the group-level one-sided lower bound for \(\Delta_{\mathrm{cell}}\) exceeds the
+   positive scientific margin `delta_cell`;
+2. the supporting M1-correct-versus-M0 lower bound exceeds `delta_morph`;
+3. M1-correct beats the simultaneous capacity-matched nuisance envelope;
+4. every correct-versus-swap and benchmark leave-one-group summary is positive and no
+   single group controls the conclusion;
+5. donor balance, joint support, calibration, probability support, and common-pair
+   requirements pass; and
+6. synthetic tests show that the locked procedure can recover effects at both frozen
+   margins under the available group structure.
+
+M1-correct beating M0 without the correct-over-swap result is benchmark evidence only.
+If the donor pools or diagnostics are unavailable, the headline primary is unresolved;
+the matching rules are not relaxed and the benchmark cannot be relabelled as a positive
+primary.
 
 Because the audit may contain only eight biological groups, inference must be designed
-for small \(G\). Let \(\bar D\) and \(s_D\) be the equal-group mean and standard
-deviation of \(D_g\). Use separate one-sided 95% critical values for the lower and
-upper bounds:
+for small \(G\). Let \(\bar C\) and \(s_C\) be the equal-group mean and standard
+deviation of \(C_g\). Use separate one-sided 95% critical values for the lower and
+upper primary bounds:
 
 \[
-L_D=\bar D-c_Ls_D/\sqrt G,
+L_C=\bar C-c_{C,L}s_C/\sqrt G,
 \qquad
-U_D=\bar D+c_Us_D/\sqrt G.
+U_C=\bar C+c_{C,U}s_C/\sqrt G.
 \]
+
+The supporting \(D_g\) benchmark receives separately calibrated \(c_{D,L}\) and
+\(c_{D,U}\) values; it does not borrow the more favorable tail from the primary.
 
 For scenario mean \(\mu_s\), the signed errors are
 
 \[
-Z_L=(\bar D-\mu_s)/(s_D/\sqrt G),
+Z_{C,L}=(\bar C-\mu_s)/(s_C/\sqrt G),
 \qquad
-Z_U=(\mu_s-\bar D)/(s_D/\sqrt G).
+Z_{C,U}=(\mu_s-\bar C)/(s_C/\sqrt G).
 \]
 
 Each critical value is the larger of the ordinary one-sided Student-\(t\) value and a
-one-sided 99% upper confidence bound for the corresponding 95th percentile of \(Z_L\)
-or \(Z_U\), estimated from 50,000 calibration replicates per frozen scenario. This
+one-sided 99% upper confidence bound for the corresponding 95th percentile of
+\(Z_{C,L}\) or \(Z_{C,U}\), estimated from 50,000 calibration replicates per frozen
+scenario. The benchmark uses the same construction with \(D_g\) and its own tails. This
 separation matters when group contrasts are skewed. A disjoint set of 50,000 validation
 replicates then evaluates both values; the 99% Clopper–Pearson lower bound on each tail’s
 coverage must be at least 0.95 in every scenario. Scenario parameters, replicate
@@ -291,23 +359,26 @@ groups or a different prelaunch procedure and leaves the question unresolved.
 The interval assumes verified independent biological groups, a fixed target set and
 model, finite group variance, an equal-group target population, and a scenario envelope
 broad enough to include development-observed heterogeneity. Every leave-one-group mean
-must be positive, and removing any group may change \(\bar D\) by at most
-`delta_morph / 2`. A neuron-level interval that treats cells from the same brain as
+must be positive. Removing any group may change \(\bar C\) by at most
+`delta_cell / 2` and \(\bar D\) by at most `delta_morph / 2`. A neuron-level interval that treats cells from the same brain as
 independent is not acceptable. Nuisance and hierarchy max-\(t\) critical values use the
 same separated calibration/validation design, with Bonferroni-\(t\) as the conservative
 fallback.
 
-Three different quantities must not be confused:
+Four different quantities must not be confused:
 
 - `0.001` is an optimization patience threshold used during development;
-- `delta_morph` is the minimum scientifically meaningful primary improvement;
+- `delta_cell` is the minimum scientifically meaningful correct-over-swap primary
+  advantage;
+- `delta_morph` is the minimum supporting M1-correct-over-M0 benchmark improvement;
 - `0.002` is a secondary scope threshold for source-family heterogeneity, not a
   primary success margin.
 
-`delta_morph` and the exact source-family definition and support remain unresolved
-launch blockers until development-only feasibility work justifies and freezes them.
+Both scientific margins and the exact source-family definition and support remain
+unresolved launch blockers until development-only feasibility work justifies and
+freezes them.
 
-## The deeper prediction: dendritic scale should match target-family organization
+## The deeper prediction: a scale × exact-target correct-cell advantage
 
 The explanatory analysis asks whether the useful signal has a reproducible structure.
 The adaptive primary winner may omit a dendritic block, so it is not used to declare
@@ -324,40 +395,41 @@ requires a positive group-level lower bound for \(B_g(E0)-B_g(E1)\).
 
 Before outcomes are inspected, dendrites are divided into biologically interpretable
 blocks such as soma-centered radial shells and branch-order ranges. Numeric boundaries
-are frozen only after coordinate and sampling validation. Targets use one
-outcome-independent, non-overlapping anatomical cut of the Allen ontology. At least
-three families with at least three supported targets per family are required.
+are frozen only after coordinate and sampling validation. The decisive matrix retains
+each exact non-overlapping CCFv3 target as a separate column. One outcome-independent
+anatomical family cut is retained only for prespecified aggregation and hierarchy
+falsification.
 
-For dendritic block \(b\), target family \(f\), and group \(g\), define
+For dendritic block \(b\), exact target \(t\), and group \(g\), define
 
 \[
-L_{bfg}=B_{gf}(E1^{[b]})-B_{gf}(E1),
+S_{btg}=\frac{1}{J}\sum_j
+\left[B_{gt}(E1^{[b\leftarrow\mathrm{donor}\ j]})
+-B_{gt}(E1_{\mathrm{correct}})\right],
 \]
 
-where \(E1^{[b]}\) is a paired **retrained replacement pipeline**, not a post-fit
-feature edit. An outcome-free conditional generator for block \(b\), given E0 context
-and all other dendritic blocks, is learned inside each outer training fold and validated
-on held-out development morphology. For each of 10 frozen draws, the block is replaced
-in both training/calibration data and the held-out group; preprocessing, E1 fitting, and
-calibration are rerun. Audit generators are fit on full development only, and
-\(B_{gf}(E1^{[b]})\) averages the 10 complete refits.
+where the replacement block comes from the same frozen matched-donor bank used by the
+primary, with recipient context and missingness retained. E1 is trained and calibrated
+on correct development pairings; at held-out evaluation only block \(b\) is replaced.
+The donor identity is coherent across blocks within a plan, rather than being redrawn
+independently to manufacture a scale effect.
 
 Diagnostics cover conditional means, covariance, heteroscedasticity, multimodality,
-missingness, and joint support. Failure makes that block’s explanation unavailable. A
-post-fit, test-only permutation is prohibited. Positive \(L_{bfg}\) means unique
-predictive information conditional on context and the other blocks, not causal
-importance.
+missingness, and joint support. Failure makes that block's explanation unavailable. A
+post-hoc target or donor choice is prohibited. Positive \(S_{btg}\) means that the
+recipient's own block improves prediction for exact target \(t\) relative to a matched
+donor block; it does not establish causal importance.
 
-Development freezes the all-block basis, anatomical family cut, matrix entry order,
-and a robust scale for every entry. It also freezes a set of required sign entries whose
+Development freezes the all-block basis, exact-target entry order, anatomical family
+summary cut, and a robust scale for every entry. It also freezes a set of required sign entries whose
 development evidence clears a simultaneous threshold. The development template and
 each audit-group matrix are vectorized in that order and divided by the development
 scales. Matrix similarity is the cosine between the two vectors, which avoids rank ties.
 
-The structured scale-by-family prediction succeeds only if all of the following hold:
+The structured scale-by-exact-target prediction succeeds only if all of the following hold:
 
 1. the development template norm clears a positive `eta_matrix` threshold;
-2. every audit-group matrix has enough norm to define the cosine;
+2. every audit-group matrix clears the frozen positive `eta_matrix` norm threshold;
 3. the equal-group lower bound on cosine similarity exceeds `rho_matrix`;
 4. every required sign entry repeats under the frozen simultaneous procedure; and
 5. the fixed E1 dendritic increment is positive in audit groups.
@@ -367,13 +439,13 @@ unavailable, not evidence for diffuse biology. `eta_matrix`, `rho_matrix`, requi
 signs, scaling, and multiplicity freeze before audit.
 
 Development pseudo-audits must be nested: each one repeats the complete primary search
-and freeze, conditional-generator fitting, explanatory-model fitting, template
+and freeze, donor-bank construction, explanatory-model fitting, template
 estimation, sign selection, scaling, and decision. Calibration and validation
 pseudo-audits use disjoint groups or disjoint simulation seeds. This carries template
 uncertainty and winner selection into the error rate instead of comparing audit data to
 a template estimated once from all development groups.
 
-## Two decisive explanatory controls
+## Secondary anatomical falsification and primary interpretation
 
 ### Does real target organization beat an arbitrary hierarchy?
 
@@ -403,40 +475,27 @@ centroid-distance bins, and 20 assignments freeze before audit. If 20 valid matc
 assignments or the minimum family support cannot be constructed, the hierarchy
 explanation is unresolved rather than relaxed.
 
-### Does the correct dendrite belong to the correct cell?
+### How the correct-versus-donor primary is interpreted
 
-The cell-identity test deliberately preserves a coherent dendrite, unlike the nuisance
-bank. Development dendrites alone define a stable, outcome-free morphology-class
-partition; audit cells are assigned by the frozen rule. Within biological group and
-morphology class, a no-fixed-point swap transfers one donor’s **entire standardized
-dendritic residual vector** to the recipient, then applies the recipient’s context-
-specific location, scale, and missingness. The target outcome stays with the recipient.
+The primary deliberately preserves a coherent donor residual morphology, unlike the
+independent-block nuisance bank. The frozen class rule, donor plans, minimum donor
+count, common analysable set, and joint-support diagnostics are therefore part of the
+primary contract rather than a downstream explanation.
 
-The class rule, conditional model, seeds, minimum four donors per group-class, common
-analysable set, and joint-support diagnostics freeze before audit. Inadequate donors or
-failed overlap/covariance/missingness diagnostics make the identity explanation
-unavailable.
-
-Define
-
-\[
-C_g=B_g(E1_{\mathrm{swap}})-B_g(E1_{\mathrm{correct}}).
-\]
-
-Positive values favor the correct cell. A cell-specific claim requires the one-sided
-95% lower bound to exceed a frozen `delta_cell` margin. A shared morphology-class
-claim uses two one-sided 5% tests: its 90% equivalence interval
+A within-class cell-level residual-coupling claim requires the one-sided 95% lower
+bound for \(C_g\) to exceed `delta_cell`. A shared class or neighborhood interpretation
+uses two one-sided 5% tests: its 90% equivalence interval
 
 \[
 [\bar C-c_{C,L}s_C/\sqrt G,\;\bar C+c_{C,U}s_C/\sqrt G]
 \]
 
-must lie wholly inside `[-delta_cell, +delta_cell]`. The two cell-identity critical
+must lie wholly inside `[-delta_cell, +delta_cell]`. The two primary critical
 values are calibrated and independently validated for the lower and upper signed tails
 under the same frozen 50,000-plus-50,000 simulation design. Failure to prove either
-superiority or equivalence leaves cell specificity unresolved. Thus an equally
-predictive coherent swap can narrow the claim without being mislabeled as a measurement
-artifact.
+superiority or equivalence leaves the primary biological resolution unresolved. Even
+superiority is not evidence of unique neuronal identity: unmeasured finer subtype
+structure remains a possible explanation.
 
 ## Validity gates, explanation tests, and scope sensitivities
 
@@ -447,17 +506,18 @@ leakage, the same prediction pairs across models, a valid and available nuisance
 construction, group-level inference and influence, and adequate probability support
 and calibration. These are required for both positive and informative-negative claims.
 
-**The directional nuisance-superiority gate**—M1 beating all 20 nuisance members—is
+**The directional nuisance-superiority gate**—M1-correct beating all 20 nuisance members—is
 required only for a positive incremental-information claim. A true zero dendritic effect
 need not beat nuisance features for context sufficiency to be interpretable; the
 nuisance generator and its diagnostics must simply be valid and available.
 
-**Explanation tests** are the scale-by-family replication, true-versus-shuffled
-hierarchy increment, and correct-versus-wrong-cell comparison. They determine whether
-a successful primary effect is structured and cell specific; they do not retroactively
+**Primary biological-resolution evidence** is the correct-versus-matched-donor
+comparison. **Explanation tests** are the scale-by-exact-target replication and the
+secondary true-versus-shuffled family-hierarchy increment. They determine whether a
+successful primary effect has stable anatomical structure; they do not retroactively
 change the primary score. A valid executed test that contradicts the prediction is
-scientific evidence; a test that cannot be constructed or validated is unavailable and
-leaves the explanation unresolved.
+scientific evidence, whereas a test that cannot be constructed or validated is
+unavailable.
 
 **Scope sensitivities** include soma-centered rotation-invariant morphology, native
 versus CCFv3 dendrites, the frozen arbor-threshold sensitivity set, and source-family
@@ -495,33 +555,36 @@ audit or change the model.
 
 ## How the paper’s figures answer the question
 
-![EP09 scientific logic](outputs/ep09_conceptual_question.png)
+![EP09: own versus matched-donor dendrite at fixed recipient targets](outputs/ep09_conceptual_question-v3.png)
 
-The conceptual figure should carry four scientific judgments:
+The conceptual figure carries three scientific questions:
 
-1. **The biological contrast:** context-matched neurons can have different native
-   dendrites and different distal target-family outcomes.
-2. **The first test:** M1 must beat M0 and the matched nuisance bank in held-out brains.
-3. **The explanation:** a prespecified dendritic-scale × target-family pattern must
-   repeat, and the dendritic increment under the true anatomy must beat matched
-   shuffled hierarchies.
-4. **The interpretation:** distinguish cell-specific organization, shared morphology-
-   class organization, unresolved cell specificity, diffuse predictive information,
-   context sufficiency, and an unavailable or invalid explanation.
+1. **The biological contrast:** context-matched cortical IT neurons can have different
+   dendrites and exact distal target vectors.
+2. **The primary test:** the correct dendrite must beat coherent matched-donor
+   dendrites in held-out biological groups within SEU-A1876.
+3. **The explanation:** does a prespecified scale × exact-target
+   correct-minus-donor pattern recur across biological groups? The separate
+   M1-correct-versus-M0/nuisance benchmarks remain required in the study.
 
-This is a scientific schematic, not a workflow diagram. It should make the competing
-explanations and discriminating observations visible without requiring the reader to
-decode repository mechanics.
+This is a scientific schematic, not an empirical result. Panel A's matched
+neurons and target identities are illustrative. In panel B, both copies show
+the same recipient's axon and target vector—not the donor's outputs. Only the
+dendritic residual changes. Colors, target slots and scale bands encode no
+observations or frozen scale definitions. Panel C asks about within-source
+group reproducibility, not cross-species transfer. The full interpretation
+rules remain in the table below; equivalence does not identify a shared-class
+or neighborhood cause. [Imagegen prompt set](outputs/ep09_conceptual_question-v3-prompt.md).
 
 ## Possible conclusions
 
 | Result | Conclusion | What happens next |
 |---|---|---|
-| M1 clears the primary validity gates; fixed E1 has a positive increment; the scale-by-family matrix and hierarchy interaction repeat; the correct cell clears `delta_cell`. | **Structured, cell-specific local-to-global organization.** | Examine mechanisms and external replication without changing the frozen claim. |
-| The same structured results pass, and the correct-versus-swap interval lies inside the frozen equivalence margin. | **Shared morphology-class organization.** The relationship is organized but not shown to be unique to individual cells. | Test independently defined morphology classes in future data. |
-| The structured scale and family results pass, but the valid swap interval establishes neither superiority nor equivalence. | **Structured organization; cell specificity unresolved.** | Preserve the organized result without claiming either individual-cell uniqueness or class-level equivalence. |
-| M1 clears the primary margin, and a valid, fully executed scale or hierarchy test contradicts the frozen prediction. | **Diffuse predictive information.** Dendrites add information, but this study does not establish the proposed organizational rule. | Report the primary result honestly; treat new patterns as future hypotheses. |
-| M1 clears the primary margin, but a generator, matrix statistic, donor set, or matched hierarchy cannot be validly constructed. | **Primary increment established; explanation unresolved.** | Preserve the primary result and do not call missing explanatory evidence diffuse biology. |
+| Correct-over-donor clears `delta_cell`, M1-correct clears its benchmark, and the scale × exact-target template repeats. | **Within-class cell-level residual coupling with reproducible exact-target structure.** | Seek genuinely independent data and finer non-axon class measurements. |
+| Correct-over-donor clears `delta_cell` and the benchmark passes, but the valid exact-target template contradicts the prediction. | **Within-class residual coupling without an established scale × target rule.** | Preserve the narrower primary result; treat new structure as future work. |
+| M1-correct beats context, but correct-versus-donor equivalence is established. | **No meaningful own-dendrite advantage at the tested scale; consistent with shared organization, without identifying its biological cause.** | Report the benchmark and equivalence bound; do not present either as identification of a shared class or neighborhood mechanism. |
+| M1-correct beats context, while correct-versus-donor establishes neither superiority nor equivalence. | **Benchmark confirmed; biological resolution unresolved.** | Increase independent donor-supported groups or stop. |
+| Donor support or diagnostics fail before audit. | **Headline primary unavailable.** | Do not loosen matching or substitute M1-over-M0 after seeing outcomes. |
 | A positive result fails a common validity gate or the directional nuisance-superiority gate. | **No valid positive incremental-information claim.** | Repair a technical failure prospectively or close the proxy explanation; do not rescue it with a selected subgroup. |
 | The upper interval rules out `delta_morph`, every common design-validity gate passes, and synthetic sensitivity is adequate. | **Context is sufficient at the prespecified scale.** | Report an informative null and the detectable bound; nuisance superiority is not required. |
 | Coverage, group count, calibration, or sensitivity is inadequate. | **Unresolved.** | Repair the measurement or narrow the target vocabulary using development evidence only; do not interpret absence of significance as absence of biology. |
@@ -532,31 +595,38 @@ is otherwise supported.
 
 ## What this episode may claim
 
-If every gate passes, EP09 may claim that native dendritic morphology contains
-reproducible information about reconstructed distal axonal-arbor target families beyond
-source anatomy and measurement quality, and that the information follows the frozen
-dendritic-scale × target-family pattern.
+If every gate passes, EP09 may claim that within independently defined cortical IT
+strata and held-out SEU-A1876 biological groups, a neuron's own dendritic residual
+predicts its exact reconstructed distal target vector better than coherent
+matched-donor dendrites, with a reproducible scale × exact-target organization.
 
 It may not claim synaptic connectivity, causal routing, physiological communication,
-developmental mechanism, or universal cell type. It also may not claim novelty from
-prediction alone. The scientific value rests on separating context, same-cell
-information, and reproducible target-family organization in held-out brains.
+developmental mechanism, universal cell type, unique neuronal identity, or independent
+replication. It also may not claim novelty from M1-over-M0 prediction alone. The
+scientific value rests on separating context, shared class, and within-class
+cell-level residual coupling.
 
 ## What must be resolved before launch
 
 - verify biological-group provenance and the minimum development/audit counts;
+- verify an outcome-independent cortical IT definition and document its lineage;
+- document original-release versus newly annotated source lineage;
+- verify source × layer × non-axon class × biological-group donor support under the
+  frozen soma-position and quality calipers;
+- verify exact-target observation and positive/negative support within that IT cohort;
 - confirm native dendritic and distal axonal coordinates are in compatible CCFv3 space;
 - freeze the arbor-detection rule, observability rule, target vocabulary, and target
   family cut;
 - freeze \(n_{\mathrm{coverage}}\), prevalence support, family support, and the
   outcome-independent target and source ontology cuts;
 - freeze dendritic scale blocks; conditional location, scale, imputation, and support
-  diagnostics; the 20 independent-block nuisance seeds; the dendrite-only morphology
-  classes and intact-cell swap seeds; and the 20 valid matched target hierarchies;
-- freeze E0/E1, `delta_cell`, `eta_matrix`, `rho_matrix`, the required sign entries,
-  matrix scaling, the tail-specific `c_L`, `c_U`, `c_C_L`, and `c_C_U` values,
+  diagnostics; the 20 independent-block nuisance seeds; the coherent matched-donor
+  plans; and the 20 valid matched target hierarchies;
+- freeze E0/E1, `delta_cell`, `delta_morph`, `eta_matrix`, `rho_matrix`, the
+  exact-target entry order and required signs, matrix scaling, and the tail-specific
+  primary and benchmark critical values,
   and all equivalence and simultaneous procedures;
-- justify `delta_morph` and all small-group and max-\(t\) critical values with separated
+- justify `delta_cell`, `delta_morph`, and all small-group and max-\(t\) critical values with separated
   50,000-replicate calibration and validation simulations whose scenarios and seeds
   were frozen in advance;
 - confirm that the complete nuisance and explanatory workload fits the resource ceiling;

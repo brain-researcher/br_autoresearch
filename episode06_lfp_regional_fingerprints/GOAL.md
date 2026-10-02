@@ -1,9 +1,21 @@
-# Which population components can the M1–PMd LFP fingerprint recover across days?
+# Which population components benefit from a recording-domain LFP rule?
 
 M1 and PMd were recorded at the same time while each animal performed the same
 reaching task. In each region we have two views of local activity: LFP features
 and spikes from nearby neurons. EP06 asks whether the relationship between those
 two signals differs between M1 and PMd in a way that repeats across animals.
+The paper-level question is more consequential: **does a frequency rule learned
+in one animal help recover a specified kind of population activity in the
+other animal, beyond pooled or deliberately swapped rules?**
+
+EP06 is the recording-domain component of EP07's proposed
+history-and-population-components paper. It does not own a separate generic
+“LFP predicts spikes” paper. EP07 tests whether earlier days add value beyond
+equally tuned today-only fitting, then whether the increment depends on correct
+LFP--spike trial identity. EP06 instead localizes the consequence of a
+source-animal frequency rule to common-time, direction-by-time, or trial-
+residual activity. Its classification score is an entry result, not the
+combined manuscript's main discovery or a replacement EP07 endpoint.
 
 For each session and region, the primary analysis builds one frequency profile:
 how well does LMP or each registered LFP band predict the held-out
@@ -25,17 +37,20 @@ prediction for sessions held out across the acquisition dates.
 
 ## The scientific logic
 
-![EP06 conceptual figure showing the residual-only regional fingerprint, three frozen population projectors applied to held-out observed and predicted activity, a calibration-visible support boundary, and held-out pass or fail predictions](outputs/ep06_question_imagegen.png)
+![EP06 paired recording domains and component-wise transfer comparison](outputs/ep06_question_imagegen-v2.png)
 
-Like the EP12 concept figure, this mockup makes the scientific alternatives
-visible with synthetic patterns. It shows the M1 and PMd frequency profiles,
-their reciprocal cross-animal transfer, and how correct, pooled, and swapped
-weights distinguish a useful fingerprint from a transferable label alone. It
-then shows three fixed projectors applied in the same way to observed and
-predicted held-out activity, the calibration-visible boundary used before a
-held-out score is seen, and the pass/fail prediction for sessions spread across
-acquisition dates. These are illustrative patterns, not EP06 results; the
-numerical definitions are given below.
+This schematic shows paired recording domains, reciprocal animal transfer and
+three task-defined components. Every component receives the correct-domain,
+pooled and swapped comparison, using the same projection on observed and
+predicted activity. Curves are illustrations, not measured fits or frequency
+bands; diagram connections do not depict anatomical pathways. The primary
+residual-only fingerprint precedes this component follow-up. Regional gains
+and eligibility are evaluated as specified below, not inferred from the drawing.
+[Exact imagegen prompts](outputs/ep06_question_imagegen-v2-prompt.md).
+
+The v2 PNG is current; the older PNG and SVG are retained as historical
+schematics. No panel depicts observed frequency differences, component gains,
+or a successfully estimated support boundary.
 
 Even the strongest positive result would remain a **recording-domain** result.
 This dataset cannot separate cortical region from its implanted array. A third
@@ -44,6 +59,34 @@ region–array link would be needed to claim a pure cortical-area effect.
 
 No real EP06 analysis, reserved-session test, or third-animal test has run under
 this plan.
+
+The [2026-10-02 review](outputs/scope_novelty_review_20261002.md) retains the
+EP07 component role and prospectively clarifies nomination: a measurable
+region-inconsistent rival is not an unscoreable rival. The explicit
+pre-analysis amendment below changes eligibility, not numerical margins.
+
+## Paper integration does not merge outcome access
+
+EP06 keeps its own development session positions 1, 2, 4, 5 and reserved
+positions 3, 6, its within-session whole-trial roles, and its one final opening.
+EP07 uses a different chronological source/target split and a different
+calibration/development/held-out trial assignment. Therefore an EP06 fit or
+score can expose spike trials still closed in EP07. Manuscript integration is
+not permission to pool trials, share fitted weights, or import sibling results.
+
+On this corpus, EP06 neural fitting/scoring must wait until EP07's complete
+analysis choices are frozen and its single primary opening is complete,
+unless a scientist prospectively approves compatible joint roles before any
+relevant scores are seen. This preserves the existing roles; it does not
+silently substitute a common split. EP06's own reserved outcomes remain closed
+until its own final analysis is fixed. Every reused session remains
+same-corpus evidence, not independent confirmation or a newly recorded day.
+
+In the combined paper, EP06 owns the component-consequence figure and its
+frequency/array-support diagnostics. EP05 owns reach-deviation prediction and
+EP08 acquisition value; neither is an EP06 input or an independent biological
+replication from reuse of this release. See the [paper plan](outputs/paper_plan.md)
+for the precise figure division and prior-work limits.
 
 ## At a glance
 
@@ -131,6 +174,29 @@ on evaluation spikes. Training fixes the direction set, time grid, contrast
 coding, and axes; applying the operators to evaluation rows uses only their
 preassigned direction labels and time bins.
 
+The [component details](outputs/component_details.md) give explicit
+direction-balanced formulas, examples and interpretation limits:
+
+| Component | What is retained | What a supported correct-domain gain would mean |
+| --- | --- | --- |
+| Common time | The same population trajectory across directions, including any constant level remaining in the frozen coordinates | The source frequency rule is useful for common time/level structure; not individual-trial identity |
+| Direction × time | Each direction's average departure from the common trajectory, including static direction offsets | The rule is useful for direction-dependent task structure; not pure movement intention or trial-specific behavior |
+| Trial residual | A particular trial's departure from its evaluation direction/time average | The rule is useful for within-direction trial activity; not pure noise, causal coupling or EP07's history-specific increment |
+
+No additional grand-mean subtraction or direction-main-effect removal is
+introduced. Unequal direction counts require averaging direction means equally,
+not pooling all trials. The frozen construction rule is instantiated for each
+role's preassigned rows; a training-sized matrix cannot simply be copied to a
+different-sized evaluation set.
+
+Applying these operators computes observed evaluation means for scoring;
+predictions are projected independently from their own frozen predicted
+values. Observed target means cannot become a prediction template or update
+a fitted model. In particular, `P_E Y_eval` removes the evaluation cell mean,
+whereas the primary subtracts a training-only cell mean and retains any
+evaluation-versus-training mean shift. The two residual definitions cannot
+be substituted for one another.
+
 For each projector, source-animal development sessions alone fit the
 component-specific M1, PMd, and pooled frequency weights. Swapped is the exact
 M1/PMd permutation. Target training fits only its axes, scaling, and bandwise
@@ -159,10 +225,17 @@ zero. Opposite signs or an average between 0 and 0.01 are unresolved.
 
 For each transfer direction, an outer leave-one-target-session-out loop tests
 the selection rather than merely recomputing it. In each fold, the other three
-target development sessions nominate the component with the largest median
-equal-region gain. Every candidate must be scoreable with sign-consistent
-regional gains in all three nomination sessions; top medians within 0.01 are a
-tie. If any candidate fails this eligibility check, that fold has no nominee.
+target development sessions establish numerical scoreability of all three
+components in both regions. An unscoreable rival leaves the complete
+comparison unresolved, with no nominee. Among measured components,
+eligibility is candidate-specific: only a component whose regional gains
+agree in sign in every nomination session can be nominated. A mixed-sign
+rival remains reported as unsupported for a joint-region consequence; it
+does not veto another eligible candidate. Choose the largest median
+equal-region gain among eligible candidates; top medians within 0.01 are a
+tie, and no eligible candidate means no nominee. This selects the best
+eligible joint-region account, not a global numerical winner over mixed-sign
+rivals.
 Only a valid prefold nominee receives a frozen support prediction and regional
 evaluation gains in the left-out session. The fold does not inspect the other
 two evaluation components. After all four folds are recorded, the previously
@@ -173,6 +246,13 @@ three of four outer folds, no tied fold within the 0.01 nomination margin, and
 no M1/PMd sign contradiction. Otherwise selection is unstable. The two transfer
 directions must then independently make the same untied final nomination, and
 both are frozen before any reserved-session outcome is opened.
+
+Final nomination uses common sessions on which all three components are
+numerically scoreable in both regions, requiring at least three of four.
+Sign consistency is candidate-specific across that common set, not required
+of every rival. Negative or mixed-sign measurements remain visible and are
+never recoded as missing. The energy, 0.01 tie/preservation margins,
+outer-fold stability and reserved-test rules are unchanged.
 
 The prediction for each reserved session is made from two quantities visible in
 its calibration trials: split-half reliability of the nominated component's
@@ -302,10 +382,10 @@ the headline classifier accuracy is high.
 
 ## Study sequence
 
-1. Complete a focused novelty check against the source article, supplements,
-   code, and later work using these recordings. If component-specific
-   cross-day recovery is already established, or cannot be distinguished from
-   EP07, plan EP06 as part of EP07 rather than as a separate paper.
+1. Keep the agreed publication role: EP06 is a component of EP07. The existing
+   focused source/supplement/code comparison still bounds the exact component
+   claim; generic LFP association and cross-animal latent transfer are already
+   established. No standalone paper is activated by this writing decision.
 2. Confirm the source, the paired M1/PMd trials, events, electrodes, units, and
    frequency labels. Run small known-answer tests for indexing, held-out
    prediction, and the planned shuffles.
@@ -377,6 +457,11 @@ paper would additionally require the same nominated family, a frozen support
 prediction that succeeds on adequately many sessions spanning both sides of
 its boundary, and uncertainty that excludes a chance-level rule. The four
 currently reserved sessions do not provide that precision by themselves.
+
+The current manuscript role is settled as an EP07 component; the future
+standalone requirements above are limits, not authorization for another paper
+or another analysis round. EP06 does not estimate EP07's history-minus-today-only
+pairing increment and cannot rescue a failed or ambiguous EP07 primary result.
 
 Neither result establishes that cortical area caused the difference, that a
 particular band has a unique biological origin, that the relationship works

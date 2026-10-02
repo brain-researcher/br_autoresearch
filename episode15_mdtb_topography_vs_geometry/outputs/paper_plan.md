@@ -1,7 +1,12 @@
 # EP15 paper plan: location of a shared code or different task geometry?
 
+[Current conceptual figure](ep15_conceptual_question-v2.png) · [Exact image-generation record](ep15_conceptual_question-v2-prompt.md).
+
 Status: proposed study design, 2026-09-27. No MDTB neural result or model-class
 claim is reported here.
+
+The [2026-10-02 scope review](scope_novelty_review_20261002.md) records the
+closest prior work and the conditional, statistical-account interpretation.
 
 ## The intended contribution
 
@@ -115,10 +120,10 @@ earned its mechanism label.
 
 | Result | Scientific reading | Next step |
 | --- | --- | --- |
-| One class is uniquely adequate and passes its signature | A constrained account of stable individual organization is supported within MDTB | Build the paper around that mechanism and its strongest falsifier |
+| One class is uniquely adequate and passes its signature | A constrained account of stable individual organization is supported within MDTB | Build the paper around that statistical account and its strongest falsifier |
 | M4 predicts maps but not geometry | Flexible topographic prediction improved, but stable geometry change is unsupported | Narrow to map prediction or stop the M4 paper direction |
-| M1 or M2 predicts geometry as well as M4 | Geometry change is not specific to non-isometry | Attribute the result to the adequate simpler spatial account or report multiplicity |
-| Two or more explanations are fully supported | The data support several constrained mechanisms, including their native signatures | Report non-identifiability; do not choose by raw score |
+| M1 or M2 predicts geometry as well as M4 | Geometry prediction does not specifically support M4 over the spatial accounts | Support a spatial account only if uniquely supported; otherwise report multiple adequate explanations/non-identifiability |
+| Two or more explanations are fully supported | The data support several constrained statistical accounts, including their native signatures | Report non-identifiability; do not choose by raw score or presumed simplicity |
 | Maps are adequate but all native signatures fail | Some Task-A information transports, but none of the proposed mechanisms earns its interpretation | Report adequate prediction without a supported mechanism |
 | Reliable signal remains after every class | Task-A-derived structure does not transport adequately to B-only variation | Report the boundary and use post-decision diagnostics to locate session/calibration limitations |
 | Signal or decision bounds are wide | The 12-person audit is underpowered for the prespecified distinction | Report unresolved evidence, not equivalence or model failure |
@@ -139,19 +144,13 @@ cannot substitute for the registered endpoints.
 
 ## Planned conceptual figure
 
-The schematic should follow the logic of EP12:
-
-- **Panel A:** a new person's anatomy and Task A personalize a frozen model,
-  while 18 Task-B-only maps remain sealed;
-- **Panel B:** the same source maps undergo four visibly different operations:
-  boundary retessellation, one smooth field, geometry-preserving remapping, or
-  bounded stretch/shear;
-- **Panel C:** each class has one decisive prediction—boundary enrichment,
-  one-field residual direction, unchanged condition geometry, or a correctly
-  predicted signed geometry change; and
-- **Panel D:** 12 development participants lead to one frozen four-class
-  panel, then 12 audit participants distinguish unique support, multiple
-  adequate explanations, none adequate, no signal, or unresolved evidence.
+The current three-panel schematic shows anatomy and Task A predicting unseen
+Task B, the four competing accounts, and separate map/18-condition-geometry
+targets. Triangle vertices denote task conditions, not cortical positions;
+their side lengths illustrate representational distances. The actual endpoint
+remains the full 18-by-18 geometry matrix. Native signatures and the 12/12
+participant design remain in the analysis text rather than a crowded workflow
+strip. One, several or unresolved accounts are illustrative possibilities.
 
 Use synthetic cerebellar silhouettes, activity maps, and condition triangles
 or matrices. Do not use MDTB participant pixels or imply observed results.

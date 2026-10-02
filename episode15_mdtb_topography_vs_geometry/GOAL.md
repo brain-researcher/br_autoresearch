@@ -1,5 +1,9 @@
 # Why do people have different cerebellar task maps?
 
+The [2026-10-02 scope review](outputs/scope_novelty_review_20261002.md) keeps
+the competing-account design and clarifies that equally adequate explanations
+remain non-identifiable, rather than selecting one by presumed simplicity.
+
 Two people can perform the same task while showing cerebellar activity in
 slightly different places. That difference could mean several very different
 things. The same functional parcels may have different boundaries; the whole
@@ -283,12 +287,17 @@ opening is allowed.
 The figure below is a synthetic design illustration. It contains no MDTB map
 or participant result.
 
-![EP15 conceptual question figure](outputs/ep15_conceptual_question.png)
+![EP15: four competing accounts predict unseen maps and condition geometry](outputs/ep15_conceptual_question-v2.png)
 
-It should show the scientific fork directly: the same Task-B maps may differ
-because boundaries or locations move while a shared code remains, or because
-Task A predicts a reproducible change in the relationships among unseen
-Task-B conditions.
+Anatomy and Task A must predict unseen Task-B maps and the full geometry of
+18 B-only conditions. The triangles depict relationships among task conditions,
+not cortical coordinates: their vertices are conditions and their distances
+are representational. M3 preserves these distances; M4 may change them. M1 and
+M2 are separate spatial accounts and need not preserve condition geometry.
+The small drawings are illustrations, not the 18-by-18 analysis matrix or
+observed maps. Several adequate accounts remain non-identifiable. The
+[exact generation and correction prompts](outputs/ep15_conceptual_question-v2-prompt.md)
+are recorded; the earlier image is retained as historical material.
 
 ## Possible conclusions
 

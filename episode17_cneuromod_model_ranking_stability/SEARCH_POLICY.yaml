@@ -2,6 +2,22 @@ policy_id: ep17_cneuromod_model_ranking_stability
 episode_id: ep17
 evidence_mode: development_then_one_shot_concept_audit
 
+paper_focus:
+  milestone: "2026-10-02"
+  status: pre_score_design_nomination_not_execution_lock
+  lead_pair: official_DINO_ResNet50_vs_Torchvision_ResNet50_IMAGENET1K_V1
+  supporting_pair_nominations:
+    - official_standard_width_SwAV_ResNet50_800_epochs_vs_same_supervised_backbone
+    - same_DINO_vs_same_SwAV_backbones
+  pair_control_and_exposure_eligibility: claim_specific_measurement_comparison_checkpoint_and_exposure_qualification_open
+  nominated_ROIs: [DK_ctx_lh_fusiform_1007, DK_ctx_rh_fusiform_2007]
+  anatomical_ROI_not_functional_FFA: true
+  headline_edge: D_stage_A_N_to_R_N
+  forecast: development_advantage_reaggregated_under_frozen_calibration_support_weights
+  unconditional_self_supervised_winner: not_assumed
+  operative_three_pair_five_edge_coverage_budget_margins_and_audit: unchanged
+  new_execution_or_access_authority: false
+
 scientific_question:
   primary: >-
     For a controlled pair of visual models, is the held-out fMRI relation
@@ -152,10 +168,16 @@ response:
 model_pairs:
   promotion_pairs_required: 3
   promotion_pairs_maximum: 4
-  each_pair_changes_exactly_one:
-    - architecture_at_fixed_objective_and_training_data
-    - objective_at_fixed_architecture_and_training_data
-    - training_data_at_fixed_architecture_and_objective
+  eligibility_amendment_date: "2026-10-02"
+  permitted_primary_claim: measurement_conditional_comparison_of_two_fixed_representations
+  each_pair_requires:
+    - named_fixed_checkpoints_unchanged_across_measurement_edge
+    - disclosed_architecture_objective_corpus_and_training_recipe_differences
+    - matched_neural_readout_selection_budget_and_scoring
+    - checkpoint_and_image_exposure_qualification
+  single_property_training_intervention_required_for_measurement_question: false
+  causal_training_property_attribution: prohibited
+  isolated_factor: measurement_operation_not_training_recipe
   trained_vs_deterministically_initialized_random_pair:
     required: true
     promotion_eligible: false
@@ -369,6 +391,8 @@ operator_advantage_prediction:
     audit_d_s_r_v_may_enter_forecast: false
     observed_audit_change: reaggregate_audit_d_s_r_v_under_the_same_frozen_weights
     claim: prospective_empirical_forecast_not_exact_identity
+    fixed_weight_forecast_equals_development_edge: true
+    audit_success_interpretation: new_concept_repeatability_not_independent_mechanistic_prediction
     error_metric: absolute_observed_audit_edge_change_minus_frozen_development_forecast
 
   beta_reliability_hypothesis:
@@ -389,7 +413,14 @@ operator_advantage_prediction:
       voxel_rows_as_independent_scoring_units: false
       crossfit_error: absolute_observed_minus_predicted_aggregate_stage_change
     final_refit: same_model_on_all_24_development_blocks
-    audit_prediction: aggregate_stage_change_from_final_development_fit_and_calibration_gain_map
+    audit_prediction: block_mean_stage_change_from_final_development_fit_and_calibration_gain_map
+    observed_audit_target: equal_mean_of_twelve_audit_block_raw_R2_stage_changes
+    block_scores_use: frozen_development_training_mean_and_predictor_then_registered_voxel_ROI_participant_aggregation
+    primary_beta_edge_and_high_low_scores: unchanged_pooled_image_R2_separate_from_forecast_companion
+    fitted_aggregate_identity: equals_mean_training_target_due_to_spatial_bin_intercepts_on_same_support
+    aggregate_agreement_interpretation: repeatability_not_incremental_gain_map_explanation
+    high_low_interpretation: descriptive_reliability_association_not_gain_over_bin_only_predictor
+    block_mean_score_equals_pooled_image_score: not_assumed
     high_low_strata:
       definition: upper_vs_lower_half_of_gain_map_within_participant_ROI
       threshold: calibration_median
@@ -401,13 +432,14 @@ operator_advantage_prediction:
 
   freeze_before_audit:
     - selected_relation_and_edge
+    - edge_specific_forecast_target_beta_block_mean_or_support_ceiling_aggregate_edge
     - operator_map_and_voxel_set
     - development_only_signed_audit_forecast
     - edge_specific_absolute_prediction_error_margin
     - high_low_operator_strata
     - aggregation_and_uncertainty_rule
   audit_explanation_pass:
-    - predicted_and_observed_edge_change_have_same_direction
+    - forecast_and_declared_observed_target_have_same_direction_beta_block_mean_or_support_ceiling_aggregate_edge
     - absolute_prediction_error_within_edge_specific_fixed_margin
     - beta_high_minus_low_component_crosses_its_signed_margin_if_beta_is_selected
   may_rescue_failed_primary_relation: false

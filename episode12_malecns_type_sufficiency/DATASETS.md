@@ -115,9 +115,11 @@ before any retry.
 
 ## Scope and required records
 
-Outgoing composition is the primary analysis. Incoming composition begins only
-after the outgoing conclusion is fixed, uses its own choices, and cannot rescue
-the outgoing result.
+Outgoing composition is primary in the existing execution contract. The
+2026-09-30 paper redesign makes circuit consequence scientifically co-primary
+in a planned separate round. Incoming composition begins only after the
+outgoing conclusion is fixed, uses its own choices, and cannot rescue that
+result. It adds no access authority or retroactive change to existing work.
 
 A future run must retain enough information to reconstruct what happened:
 the source used, exposure history, whole-type assignment, partner vocabulary,
@@ -144,9 +146,9 @@ Scientific qualification and required post-36 falsifiers remain incomplete;
 no procedure is locked, the 99-search null has not run, and final-role focal
 connectivity remains unauthorized and unopened.
 
-## Data needed for the circuit follow-up
+## Data needed for the separate circuit co-primary round
 
-The [paper plan](outputs/paper_plan.md) proposes a later input-output study.
+The [paper plan](outputs/paper_plan.md) proposes a separate input-output study.
 It does not expand access during the primary outgoing round. No external
 dataset is selected, provisioned, or declared unexposed by this revision.
 
@@ -156,6 +158,32 @@ dataset is selected, provisioned, or declared unexposed by this revision.
 | MaleCNS annotations, cell morphology and published circuit descriptions | Identify the cells, assess anatomy and prior subtype annotations | Authenticate any additional morphology assets; distinguish descriptions already used by curation from new evidence |
 | One suitable external connectome, initially assessing FlyWire or hemibrain | Test the locked circuit prediction in another specimen | Pin version, specimen identity, anatomy, homologous types, partner crosswalk, observation rules, exposure history and evaluation role before connectivity access |
 
+At most three cases are selected from previously assigned development types
+under one rule fixed before new incoming inspection. Final-type outcomes
+cannot select cases or partner pairs; failed cases are retained, not replaced.
+The separate circuit round requires a qualified fitting/evaluation block split
+before incoming access. Outgoing and incoming profiles of a focal cell share
+the new round's block, and prior outgoing exposure stays recorded. These blocks
+support conditional within-specimen prediction, not independent animals.
+
+The circuit endpoint uses neuron-equal input-output pair mass, not synapse-
+count path totals or physiology. Incoming prediction is a supporting target.
+Both directions, known/unknown bins, retained cases and observation limits are
+fixed before evaluation; the existing outgoing model/threshold/budget contract
+is not repurposed for these scores.
+
+### Source-conditional metadata, not invented common anatomy
+
+Use authenticated coordinates/coarse anatomy where available; use hemilineage,
+neuromere/serial or retinotopic fields only where this release and candidate
+circuit support their interpretation. Missing fields remain explicit. The
+data-source declaration alone does not certify a shared hierarchy across
+MaleCNS, FlyWire and hemibrain, or establish any specific cross-sex homology.
+Record which rival explanations a candidate's actual metadata can test.
+Provider group/instance remains forbidden for fitting/selection and reserved
+for post-result novelty comparison. Connectivity-derived annotations cannot
+be represented as independent molecular or anatomical evidence.
+
 Choose the external source for coverage of the actual candidate circuit,
 not for a preferred result. The two candidate resources are not interchangeable:
 hemibrain has restricted anatomical coverage, and a male-to-female comparison
@@ -163,6 +191,11 @@ is a transfer challenge with sex, specimen, and reconstruction differences.
 Additional releases or hemispheres of one specimen do not add animals.
 Previously exposed external outcomes remain development information; use a
 genuinely new audit source for a new confirmatory round.
+
+A useful within-male circuit consequence can be reported at that scope even
+when no compatible fresh external source exists. External transfer is a
+conditional additional claim, not an assumed prerequisite already satisfied
+by published cross-sex type matches.
 
 ### Incoming access can expose outgoing outcomes
 
@@ -177,6 +210,15 @@ roles for every edge, record any already consumed roles, and preserve unknown
 or withheld mass. Shared edges cannot be represented as fresh independent
 evidence. Keep both direction-specific profiles of each focal type within the
 same specimen-level role for the new study.
+
+The already materialized development outgoing view can contain edges into
+future circuit focal cells. A new incoming aggregation is therefore not
+automatically an unexposed target, even if no incoming summary was displayed.
+The circuit contract must account for this actual exposure in its block split
+and selection-aware calibration. If target-edge freshness/role separation
+cannot be justified, source-side results are descriptive or conditional
+diagnostics, not a new confirmatory hold-out. Independent confirmation then
+requires a compatible separately locked specimen, without rewriting history.
 
 ### External prediction has a fixed information boundary
 
