@@ -23,7 +23,10 @@ handoff, or Landscape—use `$brain-autoresearch-loop` instead.
    work in `outputs/`, and temporary work in the episode-specific scratch path.
 3. Determine the current data-access stage and name the files and directories
    that are safe to read.
-4. Read the existing ASTRA program and execution ledger within that boundary.
+4. Use `outputs/README.md` as navigation to the existing ASTRA program,
+   relevant execution-log entries, and current artifacts within that boundary.
+   A missing or stale index does not block execution. Read the relevant state,
+   not every historical attempt or qualification directory.
    Use [references/astra.md](references/astra.md) when creating or changing the
    program; update only what is missing or changed in the contract-required work.
 5. Select the next authorized experiment from current dependencies and job state.
@@ -94,9 +97,9 @@ preflight, conformance, smoke, or qualification chain.
   authorized substantive allocation, before its dependent scale step. Do not
   submit a separate job just for checks or pad resource use to justify one.
 - Use synthetic work for a requested or contract-required experiment, or a
-  bounded reproducer of a diagnosed defect. Prefer a small real-input run when
-  access and execution are authorized; synthetic fixtures do not establish
-  empirical readiness.
+  bounded reproducer of a diagnosed defect. Name it plainly as synthetic and
+  identify the decision it informs. Prefer a small real-input run when access
+  and execution are authorized; synthetic success is not an empirical result.
 - Repair only a diagnosed defect blocking the selected experiment. Make the
   focused fix, run its regression, then resume. Do not start another broad or
   adversarial audit to search for additional hypothetical blockers.
@@ -106,9 +109,65 @@ preflight, conformance, smoke, or qualification chain.
 - Record the process or scheduler ID and which experiment actually launched.
   Qualification or synthetic launch is not empirical launch; ASTRA, plans,
   placeholders, and dry runs are not execution. Prefer scheduler dependencies.
-- Babysit existing authorized jobs to completion or the next real decision;
-  repair technical failures at the smallest affected stage. Never duplicate a
-  pending job or manufacture prerequisites to keep a goal active.
+- Repair and retry the smallest affected stage within existing authorization.
+  Honor explicit job-count, retry, and resource caps; complete the repair before
+  requesting only any additional execution authority actually needed.
+
+## Keep preparation tied to the scientific question
+
+Preserve the requested fidelity, such as an adapted replication with disclosed
+deviations. Do not silently turn it into a requirement for perfect upstream
+provenance or an unlocated replacement dataset. Explain how an uncertainty
+affects the intended claim; honor any stricter frozen requirement until an
+authorized amendment changes it.
+
+Before adding or scaling expensive calibration or qualification, use the
+existing contract to identify the decision it resolves, its cost, and its stop
+condition. Do not create another readiness report for this. If a prerequisite
+dominates the budget or repeatedly times out, surface that trade-off with a
+concrete smaller sufficient option or contract amendment. Apply delegated
+choices; ask only for changes outside existing authority. A timeout does not
+authorize a budget reset, a larger synthetic sweep, or abandonment of a frozen
+requirement. Already authorized jobs may continue within their existing bounds.
+
+## Wait for meaningful changes
+
+Babysit the recorded job to completion or the next actionable event. Prefer
+scheduler dependencies and a client wait/monitor facility permitted by the host.
+Choose checks around expected milestones; the site's minimum interval is a
+floor, not a target. Keep unchanged states quiet unless periodic updates were
+requested. Do not use unattended shell polling loops or schedule agent wakeups
+where the host forbids them.
+
+When a dependency is still running, that branch waits; advance other independent,
+already authorized work when useful. Do not fill waiting time with repeated
+reviews, full-log reads, schema checks, document updates, or unchanged plots.
+Notify on a meaningful result, failure, actionable stall, or decision. Report
+the actual stage, new evidence, and next scientific step; distinguish waiting
+time from work.
+
+## Parallelize useful work
+
+Use native multiagent delegation proactively when independent work can shorten
+the path to the result. The lead keeps the next scientific action moving while
+workers handle bounded tasks such as status monitoring, interpreting completed
+results, plotting new evidence, or implementing an independent repair. Share
+the task, permitted paths, expected result, and existing resource limits; do not
+create tasks merely to occupy agents. A small indivisible task stays direct.
+
+Assign one monitor per job or dependency chain. It returns timestamped changes,
+source references, and implications for the next action; other agents reuse
+those observations. The lead continues independent work without waiting for all
+workers, and integrates useful results as they arrive. Do not multiply polling
+or reviews, or create separate status files for each agent.
+
+Give each writable path and each job submission one owner. Keep monitoring
+read-only; use disjoint permitted paths or isolated workspaces for implementation.
+The lead integrates shared README/ledger updates, unless it explicitly delegates
+that ownership. All workers share the episode's scientific/access boundaries
+and total approved budget; parallelism does not multiply resource authority or
+open a dependent stage early. If native delegation is unavailable, use the
+direct path without an installation or orchestration prerequisite.
 
 ## Visualize while working
 
@@ -152,8 +211,16 @@ Keep scheduler state, attempts, job IDs, failures, and the exact next action in
 `outputs/experiment_log.md`, keyed by those ASTRA IDs; these are not valid ASTRA
 fields.
 
-Keep the handoff sufficient to identify running work, completed artifacts, the
-actual blocker, and the next authorized action without duplicating execution.
+At material transitions, keep `outputs/README.md` a short, dated navigation page
+linking the current log entry, active work, useful results/figures, actual blocker,
+and next authorized action. Execution facts belong in the ledger and its source
+artifacts; do not copy them into every governance, memory, or verification note.
+Keep scientific questions and data roles in the contracts, not live job status.
+
+Use the layout and record responsibilities in [references/astra.md](references/astra.md)
+when creating outputs or repairing navigation. Group new run artifacts together,
+label historical status pages, and preserve existing frozen paths and writers.
+Readability work must not become a migration or a new launch prerequisite.
 
 ASTRA and the ledger remain episode-local and non-authoritative. They cannot
 grant execution authority, prove scientific validity, change canonical Brain

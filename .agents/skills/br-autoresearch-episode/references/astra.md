@@ -4,12 +4,13 @@ Use ASTRA as the episode's organized scientific worklist. The YAML is only its
 serialization; the useful object is the set of experiments, their decisions,
 their artifact dependencies, and the evidence they produce.
 
-## Keep two linked records
+## Record responsibilities
 
 | Record | Contains |
 | --- | --- |
 | `outputs/astra/v0.0.14/astra.yaml` | Stable experiment IDs, purpose, inputs, outputs, decisions, recipes, resources, dependencies, and findings |
 | `outputs/experiment_log.md` | State, attempts, Slurm or process IDs, timestamps, observed failures, durable artifacts, blocker, and next action |
+| `outputs/README.md` | Short human entrypoint with observation time, actual evidence stage, and links to the current log entry, run, results, and next action |
 
 Key every execution-log entry by its ASTRA analysis ID. ASTRA 0.0.14 does not
 define runtime status or job fields, so never add `status`, `job_id`, retries,
@@ -18,6 +19,41 @@ or `next_action` to `astra.yaml`.
 This mirrors the original Brain Researcher pattern: a frozen experiment
 worklist is separate from mutable, reconnect-safe execution state. These local
 records are not canonical MCP objects.
+
+The README is navigation, not another state store. Runner/scheduler observations
+and the corresponding artifacts establish execution facts; the log records
+them. If summaries disagree, use the relevant recent evidence or one targeted
+state check, then correct the affected current summary. Do not infer authority
+from a filename such as `LATEST` or `STATUS`, or reread the whole output tree.
+
+Update the entrypoint at material transitions, not every poll or resume. Label
+obsolete current-status sections as historical and link the active entrypoint;
+preserve the underlying records. Keep job state out of `GOAL.md` and `DATASETS.md`.
+Existing `memory.md`, `governance.md`, `society.md`, `loop.md`, `landscape.md`, and
+`verification.md` retain their domain-specific decisions and links. Do not copy
+one status paragraph into all six or create empty records unless a contract
+requires them. An unavailable index or optional projection cannot delay a run.
+
+## Make outputs easy to find
+
+Reuse an intelligible existing layout. When a new run needs a directory, group
+its configuration, scheduler logs, metrics, and results together, for example
+`outputs/runs/<analysis-id>/<attempt>/`. Use the stable analysis ID for purpose
+and the attempt for history; a job number alone does not describe the experiment.
+Direct new Slurm logs into that run directory rather than the episode root.
+
+Keep useful figures under `outputs/figures/`, reviews under an existing review
+directory, and approvals/protocol amendments together. Create directories only
+when they hold real artifacts. Keep reusable execution code in the existing
+code/tools location and link it from a run instead of copying a source tree per
+attempt. List current artifacts and historical attempts separately in the
+README. Do not create manifests, receipts, duplicate archives, or new `STATUS`
+files to organize the files.
+
+Improve navigation first in an established episode. Preserve paths referenced
+by frozen contracts, ASTRA, scripts, or active writers; moving or deleting old
+artifacts is a separate scoped change. Apply the positive read boundary to
+indexes and directory inspection too: no discovery scan of closed outcomes.
 
 ## Build the program
 
@@ -102,13 +138,18 @@ refs; never infer completion from a missing job.
 
 At resume:
 
-1. Read the ASTRA program and execution log within the current positive read
-   boundary.
-2. Reconcile recorded active jobs with the scheduler; never submit a duplicate.
-3. Select the first experiment whose artifact dependencies are satisfied and
-   whose execution is authorized.
-4. Continue that experiment, or report the exact blocker and the action that
-   would clear it.
+1. Follow the existing index to the relevant ASTRA experiments and recent log
+   entries within the current positive read boundary; use known paths directly
+   if the index is missing or stale.
+2. Reconcile active job state when needed for an execution decision. Reuse the
+   current monitor observation; never submit a duplicate or repoll just for
+   this checklist.
+3. Select dependency-satisfied, authorized work. Advance independent experiments
+   or supporting tasks in parallel where the contract and combined resource
+   budget permit; a waiting branch need not stall the whole episode.
+4. Give each submission and mutable artifact one owner. Consume the designated
+   monitor's observations and integrate worker results in the shared log and
+   entrypoint; do not duplicate jobs, polling, or per-agent status records.
 
 Use existing ledger entries, completed artifacts, and passing runner checks on
 an unchanged resume. Do not rerun ASTRA validation or export, refresh a legacy
@@ -122,9 +163,11 @@ Short contract-required conformance runs before its dependent scale step within
 the already authorized substantive allocation. An ASTRA analysis entry does not
 require its own allocation or justify a checking-only job or padded resource use.
 
-The handoff must name the program path, active experiment and attempt, job IDs,
-completed artifacts, blocker, next runnable experiment, and exact next action.
-Prose that cannot be reconciled to stable experiment IDs is not a handoff.
+The handoff should make the active experiment, actual evidence stage, completed
+artifacts, blocker, and exact next action easy to locate through stable IDs and
+direct links. Reuse the current entrypoint and log instead of creating a dated
+handoff document on every resume. A linked run can be synthetic or engineering
+work; its completion alone is not a scientific finding.
 
 ## Compatibility boundary
 

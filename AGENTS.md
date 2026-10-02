@@ -38,70 +38,139 @@ Every active episode must contain:
 - `inputs/`
 - `outputs/`
 
-Maintain these seven local status files under `outputs/`:
+Record execution events once in `outputs/experiment_log.md`. Keep
+`outputs/README.md` a short, dated entrypoint linking the current log entry,
+actual evidence stage, active run, useful results, blocker, and next action.
+Runner/scheduler observations and their artifacts establish execution facts;
+the log records them and the README provides navigation. Resolve conflicting
+summaries from the relevant recent evidence or one targeted check, not a scan
+of the whole episode. Refresh navigation at material transitions, not every
+resume or scheduler poll; missing navigation does not block execution.
 
-1. `experiment_log.md`
-2. `memory.md`
-3. `governance.md`
-4. `society.md`
-5. `loop.md`
-6. `landscape.md`
-7. `verification.md`
+Preserve existing `memory.md`, `governance.md`, `society.md`, `loop.md`,
+`landscape.md`, and `verification.md` as domain-specific decisions and links.
+Create or update them only when their subject changes or a contract requires
+them. Do not copy the same live status into all six. They are not canonical
+MCP evidence or state-transition gates. Keep scientific goals and data roles
+in the contracts, and job history in the execution log.
 
-They are local, human-readable records—not canonical MCP evidence or
-state-transition gates. Keep them current at material milestones, but do not
-let projection maintenance delay the next scientific action.
+Reuse the existing artifact layout. Group new run configuration, scheduler
+logs, metrics, and results together, such as
+`outputs/runs/<analysis-id>/<attempt>/`; direct new Slurm logs there instead
+of the episode root. Link current artifacts separately from historical attempts.
+Mark obsolete status pages as historical and link the active entrypoint.
+Preserve frozen paths and active writers; moving or deleting old artifacts is
+a separate scoped change. No new manifests or status files are needed for
+navigation. See the episode skill for output organization.
 
-Use `$br-autoresearch-episode` for each new or resumed standalone episode. It
-exports a validated ASTRA plan after the contracts are read and a terminal
-projection only after real closeout artifacts exist. Both milestones go
-through `bin/astra-milestone`, which selects the deployed Sherlock launcher
-when available. The ASTRA file is written to
-`outputs/astra/v0.0.14/astra.yaml`. It is an interoperability projection, not
-canonical evidence, scientific acceptance, reward, execution authority, or a
-Landscape transition. ASTRA is expected at plan and terminal milestones, but
-it is not a launch or computation gate. An export failure leaves ASTRA
-compliance open and does not retroactively invalidate completed computation or
-authorize a different scientific outcome.
+Use `$br-autoresearch-episode` for each new or resumed standalone episode.
+Maintain `outputs/astra/v0.0.14/astra.yaml` as the episode's ASTRA experiment
+program: one root analysis with one `analyses` entry per independently runnable
+or evaluable experiment already required by the episode contracts. Express
+experiment dependencies through ASTRA inputs and outputs. Keep mutable runtime
+state—attempts, Slurm or process IDs, failures, artifacts, blocker, and exact
+next action—in `outputs/experiment_log.md`, keyed by the ASTRA analysis IDs;
+ASTRA 0.0.14 does not define those runtime fields.
 
-The six non-log files must not be listed in a `candidate_bundle.json` as
+The current `bin/astra-milestone` adapter emits only a lossy single-analysis
+plan or terminal snapshot. It is a compatibility projection, not the ASTRA
+experiment program and not a complete handoff. ASTRA and the execution log are
+episode-local records, not canonical evidence, scientific acceptance, reward,
+execution authority, or a Landscape transition. Authoring or validation
+failure leaves ASTRA compliance open; it does not block otherwise-authorized
+computation, invalidate completed work, or authorize a different outcome.
+
+The six auxiliary domain records must not be listed in a `candidate_bundle.json` as
 `output_artifacts`. `experiment_log.md` may be included only as explicitly
 optional supplemental context under the project-local
 `$brain-autoresearch-loop` contract.
 
-## Keep checks scientifically necessary
+## Execution first, checks when needed
 
-Use the smallest check that answers the scientific or operational question.
-A check is warranted only when it:
+Default to the next authorized action toward the requested task. There is no
+mandatory audit, preflight, conformance, smoke, or qualification sequence.
+Check only an explicit contract condition, concrete access/validity risk, or
+observed blocker whose result can change whether to execute, repair, stop, or
+ask. Reuse passing checks unless relevant code, inputs, or protocol changed.
+Validate changed schemas or concrete compatibility failures, not every resume.
 
-- enforces an explicit eligibility or validity condition in the frozen
-  `GOAL.md`, `DATASETS.md`, or search policy;
-- is needed for access control, safety, or correct use of real data or code; or
-- diagnoses a concrete inconsistency or failure that has actually occurred.
+Synthetic work is for requested or contract-required experiments, or a bounded
+reproducer of a diagnosed defect. Prefer a small real-input run when authorized.
+Name synthetic stages plainly and use the existing contract to identify their
+decision, cost, and stop condition. If qualification dominates the budget or
+repeatedly times out, propose a concrete smaller sufficient option or amendment
+within the scientist's delegated authority. Do not reset budgets, increase the
+sweep, or relax frozen requirements without existing authority for that change.
+Already authorized work may continue within its bounds.
+Fix the selected experiment's blocker, run its focused regression, then resume;
+do not start another broad audit to find hypothetical defects.
 
-Do not add SHA/checksum inventories, strict schema validators,
-content-addressed copies, duplicate-key policing, attestation or receipt
-chains, exact-interpreter bindings, repeated qualification reruns, or extra
-provenance files as generic readiness work. Provider-supplied identifiers and
-checksums may be recorded, but generating new machinery is not a launch gate
-unless exact identity is scientifically essential or a real integrity problem
-requires it.
+Preserve the requested scientific fidelity. For an adapted replication, explain
+and disclose inherited limitations; do not silently require perfect upstream
+provenance or an unlocated replacement dataset. Stricter frozen requirements
+remain in force until an authorized amendment changes them.
 
-Preserve checks that directly support the claim: biological-group identity
-and independence, duplicate or cross-episode overlap, leakage,
-development/final separation, adequate group support, source and atlas
-compatibility, and the distinction between detected, verified absent, and
-unknown outcomes. Summarize them with the lightest useful pass/revise/stop
-note. If one fails, revise the resource, narrow the claim, or stop instead of
-building a larger validation framework.
+Report missing required inputs, permission, or scientific choices early in one
+bundled question with evidence and a recommendation; do not substitute synthetic
+or hardening work. Optional tools or branches do not block authorized execution.
 
-Stage-specific modeling, lock, audit, and confirmation rules apply only at
-their scientific stage. A lighter representation may replace an old
-engineering mechanism only before candidate-discriminating outcome access and
-only when identity, timing, and access guarantees remain equivalent. If the
-mechanism itself enforces a frozen identity or access boundary, retain it
-unless the scientist explicitly amends that contract. Never rewrite prior
-records merely to normalize them.
+Tests, audits, or documents count as progress only if they advance the task or
+remove its actual blocker. Babysit recorded jobs using dependencies or a
+host-permitted wait/monitor mechanism. Check around meaningful milestones;
+the scheduler's minimum interval is a floor, not a polling target. Keep
+unchanged waits quiet unless periodic updates were requested. Waiting does not
+require repeated reviews, log reads, document refreshes, or plots. Report new
+results, failures, actionable stalls, and decisions with the actual evidence
+stage; synthetic launch is not empirical launch.
+
+Use native multiagent delegation proactively to advance independent authorized
+work in parallel. The lead keeps the scientific task moving while workers
+monitor status, interpret completed results, plot new evidence, or implement
+disjoint changes. A waiting dependency stalls only its dependent branch.
+Assign one read-only monitor per job or dependency chain; share timestamped
+changes and source links instead of repeating scheduler queries. Give every
+writable path and submission one owner, and integrate shared README/ledger
+updates once. Workers share the episode's access limits and total approved
+budget. Use disjoint permitted paths or isolated workspaces for edits. Do not
+create duplicate audits, status files, or tasks to occupy agents; use the direct
+path when no useful parallel work or native delegation is available.
+
+Visualize useful new evidence while working, not only at final reporting. Use
+available Neurofig layouts or existing plotting tools to explain progress,
+comparisons, uncertainty, and diagnosed problems. Share the figure with a brief
+interpretation at the relevant milestone; retain it under the episode's
+`outputs/figures/`. Read only authorized artifacts and label schematic, QC,
+exploratory, or confirmatory evidence. Do not invent data, open sealed outcomes,
+add experiments or synthetic work, or make figure quotas or renderer installation
+new execution gates. Do not replot unchanged evidence.
+
+Do not add generic hashes, receipt chains, source copies, interpreter bindings,
+schema gates, or provenance inventories. Retain provider identities and checks
+required by the frozen contract or a concrete integrity failure.
+
+Preserve biological-group identity/independence, overlap/leakage,
+development/final separation, group support, source/atlas compatibility, and
+unknown versus verified absence. Failures require affected-stage repair,
+scientific amendment, or stop.
+
+Apply modeling, lock, audit, and confirmation rules only at their required
+stage. Retain frozen identity, timing, and access guarantees unless the scientist
+amends the contract. Lighter implementations must preserve those guarantees
+before outcome access; never normalize prior records.
+
+## BR scientific assistance in standalone work
+
+Standalone does not mean BR-free. At consequential hypothesis, design, or result
+decisions, actively use relevant exposed read-only BR retrieval or critique
+within the episode's access and resource boundaries. Reuse prior evidence and
+record its decision impact in the existing experiment log; do not require a
+fixed tool checklist for every episode or resume.
+
+Check actual tool exposure when needed, not merely whether MCP is configured.
+Report missing optional capabilities without blocking otherwise-authorized
+work or adding installation, retry, or audit chains. Scientific assistance is
+not formal Society, canonical binding, approval, or scientific acceptance; the
+canonical boundary below remains unchanged.
 
 ## Canonical Brain Researcher boundary
 
@@ -167,8 +236,9 @@ result into a shared campaign claim automatically.
 2. Use `$br-autoresearch-episode` and read this file plus that episode's
    `GOAL.md`, `DATASETS.md`, and search policy.
 3. Confirm the required episode files and directories exist.
-4. Work only in that episode and do not run two writing tasks against it at
-   once. Continue the same task when practical.
+4. Work only in that episode. Parallel workers may own disjoint permitted paths;
+   each writable path, shared status record, and job submission has one owner.
+   Continue the same coordinated task when practical.
 5. Preserve provisioned input payloads; limit input documentation edits to the
    exception above.
 6. Write durable results under `outputs/` and transient work under the
