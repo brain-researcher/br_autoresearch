@@ -240,3 +240,12 @@ independent branch is provisioned; absent external inputs cannot block this
 LAION report. If the external branch is locked runnable, EP21 completion and
 the final manuscript synthesis additionally require its separate Findings D-E
 reports.
+
+
+### pipeline_conformance — redundant harness checks removed — 2026-10-02
+
+Cached reuse now consumes only current parent authorization and the completed public result; it does not recompute source/worker/harness hashes, archive stats, interpreter/package-root bindings or parameter-shape inventories. New actual-worker reports use v3; completed v2 artifacts retain their original provenance. Known relevant code/input/runtime/protocol changes must be recorded as stale here and passed as `relevant_change` or retained via `EP21_PUBLIC_CONFORMANCE_RELEVANT_CHANGE` in launch configuration until diagnosis/new authorized attempt; no automatic deletion or retry.
+
+Actual worker asset authentication, strict load/mean/required analytic fixture, source/step resource authority, cache accounting, and the unchanged feature lock/context gate remain. Focused mocked regression: 19 tests passed locally; this is orchestration evidence, not live public-model or scientific validation. See `pipeline_conformance/harness_repair_2026-10-02.md` and the updated three tool files.
+
+No job, empirical payload access, lock, scientific/resource contract amendment, successor, or ASTRA re-export was performed. Existing completed work and unchanged ASTRA program/export are reused. The previously recorded combined-allocation proposal and unresolved real lock/context integration remain the next execution conditions; this harness edit supplies neither.
