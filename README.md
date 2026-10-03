@@ -28,9 +28,9 @@ of the campaign is to see how broadly an agent can search, how deeply it can
 follow the most promising branches, and whether that produces more informative
 and reproducible science.
 
-The ordinary bounded-search lane first maps several meaningfully different
-candidate directions, then carries at most one or two into deeper
-falsification, ablation, sensitivity, and negative-control work. The
+The episode's scientific policy sets the breadth, depth, and resource limits
+of its search. An ordinary bounded-search lane maps competing directions and
+selects a small set for deeper falsification. The
 [adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md) supports many more
 outcome-adaptive successor cycles inside a frozen grammar, append-only ledger,
 finite round budget, and one-shot audit. Across more than 100 episodes, we can
@@ -39,25 +39,39 @@ to select whichever analysis happens to look best. Here, a better result means
 a sharper test, a more reproducible or transportable finding, or a
 well-supported reason to stop. It does not mean a smaller `p`-value.
 
+## Which skill to use
+
+| What you want to do | Skill |
+| --- | --- |
+| Turn a question or dataset into an EP; assess novelty; revise its design, writing or concept figure | [`design-episode`](.agents/skills/design-episode/SKILL.md) |
+| Implement or run an existing EP; repair, monitor, analyze and show its results | [`run-episode`](.agents/skills/run-episode/SKILL.md) |
+| Explicitly manage formal BR campaign state, Society review, reward or registered confirmation | [`manage-research-campaign`](.agents/skills/manage-research-campaign/SKILL.md) |
+
+The first two are the everyday research workflows. The third is optional,
+not a prerequisite or the next step after every experiment. Designing an EP
+does not launch it, and requesting a status report does not authorize a repair
+or another run. Scientific critique can inform either everyday workflow without
+starting a formal campaign.
+
+The former `br-autoresearch-episode` is now `run-episode`;
+`brain-autoresearch-loop` is now `manage-research-campaign`.
+`design-episode` adds the previously missing study-authoring entrypoint.
+Old names are not duplicate discoverable skills. Existing episode contracts,
+run identities and frozen campaign protocols are unchanged by this rename.
+
 ## How the loops are designed
 
-The ordinary bounded Goal/confirmation lane is:
+Standalone episode work is the default: an explicit scientist request starts
+work under the named episode's contract. Local exploration and evaluation do
+not require Society review or canonical registration. Formal Society review,
+reward, confirmation, and shared-claim promotion are a separate workflow used
+when explicitly requested, with authority checked before the relevant action.
+
+For an episode adopting the adaptive-search protocol, development proceeds
+inside one authorized round:
 
 ```text
-question + data
-    -> explore competing explanations and tests
-    -> Society critique
-    -> scientist gate
-    -> approved experiment
-    -> finding, refutation, or limitation
-    -> next question
-```
-
-The adaptive-search lane inserts a governed development loop inside one approved
-round:
-
-```text
-approved round + frozen policy
+authorized round + frozen policy
     -> branch coverage
     -> hypothesis -> development trial -> falsifier -> successor
     -> incumbent/challenger decisions until a valid stop
@@ -66,30 +80,25 @@ approved round + frozen policy
     -> finding, refutation, limitation, or incomplete search
 ```
 
-Society and scientist authority still govern the round and any scientific
-promotion; development trials do not individually become accepted findings.
+Development trials remain local evidence. They do not individually become
+accepted findings or authorize a new scientific round.
 
 ### 1. Start with a question
 
-Each episode starts with `GOAL.md`, `DATASETS.md`, and a search policy, normally
-`SEARCH_POLICY.yaml` (EP02 uses JSON). Each episode validates the fields its
-executor consumes; there is no portfolio-wide schema gate. An explicit
-scientist instruction in a Codex task starts the episode. The task names one
-episode, reads its local contract, treats `inputs/` as read-only, and records
-durable work under its `outputs/`. Data checks, runtime qualification,
-falsification, configuration lock, and held-out evaluation occur inside that
-task. Brain Researcher review, reward, and shared-claim governance remain
-separate from local episode startup.
+An idea can start with a question, a dataset, or a permitted prior observation.
+Use [design-episode](.agents/skills/design-episode/SKILL.md) to establish the
+closest prior work, useful scientific distinction, data-supported comparison,
+and aligned study narrative/figure. It keeps exploratory choices open without
+inventing universal pilot sizes or candidate caps.
 
-Readiness work is deliberately lean.  Episodes check the facts that can change
-the scientific answer or permit safe execution—for example independent-group
-mapping, overlap, leakage, source support, endpoint observability, and required
-atlas compatibility.  They do not create new SHA manifests, custom schema
-machinery, receipt chains, or repeated preflight runs by default.  Extra
-engineering checks are added only in response to a concrete inconsistency or
-when the active scientific stage genuinely depends on that exact mechanism. A
-readiness review should lead directly to proceed, revise, or stop, not to a
-larger validation project.
+An executable episode has `GOAL.md`, `DATASETS.md`, and one search policy,
+normally `SEARCH_POLICY.yaml` (EP02 uses JSON). Use
+[run-episode](.agents/skills/run-episode/SKILL.md) once execution is requested.
+[AGENTS.md](AGENTS.md) defines workspace and data boundaries, targeted checks,
+execution records, and canonical authority.
+Scientific payloads remain read-only; source documentation can be maintained
+within those boundaries. Checks and held-out evaluation occur when required
+by the active scientific stage.
 
 The Goal can be specific:
 
@@ -119,10 +128,12 @@ For each candidate it should state:
 - whether the required data are actually available; and
 - the approximate compute and data cost.
 
-Under the ordinary bounded-search policy, the runner can generate two to eight
-candidates and carry forward at most two that are ready to test. The candidate
-set and the comparison plan are recorded before the agent reads the outcomes
-that would decide among them.
+When an episode adopts the ordinary bounded-search policy, the runner can
+generate two to eight candidates and carry forward at most two that are ready
+to test. That candidate set and comparison plan are recorded before outcomes
+that decide among them are read. These numerical limits do not apply to the
+adaptive-search lane unless its episode policy adopts them; that lane permits
+outcome-adaptive successors inside its frozen grammar and budget.
 
 The agent may use the following as idea sources:
 
@@ -138,35 +149,18 @@ generation looks for an unusual connection in the knowledge graph and turns it
 into a hypothesis, a small discriminating test, a falsifier, and controls. An
 OOD idea is still only a candidate, not a finding.
 
-### 3. Let Society critique the candidate
+### 3. Request canonical review when needed
 
-If discovery produces a candidate worth carrying forward, the candidate and
-its evidence are frozen and sent to Brain Researcher Society, a multi-agent
-scientific review system that separates independent critique, adversarial
-challenge, evidence integration, and final human authority.
+When the scientist requests formal Society review, the frozen candidate and
+its evidence enter Brain Researcher's review workflow. Independent critique,
+adversarial challenge, and synthesis inform the scientist's decision. The
+panel cannot reward a direction, authorize confirmation, accept a claim, or
+update the Landscape itself. A local candidate does not automatically start
+this workflow.
 
-```text
-frozen candidate
-    -> independent reviews
-    -> cross-check and red team
-    -> advisory synthesis
-    -> strict eligibility gate
-    -> scientist reward and launch decision
-```
-
-For Goal-candidate review, the current implementation uses ten reviewing
-agents coordinated by a root conductor. That is an internal review instrument,
-not ten extra steps that every episode must expose to its user. The panel can
-recommend; it cannot reward a direction, authorize an experiment, accept a
-claim, or update the Landscape. Those powers remain separated.
-
-If an episode ends with no candidate or with a technical failure, it stops
-without Society review.
-
-The current topology, implementation boundaries, information design, power
-separation, and plans for cross-episode reviewer calibration are described in
-[SOCIETY.md](SOCIETY.md). Whether the full ten-agent panel is better than a
-smaller review is an empirical question for this campaign, not an assumption.
+[SOCIETY.md](SOCIETY.md) describes the review design and its limits;
+[AGENTS.md](AGENTS.md) defines when to use canonical operations. Whether a
+larger panel improves scientific review remains an empirical campaign question.
 
 ### 4. Run the experiment and turn the result into findings
 
@@ -242,15 +236,15 @@ storage locations, and access notes currently available on Sherlock.
 
 ## What someone needs to submit
 
-The main inputs are two files:
+The episode contract and initial workspace are:
 
 ```text
 episodeNN_short_name/
-├── GOAL.md
-├── DATASETS.md
-├── SEARCH_POLICY.yaml (or schema-equivalent SEARCH_POLICY.json)
-├── inputs/README.md
-└── outputs/README.md
+|-- GOAL.md
+|-- DATASETS.md
+|-- SEARCH_POLICY.yaml (or SEARCH_POLICY.json)
+|-- inputs/README.md
+`-- outputs/README.md
 ```
 
 `GOAL.md` says what you want to know. It can be specific, broad, or include
@@ -262,38 +256,25 @@ known, and what still needs to be checked. Imaging data do not go into Git.
 The search policy freezes the admissible grammar, objectives, branch coverage,
 budgets, falsifiers, stopping rule, and one-shot audit boundary.
 
-## ASTRA episode export
+## ASTRA experiment program
 
-Every new or resumed direct episode can be represented as a validated
-[ASTRA](https://astra-spec.org/latest/about/) analysis without changing the
-authority boundary of the run.  The exporter comes from Brain Researcher with
-the `astra` extra installed and writes only under the named episode:
+Maintain `outputs/astra/v0.0.14/astra.yaml` as the episode's full experiment
+program: one root analysis with an `analyses` entry for each independently
+runnable or evaluable experiment already required by its contracts. Inputs
+and outputs express dependencies. Attempts, job IDs, failures, artifacts, and
+next actions belong in `outputs/experiment_log.md`, keyed by analysis ID.
+Follow the [ASTRA authoring reference](.agents/skills/run-episode/references/astra.md)
+through [run-episode](.agents/skills/run-episode/SKILL.md).
 
-```bash
-bin/astra-milestone plan episode11_projection_types_vs_gradients
-```
+The legacy `bin/astra-milestone` adapter emits a lossy single-analysis plan or
+terminal projection. It is not a replacement for the full program and must
+not overwrite it. ASTRA records do not approve execution, accept claims,
+record reward, or update the Landscape. An authoring or validation failure
+leaves ASTRA compliance open without blocking otherwise-authorized work.
 
-At terminal closeout, name the actual selected evidence artifacts and state the
-reviewed finding, refutation, or limitation explicitly:
-
-```bash
-bin/astra-milestone terminal episode11_projection_types_vs_gradients \
-  --output-ref outputs/verification.md \
-  --finding "The frozen comparison remained inconclusive." \
-  --created-at 2026-09-26T19:30:00Z
-```
-
-The adapter uses the deployed `br-export-astra` launcher on Sherlock and falls
-back to the repository `bin/export-astra` entrypoint in an environment where
-Brain Researcher has the `astra` extra installed. Both commands validate
-against `astra-spec==0.0.14` before writing
-`outputs/astra/v0.0.14/astra.yaml`. The result is a non-authoritative
-interoperability projection. It does not approve execution, accept a claim,
-record reward, or update the Landscape.
-
-Once the Goal looks right, open a pull request. I will review the proposal,
-merge accepted episodes, and run them together on Sherlock. I currently have
-the model-token budget to support these runs.
+To propose a new episode for campaign inclusion, submit its contract for
+review through a pull request when that Git work is requested. Proposal review
+is separate from starting already-authorized standalone work.
 
 If you have another dataset you want to explore, tell me what it is and what
 question you want to ask. If its access rules allow it, I can help put it on
@@ -305,9 +286,10 @@ Each formal episode has one current Goal, dataset contract, and search policy.
 Once candidate-scoring adaptive execution starts, its scored trials,
 challenger decisions, and execution failures belong in the ordered trial log
 and current output workspace; acquisition and preliminary readiness need only
-the lean decision record required by the scientific question. Superseded local
-version directories are not kept. Large imaging data and temporary compute
-files stay outside Git.
+the lean decision record required by the scientific question. Preserve frozen
+paths, active writers, and protected history. Mark obsolete navigation as
+historical; moving or deleting artifacts requires a separately scoped change.
+Large imaging data and temporary compute files stay outside Git.
 
 - [CAMPAIGN.md](CAMPAIGN.md) lists formal episode slots, their current status,
   immutable prior runs, and reserved IDs.

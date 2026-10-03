@@ -1,7 +1,9 @@
 # Workspace projections and artifact layout
 
-This reference applies whenever an episode workspace is initialized, explored,
-submitted, reviewed, or handed off.
+This reference governs workspace records for the explicitly requested canonical
+Brain Researcher workflow. Its seven-projection requirement does not apply to
+standalone episode work or repository maintenance; those follow repository
+`AGENTS.md`.
 
 ## Workspace boundary
 
@@ -9,11 +11,12 @@ submitted, reviewed, or handed off.
   outputs/.
 - Treat inputs/ as read-only.
 - Put every new scientific artifact under outputs/.
-- Initialize the seven Markdown projections from templates/ at launch.
+- At canonical launch, initialize the seven Markdown projections from
+  templates/, preserving existing records.
 - Replace a not-observed placeholder only when supporting evidence exists.
 - These files are readable delivery projections, never MCP authority.
 
-## Exactly seven Markdown projections
+## Seven required canonical Markdown projections
 
 1. outputs/experiment_log.md is an append-oriented lab notebook of attempted
    analyses, failures, deviations, result references, and uncertainty.

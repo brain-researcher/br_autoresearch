@@ -59,7 +59,7 @@ campaign.  A standalone episode start/resume, including a Codex `/goal`
 request, is not sufficient. Drafting, readiness, or setup requests alone also
 do not authorize canonical launch, and an agent must not infer that authority.
 
-Prepare only against the authenticated owner’s `codex_autoresearch_v1` loop at
+Prepare only against the authenticated owner's `codex_autoresearch_v1` loop at
 `DISCOVERING`, and bind the exact source revision into the handoff. Submit must
 revalidate that binding before it records the terminal bundle.
 
@@ -101,7 +101,7 @@ assumptions, disposition, and any successor question. A registered program may
 use its frozen `registered_program_policy`, but it must name its
 `search_policy_ref`; generic Goal exploration never becomes unbounded.
 
-Use the persisted MCP loop and `$brain-autoresearch-loop` to display or advance
+Use the persisted MCP loop and `$manage-research-campaign` to display or advance
 a campaign after the handoff. The native goal itself belongs to the current
 Codex task; it is not a server-runner, an episode, or an execution
 authorization.
