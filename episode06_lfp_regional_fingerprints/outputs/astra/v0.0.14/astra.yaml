@@ -1,0 +1,465 @@
+version: "0.0.14"
+name: EP06 recording-domain population-component consequence
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: source_handoff, type: data, source: outputs/source_handoff.md}
+outputs:
+  - id: integrated_report
+    from: claim_interpretation.integrated_report
+analyses:
+  source_session_support:
+    name: Establish source semantics and outcome-blind session roles
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: handoff, from: ../source_handoff}
+      - {id: development_exporter, type: data, source: outputs/tools/prepare_development_views.py}
+      - {id: development_export_tests, type: data, source: outputs/tests/test_prepare_development_views.py}
+      - {id: development_reader, type: data, source: outputs/tools/development_views.py}
+      - {id: development_reader_tests, type: data, source: outputs/tests/test_development_views.py}
+      - {id: preparation_coordinator, type: data, source: outputs/tools/prepare_after_ep07.py}
+    outputs:
+      - id: metadata_inventory
+        type: report
+        format: json
+        inputs: [datasets, policy, handoff]
+        recipe:
+          command: python outputs/tools/inspect_session_metadata.py --max-seconds 1680
+          resources: {cpus: 1, memory: 2Gi, time_limit: 30m}
+      - id: session_support
+        type: report
+        format: json
+        inputs: [datasets, policy, handoff]
+      - id: development_views
+        type: data
+        description: >-
+          Seven fixed development sessions and1954 original trials only.
+          Coordinator projects closed EP07 freeze/opening timestamps and role
+          metadata after its primary opening is complete. Exporter then reads
+          EP06 public sources with paired whole-trial roles, all native units
+          and one fixed training-selected15-electrode subset. Reserved dates
+          remain closed; this preparation does not start the scientific clock.
+          The parent supplies the explicit at-most900-second deadline.
+        inputs: [datasets, policy, handoff, development_exporter, development_reader, preparation_coordinator]
+        recipe:
+          command: python3.12 -B outputs/tools/prepare_after_ep07.py --deadline-epoch $EP06_PREPARATION_DEADLINE_EPOCH
+          resources: {cpus: 1, memory: 7Gi, time_limit: 15m}
+      - id: development_view_checks
+        type: report
+        format: text
+        description: >-
+          Four fabricated-metadata/HDF checks of prospective role assignment,
+          fixed training-only electrode selection, paired native support and
+          candidate versus outcome access. Run inside substantive compute.
+        inputs: [policy, development_exporter, development_export_tests, development_reader, development_reader_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_prepare_development_views
+            test_development_views ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+    decisions:
+      source_roles:
+        label: Shared corpus and role boundary
+        default: paired_two_animal_component
+        options:
+          paired_two_animal_component:
+            label: Qualify five retained Mihili and six Chewie paired sessions; development positions are Mihili1/2/4 and Chewie1/2/4/5, reserved positions3/6 unchanged, excluded Mihili5 never renumbered; no third-animal substitution
+  residual_fingerprint_development:
+    name: Learn the residual-only fingerprint and challenge recording confounds
+    inputs:
+      - {id: session_support, from: ../source_session_support.session_support}
+      - {id: development_views, from: ../source_session_support.development_views}
+      - {id: policy, from: ../policy}
+      - {id: bandwise_code, type: data, source: outputs/tools/bandwise_prediction.py}
+      - {id: bandwise_tests, type: data, source: outputs/tests/test_bandwise_prediction.py}
+      - {id: profile_code, type: data, source: outputs/tools/primary_profile.py}
+      - {id: profile_tests, type: data, source: outputs/tests/test_primary_profile.py}
+      - {id: classifier_code, type: data, source: outputs/tools/profile_classifier.py}
+      - {id: classifier_tests, type: data, source: outputs/tests/test_profile_classifier.py}
+      - {id: cca_code, type: data, source: outputs/tools/cca_mapping.py}
+      - {id: cca_tests, type: data, source: outputs/tests/test_cca_mapping.py}
+      - {id: family_tests, type: data, source: outputs/tests/test_bandwise_families.py}
+      - {id: reference_code, type: data, source: outputs/tools/profile_references.py}
+      - {id: reference_tests, type: data, source: outputs/tests/test_profile_references.py}
+      - {id: initial_runner, type: data, source: outputs/tools/run_initial_profiles.py}
+      - {id: initial_runner_tests, type: data, source: outputs/tests/test_run_initial_profiles.py}
+      - {id: initial_specification, type: data, source: outputs/paper_plan.md}
+      - {id: pca_ridge_tests, type: data, source: outputs/tests/test_pca_ridge.py}
+      - {id: followup_runner, type: data, source: outputs/tools/run_followup_profiles.py}
+      - {id: followup_runner_tests, type: data, source: outputs/tests/test_run_followup_profiles.py}
+      - {id: control_runner, type: data, source: outputs/tools/run_development_controls.py}
+      - {id: control_runner_tests, type: data, source: outputs/tests/test_run_development_controls.py}
+      - {id: metadata_control, type: data, source: outputs/tools/metadata_classifier.py}
+      - {id: metadata_tests, type: data, source: outputs/tests/test_metadata_classifier.py}
+      - {id: profile_controls, type: data, source: outputs/tools/profile_controls.py}
+      - {id: profile_control_tests, type: data, source: outputs/tests/test_profile_controls.py}
+      - {id: trial_intervention, type: data, source: outputs/tools/development_interventions.py}
+      - {id: trial_intervention_tests, type: data, source: outputs/tests/test_development_interventions.py}
+      - {id: unit_restriction, type: data, source: outputs/tools/electrode_unit_intersection.py}
+      - {id: unit_restriction_test, type: data, source: outputs/tests/test_electrode_unit_intersection.py}
+      - {id: elapsed_baseline, type: data, source: outputs/tools/elapsed_time_baseline.py}
+      - {id: elapsed_baseline_test, type: data, source: outputs/tests/test_elapsed_time_baseline.py}
+      - {id: support_runner, type: data, source: outputs/tools/run_support_controls.py}
+      - {id: magnitude_classifier, type: data, source: outputs/tools/magnitude_classifier.py}
+      - {id: magnitude_tests, type: data, source: outputs/tests/test_magnitude_classifier.py}
+      - {id: magnitude_runner, type: data, source: outputs/tools/run_magnitude_controls.py}
+      - {id: robustness_runner, type: data, source: outputs/tools/run_robustness_controls.py}
+      - {id: robustness_test, type: data, source: outputs/tests/test_run_robustness_controls.py}
+      - {id: scored_original_profiles, type: data, source: outputs/runs/residual_fingerprint_development/starting001/scores}
+      - {id: scored_mapping_successors, type: data, source: outputs/runs/residual_fingerprint_development/adaptive001/scores}
+      - {id: completed_mismatch, type: data, source: outputs/runs/residual_fingerprint_development/controls001}
+      - {id: completed_unit_and_time_controls, type: data, source: outputs/runs/residual_fingerprint_development/support001}
+    outputs:
+      - id: primary_development
+        type: report
+        format: json
+        description: >-
+          Open development search beginning with twelve prospectively declared
+          full/low-frequency ridge, median and PCA/CCA comparisons. Six unique
+          frozen fitting recipes feed twelve classifier/profile variants;
+          publish all initial predictions before reading development outcomes.
+          Fixed-candidate 128-label references and raw signed profile omissions
+          are diagnostics, not full-search significance or promotion authority.
+          Successors and all required controls remain necessary after the starts.
+        inputs: [session_support, development_views, policy, bandwise_code, profile_code, classifier_code, cca_code, reference_code, initial_runner, initial_specification]
+        recipe:
+          command: bash outputs/tools/start_profiles.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+      - id: first_successors_and_controls
+        type: report
+        format: json
+        description: >-
+          Two evidence-led low-band successors compare electrode-PCA ridge and
+          stronger-regularized CCA with starting10. Four separate controls
+          examine recording-support metadata, session omissions, band labels
+          and paired whole-trial mismatch. Freeze42 new prediction cells before
+          any new outcome score, reusing completed original scores. All seven
+          development dates remain; no calibration values or reserved dates.
+          Numerical completion is not promotion or passage of required controls.
+          Run focused changed-dependency checks in the same attended allocation.
+        inputs: [development_views, policy, initial_specification, bandwise_code, profile_code, classifier_code, reference_code, followup_runner, control_runner, metadata_control, profile_controls, trial_intervention, pca_ridge_tests, followup_runner_tests, control_runner_tests, metadata_tests, profile_control_tests, trial_intervention_tests]
+        recipe:
+          command: bash outputs/tools/followup_profiles.sh
+          resources: {cpus: 1, memory: 7Gi, time_limit: 30m}
+      - id: selected_unit_and_timing_controls
+        type: report
+        format: json
+        description: >-
+          Restrict native spike units to the existing15 LFP electrode IDs and
+          compare a genuine linear elapsed-time prediction with original LFP
+          scores in the same frozen original population coordinates. These are
+          two controls; the algebraic zero direction-by-bin baseline is not an
+          additional trial. Publish all available unit predictions and all14
+          timing predictions before outcomes. Insufficient unit count/rank is
+          an unavailable whole control, never a discarded date or lower rank.
+          This unit restriction is not a bidirectional electrode intersection.
+          Reuse the bounded attended allocation and unchanged search clock.
+        inputs: [development_views, policy, initial_specification, bandwise_code, profile_code, unit_restriction, unit_restriction_test, elapsed_baseline, elapsed_baseline_test, support_runner]
+        recipe:
+          command: bash outputs/tools/support_controls.sh
+          resources: {cpus: 1, memory: 7Gi, time_limit: 10m}
+      - id: magnitude_and_lmp_comparisons
+        type: report
+        format: json
+        description: >-
+          Six fixed comparisons reuse completed physical profiles and their
+          actual population designs: four magnitude, LMP, restricted-unit and
+          mismatch controls, plus a singleton PCA-ridge mapping successor and
+          a uniform five-band feature successor. Fit signed-magnitude scaling
+          only on source rows; singleton LMP has explicitly no shape component.
+          Preserve all128 references, raw signed omissions and unfinished
+          promotion requirements. No new neural fit, calibration or reserved
+          read. Count each available comparison once under the original clock.
+        inputs: [policy, initial_specification, profile_code, classifier_code, reference_code, magnitude_classifier, magnitude_tests, magnitude_runner, scored_original_profiles, scored_mapping_successors, completed_mismatch, completed_unit_and_time_controls]
+        recipe:
+          command: bash outputs/tools/magnitude_controls.sh
+          resources: {cpus: 1, memory: 7Gi, time_limit: 20m}
+      - id: lmp_and_five_band_robustness
+        type: report
+        format: json
+        description: >-
+          Four fixed controls test the completed original singleton-LMP and
+          five-band prototype leads. All seven whole-session omissions are
+          retained for each recipe with source-only refits; selected-unit and
+          trial-mismatch five-band profiles retain complete128 references.
+          Each omission series counts once only when completely available.
+          No new neural fit, calibration values or reserved opening. Negative
+          valid controls count toward the unchanged post-minimum stopping rule;
+          numerical completion is not scientific acceptance.
+        inputs: [policy, initial_specification, profile_code, classifier_code, reference_code, magnitude_classifier, magnitude_runner, robustness_runner, robustness_test, scored_original_profiles, completed_mismatch, completed_unit_and_time_controls]
+        recipe:
+          command: bash outputs/tools/robustness_controls.sh
+          resources: {cpus: 1, memory: 7Gi, time_limit: 10m}
+      - id: initial_mapping_and_reference_checks
+        type: report
+        format: text
+        description: >-
+          Nine focused new checks cover regularized CCA, median and electrode
+          PCA integration, all 128 conditional label assignments, signed
+          omissions and the initial runner's role/publication and reuse logic.
+          Five changed-dependency checks preserve existing mean-ridge and
+          primary-profile behavior. Bundle with substantive empirical fitting;
+          no new synthetic research program or independent checking job.
+        inputs: [policy, bandwise_code, bandwise_tests, profile_code, profile_tests, cca_code, cca_tests, family_tests, reference_code, reference_tests, initial_runner, initial_runner_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 240s
+            python3.12 -B -m unittest -v test_bandwise_prediction test_primary_profile
+            test_cca_mapping test_bandwise_families test_profile_references
+            test_run_initial_profiles ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 5m}
+      - id: profile_classifier_checks
+        type: report
+        format: text
+        description: >-
+          Two array-only checks of paired cross-animal profile binding, cosine
+          geometry, the independent scalar logistic optimum, exact ties and
+          explicit unavailable panels. No empirical classification or null
+          reference is computed by these checks.
+        inputs: [policy, profile_code, classifier_code, classifier_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_profile_classifier ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: primary_profile_checks
+        type: report
+        format: text
+        description: >-
+          Two fabricated-array checks of pooled training-template residual
+          energy with uniform trial/native-bin rows and exact paired signed
+          profiles. Preserve evaluation mean shifts, negative scores and
+          unavailable zero/nonfinite energy. These are not component-E scores,
+          neural fits, a classifier or a scientific search.
+        inputs: [policy, bandwise_code, profile_code, profile_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 120s python3.12 -B -m unittest
+            discover -s outputs/tests -p test_primary_profile.py -v > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: bandwise_fitting_checks
+        type: report
+        format: text
+        description: >-
+          Three focused array-only checks of training PCA, frozen training
+          direction/native-bin templates,15-electrode feature means, training
+          scaling and unpenalized-intercept ridge. Feature-only prediction and
+          explicit native identities remain separate from observed responses.
+          This first registered branch does not define the profile score,
+          qualify empirical support, open outcomes or close the model menu.
+          Execute inside substantive compute, never as a checking-only job.
+        inputs: [policy, bandwise_code, bandwise_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 90s
+            python3.12 -B -m unittest -v test_bandwise_prediction ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+    decisions:
+      cross_episode_access:
+        label: Preserve EP07 closed spike trials
+        default: wait_for_ep07_freeze_and_primary_opening
+        options:
+          wait_for_ep07_freeze_and_primary_opening:
+            label: Neural fitting/scoring follows EP07 full freeze and its single primary opening unless the scientist prospectively approves compatible joint roles; no sibling scores or fitted state become inputs
+      primary_target:
+        label: Residual-only fingerprint
+        default: training_direction_time_template
+        options:
+          training_direction_time_template:
+            label: Subtract training-only direction-by-time means and require both animal-transfer directions, signed profiles and all registered recording and pairing controls
+  development_control_visualization:
+    name: Show completed development candidates and their fixed sensitivities
+    inputs:
+      - {id: primary_development, from: ../residual_fingerprint_development.primary_development}
+      - {id: first_successors_and_controls, from: ../residual_fingerprint_development.first_successors_and_controls}
+      - {id: control_figure_code, type: data, source: outputs/tools/plot_development_controls.py}
+    outputs:
+      - id: development_control_figure
+        type: data
+        format: png
+        description: >-
+          Plot six completed original/successor/control comparisons in both
+          animal directions and the named March4 omission. Seven development
+          dates and two animals; single fixed interventions are sensitivities,
+          not p-values. No new fitting, inference or outcome opening.
+        inputs: [primary_development, first_successors_and_controls, control_figure_code]
+        recipe:
+          command: python3.12 -B outputs/tools/plot_development_controls.py
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+  development_lmp_visualization:
+    name: Show exploratory LMP recovery and its recording controls
+    inputs:
+      - {id: magnitude_results, from: ../residual_fingerprint_development.magnitude_and_lmp_comparisons}
+      - {id: lmp_figure_code, type: data, source: outputs/tools/plot_lmp_controls.py}
+    outputs:
+      - id: lmp_comparison_figure
+        type: figure
+        format: png
+        description: >-
+          Reciprocal-animal LMP classification under original, selected-unit
+          and trial-mismatch conditions, alongside physical residual-energy
+          scores and a fixed linear timing baseline for each of seven dates
+          in two animals. Exploratory selection and recording-support limits
+          are explicit; no new fit or statistical test is added.
+        inputs: [magnitude_results, lmp_figure_code]
+        recipe:
+          command: python3.12 -B outputs/tools/plot_lmp_controls.py
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+  development_search_conclusion:
+    name: Interpret the completed development search under its stopping rule
+    inputs:
+      - {id: initial_results, from: ../residual_fingerprint_development.primary_development}
+      - {id: first_followups, from: ../residual_fingerprint_development.first_successors_and_controls}
+      - {id: support_controls, from: ../residual_fingerprint_development.selected_unit_and_timing_controls}
+      - {id: magnitude_results, from: ../residual_fingerprint_development.magnitude_and_lmp_comparisons}
+      - {id: robustness_results, from: ../residual_fingerprint_development.lmp_and_five_band_robustness}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: development_conclusion
+        type: report
+        format: markdown
+        description: >-
+          outputs/runs/residual_fingerprint_development/development_closeout.md
+          interprets the completed comparisons, prespecified stopping decision,
+          exploratory LMP signal and failed recording/influence robustness.
+          Distinguish unperformed component and reserved analyses from measured
+          negative evidence; no unsupported final procedure is opened.
+        inputs: [initial_results, first_followups, support_controls, magnitude_results, robustness_results, policy]
+  frequency_rule_consequence:
+    name: Compare correct-domain, pooled and swapped source frequency rules
+    inputs:
+      - {id: primary_development, from: ../residual_fingerprint_development.primary_development}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: frequency_consequence
+        type: report
+        format: json
+        inputs: [primary_development, policy]
+  component_nomination_and_support:
+    name: Cross-fit the three unresidualized components and support predictions
+    inputs:
+      - {id: frequency_consequence, from: ../frequency_rule_consequence.frequency_consequence}
+      - {id: policy, from: ../policy}
+      - {id: component_specification, type: data, source: outputs/component_details.md}
+      - {id: component_scoring_code, type: data, source: outputs/tools/component_scoring.py}
+      - {id: component_scoring_tests, type: data, source: outputs/tests/test_component_scoring.py}
+      - {id: component_nomination_code, type: data, source: outputs/tools/component_nomination.py}
+      - {id: component_nomination_tests, type: data, source: outputs/tests/test_component_nomination.py}
+      - {id: component_outer_stability_code, type: data, source: outputs/tools/component_outer_stability.py}
+      - {id: component_outer_stability_tests, type: data, source: outputs/tests/test_component_outer_stability.py}
+      - {id: component_support_h_code, type: data, source: outputs/tools/component_support_h.py}
+      - {id: component_support_h_tests, type: data, source: outputs/tests/test_component_support_h.py}
+    outputs:
+      - id: component_arithmetic_checks
+        type: report
+        format: text
+        description: >-
+          Twelve focused checks of the declared direction-balanced projectors and
+          one nominated component's three-rule scores, using an independent
+          weighted matrix oracle and supplied positive energy gate. Preserve
+          negative scores, unresolved support and the fixed regional sign rules.
+          Apply the adopted three-Mihili/four-Chewie nomination rule to supplied scalar records, preserving
+          numerical support versus sign eligibility, common session support,
+          negative candidates and the 0.01 tie margin. Final nomination retains
+          and recomputes the outer assessment and must match its stable family.
+          No empirical reader,
+          weight fit, observed nomination, gate selection or claim acceptance.
+        inputs: [policy, component_specification, component_scoring_code, component_scoring_tests, component_nomination_code, component_nomination_tests, component_outer_stability_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 60s
+            bash -c 'cd outputs/tests && python3.12 -B -m unittest -v -f test_component_scoring test_component_nomination'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: component_outer_stability_checks
+        type: report
+        format: text
+        description: >-
+          Four focused record-only checks of the three Mihili/four Chewie outer
+          nominations and their nominee-only left-out regional comparisons. All
+          three Mihili or at least three Chewie folds must nominate the same
+          component, no fold may be tied and no
+          left-out regional signs may disagree, including a different fourth
+          nominee. Preserve jointly negative gains, zero/negative contradiction
+          and unresolved missing or unscoreable evidence. Stable selection does
+          not establish preservation, H predictions or a component claim.
+          No source reader, new score, fit or reserved opening. Run only inside
+          a subsequently selected substantive allocation; the historical EP21
+          companion did not execute these checks.
+        inputs: [policy, component_scoring_code, component_nomination_code, component_nomination_tests, component_outer_stability_code, component_outer_stability_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 30s
+            bash -c 'cd outputs/tests && python3.12 -B -m unittest -v -f test_component_outer_stability'
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: component_support_h_checks
+        type: report
+        format: text
+        description: >-
+          Focused scalar-record checks of the fixed calibration-only H rule.
+          Preserve other-six development and all-seven reserved reference
+          rosters, nominated component, median and1.4826-MAD standardization,
+          inclusive plus/minus0.25 thresholds and abstention for missing or
+          invalid support. No evaluation gains, profile extraction, fitted
+          coefficients, raw regional aggregation, actual H prediction or
+          reserved outcome opening. Bind each final nominee to its recorded
+          stable outer family before reserved H scalar access. Run inside a
+          substantive allocation; the historical EP21 companion did not execute
+          these checks.
+        inputs: [policy, component_nomination_code, component_nomination_tests, component_outer_stability_code, component_support_h_code, component_support_h_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 30s
+            bash -c 'cd outputs/tests && python3.12 -B -m unittest -v -f test_component_support_h'
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: component_development
+        type: report
+        format: json
+        inputs: [frequency_consequence, policy, component_specification, component_scoring_code, component_nomination_code, component_outer_stability_code, component_support_h_code]
+    decisions:
+      nomination:
+        label: Fixed component nomination
+        default: scoreable_rivals_and_candidate_specific_signs
+        options:
+          scoreable_rivals_and_candidate_specific_signs:
+            label: Require numerical scoreability of all three rivals, candidate-specific regional sign consistency and the frozen 0.01 margins; score only each prefold nominee in the left-out session
+      support:
+        label: Calibration-only support rule
+        default: fixed_reliability_minus_distance
+        options:
+          fixed_reliability_minus_distance:
+            label: Use frozen standardized reliability minus distance with plus/minus 0.25 thresholds and declared abstention without fitting coefficients to session outcomes
+  final_analysis_freeze:
+    name: Freeze one analysis and all four reserved-session predictions
+    inputs:
+      - {id: primary_development, from: ../residual_fingerprint_development.primary_development}
+      - {id: component_development, from: ../component_nomination_and_support.component_development}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: frozen_analysis
+        type: report
+        format: json
+        inputs: [primary_development, component_development, policy]
+  reserved_session_test:
+    name: Apply the frozen analysis once to all four reserved sessions together
+    inputs:
+      - {id: frozen_analysis, from: ../final_analysis_freeze.frozen_analysis}
+      - {id: session_support, from: ../source_session_support.session_support}
+    outputs:
+      - id: reserved_report
+        type: report
+        format: json
+        inputs: [frozen_analysis, session_support]
+  claim_interpretation:
+    name: Report the bounded two-animal component and unresolved external transfer
+    inputs:
+      - {id: reserved_report, from: ../reserved_session_test.reserved_report}
+      - {id: policy, from: ../policy}
+      - {id: goal, from: ../goal}
+    outputs:
+      - id: integrated_report
+        type: report
+        format: markdown
+        inputs: [reserved_report, policy, goal]

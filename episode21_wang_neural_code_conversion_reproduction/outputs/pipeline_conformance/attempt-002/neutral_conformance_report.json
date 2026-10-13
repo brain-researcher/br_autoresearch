@@ -1,0 +1,278 @@
+{
+  "astra_analysis_id": "pipeline_conformance",
+  "attempt": 2,
+  "blockers": [
+    "scientist protocol choice remains unresolved",
+    "LAION DUA and Sherlock risk classification remain unresolved",
+    "role-filtered regular-only feature and scoring handoffs are absent",
+    "authenticated participants roles tau split overlaps betas masks and array QC are absent",
+    "AlexNet is unmanifested VGG binding is unproven and main bdpy is unpinned",
+    "empirical neural execution is not authorized"
+  ],
+  "completed_at": "2026-09-29T23:28:19+00:00",
+  "empirical_or_ood_payload_accessed": false,
+  "empirical_readiness": "blocked",
+  "mechanical_checks": {
+    "dynamic_content_buffer_fixture": {
+      "allocated_shapes": {
+        "conv_fixture": [
+          4712,
+          4,
+          4
+        ],
+        "fc_fixture": [
+          4712,
+          8
+        ]
+      },
+      "allocation_row_count": 4712,
+      "execution_requirement": "derive the actual authenticated row count at runtime and allocate every content-loss feature buffer with that exact count; never retain the tagged 6000 default implicitly",
+      "feature_row_counts": {
+        "conv_fixture": 4712,
+        "fc_fixture": 4712
+      },
+      "image_id_count": 4712,
+      "negative_tests": {
+        "reject_4711_feature_rows": true,
+        "reject_4713_feature_rows": true,
+        "reject_duplicate_image_id": true,
+        "reject_tagged_6000_allocation_hint": true
+      },
+      "optimizer_steps_executed": 0,
+      "passed": true,
+      "planned_row_count": 4712,
+      "response_row_count": 4712
+    },
+    "tagged_source_static_assertions": {
+      "brain_num_sample_unused_inside_fit_function": true,
+      "brain_source_and_target_are_independently_sorted_by_labels": true,
+      "number_size_is_parser_only": true,
+      "tagged_allocates_with_batch_size": true,
+      "tagged_batch_default_is_6000": true,
+      "tagged_checkpoint_is_final_iteration_only": true,
+      "tagged_executor_lacks_max_workers": true,
+      "tagged_model_has_two_leaky_relu_point2": true,
+      "tagged_n_cpu_default_is_16": true,
+      "tagged_n_cpu_is_parser_only": true,
+      "tagged_number_size_default_is_6000": true,
+      "tagged_optimizer_betas_point5_point999": true,
+      "tagged_optimizer_decay_starts_512": true,
+      "tagged_optimizer_iterations_1024": true,
+      "tagged_optimizer_learning_rate_5e_5": true,
+      "tagged_reconstruction_decay_endpoints": true,
+      "tagged_reconstruction_initialization_unseeded": true,
+      "tagged_reconstruction_iterations_200": true,
+      "tagged_reconstruction_learning_rate_endpoints": true,
+      "tagged_reconstruction_momentum_endpoints": true,
+      "tagged_reconstruction_snapshot_interval_10": true,
+      "tagged_reconstruction_uses_sgd": true,
+      "tagged_seed_is_42": true,
+      "tagged_weighting_is_normalized_inverse_squared_norm": true
+    },
+    "tau_role_guard_fixture": {
+      "alignment_basis": "the tagged fitter independently sorts source and target rows by their unique image labels before normalization and fitting; the guard proves that both post-sort sequences equal the authenticated tau-train sequence",
+      "execution_requirement": "route only authenticated tau-train rows to brain-loss fitting and enforce exact source/target label-set equality before the tagged fitter is called",
+      "negative_tests": {
+        "reject_tau_test_fit_row": true,
+        "reject_train_test_overlap": true,
+        "reject_wrong_train_count": true
+      },
+      "passed": true,
+      "post_sort_pairwise_label_alignment": true,
+      "post_sort_pairwise_label_count": 897,
+      "repetition_scope": "synthetic fixture uses one row per unique image; authenticated repetition grouping and aggregation remain required before empirical execution",
+      "source_fit_count": 897,
+      "source_target_input_order_equal": false,
+      "target_fit_count": 897,
+      "tau_test_count": 224,
+      "tau_train_count": 897,
+      "train_test_overlap_count": 0,
+      "train_test_union_count": 1121
+    },
+    "worker_binding_fixture": {
+      "binding": {
+        "analysis_id": "pipeline_conformance",
+        "attempt": 2,
+        "cpu_workers": 1,
+        "device": "cpu",
+        "pair_id": "synthetic-source_to_synthetic-target",
+        "source_id": "synthetic-source",
+        "stage": "protocol_neutral_synthetic_fixture",
+        "target_id": "synthetic-target"
+      },
+      "binding_source": "explicit_cli",
+      "execution_requirement": "pass the resolved count as ProcessPoolExecutor(max_workers=...) because the tagged --n_cpu argument is unused",
+      "executor_or_device_created": false,
+      "max_workers": 1,
+      "oversubscription_rejected": true,
+      "passed": true,
+      "slurm_cpus_per_task": null
+    }
+  },
+  "next_action": "after the scientist selects the paper- or tagged-code-faithful protocol and a steward provisions authenticated structural metadata, finalize the complete synthetic conformance suite and emit a fail-closed protocol lock; do not access empirical payloads before separate authorization",
+  "outcome": "passed_protocol_neutral_checks_with_protocol_and_access_blockers",
+  "payload_accessed": false,
+  "planning_counts_are_unauthenticated_contract_fixtures": true,
+  "process_id": 62152,
+  "protocol_lock_emitted": false,
+  "schema_version": "ep21.neutral_conformance_report.v1",
+  "scientific_decisions": {
+    "activation": "unresolved_paper_relu_vs_tagged_leaky_relu_point2",
+    "brain_loss_regularization": "unresolved_source_study_dyad_values_not_ported",
+    "content_loss_weighting": "unresolved_paper_vs_tagged_normalized_per_block",
+    "reconstruction_layers": "unresolved_paper_eight_vs_tagged_nineteen"
+  },
+  "scope": "protocol_neutral_static_and_synthetic_mechanical_checks",
+  "source_archive": {
+    "identity_matches_qualification": true,
+    "md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+    "path": "/scratch/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/source_qualification/attempt-001/KamitaniLab/InterSiteNeuralCodeConversion-V1.0.0.zip",
+    "size_bytes": 23110908
+  },
+  "source_members": {
+    "brain_params": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/params/converter_params_VC.csv",
+      "sha256": "5e0749536a636dcc49e426441a6114efbd0a01edf1ce26115601436112d06b59"
+    },
+    "brain_train": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+      "sha256": "28c74907a963dba3bd6063a86d8706a535c356129757054407065275409cefea"
+    },
+    "content_models": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+      "sha256": "0596691b7fa7b9868c0864ddfaadd28e7f7937b1e0660ea231e02cfe1cec413b"
+    },
+    "content_train": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+      "sha256": "b92fe3419c329f952b323a51b8ca901216cb2f35708664343b3bac0b3ecf288e"
+    },
+    "content_utils": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+      "sha256": "f95799f1b0f03cd13def2507b7e7bd8d768a2fb86989acf4470bc86d9fefe1e0"
+    },
+    "reconstruction": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+      "sha256": "2f37541c98b1b9fd6562f21f788794f6c4b0062fe3c3c7fd4fcc40bd13d95444"
+    },
+    "reconstruction_config": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+      "sha256": "0085210754b7b0384b02319d160e0f161b5aa8ebb65634bae8c477089a8e7c93"
+    }
+  },
+  "started_at": "2026-09-29T23:28:19+00:00",
+  "synthetic_only": true,
+  "tagged_optimizer_facts_recorded_not_adopted": {
+    "content_converter": {
+      "adam_betas": [
+        0.5,
+        0.999
+      ],
+      "checkpoint_rule": "final_iteration_only",
+      "iterations": 1024,
+      "learning_rate": 5e-05,
+      "linear_decay_start_iteration": 512,
+      "schedule_formula": "1 - max(0, iteration + offset - decay_start_iteration) / (n_iterations - decay_start_iteration)",
+      "seed": 42,
+      "step_order": [
+        "optimizer.zero_grad",
+        "loss.backward",
+        "optimizer.step",
+        "lr_scheduler.step"
+      ]
+    },
+    "reconstruction": {
+      "decay_endpoints": [
+        0.01,
+        0.01
+      ],
+      "initialization": "unseeded_numpy_random_normal",
+      "iterations": 200,
+      "learning_rate_endpoints": [
+        2.0,
+        1e-10
+      ],
+      "momentum_endpoints": [
+        0.9,
+        0.9
+      ],
+      "optimizer": "SGD",
+      "seed_and_restart_behavior": "unresolved",
+      "snapshot_interval": 10
+    },
+    "state": "outcome_blind_source_fact_pending_protocol_lock"
+  },
+  "tagged_source_hazards": {
+    "brain_loss_row_routing": {
+      "evidence": [
+        {
+          "line": 117,
+          "text": "num_sample,"
+        },
+        {
+          "line": 132,
+          "text": "x_index = np.argsort(x_labels.flatten())"
+        },
+        {
+          "line": 136,
+          "text": "y_index = np.argsort(y_labels.flatten())"
+        },
+        {
+          "line": 164,
+          "text": "model.fit(x_normalized, y_normalized, alpha=alpha, n_feat=0,"
+        }
+      ],
+      "num_sample_used_inside_train_function": false,
+      "source_study_alpha_portability": "unresolved_scientific_choice_not_adopted",
+      "source_study_parameter_table": {
+        "alpha_max": 1400,
+        "alpha_min": 620,
+        "declared_sample_counts": [
+          6000
+        ],
+        "row_count": 20,
+        "unique_alpha_values": [
+          620,
+          640,
+          660,
+          740,
+          780,
+          800,
+          820,
+          1000,
+          1200,
+          1400
+        ],
+        "unique_directed_pair_count": 20
+      },
+      "state": "detected_external_prefit_guard_required_before_empirical_run"
+    },
+    "content_row_allocation": {
+      "batch_default": 6000,
+      "evidence": [
+        {
+          "line": 139,
+          "text": "input_dnn_layers[layer] = Tensor(opt.batchSize, *shape[1:])"
+        },
+        {
+          "line": 142,
+          "text": "input_dnn_layers[layer] = Tensor(opt.batchSize, shape[1])"
+        },
+        {
+          "line": 162,
+          "text": "dnn_true = Variable(input_dnn_layers[layer].copy_(torch.from_numpy(dnn_feature_batch)))"
+        }
+      ],
+      "number_size_default": 6000,
+      "state": "detected_guard_tested_patch_or_wrapper_required_before_empirical_run"
+    },
+    "worker_binding": {
+      "executor_call": {
+        "keyword_names": [],
+        "line": 72,
+        "positional_argument_count": 0
+      },
+      "state": "detected_guard_tested_patch_required_before_empirical_run",
+      "tagged_n_cpu_default": 16
+    }
+  }
+}

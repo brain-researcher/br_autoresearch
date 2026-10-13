@@ -1,0 +1,18 @@
+schema_version: episode10_v3_user_authorization_v1
+episode: 10
+recorded_date: "2026-09-26"
+status: explicit_user_authorization_received
+authorization_text: >-
+  I authorize the v3 positive-only, unmapped-tolerant exploratory redesign
+  using 194 cells and group 221588 support of 7.
+authorized_scope:
+  analysis_label: exploratory
+  observation_policy: positive_only_unmapped_tolerant
+  expected_development_cells: 194
+  group_221588_support: 7
+  material_redesign_from_v2: true
+preserved_boundaries:
+  preserve_v1_and_v2_artifacts: true
+  final_and_unassigned_remain_sealed_during_development: true
+  do_not_relabel_v2_as_passed: true
+  require_v3_contract_and_preflight_before_target_construction: true

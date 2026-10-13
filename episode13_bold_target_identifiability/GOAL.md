@@ -4,6 +4,14 @@ EP13 is a reusable technical reference and lemma package based on classical
 linear estimability; the present result does not establish sufficient
 standalone research-paper novelty.
 
+The package is **locally complete**: the [proof](outputs/exact/proof.md),
+exact orientation suite and separately authored certificate replay passed on
+October 3 with status `theorem_verified`. The
+[completed evidence index](outputs/README.md) links all 12 valid fixtures,
+seven invalid-input rejections and the attempt record. No further scientific
+compute is required under this contract; this is a classical mathematical
+reference, not an empirical BOLD finding or canonical acceptance.
+
 ## The question in plain language
 
 A BOLD analysis can lose most of a latent neural matrix and still determine one

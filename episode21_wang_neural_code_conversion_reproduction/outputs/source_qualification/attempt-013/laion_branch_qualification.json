@@ -1,0 +1,41 @@
+{
+  "absent": {
+    "laion_regular_feature_handoff": true,
+    "laion_regular_scoring_handoff": true,
+    "protocol_lock": true
+  },
+  "astra_analysis_id": "source_qualification",
+  "attempt": 13,
+  "completed_at": "2026-09-29T23:42:13+00:00",
+  "eligible_directed_pairs": [],
+  "empirical_data_accessed": false,
+  "next_action": "Obtain DUA/risk-cleared structural metadata and an isolated regular-only feature handoff; resolve the paper-versus-tagged choice in pipeline conformance before any scoring handoff becomes visible.",
+  "planning_directed_pair_count": 20,
+  "planning_participant_count": 5,
+  "process_id": 82027,
+  "schema_version": "ep21.laion_branch_qualification.v2",
+  "started_at": "2026-09-29T23:42:13+00:00",
+  "status": "blocked_not_runnable",
+  "unknown_or_unresolved": [
+    "release_package_identifier",
+    "license_and_DUA_permission",
+    "Sherlock_Low_or_Moderate_Risk_decision",
+    "five_participant_identifiers",
+    "session_run_trial_image_repetition_joins",
+    "beta_variant_shapes_dtypes_missingness_and_masks",
+    "subject_unique_tau_train_tau_test_roles",
+    "exact_overlap_and_repetition_gates",
+    "eligible_20_directed_pair_table",
+    "paper_vs_tagged_method_choice",
+    "Sherlock_runtime_environment",
+    "exact_AlexNet_identification_checkpoint",
+    "VGG19_archive_to_checkpoint_binding",
+    "main_bdpy_revision"
+  ],
+  "verified": {
+    "declared_input_tree_excludes_ood_interface": true,
+    "prior_exposure": "regular_shared_evidence_previously_opened_in_ep04_lineage",
+    "public_reconstruction_asset_metadata_count": 4,
+    "source_release_identity": true
+  }
+}

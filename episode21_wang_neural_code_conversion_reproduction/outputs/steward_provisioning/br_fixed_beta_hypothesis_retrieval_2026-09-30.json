@@ -1,0 +1,478 @@
+{
+  "initial": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"ok\": false,\n  \"error\": \"{neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.search.IndexSearcher$TooManyNestedClauses: Query contains too many nested clauses; maxClauseCount is set to 1024} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.search.IndexSearcher$TooManyNestedClauses: Query contains too many nested clauses; maxClauseCount is set to 1024}\"\n}"
+        }
+      ],
+      "structuredContent": {
+        "ok": false,
+        "error": "{neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.search.IndexSearcher$TooManyNestedClauses: Query contains too many nested clauses; maxClauseCount is set to 1024} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.search.IndexSearcher$TooManyNestedClauses: Query contains too many nested clauses; maxClauseCount is set to 1024}"
+      },
+      "isError": false
+    }
+  },
+  "focused_query_repair": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"ok\": true,\n  \"result\": {\n    \"hypothesis\": \"GLMsingle joint beta estimation can depend on held-out trials.\",\n    \"status\": \"degraded_timeout\",\n    \"degraded_reason\": \"rerank_skipped_budget\",\n    \"normalized_claim\": {\n      \"subject\": {\n        \"kg_id\": \"trm_529ce04b778b6\",\n        \"label\": \"Joint Attention / Social and Nonsocial Orienting Task\",\n        \"node_type\": \"Concept\",\n        \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n        \"node_ref\": {\n          \"schema_version\": \"br_kg.node_ref.v1\",\n          \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n          \"kg_id\": \"trm_529ce04b778b6\",\n          \"labels\": [\n            \"Concept\"\n          ],\n          \"node_type\": \"Concept\",\n          \"type_status\": \"known\",\n          \"source\": \"cognitive_atlas_cao\",\n          \"is_exact\": true\n        }\n      },\n      \"object\": {\n        \"kg_id\": \"ONVOC_0000670\",\n        \"label\": \"Joint Stiffness\",\n        \"node_type\": \"Concept\",\n        \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n        \"node_ref\": {\n          \"schema_version\": \"br_kg.node_ref.v1\",\n          \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n          \"kg_id\": \"ONVOC_0000670\",\n          \"labels\": [\n            \"Concept\",\n            \"OntologyConcept\",\n            \"OnvocClass\"\n          ],\n          \"node_type\": \"Concept\",\n          \"type_status\": \"known\",\n          \"source\": \"onvoc\",\n          \"is_exact\": true\n        }\n      },\n      \"predicate\": \"related_to\",\n      \"raw\": \"GLMsingle joint beta estimation can depend on held-out trials.\"\n    },\n    \"verdict\": \"insufficient_evidence\",\n    \"confidence\": 0.0,\n    \"strictness\": \"high_recall\",\n    \"grounding_used_fallback\": false,\n    \"evidence_control\": \"default\",\n    \"candidate_lane_mode\": \"broad\",\n    \"evidence_mode\": \"none\",\n    \"evidence_source_scope\": \"none\",\n    \"summary\": {\n      \"status\": \"degraded_timeout\",\n      \"degraded_reason\": \"rerank_skipped_budget\",\n      \"n_seed_entities\": 4,\n      \"n_candidate_publications\": 0,\n      \"n_supporting\": 0,\n      \"n_conflicting\": 0,\n      \"n_uncertain\": 0,\n      \"n_neutral\": 0,\n      \"n_candidate_lane_supporting\": 0,\n      \"n_candidate_lane_conflicting\": 0,\n      \"n_candidate_lane_uncertain\": 0,\n      \"n_candidate_lane_neutral\": 0,\n      \"n_external_literature_supporting\": 0,\n      \"n_external_literature_conflicting\": 0,\n      \"n_external_literature_uncertain\": 0,\n      \"n_external_literature_neutral\": 0,\n      \"evidence_scope\": \"none\",\n      \"evidence_source_scope\": \"none\",\n      \"evidence_control\": \"default\",\n      \"candidate_lane_mode\": \"broad\",\n      \"candidate_lane_filtered\": 0,\n      \"external_literature_requested\": true,\n      \"external_literature_provider\": \"multi_source\",\n      \"external_literature_sources\": [],\n      \"external_literature_published_only\": true,\n      \"external_literature_include_preprints\": false,\n      \"grounding_used_fallback\": false,\n      \"rerank_candidate_cap\": 4,\n      \"hypothesis_budget_seconds\": 20.0,\n      \"timings_s\": {\n        \"entity_resolution\": 8.2864,\n        \"semantic_rerank\": 0.0,\n        \"direct_evidence_collection\": 0.0,\n        \"typed_path_evidence_collection\": 0.0,\n        \"family_fallback_lookup\": 0.0,\n        \"family_fallback_evidence_collection\": 0.0,\n        \"external_literature_search\": 0.0,\n        \"aggregation\": 0.0,\n        \"total\": 12.069\n      },\n      \"query_time_s\": 12.069\n    },\n    \"supporting_evidence\": [],\n    \"conflicting_evidence\": [],\n    \"uncertain_evidence\": [],\n    \"neutral_evidence\": [],\n    \"confidence_signals\": {\n      \"scoring_version\": \"v2\",\n      \"confidence\": 0.0\n    },\n    \"top_paths\": [],\n    \"subgraph\": {\n      \"nodes\": [],\n      \"edges\": []\n    },\n    \"warnings\": [\n      \"max_evidence=3 below 5; clamped to 5\",\n      \"entity_resolution search terms capped at 8 from 16\",\n      \"semantic rerank candidates capped at 4 from 16\",\n      \"rerank_skipped_budget\"\n    ],\n    \"provenance\": [\n      {\n        \"stage\": \"entity_resolution\",\n        \"resolution_mode\": \"search_expansion\",\n        \"search_terms\": [\n          \"GLMsingle\",\n          \"GLMsingle joint beta estimation can depend on held-out trials\",\n          \"GLMsingle joint\",\n          \"joint beta\",\n          \"beta estimation\",\n          \"estimation can\",\n          \"can depend\",\n          \"depend on\"\n        ],\n        \"allowed_node_types\": null,\n        \"raw_seed_entities\": [\n          {\n            \"kg_id\": \"trm_529ce04b778b6\",\n            \"label\": \"Joint Attention / Social and Nonsocial Orienting Task\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n              \"kg_id\": \"trm_529ce04b778b6\",\n              \"labels\": [\n                \"Concept\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"cognitive_atlas_cao\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"ONVOC_0000670\",\n            \"label\": \"Joint Stiffness\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n              \"kg_id\": \"ONVOC_0000670\",\n              \"labels\": [\n                \"Concept\",\n                \"OntologyConcept\",\n                \"OnvocClass\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"onvoc\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention\",\n            \"label\": \"Gaze Direction / Joint Attention\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873\",\n              \"kg_id\": \"tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation\",\n            \"label\": \"Delayed Estimation (Orientation)\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785\",\n              \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-neurofeedback__sf-eeg-meg-nf__beta-band-regulation-motor-attention\",\n            \"label\": \"Beta Band Regulation (Motor/Attention)\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:692054\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:692054\",\n              \"kg_id\": \"tf_paradigm:tf-neurofeedback__sf-eeg-meg-nf__beta-band-regulation-motor-attention\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"trm_4b75ed06c917d\",\n            \"label\": \"joint attention\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:542\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:542\",\n              \"kg_id\": \"trm_4b75ed06c917d\",\n              \"labels\": [\n                \"Concept\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"cognitive_atlas_niclip\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"neurostore_task:vEgAA7U3ocfR:fmri:0\",\n            \"label\": \"Joint Action Task\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:609906\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:609906\",\n              \"kg_id\": \"neurostore_task:vEgAA7U3ocfR:fmri:0\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"neurostore\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__spatial-delayed-estimation-location\",\n            \"label\": \"Spatial Delayed Estimation (Location)\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691786\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691786\",\n              \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__spatial-delayed-estimation-location\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          }\n        ],\n        \"seed_entities\": [\n          {\n            \"kg_id\": \"trm_529ce04b778b6\",\n            \"label\": \"Joint Attention / Social and Nonsocial Orienting Task\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n              \"kg_id\": \"trm_529ce04b778b6\",\n              \"labels\": [\n                \"Concept\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"cognitive_atlas_cao\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"ONVOC_0000670\",\n            \"label\": \"Joint Stiffness\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n              \"kg_id\": \"ONVOC_0000670\",\n              \"labels\": [\n                \"Concept\",\n                \"OntologyConcept\",\n                \"OnvocClass\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"onvoc\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention\",\n            \"label\": \"Gaze Direction / Joint Attention\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873\",\n              \"kg_id\": \"tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation\",\n            \"label\": \"Delayed Estimation (Orientation)\",\n            \"node_type\": \"Task\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785\",\n              \"kg_id\": \"tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation\",\n              \"labels\": [\n                \"Task\"\n              ],\n              \"node_type\": \"Task\",\n              \"type_status\": \"known\",\n              \"source\": \"task_families\",\n              \"is_exact\": true\n            }\n          }\n        ],\n        \"timings_s\": {\n          \"entity_resolution\": 8.2864,\n          \"semantic_rerank\": 0.0,\n          \"direct_evidence_collection\": 0.0,\n          \"typed_path_evidence_collection\": 0.0,\n          \"family_fallback_lookup\": 0.0,\n          \"family_fallback_evidence_collection\": 0.0,\n          \"external_literature_search\": 0.0,\n          \"aggregation\": 0.0,\n          \"total\": 12.069\n        }\n      },\n      {\n        \"stage\": \"degraded_timeout\",\n        \"degraded_reason\": \"rerank_skipped_budget\",\n        \"selected_entities\": [\n          {\n            \"kg_id\": \"trm_529ce04b778b6\",\n            \"label\": \"Joint Attention / Social and Nonsocial Orienting Task\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323\",\n              \"kg_id\": \"trm_529ce04b778b6\",\n              \"labels\": [\n                \"Concept\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"cognitive_atlas_cao\",\n              \"is_exact\": true\n            }\n          },\n          {\n            \"kg_id\": \"ONVOC_0000670\",\n            \"label\": \"Joint Stiffness\",\n            \"node_type\": \"Concept\",\n            \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n            \"node_ref\": {\n              \"schema_version\": \"br_kg.node_ref.v1\",\n              \"element_id\": \"4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644\",\n              \"kg_id\": \"ONVOC_0000670\",\n              \"labels\": [\n                \"Concept\",\n                \"OntologyConcept\",\n                \"OnvocClass\"\n              ],\n              \"node_type\": \"Concept\",\n              \"type_status\": \"known\",\n              \"source\": \"onvoc\",\n              \"is_exact\": true\n            }\n          }\n        ],\n        \"timings_s\": {\n          \"entity_resolution\": 8.2864,\n          \"semantic_rerank\": 0.0,\n          \"direct_evidence_collection\": 0.0,\n          \"typed_path_evidence_collection\": 0.0,\n          \"family_fallback_lookup\": 0.0,\n          \"family_fallback_evidence_collection\": 0.0,\n          \"external_literature_search\": 0.0,\n          \"aggregation\": 0.0,\n          \"total\": 12.069\n        }\n      }\n    ],\n    \"timings_s\": {\n      \"entity_resolution\": 8.2864,\n      \"semantic_rerank\": 0.0,\n      \"direct_evidence_collection\": 0.0,\n      \"typed_path_evidence_collection\": 0.0,\n      \"family_fallback_lookup\": 0.0,\n      \"family_fallback_evidence_collection\": 0.0,\n      \"external_literature_search\": 0.0,\n      \"aggregation\": 0.0,\n      \"total\": 12.069\n    }\n  },\n  \"warnings\": [\n    \"max_evidence=3 below 5; clamped to 5\",\n    \"entity_resolution search terms capped at 8 from 16\",\n    \"semantic rerank candidates capped at 4 from 16\",\n    \"rerank_skipped_budget\"\n  ],\n  \"completion_state\": \"degraded\",\n  \"degraded_reason\": \"rerank_skipped_budget\",\n  \"query_time_s\": 12.646,\n  \"execution_trace\": [\n    \"kg_query_started\",\n    \"degraded_returned\"\n  ]\n}"
+      }
+    ],
+    "structuredContent": {
+      "ok": true,
+      "result": {
+        "hypothesis": "GLMsingle joint beta estimation can depend on held-out trials.",
+        "status": "degraded_timeout",
+        "degraded_reason": "rerank_skipped_budget",
+        "normalized_claim": {
+          "subject": {
+            "kg_id": "trm_529ce04b778b6",
+            "label": "Joint Attention / Social and Nonsocial Orienting Task",
+            "node_type": "Concept",
+            "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+            "node_ref": {
+              "schema_version": "br_kg.node_ref.v1",
+              "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+              "kg_id": "trm_529ce04b778b6",
+              "labels": [
+                "Concept"
+              ],
+              "node_type": "Concept",
+              "type_status": "known",
+              "source": "cognitive_atlas_cao",
+              "is_exact": true
+            }
+          },
+          "object": {
+            "kg_id": "ONVOC_0000670",
+            "label": "Joint Stiffness",
+            "node_type": "Concept",
+            "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+            "node_ref": {
+              "schema_version": "br_kg.node_ref.v1",
+              "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+              "kg_id": "ONVOC_0000670",
+              "labels": [
+                "Concept",
+                "OntologyConcept",
+                "OnvocClass"
+              ],
+              "node_type": "Concept",
+              "type_status": "known",
+              "source": "onvoc",
+              "is_exact": true
+            }
+          },
+          "predicate": "related_to",
+          "raw": "GLMsingle joint beta estimation can depend on held-out trials."
+        },
+        "verdict": "insufficient_evidence",
+        "confidence": 0,
+        "strictness": "high_recall",
+        "grounding_used_fallback": false,
+        "evidence_control": "default",
+        "candidate_lane_mode": "broad",
+        "evidence_mode": "none",
+        "evidence_source_scope": "none",
+        "summary": {
+          "status": "degraded_timeout",
+          "degraded_reason": "rerank_skipped_budget",
+          "n_seed_entities": 4,
+          "n_candidate_publications": 0,
+          "n_supporting": 0,
+          "n_conflicting": 0,
+          "n_uncertain": 0,
+          "n_neutral": 0,
+          "n_candidate_lane_supporting": 0,
+          "n_candidate_lane_conflicting": 0,
+          "n_candidate_lane_uncertain": 0,
+          "n_candidate_lane_neutral": 0,
+          "n_external_literature_supporting": 0,
+          "n_external_literature_conflicting": 0,
+          "n_external_literature_uncertain": 0,
+          "n_external_literature_neutral": 0,
+          "evidence_scope": "none",
+          "evidence_source_scope": "none",
+          "evidence_control": "default",
+          "candidate_lane_mode": "broad",
+          "candidate_lane_filtered": 0,
+          "external_literature_requested": true,
+          "external_literature_provider": "multi_source",
+          "external_literature_sources": [],
+          "external_literature_published_only": true,
+          "external_literature_include_preprints": false,
+          "grounding_used_fallback": false,
+          "rerank_candidate_cap": 4,
+          "hypothesis_budget_seconds": 20,
+          "timings_s": {
+            "entity_resolution": 8.2864,
+            "semantic_rerank": 0,
+            "direct_evidence_collection": 0,
+            "typed_path_evidence_collection": 0,
+            "family_fallback_lookup": 0,
+            "family_fallback_evidence_collection": 0,
+            "external_literature_search": 0,
+            "aggregation": 0,
+            "total": 12.069
+          },
+          "query_time_s": 12.069
+        },
+        "supporting_evidence": [],
+        "conflicting_evidence": [],
+        "uncertain_evidence": [],
+        "neutral_evidence": [],
+        "confidence_signals": {
+          "scoring_version": "v2",
+          "confidence": 0
+        },
+        "top_paths": [],
+        "subgraph": {
+          "nodes": [],
+          "edges": []
+        },
+        "warnings": [
+          "max_evidence=3 below 5; clamped to 5",
+          "entity_resolution search terms capped at 8 from 16",
+          "semantic rerank candidates capped at 4 from 16",
+          "rerank_skipped_budget"
+        ],
+        "provenance": [
+          {
+            "stage": "entity_resolution",
+            "resolution_mode": "search_expansion",
+            "search_terms": [
+              "GLMsingle",
+              "GLMsingle joint beta estimation can depend on held-out trials",
+              "GLMsingle joint",
+              "joint beta",
+              "beta estimation",
+              "estimation can",
+              "can depend",
+              "depend on"
+            ],
+            "allowed_node_types": null,
+            "raw_seed_entities": [
+              {
+                "kg_id": "trm_529ce04b778b6",
+                "label": "Joint Attention / Social and Nonsocial Orienting Task",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                  "kg_id": "trm_529ce04b778b6",
+                  "labels": [
+                    "Concept"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "cognitive_atlas_cao",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "ONVOC_0000670",
+                "label": "Joint Stiffness",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                  "kg_id": "ONVOC_0000670",
+                  "labels": [
+                    "Concept",
+                    "OntologyConcept",
+                    "OnvocClass"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "onvoc",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention",
+                "label": "Gaze Direction / Joint Attention",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873",
+                  "kg_id": "tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation",
+                "label": "Delayed Estimation (Orientation)",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785",
+                  "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-neurofeedback__sf-eeg-meg-nf__beta-band-regulation-motor-attention",
+                "label": "Beta Band Regulation (Motor/Attention)",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:692054",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:692054",
+                  "kg_id": "tf_paradigm:tf-neurofeedback__sf-eeg-meg-nf__beta-band-regulation-motor-attention",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "trm_4b75ed06c917d",
+                "label": "joint attention",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:542",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:542",
+                  "kg_id": "trm_4b75ed06c917d",
+                  "labels": [
+                    "Concept"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "cognitive_atlas_niclip",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "neurostore_task:vEgAA7U3ocfR:fmri:0",
+                "label": "Joint Action Task",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:609906",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:609906",
+                  "kg_id": "neurostore_task:vEgAA7U3ocfR:fmri:0",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "neurostore",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__spatial-delayed-estimation-location",
+                "label": "Spatial Delayed Estimation (Location)",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691786",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691786",
+                  "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__spatial-delayed-estimation-location",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              }
+            ],
+            "seed_entities": [
+              {
+                "kg_id": "trm_529ce04b778b6",
+                "label": "Joint Attention / Social and Nonsocial Orienting Task",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                  "kg_id": "trm_529ce04b778b6",
+                  "labels": [
+                    "Concept"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "cognitive_atlas_cao",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "ONVOC_0000670",
+                "label": "Joint Stiffness",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                  "kg_id": "ONVOC_0000670",
+                  "labels": [
+                    "Concept",
+                    "OntologyConcept",
+                    "OnvocClass"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "onvoc",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention",
+                "label": "Gaze Direction / Joint Attention",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691873",
+                  "kg_id": "tf_paradigm:tf-social-cognition__sf-social-perception-attention__gaze-direction-joint-attention",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation",
+                "label": "Delayed Estimation (Orientation)",
+                "node_type": "Task",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:691785",
+                  "kg_id": "tf_paradigm:tf-working-memory__sf-vwm-continuous-report__delayed-estimation-orientation",
+                  "labels": [
+                    "Task"
+                  ],
+                  "node_type": "Task",
+                  "type_status": "known",
+                  "source": "task_families",
+                  "is_exact": true
+                }
+              }
+            ],
+            "timings_s": {
+              "entity_resolution": 8.2864,
+              "semantic_rerank": 0,
+              "direct_evidence_collection": 0,
+              "typed_path_evidence_collection": 0,
+              "family_fallback_lookup": 0,
+              "family_fallback_evidence_collection": 0,
+              "external_literature_search": 0,
+              "aggregation": 0,
+              "total": 12.069
+            }
+          },
+          {
+            "stage": "degraded_timeout",
+            "degraded_reason": "rerank_skipped_budget",
+            "selected_entities": [
+              {
+                "kg_id": "trm_529ce04b778b6",
+                "label": "Joint Attention / Social and Nonsocial Orienting Task",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:1323",
+                  "kg_id": "trm_529ce04b778b6",
+                  "labels": [
+                    "Concept"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "cognitive_atlas_cao",
+                  "is_exact": true
+                }
+              },
+              {
+                "kg_id": "ONVOC_0000670",
+                "label": "Joint Stiffness",
+                "node_type": "Concept",
+                "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                "node_ref": {
+                  "schema_version": "br_kg.node_ref.v1",
+                  "element_id": "4:61f2a6e6-9289-4db3-a996-562b57f61fe1:263644",
+                  "kg_id": "ONVOC_0000670",
+                  "labels": [
+                    "Concept",
+                    "OntologyConcept",
+                    "OnvocClass"
+                  ],
+                  "node_type": "Concept",
+                  "type_status": "known",
+                  "source": "onvoc",
+                  "is_exact": true
+                }
+              }
+            ],
+            "timings_s": {
+              "entity_resolution": 8.2864,
+              "semantic_rerank": 0,
+              "direct_evidence_collection": 0,
+              "typed_path_evidence_collection": 0,
+              "family_fallback_lookup": 0,
+              "family_fallback_evidence_collection": 0,
+              "external_literature_search": 0,
+              "aggregation": 0,
+              "total": 12.069
+            }
+          }
+        ],
+        "timings_s": {
+          "entity_resolution": 8.2864,
+          "semantic_rerank": 0,
+          "direct_evidence_collection": 0,
+          "typed_path_evidence_collection": 0,
+          "family_fallback_lookup": 0,
+          "family_fallback_evidence_collection": 0,
+          "external_literature_search": 0,
+          "aggregation": 0,
+          "total": 12.069
+        }
+      },
+      "warnings": [
+        "max_evidence=3 below 5; clamped to 5",
+        "entity_resolution search terms capped at 8 from 16",
+        "semantic rerank candidates capped at 4 from 16",
+        "rerank_skipped_budget"
+      ],
+      "completion_state": "degraded",
+      "degraded_reason": "rerank_skipped_budget",
+      "query_time_s": 12.646,
+      "execution_trace": [
+        "kg_query_started",
+        "degraded_returned"
+      ]
+    },
+    "isError": false
+  }
+}

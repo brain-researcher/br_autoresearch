@@ -9,7 +9,9 @@ such a leaf is reported separately as passing-only.
 
 Only global eligibility and the primary 16-coordinate detected, passing-only,
 or no-occupancy descriptive states are exposed.  Both zero-valued subtypes are
-explicitly labeled not observed in the eligible released reconstruction.
+explicitly labeled with the active observation contract's zero semantics.  In
+v3, zero means no mapped positive terminal observation and is never a negative
+projection label or verified non-detection.
 The omitted 40 coordinates, raw lengths, component/branch counts, and
 prespecified sensitivities remain sealed until after candidate freeze.  Real
 execution is explicitly gated by ``--execute``.
@@ -37,6 +39,16 @@ AXON_PARENT_TYPES = frozenset((0, 1, 2))
 DENDRITE_TYPES = frozenset((3,))
 MARKER_TYPES = frozenset((10, 11, 12))
 ALLOWED_NODE_TYPES = AXON_TYPES | AXON_PARENT_TYPES | DENDRITE_TYPES | MARKER_TYPES
+PROVIDER_DENDRITE_TYPES = frozenset((3, 4))
+PROVIDER_ALLOWED_NODE_TYPES = ALLOWED_NODE_TYPES | PROVIDER_DENDRITE_TYPES
+V1_INTERPRETATION = "v1_terminal_custom_tags"
+V2_INTERPRETATION = "provider_native_topology_v2"
+V3_OBSERVATION_POLICY = "positive_only_unmapped_tolerant_v3"
+COMPLETE_MAPPING_ZERO_LABEL = "not_observed_in_the_eligible_released_reconstruction"
+V3_POSITIVE_ONLY_ZERO_LABEL = (
+    "no mapped positive terminal observation recorded for this coordinate; "
+    "not biological absence, verified non-detection, or a negative label"
+)
 EXCLUDED_STRUCTURE_ROOTS = {
     1009: "fiber_tract",
     73: "ventricular_system",
@@ -460,7 +472,50 @@ def _validate_parent_paths(nodes: Mapping[int, SwcNode], root_id: int) -> None:
         validated.update(path)
 
 
-def parse_swc_lines(lines: Iterable[str]) -> tuple[dict[int, SwcNode], int]:
+def _is_axon_edge(
+    parent: SwcNode, child: SwcNode, interpretation: str
+) -> bool:
+    if interpretation == V1_INTERPRETATION:
+        return child.node_type in AXON_TYPES and parent.node_type in AXON_PARENT_TYPES
+    if interpretation == V2_INTERPRETATION:
+        return (
+            parent.node_type not in PROVIDER_DENDRITE_TYPES
+            and child.node_type not in PROVIDER_DENDRITE_TYPES
+        )
+    raise ConstructionError(f"unsupported SWC interpretation {interpretation!r}")
+
+
+def _terminal_node_ids(
+    nodes: Mapping[int, SwcNode], interpretation: str
+) -> frozenset[int]:
+    nodes_with_any_child = {
+        node.parent_id for node in nodes.values() if node.parent_id != -1
+    }
+    if interpretation == V1_INTERPRETATION:
+        return frozenset(
+            node_id
+            for node_id, node in nodes.items()
+            if node.node_type in AXON_TYPES and node_id not in nodes_with_any_child
+        )
+    if interpretation == V2_INTERPRETATION:
+        return frozenset(
+            node_id
+            for node_id, node in nodes.items()
+            if node.node_type not in PROVIDER_DENDRITE_TYPES
+            and node_id not in nodes_with_any_child
+        )
+    raise ConstructionError(f"unsupported SWC interpretation {interpretation!r}")
+
+
+def parse_swc_lines(
+    lines: Iterable[str], interpretation: str = V1_INTERPRETATION
+) -> tuple[dict[int, SwcNode], int]:
+    if interpretation == V1_INTERPRETATION:
+        allowed_node_types = ALLOWED_NODE_TYPES
+    elif interpretation == V2_INTERPRETATION:
+        allowed_node_types = PROVIDER_ALLOWED_NODE_TYPES
+    else:
+        raise ConstructionError(f"unsupported SWC interpretation {interpretation!r}")
     nodes: dict[int, SwcNode] = {}
     extra_columns = 0
     for line_number, raw_line in enumerate(lines, start=1):
@@ -477,7 +532,7 @@ def parse_swc_lines(lines: Iterable[str]) -> tuple[dict[int, SwcNode], int]:
         parent_id = _strict_int(fields[6], "parent_id", line_number)
         if node_id in nodes:
             raise ConstructionError(f"SWC line {line_number}: duplicate node ID {node_id}")
-        if node_type not in ALLOWED_NODE_TYPES:
+        if node_type not in allowed_node_types:
             raise ConstructionError(
                 f"SWC line {line_number}: unsupported node type {node_type}"
             )
@@ -526,6 +581,8 @@ def parse_swc_lines(lines: Iterable[str]) -> tuple[dict[int, SwcNode], int]:
             continue
         parent = nodes[node.parent_id]
         children[parent.node_id].append(node.node_id)
+        if interpretation == V2_INTERPRETATION:
+            continue
         if node.node_type in AXON_TYPES:
             allowed_parents = AXON_PARENT_TYPES
         elif node.node_type in DENDRITE_TYPES:
@@ -539,17 +596,20 @@ def parse_swc_lines(lines: Iterable[str]) -> tuple[dict[int, SwcNode], int]:
                 f"SWC transition {parent.node_type}->{node.node_type} is not allowed "
                 f"for parent {parent.node_id} and child {node.node_id}"
             )
-    for marker in (node for node in nodes.values() if node.node_type in MARKER_TYPES):
-        if children.get(marker.node_id):
-            raise ConstructionError(
-                f"SWC marker node {marker.node_id} must be a leaf"
-            )
+    if interpretation == V1_INTERPRETATION:
+        for marker in (node for node in nodes.values() if node.node_type in MARKER_TYPES):
+            if children.get(marker.node_id):
+                raise ConstructionError(
+                    f"SWC marker node {marker.node_id} must be a leaf"
+                )
     return nodes, extra_columns
 
 
-def parse_swc(path: Path) -> tuple[dict[int, SwcNode], int]:
+def parse_swc(
+    path: Path, interpretation: str = V1_INTERPRETATION
+) -> tuple[dict[int, SwcNode], int]:
     with path.open("r", encoding="utf-8") as handle:
-        return parse_swc_lines(handle)
+        return parse_swc_lines(handle, interpretation=interpretation)
 
 
 def euclidean_length(
@@ -718,6 +778,7 @@ def _component_statistics(
     edge_piece_ids: Mapping[int, Sequence[int]],
     nodes: Mapping[int, SwcNode],
     axon_children: Mapping[int, Sequence[int]],
+    terminal_node_ids: frozenset[int],
     coordinate_count: int,
     eroded_only: bool,
 ) -> tuple[list[int], list[int], list[int], dict[int, int]]:
@@ -779,15 +840,7 @@ def _component_statistics(
     leaf_coordinate: dict[int, int] = {}
     terminal_roots: list[set[int]] = [set() for _ in range(coordinate_count)]
     terminal_leaf_count = [0] * coordinate_count
-    nodes_with_any_child = {
-        node.parent_id for node in nodes.values() if node.parent_id != -1
-    }
-    rooted_leaves = [
-        node_id
-        for node_id, node in nodes.items()
-        if node.node_type in AXON_TYPES and node_id not in nodes_with_any_child
-    ]
-    for leaf_id in rooted_leaves:
+    for leaf_id in terminal_node_ids:
         piece_ids = edge_piece_ids.get(leaf_id, ())
         if not piece_ids:
             continue
@@ -813,16 +866,16 @@ def _branched_terminal_calls(
     edge_piece_ids: Mapping[int, Sequence[int]],
     nodes: Mapping[int, SwcNode],
     axon_children: Mapping[int, Sequence[int]],
+    axon_edge_child_ids: frozenset[int],
     leaf_coordinate: Mapping[int, int],
     coordinate_count: int,
+    interpretation: str,
 ) -> list[bool]:
     """Apply the frozen same-coordinate branched-terminal sensitivity."""
 
     by_id = {piece.piece_id: piece for piece in pieces}
     edge_coordinate: dict[int, int | None | str] = {}
-    for child_id in (
-        node_id for node_id, node in nodes.items() if node.node_type in AXON_TYPES
-    ):
+    for child_id in axon_edge_child_ids:
         piece_ids = edge_piece_ids.get(child_id, ())
         if not piece_ids:
             edge_coordinate[child_id] = "zero_length"
@@ -836,7 +889,12 @@ def _branched_terminal_calls(
     detected = [False] * coordinate_count
     for branch_id, children in axon_children.items():
         branch = nodes[branch_id]
-        if branch.node_type not in AXON_TYPES or len(children) < 2:
+        branch_is_axon = (
+            branch.node_type in AXON_TYPES
+            if interpretation == V1_INTERPRETATION
+            else branch.node_type not in PROVIDER_DENDRITE_TYPES
+        )
+        if not branch_is_axon or len(children) < 2:
             continue
         qualifying_child_coordinates: list[set[int]] = []
         for initial_child in children:
@@ -884,6 +942,9 @@ def construct_cell(
     coordinates: Sequence[Coordinate],
     primary_indexes: Sequence[int],
     run_sealed_sensitivities: bool = False,
+    interpretation: str = V1_INTERPRETATION,
+    compute_target_calls: bool = True,
+    require_complete_mapping: bool = True,
 ) -> CellResult:
     qc = CellQC(
         provider_neuron_id=entry.provider_neuron_id,
@@ -936,18 +997,17 @@ def construct_cell(
         raise ConstructionError("duplicate target/laterality coordinate")
     erosion = ErosionClassifier(atlas, mapper) if run_sealed_sensitivities else None
 
+    axon_edge_child_ids = frozenset(
+        child.node_id
+        for child in nodes.values()
+        if child.parent_id != -1
+        and _is_axon_edge(nodes[child.parent_id], child, interpretation)
+    )
     axon_children: dict[int, list[int]] = defaultdict(list)
     for child in nodes.values():
-        if child.node_type not in AXON_TYPES:
+        if child.node_id not in axon_edge_child_ids:
             continue
-        if child.parent_id == -1:
-            raise CellIneligible("axon_root", "axon node may not be an SWC root")
         parent = nodes[child.parent_id]
-        if parent.node_type not in AXON_PARENT_TYPES:
-            raise CellIneligible(
-                "axon_parent_type",
-                f"axon node {child.node_id} has parent type {parent.node_type}",
-            )
         axon_children[parent.node_id].append(child.node_id)
 
     pieces: list[Piece] = []
@@ -957,7 +1017,7 @@ def construct_cell(
             continue
         parent = nodes[child.parent_id]
         edge_length = euclidean_length(parent.point_um, child.point_um)
-        if child.node_type in AXON_TYPES:
+        if child.node_id in axon_edge_child_ids:
             qc.axon_edge_count += 1
             qc.total_axon_centerline_um += edge_length
             if edge_length > config.zero_tolerance_um:
@@ -977,7 +1037,14 @@ def construct_cell(
             )
             edge_piece_ids[child.node_id] = [piece.piece_id for piece in edge_pieces]
             pieces.extend(edge_pieces)
-        elif child.node_type in DENDRITE_TYPES:
+        elif (
+            child.node_type in DENDRITE_TYPES
+            if interpretation == V1_INTERPRETATION
+            else (
+                child.node_type in PROVIDER_DENDRITE_TYPES
+                or parent.node_type in PROVIDER_DENDRITE_TYPES
+            )
+        ):
             qc.dendrite_edge_count += 1
             qc.dendrite_centerline_excluded_um += edge_length
 
@@ -995,47 +1062,53 @@ def construct_cell(
             "axon_length_nonconservation",
             f"allocation error={qc.allocation_error_um:.12g} um",
         )
-    if qc.category_lengths_um["outside_volume"] > config.zero_tolerance_um:
+    if (
+        require_complete_mapping
+        and qc.category_lengths_um["outside_volume"] > config.zero_tolerance_um
+    ):
         raise CellIneligible(
             "axon_outside_volume",
             f"outside length={qc.category_lengths_um['outside_volume']:.12g} um",
         )
-    if qc.category_lengths_um["annotation_zero"] > config.zero_tolerance_um:
+    if (
+        require_complete_mapping
+        and qc.category_lengths_um["annotation_zero"] > config.zero_tolerance_um
+    ):
         raise CellIneligible(
             "axon_annotation_zero",
             f"zero-label length={qc.category_lengths_um['annotation_zero']:.12g} um",
         )
 
-    nodes_with_any_child = {
-        node.parent_id for node in nodes.values() if node.parent_id != -1
-    }
-    rooted_leaves = [
-        node_id
-        for node_id, node in nodes.items()
-        if node.node_type in AXON_TYPES and node_id not in nodes_with_any_child
-    ]
-    qc.rooted_axon_leaf_count = len(rooted_leaves)
-    for leaf_id in rooted_leaves:
+    terminal_node_ids = _terminal_node_ids(nodes, interpretation)
+    qc.rooted_axon_leaf_count = len(terminal_node_ids)
+    for leaf_id in terminal_node_ids:
         leaf = nodes[leaf_id]
         leaf_index = _voxel_index(leaf.point_um, config)
         if leaf_index is None:
-            raise CellIneligible(
-                "terminal_leaf_outside_volume", f"leaf {leaf_id} is outside volume"
-            )
+            if require_complete_mapping:
+                raise CellIneligible(
+                    "terminal_leaf_outside_volume",
+                    f"leaf {leaf_id} is outside volume",
+                )
+            continue
         structure_id = atlas.structure_id(leaf_index)
         if structure_id == 0:
-            raise CellIneligible(
-                "terminal_leaf_annotation_zero", f"leaf {leaf_id} maps to zero"
-            )
+            if require_complete_mapping:
+                raise CellIneligible(
+                    "terminal_leaf_annotation_zero", f"leaf {leaf_id} maps to zero"
+                )
+            continue
         category, _ = mapper.classify(structure_id)
         if category not in {"named_target", "unclaimed_grey"}:
-            raise CellIneligible(
-                "terminal_leaf_nongrey",
-                f"leaf {leaf_id} maps to {category}",
-            )
+            if require_complete_mapping:
+                raise CellIneligible(
+                    "terminal_leaf_nongrey",
+                    f"leaf {leaf_id} maps to {category}",
+                )
+            continue
 
     qc.eligible = True
-    if not entry.primary_model_eligible:
+    if not entry.primary_model_eligible or not compute_target_calls:
         return CellResult(entry, qc, None, None)
 
     native_components, native_leaves, native_terminal_components, native_leaf_map = (
@@ -1044,6 +1117,7 @@ def construct_cell(
             edge_piece_ids,
             nodes,
             axon_children,
+            terminal_node_ids,
             len(coordinates),
             eroded_only=False,
         )
@@ -1055,6 +1129,7 @@ def construct_cell(
                 edge_piece_ids,
                 nodes,
                 axon_children,
+                terminal_node_ids,
                 len(coordinates),
                 eroded_only=True,
             )
@@ -1064,8 +1139,10 @@ def construct_cell(
             edge_piece_ids,
             nodes,
             axon_children,
+            axon_edge_child_ids,
             native_leaf_map,
             len(coordinates),
+            interpretation,
         )
     else:
         eroded_components = [0] * len(coordinates)
@@ -1397,7 +1474,8 @@ def _load_real_assets(
     contract_path: Path,
     annotation_path: Path,
     ontology_path: Path,
-    vocabulary_path: Path,
+    vocabulary_path: Path | None,
+    load_target_vocabulary: bool = True,
 ) -> tuple[
     Mapping[str, Any],
     Atlas,
@@ -1555,6 +1633,10 @@ def _load_real_assets(
     ontology = load_ontology(ontology_path)
     if ontology.unique_id_for_acronym("MOp") != 985:
         raise ConstructionError("pinned ontology no longer resolves MOp to 985")
+    if not load_target_vocabulary:
+        return contract, atlas, config, ontology, (), ()
+    if vocabulary_path is None:
+        raise ConstructionError("target construction requires a vocabulary path")
     coordinates = load_vocabulary(vocabulary_path)
     by_id = {coordinate.coordinate_id: coordinate for coordinate in coordinates}
     try:
@@ -1577,6 +1659,142 @@ def _load_real_assets(
         for index, coordinate in enumerate(selected_primary)
     )
     return contract, atlas, config, ontology, coordinates, primary_coordinates
+
+
+def _load_v2_revision(path: Path) -> Mapping[str, Any]:
+    try:
+        import yaml  # type: ignore
+    except ImportError as error:
+        raise ConstructionError("v2 execution requires PyYAML") from error
+    with path.open("r", encoding="utf-8") as handle:
+        revision = yaml.safe_load(handle)
+    if not isinstance(revision, dict):
+        raise ConstructionError("v2 observation revision is not a mapping")
+    interpretation = revision.get("SWC_interpretation", {})
+    gate = revision.get("revised_structural_QC_attrition_gate", {})
+    expected_capacity = {
+        "212074": 4,
+        "220187": 26,
+        "220188": 17,
+        "220190": 8,
+        "221091": 26,
+        "221225": 38,
+        "221418": 7,
+        "221514": 4,
+        "221539": 0,
+        "221588": 9,
+        "221751": 6,
+        "233281": 1,
+    }
+    expected_minimum = {
+        "212074": 4,
+        "220187": 24,
+        "220188": 16,
+        "220190": 8,
+        "221091": 24,
+        "221225": 35,
+        "221418": 7,
+        "221514": 4,
+        "221539": 0,
+        "221588": 9,
+        "221751": 6,
+        "233281": 1,
+    }
+    if (
+        revision.get("episode_id") != "ep10"
+        or revision.get("status")
+        != "frozen_after_v1_structural_QC_before_v2_projection_construction"
+        or revision.get("base_contract") != "projection_observation_contract.yaml"
+        or interpretation.get("mode") != V2_INTERPRETATION
+        or interpretation.get("raw_types_are_rewritten") is not False
+        or interpretation.get("allowed_raw_types")
+        != [0, 1, 2, 3, 4, 10, 11, 12]
+        or interpretation.get("provider_axon_edge_rule")
+        != "include edge (parent, child) exactly when neither endpoint raw type is 3 or 4"
+        or interpretation.get("provider_terminal_rule")
+        != "a topology leaf whose raw type is neither 3 nor 4"
+        or int(gate.get("unchanged_fixed_manifest_rows", -1)) != EXPECTED_FILES
+        or int(gate.get("revised_recoverable_capacity_ceiling", -1)) != 146
+        or int(gate.get("minimum_overall_eligible_cells", -1)) != 139
+        or gate.get("revised_capacity_ceiling_by_group") != expected_capacity
+        or gate.get("minimum_eligible_cells_by_group") != expected_minimum
+        or int(gate.get("positive_capacity_groups_required_to_pass", -1)) != 11
+        or gate.get("assigned_zero_capacity_group") != "221539"
+        or gate.get("all_positive_capacity_groups_must_pass") is not True
+        or gate.get("target_construction_authorized_only_after_gate_passes")
+        is not True
+        or gate.get("no_further_relaxation_or_replacement") is not True
+    ):
+        raise ConstructionError("v2 observation revision differs from the accepted rule or gate")
+    return revision
+
+
+def _load_v3_positive_only_contract(path: Path) -> Mapping[str, Any]:
+    """Validate the explicitly authorized v3 positive-only redesign."""
+
+    try:
+        import yaml  # type: ignore
+    except ImportError as error:
+        raise ConstructionError("v3 execution requires PyYAML") from error
+    with path.open("r", encoding="utf-8") as handle:
+        revision = yaml.safe_load(handle)
+    if not isinstance(revision, dict):
+        raise ConstructionError("v3 observation revision is not a mapping")
+
+    interpretation = revision.get("SWC_interpretation", {})
+    endpoint = revision.get("positive_only_observation_endpoint", {})
+    gate = revision.get("v3_structural_gate", {})
+    expected_by_group = {
+        "212074": 6,
+        "220187": 35,
+        "220188": 25,
+        "220190": 16,
+        "221091": 33,
+        "221225": 39,
+        "221418": 12,
+        "221514": 5,
+        "221539": 1,
+        "221588": 7,
+        "221751": 13,
+        "233281": 2,
+    }
+    expected_tolerated = [
+        "positive_provider_axon_length_outside_atlas_volume",
+        "positive_provider_axon_length_in_annotation_zero",
+        "provider_terminal_outside_atlas_volume",
+        "provider_terminal_in_annotation_zero",
+        "provider_terminal_in_nongrey_structure",
+    ]
+    if (
+        revision.get("episode_id") != "ep10"
+        or revision.get("status")
+        != "frozen_after_v2_outcome_blind_overlap_before_v3_target_construction"
+        or revision.get("authorization_record") != "v3_user_authorization.yaml"
+        or interpretation.get("mode") != V2_INTERPRETATION
+        or interpretation.get("raw_types_are_rewritten") is not False
+        or interpretation.get("allowed_raw_types")
+        != [0, 1, 2, 3, 4, 10, 11, 12]
+        or endpoint.get("analysis_label") != "exploratory"
+        or endpoint.get("endpoint_name")
+        != "mapped_positive_terminal_observation_set"
+        or endpoint.get("tolerated_mapping_incompleteness") != expected_tolerated
+        or int(gate.get("frozen_manifest_rows", -1)) != EXPECTED_FILES
+        or int(gate.get("expected_eligible_cells", -1)) != 194
+        or int(gate.get("expected_excluded_cells", -1)) != 6
+        or gate.get("expected_exclusion_counts") != {"soma_not_MOp": 6}
+        or gate.get("expected_eligible_cells_by_group") != expected_by_group
+        or gate.get("all_12_groups_must_match_expected_support") is not True
+        or int(gate.get("group_221588_authorized_support", -1)) != 7
+        or gate.get("target_construction_authorized_only_after_exact_gate_passes")
+        is not True
+        or gate.get("no_further_relaxation_replacement_or_threshold_tuning")
+        is not True
+        or sum(expected_by_group.values()) != 194
+    ):
+        raise ConstructionError(
+            "v3 observation revision differs from the explicitly authorized rule"
+        )
+    return revision
 
 
 def _identity_row(result: CellResult) -> dict[str, object]:
@@ -1620,6 +1838,7 @@ def write_outputs(
     results: Sequence[CellResult],
     coordinates: Sequence[Coordinate],
     primary_indexes: Sequence[int],
+    zero_label: str = COMPLETE_MAPPING_ZERO_LABEL,
 ) -> None:
     """Write only the frozen pre-candidate exposure surface."""
 
@@ -1646,7 +1865,6 @@ def write_outputs(
         "K",
         "S_coordinate_ids",
     ]
-    zero_label = "not_observed_in_the_eligible_released_reconstruction"
     for prefix in (
         "status",
         "detected",
@@ -1792,6 +2010,138 @@ def write_outputs(
     _atomic_json(output_root / "aggregate_summary.json", summary)
 
 
+def write_structural_qc_outputs(
+    output_root: Path,
+    results: Sequence[CellResult],
+    revision: Mapping[str, Any],
+) -> None:
+    """Write v2 eligibility and gate results without target observations."""
+
+    if len(results) != EXPECTED_FILES:
+        raise ConstructionError(
+            f"structural QC output requires {EXPECTED_FILES} manifest rows"
+        )
+    if any(result.coordinate_qc is not None or result.primary_k is not None for result in results):
+        raise ConstructionError("target observations reached structural-only output")
+
+    fields = [
+        "provider_neuron_id",
+        "file",
+        "fMOST_brain_id",
+        "provider_sample_id",
+        "global_eligible",
+        "global_eligibility_failure",
+        "failure_detail",
+        "provider_hemisphere",
+        "soma_hemisphere",
+        "canonical_soma_agreement",
+        "soma_maps_to_MOp",
+        "node_count",
+        "provider_axon_edge_count",
+        "positive_provider_axon_edge_count",
+        "provider_terminal_count",
+        "dendrite_touching_edge_count",
+        "custom_type_10_11_12_node_count",
+        "extra_column_line_count",
+    ]
+    rows = []
+    for result in results:
+        rows.append(
+            {
+                **_identity_row(result),
+                "global_eligible": "yes" if result.qc.eligible else "no",
+                "global_eligibility_failure": result.qc.failure_code,
+                "failure_detail": result.qc.failure_detail,
+                "provider_hemisphere": result.qc.provider_hemisphere,
+                "soma_hemisphere": result.qc.soma_hemisphere,
+                "canonical_soma_agreement": int(result.qc.canonical_soma_agreement),
+                "soma_maps_to_MOp": int(result.qc.soma_maps_to_MOp),
+                "node_count": result.qc.node_count,
+                "provider_axon_edge_count": result.qc.axon_edge_count,
+                "positive_provider_axon_edge_count": result.qc.positive_axon_edge_count,
+                "provider_terminal_count": result.qc.rooted_axon_leaf_count,
+                "dendrite_touching_edge_count": result.qc.dendrite_edge_count,
+                "custom_type_10_11_12_node_count": result.qc.marker_node_count,
+                "extra_column_line_count": result.qc.extra_column_line_count,
+            }
+        )
+    _atomic_csv(output_root / "cell_eligibility_qc.csv", fields, rows)
+
+    gate = revision["revised_structural_QC_attrition_gate"]
+    capacity_by_group = {
+        str(group): int(value)
+        for group, value in gate["revised_capacity_ceiling_by_group"].items()
+    }
+    minimum_by_group = {
+        str(group): int(value)
+        for group, value in gate["minimum_eligible_cells_by_group"].items()
+    }
+    eligible_by_group = Counter(
+        result.entry.brain_id for result in results if result.qc.eligible
+    )
+    input_by_group = Counter(result.entry.brain_id for result in results)
+    if set(input_by_group) != set(minimum_by_group):
+        raise ConstructionError("structural gate groups differ from the frozen manifest")
+    group_gate_pass = {
+        group: eligible_by_group[group] >= minimum_by_group[group]
+        for group in sorted(minimum_by_group)
+    }
+    positive_capacity_groups = [
+        group for group in sorted(capacity_by_group) if capacity_by_group[group] > 0
+    ]
+    overall_eligible = sum(result.qc.eligible for result in results)
+    overall_pass = overall_eligible >= int(gate["minimum_overall_eligible_cells"])
+    all_positive_groups_pass = all(
+        group_gate_pass[group] for group in positive_capacity_groups
+    )
+    gate_passed = overall_pass and all_positive_groups_pass
+    summary = {
+        "status": "complete",
+        "stage": "provider_native_v2_structural_qualification",
+        "swc_interpretation": V2_INTERPRETATION,
+        "input_files": len(results),
+        "input_groups": len(input_by_group),
+        "input_files_by_group": dict(sorted(input_by_group.items())),
+        "globally_eligible_cells": overall_eligible,
+        "globally_unknown_excluded_cells": len(results) - overall_eligible,
+        "global_eligibility_failure_counts": dict(
+            sorted(
+                Counter(
+                    result.qc.failure_code
+                    for result in results
+                    if not result.qc.eligible
+                ).items()
+            )
+        ),
+        "eligible_cells_by_group": {
+            group: eligible_by_group[group] for group in sorted(input_by_group)
+        },
+        "revised_capacity_ceiling": int(
+            gate["revised_recoverable_capacity_ceiling"]
+        ),
+        "minimum_overall_eligible_cells": int(
+            gate["minimum_overall_eligible_cells"]
+        ),
+        "minimum_eligible_cells_by_group": minimum_by_group,
+        "overall_gate_pass": overall_pass,
+        "group_gate_pass": group_gate_pass,
+        "positive_capacity_groups": positive_capacity_groups,
+        "all_positive_capacity_groups_pass": all_positive_groups_pass,
+        "structural_QC_gate_passed": gate_passed,
+        "target_construction_authorized": gate_passed,
+        "failure_action_if_not_passed": gate["failure_action"],
+        "atlas_loaded": True,
+        "ontology_loaded": True,
+        "target_vocabulary_loaded": False,
+        "projection_outcomes_computed": False,
+        "projection_outcomes_emitted": False,
+        "final_or_unassigned_files_opened": False,
+        "unsupported_development_files_opened": 0,
+        "EP11_shared_units_opened": False,
+    }
+    _atomic_json(output_root / "aggregate_summary.json", summary)
+
+
 def _fixture_ontology() -> Ontology:
     return Ontology(
         {
@@ -1856,11 +2206,14 @@ def _construct_fixture(
     config: GeometryConfig,
     entry: ManifestEntry | None = None,
     run_sealed_sensitivities: bool = False,
+    interpretation: str = V1_INTERPRETATION,
+    compute_target_calls: bool = True,
+    require_complete_mapping: bool = True,
 ) -> CellResult:
     ontology = _fixture_ontology()
     coordinates = _fixture_coordinates()
     mapper = StructureMapper(ontology, {993: 0, 453: 1}, 8)
-    nodes, extra = parse_swc_lines(io.StringIO(swc))
+    nodes, extra = parse_swc_lines(io.StringIO(swc), interpretation=interpretation)
     return construct_cell(
         entry or _fixture_entry(),
         nodes,
@@ -1872,6 +2225,9 @@ def _construct_fixture(
         coordinates,
         (0, 1, 2, 3),
         run_sealed_sensitivities=run_sealed_sensitivities,
+        interpretation=interpretation,
+        compute_target_calls=compute_target_calls,
+        require_complete_mapping=require_complete_mapping,
     )
 
 
@@ -1930,6 +2286,76 @@ def run_self_test() -> dict[str, object]:
             pass
         else:
             raise AssertionError(f"invalid typed edge passed parsing: {label}")
+
+    provider_cases = {
+        "axon_custom_axon": """1 1 5 5 5 1 -1
+2 0 15 5 5 1 1
+3 10 25 5 5 1 2
+4 2 35 5 5 1 3
+""",
+        "dendrite_custom_dendrite": """1 1 5 5 5 1 -1
+2 3 15 5 5 1 1
+3 11 25 5 5 1 2
+4 3 35 5 5 1 3
+""",
+        "mixed_local_edges": """1 1 5 5 5 1 -1
+2 3 15 5 5 1 1
+3 12 25 5 5 1 2
+4 2 35 5 5 1 3
+""",
+    }
+    provider_nodes = {
+        label: parse_swc_lines(
+            io.StringIO(swc), interpretation=V2_INTERPRETATION
+        )[0]
+        for label, swc in provider_cases.items()
+    }
+    axon_custom_edges = {
+        child.node_id
+        for child in provider_nodes["axon_custom_axon"].values()
+        if child.parent_id != -1
+        and _is_axon_edge(
+            provider_nodes["axon_custom_axon"][child.parent_id],
+            child,
+            V2_INTERPRETATION,
+        )
+    }
+    if axon_custom_edges != {2, 3, 4}:
+        raise AssertionError("provider-native custom axon traversal failed")
+    dendrite_custom_edges = {
+        child.node_id
+        for child in provider_nodes["dendrite_custom_dendrite"].values()
+        if child.parent_id != -1
+        and _is_axon_edge(
+            provider_nodes["dendrite_custom_dendrite"][child.parent_id],
+            child,
+            V2_INTERPRETATION,
+        )
+    }
+    if dendrite_custom_edges:
+        raise AssertionError("dendrite-touching edges entered provider axon traversal")
+    mixed_nodes = provider_nodes["mixed_local_edges"]
+    mixed_edges = {
+        child.node_id
+        for child in mixed_nodes.values()
+        if child.parent_id != -1
+        and _is_axon_edge(mixed_nodes[child.parent_id], child, V2_INTERPRETATION)
+    }
+    if mixed_edges != {4}:
+        raise AssertionError("provider-native local endpoint rule changed")
+    if _terminal_node_ids(mixed_nodes, V2_INTERPRETATION) != frozenset((4,)):
+        raise AssertionError("provider-native topology terminal rule failed")
+    try:
+        parse_swc_lines(
+            io.StringIO("""1 1 5 5 5 1 -1
+2 13 15 5 5 1 1
+"""),
+            interpretation=V2_INTERPRETATION,
+        )
+    except ConstructionError:
+        pass
+    else:
+        raise AssertionError("unsupported provider node type 13 passed parsing")
 
     try:
         _construct_fixture(
@@ -2030,6 +2456,37 @@ def run_self_test() -> dict[str, object]:
             raise AssertionError(f"unexpected global-unknown code: {error.code}")
     else:
         raise AssertionError("fiber-tract terminal did not make the cell unknown")
+
+    positive_only_nongrey = _construct_fixture(
+        """1 1 5 5 5 1 -1
+2 2 25 15 5 1 1
+""",
+        unknown_atlas,
+        config,
+        require_complete_mapping=False,
+    )
+    if not positive_only_nongrey.qc.eligible:
+        raise AssertionError("v3 rejected a cell solely for a nongrey terminal")
+    assert positive_only_nongrey.coordinate_qc is not None
+    if any(stat.detected for stat in positive_only_nongrey.coordinate_qc):
+        raise AssertionError("a tolerated nongrey terminal became a positive target")
+
+    zero_gap_values = dict(values)
+    zero_gap_values[(1, 0, 0)] = 0
+    zero_gap_atlas = SyntheticAtlas(config.shape, zero_gap_values)
+    positive_only_zero_gap = _construct_fixture(
+        """1 1 5 5 5 1 -1
+2 2 25 5 5 1 1
+""",
+        zero_gap_atlas,
+        config,
+        require_complete_mapping=False,
+    )
+    if not positive_only_zero_gap.qc.eligible:
+        raise AssertionError("v3 rejected a cell solely for annotation-zero cable")
+    assert positive_only_zero_gap.coordinate_qc is not None
+    if not positive_only_zero_gap.coordinate_qc[0].detected:
+        raise AssertionError("mapped positive terminal was lost after a tolerated zero gap")
 
     branch = _construct_fixture(
         """1 1 5 5 5 1 -1
@@ -2137,6 +2594,8 @@ def run_self_test() -> dict[str, object]:
         "checks": [
             "strict_tree_and_root_parsing",
             "complete_typed_edge_transition_rejection",
+            "provider_native_custom_type_edge_and_topology_terminal_rules",
+            "positive_only_unmapped_tolerant_v3",
             "axon_with_any_child_is_not_terminal",
             "canonical_soma_agreement",
             "terminal_vs_passing_only",
@@ -2153,6 +2612,30 @@ def run_self_test() -> dict[str, object]:
 
 
 def run_real(args: argparse.Namespace) -> None:
+    revision = (
+        _load_v2_revision(args.revision_contract)
+        if args.revision_contract is not None
+        else None
+    )
+    positive_only_revision = (
+        _load_v3_positive_only_contract(args.positive_only_contract)
+        if args.positive_only_contract is not None
+        else None
+    )
+    interpretation = V2_INTERPRETATION if revision is not None else V1_INTERPRETATION
+    if args.structural_qc_only and revision is None:
+        raise ConstructionError(
+            "--structural-qc-only requires the frozen v2 revision contract"
+        )
+    if positive_only_revision is not None:
+        if revision is None:
+            raise ConstructionError(
+                "--positive-only-contract requires the frozen v2 provider-native revision"
+            )
+        if args.structural_qc_only:
+            raise ConstructionError(
+                "v3 positive-only target construction is incompatible with --structural-qc-only"
+            )
     (
         _,
         atlas,
@@ -2165,14 +2648,16 @@ def run_real(args: argparse.Namespace) -> None:
         args.annotation,
         args.ontology,
         args.vocabulary,
+        load_target_vocabulary=not args.structural_qc_only,
     )
     anchor_to_target: dict[int, int] = {}
-    for coordinate in full_coordinates:
-        prior = anchor_to_target.setdefault(
-            coordinate.anchor_structure_id, coordinate.target_index
-        )
-        if prior != coordinate.target_index:
-            raise ConstructionError("one anchor maps to multiple target indexes")
+    if not args.structural_qc_only:
+        for coordinate in full_coordinates:
+            prior = anchor_to_target.setdefault(
+                coordinate.anchor_structure_id, coordinate.target_index
+            )
+            if prior != coordinate.target_index:
+                raise ConstructionError("one anchor maps to multiple target indexes")
     mapper = StructureMapper(
         ontology,
         anchor_to_target,
@@ -2202,7 +2687,9 @@ def run_real(args: argparse.Namespace) -> None:
     results: list[CellResult] = []
     for entry in entries:
         try:
-            nodes, extra_columns = parse_swc(swc_paths[entry.provider_neuron_id])
+            nodes, extra_columns = parse_swc(
+                swc_paths[entry.provider_neuron_id], interpretation=interpretation
+            )
             result = construct_cell(
                 entry,
                 nodes,
@@ -2214,6 +2701,9 @@ def run_real(args: argparse.Namespace) -> None:
                 coordinates,
                 tuple(range(16)),
                 run_sealed_sensitivities=False,
+                interpretation=interpretation,
+                compute_target_calls=not args.structural_qc_only,
+                require_complete_mapping=positive_only_revision is None,
             )
         except CellIneligible as error:
             qc = CellQC(
@@ -2246,7 +2736,21 @@ def run_real(args: argparse.Namespace) -> None:
         results.append(result)
     if len(results) != EXPECTED_FILES:
         raise ConstructionError("constructor did not emit one result per manifest row")
-    write_outputs(output_root, results, coordinates, tuple(range(16)))
+    if args.structural_qc_only:
+        assert revision is not None
+        write_structural_qc_outputs(output_root, results, revision)
+    else:
+        write_outputs(
+            output_root,
+            results,
+            coordinates,
+            tuple(range(16)),
+            zero_label=(
+                V3_POSITIVE_ONLY_ZERO_LABEL
+                if positive_only_revision is not None
+                else COMPLETE_MAPPING_ZERO_LABEL
+            ),
+        )
     print(
         json.dumps(
             {
@@ -2256,6 +2760,14 @@ def run_real(args: argparse.Namespace) -> None:
                 "eligible_cells": sum(result.qc.eligible for result in results),
                 "globally_unknown_excluded_cells": sum(
                     not result.qc.eligible for result in results
+                ),
+                "swc_interpretation": interpretation,
+                "structural_qc_only": args.structural_qc_only,
+                "projection_outcomes_emitted": not args.structural_qc_only,
+                "observation_policy": (
+                    V3_OBSERVATION_POLICY
+                    if positive_only_revision is not None
+                    else "complete_mapping_required"
                 ),
                 "output_root": str(output_root),
                 "final_or_unassigned_files_opened": False,
@@ -2278,7 +2790,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="explicitly permit reading the frozen development SWCs",
     )
+    parser.add_argument(
+        "--structural-qc-only",
+        action="store_true",
+        help="run v2 atlas/tree eligibility without loading target vocabulary or emitting outcomes",
+    )
     parser.add_argument("--contract", type=Path)
+    parser.add_argument("--revision-contract", type=Path)
+    parser.add_argument("--positive-only-contract", type=Path)
     parser.add_argument("--vocabulary", type=Path)
     parser.add_argument("--annotation", type=Path)
     parser.add_argument("--ontology", type=Path)
@@ -2301,15 +2820,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             "real construction is gated; use --execute only after the frozen "
             "development SWCs have been acquired"
         )
-    required = (
+    required = [
         "contract",
-        "vocabulary",
         "annotation",
         "ontology",
         "manifest",
         "swc_root",
         "output_root",
-    )
+    ]
+    if not args.structural_qc_only:
+        required.append("vocabulary")
     missing = [name for name in required if getattr(args, name) is None]
     if missing:
         parser.error("missing required arguments: " + ", ".join(missing))

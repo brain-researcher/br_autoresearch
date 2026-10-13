@@ -30,3 +30,7 @@
 - The two legacy loop IDs in the prior manifest are not this episode's loop.
 - Copy only facts returned by persisted canonical read surfaces; never infer a
   transition or action from local files.
+
+## 2026-10-02 local scope review
+
+Design wording clarified; the next scientific work remains the existing source-semantic and behavioral-recovery program. No experiment started and no canonical transition observed. See [review (consolidated)](paper_plan.md).

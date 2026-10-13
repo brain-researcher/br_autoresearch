@@ -5,6 +5,40 @@ protocol_scope: evidence_separation_configuration_lock_and_one_shot_audit_only
 evidence_mode: fixed_model_comparison
 scientific_focus: frozen_vlm_image_embedding_to_fmri_response_geometry_alignment
 
+approved_low_level_control_2026_10_05:
+  authority: scientist_agree_please_go_ahead_to_linked_EP04_and_EP21_proposals
+  specification: outputs/low_level_control_proposal.md
+  control_id: ep04_rgb_block_moments_5_10_20_v1
+  source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_raw_stimuli_dua_20260922/payload"
+  existing_dua: accepted_2026_05_12_controlled_noncommercial_academic_research
+  frozen_development_metadata: outputs/runs/source_readiness/20261003-metadata_folds04
+  source_access: exact_unique_development_ID_to_CSV_row_join_then_one_images_element_at_a_time
+  representative: four_lexicographically_lowest_IDs_in_each_of_15_participant_source_cells
+  representative_images: 60
+  representative_seconds_maximum: 300
+  full_development_images: 23560
+  full_runtime_bound: coordinator_selected_from_successful_representative_cost_within_existing_budget
+  renderer: stored_1000_by_1000_RGB_JPEG_or_RGBA_PNG_no_resize_crop_EXIF_or_profile_conversion
+  alpha_background_rgb: [128, 128, 128]
+  alpha_rounding: nearest_byte
+  grids: [5, 10, 20]
+  statistics: [RGB_mean, RGB_population_SD_ddof0]
+  intensity_units: stored_byte_divided_by_255_not_linear_light
+  grid_scale: divide_by_sqrt_3_times_6_times_grid_size_squared
+  coordinates: 3150
+  storage_and_arithmetic: float64
+  feature_fit_or_L2_normalization: none
+  rdm: euclidean
+  downstream_use: existing_intercept_plus_ranked_low_level_partial_Spearman_control
+  complete_finite_development_coverage_required: true
+  missing_or_invalid_images_may_be_dropped: false
+  excluded_regular_shared_images: closed
+  OOD_images_and_responses: closed
+  new_model_or_detector: false
+  automatic_follow_on_or_retry: false
+  runtime_modules: [python/3.12.1, py-numpy/1.26.3, py-h5py/3.10.0_py312, py-pillow/10.2.0_py312]
+  actual_library_versions: recorded_by_each_extraction_report
+
 dataset_roles:
   development:
     source: laion_fmri_4712_regular_subject_unique_images_per_participant
@@ -185,6 +219,7 @@ falsifier_contracts:
     frozen_model_order: [openclip, pecore, siglip2]
     generator:
       input: raw_release_supplied_embedding_matrix_X
+      input_scope: exact_eligible_primary_evaluation_image_rows_for_each_participant_and_frozen_fold_before_L2
       center: subtract_column_mean_mu
       factorization: thin_svd_X_centered_equals_U_S_Vt
       randomized_left_factor: gaussian_matrix_projected_off_intercept_then_thin_qr_with_positive_diagonal_sign_convention

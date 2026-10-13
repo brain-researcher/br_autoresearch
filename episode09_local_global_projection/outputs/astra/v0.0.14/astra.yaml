@@ -25,6 +25,14 @@ analyses:
       - {id: goal, from: ../goal}
       - {id: datasets, from: ../datasets}
     outputs:
+      - id: metadata_schema_report
+        type: report
+        format: json
+        inputs: [goal, datasets]
+      - id: genotype_support_report
+        type: report
+        format: json
+        inputs: [goal, datasets]
       - id: feasibility_report
         type: report
         format: yaml

@@ -1,0 +1,123 @@
+schema_version: episode10_v3_m1_synthetic_design_addendum_v1
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_v2_target_free_rank_probe_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+base_contract:
+  exact_stage0_relative_path: outputs/stage0/v3_m1_model_contract.yaml
+  required_schema_version: episode10_v3_m1_model_v1
+  required_status: frozen_before_implementation_and_real_M1_execution
+  relationship: >-
+    The base contract remains authoritative for the M1 model, real-data scope,
+    exact likelihood, geometry, rank and condition thresholds, recovery and
+    warm-zero thresholds, solver, resampling, budgets, outputs, and sealing.
+
+trigger:
+  failed_target_free_probe_job: "45534222"
+  failure_stage: full_544_row_synthetic_recovery_training_set_rank_gate
+  failure_message: target-free joint/geometry rank or condition gate failed
+  work_reached_before_failure:
+    focused_tests: pass_11_of_11
+    in_probe_unit_gates: pass
+    synthetic_recovery_fit_started: false
+    real_shape_benchmark_started: false
+    real_K_or_target_calls_opened: false
+    final_or_unassigned_or_SWC_opened: false
+
+target_free_diagnosis:
+  original_layer_schedule: layer_index_equals_row_index_modulo_4
+  original_hemisphere_schedule: hemisphere_index_equals_row_index_modulo_2
+  exact_dependency: >-
+    With left=-0.5, right=0.5, and the frozen four-level orthonormal Helmert
+    coding, hemisphere equals -0.7071067811865475*layer_H1 plus
+    0.4082482904638631*layer_H2 minus
+    0.5773502691896258*layer_H3, up to binary64 roundoff.
+  maximum_observed_dependency_residual: 1.39e-15
+  frozen_544_row_design_rank: 16
+  required_design_columns: 17
+  frozen_544_row_smallest_singular_value: 9.21e-15
+  frozen_544_row_rank_tolerance: 5.52e-12
+  resulting_B_block_rank_upper_bound: 240
+  resulting_joint_rank_upper_bound: 246
+  base_contract_required_joint_rank: 261
+  classification: >-
+    The frozen synthetic generator made its own full-rank gate mathematically
+    impossible through a deterministic covariate dependency. This is not a
+    geometry-feature, Schur-complement, optimizer, tolerance, or real-data
+    result.
+
+sole_change:
+  applies_only_to: deterministic_target_free_synthetic_rows
+  schedule_formula: floor_integer_divide_row_index_by_4_then_modulo_2
+  index_0_hemisphere: left
+  index_1_hemisphere: right
+  physical_hemisphere_schedule: >-
+    Set hemisphere_index = (row_index // 4) modulo 2. Use left when the index
+    is 0 and right when it is 1. Construct the synthetic physical soma ML
+    coordinate with the corresponding frozen 5.7 minus or plus depth rule.
+  motivation: >-
+    Consecutive blocks of four retain the same deterministic, outcome-free
+    balance while preventing hemisphere from being an exact function of the
+    four-level layer schedule.
+  consumes_random_variates: false
+
+prospective_target_free_checks:
+  design_rank_before_joint_rank:
+    schedules:
+      - rows: 544
+        groups: 16
+        rows_per_group: 34
+        seed: 20260927
+        required_rank: 17
+      - rows: 68
+        groups: 4
+        rows_per_group: 17
+        seed: 20260928
+        required_rank: 17
+    rank_tolerance: max_matrix_dimension_times_binary64_epsilon_times_largest_singular_value
+  independently_observed_replacement_schedule_diagnostics:
+    recovery_544:
+      rank: 17
+      largest_singular_value: 47.205602879852904
+      smallest_singular_value: 0.9077556140236869
+      condition_number_2: 52.002545784994865
+      rank_tolerance: 5.702071696287443e-12
+      each_layer_by_hemisphere_count: 68
+    warm_zero_68:
+      rank: 17
+      largest_singular_value: 17.948035465349104
+      smallest_singular_value: 0.308653591335022
+      condition_number_2: 58.149446399500206
+      rank_tolerance: 2.709979821977047e-13
+      each_layer_left_right_counts: [9, 8]
+  next_compute_gate: >-
+    Run only the revised 544-row joint, B-block, geometry-block, and
+    geometry-beyond-M0 Schur-residual rank and condition gate first. Passing
+    the 17-column design checks does not assert that the 261-dimensional gate
+    passes.
+  after_rank_gate_passes: >-
+    The complete target-free v2 probe may run with all unchanged base-contract
+    gates. No actual K or target file may be opened until that full probe and
+    its postflight audit pass.
+
+unchanged:
+  - deterministic seeds and one-PCG64-per-schedule rule
+  - normal-block then categorical-uniform-block RNG order
+  - exact first and last frozen categorical uniforms
+  - target anchors, soma AP/DV/depth formulas, layer schedule, and segment schedule
+  - recovery and warm-zero K schedules and row order
+  - planted B and gamma
+  - exact candidate-state and two-pass score-computation counts
+  - M1 model, parameter count, geometry features, centering, and scaling
+  - full-rank and condition-number thresholds
+  - optimizer, ridge grid, convergence, and comparison thresholds
+  - target-free real-shape schedule and benchmark request
+  - final, unassigned, SWC, realized-route, target-call, real-K, and M0-artifact seals
+  - remaining-budget reconciliation requirement
+
+implementation_boundary:
+  implementation_modified_by_this_addendum: false
+  Slurm_job_submitted_by_this_addendum: false
+  revised_probe_output_basename: v3_m1_target_free_probe_v2_job_JOBID

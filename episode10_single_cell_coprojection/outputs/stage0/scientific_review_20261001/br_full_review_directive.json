@@ -1,0 +1,3810 @@
+{
+  "ok": true,
+  "protocol": "br.external_review.directive.v1",
+  "directive_id": "ext_review_dir_2a3addc6254a",
+  "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+  "issued_at": "2026-10-01T05:31:18Z",
+  "review_type": "scientific_review",
+  "goal": "Focused interpretive scientific review of an existing development-only mouse motor-cortex recorded-positive-pattern analysis. Determine what a future M2-minus-M1 gain could distinguish about residual pair organization given a small heterogeneous M1-minus-M0 gain, adequate prediction relative to uniform, finite continuous-source adjustment, and unknown observation negatives. Challenge substantive interpretation; preserve the frozen analysis and do not add a new execution gate. No M2 result or null result exists yet. This is advisory scientific review, not formal Society or scientific acceptance.",
+  "hints_applied": {
+    "adapter": "external_single_neuron_recorded_positive_projectome",
+    "review_scope": "existing aggregate results and frozen specification only; no private cell-level data, sealed data, new experiments, or biological promotion",
+    "known_evidence": {
+      "cells": 194,
+      "conservative_groups": 12,
+      "target_panel": 16,
+      "M1_minus_M0_equal_group_bits_per_cell": 0.002637863687897285,
+      "M1_uniform_gain_bits_per_cell": 1.5953602605961161,
+      "group_heterogeneity": "strong; recorded in prior result",
+      "M1_adequacy": "all frozen numerical gates passed",
+      "animal_independence": "uncertified",
+      "observations": "zeros unknown; fixed observed cardinality; real M2 unopened"
+    }
+  },
+  "rubric_detail": "full",
+  "evaluation_axes": {
+    "correctness": {
+      "decision_space": [
+        "pass",
+        "flag",
+        "block"
+      ],
+      "criteria": [
+        "Confirm the statistical/analytic specification matches the declared research question.",
+        "Verify the design matrix / model structure is well-posed (no rank deficiency, no collinear nuisance regressors).",
+        "Check contrast definitions match the reported hypotheses and their dimensions.",
+        "Verify cross-file consistency between events, confounds, and model spec (subjects/runs align)."
+      ],
+      "required_outputs": [
+        "decision",
+        "findings[]"
+      ],
+      "kg_derived_criteria": [
+        {
+          "rule_id": "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "kg_node_id": "review_rule:brainmap_correlation_no_spatial_null",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Brain map correlation uses Pearson p without a spatial null.",
+          "detection": "Map-map analysis with no spin, BrainSMASH, or equivalent spatial null.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "null_model.spatial_null",
+            "correction.spatial_null"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_SPATIAL_NULL_INVALID"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=BRAINMAP_CORRELATION_NO_SPATIAL_NULL in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CONFOUND_REGRESSION_OUTSIDE_CV",
+          "kg_node_id": "review_rule:confound_regression_outside_cv",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Confound regression fitted on full data before cross-validation.",
+          "detection": "Parse pipeline DAG and check fit_scope.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "pipeline_steps.fit_scope",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CONFOUND_REGRESSION_OUTSIDE_CV in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+          "kg_node_id": "review_rule:declared_subject_set_missing_subject_column",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Structured subject manifest lacks subject, subject_id, or participant_id.",
+          "detection": "Column name check.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.subject_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "kg_node_id": "review_rule:demographic_confound_uncontrolled",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Group difference in age or sex exists but is missing from the group-level model.",
+          "detection": "Subject manifest demographic imbalance and missing covariate.",
+          "group": "confound_hard_block",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "model.confound_regressors",
+            "subject_manifest.demographics"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DEMOGRAPHIC_CONFOUND_UNCONTROLLED in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DOUBLE_DIPPING",
+          "kg_node_id": "review_rule:double_dipping",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "ROI or feature defined from the same model/data used for effect testing.",
+          "detection": "ROI provenance equals same model and dataset with no independent localizer.",
+          "group": "circularity",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "circularity"
+          ],
+          "metadata_fields": [
+            "roi_provenance.model_id",
+            "roi_provenance.dataset_id",
+            "roi_provenance.source"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DOUBLE_DIPPING in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "FEATURE_SELECTION_OUTSIDE_CV",
+          "kg_node_id": "review_rule:feature_selection_outside_cv",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Feature selection fitted on full data before cross-validation.",
+          "detection": "Parse pipeline DAG and check fit_scope.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "pipeline_steps.fit_scope",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=FEATURE_SELECTION_OUTSIDE_CV in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HARMONIZATION_OUTSIDE_CV",
+          "kg_node_id": "review_rule:harmonization_outside_cv",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "ComBat or harmonization fitted on full data before cross-validation.",
+          "detection": "Parse pipeline DAG and check fit_scope.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "pipeline_steps.fit_scope",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HARMONIZATION_OUTSIDE_CV in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "kg_node_id": "review_rule:longitudinal_no_subject_effect",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Longitudinal design analyzed with OLS/GLM that ignores within-subject variance.",
+          "detection": "At least three timepoints and no random or fixed subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.n_timepoints",
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=LONGITUDINAL_NO_SUBJECT_EFFECT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "kg_node_id": "review_rule:motion_uncontrolled_group_diff",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Group-by-motion imbalance in FC/resting-state data without modeling or censoring.",
+          "detection": "Compute group delta FD and check model covariates for motion controls.",
+          "group": "confound_hard_block",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "data.data_type",
+            "model.confound_regressors",
+            "qc.group_fd_comparison"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MOTION_UNCONTROLLED_GROUP_DIFF in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NESTED_CV_INNER_PARTITION_GAP",
+          "kg_node_id": "review_rule:nested_cv_inner_partition_gap",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Inner fold lacks train or validation/evaluation partition.",
+          "detection": "Partition set per inner fold.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_NESTED_CV_INNER_PARTITION_GAP"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NESTED_CV_INNER_PARTITION_GAP in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NESTED_CV_MANIFEST_SCHEMA",
+          "kg_node_id": "review_rule:nested_cv_manifest_schema",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Fold manifest missing outer_fold, inner_fold, or partition columns.",
+          "detection": "Manifest column check.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_NESTED_CV_SCHEMA_MISSING_FOLD_KEYS"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NESTED_CV_MANIFEST_SCHEMA in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NESTED_CV_OUTER_HOLDOUT_CONFLICT",
+          "kg_node_id": "review_rule:nested_cv_outer_holdout_conflict",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Outer-holdout subjects are reused inside inner train/validation partitions.",
+          "detection": "Partition set per outer fold.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_NESTED_CV_OUTER_HOLDOUT_CONFLICT"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NESTED_CV_OUTER_HOLDOUT_CONFLICT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NESTED_CV_OUTER_MISSING_INNER_RESAMPLING",
+          "kg_node_id": "review_rule:nested_cv_outer_missing_inner_resampling",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Outer fold has training rows but no inner-fold assignments.",
+          "detection": "Inner-fold presence on training rows.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_NESTED_CV_OUTER_MISSING_INNER_RESAMPLING"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NESTED_CV_OUTER_MISSING_INNER_RESAMPLING in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NESTED_CV_OUTER_PARTITION_GAP",
+          "kg_node_id": "review_rule:nested_cv_outer_partition_gap",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Outer fold lacks a holdout or training-side partitions.",
+          "detection": "Partition set per outer fold.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_NESTED_CV_OUTER_PARTITION_GAP"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NESTED_CV_OUTER_PARTITION_GAP in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "PERMUTATION_EXCHANGEABILITY",
+          "kg_node_id": "review_rule:permutation_exchangeability",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Permutation test ignores hierarchical data structure.",
+          "detection": "Hierarchical structure plus unrestricted permutation scheme.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.grouping_structure",
+            "null_model.permutation_scheme"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_PERMUTATION_EXCHANGEABILITY_INVALID"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=PERMUTATION_EXCHANGEABILITY in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "POOLED_VARIANCE_POPULATION_CLAIM",
+          "kg_node_id": "review_rule:pooled_variance_population_claim",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Fixed-effects group analysis pools scan variance but claims population-level inference.",
+          "detection": "Pure concatenated fixed-effects model plus population/generalization claim.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=POOLED_VARIANCE_POPULATION_CLAIM in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "PSEUDOREPLICATION",
+          "kg_node_id": "review_rule:pseudoreplication",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Runs or timepoints are treated as independent group-level samples.",
+          "detection": "n_observations greatly exceeds n_subjects with no aggregation or subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "generalization_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.n_observations",
+            "design.n_subjects",
+            "model.subject_effect"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=PSEUDOREPLICATION in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "REPEATED_MEASURES_INDEPENDENT_TEST",
+          "kg_node_id": "review_rule:repeated_measures_independent_test",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Repeated-measures design analyzed with an independent-samples test.",
+          "detection": "Repeated sessions or runs with no paired structure or subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=REPEATED_MEASURES_INDEPENDENT_TEST in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SPATIAL_DOMAIN_MISMATCH",
+          "kg_node_id": "review_rule:spatial_domain_mismatch",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Surface or CIFTI data corrected with volume-based cluster inference.",
+          "detection": "File type versus correction domain.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "data.domain",
+            "correction.domain"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_SURFACE_VOLUME_CORRECTION_DOMAIN_MISMATCH"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SPATIAL_DOMAIN_MISMATCH in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SPLIT_GROUPING_MISMATCH",
+          "kg_node_id": "review_rule:split_grouping_mismatch",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "CV split is not grouped by required keys such as subject, family, site, run, or story.",
+          "detection": "Required grouping key leak across fold partitions.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path",
+            "split.grouped_split_keys",
+            "split.required_group_keys"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SPLIT_MANIFEST_PARTITION_CONFLICT",
+            "REVIEW_NEUROAI_SPLIT_MANIFEST_MISSING_GROUP_KEYS",
+            "REVIEW_NEUROAI_SPLIT_GROUPING_MISMATCH"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SPLIT_GROUPING_MISMATCH in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "STANDARDIZATION_OUTSIDE_CV",
+          "kg_node_id": "review_rule:standardization_outside_cv",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Standardization or PCA fitted on full data before cross-validation.",
+          "detection": "Parse pipeline DAG and check fit_scope.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "pipeline_steps.fit_scope",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=STANDARDIZATION_OUTSIDE_CV in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_INTERSECTION_COVERAGE",
+          "kg_node_id": "review_rule:subject_intersection_coverage",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Subject intersection manifest does not cover fold manifest subjects.",
+          "detection": "Set difference between fold and subject-intersection manifests.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path",
+            "split.subject_intersection_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_INTERSECTION_COVERAGE"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_INTERSECTION_COVERAGE in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT",
+          "kg_node_id": "review_rule:subject_intersection_selection_source_conflict",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Subject intersection has IDs absent from the selection source.",
+          "detection": "Subset check.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.subject_selection_source",
+            "split.subject_intersection_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_INTERSECTION_SUBSET_CONFLICT",
+          "kg_node_id": "review_rule:subject_intersection_subset_conflict",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Intersection manifest is not a subset of the subject manifest.",
+          "detection": "Subset check.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.subject_manifest_path",
+            "split.subject_intersection_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_INTERSECTION_SUBSET_CONFLICT"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_INTERSECTION_SUBSET_CONFLICT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_MANIFEST_COVERAGE",
+          "kg_node_id": "review_rule:subject_manifest_coverage",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Subject manifest does not cover fold manifest subjects.",
+          "detection": "Set difference between fold and subject manifests.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path",
+            "split.subject_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_MANIFEST_COVERAGE"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_MANIFEST_COVERAGE in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT",
+          "kg_node_id": "review_rule:subject_manifest_selection_source_conflict",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Subject manifest has IDs absent from the selection source.",
+          "detection": "Subset check.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.subject_selection_source",
+            "split.subject_manifest_path"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SUBJECT_SELECTION_SOURCE_COVERAGE",
+          "kg_node_id": "review_rule:subject_selection_source_coverage",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Selection source does not cover manifest subjects.",
+          "detection": "Set difference between fold manifest subjects and subject-selection source.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.fold_manifest_path",
+            "split.subject_selection_source"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SUBJECT_SELECTION_SOURCE_COVERAGE"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SUBJECT_SELECTION_SOURCE_COVERAGE in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "TEMPORAL_SPLIT_AUTOCORRELATION",
+          "kg_node_id": "review_rule:temporal_split_autocorrelation",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Time-series CV split by TR rather than run, story, or segment.",
+          "detection": "Split unit versus data structure.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "statistical_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "split.required_group_keys",
+            "split.split_strategy_detail",
+            "split.split_unit"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=TEMPORAL_SPLIT_AUTOCORRELATION in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "TEST_SET_MODEL_SELECTION",
+          "kg_node_id": "review_rule:test_set_model_selection",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Test set used for model, layer, or hyperparameter selection.",
+          "detection": "Pipeline log shows best model chosen after test evaluation.",
+          "group": "split_cv_leakage_integrity",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "leakage"
+          ],
+          "metadata_fields": [
+            "selection.selection_scope",
+            "selection.selection_on_test"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SELECTION_ON_TEST"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=TEST_SET_MODEL_SELECTION in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "UNCORRECTED_WHOLEBRAIN",
+          "kg_node_id": "review_rule:uncorrected_wholebrain",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Whole-brain mass-univariate p < 0.05 reported uncorrected.",
+          "detection": "Result metadata lacks FWE, FDR, or permutation correction.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.level",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=UNCORRECTED_WHOLEBRAIN in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ABOVE_CHANCE_NO_PERMUTATION",
+          "kg_node_id": "review_rule:above_chance_no_permutation",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Above-chance classification claim without permutation test or confidence interval.",
+          "detection": "Classification result lacks permutation_p or CI.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "generalization_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "result.confidence_interval",
+            "result.permutation_p",
+            "result.metric"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ABOVE_CHANCE_NO_PERMUTATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "AD_HOC_CLUSTER_EXTENT",
+          "kg_node_id": "review_rule:ad_hoc_cluster_extent",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Arbitrary cluster extent threshold without statistically derived null distribution.",
+          "detection": "Cluster extent cutoff with no formal FWE/FDR correction method declared.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.cluster_extent_threshold",
+            "correction.level",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=AD_HOC_CLUSTER_EXTENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ANALYTIC_FLEXIBILITY",
+          "kg_node_id": "review_rule:analytic_flexibility",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multiple pipelines or parameters were tried but only the best result is reported.",
+          "detection": "Parameter sweep with a single reported result path.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "sensitivity.pipeline_variants",
+            "reporting.reported_paths",
+            "analysis.parameter_sweep"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ANALYTIC_FLEXIBILITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "BIDS_VALIDATION_FAILED",
+          "kg_node_id": "review_rule:bids_validation_failed",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "BIDS dataset did not pass BIDS Validator.",
+          "detection": "BIDS Validator output has errors.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.bids_validator_passed"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=BIDS_VALIDATION_FAILED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CLUSTER_FORMING_THRESHOLD_LENIENT",
+          "kg_node_id": "review_rule:cluster_forming_threshold_lenient",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RFT cluster correction uses a primary threshold above p = 0.001.",
+          "detection": "Primary threshold greater than 0.001 and null framework is not permutation-based.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.null_framework",
+            "correction.primary_threshold",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CLUSTER_FORMING_THRESHOLD_LENIENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "kg_node_id": "review_rule:cluster_localization_overclaim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Voxel-level localization claim from cluster-extent inference.",
+          "detection": "Voxel-localization claim and no ARI/TDP method.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.localization_method",
+            "correction.level"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CLUSTER_LOCALIZATION_OVERCLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "COBIDAS_MANDATORY_MISSING",
+          "kg_node_id": "review_rule:cobidas_mandatory_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Missing COBIDAS mandatory fields.",
+          "detection": "Check review_context against COBIDAS field registry.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "cobidas.fields"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=COBIDAS_MANDATORY_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CORRELATION_AS_PREDICTION",
+          "kg_node_id": "review_rule:correlation_as_prediction",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "In-sample correlation described as prediction or biomarker.",
+          "detection": "Prediction claim keywords and in-sample correlation only.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "validation.out_of_sample",
+            "claims.text"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CORRELATION_AS_PREDICTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CV_FOLD_ERROR_AS_INDEPENDENT",
+          "kg_node_id": "review_rule:cv_fold_error_as_independent",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Fold-wise standard error is treated as independent for confidence intervals.",
+          "detection": "CI from fold-wise SE without accounting for fold dependence.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "cv.fold_errors_independent",
+            "cv.ci_method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CV_FOLD_ERROR_AS_INDEPENDENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DYNAMIC_FC_NO_NULL",
+          "kg_node_id": "review_rule:dynamic_fc_no_null",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Dynamic FC / TVFC without null model or window sensitivity.",
+          "detection": "TVFC detected with no surrogate null or window sweep.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.window_lengths",
+            "null_model.surrogate",
+            "analysis.dynamic_fc"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_DYNAMIC_FC_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "dynamic_fc"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DYNAMIC_FC_NO_NULL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "EPI_DISTORTION_UNADDRESSED",
+          "kg_node_id": "review_rule:epi_distortion_unaddressed",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Significant EPI distortion or dropout is not corrected or discussed.",
+          "detection": "Dropout flagged in QC and no distortion correction.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "preprocessing.distortion_correction",
+            "qc.epi_t1w_mask_overlap"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=EPI_DISTORTION_UNADDRESSED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "EXTREME_EFFECT",
+          "kg_node_id": "review_rule:extreme_effect",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Effect size is extreme without robustness analysis.",
+          "detection": "Standardized effect exceeds domain threshold with no robust regression or sensitivity.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "sensitivity.robustness",
+            "effect.metric",
+            "effect.size"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=EXTREME_EFFECT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "kg_node_id": "review_rule:factorial_separate_simple_effects",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Factorial design analyzed through isolated simple effects without testing the overarching interaction.",
+          "detection": "Multiple grouping dimensions with no interaction term in the statistical model.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.factors",
+            "model.interaction_terms",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=FACTORIAL_SEPARATE_SIMPLE_EFFECTS in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GENE_MAP_NO_SPATIAL_NULL",
+          "kg_node_id": "review_rule:gene_map_no_spatial_null",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Gene or histology map correlated with fMRI map without spatial null.",
+          "detection": "Cross-modal map correlation with no spin, BrainSMASH, or equivalent spatial null.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "null_model.spatial_null",
+            "correction.spatial_null",
+            "analysis.cross_modal_map_correlation"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GENE_MAP_NO_SPATIAL_NULL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GRAPH_THRESHOLD_NO_SENSITIVITY",
+          "kg_node_id": "review_rule:graph_threshold_no_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Proportional graph thresholding without a multi-threshold curve.",
+          "detection": "Graph proportional threshold and no density-threshold sweep.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.graph_thresholds",
+            "analysis.graph_threshold"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GRAPH_ATLAS_HRF_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "graph_thresholding"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GRAPH_THRESHOLD_NO_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GSR_NO_SENSITIVITY",
+          "kg_node_id": "review_rule:gsr_no_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Global signal regression used without on/off sensitivity analysis.",
+          "detection": "Preprocessing includes GSR with no sensitivity comparison.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.gsr",
+            "preprocessing.global_signal_regression"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GSR_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "gsr"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GSR_NO_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HARMONIZATION_METHOD_SENSITIVITY",
+          "kg_node_id": "review_rule:harmonization_method_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "A single harmonization method is used without comparison to alternatives.",
+          "detection": "Harmonization used and no method comparison or residual site-predictability check.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "site.residual_predictability",
+            "sensitivity.harmonization_methods",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [
+            "harmonization"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HARMONIZATION_METHOD_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HRF_CANONICAL_ASSUMPTION",
+          "kg_node_id": "review_rule:hrf_canonical_assumption",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Fixed canonical HRF is used in clinical or aging populations without addressing neurovascular coupling differences.",
+          "detection": "Task fMRI in clinical/aging population and HRF model is canonical only.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "population.aging",
+            "population.clinical",
+            "model.hrf_model"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GRAPH_ATLAS_HRF_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "hrf_model"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HRF_CANONICAL_ASSUMPTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+          "kg_node_id": "review_rule:icc_missing_for_individual_diff",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Individual-difference claim lacks test-retest reliability or stability evidence.",
+          "detection": "Individual-difference analysis with no ICC or stability metric.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "generalization_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reliability.stability",
+            "reliability.icc",
+            "analysis.individual_difference"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ICC_MISSING_FOR_INDIVIDUAL_DIFF in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ICV_NOT_CONTROLLED",
+          "kg_node_id": "review_rule:icv_not_controlled",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "VBM or cortical thickness analysis lacks ICV/TIV or global covariate control.",
+          "detection": "Morphometric analysis and model lacks ICV/TIV/global covariate.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "model.confound_regressors",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ICV_NOT_CONTROLLED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "LAYER_SELECTION_POST_HOC",
+          "kg_node_id": "review_rule:layer_selection_post_hoc",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Best model or layer selected after viewing full results.",
+          "detection": "Post-hoc selection with no nested CV or correction.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch",
+            "leakage"
+          ],
+          "metadata_fields": [
+            "selection.selection_accounting",
+            "selection.candidate_count",
+            "selection.best_layer"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_NEUROAI_SELECTION_VALIDATION_GAP",
+            "REVIEW_NEUROAI_SELECTION_MULTIPLICITY_ACCOUNTING"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=LAYER_SELECTION_POST_HOC in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MOTION_REPORTING_GAP",
+          "kg_node_id": "review_rule:motion_reporting_gap",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "rsFC/FC analysis without motion distribution reporting.",
+          "detection": "FC analysis and no FD distribution or group comparison in QC.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "qc.motion_distribution_reported",
+            "qc.group_fd_comparison",
+            "data.data_type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MOTION_REPORTING_GAP in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MULTISITE_SITE_CONFOUND",
+          "kg_node_id": "review_rule:multisite_site_confound",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multi-site case-control design with diagnosis-site coupling and no site modeling.",
+          "detection": "Multiple sites and group labels with no site effect, harmonization, or restricted permutation.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "null_model.permutation_scheme",
+            "model.confound_regressors",
+            "site.count"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MULTISITE_SITE_CONFOUND in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NO_EXTERNAL_VALIDATION",
+          "kg_node_id": "review_rule:no_external_validation",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Replicable or predictive claim without independent test set.",
+          "detection": "Claim keywords and no external validation dataset.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "validation.external_dataset"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NO_EXTERNAL_VALIDATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "PPI_SPECIFICATION",
+          "kg_node_id": "review_rule:ppi_specification",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "PPI model specification is missing or problematic.",
+          "detection": "PPI detected and key model specification details are absent or problematic.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "model.ppi_specification",
+            "analysis.ppi"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=PPI_SPECIFICATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "QC_MISSING",
+          "kg_node_id": "review_rule:qc_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "No MRIQC metrics or visual QA report.",
+          "detection": "Absence of QC metrics file or QA figures.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "qc.visual_qa_provided",
+            "qc.mriqc_provided"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=QC_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RANDOM_SEED_MISSING",
+          "kg_node_id": "review_rule:random_seed_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Stochastic method lacks a declared random seed.",
+          "detection": "Stochastic analysis and missing seed in review_context.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.random_seed",
+            "analysis.stochastic"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RANDOM_SEED_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ROI_MULTIPLE_COMPARISONS",
+          "kg_node_id": "review_rule:roi_multiple_comparisons",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multiple ROIs or metrics tested without correction.",
+          "detection": "Multiple ROI tests and no FDR or Bonferroni correction.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.method",
+            "roi.n_tests"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ROI_MULTIPLE_COMPARISONS in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_HIERARCHICAL_UNCERTAINTY",
+          "kg_node_id": "review_rule:rsa_hierarchical_uncertainty",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RSA inference omits cross-subject or cross-stimulus uncertainty.",
+          "detection": "RSA without hierarchical uncertainty framework.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "rsa.hierarchical_uncertainty",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_HIERARCHICAL_UNCERTAINTY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_MODEL_COMPARISON_NO_CORRECTION",
+          "kg_node_id": "review_rule:rsa_model_comparison_no_correction",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RSA across many models or layers without correction.",
+          "detection": "RSA with many compared models and no correction.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.method",
+            "rsa.n_models",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_MODEL_COMPARISON_NO_CORRECTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_VOXELWISE_CENTERING_SCALING",
+          "kg_node_id": "review_rule:rsa_voxelwise_centering_scaling",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Pattern similarity from voxel-wise centered/scaled data may induce spurious condition differences.",
+          "detection": "RSA compares similarities after voxel-wise z-scoring, mean-centering, or correlation-based similarity.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "rsa.similarity_metric",
+            "preprocessing.voxelwise_scaling",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_VOXELWISE_CENTERING_SCALING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_WITHIN_RUN_ESTIMATION",
+          "kg_node_id": "review_rule:rsa_within_run_estimation",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Pattern similarity computed between trials or stimuli from the same functional run without appropriate regularization.",
+          "detection": "Trial-level within-run RSA/MVPA without ridge regression or advanced within-run correction.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "model.regularization",
+            "rsa.within_run_estimation",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_WITHIN_RUN_ESTIMATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SINGLE_ROI_EXTREME",
+          "kg_node_id": "review_rule:single_roi_extreme",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Single ROI has an extreme effect while the overall distribution is modest.",
+          "detection": "ROI-level outlier relative to the effect-size distribution.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "circularity",
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "sensitivity.robustness",
+            "effect.distribution",
+            "roi.effect_size"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SINGLE_ROI_EXTREME in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SMALL_SAMPLE_STRONG_CLAIM",
+          "kg_node_id": "review_rule:small_sample_strong_claim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "N < 30 with strong prediction, biomarker, or BWAS claim.",
+          "detection": "Small N plus strong-claim keywords.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "sample.n_subjects"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SMALL_SAMPLE_STRONG_CLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SOFTWARE_VERSION_MISSING",
+          "kg_node_id": "review_rule:software_version_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Key software versions are not declared.",
+          "detection": "Absence of software_versions field.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.software_versions"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SOFTWARE_VERSION_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "STIMULUS_FIXED_EFFECT",
+          "kg_node_id": "review_rule:stimulus_fixed_effect",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Stimulus is treated as fixed but broad stimulus generalization is claimed.",
+          "detection": "Multiple stimuli and generalization claim with no random stimulus factor.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "design.stimuli",
+            "claims.text",
+            "model.stimulus_effect"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_STIMULUS_FIXED_EFFECT_RISK"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=STIMULUS_FIXED_EFFECT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "TASK_FC_HRF_RESIDUAL",
+          "kg_node_id": "review_rule:task_fc_hrf_residual",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Task FC / PPI without adequate task-evoked response removal.",
+          "detection": "PPI/task-FC and insufficient HRF modeling or mean removal.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch",
+            "confound"
+          ],
+          "metadata_fields": [
+            "preprocessing.evoked_response_control",
+            "model.hrf_model",
+            "analysis.task_fc"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_TASK_FC_PPI_EVOKED_RESPONSE_CONTROL_MISSING"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=TASK_FC_HRF_RESIDUAL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        }
+      ]
+    },
+    "completeness": {
+      "decision_space": [
+        "complete",
+        "incomplete"
+      ],
+      "criteria": [
+        "Random seed is pinned and reported.",
+        "Atlas / parcellation version is declared when atlas-based features are used.",
+        "Ordering of conditions / trials / factors is explicitly declared.",
+        "Multiple-comparisons strategy (FWE / FDR / cluster threshold) is stated.",
+        "Preprocessing provenance (motion scrubbing, confound regression, smoothing) is reported."
+      ],
+      "required_outputs": [
+        "decision",
+        "checklist{}",
+        "missing_caveats[]"
+      ],
+      "kg_derived_criteria": [
+        {
+          "rule_id": "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "kg_node_id": "review_rule:brainmap_correlation_no_spatial_null",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Brain map correlation uses Pearson p without a spatial null.",
+          "detection": "Map-map analysis with no spin, BrainSMASH, or equivalent spatial null.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "null_model.spatial_null",
+            "correction.spatial_null"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_SPATIAL_NULL_INVALID"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=BRAINMAP_CORRELATION_NO_SPATIAL_NULL in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "kg_node_id": "review_rule:demographic_confound_uncontrolled",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Group difference in age or sex exists but is missing from the group-level model.",
+          "detection": "Subject manifest demographic imbalance and missing covariate.",
+          "group": "confound_hard_block",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "model.confound_regressors",
+            "subject_manifest.demographics"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DEMOGRAPHIC_CONFOUND_UNCONTROLLED in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "kg_node_id": "review_rule:longitudinal_no_subject_effect",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Longitudinal design analyzed with OLS/GLM that ignores within-subject variance.",
+          "detection": "At least three timepoints and no random or fixed subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.n_timepoints",
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=LONGITUDINAL_NO_SUBJECT_EFFECT in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "kg_node_id": "review_rule:motion_uncontrolled_group_diff",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Group-by-motion imbalance in FC/resting-state data without modeling or censoring.",
+          "detection": "Compute group delta FD and check model covariates for motion controls.",
+          "group": "confound_hard_block",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "data.data_type",
+            "model.confound_regressors",
+            "qc.group_fd_comparison"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MOTION_UNCONTROLLED_GROUP_DIFF in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "POOLED_VARIANCE_POPULATION_CLAIM",
+          "kg_node_id": "review_rule:pooled_variance_population_claim",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Fixed-effects group analysis pools scan variance but claims population-level inference.",
+          "detection": "Pure concatenated fixed-effects model plus population/generalization claim.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=POOLED_VARIANCE_POPULATION_CLAIM in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "PSEUDOREPLICATION",
+          "kg_node_id": "review_rule:pseudoreplication",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Runs or timepoints are treated as independent group-level samples.",
+          "detection": "n_observations greatly exceeds n_subjects with no aggregation or subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "generalization_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.n_observations",
+            "design.n_subjects",
+            "model.subject_effect"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=PSEUDOREPLICATION in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "REPEATED_MEASURES_INDEPENDENT_TEST",
+          "kg_node_id": "review_rule:repeated_measures_independent_test",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Repeated-measures design analyzed with an independent-samples test.",
+          "detection": "Repeated sessions or runs with no paired structure or subject effect.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=REPEATED_MEASURES_INDEPENDENT_TEST in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SPATIAL_DOMAIN_MISMATCH",
+          "kg_node_id": "review_rule:spatial_domain_mismatch",
+          "severity": "BLOCK",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Surface or CIFTI data corrected with volume-based cluster inference.",
+          "detection": "File type versus correction domain.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "data.domain",
+            "correction.domain"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_SURFACE_VOLUME_CORRECTION_DOMAIN_MISMATCH"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SPATIAL_DOMAIN_MISMATCH in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "UNCORRECTED_WHOLEBRAIN",
+          "kg_node_id": "review_rule:uncorrected_wholebrain",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "Whole-brain mass-univariate p < 0.05 reported uncorrected.",
+          "detection": "Result metadata lacks FWE, FDR, or permutation correction.",
+          "group": "multiple_comparisons_inference",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.level",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=UNCORRECTED_WHOLEBRAIN in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ABOVE_CHANCE_NO_PERMUTATION",
+          "kg_node_id": "review_rule:above_chance_no_permutation",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Above-chance classification claim without permutation test or confidence interval.",
+          "detection": "Classification result lacks permutation_p or CI.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "generalization_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "result.confidence_interval",
+            "result.permutation_p",
+            "result.metric"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ABOVE_CHANCE_NO_PERMUTATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "AD_HOC_CLUSTER_EXTENT",
+          "kg_node_id": "review_rule:ad_hoc_cluster_extent",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Arbitrary cluster extent threshold without statistically derived null distribution.",
+          "detection": "Cluster extent cutoff with no formal FWE/FDR correction method declared.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.cluster_extent_threshold",
+            "correction.level",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=AD_HOC_CLUSTER_EXTENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ANALYTIC_FLEXIBILITY",
+          "kg_node_id": "review_rule:analytic_flexibility",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multiple pipelines or parameters were tried but only the best result is reported.",
+          "detection": "Parameter sweep with a single reported result path.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "sensitivity.pipeline_variants",
+            "reporting.reported_paths",
+            "analysis.parameter_sweep"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ANALYTIC_FLEXIBILITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "BIDS_VALIDATION_FAILED",
+          "kg_node_id": "review_rule:bids_validation_failed",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "BIDS dataset did not pass BIDS Validator.",
+          "detection": "BIDS Validator output has errors.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.bids_validator_passed"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=BIDS_VALIDATION_FAILED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CLUSTER_FORMING_THRESHOLD_LENIENT",
+          "kg_node_id": "review_rule:cluster_forming_threshold_lenient",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RFT cluster correction uses a primary threshold above p = 0.001.",
+          "detection": "Primary threshold greater than 0.001 and null framework is not permutation-based.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.null_framework",
+            "correction.primary_threshold",
+            "correction.method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CLUSTER_FORMING_THRESHOLD_LENIENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "kg_node_id": "review_rule:cluster_localization_overclaim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Voxel-level localization claim from cluster-extent inference.",
+          "detection": "Voxel-localization claim and no ARI/TDP method.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.localization_method",
+            "correction.level"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CLUSTER_LOCALIZATION_OVERCLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "COBIDAS_MANDATORY_MISSING",
+          "kg_node_id": "review_rule:cobidas_mandatory_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Missing COBIDAS mandatory fields.",
+          "detection": "Check review_context against COBIDAS field registry.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "cobidas.fields"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=COBIDAS_MANDATORY_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CV_FOLD_ERROR_AS_INDEPENDENT",
+          "kg_node_id": "review_rule:cv_fold_error_as_independent",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Fold-wise standard error is treated as independent for confidence intervals.",
+          "detection": "CI from fold-wise SE without accounting for fold dependence.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "cv.fold_errors_independent",
+            "cv.ci_method"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CV_FOLD_ERROR_AS_INDEPENDENT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "EPI_DISTORTION_UNADDRESSED",
+          "kg_node_id": "review_rule:epi_distortion_unaddressed",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Significant EPI distortion or dropout is not corrected or discussed.",
+          "detection": "Dropout flagged in QC and no distortion correction.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "preprocessing.distortion_correction",
+            "qc.epi_t1w_mask_overlap"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=EPI_DISTORTION_UNADDRESSED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "kg_node_id": "review_rule:factorial_separate_simple_effects",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Factorial design analyzed through isolated simple effects without testing the overarching interaction.",
+          "detection": "Multiple grouping dimensions with no interaction term in the statistical model.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.factors",
+            "model.interaction_terms",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=FACTORIAL_SEPARATE_SIMPLE_EFFECTS in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GENE_MAP_NO_SPATIAL_NULL",
+          "kg_node_id": "review_rule:gene_map_no_spatial_null",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Gene or histology map correlated with fMRI map without spatial null.",
+          "detection": "Cross-modal map correlation with no spin, BrainSMASH, or equivalent spatial null.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "null_model.spatial_null",
+            "correction.spatial_null",
+            "analysis.cross_modal_map_correlation"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GENE_MAP_NO_SPATIAL_NULL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HARMONIZATION_METHOD_SENSITIVITY",
+          "kg_node_id": "review_rule:harmonization_method_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "A single harmonization method is used without comparison to alternatives.",
+          "detection": "Harmonization used and no method comparison or residual site-predictability check.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "site.residual_predictability",
+            "sensitivity.harmonization_methods",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [
+            "harmonization"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HARMONIZATION_METHOD_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+          "kg_node_id": "review_rule:icc_missing_for_individual_diff",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Individual-difference claim lacks test-retest reliability or stability evidence.",
+          "detection": "Individual-difference analysis with no ICC or stability metric.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "generalization_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reliability.stability",
+            "reliability.icc",
+            "analysis.individual_difference"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ICC_MISSING_FOR_INDIVIDUAL_DIFF in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ICV_NOT_CONTROLLED",
+          "kg_node_id": "review_rule:icv_not_controlled",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "VBM or cortical thickness analysis lacks ICV/TIV or global covariate control.",
+          "detection": "Morphometric analysis and model lacks ICV/TIV/global covariate.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "model.confound_regressors",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ICV_NOT_CONTROLLED in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MOTION_REPORTING_GAP",
+          "kg_node_id": "review_rule:motion_reporting_gap",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "rsFC/FC analysis without motion distribution reporting.",
+          "detection": "FC analysis and no FD distribution or group comparison in QC.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "qc.motion_distribution_reported",
+            "qc.group_fd_comparison",
+            "data.data_type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MOTION_REPORTING_GAP in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "MULTISITE_SITE_CONFOUND",
+          "kg_node_id": "review_rule:multisite_site_confound",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multi-site case-control design with diagnosis-site coupling and no site modeling.",
+          "detection": "Multiple sites and group labels with no site effect, harmonization, or restricted permutation.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "null_model.permutation_scheme",
+            "model.confound_regressors",
+            "site.count"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=MULTISITE_SITE_CONFOUND in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NO_EXTERNAL_VALIDATION",
+          "kg_node_id": "review_rule:no_external_validation",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Replicable or predictive claim without independent test set.",
+          "detection": "Claim keywords and no external validation dataset.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "validation.external_dataset"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NO_EXTERNAL_VALIDATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "PPI_SPECIFICATION",
+          "kg_node_id": "review_rule:ppi_specification",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "PPI model specification is missing or problematic.",
+          "detection": "PPI detected and key model specification details are absent or problematic.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "model.ppi_specification",
+            "analysis.ppi"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=PPI_SPECIFICATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "QC_MISSING",
+          "kg_node_id": "review_rule:qc_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "No MRIQC metrics or visual QA report.",
+          "detection": "Absence of QC metrics file or QA figures.",
+          "group": "confound_measurement_quality",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "qc.visual_qa_provided",
+            "qc.mriqc_provided"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=QC_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RANDOM_SEED_MISSING",
+          "kg_node_id": "review_rule:random_seed_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Stochastic method lacks a declared random seed.",
+          "detection": "Stochastic analysis and missing seed in review_context.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.random_seed",
+            "analysis.stochastic"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RANDOM_SEED_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ROI_MULTIPLE_COMPARISONS",
+          "kg_node_id": "review_rule:roi_multiple_comparisons",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Multiple ROIs or metrics tested without correction.",
+          "detection": "Multiple ROI tests and no FDR or Bonferroni correction.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.method",
+            "roi.n_tests"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ROI_MULTIPLE_COMPARISONS in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_HIERARCHICAL_UNCERTAINTY",
+          "kg_node_id": "review_rule:rsa_hierarchical_uncertainty",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RSA inference omits cross-subject or cross-stimulus uncertainty.",
+          "detection": "RSA without hierarchical uncertainty framework.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "rsa.hierarchical_uncertainty",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_HIERARCHICAL_UNCERTAINTY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_MODEL_COMPARISON_NO_CORRECTION",
+          "kg_node_id": "review_rule:rsa_model_comparison_no_correction",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "RSA across many models or layers without correction.",
+          "detection": "RSA with many compared models and no correction.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.method",
+            "rsa.n_models",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_MODEL_COMPARISON_NO_CORRECTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_VOXELWISE_CENTERING_SCALING",
+          "kg_node_id": "review_rule:rsa_voxelwise_centering_scaling",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Pattern similarity from voxel-wise centered/scaled data may induce spurious condition differences.",
+          "detection": "RSA compares similarities after voxel-wise z-scoring, mean-centering, or correlation-based similarity.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "rsa.similarity_metric",
+            "preprocessing.voxelwise_scaling",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_VOXELWISE_CENTERING_SCALING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "RSA_WITHIN_RUN_ESTIMATION",
+          "kg_node_id": "review_rule:rsa_within_run_estimation",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Pattern similarity computed between trials or stimuli from the same functional run without appropriate regularization.",
+          "detection": "Trial-level within-run RSA/MVPA without ridge regression or advanced within-run correction.",
+          "group": "multivariate_rsa_predictive_soft",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "model.regularization",
+            "rsa.within_run_estimation",
+            "analysis.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=RSA_WITHIN_RUN_ESTIMATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SINGLE_ROI_EXTREME",
+          "kg_node_id": "review_rule:single_roi_extreme",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Single ROI has an extreme effect while the overall distribution is modest.",
+          "detection": "ROI-level outlier relative to the effect-size distribution.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "circularity",
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "sensitivity.robustness",
+            "effect.distribution",
+            "roi.effect_size"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SINGLE_ROI_EXTREME in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SMALL_SAMPLE_STRONG_CLAIM",
+          "kg_node_id": "review_rule:small_sample_strong_claim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "N < 30 with strong prediction, biomarker, or BWAS claim.",
+          "detection": "Small N plus strong-claim keywords.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "sample.n_subjects"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SMALL_SAMPLE_STRONG_CLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SOFTWARE_VERSION_MISSING",
+          "kg_node_id": "review_rule:software_version_missing",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Key software versions are not declared.",
+          "detection": "Absence of software_versions field.",
+          "group": "reporting_reproducibility",
+          "validity_layers": [
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "reproducibility.software_versions"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SOFTWARE_VERSION_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        }
+      ]
+    },
+    "judgment": {
+      "decision_space": [
+        "sound",
+        "questionable",
+        "unsound"
+      ],
+      "criteria": [
+        "The estimand is clearly specified (population, unit, causal vs. associational).",
+        "The chosen method is defensible for that estimand, not just conventional.",
+        "Known threats to validity are acknowledged (confounds, selection, measurement).",
+        "Effect sizes and uncertainty are reported, not just p-values."
+      ],
+      "required_outputs": [
+        "decision",
+        "estimand_complete",
+        "method_defensible",
+        "issues[]",
+        "reviewer_questions[]"
+      ],
+      "kg_derived_criteria": [
+        {
+          "rule_id": "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "kg_node_id": "review_rule:demographic_confound_uncontrolled",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Group difference in age or sex exists but is missing from the group-level model.",
+          "detection": "Subject manifest demographic imbalance and missing covariate.",
+          "group": "confound_hard_block",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "confound"
+          ],
+          "metadata_fields": [
+            "model.confound_regressors",
+            "subject_manifest.demographics"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DEMOGRAPHIC_CONFOUND_UNCONTROLLED in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DOUBLE_DIPPING",
+          "kg_node_id": "review_rule:double_dipping",
+          "severity": "BLOCK",
+          "lifecycle_status": "deterministic_candidate",
+          "br_executable": false,
+          "description": "ROI or feature defined from the same model/data used for effect testing.",
+          "detection": "ROI provenance equals same model and dataset with no independent localizer.",
+          "group": "circularity",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "circularity"
+          ],
+          "metadata_fields": [
+            "roi_provenance.model_id",
+            "roi_provenance.dataset_id",
+            "roi_provenance.source"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DOUBLE_DIPPING in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "POOLED_VARIANCE_POPULATION_CLAIM",
+          "kg_node_id": "review_rule:pooled_variance_population_claim",
+          "severity": "BLOCK",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Fixed-effects group analysis pools scan variance but claims population-level inference.",
+          "detection": "Pure concatenated fixed-effects model plus population/generalization claim.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "model.subject_effect",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=POOLED_VARIANCE_POPULATION_CLAIM in ScientificReviewVerdict.correctness.findings with action=block; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "ACTIVATION_MISMATCH",
+          "kg_node_id": "review_rule:activation_mismatch",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Activation is dominated by regions unexpected for the task.",
+          "detection": "Peak regions compared with task-expected network from KG.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "construct_validity"
+          ],
+          "reason_tags": [
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "task.expected_network",
+            "activation.peak_regions"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=ACTIVATION_MISMATCH in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "BEHAVIOR_COVARIATE_MISSING",
+          "kg_node_id": "review_rule:behavior_covariate_missing",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Cognitive interpretation is made without RT, accuracy, or related behavioral covariates.",
+          "detection": "Cognitive claim with behavioral covariates absent from the model.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "construct_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "behavior.covariates",
+            "model.confound_regressors",
+            "claims.text"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_BEHAVIORAL_IMBALANCE_NOT_MODELED"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=BEHAVIOR_COVARIATE_MISSING in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "kg_node_id": "review_rule:cluster_localization_overclaim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Voxel-level localization claim from cluster-extent inference.",
+          "detection": "Voxel-localization claim and no ARI/TDP method.",
+          "group": "multiple_comparisons_soft",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "correction.localization_method",
+            "correction.level"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CLUSTER_LOCALIZATION_OVERCLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "CORRELATION_AS_PREDICTION",
+          "kg_node_id": "review_rule:correlation_as_prediction",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "In-sample correlation described as prediction or biomarker.",
+          "detection": "Prediction claim keywords and in-sample correlation only.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "validation.out_of_sample",
+            "claims.text"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=CORRELATION_AS_PREDICTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "DYNAMIC_FC_NO_NULL",
+          "kg_node_id": "review_rule:dynamic_fc_no_null",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Dynamic FC / TVFC without null model or window sensitivity.",
+          "detection": "TVFC detected with no surrogate null or window sweep.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "measurement_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.window_lengths",
+            "null_model.surrogate",
+            "analysis.dynamic_fc"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_DYNAMIC_FC_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "dynamic_fc"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=DYNAMIC_FC_NO_NULL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "EXTREME_EFFECT",
+          "kg_node_id": "review_rule:extreme_effect",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Effect size is extreme without robustness analysis.",
+          "detection": "Standardized effect exceeds domain threshold with no robust regression or sensitivity.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "sensitivity.robustness",
+            "effect.metric",
+            "effect.size"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=EXTREME_EFFECT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "kg_node_id": "review_rule:factorial_separate_simple_effects",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Factorial design analyzed through isolated simple effects without testing the overarching interaction.",
+          "detection": "Multiple grouping dimensions with no interaction term in the statistical model.",
+          "group": "design_model_mismatch",
+          "validity_layers": [
+            "claim_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "null_mismatch"
+          ],
+          "metadata_fields": [
+            "design.factors",
+            "model.interaction_terms",
+            "model.type"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=FACTORIAL_SEPARATE_SIMPLE_EFFECTS in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "FIT_AS_MECHANISM",
+          "kg_node_id": "review_rule:fit_as_mechanism",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Model fit interpreted as mechanistic evidence without alternatives.",
+          "detection": "NeuroAI mechanism claims without ablation or alternative models.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "construct_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "model.alternative_models",
+            "model.ablation",
+            "claims.text"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=FIT_AS_MECHANISM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GRAPH_THRESHOLD_NO_SENSITIVITY",
+          "kg_node_id": "review_rule:graph_threshold_no_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Proportional graph thresholding without a multi-threshold curve.",
+          "detection": "Graph proportional threshold and no density-threshold sweep.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.graph_thresholds",
+            "analysis.graph_threshold"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GRAPH_ATLAS_HRF_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "graph_thresholding"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GRAPH_THRESHOLD_NO_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "GSR_NO_SENSITIVITY",
+          "kg_node_id": "review_rule:gsr_no_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Global signal regression used without on/off sensitivity analysis.",
+          "detection": "Preprocessing includes GSR with no sensitivity comparison.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "sensitivity.gsr",
+            "preprocessing.global_signal_regression"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GSR_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "gsr"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=GSR_NO_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HARMONIZATION_METHOD_SENSITIVITY",
+          "kg_node_id": "review_rule:harmonization_method_sensitivity",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "A single harmonization method is used without comparison to alternatives.",
+          "detection": "Harmonization used and no method comparison or residual site-predictability check.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "site.residual_predictability",
+            "sensitivity.harmonization_methods",
+            "pipeline_steps.name"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [
+            "harmonization"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HARMONIZATION_METHOD_SENSITIVITY in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "HRF_CANONICAL_ASSUMPTION",
+          "kg_node_id": "review_rule:hrf_canonical_assumption",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Fixed canonical HRF is used in clinical or aging populations without addressing neurovascular coupling differences.",
+          "detection": "Task fMRI in clinical/aging population and HRF model is canonical only.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "statistical_validity",
+            "measurement_validity"
+          ],
+          "reason_tags": [
+            "controversial_choice"
+          ],
+          "metadata_fields": [
+            "population.aging",
+            "population.clinical",
+            "model.hrf_model"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_GRAPH_ATLAS_HRF_SENSITIVITY_PACKAGE"
+          ],
+          "sensitivity_templates": [
+            "hrf_model"
+          ],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=HRF_CANONICAL_ASSUMPTION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "NO_EXTERNAL_VALIDATION",
+          "kg_node_id": "review_rule:no_external_validation",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Replicable or predictive claim without independent test set.",
+          "detection": "Claim keywords and no external validation dataset.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "validation.external_dataset"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=NO_EXTERNAL_VALIDATION in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "REVERSE_INFERENCE",
+          "kg_node_id": "review_rule:reverse_inference",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "Region-to-process inference without forward evidence or decoding.",
+          "detection": "Region implies process in text without manipulation or decoder evidence.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "construct_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "evidence.forward_decoding",
+            "claims.text"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=REVERSE_INFERENCE in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SINGLE_ROI_EXTREME",
+          "kg_node_id": "review_rule:single_roi_extreme",
+          "severity": "WARN",
+          "lifecycle_status": "schema_dependent_candidate",
+          "br_executable": false,
+          "description": "Single ROI has an extreme effect while the overall distribution is modest.",
+          "detection": "ROI-level outlier relative to the effect-size distribution.",
+          "group": "novelty_prior_conflict",
+          "validity_layers": [
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "circularity",
+            "prior_conflict"
+          ],
+          "metadata_fields": [
+            "sensitivity.robustness",
+            "effect.distribution",
+            "roi.effect_size"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SINGLE_ROI_EXTREME in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "SMALL_SAMPLE_STRONG_CLAIM",
+          "kg_node_id": "review_rule:small_sample_strong_claim",
+          "severity": "WARN",
+          "lifecycle_status": "nlp_llm_candidate",
+          "br_executable": false,
+          "description": "N < 30 with strong prediction, biomarker, or BWAS claim.",
+          "detection": "Small N plus strong-claim keywords.",
+          "group": "reliability_sample_size",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation",
+            "low_reliability"
+          ],
+          "metadata_fields": [
+            "claims.text",
+            "sample.n_subjects"
+          ],
+          "implementation_rule_ids": [],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=SMALL_SAMPLE_STRONG_CLAIM in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "STIMULUS_FIXED_EFFECT",
+          "kg_node_id": "review_rule:stimulus_fixed_effect",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Stimulus is treated as fixed but broad stimulus generalization is claimed.",
+          "detection": "Multiple stimuli and generalization claim with no random stimulus factor.",
+          "group": "claim_inflation",
+          "validity_layers": [
+            "claim_validity",
+            "generalization_validity"
+          ],
+          "reason_tags": [
+            "claim_inflation"
+          ],
+          "metadata_fields": [
+            "design.stimuli",
+            "claims.text",
+            "model.stimulus_effect"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_STIMULUS_FIXED_EFFECT_RISK"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=STIMULUS_FIXED_EFFECT in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        },
+        {
+          "rule_id": "TASK_FC_HRF_RESIDUAL",
+          "kg_node_id": "review_rule:task_fc_hrf_residual",
+          "severity": "WARN",
+          "lifecycle_status": "implemented",
+          "br_executable": true,
+          "description": "Task FC / PPI without adequate task-evoked response removal.",
+          "detection": "PPI/task-FC and insufficient HRF modeling or mean removal.",
+          "group": "controversial_choices",
+          "validity_layers": [
+            "construct_validity",
+            "statistical_validity"
+          ],
+          "reason_tags": [
+            "null_mismatch",
+            "confound"
+          ],
+          "metadata_fields": [
+            "preprocessing.evoked_response_control",
+            "model.hrf_model",
+            "analysis.task_fc"
+          ],
+          "implementation_rule_ids": [
+            "REVIEW_TASK_FC_PPI_EVOKED_RESPONSE_CONTROL_MISSING"
+          ],
+          "sensitivity_templates": [],
+          "agent_instruction": "If the evidence matches this criterion, cite rule_id=TASK_FC_HRF_RESIDUAL in ScientificReviewVerdict.correctness.findings with action=warn; include the artifact/text evidence and any missing metadata fields."
+        }
+      ]
+    },
+    "overall": {
+      "decision_space": [
+        "proceed",
+        "diagnose",
+        "explore_more",
+        "stop_with_rationale"
+      ],
+      "criteria": [
+        "Synthesize correctness + completeness + judgment into a single overall_decision.",
+        "Blocking correctness issues -> stop_with_rationale.",
+        "Non-blocking structural correctness flags -> diagnose.",
+        "Unsound judgment -> diagnose.",
+        "Questionable judgment OR incomplete completeness -> explore_more.",
+        "Otherwise -> proceed."
+      ],
+      "required_outputs": [
+        "overall_decision",
+        "report_action"
+      ]
+    }
+  },
+  "verdict_schema_ref": "br.ScientificReviewVerdict.v1",
+  "submission_tool": "submit_external_scientific_review_verdict",
+  "tailored_checks": [],
+  "full_rubric_available": true,
+  "full_rubric_request": {
+    "tool": "request_external_scientific_review_directive",
+    "argument": "include_full_rubric",
+    "value": true
+  },
+  "agent_instructions": [
+    "Read the run artifacts yourself - BR has not read them.",
+    "For each axis, produce the required_outputs and pick a decision from decision_space.",
+    "Use kg_derived_criteria under each axis when present; cite matching KG rule_id values in correctness.findings.",
+    "Roll up to overall_decision using the rules under the overall axis.",
+    "Submit the completed verdict via submission_tool, echoing directive_id.",
+    "When submitting the verdict, include the session binding fields returned in this directive."
+  ],
+  "verdict_schema": {
+    "$defs": {
+      "AutoresearchLineDirective": {
+        "description": "Controller-facing directive for the next autoresearch line shape.",
+        "properties": {
+          "line_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Line Type"
+          },
+          "next_line_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Line Type"
+          },
+          "loaded_modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Loaded Modules",
+            "type": "array"
+          },
+          "forbidden_modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Forbidden Modules",
+            "type": "array"
+          },
+          "training_backend": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Training Backend"
+          },
+          "success_criterion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Success Criterion"
+          }
+        },
+        "title": "AutoresearchLineDirective",
+        "type": "object"
+      },
+      "CompletenessVerdict": {
+        "description": "Checklist-based completeness verdict.",
+        "properties": {
+          "decision": {
+            "enum": [
+              "complete",
+              "incomplete"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "checklist": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Checklist",
+            "type": "object"
+          },
+          "missing_caveats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Caveats",
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "CompletenessVerdict",
+        "type": "object"
+      },
+      "CorrectnessVerdict": {
+        "description": "Deterministic structural correctness verdict.",
+        "properties": {
+          "decision": {
+            "enum": [
+              "pass",
+              "flag",
+              "block"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/$defs/ReviewFinding"
+            },
+            "title": "Findings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "CorrectnessVerdict",
+        "type": "object"
+      },
+      "JudgmentVerdict": {
+        "description": "LLM-based scientific judgment verdict (Phase 3b).",
+        "properties": {
+          "decision": {
+            "enum": [
+              "sound",
+              "questionable",
+              "unsound"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "estimand_complete": {
+            "default": true,
+            "title": "Estimand Complete",
+            "type": "boolean"
+          },
+          "method_defensible": {
+            "default": true,
+            "title": "Method Defensible",
+            "type": "boolean"
+          },
+          "issues": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "reviewer_questions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reviewer Questions",
+            "type": "array"
+          },
+          "judgment_status": {
+            "default": "ok",
+            "enum": [
+              "ok",
+              "parse_failed",
+              "provider_failed"
+            ],
+            "title": "Judgment Status",
+            "type": "string"
+          },
+          "judge_transport_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Judge Transport Error"
+          },
+          "raw_response_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Raw Response Text"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "JudgmentVerdict",
+        "type": "object"
+      },
+      "ReviewFinding": {
+        "description": "A single rule violation found during review.",
+        "properties": {
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "warn",
+              "error",
+              "critical"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "default": "warn",
+            "enum": [
+              "block",
+              "warn"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "suggested_fix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Suggested Fix"
+          },
+          "step_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Step Id"
+          },
+          "artifact_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Artifact Name"
+          },
+          "kg_evidence": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Kg Evidence",
+            "type": "array"
+          },
+          "reason_tags": {
+            "description": "Reason taxonomy attached to the finding, if any.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Reason Tags",
+            "type": "array"
+          },
+          "novelty": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional novelty carve-out label attached to the finding.",
+            "title": "Novelty"
+          }
+        },
+        "required": [
+          "rule_id",
+          "severity",
+          "message"
+        ],
+        "title": "ReviewFinding",
+        "type": "object"
+      }
+    },
+    "description": "Composite of all three verdict cards.",
+    "properties": {
+      "correctness": {
+        "$ref": "#/$defs/CorrectnessVerdict"
+      },
+      "judgment": {
+        "$ref": "#/$defs/JudgmentVerdict"
+      },
+      "completeness": {
+        "$ref": "#/$defs/CompletenessVerdict"
+      },
+      "review_scope": {
+        "default": "pipeline_run",
+        "enum": [
+          "pipeline_run",
+          "autoresearch_loop"
+        ],
+        "title": "Review Scope",
+        "type": "string"
+      },
+      "overall_decision": {
+        "enum": [
+          "proceed",
+          "diagnose",
+          "explore_more",
+          "stop_with_rationale"
+        ],
+        "title": "Overall Decision",
+        "type": "string"
+      },
+      "claim_strength": {
+        "anyOf": [
+          {
+            "enum": [
+              "contract_satisfied",
+              "internally_supported",
+              "scientifically_convincing"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Claim Strength"
+      },
+      "report_action": {
+        "anyOf": [
+          {
+            "enum": [
+              "write_report",
+              "revise_report",
+              "continue_loop"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Report Action"
+      },
+      "required_next_actions": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Required Next Actions",
+        "type": "array"
+      },
+      "validation_status": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "title": "Validation Status",
+        "type": "object"
+      },
+      "line_directive": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AutoresearchLineDirective"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "rationale": {
+        "default": "",
+        "title": "Rationale",
+        "type": "string"
+      }
+    },
+    "required": [
+      "correctness",
+      "judgment",
+      "completeness",
+      "overall_decision"
+    ],
+    "title": "ScientificReviewVerdict",
+    "type": "object"
+  },
+  "kg_rule_registry": {
+    "registry_id": "scientific_review_rule_registry_v1",
+    "source": "BRKG",
+    "criteria_count": 125,
+    "criteria_counts_by_axis": {
+      "correctness": 67,
+      "completeness": 37,
+      "judgment": 21
+    },
+    "rule_ids_by_axis": {
+      "correctness": [
+        "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+        "CONFOUND_REGRESSION_OUTSIDE_CV",
+        "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "DOUBLE_DIPPING",
+        "FEATURE_SELECTION_OUTSIDE_CV",
+        "HARMONIZATION_OUTSIDE_CV",
+        "LONGITUDINAL_NO_SUBJECT_EFFECT",
+        "MOTION_UNCONTROLLED_GROUP_DIFF",
+        "NESTED_CV_INNER_PARTITION_GAP",
+        "NESTED_CV_MANIFEST_SCHEMA",
+        "NESTED_CV_OUTER_HOLDOUT_CONFLICT",
+        "NESTED_CV_OUTER_MISSING_INNER_RESAMPLING",
+        "NESTED_CV_OUTER_PARTITION_GAP",
+        "PERMUTATION_EXCHANGEABILITY",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "PSEUDOREPLICATION",
+        "REPEATED_MEASURES_INDEPENDENT_TEST",
+        "SPATIAL_DOMAIN_MISMATCH",
+        "SPLIT_GROUPING_MISMATCH",
+        "STANDARDIZATION_OUTSIDE_CV",
+        "SUBJECT_INTERSECTION_COVERAGE",
+        "SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT",
+        "SUBJECT_INTERSECTION_SUBSET_CONFLICT",
+        "SUBJECT_MANIFEST_COVERAGE",
+        "SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT",
+        "SUBJECT_SELECTION_SOURCE_COVERAGE",
+        "TEMPORAL_SPLIT_AUTOCORRELATION",
+        "TEST_SET_MODEL_SELECTION",
+        "UNCORRECTED_WHOLEBRAIN",
+        "ABOVE_CHANCE_NO_PERMUTATION",
+        "AD_HOC_CLUSTER_EXTENT",
+        "ANALYTIC_FLEXIBILITY",
+        "BIDS_VALIDATION_FAILED",
+        "CLUSTER_FORMING_THRESHOLD_LENIENT",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "COBIDAS_MANDATORY_MISSING",
+        "CORRELATION_AS_PREDICTION",
+        "CV_FOLD_ERROR_AS_INDEPENDENT",
+        "DYNAMIC_FC_NO_NULL",
+        "EPI_DISTORTION_UNADDRESSED",
+        "EXTREME_EFFECT",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "GENE_MAP_NO_SPATIAL_NULL",
+        "GRAPH_THRESHOLD_NO_SENSITIVITY",
+        "GSR_NO_SENSITIVITY",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "HRF_CANONICAL_ASSUMPTION",
+        "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+        "ICV_NOT_CONTROLLED",
+        "LAYER_SELECTION_POST_HOC",
+        "MOTION_REPORTING_GAP",
+        "MULTISITE_SITE_CONFOUND",
+        "NO_EXTERNAL_VALIDATION",
+        "PPI_SPECIFICATION",
+        "QC_MISSING",
+        "RANDOM_SEED_MISSING",
+        "ROI_MULTIPLE_COMPARISONS",
+        "RSA_HIERARCHICAL_UNCERTAINTY",
+        "RSA_MODEL_COMPARISON_NO_CORRECTION",
+        "RSA_VOXELWISE_CENTERING_SCALING",
+        "RSA_WITHIN_RUN_ESTIMATION",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "SOFTWARE_VERSION_MISSING",
+        "STIMULUS_FIXED_EFFECT",
+        "TASK_FC_HRF_RESIDUAL"
+      ],
+      "completeness": [
+        "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "LONGITUDINAL_NO_SUBJECT_EFFECT",
+        "MOTION_UNCONTROLLED_GROUP_DIFF",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "PSEUDOREPLICATION",
+        "REPEATED_MEASURES_INDEPENDENT_TEST",
+        "SPATIAL_DOMAIN_MISMATCH",
+        "UNCORRECTED_WHOLEBRAIN",
+        "ABOVE_CHANCE_NO_PERMUTATION",
+        "AD_HOC_CLUSTER_EXTENT",
+        "ANALYTIC_FLEXIBILITY",
+        "BIDS_VALIDATION_FAILED",
+        "CLUSTER_FORMING_THRESHOLD_LENIENT",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "COBIDAS_MANDATORY_MISSING",
+        "CV_FOLD_ERROR_AS_INDEPENDENT",
+        "EPI_DISTORTION_UNADDRESSED",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "GENE_MAP_NO_SPATIAL_NULL",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+        "ICV_NOT_CONTROLLED",
+        "MOTION_REPORTING_GAP",
+        "MULTISITE_SITE_CONFOUND",
+        "NO_EXTERNAL_VALIDATION",
+        "PPI_SPECIFICATION",
+        "QC_MISSING",
+        "RANDOM_SEED_MISSING",
+        "ROI_MULTIPLE_COMPARISONS",
+        "RSA_HIERARCHICAL_UNCERTAINTY",
+        "RSA_MODEL_COMPARISON_NO_CORRECTION",
+        "RSA_VOXELWISE_CENTERING_SCALING",
+        "RSA_WITHIN_RUN_ESTIMATION",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "SOFTWARE_VERSION_MISSING"
+      ],
+      "judgment": [
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "DOUBLE_DIPPING",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "ACTIVATION_MISMATCH",
+        "BEHAVIOR_COVARIATE_MISSING",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "CORRELATION_AS_PREDICTION",
+        "DYNAMIC_FC_NO_NULL",
+        "EXTREME_EFFECT",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "FIT_AS_MECHANISM",
+        "GRAPH_THRESHOLD_NO_SENSITIVITY",
+        "GSR_NO_SENSITIVITY",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "HRF_CANONICAL_ASSUMPTION",
+        "NO_EXTERNAL_VALIDATION",
+        "REVERSE_INFERENCE",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "STIMULUS_FIXED_EFFECT",
+        "TASK_FC_HRF_RESIDUAL"
+      ]
+    }
+  },
+  "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+  "source_client": "codex",
+  "logged_event_id": "research_evt_0002",
+  "logged_run_id": "br_20261001_053007_beed42e3b1",
+  "_agent_directive": {
+    "research_logging": {
+      "protocol": "br.research_logging.directive.v1",
+      "state": {
+        "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+        "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+        "source_client": "codex",
+        "snapshot_required_on_close": true,
+        "session_closed": false,
+        "post_close_actions_available": false,
+        "note_policy": "optional_enrichment_only",
+        "server_mid_session_telemetry": true,
+        "transcript_capture_supported": true,
+        "external_trace_capture_supported": true,
+        "preferred_transcript_context_key": "transcript",
+        "preferred_trace_context_key": "external_trace_events"
+      },
+      "actions": [],
+      "directive_ref": {
+        "mode": "compact_repeat",
+        "full_directive_emitted_once": true,
+        "refresh": "Set BR_MCP_RESEARCH_LOGGING_DIRECTIVE_MODE=always to receive the full closeout instruction block on every response."
+      }
+    }
+  }
+}
+

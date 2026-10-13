@@ -13,6 +13,33 @@ outcome was accessed.
 
 ## Status and source exposure
 
+The completed metadata work is narrower than the reported 51-group corpus.
+The [source census](outputs/runs/source_handoff_qualification/20261003-metadata01/source_metadata_report.json)
+found 31 accessions, 46 dataset/task routes and 3,667 acquisitions; the
+[corrected design join](outputs/runs/source_handoff_qualification/20261003-design-support03/design_support_report.json)
+matched those acquisitions uniquely, including 60 authenticated session-case
+aliases. The [candidate group-map census](outputs/runs/source_handoff_qualification/20261003-group-map-metadata02/group_map_metadata_report.json)
+found 297 Z-named files, and their [readable headers](outputs/runs/source_handoff_qualification/20261003-group-map-headers01/group_map_headers.json)
+share a 97 × 115 × 97 grid. Filename/header availability does not authenticate
+Z statistics, independence, repeatability, a common mask or the missing
+577-program handoff. No map voxel arrays were decoded. The preserved spatial
+source pack is BOLD/transform lineage, not the requested group-map corpus.
+
+The completed October 5 first-route qualification covers 13
+`ds000001/balloonanalogrisktask` maps. All 16 configured subjects have matching
+available subject-effect paths, but **actual fitted contributor IDs and N are
+still unknown for every map**. Methods-only canonical orientation is resolved
+for five of the 13, not all 13. These facts do not establish group independence
+or scientific eligibility. See the [exact producer request and retention
+proposal](outputs/paper_plan.md#october-6-source-resolution-and-retention-recommendation).
+The first bounded route attempt was incomplete; its diagnosed repair completed
+in job 46660232. Neither outcome makes missing fitted-input evidence disappear.
+
+The [public methods references](outputs/paper_plan.md#october-6-public-methods-sources)
+retrieved on October 6 provide the producer's model specification and event-field
+documentation. They establish configured definitions, not the historical
+Dataset-node inclusion list, and do not replace the episode's source binding.
+
 This contract does not assert that any absent asset has been acquired. The
 intended development source is the NeuroEffect/OpenNeuro collection:
 
@@ -35,6 +62,19 @@ map or a noise ceiling for semantic prediction. The meaning of those reports
 has to be recovered from the original methods before it can inform precision.
 
 ## What the source can identify
+
+### Public online resources — checked October 6, 2026
+
+- [Producer BART model specification](https://raw.githubusercontent.com/demidenm/openneuro_glmfitlins/main/statsmodel_specs/ds000001/ds000001-balloonanalogrisktask_specs.json): public Run/Subject/Dataset design, 13 contrast definitions and configured subjects 01–16. It explicitly assigns `response_time` to the RT regressor's duration and defines `allpumps` with literal 0.33 weights; these meanings should not be inferred from filenames.
+- [Producer dataset details](https://raw.githubusercontent.com/demidenm/openneuro_glmfitlins/main/statsmodel_specs/ds000001/ds000001_basic-details.json): public event-column names/types, three configured task runs, preprocessed-events flag and the original methods citation. This supports methods-only source interpretation, not a new map observation.
+- [FitLins usage documentation](https://fitlins.readthedocs.io/en/latest/usage.html): documents participant/derivative filters and `--drop-missing`, which can remove missing inputs or contrasts. Consequently, the configured list and available subject files cannot substitute for actual historical Dataset-node contributors.
+
+These public `main` files were read as current documentation, not certified as
+the exact historical execution snapshot. They narrow the existing local
+producer request to fitted input identities and unresolved canonical
+event/ontology definitions. Actual contributor IDs/N remain unknown and only
+five of thirteen canonical directions are resolved. No map values, results
+images or score-bearing artifact were opened by this online check.
 
 | Data object | Scientific role | What it does not establish |
 | --- | --- | --- |

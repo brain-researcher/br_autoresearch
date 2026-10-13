@@ -1,0 +1,41 @@
+{
+  "accounting_epoch": "wall_reset_20261001",
+  "source_snapshot": "outputs/stage0/resource_accounting_20261003_m2_diagnostics_terminal.json",
+  "recorded_event": "coordinator_confirmed_job46428039_completed_exit0",
+  "historical_allocated_core_hours_preserved": true,
+  "no_new_wall_reset": true,
+  "triangular_prefix_job_46428039": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "terminal_elapsed_seconds": 217,
+    "allocated_cpus": 1,
+    "actual_allocated_core_hours": 0.060277777777777777,
+    "replaced_reservation_core_hours": 0.5,
+    "unused_reservation_core_hours_released": 0.43972222222222224,
+    "report": "outputs/stage0/v3_m1_triangular_prefix_job_46428039/paired/paired_prefix.json"
+  },
+  "shared_ASTRA_step_46427768_3": {
+    "state": "COMPLETED",
+    "terminal_elapsed_seconds": 8,
+    "allocated_cpus": 1,
+    "started_utc": "2026-10-03T19:58:36Z",
+    "ended_utc": "2026-10-03T19:58:44Z",
+    "work": "official_ASTRA_schema_and_semantic_validation",
+    "actual_allocated_core_hours": 0.0022222222222222222
+  },
+  "new_actual_wall_seconds": 225,
+  "new_actual_allocated_core_hours": 0.0625,
+  "used_lifetime_allocated_core_hours": 735.7112222222223,
+  "unreserved_allocated_core_hours": 1064.2887777777778,
+  "used_wall_hours_this_epoch": 54.240833333333335,
+  "unreserved_wall_hours": 89.75916666666666,
+  "wall_accounting_basis": "Preserve prior charged execution history and add the actual 217-second batch and 8-second validation step; no new wall epoch.",
+  "pending_EP10_compute_charge_in_allocation_46427768": false,
+  "frozen_ceilings": {
+    "wall_hours_this_epoch": 144,
+    "allocated_core_hours_lifetime": 1800
+  },
+  "first_warm_path_timing_replaces_complete_permutation_bound": false,
+  "real_M2_and_full_search_nulls_launched": false,
+  "scientific_disposition": "incomplete_search_technical_and_resource_limitation_no_positive_or_negative_biology"
+}

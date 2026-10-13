@@ -1,0 +1,17 @@
+{
+  "schema_version": "ep12.real_development_cost_projection.v1",
+  "source_trial": "trial001/trial_report.json",
+  "source_trial_cpu_seconds": 2750.224361392,
+  "source_trial_wall_seconds": 2750.846624701,
+  "source_trial_scope": "one complete T/U/M grammar configuration over all 816 development types and both directions",
+  "cpu_core_hours_per_configuration": 0.7639512114977778,
+  "policy_minimum_valid_trials": 36,
+  "policy_maximum_valid_trials": 96,
+  "policy_observed_plus_null_searches": 100,
+  "policy_cpu_core_hour_ceiling": 1000,
+  "projected_minimum_search_core_hours": 2750.224361392,
+  "projected_maximum_search_core_hours": 7333.931630378666,
+  "minimum_projection_fraction_of_ceiling": 2.750224361392,
+  "cost_gate_passed": false,
+  "interpretation": "Measured real-data cost for the current unoptimized implementation exceeds the frozen ceiling if every observed/null search trial has this cost. This is a profiling result, not permission to reduce scientific scope or change the budget."
+}

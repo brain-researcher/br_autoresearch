@@ -6,6 +6,42 @@ to frozen development execution. See [GOAL.md](../GOAL.md),
 [DATASETS.md](../DATASETS.md), and unchanged
 [SEARCH_POLICY.yaml](../SEARCH_POLICY.yaml).
 
+## October 6 review — M2 closure adopted
+
+The completed real-data M1 producer passed its numerical postflight: all 949
+fits were retained across 194 cells and 12 conservative groups. Its paired
+M1-minus-M0 gain is **0.0026378637 bits/cell**, a small secondary exploratory
+result. The four unresolved higher-rank optional-family cases were synthetic
+qualification failures, not failures of those completed real-data M1 fits.
+See the [current execution record](experiment_log.md).
+
+The latest reconciled account has **1,064.288778 allocated CPU-hours remaining
+of the 1,800-hour lifetime ceiling**. The measured diagnostic supports a
+**lower bound of at least 1,900 CPU-hours** for the current M2 implementation.
+An unfinished four-hour permutation and thousands of required work units do
+not, without a justified complete-unit extrapolation, establish a particular
+"tens of thousands of hours" estimate. The lower bound already exceeds the
+available allowance; the optional-family failures also remain.
+
+The completed October 3 triangular-solve comparison narrowed the engineering
+explanation: both 12-lambda paths agreed numerically, but whole-path wall
+times were 98.63 and 98.59 seconds. The six focused checks and the local
+numerical agreement therefore provide no useful whole-path speedup or M2
+feasibility result. The [execution handoff](README.md#current-execution--october-3-2026)
+links the paired report, real-data postflight, adequacy gate and reconciled
+charges. No further optimization probe or real M2 run is selected under the
+existing stop rules; the scientist has now adopted the closure below.
+
+**Scientist-adopted disposition, October 6:** close the current M2 objective as an
+**incomplete search under computational and numerical limits**. Preserve M1
+and its small exploratory gain, every failed attempt and all prior charges.
+This disposition is neither a biological negative nor evidence that M1 is
+sufficient. Do not spend the remaining allowance on speculative optimization
+probes, reset the budget, or launch a replacement experiment. The separate
+within-target biological plan below remains unactivated; this closeout does
+not approve that plan or open final/unassigned outcomes. The exact user
+acceptance is retained in the [adoption record](experiment_log.md#2026-10-06--v3_search--scientist-adopted-local-closeout).
+
 ## The paper's central question
 
 Among neurons from one source that all arborize in A, does positively recorded
@@ -195,14 +231,15 @@ precision and sensitivity at the predeclared profile-scale margin.
 No biological figure values exist yet. The conceptual image is a design asset,
 not a measured profile, model comparison, or held-out result.
 
-## Frozen execution remains a separate track
+## Preserved Gao v3 evidence and closed search
 
-Existing execution contracts and recorded attempts remain separate. The
-[search policy](../SEARCH_POLICY.yaml), [data contract](../DATASETS.md) and
-[execution ledger](experiment_log.md) govern already initiated work; this
-narrative changes no operative model, observation rule, threshold, budget,
-stopping decision or data-access permission. The terminal-profile study
-requires its own prospective freeze before execution.
+The preserved v3 evidence is development-only, positive-only and
+unmapped-tolerant on the exact 194 cells/12 conservative groups. The September
+30 design revision left its execution contract intact; the October 6 adopted
+closeout now ends M2 as incomplete. Final/unassigned access remains closed and
+biological promotion is inactive. The handoff stays in
+[experiment_log.md](experiment_log.md); the [ASTRA program](astra/v0.0.14/astra.yaml)
+preserves the analyses and evidence without selecting further execution.
 
 The scientific primary has changed for the next study; the historical and
 already-initiated statistical primary has not been relabeled.

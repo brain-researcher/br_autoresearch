@@ -1,0 +1,62 @@
+{
+  "diagnostic_authorizes_target_construction": false,
+  "eligible_cells_by_policy": {
+    "strict_current": 11,
+    "tolerate_both_mapping_classes": 194,
+    "tolerate_segment_outside_or_zero_only": 12,
+    "tolerate_terminal_nongrey_outside_or_zero_only": 85
+  },
+  "eligible_cells_by_policy_and_group": {
+    "212074": [0, 6, 1, 4],
+    "220187": [3, 35, 3, 13],
+    "220188": [2, 25, 2, 12],
+    "220190": [1, 16, 1, 8],
+    "221091": [0, 33, 0, 16],
+    "221225": [1, 39, 1, 5],
+    "221418": [0, 12, 0, 8],
+    "221514": [0, 5, 0, 5],
+    "221539": [0, 1, 0, 1],
+    "221588": [3, 7, 3, 6],
+    "221751": [1, 13, 1, 5],
+    "233281": [0, 2, 0, 2]
+  },
+  "group_policy_value_order": [
+    "strict_current",
+    "tolerate_both_mapping_classes",
+    "tolerate_segment_outside_or_zero_only",
+    "tolerate_terminal_nongrey_outside_or_zero_only"
+  ],
+  "input_files": 200,
+  "input_groups": 12,
+  "mapping_class_overlap_counts": {
+    "both_segment_and_terminal_mapping_flags": 112,
+    "neither_mapping_class": 11,
+    "segment_mapping_flags_only": 2,
+    "terminal_mapping_flags_only": 75
+  },
+  "marginal_flag_counts": {
+    "canonical_soma_mismatch": 0,
+    "no_positive_provider_axon_edge": 0,
+    "parser_error": 0,
+    "provider_axon_positive_length_annotation_zero": 114,
+    "provider_axon_positive_length_outside_volume": 27,
+    "provider_soma_hemisphere_mismatch": 0,
+    "provider_terminal_annotation_zero": 54,
+    "provider_terminal_nongrey": 177,
+    "provider_terminal_outside_volume": 27,
+    "soma_annotation_zero": 0,
+    "soma_not_MOp": 6,
+    "soma_outside_volume": 0
+  },
+  "projection_outcomes_computed_or_emitted": false,
+  "slurm_job": {
+    "elapsed": "00:04:08",
+    "exit_code": "0:0",
+    "job_id": 45443462,
+    "max_rss_kib": 654924,
+    "state": "COMPLETED"
+  },
+  "stage": "provider_native_v2_structural_QC_overlap_diagnostic",
+  "status": "complete",
+  "target_vocabulary_loaded": false
+}

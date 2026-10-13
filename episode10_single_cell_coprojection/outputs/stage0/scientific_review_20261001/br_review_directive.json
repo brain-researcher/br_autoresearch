@@ -1,0 +1,439 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"ok\": true,\n  \"protocol\": \"br.external_review.directive.v1\",\n  \"directive_id\": \"ext_review_dir_7ba1169549b6\",\n  \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n  \"issued_at\": \"2026-10-01T05:30:07Z\",\n  \"review_type\": \"scientific_review\",\n  \"goal\": \"Focused interpretive scientific review of an existing development-only mouse motor-cortex recorded-positive-pattern analysis. Determine what a future M2-minus-M1 gain could distinguish about residual pair organization given a small heterogeneous M1-minus-M0 gain, adequate prediction relative to uniform, finite continuous-source adjustment, and unknown observation negatives. Challenge substantive interpretation; preserve the frozen analysis and do not add a new execution gate. No M2 result or null result exists yet. This is advisory scientific review, not formal Society or scientific acceptance.\",\n  \"hints_applied\": {\n    \"adapter\": \"external_single_neuron_recorded_positive_projectome\",\n    \"review_scope\": \"existing aggregate results and frozen specification only; no private cell-level data, sealed data, new experiments, or biological promotion\",\n    \"known_evidence\": {\n      \"cells\": 194,\n      \"conservative_groups\": 12,\n      \"target_panel\": 16,\n      \"M1_minus_M0_equal_group_bits_per_cell\": 0.002637863687897285,\n      \"M1_uniform_gain_bits_per_cell\": 1.5953602605961161,\n      \"group_heterogeneity\": \"strong; recorded in prior result\",\n      \"M1_adequacy\": \"all frozen numerical gates passed\",\n      \"animal_independence\": \"uncertified\",\n      \"observations\": \"zeros unknown; fixed observed cardinality; real M2 unopened\"\n    }\n  },\n  \"rubric_detail\": \"summary\",\n  \"evaluation_axes\": {\n    \"correctness\": {\n      \"decision_space\": [\n        \"pass\",\n        \"flag\",\n        \"block\"\n      ],\n      \"required_outputs\": [\n        \"decision\",\n        \"findings[]\"\n      ],\n      \"criteria_summary\": {\n        \"count\": 4,\n        \"preview\": [\n          \"Confirm the statistical/analytic specification matches the declared research question.\",\n          \"Verify the design matrix / model structure is well-posed (no rank deficiency, no collinear nuisance regressors).\"\n        ]\n      },\n      \"kg_derived_criteria_summary\": {\n        \"count\": 67,\n        \"rule_ids\": [\n          \"BRAINMAP_CORRELATION_NO_SPATIAL_NULL\",\n          \"CONFOUND_REGRESSION_OUTSIDE_CV\",\n          \"DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN\",\n          \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n          \"DOUBLE_DIPPING\",\n          \"FEATURE_SELECTION_OUTSIDE_CV\",\n          \"HARMONIZATION_OUTSIDE_CV\",\n          \"LONGITUDINAL_NO_SUBJECT_EFFECT\",\n          \"MOTION_UNCONTROLLED_GROUP_DIFF\",\n          \"NESTED_CV_INNER_PARTITION_GAP\",\n          \"NESTED_CV_MANIFEST_SCHEMA\",\n          \"NESTED_CV_OUTER_HOLDOUT_CONFLICT\"\n        ]\n      }\n    },\n    \"completeness\": {\n      \"decision_space\": [\n        \"complete\",\n        \"incomplete\"\n      ],\n      \"required_outputs\": [\n        \"decision\",\n        \"checklist{}\",\n        \"missing_caveats[]\"\n      ],\n      \"criteria_summary\": {\n        \"count\": 5,\n        \"preview\": [\n          \"Random seed is pinned and reported.\",\n          \"Atlas / parcellation version is declared when atlas-based features are used.\"\n        ]\n      },\n      \"kg_derived_criteria_summary\": {\n        \"count\": 37,\n        \"rule_ids\": [\n          \"BRAINMAP_CORRELATION_NO_SPATIAL_NULL\",\n          \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n          \"LONGITUDINAL_NO_SUBJECT_EFFECT\",\n          \"MOTION_UNCONTROLLED_GROUP_DIFF\",\n          \"POOLED_VARIANCE_POPULATION_CLAIM\",\n          \"PSEUDOREPLICATION\",\n          \"REPEATED_MEASURES_INDEPENDENT_TEST\",\n          \"SPATIAL_DOMAIN_MISMATCH\",\n          \"UNCORRECTED_WHOLEBRAIN\",\n          \"ABOVE_CHANCE_NO_PERMUTATION\",\n          \"AD_HOC_CLUSTER_EXTENT\",\n          \"ANALYTIC_FLEXIBILITY\"\n        ]\n      }\n    },\n    \"judgment\": {\n      \"decision_space\": [\n        \"sound\",\n        \"questionable\",\n        \"unsound\"\n      ],\n      \"required_outputs\": [\n        \"decision\",\n        \"estimand_complete\",\n        \"method_defensible\",\n        \"issues[]\",\n        \"reviewer_questions[]\"\n      ],\n      \"criteria_summary\": {\n        \"count\": 4,\n        \"preview\": [\n          \"The estimand is clearly specified (population, unit, causal vs. associational).\",\n          \"The chosen method is defensible for that estimand, not just conventional.\"\n        ]\n      },\n      \"kg_derived_criteria_summary\": {\n        \"count\": 21,\n        \"rule_ids\": [\n          \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n          \"DOUBLE_DIPPING\",\n          \"POOLED_VARIANCE_POPULATION_CLAIM\",\n          \"ACTIVATION_MISMATCH\",\n          \"BEHAVIOR_COVARIATE_MISSING\",\n          \"CLUSTER_LOCALIZATION_OVERCLAIM\",\n          \"CORRELATION_AS_PREDICTION\",\n          \"DYNAMIC_FC_NO_NULL\",\n          \"EXTREME_EFFECT\",\n          \"FACTORIAL_SEPARATE_SIMPLE_EFFECTS\",\n          \"FIT_AS_MECHANISM\",\n          \"GRAPH_THRESHOLD_NO_SENSITIVITY\"\n        ]\n      }\n    },\n    \"overall\": {\n      \"decision_space\": [\n        \"proceed\",\n        \"diagnose\",\n        \"explore_more\",\n        \"stop_with_rationale\"\n      ],\n      \"required_outputs\": [\n        \"overall_decision\",\n        \"report_action\"\n      ],\n      \"criteria_summary\": {\n        \"count\": 6,\n        \"preview\": [\n          \"Synthesize correctness + completeness + judgment into a single overall_decision.\",\n          \"Blocking correctness issues -> stop_with_rationale.\"\n        ]\n      }\n    }\n  },\n  \"verdict_schema_ref\": \"br.ScientificReviewVerdict.v1\",\n  \"submission_tool\": \"submit_external_scientific_review_verdict\",\n  \"tailored_checks\": [],\n  \"full_rubric_available\": true,\n  \"full_rubric_request\": {\n    \"tool\": \"request_external_scientific_review_directive\",\n    \"argument\": \"include_full_rubric\",\n    \"value\": true\n  },\n  \"agent_instructions\": [\n    \"Read the run artifacts yourself - BR has not read them.\",\n    \"For each axis, produce the required_outputs and pick a decision from decision_space.\",\n    \"Use kg_derived_criteria summaries when present; request include_full_rubric=true if you need the full rubric or JSON schema.\",\n    \"Roll up to overall_decision using the rules under the overall axis.\",\n    \"Submit the completed verdict via submission_tool, echoing directive_id.\",\n    \"When submitting the verdict, include the session binding fields returned in this directive.\"\n  ],\n  \"kg_rule_registry\": {\n    \"registry_id\": \"scientific_review_rule_registry_v1\",\n    \"source\": \"BRKG\",\n    \"criteria_count\": 125,\n    \"criteria_counts_by_axis\": {\n      \"correctness\": 67,\n      \"completeness\": 37,\n      \"judgment\": 21\n    },\n    \"rule_ids_by_axis\": {\n      \"correctness\": [\n        \"BRAINMAP_CORRELATION_NO_SPATIAL_NULL\",\n        \"CONFOUND_REGRESSION_OUTSIDE_CV\",\n        \"DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN\",\n        \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n        \"DOUBLE_DIPPING\",\n        \"FEATURE_SELECTION_OUTSIDE_CV\",\n        \"HARMONIZATION_OUTSIDE_CV\",\n        \"LONGITUDINAL_NO_SUBJECT_EFFECT\",\n        \"MOTION_UNCONTROLLED_GROUP_DIFF\",\n        \"NESTED_CV_INNER_PARTITION_GAP\",\n        \"NESTED_CV_MANIFEST_SCHEMA\",\n        \"NESTED_CV_OUTER_HOLDOUT_CONFLICT\",\n        \"NESTED_CV_OUTER_MISSING_INNER_RESAMPLING\",\n        \"NESTED_CV_OUTER_PARTITION_GAP\",\n        \"PERMUTATION_EXCHANGEABILITY\",\n        \"POOLED_VARIANCE_POPULATION_CLAIM\",\n        \"PSEUDOREPLICATION\",\n        \"REPEATED_MEASURES_INDEPENDENT_TEST\",\n        \"SPATIAL_DOMAIN_MISMATCH\",\n        \"SPLIT_GROUPING_MISMATCH\",\n        \"STANDARDIZATION_OUTSIDE_CV\",\n        \"SUBJECT_INTERSECTION_COVERAGE\",\n        \"SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT\",\n        \"SUBJECT_INTERSECTION_SUBSET_CONFLICT\",\n        \"SUBJECT_MANIFEST_COVERAGE\",\n        \"SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT\",\n        \"SUBJECT_SELECTION_SOURCE_COVERAGE\",\n        \"TEMPORAL_SPLIT_AUTOCORRELATION\",\n        \"TEST_SET_MODEL_SELECTION\",\n        \"UNCORRECTED_WHOLEBRAIN\",\n        \"ABOVE_CHANCE_NO_PERMUTATION\",\n        \"AD_HOC_CLUSTER_EXTENT\",\n        \"ANALYTIC_FLEXIBILITY\",\n        \"BIDS_VALIDATION_FAILED\",\n        \"CLUSTER_FORMING_THRESHOLD_LENIENT\",\n        \"CLUSTER_LOCALIZATION_OVERCLAIM\",\n        \"COBIDAS_MANDATORY_MISSING\",\n        \"CORRELATION_AS_PREDICTION\",\n        \"CV_FOLD_ERROR_AS_INDEPENDENT\",\n        \"DYNAMIC_FC_NO_NULL\",\n        \"EPI_DISTORTION_UNADDRESSED\",\n        \"EXTREME_EFFECT\",\n        \"FACTORIAL_SEPARATE_SIMPLE_EFFECTS\",\n        \"GENE_MAP_NO_SPATIAL_NULL\",\n        \"GRAPH_THRESHOLD_NO_SENSITIVITY\",\n        \"GSR_NO_SENSITIVITY\",\n        \"HARMONIZATION_METHOD_SENSITIVITY\",\n        \"HRF_CANONICAL_ASSUMPTION\",\n        \"ICC_MISSING_FOR_INDIVIDUAL_DIFF\",\n        \"ICV_NOT_CONTROLLED\",\n        \"LAYER_SELECTION_POST_HOC\",\n        \"MOTION_REPORTING_GAP\",\n        \"MULTISITE_SITE_CONFOUND\",\n        \"NO_EXTERNAL_VALIDATION\",\n        \"PPI_SPECIFICATION\",\n        \"QC_MISSING\",\n        \"RANDOM_SEED_MISSING\",\n        \"ROI_MULTIPLE_COMPARISONS\",\n        \"RSA_HIERARCHICAL_UNCERTAINTY\",\n        \"RSA_MODEL_COMPARISON_NO_CORRECTION\",\n        \"RSA_VOXELWISE_CENTERING_SCALING\",\n        \"RSA_WITHIN_RUN_ESTIMATION\",\n        \"SINGLE_ROI_EXTREME\",\n        \"SMALL_SAMPLE_STRONG_CLAIM\",\n        \"SOFTWARE_VERSION_MISSING\",\n        \"STIMULUS_FIXED_EFFECT\",\n        \"TASK_FC_HRF_RESIDUAL\"\n      ],\n      \"completeness\": [\n        \"BRAINMAP_CORRELATION_NO_SPATIAL_NULL\",\n        \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n        \"LONGITUDINAL_NO_SUBJECT_EFFECT\",\n        \"MOTION_UNCONTROLLED_GROUP_DIFF\",\n        \"POOLED_VARIANCE_POPULATION_CLAIM\",\n        \"PSEUDOREPLICATION\",\n        \"REPEATED_MEASURES_INDEPENDENT_TEST\",\n        \"SPATIAL_DOMAIN_MISMATCH\",\n        \"UNCORRECTED_WHOLEBRAIN\",\n        \"ABOVE_CHANCE_NO_PERMUTATION\",\n        \"AD_HOC_CLUSTER_EXTENT\",\n        \"ANALYTIC_FLEXIBILITY\",\n        \"BIDS_VALIDATION_FAILED\",\n        \"CLUSTER_FORMING_THRESHOLD_LENIENT\",\n        \"CLUSTER_LOCALIZATION_OVERCLAIM\",\n        \"COBIDAS_MANDATORY_MISSING\",\n        \"CV_FOLD_ERROR_AS_INDEPENDENT\",\n        \"EPI_DISTORTION_UNADDRESSED\",\n        \"FACTORIAL_SEPARATE_SIMPLE_EFFECTS\",\n        \"GENE_MAP_NO_SPATIAL_NULL\",\n        \"HARMONIZATION_METHOD_SENSITIVITY\",\n        \"ICC_MISSING_FOR_INDIVIDUAL_DIFF\",\n        \"ICV_NOT_CONTROLLED\",\n        \"MOTION_REPORTING_GAP\",\n        \"MULTISITE_SITE_CONFOUND\",\n        \"NO_EXTERNAL_VALIDATION\",\n        \"PPI_SPECIFICATION\",\n        \"QC_MISSING\",\n        \"RANDOM_SEED_MISSING\",\n        \"ROI_MULTIPLE_COMPARISONS\",\n        \"RSA_HIERARCHICAL_UNCERTAINTY\",\n        \"RSA_MODEL_COMPARISON_NO_CORRECTION\",\n        \"RSA_VOXELWISE_CENTERING_SCALING\",\n        \"RSA_WITHIN_RUN_ESTIMATION\",\n        \"SINGLE_ROI_EXTREME\",\n        \"SMALL_SAMPLE_STRONG_CLAIM\",\n        \"SOFTWARE_VERSION_MISSING\"\n      ],\n      \"judgment\": [\n        \"DEMOGRAPHIC_CONFOUND_UNCONTROLLED\",\n        \"DOUBLE_DIPPING\",\n        \"POOLED_VARIANCE_POPULATION_CLAIM\",\n        \"ACTIVATION_MISMATCH\",\n        \"BEHAVIOR_COVARIATE_MISSING\",\n        \"CLUSTER_LOCALIZATION_OVERCLAIM\",\n        \"CORRELATION_AS_PREDICTION\",\n        \"DYNAMIC_FC_NO_NULL\",\n        \"EXTREME_EFFECT\",\n        \"FACTORIAL_SEPARATE_SIMPLE_EFFECTS\",\n        \"FIT_AS_MECHANISM\",\n        \"GRAPH_THRESHOLD_NO_SENSITIVITY\",\n        \"GSR_NO_SENSITIVITY\",\n        \"HARMONIZATION_METHOD_SENSITIVITY\",\n        \"HRF_CANONICAL_ASSUMPTION\",\n        \"NO_EXTERNAL_VALIDATION\",\n        \"REVERSE_INFERENCE\",\n        \"SINGLE_ROI_EXTREME\",\n        \"SMALL_SAMPLE_STRONG_CLAIM\",\n        \"STIMULUS_FIXED_EFFECT\",\n        \"TASK_FC_HRF_RESIDUAL\"\n      ]\n    }\n  },\n  \"client_session_id\": \"01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n  \"source_client\": \"codex\",\n  \"logged_event_id\": \"research_evt_0001\",\n  \"logged_run_id\": \"br_20261001_053007_beed42e3b1\",\n  \"review_route\": {\n    \"selected\": \"external_directive\",\n    \"source\": {\n      \"kind\": \"external\",\n      \"value\": null\n    },\n    \"target_tool\": \"request_external_scientific_review_directive\"\n  },\n  \"_agent_directive\": {\n    \"research_logging\": {\n      \"protocol\": \"br.research_logging.directive.v1\",\n      \"state\": {\n        \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n        \"client_session_id\": \"01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n        \"source_client\": \"codex\",\n        \"snapshot_required_on_close\": true,\n        \"session_closed\": false,\n        \"post_close_actions_available\": false,\n        \"note_policy\": \"optional_enrichment_only\",\n        \"server_mid_session_telemetry\": true,\n        \"transcript_capture_supported\": true,\n        \"external_trace_capture_supported\": true,\n        \"preferred_transcript_context_key\": \"transcript\",\n        \"preferred_trace_context_key\": \"external_trace_events\"\n      },\n      \"actions\": [\n        {\n          \"type\": \"bind_session\",\n          \"required\": false,\n          \"reason\": \"server_session_active\",\n          \"payload\": {\n            \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"client_session_id\": \"01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"source_client\": \"codex\"\n          }\n        },\n        {\n          \"type\": \"write_snapshot_on_close\",\n          \"required\": true,\n          \"reason\": \"explicit_closeout_required\",\n          \"payload\": {\n            \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"client_session_id\": \"01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"source_client\": \"codex\",\n            \"context_contract\": {\n              \"preferred_transcript_key\": \"transcript\",\n              \"preferred_trace_key\": \"external_trace_events\",\n              \"transcript_aliases\": [\n                \"transcript\",\n                \"messages\",\n                \"chat_history\",\n                \"conversation_events\",\n                \"conversation_messages\",\n                \"conversation_log\"\n              ],\n              \"trace_aliases\": [\n                \"external_trace_events\",\n                \"trace_events\",\n                \"tool_trace\",\n                \"tool_trace_events\"\n              ]\n            }\n          }\n        },\n        {\n          \"type\": \"attach_transcript_on_close\",\n          \"required\": false,\n          \"reason\": \"persist_client_transcript\",\n          \"payload\": {\n            \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"context_aliases\": [\n              \"transcript\",\n              \"messages\",\n              \"chat_history\",\n              \"conversation_events\",\n              \"conversation_messages\",\n              \"conversation_log\"\n            ],\n            \"preferred_context_key\": \"transcript\",\n            \"target_file\": \"session_transcript.jsonl\"\n          }\n        },\n        {\n          \"type\": \"attach_external_trace_on_close\",\n          \"required\": false,\n          \"reason\": \"persist_external_tool_trace\",\n          \"payload\": {\n            \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"context_aliases\": [\n              \"external_trace_events\",\n              \"trace_events\",\n              \"tool_trace\",\n              \"tool_trace_events\"\n            ],\n            \"preferred_context_key\": \"external_trace_events\",\n            \"target_file\": \"tool_trace.jsonl\"\n          }\n        },\n        {\n          \"type\": \"log_optional_note\",\n          \"required\": false,\n          \"reason\": \"rationale_not_in_trace\",\n          \"payload\": {\n            \"session_id\": \"codex:01a0f492-d6d3-79c0-a4b3-992037a3b843\",\n            \"kind\": \"note\",\n            \"policy\": \"optional_enrichment_only\"\n          }\n        }\n      ]\n    }\n  }\n}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "protocol": "br.external_review.directive.v1",
+    "directive_id": "ext_review_dir_7ba1169549b6",
+    "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+    "issued_at": "2026-10-01T05:30:07Z",
+    "review_type": "scientific_review",
+    "goal": "Focused interpretive scientific review of an existing development-only mouse motor-cortex recorded-positive-pattern analysis. Determine what a future M2-minus-M1 gain could distinguish about residual pair organization given a small heterogeneous M1-minus-M0 gain, adequate prediction relative to uniform, finite continuous-source adjustment, and unknown observation negatives. Challenge substantive interpretation; preserve the frozen analysis and do not add a new execution gate. No M2 result or null result exists yet. This is advisory scientific review, not formal Society or scientific acceptance.",
+    "hints_applied": {
+      "adapter": "external_single_neuron_recorded_positive_projectome",
+      "review_scope": "existing aggregate results and frozen specification only; no private cell-level data, sealed data, new experiments, or biological promotion",
+      "known_evidence": {
+        "cells": 194,
+        "conservative_groups": 12,
+        "target_panel": 16,
+        "M1_minus_M0_equal_group_bits_per_cell": 0.002637863687897285,
+        "M1_uniform_gain_bits_per_cell": 1.5953602605961161,
+        "group_heterogeneity": "strong; recorded in prior result",
+        "M1_adequacy": "all frozen numerical gates passed",
+        "animal_independence": "uncertified",
+        "observations": "zeros unknown; fixed observed cardinality; real M2 unopened"
+      }
+    },
+    "rubric_detail": "summary",
+    "evaluation_axes": {
+      "correctness": {
+        "decision_space": [
+          "pass",
+          "flag",
+          "block"
+        ],
+        "required_outputs": [
+          "decision",
+          "findings[]"
+        ],
+        "criteria_summary": {
+          "count": 4,
+          "preview": [
+            "Confirm the statistical/analytic specification matches the declared research question.",
+            "Verify the design matrix / model structure is well-posed (no rank deficiency, no collinear nuisance regressors)."
+          ]
+        },
+        "kg_derived_criteria_summary": {
+          "count": 67,
+          "rule_ids": [
+            "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+            "CONFOUND_REGRESSION_OUTSIDE_CV",
+            "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+            "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+            "DOUBLE_DIPPING",
+            "FEATURE_SELECTION_OUTSIDE_CV",
+            "HARMONIZATION_OUTSIDE_CV",
+            "LONGITUDINAL_NO_SUBJECT_EFFECT",
+            "MOTION_UNCONTROLLED_GROUP_DIFF",
+            "NESTED_CV_INNER_PARTITION_GAP",
+            "NESTED_CV_MANIFEST_SCHEMA",
+            "NESTED_CV_OUTER_HOLDOUT_CONFLICT"
+          ]
+        }
+      },
+      "completeness": {
+        "decision_space": [
+          "complete",
+          "incomplete"
+        ],
+        "required_outputs": [
+          "decision",
+          "checklist{}",
+          "missing_caveats[]"
+        ],
+        "criteria_summary": {
+          "count": 5,
+          "preview": [
+            "Random seed is pinned and reported.",
+            "Atlas / parcellation version is declared when atlas-based features are used."
+          ]
+        },
+        "kg_derived_criteria_summary": {
+          "count": 37,
+          "rule_ids": [
+            "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+            "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+            "LONGITUDINAL_NO_SUBJECT_EFFECT",
+            "MOTION_UNCONTROLLED_GROUP_DIFF",
+            "POOLED_VARIANCE_POPULATION_CLAIM",
+            "PSEUDOREPLICATION",
+            "REPEATED_MEASURES_INDEPENDENT_TEST",
+            "SPATIAL_DOMAIN_MISMATCH",
+            "UNCORRECTED_WHOLEBRAIN",
+            "ABOVE_CHANCE_NO_PERMUTATION",
+            "AD_HOC_CLUSTER_EXTENT",
+            "ANALYTIC_FLEXIBILITY"
+          ]
+        }
+      },
+      "judgment": {
+        "decision_space": [
+          "sound",
+          "questionable",
+          "unsound"
+        ],
+        "required_outputs": [
+          "decision",
+          "estimand_complete",
+          "method_defensible",
+          "issues[]",
+          "reviewer_questions[]"
+        ],
+        "criteria_summary": {
+          "count": 4,
+          "preview": [
+            "The estimand is clearly specified (population, unit, causal vs. associational).",
+            "The chosen method is defensible for that estimand, not just conventional."
+          ]
+        },
+        "kg_derived_criteria_summary": {
+          "count": 21,
+          "rule_ids": [
+            "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+            "DOUBLE_DIPPING",
+            "POOLED_VARIANCE_POPULATION_CLAIM",
+            "ACTIVATION_MISMATCH",
+            "BEHAVIOR_COVARIATE_MISSING",
+            "CLUSTER_LOCALIZATION_OVERCLAIM",
+            "CORRELATION_AS_PREDICTION",
+            "DYNAMIC_FC_NO_NULL",
+            "EXTREME_EFFECT",
+            "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+            "FIT_AS_MECHANISM",
+            "GRAPH_THRESHOLD_NO_SENSITIVITY"
+          ]
+        }
+      },
+      "overall": {
+        "decision_space": [
+          "proceed",
+          "diagnose",
+          "explore_more",
+          "stop_with_rationale"
+        ],
+        "required_outputs": [
+          "overall_decision",
+          "report_action"
+        ],
+        "criteria_summary": {
+          "count": 6,
+          "preview": [
+            "Synthesize correctness + completeness + judgment into a single overall_decision.",
+            "Blocking correctness issues -> stop_with_rationale."
+          ]
+        }
+      }
+    },
+    "verdict_schema_ref": "br.ScientificReviewVerdict.v1",
+    "submission_tool": "submit_external_scientific_review_verdict",
+    "tailored_checks": [],
+    "full_rubric_available": true,
+    "full_rubric_request": {
+      "tool": "request_external_scientific_review_directive",
+      "argument": "include_full_rubric",
+      "value": true
+    },
+    "agent_instructions": [
+      "Read the run artifacts yourself - BR has not read them.",
+      "For each axis, produce the required_outputs and pick a decision from decision_space.",
+      "Use kg_derived_criteria summaries when present; request include_full_rubric=true if you need the full rubric or JSON schema.",
+      "Roll up to overall_decision using the rules under the overall axis.",
+      "Submit the completed verdict via submission_tool, echoing directive_id.",
+      "When submitting the verdict, include the session binding fields returned in this directive."
+    ],
+    "kg_rule_registry": {
+      "registry_id": "scientific_review_rule_registry_v1",
+      "source": "BRKG",
+      "criteria_count": 125,
+      "criteria_counts_by_axis": {
+        "correctness": 67,
+        "completeness": 37,
+        "judgment": 21
+      },
+      "rule_ids_by_axis": {
+        "correctness": [
+          "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "CONFOUND_REGRESSION_OUTSIDE_CV",
+          "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "DOUBLE_DIPPING",
+          "FEATURE_SELECTION_OUTSIDE_CV",
+          "HARMONIZATION_OUTSIDE_CV",
+          "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "NESTED_CV_INNER_PARTITION_GAP",
+          "NESTED_CV_MANIFEST_SCHEMA",
+          "NESTED_CV_OUTER_HOLDOUT_CONFLICT",
+          "NESTED_CV_OUTER_MISSING_INNER_RESAMPLING",
+          "NESTED_CV_OUTER_PARTITION_GAP",
+          "PERMUTATION_EXCHANGEABILITY",
+          "POOLED_VARIANCE_POPULATION_CLAIM",
+          "PSEUDOREPLICATION",
+          "REPEATED_MEASURES_INDEPENDENT_TEST",
+          "SPATIAL_DOMAIN_MISMATCH",
+          "SPLIT_GROUPING_MISMATCH",
+          "STANDARDIZATION_OUTSIDE_CV",
+          "SUBJECT_INTERSECTION_COVERAGE",
+          "SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT",
+          "SUBJECT_INTERSECTION_SUBSET_CONFLICT",
+          "SUBJECT_MANIFEST_COVERAGE",
+          "SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT",
+          "SUBJECT_SELECTION_SOURCE_COVERAGE",
+          "TEMPORAL_SPLIT_AUTOCORRELATION",
+          "TEST_SET_MODEL_SELECTION",
+          "UNCORRECTED_WHOLEBRAIN",
+          "ABOVE_CHANCE_NO_PERMUTATION",
+          "AD_HOC_CLUSTER_EXTENT",
+          "ANALYTIC_FLEXIBILITY",
+          "BIDS_VALIDATION_FAILED",
+          "CLUSTER_FORMING_THRESHOLD_LENIENT",
+          "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "COBIDAS_MANDATORY_MISSING",
+          "CORRELATION_AS_PREDICTION",
+          "CV_FOLD_ERROR_AS_INDEPENDENT",
+          "DYNAMIC_FC_NO_NULL",
+          "EPI_DISTORTION_UNADDRESSED",
+          "EXTREME_EFFECT",
+          "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "GENE_MAP_NO_SPATIAL_NULL",
+          "GRAPH_THRESHOLD_NO_SENSITIVITY",
+          "GSR_NO_SENSITIVITY",
+          "HARMONIZATION_METHOD_SENSITIVITY",
+          "HRF_CANONICAL_ASSUMPTION",
+          "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+          "ICV_NOT_CONTROLLED",
+          "LAYER_SELECTION_POST_HOC",
+          "MOTION_REPORTING_GAP",
+          "MULTISITE_SITE_CONFOUND",
+          "NO_EXTERNAL_VALIDATION",
+          "PPI_SPECIFICATION",
+          "QC_MISSING",
+          "RANDOM_SEED_MISSING",
+          "ROI_MULTIPLE_COMPARISONS",
+          "RSA_HIERARCHICAL_UNCERTAINTY",
+          "RSA_MODEL_COMPARISON_NO_CORRECTION",
+          "RSA_VOXELWISE_CENTERING_SCALING",
+          "RSA_WITHIN_RUN_ESTIMATION",
+          "SINGLE_ROI_EXTREME",
+          "SMALL_SAMPLE_STRONG_CLAIM",
+          "SOFTWARE_VERSION_MISSING",
+          "STIMULUS_FIXED_EFFECT",
+          "TASK_FC_HRF_RESIDUAL"
+        ],
+        "completeness": [
+          "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "POOLED_VARIANCE_POPULATION_CLAIM",
+          "PSEUDOREPLICATION",
+          "REPEATED_MEASURES_INDEPENDENT_TEST",
+          "SPATIAL_DOMAIN_MISMATCH",
+          "UNCORRECTED_WHOLEBRAIN",
+          "ABOVE_CHANCE_NO_PERMUTATION",
+          "AD_HOC_CLUSTER_EXTENT",
+          "ANALYTIC_FLEXIBILITY",
+          "BIDS_VALIDATION_FAILED",
+          "CLUSTER_FORMING_THRESHOLD_LENIENT",
+          "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "COBIDAS_MANDATORY_MISSING",
+          "CV_FOLD_ERROR_AS_INDEPENDENT",
+          "EPI_DISTORTION_UNADDRESSED",
+          "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "GENE_MAP_NO_SPATIAL_NULL",
+          "HARMONIZATION_METHOD_SENSITIVITY",
+          "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+          "ICV_NOT_CONTROLLED",
+          "MOTION_REPORTING_GAP",
+          "MULTISITE_SITE_CONFOUND",
+          "NO_EXTERNAL_VALIDATION",
+          "PPI_SPECIFICATION",
+          "QC_MISSING",
+          "RANDOM_SEED_MISSING",
+          "ROI_MULTIPLE_COMPARISONS",
+          "RSA_HIERARCHICAL_UNCERTAINTY",
+          "RSA_MODEL_COMPARISON_NO_CORRECTION",
+          "RSA_VOXELWISE_CENTERING_SCALING",
+          "RSA_WITHIN_RUN_ESTIMATION",
+          "SINGLE_ROI_EXTREME",
+          "SMALL_SAMPLE_STRONG_CLAIM",
+          "SOFTWARE_VERSION_MISSING"
+        ],
+        "judgment": [
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "DOUBLE_DIPPING",
+          "POOLED_VARIANCE_POPULATION_CLAIM",
+          "ACTIVATION_MISMATCH",
+          "BEHAVIOR_COVARIATE_MISSING",
+          "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "CORRELATION_AS_PREDICTION",
+          "DYNAMIC_FC_NO_NULL",
+          "EXTREME_EFFECT",
+          "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "FIT_AS_MECHANISM",
+          "GRAPH_THRESHOLD_NO_SENSITIVITY",
+          "GSR_NO_SENSITIVITY",
+          "HARMONIZATION_METHOD_SENSITIVITY",
+          "HRF_CANONICAL_ASSUMPTION",
+          "NO_EXTERNAL_VALIDATION",
+          "REVERSE_INFERENCE",
+          "SINGLE_ROI_EXTREME",
+          "SMALL_SAMPLE_STRONG_CLAIM",
+          "STIMULUS_FIXED_EFFECT",
+          "TASK_FC_HRF_RESIDUAL"
+        ]
+      }
+    },
+    "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+    "source_client": "codex",
+    "logged_event_id": "research_evt_0001",
+    "logged_run_id": "br_20261001_053007_beed42e3b1",
+    "review_route": {
+      "selected": "external_directive",
+      "source": {
+        "kind": "external",
+        "value": null
+      },
+      "target_tool": "request_external_scientific_review_directive"
+    },
+    "_agent_directive": {
+      "research_logging": {
+        "protocol": "br.research_logging.directive.v1",
+        "state": {
+          "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+          "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+          "source_client": "codex",
+          "snapshot_required_on_close": true,
+          "session_closed": false,
+          "post_close_actions_available": false,
+          "note_policy": "optional_enrichment_only",
+          "server_mid_session_telemetry": true,
+          "transcript_capture_supported": true,
+          "external_trace_capture_supported": true,
+          "preferred_transcript_context_key": "transcript",
+          "preferred_trace_context_key": "external_trace_events"
+        },
+        "actions": [
+          {
+            "type": "bind_session",
+            "required": false,
+            "reason": "server_session_active",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "source_client": "codex"
+            }
+          },
+          {
+            "type": "write_snapshot_on_close",
+            "required": true,
+            "reason": "explicit_closeout_required",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "source_client": "codex",
+              "context_contract": {
+                "preferred_transcript_key": "transcript",
+                "preferred_trace_key": "external_trace_events",
+                "transcript_aliases": [
+                  "transcript",
+                  "messages",
+                  "chat_history",
+                  "conversation_events",
+                  "conversation_messages",
+                  "conversation_log"
+                ],
+                "trace_aliases": [
+                  "external_trace_events",
+                  "trace_events",
+                  "tool_trace",
+                  "tool_trace_events"
+                ]
+              }
+            }
+          },
+          {
+            "type": "attach_transcript_on_close",
+            "required": false,
+            "reason": "persist_client_transcript",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "context_aliases": [
+                "transcript",
+                "messages",
+                "chat_history",
+                "conversation_events",
+                "conversation_messages",
+                "conversation_log"
+              ],
+              "preferred_context_key": "transcript",
+              "target_file": "session_transcript.jsonl"
+            }
+          },
+          {
+            "type": "attach_external_trace_on_close",
+            "required": false,
+            "reason": "persist_external_tool_trace",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "context_aliases": [
+                "external_trace_events",
+                "trace_events",
+                "tool_trace",
+                "tool_trace_events"
+              ],
+              "preferred_context_key": "external_trace_events",
+              "target_file": "tool_trace.jsonl"
+            }
+          },
+          {
+            "type": "log_optional_note",
+            "required": false,
+            "reason": "rationale_not_in_trace",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "kind": "note",
+              "policy": "optional_enrichment_only"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "isError": false
+}
+

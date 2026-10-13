@@ -1,0 +1,43 @@
+{
+  "schema_version": "ep12.contract_transition_probe_launch.v1",
+  "phase": "legacy",
+  "attempt": 3,
+  "supersedes_failed_job_ids": [
+    "45360953",
+    "45361486"
+  ],
+  "slurm_job_id": "45361897",
+  "slurm_job_name": "ep12-contract-probe-legacy-v1-r3-0a7ec7bf",
+  "submission_user": "zijiao",
+  "legacy_source_archive": {
+    "path": "outputs/prelaunch/legacy_observed_scientific_source_v1.tar",
+    "sha256": "5b444b7478a768d9c182448ab4a3c517d9e53a34593ba4ba2c7f71b3e6c639c9",
+    "manifest_path": "outputs/prelaunch/legacy_observed_scientific_source_v1_manifest.json",
+    "manifest_sha256": "ae2006b746f6115c782004dc6b2d2801cd3679814f6b41d55e44d423f8d30ce7"
+  },
+  "source_executor_root": "/scratch/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/contract_transition_probe/legacy-source.Y81wQz/outputs/executor",
+  "probe": {
+    "spec_path": "outputs/executor/CONTRACT_TRANSITION_PROBE_SPEC.json",
+    "spec_sha256": "76539bd7ede65609a56a493c22232c49b4f664d9a7bbd1d346522d07f63e57c2",
+    "program_path": "outputs/executor/ep12_executor/contract_invariance_probe.py",
+    "program_sha256": "d03568c91c1b3f2b8a8652108592bb6402dd54597cb0a842b78bf562e468c4a0",
+    "wrapper_path": "outputs/executor/slurm/run_contract_invariance_probe.sbatch",
+    "wrapper_sha256": "0a7ec7bfbd3fcf8063fa3cfe4d58661367e0a5b2b056704dc09dbce78e2fad8a"
+  },
+  "expected_output": "outputs/prelaunch/contract_transition_probe/legacy_v1/probe.json",
+  "resources": {
+    "partition": "normal",
+    "cpus_per_task": 1,
+    "memory_gib": 4,
+    "time_limit": "04:00:00",
+    "gpus": 0,
+    "requeue": false
+  },
+  "outcome_firewall": {
+    "generated_examples_only": true,
+    "real_connectivity_accessed": false,
+    "connectivity_paths_accepted": false,
+    "annotation_or_outcome_files_accessed": false
+  },
+  "receipt_sha256": "2cea2b1f8f3abc576e43ff9c11c7ef9ab7eef7079f017cd9764c36586245d835"
+}

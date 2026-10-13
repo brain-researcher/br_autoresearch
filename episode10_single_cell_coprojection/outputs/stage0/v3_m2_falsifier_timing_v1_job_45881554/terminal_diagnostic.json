@@ -1,0 +1,35 @@
+{
+  "schema": "ep10.producer_terminal_diagnostic.v1",
+  "analysis_id": "v3_search.adaptive_model_search",
+  "observation_time_utc": "2026-10-01T13:14:08Z",
+  "job_id": 45881554,
+  "artifact_role": "Root terminal diagnosis, not a producer timing report",
+  "scheduler": {
+    "parent_state": "TIMEOUT",
+    "parent_exit_code": "0:0",
+    "elapsed_seconds": 172829,
+    "allocated_cpus": 2,
+    "start_utc": "2026-09-29T13:12:31Z",
+    "end_utc": "2026-10-01T13:13:00Z",
+    "batch_state": "CANCELLED",
+    "batch_exit_code": "0:15",
+    "batch_max_rss_kib": 368580,
+    "total_cpu": "2-00:00:09"
+  },
+  "cause": "Slurm time limit, explicitly recorded in stderr",
+  "focused_tests_passed": 8,
+  "final_timing_report_produced": false,
+  "measured_timing_units": "Unavailable; no final or intermediate timing artifacts were produced",
+  "combined_99_replay_resource_gate": "Unresolved",
+  "interpretation": "Wall duration includes unmeasured scaffold and cannot supply the required measured-unit projections",
+  "scientific_conclusion": "No empirical M2 result or negative biological conclusion",
+  "empirical_M2_opened": false,
+  "frozen_contract_changed": false,
+  "new_job_launched": false,
+  "durable_evidence": [
+    "slurm.out",
+    "slurm.err",
+    "terminal_postflight_sacct_20261001T131408Z.txt"
+  ],
+  "next_action": "Stop at the resource/human gate; await the pending disposition question without new execution."
+}

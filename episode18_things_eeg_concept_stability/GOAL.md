@@ -303,10 +303,16 @@ Those conclusions require enough precision to rule out the meaningful margin.
 
 ## Data readiness and access boundary
 
-The EEG release and authorized THINGS image archive are available. Before any
-EEG-driven comparison, the episode must still build and freeze the exact
-event-image join, participant assignment, development-only data view, common
-sensor transform, feature registry, and eight matched partitions.
+The EEG release and authorized THINGS image archive are available. The
+event/identity join, 30/16 participant assignment, common-channel order,
+metadata role views, human-feature crosswalk and prospective feature registry
+are frozen. The exact stable runtime and all fixed public model assets are
+qualified, and CLIP concept-name features are complete for all 1,854 concepts.
+These are preparation results, with no image-pixel or EEG inference. Enforced
+pixel/EEG delivery, the remaining image/caption features and the fitted EEG
+pipeline remain unfinished; eight matched partitions still need feature-based
+qualification. [DATASETS.md](DATASETS.md#what-must-exist-before-model-comparison)
+links the completed preparation and remaining dependencies.
 
 The same user account can currently reach the public files for every
 participant. Therefore the 16-person set is presently a procedural holdout,
@@ -315,10 +321,43 @@ may proceed, but an audit described as permission-separated requires an
 evaluator or controlled mount that the development process cannot bypass by
 re-downloading the public data.
 
-EP17 and EP18 share the THINGS stimulus ecosystem. Their exposure record must
-identify exact image and concept overlap, reused features or checkpoints, and
-first-access history. EP18 may provide new EEG evidence, but it is not an
-independent stimulus-family confirmation of EP17.
+**Amendment, 2026-10-12 — procedural same-account separation adopted.** The
+scientist adopted the procedural-only boundary that the
+[October 6 route review](outputs/paper_plan.md#october-6-execution-route-recommendations--unadopted)
+named as a reviewable alternative with a disclosed weaker evaluation claim.
+It replaces the requirements for verified/enforced EEG development/audit
+separation and for an externally controlled pixel-only image worker. The
+boundary is procedural, not OS isolation:
+
+1. Development processes and agents read only released development-role
+   inputs: the 30 development participants, by explicit path from the frozen
+   development view, and image pixels only inside the image-feature worker
+   role (decoded pixels and opaque IDs). The 16 audit participants' EEG is not
+   opened, listed, searched or re-downloaded during development.
+2. Analysis choices are frozen and recorded before any audit opening, which
+   remains one recorded event under the existing audit rules; the audit-seal
+   flag stays false.
+3. Every access to audit-role data, including outcome-blind metadata use the
+   contract already permits, is recorded in the
+   [experiment log](outputs/experiment_log.md). Any unplanned access is
+   disclosed and the affected results are marked.
+4. Every audit or evaluation result states that the separation was procedural
+   (same account; public ds003825 re-downloadable; not technically enforced)
+   and is never described as enforced or blinded evaluation. This qualifies
+   the claim boundary below.
+
+The 30/16 assignment, EP17 correlated-exposure treatment, effective-df
+definition, penalty grid, 5% tolerance, opening counts, budgets and all other
+rules are unchanged. The separation precondition is now met procedurally; the
+remaining image/caption features, the eight partitions and the EEG
+fitting/evaluation runner still gate the next steps (`access_boundary` in
+[SEARCH_POLICY.yaml](SEARCH_POLICY.yaml)).
+
+EP17 and EP18 share the THINGS stimulus ecosystem. Their completed metadata
+comparison records all 720 EP17 concepts and 3,634 qualified EP17 images in
+EP18's main experiment, plus known checkpoint reuse and access-history limits.
+Both designs are retained as correlated and design-exposed. EP18 may provide
+new EEG evidence, but it is not independent stimulus-family confirmation of EP17.
 
 ## Claim boundary
 

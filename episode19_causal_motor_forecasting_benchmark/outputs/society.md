@@ -1,6 +1,13 @@
 # External review status
 
+2026-10-02 — [Scope/novelty review (consolidated)](paper_plan.md): Local source-backed scope review, not an external review decision or canonical scientific acceptance.
+
 No external scientific review has been requested or completed for EP19.
+
+Three internal, read-only design reviews on 2026-09-30 examined onset/risk,
+factorized EEG blocks, and baseline/calibration. Their implementation
+clarifications are incorporated in `component_details.md`; they are not
+external review, canonical Society evidence or scientific acceptance.
 
 When review is eventually requested, reviewers should focus on:
 

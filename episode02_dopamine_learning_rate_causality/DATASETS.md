@@ -14,8 +14,32 @@ the current model grammar and terminal rules remain unchanged.
 
 ## Status
 
-This document defines evidence roles. It does not itself certify role
-separation or open candidate or audit access.
+This document defines evidence roles. The scientist's October 12 decision
+adopts [procedural same-account separation](GOAL.md#adopted-procedural-evaluation-separation--october-12-2026)
+and replaces the enforced-isolation requirement. Physical isolation remains
+unverified; this document opens neither candidate nor audit access. Development
+still needs its separately recorded handoff release and existing prerequisites.
+
+The scientist's October 6 agreement adopts authenticated article/task primary
+and separately labeled pinned-code sensitivity; see the
+[accepted choice](outputs/source_semantics_design.md#adopted-model-choice--october-6-2026).
+Provider field meanings, actual online trigger/cap logic and sample times remain
+unverified source facts. This adoption changes neither data roles nor the
+inactive margin proposals and does not open the mixed-role MAT.
+
+As reconciled October 6, the [source and implementation handoff](outputs/source_semantics_design.md)
+already distinguishes the article's task rule from the pinned-code simulator,
+the approved noncausal 462-label sensitivity from randomized inference, and
+checked arithmetic components from a complete empirical fitter. ACTR/parity,
+development-score and pinned-critic component checks have passed; eleven
+optional rival-interface checks also passed, but those interfaces remain an
+unadopted proposal. See the [dated execution evidence](outputs/experiment_log.md)
+and [current navigation](outputs/README.md). The exact provider request is
+drafted and unsent. Four grid-derived margin proposals remain inactive and
+need a substantive rationale; they are not missing data fields. The
+[October 6 public-source check](outputs/source_semantics_design.md#public-source-check--october-6-2026-pacific)
+did not resolve the release codebook/time origin or verify current Figshare
+attachments. None of this opens the mixed-role MAT or intervention outcomes.
 
 ## Primary release
 
@@ -34,6 +58,18 @@ The provider MAT contains every role in one compressed object. It must never
 be copied, linked, or mounted into a candidate workspace.
 
 ## Documentary and code sources
+
+### Public online resources — checked October 6, 2026
+
+- [Official RNN_learnDA repository](https://github.com/dudmanj/RNN_learnDA): public MIT-licensed RNN reinforcement-learning code, including the recurrent trainer, critic and model-comparison source. It supplies implementation oracles, not the missing empirical field meanings. EP02 keeps its pinned commit and prohibits the outcome-derived empirical Figure-1 script from candidate workspaces.
+- [Official TONIC repository](https://github.com/DudLab/TONIC): public MATLAB documentation/code includes event alignment, data-loading and event-detection utilities. Its README explains that raster alignment consumes caller-supplied event timestamps/windows; that generic interface cannot identify the released 701-sample time origin or trial codes. Existing license and source-reuse restrictions remain.
+- [Figshare release v1](https://doi.org/10.25378/janelia.21816054.v1): the October 6 browser failure was resolved by a bounded public metadata request on October 7. The [article API](https://api.figshare.com/v2/articles/21816054) lists only `seshMerge.mat` (file38710665, 271,014,539 bytes), and the [version list](https://api.figshare.com/v2/articles/21816054/versions) lists only version1. Its [version1 description](https://api.figshare.com/v2/articles/21816054/versions/1) has no field codebook, sample-time vector or task/exporter link; custom fields are empty. No separate documentation attachment or later published version is listed. This finding is limited to that record, not all possible author resources. The already provisioned MAT remains the selected source and was not downloaded or opened.
+
+The inspected repository documentation does not resolve `trialID`, `seshID`,
+`lickState`, the exact online 750-ms/cap implementation or the assignment and
+exclusion roster. The [specific source request](outputs/source_semantics_design.md)
+therefore remains useful; no additional simulation or re-extraction can supply
+these semantics. No empirical array or outcome-derived script was opened.
 
 | Source | Permitted use |
 | --- | --- |
@@ -126,10 +162,12 @@ bound. A rate-gate-consistent pattern is not unique mechanism identification.
 
 ## Runtime provisioning
 
-The tracked `inputs/` directory contains instructions only. A trusted steward
-must create physically separate development, candidate-structural, primary-
-audit, and boundary-audit surfaces. Candidate workers may see only the first
-two.
+The tracked `inputs/` directory contains instructions only. The steward role
+must provide separate development, candidate-structural, primary-audit and
+boundary-audit surfaces. Under the October 12 amendment the same account may
+hold these procedural roles; the separation is not permission-enforced.
+Candidate work may use only the released first two surfaces, and must not open,
+list, search or reacquire mixed-source or audit paths.
 
 Portable source tools for structural inventory and deterministic role
 materialization are tracked under `outputs/code/`. The tools require an
@@ -137,15 +175,24 @@ explicit `DUDMAN_SOURCE_MAT` and job-specific `$SCRATCH` and never publish
 generated packets into the tracked episode. Materialization integrity does
 not establish confidentiality.
 
-Before development access, the runtime must separate steward and candidate
-roles and deny the candidate access to the mixed source and both audit
-payloads. Before audit access, it must additionally separate the evaluator,
-disable candidate and evaluator network egress, mount audit data only after
-the final lock, and return one atomic aggregate packet. Record the people or
-runtime identities responsible, the source release and role map used, and the
-versioned final lock in a short run note. No signature, checksum bundle, or
-custom receipt format is required. The access controls are summarized in
-[`outputs/firewall/FIREWALL_CONTRACT.json`](outputs/firewall/FIREWALL_CONTRACT.json).
+Before development access, record the steward and candidate roles, their
+permitted paths and the development handoff release. Before audit access,
+record the evaluator role and freeze the analysis choices and versioned final
+lock. Audit data may be opened only in the single recorded evaluator
+transaction, which returns one atomic aggregate packet without partial
+feedback. Its optional boundary stage follows the committed primary conclusion.
+Log every audit-role access in `outputs/experiment_log.md`; disclose unplanned
+access and mark affected results. Record the responsible operator, source
+release and role map. No signature, checksum bundle or custom receipt format
+is required. Same-account permissions do not demonstrate confidentiality or
+blinding; every evaluation result must disclose this weaker procedural boundary.
+
+The enforced identity, storage-denial and network-denial requirements in
+[`outputs/firewall/FIREWALL_CONTRACT.json`](outputs/firewall/FIREWALL_CONTRACT.json)
+and `FIREWALL.md` are superseded by the October 12 terms in GOAL and
+SEARCH_POLICY. Their role restrictions, no reacquisition, final lock, single
+opening and aggregate-only output remain operative. No handoff, access flag or
+scoring authorization is released by this documentation change.
 
 Generated inventories, role packs, and calibration tables belong in scratch
 or another runtime store. Their absence from Git is intentional.
@@ -153,6 +200,6 @@ or another runtime store. Their absence from Git is intentional.
 ## Access boundary
 
 Data availability does not grant role access. Endpoint semantics, randomization
-or exchangeability scope, physical separation, endpoint-faithful calibration,
+or exchangeability scope, the development handoff, endpoint-faithful calibration,
 a raw-unit margin, implementation qualification, evaluator behavior, and the
 audit-opening criteria remain unresolved.

@@ -1,0 +1,50 @@
+{
+  "source_key": "derivatives/glmsingle-tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_desc-GLMsingle_summary.json",
+  "matches_frozen_manifest_ETag": true,
+  "top_level_field_names": [
+    "Description",
+    "GeneratedBy",
+    "Sources",
+    "EventFiles",
+    "BrainMask",
+    "RepetitionTime",
+    "StimulusDuration",
+    "NumRuns",
+    "NumConditions",
+    "NumTrialsTotal",
+    "TrialsPerRun",
+    "NumMaskedVoxels",
+    "BlankTrialsExcluded",
+    "DesignMatrixType",
+    "DownsampleFactor",
+    "GLMsingleOptions",
+    "ModelStages",
+    "NaNHandling"
+  ],
+  "selected_processing_metadata": {
+    "Description": "GLMsingle single-trial GLM run for sub-01 ses-01. GLMsingle outputs in this folder: TYPED betas, R\u00b2, HRFindex, and fracridge value maps. See accompanying per-output sidecars for map-specific details.",
+    "GeneratedBy": [
+      {
+        "Name": "GLMsingle",
+        "Version": "1.2",
+        "CodeURL": "https://github.com/cvnlab/GLMsingle"
+      }
+    ],
+    "Sources": [
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-01_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-02_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-03_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-04_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-05_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-06_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-07_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-08_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-09_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-10_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-11_space-T1w_desc-optcom_bold.nii.gz",
+      "bids::derivatives/tedana/sub-01/ses-01/func/sub-01_ses-01_task-images_run-12_space-T1w_desc-optcom_bold.nii.gz"
+    ],
+    "NaNHandling": "The betas and R\u00b2 maps may contain NaN values at in-mask voxels where GLMsingle could not produce a valid estimate, typically near mask edges or in signal-dropout regions. NaN locations are identical between betas and R\u00b2. The noise ceiling, HRFindex, and fracridge maps are NaN-free by construction.",
+    "StimulusDuration": 2.5
+  }
+}

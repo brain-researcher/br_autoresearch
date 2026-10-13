@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -66,22 +67,45 @@ def validate_allocation_authorization(auth, env, *, public_step=False):
         require(type(value) is int and value >= RESOURCES[name], "parent_resource_capacity_required")
     require(resources["jobs"] == 1, "single_parent_job_required")
     require(env.get("SLURM_JOB_ID"), "existing_Slurm_allocation_required")
-    start = int(env.get("SLURM_JOB_START_TIME", "0"))
     end = int(env.get("SLURM_JOB_END_TIME", "0"))
-    require(start > 0 and 0 < end - start <= resources["minutes"] * 60,
-            "parent_allocation_time_approval_mismatch")
+    require(end > 0, "allocation_deadline_required")
     if public_step:
+        require(env.get("EP21_VALIDATED_PARENT_JOB_ID") == env["SLURM_JOB_ID"],
+                "validated_parent_time_receipt_required")
+        limit = int(env.get("EP21_VALIDATED_PARENT_TIME_LIMIT_SECONDS", "0"))
         require(env.get("SLURM_STEP_ID") not in (None, "batch", "extern")
                 and int(env.get("SLURM_CPUS_PER_TASK", "0")) == 1,
                 "bounded_public_step_required")
         # Memory is requested by srun --exact --mem=4G, not established by
         # rewriting or trusting inherited parent SLURM_MEM_* values.
     else:
+        # Start/end environment timestamps are not the allocation's requested
+        # time limit. Authenticate TimeLimit from this actual job once. The
+        # original end timestamp still bounds every stage's wall-clock deadline.
+        limit = read_job_time_limit(env["SLURM_JOB_ID"])
         require(int(env.get("SLURM_CPUS_PER_TASK", "0")) == resources["cpus"]
                 and int(env.get("SLURM_MEM_PER_NODE", "0")) == resources["memory_gib"] * 1024,
                 "parent_allocation_approval_mismatch")
+    require(0 < limit <= resources["minutes"] * 60, "parent_allocation_time_approval_mismatch")
     # The caller remains responsible for the substantive stage's own gates.
     # Source-only approval does not authorize this parent allocation.
+    return {"job_id": env["SLURM_JOB_ID"], "time_limit_seconds": limit}
+
+
+def parse_job_time_limit(record, job_id):
+    fields = dict(part.split("=", 1) for part in record.split() if "=" in part)
+    require(fields.get("JobId") == str(job_id), "actual_parent_job_record_required")
+    match = re.fullmatch(r"(?:(\d+)-)?(\d+):(\d{2}):(\d{2})", fields.get("TimeLimit", ""))
+    require(match is not None, "bounded_scheduler_time_limit_required")
+    days, hours, minutes, seconds = (int(x or 0) for x in match.groups())
+    require(minutes < 60 and seconds < 60, "invalid_scheduler_time_limit")
+    return days * 86400 + hours * 3600 + minutes * 60 + seconds
+
+
+def read_job_time_limit(job_id):
+    result = subprocess.run(["scontrol", "show", "job", str(job_id), "-o"],
+                            check=True, capture_output=True, text=True, timeout=30)
+    return parse_job_time_limit(result.stdout, job_id)
 
 
 def stage_timeout(env, now=None):
@@ -119,7 +143,7 @@ def reuse_report(path=None, *, relevant_change=None):
     return validate_passed_report(json.loads(path.read_text()))
 
 
-def step_command(authorization_path, *, job_id, timeout):
+def step_command(authorization_path, *, job_id, timeout, allocation_time_receipt):
     # --jobid ensures srun can only create a step in this existing job.
     # Official semantics: https://slurm.schedmd.com/srun.html
     scratch = Path(os.environ["SCRATCH"]) / "br_autoresearch" / BASE.name / ("public-runtime-" + job_id)
@@ -129,6 +153,8 @@ def step_command(authorization_path, *, job_id, timeout):
             "OMP_NUM_THREADS=1", "OPENBLAS_NUM_THREADS=1", "MKL_NUM_THREADS=1",
             "XDG_CACHE_HOME=" + str(scratch / "cache"), "TORCH_HOME=" + str(scratch / "cache/torch"),
             "TMPDIR=" + str(scratch / "tmp"),
+            "EP21_VALIDATED_PARENT_JOB_ID=" + str(allocation_time_receipt["job_id"]),
+            "EP21_VALIDATED_PARENT_TIME_LIMIT_SECONDS=" + str(allocation_time_receipt["time_limit_seconds"]),
             "PYTHONDONTWRITEBYTECODE=1", "EP21_PUBLIC_STAGE_SECONDS=" + str(timeout),
             sys.executable, "-B", str(WORKER), "--worker",
             "--allocation-authorization", str(authorization_path)]
@@ -144,14 +170,15 @@ def run_in_allocation(authorization_path, *, relevant_change=None):
     variable is not proof that the runtime is unchanged.
     """
     env = os.environ
-    validate_allocation_authorization(read_allocation_authorization(authorization_path), env)
+    time_receipt = validate_allocation_authorization(read_allocation_authorization(authorization_path), env)
     passed = reuse_report(relevant_change=(relevant_change or
                           env.get("EP21_PUBLIC_CONFORMANCE_RELEVANT_CHANGE")))
     if passed is not None:
         return passed  # Preserve the original result and job provenance.
     timeout = stage_timeout(env)
     try:
-        subprocess.run(step_command(authorization_path, job_id=env["SLURM_JOB_ID"], timeout=timeout),
+        subprocess.run(step_command(authorization_path, job_id=env["SLURM_JOB_ID"], timeout=timeout,
+                                    allocation_time_receipt=time_receipt),
                        check=True, timeout=timeout)
     except subprocess.TimeoutExpired as exc:
         raise RuntimeError("public_stage_timeout_no_continuation") from exc

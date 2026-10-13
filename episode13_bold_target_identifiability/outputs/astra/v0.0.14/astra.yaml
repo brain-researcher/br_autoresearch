@@ -1,0 +1,173 @@
+version: "0.0.14"
+name: EP13 exact BOLD target identifiability
+
+inputs:
+  - id: goal
+    type: data
+    source: GOAL.md
+  - id: datasets
+    type: data
+    source: DATASETS.md
+  - id: search_policy
+    type: data
+    source: SEARCH_POLICY.yaml
+  - id: proof_source
+    type: data
+    source: outputs/exact/proof.md
+  - id: fixed_inputs
+    type: data
+    source: outputs/exact/fixtures.json
+  - id: exact_runner
+    type: data
+    source: outputs/exact/run_exact.py
+  - id: component_checker
+    type: data
+    source: outputs/exact/target_certificate.py
+  - id: independent_checker
+    type: data
+    source: outputs/exact/independent_checker.py
+
+outputs:
+  - id: theorem_package
+    from: formal_theorem_derivation.theorem_package
+  - id: orientation_report
+    from: exact_orientation_suite.orientation_report
+  - id: independent_replay_report
+    from: independent_certificate_replay.independent_replay_report
+
+analyses:
+  formal_theorem_derivation:
+    name: Prove the exact target-identifiability theorem
+    inputs:
+      - id: goal
+        from: ../goal
+      - id: datasets
+        from: ../datasets
+      - id: search_policy
+        from: ../search_policy
+      - id: proof_source
+        from: ../proof_source
+    outputs:
+      - id: theorem_package
+        type: report
+        format: markdown
+        inputs: [goal, datasets, search_policy, proof_source]
+        description: >-
+          Authored exact general proof at outputs/exact/proof.md, including
+          the zero branches, tensor membership proof and normalized rank-one
+          null construction. Finite replay is a separate implementation audit.
+        decisions: [latent_domain, vectorization, proof_standard]
+    decisions:
+      latent_domain:
+        label: Latent domain
+        rationale: The theorem quantifies over the complete declared vector space.
+        default: full_rational_space
+        options:
+          full_rational_space:
+            label: Every rational V by K matrix
+      vectorization:
+        label: Coordinate convention
+        rationale: The observation and target identities must share one frozen ordering.
+        default: column_major_p_kron_a
+        options:
+          column_major_p_kron_a:
+            label: Column-major vec with P kron A
+      proof_standard:
+        label: Universal evidence standard
+        rationale: Finite cases audit implementation but cannot prove a universal claim.
+        default: exact_general_proof
+        options:
+          exact_general_proof:
+            label: Exact general proof
+
+  exact_orientation_suite:
+    name: Replay fixed exact orientation and certificate cases
+    inputs:
+      - id: theorem_package
+        from: ../formal_theorem_derivation.theorem_package
+      - id: datasets
+        from: ../datasets
+      - id: search_policy
+        from: ../search_policy
+      - {id: fixed_inputs, from: ../fixed_inputs}
+      - {id: exact_runner, from: ../exact_runner}
+      - {id: component_checker, from: ../component_checker}
+      - {id: independent_checker, from: ../independent_checker}
+    outputs:
+      - id: orientation_report
+        type: report
+        format: json
+        inputs: [theorem_package, datasets, search_policy, fixed_inputs, exact_runner, component_checker, independent_checker]
+        decisions: [arithmetic, replay_scope, epistemic_role]
+        description: >-
+          outputs/exact/runs/attempt001/orientation_report.json. The attempt
+          locks the proof, fixed input suite and both implementation revisions
+          before any independent replay and preserves the input rejection cases.
+        recipe:
+          command: python3 outputs/exact/run_exact.py --phase orientation --run-dir outputs/exact/runs/attempt001
+          resources: {cpus: 1, memory: 1Gi, time_limit: 10m}
+    decisions:
+      arithmetic:
+        label: Arithmetic
+        default: exact_rational
+        options:
+          exact_rational:
+            label: Exact rational arithmetic
+      replay_scope:
+        label: Certificate replay scope
+        default: full_identities
+        options:
+          full_identities:
+            label: Observation, target, readout, and null-witness identities
+      epistemic_role:
+        label: Role of finite cases
+        default: implementation_audit
+        options:
+          implementation_audit:
+            label: Implementation audit only
+
+  independent_certificate_replay:
+    name: Independently replay the frozen theorem certificates
+    inputs:
+      - id: theorem_package
+        from: ../formal_theorem_derivation.theorem_package
+      - id: orientation_report
+        from: ../exact_orientation_suite.orientation_report
+      - id: search_policy
+        from: ../search_policy
+      - {id: fixed_inputs, from: ../fixed_inputs}
+      - {id: exact_runner, from: ../exact_runner}
+      - {id: independent_checker, from: ../independent_checker}
+    outputs:
+      - id: independent_replay_report
+        type: report
+        format: json
+        inputs: [theorem_package, orientation_report, search_policy, fixed_inputs, exact_runner, independent_checker]
+        decisions: [implementation_independence, failure_action, claim_boundary]
+        description: >-
+          outputs/exact/runs/attempt001/independent_replay_report.json. The
+          separately authored checker receives only input tuples, derives its
+          own decisions and certificates, and has no expected-label or
+          main-implementation input. Its certificates are replayed exactly.
+        recipe:
+          command: python3 outputs/exact/run_exact.py --phase independent --run-dir outputs/exact/runs/attempt001
+          resources: {cpus: 1, memory: 1Gi, time_limit: 10m}
+    decisions:
+      implementation_independence:
+        label: Replay implementation
+        default: separately_authored_checker
+        options:
+          separately_authored_checker:
+            label: Separately authored exact checker
+      failure_action:
+        label: Replay failure response
+        default: invalidate_and_repair
+        options:
+          invalidate_and_repair:
+            label: Invalidate the package and repair it
+      claim_boundary:
+        label: Meaning of replay agreement
+        default: transcription_and_orientation_check
+        options:
+          transcription_and_orientation_check:
+            label: Check transcription and orientation, not universal truth

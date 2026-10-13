@@ -1,0 +1,296 @@
+*** Begin Patch
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/conditioned_array_solver.py
+@@
+-Implicit midpoint and step doubling supply numerical consistency estimates,
++Explicitly selected midpoint or Radau IIA and partition doubling supply consistency estimates,
+ not certified waveform/circuit-error bounds. All states, including contact and
+@@
+ from analog_conditioning import ControlledVoltageDrives
++from conditioned_radau_step import radau_iia_step
+ from coupled_rc import NetworkInterval
+@@
+-    The midpoint method permits up to 12 explicitly selected refinements;
++    Either method permits up to 12 explicitly selected refinements;
+     iteration/product/deadline caps still apply across the complete attempt.
+     This does not change any caller's selected max_refinements or tolerances.
++    Midpoint remains the default. Radau's numerical dissipation is separately
++    reported and must satisfy the same original physical energy tolerance.
+@@
+     gmres_restart: int
+     max_workspace_bytes: int
++    integration_method: str = "midpoint"
+ 
+     def __post_init__(self):
+         super().__post_init__()
++        if self.integration_method not in ("midpoint", "radau_iia_2"):
++            raise ValueError("integration_method must be midpoint or radau_iia_2")
+@@
+     controlled_port_corrected_norton_dissipation_joule: float
+     energy_balance_residual_joule: float
++    # Historical field name retained for compatibility. For Radau this is
++    # the maximum accepted two-stage charge/voltage residual, not a midpoint.
+     maximum_scaled_midpoint_residual: float
+@@
+     time_varying_current_work_joule: float = 0.0
+     physical_noise_work_joule: tuple = (0.0, 0.0, 0.0, 0.0)
++    numerical_dissipation_joule: float = 0.0
++    integration_method: str = "midpoint"
+@@
+         the additional nodal-current power are integrated at every accepted
+-        internal midpoint and all participate in partition refinement.
++        internal midpoint, or both explicitly selected Radau stages, and all
++        participate in partition refinement. Radau additionally requires
++        evaluate_left/work_rates_left for the current interval's left-limit
++        endpoint; it never samples the next physical switch/charge interval.
+@@
+         if time_varying_forcing is not None and (not callable(getattr(time_varying_forcing, "evaluate", None))
+                 or not callable(getattr(time_varying_forcing, "work_rates", None))):
+             raise ValueError("time-varying forcing requires explicit evaluation and physical work methods")
++        use_radau = controls.integration_method == "radau_iia_2"
++        if (use_radau and time_varying_forcing is not None
++                and any(not callable(getattr(time_varying_forcing, name, None))
++                        for name in ("evaluate_left", "work_rates_left"))):
++            raise ValueError("Radau forcing requires current-interval left-limit methods")
+@@
+-        restart = min(controls.gmres_restart, size)
+-        workspace = 8 * ((restart + 40) * size + (restart + 1) * restart + 8 * restart)
+-        if time_varying_forcing is not None:
+-            # Owned additional current and combined base current, plus the
+-            # evaluated caller vector while it is copied. Coefficient storage
+-            # belongs to the separately bounded adapter, not this workspace.
+-            workspace += 8 * (3 * size + 10)
++        restart = min(controls.gmres_restart, 2 * size if use_radau else size)
++        if use_radau:
++            # This is the helper's current full 2N numeric bound, PLUS the
++            # simultaneously retained outer vectors. Both share ONE cap.
++            # Keep the helper term synchronized with conditioned_radau_step;
++            # its repeated admission is not a second allocation allowance.
++            workspace = 8 * ((restart + 80) * (2 * size) + (restart + 1) * restart
++                             + 12 * restart + 14 * 64 + 20)
++            if time_varying_forcing is not None:
++                workspace += 8 * (6 * size + 2 * 64)
++            workspace += 8 * (32 * size + 40)
++        else:
++            workspace = 8 * ((restart + 40) * size + (restart + 1) * restart + 8 * restart)
++            if time_varying_forcing is not None:
++                # Owned additional current and combined base current, plus the
++                # evaluated caller vector while it is copied. Coefficient storage
++                # belongs to the separately bounded adapter, not this workspace.
++                workspace += 8 * (3 * size + 10)
+@@
+         if (observation.shape[1] != size or observation.shape[0] < 1
+                 or not np.all(np.isfinite(observation.data))):
+             raise ValueError("finite observation matrix in full state basis required")
++        if use_radau:
++            # Observation temporaries join the same combined outer/helper
++            # budget. Sparse topology, C factor and forcing coefficients are
++            # already admitted separately; Python overhead remains RSS-bound.
++            workspace += 8 * (8 * observation.shape[0])
++            if workspace > controls.max_workspace_bytes:
++                raise SolverConvergenceError("Radau combined numeric-workspace limit exceeded")
+         feedthrough = _array("feedthrough_volts", feedthrough_volts, (observation.shape[0],))
+@@
+         counter = _Counter(controls, check)
+         capacitance = self._capacitance
++        radau_diagonal = conductance.diagonal() if use_radau else None
+@@
+         def propagate(parts):
+             voltage = start.copy()
+             mean, works = np.zeros(size), np.zeros(5 if time_varying_forcing is None else 10)
+             maximum_residual = 0.0
++            numerical_dissipation = 0.0
+             step = duration / parts
+@@
+             for index in range(parts):
+                 check()
+-                local_time = None if time_varying_forcing is None else duration * ((index + 0.5) / parts)
+-                if time_varying_forcing is not None and not 0.0 < local_time < duration:
+-                    raise SolverConvergenceError("unrepresentable internal midpoint time")
+-                voltage, middle, increments, residual_error = midpoint(voltage, step, local_time)
+-                mean += middle / parts
++                if use_radau:
++                    left = duration * (index / parts)
++                    right = duration if index + 1 == parts else duration * ((index + 1) / parts)
++                    local_step = right - left
++                    first_stage = left + local_step / 3.
++                    if not (0.0 <= left < first_stage < right <= duration):
++                        raise SolverConvergenceError("unrepresentable internal Radau stage times")
++                    step_result = radau_iia_step(capacitance=capacitance,
++                        factor_solve=self._factor.solve, passive_product=passive_product,
++                        passive_diagonal=radau_diagonal, controls=controls,
++                        counter=counter, check=check, old=voltage, current=current,
++                        controlled_drives=controlled_drives, step_seconds=local_step,
++                        stage_times=(first_stage, right), time_varying_forcing=time_varying_forcing)
++                    voltage, middle, increments = step_result.endpoint, step_result.mean, step_result.work_increments
++                    residual_error = step_result.maximum_scaled_residual
++                    numerical_dissipation += step_result.numerical_dissipation_joule
++                    mean += (local_step / duration) * middle
++                else:
++                    local_time = None if time_varying_forcing is None else duration * ((index + 0.5) / parts)
++                    if time_varying_forcing is not None and not 0.0 < local_time < duration:
++                        raise SolverConvergenceError("unrepresentable internal midpoint time")
++                    voltage, middle, increments, residual_error = midpoint(voltage, step, local_time)
++                    mean += middle / parts
+                 works += increments
+@@
+             if not np.all(np.isfinite(mean)) or not np.all(np.isfinite(works)):
+                 raise SolverConvergenceError("nonfinite accumulated interval quantities")
+-            return voltage, mean, works, maximum_residual
++            if not math.isfinite(numerical_dissipation) or numerical_dissipation < 0:
++                raise SolverConvergenceError("invalid accumulated numerical dissipation")
++            return voltage, mean, works, maximum_residual, numerical_dissipation
+ 
+-        coarse_end, coarse_mean, coarse_work, _ = propagate(1)
++        coarse_end, coarse_mean, coarse_work, _, _ = propagate(1)
++        failure_reason = "conditioned partition agreement exceeds declared tolerance"
+         for level in range(1, controls.max_refinements + 1):
+             parts = 2**level
+-            end, mean, work, maximum_residual = propagate(parts)
++            end, mean, work, maximum_residual, numerical_dissipation = propagate(parts)
++            failure_reason = "conditioned partition agreement exceeds declared tolerance"
+@@
+-                if (not all(math.isfinite(x) for x in (base_work, corrected_norton_heat, residual, energy_scale))
+-                        or abs(residual) > energy_scale):
+-                    raise SolverConvergenceError("midpoint energy identity exceeds declared tolerance")
++                if use_radau:
++                    corrected_residual = residual + numerical_dissipation
++                    if not all(math.isfinite(x) for x in (base_work, corrected_norton_heat, residual,
++                                                         energy_scale, corrected_residual)):
++                        raise SolverConvergenceError("nonfinite Radau energy bookkeeping")
++                    # Do not conceal numerical energy loss inside physical
++                    # heat or accept it by compensation. The unchanged raw
++                    # physical balance and Dnum BOTH use the original scale;
++                    # the corrected RK identity checks stage bookkeeping.
++                    if max(abs(residual), numerical_dissipation, abs(corrected_residual)) > energy_scale:
++                        failure_reason = "Radau energy balance or numerical dissipation exceeds declared tolerance"
++                        coarse_end, coarse_mean, coarse_work = end, mean, work
++                        continue
++                elif (not all(math.isfinite(x) for x in (base_work, corrected_norton_heat, residual, energy_scale))
++                        or abs(residual) > energy_scale):
++                    raise SolverConvergenceError("midpoint energy identity exceeds declared tolerance")
+@@
+                     buffer_shunt, corrected_norton_heat, residual, maximum_residual, counter.newton, counter.linear,
+-                    float(np.max(np.abs(work - coarse_work))), varying_work, physical_work)
++                    float(np.max(np.abs(work - coarse_work))), varying_work, physical_work,
++                    numerical_dissipation, controls.integration_method)
+@@
+-        raise SolverConvergenceError("conditioned partition agreement exceeds declared tolerance")
++        raise SolverConvergenceError(failure_reason)
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/cpe_array.py
+@@
+ from polynomial_circuit_forcing import PolynomialCircuitForcing
++from radau_polynomial_forcing import RadauPolynomialCircuitForcing
+ from conditioned_array_solver import ConditionedRCNetwork, ConditionedSolverControls
+@@
+         A NoisePolynomial additionally requires the absolute interval start and
+         joint conditioning. Its original support contains this whole interval;
+-        all internal solver midpoints use the same polynomial, with actual
+-        midpoint-state physical work. Held samples keep the previous path.
++        internal midpoint or explicitly selected Radau stages use that same
++        polynomial and their actual stage-state physical work. Radau's final
++        stage uses this interval's left limit before the next physical change.
++        Held samples keep their original physical representation.
+@@
+         if polynomial_noise:
+-            conditioning_arguments["time_varying_forcing"] = PolynomialCircuitForcing(noise_sample,
++            forcing_type = (RadauPolynomialCircuitForcing if controls.integration_method == "radau_iia_2"
++                            else PolynomialCircuitForcing)
++            conditioning_arguments["time_varying_forcing"] = forcing_type(noise_sample,
+                 interval_start_seconds=interval_start_seconds, duration_seconds=duration_seconds,
+@@
+         if polynomial_noise:
+             # Solver integrals use original-port amplitudes at actual internal
+-            # midpoints; a product of interval means would lose covariance.
++            # midpoint/Radau stage states; multiplying interval means would
++            # lose their covariance. Original physical work slots are unchanged.
+             current_noise_work, access_noise_work, field_correction, external_correction = result.physical_noise_work_joule
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/streaming_array_acquisition.py
+@@
+         self._energy_start = self._energy_end = None
+         self._accounting_complete = True
++        self._numerical_integration = None
+         self._work = dict.fromkeys(("field_source_boundary_work_joule", "supplied_charge_boundary_work_joule",
+@@
+-        return dict(attempt_complete=self._status == "complete", physical_time=self._physical_time,
++        report = dict(attempt_complete=self._status == "complete", physical_time=self._physical_time,
+@@
+             readout_accounting=self._readout.accounting(),
+             modeled_complete_device_power_watt=None)
++        if self._numerical_integration is not None:
++            report["numerical_integration"] = dict(self._numerical_integration)
++        return report
+ 
+     def _require_live(self):
+@@
+     def _account(self, result):
+         self._operators += result.kernel_interval.operator_products
+         self._max_error = max(self._max_error, result.kernel_interval.maximum_scaled_partition_error)
++        if getattr(result.kernel_interval, "integration_method", None) == "radau_iia_2":
++            # Only returned, committed electrical intervals enter this sum.
++            # It remains separate from every physical source-work/heat field.
++            if self._numerical_integration is None:
++                self._numerical_integration = dict(integration_method="radau_iia_2",
++                    returned_electrical_intervals=0, numerical_dissipation_joule=0.,
++                    complete_for_returned_intervals=True,
++                    scope="accepted_intervals_only_not_physical_heat_or_source_work")
++            try:
++                value = float(result.kernel_interval.numerical_dissipation_joule)
++                if not math.isfinite(value) or value < 0:
++                    raise ValueError("returned numerical dissipation must be finite and nonnegative")
++                total = math.fsum((self._numerical_integration["numerical_dissipation_joule"], value))
++                if not math.isfinite(total) or total < 0:
++                    raise ValueError("nonrepresentable accumulated numerical dissipation")
++                self._numerical_integration["numerical_dissipation_joule"] = total
++                self._numerical_integration["returned_electrical_intervals"] += 1
++            except BaseException:
++                self._numerical_integration["complete_for_returned_intervals"] = False
++                raise
+         if self._energy_start is None:
+@@
+                 readout_accounting=self._readout.accounting(),
+                 actual_DAQ_configuration_qualified=False, full_field_or_conversion_history_retained=False)
++            if self._numerical_integration is not None:
++                report["numerical_integration"] = dict(self._numerical_integration)
+             if self._noise_provider is not None:
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/development_simulation.py
+@@
+         self.failed_solver_seconds = 0.
+         self.accounting_complete = True
++        self._numerical_integration = None
+         self.sums = {key: _Sum() for key in (
+@@
+         self.last_energy = result.physical_energy_end_joule
+         try:
++            if getattr(result.kernel_interval, "integration_method", None) == "radau_iia_2":
++                # Same accepted-interval diagnostic as the streaming runner;
++                # numerical loss is never a physical heat/source-work entry.
++                if self._numerical_integration is None:
++                    self._numerical_integration = dict(integration_method="radau_iia_2",
++                        returned_electrical_intervals=0, numerical_dissipation_joule=0.,
++                        complete_for_returned_intervals=True,
++                        scope="accepted_intervals_only_not_physical_heat_or_source_work")
++                try:
++                    value = float(result.kernel_interval.numerical_dissipation_joule)
++                    if not math.isfinite(value) or value < 0:
++                        raise ValueError("returned numerical dissipation must be finite and nonnegative")
++                    total = math.fsum((self._numerical_integration["numerical_dissipation_joule"], value))
++                    if not math.isfinite(total) or total < 0:
++                        raise ValueError("nonrepresentable accumulated numerical dissipation")
++                    self._numerical_integration["numerical_dissipation_joule"] = total
++                    self._numerical_integration["returned_electrical_intervals"] += 1
++                except BaseException:
++                    self._numerical_integration["complete_for_returned_intervals"] = False
++                    raise
+             for key in ("field_source_boundary_work_joule", "supplied_charge_boundary_work_joule",
+@@
+     def accounting(self):
+-        return dict(**{key: value.value for key, value in self.sums.items()},
++        report = dict(**{key: value.value for key, value in self.sums.items()},
+@@
+                     scope=("declared_passive_circuit_storage_and_port_work_only"
+                            if self.analog_conditioning is None else
+                            "declared_conditioned_circuit_storage_and_port_work_not_supply_consumption"))
++        if self._numerical_integration is not None:
++            report["numerical_integration"] = dict(self._numerical_integration)
++        return report
+*** End Patch

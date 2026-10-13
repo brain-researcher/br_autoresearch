@@ -1,0 +1,134 @@
+{
+  "snapshot_result": {
+    "ok": true,
+    "run_id": "br_20261001_053007_beed42e3b1",
+    "run_dir": "/app/jobstore/mcp_runs/runs/br_20261001_053007_beed42e3b1",
+    "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+    "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+    "source_client": "codex",
+    "kind": "end",
+    "managed_run": true,
+    "status": "succeeded",
+    "snapshot": {
+      "goal": "Resume existing EP10 and native Goal within frozen scientific, access, resource and stopping contracts.",
+      "done": [
+        "Existing optional and timing attempts babysat to terminal TIMEOUT; three passing required QC cases and actual logs/accounting preserved durably.",
+        "Source-backed BR retrieval and focused review of existing permitted M1 result supports the current restricted interpretation; no decision or contract change.",
+        "Final conservative resource accounting and terminal handoff saved; unchanged multi-analysis ASTRA program and passing validation retained.",
+        "Concrete session_not_started snapshot error repaired by transparently late-recording the missing start event in the same BR run and session."
+      ],
+      "open": [
+        "Search incomplete before empirical M2; optional, scale and timing reports incomplete; no M2 valid trial or full-controller null replay launched.",
+        "Remaining strict wall budget14.167333h cannot reserve unchanged24hscale request.",
+        "Bundled human disposition unanswered; no fresh execution, successor or closed-outcome access authorized.",
+        "Legacy ASTRA exporter is lossy; no new complete export claimed."
+      ],
+      "next_command": "Await pending human disposition. No resubmission, stale-path rebinding, empirical M2 opening or successor launch.",
+      "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+      "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+      "source_client": "codex",
+      "run_id": "br_20261001_053007_beed42e3b1",
+      "source": "agent",
+      "tags": [
+        "ep10",
+        "standalone",
+        "terminal-producers",
+        "incomplete-search",
+        "human-resource-gate"
+      ],
+      "updated_at": "2026-10-01T13:17:16Z"
+    },
+    "progress": {
+      "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+      "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+      "source_client": "codex",
+      "source": "agent",
+      "managed_run": true,
+      "event_count": 5,
+      "last_event_id": "research_evt_0005",
+      "last_event_kind": "snapshot",
+      "last_event_at": "2026-10-01T13:17:16Z",
+      "events_path": "research_events.jsonl",
+      "note_count": 3,
+      "start_count": 1,
+      "snapshot_count": 1,
+      "snapshot_path": "session_snapshot.json"
+    },
+    "files": {
+      "research_events_jsonl": "research_events.jsonl",
+      "session_snapshot_json": "session_snapshot.json",
+      "trace_jsonl": "trace.jsonl",
+      "session_transcript_jsonl": "session_transcript.jsonl",
+      "conversation_log_jsonl": "conversation_log.jsonl",
+      "tool_trace_jsonl": "tool_trace.jsonl"
+    },
+    "_agent_directive": {
+      "research_logging": {
+        "protocol": "br.research_logging.directive.v1",
+        "state": {
+          "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+          "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+          "source_client": "codex",
+          "snapshot_required_on_close": false,
+          "session_closed": true,
+          "post_close_actions_available": true,
+          "note_policy": "optional_enrichment_only",
+          "server_mid_session_telemetry": true,
+          "transcript_capture_supported": true,
+          "external_trace_capture_supported": true,
+          "preferred_transcript_context_key": "transcript",
+          "preferred_trace_context_key": "external_trace_events"
+        },
+        "actions": [
+          {
+            "type": "bind_session",
+            "required": false,
+            "reason": "server_session_active",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "source_client": "codex"
+            }
+          },
+          {
+            "type": "prompt_post_session_actions",
+            "required": false,
+            "reason": "durable_session_summary_available",
+            "payload": {
+              "session_id": "codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "client_session_id": "01a0f492-d6d3-79c0-a4b3-992037a3b843",
+              "source_client": "codex",
+              "run_id": "br_20261001_053007_beed42e3b1",
+              "title": "Session closed",
+              "message": "Closeout is complete. Prompt the user to optionally generate a durable session summary.",
+              "requires_user_initiation": true,
+              "suggested_actions": [
+                {
+                  "id": "generate_durable_session_summary",
+                  "label": "Generate Session Summary",
+                  "description": "Generate durable trajectory summary artifacts for the completed session.",
+                  "tool_name": "generate_research_trajectory_and_insights",
+                  "arguments": {
+                    "run_id": "br_20261001_053007_beed42e3b1",
+                    "persist": true
+                  },
+                  "expected_artifacts": [
+                    "artifacts/summaries/research_trajectory_and_insights.json",
+                    "artifacts/summaries/research_trajectory_and_insights.md"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "initial_snapshot_error": "session_not_started",
+  "repair": {
+    "event_id": "research_evt_0004",
+    "kind": "transparently late-recorded missing start event",
+    "same_run_and_session": true
+  },
+  "scientific_status": "incomplete search at resource/human gate; BR logging success is not scientific success"
+}

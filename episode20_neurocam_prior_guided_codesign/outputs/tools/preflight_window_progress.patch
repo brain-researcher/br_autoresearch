@@ -1,0 +1,136 @@
+diff --git a/outputs/tools/streaming_array_acquisition.py b/outputs/tools/streaming_array_acquisition.py
+--- a/outputs/tools/streaming_array_acquisition.py
++++ b/outputs/tools/streaming_array_acquisition.py
+@@ -196,6 +196,9 @@
+     Numeric-byte limits exclude Python objects, the supplied array, readout
+     storage (separately capped), provider parameters and solver workspace.
+     ``check`` supplies the caller's deadline/cancellation guard; it is invoked
+     between finite operations and cannot interrupt an ongoing sparse solve.
++    Optional ``on_preflight_progress`` receives one owned scalar snapshot after
++    each window is closed and digested. It does not certify finalization or
++    electrical execution. Callback failures abort construction.
+     Do not advance or mutate the supplied array outside this attempt.
+     """
+@@ -202,7 +205,7 @@
+     def __init__(self, *, array, window_factory, field_provider, input_bindings,
+                  acquisition_window, final_publication_horizon, controls, limits,
+                  readout_limits, on_raw, on_observation, on_interval, check,
+-                 observation_nuisance=None, noise_provider=None):
++                 observation_nuisance=None, noise_provider=None, on_preflight_progress=None):
+         if (not isinstance(array, NeurocamCPEArray) or not isinstance(controls, SolverControls)
+                 or not isinstance(limits, StreamingArrayLimits)
+                 or not isinstance(readout_limits, StreamingReadoutLimits)):
+@@ -210,4 +213,6 @@
+         if any(not callable(value) for value in (window_factory, field_provider, on_raw, on_observation, on_interval, check)):
+             raise ValueError("explicit replayable factory, provider, sinks and deadline guard required")
++        if on_preflight_progress is not None and not callable(on_preflight_progress):
++            raise ValueError("preflight progress callback must be callable or None")
+         bounds = tuple(acquisition_window)
+         if len(bounds) != 2:
+@@ -242,6 +247,6 @@
+         self._zero_charge = np.zeros(len(array.state_ids))
+         self._zero_charge.flags.writeable = False
+         self._max_window_numeric_bytes = 0
+-        self._preflight(on_raw, on_observation)
++        self._preflight(on_raw, on_observation, on_preflight_progress)
+         self._physical_time, self._status, self._failure = start, "ready", None
+         self._iterator = iter(window_factory())
+@@ -365,3 +370,3 @@
+-    def _preflight(self, on_raw, on_observation):
++    def _preflight(self, on_raw, on_observation, on_preflight_progress=None):
+         cursor, digests, used = _PlanCursor(self._start), bytearray(), set()
+         dry = self._new_readout(validate_only=True, on_raw=lambda _: None, on_observation=lambda _: None)
+@@ -381,5 +386,13 @@
+             dry.close_window(window.index)
+             digests.extend(_window_digest(window, fields))
+             cursor = following
++            if on_preflight_progress is not None:
++                on_preflight_progress(dict(
++                    completed_windows=cursor.windows,
++                    physical_planning_frontier_seconds=cursor.time,
++                    physical_input_events=cursor.events,
++                    physical_fragments=cursor.fragments,
++                    split_intervals=cursor.splits,
++                    window_digest_bytes=len(digests)))
+         if not cursor.windows or cursor.time != self._end or used != set(self._bindings):
+             raise ValueError("the complete physical record and exact input bindings must be covered")
+diff --git a/outputs/tools/streaming_development_simulation.py b/outputs/tools/streaming_development_simulation.py
+--- a/outputs/tools/streaming_development_simulation.py
++++ b/outputs/tools/streaming_development_simulation.py
+@@ -34,5 +34,5 @@
+         final_publication_horizon, solver_controls, array_limits, readout_limits,
+         epsilon_input_volts, max_hold_intervals, max_hold_work, max_elements,
+         max_seconds, settings_reference, result_path, output_limits, noise_factory=None,
+-        execution_check=None, on_phase=None, preflight_only=False):
++        execution_check=None, on_phase=None, preflight_only=False, on_preflight_progress=None):
+     """Run the entire prescribed record once; persist terminal state or failure.
+@@ -58,5 +58,7 @@
+     Optional execution_check and on_phase callbacks expose the existing bounded
+     operations to an enclosing allocation budget and cost reporter. They do not
+     schedule work, change segmentation or advance physical state.
++    Optional on_preflight_progress receives completed-window planning counters
++    even if construction later fails; it does not replace final preflight status.
+ 
+     Explicit preflight_only retains the complete declared hold/readout plan but
+@@ -74,5 +76,5 @@
+     if any(callback is not None and not callable(callback)
+-           for callback in (execution_check, on_phase)):
+-        raise ValueError("execution and phase callbacks must be callable or None")
++           for callback in (execution_check, on_phase, on_preflight_progress)):
++        raise ValueError("execution, phase and preflight callbacks must be callable or None")
+     if type(preflight_only) is not bool:
+         raise ValueError("preflight_only must be an explicit boolean")
+@@ -170,6 +172,6 @@
+             on_observation=(lambda _: None) if preflight_only else writer.emit_observation,
+             on_interval=(lambda _: None) if preflight_only else writer.emit_interval,
+             check=check, observation_nuisance=nuisance,
+-            noise_provider=noise)
++            noise_provider=noise, on_preflight_progress=on_preflight_progress)
+         if preflight_only:
+             check()
+diff --git a/outputs/tools/run_conditional_preflight_cost.py b/outputs/tools/run_conditional_preflight_cost.py
+--- a/outputs/tools/run_conditional_preflight_cost.py
++++ b/outputs/tools/run_conditional_preflight_cost.py
+@@ -50,7 +50,18 @@
+     phase_started = started
+     timings, diagnostics = {}, {}
+     allocation = noise = result = failure = None
++    last_preflight_progress = None
+     next_progress = next_rss = 0.
+ 
++    def retain_preflight_progress(snapshot):
++        nonlocal last_preflight_progress
++        last_preflight_progress = dict(
++            completed_windows=snapshot["completed_windows"],
++            physical_planning_frontier_seconds=snapshot["physical_planning_frontier_seconds"],
++            physical_input_events=snapshot["physical_input_events"],
++            physical_fragments=snapshot["physical_fragments"],
++            split_intervals=snapshot["split_intervals"],
++            window_digest_bytes=snapshot["window_digest_bytes"])
++
+     def check():
+         nonlocal next_progress, next_rss
+@@ -65,5 +76,6 @@
+         if now >= next_progress:
+             print(json.dumps(dict(event="preflight_progress", phase=phase,
+                 elapsed_seconds=elapsed,
++                preflight_window_progress=last_preflight_progress,
+                 peak_rss_kib=int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))), flush=True)
+             next_progress = now + 60.
+@@ -191,6 +203,7 @@
+             max_elements=2000000, max_seconds=WORK_SECONDS - (time.monotonic() - started),
+             settings_reference=str(run_dir / "settings.json"), result_path=None,
+             output_limits=unused_output_limits, noise_factory=noise_factory,
+-            execution_check=check, on_phase=set_phase, preflight_only=True)
++            execution_check=check, on_phase=set_phase, preflight_only=True,
++            on_preflight_progress=retain_preflight_progress)
+         check()
+         if result["status"] != "preflight_complete":
+@@ -219,5 +232,6 @@
+         peak_rss_kib=int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss),
+         timings_seconds=timings, diagnostics=diagnostics, wrapper=result,
+-        partial_preflight_count_scope="constructor_summary_available_only_after_complete_preflight",
++        preflight_window_progress=last_preflight_progress,
++        partial_preflight_count_scope="completed_preflight_windows_only_not_electrical_execution",
+         writer_created=False, electrical_execution_selected=False, full_record_completed=False,
+         raw_conversion_records_produced=0, observations_produced=0,

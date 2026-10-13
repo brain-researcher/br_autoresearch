@@ -1,0 +1,248 @@
+"""Measure the original full 16-second EP20 plan without electrical execution.
+
+Only saved B2/2001 and the original attempt002 noise draw are used. An owned
+spectral basis and exact original clock replace repeated polynomial expansion
+during preflight. The complete hold, field, readout and dependency checks remain.
+No writer, analog advance, waveform output, reference fit or candidate score is
+selected. A completed preflight is not a completed scientific forward result.
+"""
+import argparse
+from dataclasses import asdict
+import json
+import os
+from pathlib import Path
+import resource
+import signal
+import sys
+import time
+
+
+EPISODE_ROOT = Path(__file__).resolve().parents[2]
+WORLD_PATH = EPISODE_ROOT / "outputs/runs/development_worlds_job_47085635/panel/development_worlds.h5"
+NOISE_PATH = EPISODE_ROOT / "outputs/runs/model_specification/conditional_forward_cost_attempt002/conditional_noise_draw.npz"
+WORK_SECONDS = 6000.
+OUTER_SECONDS = 6100.
+MAX_RSS_KIB = 13 * 1024**2 // 2
+BINDING_NUMERIC_BYTES = 512 * 1024**2
+
+
+def _write_json(path, value):
+    encoded = json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n"
+    if len(encoded.encode("utf-8")) > 4 * 1024**2:
+        raise ValueError("preflight settings/report exceeds its four MiB bound")
+    with path.open("x", encoding="utf-8") as stream:
+        stream.write(encoded)
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def main(argv=None):
+    started = time.monotonic()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    args = parser.parse_args(argv)
+    run_dir = args.run_dir.resolve()
+    if (not run_dir.is_relative_to(EPISODE_ROOT / "outputs/runs") or not run_dir.is_dir()
+            or any((run_dir / name).exists() for name in ("settings.json", "preflight_cost_report.json"))):
+        raise RuntimeError("supply a fresh existing episode run directory; outputs are exclusive")
+
+    phase = "execution boundary"
+    phase_started = started
+    timings, diagnostics = {}, {}
+    allocation = noise = result = failure = None
+    last_preflight_progress = None
+    next_progress = next_rss = 0.
+
+    def retain_preflight_progress(snapshot):
+        nonlocal last_preflight_progress
+        last_preflight_progress = dict(
+            completed_windows=snapshot["completed_windows"],
+            physical_planning_frontier_seconds=snapshot["physical_planning_frontier_seconds"],
+            physical_input_events=snapshot["physical_input_events"],
+            physical_fragments=snapshot["physical_fragments"],
+            split_intervals=snapshot["split_intervals"],
+            window_digest_bytes=snapshot["window_digest_bytes"])
+
+    def check():
+        nonlocal next_progress, next_rss
+        now = time.monotonic()
+        elapsed = now - started
+        if elapsed >= WORK_SECONDS:
+            raise TimeoutError("6000-second inclusive setup and full-preflight deadline reached")
+        if now >= next_rss:
+            if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss > MAX_RSS_KIB:
+                raise MemoryError("preflight exceeds the unchanged 6.5 GiB peak-RSS bound")
+            next_rss = now + .5
+        if now >= next_progress:
+            print(json.dumps(dict(event="preflight_progress", phase=phase,
+                elapsed_seconds=elapsed,
+                preflight_window_progress=last_preflight_progress,
+                peak_rss_kib=int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))), flush=True)
+            next_progress = now + 60.
+
+    def set_phase(value):
+        nonlocal phase, phase_started
+        now = time.monotonic()
+        timings[phase] = timings.get(phase, 0.) + now - phase_started
+        phase, phase_started = str(value), now
+        check()
+
+    def interrupt(signum, frame):
+        raise TimeoutError(f"bounded preflight interrupted by signal {signum}")
+
+    previous_alarm = signal.signal(signal.SIGALRM, interrupt)
+    previous_term = signal.signal(signal.SIGTERM, interrupt)
+    signal.setitimer(signal.ITIMER_REAL, max(.001, WORK_SECONDS - (time.monotonic() - started)))
+    try:
+        # This import contains only standard-library definitions. Payload and
+        # numerical imports follow verification of this exact execution shell.
+        from run_conditional_forward_cost import _compute_context
+        allocation = _compute_context()
+        if os.environ.get("BLIS_NUM_THREADS") != "1":
+            raise RuntimeError("BLIS_NUM_THREADS must also be 1 before numerical imports")
+        set_phase("scientific imports")
+        from conditional_acquisition_recipe import (acquisition_recipe_metadata,
+            build_conditional_frontend, build_conditional_schedule, CYCLE_COUNT,
+            CYCLE_TICKS, SLOT_TICKS, HALF_MICROSECOND_TICKS_PER_SECOND)
+        from conditional_forward_recipe import (build_conditional_circuit_parameters,
+            build_conditional_noise, expected_state_ids, metadata)
+        from conditioned_array_solver import ConditionedSolverControls
+        from development_simulation import load_saved_development_world
+        from frozen_cubic_noise_binding import (FrozenOriginalCellClock,
+            FrozenCubicNoiseBinding, bind_frozen_cubic_noise)
+        from streaming_acquisition_readout import StreamingReadoutLimits
+        from streaming_array_acquisition import StreamingArrayLimits
+        from streaming_development_simulation import run_streaming_development_simulation
+
+        clock = FrozenOriginalCellClock(CYCLE_COUNT, CYCLE_TICKS, SLOT_TICKS,
+            HALF_MICROSECOND_TICKS_PER_SECOND)
+        if asdict(clock) != dict(cycle_count=4000, cycle_ticks=8000,
+                slot_ticks=5, ticks_per_second=2000000):
+            raise ValueError("preflight must retain the original complete 16-second clock")
+        solver = ConditionedSolverControls(relative_tolerance=1e-5, voltage_atol=1e-8,
+            charge_atol_coulomb=1e-20, max_refinements=8, max_operator_products=200000,
+            linear_relative_tolerance=1e-9, linear_charge_atol_coulomb=1e-22,
+            energy_atol_joule=1e-18, max_newton_iterations=12,
+            max_linear_iterations=10000, gmres_restart=40, max_workspace_bytes=512 * 1024**2)
+        array_limits = StreamingArrayLimits(max_windows=4000, max_input_bindings=24,
+            max_physical_events=40000000, max_total_fragments=40000000,
+            max_window_fragments=200000, max_split_intervals=40000000,
+            max_window_split_intervals=200000, max_stored_window_numeric_bytes=128 * 1024**2,
+            max_window_digest_bytes=4000 * 32, max_total_operator_products=1000000000)
+        readout_limits = StreamingReadoutLimits(max_conversions=104000000,
+            max_returned_samples=104000000, max_observations=17984000,
+            max_interval_updates=40000000, max_windows=4000,
+            max_live_conversions=52000, max_live_returned_samples=52000,
+            max_live_observations=9000, max_stored_plan_numeric_bytes=64 * 1024**2,
+            max_accounting_categories=32)
+        # Existing wrapper contract retains these limits; this mode neither
+        # constructs a writer nor reserves/materializes this output payload.
+        unused_output_limits = dict(max_payload_bytes=24 * 1024**3, max_records=212736000,
+            buffer_records=8192, identifier_bytes=64, max_dependencies_per_observation=3)
+        settings = dict(scope="original_full_16_second_plan_preflight_cost_only",
+            allocation=allocation, electrical=metadata(), acquisition=dict(acquisition_recipe_metadata()),
+            full_duration_seconds=16., world_path=str(WORLD_PATH),
+            world_selection=dict(condition_id="B2", replicate_seed=2001),
+            reused_noise_path=str(NOISE_PATH), original_noise_realization_reused=True,
+            frozen_original_clock=asdict(clock), require_owned_cubic_binding=True,
+            binding_numeric_peak_limit_bytes=BINDING_NUMERIC_BYTES,
+            solver_controls=asdict(solver), solver_invoked=False,
+            array_limits=asdict(array_limits), readout_limits=asdict(readout_limits),
+            field_hold_absolute_tolerance_volts=1e-8,
+            noise_current_hold_absolute_tolerance_amp=1e-12,
+            noise_voltage_hold_absolute_tolerance_volts=1e-8,
+            max_hold_intervals=40000000, max_hold_work=100000000,
+            max_spectral_evaluations=200000000, max_spectral_term_evaluations=200000000000000,
+            max_elements=2000000, world_numeric_bytes_limit=64 * 1024**2,
+            world_metadata_bytes_limit=1024**2, inclusive_work_seconds=WORK_SECONDS,
+            outer_timeout_seconds=OUTER_SECONDS, maximum_peak_rss_kib=MAX_RSS_KIB,
+            writer_created=False, electrical_execution_selected=False,
+            calibrated_reference=False, candidate_scored=False, autonomous_retry=False)
+        set_phase("retaining settings")
+        _write_json(run_dir / "settings.json", settings)
+        set_phase("loading exactly saved B2 seed 2001")
+        world = load_saved_development_world(WORLD_PATH, condition_id="B2", replicate_seed=2001,
+            max_elements=2000000, max_array_bytes=64 * 1024**2,
+            max_metadata_bytes=1024**2, check=check)
+        set_phase("constructing full circuit parameters and original acquisition schedule")
+        frontend = build_conditional_frontend()
+        parameters = build_conditional_circuit_parameters(daq_frontend=frontend, check=check)
+        schedule = build_conditional_schedule(frontend, state_ids=expected_state_ids(), check=check)
+        if schedule.acquisition_window != (0., 16.):
+            raise ValueError("preflight must retain the complete original physical record")
+
+        def noise_factory(*, array, check):
+            nonlocal noise
+            if array.state_ids != expected_state_ids() or len(array.state_ids) != 69848:
+                raise ValueError("preflight must retain all 69,848 original circuit states")
+            diagnostics["assembly_resources"] = asdict(array.resources)
+            set_phase("original noise replay and owned spectral-clock binding")
+            noise = build_conditional_noise(array=array, check=check, retained_draw_path=None,
+                current_hold_tolerance_amp=1e-12, voltage_hold_tolerance_volts=1e-8,
+                max_evaluations=200000000, max_term_evaluations=200000000000000,
+                reuse_draw_path=NOISE_PATH, cubic_cell_for_key=clock)
+            diagnostics["spectral_before_binding"] = noise.spectrum.accounting()
+            # Binding precedes the first polynomial, with this same clock
+            # object. Unsupported/fallback providers are not admitted here.
+            noise = bind_frozen_cubic_noise(noise, clock=clock,
+                max_numeric_bytes=BINDING_NUMERIC_BYTES, check=check)
+            if type(noise) is not FrozenCubicNoiseBinding:
+                raise RuntimeError("owned cubic binding unavailable; exhaustive spectral replay not selected")
+            diagnostics["owned_binding_confirmed"] = True
+            diagnostics["physical_noise"] = dict(noise.metadata)
+            return noise
+
+        set_phase("full-record preflight wrapper")
+        result = run_streaming_development_simulation(world=world, geometry_id="G0", short_axis="x",
+            circuit_parameters=parameters, physical_actions=schedule.physical_action_factory,
+            readout_window_factory=schedule.readout_window_factory, input_bindings=schedule.input_bindings,
+            acquisition_window=schedule.acquisition_window,
+            final_publication_horizon=schedule.final_publication_horizon,
+            solver_controls=solver, array_limits=array_limits, readout_limits=readout_limits,
+            epsilon_input_volts=1e-8, max_hold_intervals=40000000, max_hold_work=100000000,
+            max_elements=2000000, max_seconds=WORK_SECONDS - (time.monotonic() - started),
+            settings_reference=str(run_dir / "settings.json"), result_path=None,
+            output_limits=unused_output_limits, noise_factory=noise_factory,
+            execution_check=check, on_phase=set_phase, preflight_only=True,
+            on_preflight_progress=retain_preflight_progress)
+        check()
+        if result["status"] != "preflight_complete":
+            failure = result.get("failure") or dict(phase=phase,
+                exception_type="IncompletePreflight", message="full original plan did not complete preflight")
+        elif (not result["covers_full_16_second_record"] or result["electrical_state_advanced"]
+                or result["full_record_completed"] or result["output"] is not None
+                or result["preflight"]["windows"] != 4000):
+            raise RuntimeError("preflight result violated full-record or no-execution boundary")
+    except BaseException as error:
+        failure = dict(phase=phase, exception_type=type(error).__name__, message=str(error)[:1000])
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous_alarm)
+        signal.signal(signal.SIGTERM, previous_term)
+
+    elapsed = time.monotonic() - started
+    timings[phase] = timings.get(phase, 0.) + time.monotonic() - phase_started
+    if noise is not None:
+        diagnostics["spectral_after"] = noise.spectrum.accounting()
+        diagnostics["physical_noise"] = dict(noise.metadata)
+    complete = failure is None and result is not None and result["status"] == "preflight_complete"
+    report = dict(status="preflight_complete" if complete else "preflight_failed",
+        phase=phase, failure=failure, allocation=allocation, elapsed_seconds_before_report=elapsed,
+        inclusive_work_seconds=WORK_SECONDS, outer_timeout_seconds=OUTER_SECONDS,
+        peak_rss_kib=int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss),
+        timings_seconds=timings, diagnostics=diagnostics, wrapper=result,
+        preflight_window_progress=last_preflight_progress,
+        partial_preflight_count_scope="completed_preflight_windows_only_not_electrical_execution",
+        writer_created=False, electrical_execution_selected=False, full_record_completed=False,
+        raw_conversion_records_produced=0, observations_produced=0,
+        calibrated_reference=False, candidate_scored=False,
+        scope="full_original_plan_preflight_cost_not_scientific_forward_result")
+    _write_json(run_dir / "preflight_cost_report.json", report)
+    print(json.dumps(dict(event="preflight_terminal", status=report["status"], phase=phase,
+        elapsed_seconds=time.monotonic() - started,
+        report=str(run_dir / "preflight_cost_report.json"))), flush=True)
+    return 0 if complete else 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

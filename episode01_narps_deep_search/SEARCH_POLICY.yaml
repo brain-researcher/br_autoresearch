@@ -1,8 +1,84 @@
-policy_version: 6
-policy_id: ep01_narps_cognitive_estimands_v6
+policy_version: 7
+policy_id: ep01_narps_cognitive_estimands_v7_real_behavior_priority
 episode_id: ep01
-evidence_mode: behavioral_recovery_then_cross_run_prediction_then_controlled_fmri_factorial_then_many_team_estimand_audit
+evidence_mode: exploratory_real_behavior_now_with_original_mechanism_and_neural_gates_deferred
 scientific_focus: cognitive_estimand_ambiguity_in_neural_loss_aversion_maps
+
+saved_score_followup:
+  adopted_date: 2026-10-06
+  authority: scientist_requested_further_analysis_of_current_episodes
+  analysis_id: exploratory_observed_model_contrasts
+  source: outputs/runs/exploratory_observed_behavior/20261005-closeout-46651952/observed_behavior_summary.json
+  models: [M0, MV, MZ, MC, MVZ, MVC]
+  comparisons: all_15_unique_pairs_with_all_108_participants
+  summaries: [equal_participant_mean, paired_SE, median, sign_counts, EI_ER_means, deterministic_leave_one_participant_out_mean_range]
+  evidence: post_hoc_exposed_development_description
+  new_fits_or_likelihoods_or_resampling: false
+  mechanism_or_superiority_claim: false
+  resource: single_CPU_at_most_120_seconds_inside_substantive_EP14_parent
+  accounting: included_once_in_EP14_parent_not_charged_twice
+
+exploratory_real_behavior:
+  authorized_date: 2026-10-05
+  authority: explicit_scientist_direction_to_stop_simulation_expansion_and_prioritize_actual_data
+  analysis_id: exploratory_observed_behavior
+  recovery_gate_passed: false
+  further_simulation_or_repair_launches: prohibited_under_this_branch
+  source: outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz
+  participants: 108
+  task_versions: {EI: 54, ER: 54}
+  trials: 27648
+  descriptive_outputs:
+    - four_response_categories_plus_misses
+    - acceptance_rejection_and_miss_rates
+    - responded_rt_quantiles_10_50_90_by_choice
+    - participant_run_summaries
+    - original_gain_loss_grid_by_task_version
+  models: [M0, MV, MZ, MC, MVZ, MVC]
+  rival: fixed
+  implementation: outputs/code/behavioral_implementation.json
+  implementation_version: 6
+  maximum_sweeps: 500
+  primary_directions:
+    - {train: [1, 4], score: [2, 3]}
+    - {train: [2, 3], score: [1, 4]}
+  individual_and_population_fitting: training_responses_only
+  score: joint_mode_plugin_choice_rt_deadline_log_density
+  participant_denominator: 256
+  participant_weighting: equal
+  comparisons: complete_models_and_paired_differences_from_M0
+  summaries: [participant_mean, participant_SE, participant_median, EI_mean, ER_mean]
+  comparable_model_requires: both_primary_directions_all_108_participants
+  numerical_failures: unavailable_without_cohort_filtering_or_model_substitution
+  support_contacts: report
+  descriptions_open_heldout_to_analyst: true
+  freeze_code_and_report_before_outcome_access: true
+  post_exposure_retuning: prohibited
+  interpretation: exploratory_within_session_prediction_not_mechanism_recovery_or_confirmation
+  logistic_benchmark: registered_but_unimplemented_in_this_first_report_disclose_absence
+  deferred_original_claim_requirements:
+    - recovery_and_interval_calibration
+    - logistic_urgency_nonlinear_and_ordinal_benchmarks
+    - alternate_splits_and_superiority_thresholds
+  original_failed_mechanism_replacement_ban: remains_binding_for_original_mechanism_claim_not_this_separate_exploratory_report
+  joint_z_c_models: closed
+  bold_and_team_map_access: not_opened_by_this_amendment
+  compute:
+    first_attempt: M0_direction_0_actual_data_runtime_pilot
+    description_cap_seconds: 120
+    fit_cap_seconds: 1800
+    cpus_per_fit: 4
+    memory_per_fit: 8GiB
+    maximum_model_direction_attempts: 12
+    pilot_parent_walltime_minutes: 40
+    remaining_dispatch: three_parallel_four_cpu_packs_after_measured_short_pilot
+    remaining_packs:
+      - {indices: [1, 2, 3, 4, 5], walltime_minutes: 155}
+      - {indices: [6, 7, 8, 9], walltime_minutes: 125}
+      - {indices: [10, 11], walltime_minutes: 65}
+    closeout_parent: {maximum_count: 1, cpus: 1, memory: 4GiB, walltime_minutes: 10}
+    maximum_reserved_core_hours_including_setup: 29
+    automatic_retries_sweep_increases_or_extensions: prohibited
 
 current_status:
   scientific_design_rewritten: true
@@ -10,11 +86,13 @@ current_status:
   local_participant_assets_observed: true
   curated_many_team_archive_observed: true
   behavioral_recovery_run: false
-  behavioral_observed_fit_run: false
+  behavioral_observed_fit_run: true
   fmri_design_simulation_run: false
   fmri_observed_fit_run: false
   team_projection_run: false
-  scientific_result: none
+  # Completed authorized branch: experiment_log 2026-10-05 19:18 UTC and
+  # 2026-10-06 exploratory_observed_model_contrasts; original gates unchanged.
+  scientific_result: exploratory_observed_behavior_prediction_and_saved_score_contrasts_complete_no_mechanism_or_neural_claim
 
 retired_directions:
   multiscale_smoothing:
@@ -588,8 +666,14 @@ inference:
 work_program:
   - id: public_asset_qualification
     action: freeze_original_event_bold_team_map_and_method_metadata_semantics
+  - id: exploratory_observed_behavior
+    action: describe_real_choices_rt_misses_and_compare_frozen_training_only_fixed_bound_predictions
+    prerequisite: existing_qualified_original_events
+    recovery_prerequisite: none_for_exploratory_description_and_prediction
+    opens_mechanism_or_neural_claim: false
   - id: behavioral_mechanism_kill_test
     action: recover_candidate_models_and_predict_heldout_choice_rt_and_deadlines
+    execution: further_simulation_work_stopped_by_scientist_2026_10_05
   - id: fmri_design_identifiability
     action: simulate_actual_design_efficiency_and_separability_for_all_fixed_arms
   - id: fmri_split_first_level

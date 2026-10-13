@@ -1,0 +1,29 @@
+{
+  "record_role": "scientist_authorized_bounded_regular_neural_steward_export",
+  "recorded_on": "2026-09-30",
+  "scientist_response": "agree, go",
+  "approved": true,
+  "purpose": "regular_neural_steward_export",
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 4,
+    "minutes": 720,
+    "gpus": 0,
+    "durable_bytes": 10000000000,
+    "scratch_bytes": 10000000000
+  },
+  "approved_proposal": "outputs/steward_provisioning/proposed_regular_neural_export_2026-09-30.md",
+  "measurement_amendment": "outputs/protocol_provider_beta_amendment_2026-09-30.yaml",
+  "opaque_mixed_stream_traversal_permitted": true,
+  "allow_ood_arrays": false,
+  "allow_fitting": false,
+  "allow_scoring": false,
+  "destination": "outputs/steward_provisioning/regular_neural_sealed/",
+  "structural_output": "outputs/steward_provisioning/regular_neural_structural_report.json",
+  "scratch": "$SCRATCH/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/neural-export-$SLURM_JOB_ID/",
+  "protocol_lock_or_empirical_launch_authorized": false,
+  "successor_authorized": false,
+  "job_claim": "outputs/steward_provisioning/regular_neural_export_job_claim.json",
+  "single_job_and_stop": "one job; timeout/caps stop; no automatic extension or duplicate/resubmission"
+}

@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH --job-name=ep02-role-mat
-#SBATCH --account=russpold
 #SBATCH --partition=normal
 #SBATCH --time=00:30:00
 #SBATCH --cpus-per-task=1

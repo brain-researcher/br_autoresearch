@@ -1,0 +1,24 @@
+{
+  "scope": "Prospective source-only crosswalk and raw human-feature preparation; not a complete model feature record",
+  "source_snapshot": "things_metadata_osf_jum2f_20260922",
+  "identity_table": "concepts-metadata_things.tsv",
+  "identity_key": "uniqueID",
+  "property_table": "property-ratings.tsv",
+  "property_columns": [
+    "property_manmade_mean", "property_precious_mean", "property_lives_mean",
+    "property_heavy_mean", "property_natural_mean", "property_moves_mean",
+    "property_grasp_mean", "property_hold_mean", "property_be-moved_mean",
+    "property_pleasant_mean", "property_arousal_mean", "size_mean"
+  ],
+  "property_rationale": "Retain all ten named nondeprecated object-property means, the corrected follow-up arousal mean, and perceived size mean. Preserve recorded units; no worker-level responses, response times or rating counts become predictors.",
+  "category_table": "category53_wide-format.tsv",
+  "category_rule": "All 53 provider broad-category membership columns, preserving multiple memberships. No 27-category scheme, reference-category dropping or concept-identity one-hot encoding.",
+  "category_rationale": "One explicit current provider taxonomy supplies the required human-category feature family and a prospective broad-category identity crosswalk.",
+  "deprecated_sources_used": false,
+  "missing_source_value_rule": "Retain as missing and report exact affected concept/field keys; do not impute or exclude concepts in this source preparation.",
+  "scaling_in_this_pass": "none",
+  "downstream_imputation_rule": "unresolved_if_missingness_is_observed; freeze before EEG use",
+  "downstream_scaling_and_PCA": "Fit inside training folds under the existing policy; no full-cohort or held-out fitted transform is produced here",
+  "concept_name_embedding_recipe": "not yet selected; retain provider Word and WordContext for a later explicit naming rule",
+  "image_features_or_EEG_used": false
+}

@@ -1,0 +1,657 @@
+version: "0.0.14"
+id: episode12_malecns_type_sufficiency
+name: EP12 — Reproducible wiring and the circuit consequence of type averaging
+description: >-
+  Preserved experiment program for the outgoing T/U/M study. The program
+  separates method qualification, development-only search, registered
+  falsifiers, full-search null calibration, and the one-shot final evaluation.
+  The paper additionally has a scientific co-primary circuit-consequence
+  question, planned as a separate selected/frozen round in outputs/paper_plan.md.
+  That round has no frozen support/margins, selected external source, runnable
+  recipes or executed findings here; its future program must be added after
+  those scientific choices are fixed. Existing outgoing experiment nodes,
+  recipes, data roles and operative decisions are unchanged by the paper design.
+  Runtime state and Slurm attempts are recorded in outputs/experiment_log.md;
+  this file grants no data-access or resource authorization.
+  On October 6 the scientist adopted the original T/U/M closeout as incomplete
+  under expired execution and qualification limits. The separate completed
+  observed description and figure are retained; no successor is selected.
+tags: [brain_researcher, autoresearch, malecns, connectivity, experiment_program]
+
+inputs:
+  - id: goal
+    type: data
+    source: GOAL.md
+    description: Scientific question, evidence requirements, and access boundary.
+  - id: datasets
+    type: data
+    source: DATASETS.md
+    description: MaleCNS source and development/final role contract.
+  - id: search_policy
+    type: data
+    source: SEARCH_POLICY.yaml
+    description: Adaptive grammar, falsifiers, stopping rules, and null program.
+  - id: scientific_contract
+    type: data
+    source: outputs/executor/SCIENTIFIC_CONTRACT_POST36_V3.yaml
+    description: Frozen common likelihood and T/U/M comparison contract.
+  - id: qualification_spec
+    type: data
+    source: outputs/executor/SYNTHETIC_QUALIFICATION_SPEC_POST36_V3.yaml
+    description: Generated counterexamples and operating-characteristic gates.
+  - id: executor_source
+    type: data
+    source: outputs/executor
+    description: Episode-specific implementation and tests.
+  - id: development_sources
+    type: data
+    source: inputs
+    description: Read-only MaleCNS source declarations; final focal profiles remain sealed.
+
+decisions:
+  continuous_reference_law:
+    label: Continuous reference law
+    rationale: >-
+      U must be a real low-dimensional alternative to discrete grouping. The
+      accepted interpretation follows the predeclared rank-at-most-two linear
+      manifold and one-dimensional smooth cubic curve.
+    default: pure_bounded_manifolds
+    options:
+      pure_bounded_manifolds:
+        label: Pure bounded manifolds
+      ambient_residual_tube:
+        label: Add ambient residual tube
+        excluded: true
+        excluded_reason: Not authorized by the frozen U definitions and changes M-minus-U.
+  generated_coverage_target:
+    label: Generated-data interval target
+    rationale: >-
+      Qualification targets the expected gain of the complete finite fitting,
+      selection, and scoring procedure over fresh generated whole types.
+    default: infinite_design_finite_procedure_gain
+    options:
+      infinite_design_finite_procedure_gain:
+        label: Infinite-design finite-procedure gain
+      finite_generated_bank:
+        label: Fixed finite generated bank
+        excluded: true
+        excluded_reason: Would unnecessarily narrow the qualification claim to an arbitrary bank.
+      population_optimal_kl:
+        label: Population-optimal KL gap
+        excluded: true
+        excluded_reason: Does not match the finite fitting and selection procedure being qualified.
+
+outputs:
+  - id: episode_terminal_report
+    from: terminal_report.terminal_report
+
+analyses:
+  observed_outgoing_description:
+    name: Describe within-type outgoing variation in the already-open development data
+    inputs:
+      - {id: policy, from: ../search_policy}
+      - {id: specification, type: data, source: outputs/paper_plan.md}
+      - {id: materialization, type: data, source: outputs/development_run001/materialization/development_materialization.json}
+      - {id: roles, type: data, source: outputs/prelaunch/source_preflight/annotation_role_manifest.json}
+      - {id: snapshot, type: data, source: "$SCRATCH/br_autoresearch/episode12_malecns_type_sufficiency/development_snapshot_v1"}
+      - {id: implementation, type: data, source: outputs/tools/summarize_observed_outgoing.py}
+      - {id: command, type: data, source: outputs/tools/observed_outgoing_description01.sbatch}
+    outputs:
+      - id: descriptive_tables
+        type: report
+        format: directory
+        inputs: [policy, specification, materialization, roles, snapshot, implementation, command]
+        description: >-
+          One sparse pass over the already-open816 development types and84735
+          neurons, retaining all11771 partner bins. All1632type-side rows and
+          816bilateral rows report support/zero mass, neuron-equal mean TV to
+          own side centroid and TV between side centroids. Undefined compositions
+          remain explicit. This is in-sample single-fly description, with self
+          included in its side centroid and connectivity-informed provider types;
+          no prediction, subtype, circuit or population claim. Original expired
+          search and generated qualification are not resumed; incoming and204
+          final focal types remain closed. A tiny closed-form check and source
+          identity/role checks run in the substantive allocation. Missing source,
+          numerical failure or deadline stops without retry/rematerialization.
+          OneCPU4Gi30m, internal1680s, zeroGPU, at most0.5additionalCPUh.
+        recipe:
+          command: sbatch outputs/tools/observed_outgoing_description01.sbatch
+          resources: {cpus: 1, memory: 4Gi, time_limit: 30m}
+  observed_outgoing_figure:
+    name: Display every completed development outgoing description
+    inputs:
+      - {id: tables, from: ../observed_outgoing_description.descriptive_tables}
+      - {id: implementation, type: data, source: outputs/tools/plot_observed_outgoing_description.py}
+      - {id: command, type: data, source: outputs/tools/render_observed_outgoing_description.sh}
+    outputs:
+      - id: complete_table_figure
+        type: report
+        format: directory
+        inputs: [tables, implementation, command]
+        description: >-
+          PNG/SVG and caption for all816 types and1632 type-side rows from the
+          completed description01 tables. Show within-side TV, bilateral centroid
+          TV and support/unknown mass. Preserve one-male in-sample limitations
+          and126 zero-mass neurons; no new inference, source access or T/U/M
+          continuation. Rendering shares an existing coordinated compute step
+          with separate status and once-only parent allocation accounting.
+        recipe:
+          command: bash outputs/tools/render_observed_outgoing_description.sh
+          resources: {cpus: 1, memory: 4Gi, time_limit: 3m}
+  executor_conformance:
+    name: Make the executor match the frozen T/U/M method
+    description: >-
+      Prove that the operational predictors use the declared low-dimensional U
+      supports, source-only transfer, common target counts, and deterministic replay.
+    inputs:
+      - {id: scientific_contract, from: ../scientific_contract}
+      - {id: qualification_spec, from: ../qualification_spec}
+      - {id: executor_source, from: ../executor_source}
+    decisions:
+      continuous_reference_law:
+        from: ../continuous_reference_law
+    outputs:
+      - id: conformance_report
+        type: report
+        format: txt
+        description: Focused regression and bounded-U conformance results.
+        inputs: [scientific_contract, qualification_spec, executor_source]
+        decisions: [continuous_reference_law]
+        recipe:
+          command: sbatch outputs/executor/slurm/qualify_executor_conformance.sbatch
+          resources: {cpus: 1, memory: 6Gi, time_limit: 1h}
+
+  stochastic_oracle_cost_pilot:
+    name: Measure one bounded generated-data oracle pilot
+    description: >-
+      Run the actual finite T/U/M fitter and scorer on 512 generated whole
+      types, then project the predeclared maximum oracle bank. This experiment
+      has no real-connectivity reader and cannot release the full bank by itself.
+    inputs:
+      - {id: scientific_contract, from: ../scientific_contract}
+      - {id: qualification_spec, from: ../qualification_spec}
+      - id: conformance_report
+        from: ../executor_conformance.conformance_report
+    decisions:
+      generated_coverage_target:
+        from: ../generated_coverage_target
+    outputs:
+      - id: oracle_cost_profile
+        type: report
+        format: json
+        description: Measured seconds per generated whole type and bounded full-bank projection.
+        inputs: [scientific_contract, qualification_spec, conformance_report]
+        decisions: [generated_coverage_target]
+        recipe:
+          command: >-
+            sbatch outputs/executor/slurm/run_stochastic_oracle_look.sbatch
+            cost_pilot 0 auto auto
+          resources: {cpus: 1, memory: 6Gi, time_limit: 2h}
+
+  synthetic_method_qualification:
+    name: Qualify T/U/M on generated biological counterexamples
+    description: >-
+      Run the real fitter and scorer, measure error rates, interval coverage,
+      resolution, numerical stability, and cost without reading connectivity outcomes.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: scientific_contract, from: ../scientific_contract}
+      - {id: qualification_spec, from: ../qualification_spec}
+      - id: conformance_report
+        from: ../executor_conformance.conformance_report
+      - id: oracle_aggregate
+        from: ../stochastic_oracle_calibration.oracle_aggregate
+    decisions:
+      generated_coverage_target:
+        from: ../generated_coverage_target
+    outputs:
+      - id: qualification_report
+        type: report
+        format: json
+        description: Executed operating-characteristic gates and pass/fail evidence.
+        inputs:
+          - search_policy
+          - scientific_contract
+          - qualification_spec
+          - conformance_report
+          - oracle_aggregate
+        decisions: [generated_coverage_target]
+        recipe:
+          command: >-
+            sbatch outputs/executor/slurm/qualify_methods.sbatch qualification
+            outputs/scientific_qualification/qualification
+            {inputs.oracle_aggregate}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 12h}
+      - id: cost_profile
+        type: report
+        format: json
+        description: Measured qualification and projected protocol cost.
+        inputs: [qualification_report]
+      - id: integration_stability
+        type: report
+        format: json
+        description: Deterministic replay and integration-resolution evidence.
+        inputs: [qualification_report]
+
+  stochastic_oracle_calibration:
+    name: Calibrate interval coverage against an independent oracle bank
+    description: >-
+      Estimate the infinite-design expected gain of the fixed finite fitting,
+      selection, and scoring procedure using seed-disjoint generated types.
+      Continue only from the measured cost pilot, refine at predeclared looks,
+      and fail closed if the oracle enclosure remains too wide or coverage
+      counts are ambiguous. This experiment never reads connectivity outcomes.
+    inputs:
+      - {id: scientific_contract, from: ../scientific_contract}
+      - {id: qualification_spec, from: ../qualification_spec}
+      - id: conformance_report
+        from: ../executor_conformance.conformance_report
+      - id: oracle_cost_profile
+        from: ../stochastic_oracle_cost_pilot.oracle_cost_profile
+    decisions:
+      generated_coverage_target:
+        from: ../generated_coverage_target
+    outputs:
+      - id: oracle_aggregate
+        type: report
+        format: json
+        description: >-
+          Independent simultaneous oracle enclosures for every qualification
+          cell. The recorded final bounded aggregate is
+          outputs/scientific_qualification/stochastic_oracle_v3/qualification_attempt001/qualification_look08.json.
+          At 12500 replicates per cell, three of 35 cells retain oracle
+          half-widths above the frozen 0.002 tolerance. This artifact does not
+          qualify coverage or release downstream method qualification; runtime
+          attempts and resource accounting remain in outputs/experiment_log.md.
+        inputs: [scientific_contract, qualification_spec, conformance_report, oracle_cost_profile]
+        decisions: [generated_coverage_target]
+        recipe:
+          command: >-
+            sbatch outputs/executor/slurm/run_stochastic_oracle_look.sbatch
+            qualification 0 auto auto
+          resources: {cpus: 1, memory: 6Gi, time_limit: 12h}
+
+  role_split:
+    name: Assign whole provider types before outcome use
+    description: >-
+      Use annotation-only eligibility fields to assign complete provider types
+      to development and final roles; no connectivity values are consumed.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+    outputs:
+      - id: role_manifest
+        type: data
+        format: json
+        description: Frozen 816-development / 204-final whole-type assignment.
+        inputs: [goal, datasets]
+        recipe:
+          command: sbatch outputs/executor/slurm/materialize_partner_hierarchy.sbatch
+          resources: {cpus: 1, memory: 6Gi, time_limit: 2h}
+
+  development_materialization:
+    name: Materialize the development-only connectivity view
+    description: >-
+      Build the reusable development-source sparse view while discarding every
+      final-role focal row before any matrix, statistic, or log is constructed.
+    inputs:
+      - {id: development_sources, from: ../development_sources}
+      - id: role_manifest
+        from: ../role_split.role_manifest
+    outputs:
+      - id: development_view_manifest
+        type: report
+        format: json
+        description: Exposure receipt and rebuildable development snapshot identity.
+        inputs: [development_sources, role_manifest]
+        recipe:
+          command: sbatch outputs/executor/slurm/materialize_development.sbatch
+          resources: {cpus: 1, memory: 32Gi, time_limit: 12h}
+
+  development_prefix_search:
+    name: Replay and qualify the 18+9+9 development prefix
+    description: >-
+      Execute 18 covering-array trials and two nine-trial adaptive cycles with
+      the qualified fitter. Historical trials made with a nonconforming U are
+      attempts, not reusable scientific outputs.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - id: qualification_report
+        from: ../synthetic_method_qualification.qualification_report
+      - id: development_view_manifest
+        from: ../development_materialization.development_view_manifest
+    outputs:
+      - id: prefix_archive
+        type: data
+        format: jsonl
+        description: Thirty-six valid complete T/U/M development comparisons.
+        inputs: [search_policy, qualification_report, development_view_manifest]
+      - id: prefix_attestation
+        type: report
+        format: json
+        description: Whole-type accounting, replay, and 18+9+9 schedule evidence.
+        inputs: [prefix_archive]
+
+  production_readiness:
+    name: Decide whether post-36 development may proceed
+    description: >-
+      Verify the executed qualification, replayed prefix, frozen controls, role
+      firewall, and current authorization before releasing outcome-adaptive work.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - id: qualification_report
+        from: ../synthetic_method_qualification.qualification_report
+      - id: prefix_attestation
+        from: ../development_prefix_search.prefix_attestation
+    outputs:
+      - id: readiness_decision
+        type: report
+        format: json
+        description: Pass/revise decision with executable gate evidence.
+        inputs: [search_policy, qualification_report, prefix_attestation]
+        recipe:
+          command: >-
+            sbatch outputs/executor/slurm/check_production_readiness.sbatch
+            outputs/scientific_qualification/qualification
+            outputs/development_run002/production_readiness
+          resources: {cpus: 1, memory: 2Gi, time_limit: 20m}
+
+  adaptive_successor_search:
+    name: Run bounded adaptive successor trials
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: adaptive_archive
+        type: data
+        format: jsonl
+        description: Valid successors and incumbent–challenger decisions through the frozen stop.
+        inputs: [search_policy, readiness_decision, prefix_archive]
+
+  graph_randomization_control:
+    name: Run strength- and margin-preserving graph randomization
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: graph_randomization_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  component_alignment_permutation:
+    name: Permute cross-side component alignment
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: alignment_permutation_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  partner_side_shuffle_control:
+    name: Shuffle partners and valid side labels
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: partner_side_shuffle_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  vocabulary_rank_sensitivity:
+    name: Compare binary/weighted, vocabulary, and rank choices
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: vocabulary_rank_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  nuisance_partner_ablation:
+    name: Ablate nuisance and partner blocks
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: nuisance_partner_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  capacity_matched_noise_control:
+    name: Run capacity-matched noise controls
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: capacity_noise_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  type_partner_influence:
+    name: Measure leave-one-type and partner-family influence
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: type_partner_influence_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  concentration_control:
+    name: Test few-type and high-strength-neuron concentration
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: concentration_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  technical_anatomy_missingness_control:
+    name: Test status, endpoint, anatomy, and missingness explanations
+    inputs:
+      - id: readiness_decision
+        from: ../production_readiness.readiness_decision
+      - id: prefix_archive
+        from: ../development_prefix_search.prefix_archive
+    outputs:
+      - id: technical_anatomy_report
+        type: report
+        format: json
+        inputs: [readiness_decision, prefix_archive]
+
+  post36_finalize:
+    name: Finalize the complete development comparison archive
+    description: >-
+      Reconcile the adaptive stop and every registered post-36 control, then
+      select the complete comparison and fitted T/U null generator using only development data.
+    inputs:
+      - id: adaptive_archive
+        from: ../adaptive_successor_search.adaptive_archive
+      - id: graph_randomization_report
+        from: ../graph_randomization_control.graph_randomization_report
+      - id: alignment_permutation_report
+        from: ../component_alignment_permutation.alignment_permutation_report
+      - id: partner_side_shuffle_report
+        from: ../partner_side_shuffle_control.partner_side_shuffle_report
+      - id: vocabulary_rank_report
+        from: ../vocabulary_rank_sensitivity.vocabulary_rank_report
+      - id: nuisance_partner_report
+        from: ../nuisance_partner_ablation.nuisance_partner_report
+      - id: capacity_noise_report
+        from: ../capacity_matched_noise_control.capacity_noise_report
+      - id: type_partner_influence_report
+        from: ../type_partner_influence.type_partner_influence_report
+      - id: concentration_report
+        from: ../concentration_control.concentration_report
+      - id: technical_anatomy_report
+        from: ../technical_anatomy_missingness_control.technical_anatomy_report
+    outputs:
+      - id: development_finalization
+        type: report
+        format: json
+        description: Complete archive, control bundle, selected comparison, and null generator.
+        inputs:
+          - adaptive_archive
+          - graph_randomization_report
+          - alignment_permutation_report
+          - partner_side_shuffle_report
+          - vocabulary_rank_report
+          - nuisance_partner_report
+          - capacity_noise_report
+          - type_partner_influence_report
+          - concentration_report
+          - technical_anatomy_report
+
+  mode_support_inference:
+    name: Test separation, prevalence, matching, and partner identifiability
+    inputs:
+      - id: development_finalization
+        from: ../post36_finalize.development_finalization
+    outputs:
+      - id: mode_support_report
+        type: report
+        format: json
+        inputs: [development_finalization]
+
+  procedure_lock:
+    name: Lock the one complete outgoing procedure
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: scientific_contract, from: ../scientific_contract}
+      - id: development_finalization
+        from: ../post36_finalize.development_finalization
+      - id: mode_support_report
+        from: ../mode_support_inference.mode_support_report
+    outputs:
+      - id: procedure_lock
+        type: data
+        format: json
+        description: Immutable selected procedure and full-search-null program.
+        inputs: [search_policy, scientific_contract, development_finalization, mode_support_report]
+        recipe:
+          command: sbatch outputs/executor/slurm/run_procedure_lock.sbatch
+          resources: {cpus: 1, memory: 6Gi, time_limit: 2h}
+
+  resource_scale_measurement:
+    name: Measure and authorize the exact full-search request
+    description: >-
+      Benchmark authenticated worker counts, record busy and allocated
+      core-hours, and stop before dispatch if the exact request is not authorized.
+    inputs:
+      - id: procedure_lock
+        from: ../procedure_lock.procedure_lock
+    outputs:
+      - id: resource_decision
+        type: report
+        format: json
+        inputs: [procedure_lock]
+
+  full_search_null:
+    name: Run exactly 99 complete fitted-T/U null searches
+    description: >-
+      Repeat the complete frozen search and selection program from an empty
+      ledger for each null replicate. No replicate launches a nested null.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - id: procedure_lock
+        from: ../procedure_lock.procedure_lock
+      - id: resource_decision
+        from: ../resource_scale_measurement.resource_decision
+    outputs:
+      - id: null_aggregate
+        type: report
+        format: json
+        description: Observed statistic, 99 null-search statistics, and calibrated probability.
+        inputs: [search_policy, procedure_lock, resource_decision]
+
+  final_outgoing_evaluation:
+    name: Evaluate the locked procedure once on final whole types
+    description: >-
+      The only experiment permitted to open final-role focal connectivity. It
+      fits on each transfer source side, scores the opposite side without refit,
+      and reports every assigned final type. No runnable adapter exists yet.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - id: procedure_lock
+        from: ../procedure_lock.procedure_lock
+      - id: null_aggregate
+        from: ../full_search_null.null_aggregate
+    outputs:
+      - id: final_result
+        type: table
+        format: json
+        description: One-shot all-type outgoing T/U/M evaluation and access receipt.
+        inputs: [datasets, procedure_lock, null_aggregate]
+
+  post_result_novelty_audit:
+    name: Audit forbidden provider group/instance labels after the result is fixed
+    inputs:
+      - id: final_result
+        from: ../final_outgoing_evaluation.final_result
+    outputs:
+      - id: novelty_audit
+        type: report
+        format: json
+        inputs: [final_result]
+
+  terminal_report:
+    name: Produce the bounded EP12 scientific report
+    description: >-
+      Preserved report design. The October 6 scientist-adopted incomplete
+      original-study closeout is recorded in outputs/experiment_log.md and
+      does not assert production of the missing model, null or final outputs.
+    inputs:
+      - {id: goal, from: ../goal}
+      - id: final_result
+        from: ../final_outgoing_evaluation.final_result
+      - id: null_aggregate
+        from: ../full_search_null.null_aggregate
+      - id: development_finalization
+        from: ../post36_finalize.development_finalization
+      - id: mode_support_report
+        from: ../mode_support_inference.mode_support_report
+      - id: novelty_audit
+        from: ../post_result_novelty_audit.novelty_audit
+    outputs:
+      - id: terminal_report
+        type: report
+        format: md
+        description: Reproducible groups, adequate single population, unresolved, or declared incomplete/failure.
+        inputs:
+          - goal
+          - final_result
+          - null_aggregate
+          - development_finalization
+          - mode_support_report
+          - novelty_audit
+
+findings: {}

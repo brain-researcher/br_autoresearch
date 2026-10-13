@@ -1,0 +1,264 @@
+schema_version: episode10_v3_m0_model_v1
+episode_id: ep10
+recorded_date: "2026-09-26"
+status: frozen_before_real_M0_execution
+analysis_label: exploratory
+
+authority:
+  observation_contract: projection_observation_contract_v3.yaml
+  model_interface_contract: v3_model_interface_contract.yaml
+  active_policy: SEARCH_POLICY.yaml
+  scientific_authority: false
+
+sealed_scope:
+  role: development_only
+  required_cells: 194
+  required_groups: 12
+  final_or_unassigned_access: forbidden
+  target_zero_semantics: >-
+    no mapped positive terminal observation recorded for this coordinate;
+    unknown and not a biological absence, verified non-detection, or negative label
+  model_estimand: >-
+    conditional distribution of mapped positive terminal observation sets at
+    the observed recorded-positive count K, not a complete biological target set
+
+required_inputs:
+  exact_scratch_parent_below_SCRATCH: br_autoresearch/episode10_single_cell_coprojection
+  target_root:
+    required_basename: gao_mop_development_targets_v3_ep10_assets
+    historical_rejected_basename: gao_mop_development_targets_v3
+    required_file: primary_16_target_calls.csv
+    required_gate_summary: v3_gate_summary.json
+    required_role: EP10-local replay from the authorized steward atlas
+  interface_root:
+    required_basename: v3_model_interface_preflight_v1
+    required_file: v3_model_interface.csv
+    required_gate_summary: v3_model_interface_summary.json
+    required_contract: v3_model_interface_contract.yaml
+  join:
+    key: provider_neuron_id
+    cardinality: one_to_one
+    exact_identity_set_required: true
+    exact_group_match_required: true
+  expected_group_sizes:
+    "212074": 6
+    "220187": 35
+    "220188": 25
+    "220190": 16
+    "221091": 33
+    "221225": 39
+    "221418": 12
+    "221514": 5
+    "221539": 1
+    "221588": 7
+    "221751": 13
+    "233281": 2
+
+fixed_panel:
+  size: 16
+  ordered_coordinate_ids:
+    - allen_993_MOs__ipsilateral
+    - allen_993_MOs__contralateral
+    - allen_453_SS__ipsilateral
+    - allen_453_SS__contralateral
+    - allen_31_ACA__ipsilateral
+    - allen_31_ACA__contralateral
+    - allen_477_STR__ipsilateral
+    - allen_477_STR__contralateral
+    - allen_549_TH__ipsilateral
+    - allen_549_TH__contralateral
+    - allen_313_MB__ipsilateral
+    - allen_313_MB__contralateral
+    - allen_771_P__ipsilateral
+    - allen_771_P__contralateral
+    - allen_354_MY__ipsilateral
+    - allen_354_MY__contralateral
+  observed_set_columns: detected__<coordinate_id>
+  observed_count_column: K
+  candidate_space: every size-K subset of the fixed 16-coordinate panel
+  degenerate_K_0_or_16: retain_with_exact_zero_gain
+
+model:
+  name: M0
+  form: additive_conditional_fixed_K_multivariate_logit
+  equation: >-
+    eta_i = C (B^T x_i); Pr(P_i | K_i,x_i,B) is proportional to
+    exp(sum_{t in P_i} eta_it) over every size-K_i subset of the 16 targets
+  target_coding:
+    type: orthonormal_Helmert
+    matrix_shape: [16, 15]
+    column_j_zero_based: >-
+      rows 0..j equal 1/sqrt((j+1)(j+2)), row j+1 equals
+      -(j+1)/sqrt((j+1)(j+2)), and later rows equal zero
+    constraints:
+      - C_transpose_C_equals_identity
+      - C_transpose_ones_equals_zero
+    coefficient_shape: [17, 15]
+  exact_likelihood:
+    normalization: stable_log_domain_elementary_symmetric_prefix_suffix_DP
+    approximation_or_pseudolikelihood: forbidden
+    per_cell_nll_nats: log_Z_K_eta_minus_sum_observed_eta
+    inclusion_marginals: exact_prefix_suffix_leave_one_target_DP
+
+design:
+  ordered_covariates:
+    - intercept
+    - K_legendre_P1
+    - K_legendre_P2
+    - soma_x
+    - soma_y
+    - soma_z
+    - soma_x2
+    - soma_y2
+    - soma_z2
+    - soma_xy
+    - soma_xz
+    - soma_yz
+    - layer_H1
+    - layer_H2
+    - layer_H3
+    - hemisphere_right
+    - segment_unmapped
+  recorded_positive_count:
+    u: K/8_minus_1
+    K_legendre_P1: u
+    K_legendre_P2: (3*u*u - 1)/2
+    standardized: false
+  soma:
+    input_units: ccfv3_micrometers
+    raw_monomials_in_order: [x, y, z, x2, y2, z2, xy, xz, yz]
+    transform: >-
+      subtract the training-fold mean and divide by the training-fold
+      population standard deviation separately for each of the nine raw
+      monomials; apply those training-only values unchanged to validation rows
+    zero_or_nonfinite_training_scale: stop
+  layer:
+    source_column: source_acronym
+    ordered_levels: [MOp1, MOp2/3, MOp5, MOp6a]
+    contrasts: same_orthonormal_Helmert_construction_as_target_coding
+    unexpected_or_missing_level: stop
+  hemisphere:
+    source_column: provider_hemisphere
+    coding: {left: -0.5, right: 0.5}
+    unexpected_or_missing_level: stop
+  mapping_quality:
+    model_covariate: segment_unmapped
+    coding: {mapped: 0.0, unmapped: 1.0}
+    terminal_unmapped_report_only_enters_model: false
+    raw_lengths_or_terminal_counts_enter_model: false
+  forbidden_as_covariates:
+    - provider_neuron_id
+    - file
+    - fMOST_brain_id
+    - provider_sample_id
+    - terminal_unmapped_report_only
+    - mapping_overlap_class_report_only
+  identifiers_and_groups_role: split_and_accounting_only
+
+estimation:
+  training_objective: >-
+    mean equal-group conditional NLL in nats plus
+    lambda times ||B||_F^2 divided by 2
+  cell_weight_in_training_set: 1/(number_of_training_groups * cells_in_its_group)
+  ridge_penalty_applies_to: every_element_of_B
+  lambda_grid:
+    - 1.0e-8
+    - 1.0e-7
+    - 1.0e-6
+    - 1.0e-5
+    - 1.0e-4
+    - 1.0e-3
+    - 1.0e-2
+    - 1.0e-1
+    - 1.0
+    - 10.0
+    - 100.0
+    - 1000.0
+  optimizer:
+    algorithm: deterministic_L_BFGS
+    history_size: 10
+    line_search: Armijo_backtracking
+    armijo_c1: 1.0e-4
+    backtrack_factor: 0.5
+    maximum_iterations: 500
+    gradient_infinity_tolerance: 1.0e-7
+    relative_objective_tolerance: 1.0e-10
+    convergence_requires_both_tolerances: true
+    fallback_optimizer: forbidden
+    nonconvergence_or_line_search_failure: stop
+
+resampling:
+  outer:
+    method: leave_one_conservative_group_out
+    folds: 12
+    held_out_group_never_enters_design_standardization_or_tuning: true
+  inner:
+    method: leave_one_remaining_group_out
+    folds_per_outer_split: 11
+  selection:
+    criterion: minimum_equal_group_inner_validation_NLL
+    standard_error: sample_SD_of_the_11_inner_group_mean_NLLs_divided_by_sqrt_11
+    one_standard_error_rule: >-
+      select the largest lambda whose mean inner validation NLL is no more
+      than the minimum mean plus the standard error at the minimum
+    ties: largest_lambda
+  boundary_review:
+    boundary: smallest_or_largest_lambda_in_grid
+    stop_if_boundary_selected_in_at_least_outer_folds: 6
+  full_development_refit:
+    tuning: 12-fold leave-one-group-out with the same one-SE rule
+    fit: all 194 development rows at the selected lambda
+    purpose: coefficient artifact only; development performance remains cross_fitted
+
+scoring:
+  cell_log_score: exact_log2_probability_of_observed_recorded_positive_set
+  per_group: mean_cell_log2_probability
+  aggregate: one_twelfth_sum_of_the_12_group_means
+  uniform_fixed_K_baseline: -log2_choose_16_K
+  gain: paired_cellwise_M0_minus_uniform_log2_probability
+  aggregate_gain: equal_group_mean_of_paired_cellwise_gains
+  denominator: all_194_cells_including_K_0_or_16
+
+calibration:
+  predictions: outer_cross_fitted_exact_inclusion_marginals
+  group_by_target_residual: group_mean_of_observed_indicator_minus_exact_marginal
+  per_group_marginal_Brier:
+    M0: mean_over_cells_and_16_targets_of_squared_observed_minus_exact_marginal
+    K_over_16_reference: mean_over_cells_and_16_targets_of_squared_observed_minus_K_over_16
+  bins: forbidden
+  scalar_temperature_slope:
+    status: optional_diagnostic_only
+    fit: minimize_equal_group_conditional_NLL_of_cross_fitted_eta_times_nonnegative_slope
+    bounds: [0.0, 4.0]
+    uncertainty: leave_one_group_out_jackknife
+    may_change_reported_scores_or_predictions: false
+
+required_outputs_on_execute:
+  files:
+    - v3_m0_cross_fitted_predictions.csv
+    - v3_m0_fit_summary.json
+    - v3_m0_full_refit.json
+  interpretation: development-only exploratory observation-pattern artifacts
+
+self_test:
+  data: deterministic_synthetic_only
+  exact_DP_vs_bruteforce:
+    K: every_integer_0_through_16
+    absolute_tolerance: 1.0e-10
+  analytic_gradient_vs_finite_difference:
+    absolute_tolerance: 1.0e-6
+    relative_tolerance: 1.0e-5
+  common_target_offset_invariance_absolute_tolerance: 1.0e-12
+  deterministic_optimizer:
+    repeat_probability_absolute_tolerance: 1.0e-10
+    fitted_gradient_infinity_maximum: 1.0e-6
+  planted_recovery:
+    mean_conditional_KL_maximum_bits: 0.01
+    exact_inclusion_marginal_MAE_maximum: 0.02
+  folds:
+    total_synthetic_rows: 194
+    exact_group_sizes_required: true
+    outer_folds: 12
+    inner_folds_per_outer: 11
+    exact_equal_group_score_accounting_required: true
+  real_target_interface_final_or_unassigned_access: forbidden

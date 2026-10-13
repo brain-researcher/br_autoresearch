@@ -1,0 +1,106 @@
+{
+  "aggregate": {
+    "mean_bilateral_delta": 0.0017516924175378966,
+    "mean_left_to_right_delta": 0.001554281330658115,
+    "mean_right_to_left_delta": 0.0019491035044176778,
+    "technical_failure_count": 9,
+    "types_with_both_point_estimates_above_margin": 7,
+    "valid_type_count": 807
+  },
+  "configuration": {
+    "collapsed_partner_count": 18,
+    "component_count_candidates": [
+      2,
+      3
+    ],
+    "composition_pseudocount": 0.5,
+    "covariance": "shrinkage",
+    "covariance_rank": 2,
+    "endpoint_mapping": "typed partners failing the frozen support/mass branch pool to other_typed; untyped provider status/statusLabel maps deterministically to unknown/untyped/fragment/proofreading",
+    "integration_draws": 256,
+    "minimum_development_type_count": 2,
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 2,
+    "rare_partner_mass_fraction": 0.01,
+    "raw_partner_key_count": 11771,
+    "regularization": 0.1,
+    "representation": "count_aware_log_ratio",
+    "retained_typed_partner_count": 11,
+    "retained_typed_partners": [
+      "Mi1",
+      "Pm2a",
+      "T2",
+      "Tm1",
+      "Tm2",
+      "Tm3",
+      "Tm4",
+      "Tm6",
+      "TmY14",
+      "TmY5a",
+      "Y3"
+    ],
+    "source_cross_validation_folds": 2
+  },
+  "cpu_seconds": 2750.224361392,
+  "data_role": "development_only",
+  "failures": [
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "Acc. ti flexor MN"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "DNES1"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "ENXXX226"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "Fe reductor MN"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "IN19A114"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "Lai"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "Lawf2"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "MeTu1"
+    },
+    {
+      "failure_message": "every scored neuron needs positive observed mass",
+      "failure_type": "ScientificModelError",
+      "provider_type": "ltm MN"
+    }
+  ],
+  "final_connectivity_accessed": false,
+  "schema_version": "ep12.development_trial.v1",
+  "scientific_contract_sha256": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006",
+  "status": "completed_with_technical_failures",
+  "trial_id": "development_trial_001",
+  "wall_seconds": 2750.846624701
+}

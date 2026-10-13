@@ -2,6 +2,30 @@ policy_id: ep14_openbhb_fixed_representation_comparison
 episode_id: ep14
 evidence_mode: fixed_preregistered_representation_comparison
 
+bilateral_regularization_amendment:
+  adopted_date: 2026-10-06
+  authority: scientist_explicitly_requested_further_work_on_current_episodes_while_source_dependencies_wait
+  analysis_id: bilateral_regularization
+  specification: outputs/representation_research_design.md
+  scope: separate_exposed_development_only_comparison
+  atlas: desikan
+  alpha_grid: [0.1, 1, 10, 100, 1000, 10000, 100000]
+  asymmetric_to_shared_penalty_ratios: [0.01, 0.1, 1, 10, 100]
+  transform: fit_standardized_raw_then_orthonormal_shared_asymmetric_no_postrotation_scaling
+  pairing_families: exact_full_names_in_inputs_openbhb_exposed_reference_freesurfer_channels_txt
+  sham_seeds: [14015, 14016, 14017]
+  tuning: inner_leave_one_siteXacq_out_mean_domain_MAE
+  tie_break: [ratio_closest_to_one_on_log_scale, larger_alpha, smaller_ratio]
+  controls: [raw_same_seven_alphas, ratio_one_prediction_equivalence, all_three_same_capacity_same_tuning_shams]
+  reporting: all_three_views_all_domains_all_controls_repeated_participant_losses_averaged_before_domain_macro
+  uncertainty: existing_paired_hierarchical_10000_replicate_bootstrap_descriptive_only
+  original_fixed_comparison_disposition: development_no_candidate_unchanged
+  candidate_promotion: false
+  public_validation_access: false
+  automatic_retry_or_successor: false
+  resources: {jobs: 1, cpus: 4, memory_GiB: 16, minutes: 60, worker_max_seconds: 3300, max_parallel_workers: 3, BLAS_threads_each: 1}
+  accounting: parent_allocated_CPU_seconds_once_in_EP14_including_short_EP01_EP05_saved_result_analyses
+
 research_program:
   reader_question: which_neuroanatomical_representations_and_shallow_predictors_make_age_prediction_transfer
   design_note: outputs/representation_research_design.md
@@ -27,7 +51,9 @@ research_program:
   operative_frozen_comparison_changed: false
   operative_exclusions_apply_to: fixed_R0_to_R3_reference_not_prospective_design_options
   optional_prior_site_diagnostic:
-    status: retained_unactivated_not_main_question
+    # October 4 adopted amendments and completed log entries govern the narrow
+    # utility/projection components; the conditional-site probe stays closed.
+    status: narrow_components_adopted_completed_conditional_site_probe_unactivated
     utility_test: discarded_direction_age_prediction_with_unseen_and_within_domain_views_on_common_support
     supporting_probe: seen_domain_site_prediction_gain_beyond_age_only_model
     activation_requires: prospective_support_models_margins_uncertainty_and_evaluator_scope
@@ -41,11 +67,41 @@ authority:
   canonical_scientific_acceptance: false
   public_validation_outcome_access: conditional_after_lock
 
+development_diagnostic_amendment:
+  adopted_date: 2026-10-04
+  authority: scientist_confirmed_continuation_after_specific_discarded_information_recommendation
+  analysis_id: discarded_direction_diagnostics
+  specification: outputs/site_information_diagnostic_prior.md
+  operative_section: adopted_development_diagnostic_october_4_2026
+  scope: exposed_development_only_discarded_score_utility_and_matched_geometry
+  original_fixed_comparison_disposition: development_no_candidate_unchanged
+  new_holdout_endpoints: false
+  broad_representation_search_activated: false
+  conditional_site_probe_activated: false
+  candidate_promotion: false
+  allocated_core_hours_max: 6
+
+continued_diagnostic_amendment:
+  adopted_date: 2026-10-04
+  authority: scientist_explicit_instruction_to_continue_after_completed_diagnostics
+  analyses: [projection_heterogeneity, age_adjusted_projection, covariance_protected_projection]
+  specification: outputs/site_information_diagnostic_prior.md
+  operative_section: adopted_continuation_projection_heterogeneity_and_age_adjusted_directions
+  final_counterfactual_section: adopted_final_counterfactual_exact_fitting_covariance_protection
+  scope: exposed_development_only_fixed_descriptive_and_linear_adjustment_diagnostics
+  original_fixed_comparison_disposition: development_no_candidate_unchanged
+  new_holdout_endpoints: false
+  broad_representation_search_activated: false
+  conditional_site_probe_activated: false
+  candidate_promotion: false
+  shared_allocated_core_hours_max: 2
+
 current_stage:
   development_inputs_exposed: true
   public_validation_features_available: true
   public_validation_targets_opened: false
-  experiment_started: false
+  # Fixed development completed October 3; bounded follow-ups completed October 4–6.
+  experiment_started: true
 
 scientific_question:
   predictor_family_and_tuning_procedure_held_fixed: true

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/tools/run_converter_loss_correction.py", line 75, in <module>
+    main()
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/tools/run_converter_loss_correction.py", line 43, in main
+    corrected = protocol.converter_conformance()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/tools/feature_protocol.py", line 171, in converter_conformance
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'

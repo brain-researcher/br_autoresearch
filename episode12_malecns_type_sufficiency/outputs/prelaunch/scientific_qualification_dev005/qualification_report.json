@@ -1,0 +1,495 @@
+{
+  "cells": [
+    {
+      "cell_id": "adequate_template__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.262228437,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "adequate_template",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "T",
+      "wall_seconds": 0.26268940698355436
+    },
+    {
+      "cell_id": "linear_continuum__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.25853635099999994,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "linear_continuum",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "U_linear",
+      "wall_seconds": 0.2585391339380294
+    },
+    {
+      "cell_id": "curved_continuum_dense__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.25774750600000007,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "curved_continuum_dense",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "U_curved",
+      "wall_seconds": 0.25775794801302254
+    },
+    {
+      "cell_id": "curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.2578937170000002,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "curved_continuum_sparse_intermediates",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "continuous_connected",
+      "wall_seconds": 0.25789606804028153
+    },
+    {
+      "cell_id": "residual_groups_within_continuum__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.26006903299999995,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_adequacy_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.025000000000000022,
+        1.0
+      ],
+      "false_adequacy_rate": 1.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "residual_groups_within_continuum",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 1,
+        "unresolved": 0
+      },
+      "truth_family": "M",
+      "wall_seconds": 0.26007182197645307
+    },
+    {
+      "cell_id": "weak_residual_groups__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.2619206140000001,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": true,
+      "replicates": 1,
+      "scenario": "weak_residual_groups",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "M_near_margin",
+      "wall_seconds": 0.26193553302437067
+    },
+    {
+      "cell_id": "side_specific_endpoint_loss__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.25838993200000004,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "side_specific_endpoint_loss",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "technical_artifact",
+      "wall_seconds": 0.25840124394744635
+    },
+    {
+      "cell_id": "anatomy_quality_confound__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.25928006800000025,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "anatomy_quality_confound",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 1,
+        "unresolved": 0
+      },
+      "truth_family": "nuisance_explained",
+      "wall_seconds": 0.25928273308090866
+    },
+    {
+      "cell_id": "high_strength_or_influential_cells__n7__N100__s1p8__m0p3",
+      "count_total": 100,
+      "cpu_seconds": 0.2588999970000003,
+      "empirical_interval_coverage": {
+        "left_to_right": 1.0,
+        "left_to_right_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "right_to_left": 1.0,
+        "right_to_left_exact_95_interval": [
+          0.025000000000000022,
+          1.0
+        ],
+        "scope": "coverage_of_replicate_center_not_oracle_parameter",
+        "target": 0.95
+      },
+      "failure_reasons": [
+        "false_M_exact_upper_bound_above_contract_maximum"
+      ],
+      "false_M_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_M_rate": 0.0,
+      "false_adequacy_exact_95_interval": [
+        0.0,
+        0.975
+      ],
+      "false_adequacy_rate": 0.0,
+      "missing_fraction": 0.3,
+      "neurons_per_side": 7,
+      "passed": false,
+      "replicates": 1,
+      "scenario": "high_strength_or_influential_cells",
+      "strength": 1.8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 1
+      },
+      "truth_family": "concentrated_artifact",
+      "wall_seconds": 0.2589028358925134
+    }
+  ],
+  "contract_configuration": true,
+  "contract_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/SCIENTIFIC_CONTRACT.yaml",
+  "contract_sha256": "37fcf187323ee7619fc02e8ed5a92b3883d26f6c6d23688d1f0b1dc637a85a14",
+  "cost_profile": {
+    "annotation_only_eligible_type_count_used": 1020,
+    "cost_gate_passed": true,
+    "cpu_seconds_per_type_direction_triplet": 0.06502253166666666,
+    "development_type_count_used": 816,
+    "measured_cpu_seconds": 2.34081114,
+    "measured_type_direction_triplets": 36,
+    "measured_wall_seconds": 2.3794770401436836,
+    "minimum_trials": 36,
+    "observed_plus_null_searches": 100,
+    "policy_cpu_core_hour_ceiling": 1000.0,
+    "projected_cpu_core_hours": 106.11677168,
+    "projected_type_direction_triplets": 5875200,
+    "qualification_configuration": {
+      "bootstrap_replicates": 1999,
+      "cross_validation_folds": 2,
+      "integration_draws": 128,
+      "whole_types_per_replicate": 2
+    },
+    "scope": "generated_data_measured_projection_not_real_runtime"
+  },
+  "environment": {
+    "numpy": "1.26.3",
+    "platform": "Linux-3.10.0-1160.156.1.el7.tuxcare.els3.x86_64-x86_64-with-glibc2.17",
+    "python": "3.12.1 (main, Jan 12 2024, 16:49:08) [GCC 12.1.0]",
+    "required_sherlock_modules": [
+      "python/3.12.1",
+      "py-numpy/1.26.3_py312",
+      "py-scipy/1.12.0_py312",
+      "py-scikit-learn/1.5.1_py312"
+    ],
+    "scikit_learn": "1.5.1",
+    "scipy": "1.12.0"
+  },
+  "full_search_null_executed": false,
+  "model_program": {
+    "bootstrap_replicates": 1999,
+    "curve_degree": 3,
+    "curved_quadrature_nodes": 9,
+    "integration_draws": 128,
+    "likelihood": "conditional_multinomial",
+    "linear_rank": 2,
+    "m_components": [
+      2,
+      3
+    ],
+    "mixture_covariance_floor": 0.0001,
+    "mixture_initializations": 1,
+    "mixture_max_iterations": 150,
+    "nuisance_ridge": 0.1,
+    "numeric_threads_per_worker": 1,
+    "score": "heldout_log_predictive_density_per_observed_outgoing_count",
+    "source_cv_folds": 2,
+    "u_candidates": [
+      "U_linear",
+      "U_curved"
+    ]
+  },
+  "qualification_passed": false,
+  "qualification_scope": "actual_T_U_M_generated_data_only",
+  "real_connectivity_access_authorized": false,
+  "real_connectivity_accessed": false,
+  "receipt_sha256": "c9e57aa88cf702d86fe5c166960dfc84d6e9ed34550b38c0be513ac5f2faa08b",
+  "schema_version": "ep12.scientific_qualification_report.v1",
+  "scientific_contract_enforced": true,
+  "settings": {
+    "bootstrap_replicates": 1999,
+    "folds": 2,
+    "integration_draws": 128,
+    "meaningful_margin": 0.02,
+    "repetitions_per_cell": 1,
+    "whole_types_per_replicate": 2
+  },
+  "spec_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/SYNTHETIC_QUALIFICATION_SPEC.yaml",
+  "spec_sha256": "752a04e4aaa4cd0364507bc18b2c225e1d38e3fa9b1e60f1146f81fafcc4ae56",
+  "tier": "smoke"
+}

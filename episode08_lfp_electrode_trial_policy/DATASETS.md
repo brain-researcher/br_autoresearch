@@ -5,10 +5,33 @@ EP08 uses the Foundation LFP source derived from Dryad DOI
 source contains motor-cortex LFP features, population spiking, reach events,
 and electrode information needed to study conditional value and acquisition.
 
-The required source pack is not currently present in this episode. No neural
-score has been computed. Before analysis, the source must be acquired and the
-scientifically necessary session, electrode, event, feature, and trial support
-must be confirmed.
+The original public source was located on 2026-10-03 at
+`$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source`.
+The source and separated development roles were subsequently used for the
+completed real-data search. Eight development sessions (four per animal) used
+40 untouched evaluation trials each; the acquired-only branch used a 32-trial,
+96-electrode initializer and the original 96-trial fitting whitelist. All four
+held sessions remain closed. Development stopped at 41 comparisons on
+October 4 with the adopted limited conclusion
+`development_only_no_initializer_robust_policy`; see the
+[final report](outputs/final_report.md) and
+[execution record](outputs/experiment_log.md#2026-10-04-0808-utc--final_report-development-only-terminal-conclusion-adopted).
+This October 6 documentation reconciliation does not activate a held test.
+
+## Public online resources — checked October 6, 2026
+
+| Public resource | Available information and use for EP08 |
+| --- | --- |
+| [Original Dryad release](https://datadryad.org/dataset/doi:10.5061/dryad.xd2547dkt) | Individually listed MATLAB session files and README, including the six Mihili dates and six 2016 Chewie dates used by the primary design. The release describes instructed-delay, eight-target center-out reaching, behavioral measurements and extracellular recordings from M1, premotor cortex and somatosensory area 2. It identifies the data source and session names without an archive download. |
+| [Authors' analysis repository](https://github.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP) | Public `MainAnalysis`, `AdditionalAnalysis`, `Main.m` and `Generate_all_figures.m`; its README identifies TrialData as a dependency. These are source-method and file-handling references, not a replacement EP08 selector or evaluation protocol. |
+
+The public inventory also lists Han and Lando files. Their presence alone does
+not establish compatible M1 population targets, electrode/features, roles or
+independent third-animal confirmation for EP08. Those would need an explicit
+source-compatibility assessment before a new analysis. The page displays an
+August 29, 2022 update and August 16 file set; this documentation check does
+not establish a later corrected release. Existing completed development work
+and four closed held sessions remain governed by their recorded roles.
 
 ## Open exploration; no universal pilot prerequisite
 
@@ -216,9 +239,13 @@ and retrospective calibration choices. It cannot infer surgical placement,
 amplifier power, wireless bandwidth, or real-time behavioral burden without
 additional measurements.
 
-## Readiness before neural scoring
+## Original readiness requirements and unselected branch support
 
-The following checks remain because they directly affect the scientific claim:
+The following are the original source/branch requirements, not a current
+to-do list for the completed development route. Its source preparation and
+role checks are recorded in the log; optional reference, explanatory and
+external branches were not adopted as successors. They would still need
+their own applicable support before any future scoring:
 
 - acquire the Foundation LFP source pack;
 - confirm the twelve primary sessions and their independence;

@@ -1,0 +1,119 @@
+schema_version: ep12.synthetic_scientific_qualification.v2
+contract_ref: SCIENTIFIC_CONTRACT_POST36.yaml
+status: frozen_before_post36_scientific_qualification_run
+lineage:
+  predecessor_spec_ref: SYNTHETIC_QUALIFICATION_SPEC.yaml
+  predecessor_spec_sha256: e4a3e81b08b3c46b793823112758fbb811603e8ba4ea7bc9febfe2066ba5eac0
+  transition_spec_ref: CONTRACT_TRANSITION_SPEC.json
+  transition_id: ep12_post36_representation_rank_v1
+uses_actual_fitter_and_scorer: true
+fixture_routing_as_evidence: forbidden
+real_connectivity_values_allowed: false
+
+sample_size_basis:
+  source: annotation_only_somaSide_counts_under_frozen_eligibility
+  representative_per_side: [5, 7, 19, 100, 1000]
+  count_totals_per_neuron: [10, 100, 1000]
+  note: count_totals_are_generated_stress_levels_not_observed_MaleCNS_values
+
+generators:
+  adequate_template:
+    truth: T
+    required_result: no_false_M
+  linear_continuum:
+    truth: U_linear
+    required_result: no_false_M
+  curved_continuum_dense:
+    truth: U_curved
+    required_result: no_false_M
+  curved_continuum_sparse_intermediates:
+    truth: continuous_connected_but_weakly_sampled
+    required_result: unresolved_or_U_not_M
+  residual_groups_within_continuum:
+    truth: M
+    component_counts: [2, 3]
+    required_result: M_or_unresolved_never_false_adequacy_at_or_above_margin
+  weak_residual_groups:
+    truth: M_below_or_near_margin
+    required_result: unresolved_allowed
+  side_specific_endpoint_loss:
+    truth: technical_artifact
+    required_result: control_rejection_or_unresolved
+  anatomy_quality_confound:
+    truth: nuisance_explained
+    required_result: adjusted_no_false_M
+  high_strength_or_influential_cells:
+    truth: concentrated_artifact
+    required_result: influence_rejection_or_unresolved
+
+resolution_grid:
+  group_logit_strength: [0.0, 0.9, 1.8, 2.7, 3.6]
+  side_loss_fraction: [0.0, 0.1, 0.3]
+  intermediate_sampling: [dense, sparse]
+  interpretation: compare_measured_predictive_gain_and_uncertainty_to_the_fixed_policy_margin_not_an_assumed_strength_to_gain_mapping
+
+operating_characteristics:
+  - false_M_rate
+  - false_adequacy_rate
+  - simultaneous_interval_coverage
+  - positive_resolution_rate
+  - adequate_resolution_rate
+  - unresolved_rate
+  - numerical_failure_rate
+  - wall_seconds
+  - cpu_core_hours
+
+acceptance:
+  false_M_rate_max: 0.05
+  false_adequacy_rate_max: 0.05
+  interval_nominal_coverage: 0.95
+  coverage_acceptance: exact_binomial_interval_contains_nominal
+  numerical_failures_allowed: 0
+  minimum_power_threshold: none
+  low_resolution_rule: retain_stratum_and_force_unresolved_not_exclusion
+  adequacy_allowed_only_in_strata_with_qualified_false_adequacy_and_coverage: true
+  all_reported_rates_require_exact_binomial_intervals: true
+
+numerical_stability:
+  integration_draws: [128, 256, 512]
+  scenarios: [adequate_template, curved_continuum_dense, residual_groups_within_continuum]
+  seeds: [1201, 1202]
+  neurons_per_side: 19
+  count_total: 100
+  generator_strength: 1.8
+  missing_fraction: 0.1
+  maximum_absolute_delta_change_relative_to_margin: 0.1
+  selected_model_ids_must_match_at_contract_and_high_draws: true
+
+run_tiers:
+  smoke_replicates_per_cell: 3
+  qualification_replicates_per_core_error_cell: 72
+  stress_replicates_per_large_cell: 12
+  whole_types_per_replicate: 8
+  smoke_neurons_per_side: [7]
+  smoke_count_totals: [100]
+  smoke_generator_strengths: [1.8]
+  smoke_missing_fractions: [0.3]
+  qualification_neurons_per_side: [5, 7, 19]
+  qualification_count_totals: [10, 100, 1000]
+  qualification_generator_strengths: [2.2, 1.8, 1.25]
+  qualification_missing_fractions: [0.0, 0.1, 0.3]
+  stress_neurons_per_side: [5, 7, 19, 100, 1000]
+  stress_count_totals: [10, 100, 1000, 1000, 1000]
+  stress_generator_strengths: [2.2, 1.8, 1.25, 1.0, 0.8]
+  stress_missing_fractions: [0.0, 0.1, 0.3, 0.3, 0.3]
+  qualification_adds_group_strength_resolution_grid: true
+  qualification_adds_side_loss_fraction_grid: true
+  protocol_cost_projection_observed_searches: 1
+  protocol_cost_projection_null_searches: 99
+
+required_outputs:
+  - result_table_csv
+  - result_table_markdown
+  - qualification_report_json
+  - fit_and_score_receipts_jsonl
+  - cost_profile_json
+  - environment_lock_json
+  - integration_stability_json
+  - source_schema_manifest_json
+  - gate_evidence_markdown

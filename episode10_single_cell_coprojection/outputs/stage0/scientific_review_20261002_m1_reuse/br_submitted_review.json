@@ -1,0 +1,176 @@
+{
+  "ok": true,
+  "directive_id": "ext_review_dir_ce90de996e4f",
+  "verdict_id": "ext_review_verdict_4fe160ae4283",
+  "stored_at": "2026-10-02T18:37:43Z",
+  "reviewer": "Codex native independent focused critic /root/m1_reuse_scientific_critique; root reconciled execution plan",
+  "inner_verdict": {
+    "correctness": {
+      "decision": "pass",
+      "findings": []
+    },
+    "judgment": {
+      "decision": "sound",
+      "estimand_complete": true,
+      "method_defensible": true,
+      "issues": [
+        "Six arithmetic regressions establish the demonstrated conformance repair, not optimizer qualification or resolution of the permutation failure.",
+        "V3 changes only execution mode and preserves v1/v2 authority. Changed-evaluator 544-row sampled/population recovery and all-K8 throughput require refresh; unchanged geometry/ranks and separate M2 optional fits are reusable.",
+        "Historical M0 exposure must remain recorded. A repair uniquely specified by frozen arithmetic does not itself amend the design, but new fitting and repair selection must not consume comparator outcomes.",
+        "Old M1 predictions and fitted checkpoints cannot qualify or initialize the repaired evaluator. Production remains gated by numerical evidence, truthful runner bindings and resources."
+      ],
+      "reviewer_questions": [],
+      "judgment_status": "ok",
+      "judge_transport_error": null,
+      "raw_response_text": null
+    },
+    "completeness": {
+      "decision": "complete",
+      "checklist": {
+        "target_free_scope_only": true,
+        "seed_and_36_fit_schedule_frozen": true,
+        "backend_frozen": true,
+        "acceptance_unchanged": true,
+        "affected_population_and_throughput_require_refresh": true,
+        "unchanged_rank_geometry_reusable": true,
+        "historical_M0_opening_retained": true,
+        "old_M1_fits_not_reused": true,
+        "current_resource_projection_required": true
+      },
+      "missing_caveats": []
+    },
+    "review_scope": "pipeline_run",
+    "overall_decision": "proceed",
+    "claim_strength": "internally_supported",
+    "report_action": "continue_loop",
+    "required_next_actions": [
+      "Run existing 68-row/36-fit warm1/warm2/zero qualification in parallel with the bounded failed-probe replay under frozen resources.",
+      "After qualification PASS, refresh affected seed20260927 544-row sampled and exact-population recovery plus prescribed194-row all-K8 optimizer throughput; reuse unchanged static ranks and completed36fit evidence.",
+      "Before any clean real M1 refit, reconcile conservative157-path timing/memory/headroom; replace stale qualification binding and truthfully distinguish historical M0 opening from new-process forbidden access.",
+      "Preserve all historical results; no old fitted checkpoint reuse, comparator-driven tuning, acceptance relaxation, canonical acceptance or Formal Society transition.",
+      "On unchanged numerical-gate failure, preserve scalar evidence and stop the dependent branch for the consequential decision."
+    ],
+    "validation_status": {
+      "review_basis": "Independent native critic applied BR directive to permitted frozen contracts, current code, regression source and execution ledger. BR server did not read local artifacts.",
+      "regressions": "Six recorded passes reused, not rerun.",
+      "repaired_probe": "Running; success unproven.",
+      "qualification": "Submitted46328672; success unproven.",
+      "production": "Outside scoped proceed decision and remains gated.",
+      "KG_criteria": "No applicable supplied KG violation established for target-free plan."
+    },
+    "line_directive": null,
+    "rationale": "Supports parallel existing target-free qualification. Changes the initial downstream plan by retaining affected population-recovery and throughput gates while rejecting redundant full static/rank audit. Historical M0 exposure is not automatically a scientific amendment when arithmetic repair is uniquely contract-determined and new fitting remains comparator-blind."
+  },
+  "kg_rule_feedback": {
+    "registry_id": "scientific_review_rule_registry_v1",
+    "cited_rule_ids": [],
+    "kg_rule_hits": [],
+    "unknown_rule_ids": [],
+    "status": "no_rule_citations"
+  },
+  "logged_event_id": "research_evt_0002",
+  "logged_run_id": "br_20261002_183237_ecb11ff1e2",
+  "_agent_directive": {
+    "research_logging": {
+      "protocol": "br.research_logging.directive.v1",
+      "state": {
+        "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+        "client_session_id": null,
+        "source_client": "codex",
+        "snapshot_required_on_close": true,
+        "session_closed": false,
+        "post_close_actions_available": false,
+        "note_policy": "optional_enrichment_only",
+        "server_mid_session_telemetry": true,
+        "transcript_capture_supported": true,
+        "external_trace_capture_supported": true,
+        "preferred_transcript_context_key": "transcript",
+        "preferred_trace_context_key": "external_trace_events"
+      },
+      "actions": [
+        {
+          "type": "bind_session",
+          "required": false,
+          "reason": "server_session_active",
+          "payload": {
+            "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+            "client_session_id": null,
+            "source_client": "codex"
+          }
+        },
+        {
+          "type": "write_snapshot_on_close",
+          "required": true,
+          "reason": "explicit_closeout_required",
+          "payload": {
+            "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+            "client_session_id": null,
+            "source_client": "codex",
+            "context_contract": {
+              "preferred_transcript_key": "transcript",
+              "preferred_trace_key": "external_trace_events",
+              "transcript_aliases": [
+                "transcript",
+                "messages",
+                "chat_history",
+                "conversation_events",
+                "conversation_messages",
+                "conversation_log"
+              ],
+              "trace_aliases": [
+                "external_trace_events",
+                "trace_events",
+                "tool_trace",
+                "tool_trace_events"
+              ]
+            }
+          }
+        },
+        {
+          "type": "attach_transcript_on_close",
+          "required": false,
+          "reason": "persist_client_transcript",
+          "payload": {
+            "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+            "context_aliases": [
+              "transcript",
+              "messages",
+              "chat_history",
+              "conversation_events",
+              "conversation_messages",
+              "conversation_log"
+            ],
+            "preferred_context_key": "transcript",
+            "target_file": "session_transcript.jsonl"
+          }
+        },
+        {
+          "type": "attach_external_trace_on_close",
+          "required": false,
+          "reason": "persist_external_tool_trace",
+          "payload": {
+            "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+            "context_aliases": [
+              "external_trace_events",
+              "trace_events",
+              "tool_trace",
+              "tool_trace_events"
+            ],
+            "preferred_context_key": "external_trace_events",
+            "target_file": "tool_trace.jsonl"
+          }
+        },
+        {
+          "type": "log_optional_note",
+          "required": false,
+          "reason": "rationale_not_in_trace",
+          "payload": {
+            "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+            "kind": "note",
+            "policy": "optional_enrichment_only"
+          }
+        }
+      ]
+    }
+  }
+}

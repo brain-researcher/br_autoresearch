@@ -1,0 +1,2161 @@
+{
+  "artifact_kind": "descriptive_pilot_aggregate",
+  "artifact_verification": {
+    "complete": true,
+    "expected_records": 1728,
+    "expected_shards": 24,
+    "verified_records": 1728,
+    "verified_shards": 24
+  },
+  "block_cell_summaries": [
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "adequate_template__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "adequate_template",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.33372495558086773,
+          "mean": 0.028472275120603612,
+          "median": 0.012971098987025049,
+          "minimum": 0.002854551808670633
+        },
+        "left_to_right": {
+          "maximum": 0.6442080873108496,
+          "mean": 0.0404361310846619,
+          "median": 0.015376165316061802,
+          "minimum": 0.002813117452020796
+        },
+        "right_to_left": {
+          "maximum": 0.2408118930614045,
+          "mean": 0.03368220142386731,
+          "median": 0.02047279422381685,
+          "minimum": 0.003759516493830513
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 0,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 42,
+        "unresolved": 30
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "linear_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "linear_continuum",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.6953310667013168,
+            0.8894162133215104
+          ],
+          "rate": 0.8055555555555556,
+          "successes": 58,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.7759280642567467,
+            0.9412166829434396
+          ],
+          "rate": 0.875,
+          "successes": 63,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 8.85933655698749,
+          "mean": 0.8857009467527778,
+          "median": 0.4640874136138505,
+          "minimum": 0.04264434556718374
+        },
+        "left_to_right": {
+          "maximum": 17.474150875857514,
+          "mean": 1.123431765860212,
+          "median": 0.5554023946079509,
+          "minimum": 0.01506532580022759
+        },
+        "right_to_left": {
+          "maximum": 8.894660208832075,
+          "mean": 1.1384869267337896,
+          "median": 0.46191160646549495,
+          "minimum": 0.042059380951042113
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 1,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_dense",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.7759280642567467,
+            0.9412166829434396
+          ],
+          "rate": 0.875,
+          "successes": 63,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.6643633721453073,
+            0.8673176152121594
+          ],
+          "rate": 0.7777777777777778,
+          "successes": 56,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 16.817719994492283,
+          "mean": 1.048876379119511,
+          "median": 0.48561311843029575,
+          "minimum": 0.04262015410605756
+        },
+        "left_to_right": {
+          "maximum": 24.935248286267345,
+          "mean": 1.4110479407476322,
+          "median": 0.5045820818002428,
+          "minimum": 0.04550959786889423
+        },
+        "right_to_left": {
+          "maximum": 23.501721222321002,
+          "mean": 1.4090347085489425,
+          "median": 0.5203979974587996,
+          "minimum": 0.028780787579325905
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 2,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7269607210880693,
+            0.910803593991874
+          ],
+          "rate": 0.8333333333333334,
+          "successes": 60,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 60.350139463207604,
+          "mean": 3.667575980903299,
+          "median": 1.2864616580220025,
+          "minimum": 0.055254075133177094
+        },
+        "left_to_right": {
+          "maximum": 51.28801485357753,
+          "mean": 4.213192625558779,
+          "median": 1.1256833398536439,
+          "minimum": 0.04803354901627112
+        },
+        "right_to_left": {
+          "maximum": 69.44353417295905,
+          "mean": 4.978527685464678,
+          "median": 1.243732220131684,
+          "minimum": 0.04768349068283978
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 3,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.743059876751722,
+            0.9211880368120582
+          ],
+          "rate": 0.8472222222222222,
+          "successes": 61,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.7759280642567467,
+            0.9412166829434396
+          ],
+          "rate": 0.875,
+          "successes": 63,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 53.87766913448344,
+          "mean": 1.7582294958877775,
+          "median": 0.38395785878089955,
+          "minimum": 0.02811353941805704
+        },
+        "left_to_right": {
+          "maximum": 25.07329444390595,
+          "mean": 1.7398217711366921,
+          "median": 0.3896158739744332,
+          "minimum": 0.02422549658918595
+        },
+        "right_to_left": {
+          "maximum": 97.39102244537473,
+          "mean": 2.5401329042714447,
+          "median": 0.4603495753316501,
+          "minimum": 0.02527000031337989
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 4,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "weak_residual_groups__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "weak_residual_groups",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.743059876751722,
+            0.9211880368120582
+          ],
+          "rate": 0.8472222222222222,
+          "successes": 61,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 1.3288559623349832,
+          "mean": 0.17014038559611155,
+          "median": 0.09801805658674043,
+          "minimum": 0.009358105052542967
+        },
+        "left_to_right": {
+          "maximum": 2.7534253162781623,
+          "mean": 0.22077604438391474,
+          "median": 0.12343688079243968,
+          "minimum": 0.00888127368691728
+        },
+        "right_to_left": {
+          "maximum": 1.5002773094704813,
+          "mean": 0.2080582786208375,
+          "median": 0.12125431467401176,
+          "minimum": 0.01268398902124009
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 5,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 6,
+        "unresolved": 66
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9500559162941453,
+            1.0
+          ],
+          "rate": 1.0,
+          "successes": 72,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.14982588846397848,
+          "mean": 0.025557016714793636,
+          "median": 0.016744611261755228,
+          "minimum": 0.00408835226155865
+        },
+        "left_to_right": {
+          "maximum": 0.17732832579797914,
+          "mean": 0.03298155193451711,
+          "median": 0.021358325386951517,
+          "minimum": 0.004855357098284578
+        },
+        "right_to_left": {
+          "maximum": 0.27599226571134583,
+          "mean": 0.03278293534317427,
+          "median": 0.019535083107274115,
+          "minimum": 0.005399576943413634
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 6,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "anatomy_quality_confound",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 2.0722903596545685,
+          "mean": 0.08728317511383718,
+          "median": 0.02406462136847516,
+          "minimum": 0.0033910537888314765
+        },
+        "left_to_right": {
+          "maximum": 2.7416747414716913,
+          "mean": 0.09001311223067204,
+          "median": 0.03046301297177055,
+          "minimum": 0.004018715087203332
+        },
+        "right_to_left": {
+          "maximum": 4.167394453893329,
+          "mean": 0.11240161799230192,
+          "median": 0.02900309540614033,
+          "minimum": 0.0035205219629210966
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 7,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 31,
+        "unresolved": 41
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 4.777016755804811,
+          "mean": 0.7250883570796064,
+          "median": 0.34810991282932896,
+          "minimum": 0.03439079760584743
+        },
+        "left_to_right": {
+          "maximum": 10.000814205775203,
+          "mean": 1.0054628259367209,
+          "median": 0.4366334861607972,
+          "minimum": 0.023431416437128604
+        },
+        "right_to_left": {
+          "maximum": 5.061987867021296,
+          "mean": 0.8602028936606975,
+          "median": 0.38639453499669185,
+          "minimum": 0.01751048406109481
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 8,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 1,
+        "unresolved": 71
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.6735948814129472,
+          "mean": 0.10831267370396289,
+          "median": 0.06338238851322231,
+          "minimum": 0.014976649218292021
+        },
+        "left_to_right": {
+          "maximum": 0.7267729815216408,
+          "mean": 0.12630975857395155,
+          "median": 0.07814041949235831,
+          "minimum": 0.01461703616977762
+        },
+        "right_to_left": {
+          "maximum": 1.3320478490872716,
+          "mean": 0.14839960312589742,
+          "median": 0.07003114662354387,
+          "minimum": 0.009688185878954666
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 9,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 7,
+        "unresolved": 65
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "anatomy_quality_confound",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.555803285301291,
+          "mean": 0.09714805861134004,
+          "median": 0.06235821224670389,
+          "minimum": 0.008276324230457696
+        },
+        "left_to_right": {
+          "maximum": 1.127401636536389,
+          "mean": 0.13290492551568311,
+          "median": 0.08494064171694363,
+          "minimum": 0.005421134750336783
+        },
+        "right_to_left": {
+          "maximum": 0.7730775142351538,
+          "mean": 0.12227601166085066,
+          "median": 0.07728406728596021,
+          "minimum": 0.013181636546589022
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 10,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 6,
+        "unresolved": 66
+      }
+    },
+    {
+      "block_id": "block_01",
+      "block_index": 0,
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 2.965836274801062,
+          "mean": 0.5582429976909162,
+          "median": 0.42184479767595073,
+          "minimum": 0.04970300145151694
+        },
+        "left_to_right": {
+          "maximum": 4.950159596799197,
+          "mean": 0.7463744009075923,
+          "median": 0.5936453442952141,
+          "minimum": 0.06243785992502178
+        },
+        "right_to_left": {
+          "maximum": 6.0025772567513,
+          "mean": 0.7390215762697667,
+          "median": 0.5622365727717828,
+          "minimum": 0.054910693185141315
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 11,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "adequate_template__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "adequate_template",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7269607210880693,
+            0.910803593991874
+          ],
+          "rate": 0.8333333333333334,
+          "successes": 60,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.7927531293332513,
+            0.950791960729359
+          ],
+          "rate": 0.8888888888888888,
+          "successes": 64,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.26677113612332326,
+          "mean": 0.025225488152723363,
+          "median": 0.014721592890531869,
+          "minimum": 0.0028403037485044903
+        },
+        "left_to_right": {
+          "maximum": 0.14404586253507423,
+          "mean": 0.02737633582028208,
+          "median": 0.019293774424080597,
+          "minimum": 0.002663661743139158
+        },
+        "right_to_left": {
+          "maximum": 0.5397868027688886,
+          "mean": 0.03952319676329885,
+          "median": 0.020240841281676872,
+          "minimum": 0.002175974671829292
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 12,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 46,
+        "unresolved": 26
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "linear_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "linear_continuum",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.6953310667013168,
+            0.8894162133215104
+          ],
+          "rate": 0.8055555555555556,
+          "successes": 58,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 7.500577629439566,
+          "mean": 0.96117202472352,
+          "median": 0.5474179535859487,
+          "minimum": 0.02545052929703035
+        },
+        "left_to_right": {
+          "maximum": 14.88884900157761,
+          "mean": 1.3271495101521555,
+          "median": 0.5167482330276332,
+          "minimum": 0.015597970816618763
+        },
+        "right_to_left": {
+          "maximum": 9.57268227511208,
+          "mean": 1.1931670770856007,
+          "median": 0.4980642679984365,
+          "minimum": 0.018732273368166883
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 13,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_dense",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.6490999659870761,
+            0.8560339363545927
+          ],
+          "rate": 0.7638888888888888,
+          "successes": 55,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.7593740674969757,
+            0.9313357923031833
+          ],
+          "rate": 0.8611111111111112,
+          "successes": 62,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 6.637259168826844,
+          "mean": 0.8352902875822491,
+          "median": 0.48867543398405106,
+          "minimum": 0.032826423826041014
+        },
+        "left_to_right": {
+          "maximum": 12.652020156319331,
+          "mean": 1.1040672205139561,
+          "median": 0.4368334117731084,
+          "minimum": 0.040342625869673
+        },
+        "right_to_left": {
+          "maximum": 8.433891668502834,
+          "mean": 1.0821770703262668,
+          "median": 0.5243311897652703,
+          "minimum": 0.019924197433959817
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 14,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.7593740674969757,
+            0.9313357923031833
+          ],
+          "rate": 0.8611111111111112,
+          "successes": 62,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.633971927862099,
+            0.8446073426456249
+          ],
+          "rate": 0.75,
+          "successes": 54,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.6797704888706282,
+            0.8784487970921917
+          ],
+          "rate": 0.7916666666666666,
+          "successes": 57,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 32.78398106628042,
+          "mean": 3.018563906539435,
+          "median": 1.511944803130913,
+          "minimum": 0.04935670196752489
+        },
+        "left_to_right": {
+          "maximum": 35.96612535897162,
+          "mean": 2.778323948297099,
+          "median": 1.1140157091899918,
+          "minimum": 0.04590667097339225
+        },
+        "right_to_left": {
+          "maximum": 65.36424971025188,
+          "mean": 4.80175515793449,
+          "median": 1.4998498109112903,
+          "minimum": 0.03711911879238129
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 15,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7759280642567467,
+            0.9412166829434396
+          ],
+          "rate": 0.875,
+          "successes": 63,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 5.751063009149868,
+          "mean": 0.7698623937997411,
+          "median": 0.30233866493846556,
+          "minimum": 0.028813792003720674
+        },
+        "left_to_right": {
+          "maximum": 10.171886573181157,
+          "mean": 1.096919635067626,
+          "median": 0.33326056117705116,
+          "minimum": 0.025797016625120475
+        },
+        "right_to_left": {
+          "maximum": 8.568549601920633,
+          "mean": 0.7845984574826924,
+          "median": 0.30367581523593595,
+          "minimum": 0.02331597829312018
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 16,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "weak_residual_groups__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "weak_residual_groups",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 1.031543902643062,
+          "mean": 0.13385499244357407,
+          "median": 0.07784237389260129,
+          "minimum": 0.00930147166855267
+        },
+        "left_to_right": {
+          "maximum": 1.0813793498553554,
+          "mean": 0.18151242646728566,
+          "median": 0.09961274971979206,
+          "minimum": 0.008950661274991023
+        },
+        "right_to_left": {
+          "maximum": 1.1887284492819525,
+          "mean": 0.16525781032217834,
+          "median": 0.08142591337328822,
+          "minimum": 0.009654079194520836
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 17,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 3,
+        "unresolved": 69
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.43943808687623204,
+          "mean": 0.025726599520332287,
+          "median": 0.014518309912279693,
+          "minimum": 0.0039360019530141266
+        },
+        "left_to_right": {
+          "maximum": 0.9048450706504552,
+          "mean": 0.0392770880726491,
+          "median": 0.019033264985286326,
+          "minimum": 0.003228135430093716
+        },
+        "right_to_left": {
+          "maximum": 0.14541415372728703,
+          "mean": 0.0283569411474262,
+          "median": 0.01806266471534132,
+          "minimum": 0.003421136378416125
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 18,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 1,
+        "unresolved": 71
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "anatomy_quality_confound",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8830251801740586,
+            0.9913235026836562
+          ],
+          "rate": 0.9583333333333334,
+          "successes": 69,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.7759280642567467,
+            0.9412166829434396
+          ],
+          "rate": 0.875,
+          "successes": 63,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.8933867154668638,
+          "mean": 0.05991340354130413,
+          "median": 0.022882053199211085,
+          "minimum": 0.004582972293622771
+        },
+        "left_to_right": {
+          "maximum": 1.7998584087955007,
+          "mean": 0.07824417065942971,
+          "median": 0.02842453406114294,
+          "minimum": 0.0047161071608073524
+        },
+        "right_to_left": {
+          "maximum": 0.49667377056789974,
+          "mean": 0.06439605391658393,
+          "median": 0.024832906627768263,
+          "minimum": 0.0029220478757227583
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 19,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 33,
+        "unresolved": 39
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 1.8
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.743059876751722,
+            0.9211880368120582
+          ],
+          "rate": 0.8472222222222222,
+          "successes": 61,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9500559162941453,
+            1.0
+          ],
+          "rate": 1.0,
+          "successes": 72,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.743059876751722,
+            0.9211880368120582
+          ],
+          "rate": 0.8472222222222222,
+          "successes": 61,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 6.185433825348383,
+          "mean": 0.6454608232467601,
+          "median": 0.2711676087518947,
+          "minimum": 0.016262543025523983
+        },
+        "left_to_right": {
+          "maximum": 3.4051732897985407,
+          "mean": 0.571824764370711,
+          "median": 0.2934570084352146,
+          "minimum": 0.024973782348508073
+        },
+        "right_to_left": {
+          "maximum": 12.02906057882884,
+          "mean": 1.0623166727439022,
+          "median": 0.3952363405003322,
+          "minimum": 0.015934292217250325
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 20,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 3,
+        "unresolved": 69
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 0.3860123991176186,
+          "mean": 0.0826974703913142,
+          "median": 0.06377922218677859,
+          "minimum": 0.019176356003700275
+        },
+        "left_to_right": {
+          "maximum": 0.46154885511495436,
+          "mean": 0.09617069794037902,
+          "median": 0.07458709598378346,
+          "minimum": 0.015598596746723502
+        },
+        "right_to_left": {
+          "maximum": 0.5938988254646418,
+          "mean": 0.10835727559405234,
+          "median": 0.08433036384599843,
+          "minimum": 0.017552596715509516
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 21,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 3,
+        "unresolved": 69
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "anatomy_quality_confound",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.8453326851838769,
+            0.9770683408462545
+          ],
+          "rate": 0.9305555555555556,
+          "successes": 67,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.8098896595544408,
+            0.9600104990663975
+          ],
+          "rate": 0.9027777777777778,
+          "successes": 65,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.9250286891460808,
+            0.9996484255947664
+          ],
+          "rate": 0.9861111111111112,
+          "successes": 71,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 1.8868979114376068,
+          "mean": 0.13269489321934774,
+          "median": 0.05839451782865723,
+          "minimum": 0.013956164064246046
+        },
+        "left_to_right": {
+          "maximum": 2.251123767797666,
+          "mean": 0.17103742638531594,
+          "median": 0.06882070305351387,
+          "minimum": 0.022683934084988748
+        },
+        "right_to_left": {
+          "maximum": 3.856252211395219,
+          "mean": 0.17540087722457406,
+          "median": 0.07408297438161397,
+          "minimum": 0.018417560693215516
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 22,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 5,
+        "unresolved": 67
+      }
+    },
+    {
+      "block_id": "block_02",
+      "block_index": 1,
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 2.2
+      },
+      "coverage": {
+        "aggregate": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "joint": {
+          "exact_95_interval": [
+            0.827391415316326,
+            0.9688024908586155
+          ],
+          "rate": 0.9166666666666666,
+          "successes": 66,
+          "total": 72
+        },
+        "left_to_right": {
+          "exact_95_interval": [
+            0.9032327108865847,
+            0.9966180996738268
+          ],
+          "rate": 0.9722222222222222,
+          "successes": 70,
+          "total": 72
+        },
+        "nominal": 0.95,
+        "right_to_left": {
+          "exact_95_interval": [
+            0.863821350687076,
+            0.9846574628888694
+          ],
+          "rate": 0.9444444444444444,
+          "successes": 68,
+          "total": 72
+        },
+        "scientific_acceptance_interpreted": false,
+        "scope": "leave_one_replicate_out_generated_center; descriptive pilot, not an oracle parameter"
+      },
+      "estimable_records": 72,
+      "false_adequacy_interpretation": {
+        "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+        "status": "not_interpreted"
+      },
+      "interval_width": {
+        "aggregate": {
+          "maximum": 2.8085911836328448,
+          "mean": 0.5023913115211491,
+          "median": 0.39589334304868207,
+          "minimum": 0.10221705551222668
+        },
+        "left_to_right": {
+          "maximum": 5.338645666683848,
+          "mean": 0.7141585328118824,
+          "median": 0.5875202707640523,
+          "minimum": 0.06825966405013088
+        },
+        "right_to_left": {
+          "maximum": 4.824451672372501,
+          "mean": 0.6895401781645081,
+          "median": 0.4670101613615356,
+          "minimum": 0.06728434235838843
+        }
+      },
+      "numerical_failure_count": 0,
+      "numerical_failures": [],
+      "replicate_records": 72,
+      "task_id": 23,
+      "terminal_counts": {
+        "M_supported_before_full_search_null": 0,
+        "numerical_failure": 0,
+        "single_population_adequate_before_sensitivity_gate": 0,
+        "unresolved": 72
+      }
+    }
+  ],
+  "computationally_complete": true,
+  "configuration": {
+    "array_shards": 24,
+    "blocks": 2,
+    "bootstrap_replicates": 1999,
+    "cells": 12,
+    "confidence_level": 0.95,
+    "folds": 2,
+    "integration_draws": 2048,
+    "meaningful_margin": 0.02,
+    "replicates_per_block": 72,
+    "whole_types_per_replicate": 8
+  },
+  "coverage_interpretation": "reported descriptively with exact binomial intervals; no pilot coverage result is promoted to qualification acceptance",
+  "coverage_threshold_applied": false,
+  "false_adequacy_interpretation": {
+    "reason": "population M-minus-best-T/U truth remains undefined until the generated oracle reference is scientifically repaired",
+    "status": "not_interpreted"
+  },
+  "final_connectivity_accessed": false,
+  "overall_numerical_failure_count": 0,
+  "overall_terminal_counts": {
+    "M_supported_before_full_search_null": 0,
+    "numerical_failure": 0,
+    "single_population_adequate_before_sensitivity_gate": 187,
+    "unresolved": 1541
+  },
+  "pilot_id": "interval_refinement_v3_2048",
+  "pilot_scope": "generated_data_only",
+  "real_connectivity_accessed": false,
+  "runtime": {
+    "cpu_seconds": 0.9006100959999999,
+    "wall_seconds": 0.9703067159862258
+  },
+  "schema_version": "ep12.interval_refinement_pilot.v3",
+  "scientific_gate_applied": false,
+  "scientific_qualification_modified": false
+}

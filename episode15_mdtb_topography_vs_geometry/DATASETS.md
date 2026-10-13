@@ -5,6 +5,87 @@ derivative to ask why individual cerebellar task maps differ. [GOAL.md](GOAL.md)
 defines the scientific comparison; this file describes what is available, how
 participants and task sets are separated, and what still blocks analysis.
 
+**October 12, 23:18 UTC:** the adopted common finite-support amendment replaces
+the original208-location axis only for the observed-beta route. Its single mask
+intersects strict sampling validity across all9024 released development maps,
+retaining all people, conditions, runs and regressors. Original anatomy support
+stays unchanged. Target Task-B availability contributes to the common axis, so
+this is an availability-conditioned descriptive estimand, not wholly unseen
+Task-B prediction. See the [adopted specification](outputs/proposed_finite_support_followup.md).
+The October12 22:29 description below records the preceding208-point route.
+
+**October 12, 22:29 UTC:** the scientist adopted the
+[observed-beta descriptive route](GOAL.md#adopted-observed-beta-descriptive-route--october-12-2026).
+It permits the complete fixed twelve-person/eighteen-condition/sixteen-variant
+development panel while cross-partition error support is unresolved. It changes
+no participant, source map, 208-location support, partition, control or access
+boundary. The qualified fit still requires the coordinator's explicit
+development release and resource admission. Reporting is limited to unadjusted
+observed-map losses and clearly assumption-conditional signed summaries;
+reliable-signal/recovery fractions and audit access are prohibited. The
+derivative's estimation-scope information remains useful for the original
+question, but is not a new prerequisite for this descriptive route.
+
+The October 6 scientist agreement opens an exploratory real-data development
+direction after the existing reader/source/model requirements are met. It
+adopts only the intended 80% recovery and five-percentage-point increment
+standards; it does not validate inference, adopt the other five margin values,
+release the opaque containers or open audit Task B. See the
+[adopted scope](GOAL.md#adopted-exploratory-real-data-direction--october-6-2026).
+
+## Public online resources — checked October 6, 2026
+
+| Public source | Available information and EP15 use | Remaining limit |
+| --- | --- | --- |
+| [Functional Fusion MDTB v1.0 on Zenodo](https://zenodo.org/records/16788784) | Participant derivative archives, `README.md`, `participants.tsv` and dataset-description metadata; documents Task A=`ses-s1`, Task B=`ses-s2` and the Functional Fusion import layout. Use for release/file identity and interpreting the derivative. | The provider explicitly excludes resting-state data and time series from this release. Availability does not release audit Task B. |
+| [Official Functional Fusion dataset implementation](https://raw.githubusercontent.com/DiedrichsenLab/Functional_Fusion/main/Functional_Fusion/dataset.py) | `DataSetMDTB` defines the two sessions, condition/half fields and `CondHalf` default; the native-space mapper links deformation and cerebellar-mask files. Use as a readable source-format/mapping reference. | The current `main` implementation also enables baseline subtraction and exposes optional preprocessing. These defaults are not EP15's adopted arithmetic or a frozen historical software version. |
+| [Official deformation/sampling implementation](https://raw.githubusercontent.com/DiedrichsenLab/Functional_Fusion/main/Functional_Fusion/atlas_map.py) | `AtlasMapDeform` documents world-coordinate deformation, mask inputs and nearest-neighbor/trilinear/smoothed interpolation choices. It supports the source interpretation recorded in EP15's sampling specification. | It does not replace EP15's fixed 208-location support, strict missing-stencil rules or role-separated reader. |
+
+These are public documentation/code resources, not missing participant results.
+The remaining statistical and reader work is listed under
+[analysis readiness](#what-remains-before-analysis); no provider defaults or
+new payloads were adopted by this source check.
+
+### Run-error provenance follow-up — checked October 7, 2026
+
+The exact [v1.0 release README](https://zenodo.org/records/16788784/files/README.md?download=1)
+still leaves preprocessing details incomplete. The [original study's Methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC8312478/)
+describe two scanning sessions per task set, eight runs each, run-specific GLMs,
+FAST temporal autocorrelation modeling and an implicit rest baseline. These
+describe the original analysis, not an authenticated execution record for the
+2025 derivative.
+
+The original author code maps runs 1–8 and 9–16 to the two actual scanning
+sessions, then groups all sixteen run-specific designs in one task-set SPM
+object for estimation: pinned [session mapping](https://github.com/maedbhk/MDTB-Cerebellum/blob/b905f6162ee1745f27b225aba6aea73270c39c64/sc1_sc2_imana.m#L548),
+[specification](https://github.com/maedbhk/MDTB-Cerebellum/blob/b905f6162ee1745f27b225aba6aea73270c39c64/sc1_sc2_imana.m#L1549)
+and [estimation](https://github.com/maedbhk/MDTB-Cerebellum/blob/b905f6162ee1745f27b225aba6aea73270c39c64/sc1_sc2_imana.m#L1804).
+This organization does not itself prove correlated errors. It also does not
+justify interpreting run-specific regressors as independently estimated
+preprocessing throughout. If the release preserves that run order, EP15's
+geometry pairs 1×2 and 3×4 each pair disjoint runs **within one actual scanning
+session**; the Task-A/Task-B `ses-s1`/`ses-s2` labels should not be confused
+with those within-task-set scanning sessions.
+
+A concrete release-provenance gap remains: the [pre-release Functional Fusion
+importer](https://github.com/DiedrichsenLab/Functional_Fusion/blob/342c3be9cb53e82aa3f22e32e582cc832d0b06b8/scripts/import/import_mdtb.py#L92)
+references `GLM_firstlevel_7`, whereas the inspected original-paper script
+defines GLM4/5/6. The partly commented importer is a clue, not a completed
+export record. Its [import helper](https://github.com/DiedrichsenLab/Functional_Fusion/blob/342c3be9cb53e82aa3f22e32e582cc832d0b06b8/Functional_Fusion/import_data.py#L146)
+copies beta images and a separate shared task-set residual-variance image.
+Later [Functional Fusion extraction](https://github.com/DiedrichsenLab/Functional_Fusion/blob/2be43b20080f3e7042b2c1db04bff7a4b85b4b69/Functional_Fusion/dataset.py#L666)
+performs additional residual normalization, contrast recombination and optional
+baseline subtraction; EP15's direct arithmetic beta reader does not invoke
+those operations.
+
+The smallest useful remaining provider item is a **release-bound GLM7
+specification/export record** identifying run/session mapping and the estimation
+scope of temporal covariance, nuisance terms and beta normalization. That would
+support assessment of the existing cross-partition error assumption, not
+mathematically prove independence. Zero cross-partition error covariance is
+still unverified. This review changed no partitions, payloads, preprocessing,
+access rights or statistical claim.
+
 ## Source
 
 | Item | Value |
@@ -45,9 +126,14 @@ use resting-state connectivity.
 Seven participants lack an overlap mask and inverse SUIT transform but retain
 the forward transform, cerebellar mask, and Task-A/B betas. They are exactly
 the participants without the optional rest session. This cannot become a
-silent exclusion. EP15 must authenticate one registration route that works for
-all 24 participants or reproducibly regenerate the missing products before
-roles are assigned.
+silent exclusion. The authenticated common route uses the available forward
+SUIT pull fields, so no inverse transform or participant exclusion is needed.
+The [adopted sampling specification](outputs/anatomical_support_specification.md)
+defines absolute native-world coordinates, strict trilinear sampling and one
+source-derived 3 mm lattice. The completed anatomy-only intersection retains
+208 locations shared by all 24 people. It is fixed; it is neither a canonical
+SUIT3 atlas nor evidence of whole-cerebellum coverage. The source and support
+completion records are linked in [the output index](outputs/README.md).
 
 ## Task structure
 
@@ -77,8 +163,11 @@ enter the primary Task-B-only endpoint.
 ## Participant roles
 
 Twelve whole participants are assigned to development and twelve to audit.
-The earlier 16/8 proposal is withdrawn. The 12/12 roles have not yet been
-instantiated.
+The earlier 16/8 proposal is withdrawn. The Task-B-blind 12/12 assignment
+completed October 4; the fixed identities and aggregate balance are linked in
+[the output index](outputs/README.md). Private reliability values remain
+with the custodian. Opaque materialization subsequently completed, but reader
+isolation/release and candidate scoring are still closed.
 
 The assignment is Task-B-blind:
 
@@ -97,17 +186,29 @@ uncomputable Task-A reliability blocks the split; it does not trigger
 imputation, exclusion, or participant replacement. The custodian returns the
 roles and balance report, not participant-level audit reliability values.
 
-Outcome-blind simulations must show that the complete selection and audit
+For the original formal class-decision route, outcome-blind simulations must
+show that the complete selection and audit
 decision is usable with 12 development and 12 audit participants. Scientific
 margins cannot be widened to make that simulation pass. A different split
 would require an explicit design amendment before either role's Task-B
-outcomes are exposed.
+outcomes are exposed. The October 6 exploratory branch retains the existing
+split while deferring that whole-procedure qualification; it cannot claim the
+formal route is complete.
 
 ## Physical separation
 
 The participant archives mix Task A and Task B and cannot be mounted to the
-search process. After the split, a trusted operator creates three ordinary,
-role-filtered handoffs:
+search process. Opaque copying has produced 36 role-filtered containers with
+all 36,576 expected members, retaining the following three handoff types.
+The containers remain unreleased: same-UID staging does not establish the
+required reader isolation. See the [materialization completion](outputs/experiment_log.md#2026-10-05-1513-utc--full-role-materialization-complete-and-charged-once).
+
+**October 12, 2026:** the scientist adopted procedural same-account separation
+in place of enforced reader isolation; see the
+[amendment](GOAL.md#adopted-procedural-evaluation-separation--october-12-2026).
+The handoffs and readers below are unchanged. The same account can still read
+every container, so this boundary is procedural, not OS isolation. The
+containers stay unreleased until a separately recorded development release.
 
 | Handoff | Contents | Reader |
 | --- | --- | --- |
@@ -144,10 +245,14 @@ Task-B score can favor a candidate, freeze:
 - the seven-domain weights and condition-pair weights; and
 - the actual development-only M3 source geometry `K0` and its positive scale.
 
-The map halves and geometry partitions rely on independent measurement error.
+For the original reliable-variation estimands, the map halves and geometry
+partitions rely on independent measurement error.
 Task-A and synthetic/noise checks must support that assumption before Task-B
 model comparison. Shared nuisance that invalidates the cross-products blocks
 the estimand; a favorable model score cannot waive the problem.
+The adopted observed-beta route is the explicit exception to withholding the
+descriptive full panel: it does not certify these estimands, change their
+partitions or treat the Task-A diagnostic as an independence pass.
 
 For each development pseudo-target, all source maps, priors, bases, response
 profiles, regularizers, thresholds, and normalizations exclude that
@@ -199,20 +304,35 @@ EP15 correlated exposure, not independent evidence.
 
 ## What remains before analysis
 
-EP15 is not analysis-ready. It still requires:
+The source route, 208-location support, Task-A-only reliability preparation,
+fixed 12/12 roles, condition/run-partition member plan and opaque handoff
+materialization are complete. The pre-role EP03 exposure review conservatively
+records potentially correlated exposure of unknown extent; it does not claim
+independence. The [selected endpoint metric](outputs/paper_plan.md#prospective-metric-and-decision-contrasts--selected-conventions-2026-10-05)
+retains all 171 unique signed geometry entries, with equal weight over 28
+domain-pair blocks. M3/M4 algebra, covariance, paired-jackknife and endpoint
+arithmetic have passed their focused checks; these are preparation results,
+not participant findings or a qualified inference procedure.
 
-- one verified registration route and common support for all 24 participants;
-- the fixed four-partition condition table and error-independence checks;
-- the Task-B-blind 12/12 role assignment and three permission-separated
-  handoffs;
-- scientist-approved signal, adequacy, increment, and geometry margins;
+Before exploratory development scoring, EP15 still requires:
+
+- enforced reader separation and release of the materialized role handoffs
+  (October 12: separation is satisfied procedurally under the
+  [amendment](GOAL.md#adopted-procedural-evaluation-separation--october-12-2026);
+  the release is still pending);
+- functional finite-value/geometry checks and support for independent run
+  errors under the fixed partition plan (the latter remains unresolved and is
+  excepted only for the adopted observed-beta descriptive route);
 - exact M1–M4 capacities, identifiability and operator certificates, source
-  geometry, inference implementation, and scratch limit;
-- outcome-blind synthetic qualification of the complete decision tree;
-- the published-parameter/cache and EP03 exposure review; and
-- a dry run showing that all audit predictions can be written while audit
-  Task B is unavailable.
+  geometry and positive scales for the reports actually evaluated, and a fixed
+  scratch limit within the existing resource ceiling; and
+- the deployed published-parameter/cache firewall.
 
-Until those items are complete, candidate scoring and audit Task-B access stay
-closed. Setup failure is a readiness limitation, not evidence for or against a
-scientific class.
+The formal route additionally needs the remaining two signal/geometry and
+three native-signature margins, calibrated joint inference, the registered
+whole-procedure qualification and the audit-prediction dry run. The accepted
+`tau_remaining = 0.20` and `tau_increment = 0.05` resolve two intended standards
+only. The seven-fixture and Bonferroni alternatives remain proposals. These
+formal requirements no longer block the separately labeled exploratory point
+report, but audit Task B remains closed. Setup failure is not evidence for or
+against a scientific class.

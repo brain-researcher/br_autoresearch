@@ -1,0 +1,30 @@
+{
+  "schema_version": "ep21.content_cuda_remaining_hardware.v1",
+  "authorized": true,
+  "operation": "extend_pending_remaining_content_hardware_only",
+  "selected_at": "2026-10-12 (before first execution)",
+  "approval_source": "outputs/experiment_log.md#2026-10-12--interindividual_converter_training--pending-only-qualified-hardware-expansion-selected",
+  "pending_stage_jobs": {
+    "remaining-000": "47377474",
+    "remaining-001": "47382245",
+    "remaining-002": "47382246",
+    "remaining-003": "47382247",
+    "remaining-008": "47382248",
+    "remaining-009": "47382249",
+    "remaining-010": "47382250",
+    "remaining-011": "47382251",
+    "remaining-012": "47382252",
+    "remaining-013": "47382253",
+    "remaining-014": "47382254",
+    "remaining-015": "47382255",
+    "remaining-016": "47382256",
+    "remaining-017": "47382257",
+    "remaining-018": "47382258",
+    "remaining-019": "47382259"
+  },
+  "allowed_device_names": ["Tesla V100-SXM2-32GB", "NVIDIA H100 80GB HBM3"],
+  "scheduler_constraint": "(GPU_SKU:V100_SXM2&GPU_MEM:32GB)|(GPU_SKU:H100_SXM5&GPU_MEM:80GB)",
+  "original_grants_resources_science_unchanged": true,
+  "selected_before_first_execution": true,
+  "automatic_retry": false
+}

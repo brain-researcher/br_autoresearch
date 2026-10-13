@@ -1,0 +1,257 @@
+{
+  "analysis_class": "synthetic_group_module_attribution_not_qualification",
+  "audit_labels_integrated": true,
+  "batch_size": 32,
+  "component_interpretation_allowed": false,
+  "current_finite_D12_reference_role": "historical_overconstrained_frozen_C_inside_H_not_production_contract",
+  "fixed_role_count": "D12_A8_16_unassigned_metadata_only_not_locked",
+  "fixtures": {
+    "strong_projected_proxy_target": {
+      "arms": {
+        "MOD_DISC": {
+          "MC_SE": 0.01411341836169311,
+          "accuracy_MC_SE": 0.006548762880873937,
+          "mean_oracle_regret_nats_per_neuron": 0.7281871924807428,
+          "mean_pooled_cell_permutation_invariant_accuracy": 0.6371813322368421
+        },
+        "MOD_GATE_FIT": {
+          "MC_SE": 0.00466920977215175,
+          "accuracy_MC_SE": 0.0020931449417413523,
+          "mean_oracle_regret_nats_per_neuron": 0.06363177389058888,
+          "mean_pooled_cell_permutation_invariant_accuracy": 0.9143708881578947
+        },
+        "MOD_GATE_TRUTH": {
+          "MC_SE": 0.0,
+          "accuracy_MC_SE": 0.001957617822854822,
+          "mean_oracle_regret_nats_per_neuron": 0.0,
+          "mean_pooled_cell_permutation_invariant_accuracy": 0.9242393092105263
+        },
+        "MOD_LABEL": {
+          "MC_SE": 0.009579502806752339,
+          "accuracy_MC_SE": 0.0030001036429397427,
+          "mean_oracle_regret_nats_per_neuron": 0.39810690922510794,
+          "mean_pooled_cell_permutation_invariant_accuracy": 0.8532072368421052
+        },
+        "MOD_SIGNATURE": {
+          "MC_SE": 0.0028646510613043372,
+          "accuracy_MC_SE": 0.0019383872772943892,
+          "mean_oracle_regret_nats_per_neuron": 0.02842002300743269,
+          "mean_pooled_cell_permutation_invariant_accuracy": 0.9201274671052633
+        }
+      },
+      "current_finite_D12": {
+        "MC_SE": 0.011414863470391487,
+        "mean_H_minus_C_nats_per_neuron": -0.03441727603816881,
+        "mean_group_accuracy": 0.5678453947368421,
+        "mean_one_sided95_halfwidth": 0.11453721851651494,
+        "predictive_gain_detection_rate": 0.0,
+        "replicates": 32
+      },
+      "development_discovery_accuracy_pooled_cell": {
+        "MC_SE": 0.006064712013253129,
+        "mean": 0.6422334558823529
+      },
+      "oracle_H_minus_projected_C_proxy": {
+        "MC_SE": 0.003773753912467119,
+        "mean_nats_per_neuron": 0.08803664342639445
+      },
+      "replicates": 256,
+      "smooth_gate_optimizer_success_rate": 1.0
+    },
+    "zero_group": {
+      "arms": {
+        "MOD_DISC": {
+          "MC_SE": 0.0060611612071733425,
+          "accuracy_MC_SE": null,
+          "mean_oracle_regret_nats_per_neuron": 0.1511363911064832,
+          "mean_pooled_cell_permutation_invariant_accuracy": null
+        },
+        "MOD_GATE_FIT": {
+          "MC_SE": 1.1194261001165842e-17,
+          "accuracy_MC_SE": null,
+          "mean_oracle_regret_nats_per_neuron": 9.489316972932114e-17,
+          "mean_pooled_cell_permutation_invariant_accuracy": null
+        },
+        "MOD_GATE_TRUTH": {
+          "MC_SE": 0.0,
+          "accuracy_MC_SE": null,
+          "mean_oracle_regret_nats_per_neuron": 0.0,
+          "mean_pooled_cell_permutation_invariant_accuracy": null
+        },
+        "MOD_LABEL": {
+          "MC_SE": 0.0036223993774018265,
+          "accuracy_MC_SE": null,
+          "mean_oracle_regret_nats_per_neuron": 0.06868647507840228,
+          "mean_pooled_cell_permutation_invariant_accuracy": null
+        },
+        "MOD_SIGNATURE": {
+          "MC_SE": 4.542356910869531e-17,
+          "accuracy_MC_SE": null,
+          "mean_oracle_regret_nats_per_neuron": 6.458297596175157e-17,
+          "mean_pooled_cell_permutation_invariant_accuracy": null
+        }
+      },
+      "current_finite_D12": {
+        "MC_SE": 0.009857405855282546,
+        "mean_H_minus_C_nats_per_neuron": -0.0223876919397955,
+        "mean_group_accuracy": null,
+        "mean_one_sided95_halfwidth": 0.09440102599272074,
+        "predictive_gain_detection_rate": 0.0,
+        "replicates": 32
+      },
+      "development_discovery_accuracy_pooled_cell": {
+        "MC_SE": null,
+        "mean": null
+      },
+      "oracle_H_minus_projected_C_proxy": {
+        "MC_SE": 8.307366460732357e-18,
+        "mean_nats_per_neuron": 4.374133501251746e-17
+      },
+      "replicates": 256,
+      "smooth_gate_optimizer_success_rate": 1.0
+    }
+  },
+  "generator_subset_invariance_repair": true,
+  "integration_replicates": 32,
+  "maximum_achieved_sequential_MC_SE": 0.010775898510106595,
+  "module_backbone": "known_synthetic_group_free_truth",
+  "outcome_bearing_search_authorized": false,
+  "paired_attribution": {
+    "label_discovery_rescue_including_downstream_signature_and_intercept_refit": {
+      "MC_SE": 0.010775898510106595,
+      "lower_exceeds_0_005": true,
+      "material_bottleneck_status": "unresolved_MC_precision",
+      "mean_nats_per_neuron": 0.330080283255635,
+      "one_sided95_lower": 0.3122908794275728,
+      "one_sided95_upper": 0.3478696870836972
+    },
+    "position_gating_need": {
+      "MC_SE": 0.0028646510613043372,
+      "lower_exceeds_0_005": true,
+      "material_bottleneck_status": "unresolved_MC_precision",
+      "mean_nats_per_neuron": 0.02842002300743269,
+      "one_sided95_lower": 0.02369091067325149,
+      "one_sided95_upper": 0.033149135341613886
+    },
+    "signature_rescue_given_true_labels": {
+      "MC_SE": 0.009392846200799618,
+      "lower_exceeds_0_005": true,
+      "material_bottleneck_status": "unresolved_MC_precision",
+      "mean_nats_per_neuron": 0.3696868862176752,
+      "one_sided95_lower": 0.35418069580541495,
+      "one_sided95_upper": 0.38519307662993546
+    },
+    "smooth_gate_remaining_regret": {
+      "MC_SE": 0.00466920977215175,
+      "lower_exceeds_0_005": true,
+      "material_bottleneck_status": "unresolved_MC_precision",
+      "mean_nats_per_neuron": 0.06363177389058888,
+      "one_sided95_lower": 0.05592360383712758,
+      "one_sided95_upper": 0.07133994394405019
+    }
+  },
+  "projected_proxy_calibration": {
+    "amplitude_grid": [
+      0.0,
+      0.025,
+      0.05,
+      0.075,
+      0.1,
+      0.15,
+      0.2,
+      0.3,
+      0.45,
+      0.65,
+      0.9,
+      1.25,
+      1.75,
+      2.5
+    ],
+    "fit_and_verification_replicates_each": 32,
+    "points": [
+      {
+        "generator_amplitude": 0.0,
+        "independent_verification_MC_SE": 2.889642125658441e-17,
+        "independent_verification_lower95": 7.913581379788608e-18,
+        "independent_verification_mean_gain": 6.68482210853275e-17,
+        "independent_verification_upper95": 1.2578286079086638e-16,
+        "projected_C_parameters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_margin_multiplier": 0.0,
+        "target_proxy_gain_nats_per_neuron": 0.0
+      },
+      {
+        "generator_amplitude": 0.3097734614774125,
+        "independent_verification_MC_SE": 0.009010066564194416,
+        "independent_verification_lower95": 0.06272924895550189,
+        "independent_verification_mean_gain": 0.08110540086610307,
+        "independent_verification_upper95": 0.09948155277670426,
+        "projected_C_parameters": [
+          0.1796702827944894,
+          -0.005132108628459371,
+          0.21339871143515401,
+          -0.000474657447788663
+        ],
+        "target_margin_multiplier": 2.0,
+        "target_proxy_gain_nats_per_neuron": 0.1
+      }
+    ],
+    "projection_family": "generator_direction_aligned_registered_1D_quadratic_7node_C",
+    "protocol_id": "projected_oracle_proxy_label_integrated_H_vs_direction_aligned_connected_C_v2",
+    "raw_MC_SE_by_scenario": {
+      "reusable_groups": [
+        2.446720221562986e-17,
+        0.0005799468755858322,
+        0.0009752255892219052,
+        0.001539072162613838,
+        0.0021924930406350186,
+        0.0030313223856573445,
+        0.004738343390534584,
+        0.008666372500415945,
+        0.013587338408866187,
+        0.013714187042896371,
+        0.013049933148428124,
+        0.010304319525974886,
+        0.009745156889281728,
+        0.037119353572019384
+      ]
+    },
+    "raw_mean_gain_by_scenario": {
+      "reusable_groups": [
+        2.8482876857282833e-17,
+        0.0007112327020848306,
+        0.0015321105231681017,
+        0.0027130458201935588,
+        0.004523251681603155,
+        0.007942505129328084,
+        0.01973504503419119,
+        0.08869888567588033,
+        0.2621448190880753,
+        0.4688166505603457,
+        0.6292782161841101,
+        0.7220227132099706,
+        0.8264640478370032,
+        1.4833675510949407
+      ]
+    },
+    "role": "direction_aligned_projected_C_proxy_not_full_family_calibration"
+  },
+  "real_projection_outcomes_read": false,
+  "remaining_required_next": "population-optimal complete-current-family C/H calibration, then an equal-unit jointly optimized finite-D12 estimator with smooth gating",
+  "schema_version": "ep11_group_module_ablation_v1",
+  "sequential_MC_SE_diagnostics": {
+    "strong_label_discovery_rescue_including_downstream_signature_and_intercept_refit": 0.010775898510106595,
+    "strong_position_gating_need": 0.0028646510613043372,
+    "strong_signature_rescue_given_true_labels": 0.009392846200799618,
+    "strong_smooth_gate_remaining_regret": 0.00466920977215175,
+    "zero_regret_MOD_DISC": 0.0060611612071733425,
+    "zero_regret_MOD_LABEL": 0.0036223993774018265
+  },
+  "sequential_target_met": false,
+  "stopped_at_replicate_cap": true,
+  "target_paired_contrast_MC_SE": 0.005
+}

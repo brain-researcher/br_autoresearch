@@ -1,0 +1,85 @@
+{
+  "control_pass_semantics": {
+    "applicability_checks_passed": true,
+    "capacity_checks_passed": true,
+    "complete_prespecified_branch_set_executed": true,
+    "conservation_checks_passed": true,
+    "every_branch_has_complete_T_U_M_result": true,
+    "new_scientific_pass_threshold": null,
+    "robustness_or_residual_mode_support_decided_here": false
+  },
+  "controls": {
+    "binary_weighted_vocabulary_and_rank_sensitivities": {
+      "common_models": [
+        "T_type_template",
+        "U_flexible_unimodal",
+        "M_residual_modes"
+      ],
+      "expanded_branches": "Cartesian product of every SEARCH_POLICY partner_vocabulary and rank",
+      "required_branches": [
+        "weighted_baseline",
+        "binary"
+      ]
+    },
+    "capacity_matched_noise_controls": {
+      "capacity": "byte-identical scientific configuration across branches",
+      "noise": "deterministic pooled multinomial with original matrix shape and each original row total",
+      "required_branches": [
+        "weighted_baseline",
+        "pooled_multinomial_noise"
+      ]
+    },
+    "cross_side_component_alignment_permutation": {
+      "branch_inventory": [
+        "unpermuted",
+        "deterministic_within_K_permutation"
+      ],
+      "input": "persisted source-side M component partner contrasts",
+      "score": "maximum-mean cosine over every component permutation",
+      "strata": "fitted component count K",
+      "target_side_refit": false
+    },
+    "few_type_and_high_strength_neuron_concentration_check": {
+      "acceptance_cutoff": null,
+      "neuron_curve": "complete leave-one-target-neuron curve",
+      "strength_curve": "descending-strength cumulative deletion until one neuron remains in each provider-type/direction cell",
+      "type_curve": "complete leave-one-provider-type curve"
+    },
+    "leave_one_development_type_and_partner_family_influence": {
+      "common_models": [
+        "T_type_template",
+        "U_flexible_unimodal",
+        "M_residual_modes"
+      ],
+      "partner_branches": "every nonempty subclass and class family in partner_type_hierarchy",
+      "type_branches": "analytic leave-one for every complete equal-weight provider-type record"
+    },
+    "nuisance_and_partner_block_ablations": {
+      "common_models": [
+        "T_type_template",
+        "U_flexible_unimodal",
+        "M_residual_modes"
+      ],
+      "nuisance_branches": "every nonempty declared nuisance block",
+      "partner_branches": "every nonempty subclass and class family in partner_type_hierarchy",
+      "partner_operation": "pool family into an explicit retained-mass bin"
+    },
+    "status_endpoint_anatomy_and_missingness_checks": {
+      "common_models": [
+        "T_type_template",
+        "U_flexible_unimodal",
+        "M_residual_modes"
+      ],
+      "covariate_branches": "every nonempty frozen nuisance block plus all missingness indicators",
+      "endpoint_branches": "every nonempty declared endpoint bin",
+      "endpoint_mass_preserved": true,
+      "endpoint_operation": "pool into an explicit retained endpoint-control bin"
+    }
+  },
+  "development_roles_only": true,
+  "final_connectivity_access_authorized": false,
+  "final_connectivity_accessed": false,
+  "purpose": "production implementation contract for seven EP12 controls",
+  "schema_version": "ep12.falsifier_control_implementation_spec.v1",
+  "spec_sha256": "56fe8f8beefd08fb9c3f765164c91f38b57bb0df64066db8a886ceb04cc8fc83"
+}

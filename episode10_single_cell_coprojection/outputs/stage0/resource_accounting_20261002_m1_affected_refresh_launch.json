@@ -1,0 +1,66 @@
+{
+  "accounting_epoch": "wall_reset_20261001",
+  "observed_at_utc": "2026-10-02T18:43:06Z",
+  "source_authorization": "outputs/stage0/v3_wall_time_reset_authorization_20261001.json",
+  "no_new_wall_reset": true,
+  "historical_strict_wall_hours_preserved": 129.83266666666668,
+  "historical_allocated_core_hours_floor_preserved": 302.02566666666667,
+  "new_window_used_wall_hours": 23.765,
+  "lifetime_used_allocated_core_hours": 502.0442777777778,
+  "live_jobs": {
+    "46237243": {
+      "elapsed_seconds": 73393,
+      "allocated_cpus": 9,
+      "wall_limit_hours": 48
+    },
+    "46325527": {
+      "elapsed_seconds": 1762,
+      "allocated_cpus": 2,
+      "wall_limit_hours": 4
+    }
+  },
+  "terminal_jobs_since_reset": {
+    "46237247": {
+      "elapsed_seconds": 5868,
+      "allocated_cpus": 8,
+      "state": "FAILED"
+    },
+    "46270474": {
+      "elapsed_seconds": 4353,
+      "allocated_cpus": 2,
+      "state": "FAILED"
+    },
+    "46328672": {
+      "elapsed_seconds": 178,
+      "allocated_cpus": 2,
+      "state": "COMPLETED",
+      "qualification_status": "PASS_36fits_12comparisons_22engine_tests"
+    }
+  },
+  "remaining_live_wall_reservation_hours_before_refresh": 31.12361111111111,
+  "remaining_live_core_reservation_hours_before_refresh": 255.53861111111112,
+  "m1_affected_numerics_refresh": {
+    "qualification_job_id": "46328672",
+    "reservation_included": true,
+    "request_wall_hours": 8,
+    "requested_cpus": 1,
+    "conservative_allocated_cpus": 2,
+    "memory_GiB": 16,
+    "remaining_unreserved_wall_hours": 81.11138888888888,
+    "remaining_unreserved_allocated_core_hours": 1026.4171111111111,
+    "job_id": 46330031,
+    "submitted_at_utc": "2026-10-02T18:48:26.004478+00:00",
+    "last_observed_state": "SUBMITTED"
+  },
+  "all_concurrent_reserved_cpus_after_refresh": 13,
+  "all_concurrent_requested_memory_GiB_after_refresh": 32,
+  "scratch_increment_GiB_upper_bound": 1,
+  "frozen_ceilings": {
+    "wall_hours_this_epoch": 144,
+    "allocated_core_hours_lifetime": 1800,
+    "parallel_cpus": 64,
+    "memory_GiB": 512,
+    "scratch_GiB": 1536,
+    "gpus": 0
+  }
+}

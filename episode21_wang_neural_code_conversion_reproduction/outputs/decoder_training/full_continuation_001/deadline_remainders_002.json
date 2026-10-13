@@ -1,0 +1,405 @@
+{
+  "schema_version": "ep21.decoder_deadline_remainders.v1",
+  "original_work_manifest": "outputs/decoder_training/full_continuation_001/work_manifest.json",
+  "reviewed_partials": "outputs/decoder_training/full_continuation_001/reviewed_deadline_partials_002.json",
+  "automatic_retry": false,
+  "preserve_original_fragments": true,
+  "scope": "one_manual_exact_remainder_attempt_per_listed_work_item",
+  "work_items": [
+    {
+      "work_item_id": "work_0005",
+      "participant": "sub-01",
+      "array_index": 4,
+      "predecessor_job_id": "46839670_4",
+      "predecessor_allocation_job_id": "46840029",
+      "predecessor_status": "outputs/decoder_training/full_continuation_001/shards/work_0005/work_item_status.json",
+      "output_directory": "outputs/decoder_training/full_continuation_001/remainder_shards_001/work_0005",
+      "spans": [
+        {
+          "participant": "sub-01",
+          "layer": "conv1_2",
+          "channel": 45,
+          "spatial_Fortran_interval": [
+            4224,
+            50176
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv1_2",
+          "channel": 46,
+          "spatial_Fortran_interval": [
+            0,
+            50176
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv1_2",
+          "channel": 47,
+          "spatial_Fortran_interval": [
+            0,
+            50176
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv1_2",
+          "channel": 48,
+          "spatial_Fortran_interval": [
+            0,
+            50176
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv1_2",
+          "channel": 49,
+          "spatial_Fortran_interval": [
+            0,
+            50176
+          ]
+        }
+      ],
+      "units_requested": 246656,
+      "resources": {
+        "cpus": 1,
+        "memory_gib": 7,
+        "gpus": 0,
+        "minutes": 480,
+        "durable_bytes": 1563387264,
+        "scratch_bytes": 2000000000
+      }
+    },
+    {
+      "work_item_id": "work_0006",
+      "participant": "sub-01",
+      "array_index": 5,
+      "predecessor_job_id": "46839670_5",
+      "predecessor_allocation_job_id": "46840030",
+      "predecessor_status": "outputs/decoder_training/full_continuation_001/shards/work_0006/work_item_status.json",
+      "output_directory": "outputs/decoder_training/full_continuation_001/remainder_shards_001/work_0006",
+      "spans": [
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 19,
+          "spatial_Fortran_interval": [
+            5312,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 20,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 21,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 22,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 23,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        }
+      ],
+      "units_requested": 57408,
+      "resources": {
+        "cpus": 1,
+        "memory_gib": 7,
+        "gpus": 0,
+        "minutes": 480,
+        "durable_bytes": 419383104,
+        "scratch_bytes": 2000000000
+      }
+    },
+    {
+      "work_item_id": "work_0007",
+      "participant": "sub-01",
+      "array_index": 6,
+      "predecessor_job_id": "46839670_6",
+      "predecessor_allocation_job_id": "46840031",
+      "predecessor_status": "outputs/decoder_training/full_continuation_001/shards/work_0007/work_item_status.json",
+      "output_directory": "outputs/decoder_training/full_continuation_001/remainder_shards_001/work_0007",
+      "spans": [
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 99,
+          "spatial_Fortran_interval": [
+            10944,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 100,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 101,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 102,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv2_1",
+          "channel": 103,
+          "spatial_Fortran_interval": [
+            0,
+            12544
+          ]
+        }
+      ],
+      "units_requested": 51776,
+      "resources": {
+        "cpus": 1,
+        "memory_gib": 7,
+        "gpus": 0,
+        "minutes": 480,
+        "durable_bytes": 385337664,
+        "scratch_bytes": 2000000000
+      }
+    },
+    {
+      "work_item_id": "work_0013",
+      "participant": "sub-01",
+      "array_index": 12,
+      "predecessor_job_id": "46881096_12",
+      "predecessor_allocation_job_id": "46881096",
+      "predecessor_status": "outputs/decoder_training/full_continuation_001/shards/work_0013/work_item_status.json",
+      "output_directory": "outputs/decoder_training/full_continuation_001/remainder_shards_002/work_0013",
+      "spans": [
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 108,
+          "spatial_Fortran_interval": [
+            704,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 109,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 110,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 111,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 112,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 113,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 114,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 115,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 116,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 117,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 118,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 119,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 120,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 121,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 122,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 123,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 124,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 125,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 126,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        },
+        {
+          "participant": "sub-01",
+          "layer": "conv4_3",
+          "channel": 127,
+          "spatial_Fortran_interval": [
+            0,
+            784
+          ]
+        }
+      ],
+      "units_requested": 14976,
+      "resources": {
+        "cpus": 1,
+        "memory_gib": 7,
+        "gpus": 0,
+        "minutes": 480,
+        "durable_bytes": 178610304,
+        "scratch_bytes": 2000000000
+      }
+    }
+  ]
+}

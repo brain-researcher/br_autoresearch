@@ -1,0 +1,215 @@
+schema_version: episode10_v3_m1_geometry_v1
+episode_id: ep10
+recorded_date: "2026-09-26"
+status: frozen_before_real_m1_geometry_materialization
+analysis_label: exploratory
+
+authority:
+  active_policy: SEARCH_POLICY.yaml
+  observation_contract: projection_observation_contract_v3.yaml
+  model_interface_contract: v3_model_interface_contract.yaml
+  scientific_authority: false
+
+sealed_scope:
+  role: development_only
+  required_interface_rows: 194
+  required_groups: 12
+  observed_physical_hemispheres: {right: 158, left: 36}
+  final_or_unassigned_access: forbidden
+  target_call_or_swc_input: forbidden
+  realized_axon_route_or_terminal_geometry: forbidden
+  output_interpretation: >-
+    Target-blind atlas geometry for M1 candidate-set features. It is not an
+    observation of a neuron's realized projection route, target presence,
+    biological absence, or synaptic connectivity.
+
+path_and_output_seal:
+  exact_stage0_files:
+    m1_contract: v3_m1_geometry_contract.yaml
+    observation_base_contract: projection_observation_contract.yaml
+    vocabulary: allen_target_vocabulary.csv
+  scratch_episode_directory: br_autoresearch/episode10_single_cell_coprojection
+  scratch_input_files_and_path_components_may_be_symlinks: false
+  stage0_input_files_and_path_components_may_be_symlinks: false
+  output_root:
+    location: direct_child_of_EP10_local_Scratch_root
+    required_basename: v3_m1_geometry_v1
+    absent_or_empty_before_execute: true
+    overlap_with_input_roots: forbidden
+    path_components_or_output_files_may_be_symlinks: false
+
+required_inputs:
+  model_interface:
+    required_file: v3_model_interface.csv
+    required_parent_directory: v3_model_interface_preflight_v1
+    required_summary_file: v3_model_interface_summary.json
+    required_status: passed_v3_target_blind_model_interface
+    required_summary_status: pass
+    required_summary_stage: v3_target_blind_model_interface_preflight
+    row_key: provider_neuron_id
+    rows: 194
+    ordered_provider_neuron_ids_csv: >-
+      14076,14077,7102,7103,1923,1924,17287,12172,17289,14085,12173,14086,9988,14088,17290,12175,9989,1947,9990,1948,
+      1949,1950,1951,1952,1972,9997,9998,9999,10000,14094,14095,14096,10001,10002,12181,12182,12183,17294,12186,14097,
+      14098,14111,14112,14115,10012,17312,17313,12194,1981,14117,1986,1987,1988,1989,14118,10014,10015,10016,7117,14119,
+      17315,17316,1991,12196,17317,12197,10032,2000,10038,17347,17348,14138,17349,17350,12229,12230,12231,12232,12233,14139,
+      10042,12236,7297,10546,12349,10548,10549,10550,10551,10552,10553,2909,10554,10555,10556,10557,10558,10559,10560,10561,
+      10562,10563,10564,10565,10566,10567,7304,10568,10569,10570,10571,10572,10573,10574,2910,10686,14682,14683,14684,14685,
+      14686,10687,14687,10688,14688,14689,14690,14691,14692,14693,2955,7318,14694,14704,14705,2958,2959,14710,14711,14712,
+      14713,10695,10696,14720,14721,14722,14723,14724,14725,14726,14727,10698,2961,14729,3288,3289,3290,10839,3292,10842,
+      3293,3294,3295,10843,3296,3297,17691,17693,17694,17695,17696,15537,4187,4188,4189,4200,4204,4205,4206,11590,
+      5525,5526,5527,5528,5529,11593,5530,5532,5533,5535,5536,5537,18168,18171
+    permitted_cell_geometry_columns:
+      - provider_neuron_id
+      - file
+      - fMOST_brain_id
+      - provider_sample_id
+      - source_acronym
+      - provider_hemisphere
+      - soma_x_ccfv3_um
+      - soma_y_ccfv3_um
+      - soma_z_ccfv3_um
+      - segment_unmapped
+      - terminal_unmapped_report_only
+      - mapping_overlap_class_report_only
+  atlas:
+    execution_source: EP10_local_Scratch_copy_of_authorized_steward_atlas
+    required_parent_directory: allen_ccfv3_25um_2017_ep10_steward_v3
+    live_sibling_episode_output_as_input: forbidden
+    annotation_basename: annotation_25_ccf_2017.nrrd
+    ontology_basename: structure_graph_1.json
+    resolution_um: 25
+    shape: [528, 320, 456]
+    axes: [AP, DV, ML]
+    voxel_location_for_centroids: voxel_center
+    ml_midline_um: 5700
+    physical_left_rule: ML_less_than_5700
+    physical_right_rule: ML_greater_than_or_equal_to_5700
+  vocabulary:
+    artifact: allen_target_vocabulary.csv
+    selection: frozen_primary_16_coordinate_rows_only
+    outcome_dependent_replacement_or_shrinkage: forbidden
+
+fixed_panel:
+  size: 16
+  ordered_coordinate_ids:
+    - allen_993_MOs__ipsilateral
+    - allen_993_MOs__contralateral
+    - allen_453_SS__ipsilateral
+    - allen_453_SS__contralateral
+    - allen_31_ACA__ipsilateral
+    - allen_31_ACA__contralateral
+    - allen_477_STR__ipsilateral
+    - allen_477_STR__contralateral
+    - allen_549_TH__ipsilateral
+    - allen_549_TH__contralateral
+    - allen_313_MB__ipsilateral
+    - allen_313_MB__contralateral
+    - allen_771_P__ipsilateral
+    - allen_771_P__contralateral
+    - allen_354_MY__ipsilateral
+    - allen_354_MY__contralateral
+
+atlas_anchor_construction:
+  mask: annotation voxels whose ontology node is the anchor or its descendant
+  physical_side_qc:
+    required_for_every_anatomical_target: [left, right]
+    retained_values:
+      - voxel_count
+      - AP_centroid_mm
+      - DV_centroid_mm
+      - ML_centroid_mm
+    missing_or_empty_side: stop
+  symmetric_numeric_anchor:
+    AP_mm: arithmetic_mean_of_physical_left_and_right_AP_centroids
+    DV_mm: arithmetic_mean_of_physical_left_and_right_DV_centroids
+    lateral_depth_mm: >-
+      arithmetic mean of midline minus left ML centroid and right ML centroid
+      minus midline
+    weighting: equal_physical_side_weight_not_voxel_or_sample_weight
+    nonpositive_lateral_depth: stop
+    nonfinite_value: stop
+  canonical_relative_side:
+    soma: mirror every physical soma to positive lateral depth
+    ipsilateral_target: positive_symmetric_lateral_depth
+    contralateral_target: negative_symmetric_lateral_depth
+    rationale: >-
+      use the same target anchor for left- and right-hemisphere somas so the
+      158-right/36-left sample imbalance cannot select a different physical
+      atlas centroid.
+
+base_geometry:
+  units: millimeters
+  cell_target:
+    rows: 3104
+    definition: 194_cells_times_16_coordinates
+    raw_reproducibility_values:
+      - soma_AP_DV_ML
+      - soma_lateral_depth
+      - symmetric_target_AP_DV_lateral_depth
+      - signed_canonical_target_lateral
+      - delta_AP
+      - delta_DV
+      - delta_lateral
+      - soma_target_Euclidean_distance
+  target_pair:
+    rows: 120
+    definition: choose_16_2
+    raw_reproducibility_values:
+      - delta_AP
+      - delta_DV
+      - delta_lateral
+      - target_pair_Euclidean_distance
+      - cross_side_indicator
+      - homotopic_indicator
+  imputation_or_row_drop: forbidden
+  missing_mask_side_or_nonfinite_geometry: stop
+
+model_set_features:
+  domain: every_subset_Omega_of_the_fixed_16_panel
+  source: base_geometry_only
+  outcome_or_realized_route_input: forbidden
+  ordered_features:
+    - mean_soma_target_distance_mm
+    - sd_soma_target_distance_mm
+    - mean_target_pair_distance_mm
+    - cross_side_pair_fraction
+    - homotopic_pair_fraction
+    - mst_mean_edge_length_mm
+  formulas:
+    mean_soma_target_distance_mm: arithmetic_mean_over_targets_in_Omega
+    sd_soma_target_distance_mm: population_SD_over_targets_in_Omega
+    mean_target_pair_distance_mm: arithmetic_mean_over_unordered_pairs_in_Omega
+    cross_side_pair_fraction: mean_cross_side_indicator_over_unordered_pairs
+    homotopic_pair_fraction: mean_homotopic_indicator_over_unordered_pairs
+    mst_mean_edge_length_mm: >-
+      deterministic Kruskal minimum-spanning-tree total edge length divided by
+      K minus 1, with ties ordered by coordinate indexes
+  edge_cases:
+    K_0:
+      all_six_features: 0.0
+    K_1:
+      mean_soma_target_distance_mm: defined_single_target_distance
+      sd_soma_target_distance_mm: 0.0
+      mean_target_pair_distance_mm: 0.0
+      cross_side_pair_fraction: 0.0
+      homotopic_pair_fraction: 0.0
+      mst_mean_edge_length_mm: 0.0
+  downstream_standardization: training_fold_only_and_not_performed_here
+
+required_outputs_on_execute:
+  atlas_target_anchors.csv: 16_rows
+  cell_target_geometry.csv: 3104_rows
+  target_pair_geometry.csv: 120_rows
+  geometry_summary.json: pass_or_stop_summary
+  no_other_output: true
+
+self_test:
+  data: deterministic_synthetic_only
+  required_checks:
+    - left_right_soma_reflection_invariance
+    - relative_ipsilateral_contralateral_sign_and_distance
+    - K0_exact_zero_features
+    - K1_undefined_features_exact_zero
+    - deterministic_MST_mean_edge_length
+    - exact_194_by_16_and_choose_16_2_counts

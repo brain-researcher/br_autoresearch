@@ -1,5 +1,7 @@
 # Research memory
 
+2026-10-02 — [Scope/novelty review (consolidated)](paper_plan.md): Specified the literature gap as sensor-conditioned continuous forecasting and replicated input-support, not first premovement prediction; bounded positive and null interpretations. The second task repeats a development-trained procedure, not WAY weights.
+
 ## Reusable lessons from the design
 
 - A prediction timestamp before a recorded onset is not enough; filtering,
@@ -12,6 +14,12 @@
   explicit: one temperature and three offsets from 32 events.
 - Historical event detection and strict forecasting are different scientific
   tasks.
+- A provider onset made with zero-phase filtering or manual review is not a
+  streaming onset detector; synchronization alone does not bound availability.
+- An exact voltage decomposition does not establish model equivalence. The
+  complementary EEG can retain slow information; the O effect is conditional.
+- Thirty-two calibration events define a whole chronological stream prefix,
+  including natural at-risk negatives, not 32 positive event windows.
 
 ## Open questions
 

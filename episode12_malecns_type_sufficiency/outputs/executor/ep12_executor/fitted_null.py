@@ -30,7 +30,7 @@ from .scientific_models import FittedPredictiveModel
 NULL_REPLICATE_COUNT = 99
 SEED_PROTOCOL = "ep12.fitted_t_u_null_seed.v1"
 SEED_MANIFEST_SCHEMA = "ep12.fitted_t_u_null_seed_manifest.v1"
-SAMPLER_PROTOCOL = "ep12.fitted_t_u_null_sampler.v1"
+SAMPLER_PROTOCOL = "ep12.fitted_t_u_null_sampler.v2"
 
 
 class FittedNullError(RuntimeError):
@@ -576,6 +576,23 @@ def _validate_generator(model: FittedPredictiveModel, design: FittedNullDesign) 
         raise FittedNullError("generator basis is not in the simplex sum-zero subspace")
     if model.model_id == "T":
         return
+    try:
+        latent_offsets, log_weights = model.validated_latent_support()
+    except Exception as exc:
+        raise FittedNullError("U generator latent support is malformed") from exc
+    if model.model_id == "U_linear":
+        centered = latent_offsets - latent_offsets.mean(axis=0, keepdims=True)
+        if int(np.linalg.matrix_rank(centered, tol=1e-10)) > 2:
+            raise FittedNullError("U_linear generator support exceeds rank two")
+    elif model.model_id == "U_curved":
+        if model.diagnostics.get("ambient_residual_tube") is not False:
+            raise FittedNullError("U_curved generator does not forbid an ambient tube")
+        if model.diagnostics.get("latent_dimension") != 1:
+            raise FittedNullError("U_curved generator is not one-dimensional")
+        if model.diagnostics.get("curve_degree") != 3:
+            raise FittedNullError("U_curved generator is not cubic Hermite")
+    if not np.isclose(float(np.exp(log_weights).sum()), 1.0, atol=1e-10):
+        raise FittedNullError("U generator support weights do not sum to one")
     means = np.asarray(model.prior_means, dtype=float)
     covariances = np.asarray(model.prior_covariances, dtype=float)
     weights = np.asarray(model.prior_weights, dtype=float)
@@ -615,6 +632,16 @@ def fitted_generator_sha256(
         np.asarray(model.nuisance_coefficients, dtype=np.float64),
     )
     if model.model_id != "T":
+        _array_hash(
+            digest,
+            "latent_offsets",
+            np.asarray(model.latent_offsets, dtype=np.float64),
+        )
+        _array_hash(
+            digest,
+            "log_weights",
+            np.asarray(model.log_weights, dtype=np.float64),
+        )
         _array_hash(digest, "prior_means", np.asarray(model.prior_means, dtype=np.float64))
         _array_hash(
             digest,
@@ -712,13 +739,6 @@ def null_seed_binding(
     }
 
 
-def _covariance_root_strict(covariance: np.ndarray) -> np.ndarray:
-    eigenvalues, eigenvectors = np.linalg.eigh(covariance)
-    if float(eigenvalues.min()) < -1e-10:
-        raise FittedNullError("U generator covariance is not positive semidefinite")
-    return eigenvectors @ np.diag(np.sqrt(np.maximum(eigenvalues, 0.0)))
-
-
 def _typed_probabilities(
     model: FittedPredictiveModel,
     design: FittedNullDesign,
@@ -741,13 +761,13 @@ def _typed_probabilities(
             "latent_residual",
         )
         generator = np.random.Generator(np.random.PCG64(latent_seed))
-        weights = np.asarray(model.prior_weights, dtype=float)
-        component = int(generator.choice(len(weights), p=weights))
-        mean = np.asarray(model.prior_means[component], dtype=float)
-        covariance = np.asarray(model.prior_covariances[component], dtype=float)
-        residual = mean + _covariance_root_strict(covariance) @ generator.standard_normal(
-            len(mean)
-        )
+        try:
+            support, log_weights = model.validated_latent_support()
+        except Exception as exc:
+            raise FittedNullError("U generator latent support is malformed") from exc
+        weights = np.exp(log_weights)
+        support_index = int(generator.choice(len(weights), p=weights))
+        residual = np.asarray(support[support_index], dtype=float)
     logits = (base + residual) @ np.asarray(model.basis, dtype=float).T
     typed_logits = logits[design.collapsed_typed_mask]
     if not np.all(np.isfinite(typed_logits)):

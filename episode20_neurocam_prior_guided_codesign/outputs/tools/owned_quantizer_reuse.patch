@@ -1,0 +1,20 @@
+diff --git a/outputs/tools/streaming_acquisition_readout.py b/outputs/tools/streaming_acquisition_readout.py
+--- a/outputs/tools/streaming_acquisition_readout.py
++++ b/outputs/tools/streaming_acquisition_readout.py
+@@ -22,6 +22,7 @@ import math
+ from acquisition_readout import (AcquisitionReadout, Observation, QuantizerTransfer,
+                                  RawConversion, ReturnedSample, _finite, _ids)
+ from observation_nuisance import ObservationNuisanceBinding, SavedObservationNuisance
++from owned_quantizer_snapshot import snapshot_quantizer
+ 
+ 
+ @dataclass(frozen=True)
+@@ -51,7 +52,7 @@ class ReadoutWindow:
+                 raise ValueError("Explicit quantizer required")
+             key = id(value)
+             if key not in quantizers:
+-                quantizers[key] = replace(value)
++                quantizers[key] = snapshot_quantizer(value)
+             return quantizers[key]
+         for name, cls in (("conversions", RawConversion), ("returned_samples", ReturnedSample),
+                           ("observations", Observation)):

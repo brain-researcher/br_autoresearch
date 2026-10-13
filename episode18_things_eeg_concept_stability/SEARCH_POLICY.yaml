@@ -89,14 +89,51 @@ data_roles:
     - EEG_sample
 
 access_boundary:
-  current_state: procedural_holdout_only
+  current_state: procedural_same_account_separation
+  state_before_2026_10_12: procedural_holdout_only
   reason: >-
     The same account can currently retrieve public EEG for all participants.
+  # Since 2026-10-12 a definition only: not required and never claimed.
   permission_blinded_audit_requires:
     - separate_evaluator_or_separately_controlled_mount
     - development_runtime_cannot_read_or_redownload_audit_EEG
   outcome_blind_setup_before_seal: allowed
-  EEG_driven_candidate_comparison_before_seal: prohibited
+  EEG_driven_candidate_comparison_before_seal: replaced_by_amendment_2026_10_12
+  amendment_2026_10_12:
+    decision: >-
+      Scientist zijiao, 2026-10-12 about 13:10 Pacific, adopted procedural
+      same-account separation with a disclosed weaker claim. It replaces the
+      requirements for verified/enforced EEG development/audit separation and
+      for an externally controlled pixel-only image worker.
+    enforcement: procedural_same_account_not_OS_isolation
+    development_reads_only:
+      - released_development_role_inputs_of_the_30_development_participants
+      - image_pixels_and_opaque_IDs_only_inside_the_image_feature_worker_role
+    audit_EEG_during_development: not_opened_listed_searched_or_redownloaded
+    analysis_choices_frozen_and_recorded_before_audit_opening: true
+    audit_opening: single_recorded_event_under_existing_audit_rules
+    audit_seal_flag: stays_false
+    audit_role_access: every_access_recorded_in_outputs/experiment_log.md
+    unplanned_audit_role_access: disclose_and_mark_affected_results
+    required_disclosure_in_every_audit_or_evaluation_result: >-
+      Separation was procedural (same account, public ds003825
+      re-downloadable, not technically enforced); never describe it as
+      enforced or blinded evaluation.
+    access_boundary_in_audit_requirements: this_procedural_boundary
+    satisfied_procedurally:
+      - development_audit_EEG_separation
+      - pixel_only_image_worker_delivery
+      - development_only_view_part_of_qualification_before_candidate_comparison
+    EEG_driven_candidate_comparison: >-
+      Still prohibited until the other qualification_before_candidate_comparison
+      items pass. Still gating: the remaining image/caption features (cost
+      pilot and extraction), the eight false partitions (feature-based
+      construction and all-fold qualification) and the unimplemented
+      continuous-EEG fitting/evaluation runner.
+    unchanged: >-
+      Fixed 30/16 assignment, EP17 correlated design-exposed treatment,
+      effective_df_definition, ridge_log10_grid, 0.05 effective-df
+      tolerances, opening counts, resource_limits and all other rules.
   shared_exposure_record:
     episodes: [ep17, ep18]
     record:
@@ -156,6 +193,47 @@ event_and_sample_rules:
   ordinary_prestimulus_baseline_correction: prohibited
   filtering_or_detrending_across_sequences: prohibited
   filter_recipe_frozen_before_model_comparison: true
+  fixed_sequence_filter_20261012:
+    choice_stage: prospective_metadata_and_coefficient_inspection_before_EEG_comparison
+    coefficient_record: outputs/runs/feature_preparation/sequence_geometry_fir_20261012_001/metadata_and_fir.json
+    design: scipy_signal_firwin
+    numtaps: 129
+    cutoff_half_amplitude_hz: 100
+    window: [kaiser, 8.6]
+    scale: true
+    source_sample_rate_hz: 1000
+    target_sample_rate_hz: 250
+    fir_origin_sample: 0
+    past_support_samples: 128
+    future_support_samples: 0
+    group_delay_ms: 64
+    detrend: none
+    highpass: none
+    operation_order: detrend_then_fir_then_decimate
+    recording_grid_decimation_phase_mod4: 0
+    input_sample_unit: V
+    time_axis: unchanged_actual_acquisition_samples_no_delay_compensation
+    response_target: filtered_EEG_at_acquisition_timestamps_over_fixed_0_to_800ms_design_horizon
+    late_raw_response_beyond_800ms: may_be_lost_due_to_filter_delay_not_a_full_unfiltered_response_claim
+    physical_boundary: actual_preceding_recorded_E3_with_exact_source_frozen_event_E1_and_segment_join
+    recorded_span_recipe:
+      cue_anchor: preceding_recorded_E3
+      post_last_inclusive_samples: 800
+      score_first_offset_samples: -800
+      score_last_inclusive_samples: 800
+      comparison_mask: same_complete_support_recording_grid_samples_for_primary_and_negative_lag_controls
+    nominal_fixed_cue_to_first_image_gap: prohibited
+    every_retained_sample: full_129_tap_support_inside_its_own_physical_sequence_and_segment
+    negative_lag_and_shift_controls: unchanged_mandatory
+    channel_order: unchanged_frozen_62_channels
+    empirical_EEG_release_or_cost_admission: separate_coordinator_decision
+    selected_full_development_preparation_20261012:
+      release: outputs/config/development_eeg_release_20261012_001.json
+      scope: all30_development_people_72_main_sequences_each_original62channels_fixed_recipe_only
+      resources: {cpus: 1, memory_gib: 7, hours: 2, soft_rss_gib: 6, durable_gib: 12, local_stage_mib: 512}
+      absolute_deadline_unix: 1791927000
+      publication: complete_private_participants_then_all30_manifest_no_automatic_continuation
+      forbidden: [audit_EEG, model_fit, scientific_score, learned_transform, participant_exclusion]
   full_filter_support_removed_from_scoring_edges: true
   learned_preprocessing_uses_training_blocks_only: true
   model_independent_scoring_mask_per_participant_fold: true
@@ -233,6 +311,12 @@ continuous_model:
     - position_within_physical_sequence
     - sequence_boundary
     - fixed_slow_drift_basis
+  fixed_coarse_button_recipe_20261012:
+    source: original_development_main_event_binary_response_flag
+    event_time: flagged_stimulus_recorded_onset
+    interpretation: coarse_response_associated_stimulus_context_not_measured_button_time
+    reaction_time_and_accuracy: not_selected_or_used
+    primary_and_control_context: identical_fixed_recipe
   direct_joint_fit_to_EEG: required
   exported_residual_then_predict: prohibited
 
@@ -278,6 +362,9 @@ models:
     same_penalty_grid_and_tuning_budget_for_added_slots: true
     ridge_log10_grid: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
     nonlinear_label_slot_effective_df_must_match_or_exceed_concept_slot: true
+    effective_df_definition: trace_of_added_term_influence_in_joint_weighted_ridge_fit
+    incremental_full_model_df: report_separately_not_substituted_for_term_df
+    effective_df_definition_reference: https://stat.ethz.ch/R-manual/R-patched/library/mgcv/html/summary.gam.html
     maximum_relative_effective_df_excess: 0.05
     capacity_match_required_in_every_participant_fold: true
     no_capacity_match: underidentified
@@ -323,6 +410,16 @@ false_partitions:
     algorithm_and_seed_fixed_in_partition_record_before_EEG: true
     starts_per_bank_member: 64
     legal_swaps_per_start: 100000
+    fixed_production_recipe_20261012:
+      code: outputs/code/false_partition_search.py
+      configuration: outputs/config/false_partition_sub07_20261012_001.json
+      seed: 20261012
+      first_production_participant: sub-07
+      participant_order_selects_primary_subset: false
+      response_and_filter_context_horizon_ms: 928
+      context_channels: 855
+      candidate_bank_is_full_design_capacity_acceptance: false
+      resource_stop: preserve_completed_work_and_any_written_checkpoint_no_automatic_retry
   bank_must_pass_every_tolerance_in_every_fold: true
   tolerance_relaxation_after_EEG_access: prohibited
   inability_to_build_all_eight: underidentified

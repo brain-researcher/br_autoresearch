@@ -1,0 +1,171 @@
+{
+  "Description": "Complete GLMsingle TYPED output bundle. The NIfTI maps in this folder are extracted from this file for ease of inspection.",
+  "Format": "HDF5",
+  "GLMsingleField": "results['typed']",
+  "ModelStage": "TYPED",
+  "Contents": {
+    "FRACvalue": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "float32",
+      "Description": "Fractional ridge regularization parameter selected per voxel.",
+      "Units": "fraction",
+      "ModelStage": "TYPED",
+      "ExtractedTo": "_desc-Fracridge_statmap.nii.gz"
+    },
+    "HRFindex": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "int64",
+      "Description": "Best-fit HRF library index per voxel (integer 0-19); selected once and propagated unchanged through later stages.",
+      "Units": "index",
+      "ModelStage": "TYPEB",
+      "ExtractedTo": "_desc-HRFindex_dseg.nii.gz"
+    },
+    "HRFindexrun": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        12
+      ],
+      "DataType": "int64",
+      "Description": "Per-run best-fit HRF library index.",
+      "Units": "index",
+      "ModelStage": "TYPEB",
+      "ExtractedTo": null
+    },
+    "R2": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "float32",
+      "Description": "Variance explained at each voxel.",
+      "Units": "percent",
+      "ModelStage": "TYPED",
+      "ExtractedTo": "_stat-rsquare_desc-R2_statmap.nii.gz"
+    },
+    "R2run": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        12
+      ],
+      "DataType": "float32",
+      "Description": "Per-run R² (one map per run).",
+      "Units": "percent",
+      "ModelStage": "TYPED",
+      "ExtractedTo": null
+    },
+    "betasmd": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        1044
+      ],
+      "DataType": "float32",
+      "Description": "Single-trial beta weights.",
+      "Units": "percent signal change",
+      "ModelStage": "TYPED",
+      "ExtractedTo": "_stat-effect_desc-SingletrialBetas_statmap.nii.gz"
+    },
+    "glmbadness": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        11
+      ],
+      "DataType": "float32",
+      "Description": "GLMdenoise selection metric across candidate PC counts.",
+      "ModelStage": "TYPEC",
+      "ExtractedTo": null
+    },
+    "meanvol": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "float32",
+      "Description": "Mean BOLD volume across runs.",
+      "ExtractedTo": null
+    },
+    "noisepool": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "bool",
+      "Description": "Boolean mask of voxels assigned to the GLMdenoise noise pool.",
+      "ModelStage": "TYPEC",
+      "ExtractedTo": null
+    },
+    "pcregressors": {
+      "Shape": [
+        12,
+        304,
+        11
+      ],
+      "DataType": "float32",
+      "Description": "GLMdenoise PC regressors per run. Layout: (run, timepoints, PCs).",
+      "ModelStage": "TYPEC",
+      "ExtractedTo": null
+    },
+    "pcvoxels": {
+      "Shape": [
+        272080,
+        1,
+        1
+      ],
+      "DataType": "bool",
+      "Description": "Boolean mask of voxels used to compute GLMdenoise PC regressors.",
+      "ModelStage": "TYPEC",
+      "ExtractedTo": null
+    },
+    "rrbadness": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        20
+      ],
+      "DataType": "float32",
+      "Description": "Ridge-regression selection metric across the 20 candidate fractional regularization values.",
+      "ModelStage": "TYPED",
+      "ExtractedTo": null
+    },
+    "scaleoffset": {
+      "Shape": [
+        272080,
+        1,
+        1,
+        2
+      ],
+      "DataType": "float32",
+      "Description": "Per-voxel (scale, offset) used to normalize the design / data.",
+      "ModelStage": "TYPED",
+      "ExtractedTo": null
+    },
+    "xvaltrend": {
+      "Shape": [
+        11
+      ],
+      "DataType": "float32",
+      "Description": "Cross-validation R² trend across candidate PC counts; used to choose the optimal PC count.",
+      "ModelStage": "TYPEC",
+      "ExtractedTo": null
+    }
+  }
+}

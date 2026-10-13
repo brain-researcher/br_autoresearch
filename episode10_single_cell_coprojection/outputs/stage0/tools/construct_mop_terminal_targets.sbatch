@@ -4,18 +4,42 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
 #SBATCH --partition=russpold,normal
-#SBATCH --output=/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/ep10-mop-targets-%j.out
-#SBATCH --error=/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/ep10-mop-targets-%j.err
 
 set -euo pipefail
 umask 007
 
-python_bin=/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/ccf_env_py311/bin/python
-script=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/tools/construct_mop_terminal_targets.py
-stage0=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0
-assets=/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/allen_outcome_assets
-development=/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1
-output=/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_targets_v1
+: "${SCRATCH:?SCRATCH is required}"
+: "${OAK:?OAK is required}"
+: "${GROUP_HOME:?GROUP_HOME is required}"
+: "${SLURM_JOB_ID:?SLURM_JOB_ID is required}"
+
+ml purge
+ml load devel python/3.12.1
+export PYTHONNOUSERSITE=1
+
+python_bin="$GROUP_HOME/users/zijiao/envs/ep10_targets_py312/bin/python"
+script="$OAK/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/tools/construct_mop_terminal_targets.py"
+stage0="$OAK/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0"
+assets="$SCRATCH/br_autoresearch/episode11_projection_types_vs_gradients/allen_outcome_assets"
+development="$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1"
+output="$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_targets_v1"
+
+"$python_bin" --version
+"$python_bin" - <<'PY'
+from importlib.metadata import version
+
+import nrrd
+import numpy
+import typing_extensions
+import yaml
+
+for distribution in ("numpy", "PyYAML", "pynrrd", "typing_extensions"):
+    print(f"{distribution}={version(distribution)}")
+PY
+test -f "$script"
+test -f "$assets/annotation_25_ccf_2017.nrrd"
+test -f "$assets/structure_graph_1.json"
+test -f "$development/download_log.csv"
 
 "$python_bin" "$script" \
   --execute \

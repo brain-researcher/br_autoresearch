@@ -1,0 +1,1026 @@
+{
+  "artifact_kind": "finite_procedure_measured_gain_calibration",
+  "artifact_verification": {
+    "block_record_identities_disjoint": true,
+    "block_seed_namespaces_disjoint": true,
+    "complete": true,
+    "evaluation_fitted_delta_records_used": false,
+    "expected_shards": 24,
+    "policy_hash": "6c05be0a0b69f905f662267a5babc63a9cd27e7bab2119e5315a0f7a99f4d0c1",
+    "verified_shards": 24
+  },
+  "block_roles": {
+    "calibration": {
+      "block_id": "block_01",
+      "fitted_delta_rows": 6912,
+      "seed_namespaces": [
+        "interval_refinement_v3_2048__block_01__adequate_template__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_01__anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_01__high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__linear_continuum__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_01__side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_01__weak_residual_groups__n7__N100__s1p8__m0p1"
+      ],
+      "task_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "verified_records": 864
+    },
+    "evaluation": {
+      "block_id": "block_02",
+      "field_used": "terminal",
+      "fitted_delta_records_used": false,
+      "seed_namespaces": [
+        "interval_refinement_v3_2048__block_02__adequate_template__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_02__anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_02__high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__linear_continuum__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "interval_refinement_v3_2048__block_02__side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "interval_refinement_v3_2048__block_02__weak_residual_groups__n7__N100__s1p8__m0p1"
+      ],
+      "task_ids": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "verified_records": 864
+    }
+  },
+  "calibration_scope": "finite_procedure_model_family_measured_gain",
+  "cell_results": [
+    {
+      "calibration": {
+        "bootstrap_seed": 876072855,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.4666102711130873,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.0011059756888944475,
+            0.0017948677347845385,
+            0.0014504217118394926
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.00023502940351883205,
+            0.0009873604393754332,
+            0.0008785604638592879
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0003530944047283929,
+            0.0003273753072651838,
+            0.00023184094166694017
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.001976921974270063,
+            0.0026023750301936437,
+            0.0020222829598196975
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 0
+      },
+      "cell": {
+        "base_cell_id": "adequate_template__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "adequate_template",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 46,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 12,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 46,
+          "unresolved": 26
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 1909410185,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.499398093087014,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.029707705464349674,
+            0.03147592866105143,
+            0.0305918170627005
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.016007315226361337,
+            0.018713173663311485,
+            0.02129539242066921
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.005481475830473626,
+            0.005106331413567107,
+            0.0037194653655789785
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.043408095702338015,
+            0.04423868365879137,
+            0.03988824170473179
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "margin_indeterminate",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 1
+      },
+      "cell": {
+        "base_cell_id": "linear_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "linear_continuum",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 0,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 13,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 0,
+          "unresolved": 72
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 2213051841,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.3202200506237096,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.01923372793167374,
+            0.03172688638204982,
+            0.025480307156861764
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.006079582388924512,
+            0.018672501993614227,
+            0.016219486216667175
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.005669352585421024,
+            0.005626356166056914,
+            0.0039913545862622565
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.03238787347442297,
+            0.04478127077048541,
+            0.03474112809705635
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "margin_indeterminate",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 2
+      },
+      "cell": {
+        "base_cell_id": "curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_dense",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 0,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 14,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 0,
+          "unresolved": 72
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 667327793,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.421622722695095,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.05141502019532615,
+            0.07550146631943402,
+            0.06345824325738005
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.02542034638790804,
+            0.044034976360714344,
+            0.043171178363345816
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.010734402829887505,
+            0.012993968739977671,
+            0.008377467185084949
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.07740969400274426,
+            0.1069679562781537,
+            0.08374530815141427
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "above_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 3
+      },
+      "cell": {
+        "base_cell_id": "curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 0,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 15,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 0,
+          "unresolved": 72
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 3518305045,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.642463207431884,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.023569670429387526,
+            0.0182802561112601,
+            0.020924963270323824
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.012426314050365036,
+            0.005299445422053125,
+            0.011728998334725982
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.004217033693291163,
+            0.004912390323051107,
+            0.0034800730279741805
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.034713026808410014,
+            0.03126106680046707,
+            0.030120928205921667
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "margin_indeterminate",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 4
+      },
+      "cell": {
+        "base_cell_id": "residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 0,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 16,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 0,
+          "unresolved": 72
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "block_01 fitted measured-gain interval is not above the frozen margin in both directions",
+        "status": "unresolved_for_adequacy",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 1670993073,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.428752890279332,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.0078102845290489616,
+            0.009546330721614059,
+            0.008678307625331507
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.004599355532291587,
+            0.00607952998990542,
+            0.006286248614740949
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0013220484511242657,
+            0.0014273995290273933,
+            0.000984891884293526
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.011021213525806336,
+            0.013013131453322698,
+            0.011070366635922065
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 5
+      },
+      "cell": {
+        "base_cell_id": "weak_residual_groups__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "weak_residual_groups",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 3,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 17,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 3,
+          "unresolved": 69
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "block_01 fitted measured-gain interval is not above the frozen margin in both directions",
+        "status": "unresolved_for_adequacy",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 3908328800,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.3648239582829693,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.001963386554219437,
+            0.001608562307903647,
+            0.0017859744310615429
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.001127933389936156,
+            0.000852225827775245,
+            0.0011858624071595506
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.000353283449009828,
+            0.00031982781529224535,
+            0.00025376604537519833
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.002798839718502718,
+            0.002364898788032049,
+            0.002386086454963535
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 6
+      },
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 1,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 18,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 1,
+          "unresolved": 71
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 3821451496,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.898147202010597,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.0024979187733460717,
+            0.0027432996069097003,
+            0.0026206091901278886
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.0007310836700483885,
+            0.0008138457336002774,
+            0.001314635556362914
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0006096429822722382,
+            0.0006657542694763259,
+            0.0004506236373566367
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.004264753876643755,
+            0.004672753480219123,
+            0.003926582823892863
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 7
+      },
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "anatomy_quality_confound",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 33,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 19,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 33,
+          "unresolved": 39
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 2814062368,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.47148292375069,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.023162940345241842,
+            0.023199108167079225,
+            0.023181024256160563
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.011754278041822636,
+            0.013946692343036428,
+            0.015610180654384985
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.00461612022230992,
+            0.0037436697357396474,
+            0.003063279753633161
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.03457160264866105,
+            0.03245152399112202,
+            0.03075186785793614
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "margin_indeterminate",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 8
+      },
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 1.8
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 3,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 20,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 3,
+          "unresolved": 69
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 506741655,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.4551096042455187,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.006727670779322589,
+            0.00689985011536052,
+            0.006813760447341554
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.0033901323878650154,
+            0.00356018773316334,
+            0.004427721823020423
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0013594254145257334,
+            0.0013602905452457358,
+            0.0009718664373252636
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.010065209170780163,
+            0.010239512497557699,
+            0.009199799071662684
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 9
+      },
+      "cell": {
+        "base_cell_id": "side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 2.2
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 3,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 21,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 3,
+          "unresolved": 69
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 1152717572,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.4079399868440987,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.007549821409478286,
+            0.007126582898793435,
+            0.007338202154135867
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.004192529645758555,
+            0.004299729048757918,
+            0.005059045041459099
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0013942589026564053,
+            0.001173971886957389,
+            0.0009465174070487875
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.010907113173198018,
+            0.009953436748828952,
+            0.009617359266812633
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "below_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 10
+      },
+      "cell": {
+        "base_cell_id": "anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "anatomy_quality_confound",
+        "strength": 2.2
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 5,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 22,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 5,
+          "unresolved": 67
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    },
+    {
+      "calibration": {
+        "bootstrap_seed": 2537620967,
+        "bootstrap_seed_namespace": "ep12.interval_refinement_v3_2048.finite_procedure_measured_gain.v3",
+        "interval": {
+          "bootstrap_replicates": 1999,
+          "bootstrap_zero_standard_error_draws": 0,
+          "confidence_level": 0.95,
+          "critical_max_t": 2.300696678023825,
+          "directions_resampled_together": true,
+          "estimate": [
+            0.052495917468561235,
+            0.048835723046088214,
+            0.050665820257324724
+          ],
+          "labels": [
+            "left_to_right",
+            "right_to_left",
+            "aggregate"
+          ],
+          "lower": [
+            0.03569977640550984,
+            0.03312932599254465,
+            0.03921538361397301
+          ],
+          "margin": 0.02,
+          "method": "paired_whole_type_studentized_bootstrap_max_t",
+          "pooled_whole_type_rows": 576,
+          "source_block_id": "block_01",
+          "standard_error": [
+            0.0073004586930070165,
+            0.006826800422485294,
+            0.004976943181048544
+          ],
+          "unit": "whole_provider_type",
+          "upper": [
+            0.06929205853161263,
+            0.06454212009963178,
+            0.06211625690067644
+          ],
+          "variable_coordinate_count": 3
+        },
+        "margin_classification": "above_margin",
+        "scope": "finite_procedure_model_family_measured_gain",
+        "source_block_id": "block_01",
+        "task_id": 11
+      },
+      "cell": {
+        "base_cell_id": "high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 2.2
+      },
+      "evaluation": {
+        "adequacy_terminal_count": 0,
+        "fitted_delta_records_used": false,
+        "replicate_records": 72,
+        "source_block_id": "block_02",
+        "task_id": 23,
+        "terminal_counts": {
+          "M_supported_before_full_search_null": 0,
+          "numerical_failure": 0,
+          "single_population_adequate_before_sensitivity_gate": 0,
+          "unresolved": 72
+        }
+      },
+      "false_adequacy": {
+        "clopper_pearson_exact_95_interval": null,
+        "rate": null,
+        "reason": "false adequacy is evaluated only for declared residual-group generator cells",
+        "status": "not_applicable_non_residual_group_generator",
+        "successes": null,
+        "total": null
+      }
+    }
+  ],
+  "computationally_complete": true,
+  "configuration": {
+    "bootstrap_replicates": 1999,
+    "calibration_block_id": "block_01",
+    "confidence_level": 0.95,
+    "evaluation_block_id": "block_02",
+    "meaningful_margin": 0.02,
+    "whole_type_rows_per_cell": 576
+  },
+  "final_connectivity_accessed": false,
+  "pilot_id": "interval_refinement_v3_2048",
+  "pilot_scope": "generated_data_only",
+  "population_oracle_truth": false,
+  "real_connectivity_accessed": false,
+  "schema_version": "ep12.finite_procedure_measured_gain_calibration.v3",
+  "scientific_gate_applied": false,
+  "scientific_pass_fail_assigned": false,
+  "scope_statement": "The block_01 label concerns the expected measured gain of this finite fitted T/U/M procedure under the declared synthetic design and model family. It is not population structural or oracle truth."
+}

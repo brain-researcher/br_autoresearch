@@ -1,0 +1,54 @@
+{
+  "review_scope": "pipeline_run",
+  "correctness": {
+    "decision": "pass",
+    "findings": []
+  },
+  "judgment": {
+    "decision": "sound",
+    "estimand_complete": true,
+    "method_defensible": true,
+    "issues": [
+      "Review is limited to completed look6, the frozen oracle specification and relevant wrappers; it is not full estimator conformance or episode acceptance.",
+      "Oracle precision uncertainty is distinct from false-M, false-adequacy and interval-coverage validity.",
+      "Constant-variance width extrapolation suggests possible unresolved precision at the frozen cap but is not an observed outcome or stopping rule.",
+      "The simultaneous oracle enclosure retains the declared multivariate-CLT assumption; error-budget accounting alone does not establish exact finite-sample coverage."
+    ],
+    "reviewer_questions": []
+  },
+  "completeness": {
+    "decision": "incomplete",
+    "checklist": {
+      "oracle_estimand_declared": true,
+      "seed_namespace_declared": true,
+      "multiplicity_and_error_budget_declared": true,
+      "bounded_look_schedule_declared": true,
+      "completed_look6_reviewed": true,
+      "all_cell_precision_reached": false,
+      "full_operating_characteristic_qualification_available": false,
+      "real_development_replay_released": false
+    },
+    "missing_caveats": [
+      "Later aggregate precision and full generated-method qualification remain unresolved.",
+      "No real-connectivity result, final-data result, Formal Society decision or canonical acceptance is evaluated."
+    ]
+  },
+  "overall_decision": "explore_more",
+  "claim_strength": null,
+  "report_action": "continue_loop",
+  "required_next_actions": [
+    "Continue only the already-running frozen refinement through aggregate-directed looks7/8; do not duplicate it or infer results from partial shards.",
+    "Run the existing dependent generated qualification only if the latest aggregate satisfies its precision-release guards.",
+    "Require passing frozen conformance and operating-characteristic qualification before real-development prefix replay; apply production readiness before subsequent adaptive work.",
+    "If the frozen oracle bound remains unresolved, fail closed and request a scientific amendment before extending resources, changing thresholds or continuing past the gate."
+  ],
+  "validation_status": {
+    "review_directive": "ext_review_dir_c87e4d3047c6",
+    "evidence_scope": "generated completed-look6 summaries and frozen qualification/refinement contracts",
+    "current_action": "unchanged; existing bounded refinement remains scientifically defensible",
+    "operating_characteristic_validity": "not yet established by look6",
+    "final_connectivity": "not accessed; authorization unchanged"
+  },
+  "line_directive": null,
+  "rationale": "The scoped correctness review identifies no diagnosed failure requiring repair or cancellation. Completeness remains incomplete, so the directive's overall rollup is explore_more. Here continue_loop means only the existing authorized bounded EP12 refinement and its guarded generated-qualification dependency; it grants no new execution authority."
+}

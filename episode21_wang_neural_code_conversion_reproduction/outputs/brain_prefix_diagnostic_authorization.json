@@ -1,0 +1,18 @@
+{
+  "schema_version": "ep21.brain_prefix_diagnostic.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0230-pacific--interindividual_converter_training--bounded-first-fold-diagnosis-selected",
+  "operation": "diagnose_brain_first_fold",
+  "attempts": 1,
+  "source": "sub-03", "target": "sub-01",
+  "training_images": 897, "source_native_voxels": 12897, "target_native_voxels": 12295,
+  "fits": 0, "scoring": false, "model_publication": false, "automatic_retry": false,
+  "parent_authorization": "outputs/content_cuda_measurement_authorization.json",
+  "resources": {"deadline_seconds": 300, "rss_limit_bytes": 6979321856, "durable_bytes": 1048576},
+  "input_scope": {
+    "source_tau_train": "sub-03", "target_tau_train": "sub-01",
+    "tau_test": false, "OOD": false, "subject_unique": false, "features": false, "decoder_payloads": false
+  },
+  "purpose": "Localize failed job47358620 only through input binding and the exact original first-fold normalization prefix. Stop before any Gram matrix, solve, CV selection or publication. Report only allowlisted categorical failure identifiers; a passing prefix remains not_localized.",
+  "accounting": "Serialized companion inside the selected2CPU/16GiB/1GPU/2h CUDA measurement parent, using one numerical thread and at most300seconds/6.5GiB process RSS; no extra allocation or duplicate CPU/GPU charge. The full brain training attempt remains consumed and immutable."
+}

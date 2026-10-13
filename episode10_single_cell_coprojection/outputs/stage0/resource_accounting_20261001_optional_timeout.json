@@ -1,0 +1,40 @@
+{
+  "observed_at_utc": "2026-10-01T10:19:15Z",
+  "scope": "Existing two producer jobs only; prior conservative accounting floor retained",
+  "prior_accounting_artifact": "outputs/stage0/resource_accounting_20260930_resume.json",
+  "raw_current_accounting_artifact": "outputs/stage0/v3_m2_optional_family_qualification_job_46115632/terminal_postflight_sacct_20261001T101915Z.txt",
+  "prior_used_strict_wall_hours": 104.80877777777779,
+  "prior_used_allocated_core_hours": 141.59733333333335,
+  "actual_parent_jobs": {
+    "46115632": {
+      "state": "TIMEOUT",
+      "elapsed_seconds": 43221,
+      "allocated_cpus": 12
+    },
+    "45881554": {
+      "state": "RUNNING",
+      "elapsed_seconds": 162404,
+      "allocated_cpus": 2,
+      "time_limit_seconds": 172800
+    }
+  },
+  "incremental_elapsed_seconds_since_prior": {
+    "46115632": 39737,
+    "45881554": 39924
+  },
+  "used_strict_wall_hours": 126.93683333333334,
+  "used_allocated_core_hours": 296.23400000000004,
+  "remaining_timing_reservation_wall_hours": 2.887777777777778,
+  "remaining_timing_reservation_core_hours": 5.775555555555556,
+  "unreserved_wall_hours": 14.175388888888882,
+  "unreserved_core_hours": 1497.9904444444446,
+  "wall_hours_available_if_timing_ended_immediately": 17.06316666666666,
+  "unchanged_scale_request_wall_hours": 24,
+  "unchanged_scale_request_reservable": false,
+  "combined_99_replay_resource_gate": "unresolved; required producer reports absent",
+  "empirical_M2_access": "closed",
+  "old_accounting_discrepancy": "Prior conservative floor carried forward; lower historical totals confer no additional budget",
+  "contract_changed": false,
+  "no_new_execution": true,
+  "timing_job_still_reserved": true
+}

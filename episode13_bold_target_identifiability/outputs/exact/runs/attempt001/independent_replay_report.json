@@ -1,0 +1,351 @@
+{
+  "utc": "2026-10-03T18:03:23.714204+00:00",
+  "hostname": "sh04-18n31.int",
+  "slurm_job_id": "46424502",
+  "python": "3.12.1",
+  "evidence_role": "exact implementation/orientation audit; universal proof is proof.md",
+  "analysis_id": "independent_certificate_replay",
+  "cases": [
+    {
+      "id": "case_01",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ]
+      ],
+      "tau": "6",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "6",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_02",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "tau": "3",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_03",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "tau": "2",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_04",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "4",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_05",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_06",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_07",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_08",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_09",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "50"
+        ],
+        [
+          "68"
+        ]
+      ],
+      "tau": "372",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "2",
+          "4"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_10",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "73"
+        ],
+        [
+          "0"
+        ]
+      ],
+      "tau": "73",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "1",
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_11",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "2",
+          "6"
+        ],
+        [
+          "4",
+          "12"
+        ]
+      ],
+      "tau": "2",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_12",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1/2"
+        ]
+      ],
+      "tau": "-3/35",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "35/16",
+            "0"
+          ],
+          [
+            "-35/8",
+            "0"
+          ]
+        ]
+      },
+      "certificate_valid": true
+    },
+    {
+      "id": "case_13",
+      "valid": false,
+      "error": "incompatible declared dimensions"
+    },
+    {
+      "id": "case_14",
+      "valid": false,
+      "error": "Fraction(1, 0)"
+    },
+    {
+      "id": "case_15",
+      "valid": false,
+      "error": "matrix must have positive row count"
+    },
+    {
+      "id": "case_16",
+      "valid": false,
+      "error": "R must be T by T"
+    },
+    {
+      "id": "case_17",
+      "valid": false,
+      "error": "R must be idempotent"
+    },
+    {
+      "id": "case_18",
+      "valid": false,
+      "error": "expected an integer or exact rational string"
+    },
+    {
+      "id": "case_19",
+      "valid": false,
+      "error": "A must equal R S H"
+    }
+  ],
+  "all_input_decisions_and_exact_values_agree": true,
+  "independent_certificates_replayed": true,
+  "passed": true
+}

@@ -1,0 +1,218 @@
+{
+  "source": "Single own-user sacct -X query, 2026-09-22 through now; EP11 names and four exact known IDs filtered before output. Rows transcribed from returned accounting fields; this is not raw sacct stdout.",
+  "positive_runtime_rows": [
+    {
+      "job_id": "45162657",
+      "job_name": "ep11_support_loo",
+      "elapsed_seconds": 14,
+      "allocated_cpus": 4
+    },
+    {
+      "job_id": "45163905",
+      "job_name": "ep11_support_all",
+      "elapsed_seconds": 18,
+      "allocated_cpus": 4
+    },
+    {
+      "job_id": "45166080",
+      "job_name": "ep11_ss_two_nbr",
+      "elapsed_seconds": 13,
+      "allocated_cpus": 4
+    },
+    {
+      "job_id": "45169356",
+      "job_name": "ep11_cortex_support",
+      "elapsed_seconds": 47,
+      "allocated_cpus": 8
+    },
+    {
+      "job_id": "45169812",
+      "job_name": "ep11_cortex_diag",
+      "elapsed_seconds": 23,
+      "allocated_cpus": 8
+    },
+    {
+      "job_id": "45171500",
+      "job_name": "ep11_ss_geom2",
+      "elapsed_seconds": 98,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45391747",
+      "job_name": "ep11-syn-recovery",
+      "elapsed_seconds": 3501,
+      "allocated_cpus": 4
+    },
+    {
+      "job_id": "45400437",
+      "job_name": "ep11-mixed56",
+      "elapsed_seconds": 64,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45408335",
+      "job_name": "ep11-mixed56",
+      "elapsed_seconds": 1503,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45414880",
+      "job_name": "ep11-design-sens",
+      "elapsed_seconds": 3184,
+      "allocated_cpus": 1
+    },
+    {
+      "job_id": "45416749",
+      "job_name": "ep11-nested-role",
+      "elapsed_seconds": 39,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45418162",
+      "job_name": "ep11-nested-frontier",
+      "elapsed_seconds": 152,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45423854",
+      "job_name": "ep11-group-module",
+      "elapsed_seconds": 1868,
+      "allocated_cpus": 1
+    },
+    {
+      "job_id": "45443064",
+      "job_name": "ep11-ff-bench-c",
+      "elapsed_seconds": 21,
+      "allocated_cpus": 4
+    },
+    {
+      "job_id": "45444194",
+      "job_name": "ep11-ff-bench-320",
+      "elapsed_seconds": 27,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445075",
+      "job_name": "ep11-ff-bench-id",
+      "elapsed_seconds": 41,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445089",
+      "job_name": "ep11-opt-profile",
+      "elapsed_seconds": 77,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445383",
+      "job_name": "ep11-opt-profile-mod",
+      "elapsed_seconds": 71,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445506",
+      "job_name": "ep11-ff-bench-fj",
+      "elapsed_seconds": 31,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445521",
+      "job_name": "ep11-opt-rep32",
+      "elapsed_seconds": 13,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445605",
+      "job_name": "ep11-opt-rep32",
+      "elapsed_seconds": 214,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45445977",
+      "job_name": "ep11-ff-bench-e2e",
+      "elapsed_seconds": 80,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45446472",
+      "job_name": "ep11-ff-bench-h",
+      "elapsed_seconds": 19,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45447420",
+      "job_name": "ep11-full-family-cal",
+      "elapsed_seconds": 458,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45448306",
+      "job_name": "ep11-pop-saa",
+      "elapsed_seconds": 408,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45448949",
+      "job_name": "ep11-pop-saa",
+      "elapsed_seconds": 2905,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45455621",
+      "job_name": "ep11-pop-saa",
+      "elapsed_seconds": 43400,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45588488",
+      "job_name": "bash",
+      "elapsed_seconds": 20,
+      "allocated_cpus": 2
+    },
+    {
+      "job_id": "45589596",
+      "job_name": "ep11-pop-saa",
+      "elapsed_seconds": 43248,
+      "allocated_cpus": 3
+    },
+    {
+      "job_id": "45736553",
+      "job_name": "ep11-pop-h",
+      "elapsed_seconds": 190112,
+      "allocated_cpus": 3
+    }
+  ],
+  "zero_resource_cancelled_ids": [
+    "45161959",
+    "45162135",
+    "45162173",
+    "45162243",
+    "45168617",
+    "45169127",
+    "45170267",
+    "45170491",
+    "45170628",
+    "45171171",
+    "45232700",
+    "45235894",
+    "45237000",
+    "45444812",
+    "45445074"
+  ],
+  "summed_active_seconds": 291669,
+  "allocated_core_seconds": 863565,
+  "summed_active_job_hours_lower_bound": 81.01916666666666,
+  "allocated_core_hours_lower_bound": 239.87916666666666,
+  "earliest_named_allocation_start_reported": "2026-09-24T20:04:51",
+  "latest_end_reported": "2026-09-30T16:20:59",
+  "earliest_to_latest_span_hours": 140.26888888888888,
+  "conditional_summed_runtime_remaining_wall_upper_bound_hours": 38.98083333333334,
+  "conditional_remaining_core_upper_bound_hours": 1260.1208333333334,
+  "confirmed_remaining_allowance": null,
+  "limitations": [
+    "Original wall-clock origin and counting rule are not established.",
+    "Job-name attribution may omit unnamed EP11 work.",
+    "Date filtering does not establish v1/v2 budget assignment.",
+    "These bounds do not authorize a duration or reset the global clock."
+  ]
+}

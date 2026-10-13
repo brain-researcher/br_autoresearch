@@ -33,3 +33,7 @@
 - A proposed transition is not a permit, and a permit is not an applied change.
 - A local result, Society review, reward, or task state cannot imply an
   applied Landscape transition.
+
+## 2026-10-02 local scope review
+
+Candidate contribution tier remains a single-experiment reanalysis with descriptive analyst-ecology evidence, not independent confirmation or an accepted claim. See [review (consolidated)](paper_plan.md).

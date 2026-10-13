@@ -1,0 +1,133 @@
+{
+  "policy_version": 6,
+  "state": "recorded_before_model_scoring",
+  "recorded_date": "2026-10-03",
+  "method": "partially_pooled_joint_mode_plugin_predictive",
+  "method_limits": "Point predictive densities; no Bayesian posterior or interval calibration claim. Participant-resampling group intervals and recovery must qualify inference before any gate verdict.",
+  "joint_z_c_recovery_passed": false,
+  "contaminant": {
+    "fraction": 0.02,
+    "miss_probability": 0.01,
+    "responded_channel": "uniform_time_0_to_4_and_equal_accept_reject",
+    "rationale": "Small fixed two-percent robust contamination channel; values recorded before fitting and held constant in primary, urgency and nonlinear likelihoods. Fast responses are retained. Recovery must stress contamination misspecification."
+  },
+  "parameters": {
+    "kappa": {
+      "population_center": -0.2231435513142097,
+      "population_scale": 1.0,
+      "version_mean_scale": 0.5,
+      "individual_scale_center": 0.4,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-3.0, 2.0]
+    },
+    "log_a": {
+      "population_center": 0.4054651081081644,
+      "population_scale": 0.7,
+      "version_mean_scale": 0.35,
+      "individual_scale_center": 0.3,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-1.6094379124341003, 1.6094379124341003]
+    },
+    "nondecision_logit": {
+      "population_center": -2.70805020110221,
+      "population_scale": 0.8,
+      "version_mean_scale": 0.4,
+      "individual_scale_center": 0.45,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-5.293304824724492, -0.5108256237659907]
+    },
+    "eta": {
+      "population_center": 0.0,
+      "population_scale": 1.0,
+      "version_mean_scale": 0.5,
+      "individual_scale_center": 0.25,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-2.0, 2.0]
+    },
+    "rho": {
+      "population_center": 0.0,
+      "population_scale": 1.0,
+      "version_mean_scale": 0.5,
+      "individual_scale_center": 0.6,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-3.0, 3.0]
+    },
+    "criterion": {
+      "population_center": 0.0,
+      "population_scale": 1.5,
+      "version_mean_scale": 0.5,
+      "individual_scale_center": 0.4,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 1.0],
+      "bounds": [-5.0, 5.0]
+    },
+    "gamma_gain": {
+      "population_center": 1.0,
+      "population_scale": 0.25,
+      "version_mean_scale": 0.125,
+      "individual_scale_center": 0.15,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, -0.5],
+      "bounds": [0.5, 1.5]
+    },
+    "gamma_loss": {
+      "population_center": 1.0,
+      "population_scale": 0.25,
+      "version_mean_scale": 0.125,
+      "individual_scale_center": 0.15,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, -0.5],
+      "bounds": [0.5, 1.5]
+    },
+    "urgency": {
+      "population_center": 0.1,
+      "population_scale": 0.5,
+      "version_mean_scale": 0.25,
+      "individual_scale_center": 0.2,
+      "individual_log_scale_sd": 0.5,
+      "individual_log_scale_bounds": [-4.0, 0.0],
+      "bounds": [0.0, 2.0]
+    }
+  },
+  "optimizer": {
+    "maximum_sweeps": 500,
+    "subject_maximum_iterations": 500,
+    "subject_ftol": 1e-9,
+    "subject_gtol": 1e-5,
+    "joint_relative_tolerance": 1e-7,
+    "scale_xatol": 1e-7,
+    "initial_standardized_offsets": [
+      [-0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5],
+      [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+    ],
+    "nonconvergence": "retain_attempt_and_do_not_release_scores",
+    "support_contact": "report_any_parameter_at_declared_numeric_support_before_gate_interpretation"
+  },
+  "urgency_solver": {
+    "dt_seconds": 0.002,
+    "spatial_intervals": 200,
+    "required_precision_check": "repeat_at_dt_0.001_and_400_intervals_at_fitted_support_before_rival_inference"
+  },
+  "recovery_plan": {
+    "replicates_per_qualified_generating_cell": 200,
+    "rationale": "At probability0.90,200replicates have Monte Carlo standard error0.021; at probability0.05,0.015. Report binomial uncertainty and exact counts. This is simulation precision, not a new scientific threshold.",
+    "sample": "all108participants_all432original_runs_all27648offer_rows",
+    "levels": [0.0, 0.5, 1.0, 2.0],
+    "families": ["M0", "MV", "MZ", "MC", "MVZ", "MVC", "MZC", "MVZC"],
+    "mandatory_rivals": ["symmetric_exponential_urgency", "anchored_nonlinear_value"],
+    "primary_splits": [[1, 4], [2, 3]],
+    "other_two_run_partitions": [[[1, 2], [3, 4]], [[1, 3], [2, 4]]],
+    "leave_one_run_out": [1, 2, 3, 4],
+    "first_compute_step": "one_complete_cohort_replicate_for_runtime_estimation_not_a_gate_verdict",
+    "still_to_instantiate_before_recovery_verdict": [
+      "complete_generating_nuisance_and_effect_heterogeneity_grid_including_contamination_misspecification",
+      "exact_relation_between_observed_missingness_support_and_model_generated_deadline_censoring",
+      "participant_resampling_intervals_and_the_same_recovery_and_observed_model_selection_evaluator"
+    ]
+  }
+}

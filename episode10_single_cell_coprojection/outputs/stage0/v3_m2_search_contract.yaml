@@ -1,0 +1,619 @@
+episode_id: ep10
+contract_id: v3_m2_search_v1
+recorded_date: "2026-09-28"
+status: frozen_prospectively_before_any_M2_outcome_access
+analysis_label: exploratory_development_only
+
+timing_and_authority:
+  authority: >-
+    These are newly prospective M2 and controller choices made under the
+    scientist's broad authorization of the v3 positive-only, unmapped-tolerant
+    exploratory redesign on 194 development cells in 12 groups.
+  frozen_before:
+    - any real M2 fit, score, residual association, or candidate-pair contrast
+    - any outcome-dependent M2 family, tuning, stopping, or applicability choice
+  permitted_design_inputs:
+    - SEARCH_POLICY.yaml and the frozen v3 observation/model contracts
+    - target-blind metadata, atlas geometry, and M1 mechanical postflight evidence
+    - the prospective design-audit recommendation
+  forbidden_design_inputs:
+    - candidate pair effects or M2 scores
+    - final or unassigned data
+    - SWC morphology
+    - M0 full-refit artifacts or telemetry
+  scientific_authority: false
+
+scope_and_seals:
+  role: development_only
+  eligible_cells: 194
+  conservative_groups: 12
+  target_coordinates: 16
+  unordered_pair_coordinates: 120
+  observation: mapped_positive_terminal_observations_only
+  exact_fixed_K: true
+  all_194_cells_remain_in_every_score_denominator: true
+  final_or_unassigned_access: forbidden
+  SWC_access: forbidden
+  M0_full_refit_or_telemetry_access: forbidden
+  permitted_claim: exploratory_recorded_positive_observation_pattern_evidence
+  forbidden_claims:
+    - biological target presence, absence, or exclusivity
+    - biological co-projection or candidate promotion
+    - synaptic, causal, functional, or developmental mechanism
+  zeros_mean: no_mapped_positive_terminal_observation_recorded_not_absence
+
+target_free_and_staged_gates:
+  before_any_real_target_set_access:
+    - the M1 production and independent numerical/access postflight must pass
+    - the M2 contract and target-free implementation must agree
+    - exact-enumeration, beta-zero nesting, analytic-gradient, penalty-prox,
+      lambda-max, KKT, controller-count, stopping, and replay tests must pass on
+      synthetic fixtures
+    - no code path may accept final, unassigned, SWC, M0 full-refit, or M0
+      telemetry inputs
+  actual_K_only_gate:
+    permitted_fields: [cell_key, conservative_group, segment_unmapped, K_i_obs]
+    realized_positive_set_identity_permitted: false
+    operations:
+      - construct every Omega_i from K_i_obs and the frozen panel
+      - construct the outcome-free M1 and pair design transforms
+      - compute the numerical range and rank independently for every training fold
+    expected_rank: 104
+    expected_rank_is_solver_dimension_constant: false
+    rule: >-
+      The solver must derive the rank and projector numerically. Every required
+      fold must pass the prospectively expected stable rank of 104; disagreement
+      stops before any M2 outcome is read and does not authorize a hard-coded
+      projector or a changed tolerance.
+  first_real_M2_access: >-
+    Realized P_i may be read only after all preceding gates pass and the
+    optional-family numerical addendum is frozen. Failure is closed and cannot
+    be converted into a different model choice after viewing candidate effects.
+
+resampling_and_M1_offset:
+  outer_method: leave_one_conservative_group_out
+  outer_folds: 12
+  validation_group_never_enters_training_transform_or_fit: true
+  per_split_rule: >-
+    For every outer, controller, falsifier, and null-replay split, run the
+    frozen leakage-free M1 procedure on training groups only. Once fitted, its
+    coefficients, transforms, candidate scores, and probabilities are a fixed
+    offset for every M2 configuration on that split.
+  M1_joint_refit_with_M2: forbidden
+  M1_offset_tuned_using_M2: forbidden
+  null_replay_exception: >-
+    M0 and M1 are refit from scratch inside each null replicate before its M2
+    controller, using only the replicate's permitted training data.
+
+pair_design:
+  target_order: identical_to_v3_m1_model_contract
+  pair_order: lexicographic_unordered_pairs_of_the_16_ordered_targets
+  raw_feature: h_e(S) = 1 when both endpoints of pair e are in S, else 0
+  candidate_measure: uniform_over_every_S_in_each_Omega_i
+  M1_sufficient_statistic:
+    symbol: f_i(S)
+    dimension: 261
+    definition: the_full_frozen_M1_joint_B_and_geometry_sufficient_statistic
+  within_cell_centering:
+    pair: hbar_i(S) = h_i(S) - uniform_mean_over_Omega_i_of_h_i
+    M1: fbar_i(S) = f_i(S) - uniform_mean_over_Omega_i_of_f_i
+    observed_P_i_receives_special_weight: false
+  training_residualization:
+    weight: 1 / (number_of_training_groups * cells_in_group * size_of_Omega_i)
+    fit: >-
+      Compute the deterministic minimum-norm equal-group weighted least-squares
+      projection of all 120 hbar columns onto the full 261-column fbar span,
+      using training cells and every candidate in each Omega_i only.
+    residual: r_i(S) = hbar_i(S) - fitted_projection_from_fbar_i(S)
+    outcome_use: none; realized P_i never enters this transform
+  training_RMS_scaling:
+    formula: >-
+      s_e is the square root of the equal-group, equal-cell, uniform-candidate
+      training mean of r_ie(S)^2.
+    scaled_feature: phi_ie(S) = r_ie(S) / s_e
+    zero_negative_or_nonfinite_scale: stop
+  validation_transform: >-
+    Center h and f uniformly within the validation cell's own Omega_i, then
+    apply the training-fold projection coefficients and training RMS scales
+    unchanged. Validation outcomes never enter projection or scaling.
+  range_projector:
+    gram: equal_group_weighted_uniform_candidate_training_Gram_of_phi
+    eigensolver: deterministic_symmetric_binary64
+    base_tolerance: 120 * binary64_epsilon * max(1, largest_Gram_eigenvalue)
+    stability_check: identical_rank_at_0.1x_1x_and_10x_base_tolerance
+    selected_tolerance: base_tolerance_after_the_rank_stability_check_passes
+    projector: eigenvectors_strictly_above_the_selected_base_tolerance
+    coefficient_constraint: beta = projector * beta
+    expected_fold_rank: 104
+    rank_is_computed_not_hard_coded: true
+
+core_model:
+  family: exact_conditional_fixed_K_exponential_tilt
+  coefficient:
+    symbol: beta
+    shape: [120]
+    coordinates: >-
+      The 120 unrotated, lexicographically ordered physical edge axes after
+      their frozen training-fold RMS standardization; no SVD/range-basis
+      coordinate is ever penalized or interpreted.
+  score: q_M2_i(S) = frozen_q_M1_i(S) + beta^T phi_i(S)
+  probability: >-
+    exp(q_M2_i(S)) divided by the exhaustive sum of exp(q_M2_i(A)) over every
+    A in Omega_i, evaluated with stable binary64 log-sum-exp.
+  beta_zero: exact_same_fold_M1_probability
+  normalization: exhaustive_over_every_candidate_in_Omega_i
+  approximation_pruning_sampling_or_pseudolikelihood: forbidden
+  K_0_or_16: singleton_Omega_and_exactly_zero_M2_minus_M1_log_score_gain
+  nonfinite_score_probability_or_normalizer: stop
+
+penalties_and_groups:
+  penalty_coordinates: the_120_physical_edge_axes_not_a_reduced_range_basis
+  lasso:
+    J: sum_e absolute(beta_e)
+  elastic_net:
+    alpha_grid: [0.25, 0.5, 0.75]
+    J: alpha * sum_e absolute(beta_e) + (1-alpha) * sum_e beta_e^2 / 2
+  group_lasso:
+    J: sum_over_groups sqrt(group_size) * l2_norm(beta_group)
+    overlap: none
+    base_region_order: [MOs, SS, ACA, STR, TH, MB, P, MY]
+    groups:
+      distinct_base_region_pairs:
+        count: 28
+        order: lexicographic_unordered_pairs_of_base_region_order
+        size_each: 4
+        members: >-
+          For base regions a < b, the four physical edges a_ipsi--b_ipsi,
+          a_ipsi--b_contra, a_contra--b_ipsi, and a_contra--b_contra, sorted by
+          the global physical-edge order.
+      homotopic_within_base_region:
+        count: 8
+        order: base_region_order
+        size_each: 1
+        members: the_single_ipsi--contra_edge_for_that_base_region
+    exact_partition_check: 28 * 4 + 8 * 1 = 120_each_edge_exactly_once
+  rho_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+  fold_local_lambda:
+    formula: lambda = rho * lambda_max
+    lambda_max_definition: >-
+      The smallest nonnegative lambda for which beta=0 satisfies the exact
+      fold-local constrained KKT inclusion
+      0 in gradient_NLL(0) + lambda * subgradient_J(0) + Range(projector)^perp.
+    computation: deterministic_bracketing_and_bisection_of_the_zero_KKT_condition
+    rho_1_gate: beta_zero_KKT_residual_at_most_1.0e-7
+    nonpositive_nonfinite_or_unbracketed_lambda_max: stop
+
+core_optimizer:
+  algorithm: deterministic_monotone_FISTA_with_restart_and_backtracking
+  initial_Lipschitz_estimate: 1.0
+  backtracking_multiplier: 2.0
+  acceptance: standard_smooth_objective_quadratic_majorization
+  monotonicity: reject_objective_increases_and_restart_from_last_accepted_iterate
+  constrained_prox:
+    target: prox_of_step_times_lambda_J_plus_indicator_of_fold_range
+    algorithm: deterministic_Dykstra
+    components:
+      - closed_form_lasso_elastic_or_nonoverlap_group_penalty_prox
+      - orthogonal_projection_with_the_fold_range_projector
+    inner_tolerance: 1.0e-12
+    maximum_inner_iterations: 10000
+  maximum_outer_iterations: 20000
+  convergence:
+    KKT_or_proximal_gradient_infinity_norm: 1.0e-7
+    relative_objective_change: 1.0e-10
+    require_both: true
+  fallback_or_approximate_certificate: forbidden
+  nonconvergence_nonfinite_value_or_failed_prox: invalid_trial_and_fail_closed
+
+optional_families:
+  diagnostic_timing: after_the_16_valid_coverage_trials_before_trial_17
+  diagnostic:
+    matrix: >-
+      Form the symmetric 16 by 16 equal-group outer-cross-fitted pair-residual
+      matrix D with zero diagonal from h(P_i) - E_M1[h(S) | i].
+    leading_energy: >-
+      Squared norm of the leading component divided by the full off-diagonal
+      squared norm.
+    leading_edge_participation_ratio: >-
+      For the normalized upper-triangle edge loading v, 1 / sum_e(v_e^4).
+    leave_one_group_out_stability: >-
+      Recompute the leading loading after leaving out each group and sign-align
+      it to the full-development loading before taking cosines.
+    eigen_order_and_ties: >-
+      Order eigenpairs by decreasing absolute eigenvalue and then decreasing
+      signed eigenvalue. For an exact repeated eigenvalue, construct the basis
+      deterministically by projecting the ordered coordinate unit vectors into
+      the tied eigenspace and applying ordered Gram-Schmidt. Canonicalize each
+      vector so its first maximum-absolute coordinate is positive, with a
+      lowest-coordinate-index tie.
+  low_rank:
+    activate_only_if_all:
+      - leading_energy_at_least_0.40
+      - leading_edge_participation_ratio_at_least_16
+      - median_of_12_aligned_leave_one_group_out_cosines_at_least_0.80
+      - at_least_9_of_12_aligned_cosines_at_least_0.70
+    ranks: [1, 2, 3, 4, 6, 8]
+    rho_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+    lambda_reference: >-
+      The spectral norm of the fold-range-projected physical null-gradient
+      matrix, floored at 1.0e-12 only to define units. This is a ridge scale,
+      not a zero-solution lambda_max.
+    lambda: rho_times_lambda_reference
+    model: >-
+      Add an exact conditional exponential tilt whose 120 physical edge
+      coefficients are the unordered off-diagonal entries of a symmetric
+      16-by-16 W = U diag(d) U^T of selected rank r. Pass those entries through
+      the same fold-local uniform residualization, range projection, and RMS
+      scaling; only unordered off-diagonal pair scores enter the tilt.
+    penalty: Frobenius_norm_squared_of_W_over_2
+    inference: probability_contrasts_only_never_U_d_or_raw_W_entries
+  hierarchical:
+    eligible: false
+    reason: conservative_group_identifiers_are_not_transportable_effect_levels
+  sparse_plus_low_rank:
+    requires_low_rank_trigger: true
+    activation_requires_both:
+      - all_low_rank_diffuse_diagnostic_conditions_pass
+      - localized_sparse_selector_is_positive_and_reaches_80_percent_with_at_most_16_edges
+    sparse_edge_selection: >-
+      Sort the core sparse incumbent's held-out absolute identified pair
+      probability contrasts descending with lexicographic ties. Take the
+      smallest named edge set whose cumulative magnitude is at least 80 percent
+      of the all-edge total, only if that set has at most 16 edges and the total
+      magnitude is positive.
+    maximum_named_sparse_edges: 16
+    model: sum_of_the_eligible_low_rank_tilt_and_named_physical_sparse_edge_tilt
+    penalties:
+      low_rank: rho_low_times_the_low_rank_lambda_reference
+      sparse: rho_sparse_times_the_core_lasso_lambda_max
+    rho_low_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+    rho_sparse_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+    no_outcome_selected_spatial_domain: true
+  numerical_addendum:
+    requirement: >-
+      Before any M2 outcome access, a separate prospective addendum may freeze
+      only deterministic nonconvex initialization, solver, and resource details
+      for low-rank and hybrid fits. It may not change their formula, ranks,
+      trigger, penalties, or selector. Real M2 search waits for this addendum;
+      target-free core implementation may proceed now.
+  null_rule: every_trigger_diagnostic_and_every_activated_branch_is_replayed
+
+trial_scoring:
+  primary_trial_score_bits_per_cell: >-
+    One twelfth times the sum over held-out groups of the within-group mean of
+    log2 Pr_M2(P_i) minus log2 Pr_M1(P_i), retaining all 194 cells.
+  trial_valid_only_if:
+    - all 12 outer folds finish with exact normalization
+    - every fold passes its residualization, range, lambda-max, optimizer, and KKT gates
+    - every one of 194 outer-cross-fitted predictions is finite and unique
+  falsifier_is_incumbent_eligible: false
+  invalid_attempts_count_as_valid_trials: false
+  maximum_invalid_retries: 12
+  pre_M2_M1_adequacy_gate:
+    data: all_194_M1_outer_cross_fitted_development_predictions_only
+    exact_marginal_sum_K: required_for_every_cell
+    equal_group_log_score: >-
+      The equal-group mean M1 realized-set log2 probability must be strictly
+      greater than the corresponding fixed-K uniform log2 probability.
+    equal_group_marginal_Brier: >-
+      The equal-group, equal-cell, equal-target mean squared error of the 16 M1
+      inclusion marginals must be strictly lower than the fixed-K uniform
+      inclusion-probability baseline K_i_obs / 16.
+    calibration_in_the_large:
+      sampling_unit: equal_weight_per_conservative_group_then_each_of_16_targets
+      target_residual: >-
+        For target t, r_t is one twelfth times the sum over groups of the
+        within-group mean of observed recorded-positive indicator minus the M1
+        outer-cross-fitted exact inclusion marginal.
+      fixed_K_uniform_reference: replace_each_M1_marginal_by_K_i_obs_divided_by_16
+      M1_target_residual_RMS_maximum: 0.15
+      M1_target_residual_maximum_absolute_maximum: 0.30
+      M1_RMS_must_be_at_most_fraction_of_uniform_RMS: 0.80
+      M1_maximum_absolute_must_be_at_most_fraction_of_uniform_maximum_absolute: 0.80
+      all_12_groups_and_16_targets_required_without_dropping: true
+    threshold_choice_used_M2_outcomes: false
+    failure: stop_before_any_real_M2_outcome_access
+
+controller:
+  valid_trial_cap: 80
+  policy_ceiling_not_used: 88
+  maximum_composition:
+    reference_trials: 8
+    association_trials: 72
+  minimum_schedule:
+    trials_1_through_16:
+      - {trial: 1, class: reference_anchor, model: frozen_M1_beta_zero}
+      - {trial: 2, class: association_anchor, family: lasso, rho: 1.0}
+      - {trial: 3, class: association_anchor, family: lasso, rho: 0.1}
+      - {trial: 4, class: association_anchor, family: lasso, rho: 0.01}
+      - {trial: 5, class: association_anchor, family: lasso, rho: 0.001}
+      - {trial: 6, class: association_anchor, family: elastic_net, alpha: 0.25, rho: 1.0}
+      - {trial: 7, class: association_anchor, family: elastic_net, alpha: 0.25, rho: 0.001}
+      - {trial: 8, class: association_anchor, family: elastic_net, alpha: 0.5, rho: 1.0}
+      - {trial: 9, class: association_anchor, family: elastic_net, alpha: 0.5, rho: 0.1}
+      - {trial: 10, class: association_anchor, family: elastic_net, alpha: 0.5, rho: 0.001}
+      - {trial: 11, class: association_anchor, family: elastic_net, alpha: 0.75, rho: 1.0}
+      - {trial: 12, class: association_anchor, family: elastic_net, alpha: 0.75, rho: 0.001}
+      - {trial: 13, class: association_anchor, family: group_lasso, rho: 1.0}
+      - {trial: 14, class: association_anchor, family: group_lasso, rho: 0.1}
+      - {trial: 15, class: association_anchor, family: group_lasso, rho: 0.01}
+      - {trial: 16, class: association_anchor, family: group_lasso, rho: 0.001}
+    core_coverage_statement: >-
+      Trial 1 is a valid prespecified M1 beta-zero reference anchor under the
+      common M0/M1/M2 specification. Together with the 15 association anchors,
+      it satisfies the policy minimum of 16 valid anchors for the core branch.
+    triggered_extension_anchors_insert_before_postcoverage:
+      low_rank_if_triggered:
+        count: 8
+        ordered_nodes:
+          - all_six_ranks_at_rho_0.1_in_rank_order
+          - rank_1_at_rho_1.0
+          - rank_8_at_rho_0.001
+      sparse_plus_low_rank_if_triggered:
+        count: 4
+        rank: best_valid_low_rank_anchor_with_fixed_lattice_tie_break
+        sparse_edges: frozen_localized_selector_edge_set
+        ordered_rho_low_rho_sparse_corners:
+          - [1.0, 1.0]
+          - [1.0, 0.001]
+          - [0.001, 1.0]
+          - [0.001, 0.001]
+      coverage_completion: >-
+        Postcoverage adaptation cannot begin until all anchors of every
+        triggered extension have run validly. Coverage length is therefore 16,
+        24, or 28. Optional anchors count within the valid-trial total.
+    postcoverage_24_trial_template:
+      indexing: >-
+        With C equal to the completed coverage length, replace every base trial
+        number t below by C + (t - 16). Seeds, order, cycles, and configurations
+        do not change.
+      trials:
+        - range: 17-20
+          class: capacity_matched_Rademacher_reference_falsifier
+          count: 4
+          seeds: [2026092801, 2026092802, 2026092803, 2026092804]
+          match: first_four_cycle_1_successor_configurations
+        - range: 21-27
+          class: association_successor
+          cycle: 1
+          count: 7
+        - trial: 28
+          class: whole_set_permutation_association_falsifier
+          family: lasso
+          rho: 0.1
+          seed: 2026092811
+        - after_trial: 28
+          action: incumbent_challenger_decision_1
+        - range: 29-31
+          class: capacity_matched_Rademacher_reference_falsifier
+          count: 3
+          seeds: [2026092805, 2026092806, 2026092807]
+          match: first_three_cycle_2_successor_configurations
+        - range: 32-38
+          class: association_successor
+          cycle: 2
+          count: 7
+        - trial: 39
+          class: whole_set_permutation_association_falsifier
+          family: elastic_net
+          alpha: 0.5
+          rho: 0.1
+          seed: 2026092812
+        - trial: 40
+          class: whole_set_permutation_association_falsifier
+          family: group_lasso
+          rho: 0.1
+          seed: 2026092813
+        - after_trial: 40
+          action: incumbent_challenger_decision_2
+    exact_counts_at_branch_minimum:
+      base_no_optional_total: 40
+      low_rank_triggered_total: 48
+      low_rank_and_hybrid_triggered_total: 52
+      reference: 8
+      association: total_minus_8
+      postcoverage_falsifiers: 10
+      postcoverage_trials: 24
+      postcoverage_falsifier_fraction: 10/24_equals_41.6667_percent
+  Rademacher_reference:
+    generator: deterministic_PCG64_signs_with_no_global_RNG_state
+    construction: >-
+      Replace the pair design by centered deterministic Rademacher columns,
+      residualize against the same M1 span, project to the same computed
+      fold-local range and rank, and apply the same RMS scaling. Match the paired
+      successor's family, alpha when applicable, rho, fold structure, parameter
+      count, optimizer, and stopping gates.
+    candidate_selector_eligible: false
+  whole_set_permutation:
+    strata: [conservative_group, segment_unmapped, K_i_obs]
+    unit: permute_entire_P_i_sets_among_cells_within_each_stratum
+    preserves_each_K_i_obs: true
+    deterministic_PCG64: true
+    family_fit_otherwise_identical: true
+    candidate_selector_eligible: false
+  successor_lattice:
+    rho_order: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+    elastic_alpha_order: [0.25, 0.5, 0.75]
+    low_rank_order_if_triggered: [1, 2, 3, 4, 6, 8]
+    core_neighbors:
+      - same family and adjacent rho
+      - for elastic net, same rho and adjacent alpha
+    low_rank_neighbors_if_triggered:
+      - adjacent rank at the same rho
+      - adjacent rho at the same rank
+    hybrid_neighbors_if_triggered: >-
+      Change exactly one of low-rank rank, low-rank rho, or sparse rho by one
+      adjacent lattice step while retaining the prospectively selected named
+      sparse edge set.
+    proposal_order: >-
+      Rank eligible parents by larger valid primary trial score, then the fixed
+      family order lasso, elastic_net, group_lasso, low_rank,
+      sparse_plus_low_rank, then alpha, rank, rho, and lexicographic edge-set
+      identity. Enumerate untried one-step neighbors in that same fixed order,
+      deduplicate, and take the first required proposals.
+    exhaustion: >-
+      If fewer untried eligible successor nodes remain, fill the unused valid
+      slots with the next deterministic whole-set permutation association
+      falsifiers; never duplicate an already valid candidate configuration.
+  incumbent_challenger_decision:
+    incumbent: best_valid_nonfalsifier_association_trial_before_the_cycle
+    challenger: best_valid_nonfalsifier_association_successor_in_the_cycle
+    better: larger_primary_trial_score
+    exact_tie: fixed_successor_lattice_order
+    falsifiers_can_win: false
+  after_trial_40:
+    dynamic_indexing: >-
+      Read "trial 40" as branch minimum B = completed coverage length + 24.
+      Continuation starts at B+1, and patience can first stop at B+14.
+    block_template_for_trials_41_through_80:
+      size: 5
+      repetitions_at_most: 8
+      slots_1_and_2: >-
+        The next two deterministic whole-set permutation association falsifiers,
+        cycling families lasso, elastic_net, group_lasso and using successive
+        PCG64 seeds 2026092821 through 2026092836.
+      slots_3_through_5: >-
+        The next three untried successor-lattice association trials; replace an
+        exhausted successor slot by the next deterministic permutation
+        association falsifier. Exhaustion replacements use the disjoint ordered
+        seed range 2026092837 through 2026092860.
+      invariant: cumulative_postcoverage_falsifier_fraction_never_below_40_percent
+    patience:
+      improvement_threshold_bits_per_cell: 0.002
+      valid_trials_without_improvement: 14
+      starts_only_after_trial: branch_minimum_B
+      earliest_stop_trial: B_plus_14
+      improvement: >-
+        A valid nonfalsifier association trial exceeds the incumbent primary
+        score by at least 0.002 bits per eligible cell.
+    stop_at_80: incomplete_budget_stop_not_success_and_not_a_negative_result
+
+candidate_selector:
+  timing: after_the_controller_selects_its_nonfalsifier_incumbent
+  event: both_A_and_B_were_recorded
+  per_cell_probability: >-
+    For model m and pair e=(A,B), sum the exact model probabilities over all
+    S in Omega_i that contain both A and B.
+  pair_contrast: >-
+    One twelfth times the sum over groups of the within-group mean of
+    Pr_M2(A and B recorded | i) minus Pr_M1(A and B recorded | i), using the
+    outer-cross-fitted probabilities of the selected models.
+  K_i_obs_less_than_2: both_event_probabilities_and_their_contrast_are_zero
+  K_i_obs_equal_16: both_event_probabilities_are_one_and_contrast_is_zero
+  denominator: all_194_development_cells
+  cell_inventory: exactly_194_unique_frozen_development_cell_keys_with_exact_group_sizes
+  pair_identity: internal_lexicographic_pairs_of_the_frozen_16_target_order
+  selected_pair: maximum_absolute_equal_group_pair_contrast_across_all_120_pairs
+  exact_tie: lexicographically_first_pair_in_the_frozen_pair_order
+  selected_direction: sign_of_the_selected_probability_contrast
+  applicability_domain: whole_frozen_development_common_support_domain_only
+  outcome_selected_spatial_or_anatomical_subdomain: forbidden
+  identified_estimand: probability_contrast_not_a_raw_or_nonidentified_coefficient
+  interpretation_limits:
+    - no biological presence or absence
+    - no exclusivity
+    - no biological co-projection or promotion
+
+selected_model_reproducible_refit_and_validity:
+  refit: >-
+    After controller selection, refit the selected M2 configuration on all 194
+    development cells using a freshly fitted frozen-procedure full-development
+    M1 offset and full-development training-only transforms. Repeat once from
+    the frozen zero/deterministic initialization and once from the converged
+    selected solution; model selection is never reopened.
+  repeat_tolerances:
+    objective_absolute: 1.0e-12
+    candidate_probability_maximum_absolute: 1.0e-10
+    identified_pair_contrast_maximum_absolute: 1.0e-10
+  no_single_group_dominance: >-
+    The maximum absolute one-group contribution divided by the sum of all 12
+    absolute group contributions is at most 0.50; an exactly zero denominator
+    maps to ratio zero.
+  selected_pair_direction_stability: >-
+    At least 9 of 12 leave-one-group selected-pair contrasts retain the
+    full-development selected direction; exact zero is not stable.
+  MOp_source_family_guard: >-
+    The selected aggregate equal-group M2-minus-M1 gain for the sole active MOp
+    source family must be at least -0.01 bits per cell. No other source may be
+    pooled to satisfy this guard.
+  any_failed_gate: exploratory_validity_not_established
+
+full_controller_null:
+  replicates: 99
+  RNG: PCG64
+  generator_seeds: 2026093001_through_2026093099_inclusive
+  generator: fitted_full_development_M1_conditional_on_each_fixed_K_i_obs
+  each_replicate:
+    starts_with_empty_search_history: true
+    refits: [M0, M1]
+    replays:
+      - the complete controller and all ties, stopping, and invalidity rules
+      - optional-family trigger diagnostics and every activated branch
+      - Rademacher and whole-set-permutation falsifiers
+      - candidate-pair selection over all 120 pairs
+    preserves:
+      - conservative group and group size
+      - segment_unmapped stratum
+      - every cell's K_i_obs
+      - fixed covariates, geometry, panel, and candidate order
+    substreams: >-
+      numpy SeedSequence with replicate seed as entropy and the frozen integer
+      spawn key (stage_code, fold_ordinal, trial_ordinal, purpose_code), using
+      zero for a nonapplicable ordinal; no strings or Python hashes enter RNG.
+  primary_statistic: selected_equal_group_M2_minus_M1_log2_score_gain
+  pair_statistic: maximum_absolute_equal_group_M2_minus_M1_pair_probability_contrast
+  primary_monte_carlo_p: (1 + null_primary_at_least_observed) / 100
+  pair_max_stat_monte_carlo_p: (1 + null_pair_max_at_least_observed_pair_max) / 100
+  threshold: 0.05
+  interpretation: excess_recorded_positive_observation_pattern_predictability_only
+
+required_falsifier_dispositions:
+  synthetic_recovery: required_for_M0_M1_core_M2_and_every_activated_optional_family
+  group_mapping_K_permutation: >-
+    Required whole-set permutations within conservative_group by
+    segment_unmapped by K_i_obs, preserving every K_i_obs.
+  pair_identification_and_residualization: >-
+    Verify beta-zero M1 nesting, probability-contrast invariance to range-null
+    coefficients, training-only residualization, and fixed validation transforms.
+  independent_label_overlap_confounding_and_ablation: >-
+    Test only independently measured eligible labels. If none exists, record
+    population mixture as unresolved; absence of a label is never a passed test.
+  capacity_matched_noise_interactions: required_as_the_seven_Rademacher_reference_trials
+  leave_one_group_resource_and_batch_influence: >-
+    Report groupwise score and selected-pair influence and any available
+    resource or batch influence without dropping an unfavorable group.
+  source_position_common_support: >-
+    Evaluate the frozen whole-domain support; do not select a favorable spatial
+    subdomain. There is one active MOp source family, so the 0.01 bits-per-cell
+    source-family regression guard applies once to that family; it is neither
+    multiplied nor used to justify pooling another source.
+  frozen_target_boundary_sensitivity: >-
+    Apply only the prospectively frozen recorded-positive boundary variants;
+    no result-dependent vocabulary or call revision is allowed.
+  pre_outcome_addendum: >-
+    Exact target-free methods and thresholds not already fixed above may be
+    frozen only in the already-required prospective numerical/falsifier
+    addendum. Real M2 outcome access waits until that addendum covers every
+    required falsifier; no disposition may be silently omitted or passed.
+
+resource_ceilings:
+  apply_to_controller_falsifiers_refits_and_all_99_null_replays: true
+  cpu_core_hours: 1800
+  gpu_hours: 0
+  # User-authorized accounting reset; see v3_wall_time_reset_authorization_20261001.json.
+  wall_clock_hours: 144
+  parallel_cores: 64
+  aggregate_memory_GiB: 512
+  scratch_GiB: 1536
+  action_before_any_ceiling_would_be_exceeded: stop_and_report_incomplete
+  ceiling_stop_is_success_or_negative_result: false
+
+required_outputs:
+  - exact valid/invalid trial ledger with family, alpha, rho, fold gates, and class
+  - all 194 selected-M2 and M1 outer-cross-fitted log probabilities
+  - equal-group primary gain and groupwise contributions
+  - optional-family diagnostics, activations, and null replays
+  - selected identified pair probability contrast and all-group support
+  - 99 primary and pair-max null statistics and Monte Carlo p values
+  - K_i_obs and pair-informative support by conservative group
+  - explicit confirmation that final, unassigned, SWC, and forbidden M0 paths stayed sealed

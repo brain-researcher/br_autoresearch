@@ -1,6 +1,16 @@
 episode: EP07
 title: What do earlier recording days preserve - task structure or trial-specific coupling?
 status: planned_not_run
+session_amendment:
+  adopted: "2026-10-10"
+  authority: scientist_approved_joint_EP06_EP07_eleven_session_plan
+  excluded_session: {animal: Mihili, date: "2014-03-06", original_position: 5, regions: [M1, PMd]}
+  reason: failed_native_nonnegative_integer_count_validity_only
+  preserve_historical_twelve_session_evidence: true
+  renumber_retained_sessions: false
+  automatic_further_exclusions: false
+  reinsert_after_freeze: separately_declared_revision_required
+  reset_consumed_resources_or_started_clocks: false
 
 scientific_question: >-
   After a new recording day provides a nominal 20 percent calibration sample,
@@ -29,8 +39,9 @@ paper_scope:
     EP06: recording-domain frequency-rule component consequence
     EP08: acquisition-visible predictors of marginal electrode or trial value
   operative_rules: >-
-    Primary day/trial roles, score, margins, calibration, model family, budgets,
-    falsifiers, and held-out decision below are unchanged. Explanatory work
+    The adopted eleven-session panel and five-new-day aggregation/robustness
+    rules below replace the original six-new-day panel. Trial roles, score,
+    margins, calibration, model family, budgets and falsifiers are unchanged. Explanatory work
     remains a planned conditional follow-up and is not a new primary endpoint.
 
 development_search_intent:
@@ -42,9 +53,10 @@ development_search_intent:
   mechanism_indicator_exploration_count_cap: null
   mechanism_indicator_examples: not_an_exhaustive_list
   benefit_forecast_selection: day_wise_crossfit_all_selection_scaling_and_tuning
+  benefit_forecast_outer_day_folds: 5
   simple_final_explanation: desirable_not_a_search_prerequisite
   final_choices_frozen: before_applicable_held_out_or_new_day_evaluation
-  primary_roles_margins_falsifiers_model_structural_limits_and_budgets: unchanged
+  unchanged_after_session_amendment: trial_roles_margins_falsifiers_model_structural_limits_and_budgets
   extra_execution_outcome_access_or_resources_authorized: false
 
 primary_settings:
@@ -62,15 +74,18 @@ primary_settings:
 recording_days:
   mihili:
     earlier_days: ["2014-02-17", "2014-02-18", "2014-03-03"]
-    new_days: ["2014-03-04", "2014-03-06", "2014-03-07"]
+    new_days: ["2014-03-04", "2014-03-07"]
+    retained_original_positions: [1, 2, 3, 4, 6]
   chewie_l:
     earlier_days: ["2016-09-29", "2016-10-05", "2016-10-06"]
     new_days: ["2016-10-07", "2016-10-14", "2016-10-21"]
+    retained_original_positions: [1, 2, 3, 4, 5, 6]
   rules:
     - M1 and PMd from the same day always share the same role.
     - A new-day trial never enters an earlier-day fit.
     - Fitting never crosses animal, implant, or cortical-region boundaries.
     - Chewie-R is an implant sensitivity, not an independent animal.
+    - No unavailable retained day or region may be dropped to renormalize a required panel.
 
 new_day_trial_split:
   unit: whole behavioral trial within each day and reach direction
@@ -163,9 +178,12 @@ primary_measure:
   negative_values_are_reported: true
   averaging:
     - compute the difference for each new day and each comparison
-    - average the three days within each animal
+    - average the two Mihili days or three Chewie-L days equally within animal
     - give Mihili and Chewie-L equal weight
     - keep M1 and PMd separate
+  new_day_weights: {mihili: "1/4", chewie_l: "1/6"}
+  apply_same_animal_balanced_weights_in_every_bootstrap_draw: true
+  trial_or_neuron_weighting_of_days: false
   meaningful_margin_r2: 0.01
 
 search_budget:
@@ -173,16 +191,25 @@ search_budget:
     - history-assisted
     - today-only
   starting_models_per_stream: 16
+  completed_starting_models_required_per_stream: 15
+  starting_count_amendment:
+    adopted: "2026-10-10"
+    authority: explicit_scientist_approval_after_two_failed_attempts
+    excluded_unscored_configuration: starting_08
+    retain_all_sixteen_attempted_identities: true
+    impute_replace_or_retry_excluded_configuration: false
+    partial_contacts: disclose_and_charge_separately_never_count_as_complete_pairs
+    reset_costs_clocks_roles_margins_or_other_retry_limits: false
   adaptive_successor_pairs:
-    minimum_valid: 2
+    minimum_valid: 3
     maximum_attempted: 14
   planned_alternative_explanation_pairs: 10
   evaluations_per_stream:
     minimum: 28
-    maximum: 40
+    maximum: 39
   total_evaluations:
     minimum: 56
-    maximum: 80
+    maximum: 78
   post_starting_check_fraction_minimum: 0.4167
   patience:
     consecutive_valid_pairs: 7
@@ -211,6 +238,37 @@ planned_alternative_explanation_checks:
   - remove the first active optional component in a predeclared order
 
 additional_checks:
+  control_interpretation:
+    adopted: "2026-10-10"
+    authority: explicit_scientist_approval
+    specification: outputs/paper_plan.md#october-10-finalist-control-interpretation-adopted
+    all_ten_paired_controls_mandatory: true
+    hard_criteria: declared_intervention_integrity_and_prospectively_justified_invariance_or_calibration_comparator_identity
+    score_changes: sensitivity_evidence_unless_a_scientific_veto_is_prospectively_specified
+    mean_preserving_disruption_must_eliminate_primary_gain: false
+    fixed: recipes_hyperparameters_seeds_ensemble_membership_and_mixing_coefficients
+    refit: affected_feature_population_and_regression_parameters_under_declared_intervention
+    invalid_or_unavailable_control: incomplete_not_passed
+    known_answer_cases: four_fixed_bounded_constructions_with_oracles_and_tolerances_selected_before_outcomes
+    numerical_continuation_20261011:
+      authority: existing_scientist_delegated_numerical_repair_and_compute_authority_with_two_attempt_limit
+      specification: outputs/paper_plan.md#october-11-bounded-numerical-continuation
+      previous_report: outputs/runs/alternative_explanations/attempt001/known_answer_report.json
+      selected_report: outputs/runs/alternative_explanations/qualification_repair001/known_answer_report.json
+      reused_complete_cell: stable_M1_history_assisted
+      sole_retried_task: stable_M1_today_only_starting_09
+      unattempted_member_tasks: 29
+      new_member_fits_maximum: 30
+      cumulative_attempted_member_fits_maximum: 33
+      unique_completed_member_tasks_required: 32
+      execution_only_override: starting_09_today_only_elastic_net_max_iterations_100000
+      unchanged: objectives_penalties_l1_ratio_ranks_seeds_epochs_KKT_tolerance_and_recovery_thresholds
+      prior_active_wall_seconds_charged: 14
+      continuation_active_wall_seconds_maximum: 586
+      cumulative_active_wall_seconds_maximum: 600
+      stop_on_any_new_numerical_or_scientific_failure: true
+      further_retries_or_successful_cell_repeats: false
+    coupling_claim: preserve_separate_residual_and_incremental_trial_identity_requirements
   simulated_cases:
     - stable relationship
     - drifting relationship
@@ -228,15 +286,25 @@ held_out_evaluation:
     method: paired whole-trial bootstrap within day and reach direction
     samples: 9999
     seed: 7007999
+    keep_native_time_neurons_and_comparator_pairing_together: true
+    interpretation: conditional_on_five_fixed_new_days_and_two_animals_not_new_day_or_animal_sampling
   multiplicity:
     method: one-sided Holm across M1 and PMd
     familywise_alpha: 0.05
   support_requires:
     - improvement greater than 0.01 R2 against both comparisons
-    - positive mean improvement in both animals
-    - positive improvement on at least two of three new days in each animal
-    - positive result after omitting each new day in turn
+    - positive mean improvement in both animals for each comparator
+    - both Mihili new days positive against both comparators on the same day
+    - at least two of three Chewie-L new days positive against both comparators on the same day
+    - all five fixed-prediction new-day omission checks pass
     - all planned scientific and data-separation checks pass
+  new_day_omission_checks:
+    count: 5
+    predictions: frozen_no_refitting_or_repeat_search
+    weighting: remaining_days_equal_within_animal_then_animals_one_half_each
+    require_for_each_comparator: positive_remaining_mean_in_each_animal_and_positive_aggregate_point_estimate
+    reapply_full_panel_day_frequency_rule: false
+    new_margin_confidence_interval_significance_or_multiplicity_test: false
 
 possible_results:
   - support in M1 only
@@ -344,9 +412,11 @@ follow_up_if_primary_result_supports_transfer:
       explanations. Failure to clear a margin, especially with imprecise
       evidence, does not establish mean-only transfer or absence of coupling.
     aggregation: >-
-      Compute one effect per new day and region, average the three days equally
-      within animal, then average Mihili and Chewie-L equally. M1 and PMd remain
-      separate.
+      Compute one effect per new day and region, average the two Mihili or
+      three Chewie-L days equally within animal, then average animals equally.
+      Day weights are 1/4 and 1/6 in every draw for residual and pairing
+      endpoints. M1 and PMd remain separate; never drop an unavailable retained
+      day-region to renormalize the panel.
     uncertainty:
       draws: 9999
       resampling_unit: paired whole held_out trials within new day and direction
@@ -376,10 +446,11 @@ follow_up_if_primary_result_supports_transfer:
     - complete common direction-by-time cells for alignment
     - at least six held-out trials per direction after eligibility filtering
   current_availability: >-
-    The selected public release is described as containing simultaneous LFP and
-    spike recordings, and the planned minimum gives at least six held-out trials
-    per direction. Prepared episode views are still absent, so correspondence,
-    condition support, and bridge rank must be verified before scoring.
+    The eleven-session role views preserve simultaneous LFP and spike trial
+    identities, native windows and all eight directions with the required
+    calibration/development/held-out support. The boundary is procedural,
+    not OS isolation. Bridge rank and all source-link gates remain untested
+    and must be established from fitting/calibration data before scoring.
   signal_controls:
     - LMP or low-frequency features only
     - exclude all 100 to 400 Hz power
@@ -392,7 +463,8 @@ follow_up_if_primary_result_supports_transfer:
 claim_limits:
   supported_claim: >-
     Earlier days add predictive information after limited same-day calibration
-    in the supported setting, within these two animals and six fixed new days.
+    in the supported setting, within these two animals and five fixed new days,
+    with reduced precision and robustness relative to the original six-day panel.
   not_supported:
     - stable single-neuron or electrode identity
     - causal influence of LFP on spiking

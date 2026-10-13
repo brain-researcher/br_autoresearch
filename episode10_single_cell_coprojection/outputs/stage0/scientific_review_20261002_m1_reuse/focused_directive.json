@@ -1,0 +1,516 @@
+{
+  "directive_id": "ext_review_dir_ce90de996e4f",
+  "session_id": "codex:codex:01a0f492-d6d3-79c0-a4b3-992037a3b843",
+  "goal": "Focused standalone EP10 methodological review: after correcting an M1 directional-derivative implementation to the already-frozen candidate-level summation rule, which historical numerical qualifications and fitted-model results can still be reused? Preserve objective, full gradient, Hessian, optimizer, convergence and acceptance rules, original data roles and budget. Assess whether the existing mandatory 36-fit synthetic warm-repeat/zero-start qualification may run in parallel with the ongoing bounded failed-probe replay, and whether a changed accepted-step sequence requires clean M1 refitting before comparing M2. Do not authorize outcomes or amendments. Review only provided contract/code evidence; no protected data.",
+  "hints": {
+    "analysis_type": "exact conditional fixed-K penalized set-softmax; nested grouped prediction; binary64 numerical conformance repair",
+    "scope": "target-free execution planning and qualification reuse; no biological results",
+    "decision_constraints": [
+      "No acceptance relaxation",
+      "No stale numerical certificate for changed code",
+      "Reuse genuinely unaffected rank/data/geometry evidence",
+      "No wholesale audit or unnecessary synthetic work",
+      "Formal Society and canonical acceptance out of scope"
+    ]
+  },
+  "tailored_checks": [],
+  "evaluation_axes": {
+    "correctness": {
+      "decision_space": [
+        "pass",
+        "flag",
+        "block"
+      ],
+      "criteria": [
+        "Confirm the statistical/analytic specification matches the declared research question.",
+        "Verify the design matrix / model structure is well-posed (no rank deficiency, no collinear nuisance regressors).",
+        "Check contrast definitions match the reported hypotheses and their dimensions.",
+        "Verify cross-file consistency between events, confounds, and model spec (subjects/runs align)."
+      ],
+      "required_outputs": [
+        "decision",
+        "findings[]"
+      ]
+    },
+    "completeness": {
+      "decision_space": [
+        "complete",
+        "incomplete"
+      ],
+      "criteria": [
+        "Random seed is pinned and reported.",
+        "Atlas / parcellation version is declared when atlas-based features are used.",
+        "Ordering of conditions / trials / factors is explicitly declared.",
+        "Multiple-comparisons strategy (FWE / FDR / cluster threshold) is stated.",
+        "Preprocessing provenance (motion scrubbing, confound regression, smoothing) is reported."
+      ],
+      "required_outputs": [
+        "decision",
+        "checklist{}",
+        "missing_caveats[]"
+      ]
+    },
+    "judgment": {
+      "decision_space": [
+        "sound",
+        "questionable",
+        "unsound"
+      ],
+      "criteria": [
+        "The estimand is clearly specified (population, unit, causal vs. associational).",
+        "The chosen method is defensible for that estimand, not just conventional.",
+        "Known threats to validity are acknowledged (confounds, selection, measurement).",
+        "Effect sizes and uncertainty are reported, not just p-values."
+      ],
+      "required_outputs": [
+        "decision",
+        "estimand_complete",
+        "method_defensible",
+        "issues[]",
+        "reviewer_questions[]"
+      ]
+    },
+    "overall": {
+      "decision_space": [
+        "proceed",
+        "diagnose",
+        "explore_more",
+        "stop_with_rationale"
+      ],
+      "criteria": [
+        "Synthesize correctness + completeness + judgment into a single overall_decision.",
+        "Blocking correctness issues -> stop_with_rationale.",
+        "Non-blocking structural correctness flags -> diagnose.",
+        "Unsound judgment -> diagnose.",
+        "Questionable judgment OR incomplete completeness -> explore_more.",
+        "Otherwise -> proceed."
+      ],
+      "required_outputs": [
+        "overall_decision",
+        "report_action"
+      ]
+    }
+  },
+  "verdict_schema": {
+    "$defs": {
+      "AutoresearchLineDirective": {
+        "description": "Controller-facing directive for the next autoresearch line shape.",
+        "properties": {
+          "line_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Line Type"
+          },
+          "next_line_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Line Type"
+          },
+          "loaded_modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Loaded Modules",
+            "type": "array"
+          },
+          "forbidden_modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Forbidden Modules",
+            "type": "array"
+          },
+          "training_backend": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Training Backend"
+          },
+          "success_criterion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Success Criterion"
+          }
+        },
+        "title": "AutoresearchLineDirective",
+        "type": "object"
+      },
+      "CompletenessVerdict": {
+        "description": "Checklist-based completeness verdict.",
+        "properties": {
+          "decision": {
+            "enum": [
+              "complete",
+              "incomplete"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "checklist": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Checklist",
+            "type": "object"
+          },
+          "missing_caveats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Caveats",
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "CompletenessVerdict",
+        "type": "object"
+      },
+      "CorrectnessVerdict": {
+        "description": "Deterministic structural correctness verdict.",
+        "properties": {
+          "decision": {
+            "enum": [
+              "pass",
+              "flag",
+              "block"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/$defs/ReviewFinding"
+            },
+            "title": "Findings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "CorrectnessVerdict",
+        "type": "object"
+      },
+      "JudgmentVerdict": {
+        "description": "LLM-based scientific judgment verdict (Phase 3b).",
+        "properties": {
+          "decision": {
+            "enum": [
+              "sound",
+              "questionable",
+              "unsound"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "estimand_complete": {
+            "default": true,
+            "title": "Estimand Complete",
+            "type": "boolean"
+          },
+          "method_defensible": {
+            "default": true,
+            "title": "Method Defensible",
+            "type": "boolean"
+          },
+          "issues": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "reviewer_questions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reviewer Questions",
+            "type": "array"
+          },
+          "judgment_status": {
+            "default": "ok",
+            "enum": [
+              "ok",
+              "parse_failed",
+              "provider_failed"
+            ],
+            "title": "Judgment Status",
+            "type": "string"
+          },
+          "judge_transport_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Judge Transport Error"
+          },
+          "raw_response_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Raw Response Text"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "JudgmentVerdict",
+        "type": "object"
+      },
+      "ReviewFinding": {
+        "description": "A single rule violation found during review.",
+        "properties": {
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "warn",
+              "error",
+              "critical"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "default": "warn",
+            "enum": [
+              "block",
+              "warn"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "suggested_fix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Suggested Fix"
+          },
+          "step_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Step Id"
+          },
+          "artifact_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Artifact Name"
+          },
+          "kg_evidence": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Kg Evidence",
+            "type": "array"
+          },
+          "reason_tags": {
+            "description": "Reason taxonomy attached to the finding, if any.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Reason Tags",
+            "type": "array"
+          },
+          "novelty": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional novelty carve-out label attached to the finding.",
+            "title": "Novelty"
+          }
+        },
+        "required": [
+          "rule_id",
+          "severity",
+          "message"
+        ],
+        "title": "ReviewFinding",
+        "type": "object"
+      }
+    },
+    "description": "Composite of all three verdict cards.",
+    "properties": {
+      "correctness": {
+        "$ref": "#/$defs/CorrectnessVerdict"
+      },
+      "judgment": {
+        "$ref": "#/$defs/JudgmentVerdict"
+      },
+      "completeness": {
+        "$ref": "#/$defs/CompletenessVerdict"
+      },
+      "review_scope": {
+        "default": "pipeline_run",
+        "enum": [
+          "pipeline_run",
+          "autoresearch_loop"
+        ],
+        "title": "Review Scope",
+        "type": "string"
+      },
+      "overall_decision": {
+        "enum": [
+          "proceed",
+          "diagnose",
+          "explore_more",
+          "stop_with_rationale"
+        ],
+        "title": "Overall Decision",
+        "type": "string"
+      },
+      "claim_strength": {
+        "anyOf": [
+          {
+            "enum": [
+              "contract_satisfied",
+              "internally_supported",
+              "scientifically_convincing"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Claim Strength"
+      },
+      "report_action": {
+        "anyOf": [
+          {
+            "enum": [
+              "write_report",
+              "revise_report",
+              "continue_loop"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Report Action"
+      },
+      "required_next_actions": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Required Next Actions",
+        "type": "array"
+      },
+      "validation_status": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "title": "Validation Status",
+        "type": "object"
+      },
+      "line_directive": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AutoresearchLineDirective"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "rationale": {
+        "default": "",
+        "title": "Rationale",
+        "type": "string"
+      }
+    },
+    "required": [
+      "correctness",
+      "judgment",
+      "completeness",
+      "overall_decision"
+    ],
+    "title": "ScientificReviewVerdict",
+    "type": "object"
+  },
+  "agent_instructions": [
+    "Read the run artifacts yourself - BR has not read them.",
+    "For each axis, produce the required_outputs and pick a decision from decision_space.",
+    "Use kg_derived_criteria under each axis when present; cite matching KG rule_id values in correctness.findings.",
+    "Roll up to overall_decision using the rules under the overall axis.",
+    "Submit the completed verdict via submission_tool, echoing directive_id.",
+    "When submitting the verdict, include the session binding fields returned in this directive."
+  ],
+  "submission_tool": "submit_external_scientific_review_verdict"
+}

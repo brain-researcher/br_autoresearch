@@ -6,6 +6,10 @@
 #SBATCH --time=12:00:00
 #SBATCH --output=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/development_run001/slurm-trial-%j.out
 
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 
 EP12_ROOT=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency

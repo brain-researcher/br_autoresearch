@@ -1,0 +1,21 @@
+{
+  "schema_version": "ep21.combined_feature_submission.v1",
+  "episode_id": "ep21",
+  "job_id": "46330408",
+  "submitted_on": "2026-10-02",
+  "observed_state": "PENDING",
+  "analysis_attempts": {
+    "pipeline_conformance": [
+      7,
+      8
+    ],
+    "laion_feature_preparation": 1
+  },
+  "authorization": "outputs/regular_vgg19_export_authorization_2026-10-02.json",
+  "script": "outputs/steward_provisioning/tools/export_regular_vgg19.sbatch",
+  "stdout": "outputs/steward_provisioning/regular_vgg19_attempt001-46330408.out",
+  "stderr": "outputs/steward_provisioning/regular_vgg19_attempt001-46330408.err",
+  "neural_execution_authorized": false,
+  "OOD_access_authorized": false,
+  "automatic_resubmission_authorized": false
+}

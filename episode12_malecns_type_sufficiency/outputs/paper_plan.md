@@ -1,5 +1,40 @@
 # EP12 paper plan: when does a cell-type average distort circuit wiring?
 
+## October 6 review — separate completion and adopted primary closure
+
+The selected real-development description and its figure are **complete**:
+all 816 provider types, 84,735 neurons, 1,632 type-side rows and 816 bilateral
+rows are retained, including 126 zero-mass neurons in support accounting.
+These are one-specimen, in-sample descriptions with self-inclusion in each
+side centroid. They establish neither T/U/M predictive success nor a new
+subtype, biological replication or a circuit consequence.
+
+The finished evidence is available as the
+[complete descriptive tables](runs/observed_outgoing_description/20261005-description01/),
+[three-panel observed-data figure](figures/observed_outgoing_description/20261005-description01/observed_outgoing_description.png)
+and [caption](figures/observed_outgoing_description/20261005-description01/figure_caption.md).
+Every type has positive-mass profiles on both sides, with 84,609 positive-mass
+neurons; all 11,771 partner bins, including unknown mass, remain represented.
+These completed observed results are separate from the conceptual design
+figure and future circuit narrative below.
+
+The original outgoing T/U/M comparison is **incomplete**. Its observed-search
+deadline expired October 1 at 05:57:34 UTC; the generated oracle chain ended
+with unresolved precision; the reviewed canonical-target decoder proposal
+remains unadopted. No corrected replay, final-type opening or circuit round
+follows from the completed description. See [the execution record](experiment_log.md)
+and [the existing decoder proposal](canonical_target_decoder_proposal.md).
+
+**Scientist-adopted disposition, October 6:** close the original comparison as incomplete
+under its expired execution and qualification limits, retain the completed
+description as its own deliverable, and select no new simulation or empirical
+successor. Any future circuit question requires its own adopted estimand,
+source-role decision and bounded resources. The historical design below is
+retained as a plan; its sequencing language is not a current launch instruction.
+The exact user acceptance is in the [adoption record](experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout).
+
+## Historical September 30 design
+
 Design revision: 2026-09-30. The outgoing execution has separate development
 history in [experiment_log.md](experiment_log.md); its final result remains
 unopened. This plan promotes circuit consequence to a scientific co-primary
@@ -355,3 +390,71 @@ the competing explanation excluded, the replication scope, and the inference
 that changes. Revise this figure sequence to fit the actual evidence. A
 completed search or a positive terminal does not guarantee an influential
 paper, and no planned figure is an observed finding.
+
+## Bounded observed outgoing description — selected specification, 2026-10-05
+
+The user's instruction to apply the real-data priority to the other questions
+selects a separate, small descriptive branch: **how much outgoing-partner
+variation does a type mean hide, and how does that variation compare between
+body sides in this male specimen?** The coordinator records its adoption and
+resource authority in the operative records before execution. This section
+specifies the calculation before further payload reading; it records no result.
+The historical T/U/M search, expired search clock, incomplete qualification
+and stopped generated chain remain historical, with no extension or replay.
+
+Use exactly the already-open 816 development types and the existing snapshot
+at `$SCRATCH/br_autoresearch/episode12_malecns_type_sufficiency/development_snapshot_v1/`.
+Its fixed inputs are `development_outgoing_counts.npz`,
+`development_focal_neurons.parquet` and `raw_partner_vocabulary.json`.
+The existing role manifest and materialization record bind their whole-type
+roles and identities. The matrix has 84,735 focal rows and 11,771 raw partner
+bins; retain the full vocabulary, including untyped/status and missing-
+annotation bins. Read no body statistics or provider group/instance fields.
+Final focal connectivity for all 204 final types and all incoming profiles
+remain closed. Partner labels in the development outgoing vocabulary do not
+authorize reading a partner's focal profile.
+
+For every development type and each side, let `n_i` be a neuron's total
+observed outgoing count. For `n_i>0`, set `p_ij=count_ij/n_i` across all fixed
+bins and form the neuron-equal side centroid `q=mean_i(p_i)`. Report the mean
+`TV(p_i,q)=0.5 sum_j |p_ij-q_j|`. Separately report
+`TV(q_left,q_right)`. Both quantities retain known and unknown mass in their
+denominators; no vocabulary pooling, pseudocount, magnitude threshold,
+count-weighted centroid or outcome-selected type subset is allowed.
+
+Zero-total neurons have undefined compositions. Count them explicitly in
+every type/side's total, positive-mass and zero-mass support, without treating
+them as zero-valued profiles or replacing them. A side with no positive-mass
+neuron has undefined dispersion/centroid; its between-side comparison is also
+undefined. Emit all **1,632 type-side rows and 816 bilateral rows**, including
+these unscorable cases. Per-side total count and the neuron-equal untyped-or-
+missing fraction accompany the descriptive TV. No type is silently dropped.
+
+These are finite-sample descriptions: each neuron contributes to its own
+centroid, so dispersion depends on support size and is zero for a single
+defined neuron. It is not crossvalidated prediction error, a test of residual
+modes, an estimate of reconstruction noise, or population uncertainty. There
+are no p-values, population confidence intervals, group labels, inferred new
+subtypes, circuit-consequence claims or conserved-organization claims.
+The existing connectivity-informed taxonomy and prior development exposure
+remain acknowledged. No novelty or paper-level claim follows from this table.
+
+The prepared driver is `tools/summarize_observed_outgoing.py`. It uses sparse
+rows and one dense partner centroid per type/side, never a dense neuron-by-
+partner matrix. Its outputs are `outgoing_type_side_descriptions.csv`,
+`outgoing_bilateral_descriptions.csv` and `descriptive_report.json`, with actual
+runtime/library versions and complete support accounting. Structural and role
+checks are part of this same selected calculation. Reuse the existing frozen
+snapshot identities; do not rerun materialization or the original trials.
+One tiny, hand-specified closed-form sparse-versus-dense TV check, including
+unknown-bin mass, zero-count rows and singleton self-inclusion, runs inside
+the same substantive allocation before source values. This is an arithmetic
+check capped at 30 seconds, not another generated-cohort qualification stage.
+
+The selected envelope is one **1-CPU, 4-GiB, 30-minute** Slurm attempt, with
+an internal limit of **1,680 seconds**, at most **0.5 allocated core-hours**,
+no GPU, no automatic retry and no automatic successor. Runtime is an unmeasured
+estimate from 4,688,114 stored nonzeros, not a measured guarantee. Missing or
+inconsistent inputs stop the attempt with its report preserved. The prior
+stopped Scratch log-read route is not retried and does not by itself establish
+that this distinct, already-authorized snapshot path is unavailable.

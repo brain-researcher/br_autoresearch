@@ -1,0 +1,39 @@
+{
+  "accounting_epoch": "wall_reset_20261001",
+  "recorded_at_utc": "2026-10-03T19:20:00Z",
+  "source_snapshot": "outputs/stage0/resource_accounting_20261003_after_M1_closeout.json",
+  "no_new_wall_reset": true,
+  "historical_allocated_core_hours_preserved": true,
+  "optional_job_46237243": {
+    "state": "CANCELLED_by_coordinator_after_required_qualification_failures",
+    "terminal_elapsed_seconds": 160622,
+    "allocated_cpus": 9,
+    "actual_total_allocated_core_hours": 401.555,
+    "anchor_elapsed_seconds_already_charged": 75261,
+    "incremental_wall_hours_from_anchor": 23.711388888888887,
+    "incremental_allocated_core_hours_from_anchor": 213.40249999999997,
+    "unused_reservation_core_hours_released": 30.44500000000002
+  },
+  "attended_job_46425841_diagnostics": {
+    "attempts": [
+      "outputs/stage0/v3_m2_resource_lower_bound_job_46425841/resource_lower_bound.json",
+      "outputs/stage0/v3_m2_resource_lower_bound_job_46425841_isolated_cpu3_attempt002/resource_lower_bound.json"
+    ],
+    "charged_wall_seconds": 1200,
+    "conservative_allocated_cpus": 4,
+    "charged_allocated_core_hours": 1.3333333333333333,
+    "basis": "Two bounded ten-minute reservations charged at the complete four-CPU parent allocation; includes evidence preservation and closeout. First timing is provisional for placement contention; isolated CPU3 repeat is operative."
+  },
+  "used_wall_hours_this_epoch": 54.178333333333335,
+  "used_lifetime_allocated_core_hours": 735.6487222222223,
+  "unreserved_wall_hours": 89.82166666666666,
+  "unreserved_allocated_core_hours": 1064.3512777777778,
+  "frozen_ceilings": {
+    "wall_hours_this_epoch": 144,
+    "allocated_core_hours_lifetime": 1800
+  },
+  "current_implementation_minimum_projected_core_hours": 1900,
+  "remaining_budget_suffices_for_current_M2": false,
+  "real_M2_and_full_search_nulls_launched": false,
+  "scientific_disposition": "incomplete_search_technical_and_resource_limitation_no_positive_or_negative_biology"
+}

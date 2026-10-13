@@ -1,0 +1,2533 @@
+version: "0.0.14"
+name: "EP05: trial-specific LFP information about reach variation"
+description: >-
+  Standalone exposed-corpus development and conditional explanation program.
+  Animal-level biological grouping is preserved; future-session confirmation
+  requires a genuinely unseen source. Runtime evidence belongs in the log.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: publication_comparison, type: data, source: outputs/publication_comparison.md}
+  - {id: primary_recipe, type: data, source: outputs/primary_reference_proposal.md}
+  - {id: multichannel_recipe, type: data, source: outputs/primary_multichannel_proposal.md}
+  - {id: capacity_recipe, type: data, source: outputs/primary_capacity_proposal.md}
+  - {id: temporal_control_recipe, type: data, source: outputs/primary_temporal_control_proposal.md}
+  - {id: history_control_recipe, type: data, source: outputs/primary_history_control_proposal.md}
+  - {id: lmp_high_recipe, type: data, source: outputs/primary_lmp_high_control_proposal.md}
+  - {id: temporal_offset_recipe, type: data, source: outputs/primary_temporal_offset_proposal.md}
+  - {id: pca_recipe, type: data, source: outputs/primary_pca_denoising_proposal.md}
+  - {id: relevance_recipe, type: data, source: outputs/primary_relevance_top16_proposal.md}
+  - {id: covariance_svd_recipe, type: data, source: outputs/primary_covariance_svd_proposal.md}
+  - {id: elastic_net_recipe, type: data, source: outputs/primary_elastic_net_proposal.md}
+  - {id: repeatability_weight_recipe, type: data, source: outputs/primary_repeatability_weight_proposal.md}
+  - {id: history_repeatability_weight_recipe, type: data, source: outputs/primary_history_repeatability_weight_proposal.md}
+  - {id: full_target_sensitivity_recipe, type: data, source: outputs/primary_full_target_sensitivity_proposal.md}
+  - {id: all_band_recipe, type: data, source: outputs/primary_all_band_complementarity_proposal.md}
+  - {id: patience_interpretation, type: data, source: outputs/primary_patience_interpretation.md}
+  - {id: matched_budget_recipe, type: data, source: outputs/primary_matched_budget_proposal.md}
+  - {id: elapsed_only_recipe, type: data, source: outputs/primary_elapsed_only_proposal.md}
+  - {id: capacity_surrogate_recipe, type: data, source: outputs/primary_capacity_matched_surrogate_proposal.md}
+  - {id: intersection_recipe, type: data, source: outputs/primary_intersection_sensitivity_proposal.md}
+  - {id: intersection_metadata_repair_recipe, type: data, source: outputs/primary_intersection_metadata_repair_proposal.md}
+  - {id: history_blend_recipe, type: data, source: outputs/primary_history_blend_proposal.md}
+  - {id: history2_repeatability_recipe, type: data, source: outputs/primary_next_history_proposal.md}
+  - {id: timevarying_history_blend_recipe, type: data, source: outputs/primary_timevarying_history_blend_proposal.md}
+  - {id: history_blend_intersection_recipe, type: data, source: outputs/primary_history_blend_intersection_proposal.md}
+  - {id: history_rbf_recipe, type: data, source: outputs/primary_history_rbf_proposal.md}
+  - {id: history_pls_recipe, type: data, source: outputs/primary_history_pls_proposal.md}
+  - {id: history_pls_basis_recipe, type: data, source: outputs/primary_post_pls_coverage_review.md}
+outputs:
+  - {id: development_report, from: adaptive_search.development_report}
+  - {id: future_report, from: future_session_evaluation.future_report}
+  - {id: correction_calibration_report, from: fixed_hw_correction_calibration.calibration_report}
+  - {id: fixed_component_report, from: fixed_prediction_components.component_report}
+analyses:
+  fixed_prediction_components:
+    name: Compare mean and trial-varying contributions in completed predictions
+    description: >-
+      Descriptive comparison of original HW, current/history blend and completed
+      scalar calibration across both animals, every original session and all
+      fifteen bins. Reuse saved decomposition tables and verify original score
+      reconstruction; no neural-source access, refit, selection, bootstrap,
+      future-session opening or change to original stopping and practical margins.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: calibration_report, from: ../fixed_hw_correction_calibration.calibration_report}
+      - {id: original_report, type: data, source: outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/decomposition.json}
+      - {id: original_sessions, type: data, source: outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/sessions.csv}
+      - {id: original_bins, type: data, source: outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/bins.csv}
+      - {id: calibrated_sessions, type: data, source: outputs/runs/fixed_hw_correction_calibration/attempt001/decomposition_sessions.csv}
+      - {id: calibrated_bins, type: data, source: outputs/runs/fixed_hw_correction_calibration/attempt001/direction_bins.csv}
+      - {id: runner, type: data, source: outputs/tools/plot_fixed_prediction_components.py}
+    outputs:
+      - id: component_report
+        type: report
+        format: json
+        inputs: [policy, calibration_report, original_report, original_sessions, original_bins, calibrated_sessions, calibrated_bins, runner]
+        description: >-
+          Component aggregates, all48 session rows, all720 session/bin rows,
+          all32 fixed session contrasts, source paths and score reconstruction;
+          companion PNG/PDF and interpretation preserve development-only claims.
+        recipe:
+          command: >-
+            env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout 120s python3.12 -B outputs/tools/plot_fixed_prediction_components.py
+            --out outputs/figures/fixed_prediction_components_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+  fixed_hw_correction_calibration:
+    name: Calibrate one scalar on frozen HW corrections using other sessions
+    description: >-
+      One separate exposed-development successor. Freeze HWlambda1 and amplitudes
+      0,0.25,0.5,0.75,1; select by other-fifteen-session equal-animal primary,
+      exact ties nearest1. Preserve original45-comparison stop, practical margins,
+      original identity and fixed HW/half-blend references. No neural source reads,
+      decoder refits, independent penalty amendment, new search or confirmation.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: protocol, type: data, source: outputs/paper_plan.md}
+      - {id: prior_report, from: ../adaptive_search.development_report}
+      - {id: hw_banks, type: data, source: outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002}
+      - {id: w_banks_for_replay, type: data, source: outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001}
+      - {id: hw_summary, type: data, source: outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json}
+      - {id: blend_summary_and_predictions, type: data, source: outputs/runs/adaptive_search/primary_history_blend_summary_attempt001}
+      - {id: runner, type: data, source: outputs/tools/calibrate_fixed_hw_correction.py}
+    outputs:
+      - id: calibration_report
+        type: report
+        format: json
+        inputs: [policy, protocol, prior_report, hw_banks, w_banks_for_replay, hw_summary, blend_summary_and_predictions, runner]
+        description: >-
+          Complete sixteen-session scalar policy, five-cell banks, frozen reference
+          contrasts, both animals, fixed-prediction omissions and literal duplicates.
+          Selected arrays and every direction/bin decomposition remain available.
+          One successor comparison; no increment to original stopped search.
+        recipe:
+          command: >-
+            env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout 210s python3.12 -B outputs/tools/calibrate_fixed_hw_correction.py
+            --out outputs/runs/fixed_hw_correction_calibration/attempt001 --max-seconds 180
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+  source_support:
+    name: Establish original-source identities and structural support
+    description: >-
+      All sixteen M1 session candidates, native time/event conventions,
+      guide-based feature meanings, trial identities and exposed evidence role.
+      Spike integer validity is not a primary-kinematic eligibility gate.
+    inputs:
+      - {id: datasets, from: ../datasets}
+    outputs:
+      - id: source_report
+        type: report
+        format: json
+        inputs: [datasets]
+        recipe:
+          command: >-
+            python3 outputs/tools/source_adapter.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --out outputs/runs/source_support/attempt002
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+  publication_reproduction:
+    name: Reproduce fixed M1 population and velocity publication analyses
+    description: >-
+      Run unchanged pinned fCCA and vel_decoder with the historical TrialData
+      compatibility revision. The first full fifty-split exposed M1 session
+      measures cost and reference execution; it cannot establish the complete
+      sixteen-session paper result. Preserve all-trial PCA and the Y-only cubic
+      mapping as reproduction semantics, never as primary analysis choices.
+      Reuse the completed first session and execute fifteen remaining sessions
+      in five finite three-session groups. Apply the fixed scoped M1 comparison;
+      first-session completion alone is not the benchmark decision. A technical
+      recovery runs only the unfinished Chewie_20150313 session in fresh attempt004
+      paths with unchanged seed, trials, functions and per-session MATLAB bound.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: source_report, from: ../source_support.source_report}
+      - {id: comparison, from: ../publication_comparison}
+    outputs:
+      - id: reproduction_report
+        type: report
+        format: json
+        inputs: [goal, source_report]
+        recipe:
+          command: >-
+            python3 outputs/tools/run_publication_reproduction.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --session Mihili_20140217
+            --work "$SCRATCH/br_autoresearch/episode05_sensorimotor_lfp/reference_Mihili_20140217_attempt002"
+            --out outputs/runs/publication_reproduction/Mihili_20140217_attempt002
+            --matlab /share/software/user/restricted/matlab/R2022b/bin/matlab
+          resources: {cpus: 1, memory: 8Gi, time_limit: 30m}
+      - id: remaining_session_reports
+        type: report
+        format: json
+        inputs: [goal, source_report, comparison]
+        recipe:
+          command: sbatch --parsable outputs/tools/publication_reproduction_attempt003.sbatch
+          resources: {cpus: 1, memory: 8Gi, time_limit: 30m}
+      - id: benchmark_report
+        type: report
+        format: json
+        inputs: [goal, source_report, comparison]
+        recipe:
+          command: >-
+            python3 outputs/tools/summarize_publication_reproduction.py
+            --first-session outputs/runs/publication_reproduction/Mihili_20140217_attempt002
+            --remaining-root outputs/runs/publication_reproduction/remaining_sessions_attempt003
+            --chewie-20150313-recovery outputs/runs/publication_reproduction/remaining_sessions_attempt004/Chewie_20150313
+            --out outputs/runs/publication_reproduction/comparison_attempt001
+            --split-bootstrap
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: recovered_chewie_20150313_report
+        type: report
+        format: json
+        inputs: [goal, source_report, comparison]
+        description: >-
+          One unchanged1038-trial session in a fresh directory after its grouped
+          job timed out. Original reports and partial artifacts are preserved.
+          All other completed sessions are reused; no scientific trial increment.
+        recipe:
+          command: sbatch --parsable outputs/tools/publication_reproduction_attempt004.sbatch
+          resources: {cpus: 1, memory: 8Gi, time_limit: 40m}
+  adaptive_search:
+    name: Compare global LFP policies with grouped nested session selection
+    description: >-
+      Preserve the open feature/model grammar, minimum model set, 28–64 valid
+      trials, 12-trial patience, paired nulls, control fraction, two adaptive
+      rounds and two leader-challenger comparisons. Fit every transformation
+      without the evaluated direction; summarize sessions within both animals.
+      Benchmark acceptance precedes primary execution. The complete mean-LMP
+      recipe is retained as the first negative scientific trial. Three adopted
+      full-channel LMP/low/high ridge recipes use the full unwhitened PCA-span
+      equivalent direct solve without numerical PCA or rank truncation. All
+      other falsifiers and influence requirements still gate any promotion.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: source_report, from: ../source_support.source_report}
+      - {id: reproduction_report, from: ../publication_reproduction.benchmark_report}
+      - {id: primary_recipe, from: ../primary_recipe}
+      - {id: primary_runner, type: data, source: outputs/tools/run_primary_reference.py}
+      - {id: primary_banks, type: data, source: outputs/runs/adaptive_search/primary_reference_attempt001}
+      - {id: multichannel_recipe, from: ../multichannel_recipe}
+      - {id: multichannel_runner, type: data, source: outputs/tools/run_primary_multichannel.py}
+      - {id: multichannel_banks, type: data, source: outputs/runs/adaptive_search/primary_multichannel_attempt001}
+      - {id: multichannel_summary, type: data, source: outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json}
+      - {id: capacity_recipe, from: ../capacity_recipe}
+      - {id: capacity_runner, type: data, source: outputs/tools/run_primary_capacity.py}
+      - {id: capacity_banks, type: data, source: outputs/runs/adaptive_search/primary_capacity_attempt001}
+      - {id: temporal_control_recipe, from: ../temporal_control_recipe}
+      - {id: temporal_control_runner, type: data, source: outputs/tools/run_primary_temporal.py}
+      - {id: temporal_control_banks, type: data, source: outputs/runs/adaptive_search/primary_temporal_control_attempt001}
+      - {id: history_control_recipe, from: ../history_control_recipe}
+      - {id: history_control_runner, type: data, source: outputs/tools/run_primary_history.py}
+      - {id: history_control_banks, type: data, source: outputs/runs/adaptive_search/primary_history_control_attempt001}
+      - {id: lmp_high_recipe, from: ../lmp_high_recipe}
+      - {id: lmp_high_runner, type: data, source: outputs/tools/run_primary_lmp_high.py}
+      - {id: lmp_high_banks, type: data, source: outputs/runs/adaptive_search/primary_lmp_high_control_attempt001}
+      - {id: lmp_high_summary, type: data, source: outputs/runs/adaptive_search/primary_lmp_high_control_summary_attempt001/primary_lmp_high.json}
+      - {id: temporal_offset_recipe, from: ../temporal_offset_recipe}
+      - {id: temporal_offset_runner, type: data, source: outputs/tools/run_primary_temporal_offset.py}
+      - {id: pca_recipe, from: ../pca_recipe}
+      - {id: pca_runner, type: data, source: outputs/tools/run_primary_pca.py}
+      - {id: pca_banks, type: data, source: outputs/runs/adaptive_search/primary_pca_control_attempt001}
+      - {id: relevance_recipe, from: ../relevance_recipe}
+      - {id: relevance_runner, type: data, source: outputs/tools/run_primary_relevance.py}
+      - {id: relevance_panel_runner, type: data, source: outputs/tools/run_relevance_panel.py}
+      - {id: relevance_banks, type: data, source: outputs/runs/adaptive_search/primary_relevance_control_attempt001}
+      - {id: covariance_svd_recipe, from: ../covariance_svd_recipe}
+      - {id: covariance_svd_runner, type: data, source: outputs/tools/run_primary_covariance_svd.py}
+      - {id: covariance_svd_panel_runner, type: data, source: outputs/tools/run_covariance_svd_panel.py}
+      - {id: covariance_svd_banks, type: data, source: outputs/runs/adaptive_search/primary_covariance_svd_control_attempt002}
+      - {id: elastic_net_recipe, from: ../elastic_net_recipe}
+      - {id: elastic_net_runner, type: data, source: outputs/tools/run_primary_elastic_net.py}
+      - {id: elastic_net_panel_runner, type: data, source: outputs/tools/run_elastic_net_panel.py}
+      - {id: elastic_net_banks, type: data, source: outputs/runs/adaptive_search/primary_elastic_net_control_attempt001}
+      - {id: elastic_net_native_runner, type: data, source: outputs/tools/run_primary_elastic_net_native.py}
+      - {id: elastic_net_native_core, type: data, source: outputs/tools/primary_elastic_net_native.py}
+      - {id: elastic_net_native_kernel, type: data, source: outputs/tools/elastic_net_native_kernel.c}
+      - {id: elastic_net_native_library, type: data, source: outputs/tools/elastic_net_native_kernel.so}
+      - {id: elastic_net_recovery_runner, type: data, source: outputs/tools/run_elastic_net_recovery_panel.py}
+      - {id: elastic_net_selected_bank_sources, type: data, source: outputs/runs/adaptive_search/primary_elastic_net_recovery_panel_attempt002/selected_bank_sources.json}
+      - {id: repeatability_weight_recipe, from: ../repeatability_weight_recipe}
+      - {id: repeatability_weight_runner, type: data, source: outputs/tools/run_primary_repeatability_weight.py}
+      - {id: repeatability_weight_panel_runner, type: data, source: outputs/tools/run_repeatability_weight_panel.py}
+      - {id: repeatability_weight_banks, type: data, source: outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001}
+      - {id: repeatability_weight_summary, type: data, source: outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json}
+      - {id: history_control_summary, type: data, source: outputs/runs/adaptive_search/primary_history_control_summary_attempt001/primary_history_control.json}
+      - {id: history_repeatability_weight_recipe, from: ../history_repeatability_weight_recipe}
+      - {id: history_repeatability_weight_core, type: data, source: outputs/tools/primary_history_repeatability_weight.py}
+      - {id: history_repeatability_weight_runner, type: data, source: outputs/tools/run_primary_history_repeatability_weight.py}
+      - {id: history_repeatability_weight_panel_runner, type: data, source: outputs/tools/run_history_repeatability_weight_panel.py}
+      - {id: history_repeatability_weight_banks, type: data, source: outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002}
+      - {id: history_repeatability_weight_summary, type: data, source: outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json}
+      - {id: full_target_sensitivity_recipe, from: ../full_target_sensitivity_recipe}
+      - {id: full_target_sensitivity_core, type: data, source: outputs/tools/primary_full_target_sensitivity.py}
+      - {id: full_target_sensitivity_runner, type: data, source: outputs/tools/run_primary_full_target_sensitivity.py}
+      - {id: full_target_sensitivity_panel_runner, type: data, source: outputs/tools/run_full_target_sensitivity_panel.py}
+      - {id: full_target_sensitivity_banks, type: data, source: outputs/runs/adaptive_search/primary_full_target_sensitivity_control_attempt001}
+      - {id: all_band_recipe, from: ../all_band_recipe}
+      - {id: patience_interpretation, from: ../patience_interpretation}
+      - {id: all_band_reader, type: data, source: outputs/tools/all_band_reader.py}
+      - {id: all_band_core, type: data, source: outputs/tools/primary_all_band.py}
+      - {id: all_band_runner, type: data, source: outputs/tools/run_primary_all_band.py}
+      - {id: all_band_panel_runner, type: data, source: outputs/tools/run_all_band_panel.py}
+      - {id: all_band_banks, type: data, source: outputs/runs/adaptive_search/primary_all_band_control_attempt001}
+      - {id: matched_budget_recipe, from: ../matched_budget_recipe}
+      - {id: matched_budget_metadata, type: data, source: outputs/runs/source_support/matched_budget_metadata_attempt001/matched_budget_metadata.json}
+      - {id: matched_budget_core, type: data, source: outputs/tools/primary_matched_budget.py}
+      - {id: matched_budget_runner, type: data, source: outputs/tools/run_primary_matched_budget.py}
+      - {id: matched_budget_panel_runner, type: data, source: outputs/tools/run_matched_budget_panel.py}
+      - {id: matched_budget_banks, type: data, source: outputs/runs/adaptive_search/primary_matched_budget_attempt001}
+      - {id: elapsed_only_recipe, from: ../elapsed_only_recipe}
+      - {id: elapsed_only_core, type: data, source: outputs/tools/primary_elapsed_only.py}
+      - {id: elapsed_only_runner, type: data, source: outputs/tools/run_primary_elapsed_only.py}
+      - {id: elapsed_only_panel_runner, type: data, source: outputs/tools/run_elapsed_only_panel.py}
+      - {id: elapsed_only_banks, type: data, source: outputs/runs/adaptive_search/primary_elapsed_only_attempt001}
+      - {id: capacity_surrogate_recipe, from: ../capacity_surrogate_recipe}
+      - {id: capacity_surrogate_core, type: data, source: outputs/tools/primary_capacity_matched_surrogate.py}
+      - {id: capacity_surrogate_runner, type: data, source: outputs/tools/run_primary_capacity_matched_surrogate.py}
+      - {id: capacity_surrogate_panel_runner, type: data, source: outputs/tools/run_capacity_matched_surrogate_panel.py}
+      - {id: capacity_surrogate_banks, type: data, source: outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001}
+      - {id: intersection_recipe, from: ../intersection_recipe}
+      - {id: intersection_qualifier, type: data, source: outputs/tools/qualify_primary_intersection.py}
+      - {id: intersection_metadata_repair_recipe, from: ../intersection_metadata_repair_recipe}
+      - {id: intersection_cached_qualifier, type: data, source: outputs/tools/qualify_primary_intersection_cached.py}
+      - {id: intersection_metadata, type: data, source: outputs/runs/source_support/primary_intersection_metadata_attempt002/primary_intersection_metadata.json}
+      - {id: intersection_core, type: data, source: outputs/tools/primary_intersection.py}
+      - {id: intersection_runner, type: data, source: outputs/tools/run_primary_intersection.py}
+      - {id: intersection_panel_runner, type: data, source: outputs/tools/run_intersection_panel.py}
+      - {id: intersection_tests, type: data, source: outputs/tools/test_primary_intersection.py}
+      - {id: intersection_extractor, type: data, source: outputs/tools/extract_primary_intersection.py}
+      - {id: intersection_banks, type: data, source: outputs/runs/adaptive_search/primary_intersection_sensitivity_attempt001}
+      - {id: history_blend_recipe, from: ../history_blend_recipe}
+      - {id: history2_repeatability_recipe, from: ../history2_repeatability_recipe}
+      - {id: history2_repeatability_core, type: data, source: outputs/tools/primary_history2_repeatability_weight.py}
+      - {id: history2_repeatability_runner, type: data, source: outputs/tools/run_primary_history2_repeatability_weight.py}
+      - {id: history2_repeatability_panel_runner, type: data, source: outputs/tools/run_history2_repeatability_panel.py}
+      - {id: history2_repeatability_tests, type: data, source: outputs/tools/test_primary_history2_repeatability_weight.py}
+      - {id: history2_repeatability_extractor, type: data, source: outputs/tools/extract_primary_history2_repeatability_weight.py}
+      - {id: history2_repeatability_banks, type: data, source: outputs/runs/adaptive_search/primary_history2_repeatability_attempt001}
+      - {id: original_history_blend_summary, type: data, source: outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json}
+      - {id: history_blend_core, type: data, source: outputs/tools/primary_history_blend.py}
+      - {id: history_blend_runner, type: data, source: outputs/tools/run_primary_history_blend.py}
+      - {id: history_blend_panel_runner, type: data, source: outputs/tools/run_history_blend_panel.py}
+      - {id: history_blend_banks, type: data, source: outputs/runs/adaptive_search/primary_history_blend_attempt001}
+      - {id: timevarying_history_blend_recipe, from: ../timevarying_history_blend_recipe}
+      - {id: timevarying_history_blend_core, type: data, source: outputs/tools/primary_timevarying_history_blend.py}
+      - {id: timevarying_history_blend_runner, type: data, source: outputs/tools/run_primary_timevarying_history_blend.py}
+      - {id: timevarying_history_blend_panel_runner, type: data, source: outputs/tools/run_timevarying_history_blend_panel.py}
+      - {id: timevarying_history_blend_tests, type: data, source: outputs/tools/test_primary_timevarying_history_blend.py}
+      - {id: timevarying_history_blend_extractor, type: data, source: outputs/tools/extract_primary_timevarying_history_blend.py}
+      - {id: timevarying_history_blend_banks, type: data, source: outputs/runs/adaptive_search/primary_timevarying_history_blend_attempt001}
+      - {id: original_history2_repeatability_summary, type: data, source: outputs/runs/adaptive_search/primary_history2_repeatability_summary_attempt001/primary_history2_repeatability_weight.json}
+      - {id: history_blend_intersection_recipe, from: ../history_blend_intersection_recipe}
+      - {id: history_blend_intersection_core, type: data, source: outputs/tools/primary_history_blend_intersection.py}
+      - {id: history_blend_intersection_runner, type: data, source: outputs/tools/run_primary_history_blend_intersection.py}
+      - {id: history_blend_intersection_panel_runner, type: data, source: outputs/tools/run_history_blend_intersection_panel.py}
+      - {id: history_blend_intersection_tests, type: data, source: outputs/tools/test_primary_history_blend_intersection.py}
+      - {id: history_blend_intersection_extractor, type: data, source: outputs/tools/extract_primary_history_blend_intersection.py}
+      - {id: history_blend_intersection_banks, type: data, source: outputs/runs/adaptive_search/primary_history_blend_intersection_attempt001}
+      - {id: original_intersection_summary, type: data, source: outputs/runs/adaptive_search/primary_intersection_sensitivity_summary_attempt001/primary_intersection.json}
+      - {id: history_rbf_recipe, from: ../history_rbf_recipe}
+      - {id: history_rbf_core, type: data, source: outputs/tools/primary_history_rbf.py}
+      - {id: history_rbf_runner, type: data, source: outputs/tools/run_primary_history_rbf.py}
+      - {id: history_rbf_panel_runner, type: data, source: outputs/tools/run_primary_history_rbf_panel.py}
+      - {id: history_rbf_batch_runner, type: data, source: outputs/tools/run_primary_history_rbf_remainder.sbatch}
+      - {id: history_rbf_tests, type: data, source: outputs/tools/test_primary_history_rbf.py}
+      - {id: history_rbf_extractor, type: data, source: outputs/tools/extract_primary_history_rbf.py}
+      - {id: history_rbf_banks, type: data, source: outputs/runs/adaptive_search/primary_history_rbf_attempt001}
+      - {id: original_capacity_summary, type: data, source: outputs/runs/adaptive_search/primary_capacity_summary_attempt001/primary_capacity.json}
+      - {id: history_pls_recipe, from: ../history_pls_recipe}
+      - {id: history_pls_core, type: data, source: outputs/tools/primary_history_pls.py}
+      - {id: history_pls_runner, type: data, source: outputs/tools/run_primary_history_pls.py}
+      - {id: history_pls_panel_runner, type: data, source: outputs/tools/run_primary_history_pls_panel.py}
+      - {id: history_pls_batch_runner, type: data, source: outputs/tools/run_primary_history_pls_remainder.sbatch}
+      - {id: history_pls_tests, type: data, source: outputs/tools/test_primary_history_pls.py}
+      - {id: history_pls_extractor, type: data, source: outputs/tools/extract_primary_history_pls.py}
+      - {id: history_pls_plotter, type: data, source: outputs/tools/plot_primary_history_pls.py}
+      - {id: history_pls_basis_recipe, from: ../history_pls_basis_recipe}
+      - {id: history_pls_basis_core, type: data, source: outputs/tools/primary_history_pls_basis.py}
+      - {id: history_pls_basis_runner, type: data, source: outputs/tools/run_primary_history_pls_basis.py}
+      - {id: history_pls_basis_panel_runner, type: data, source: outputs/tools/run_primary_history_pls_basis_panel.py}
+      - {id: history_pls_basis_remainder_runner, type: data, source: outputs/tools/run_primary_history_pls_basis_remainder.sh}
+      - {id: history_pls_basis_extractor, type: data, source: outputs/tools/extract_primary_history_pls_basis.py}
+      - {id: history_pls_basis_tests, type: data, source: outputs/tools/test_primary_history_pls_basis.py}
+      - {id: history_pls_basis_plotter, type: data, source: outputs/tools/plot_primary_history_pls_basis.py}
+      - {id: history_pls_banks, type: data, source: outputs/runs/adaptive_search/primary_history_pls_attempt001}
+      - {id: original_covariance_svd_summary, type: data, source: outputs/runs/adaptive_search/primary_covariance_svd_summary_attempt001/primary_covariance_svd.json}
+      - {id: original_history_rbf_summary, type: data, source: outputs/runs/adaptive_search/primary_history_rbf_summary_attempt001/primary_history_rbf.json}
+    outputs:
+      - id: first_reference_session_bank
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_recipe, primary_runner]
+        description: >-
+          Conditional cost-measuring first session of the adopted primary
+          comparison. Requires coordinator's explicit benchmark acceptance
+          before source execution. All1038 frozen trials, forty univariate
+          ridge fits, eight shared cyclic baselines and complete predictions;
+          no candidate choice or scientific trial charge from this single bank.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_reference.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: first_reference_report
+        type: report
+        format: directory
+        inputs: [policy, primary_recipe, primary_runner, primary_banks]
+        description: >-
+          Requires all sixteen fixed completed session banks. Every outer
+          session's lambda uses only the other fifteen session scores. Native
+          pooled X/Y SSE, exact wrong-pair mean and equal animal aggregation;
+          one valid scientific trial, never automatic promotion or search completion.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_reference.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: development_report
+        type: report
+        format: md
+        inputs: [policy, source_report, reproduction_report, history_pls_report, history_pls_basis_report, history_pls_basis_figures]
+        description: >-
+          outputs/primary_development_report.md reports the exposed-data search
+          and ordinary patience termination at45 valid comparisons/patience12.
+          The best comparable primary W/HW gain is0.0026788544310999856 and
+          identity0.004559394718773168, below original0.01/0.005 margins.
+          No eligible candidate, future-session confirmation or conditional
+          spike-population follow-up. Coverage, signed controls, technical
+          limitations and resource accounting remain explicit; negative
+          practical eligibility does not establish absence of LFP information.
+      - id: selected_policy
+        type: data
+        inputs: [policy, source_report, reproduction_report]
+        description: >-
+          Conditional artifact only if a candidate meets the original practical
+          and control requirements. No eligible policy was selected by the
+          completed development search; descriptive incumbent is not a finalist.
+      - id: multichannel_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_banks, multichannel_recipe, multichannel_runner]
+        description: >-
+          Three complete fixed feature banks for Chewie_20150313; all original
+          trials/channels, selected guide bands and native0:+14 window. Record
+          descriptive source-scale cancellation during the same feature read.
+          No partial-panel scientific charge or score-based abandonment.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_multichannel.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: multichannel_report
+        type: report
+        format: directory
+        inputs: [policy, multichannel_recipe, multichannel_runner, multichannel_banks]
+        description: >-
+          Requires all16 sessions and all3 complete feature banks; outer lambda
+          excludes the evaluated session. Three additional scientific trials;
+          no automatic promotion, full-search completion or fresh confirmation.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_multichannel.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: capacity_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_banks, multichannel_banks, capacity_recipe, capacity_runner]
+        description: >-
+          Complete fixed Chewie_20150313 rank-one and105-landmark Nyström-RBF
+          banks. Original LMP/XY windows only; fixed approximate-kernel regularizer
+          and training-zero-SD kernel coordinates zeroed in fitting/evaluation.
+          Exact prior target/baseline/ID replay after all new fits; no pilot
+          score-based abandonment or scientific trial charge.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_capacity.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: capacity_report
+        type: report
+        format: directory
+        inputs: [policy, capacity_recipe, capacity_runner, capacity_banks, multichannel_summary]
+        description: >-
+          Two complete16-session comparisons with unchanged outer15 selection
+          and global full-channel LMP reference; two additional valid trials.
+          Neither minimum-family coverage nor positive values finish the wider
+          search, required falsifiers or promotion rules.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_capacity.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_capacity_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: temporal_control_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_banks, multichannel_banks, temporal_control_recipe, temporal_control_runner]
+        description: >-
+          Complete fixed Chewie_20150313 quadratic time-varying LMP ridge and
+          matched eight-seed whole-trial training-derangement banks. Current
+          bins0:+14 and native XY targets remain fixed. Trial maps are retained;
+          exact prior baseline/target/trial replay follows all new fits. No
+          partial score selection, control-seed selection or pilot trial charge.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_temporal.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: temporal_control_report
+        type: report
+        format: directory
+        inputs: [policy, temporal_control_recipe, temporal_control_runner, temporal_control_banks, multichannel_summary]
+        description: >-
+          Requires both complete recipes in all sixteen sessions. Paired
+          outer-training scores select one common lambda for both arms in
+          each outer session. Average eight seed SSEs, not predictions. Report
+          paired-minus-control primary and identity contrasts and the adopted
+          both-animal/majority directional screen. Add two scientific trials,
+          one post-initial control; preserve0.01/0.005 margins and all remaining
+          search and promotion conditions. Stationary anchor is reused.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_temporal.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_temporal_control_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: history_control_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_banks, multichannel_banks, history_control_recipe, history_control_runner]
+        description: >-
+          Complete fixed Chewie_20150313 LMP four-lag history and eight-seed
+          per-trial physical-channel-label control banks. Native LMP-3:+14
+          supplies lags0,-1,-2,-3 for unchanged target0:+14. Physical fitting
+          normalization precedes each trial's permutation shared across all
+          lags/times; arm fitting-column centering is separate. Distinct input
+          and target windows are retained; old baseline/Y/trial replay follows
+          all new fits. No pilot-score choice or scientific trial charge.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: history_control_report
+        type: report
+        format: directory
+        inputs: [policy, history_control_recipe, history_control_runner, history_control_banks, multichannel_summary]
+        description: >-
+          Requires all sixteen complete candidate/control banks and eight
+          fixed control replicates. Candidate outer-training scores select
+          the common lambda; mean control SSE never averages predictions.
+          Report stable-label contrasts after physical normalization, with
+          changed global covariance disclosed, both-animal directional screen
+          and unchanged0.01/0.005 margins. Two additional scientific comparisons,
+          one control; current-bin stationary anchor reused without refit.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_history_control_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: lmp_high_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, reproduction_report, primary_banks, multichannel_banks, lmp_high_recipe, lmp_high_runner]
+        description: >-
+          Complete fixed Chewie_20150313 current-bin LMP plus matched100-200
+          and200-400Hz powers, and eight within-direction whole-high-trial
+          derangements. Fitting physical-coordinate scales precede maps in
+          training and evaluation; original LMP/XY stay paired. Separate joint
+          Grams preserve changed cross-block covariance. Reuse the qualified
+          six-band reader, disclose low-band reads and discard low without
+          fitting. Exact prior target/baseline/ID replay follows all new fits.
+          Selected pilot output is outputs/runs/adaptive_search/primary_lmp_high_control_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_lmp_high.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: lmp_high_report
+        type: report
+        format: directory
+        inputs: [policy, lmp_high_recipe, lmp_high_runner, lmp_high_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Requires both complete recipes and eight controls in all16 sessions.
+          Joint outer-training lambda is shared by all controls and the reused
+          same-lambda LMP reference. Retain the independently selected LMP
+          contrast too. Mean control SSE, never prediction ensembles. Report
+          adopted directional alignment and complementarity screens alongside
+          unchanged0.01/0.005 margins; no automatic promotion. Two comparisons,
+          one control, test aligned high content without claiming causal synergy.
+          Selected summary output is outputs/runs/adaptive_search/primary_lmp_high_control_summary_attempt001/primary_lmp_high.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_lmp_high.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_lmp_high_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: temporal_offset_report
+        type: report
+        format: directory
+        inputs: [policy, source_report, temporal_offset_recipe, temporal_offset_runner, multichannel_banks, multichannel_summary]
+        description: >-
+          One complete16-session timing-control comparison of the fixed
+          stationary LMP decoder. Exact mean of all14 nonzero circular offsets
+          moves only held-out neural correction P-minus-B; baseline including
+          shared fitting intercept, original targets/trial IDs and stored
+          anchor-selected lambda remain fixed. Replay original selected scores
+          first, then average offset correct/wrong SSEs, never predictions.
+          No source values, refits, new candidate or lag selection. Report
+          aligned-minus-offset directional screen with wrap/phase limitations;
+          cannot rescue failed primary margins. Selected artifact is
+          outputs/runs/adaptive_search/primary_temporal_offset_attempt001/primary_temporal_offset.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_temporal_offset.py
+            --anchor-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --anchor-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --out {output} --max-seconds 150
+          resources: {cpus: 1, memory: 4Gi, time_limit: 3m}
+      - id: pca_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, pca_recipe, pca_runner]
+        description: >-
+          Complete Chewie_20150313 training-only90%-variance unwhitened PCA
+          ridge and eight frozen physical loading-row label controls. Include
+          exact cutoff eigenspace ties; use the declared float64 PSD tolerance.
+          Keep control rank/trace/df diagnostic only, retaining zero-energy
+          controls without redraw or fallback. Native0:+14 LMP/XY only, original
+          physical/trial support and post-fit exact target/baseline replay.
+          Selected pilot is primary_pca_control_attempt001/Chewie_20150313
+          under outputs/runs/adaptive_search. No pilot-score scope selection.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_pca.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: pca_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, pca_recipe, pca_runner, pca_pilot_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete the remaining fifteen sessions, preserving the completed
+          predetermined pilot and unchanged270s internal/300s external children.
+          The aggregate600s internal/630s external bound follows observed pilot
+          resource cost. Every session and seed is required; no retries.
+          Preserve all banks and produce the complete panel summary afterward.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/run_pca_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_pca_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_pca_control_summary_attempt001
+            --out outputs/runs/adaptive_search/primary_pca_panel_attempt001
+            --max-seconds 600
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: pca_report
+        type: report
+        format: directory
+        inputs: [policy, pca_recipe, pca_runner, pca_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Require all sixteen candidate/control banks. Candidate outer-training
+          lambda is shared by all eight controls and the matched-lambda original
+          LMP reference; also retain its independently selected reference.
+          Average seed SSE, not predictions. Report projection-label and
+          denoising directional screens, allfold eigenvalues/trace/rank and
+          selected-lambda df without outcome-based changes. Unchanged practical
+          margins and no promotion. Two comparisons unless every fold retains
+          the full span, in which case structural duplicates add no depth.
+          Selected summary is primary_pca_control_summary_attempt001/primary_pca.json
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_pca.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_pca_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: relevance_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, relevance_recipe, relevance_runner]
+        description: >-
+          Complete predetermined Chewie_20150313 resource pilot with original
+          native current-bin LMP, XY and all trials. For each outer held direction,
+          seven inner held-direction scalar ridge fits rank physical channels
+          using fitting-only baselines and scaling. Retain min(16,E), plus eight
+          frozen rank-label controls with their own Grams. Original native
+          baseline/target/trial replay is required. Bound270s internal/300s
+          external; no scientific score release or trial charge from this bank.
+          Selected path is primary_relevance_control_attempt001/Chewie_20150313
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_relevance.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: relevance_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, relevance_recipe, relevance_runner, relevance_panel_runner, relevance_pilot_banks]
+        description: >-
+          Remaining fifteen fresh session banks preserve the completed pilot.
+          Coordinator selects an aggregate bound from pilot resource facts;
+          the wrapper requires this bound explicitly and reserves300s before
+          each270s internal/300s external child. All sessions/seeds are required,
+          no retries or outcome-based resource selection. The exact aggregate
+          bound selected from the complete pilot is1200s internal/1230s external.
+        recipe:
+          command: >-
+            timeout 1230s python3.12 outputs/tools/run_relevance_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_relevance_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_relevance_summary_attempt001
+            --out outputs/runs/adaptive_search/primary_relevance_panel_attempt001 --max-seconds 1200
+          resources: {cpus: 1, memory: 4Gi, time_limit: 21m}
+      - id: relevance_report
+        type: report
+        format: directory
+        inputs: [policy, relevance_recipe, relevance_runner, relevance_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete sixteen-session candidate and mean-eight-control panels.
+          Candidate lambda uses only the other fifteen sessions and is shared
+          with all controls and the matched-lambda full-LMP anchor. Average seed
+          SSE, retain independently selected anchor, animal and fixed-omission
+          contrasts, ranking tie/no-skill and covariance/rank/df diagnostics.
+          Preserve primary0.01 and identity0.005 margins; no promotion. Two new
+          comparisons unless every session retains all channels, then zero.
+          Selected summary is primary_relevance_summary_attempt001/primary_relevance.json
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_relevance.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_relevance_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: covariance_svd_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, covariance_svd_recipe, covariance_svd_runner]
+        description: >-
+          Predetermined complete Chewie_20150313 resource pilot. Each held
+          direction uses fitting-only physical scaling and native XY residual
+          covariance SVD, retaining every nonnumerical-null left singular
+          direction with no score whitening. Eight ordinary within-direction
+          whole-trial original-ID permutations affect basis construction only;
+          every ridge head fits true native targets. Independent rank0/1/2 arms,
+          exact baseline/target/trial replay, fixed270s internal/300s external.
+          Pilot scientific scores stay closed for remaining-resource selection.
+          Selected bank is primary_covariance_svd_control_attempt002/Chewie_20150313
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_covariance_svd.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: covariance_svd_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, covariance_svd_recipe, covariance_svd_runner, covariance_svd_panel_runner, covariance_svd_pilot_banks]
+        description: >-
+          Complete remaining fifteen original sessions after resource-only
+          pilot review. Root selected600s internal/630s external aggregate bounds
+          from the complete11.355s pilot. run_covariance_svd_panel.py requires explicit
+          --max-seconds, reserves300s before each270s internal/300s external
+          child, and preserves every previous artifact. All eight control seeds
+          and all sixteen sessions are required, with no retries or score-based
+          budget change. Selected bank root is
+          outputs/runs/adaptive_search/primary_covariance_svd_control_attempt002.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/run_covariance_svd_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_covariance_svd_control_attempt002
+            --summary-out outputs/runs/adaptive_search/primary_covariance_svd_summary_attempt001
+            --max-seconds 600 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: covariance_svd_report
+        type: report
+        format: directory
+        inputs: [policy, covariance_svd_recipe, covariance_svd_runner, covariance_svd_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete candidate and mean-eight basis-label-control panels. Select
+          candidate lambda using only other fifteen sessions; controls and
+          matched-lambda full LMP share it. Mean seed SSE, independently selected
+          anchor, all fixed omissions, singular values/ranks/trace/df and raw
+          projector overlap remain reported. Primary0.01/identity0.005 gates and
+          both-animal/majority screens stay fixed, with no promotion. Two new
+          comparisons advance17to19 unless structural full-span or zero-rank
+          duplicates throughout yield zero new depth. Selected summary is
+          outputs/runs/adaptive_search/primary_covariance_svd_summary_attempt001/primary_covariance_svd.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_covariance_svd.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_covariance_svd_control_attempt002
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: elastic_net_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, elastic_net_recipe, elastic_net_runner]
+        description: >-
+          Predetermined complete Chewie_20150313 resource pilot. Full physical
+          LMP coordinates and native XY loss retain the original ridge L2
+          coefficient lambda; add coordinatewise L1 coefficient lambda times
+          one fitting-only pooled XY residual RMS. Fixed five original lambdas,
+          cyclic coordinate descent,10000-sweep cap and exact-gradient KKT
+          certificate required. Eight within-direction whole-training-LMP
+          trial maps preserve the exact physical Gram and true targets.
+          Retain zero coefficients, exact original replay and all controls.
+          Fixed270s internal/300s external; scientific scores stay closed while
+          selecting remaining resources. Selected bank is
+          primary_elastic_net_control_attempt001/Chewie_20150313 under
+          outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_elastic_net.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: elastic_net_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, elastic_net_recipe, elastic_net_runner, elastic_net_panel_runner, elastic_net_pilot_banks]
+        description: >-
+          Complete fifteen remaining original sessions after the161.403s
+          resource-only pilot, with360converged fits and exact original replay.
+          Root selected four simultaneous one-thread session workers in fixed
+          waves,1260s internal/1290s external aggregate bounds and4CPU12GiB.
+          Four waves reserve300s each plus60s for summary; every child keeps
+          270s internal/300s external limits. The wrapper requires explicit
+          --workers4 within actual SLURM_CPUS_PER_TASK, one thread per BLAS and
+          OpenMP worker, and300s reserve at wave and actual child dispatch.
+          No next wave starts until all active children settle. Failure or the
+          aggregate alarm stops further dispatch; bounded subprocess calls
+          settle every active child before parent return. Original session
+          order determines the final report. Existing remaining paths are
+          refused; preserve the complete pilot, all eight controls and all
+          sixteen sessions. No automatic retries or omitted fits.
+        recipe:
+          command: >-
+            timeout 1290s python3.12 outputs/tools/run_elastic_net_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_elastic_net_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_elastic_net_summary_attempt001
+            --workers 4 --max-seconds 1260 --out {output}
+          resources: {cpus: 4, memory: 12Gi, time_limit: 30m}
+      - id: elastic_net_native_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, elastic_net_recipe, elastic_net_native_runner, elastic_net_native_core, elastic_net_native_kernel, elastic_net_native_library]
+        description: >-
+          Selected engineering repair of failed Mihili_20140307 only, under
+          unchanged270s internal/300s external bounds in fresh
+          primary_elastic_net_control_attempt002/Mihili_20140307. Move one
+          complete canonical physical-coordinate sweep to a reviewed C99
+          ctypes helper; retain Python deadline checks, original NumPy KKT
+          after every sweep, native objective/common scale, original grid and
+          descending warm starts,10000-sweep cap and fail-closed convergence.
+          Compile on compute with gcc -O3 -std=c99 -fPIC -shared
+          -ffp-contract=off, no fast-math. No bitwise BLAS-equivalence claim.
+          Require independent native-versus-preserved-Python fixtures before
+          source execution; keep original tools and failed attempt unchanged.
+          Release resource/convergence facts only before selecting remaining
+          resources. The eight completed original banks are never refit.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_elastic_net_native.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Mihili_20140307 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: elastic_net_recovery_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, elastic_net_recipe, elastic_net_native_runner, elastic_net_recovery_runner, elastic_net_native_pilot_banks, elastic_net_banks]
+        description: >-
+          Resume only the seven previously unlaunched sessions after the
+          native Mihili_20140307 resource pilot completed in36.693s, with
+          33.992s fitting,360converged fits and exact original replay. Scores
+          remained unopened during resource selection. Root selected four
+          one-thread workers and480s internal/510s external aggregate bounds.
+          Two waves are expected to take roughly74s at the measured pilot
+          speed; this is an estimate, not a guarantee for the other sessions.
+          Reuse the qualified fixed-wave helper with explicit worker and CPU
+          guards, full300s reserve before each wave and actual dispatch, and
+          unchanged270/300 child bounds. If the first wave consumes too much
+          of the aggregate budget, stop rather than launch an incomplete
+          reserve or expand the bound. Stop dispatch on failure and settle
+          every active child before return.
+          Exact eight preserved sessions are Chewie_20150313, Mihili_20140217,
+          Mihili_20140218, Mihili_20140303, Mihili_20140304, Mihili_20140306,
+          Chewie_20160929 and Chewie_20161005 from attempt001. Exact eight
+          native sessions are Mihili_20140307, Chewie_20161006, Chewie_20161007,
+          Chewie_20161014, Chewie_20161021, Chewie_20150319, Chewie_20150629 and
+          Chewie_20150630 from attempt002. Preserve all banks in place; explicit
+          selected_bank_sources.json supplies the final sixteen paths. No
+          fallback to whichever file exists, copy, score-based selection or
+          refit of a completed session is permitted.
+        recipe:
+          command: >-
+            timeout 510s python3.12 outputs/tools/run_elastic_net_recovery_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --preserved-bank-root outputs/runs/adaptive_search/primary_elastic_net_control_attempt001
+            --bank-root outputs/runs/adaptive_search/primary_elastic_net_control_attempt002
+            --summary-out outputs/runs/adaptive_search/primary_elastic_net_summary_attempt002
+            --workers 4 --max-seconds 480 --out {output}
+          resources: {cpus: 4, memory: 12Gi, time_limit: 9m}
+      - id: elastic_net_report
+        type: report
+        format: directory
+        inputs: [policy, elastic_net_recipe, elastic_net_native_runner, elastic_net_selected_bank_sources, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete candidate and mean-eight training-correspondence-control
+          panels use candidate-only outer-session lambda selection. Controls
+          share that lambda; report both independently selected full LMP and
+          identical-L2 matched-lambda anchors, all seeds, fixed omissions and
+          selected convergence/sparsity diagnostics. Native XY and physical
+          source support stay fixed. Preserve0.01/0.005 margins and both-animal
+          primary/identity signs and strict session majorities. Two complete
+          nonduplicate panels advance19to21; an everywhere-zero residual
+          structural duplicate adds zero, while new sparse/null optima remain
+          valid negative comparisons. Explicitly combine the eight preserved
+          completed Python banks with eight native single-sweep banks from
+          the adopted mapping, without refitting or counting a repair as new
+          depth. Selected summary is
+          outputs/runs/adaptive_search/primary_elastic_net_summary_attempt002/primary_elastic_net.json.
+          No promotion or early stopping.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_elastic_net_native.py summarize
+            --session-bank-map outputs/runs/adaptive_search/primary_elastic_net_recovery_panel_attempt002/selected_bank_sources.json
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: repeatability_weight_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, repeatability_weight_recipe, repeatability_weight_runner]
+        description: >-
+          Predetermined complete Chewie_20150313 resource pilot. Seven fitting
+          directions alone define per-electrode single-trial and cross-trial
+          fifteen-bin trajectory energy, equally weighted over directions.
+          Clip their ratio to0..1, use0when total energy is zero, add fixed0.1
+          floor and preserve total standardized physical Gram trace. Positive
+          weights retain all physical coordinates; no velocity enters weights
+          and no post-weight standardization occurs. Eight ordinary session-
+          fixed physical-ID label maps permute base weights and each receives
+          its own trace normalization, Gram and true-native-XY ridge head.
+          Exact original replay and all five original penalties remain fixed.
+          Pilot270s internal/300s external; scores remain closed while choosing
+          remaining resources. Selected pilot is
+          primary_repeatability_weight_control_attempt001/Chewie_20150313
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_repeatability_weight.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: repeatability_weight_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, repeatability_weight_recipe, repeatability_weight_runner, repeatability_weight_panel_runner, repeatability_weight_pilot_banks]
+        description: >-
+          Complete the fifteen remaining original sessions after resource-only
+          review of the13.587s complete pilot, with10.069s source loading,
+          3.422s fitting and exact original replay. Root selected720s internal
+          and750s external aggregate bounds for sequential one-CPU execution.
+          Fifteen pilot-equivalent sessions estimate roughly204s; the selected
+          bound also accommodates the full300s dispatch reserve and216s buffer.
+          This extrapolation is not a guarantee of other-session runtime.
+          The wrapper requires explicit --max-seconds, unchanged270s internal/
+          300s external children and300s reserve before every launch. Preserve
+          the completed pilot and every historical artifact; require fresh
+          remaining paths, all eight controls and all sixteen sessions. The
+          selected parent output is primary_repeatability_weight_panel_attempt001
+          under outputs/runs/adaptive_search. No automatic retries, omitted
+          arms or scientific-score-based resource selection.
+        recipe:
+          command: >-
+            timeout 750s python3.12 outputs/tools/run_repeatability_weight_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001
+            --max-seconds 720 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 13m}
+      - id: repeatability_weight_report
+        type: report
+        format: directory
+        inputs: [policy, repeatability_weight_recipe, repeatability_weight_runner, repeatability_weight_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete candidate and mean-eight physical weight-label controls use
+          candidate-only outer-session lambda selection. Controls share that
+          lambda; report independent and candidate-matched full-LMP anchors,
+          every seed, animal and fixed session omission, signed repeatability
+          diagnostics, zero-energy undefined ratios, spectra/trace/rank/df and
+          exact per-arm structural identities. Candidate and control depth are
+          charged independently:0if full-LMP identity throughout; control also
+          adds0if every actual applied active-column weight equals candidate
+          exactly throughout. No tolerance or near-equal outcome comparison.
+          Up to two distinct complete recipes advance19to21, with actual
+          control contribution tracked separately. Existing0.01/0.005 margins,
+          both-animal signs, session majorities and claim limits remain fixed.
+          Selected summary is
+          outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_repeatability_weight.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: history_repeatability_weight_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, repeatability_weight_banks, history_repeatability_weight_recipe, history_repeatability_weight_core, history_repeatability_weight_runner]
+        description: >-
+          Adopted 2026-10-04 07:08:33 UTC after root and independent review.
+          Fixed complete Chewie_20150313 resource pilot, one CPU, 270 seconds
+          internal and 300 external. Preserve the qualified -3:+14 LMP source,
+          native 0:+14 XY targets and lags 0,-1,-2,-3. Use unchanged current-W
+          fitting normalization and T/P/r/a statistics for one physical prior;
+          preserve independent H lag/electrode normalization and final fitting
+          centering for the decoder. Normalize physical weights to full history
+          Gram trace and repeat them over all four lags. Each of eight unchanged
+          W physical-label maps permutes base a before its own trace normalization
+          and true-target history ridge fit at the five original penalties.
+          Replay original baseline/targets/trials and the prior W fitting state
+          and maps exactly after fitting. Use total energy over all lags for
+          structural active support, including current-zero/past-active channels.
+          Scores stay closed until full-panel completion; only pilot resource
+          and support facts select a finite remaining bound. Pilot output is
+          primary_history_repeatability_weight_control_attempt002/Chewie_20150313
+          under outputs/runs/adaptive_search. Preserve failed attempt001. Its
+          exact W-state replay detected that an explicit C-order copy changed
+          floating-point mean/SD reductions after the original reader's time-fast
+          layout. Independent source-free float32/float64 loader-layout fixtures
+          established exact prior-state replay from the uncoerced history slice
+          and failure from the C-order copy. The adopted one-line engineering
+          repair removes that copy, preserving the original current-W numerical
+          path. Exact replay, history preprocessing, 270/300 bounds and scientific
+          recipe stay unchanged. No new lag/floor/window search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_history_repeatability_weight.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --weight-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: history_repeatability_weight_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, history_repeatability_weight_recipe, history_repeatability_weight_runner, history_repeatability_weight_panel_runner, history_repeatability_weight_pilot_banks, history_control_banks, history_control_summary, repeatability_weight_banks, repeatability_weight_summary]
+        description: >-
+          Complete the fifteen remaining original sessions after resource-only
+          review of the corrected attempt002 pilot: 23.340652 seconds total,
+          10.116058 source, 12.911586 fitting, 428072 KiB maximum RSS and all exact
+          original replay checks passing. No scientific scores were opened.
+          Root selected sequential one-CPU execution with 960 seconds internal
+          and 990 external. Fifteen pilot-equivalent sessions estimate 350.11
+          seconds, plus 300 seconds for the full final-child launch reserve and
+          309.89 seconds for variation and reporting. This extrapolation is not
+          a guarantee of other-session runtime. Every child retains 270/300
+          limits and the wrapper requires 300 seconds remaining before launch.
+          Root selected a fresh attended one-CPU, 6 GiB, 30-minute allocation;
+          the previous allocation lacks the full aggregate reserve. Preserve
+          the completed pilot and failed attempt001. Require fresh remaining
+          session paths, summary attempt002 and parent
+          primary_history_repeatability_weight_panel_attempt002 under
+          outputs/runs/adaptive_search. Failure stops dispatch and the direct
+          subprocess is reaped before return. No retry or partial-score selection.
+        recipe:
+          command: >-
+            timeout 990s python3.12 outputs/tools/run_history_repeatability_weight_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --history-bank-root outputs/runs/adaptive_search/primary_history_control_attempt001
+            --history-summary outputs/runs/adaptive_search/primary_history_control_summary_attempt001/primary_history_control.json
+            --weight-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --weight-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --summary-out outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002
+            --max-seconds 960 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 17m}
+      - id: history_repeatability_weight_report
+        type: report
+        format: directory
+        inputs: [policy, history_repeatability_weight_recipe, history_repeatability_weight_runner, history_repeatability_weight_banks, history_control_banks, history_control_summary, repeatability_weight_banks, repeatability_weight_summary]
+        description: >-
+          Require all sixteen complete HW/control banks and both preserved H/W
+          anchor families. HW alone selects lambda from the other fifteen
+          sessions; all eight controls share that lambda and average correct
+          and wrong-pair SSE. Report both anchors under independent selection
+          and HW-matched nominal lambda, all seed/session/animal means and fixed
+          omissions, weights/full-history spectra/df and signed current-prior
+          diagnostics. Nominal lambda or trace equality is not matched capacity.
+          Identity to H is checked independently on positive total-history energy;
+          the mean control also adds zero depth if every arm equals HW exactly
+          there. Exact zero energy of all three past lags throughout gives an
+          algebraic W/control duplicate, without requiring bitwise W predictions
+          across the preserved centering paths. Distinct complete recipes advance
+          21 to at most 23, with at most nine controls among seventeen post-initial
+          comparisons. Original 0.01/0.005 gates, both-animal signs, majority,
+          omissions, 28-64 depth, 120-hour clock and all claim limits stay fixed.
+          Selected completed summary path is
+          outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history_repeatability_weight.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --history-bank-root outputs/runs/adaptive_search/primary_history_control_attempt001
+            --history-summary outputs/runs/adaptive_search/primary_history_control_summary_attempt001/primary_history_control.json
+            --weight-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --weight-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: full_target_sensitivity_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, full_target_sensitivity_recipe, full_target_sensitivity_core, full_target_sensitivity_runner]
+        description: >-
+          Root adopted the existing GOAL-required full-target sensitivity at
+          2026-10-04 07:27 UTC after independent written review. Fixed complete
+          Chewie_20150313 resource pilot: one CPU, 270 seconds internal and 300
+          external. Read only original current-bin full-physical LMP and native
+          XY, preserving all original trials and channels. Standardize X with
+          the original full-LMP flatten-then-reduce path; fit Y minus the one
+          true-fitting-global XY mean mu at the original five ridge penalties.
+          Predict mu plus the neural output without adding the direction/time
+          baseline B; B remains the exact original comparison and replay anchor.
+          Eight ordinary fitting-only within-direction target-label maps move
+          complete 15-by-2 trajectories, share true mu and physical Gram, and
+          have their own target cross-products. No evaluation shuffling in the
+          refits; retain the separate exact evaluation-pairing readout. This is
+          a nonpromotable sensitivity, not a replacement primary target. Scores
+          stay closed for resource selection. Selected pilot output is
+          primary_full_target_sensitivity_control_attempt001/Chewie_20150313
+          under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_full_target_sensitivity.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --session Chewie_20150313 --out {output} --max-seconds 270
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: full_target_sensitivity_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, full_target_sensitivity_recipe, full_target_sensitivity_runner, full_target_sensitivity_panel_runner, full_target_sensitivity_pilot_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          Complete the fifteen remaining original sessions after resource-only
+          review of the 12.069-second complete pilot, with 10.061 seconds source
+          loading, 0.665 seconds fitting, 172292 KiB maximum RSS and exact original
+          replay. No scientific scores were opened for this selection. Root
+          selected sequential one-CPU execution, 600 seconds internal and 630
+          external. Fifteen pilot-equivalent sessions estimate 181.04 seconds;
+          adding the full 300-second final-child launch reserve leaves 118.96
+          seconds for variation/reporting. This is an estimate, not a guarantee.
+          Retain unchanged 270/300-second child bounds and a full 300-second
+          reserve before every launch. Preserve the complete pilot; remaining
+          paths, summary attempt001 and parent
+          primary_full_target_sensitivity_panel_attempt001 must be fresh.
+          Failure stops dispatch and the managed subprocess is killed/reaped
+          before return. No automatic retry or scientific-score-based selection.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/run_full_target_sensitivity_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --bank-root outputs/runs/adaptive_search/primary_full_target_sensitivity_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_full_target_sensitivity_summary_attempt001
+            --max-seconds 600 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: full_target_sensitivity_report
+        type: report
+        format: directory
+        inputs: [policy, full_target_sensitivity_recipe, full_target_sensitivity_runner, full_target_sensitivity_banks, multichannel_banks, multichannel_summary]
+        description: >-
+          All sixteen complete paired/control banks are required. Full-target
+          candidate alone selects lambda from the other fifteen sessions with
+          stronger-lambda exact ties; all eight target-label controls share
+          that lambda and average SSE, not predictions. Report native B-relative
+          primary/identity metrics, candidate-minus-control, every seed/animal/
+          fixed omission, and independent plus candidate-matched residual-LMP
+          anchors. No new anchor noninferiority cutoff. Exact constant B equal
+          to mu throughout makes the paired recipe an algebraic residual-LMP
+          duplicate; exact cross-product equality for every control throughout
+          makes the control a paired duplicate. No near-score tolerance counts
+          novelty. At most two distinct complete recipes advance 23 to 25;
+          conservatively only the mean control advances 9 to at most 10 controls
+          among 17 to at most 19 post-initial comparisons. Both sensitivity
+          recipes remain nonpromotable and cannot rescue the original primary
+          gates or fulfill a changed finalist's sensitivity automatically.
+          Preserve all eligibility, margins, budgets and stopping requirements.
+          Selected summary is
+          outputs/runs/adaptive_search/primary_full_target_sensitivity_summary_attempt001/primary_full_target_sensitivity.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_full_target_sensitivity.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_full_target_sensitivity_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: all_band_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, multichannel_banks, lmp_high_banks, all_band_recipe, all_band_reader, all_band_core, all_band_runner]
+        description: >-
+          Adopted 2026-10-04 07:44 UTC after root and independent written review.
+          Fixed Chewie_20150313 resource pilot on one CPU and 6GiB, with explicit
+          single BLAS/OpenMP threads, 270-second internal and 300-second external
+          bounds. Qualify all nine exact guide bands on every frozen physical
+          electrode and original trial before any neural values are read. Keep
+          J's LMP/high block ordering and original fitting-only normalization,
+          add the fixed six power bands, and fit native XY residual targets.
+          Eight within-direction fitting-only whole-added-block label controls
+          each use their own complete Gram, including changed cross-block terms;
+          evaluation features and true fitting targets stay intact. All five
+          penalties, eight held directions and original physical/trial support
+          are required. Preserve the fixed full-span solver and separate
+          covariance diagnostics as written until measured resource evidence.
+          Original LMP baseline/target/trial and J support/zero-SD/target replay
+          are checked after fitting. Pilot alone advances no scientific count.
+          Selected fresh pilot output is
+          outputs/runs/adaptive_search/primary_all_band_control_attempt001/Chewie_20150313.
+          Inspect only complete status, resource and replay fields before
+          selecting the remaining-session bound; no automatic retry.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_all_band.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --joint-bank-root outputs/runs/adaptive_search/primary_lmp_high_control_attempt001
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 5m}
+      - id: all_band_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, all_band_recipe, all_band_runner, all_band_panel_runner, all_band_pilot_banks, multichannel_banks, multichannel_summary, lmp_high_banks, lmp_high_summary]
+        description: >-
+          Root selected this engineering execution after the complete fixed
+          pilot's resource-only review, without opening scientific scores.
+          The pilot ran 2026-10-04 07:56:15.419051 to 07:57:39.652726 UTC:
+          84.233665817 seconds total, 19.524003671 source, 64.229374757 fitting,
+          847024KiB peak RSS, 1038 trials and 86 physical electrodes; all guide
+          and reference replays passed. Four single-thread session workers in
+          fixed waves reuse the unchanged reviewed dispatch helper, require
+          workers no greater than actual SLURM_CPUS_PER_TASK, and run in one
+          verified four-CPU 8GiB thirty-minute allocation. Four pilot-duration
+          waves cost about 336.935 seconds; the selected 1260-second internal
+          and 1290-second external aggregate bounds retain a full 300-second
+          final-child reserve plus about 623.065 seconds for variation and
+          reporting. Four pilot peak RSS values total about 3.23GiB; 8GiB leaves
+          headroom. Each child retains unchanged 270/300-second bounds and a
+          full 300-second reserve immediately before launch. No future wave
+          launches after failure or aggregate stop; active bounded children
+          settle and are reaped before return. Only the completed pilot is
+          reused; all fifteen remaining session paths must be fresh. Selected
+          bank root is primary_all_band_control_attempt001; fresh
+          summary is primary_all_band_summary_attempt001 and fresh parent is
+          primary_all_band_panel_attempt001 under outputs/runs/adaptive_search.
+          Science, maps, solvers, penalties and diagnostic computations are
+          unchanged. Candidate precedes mean control for accounting under the
+          prospective root-chosen patience interpretation. Through comparison
+          28 the counter is not started; from 29 it increments per valid recipe
+          unless a comparable true candidate strictly improves the incumbent.
+          Controls and different-support diagnostics cannot become incumbent.
+          No historical counter or unregistered frontier is inferred; all
+          original maximum, resource, control and required-coverage limits stay.
+        recipe:
+          command: >-
+            timeout 1290s python3.12 outputs/tools/run_all_band_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --joint-bank-root outputs/runs/adaptive_search/primary_lmp_high_control_attempt001
+            --joint-summary outputs/runs/adaptive_search/primary_lmp_high_control_summary_attempt001/primary_lmp_high.json
+            --bank-root outputs/runs/adaptive_search/primary_all_band_control_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_all_band_summary_attempt001
+            --workers 4 --max-seconds 1260 --out {output}
+          resources: {cpus: 4, memory: 8Gi, time_limit: 22m}
+      - id: all_band_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, all_band_recipe, all_band_runner, all_band_banks, multichannel_banks, multichannel_summary, lmp_high_banks, lmp_high_summary]
+        description: >-
+          Require all sixteen original complete paired/control session banks.
+          Candidate alone selects lambda on the other fifteen sessions with
+          original equal-animal/session weighting and stronger-lambda exact
+          ties; all eight controls share it and average SSE, not predictions.
+          Report primary/identity practical margins, every control seed, both
+          animals and fixed omissions, candidate-minus-control and independent
+          plus candidate-lambda-matched J and full-LMP anchors. Matched support
+          and lambda do not match model capacity; report both arms' width,
+          trace, rank and selected effective degrees of freedom. Exactly zero
+          fitting energy in all six added bands throughout makes candidate
+          and controls algebraic J duplicates. If all control fitting and
+          evaluation designs exactly equal the paired design throughout, the
+          control adds no comparison. No approximate score-based duplicate
+          criterion. Distinct completed recipes add at most two, advancing 25
+          to at most 27 valid comparisons; the mean control adds at most one,
+          advancing 10 to at most 11 controls among 19 to at most 21 post-initial
+          comparisons. Preserve all original margins, falsifiers and budgets;
+          28 is a minimum, not a completion rule, and no promotion is authorized.
+          Selected summary is
+          outputs/runs/adaptive_search/primary_all_band_summary_attempt001/primary_all_band.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_all_band.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_all_band_control_attempt001
+            --reference-bank-root outputs/runs/adaptive_search/primary_multichannel_attempt001
+            --reference-summary outputs/runs/adaptive_search/primary_multichannel_summary_attempt001/primary_multichannel.json
+            --joint-bank-root outputs/runs/adaptive_search/primary_lmp_high_control_attempt001
+            --joint-summary outputs/runs/adaptive_search/primary_lmp_high_control_summary_attempt001/primary_lmp_high.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: matched_budget_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, primary_banks, history_repeatability_weight_banks, matched_budget_recipe, matched_budget_metadata, matched_budget_core, matched_budget_runner]
+        description: >-
+          Root adopted the independently reviewed C/T/CT resource sensitivity
+          at 2026-10-04 08:19 UTC. Fixed metadata-derived budgets are86 physical
+          electrodes and12 trials per direction,96 total. Eight ordinary fixed
+          original-ID subset queues are coupled across channel-only, trial-only
+          and joint conditions. Reconcile all sixteen released metadata records,
+          original scalar support and trial IDs before any source values; the
+          durable direction-count schema is an exact string-keyed0..7 mapping.
+          Refit reduced B and every HW normalization/weight/head state; use each
+          view's own denominator and retained-ID exact wrong-pair mean. Reuse
+          full-support and exact within-attempt duplicate fits. Load original
+          complete full-HW predictions only after new reduced fitting, verify
+          targets/trials/source and score them on identical retained support.
+          The pilot is Chewie_20161014, chosen solely from96E/740trial workload
+          metadata as the largest session with all three genuinely distinct
+          reduced fitting paths. Chewie_20150313 would reuse C and collapseT=CT.
+          One single-thread CPU,6GiB,270-second internal/300-second external
+          bounds; complete all three conditions/eight views/five penalties.
+          Pilot alone adds no scientific comparison. Inspect resource, support,
+          replay and completion only before selecting a remaining-panel bound.
+          Selected fresh output is
+          outputs/runs/adaptive_search/primary_matched_budget_attempt001/Chewie_20161014.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_matched_budget.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --metadata outputs/runs/source_support/matched_budget_metadata_attempt001/matched_budget_metadata.json
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --session Chewie_20161014 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 5m}
+      - id: matched_budget_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, matched_budget_recipe, matched_budget_metadata, matched_budget_runner, matched_budget_panel_runner, matched_budget_pilot_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Root selected four single-thread workers after the complete resource
+          pilot, without opening scientific scores. Chewie_20161014 completed
+          2026-10-04 08:26:25.209260 to 08:27:03.385141 UTC in38.175871772s,
+          including0.697640705s metadata,8.462756037s source and27.518155902s
+          fitting/scoring; peak RSS397992KiB,24 distinct fits, no full-HW
+          view reuse. All global support and exact saved-reference checks passed.
+          Four pilot-duration waves cost152.703487s. Select510s internal/540s
+          external aggregate bounds: a full300s child reserve leaves57.296513s
+          additional variation headroom. Four measured peaks total about1.52GiB.
+          Use verified4CPU8GiB with all numerical threads one, only when at least
+          570s allocation time remains (including30s after the external bound);
+          otherwise root obtains a separate bounded allocation before launch.
+          No automatic allocation renewal. The wrapper reuses complete Chewie_20161014,
+          requires fifteen fresh remaining paths and a fresh summary, and uses
+          the unchanged reviewed fixed-wave dispatcher with actualCPU guard,
+          at most four single-thread children, unchanged270/300child bounds
+          and a full300-second reserve before each launch. Stop-only aggregate
+          signal prevents future waves while bounded active children settle
+          and are reaped. No automatic retry. Planned bank root is
+          primary_matched_budget_attempt001, summary root
+          primary_matched_budget_summary_attempt001 and parent output
+          primary_matched_budget_panel_attempt001 under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 540s python3.12 outputs/tools/run_matched_budget_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --metadata outputs/runs/source_support/matched_budget_metadata_attempt001/matched_budget_metadata.json
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_matched_budget_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_matched_budget_summary_attempt001
+            --workers 4 --max-seconds 510 --out {output}
+          resources: {cpus: 4, memory: 8Gi, time_limit: 9m}
+      - id: matched_budget_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, matched_budget_recipe, matched_budget_runner, matched_budget_banks, history_repeatability_weight_summary]
+        description: >-
+          Require all sixteen original sessions, three conditions and eight
+          fixed support views. Aggregate each view's normalized losses before
+          each condition's original other-fifteen-session lambda selector;
+          one selected lambda serves its eight views. Compare reduced and
+          saved full-HW predictions on identical retainedY,denominator and
+          within-direction whole-trial donor pairs. Report direct
+          (SSE_fullHW-SSE_reduced)/D separately from behavioral-baseline change,
+          using original independently selected and diagnostic-matched fullHW
+          lambdas. Report original practical margins, both animals, allsession
+          signs, fixed omissions, view ranges, support/trace/selecteddf and
+          exact full/cross-condition support reuse. These nonpromotable stress
+          diagnostics cannot reset the original candidate incumbent. Global
+          exact support signatures determine0–3 charges in fixedC,T,CT order.
+          If all distinct,27→30valid and21→24postinitial, while11literal null
+          controls remain11 and conservative alternative checks become14.
+          Prospective patience is notstarted at28, then1at29 and2at30; no
+          historical reconstruction, new threshold or diagnostic reset.
+          Preserve original margins, budgets, falsifiers and search limits.
+          Selected summary is
+          outputs/runs/adaptive_search/primary_matched_budget_summary_attempt001/primary_matched_budget.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_matched_budget.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_matched_budget_attempt001
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --out {output}
+          resources: {cpus: 1, memory: 3Gi, time_limit: 2m}
+      - id: elapsed_only_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, primary_banks, history_repeatability_weight_banks, elapsed_only_recipe, elapsed_only_core, elapsed_only_runner]
+        description: >-
+          Root adopted the independently reviewed elapsed-only HW sensitivity
+          at 2026-10-04 08:25 UTC. Preserve all sixteen original full-support
+          sessions, all original physical LMP electrodes and complete trials,
+          history lags0,-1,-2,-3 and native XY target0:+14. Replace only the
+          fitted behavioral baseline by DirectionTime harmonics0: equal weight
+          for seven fitting-direction means at every bin, followed by the
+          original pooled residual intercept. Preserve HW normalization,
+          current-only repeatability weights, history centering and all five
+          penalties. Fit the new Y-minus-time response and add the same time
+          baseline back; never reuse the old neural coefficients with a new
+          baseline. Replay full-original HW neural state, saved targets/IDs/B
+          and all five saved prediction scores after the new fit, without
+          refitting HW. One fixed Chewie_20150313 pilot uses one CPU,4GiB,
+          numerical threads one and270/300-second internal/external bounds.
+          Prior complete HW pilot had1038trials86electrodes,23.340652s and
+          428072KiB peak RSS; those are prior resource observations only.
+          Fresh selected pilot output is
+          outputs/runs/adaptive_search/primary_elapsed_only_attempt001/Chewie_20150313.
+          Pilot contributes zero scientific comparisons. Scientific effects
+          remain closed pending the complete panel; root selects the remaining
+          finite execution bound using only measured resource/support facts.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_elapsed_only.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: elapsed_only_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, elapsed_only_recipe, elapsed_only_runner, elapsed_only_panel_runner, elapsed_only_pilot_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Root selected four single-thread workers from the complete resource
+          pilot, with scientific effects still closed. Chewie_20150313 ran
+          2026-10-04 08:30:46.494475 to08:31:46.128530 UTC:59.634049416s total,
+          56.241555933s source,3.211057669s fit/score,428472KiB peak RSS,
+          1038trials86electrodes; exact neural-state and saved-array/scoring
+          replays passed with no original HW refit. Four pilot-duration waves
+          cost238.536198s. Select720s internal/750s external aggregate bounds,
+          retaining a full300s child reserve plus181.463802s for variation.
+          Four pilot RSS peaks total about1.635GiB; verified4CPU8GiB leaves
+          parent and source-variation headroom. All numerical threads remain
+          one. Reuse the unchanged reviewed fixed-wave run_sessions and
+          validate_workers helper, guard workers by actual SLURM_CPUS_PER_TASK,
+          and stop new dispatch on failure/deadline while active bounded
+          children settle and are reaped. Reuse the complete fixed pilot;
+          fifteen remaining paths and the summary must be fresh. Each child
+          retains270/300 bounds and a full300s reserve before launch. Root
+          verifies sufficient allocation time for the750s external bound and
+          cleanup before launch; no automatic allocation renewal. No science,
+          source, support, target, solver or feature-state change. No automatic
+          retry, cap extension or dropped session. Selected bank root is
+          primary_elapsed_only_attempt001, summary root
+          primary_elapsed_only_summary_attempt001 and parent root
+          primary_elapsed_only_panel_attempt001 under outputs/runs/adaptive_search.
+        recipe:
+          command: >-
+            timeout 750s python3.12 outputs/tools/run_elapsed_only_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_elapsed_only_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_elapsed_only_summary_attempt001
+            --workers 4 --max-seconds 720 --out {output}
+          resources: {cpus: 4, memory: 8Gi, time_limit: 13m}
+      - id: elapsed_only_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, elapsed_only_recipe, elapsed_only_runner, elapsed_only_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Require sixteen complete elapsed-only HW banks and exact original
+          saved full-HW support/state/prediction replays. Other-fifteen-session
+          equal-animal tuning selects ET-HW lambda; stronger exact ties win.
+          Preserve common full-original native-XY denominators and exact
+          within-direction whole-trial evaluation derangement means. Report
+          original saved HW versus time-only, B versus time-only, ET-HW versus
+          time-only, and descriptive ET-HW versus original B. Compare full
+          ET-HW/HW prediction losses at independent and ET-HW-matched saved
+          HW lambdas; never subtract gains against different baselines.
+          Report all sessions, both animal means, strict majorities and every
+          within-animal fixed-prediction omission. Original-HW elapsed screen
+          requires primary positivity/majorities/omissions; ET-HW sensitivity
+          additionally requires identity positivity and identity omissions.
+          Ties fail. Practical0.01/0.005 primary gates remain unchanged and
+          cannot be rescued. This changed-baseline sensitivity is nonpromotable
+          and cannot update the incumbent or reset patience. Literal T=B on
+          all fitting/evaluation support throughout duplicates HW; all-zero
+          weighted-design/response cross-products throughout duplicate T.
+          Otherwise one complete recipe adds one valid alternative-explanation
+          stress comparison, with no new null-control recipe. Standalone T,
+          saved-anchor contrasts, penalties and omissions add zero. No total
+          completion ordinal is inferred before the parallel matched result.
+          Selected summary is
+          outputs/runs/adaptive_search/primary_elapsed_only_summary_attempt001/primary_elapsed_only.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_elapsed_only.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_elapsed_only_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 2m}
+      - id: capacity_surrogate_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, primary_banks, history_repeatability_weight_banks, capacity_surrogate_recipe, capacity_surrogate_core, capacity_surrogate_runner]
+        description: >-
+          Root adopted the independently reviewed capacity-matched HW
+          training-feature surrogate at2026-10-04 08:45UTC. Preserve all
+          original sixteen-session full trial/electrode support, native
+          XY0:+14, HW LMP lags0,-1,-2,-3, original first-harmonic B/common
+          residual intercept, fitting normalization/current repeatability
+          weights/history centering and positive ridge solver. Eight fixed
+          ordinary within-fitting-direction whole-trial feature permutations
+          move all15times/4Ecolumns together; accept fixedpoints and duplicate
+          maps, record qualified original IDs, never redraw. True targets and
+          evaluation features remain unchanged. One shared original Gram and
+          eigensystem per fold matches spectrum/rank/trace/df at all five
+          original penalties; each surrogate has its own cross-product/head.
+          No new HW head is fit. After all new fits, exactly replay original
+          HW neural state, saved arrays/scoring and weighted covariance
+          diagnostics. This is a feature-label surrogate retaining direction
+          and time structure, not signal-free random neural activity or raw
+          voltage phase randomization. Earlier quadraticT/S8 is not relabeled.
+          Fixed Chewie_20150313 pilot uses1CPU4GiB, numerical threads one,
+          270s internal/300s external; all eight surrogates and five penalties
+          must complete. Pilot contributes zero depth; root sees resource and
+          replay fields only before selecting a remaining bound. Fresh output:
+          outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_capacity_matched_surrogate.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: capacity_surrogate_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, capacity_surrogate_recipe, capacity_surrogate_runner, capacity_surrogate_panel_runner, capacity_surrogate_pilot_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Root selected four single-thread workers,420s internal/450s external,
+          in a verified4CPU8Gi allocation after the17.073161s complete pilot.
+          Four measured pilot waves total68.292644s; a full300s child reserve
+          leaves51.707356s variation allowance. Four437260KiB peaks total
+          about1.668GiB. Actual allocated CPU and numerical-thread guards apply.
+          Reuse unchanged reviewed fixed-wave dispatch, full300s child reserve,
+          stop-only aggregate signal and drain of active bounded children.
+          Every child retains270/300s bounds. Preserve the complete fixed
+          Chewie_20150313 pilot and require fifteen fresh remaining paths and
+          a fresh summary. Pilot scientific scores remain closed until the
+          complete panel. No automatic retry, bound extension,
+          session deletion or allocation renewal. Intended bank root is
+          primary_capacity_matched_surrogate_attempt001, summary root
+          primary_capacity_matched_surrogate_summary_attempt001 and parent
+          root primary_capacity_matched_surrogate_panel_attempt001 under
+          outputs/runs/adaptive_search. Require at least480s allocation time
+          at launch including30s cleanup. Run no overlapping source workload.
+        recipe:
+          command: >-
+            timeout 450s python3.12 outputs/tools/run_capacity_matched_surrogate_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_capacity_matched_surrogate_summary_attempt001
+            --workers 4 --max-seconds 420 --out {output}
+          resources: {cpus: 4, memory: 8Gi, time_limit: 8m}
+      - id: capacity_surrogate_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, capacity_surrogate_recipe, capacity_surrogate_runner, capacity_surrogate_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Require all sixteen complete original-support session banks and all
+          eight ordinary training-feature surrogate draws. Use saved original
+          HW other-fifteen-session-selected lambda for every surrogate in each
+          evaluated session; no null tuning or seed selection. Average correct
+          SSE and exact within-direction whole-trial wrong-pair SSE, never
+          predictions, with original B and full native-XY denominator. Report
+          mean surrogate, preserved originalHW, HW-minus-mean and every seed,
+          all session/animal signs, fixed-prediction omissions and shared
+          selected/all-penalty df with exact capacity identity records. A
+          global exact match of every surrogate cross-product to true-pair
+          cross-product duplicates HW and charges zero; isolated identity or
+          duplicate seeds remain in the fixed mean. Otherwise one complete
+          recipe adds one valid literal null control/alternative explanation,
+          with no new HW candidate, promotion threshold or patience reset.
+          Do not infer an ordinal before the actual completion order. Original
+          primary margins, coverage and resources remain unchanged. Selected
+          summary is outputs/runs/adaptive_search/primary_capacity_matched_surrogate_summary_attempt001/primary_capacity_matched_surrogate.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_capacity_matched_surrogate.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 2m}
+      - id: intersection_guide_qualification
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, history_repeatability_weight_banks, intersection_recipe, intersection_qualifier]
+        description: >-
+          Root adopted the independently reviewed primary unit-guide/LMP
+          intersection sensitivity at2026-10-04 08:46UTC. Reconcile all16
+          original scalar/HW source records and whole-trial CSV identities
+          before opening source guides. Read only LFP/unit guide arrays and
+          source identity/event metadata; numerical LFP, XY and spike datasets
+          are shape-only handles. Require constant qualified guide arrays,
+          original physical LMP IDs, finite unique unit pairs including label0,
+          and nonempty physical intersection in every original session. No
+          unit quality/rate filter, spike-value conversion, complement model,
+          trial/session deletion or score is authorized. Freeze I and eight
+          ordinary fixed-seed count-matched physical subsets before values.
+          Exact duplicate/full supports are retained for reuse. Record all
+          joins and select a prospective numerical resource pilot solely by
+          the adopted workload proxy with original-session-order ties. This
+          metadata stage adds zero scientific depth and cannot identify spike
+          contamination. Bound60s internally/90s externally,1CPU,one thread.
+          Fresh selected output is outputs/runs/source_support/primary_intersection_metadata_attempt001.
+        recipe:
+          command: >-
+            timeout 90s python3.12 outputs/tools/qualify_primary_intersection.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --max-seconds 60 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: intersection_cached_guide_qualification
+        type: data
+        format: directory
+        inputs: [policy, source_report, primary_banks, history_repeatability_weight_banks, intersection_recipe, intersection_qualifier, intersection_metadata_repair_recipe, intersection_cached_qualifier]
+        description: >-
+          Root adopted this isolated engineering revision08:54UTC after the
+          original guide-only60s deadline expired. Preserve failed001; no
+          numerical intersection model or spike/LFP/XY value read occurred.
+          Ordinary dereference trace and29.298867 CPU seconds do not establish
+          a filesystem fault or prove a single performance cause. Cache only
+          fifteen per-session MATLAB cell-reference tables in original
+          Fortran order and at most fifteen current-trial dataset handles.
+          Reset node cache on trial change; dereference retained trials only.
+          Reuse original qualify_session and guide checks unchanged. All16
+          complete guide joins remain required; partial progress is retained
+          only for diagnosis and cannot authorize numerical work. No new
+          scientific rule, support selection, field payload, comparison count
+          or automatic extension. Fresh bounded attempt002 uses300s internal,
+          330s external,1CPU2GiB,one numerical thread. Numerical implementation
+          waits for root release of complete metadata. Selected output:
+          outputs/runs/source_support/primary_intersection_metadata_attempt002.
+        recipe:
+          command: >-
+            timeout 330s python3.12 outputs/tools/qualify_primary_intersection_cached.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --max-seconds 300 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 6m}
+      - id: history_blend_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history_blend_recipe, history_blend_core, history_blend_runner, repeatability_weight_banks, history_repeatability_weight_banks]
+        description: >-
+          Adopted original-support convex blend of saved current-bin W and
+          history HW predictions. No provider source values or new neural
+          fits. Fixed Chewie_20150313 resource pilot scores all five shared
+          penalties by five historical weights, preserving literal saved
+          arrays at alpha0/1. Require exact original support, baseline and
+          all-penalty candidate/wrong-pair score replay before combination.
+          Restore saved Y and B to the fixed original time-fast array layout
+          without changing values; no fallback or relaxed equality. Score
+          interior blended predictions directly, not mean component SSE.
+          One CPU,2GiB,one numerical thread,60s internal/90s external. Pilot
+          scores remain closed until all16 complete. Zero scientific count
+          from this single bank. Intended output is
+          outputs/runs/adaptive_search/primary_history_blend_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            timeout 90s python3.12 outputs/tools/run_primary_history_blend.py session
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --session Chewie_20150313 --max-seconds 60 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: history_blend_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history_blend_recipe, history_blend_runner, history_blend_panel_runner, history_blend_pilot_banks, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Root selected180s internal/210s external at09:05UTC after the
+          complete1.201828s pilot,67,584KiB peak and exact endpoint replays.
+          Fifteen pilot equivalents18.027422s plus90s complete child reserve
+          and sixteen replay equivalents19.229250s leave52.743328s for
+          summary writing and variation. One worker and2GiB are sufficient.
+          Preserve the complete fixed pilot and require15 fresh remaining
+          paths plus a fresh summary and parent output. The reviewed bounded
+          dispatcher uses one single-thread worker, unchanged60/90s child
+          bounds, a full90s child reserve and stop-only aggregate signal.
+          Stream one saved W/HW pair at a time with no source reads or refits.
+          Publish a selected panel only after all16 complete and replayed.
+          Intended bank root is primary_history_blend_attempt001, summary root
+          primary_history_blend_summary_attempt001 and parent root
+          primary_history_blend_panel_attempt001 under outputs/runs/adaptive_search.
+          No automatic retry, bound extension, session deletion or renewal.
+          Require240s actual allocation time left at launch including cleanup.
+        recipe:
+          command: >-
+            timeout 210s python3.12 outputs/tools/run_history_blend_panel.py
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_history_blend_summary_attempt001
+            --max-seconds 180 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: history_blend_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, history_blend_recipe, history_blend_runner, history_blend_banks, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Require all16 complete original-support banks and independently
+          replay both original other15-session selectors. Select one shared
+          lambda and alpha for each held session using only the other15
+          equally weighted within animal then between animal primary scores.
+          Exact ties favor stronger lambda then less history. Preserve all
+          native targets, baseline and common full-trajectory denominator.
+          Replay the selected full predictions and save their arrays. Report
+          both animal means, all session signs, fixed-prediction omissions,
+          original practical margins and four direct blend-minus-W/HW
+          contrasts at original-selected and blend-matched penalties. Same
+          nominal penalty does not imply equal component capacity. A global
+          exact selected-array duplicate of original W or HW charges zero;
+          otherwise one complete candidate charges one and may reset patience
+          only on strictly greater comparable primary score. Endpoint cells,
+          parameter cells and anchors add no count. No new null or alternative
+          explanation check, forced interior choice or promotion authorization.
+          Selected summary is outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history_blend.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: history2_repeatability_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history2_repeatability_recipe, history2_repeatability_core, history2_repeatability_runner, history2_repeatability_tests, repeatability_weight_banks, history_repeatability_weight_banks, capacity_surrogate_banks]
+        description: >-
+          Root adopted one fixed H2W candidate and conditional-capacity
+          training surrogate09:08UTC after independent scientific review.
+          Retain original sixteen-session/trial/electrode support, B and
+          native XY targets0:+14. The reader still accesses−3:+14 for exact
+          original replay; only current and preceding bin enter the new
+          model, effective−1:+14. Preserve W current-only prior and original
+          retained H normalization/centering; recalculate trace weights on2E
+          columns. One Gram/eigensystem supports true head and all eight
+          unchanged HW-capacity within-fitting-direction whole-trial maps.
+          No null retuning, original W/HW refit, source spike values or new
+          promotion gate. Fixed Chewie_20150313 resource pilot1CPU4GiB,
+          one thread,270s internal/300s external. Pilot scores stay closed
+          until all16 complete. Select a remaining bound from complete pilot
+          resources only. Intended pilot path is
+          outputs/runs/adaptive_search/primary_history2_repeatability_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_history2_repeatability_weight.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --capacity-bank-root outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 6m}
+      - id: history2_repeatability_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history2_repeatability_recipe, history2_repeatability_runner, history2_repeatability_panel_runner, history2_repeatability_pilot_banks, repeatability_weight_banks, history_repeatability_weight_banks, capacity_surrogate_banks, original_history_blend_summary]
+        description: >-
+          Root selected600s internal/630s external, one worker4GiB from the
+          complete15.362559s pilot (source10.840313s, fit/score3.690497s,
+          RSS389400KiB), before scientific score release. Fifteen pilot
+          equivalents230.438389s plus300s reserve leave69.561611s for summary
+          and variation. Require660s remaining in the actual allocation;
+          no shortened bound or extension. Use the sequential wrapper preserving
+          the pilot and fifteen fresh remaining paths. Each child keeps
+          270/300s bounds and a full300s launch reserve. Stop-only aggregate
+          signal drains the current bounded child; no partial summary or
+          automatic renewal. Root selects a finite aggregate bound before
+          source dispatch. Banks are primary_history2_repeatability_attempt001,
+          summary primary_history2_repeatability_summary_attempt001 and
+          parent primary_history2_repeatability_panel_attempt001 under
+          outputs/runs/adaptive_search. Numerical workloads are serialized.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/run_history2_repeatability_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --capacity-bank-root outputs/runs/adaptive_search/primary_capacity_matched_surrogate_attempt001
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --bank-root outputs/runs/adaptive_search/primary_history2_repeatability_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_history2_repeatability_summary_attempt001
+            --max-seconds 600 --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 12m}
+      - id: history2_repeatability_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, history2_repeatability_recipe, history2_repeatability_runner, history2_repeatability_extractor, history2_repeatability_banks, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary, original_history_blend_summary]
+        description: >-
+          Require complete16 and all original state/array/map/score replays.
+          Select H2W lambda using only other15 session primary scores equally
+          within animal then between animals; stronger exact ties. All eight
+          controls inherit that lambda and average SSE, never predictions.
+          Report original practical/directional/omission criteria, four
+          W/HW independent/matched-lambda direct anchors, fixed selected blend
+          anchor and every surrogate draw with shared capacity diagnostics.
+          Candidate then control add at most2 comparisons; only the control
+          adds one literal null/alternative check. Zero energy alone is not
+          duplicate proof. Require exact selected-array identity or an
+          explicit complete algebraic identity including selection, with no
+          tolerance fallback. Distinct comparable candidate may reset patience
+          only on strictly higher complete primary score; control never does.
+          Original caps/required coverage and no-promotion boundary remain.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history2_repeatability_weight.py summarize
+            --bank-root outputs/runs/adaptive_search/primary_history2_repeatability_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --out {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 3m}
+      - id: intersection_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, intersection_recipe, intersection_metadata_repair_recipe, intersection_metadata, intersection_core, intersection_runner, intersection_tests, primary_banks, history_repeatability_weight_banks]
+        description: >-
+          Completed guide-only attempt002 qualifies all sixteen unchanged
+          original sessions before values:245.348033s,33.453381CPU seconds,
+          151840KiB RSS; no spike/LFP/XY values or scores. Every intersection
+          is a strict subset (21–51 electrodes), with nine unique new supports.
+          Frozen workload proxy selects Chewie_20150313:1038 trials,86 original
+          electrodes,45 intersection electrodes,9 supports,proxy32201388000.
+          Fit fixed HW on I and eight ordinary ID-only count-matched supports,
+          using channel-only indexing and unchanged original Y/labels/IDs.
+          Refit training-only states; exact original B/Y/D and saved full-HW
+          score replay are mandatory. Same I-selected outer lambda for all R;
+          mean eight correct/wrong SSEs, never predictions. One CPU6GiB and
+          one numerical thread,270s internal/300s external. Preserve failed
+          metadata001 and complete metadata002. New pilot path is
+          outputs/runs/adaptive_search/primary_intersection_sensitivity_attempt001/Chewie_20150313.
+          Pilot scores stay closed; no numerical remaining bound selected yet.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_intersection.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --metadata outputs/runs/source_support/primary_intersection_metadata_attempt002/primary_intersection_metadata.json
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 6m}
+      - id: intersection_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, intersection_recipe, intersection_metadata, intersection_runner, intersection_panel_runner, intersection_pilot_banks, history_repeatability_weight_banks, history_repeatability_weight_summary]
+        description: >-
+          Root selected720s internal/750s external, one worker6GiB after the
+          complete23.922664s pilot, peak323424KiB and nine unique fits with
+          exact original target/B/trial/score replay. Fifteen pilot equivalents
+          358.839957s plus300s reserve leave61.160043s for summary/variation.
+          Require780s actual allocation time remaining. Pilot scientific
+          scores stay closed. H2W completed first at09:27UTC with two distinct
+          recipes and no incumbent improvement: incoming valid35,patience2,
+          alternatives17,literal nulls13 are now frozen by root. Sequential
+          wrapper preserves the pilot, requires fifteen fresh remaining paths,
+          keeps270/300s child bounds and full300s launch reserve, and drains
+          the active child after failure or aggregate stop. No partial summary.
+          Root freezes actual incoming valid count/patience/alternative/null
+          counts at launch; do not assume H2W completed or reset patience.
+          Required-coverage work is not blocked by treating patience12 as an
+          unconditional cap. Depth64 and all inherited budgets remain binding.
+        recipe:
+          command: >-
+            timeout 750s python3.12 outputs/tools/run_intersection_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --metadata outputs/runs/source_support/primary_intersection_metadata_attempt002/primary_intersection_metadata.json
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_intersection_sensitivity_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_intersection_sensitivity_summary_attempt001
+            --prior-valid 35 --prior-patience 2 --prior-alternatives 17 --prior-nulls 13
+            --max-seconds 720 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 13m}
+      - id: intersection_report
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, intersection_recipe, intersection_metadata, intersection_runner, intersection_extractor, intersection_banks, history_repeatability_weight_summary]
+        description: >-
+          Complete all sixteen I/R banks before summary. Independently replay
+          original full-HW outer selection and all five saved prediction scores.
+          Report I/R, every ordinary draw, direct I-minus-R and full-HW
+          independently selected/I-lambda-matched common-D contrasts, both
+          animals, all sessions, finite support ranges and fixed omissions.
+          I then R add zero/one/two distinct support-stress comparisons; no
+          literal-null increment, incumbent reset, new threshold or promotion.
+          Metadata-defined guide membership cannot identify spike contamination;
+          that remains a scientific limitation even on complete computation.
+          Exact duplicate supports are reused. Summary command and explicit
+          live incoming counters are frozen with the remaining resource bound,
+          after the resource pilot. Fresh intended summary and parent roots are
+          primary_intersection_sensitivity_summary_attempt001 and
+          primary_intersection_sensitivity_panel_attempt001 under adaptive_search.
+      - id: timevarying_history_blend_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, timevarying_history_blend_recipe, timevarying_history_blend_core, timevarying_history_blend_runner, timevarying_history_blend_tests, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, history2_repeatability_banks, original_history2_repeatability_summary]
+        description: >-
+          Adopted original-support two-component saved-prediction ensemble.
+          Fixed fifteen-bin u=2t/14-1 and alpha=0.5+s*u with five slopes
+          minus0.5,minus0.25,0,0.25,0.5 and original five shared penalties.
+          Preserve literal original half-blend arithmetic at zero slope and
+          literal saved component values in endpoint bins. All four original
+          W/HW/blend/H2 outer selectors replay before the pilot. Replay every
+          W/HW/H2 penalty score, all five original half-blend cells and the
+          original selected blend array on exact native Y/B/trial/direction
+          and physical support. Restore original time-fast target layout;
+          no equality relaxation, new neural fits or provider source access.
+          Fixed Chewie_20150313 pilot scores all25 cells and seven fixed
+          direct-anchor contrasts plus same-lambda slope reversal. Scores
+          remain closed until all16 complete; single-session count zero.
+          One CPU,2GiB,one numerical thread,60s internal/90s external.
+          Intended output is outputs/runs/adaptive_search/primary_timevarying_history_blend_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            timeout 90s python3.12 outputs/tools/run_primary_timevarying_history_blend.py session
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --blend-bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --h2-bank-root outputs/runs/adaptive_search/primary_history2_repeatability_attempt001
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --h2-summary outputs/runs/adaptive_search/primary_history2_repeatability_summary_attempt001/primary_history2_repeatability_weight.json
+            --session Chewie_20150313 --max-seconds 60 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: timevarying_history_blend_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, timevarying_history_blend_recipe, timevarying_history_blend_runner, timevarying_history_blend_panel_runner, timevarying_history_blend_pilot_banks, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, history2_repeatability_banks, original_history2_repeatability_summary]
+        description: >-
+          Root selected300s internal/330s external,one CPU/2GiB,after the
+          complete5.653899s/466612KiB resource pilot,without opening scores.
+          Fifteen pilot equivalents84.808483s plus a full90s child reserve
+          and sixteen pilot equivalents90.462382s for summary leave34.729136s
+          overhead. Require360s actual allocation time including cleanup.
+          Preserve the completed Chewie_20150313 pilot and require fifteen
+          fresh remaining paths plus fresh parent and summary paths. Each
+          child retains60s internal/90s external with a full90s reserve before
+          dispatch. Stop-only parent alarm permits current-child drain; no
+          retry, renewal, source reads or partial scientific publication.
+          Complete summary must fit inside the selected aggregate bound.
+          Intended bank root primary_timevarying_history_blend_attempt001,
+          summary root primary_timevarying_history_blend_summary_attempt001,
+          parent root primary_timevarying_history_blend_panel_attempt001 under
+          outputs/runs/adaptive_search. Launch remains root-owned.
+        recipe:
+          command: >-
+            timeout 330s python3.12 outputs/tools/run_timevarying_history_blend_panel.py
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --blend-bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --h2-bank-root outputs/runs/adaptive_search/primary_history2_repeatability_attempt001
+            --w-summary outputs/runs/adaptive_search/primary_repeatability_weight_summary_attempt001/primary_repeatability_weight.json
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --h2-summary outputs/runs/adaptive_search/primary_history2_repeatability_summary_attempt001/primary_history2_repeatability_weight.json
+            --bank-root outputs/runs/adaptive_search/primary_timevarying_history_blend_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_timevarying_history_blend_summary_attempt001
+            --max-seconds 300 --out {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 6m}
+      - id: timevarying_history_blend_report
+        type: report
+        format: json
+        inputs: [policy, patience_interpretation, timevarying_history_blend_recipe, timevarying_history_blend_runner, timevarying_history_blend_extractor, timevarying_history_blend_banks, repeatability_weight_banks, repeatability_weight_summary, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, history2_repeatability_banks, original_history2_repeatability_summary]
+        description: >-
+          All16 original-support sessions precede outer selection. Each held
+          session chooses from25 cells using other15 primary increments,
+          equal sessions within animal then equal animals, exact maximum
+          tuple(score,lambda,-abs(s),-s). Preserve negative-sign final ties.
+          Reconstruct final selected and same-lambda reversed predictions,
+          exact scores and literal selected-array equality to each of four
+          original anchors before publishing. Report original W/HW/blend/H2
+          independently selected contrasts, W/HW at schedule lambda and
+          constant half-blend at that lambda, all signed session slopes and
+          schedules, both animal means and every fixed-prediction omission.
+          Exact complete-panel duplication to any one fixed original anchor
+          charges zero; otherwise at most one comparable primary candidate.
+          Similar scores or different per-session anchors are not duplicate
+          proof. Literal-null and alternative-check increments stay zero.
+          Slope reversal is an uncharged descriptive internal contrast,
+          never a new null, gate or tuning objective. Incoming37/patience4
+          and incumbent0.0026788544310999856 were known at adoption; root
+          applies actual completion ordering and strict primary improvement.
+          Original practical margins, coverage, allocation and stopping
+          rules remain in force. Mean mixing coefficient does not match
+          mean prediction contribution or effective capacity; slope sign
+          cannot identify physiological timing or online causality.
+          Summary is generated within the selected300/330s remaining panel
+          after all sixteen session banks complete; preserve its existing output.
+      - id: history_blend_intersection_pilot_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history_blend_intersection_recipe, history_blend_intersection_core, history_blend_intersection_runner, history_blend_intersection_tests, intersection_metadata, primary_banks, repeatability_weight_banks, history_repeatability_weight_banks, intersection_banks, original_intersection_summary, history_blend_banks, original_history_blend_summary]
+        description: >-
+          Adopted actual constant-blend support sensitivity. Before values,
+          reconcile all sixteen original trial/support records with complete
+          metadata002 and the preserved nine HW intersection/random-support
+          views. No new guide joins, support draws or source requalification.
+          Fixed Chewie_20150313 pilot has1038 trials,45 of86 electrodes and
+          nine distinct frozen supports. Read original native LMP minus3:+14
+          and XY0:+14 once; fit only true-pair current-W on each channel-only
+          subset then current fifteen-bin slice. Preserve original Y layout,
+          current scaling/repeatability/trace weighting and ridge arithmetic.
+          Exact current prior-state replay against saved reduced-HW metadata
+          is required. Reuse all five HW predictions per view with exact
+          original target/B/trial/D and correct/wrong-pair score replay;
+          no full-W, full-HW or reduced-HW refit. Score original25 lambda/alpha
+          cells with literal endpoints and full-prediction error cross-terms.
+          Independently replay original full-blend and prior I/R-HW selectors
+          and selected arrays. Pilot includes all fixed descriptive contrasts;
+          scores stay closed and scientific count remains zero until all16.
+          One CPU6GiB and one numerical thread,270s internal/300s external.
+          Intended fresh output is outputs/runs/adaptive_search/primary_history_blend_intersection_attempt001/Chewie_20150313.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/run_primary_history_blend_intersection.py session
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --metadata outputs/runs/source_support/primary_intersection_metadata_attempt002/primary_intersection_metadata.json
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --blend-bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --intersection-bank-root outputs/runs/adaptive_search/primary_intersection_sensitivity_attempt001
+            --intersection-summary outputs/runs/adaptive_search/primary_intersection_sensitivity_summary_attempt001/primary_intersection.json
+            --session Chewie_20150313 --max-seconds 270 --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 6m}
+      - id: history_blend_intersection_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history_blend_intersection_recipe, history_blend_intersection_runner, history_blend_intersection_panel_runner, history_blend_intersection_pilot_banks, intersection_metadata, primary_banks, repeatability_weight_banks, history_repeatability_weight_banks, intersection_banks, original_intersection_summary, history_blend_banks, original_history_blend_summary]
+        description: >-
+          Root selected one CPU6GiB and1440/1470s aggregate bounds after the
+          65.504663287s complete resource-only pilot with all replay flags true.
+          Require at least1500s before actual allocation expiry at dispatch.
+          Preserve its complete
+          Chewie_20150313 bank and require fifteen fresh remaining session
+          paths plus fresh parent/summary paths. Exactly one sequential worker,
+          one numerical thread, unchanged270/300s children and a full300s
+          launch reserve. Parent alarm stops dispatch and lets the current
+          child settle; no retry, renewal, parallel source reads or partial
+          scientific publication. Summary and selected-array replays must fit
+          within the finite bound selected by root. Explicit incoming valid,
+          patience, alternative and literal-null counts are required at launch;
+          adoption evidence was38/patience5/alternatives19/nulls13, not an
+          assumption about future completion order. Fresh roots under
+          outputs/runs/adaptive_search are primary_history_blend_intersection_attempt001,
+          primary_history_blend_intersection_summary_attempt001 and
+          primary_history_blend_intersection_panel_attempt001. The executable
+          full-panel command below was selected after pilot resource review.
+        recipe:
+          command: >-
+            timeout 1470s python3.12 outputs/tools/run_history_blend_intersection_panel.py
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --metadata outputs/runs/source_support/primary_intersection_metadata_attempt002/primary_intersection_metadata.json
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --w-bank-root outputs/runs/adaptive_search/primary_repeatability_weight_control_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --blend-bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --intersection-bank-root outputs/runs/adaptive_search/primary_intersection_sensitivity_attempt001
+            --intersection-summary outputs/runs/adaptive_search/primary_intersection_sensitivity_summary_attempt001/primary_intersection.json
+            --bank-root outputs/runs/adaptive_search/primary_history_blend_intersection_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_history_blend_intersection_summary_attempt001
+            --out {output} --prior-valid 38 --prior-patience 5 --prior-alternatives 19 --prior-nulls 13 --max-seconds 1440
+          resources: {cpus: 1, memory: 6Gi, time_limit: 25m}
+      - id: history_blend_intersection_report
+        type: report
+        format: json
+        inputs: [policy, patience_interpretation, history_blend_intersection_recipe, history_blend_intersection_runner, history_blend_intersection_extractor, history_blend_intersection_banks, intersection_metadata, intersection_banks, original_intersection_summary, history_blend_banks, original_history_blend_summary]
+        description: >-
+          Only all sixteen complete original-session banks permit selected
+          I-blend/R-blend publication. I chooses the original25 cells using
+          other15 equal-animal primary scores and exact(score,lambda,-alpha)
+          ties. R averages all eight correct/wrong SSEs at that I-selected
+          lambda/alpha; no R selector or prediction averaging. Report I/R,
+          I-minus-mean-R and every draw, both contrasts to original full blend,
+          contrasts to own HW at the new selected lambda and to prior selected
+          I/R-HW, including every R draw. Retain full signed session/animal
+          effects, coefficient choices and all fixed-prediction omissions,
+          physical supports, component SSE/error cross-terms and separate
+          current-W/saved-HW covariance and df. Exact selected arrays prove
+          independent global duplicates, including all eight ensemble draws;
+          alpha1 alone, mean-score equality or mixed per-session anchors do
+          not. A new reduced-W endpoint is not automatically duplicate.
+          I then R add at most two distinct nonpromotable stress/alternative
+          comparisons, zero literal nulls and no incumbent reset. Preserve
+          original depth, conditional patience, alternative allocation and
+          resource ceilings. Guide membership does not identify contamination;
+          equal channel count or penalty does not match anatomy or capacity.
+          The complete-only extractor retains individual-draw exceptions and
+          selected-array replay evidence without introducing a new threshold.
+      - id: history_rbf_pilot
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, history_rbf_recipe, history_rbf_core, history_rbf_runner, history_rbf_panel_runner, history_rbf_tests, source_report, primary_banks, history_repeatability_weight_banks]
+        description: >-
+          Fixed complete Chewie_20150313 resource pilot for nonlinear prediction
+          on the qualified weighted four-bin history state. Read native LMP
+          minus3:+14 and XY0:+14 once, preserving original trials and physical
+          channels. Reuse HW normalization, current-only repeatability prior
+          and full-history trace weights. Apply the original105-landmark
+          Nyström operator with the same landmark seeds, fitting-active-column
+          bandwidth rule,1e-8 diagonal regularizer and five ridge penalties.
+          Zero fitting-constant lag coordinates in both kernel inputs, without
+          changing the original HW anchor. Candidate and eight prescribed
+          within-direction whole-trial feature-row permutations share one
+          actual kernel-feature Gram and eigensystem; only cross-products
+          change. Replay original HW state, covariance and all five saved
+          prediction scores after fitting. One CPU6GiB, one numerical thread,
+          600-second internal child cap and900-second external envelope.
+          Session banks are written under primary_history_rbf_attempt001;
+          the wrapper publishes pilot_resources.json in its output directory,
+          conventionally primary_history_rbf_pilot_attempt001. Partial effects
+          remain closed and the pilot adds no scientific count.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history_rbf_panel.py pilot
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --bank-root outputs/runs/adaptive_search/primary_history_rbf_attempt001
+            --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 15m}
+      - id: history_rbf_remaining_banks
+        type: data
+        format: directory
+        inputs: [policy, patience_interpretation, history_rbf_recipe, history_rbf_runner, history_rbf_panel_runner, history_rbf_batch_runner, history_rbf_pilot, primary_banks, history_repeatability_weight_banks, history_repeatability_weight_summary, capacity_banks, original_capacity_summary, history_blend_banks, original_history_blend_summary]
+        description: >-
+          Preserve the complete fixed pilot and finish exactly fifteen fresh
+          original-session banks with unchanged candidate and eight controls.
+          Root-selected measured-pilot resource plan is one worker/one numerical
+          thread,1CPU/6GiB/35minutes on normal CPU_SKU:7502, no GPU or requeue.
+          The aggregate internal deadline is1980seconds and external envelope
+          2040seconds, with at most10seconds for timeout termination. The
+          implementation retains600/900s child bounds and a900-second dispatch
+          reserve. The preserved pilot plus fifteen fresh banks yield the same
+          sixteen-session panel. No duplicate pending work, automatic retries
+          or partial-panel score release; all original depth, patience, control
+          allocation, resource and evidence limits apply. The fixed sbatch
+          script writes primary_history_rbf_remainder_attempt001 as wrapper
+          output and primary_history_rbf_summary_attempt001 as the complete
+          summary; the recipe output is the wrapper directory containing its
+          remaining_panel.json and references to all complete session banks.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 2040s
+            python3.12 outputs/tools/run_primary_history_rbf_panel.py remainder
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --k-bank-root outputs/runs/adaptive_search/primary_capacity_attempt001
+            --blend-bank-root outputs/runs/adaptive_search/primary_history_blend_attempt001
+            --hw-summary outputs/runs/adaptive_search/primary_history_repeatability_weight_summary_attempt002/primary_history_repeatability_weight.json
+            --k-summary outputs/runs/adaptive_search/primary_capacity_summary_attempt001/primary_capacity.json
+            --blend-summary outputs/runs/adaptive_search/primary_history_blend_summary_attempt001/primary_history_blend.json
+            --bank-root outputs/runs/adaptive_search/primary_history_rbf_attempt001
+            --summary-out outputs/runs/adaptive_search/primary_history_rbf_summary_attempt001
+            --out {output}
+            --workers 1 --max-seconds 1980
+          resources: {cpus: 1, memory: 6Gi, time_limit: 35m}
+      - id: history_rbf_report
+        type: report
+        format: json
+        inputs: [policy, patience_interpretation, history_rbf_recipe, history_rbf_runner, history_rbf_extractor, history_rbf_remaining_banks, history_rbf_banks, history_repeatability_weight_banks, history_repeatability_weight_summary, capacity_banks, original_capacity_summary, history_blend_banks, original_history_blend_summary]
+        description: >-
+          Complete sixteen-session HW105 and mean-eight-control evidence only.
+          Other-fifteen-session equal-animal primary scores select candidate
+          lambda with the original stronger-penalty exact tie; every control
+          uses that lambda and averages correct/wrong SSE rather than predictions.
+          Replay all new saved scores using the original time-fast Y/B layout,
+          both original HW/K selectors and their complete five-penalty arrays,
+          and the original25-cell blend selector with its saved selected arrays.
+          Report candidate/control, each control draw, original selected HW/K/blend
+          contrasts and descriptive HW/K matched-lambda contrasts, both animals,
+          every session and within-animal omission, and unchanged0.01/0.005 gates.
+          Global duplicate checks require literal equality across all sixteen
+          selected candidate predictions to one same fixed anchor or baseline;
+          control duplication additionally requires every one of the eight draws.
+          Candidate first then mean control add at most two distinct valid
+          comparisons. Only the control earns null/alternative credit and only
+          a strict comparable candidate primary improvement may reset patience.
+          Existing independent-penalty blend restrictions remain untouched.
+          This tests nonlinear prediction on the historical state and conditional
+          training-pair correspondence, not specifically cross-lag interactions,
+          neural mechanism or matched capacity against linear HW. The full
+          summary and complete-only extractor do not authorize promotion,
+          stopping, new data access or a conditional spike follow-up.
+      - id: history_pls_pilot
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, history_pls_recipe, history_pls_core, history_pls_runner, history_pls_panel_runner, history_pls_tests, source_report, primary_banks, history_repeatability_weight_banks]
+        description: >-
+          Fixed Chewie_20150313 resource-only pilot for at most two successive
+          regression-deflation components on the original weighted HW input.
+          Preserve original preprocessing, native XY, baseline, complete trials
+          and every original five-penalty HW score. Thin cross-covariance SVD
+          selects each direction with the fixed numerical-zero and exact-tie
+          conventions; input scores deflate both inputs and targets. Apply
+          stored sequential input deflation to evaluation rows, center scores
+          by fitting means and ridge-fit original residual targets with the
+          original five penalties. Each of eight fixed within-direction
+          whole-trial target-label controls relearns the entire supervised
+          projection and its shuffled-target ridge head. Realized capacity
+          can differ; no shared-Gram claim. Valid fixed rank-zero/rank-one
+          branches are retained; numerical failures receive no trial credit.
+          One CPU6GiB, one numerical thread,600s internal child bound and900s
+          external envelope. Keep pilot effects closed; resources/support and
+          replay determine a separately selected remaining-panel resource plan.
+          Banks use primary_history_pls_attempt001 and the wrapper conventionally
+          writes primary_history_pls_pilot_attempt001/pilot_resources.json.
+        recipe:
+          command: >-
+            python3.12 outputs/tools/run_primary_history_pls_panel.py pilot
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --bank-root outputs/runs/adaptive_search/primary_history_pls_attempt001
+            --out {output}
+          resources: {cpus: 1, memory: 6Gi, time_limit: 15m}
+      - id: history_pls_remaining_banks
+        type: report
+        format: directory
+        inputs: [policy, history_pls_recipe, history_pls_runner, history_pls_panel_runner, history_pls_batch_runner, history_pls_pilot, primary_banks, history_repeatability_weight_banks, history_repeatability_weight_summary, capacity_banks, original_capacity_summary, history_blend_banks, original_history_blend_summary, covariance_svd_banks, original_covariance_svd_summary, history_rbf_banks, original_history_rbf_summary]
+        description: >-
+          Preserve the complete fixed pilot and fit exactly fifteen fresh
+          original sessions. Pilot wrapper54.552643s/child52.199735s and
+          peak434480KiB support one single-thread worker,1CPU6GiB35minutes,
+          normal CPU_SKU:7502, noGPU/no-requeue. Fifteen wrapper durations
+          plus900s terminal-child reserve total1718.29s; selected1980s
+          internal deadline adds261.71s allowance. External2040s plus10s
+          termination fits2100s allocation. Child limits remain600/900s;
+          no dispatch without its full900s reserve, no retries or partial
+          score release. The exact batch command writes the fresh wrapper
+          primary_history_pls_remainder_attempt001 and complete summary
+          primary_history_pls_summary_attempt001. All sixteen sessions and
+          original/new reference replays are required for release.
+        recipe:
+          command: bash outputs/tools/run_primary_history_pls_remainder.sbatch
+          resources: {cpus: 1, memory: 6Gi, time_limit: 35m}
+      - id: history_pls_report
+        type: report
+        format: json
+        inputs: [policy, patience_interpretation, history_pls_recipe, history_pls_runner, history_pls_extractor, history_pls_remaining_banks, history_pls_banks, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, covariance_svd_banks, original_covariance_svd_summary, history_rbf_banks, original_history_rbf_summary]
+        description: >-
+          Complete sixteen-session evidence after the selected remaining panel.
+          Original outer-session primary selection chooses the candidate
+          penalty; all controls use it and average correct/wrong SSE rather
+          than predictions. Replay original HW and blend selectors, all saved
+          new scores and exact support. Report both animals, all sessions,
+          every fixed-prediction omission and all eight control contrasts.
+          Independent selected HW and blend anchor improvement, plus original
+          absolute0.01/0.005 gates, govern interpretation; matching nominal
+          penalty alone does not match shrinkage or capacity. Literal complete
+          selected-array equality to the same original-support baseline/HW/
+          blend/covariance-SVD/HW105 panel determines duplicate charges.
+          Candidate then mean control add at most two valid comparisons;
+          only the control earns null/alternative credit and only a strict
+          comparable primary improvement resets patience. Preserve incoming
+          count42/patience9 and all original ceilings. No promotion, rank-grid
+          extension, future-session access or mechanistic follow-up is implied.
+      - id: history_pls_figure
+        type: figure
+        format: directory
+        inputs: [history_pls_report, history_pls_plotter]
+        description: >-
+          PNG/SVG and24-row scalar CSV in outputs/figures/primary_history_pls.
+          Reads only the complete bounded compact PLS report, never banks or
+          source arrays. Both animal summaries and equal-animal means compare
+          HW, W/HW blend, PLS and mean eight full-target controls with original
+          margins. Independent reference penalties and varying effective
+          flexibility are disclosed; no confidence interval or population claim.
+        recipe:
+          command: python3.12 -B outputs/tools/plot_primary_history_pls.py
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: history_pls_basis_pilot
+        type: report
+        format: directory
+        inputs: [policy, patience_interpretation, history_pls_basis_recipe, history_pls_basis_core, history_pls_basis_runner, history_pls_basis_panel_runner, history_pls_basis_tests, source_report, primary_banks, history_repeatability_weight_banks, history_pls_banks, history_pls_report]
+        description: >-
+          Fixed Chewie_20150313 resource-only pilot. Reuse all stored shuffled
+          PLS projections literally; restore only the native true-target ridge
+          head. Every old candidate/full-target head at all five penalties must
+          replay exactly before new scoring release. Reuse HW input state,
+          full targets, baseline, channels/trials and original candidate selector.
+          No new projection, components, grid, normalization or selector. Reports
+          resources/replay only; all new effects stay closed until full16 panel.
+          One CPU6GiB, one numerical thread,600s child internal/900s external;
+          fresh primary_history_pls_basis_attempt001 bank and
+          primary_history_pls_basis_pilot_attempt001/pilot_resources.json.
+          Remaining-panel resources are selected only after the measured pilot.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/run_primary_history_pls_basis_panel.py pilot
+            --source "$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source"
+            --trial-table outputs/runs/source_support/attempt002/trial_identity.csv
+            --scalar-bank-root outputs/runs/adaptive_search/primary_reference_attempt001
+            --hw-bank-root outputs/runs/adaptive_search/primary_history_repeatability_weight_control_attempt002
+            --pls-bank-root outputs/runs/adaptive_search/primary_history_pls_attempt001
+            --bank-root outputs/runs/adaptive_search/primary_history_pls_basis_attempt001
+            --out outputs/runs/adaptive_search/primary_history_pls_basis_pilot_attempt001
+          resources: {cpus: 1, memory: 6Gi, time_limit: 20m}
+      - id: history_pls_basis_remaining_banks
+        type: report
+        format: directory
+        inputs: [history_pls_basis_pilot, history_pls_basis_remainder_runner, history_pls_basis_runner, history_pls_basis_panel_runner, history_pls_banks, history_pls_report, primary_banks, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, covariance_svd_banks, original_covariance_svd_summary, history_rbf_banks, original_history_rbf_summary, capacity_banks, original_capacity_summary]
+        description: >-
+          Selected after22.868s resource pilot with all literal replays. Preserve
+          Chewie_20150313 and run exactly fifteen fresh original sessions, one
+          numerical worker, then complete all16 summary/replay. Fifteen pilot
+          wrapper times plus900s child reserve total1243.025s;1500s internal
+          bound leaves256.975s for variability and summary.1560s external plus
+          10s termination fits the owned allocation. No effect release on
+          partial completion; no retries or new resource choice in the runner.
+          Fresh primary_history_pls_basis_remainder_attempt001 and
+          primary_history_pls_basis_summary_attempt001 preserve earlier paths.
+        recipe:
+          command: bash outputs/tools/run_primary_history_pls_basis_remainder.sh
+          resources: {cpus: 1, memory: 6Gi, time_limit: 28m}
+      - id: history_pls_basis_report
+        type: report
+        format: json
+        inputs: [policy, patience_interpretation, history_pls_basis_recipe, history_pls_basis_core, history_pls_basis_runner, history_pls_basis_panel_runner, history_pls_basis_extractor, history_pls_basis_pilot, history_pls_basis_remaining_banks, history_pls_banks, history_pls_report, history_repeatability_weight_banks, history_repeatability_weight_summary, history_blend_banks, original_history_blend_summary, covariance_svd_banks, original_covariance_svd_summary, history_rbf_banks, original_history_rbf_summary, capacity_banks, original_capacity_summary]
+        description: >-
+          Full16-session completion/replay required before release. Select the
+          remaining15 resources from the resource-only pilot, preserve its bank,
+          and keep attempts fresh. New mean-loss eight-draw basis-only heads use
+          the already completed paired PLS outer-session lambda10, never a new
+          selector. Report paired P minus mean B and mean B minus full-target F
+          separately with all matched draws and animal/session/omission screens.
+          P versus B has differing effective capacity; each B/F draw shares the
+          exact projected Gram. Compare literal selected arrays globally to one
+          same original-support panel and draw-for-draw to old F and covariance-
+          SVD ensembles before count credit. A distinct complete mean diagnostic
+          adds at most one alternative comparison, zero literal-null/candidate
+          credit and no incumbent reset. Incoming44/patience11 remains until
+          full valid release; no stop or promotion is automatic. Preserve all
+          original margins/budgets and the separate unadopted penalty amendment.
+      - id: history_pls_basis_figures
+        type: report
+        format: directory
+        inputs: [history_pls_basis_report, history_pls_basis_extractor, history_pls_basis_plotter]
+        description: >-
+          Complete compact scalar evidence only. PNG/SVG and30-row absolute
+          CSV compare HW, W/HW blend, paired PLS, basis-only true heads and
+          full-target controls; separate PNG/SVG and12-row contrast CSV show
+          P-minus-B and B-minus-F. Original candidate margins on absolute
+          endpoints; zero directional reference on conditional contrasts.
+          Two animal summaries are not population confidence intervals;
+          eight shuffled draws are not biological replicates. P/B need not
+          have equal capacity, while matched B/F draws share their Gram.
+        recipe:
+          command: python3.12 -B outputs/tools/plot_primary_history_pls_basis.py
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+  final_analysis:
+    name: Fix the complete scientific procedure before future-session access
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selected_policy, from: ../adaptive_search.selected_policy}
+      - {id: development_report, from: ../adaptive_search.development_report}
+    outputs:
+      - {id: final_plan, type: report, inputs: [policy, selected_policy, development_report]}
+  future_session_evaluation:
+    name: Evaluate the final analysis once on compatible unseen whole sessions
+    description: >-
+      No source is currently available. Freeze source/claim boundaries before
+      outcomes; preserve one complete opening and report development-only if
+      future sessions are absent. Same-animal sessions do not add animals.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: final_plan, from: ../final_analysis.final_plan}
+    outputs:
+      - {id: future_report, type: report, inputs: [datasets, final_plan]}
+  population_explanation:
+    name: Conditionally explain fixed LFP predictions through spike-population activity
+    description: >-
+      Only after the primary development result is fixed and the separate
+      follow-up choices/margins/budget are specified. Fit latents and maps
+      within allowed training data; never rescue a failed kinematic primary.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: selected_policy, from: ../adaptive_search.selected_policy}
+      - {id: development_report, from: ../adaptive_search.development_report}
+    outputs:
+      - {id: explanation_report, type: report, inputs: [goal, selected_policy, development_report]}

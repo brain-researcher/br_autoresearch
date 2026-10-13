@@ -1,0 +1,184 @@
+# Preserved scientific program; no successor is selected by the adopted closeout.
+# No completed scientific finding or held-out access is asserted.
+version: "0.0.14"
+name: EP16 matched cross-session failure signatures
+description: >-
+  On October 6 the scientist adopted support_or_uncertainty_prevents_an_answer
+  for the original three-held-out-participant claim. Completed structural and
+  analysis-definition work is retained. This is a support disposition without
+  a neural result; the recorded recipes do not authorize an unchanged support
+  rerun, case-series successor or neural opening.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: dataset_contract, type: data, source: DATASETS.md}
+  - {id: search_policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: component_design, type: data, source: outputs/component_details.md}
+  - {id: schedule_support_definition, type: data, source: outputs/config/schedule_support.json}
+  - {id: prospective_analysis_choices, type: data, source: outputs/config/analysis_definition.json}
+outputs:
+  - id: final_report
+    from: scientific_report.final_report
+analyses:
+  structural_support:
+    name: Outcome-blind target-schedule support and six-three participant assignment
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: schedule_support_definition, from: ../schedule_support_definition}
+    outputs:
+      - id: source_format
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy]
+        recipe:
+          command: >-
+            python outputs/code/inspect_structural_format.py
+            --source-root "$EP16_SOURCE_ROOT"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 256Mi, time_limit: 5m}
+      - id: structural_fields
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy]
+        recipe:
+          command: >-
+            python outputs/code/extract_structural_metadata.py
+            --source-root "$EP16_SOURCE_ROOT"
+            --participants T2 T3 T5 T6 T7 T8 T9 T10 T11
+            --scratch-dir "$EP16_SCRATCH_DIR"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 25m}
+      - {id: support_and_roles, type: report, format: json}
+      - id: schedule_design_description
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy]
+        recipe:
+          command: >-
+            python3 outputs/code/describe_schedule_design.py
+            --structural-jsonl outputs/runs/structural_support/20261003-fields_all01/structural_sessions.jsonl
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: target_storage_headers
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy]
+        recipe:
+          command: >-
+            python3 outputs/code/inspect_target_storage.py
+            --source-root "$EP16_SOURCE_ROOT"
+            --scratch-dir "$EP16_SCRATCH_DIR"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: observed_schedule_description
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy]
+        recipe:
+          command: >-
+            python3 outputs/code/describe_observed_schedules.py
+            --structural-jsonl outputs/runs/structural_support/20261003-fields_all01/structural_sessions.jsonl
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: conditional_numerical_support
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy, schedule_support_definition]
+        recipe:
+          command: >-
+            python3 outputs/code/apply_conditional_schedule_support.py
+            --structural-jsonl outputs/runs/structural_support/20261003-fields_all01/structural_sessions.jsonl
+            --config outputs/config/schedule_support.json
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+  analysis_definition:
+    name: Define block packets, numerical choices, quality assumptions and information exposure
+    inputs:
+      - {id: support_and_roles, from: ../structural_support.support_and_roles}
+      - {id: search_policy, from: ../search_policy}
+      - {id: component_design, from: ../component_design}
+      - {id: prospective_analysis_choices, from: ../prospective_analysis_choices}
+    outputs:
+      # Future complete specification; the partial prospective input does not
+      # supply participant roles, all margins, reader isolation or score access.
+      - {id: analysis_specification, type: report, format: json}
+  synthetic_checks:
+    name: Contract-required score, recovery, missingness and leakage examples
+    inputs:
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: synthetic_report, type: report, format: json}
+  local_and_transport:
+    name: Development local-null-transport scores, learning curves and near-long contrasts
+    inputs:
+      - {id: support_and_roles, from: ../structural_support.support_and_roles}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: synthetic_report, from: ../synthetic_checks.synthetic_report}
+      - {id: dataset_contract, from: ../dataset_contract}
+    outputs:
+      - {id: benchmark_report, type: report, format: json}
+  recording_transform:
+    name: Fit identity-aware and matched-random transformations from recording summaries only
+    inputs:
+      - {id: support_and_roles, from: ../structural_support.support_and_roles}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: synthetic_report, from: ../synthetic_checks.synthetic_report}
+      - {id: dataset_contract, from: ../dataset_contract}
+    outputs:
+      - {id: transformation_specification, type: report, format: json}
+  recording_emulation:
+    name: Evaluate fixed recording transforms against observed local and transport changes
+    inputs:
+      - {id: transformation_specification, from: ../recording_transform.transformation_specification}
+      - {id: benchmark_report, from: ../local_and_transport.benchmark_report}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+    outputs:
+      - {id: emulation_report, type: report, format: json}
+  recalibration:
+    name: Matched-exposure unlabelled and 16-32-64-label adaptation comparisons
+    inputs:
+      - {id: benchmark_report, from: ../local_and_transport.benchmark_report}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: synthetic_report, from: ../synthetic_checks.synthetic_report}
+      - {id: dataset_contract, from: ../dataset_contract}
+    outputs:
+      - {id: recalibration_report, type: report, format: json}
+  required_controls:
+    name: Registered null, channel, feature, reciprocal and influence sensitivities
+    inputs:
+      - {id: benchmark_report, from: ../local_and_transport.benchmark_report}
+      - {id: emulation_report, from: ../recording_emulation.emulation_report}
+      - {id: recalibration_report, from: ../recalibration.recalibration_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: control_report, type: report, format: json}
+  adaptive_panel_search:
+    name: Existing 40-96 complete-panel search and development-only panel selection
+    inputs:
+      - {id: benchmark_report, from: ../local_and_transport.benchmark_report}
+      - {id: emulation_report, from: ../recording_emulation.emulation_report}
+      - {id: recalibration_report, from: ../recalibration.recalibration_report}
+      - {id: control_report, from: ../required_controls.control_report}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: selected_panel, type: report, format: json}
+  held_out_evaluation:
+    name: One joint three-person evaluation including the registered time-partition profile route
+    inputs:
+      - {id: selected_panel, from: ../adaptive_panel_search.selected_panel}
+      - {id: support_and_roles, from: ../structural_support.support_and_roles}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: held_out_report, type: report, format: json}
+  scientific_report:
+    name: Report all operational signatures, unresolved comparisons and claim limits
+    inputs:
+      - {id: selected_panel, from: ../adaptive_panel_search.selected_panel}
+      - {id: held_out_report, from: ../held_out_evaluation.held_out_report}
+      - {id: goal, from: ../goal}
+    outputs:
+      - {id: final_report, type: report, format: markdown}

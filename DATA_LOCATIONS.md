@@ -123,7 +123,7 @@ flattening its subtrees.
 | --- | --- | --- | ---: | ---: |
 | `asset_ep03_neuroeffect_spatial_sources` | EP03 | `neuroeffect_spatial_sources_20260917T200750Z` | 44.29 GB | `2700` |
 | `asset_ep03_neuroeffect_promotion_control` | EP03 | `neuroeffect_spatial_promotion_control` | 8.9 KB | `2700` |
-| `asset_ep04_laion_mixed_role` | EP04, EP21 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
+| `asset_ep04_laion_mixed_role` | EP04, EP21, EP22 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
 | `asset_ep04_laion_raw_stimuli_dua` | EP04; EP21 inventory-only pending DUA | `laion_fmri_raw_stimuli_dua_20260922` | 3.42 GB | `0700` |
 | `asset_ep09_ep10_ep11_seu_a1876` | EP09–EP11 | `seu_a1876_zenodo_13944322` | 3.41 GB | `2500` |
 | `asset_ep10_seu_optional_bouton` | EP10 | `seu_a1876_optional_bouton_zenodo_13944322` | 1.42 GB | `2550` |
@@ -148,6 +148,13 @@ EP21, including raw images, derived features, neural outcomes,
 reconstructions, and summaries. The NSD and THINGS fMRI sources proposed for
 the inter-site module are not present as EP21 assets in this inventory. The
 EP04 legacy Scratch tree remains EP04-only.
+
+EP22 binds the same LAION bytes. On 2026-10-12 the scientist reassigned the
+371-image OOD pool from EP04, which closed without an audit, to EP22 as its
+one-shot confirmation set. Its use still depends on the outcome-blind exposure
+review and the corrected OOD embedding rows required by
+[EP22's DATASETS](episode22_geometry_gap_decomposition/DATASETS.md#sealed-confirmation-requirements).
+The OOD pool remains closed to EP21.
 
 AJILE12 dominates this tree. Its existing `ACQUISITION_COMPLETE_UTC`,
 `VERIFIED_COUNT_BYTES`, and `ASSET_MANIFEST.json` records cover 55 assets and

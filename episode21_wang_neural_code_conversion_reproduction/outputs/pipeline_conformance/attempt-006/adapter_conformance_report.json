@@ -1,0 +1,475 @@
+{
+  "adapter_static_audit": {
+    "device_or_executor_constructor_present": false,
+    "file_or_network_io_call_present": false,
+    "forbidden_call_count": 0,
+    "model_or_array_import_present": false,
+    "standard_library_import_roots": [
+      "__future__",
+      "dataclasses",
+      "hashlib",
+      "json",
+      "math",
+      "re",
+      "typing"
+    ]
+  },
+  "astra_analysis_id": "pipeline_conformance",
+  "attempt": 6,
+  "bindings": {
+    "atomic_publication_helper": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/tools/audit_public_method_semantics.py",
+      "regular_file": true,
+      "sha256": "122f44866ba95a6eddf24a79d7a093dd4d748ed82b5f9fe09dec443aadc5ee46",
+      "single_link": true,
+      "size_bytes": 45728
+    },
+    "execution_adapter": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/tools/execution_adapter.py",
+      "regular_file": true,
+      "sha256": "2e269d5fe53933523871a613e84ee621c6058b05a769085c943166cae70b8ed8",
+      "single_link": true,
+      "size_bytes": 57102
+    },
+    "neutral_conformance_attempt_5": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/attempt-005/neutral_conformance_report.json",
+      "regular_file": true,
+      "sha256": "54fb25d6ffeb8197fde920f631c10258e1d2c82709518d4c2e958d8da2e4a187",
+      "single_link": true,
+      "size_bytes": 11908
+    },
+    "protocol_table": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/PROTOCOL_TABLE.yaml",
+      "regular_file": true,
+      "sha256": "c12b12b172c5e9916c4843d1b287b16c5831a29736c97a0f1cca2ad66bb68f82",
+      "single_link": true,
+      "size_bytes": 27589
+    },
+    "public_method_semantics_attempt_19": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/attempt-019/public_method_semantics_audit.json",
+      "regular_file": true,
+      "sha256": "3840e33fe22076607ff4c4f8e91bc30b781284f8cd2e804df4055137d2ee1b74",
+      "single_link": true,
+      "size_bytes": 20511
+    }
+  },
+  "boundary": {
+    "array_or_tensor_created": false,
+    "device_created": false,
+    "empirical_or_neural_value_accessed": false,
+    "ep04_or_legacy_scratch_accessed": false,
+    "executor_created": false,
+    "feature_or_scoring_handoff_opened": false,
+    "model_or_checkpoint_read": false,
+    "ood_payload_accessed": false,
+    "optimizer_or_inference_executed": false,
+    "source_archive_reopened": false
+  },
+  "completed_at": "2026-09-30T03:44:44+00:00",
+  "contexts_exercised": {
+    "empirical_context_accepted": false,
+    "empirical_scheduler_binding_authenticated": false,
+    "fixture_factor_cooccurrence_defines_an_allowed_protocol_combination": false,
+    "later_execution_authorization_present": false,
+    "real_ood_identifier_inventory_authenticated": false,
+    "real_protocol_lock_present": false,
+    "synthetic_only": true,
+    "synthetic_receipts_are_authenticated_handoff_evidence": false,
+    "synthetic_worker_count_matches_explicit_runner_limit": true
+  },
+  "current_gate": {
+    "external_site_feature_handoff": "absent",
+    "external_site_scoring_handoff": "absent",
+    "laion_regular_feature_handoff": "absent",
+    "laion_regular_scoring_handoff": "absent",
+    "protocol_lock": "absent"
+  },
+  "execution": {
+    "hostname": "sh04-ln04.stanford.edu",
+    "kind": "attended-login",
+    "max_workers": 1,
+    "slurm_allocation_present": false,
+    "synchronous_foreground_required": true
+  },
+  "negative_fixture_count": 49,
+  "negative_fixture_results": [
+    {
+      "error_code": "E_EMPIRICAL_CONTEXT_UNAVAILABLE",
+      "label": "absent_empirical_lock_and_authorization",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_EMPIRICAL_CONTEXT_UNAVAILABLE",
+      "label": "synthetic_receipt_as_empirical",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_PAIR_TABLE",
+      "label": "wrong_pair_table",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_PAIR_MEMBERSHIP",
+      "label": "unlisted_pair_membership",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_PAIR_DIRECTION",
+      "label": "same_source_target",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_INTEGER",
+      "label": "worker_bool",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_INTEGER",
+      "label": "worker_string",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_INTEGER",
+      "label": "worker_zero",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_INTEGER",
+      "label": "worker_negative",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_WORKER_ALLOCATION",
+      "label": "worker_oversubscription",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_WORKER_ALLOCATION",
+      "label": "worker_underallocation",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ROLE_OVERLAP",
+      "label": "role_overlap",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_RESPONSE_ALIGNMENT",
+      "label": "same_count_substituted_response_row",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_RESPONSE_ALIGNMENT",
+      "label": "permuted_response_rows",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_FEATURE_ALIGNMENT",
+      "label": "permuted_feature_images",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_FEATURE_ALIGNMENT",
+      "label": "same_count_substituted_feature_row",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_LAYER_SET",
+      "label": "missing_content_layer",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PRESENTATION_ALIGNMENT",
+      "label": "missing_authenticated_repeat",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PRESENTATION_ALIGNMENT",
+      "label": "extra_unauthenticated_repeat",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALIGNMENT_MISMATCH",
+      "label": "local_repetition_cannot_replace_alignment_key",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_LEAKAGE",
+      "label": "alpha_policy_names_tau_test",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_LEAKAGE",
+      "label": "alpha_dotted_policy_names_tau_test",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_ROLE",
+      "label": "alpha_fit_role_tau_test",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_LEAKAGE",
+      "label": "alpha_declares_tau_test_or_ood_use",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SHA256",
+      "label": "selected_alpha_missing_receipt",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_BINDING",
+      "label": "alpha_value_differs_from_context_declaration",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_ALPHA_BINDING",
+      "label": "alpha_numeric_representation_differs_from_context_declaration",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SEAL",
+      "label": "direct_context_bad_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN",
+      "label": "tampered_content_plan",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN_BINDING",
+      "label": "resealed_self_consistent_content_plan",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN",
+      "label": "content_plan_negative_tail_dimension",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN",
+      "label": "content_plan_bool_feature_dimension",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN_BINDING",
+      "label": "resealed_arbitrary_response_rows_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_PLAN_BINDING",
+      "label": "resealed_arbitrary_feature_rows_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN_BINDING",
+      "label": "resealed_brain_group_reorder",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN",
+      "label": "brain_plan_bool_index",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN",
+      "label": "brain_plan_float_index",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN",
+      "label": "brain_plan_nonlist_group_container",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN",
+      "label": "brain_plan_falsey_nonlist_aligned_container",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN_BINDING",
+      "label": "resealed_arbitrary_source_rows_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_BRAIN_PLAN_BINDING",
+      "label": "resealed_arbitrary_target_rows_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SUMMARY_BINDING",
+      "label": "resealed_self_consistent_summary",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SUMMARY_BINDING",
+      "label": "resealed_summary_plan_authority_seal",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SHAPE",
+      "label": "ordered_rows_zero_tail_dimension",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_SHAPE",
+      "label": "feature_rows_bool_tail_dimension",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_CONTENT_RESPONSE_ALIGNMENT",
+      "label": "wrong_content_participant",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_TYPE",
+      "label": "duck_typed_alpha",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_TYPE",
+      "label": "duck_typed_content_plan",
+      "result": "rejected"
+    },
+    {
+      "error_code": "E_TYPE",
+      "label": "subclassed_content_plan",
+      "result": "rejected"
+    }
+  ],
+  "next_action": "obtain scientist and steward dispositions plus authenticated role-filtered structural handoffs; only then build and independently validate a real lock and later execution authorization before enabling any empirical adapter entrypoint",
+  "outcome": "passed_synthetic_adapter_checks_with_protocol_and_access_blockers",
+  "process_id": 34188,
+  "protocol_effect": {
+    "empirical_access_authorized": false,
+    "empirical_readiness": false,
+    "pair_id_format_adopted": false,
+    "protocol_lock_emitted": false,
+    "scientific_choice_adopted": false,
+    "source_study_alpha_ported": false
+  },
+  "retained_blockers": [
+    "scientist protocol choices remain unresolved",
+    "LAION DUA license and Sherlock risk disposition remain unresolved",
+    "authenticated participant role split overlap repetition beta QC and mask metadata are absent",
+    "role-filtered regular-only feature and scoring handoffs are absent",
+    "pair IDs repetition disposition alpha policy and scientific settings are not locked",
+    "critical model runtime and dependency bindings remain incomplete",
+    "later empirical execution authorization is absent"
+  ],
+  "schema_version": "ep21.adapter_conformance_report.v1",
+  "scope": "synthetic_metadata_only_execution_adapter_conformance",
+  "started_at": "2026-09-30T03:44:44+00:00",
+  "synthetic_fixtures": {
+    "dynamic_rows_3_image_average": {
+      "alpha_binding_kind": "fixed_predeclared",
+      "alpha_value_omitted_from_report": true,
+      "content_dynamic_buffer_shapes": {
+        "synthetic-layer-conv": [
+          3,
+          8,
+          4,
+          4
+        ],
+        "synthetic-layer-fc": [
+          3,
+          16
+        ]
+      },
+      "fit_unit_count": 3,
+      "paired_source_order": [],
+      "paired_target_order": [],
+      "source_group_sizes": [
+        2,
+        2,
+        2
+      ],
+      "source_presentation_count": 6,
+      "summary": {
+        "brain_fit_unit_count": 3,
+        "brain_plan_seal": "ae39baf678f5f8f0d22ec975958251ce4110c4431de7156d60377bf433ef7427",
+        "content_plan_seal": "cc7b3e7c28fd125f6c7092abbc6fe4359cee9296fa23d9001092b326c3e26c94",
+        "content_row_count": 3,
+        "context_schema": "ep21.synthetic_adapter_fixture.v1",
+        "context_seal": "d5cf7a0f58aac218d4be38ceaf61e679be58b6708b12d5b15cf0489d03566ee2",
+        "empirical_capable": false,
+        "explicit_worker_limit": 1,
+        "max_workers": 1,
+        "pair_id": "opaque-fixture-pair-7",
+        "pair_seal": "b10fba501d82484ff8201c9d7299d28715d29b399aed066737497f7721600a29",
+        "repetition_mode": "image_average_before_fit",
+        "roles_seal": "83f30ff989be46b51e83f5f2cd9855de2e540d220b6097e77ee0bdacfe1c7443",
+        "schema": "ep21.synthetic_adapter_summary.v1",
+        "settings_sha256": "0dc3d8b943b64221095dc9381f42180efeeb9344dff72f6fa4221d6d3a2c64ac",
+        "synthetic_only": true,
+        "worker_seal": "f4d6af6b10a8cbf289f620e64b45dab6a32d59400bf609bdcbc9a11835e7ad84"
+      },
+      "synthetic_identifiers_only": true,
+      "target_group_sizes": [
+        1,
+        2,
+        3
+      ],
+      "target_presentation_count": 6
+    },
+    "dynamic_rows_7_authenticated_pairing": {
+      "alpha_binding_kind": "tau_train_only",
+      "alpha_value_omitted_from_report": true,
+      "content_dynamic_buffer_shapes": {
+        "synthetic-layer-conv": [
+          7,
+          8,
+          4,
+          4
+        ],
+        "synthetic-layer-fc": [
+          7,
+          16
+        ]
+      },
+      "fit_unit_count": 6,
+      "paired_source_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "paired_target_order": [
+        1,
+        0,
+        3,
+        2,
+        5,
+        4
+      ],
+      "source_group_sizes": [],
+      "source_presentation_count": 6,
+      "summary": {
+        "brain_fit_unit_count": 6,
+        "brain_plan_seal": "ca434d08021f38b5a449e0ae6df9dc2f5f6177648a82419dc530f65d0877effe",
+        "content_plan_seal": "cece0902b33a5c67c2215b0cd9fade51c594adaa20275f34f531a834de1f10f0",
+        "content_row_count": 7,
+        "context_schema": "ep21.synthetic_adapter_fixture.v1",
+        "context_seal": "000f6e34046f1be25e38fe48ba8fe2ee230cb1a5acec36254108038bef9b8d83",
+        "empirical_capable": false,
+        "explicit_worker_limit": 1,
+        "max_workers": 1,
+        "pair_id": "opaque-fixture-pair-7",
+        "pair_seal": "fb1ecd8acabc4f23c77d38a0671b9ce5495f1eae58c0d8c61c71a7a95733a843",
+        "repetition_mode": "authenticated_cross_subject_pairing",
+        "roles_seal": "07e4926f492f214abc591798ca08a24e702623401e6050d55768e231672fa720",
+        "schema": "ep21.synthetic_adapter_summary.v1",
+        "settings_sha256": "733428da692153ba221d54950c070a253b679d77f53a3d8d52f8a6444f3695fe",
+        "synthetic_only": true,
+        "worker_seal": "c5efd1aaa6a0e380333a563e136d0c4f0530c090ea4bf5fd298b9351f9bc25e5"
+      },
+      "synthetic_identifiers_only": true,
+      "target_group_sizes": [],
+      "target_presentation_count": 6
+    }
+  }
+}

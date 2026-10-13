@@ -1,71 +1,311 @@
-schema_version: ep11.stage0_readiness_status.v1
+schema_version: ep11.stage0_readiness_status.v4
 episode_id: ep11
-run_id: ep11-stage0-20260925T000506Z
-status_utc: 2026-09-25T00:07:54Z
-local_run_status: stage0_active
-registration_status: unregistered
-scientific_status: no_result
-outcome_bearing_development: blocked
+design_version: 2
+phase: stage0_production_qualification
+terminal_status: null
+scientific_status: no_projection_organization_result
+outcome_bearing_search_ready: false
+development_outcome_access: blocked
+real_regional_projection_outcomes_constructed_or_opened: false
 audit_open_count: 0
+development_audit_roles_selected: false
 
-safe_checks_completed:
-  contract_yaml_duplicate_key_parse: pass
-  search_policy_json_schema: pass
-  contract_invariant_checks: pass
-  local_markdown_links: pass
-  git_diff_check: pass
-  quarantine_contract_read: pass
-  source_metadata_workbook_byte_size_and_sha256_match_acquisition_receipt: pass
-  allen_ccfv3_payload_byte_hashes_match_acquisition_receipt: pass
+current_population:
+  resource: Gao_whole_cortex_projectome_Zenodo_16909126
+  source: harmonized_Allen_SSp_tr
+  downloaded_cells: 214
+  unique_fMOST_brain_sample_ID_pairs: 36
+  primary_Axon_and_dendrite_cells: 206
+  Axon_only_sensitivity_cells: 8
+  primary_pairs_retained: 36
+  identity_artifact: outputs/stage0/whole_cortex_ssptr_identity_unit.md
+  identity_result:
+    unique_fMOST_ids: 36
+    unique_provider_sample_ids: 36
+    mapping_between_identifiers: strict_one_to_one
+    established_unit: distinct_whole_brain_sample_pair
+    independent_animal_certification: not_available_in_public_release
+    cross_animal_claim_activation: provider_confirmation_or_official_animal_sample_crosswalk
+    alternative_cross_brain_sample_estimand_requires_explicit_prospective_redesign: true
 
-access_record:
-  allowed_material_read:
-    - repository_contracts_and_manifests
-    - SEU_quarantine_README_checksum_receipt_and_file_metadata
-    - Allen_CCF_quarantine_README_checksum_receipt_and_file_metadata
-  mechanical_bytes_read_without_value_decoding:
-    - Full_morphometry.xlsx_for_SHA256_only
-    - Allen_CCF_annotation_template_and_structure_graph_for_SHA256_only
-  workbook_cells_or_sheet_values_opened_in_this_stage0_run: false
-  morphology_ZIP_contents_opened_in_this_stage0_run: false
-  axonal_geometry_or_projection_summary_visible_in_this_stage0_run: false
-  audit_outcome_visible_in_this_stage0_run: false
+fixed_primary_outcome:
+  contract: outputs/stage0/projection_outcome_contract.yaml
+  contract_status: frozen_outcome_blind_definition_activation_gated
+  object_id: allen_28_named_target_relative_axon_length_composition_v1
+  target_vocabulary: outputs/stage0/allen_target_vocabulary.csv
+  named_anatomical_targets: 28
+  laterality_levels: [ipsilateral, contralateral]
+  fixed_coordinate_count: 56
+  residual_coordinate_count: 0
+  total_projection_mass_role: discarded_by_frozen_normalization
+  transform: ordered_Helmert_ILR_v1_on_each_nonempty_active_set
+  support_measure: counting_measure_over_active_sets_times_face_specific_Hausdorff_measure
+  zero_rule:
+    coordinate_zero: no_positive_length_allocated_under_the_fixed_geometry
+    pseudocount: forbidden
+    all_zero_named_target_length: hard_construction_failure
+  atlas_assets:
+    annotation_25_ccf_2017_nrrd_sha256: c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42
+    structure_graph_1_json_sha256: b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386
+  construction_on_real_SWCs: not_run
 
-readiness_gates:
-  source_acquisition_receipt:
-    state: pass
-  trusted_allow_list_redaction_builder:
-    state: missing
-  authenticated_brain_id_to_independent_animal_mapping:
-    state: missing
-  cell_file_duplicate_and_reconstruction_lineage:
-    state: missing
-  shared_EP09_EP10_EP11_exposure_and_role_ledger:
-    state: missing
-  source_by_animal_position_depth_support_census:
-    state: blocked_on_redacted_metadata_and_identity_mapping
-  current_design_12_development_8_audit_and_precision_support:
-    state: not_evaluable
-  frozen_role_safe_development_view:
-    state: missing
-  evaluator_only_audit_view:
-    state: missing
-  CCF_orientation_axes_spacing_label_and_SEU_transform_binding:
-    state: unvalidated
-  outcome_likelihood_and_model_search_runtime:
-    state: not_started_and_not_needed_to_complete_metadata_handoff
-  identical_observed_and_99_null_controller_compute_profile:
-    state: not_started
+fixed_role_count_design:
+  development_brain_sample_units: 12
+  audit_brain_sample_units: 8
+  unassigned_brain_sample_units: 16
+  identities_selected_or_locked: false
+  alternative_14_development_8_audit_in_v2: false
+  alternative_14_development_8_audit_qualified: false
 
-current_decision:
-  stage0_may_continue_with_tooling_synthetic_checks_and_trusted_handoff: true
-  candidate_may_open_raw_workbook_or_morphology_archives: false
-  source_population_may_be_selected: false
-  development_outcomes_may_be_opened: false
-  terminal_conclusion_reached: false
-  reason: no_valid_source_census_exists_yet_so_insufficient_support_has_not_been_adjudicated
+completed:
+  - targeted_214_cell_download_and_structural_SWC_QC
+  - excluded_provider_projection_class_and_projection_summaries
+  - fixed_primary_reconstruction_scope_to_206_Axon_and_dendrite_cells_subject_to_remaining_completeness_and_truncation_QC
+  - retained_8_Axon_only_cells_as_sensitivity_only
+  - established_36_unique_one_to_one_fMOST_and_provider_sample_units
+  - harmonized_provider_layer_labels_to_one_SSp_tr_source
+  - passed_cortex_aware_12_development_8_audit_support_feasibility
+  - retained_all_206_primary_cells_and_36_brain_sample_pairs_in_geometry
+  - passed_fixed_LineString3D_depth_projection_sensitivity_with_same_boundary
+  - froze_28_named_target_by_bilateral_56_coordinate_outcome_contract
+  - pinned_atlas_assets_target_vocabulary_normalization_and_exact_zero_rules
+  - passed_projection_outcome_constructor_synthetic_fixture
+  - passed_mixed_support_56d_executable_self_test_for_a_production_like_subset
+  - completed_common_random_number_estimator_and_role_count_ceiling_diagnostic
+  - proved_outcome_blind_nested_role_count_frontier_assigns_at_most_33_units_per_depth_convention
+  - repaired_full_family_identifiability_analytic_gradient_optimizer_and_unclipped_log_domain_likelihood
+  - verified_exact_C_zero_and_H_truth_parameter_anchors
+  - passed_prospectively_frozen_R128_three_fresh_population_C_SAA_pilot_gates
+  - retained_A1876_v1_closure_as_historical_only
 
-next_required_external_action:
-  owner: trusted_steward_or_permission_separated_builder
-  action: authenticate_identity_then_emit_the_content_addressed_views_in_redacted_metadata_contract
-  candidate_agent_cannot_substitute_by_opening_mixed_role_source: true
+qualification_evidence:
+  geometry_support:
+    status: passed_support_only_feasibility_no_role_assignment
+    feasible_condition: 500um_pial_geodesic_and_0_10_normalized_depth
+  mixed_support_56d:
+    scope: outputs/stage0/mixed_support_56d_qualification_scope.yaml
+    implementation: outputs/stage0/tools/run_mixed_support_56d_qualification.py
+    report: outputs/stage0/mixed_support_56d_qualification_report.md
+    summary: outputs/stage0/mixed_support_56d_qualification_summary.json
+    execution: 20_replicates_per_condition_280_total_synthetic_comparisons
+    status: revise_zero_reusable_group_recovery_at_maximum_tested_effect
+    execution_applies_to_current_factorial_implementation: false
+    execution_role: pre_repair_diagnostic_superseded_for_recovery_qualification
+    qualification_class: production_like_subset_not_full_registered_qualification
+    numerical_validity_rate: 1.0
+    continuous_route_eligibility_rate: 1.0
+    no_group_false_reusable_route_rate: 0.0
+    strong_group_recovery_rate: 0.0
+    current_factorial_implementation_self_test: passed
+    current_unit_heldout_crossfit_self_test: passed
+    current_group_signature_protocol: conditional_on_frozen_C_training_backbone_then_shared_by_D_H
+    current_noise_protocol: C_equal_unit_crossfit_selection_then_identical_value_frozen_into_H
+    current_effect_calibration_status: projected_oracle_proxy_not_full_registered_family_oracle
+    current_factorial_implementation_recovery_run: crossfit_smoke_completed_revise_not_registered_qualification
+    current_smoke_report: outputs/stage0/mixed_support_56d_crossfit_smoke_report.md
+    current_smoke_summary: outputs/stage0/mixed_support_56d_crossfit_smoke_summary.json
+    current_smoke_synthetic_comparisons: 400
+    current_smoke_numerical_validity_rate: 1.0
+    current_smoke_no_group_false_predictive_gain_rate: 0.0
+    current_smoke_strong_group_predictive_gain_rate: 0.0
+    current_smoke_overall_precision_rate: 0.0175
+    current_smoke_strong_group_mean_H_minus_C_nats_per_neuron: -0.017558703989587855
+    current_smoke_strong_group_mean_truth_label_accuracy_diagnostic: 0.5700955755494984
+    current_smoke_strong_group_mean_one_sided_95_percent_halfwidth: 0.14549497643839118
+    current_smoke_calibration_proxy_maximum_absolute_error_nats_per_neuron: 0.04756901798092239
+    current_smoke_status: revise_group_recovery_and_precision_failed
+    design_sensitivity_report: outputs/stage0/mixed_support_design_sensitivity_report.md
+    design_sensitivity_summary: outputs/stage0/mixed_support_design_sensitivity_summary.json
+    design_sensitivity_replicates_per_fixture_and_arm: 32
+    design_sensitivity_predates_full_layout_generator_standardization_repair: true
+    design_sensitivity_absolute_effect_scale_qualified: false
+    repaired_generator_subset_invariance_self_test_implemented: true
+    D27_A8_estimator_ceiling_improved_recovery: false
+    D27_A8_strong_mean_H_minus_C_nats_per_neuron: -0.043360392541227366
+    D27_A8_strong_mean_truth_training_label_only_H_minus_C: 0.04414165879810608
+    D12_A23_strong_mean_halfwidth: 0.07590400934266447
+    D12_A23_strong_precision_rate: 0.21875
+    required_audit_units_at_observed_strong_fixture_SD: 51
+    design_sensitivity_status: revise_estimator_signature_gating_and_full_C_H_calibration_before_more_role_count_search
+    continuous_and_unresolved_routes_do_not_require_group_support: true
+    outcome_bearing_search_authorized: false
+  repaired_group_module_attribution:
+    report: outputs/stage0/mixed_support_group_module_ablation_report.md
+    summary: outputs/stage0/mixed_support_group_module_ablation_summary.json
+    replicates_per_fixture: 256
+    exact_truth_gate_matches_oracle_cellwise: true
+    realized_projected_proxy_gap_nats_per_neuron: 0.08803664342639445
+    projected_proxy_is_full_family_calibration: false
+    maximum_monitored_MC_SE: 0.010775898510106595
+    target_MC_SE: 0.005
+    component_level_attribution_status: unresolved_MC_precision_at_cap
+    current_overconstrained_D12_strong_mean_H_minus_C: -0.03441727603816881
+    current_overconstrained_D12_strong_detection_rate: 0.0
+    current_overconstrained_D12_strong_mean_halfwidth: 0.11453721851651494
+    production_estimator_repair_still_required: true
+    uses_real_projection_outcomes: false
+    outcome_bearing_search_authorized: false
+  identified_full_family_calibration_diagnostic:
+    implementation: outputs/stage0/tools/run_mixed_support_full_family_calibration.py
+    analysis_class: synthetic_optimizer_and_population_projection_diagnostic_not_qualification
+    identified_parameter_counts: {C: 3109, H: 3224}
+    exact_design_and_compositional_null_directions_removed: true
+    analytic_gradient_nesting_symmetry_and_extreme_logit_self_tests: passed
+    representative_32_draw_C_optimizer_convergence: passed
+    exact_C_truth_anchor_at_zero_amplitude: passed
+    exact_H_truth_anchor_at_every_tested_amplitude: passed
+    hard_support_or_gate_predictor_clipping: false
+    finite_32_draw_C_MLE_population_calibration_status: failed_finite_pool_overfit
+    zero_amplitude_fresh_truth_minus_C_nats_per_neuron_approximate: 1.13
+    positive_amplitude_C_population_projection_status: pass_population_C_SAA_pilot_gates_not_Panel_A_calibration
+    finite_pool_positive_amplitude_H_execution_two_start_KKT: passed_without_active_bound
+    finite_pool_zero_amplitude_H_gate_boundary: active_expected_mixture_overfit_diagnostic
+    finite_pool_H_execution_is_population_recovery: false
+    fitted_H_population_optimizer_recovery_status: in_progress_after_passing_C_pilot
+    uses_real_projection_outcomes: false
+    outcome_bearing_search_authorized: false
+  population_C_SAA_pilot:
+    implementation: outputs/stage0/tools/run_mixed_support_population_saa.py
+    scheduler: outputs/stage0/tools/run_mixed_support_population_saa.sbatch
+    analysis_class: synthetic_group_stratified_population_projection_pilot_not_qualification
+    exact_group_stratification_by_cell_specific_probability: true
+    bounded_memory_chunked_objective: true
+    required_nested_SAA_ladder_for_Panel_A: [128, 512, 2048, 8192]
+    completed_execution_scopes: [[16, 64], [128, 512], [128, 512, 2048, 8192]]
+    fit_validation_terminal_streams_distinct: true
+    paired_start_ladder_polish_and_terminal_MCSE_reported: true
+    structural_self_test_status: passed
+    small_R_execution_benchmark_status: completed_numerically_valid_statistically_unstable_as_expected
+    small_R_all_scheduled_starts_KKT_converged: true
+    small_R_best_solutions_boundary_inactive: true
+    small_R_fixed_start_polish_converged_without_fresh_score_gain: true
+    default_128_512_pilot_status: completed_revise_cross_rung_change_exceeds_threshold
+    default_pilot_all_scheduled_starts_physical_KKT_converged: true
+    default_pilot_best_solutions_numerical_boundaries_inactive: true
+    default_pilot_R512_best_two_validation_difference_nats_per_neuron: 0.00027800390790424026
+    default_pilot_R512_best_two_validation_difference_MCSE: 0.000711810066577912
+    default_pilot_R128_to_R512_validation_change_nats_per_neuron: 0.09332936785846202
+    default_pilot_R128_to_R512_validation_change_MCSE: 0.004581385851771252
+    default_pilot_required_cross_rung_threshold_nats_per_neuron: 0.005
+    default_pilot_terminal_truth_minus_C_MCSE: 0.001380459031373963
+    default_pilot_interpretation: optimizer_valid_but_population_projection_not_yet_stable
+    current_amplitude_1_25_role: diagnostic_positive_amplitude_not_yet_the_population_calibrated_0_100_nat_fixture
+    full_ladder_summary: outputs/stage0/population_saa_full_ladder_summary.json
+    full_128_512_2048_8192_ladder_status: completed_revise_population_C_SAA_pilot_gates
+    full_ladder_all_scheduled_starts_physical_KKT_converged: true
+    full_ladder_best_solutions_numerical_boundaries_inactive: true
+    full_ladder_failed_pilot_acceptance_gates: [best_two_validation_scores_differ_below_threshold_at_every_level]
+    full_ladder_R128_best_two_validation_difference_nats_per_neuron: 0.5184059089879202
+    full_ladder_R128_best_two_validation_difference_MCSE: 0.0024559206205857025
+    full_ladder_required_validation_start_stability_threshold_nats_per_neuron: 0.002
+    full_ladder_R2048_to_R8192_validation_change_nats_per_neuron: 0.003677656780863868
+    full_ladder_R2048_to_R8192_validation_change_MCSE: 0.00117204032800637
+    full_ladder_required_last_increment_threshold_nats_per_neuron: 0.005
+    full_ladder_fixed_start_polishing_fresh_score_improvement_nats_per_neuron: 0.0
+    full_ladder_terminal_best_two_difference_nats_per_neuron: 0.00025194361375460283
+    full_ladder_terminal_best_two_difference_MCSE: 0.00012737615146697173
+    full_ladder_terminal_best_truth_minus_C_MCSE: 0.00037622198096096246
+    terminal_population_calibration_pass: false
+    full_ladder_interpretation: persistent_start_dependent_local_basin_exposed_by_two_start_first_rung_and_prespecified_conjunction_failed_population_C_unresolved
+    full_ladder_next_action: babysit_and_adjudicate_the_single_submitted_fitted_H_population_optimizer_recovery
+    full_ladder_terminal_stream_reuses_pilot_terminal_draws: false
+    full_ladder_uses_real_projection_outcomes: false
+    full_ladder_success_would_complete_Panel_A: false
+    revised_R128_three_fresh_attempt:
+      version: r128_three_fresh_v1
+      status: pass_population_C_SAA_pilot_gates_not_Panel_A_calibration
+      rationale: persistent_empirical_initializer_bad_basin_exposed_by_two_start_first_rung
+      previous_failed_summary: outputs/stage0/population_saa_full_ladder_summary.json
+      expected_distinct_durable_summary: outputs/stage0/population_saa_r128_three_fresh_full_ladder_summary.json
+      durable_summary: outputs/stage0/population_saa_r128_three_fresh_full_ladder_summary.json
+      slurm_job_id: 45589596
+      slurm_exit_code: "0:0"
+      failed_pilot_acceptance_gates: []
+      all_C_pilot_gates_passed: true
+      ladder: [128, 512, 2048, 8192]
+      first_level_fresh_starts: 3
+      first_level_start_sources: [truth_based, perturbed_empirical, deterministic_perturbed_truth]
+      later_level_fresh_starts: 2
+      later_level_previous_best_warm_starts: 1
+      scheduled_starts_by_rung: [3, 3, 3, 3]
+      seed: 20261001
+      streams: {fit: 5101, validation: 5202, terminal: 5303, anchor: 5401, truth_template: 5501}
+      previously_inspected_streams_not_reused: {validation: 5201, terminal: 5302}
+      thresholds:
+        analytic_anchor_maximum_absolute_error: 1.0e-10
+        physical_projected_gradient: 2.0e-5
+        validation_start_stability_nats_per_neuron: 0.002
+        successive_ladder_validation_change_nats_per_neuron: 0.005
+        terminal_start_stability_nats_per_neuron: 0.005
+        terminal_MCSE_nats_per_neuron: 0.005
+        maximum_fresh_score_gain_from_polishing_nats_per_neuron: 0.005
+      R128_and_all_thresholds_retained: true
+      fitted_H_blocked_until_all_C_pilot_gates_pass: true
+      fitted_H_launch_gate_satisfied: true
+      uses_real_projection_outcomes: false
+      outcome_bearing_search_authorized: false
+    additional_Panel_A_requirements: [population_amplitude_calibration, fitted_H_population_recovery, fitted_zero_amplitude_C_and_H_recovery]
+    Panel_A_population_calibration_complete: false
+    uses_real_projection_outcomes: false
+    outcome_bearing_search_authorized: false
+  nested_role_geometry:
+    joint_all_35_unit_ceiling_status: infeasible
+    frontier_report: outputs/stage0/whole_cortex_ssptr_nested_frontier_sensitivity.md
+    maximum_assigned_units_per_depth_convention: 33
+    common_assignment_across_depth_conventions_established: false
+    redesign_selected: false
+  five_target_recovery_surrogate:
+    report: outputs/stage0/synthetic_recovery_qualification.md
+    status: failed_surrogate_checks
+    failed_checks: [core_recovery_at_maximum_effect_multiplier, stress_recovery_at_maximum_effect_multiplier, continuous_adequacy_zero, precision]
+    generator_effect_multiplier_is_oracle_gain_in_margin_units: false
+    qualification_class: surrogate_not_full_registered_qualification
+    outcome_bearing_search_authorized: false
+
+unresolved_production_parameters:
+  - dataset_roles.source_support_census.qualification.thresholds.maximum_missing_unknown_or_truncated_fraction
+  - dataset_roles.source_support_census.qualification.thresholds.minimum_precision_for_meaningful_H_minus_C
+  - grammar.B_predictor_contract.selected_whitelist
+  - grammar.shared_animal_dependence.structure_and_rank
+  - grammar.capacity_control.shared_backbone_absolute_tolerance
+  - grammar.capacity_control.shared_backbone_relative_tolerance
+  - grammar.capacity_control.optimizer_effort_rule
+  - decision_rules.meaningful_H_minus_C_gain.value
+  - decision_rules.meaningful_P_minus_B_C_minus_P_and_H_minus_D_gains.values
+  - decision_rules.reusable_group_minimums.standardized_target_signature_similarity
+  - decision_rules.reusable_group_minimums.heldout_separation
+  - decision_rules.reusable_group_minimums.calibration
+  - decision_rules.reusable_group_minimums.technical_decoding_ceiling
+  - decision_rules.reusable_group_minimums.maximum_single_animal_or_territory_gain_fraction
+  - decision_rules.reusable_group_minimums.local_overlap_rule
+  - budgets.allocation.identical_cpu_core_hours_per_controller
+  - budgets.allocation.qualification_and_replay_cpu_core_hours
+
+pending_before_outcome_bearing_search:
+  - obtain_provider_independent_animal_confirmation_or_prospectively_redesign_the_estimand_as_cross_brain_sample_reproducibility
+  - pass_outcome_blind_real_reconstruction_completeness_and_truncation_eligibility
+  - extend_the_passing_subset_factorization_and_unit_heldout_crossfit_to_the_full_equal_animal_production_evaluator
+  - demonstrate_fitted_H_population_optimizer_recovery_then_complete_separate_H_minus_D_calibration
+  - qualify_absolute_P_C_continuous_adequacy_and_the_full_position_standardized_reuse_ESS_gates
+  - supersede_both_failed_recovery_diagnostics_with_registered_56_coordinate_production_qualification
+  - qualify_the_missing_unknown_censored_and_truncated_coordinate_observation_operator
+  - freeze_every_unresolved_production_parameter_listed_above
+  - pass_full_registered_56_coordinate_B_P_C_D_H_recovery_calibration_and_deterministic_replay
+  - profile_and_reserve_the_observed_plus_99_full_search_null_controller_compute_program
+  - select_and_lock_12_development_8_audit_16_unassigned_unit_identities
+
+previous_design:
+  resource: SEU_A1876
+  design_version: 1
+  terminal_status: closed_insufficient_source_support
+  bottleneck: five_singleton_SSp_tr_animals_in_the_eight_stratum_SS_design
+  interpretation: historical_data_design_result_not_a_biological_result
+
+interpretation:
+  twelve_plus_eight_is_design_specific: true
+  fixed_outcome_contract_does_not_authorize_projection_outcome_search: true
+  mixed_support_subset_pass_does_not_authorize_projection_outcome_search: true
+  continuous_result_can_follow_the_complete_valid_comparison_path: true
+  current_result_is_not_evidence_for_continuum_or_against_groups: true
+  geometry_result_locks_roles: false
+  next_action: babysit_and_adjudicate_the_single_submitted_fitted_H_population_optimizer_recovery

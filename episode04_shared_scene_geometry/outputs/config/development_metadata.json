@@ -1,0 +1,36 @@
+{
+  "adopted_utc": "2026-10-03T21:03:19Z",
+  "authority": "Coordinator adoption under current pre-neural-score implementation authority; no neural scoring authorized",
+  "participants": ["sub-01", "sub-03", "sub-05", "sub-06", "sub-07"],
+  "source_strata": ["laion", "things", "thingsplus"],
+  "fold_count": 5,
+  "group_source": "Pinned provider scripts/splits/data/pooled_image_groups.json; validate against pooled/per-subject duplicate groups and corrected random assignments",
+  "provider_commit": "cf82765ced029de81c3bec7254b8cbd6a65e3686",
+  "group_thresholds": {"clip": 0.25, "dreamsim": 0.3, "dinov2": 0.25, "sscd": 0.6},
+  "group_restriction": "Preserve full provider component identity when removing excluded shared members; ungrouped unique IDs are singletons; never split a component across participants or folds",
+  "group_order": "Descending maximum fraction of any participant-by-source cell occupied, then descending retained development group size, then lexicographically lowest retained image ID",
+  "assignment": "Single deterministic greedy pass. Minimize increment in sum over five folds and fifteen cells of (assigned_count/cell_total - 1/5)^2; ties use smaller aggregate fold size then lower fold index. No restart or refinement",
+  "empirical_quantile": {"probability": 0.95, "numpy_method": "higher", "pass": "observed_strictly_greater_than_threshold"},
+  "undefined_scores": "not_evaluable; no epsilon clipping of constant RDM or perfect Fisher correlations",
+  "modal_planned_repeat_count": "Unique maximum of intended-repeat histogram from source CSV where present or the documented source design where the unique-image CSV field is blank; never inferred from actual TSV counts",
+  "unique_repeat_design": {
+    "intended_repeats": 4,
+    "source": "https://laion-fmri.hebartlab.com/experimental_design.html#main-experiment",
+    "source_quote": "The remaining 4,712 unique images per subject are shown 4 times each",
+    "observed_utc": "2026-10-03T21:24:43Z",
+    "csv_blank_handling": "planned_repeats remains null; intended_repeats is separately sourced to the provider design"
+  },
+  "neural_validity": "Not established by trial presence; later minimum-two-valid-presentations rule remains unchanged",
+  "trial_axis": {
+    "identity": ["participant", "session", "run", "beta_index"],
+    "source_beta_index": "Preserved zero-based within-run index; require ordered contiguous indices per run and increasing run blocks in the provider 01-12 range",
+    "session_beta_axis_index": "Original zero-based TSV row position, before any role filtering; addresses the session NIfTI volume / HDF5 betasmd column",
+    "source": "https://laion-fmri.hebartlab.com/glmsingle_betas.html#relation-to-stimuli",
+    "loader_source": "https://github.com/ViCCo-Group/LAION-fMRI/blob/cf82765ced029de81c3bec7254b8cbd6a65e3686/laion_fmri/subject.py",
+    "documentation_discrepancy": "The prose calls beta_index session-global, but the observed TSV restarts it per run. The documented row-to-volume correspondence and pinned loader's direct trial-mask indexing support the separate session row ordinal.",
+    "array_shape_and_values_qualified": false
+  },
+  "metadata_only": true,
+  "full_development_design_complete": false,
+  "audit_access_authorized": false
+}

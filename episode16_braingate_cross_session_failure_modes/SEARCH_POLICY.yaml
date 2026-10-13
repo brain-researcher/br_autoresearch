@@ -2,6 +2,22 @@ version: 2
 episode: EP16
 question: Why does a human iBCI mapping work in one session but not another?
 
+local_closeout_2026_10_06:
+  authority: explicit_scientist_acceptance_of_recommended_closeout
+  user_quote: "i agree with your judgement; EP20 is fine with simulation because we dont have real data"
+  scope: original_three_held_out_participant_claim
+  disposition: support_or_uncertainty_prevents_an_answer
+  interpretation: support_limitation_without_neural_adjudication
+  scientific_success_or_biological_null: false
+  retained_evidence: completed_structural_inventory_conditional_support_and_analysis_definition
+  successor_or_case_series_selected: false
+  unchanged_support_rerun_or_neural_execution_authorized: false
+  reopening_requires: authentic_new_metadata_or_prospectively_adopted_redesign_that_changes_support_basis
+  automatic_reopening: false
+  data_roles_exposure_boundaries_and_prior_charges_preserved: true
+  canonical_BR_action: false
+  adoption_record: outputs/experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout
+
 data:
   source:
     name: BrainGate long-term array performance release
@@ -42,7 +58,9 @@ session_pairs:
     exclude_multiple_or_unstable_layouts: true
     exclude_conflicting_transition_patterns: true
     exclude_size_dependent_schedules_without_target_size: true
-    coordinate_tolerance: null
+    # Adopted before application, 2026-10-03T20:22:11Z; exact metric and
+    # unresolved near-duplicate/nontransitive branches are in this reference.
+    coordinate_tolerance: outputs/config/schedule_support.json#/geometry
 
 trial_packet:
   trials_per_session: 128
@@ -59,7 +77,7 @@ prediction:
   primary_feature: sbp
   required_feature_sensitivity: tx_4_5
   window_ms: 300
-  onset_offset_ms: null
+  onset_offset_ms: 0  # 2026-10-06: first30 released bins at declared trial start
   onset_offset_shared_across_all_participants_and_sessions: true
   label: cursor_to_target_unit_vector_at_window_start
   label_is_direct_intention: false
@@ -103,9 +121,11 @@ primary_long_gap_test:
   component_identifiability:
     both_near_and_long_pairs_required: true
     full_constrained_design_rank_required: true
-    condition_number_maximum: null
-    residualized_long_indicator_norm_minimum: null
-    maximum_session_node_leverage: null
+    # Exact definitions: outputs/config/schedule_support.json#/component_support.
+    # All passing inequalities are strict; equality remains unresolved.
+    condition_number_maximum: 100.0  # weighted, column-normalized fixed-basis design
+    residualized_long_indicator_norm_minimum: 0.10  # W sums to1; retained energy also >0.10
+    maximum_session_node_leverage: 0.25  # incident residual q^2 share, NOT full-hat/rank
     numeric_limits_set_before_neural_scores: true
     all_claim_contributing_components_must_pass: true
     failed_gate: unresolved_support_failure
@@ -198,31 +218,32 @@ diagnostic_questions:
 numeric_values_required_before_neural_scoring:
   harmful_long_gap_margin:
     proposed_anchor: 0.10
-    final_value: null
-  robust_median_margin: null
+    final_value: 0.10
+  robust_median_margin: 0.10
   local_signal_fractional_reduction_margin:
     proposed_anchor: -0.15
-    final_value: null
+    final_value: -0.15
   transported_raw_score_decline_margin: null
   gap_recovery_fraction_margin:
     proposed_anchor: 0.50
-    final_value: null
+    final_value: 0.50
   relative_recovery_gain_margin:
     proposed_anchor: 0.10
-    final_value: null
+    final_value: 0.10
   recording_change_normalized_error_margin:
     proposed_anchor: 0.10
-    final_value: null
+    final_value: 0.10
   recording_change_extra_loss_margin: null
   matched_random_separation_margin: null
   later_session_above_null_readiness_minimum: null
   raw_transport_gap_readiness_minimum: null
-  long_gap_design_condition_number_maximum: null
-  long_gap_residualized_indicator_norm_minimum: null
-  long_gap_maximum_session_node_leverage: null
-  schedule_coordinate_tolerance: null
-  onset_offset_ms: null
-  channel_quality_cutoffs: null
+  # Precise metrics and companion retained-energy rule: schedule_support.json.
+  long_gap_design_condition_number_maximum: 100.0
+  long_gap_residualized_indicator_norm_minimum: 0.10
+  long_gap_maximum_session_node_leverage: 0.25
+  schedule_coordinate_tolerance: outputs/config/schedule_support.json#/geometry
+  onset_offset_ms: 0
+  channel_quality_cutoffs: outputs/config/analysis_definition.json#/channel_quality
   adaptation_rank_and_complexity_limits: null
   transformation_stability_limit: null
   uncertainty_rule: null

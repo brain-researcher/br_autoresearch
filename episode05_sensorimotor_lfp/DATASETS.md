@@ -2,18 +2,39 @@
 
 ## Source and current status
 
-This contract does not claim new data acquisition.
-The intended source is the public Dryad release for Gallego-Carracedo et al.
-(2022), DOI `10.5061/dryad.xd2547dkt`. Provider records describe 24 MATLAB
-session files plus a README. Before analysis, confirm that this is the intended
-release and identify the animal, session, region, trial, event, spike, movement,
-and LFP fields actually used.
+The analyzed source is the previously exposed public Dryad release for
+Gallego-Carracedo et al. (2022), DOI `10.5061/dryad.xd2547dkt`, read directly at
+`$OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source`.
+The completed [source-support record](outputs/runs/source_support/attempt002/source_support.json)
+observed the expected 24 MATLAB sessions plus README (9,571,571,204 bytes),
+stable trial identities and complete support for sixteen M1 sessions. This
+is existing-data qualification, not new acquisition.
+
+As reconciled October 6, the original 45-comparison development search and the
+separately adopted calibration/decomposition follow-ups are complete. No
+candidate met both practical margins. The [completed evidence](outputs/paper_plan.md#completed-evidence--october-6-2026)
+and [primary closeout](outputs/primary_development_report.md) supersede older
+not-yet-analyzed statements; future-session confirmation and the conditional
+spike-population follow-up remain unopened.
 
 The reference implementation is the public BeNeuroLab analysis code associated
 with the paper. Its published examples are a scientific reproduction target,
 not proof that the software will run unchanged in the current environment.
 
 ## Known recording inventory
+
+### Public online resources — checked October 6, 2026
+
+- [Official Dryad data record](https://datadryad.org/dataset/doi:10.5061/dryad.xd2547dkt): public session MAT files and README, displayed as a 9.57-GB August 16, 2022 file release with an August 29 update. Usage notes describe eight-target delayed reaching, manipulandum hand-position measurements and extracellular recordings; they link the source paper and author code. These are the existing exposed recordings already bound locally, not new sessions or animals.
+- [Author code README](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/README.md): identifies the required TrialData repository. This makes the external implementation dependency explicit; EP05 retains its already pinned analysis/compatibility revisions rather than installing current heads.
+- [Author `fCCA.m`](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/MainAnalysis/fCCA.m): publicly specifies guide-based shared spike/LFP electrode selection, spike square-root transformation, 0.05-width smoothing, PCA and per-band CCA. It is a reference for the original population/LFP analysis, not EP05's held-out velocity-residual estimator or evidence that the conditional population follow-up has run.
+
+The inspected release shows no authenticated corrected March 6 count export
+or fresh-session package. That bounded observation is not proof that neither
+exists elsewhere. Its known count defect does not negate EP05's qualified
+velocity endpoint, and downstream author transformations do not authorize an
+inverse repair. No MAT bytes or numerical results were opened, no dependency
+was installed, and the completed development stop remains unchanged.
 
 The original contracts report:
 
@@ -25,9 +46,20 @@ The original contracts report:
 | Han | 5 | area 2 | outside primary M1 search |
 | Lando | 3 | area 2 | outside primary M1 search |
 
-These counts are planning facts, not a final eligibility table. Chewie-L
-and Chewie-R are one animal. Sessions, trials, bins, directions, channels, and
-folds are repeated observations, not additional animals.
+The primary analysis retained all sixteen M1 sessions: six Mihili and ten
+Chewie. Chewie-L and Chewie-R are one animal. The
+[qualified session table](outputs/runs/source_support/attempt002/session_table.csv)
+and [trial identities](outputs/runs/source_support/attempt002/trial_identity.csv)
+record source support. Sessions, trials, bins, directions, channels and folds
+remain repeated observations, not additional animals. The source-support
+checks distinguish the paper −4:+14 and example 0:+15 native-tick windows;
+neither is the primary fifteen-bin 0–420-ms comparison window.
+
+Mihili 2014-03-06 remains supported for EP05's LFP/velocity endpoint. Its
+noninteger spike representation matters for the separate spike benchmark or
+conditional population follow-up, but EP07's native-count requirement does
+not remove this session from EP05. No rounding or inverse transformation was
+adopted.
 
 The release contains post-processed LFP feature matrices rather than raw
 voltage. Raw phase, new filtering, PAC, coherence, traveling-wave, and
@@ -164,16 +196,17 @@ independent confirmation.
 
 ## Missing assets and scientific gates
 
-- No read-only source location or final group/session fold table is
-  recorded here.
-- Provider release identity, guide semantics, event conventions,
-  complete-trial joins, session eligibility, and licensing must be verified.
-- The publication software boundary and reproduction tolerances must be decided
-  without using the new comparison scores.
-- Historical outcome exposure must be stated in the episode record.
-- No fresh compatible whole-session test dataset has been acquired or sealed.
-- The scientific analysis has not yet been implemented and tested against this
-  plan; this blocks model scoring and the future-session evaluation.
+Source/indexing/leakage checks, the scoped publication benchmark and the
+primary analysis were completed before the recorded search closeout. The
+[complete scientific report](outputs/primary_development_report.md) preserves
+the sixteen-session support, training/evaluation rules, original count and
+patience stop. These are no longer missing implementation or source gates.
+
+No fresh compatible whole-session dataset has been acquired or sealed.
+The primary practical-margin failure leaves no eligible candidate for that
+test or the conditional spike-population explanation. The later fixed-HW
+calibration remains exposed development and also fails both margins; it does
+not reopen the original search or adopt the independent-penalty proposal.
 
 ## Storage and compute boundary
 

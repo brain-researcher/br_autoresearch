@@ -70,30 +70,55 @@ python3 /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_sin
   --output /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/gao_mop_development_manifest.csv
 ```
 
-From an attended Sherlock session, connect to the data-transfer node and run:
+Sherlock's DTN has no shell and accepts only transfer protocols, so it cannot
+execute this public-HTTP downloader. Sherlock documents the Slurm `service`
+partition for bounded data-movement jobs. After staging the frozen inputs in
+Scratch, submit:
 
 ```bash
-ssh dtn.sherlock.stanford.edu
-ml devel
-ml python/3.12.1
-python3 /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/tools/download_mop_development_swcs.py \
-  --manifest /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/gao_mop_development_manifest.csv \
-  --roles /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/gao_mop_frozen_roles.csv \
-  --inventory /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/gao_mop_geometry_inventory.csv \
-  --common-support /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/gao_mop_development_assignment_support.csv \
-  --output-root /scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1 \
-  --workers 8 \
-  --execute-development-transfer
+mkdir -p "$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1/logs"
+sbatch \
+  --output="$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1/logs/%x-%j.out" \
+  --error="$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1/logs/%x-%j.err" \
+  "$OAK/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/outputs/stage0/tools/download_mop_development_swcs_service.sbatch"
 ```
 
 For a no-network check on any Sherlock host, use `--validate-only` instead of
 `--execute-development-transfer`. That mode does not create the destination.
 The downloader itself recomputes the exact allowed rows through the shared
 builder from the role, inventory, and common-support inputs and compares every
-manifest row and field. It refuses a normal run outside a DTN, refuses any
+manifest row and field. It refuses a normal run outside a Slurm `service`
+data-movement job, refuses any
 manifest row not explicitly marked frozen
 development/non-shared/primary/common-support/model-eligible/unexposed, writes
 only below `$SCRATCH` or `$GROUP_SCRATCH`, and rejects a destination containing
 any unexpected SWC.
 It records provider `Content-Length` and actual byte counts in the plain
 `download_log.csv` acquisition log.
+
+## Executed development boundary
+
+Slurm service job `45438445` completed with exit 0. It downloaded exactly the
+200 frozen manifest files across 12 development groups, recorded 200 matching
+rows in `download_log.csv`, left no partial or extra SWC, and wrote
+625,064,526 bytes. Final, unassigned, unsupported-development, `Axon_only`, and
+EP11-shared trees remained absent.
+
+After a clean group-storage Python environment was built by job `45438679`,
+constructor job `45438680` executed the frozen rule and completed with exit 0.
+Only 5/200 cells were globally eligible; the predeclared minimum was 190 and
+all 12 per-group minima failed. The exclusions were 141 tree/parser failures,
+22 annotation-zero axons, 6 outside-volume axons, and 26 nongrey terminal
+leaves. Parser diagnostic job `45439110` resolved all 141 generic failures to
+transitions out of provider node types 10, 11, or 12. The provider files use
+those tags internally, whereas the frozen contract permits them only as
+terminal markers. No selected parser-failure row parsed successfully under the
+frozen rule.
+
+This is the required stopping condition for the current endpoint. No candidate
+search, cell/group replacement, role promotion, tag reinterpretation, rule or
+threshold relaxation, final acquisition, or final evaluation follows in this
+run. The durable result is
+`gao_mop_development_structural_qc_summary.json`; detailed constructor artifacts
+remain under
+`$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_targets_v1/`.

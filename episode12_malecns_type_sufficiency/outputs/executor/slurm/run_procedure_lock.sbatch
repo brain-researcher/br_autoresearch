@@ -9,6 +9,10 @@
 # Build the development-only pre-null inputs, freeze the one scientific
 # procedure lock, materialize its runtime, and dispatch only within the explicit
 # resource authorization. This wrapper never opens final connectivity.
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 
 EP12_ROOT=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency

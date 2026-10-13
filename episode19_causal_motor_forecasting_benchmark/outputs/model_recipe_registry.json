@@ -1,0 +1,158 @@
+{
+  "episode": "EP19",
+  "scope": "prospective_recipe_and_fold_definition_only",
+  "adoption": "delegated_preparation_not_source_qualification_or_complete_method_freeze",
+  "source_semantics_admitted": false,
+  "forecasting_authorized": false,
+  "recipe_document": "outputs/component_details.md#5-finite-model-recipes-and-grouped-development-folds",
+  "seeds": [1901, 1902, 1903],
+  "reference_grid": {
+    "history_seconds": [1.0, 2.0],
+    "regularization": [0.001, 0.01, 0.1],
+    "family_variants": {
+      "past_only_filterbank_bandpower_elastic_net": [
+        {"l1_ratio": 0.1}, {"l1_ratio": 0.9}
+      ],
+      "past_only_covariance_riemannian_tangent_model": [
+        {"covariance_shrinkage": 0.1}, {"covariance_shrinkage": 0.5}
+      ],
+      "past_only_compact_EEGNet": [
+        {"temporal_filters": 4, "depth_multiplier": 2},
+        {"temporal_filters": 8, "depth_multiplier": 2}
+      ],
+      "dilated_past_only_temporal_convolutional_network": [
+        {"channels": 16}, {"channels": 32}
+      ],
+      "small_one_directional_GRU": [
+        {"hidden_units": 16}, {"hidden_units": 32}
+      ]
+    },
+    "configurations_per_family": 12,
+    "seeds_per_configuration": 3,
+    "selection_endpoint": "participant_macro_300_to_600ms_natural_prevalence_log_score",
+    "single_selected_configuration_shared_across_participants_and_horizons": true,
+    "seed_aggregation": "mean_of_three_19_category_probability_vectors_before_calibration_and_scoring_no_best_seed_selection",
+    "complete_fold_feedback_only": true
+  },
+  "training": {
+    "output_categories": 19,
+    "loss": "existing_censoring_aware_19_category_NLL",
+    "class_rebalancing": false,
+    "participant_weighting": "equal_total_per_fitting_participant_then_equal_eligible_grid_points_within_person",
+    "linear_optimizer": "proximal_gradient_backtracking",
+    "linear_iterations_maximum": 2000,
+    "linear_relative_objective_tolerance": 0.000001,
+    "neural_optimizer": "AdamW",
+    "neural_learning_rate": 0.001,
+    "neural_epochs": 100,
+    "batch_examples": 128,
+    "neural_dropout": 0.25,
+    "gradient_global_norm_maximum": 1.0,
+    "epoch_selection": "fixed100_no_validation_early_stopping_or_extra_seed_search",
+    "nonconverged_or_nonfinite_fit": "record_unresolved_cell_no_drop_retry_or_replacement"
+  },
+  "reference_features": {
+    "filterbank_edges_hz": [[0.5, 4.0], [4.0, 8.0], [8.0, 13.0], [13.0, 30.0], [30.0, 45.0]],
+    "filterbank_summary": "channelwise_mean_squared_filtered_voltage_then_log1p",
+    "causal_filter_coefficients": null,
+    "analysis_sample_rate_hz": null,
+    "resampling_coefficients_and_response": null,
+    "voltage_scaling": "training_only_per_channel_shared_by_matched_EEG_conditions",
+    "covariance": "population_covariance_plus_shrinkage_to_trace_over29_identity_plus_1e_minus6_identity_in_standardized_voltage_units",
+    "tangent_reference": "training_only_affine_invariant_geometric_mean",
+    "tangent_vectorization": "upper_triangle_with_sqrt2_off_diagonal_weights",
+    "tangent_mean_iteration_cap": 100,
+    "tangent_mean_tolerance": 1e-8,
+    "EEGNet_temporal_kernel_ms": 128,
+    "EEGNet_separable_kernel_ms": 64,
+    "EEGNet_pool_widths": [4, 8],
+    "TCN_kernel_samples": 3,
+    "TCN_dilations": [1, 2, 4, 8, 16],
+    "TCN_convolutions_per_block": 2,
+    "GRU_layers": 1,
+    "bidirectional_or_unmasked_cache": false
+  },
+  "non_neural_baselines": {
+    "sources": ["WAY", "self_paced"],
+    "history_seconds": 2.0,
+    "summary_ms": [50, 200, 1000, 2000],
+    "families": {
+      "regularized_logistic_discrete_hazard": [
+        {"l2": 0.001}, {"l2": 0.01}, {"l2": 0.1}
+      ],
+      "gradient_boosted_discrete_hazard": [
+        {"depth": 2, "trees": 200, "learning_rate": 0.05},
+        {"depth": 3, "trees": 200, "learning_rate": 0.05},
+        {"depth": 4, "trees": 200, "learning_rate": 0.05}
+      ],
+      "small_past_only_temporal_convolutional_discrete_hazard": [
+        {"channels": 16, "weight_decay": 0.001},
+        {"channels": 16, "weight_decay": 0.01},
+        {"channels": 16, "weight_decay": 0.1}
+      ]
+    },
+    "hazard_bins": 18,
+    "selection_before_candidate_EEG_scores": true,
+    "tie_breaks": ["lower_19_category_loss", "fewer_parameters", "lower_latency", "recipe_name"]
+  },
+  "matched_conditions": {
+    "primary": ["real_EEG", "zero_EEG", "shift_1", "shift_2", "shift_3", "shift_4", "phase_1", "phase_2", "phase_3", "phase_4"],
+    "development_surrogates": ["shift_1", "phase_1"],
+    "factorial": {"Q11": [1, 1], "Q01": [0, 1], "Q10": [1, 0], "Q00": [0, 0]},
+    "factorial_indicator_order": ["recent", "older_slow"],
+    "all_five_reference_families_required": true,
+    "retrain_each_EEG_condition_from_start": true,
+    "same_recipe_seed_training_budget_and_context": true,
+    "fusion": "frozen_training_fit_baseline_log_probability_offset_plus_19_EEG_correction_logits",
+    "factorial_adapter": "slot_local_same_family_shared_weights_fixed_concatenated_summary_head_no_extra_search",
+    "original_reference_head": "same_two_summary_head_and_parameter_count_as_factorial_adapter_continuous_original_state_may_cross_cutoff",
+    "final_and_factorial_configuration_count_per_family": 1,
+    "final_or_factorial_configuration_selection": "explicit_development_frozen_recipe_ids_no_research"
+  },
+  "folds": {
+    "WAY_participants": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "WAY_inner_validation_series": [1, 2, 3, 4, 5, 6],
+    "WAY_feedback_series": [7],
+    "WAY_final_refit_series": [1, 2, 3, 4, 5, 6, 7],
+    "WAY_held_out_series": [8, 9],
+    "self_paced_validation_participants": [
+      ["sub-02", "sub-09", "sub-17"],
+      ["sub-03", "sub-11", "sub-18"],
+      ["sub-04", "sub-12", "sub-20"],
+      ["sub-06", "sub-14", "sub-21"],
+      ["sub-08", "sub-15", "sub-22"]
+    ],
+    "self_paced_held_out": ["sub-01", "sub-05", "sub-07", "sub-10", "sub-13", "sub-16", "sub-19", "sub-23"],
+    "self_paced_assignment_rule": "numeric_ID_sorted_development_list_round_robin_modulo5",
+    "participant_session_run_and_stream_state_cannot_cross_fold_roles": true,
+    "unresolved_participant": "retain_original_fold_and_report_unresolved_no_replacement"
+  },
+  "secondary_operator_menu": {
+    "classical": ["ridge_readout_l2_0.001", "ridge_readout_l2_0.01", "ridge_readout_l2_0.1"],
+    "temporal": ["TCN_dilations_1_2_4_8", "TCN_dilations_1_2_4_8_16", "TCN_dilations_1_2_4_8_16_32"],
+    "representation": ["training_PCA_rank8", "training_PCA_rank16", "training_PCA_rank24"],
+    "fusion": ["additive_logits", "linear_concatenation", "gated_concatenation_width16"],
+    "triggered_montage_robustness": ["training_channel_dropout0.05", "training_channel_dropout0.10", "training_channel_dropout0.20"],
+    "triggered_diagonal_state_space": ["diagonal_state_rank16", "diagonal_state_rank32", "diagonal_state_rank64"]
+  },
+  "secondary_constraints": {
+    "reference_panel_membership_unchanged": true,
+    "initial_coverage": "three_declared_operator_settings_in_each_of_four_required_branches",
+    "follow_up": "one_primary_operator_change_from_recorded_parent",
+    "branch_trigger": "development_only_diagnosed_montage_or_finite_memory_limitation_recorded_before_proposal",
+    "parameter_count_maximum": 2000000,
+    "explicit_history_seconds_maximum": 2.0,
+    "streaming_state_age_seconds_maximum": 8.0,
+    "valid_trials": [24, 40],
+    "no_additional_family_or_automatic_grid_expansion": true
+  },
+  "remaining_required_inputs": [
+    "admitted_source_units_clock_mapping_acquisition_response_and_complete_timing_bound",
+    "development_frozen_onset_risk_and_return_definition_without_P1_offset_guess",
+    "source_specific_causal_resampling_filterbank_and_older_slow_coefficients_and_warmup",
+    "source_specific_baseline_sensor_units_presence_cue_availability_and_missingness",
+    "finite_surrogate_generation_and_preserved_role_boundary_settings",
+    "all_pre_score_scientific_margins_and_latency_rule",
+    "actual_family_backends_and_original_vs_factorial_adapters_within_existing_allowance"
+  ]
+}

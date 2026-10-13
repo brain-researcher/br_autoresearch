@@ -1,0 +1,37 @@
+decision_date: '2026-10-03'
+decision: use_official_public_BVLC_AlexNet_converted_to_pinned_BdPy
+authority: explicit_scientist_instruction_to_use_public_BVLC_or_another_AlexNet
+applies_to: future_identification_lock_only
+reason: private_author_bvlc_alexnet_pt_unavailable_public_evaluator_accepted
+source: https://github.com/BVLC/caffe/blob/9b891540183ddc834a02b2bd81b31afae71b2153/models/bvlc_alexnet/readme.md
+checkpoint: outputs/cache/model_checkpoints/public_bvlc_alexnet/bvlc_alexnet_public_converted.pt
+implementation: outputs/source_pipeline_binding/bdpy_0_25/plaintext/bdpy/dl/torch/models.py
+class: AlexNet
+conversion_tool: outputs/source_qualification/tools/convert_public_bvlc_alexnet.py
+validation_report: outputs/source_qualification/public_alexnet_conversion/attempt001.json
+author_private_checkpoint_identity_claimed: false
+reporting: adapted_replication_with_public_BVLC_identification_evaluator
+
+preprocessing:
+  input: RGB
+  resize: direct_PIL_Lanczos_227_by_227_no_crop
+  tensor: BCHW_BGR_float32_0_to_255
+  subtract_mean_BGR: [104, 117, 123]
+  model_mode: eval
+layers: [conv1, conv2, conv3, conv4, conv5, fc6, fc7, fc8]
+activation: pre_ReLU
+flattening: per_image_C_order_channel_then_height_then_width_no_added_normalization
+model_selection: fixed_before_empirical_identification_no_outcome_selected_alternatives
+
+adoption:
+  replace_only: exact_private_AlexNet_checkpoint_requirement_in_next_identification_lock
+  retain: candidate_universe_Pearson_similarity_strict_greater_tie_rule_equal_eight_layer_summary
+  preserve_current_files:
+    - outputs/protocol_lock.yaml
+    - PROTOCOL_TABLE.yaml
+    - outputs/protocol_decisions_2026-09-30.yaml
+    - outputs/protocol_implementation_bindings_2026-09-30.yaml
+  existing_vgg19_attempt_and_lock008_unchanged: true
+  original_private_checkpoint_no_longer_required_for_future_identification: true
+  conversion_does_not_authorize_empirical_execution: true
+  reconstruction_assets_and_runtime_remain_separate_dependencies: true

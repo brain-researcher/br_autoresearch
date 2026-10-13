@@ -1,0 +1,54 @@
+schema_version: episode10_v3_m1_production_resource_amendment_v4
+episode_id: ep10
+status: frozen_user_authorized
+recorded_at_utc: "2026-10-02T19:08:18Z"
+analysis_label: exploratory
+authorization:
+  record: outputs/stage0/v3_m1_wall_limit_authorization_20261002.json
+  approved_proposal: outputs/stage0/v3_m1_wall_limit_amendment_proposal_20261002.md
+  user_message_verbatim: "ok"
+  scope: clean_M1_production_wall_request_only
+authority:
+  model_contract: outputs/stage0/v3_m1_model_contract.yaml
+  numerical_execution_addendum: outputs/stage0/v3_m1_numerical_execution_addendum_v3.yaml
+  relationship: >-
+    Supersede only the prior 08:00:00 production wall request and its derived
+    80-percent bound. All numerical, scientific, access and cumulative resource
+    rules remain authoritative. Historical numerical outputs are preserved.
+qualification_job_id: "46328672"
+numerical_refresh_job_id: "46330399"
+production_boundary:
+  requested_wall_time: "12:00:00"
+  requested_cpus_per_task: 1
+  requested_memory: 16G
+  conservative_allocated_cpus: 4
+  scheduler_constraint: "CPU_SKU:7502"
+  effective_OpenBLAS_threads: 1
+  dispatched_OpenBLAS_core_required: Zen
+  clean_job_and_output_root_required: true
+  old_fitted_M1_checkpoint_initialization: forbidden
+resource_reconciliation:
+  conservative_path_equivalents: 157
+  exact_reuse_path_equivalents_report_only: 91
+  minimum_time_and_memory_headroom_fraction: 0.25
+  frozen_twelve_hour_request_80_percent_seconds: 34560
+  measured_seconds_per_complete_path: 187.18363271886483
+  projected_production_wall_hours: 8.163286204683827
+  producer_batch_MaxRSS_KiB: 104984
+  producer_elapsed_seconds: 257
+  actual_numerical_report: outputs/stage0/v3_m1_affected_numerics_refresh_v1_job_46330399/v3_m1_affected_numerics_refresh.json
+  original_eight_hour_resource_failure_preserved: true
+  current_reservation_and_assessment_required: true
+  accounting_epoch: wall_reset_20261001
+  historical_usage_preserved: true
+  cumulative_budget_increased: false
+  additional_wall_time_reset: false
+access:
+  historical_M0_opening_job_id: "45760290"
+  lifetime_M0_opening_record_preserved: true
+  new_fitting_process_M0_access: forbidden
+  comparator_driven_tuning_or_initialization: forbidden
+  final_or_unassigned_or_SWC_access: forbidden
+  real_M2_authorized_by_this_amendment: false
+  successor_authorized: false
+

@@ -8,7 +8,84 @@ the current Goal and policy specify canonical orientation for both the family
 comparator and semantic residual, before any current-contract map computation. The loss,
 model families, budgets, evidence roles, and audit decision are unchanged.
 
-## The paper in one sentence
+## October 6 public methods sources
+
+The October 6 online review retrieved the producer repository's public
+[BART model specification](https://raw.githubusercontent.com/demidenm/openneuro_glmfitlins/main/statsmodel_specs/ds000001/ds000001-balloonanalogrisktask_specs.json)
+and [dataset details](https://raw.githubusercontent.com/demidenm/openneuro_glmfitlins/main/statsmodel_specs/ds000001/ds000001_basic-details.json).
+They expose the 13 contrast definitions and weights, the Run/Subject/Dataset
+model structure, event-column names, and the configured subject list 01–16.
+For example, `pumpsvcontrol` weights pump and control events by +1 and −1;
+`pumpscashvcontrol` uses +0.5, +0.5 and −1. These are publicly recoverable
+methods facts, consistent with the existing local methods record.
+
+The [producer README](https://github.com/demidenm/openneuro_glmfitlins)
+documents `--drop-missing` as its default, and
+[FitLins usage](https://fitlins.readthedocs.io/en/latest/usage.html) documents
+that option. A configured participant list is therefore not proof of the
+participants actually fitted for a particular historical map. The public
+`main` files are a current methods reference, not an authenticated snapshot
+of the exact local execution. This lookup adds neither fitted contributor
+IDs/N nor new canonical orientations beyond the five already established.
+
+Next use these public definitions to narrow the producer request below to
+executed Dataset-node inputs and any remaining event-construction/ontology
+ambiguity. No public group-result image, map array or evaluation outcome was
+opened; no fitted map was regenerated. Source availability does not change
+the existing data roles, scientific eligibility, budget or access rules.
+
+## October 6 source-resolution and retention recommendation
+
+**Verified facts; no empirical launch selected.** The repaired first-route
+join completed in job 46660232 after the incomplete 46658777 attempt. It
+established provider-declared signed-Z provenance and available subject-effect
+paths for all 16 configured people across 13 BART maps. With `drop_missing=true`,
+configured people and available files do not prove which inputs the Dataset
+node actually fitted. Actual contributor IDs/N remain unresolved for all 13.
+
+Only `pumpsvcontrol`, `explodevcontrol`, `pumpscashvcontrol`,
+`pumpsexplodevcontrol`, and `parapumpsvcontrol` have methods-supported canonical
+direction `s=+1`. The remaining eight source forms are described in the
+[October 5 methods record](experiment_log.md#2026-10-05-2032-utc--bart-methods-pointer-resolves-taskcontrol-ordering)
+but have not acquired a new canonical rule. Source sign is not the same as
+canonical semantic orientation.
+
+**Draft request for the scientist to send; not sent:** To the producer of
+`$OAK/data/OpenNeuro_analyses/openneuro_fitlins`, please identify the original
+producer checkout or retained execution records and supply the actual fitted
+Dataset-node input list for each of the 13
+`ds000001/balloonanalogrisktask` maps, keyed by contrast/session/map identity.
+Include the subject IDs and derivative paths actually included and any
+input exclusion or missingness record. Executed-input evidence is sufficient;
+neither a configured subject list nor file availability substitutes for it.
+Please also identify methods/event-column construction for the remaining
+canonical comparisons. Bitwise reproduction or an exact historical container
+is not an added requirement. No map values or rendered results are requested.
+
+Recommendation: resolve that specific handoff before expanding an availability
+join to the other 45 routes. If authentic contributors cannot be recovered,
+the existing `technical_failure` route applies to the unqualified analysis;
+it is not a negative semantic-prediction result. This paragraph does not mark
+the episode terminal while the request is outstanding or authorize another
+source search.
+
+**Retention proposal, UNADOPTED and unexecuted.** Two exact existing metadata
+pointers documented in the October 3 log are:
+
+- `$SCRATCH/neuroeffect-full51-spatial-build/20260917T201500Z.2230efb/release-stage-v1/inputs/full51_stage2_spatial_support_universe.json`
+- `$SCRATCH/neuroeffect-full51-spatial-build/20260917T201500Z.2230efb/release-stage-v1/inputs/design_sidecars.runtime.json`
+
+If these original metadata dependencies must be retained, copy only these two
+files to durable episode-local Oak storage in a separately scoped transfer,
+preserving the originals and recording their source paths. Do not copy their
+referenced payloads or treat upstream confirmatory flags as EP03 authority.
+The review's approximate December 16 purge date is not verified from current
+modification times; a timestamp in a directory name does not establish that
+date. Scratch is purgeable after 90 days without modification and cannot be
+the sole durable copy. No scan, existence recheck, copy, move or timestamp
+refresh occurred in this revision.
+
+## The scientific comparison
 
 Determine whether a methods-only signed description of an experimental
 comparison predicts normalized group-Z-map geometry in a different dataset

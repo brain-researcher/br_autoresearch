@@ -1,5 +1,141 @@
 # Why do people have different cerebellar task maps?
 
+## Adopted finite common development support — October 12, 2026
+
+At about 16:18 Pacific (23:18 UTC) the scientist replied "adopt the EP15
+finite-support proposal" to the
+[finite-support follow-up](outputs/proposed_finite_support_followup.md). For the
+observed-beta descriptive route below, one derived common availability mask `M`
+replaces the fixed 208-location support. `M` is a subset of the original
+anatomical support `M0`: a location stays only if the unchanged strict sampler
+returns a valid, finite value in every one of the 9,024 released selected
+development maps. `M0` itself is unchanged and remains the support of every
+other route. The original 208-point route is kept as a distinct route.
+
+All twelve participants, eighteen Task-B-only conditions, sixteen variants and
+every existing control, partition, weight and source exclusion are kept.
+Spatial means and equal-voxel losses are taken over `M`, with weight `1/|M|`.
+The anatomy-cell geometry is rebuilt on `M` using the proposal's deterministic
+floor/ceiling median-split cells. Model families, ranks and parameter counts
+are unchanged.
+
+This changes the spatial estimand. `M` uses target Task-B availability,
+though no response magnitudes or scores, so results are availability-
+conditioned and target Task B is not described as wholly unseen. Nothing is
+compared with a 208-location loss. An empty support, insufficient geometry or
+a failed numerical certificate stops this route. A stop does not permit a
+smaller cohort, a weaker cutoff or another support search.
+
+The machine-readable authority is
+`scientist_amendment_20261012_finite_support` in `SEARCH_POLICY.yaml`. The mask
+is frozen at188 original locations after the complete9024-map intersection;
+its sole binding is `outputs/runs/observed_beta_development/finite_support001/selection.npz`.
+The affected variable-support implementation checks passed. This qualifies
+the changed implementation, not an empirical model or the original question.
+This document releases no data and selects no job.
+
+## Adopted observed-beta descriptive route — October 12, 2026
+
+At 22:29 UTC (15:29 Pacific), the scientist adopted the
+[observed-beta follow-up](outputs/proposed_observed_beta_followup.md). This
+authorizes the complete fixed development panel to describe prediction of the
+supplied beta maps while cross-partition error-independence support remains
+unresolved. Only this descriptive route is excepted from that support
+prerequisite in the earlier amendments below. Functional map validity,
+source/parameter-cache protection, numerical certificates and resource
+admission remain required. The original reliable-variation question and its
+qualification obligations are retained; the Task-A diagnostic did not pass them.
+
+Keep all twelve development participants, all eighteen Task-B-only conditions,
+208 locations, sixteen fixed variants, M0a/M0b and every existing matched
+control, run partition, weight and leave-one-person-out source exclusion.
+Personalize each target from anatomy and Task A only. Report unadjusted
+observed-map squared prediction loss for the complete panel; existing signed
+cross-partition statistics may accompany it only with the unresolved error
+assumptions stated. Do not report reliable-signal or recovery fractions,
+adequacy, equivalence, formal superiority, a winning model class, mechanisms
+or a selected positive subset. The original 0.20/0.05 standards are not pass
+thresholds for observed-map loss. Audit access remains prohibited.
+
+The machine-readable authority is
+`scientist_amendment_20261012_observed_beta` in `SEARCH_POLICY.yaml`.
+The descriptive reporting implementation is available. A qualified full-panel fit is authorized once the
+coordinator records development release, complete-route cost/resource admission
+and remaining budget; this document itself releases no data and selects no job.
+All existing resource limits and historical charges remain. The search's
+120-hour clock is not reset by adoption or equated with the date of source
+preparation; its applicable start and remaining allowance must be recorded
+before launch. All earlier requirements below apply except for this explicitly
+scoped independence-support exception and its stricter reporting limits.
+
+## Adopted procedural evaluation separation — October 12, 2026
+
+At about 13:10 Pacific the scientist replied "follow your recommendation" to
+one evaluation-separation decision covering EP02, EP15, EP17 and EP18. The same
+account can read the evaluation data, and the October 3 sandbox route failed
+(namespace `ENOSPC`, EP18 job 46427768). Procedural same-account separation
+with a disclosed weaker claim therefore replaces EP15's requirement for
+enforced reader isolation (a separate execution account, restricted
+runtime/Apptainer route or independent steward). No SRCC request is sent.
+
+- Development processes and agents read only the released development-role
+  inputs of the twelve development participants, plus Task-B-free shared
+  inputs already fixed by this contract, such as the 208-location support.
+  Mixed original archives, audit-calibration and sealed audit Task-B
+  containers, private reliability values and exposed fitted caches are not
+  opened, listed or searched during development.
+- Analysis choices are frozen and recorded before any audit access: panel lock
+  precedes the calibrator's use of audit anatomy and Task A, and prediction
+  lock precedes the single recorded opening of audit Task B.
+- Every access to audit-calibration or sealed-audit data is recorded in the
+  [experiment log](outputs/experiment_log.md). Unplanned access is disclosed
+  and the affected results are marked.
+- Every result that uses audit data, and any statement that audit data stayed
+  sealed, states that the separation was procedural: same account, not
+  technically enforced, data readable by that account. It is never described
+  as enforced or blinded evaluation.
+
+The reader-separation precondition is now satisfied procedurally; this is not
+OS isolation. Data roles, the exploratory twelve-participant route with
+`tau_remaining = 0.20` and `tau_increment = 0.05`, the sixteen fixed model
+variants, deferred formal items, thresholds, opening counts, budgets and every
+other blocker are unchanged, and the exploratory branch still opens no audit
+data. Development access still awaits a separately recorded handoff release.
+Empirical fitting also awaits the published-parameter/cache firewall,
+functional-validity and error-independence support (GLM7 versus GLM4/5/6
+provenance; geometry pairs possibly within one scanning session) and resource
+admission. The later observed-beta amendment above excepts only that route
+from the error-independence prerequisite. This supersedes the October 6 statement below that the
+procedural-reader proposal remains unadopted; reader isolation or separation
+requirements elsewhere in this file now mean this procedural boundary.
+
+## Adopted exploratory real-data direction — October 6, 2026
+
+The scientist agreed to prioritize exploratory fits on the existing real MDTB
+development data and retain the intended standards of at least 80% recovery
+(`tau_remaining = 0.20`) and a five-percentage-point comparator increment
+(`tau_increment = 0.05`). These are meaningfulness choices, not evidence that
+uncertainty is calibrated or that any model passes. The other five proposed
+margin values remain unadopted.
+
+Proceed with the existing twelve development participants after reader
+isolation, functional validity and fixed model/source recipes are ready. Keep
+the 208-location support, 18 conditions, participant weighting and Task-A-only
+target personalization. Report signed map/geometry signal, residuals and
+comparator point summaries as exploratory; do not apply the five unset
+thresholds or declare adequacy, equivalence, superiority or a uniquely supported
+class. Uncertainty remains unfinished. Ratio descriptions require positive
+finite signal and must disclose unresolved signal strength and precision.
+
+The original seven-world/100-seed qualification and completed joint inference
+are deferred for this exploratory branch, not passed or replaced by seven
+fixtures. They remain obligations of the original formal class-decision route
+below. The Bonferroni alternative and weaker procedural-reader proposal remain
+unadopted. Audit Task B stays sealed and existing resource limits remain; no
+simulation expansion or audit opening follows from this agreement. The
+[current margin record](outputs/scientific_margin_proposal.md#adopted-scope--october-6-2026)
+separates the two accepted standards from the remaining proposals.
+
 Two people can perform the same task while showing cerebellar activity in
 slightly different places. That difference could mean several very different
 things. The same functional parcels may have different boundaries; the whole
@@ -205,8 +341,9 @@ models also clears a separate material-increment margin.
 
 The release contains 24 participants. A Task-B-blind rule assigns 12 to
 development and 12 to audit, balancing demographic fields, session-rest
-availability, and a Task-A-only reliability summary. The roles have not yet
-been instantiated.
+availability, and a Task-A-only reliability summary. The roles were fixed on
+October 4; [DATASETS.md](DATASETS.md#participant-roles) links the assignment
+record. Role-filtered containers are materialized but remain unreleased.
 
 The primary endpoint contains 18 Task-B-only conditions in seven equal-weight
 domains: CPRO, prediction, spatial map, movie, mental rotation, emotion
@@ -221,8 +358,10 @@ failure; there is no replacement or reduced-N primary analysis.
 
 ## Margins and uncertainty
 
-Four primary scientific margins are recorded with scientist approval before
-any candidate-discriminating development Task-B score:
+For the original formal class-decision route, four primary scientific margins
+are recorded with scientist approval before candidate-discriminating Task-B
+scores. The separately adopted exploratory branch above reports point summaries
+without invoking the unfinished class decisions:
 
 | Margin | Question it answers |
 | --- | --- |
@@ -239,8 +378,11 @@ worsen prediction of the observed geometry projection in both independent B
 replicates; changing only the model's own predicted matrix is tautological and
 does not count.
 
-The numerical values are not yet fixed, so EP15 is not ready to score
-candidates. Synthetic qualification may test the operating characteristics of
+The two intended standards are now fixed at `tau_remaining = 0.20` and
+`tau_increment = 0.05`; the other five margins and calibrated joint inference
+remain unresolved. Formal class scoring is not ready. The exploratory branch
+may proceed once its explicit source, model and access prerequisites pass.
+Synthetic qualification may test the operating characteristics of
 already chosen margins; it may not choose or widen them.
 
 Participant delete-one jackknife pseudovalues provide uncertainty for the
@@ -312,16 +454,22 @@ are recorded; the earlier image is retained as historical material.
 ## Data readiness
 
 The Functional Fusion MDTB v1.0 derivative is present in read-only shared
-storage, and archive structure has been inspected without reading beta values.
-EP15 is not analysis-ready. Remaining work includes:
+storage. The common forward-transform route, 208-location anatomy-only
+support, private Task-A reliability preparation, fixed 12/12 roles and
+condition partitions are complete. All 36 role-filtered containers have been
+materialized without scientific Task-B evaluation and remain unreleased.
+See [the data readiness record](DATASETS.md#what-remains-before-analysis).
+Remaining work includes:
 
-- authenticating one common cerebellar registration route for all 24 people;
-- fixing the common support, interpolation, finite-value, and geometry rules;
-- instantiating the Task-B-blind 12/12 participant roles and physical handoffs;
+- enforcing reader separation and the published-parameter/cache firewall;
+- functional finite-value/geometry and independent-error checks under the
+  fixed support and partition rules;
 - fixing the source geometry, M1–M4 capacities, certificates, numerical
-  tolerances, margins, uncertainty implementation, and scratch limit;
-- completing outcome-blind synthetic qualification and the prior-exposure
-  review; and
+  tolerances and scratch limit for exploratory fits;
+- for the later formal route, completing the remaining five margins and
+  calibrated uncertainty and meeting its original scientific qualification;
+  the 700-run program is deferred for exploratory reporting and its bounded
+  replacement remains a proposal; and
 - demonstrating that audit predictions can be generated while audit Task B is
   unavailable.
 

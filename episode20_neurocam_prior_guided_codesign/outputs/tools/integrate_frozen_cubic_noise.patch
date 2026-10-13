@@ -1,0 +1,50 @@
+*** Begin Patch
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/array_acquisition.py
+@@
+ def _provider_noise(array, provider, layout, key, daq_selected_sources, *, interval_start, interval_end,
+-                    admitted_numeric_bytes):
++                    admitted_numeric_bytes, verify_only=False):
+@@
+     if array.physical_noise_layout is not layout:
+         raise ValueError("Physical noise layout changed after attempt binding")
++    if verify_only:
++        from frozen_cubic_noise_binding import FrozenCubicNoiseBinding
++        if type(provider) is FrozenCubicNoiseBinding:
++            if provider.sample_numeric_bytes != admitted_numeric_bytes:
++                raise ValueError("Noise sample exceeds the provider's declared numeric storage")
++            return provider.interval_descriptor(array, key, interval_start, interval_end,
++                                                daq_selected_sources)
+     sample = provider(key)
+@@
+-def _joint_input_digest(field, noise_sample):
++def _joint_input_digest(field, noise_sample, *, noise_provider=None):
+@@
+     if noise_sample is None:
+         return _field_digest(field)
++    if noise_provider is not None:
++        from frozen_cubic_noise_binding import FrozenCubicNoiseBinding
++        if type(noise_provider) is FrozenCubicNoiseBinding:
++            return noise_provider.joint_digest(field, noise_sample)
+     polynomial = isinstance(noise_sample, NoisePolynomial)
+@@
+                 noise = _provider_noise(array, noise_provider, noise_layout, event.field_key,
+                                         event.daq_selected_sources, interval_start=event.start, interval_end=event.end,
+-                                        admitted_numeric_bytes=noise_bytes)
+-                digests.extend(_joint_input_digest(field, noise))
++                                        admitted_numeric_bytes=noise_bytes, verify_only=True)
++                digests.extend(_joint_input_digest(field, noise, noise_provider=noise_provider))
+@@
+-                    if _joint_input_digest(field, noise) != self._field_digests[offset:offset + 32]:
++                    if _joint_input_digest(field, noise, noise_provider=self._noise_provider) != self._field_digests[offset:offset + 32]:
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/streaming_array_acquisition.py
+@@
+             noise = _provider_noise(self._array, self._noise_provider, self._noise_layout, normalized.field_key,
+                                     normalized.daq_selected_sources, interval_start=a, interval_end=b,
+-                                    admitted_numeric_bytes=self._noise_bytes)
+-            digest = _joint_input_digest(field, noise)
++                                    admitted_numeric_bytes=self._noise_bytes, verify_only=True)
++            digest = _joint_input_digest(field, noise, noise_provider=self._noise_provider)
+@@
+-                    if _joint_input_digest(field, noise) != digests[32 * fragment_index:32 * (fragment_index + 1)]:
++                    if _joint_input_digest(field, noise, noise_provider=self._noise_provider) != digests[32 * fragment_index:32 * (fragment_index + 1)]:
+*** End Patch

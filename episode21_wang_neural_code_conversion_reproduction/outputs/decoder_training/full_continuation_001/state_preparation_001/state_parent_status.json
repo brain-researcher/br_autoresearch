@@ -1,0 +1,100 @@
+{
+  "schema_version": "ep21.decoder_state_parent.v1",
+  "status": "complete_four_participant_training_states_only",
+  "authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training_full_authorization.json",
+  "work_manifest": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/work_manifest.json",
+  "allocation": {
+    "job_id": "46833971",
+    "hostname": "sh03-06n08",
+    "allocated_cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "time_limit_seconds": 14400,
+    "job_end_epoch": 1791344896.0
+  },
+  "resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "minutes": 240,
+    "durable_bytes": 8000000000,
+    "scratch_bytes": 2000000000
+  },
+  "max_work_seconds": 14040.130445480347,
+  "participants_requested": [
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "participants_completed": [
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "participants_remaining": [],
+  "participant_states": [
+    {
+      "participant": "sub-03",
+      "directory": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-03",
+      "state_status": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-03/state_status.json",
+      "training_images": 4712,
+      "training_repetitions": 18844,
+      "native_voxels": 12897,
+      "eligible_voxels": 12897
+    },
+    {
+      "participant": "sub-05",
+      "directory": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-05",
+      "state_status": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-05/state_status.json",
+      "training_images": 4712,
+      "training_repetitions": 18843,
+      "native_voxels": 10891,
+      "eligible_voxels": 10891
+    },
+    {
+      "participant": "sub-06",
+      "directory": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-06",
+      "state_status": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-06/state_status.json",
+      "training_images": 4712,
+      "training_repetitions": 18844,
+      "native_voxels": 12023,
+      "eligible_voxels": 12023
+    },
+    {
+      "participant": "sub-07",
+      "directory": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-07",
+      "state_status": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-07/state_status.json",
+      "training_images": 4712,
+      "training_repetitions": 18842,
+      "native_voxels": 12057,
+      "eligible_voxels": 12057
+    }
+  ],
+  "training_images_each": 4712,
+  "training_role": "subject_unique",
+  "sub01_state_reused_unchanged": true,
+  "sub01_state_recomputed": false,
+  "regular_feature_values_read": false,
+  "tau_train_values_read": false,
+  "tau_test_values_read": false,
+  "OOD_access": false,
+  "predictions_or_scores_computed": false,
+  "decoder_units_fitted": 0,
+  "complete_decoder": false,
+  "automatic_retry": false,
+  "successor_authorized": false,
+  "original_budget_consumption_preserved": true,
+  "elapsed_seconds": 3411.3523621999193,
+  "peak_RSS_KiB": 3492356,
+  "logical_neural_input_bytes": 3720754154,
+  "durable_bytes_before_parent_status": 3208946981,
+  "accounting": {
+    "charge_parent_allocation_once": true,
+    "maximum_CPU_seconds": 14400,
+    "state_build_jobs_consumed": 1,
+    "prior_consumption_preserved": true,
+    "terminal_accounting_by_coordinator": true
+  }
+}

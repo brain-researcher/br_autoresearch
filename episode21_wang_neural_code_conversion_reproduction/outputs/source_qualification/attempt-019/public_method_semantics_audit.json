@@ -1,0 +1,566 @@
+{
+  "allowlisted_source_members": {
+    "brain_parameters": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/params/converter_params_VC.csv",
+      "sha256": "5e0749536a636dcc49e426441a6114efbd0a01edf1ce26115601436112d06b59",
+      "size_bytes": 700
+    },
+    "brain_test": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+      "sha256": "06f8ecdb5876b30bf9e6febe1c0517117818d6e717d98185de6affa4cab48b6f",
+      "size_bytes": 6904
+    },
+    "brain_train": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+      "sha256": "28c74907a963dba3bd6063a86d8706a535c356129757054407065275409cefea",
+      "size_bytes": 7641
+    },
+    "conversion_bootstrap": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/plot_figure.py",
+      "sha256": "638811c8038d1c0d43e03577d7ddd2243eb2bf9c5b061412288add7e51fd8566",
+      "size_bytes": 11647
+    },
+    "decoding_bootstrap": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/plot_figure.py",
+      "sha256": "a42b4a6d5c391910c919d86c9d800370c08523a4b7b69ab33ff9c52ad80a088c",
+      "size_bytes": 7204
+    },
+    "dnn_evaluator": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+      "sha256": "922cd26405c276bb5ec0a0c5edd2368011bb6457ddca300d4e1f2eb5ab958d91",
+      "size_bytes": 8420
+    },
+    "feature_decoder_config": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+      "sha256": "10ea56716c5a2b7f602488ad8e29bff94c65102203ba2b529c36812f988aeaae",
+      "size_bytes": 1537
+    },
+    "feature_decoder_predict": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+      "sha256": "68f435078533627ee42c7b299dbec6a6d69abed3e417e1fe3e6d3ebca1b8c27b",
+      "size_bytes": 7867
+    },
+    "feature_decoder_train": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+      "sha256": "16400a088e409b781d4084a4b28b013bfe4ca604dae8981e76b8ba6cdaba567e",
+      "size_bytes": 8723
+    },
+    "feature_evaluator": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+      "sha256": "9b5a4192d030c0b5ccb8ac3de6f572b03cef219f5ed49e76f01fd87851b111a7",
+      "size_bytes": 5124
+    },
+    "identification_bootstrap": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+      "sha256": "8ac408b10d8ff1b3579515dd30de1982a191e450055ddcfd0ba6a26ef842f731",
+      "size_bytes": 9349
+    },
+    "pixel_evaluator": {
+      "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+      "sha256": "803e53da3d7b7f462255e1e2ce85b35fe338baf80fc38b08d992b98e68f5b283",
+      "size_bytes": 4049
+    }
+  },
+  "astra_analysis_id": "source_qualification",
+  "attempt": 19,
+  "bindings": {
+    "neutral_conformance_report": {
+      "attempt": 5,
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/pipeline_conformance/attempt-005/neutral_conformance_report.json",
+      "regular_file": true,
+      "schema_version": "ep21.neutral_conformance_report.v1",
+      "sha256": "54fb25d6ffeb8197fde920f631c10258e1d2c82709518d4c2e958d8da2e4a187",
+      "single_link": true,
+      "size_bytes": 11908
+    },
+    "protocol_table": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/PROTOCOL_TABLE.yaml",
+      "regular_file": true,
+      "sha256": "c12b12b172c5e9916c4843d1b287b16c5831a29736c97a0f1cca2ad66bb68f82",
+      "single_link": true,
+      "size_bytes": 27589
+    },
+    "qualification_report": {
+      "attempt": 17,
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/attempt-017/qualification_report.json",
+      "regular_file": true,
+      "schema_version": "ep21.source_qualification_report.v2",
+      "sha256": "98b9e5e30947f12484dc2df66d5ef06b666cb84f2e84cc01b8b0a1c609e07126",
+      "single_link": true,
+      "size_bytes": 93245
+    },
+    "source_archive": {
+      "held_descriptor_verified": true,
+      "md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+      "path": "/scratch/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/source_qualification/attempt-001/KamitaniLab/InterSiteNeuralCodeConversion-V1.0.0.zip",
+      "regular_file": true,
+      "sha256": "bf57aa748df80c8647cb3a773063f670a132aea24e92673bfae7a019de86b6c6",
+      "single_link": true,
+      "size_bytes": 23110908
+    }
+  },
+  "boundary": {
+    "bundled_result_csv_read": false,
+    "checkpoint_deserialized": false,
+    "empirical_or_neural_value_accessed": false,
+    "ep04_or_legacy_scratch_accessed": false,
+    "feature_or_scoring_handoff_accessed": false,
+    "model_or_data_payload_read": false,
+    "ood_payload_accessed": false,
+    "optimizer_or_inference_executed": false,
+    "tensor_or_device_created": false,
+    "upstream_python_imported_or_executed": false,
+    "zip_members_extracted": false
+  },
+  "completed_at": "2026-09-30T02:47:08+00:00",
+  "next_action": "authenticate the exact fastl2lir and bdpy dependency sources if available, wire the three attempt-5 guards into an EP21 adapter, and obtain the scientist/steward dispositions before a fail-closed protocol lock; do not access empirical payloads",
+  "outcome": "completed_tagged_source_method_facts_with_choices_and_dependencies_unresolved",
+  "process_id": 23728,
+  "protocol_effect": {
+    "dependency_semantics_fully_authenticated": false,
+    "empirical_access_authorized": false,
+    "empirical_readiness": false,
+    "protocol_lock_emitted": false,
+    "scientific_choice_adopted": false,
+    "tagged_source_facts_available_to_future_lock_resolver": true
+  },
+  "retained_unresolved": {
+    "bdpy": [
+      "authenticated_main_environment_bdpy_revision",
+      "profile_and_pattern_correlation_exact_semantics",
+      "pairwise_identification_tie_and_nan_semantics"
+    ],
+    "bootstrap_adaptation": [
+      "bounded_empty_or_missing_pair_failure_rule",
+      "deterministic_seed_and_worker_rule",
+      "duplicate_and_multirow_pair_weighting_rule",
+      "adoption_as_secondary_only_without_independence_claim"
+    ],
+    "data_and_access": [
+      "LAION_DUA_license_and_Sherlock_risk_clearance",
+      "authenticated_release_participants_roles_tau_splits_overlaps_betas_QC_and_masks",
+      "role_filtered_regular_only_feature_and_scoring_handoffs",
+      "later_explicit_empirical_execution_authorization"
+    ],
+    "fastl2lir": [
+      "authenticated_fastl2lir_0_9_source_and_runtime",
+      "voxel_ranking_ties_and_fewer_than_500_behavior",
+      "mathematical_intercept_and_coefficient_semantics"
+    ],
+    "scientist_protocol_choices": [
+      "paper_ReLU_vs_tagged_LeakyReLU_0_2",
+      "paper_vs_tagged_content_loss_weighting",
+      "paper_eight_vs_tagged_nineteen_reconstruction_layers",
+      "paper_Caffe_224_vs_official_deploy_227_vs_tagged_PyTorch_227_backend_and_input",
+      "port_or_select_brain_loss_regularization_for_LAION_tau_train"
+    ]
+  },
+  "schema_version": "ep21.public_method_semantics_audit.v1",
+  "scope": "inert_allowlisted_public_source_method_semantics",
+  "started_at": "2026-09-30T02:47:08+00:00",
+  "tagged_source_facts_recorded_not_adopted": {
+    "brain_loss": {
+      "fit_chunk_size": 0,
+      "fit_dtype": "numpy.float32",
+      "fit_n_feat": 0,
+      "intercept_storage": "FastL2LiR model.b flattened and appended as final row of M",
+      "num_sample_argument_used_to_slice_fit_rows": false,
+      "parameter_table": {
+        "alpha_by_source_target": {
+          "sub01_to_sub02": 820,
+          "sub01_to_sub03": 780,
+          "sub01_to_sub04": 800,
+          "sub01_to_sub05": 660,
+          "sub02_to_sub01": 1200,
+          "sub02_to_sub03": 1200,
+          "sub02_to_sub04": 1400,
+          "sub02_to_sub05": 1000,
+          "sub03_to_sub01": 1000,
+          "sub03_to_sub02": 1200,
+          "sub03_to_sub04": 1200,
+          "sub03_to_sub05": 1000,
+          "sub04_to_sub01": 1000,
+          "sub04_to_sub02": 1000,
+          "sub04_to_sub03": 1200,
+          "sub04_to_sub05": 1400,
+          "sub05_to_sub01": 820,
+          "sub05_to_sub02": 740,
+          "sub05_to_sub03": 620,
+          "sub05_to_sub04": 640
+        },
+        "declared_sample_count": 6000,
+        "directed_pair_count": 20,
+        "method": "wholeVC",
+        "roi": "VC",
+        "row_count": 20,
+        "unique_alpha_values": [
+          620,
+          640,
+          660,
+          740,
+          780,
+          800,
+          820,
+          1000,
+          1200,
+          1400
+        ]
+      },
+      "repeated_test_response_rule": "average_by_unique_image_label_before_conversion",
+      "source_and_target_rows_sorted_independently_by_label": true,
+      "source_target_label_equality_assertion_in_tagged_fitter": false,
+      "test_evidence": [
+        {
+          "line": 60,
+          "text": "x_test_labels_unique = np.unique(x_labels)"
+        },
+        {
+          "line": 61,
+          "text": "x_test_averaged = np.vstack([np.mean(x[(x_labels == lb).flatten(), :], axis=0) for lb in x_test_labels_unique])"
+        },
+        {
+          "line": 108,
+          "text": "x = np.hstack((x, np.ones((x.shape[0], 1))))"
+        },
+        {
+          "line": 109,
+          "text": "converted_x = np.matmul(x, M)"
+        },
+        {
+          "line": 111,
+          "text": "converted_x = converted_x * y_norm + y_mean"
+        }
+      ],
+      "test_intercept_application": "append_ones_column_then_matrix_multiply_M",
+      "training_evidence": [
+        {
+          "line": 132,
+          "text": "x_index = np.argsort(x_labels.flatten())"
+        },
+        {
+          "line": 136,
+          "text": "y_index = np.argsort(y_labels.flatten())"
+        },
+        {
+          "line": 145,
+          "text": "x_mean = np.mean(x, axis=0)[np.newaxis, :]  # np.newaxis was added to match Matlab outputs"
+        },
+        {
+          "line": 146,
+          "text": "x_norm = np.std(x, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 150,
+          "text": "y_mean = np.mean(y, axis=0)[np.newaxis, :]"
+        },
+        {
+          "line": 151,
+          "text": "y_norm = np.std(y, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 164,
+          "text": "model.fit(x_normalized, y_normalized, alpha=alpha, n_feat=0,"
+        },
+        {
+          "line": 165,
+          "text": "chunk_size=0, dtype=np.float32)"
+        },
+        {
+          "line": 167,
+          "text": "b = model.b.flatten()  # b in fact has no effect as the data has been normalized, but it is kept for consistency."
+        },
+        {
+          "line": 169,
+          "text": "M = np.vstack([W, b])"
+        }
+      ],
+      "training_response_centering_axis": 0,
+      "training_response_std_axis": 0,
+      "training_response_std_ddof": 1
+    },
+    "evaluation_calls": {
+      "dnn_identification": {
+        "dyad_layer_aggregation": "numpy.nanmean",
+        "evidence": [
+          {
+            "line": 80,
+            "text": "ident_feat = pairwise_identification(recon_feat[layer], true_feat[layer])"
+          },
+          {
+            "line": 86,
+            "text": "'Identification accuracy': np.nanmean(ident_feat)"
+          },
+          {
+            "line": 123,
+            "text": "self.image_size = [227, 227]"
+          },
+          {
+            "line": 137,
+            "text": "self.image_size = [224, 224]"
+          }
+        ],
+        "identification": "bdpy.evals.metrics.pairwise_identification_per_layer",
+        "tagged_alexnet_input": [
+          227,
+          227
+        ],
+        "tagged_vgg19_input": [
+          224,
+          224
+        ]
+      },
+      "feature_decoding": {
+        "dyad_layer_aggregation": "numpy.nanmean",
+        "evidence": [
+          {
+            "line": 90,
+            "text": "r_prof = profile_correlation(pred_y, true_y_sorted)"
+          },
+          {
+            "line": 91,
+            "text": "r_patt = pattern_correlation(pred_y, true_y_sorted, mean=train_y_mean, std=train_y_std)"
+          },
+          {
+            "line": 98,
+            "text": "'Profile correlation': np.nanmean(r_prof.flatten()),"
+          },
+          {
+            "line": 99,
+            "text": "'Pattern correlation': np.nanmean(r_patt.flatten()),"
+          }
+        ],
+        "pattern": "bdpy.evals.metrics.pattern_correlation_with_target_decoder_training_y_mean_y_std",
+        "profile": "bdpy.evals.metrics.profile_correlation"
+      },
+      "pixel_identification": {
+        "dyad_aggregation": "numpy.nanmean",
+        "evidence": [
+          {
+            "line": 72,
+            "text": "r_pixelt = pattern_correlation(recon_images, true_images)"
+          },
+          {
+            "line": 73,
+            "text": "ident = pairwise_identification(recon_images, true_images)"
+          },
+          {
+            "line": 78,
+            "text": "return np.nanmean(r_pixelt), np.nanmean(ident)"
+          }
+        ],
+        "identification": "bdpy.evals.metrics.pairwise_identification",
+        "pixel_correlation": "bdpy.evals.metrics.pattern_correlation"
+      }
+    },
+    "feature_decoder": {
+      "chunk_axis": 1,
+      "explicit_intercept_option_in_script": false,
+      "fastl2lir_constructor_arguments": [],
+      "fastl2lir_fit_parameters_from_script": [
+        "alpha",
+        "n_feat",
+        "dtype"
+      ],
+      "feature_label_alignment": "unique_response_labels_then_exact_lookup_for_each_response_row",
+      "label_key": "image_index",
+      "layers": [
+        "conv1_1",
+        "conv1_2",
+        "conv2_1",
+        "conv2_2",
+        "conv3_1",
+        "conv3_2",
+        "conv3_3",
+        "conv3_4",
+        "conv4_1",
+        "conv4_2",
+        "conv4_3",
+        "conv4_4",
+        "conv5_1",
+        "conv5_2",
+        "conv5_3",
+        "conv5_4",
+        "fc6",
+        "fc7",
+        "fc8"
+      ],
+      "network": "caffe/VGG19",
+      "prediction_evidence": [
+        {
+          "line": 122,
+          "text": "x_labels_unique = np.unique(x_labels)"
+        },
+        {
+          "line": 124,
+          "text": "x = np.vstack([np.mean(x[(np.array(x_labels) == lb).flatten(), :], axis=0) for lb in x_labels_unique])"
+        },
+        {
+          "line": 142,
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 164,
+          "text": "y_pred = y_pred * y_norm + y_mean"
+        }
+      ],
+      "prediction_normalization": "stored_x_mean_x_norm_then_stored_y_norm_y_mean",
+      "repeated_test_response_rule": "average_by_unique_label_before_prediction_when_average_sample_true",
+      "requested_voxels_per_feature_unit": 500,
+      "ridge_alpha": 100,
+      "training_evidence": [
+        {
+          "line": 143,
+          "text": "x_mean = np.mean(x, axis=0)[np.newaxis, :]  # np.newaxis was added to match Matlab outputs"
+        },
+        {
+          "line": 144,
+          "text": "x_norm = np.std(x, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 147,
+          "text": "y_mean = np.mean(y, axis=0)[np.newaxis, :]"
+        },
+        {
+          "line": 148,
+          "text": "y_norm = np.std(y, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 130,
+          "text": "y_labels = np.unique(x_labels)"
+        },
+        {
+          "line": 152,
+          "text": "y_index = np.array([np.where(np.array(y_labels) == xl) for xl in x_labels]).flatten()"
+        },
+        {
+          "line": 172,
+          "text": "model_param = {'alpha':  alpha,"
+        },
+        {
+          "line": 173,
+          "text": "'n_feat': num_voxel[roi],"
+        },
+        {
+          "line": 174,
+          "text": "'dtype': np.float32}"
+        }
+      ],
+      "training_feature_centering_axis": 0,
+      "training_feature_std_axis": 0,
+      "training_feature_std_ddof": 1,
+      "training_response_centering_axis": 0,
+      "training_response_std_axis": 0,
+      "training_response_std_ddof": 1
+    },
+    "source_style_dyadic_bootstrap": {
+      "conversion_bootstrap": {
+        "duplicate_pair_rows_retained": true,
+        "empty_or_unfillable_draw_has_no_bounded_failure_rule": true,
+        "evidence": [
+          {
+            "line": 92,
+            "text": "source_sample = np.random.choice(unique_sources, 1, replace=True)[0]"
+          },
+          {
+            "line": 93,
+            "text": "target_sample = np.random.choice(unique_targets, 1, replace=True)[0]"
+          },
+          {
+            "line": 95,
+            "text": "if source_sample != target_sample:"
+          },
+          {
+            "line": 104,
+            "text": "combined_sample = combined_sample.head(sample_size)"
+          },
+          {
+            "line": 111,
+            "text": "lower = np.percentile(means, (alpha / 2) * 100)"
+          }
+        ],
+        "missing_or_empty_pair_draw_adds_zero_rows_and_retries": true,
+        "overshoot_truncated_with_head": true,
+        "parallel_workers": "joblib_n_jobs_minus_one",
+        "percentile_interval_alpha": 0.05,
+        "requested_sample_size": 20,
+        "resamples": 1000,
+        "seed": 42,
+        "seed_scope": "reset_inside_each_group_bootstrap",
+        "source_and_target_sampled_separately_with_replacement": true,
+        "source_equals_target_rejected": true
+      },
+      "decoding_bootstrap": {
+        "duplicate_pair_rows_retained": true,
+        "empty_or_unfillable_draw_has_no_bounded_failure_rule": true,
+        "evidence": [
+          {
+            "line": 30,
+            "text": "source_sample = np.random.choice(unique_sources, 1, replace=True)[0]"
+          },
+          {
+            "line": 31,
+            "text": "target_sample = np.random.choice(unique_targets, 1, replace=True)[0]"
+          },
+          {
+            "line": 33,
+            "text": "if source_sample != target_sample:"
+          },
+          {
+            "line": 43,
+            "text": "combined_sample = combined_sample.head(sample_size)"
+          },
+          {
+            "line": 82,
+            "text": "profile_lower = np.percentile(profile_means, (alpha / 2) * 100)"
+          }
+        ],
+        "missing_or_empty_pair_draw_adds_zero_rows_and_retries": true,
+        "overshoot_truncated_with_head": true,
+        "parallel_workers": "multiprocessing_pool_default",
+        "percentile_interval_alpha": 0.05,
+        "requested_sample_size": 20,
+        "resamples": 1000,
+        "seed": null,
+        "seed_scope": "unseeded_multiprocessing",
+        "source_and_target_sampled_separately_with_replacement": true,
+        "source_equals_target_rejected": true
+      },
+      "identification_bootstrap": {
+        "duplicate_pair_rows_retained": true,
+        "empty_or_unfillable_draw_has_no_bounded_failure_rule": true,
+        "evidence": [
+          {
+            "line": 40,
+            "text": "source_sample = np.random.choice(unique_sources, 1, replace=True)[0]"
+          },
+          {
+            "line": 41,
+            "text": "target_sample = np.random.choice(unique_targets, 1, replace=True)[0]"
+          },
+          {
+            "line": 43,
+            "text": "if source_sample != target_sample:"
+          },
+          {
+            "line": 53,
+            "text": "combined_sample = combined_sample.head(sample_size)"
+          },
+          {
+            "line": 87,
+            "text": "identification_lower = np.percentile(identification_means, (alpha / 2) * 100)"
+          }
+        ],
+        "missing_or_empty_pair_draw_adds_zero_rows_and_retries": true,
+        "overshoot_truncated_with_head": true,
+        "parallel_workers": "multiprocessing_pool_default",
+        "percentile_interval_alpha": 0.05,
+        "requested_sample_size": 20,
+        "resamples": 1000,
+        "seed": null,
+        "seed_scope": "unseeded_multiprocessing",
+        "source_and_target_sampled_separately_with_replacement": true,
+        "source_equals_target_rejected": true
+      }
+    }
+  }
+}

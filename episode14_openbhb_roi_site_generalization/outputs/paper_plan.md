@@ -1,5 +1,36 @@
 # Paper plan — what makes an anatomical age representation transfer?
 
+## Completed empirical evidence — reconciled October 6
+
+The original R0–R3 reference and the separately adopted diagnostic and
+bilateral comparisons are complete. They use the already exposed development
+roles; the 757 public-validation outcomes remain closed. These findings now
+constrain the paper argument:
+
+| Completed comparison | Observed result and interpretation |
+| --- | --- |
+| [Fixed R0–R3 reference](runs/fixed_development_comparison/attempt001/development_report.json) | R1 improved age MAE 1.44%, below the fixed 2% margin; R2 and R3 worsened it 1.87% and 6.45%. All three passed the point site guardrail. Adopted disposition remains `development_no_candidate`. |
+| [Cached projection attribution](runs/cached_projection_diagnostics/attempt001/cached_projection_report.md) and [domain heterogeneity](runs/projection_heterogeneity/attempt001/interpretation.md) | Centered external MAE worsened in both atlases (+0.148920/+0.131091 years). Desikan's absolute harm survives every single-domain omission; Destrieux's nearly flat absolute mean combines opposing domain effects and offsets. Centering is evaluator-only, not a deployable correction. |
+| [Matched projection geometry and discarded-score utility](runs/discarded_direction_diagnostics/attempt001/interpretation.md) | Desikan's removal cost persists without post-projection rescaling: +0.3613 years at alpha1000, descriptive interval [0.0274, 0.6808]. Common age support contains only 226 participants in nine domains, all under 35; utility intervals include zero. Useful discarded age information is not established by this test. |
+| [Age-adjusted direction estimation](runs/age_adjusted_projection/attempt001/interpretation.md) | No clear benefit beyond the within-site shuffled-age control; removed directions became more aligned with original age covariance in every fit. This intervention did not achieve the intended covariance protection. |
+| [Exact covariance-protection counterfactual](runs/covariance_protected_projection/attempt001/interpretation.md) | All six fits preserved fitting age covariance, yet Desikan MAE remained 6.1621 versus raw 5.8311 years: +0.3310 [0.0268, 0.6274]. The difference from original removal and the sham remains uncertain; marginal covariance preservation is insufficient here, not a mechanism explanation. |
+| [Bilateral regularization and matched pairings](runs/bilateral_regularization/attempt001/interpretation.md) | Homologous pairing selected equal penalties and reproduced retuned raw ridge in every view; all three homologous-versus-sham intervals include zero. No anatomical advantage or candidate promotion is established. |
+
+The bilateral comparison also exposes an objective tradeoff. Expanding raw
+ridge's alpha grid improves equal-domain MAE **5.831111 → 5.468507 years**,
+while participant-pooled MAE worsens **6.949438 → 7.520867**, worst-domain MAE
+**9.603874 → 11.976468**, and oldest-quartile MAE **13.568802 → 17.700589**.
+The [saved cross-run comparison](runs/bilateral_regularization/attempt001/raw_grid_comparison.json)
+uses identical domains and age-quartile boundaries; it has no paired old/new
+uncertainty interval. Report all these quantities together, not an unqualified
+improvement. The sham alpha choices reached the tested upper bound, which is
+a limitation rather than an automatic grid-extension instruction.
+
+These are completed methodological findings on overlapping development views,
+not independent confirmation or an aging mechanism. The
+[result index](README.md) links the observed-data figures and full reports;
+the concept figure and broader design below remain prospective framing.
+
 ## The scientific question
 
 Which organization of existing FreeSurfer ROI measurements improves age
@@ -55,11 +86,14 @@ selection, hard validity checks, descriptive controls, holdout classification,
 and one-shot consumption rules still govern it. It can establish only a
 controlled predictive-methods comparison.
 
-The broader representation search is design-approved but not executable yet.
-The current ASTRA still describes only the fixed reference. New candidate
-ranges, resources, selection and confirmation scope need a prospective
-amendment. The prior [site diagnostic](site_information_diagnostic_prior.md)
-is retained as an optional, unactivated branch, not the paper's main argument.
+The broader representation search remains design-approved rather than an
+unbounded executable search. The existing ASTRA includes the completed fixed
+reference and separately adopted diagnostics/bilateral comparison. Their
+specific authority does not activate other candidate ranges, resources,
+selection or confirmation endpoints. The
+[site diagnostic specification](site_information_diagnostic_prior.md)
+records the completed narrow amendments; its conditional-site probe remains
+unactivated. No further comparison is selected by this documentation update.
 
 ## Two initial arguments to test
 

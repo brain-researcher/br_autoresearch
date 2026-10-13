@@ -1,0 +1,256 @@
+{
+  "acceptance_threshold_applied": false,
+  "artifact_kind": "generated_selection_boundary_diagnostic",
+  "contract_or_tie_rule_modified": false,
+  "deterministic_replay": {
+    "exact_row_replay": true,
+    "performed": true,
+    "primary_sha256": "507876445773781812ae5d1a0c11b8c3344ae1978affab0b5359875707142ff1",
+    "replay_sha256": "507876445773781812ae5d1a0c11b8c3344ae1978affab0b5359875707142ff1"
+  },
+  "final_connectivity_accessed": false,
+  "fixture_configuration": {
+    "count_total": 100,
+    "direction": "right_to_left",
+    "fixture_seed": 1201,
+    "folds": 2,
+    "generator_strength": 1.8,
+    "latent_rank": 2,
+    "missing_fraction": 0.1,
+    "neurons_per_side": 19,
+    "ridge": 0.1,
+    "scenario": "curved_continuum_dense"
+  },
+  "integration_draws_grid": [
+    1024,
+    2048,
+    4096
+  ],
+  "integration_seed_contract": {
+    "M2_M3_cv_integration_seed_shared_within_fold": true,
+    "fit_and_GMM_seeds_remain_model_specific": true,
+    "fixed_M_target_integration_seed_shared_with_selected_reference": true,
+    "generator": "nested_scrambled_sobol_standard_normal",
+    "seeds_unchanged_across_draw_grid": true
+  },
+  "interpretation": "diagnostic only: separates fixed-model numerical refinement from the existing discrete M2/M3 CV selection boundary",
+  "model_candidates": [
+    "M2",
+    "M3"
+  ],
+  "pilot_scope": "generated_data_only",
+  "real_connectivity_accessed": false,
+  "rows": [
+    {
+      "M_candidate_cross_validation": {
+        "best_score_model_id": "M2",
+        "best_standard_error": 0.005201095637817746,
+        "candidates": [
+          {
+            "fold_scores": [
+              -0.25381618128358274,
+              -0.24341399000794725
+            ],
+            "in_near_set": true,
+            "mean_score": -0.248615085645765,
+            "model_id": "M2",
+            "near_set_boundary_signed_distance": 0.005201095637817746,
+            "parameter_count": 71,
+            "score_gap_from_best": 0.0,
+            "standard_error": 0.005201095637817746
+          },
+          {
+            "fold_scores": [
+              -0.24913686235780724,
+              -0.24878725069280108
+            ],
+            "in_near_set": true,
+            "mean_score": -0.24896205652530418,
+            "model_id": "M3",
+            "near_set_boundary_signed_distance": 0.00485412475827858,
+            "parameter_count": 82,
+            "score_gap_from_best": 0.0003469708795391657,
+            "standard_error": 0.00017480583250308043
+          }
+        ],
+        "cv_seed": 1805275505,
+        "fold_integration_seeds": [
+          3317070294,
+          3517025557
+        ],
+        "integration_seed_shared_between_M2_and_M3_within_fold": true,
+        "near_set_model_ids": [
+          "M2",
+          "M3"
+        ],
+        "production_selected_model_id": "M2",
+        "production_selection_exactly_reproduced": true,
+        "rule": "rank by descending mean CV score; define the near set by best_score - candidate_score <= max(tie_tolerance, best_SE); select minimum parameter count then model id within that set",
+        "selected_model_id": "M2",
+        "selection_tolerance": 0.005201095637817746,
+        "signed_distance_definition": "selection_tolerance - score_gap_from_best; nonnegative is inside the near set and negative is outside",
+        "tie_tolerance": 1e-06
+      },
+      "fixed_M_right_to_left_mean_delta_against_selected_reference": {
+        "M2": -0.0008082734224249865,
+        "M3": -0.0005822931623719388
+      },
+      "integration_draws": 1024,
+      "seed_schedule": {
+        "final_integration_seed": 3816686256,
+        "fixed_M_fit_seeds": {
+          "M2": 805468903,
+          "M3": 2325037428
+        },
+        "same_final_integration_seed_for_selected_reference_and_fixed_M": true
+      },
+      "selected_U_model_id": "U_linear",
+      "selected_reference_model_id": "U_linear"
+    },
+    {
+      "M_candidate_cross_validation": {
+        "best_score_model_id": "M3",
+        "best_standard_error": 0.0002705683057886432,
+        "candidates": [
+          {
+            "fold_scores": [
+              -0.25419530356269926,
+              -0.2439859899537765
+            ],
+            "in_near_set": false,
+            "mean_score": -0.2490906467582379,
+            "model_id": "M2",
+            "near_set_boundary_signed_distance": -0.0010012918227107759,
+            "parameter_count": 71,
+            "score_gap_from_best": 0.001271860128499419,
+            "standard_error": 0.005104656804461385
+          },
+          {
+            "fold_scores": [
+              -0.24754821832394983,
+              -0.2480893549355271
+            ],
+            "in_near_set": true,
+            "mean_score": -0.24781878662973847,
+            "model_id": "M3",
+            "near_set_boundary_signed_distance": 0.0002705683057886432,
+            "parameter_count": 82,
+            "score_gap_from_best": 0.0,
+            "standard_error": 0.0002705683057886432
+          }
+        ],
+        "cv_seed": 1805275505,
+        "fold_integration_seeds": [
+          3317070294,
+          3517025557
+        ],
+        "integration_seed_shared_between_M2_and_M3_within_fold": true,
+        "near_set_model_ids": [
+          "M3"
+        ],
+        "production_selected_model_id": "M3",
+        "production_selection_exactly_reproduced": true,
+        "rule": "rank by descending mean CV score; define the near set by best_score - candidate_score <= max(tie_tolerance, best_SE); select minimum parameter count then model id within that set",
+        "selected_model_id": "M3",
+        "selection_tolerance": 0.0002705683057886432,
+        "signed_distance_definition": "selection_tolerance - score_gap_from_best; nonnegative is inside the near set and negative is outside",
+        "tie_tolerance": 1e-06
+      },
+      "fixed_M_right_to_left_mean_delta_against_selected_reference": {
+        "M2": -0.000564438284085656,
+        "M3": -0.0006390941467511501
+      },
+      "integration_draws": 2048,
+      "seed_schedule": {
+        "final_integration_seed": 3816686256,
+        "fixed_M_fit_seeds": {
+          "M2": 805468903,
+          "M3": 2325037428
+        },
+        "same_final_integration_seed_for_selected_reference_and_fixed_M": true
+      },
+      "selected_U_model_id": "U_linear",
+      "selected_reference_model_id": "U_linear"
+    },
+    {
+      "M_candidate_cross_validation": {
+        "best_score_model_id": "M3",
+        "best_standard_error": 0.0014495225077302135,
+        "candidates": [
+          {
+            "fold_scores": [
+              -0.2546018302918079,
+              -0.24419866024892378
+            ],
+            "in_near_set": false,
+            "mean_score": -0.24940024527036583,
+            "model_id": "M2",
+            "near_set_boundary_signed_distance": -7.781387440401765e-05,
+            "parameter_count": 71,
+            "score_gap_from_best": 0.0015273363821342312,
+            "standard_error": 0.005201585021442051
+          },
+          {
+            "fold_scores": [
+              -0.2493224313959618,
+              -0.24642338638050137
+            ],
+            "in_near_set": true,
+            "mean_score": -0.2478729088882316,
+            "model_id": "M3",
+            "near_set_boundary_signed_distance": 0.0014495225077302135,
+            "parameter_count": 82,
+            "score_gap_from_best": 0.0,
+            "standard_error": 0.0014495225077302135
+          }
+        ],
+        "cv_seed": 1805275505,
+        "fold_integration_seeds": [
+          3317070294,
+          3517025557
+        ],
+        "integration_seed_shared_between_M2_and_M3_within_fold": true,
+        "near_set_model_ids": [
+          "M3"
+        ],
+        "production_selected_model_id": "M3",
+        "production_selection_exactly_reproduced": true,
+        "rule": "rank by descending mean CV score; define the near set by best_score - candidate_score <= max(tie_tolerance, best_SE); select minimum parameter count then model id within that set",
+        "selected_model_id": "M3",
+        "selection_tolerance": 0.0014495225077302135,
+        "signed_distance_definition": "selection_tolerance - score_gap_from_best; nonnegative is inside the near set and negative is outside",
+        "tie_tolerance": 1e-06
+      },
+      "fixed_M_right_to_left_mean_delta_against_selected_reference": {
+        "M2": -0.0007088815182314333,
+        "M3": -0.0004435183243697586
+      },
+      "integration_draws": 4096,
+      "seed_schedule": {
+        "final_integration_seed": 3816686256,
+        "fixed_M_fit_seeds": {
+          "M2": 805468903,
+          "M3": 2325037428
+        },
+        "same_final_integration_seed_for_selected_reference_and_fixed_M": true
+      },
+      "selected_U_model_id": "U_linear",
+      "selected_reference_model_id": "U_linear"
+    }
+  ],
+  "runtime": {
+    "deterministic_replay": {
+      "cpu_seconds": 9.274174063,
+      "wall_seconds": 9.296854492014972
+    },
+    "primary": {
+      "cpu_seconds": 9.995669309,
+      "wall_seconds": 10.055818491004175
+    },
+    "total_cpu_seconds": 19.270600868000002,
+    "total_wall_seconds": 19.353439692989923
+  },
+  "schema_version": "ep12.selection_boundary_diagnostic.v1",
+  "scientific_gate_applied": false,
+  "selected_reference_identity_constant_across_draw_grid": true
+}

@@ -3,7 +3,10 @@ name: "EP17: reliable-voxel sampling and a controlled visual-model relation"
 description: >-
   Planned scientific worklist for the existing three-pair, five-edge contract.
   Concrete paper nominations are not a qualified registry or execution lock.
-  No runnable recipe, active attempt or scientific finding is asserted.
+  Design-metadata preparation, the bounded released-event metadata pilot and
+  the separately bounded retained-roster follow-up are executable before
+  completing source roles. Other stages remain
+  planned; no scientific finding is asserted.
 inputs:
   - {id: goal, type: data, source: GOAL.md}
   - {id: datasets, type: data, source: DATASETS.md}
@@ -11,30 +14,850 @@ inputs:
 outputs:
   - {id: episode_report, from: one_shot_audit.audit_report}
 analyses:
-  source_roles:
-    name: Establish the exact common image universe and concept roles
+  source_metadata:
+    name: Reconstruct presentation identity from provider design metadata
     description: >-
-      Event-image joining and B/C/D identity/geometry alignment; exact four-person
-      720-concept support and whole-concept 480/120/120 roles; role-filtered
-      builder, searcher, scorer and evaluator handoffs. No candidate scores.
+      Steward-only preparation from original image-index JSON, sparse design
+      coordinates, runlist and the pinned stimulus identity CSV. Describe B/C/D
+      modelmd axes and fixed NIfTI mask headers without neural, mask, image or
+      behavioral values. Preserve source ordering, report repeat structure and
+      missing raw-event reconciliation. Do not assign eligibility, roles or folds,
+      infer numerical assignment rules, or complete source_roles from this output.
     inputs:
       - {id: goal, from: ../goal}
       - {id: datasets, from: ../datasets}
       - {id: policy, from: ../policy}
     outputs:
-      - {id: role_views, type: data, inputs: [goal, datasets, policy]}
+      - id: metadata_report
+        type: report
+        format: json
+        inputs: [goal, datasets, policy]
+        recipe:
+          command: >-
+            python3 outputs/tools/source_metadata.py
+            --source "$OAK/users/zijiao/br_autoresearch_data/restricted/cneuromod-things-1.0.1-restricted-raw"
+            --stimulus-metadata-csv "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/cneuromod_images_fmri_pinned_f8f5162_20260922/provider_git/image_paths_fmri.csv"
+            --out outputs/runs/source_metadata/attempt003
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+      - id: presentation_identity
+        type: data
+        format: csv
+        inputs: [goal, datasets, policy]
+      - id: image_repeat_summary
+        type: data
+        format: csv
+        inputs: [goal, datasets, policy]
+      - id: run_metadata
+        type: data
+        format: csv
+        inputs: [goal, datasets, policy]
+  released_event_reconciliation:
+    name: Reconcile retained presentations with pinned released events
+    description: >-
+      Trusted-builder pilot for sub-01 session 01 runs 01-03 only, from the
+      exact source-release gitlinks and the public CONP annex objects. Project
+      stimulus identifiers, timing and schedule metadata in memory; never export
+      mixed event files or behavioral responses. Compare all 180 retained rows
+      with source_metadata presentation identity and the provider's fixed
+      int((onset-3.0)/1.49) transformation. Preserve unknown schedule metadata;
+      do not exclude rows, assign roles or access neural, pixel or model values.
+      One GET per object, no retry or redirect, 20-second request timeout and
+      540-second internal deadline. The separate full-roster recipe first
+      resolves exact pinned annex pointers, then reconciles only the 833 retained
+      runs/49980 presentations while reusing the 180 pilot rows. A complete
+      retained-roster result does not establish the eligible 720-concept universe
+      or complete source_roles. The combined batch has 1 CPU/4 GiB/40 minutes;
+      each sequential phase retains its 1080-second internal deadline and
+      1140-second outer envelope, with no retry, renewal or extra source scope.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/event_metadata_reconciliation_specification.md}
+      - {id: full_specification, type: data, source: outputs/full_event_metadata_reconciliation_specification.md}
+      - {id: projection_runner, type: data, source: outputs/tools/reconcile_released_events.py}
+      - {id: manifest_runner, type: data, source: outputs/tools/prepare_released_event_manifest.py}
+      - {id: retained_runner, type: data, source: outputs/tools/reconcile_retained_events.py}
+      - {id: retained_batch_runner, type: data, source: outputs/tools/run_retained_event_reconciliation.sbatch}
+      - {id: retained_tests, type: data, source: outputs/tests/test_retained_events.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: presentation_identity, from: ../source_metadata.presentation_identity}
+      - {id: run_metadata, from: ../source_metadata.run_metadata}
+      - id: event_run01
+        type: data
+        source: https://sftp.conp.ca/users/cneuromod/ria-conp/515/1ad3c-321e-4111-abf0-95fee0dcbb90/annex/objects/W5/2J/MD5E-s41689--6bd1c67c8fb1c35739090756ca5827a3.tsv/MD5E-s41689--6bd1c67c8fb1c35739090756ca5827a3.tsv
+      - id: event_run02
+        type: data
+        source: https://sftp.conp.ca/users/cneuromod/ria-conp/515/1ad3c-321e-4111-abf0-95fee0dcbb90/annex/objects/08/W9/MD5E-s42672--b89843ef07db10d7e6c5f30f94249834.tsv/MD5E-s42672--b89843ef07db10d7e6c5f30f94249834.tsv
+      - id: event_run03
+        type: data
+        source: https://sftp.conp.ca/users/cneuromod/ria-conp/515/1ad3c-321e-4111-abf0-95fee0dcbb90/annex/objects/66/24/MD5E-s43414--32b057f64d9622449095c6f147166736.tsv/MD5E-s43414--32b057f64d9622449095c6f147166736.tsv
+    outputs:
+      - id: pilot_report
+        type: report
+        format: json
+        inputs: [goal, datasets, policy, specification, metadata_report, presentation_identity, run_metadata, event_run01, event_run02, event_run03]
+        recipe:
+          command: >-
+            python3 outputs/tools/reconcile_released_events.py
+            --out outputs/runs/released_event_reconciliation/pilot001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+      - id: event_metadata
+        type: data
+        format: csv
+        inputs: [goal, datasets, policy, specification, metadata_report, presentation_identity, run_metadata, event_run01, event_run02, event_run03]
+      - id: annex_manifest
+        type: report
+        format: json
+        inputs: [goal, datasets, policy, specification, full_specification, projection_runner, manifest_runner, retained_batch_runner, retained_tests, metadata_report, run_metadata, pilot_report]
+        description: >-
+          Exact 833-run retained roster from source_metadata attempt003:
+          sub-01/sub-02/sub-03 each 213 runs and sub-06 with 194 runs, preserving
+          all original run identities and order. Resolve the pinned things
+          commit b17d3697171824c198ebc6f15fe7ceee9a1f526f through one root and
+          four participant Git trees. Require nontruncated trees and mode 120000
+          symlinks before requesting their bytes. Reconstruct the three pilot
+          pointers and request at most 830 other pointers, each at most 512 bytes;
+          verify the pinned blob length/identity and strict repeated MD5E key.
+          No event-body request belongs to this phase. Root/participant tree
+          caps are 512 KiB/8 MiB, plus one byte solely for oversize detection;
+          at most 835 serial requests use 20-second timeouts and no redirects,
+          authentication or retries. The fresh attempt001 manifest records
+          exact annex sizes/digests and pilot reuse; partial entries do not
+          authorize event reconciliation. Its downstream consumer rechecks
+          complete exact-roster coverage and 128 KiB-per-object/64 MiB-total caps
+          before any new event body. The batch proceeds only after this phase
+          exits successfully, and no phase renews its allocation.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1140s
+            python3.12 -B outputs/tools/prepare_released_event_manifest.py
+            --out outputs/runs/released_event_manifest/attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 20m}
+      - id: retained_report
+        type: report
+        format: json
+        inputs: [goal, datasets, policy, specification, full_specification, projection_runner, manifest_runner, retained_runner, retained_batch_runner, retained_tests, metadata_report, presentation_identity, run_metadata, pilot_report, event_metadata, annex_manifest]
+        description: >-
+          Conditional on the complete exact-roster pinned manifest and fixed
+          byte caps, reconcile all 833 retained runs/49980 presentations. Reuse
+          exactly the 180 verified pilot projection rows and their identity
+          evidence; request only 830 new CONP objects, once each, with original
+          exact length/annex-MD5 checks and no redirects or retry. Mixed event
+          bytes stay in trusted-builder memory. Reuse the explicit identity,
+          onset and schedule projection, numeric participant/session/run checks,
+          provider order and int((onset-3.0)/1.49) rule; behavioral responses,
+          raw TSVs, neural values, pixels and model features are not exported.
+          Unknown schedule values remain unknown and source repetition is not
+          equated with the retained-design count. The first mismatch, denial,
+          transfer failure or deadline stops the stage. A partial CSV may
+          include the first mismatched run and is diagnostic only; missing or
+          incomplete terminal report forbids downstream use. Completion requires
+          every retained run matched and all 49980 rows, with the explicit
+          retained_roster_event_reconciliation_complete flag true. This does
+          not claim reconciliation of all acquired/excluded events, establish
+          eligibility, assign roles/folds or open audit/scoring. The fresh
+          retained001 attempt preserves source_metadata attempt003 and pilot001.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1140s
+            python3.12 -B outputs/tools/reconcile_retained_events.py
+            --manifest outputs/runs/released_event_manifest/attempt001/annex_manifest.json
+            --out outputs/runs/released_event_reconciliation/retained001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 20m}
+      - id: retained_event_metadata
+        type: data
+        format: csv
+        inputs: [full_specification, projection_runner, retained_runner, presentation_identity, run_metadata, pilot_report, event_metadata, annex_manifest, retained_report]
+        description: >-
+          Allowed metadata projection in exact retained order. It is usable
+          as reconciled input only with a complete successful retained_report
+          covering all 833 runs/49980 rows. Never infer completion from CSV
+          existence or reuse a stopped partial projection as a reduced roster.
+  source_eligibility:
+    name: Qualify retained common images and the pinned concept taxonomy
+    description: >-
+      Metadata-only prerequisite for concept roles. No role optimizer,
+      global chronology, repeat-half assignment, neural values or model scores.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/source_roles_proposal.md}
+      - {id: runner, type: data, source: outputs/tools/qualify_source_roles.py}
+      - {id: fixtures, type: data, source: outputs/tests/test_source_roles.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: presentation_identity, from: ../source_metadata.presentation_identity}
+      - {id: run_metadata, from: ../source_metadata.run_metadata}
+      - {id: retained_report, from: ../released_event_reconciliation.retained_report}
+      - {id: retained_events, from: ../released_event_reconciliation.retained_event_metadata}
+    outputs:
+      - id: eligibility_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, runner, fixtures, metadata_report, presentation_identity, run_metadata, retained_report, retained_events]
+        description: >-
+          Fresh source_qualification/attempt002 publishes qualification_report.json,
+          image/concept qualification, taxonomy crosswalk and presentation CSVs.
+          Require every retained B/C/D identity and833-run/49980-row coordinate.
+          The fixed selected roster is entirely experimental; another condition
+          is changed source scope, not a new image exclusion. Require at least
+          two retained presentations per common image in each of the four
+          participants and at least one qualified image per eligible concept.
+          Preserve all valid repeats, five/six source status and failed-image
+          reasons. Exact720 eligible concepts is mandatory; no rescue universe.
+          Fetch only the two pinned taxonomy TSVs,724963 bytes total, checking
+          their existing annex lengths/MD5 identities; no redirects or retries.
+          Provider annotation code authenticates the one-based concept-row
+          bridge to category53; concepts join by exact uniqueID with equal key sets.
+          Exact source concept/folder equality and binary53-label membership are
+          required. Retain multilabel/unmapped metadata; discard unrelated
+          normative table columns from the selected output. Every existing
+          CSV has32MiB cap; request bound20s. Internal120s/external180s,
+          one CPU4GiB, no GPU. Only completed terminal report with both explicit
+          eligibility flags true authorizes reuse; partial CSVs are diagnostic.
+          Roles, chronology, halves, neural units, reader isolation and scoring
+          remain unqualified even if this metadata stage succeeds.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/qualify_source_roles.py
+            --out outputs/runs/source_qualification/attempt002
+          resources: {cpus: 1, memory: 4Gi, time_limit: 4m}
+  source_chronology:
+    name: Qualify actual acquisition order and retained repeat halves
+    description: >-
+      Metadata-only exact integer constraints from the provider's cumulative
+      repetition ordinals and full-history trial gaps. No new retrieval,
+      numeric-run fallback, exclusions, role assignment or neural values.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/source_chronology_specification.md}
+      - {id: runner, type: data, source: outputs/tools/qualify_source_chronology.py}
+      - {id: fixtures, type: data, source: outputs/tests/test_source_chronology.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: presentation_identity, from: ../source_metadata.presentation_identity}
+      - {id: run_metadata, from: ../source_metadata.run_metadata}
+      - {id: retained_report, from: ../released_event_reconciliation.retained_report}
+      - {id: retained_events, from: ../released_event_reconciliation.retained_event_metadata}
+      - {id: eligibility_report, from: ../source_eligibility.eligibility_report}
+    outputs:
+      - id: chronology_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, runner, fixtures, metadata_report, presentation_identity, run_metadata, retained_report, retained_events, eligibility_report]
+        description: >-
+          Fresh source_chronology/attempt001 contains chronology_report.json,
+          presentation_chronology.csv and run_chronology.csv. Preserve all49980
+          retained rows and833 runs. Positive unique cumulative ordinals define
+          within-image retained rank; eligible images receive alternating halves
+          by retained rank, never source ordinal parity. Source-history gaps at
+          consecutive cumulative ordinals constrain integer run-start offsets.
+          Global qualification needs cycle consistency, one connected component
+          per participant, nonoverlapping60-trial run intervals, all image order
+          checks and the documented sub01/session17 order1,2,3,5,6,4. Unknown,
+          disconnected or contradictory chronology stays unresolved with rows
+          retained; component-local positions are not asserted global ranks.
+          Distinguish retained-half, global and overall completion flags. Require
+          a successful terminal report before downstream reuse. Existing CSVs
+          capped32MiB each;120s internal/180s external plus10s termination;
+          one CPU4GiB. No role, outcome, scientific claim or reader-isolation
+          authorization follows from metadata completion.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/qualify_source_chronology.py
+            --out outputs/runs/source_chronology/attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 4m}
+  concept_role_assignment:
+    name: Balance fixed concept roles folds and uncertainty blocks from metadata
+    description: >-
+      Metadata-only deterministic integer-objective assignment within the
+      adopted finite eight-sweep procedure. The pilot builds features and
+      benchmarks exact Gram/cache deltas without accepting source swaps or
+      publishing roles. Full execution reuses complete exact pilot features
+      and runs all four assignments under the unchanged finite procedure.
+      Reader qualification is separate; metadata assignments cannot complete
+      source_roles or open neural/model/audit outcomes.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/concept_role_assignment_specification.md}
+      - {id: core, type: data, source: outputs/tools/concept_role_assignment.py}
+      - {id: runner, type: data, source: outputs/tools/run_concept_role_assignment.py}
+      - {id: batch_runner, type: data, source: outputs/tools/run_concept_role_assignment.sbatch}
+      - {id: fixtures, type: data, source: outputs/tests/test_concept_role_assignment.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: presentation_identity, from: ../source_metadata.presentation_identity}
+      - {id: run_metadata, from: ../source_metadata.run_metadata}
+      - {id: retained_report, from: ../released_event_reconciliation.retained_report}
+      - {id: retained_events, from: ../released_event_reconciliation.retained_event_metadata}
+      - {id: eligibility_report, from: ../source_eligibility.eligibility_report}
+      - {id: chronology_report, from: ../source_chronology.chronology_report}
+    outputs:
+      - id: pilot_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, core, runner, fixtures, metadata_report, presentation_identity, run_metadata, retained_report, retained_events, eligibility_report, chronology_report]
+        description: >-
+          Fresh concept_role_assignment/pilot001 contains raw_metadata_features.csv,
+          feature_definition.json and pilot_report.json. Exactly720 concept
+          features preserve taxonomy, equal-image/equal-repeat acquisition and
+          lag summaries, missingness and the original exemplar stratum.
+          Decimal80 and exact rational features precede parent-specific
+          standardization/10000-scale integer rounding. Benchmark4096 initially
+          cross-group deltas against direct feature sums without accepting swaps.
+          Measure preparation, Gram, direct checks and temporary cache updates;
+          include all four assignments and worst-case cache updates in any
+          later resource decision. No published initialization or role map,
+          no new source retrieval; existing CSV cap32MiB. Internal300s and
+          external360s plus10s termination, one CPU6GiB. A deadline or mismatch
+          publishes no complete reusable pilot. Full assignment requires
+          successful measured preparation and its separately selected recipe.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 360s python3.12 -B
+            outputs/tools/run_concept_role_assignment.py --mode pilot
+            --out outputs/runs/concept_role_assignment/pilot001
+          resources: {cpus: 1, memory: 6Gi, time_limit: 7m}
+      - id: assignment_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, core, runner, batch_runner, fixtures, pilot_report, eligibility_report, chronology_report]
+        description: >-
+          Fresh concept_role_assignment/full001 reuses the exact pilot Decimal
+          feature strings, missing masks and rational weights. One SHA256
+          initialization and at most eight complete strict-improvement integer
+          swap sweeps for720 concepts480/120/120, development6x80 folds,
+          separate development24x20 blocks and audit12x10 blocks. Recompute
+          parent scaling/imputation; block construction does not receive fold
+          labels. All four maps and inherited image/presentation metadata must
+          finish before metadata_assignments_complete becomes true. Preserve
+          IDs, eligibility, chronology and all rows, including ineligible images.
+          Report balance and exact objectives/termination without claiming
+          global optimality. source_roles_complete stays false pending physical
+          handoffs and reader qualification. No new fetch or outcome access.
+          The4096-check pilot measured237 fields/292064KiB and projected
+          all3,967,200 pair visits plus2,380,665,600 worst-case cache updates;
+          doubled planning estimate plus60s is1485.703214s. Selected1800s
+          internal/1860s external plus10s termination,1CPU6GiB/35minutes.
+          Interrupted assignments do not publish a complete authoritative map.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1860s python3.12 -B
+            outputs/tools/run_concept_role_assignment.py --mode full
+            --out outputs/runs/concept_role_assignment/full001
+          resources: {cpus: 1, memory: 6Gi, time_limit: 35m}
+  role_materialization:
+    name: Copy fixed source response rows into private role-filtered products
+    description: >-
+      Trusted-builder literal copying, no response estimator or scoring.
+      Preserve all original rows, eligibility, dtype, columns and bit patterns.
+      Outputs remain builder-private ordinary files, never mixed-source links.
+      Physical reader qualification and scientific readiness are separate.
+      Pilot001 stopped before neural reads on inherited setgid in a newly
+      created private directory. The fixed pilot002 entry point preserves
+      pilot001 evidence and normalizes only its own new owned directories.
+      The earlier row-based full runner remains unselected.
+      Pilot002 subsequently stopped before values because row traversal decoded
+      an entire11.6GB source. The selected fixed pilot003 instead traverses all
+      source rows for the first512 columns under unchanged resource caps.
+      Pilot003 completed with exact byte equality; the full column copy is
+      selected with9000s internal/9060s external plus10s grace,1CPU2GiB3h,
+      subject to its fresh job-bound capacity observation. Reader release and
+      scientific scoring remain closed.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/role_materialization_specification.md}
+      - {id: runner, type: data, source: outputs/tools/materialize_neural_roles.py}
+      - {id: fixtures, type: data, source: outputs/tests/test_neural_role_materialization.py}
+      - {id: capacity_observation, type: data, source: outputs/runs/role_materialization/capacity_observation001.json}
+      - {id: pilot002_runner, type: data, source: outputs/tools/materialize_neural_roles_pilot002.py}
+      - {id: private_paths, type: data, source: outputs/tools/neural_role_private_paths.py}
+      - {id: private_path_fixtures, type: data, source: outputs/tests/test_neural_role_private_paths.py}
+      - {id: full_runner, type: data, source: outputs/tools/materialize_neural_roles_full.py}
+      - {id: full_fixtures, type: data, source: outputs/tests/test_neural_role_materialization_full.py}
+      - {id: capacity_observation002, type: data, source: outputs/runs/role_materialization/capacity_observation002.json}
+      - {id: column_runner, type: data, source: outputs/tools/materialize_neural_roles_columns.py}
+      - {id: column_fixtures, type: data, source: outputs/tests/test_neural_role_materialization_columns.py}
+      - {id: column_headers, type: data, source: outputs/runs/role_materialization/compute_job_47086577/all_source_layout_headers.json}
+      - {id: column_full_batch, type: data, source: outputs/tools/run_neural_columns_full_001.sbatch}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: event_report, from: ../released_event_reconciliation.retained_report}
+      - {id: eligibility_report, from: ../source_eligibility.eligibility_report}
+      - {id: chronology_report, from: ../source_chronology.chronology_report}
+      - {id: assignments, from: ../concept_role_assignment.assignment_report}
+    outputs:
+      - id: pilot_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, runner, fixtures, capacity_observation, metadata_report, event_report, eligibility_report, chronology_report, assignments]
+        description: >-
+          Fixed sub01/B rows0:64, all227214 original columns, float32 with
+          both singleton dimensions retained. Logical payload58166784bytes;
+          decoded source-chunk work and whole private output each capped256MiB.
+          Source dataset links, virtual/external storage or changed dimensions
+          refuse before payload access. Complete role maps and measured quota/
+          filesystem headroom are prerequisites. Private ordinary HDF5 products
+          and source-index maps under outputs/cache/private/role_materialization/
+          pilot001; public operational report under outputs/runs/role_materialization/
+          pilot001. Bitwise readback preserves NaNs and signed zero. Export only
+          counts, shapes, dtype, byte/resource/equality/permission facts; never
+          values, finite counts or neural digests. Record actual neural reads and
+          conservative decoded-chunk audit-row exposure, no scientific audit
+          evaluation. Source-role completion, physical isolation, reader release
+          and candidate scoring remain false. One CPU2GiB,120s internal/
+          180s external plus10s termination. Full123.24GiB copy remains unselected
+          until measured pilot cost and all12 layout bounds support a finite run.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/materialize_neural_roles.py --mode pilot
+            --capacity-observation outputs/runs/role_materialization/capacity_observation001.json
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: pilot002_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, runner, fixtures, pilot002_runner, private_paths, private_path_fixtures, capacity_observation002, metadata_report, event_report, eligibility_report, chronology_report, assignments]
+        description: >-
+          Fresh pilot002 repeats the unchanged fixed sub01/B rows0:64 scope,
+          original dtype/axes/columns and bytewise equality. Preserve the
+          stopped pilot001 report and original runner. Exact0700 creation
+          clears inherited setgid only on newly created owned directories;
+          existing unexpected permissions remain a refusal. No source access
+          occurred in pilot001. One CPU2GiB,120s internal/180s external plus10s
+          grace;256MiB decoded/output bounds and current-job capacity record.
+          Private and public attempt paths both end in pilot002. Completion
+          remains builder-private; reader/scoring readiness stays false.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/materialize_neural_roles_pilot002.py --mode pilot
+            --capacity-observation outputs/runs/role_materialization/capacity_observation002.json
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: materialization_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, runner, private_paths, full_runner, full_fixtures, private_path_fixtures, pilot002_report, metadata_report, event_report, eligibility_report, chronology_report, assignments]
+        description: >-
+          Implemented but UNSELECTED twelve-product full copy. No executable
+          recipe is frozen until actual completed-pilot timings/layout/RSS
+          support a finite recorded bound. The full CLI explicitly selects
+          pilot001 or pilot002, requires its successful report, current-job
+          capacity and --max-seconds; external timeout is that bound plus60s
+          with10s grace. All12 headers and2346 planned block bounds pass before
+          payload; preserve axes/dtypes/role/source order, reuse pilot rows by
+          ordinary reads/new writes, and reopen each written segment for exact
+          byte equality. The160GiB ceiling includes preserved pilot and partials.
+          Public facts exclude values and neural digests. Reader activation,
+          physical isolation, source-role completion and scoring remain false.
+      - id: column_pilot_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, runner, full_runner, private_paths, column_runner, column_fixtures, column_headers, capacity_observation002, metadata_report, event_report, eligibility_report, chronology_report, assignments]
+        description: >-
+          Selected fresh pilot003: sub01/B all12780 rows, original voxels0:512,
+          26173440 logical/decoded bytes under unchanged256MiB decoded/output
+          cap,1CPU2GiB120s internal/180s external plus10s grace. Source chunks
+          are full-trial by one voxel; inspect only the exactB source header
+          and bind it to the saved metadata observation before values. Preserve
+          all roles/ineligible rows/float bits and reopen every destination
+          stripe. New output chunks min1024role rows by min512columns. Private
+          and public attempts endpilot003; preserve earlier failures unchanged.
+          Public facts contain no neural values/digests; scoring stays closed.
+          Completed in47086577 after six passing checks:5.270826s/456100KiB,
+          source read0.506149549s, write/readback0.228693355s, header0.004007607s,
+          exact26173440logicalbytes/33926074privatebytes, all byte equality true.
+          Raw neural/audit bytes were copied; scientific audit evaluations zero.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/materialize_neural_roles_columns.py --mode pilot
+            --capacity-observation outputs/runs/role_materialization/capacity_observation002.json
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: column_materialization_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, runner, full_runner, private_paths, column_runner, column_fixtures, column_headers, column_full_batch, column_pilot_report, metadata_report, event_report, eligibility_report, chronology_report, assignments]
+        description: >-
+          Selected full column-copy attempt002, subject to fresh capacity bound
+          to its actual job. The measured0.734842904s per stripe times5169 is
+          approximately3798.4s; doubled7596.8s plus setup supports9000s internal,
+          9060s external and10s kill grace in a fresh1CPU2GiB3h allocation.
+          Preserve2GiB child virtual cap; no automatic resubmission. Charge
+          actual allocation cost once toEP17, without resetting episode budgets.
+          All12 exact current headers and5169 planned stripes
+          preflight before values. Reuse pilot003 first512columns from ordinary
+          private files, preserving source row/column coordinates without source
+          chunk reread. Exact serialized maps, padded chunk payloads, preserved
+          pilot/failed reports, metadata slack and terminal report must fit160GiB;
+          runtime file-write limits retain incomplete private evidence on failure.
+          No reader activation, physical isolation or scoring follows completion.
+        recipe:
+          command: bash outputs/tools/run_neural_columns_full_001.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3h}
+  anatomical_axis:
+    name: Map original response columns to anatomical fusiform labels
+    description: >-
+      Structural preparation from exactly four original union masks and four
+      source-authenticated DK aparcaseg volumes. No response values, clean
+      masks, reliability, image pixels or model outputs. Geometry and parcel
+      counts do not qualify response units, finite support or reader handoffs.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/anatomical_axis_specification.md}
+      - {id: unit_specification, type: data, source: outputs/anatomical_units_specification.md}
+      - {id: unit_runner, type: data, source: outputs/tools/qualify_anatomical_units.py}
+      - {id: unit_fixtures, type: data, source: outputs/tests/test_anatomical_units.py}
+      - {id: unit_evidence, type: data, source: outputs/runs/anatomical_axis/units001/unit_witness_report.json}
+      - {id: runner, type: data, source: outputs/tools/qualify_anatomical_axis.py}
+      - {id: fixtures, type: data, source: outputs/tests/test_anatomical_axis.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+    outputs:
+      - id: unit_witness
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, unit_specification, unit_runner, unit_fixtures, metadata_report]
+        description: >-
+          Diagnose observed missing units in original union headers through
+          four exact first lexical run-mask headers from pinned fMRIPrep.
+          Nilearn0.9.2 retains the first source affine but omits its header
+          during union construction. Four authenticated compressed objects
+          total28069bytes; decode at most352bytes each, no voxel arrays.
+          Explicit source mm, native coded T1w, identical grid shape and
+          existing0.001mm corner agreement are required. No source rewriting,
+          alternate reference, unit inference from spacing or completed axis
+          follows from a partial witness. Sequential fixed-URL requests,
+          cap8192bytes each,15s/request,no redirects/retries,120s internal/
+          180s external plus10s termination. Unknown remains unresolved.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/qualify_anatomical_units.py
+            --out outputs/runs/anatomical_axis/units001
+          resources: {cpus: 1, memory: 1Gi, time_limit: 4m}
+      - id: axis_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, runner, fixtures, metadata_report, unit_evidence]
+        description: >-
+          Fresh anatomical_axis/attempt002 contains anatomical_axis_report.json
+          and voxel_axis.csv.gz. Original binary union mask count must equal
+          all corresponding B/C/D header counts; C-order Boolean indexing fixes
+          original model columns. Exact DK labels1007/2007 define the two ROIs.
+          Select only source-authenticated coded affines in the shared native
+          participant T1w frame; sform precedence applies only within that frame.
+          Same-frame coded forms must agree at eight voxel-center corners
+          within0.001mm. Require finite invertible affine and millimeter units;
+          unknown union units may inherit mm only from the exact completed
+          four-person unit witness with matching current numeric geometry.
+          Preserve observed unknown units and mark the derived interpretation;
+          never rewrite source headers or override explicit units. No fitted
+          registration. Integer atlas sampling uses SciPy
+          order0 constant-zero boundary mode without prefilter. Preserve all
+          original columns, including nonfusiform/out-of-FOV labels. Empty and
+          single-voxel nominated parcels cannot qualify a support comparison;
+          larger counts do not establish sufficient scientific support.
+          Process one participant at a time, cap each mask4million grid voxels,
+          atlas32million, stored scalar8bytes and uncompressed axis table256MiB.
+          One CPU4GiB,300s internal/360s external plus10s termination; no network,
+          retry, optional DESIGNINFO scalar, finite-response selection or N.
+          Both structural completion flags require all four participants and
+          terminal output success. Source roles and scoring remain incomplete.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 360s python3.12 -B
+            outputs/tools/qualify_anatomical_axis.py
+            --out outputs/runs/anatomical_axis/attempt002
+          resources: {cpus: 1, memory: 4Gi, time_limit: 7m}
+  stimulus_features:
+    name: Qualify exact stimulus members and prepare private development features
+    description: >-
+      Existing authorized source archive and completed whole-concept roles.
+      Reuse completed bounded central-directory metadata and the fixed32-image
+      development selection. The private decoding/four-backbone callable is
+      implemented. The scientist adopted procedural same-account separation
+      on October12. The selected private launcher connects this episode's own
+      authorized notice to its existing fixed32 development pilot; no feature
+      release, neural access or repeated source acceptance follows.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/stimulus_feature_adapter_specification.md}
+      - {id: model_specification, type: data, source: outputs/model_pair_registry_specification.md}
+      - {id: archive_reader, type: data, source: outputs/tools/inspect_stimulus_archive.py}
+      - {id: archive_fixtures, type: data, source: outputs/tests/test_stimulus_archive.py}
+      - {id: private_adapter, type: data, source: outputs/tools/private_stimulus_feature_pilot.py}
+      - {id: private_launcher, type: data, source: outputs/tools/run_private_stimulus_feature_pilot.py}
+      - {id: private_launcher_checks, type: data, source: outputs/tests/test_private_stimulus_pilot_launcher.py}
+      - {id: private_pilot_companion, type: data, source: outputs/tools/run_private_pilot_companion_001.sh}
+      - {id: private_adapter_fixtures, type: data, source: outputs/tests/test_private_stimulus_feature_pilot.py}
+      - {id: full_feature_io, type: data, source: outputs/tools/private_development_feature_io.py}
+      - {id: full_feature_cli, type: data, source: outputs/tools/run_private_development_features.py}
+      - {id: full_feature_checks, type: data, source: outputs/tests/test_private_development_feature_io.py}
+      - {id: full_feature_producer, type: data, source: outputs/tools/development_features.py}
+      - {id: feature_core, type: data, source: outputs/tools/model_features.py}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: assignments, from: ../concept_role_assignment.assignment_report}
+    outputs:
+      - id: archive_metadata_report
+        type: report
+        format: directory
+        inputs: [datasets, policy, specification, model_specification, archive_reader, archive_fixtures, metadata_report, assignments]
+        description: >-
+          Fresh stimulus_features/archive_metadata001 records selected_images.csv
+          and archive_metadata_report.json. Guard classic EOCD tail≤65557bytes,
+          central directory≤16MiB and≤16384entries before parsing. Reject
+          ZIP64/multidisk/unknown framing and automatic limit expansion.
+          Reuse the recorded917286854byte acquired object's identity and exact
+          provider/role joins; fixed first32 numeric development concepts and
+          lexical eligible image within each. Report exact member matches,
+          encryption/compression and bounded operational metadata only.
+          No member stream, password, pixel or feature value; no implicit
+          prefix normalization or image replacement. One CPU2GiB,60s internal/
+          90s external plus10s termination,combined outputs≤256KiB. Archive
+          inspection and exact selected-member qualification are separate.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 90s python3.12 -B
+            outputs/tools/inspect_stimulus_archive.py
+            --out outputs/runs/stimulus_features/archive_metadata001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: private_adapter_checks
+        type: report
+        format: text
+        inputs: [specification, model_specification, private_adapter, private_adapter_fixtures, archive_reader, feature_core]
+        description: >-
+          Five source-free fixtures for exact development scope, private descriptor
+          handling, selected JPEG decoding, partial/interrupt preservation and four
+          model cache/index consistency. No source pixels, acquired checkpoint,
+          real secret or neural outcome. The earlier check attempt failed at
+          missing-h5py import. Repeat only after the specification's pinned-wheel
+          repair into a fresh EP17-only additive package target. Run sequentially
+          after foreground work in an owned substantive allocation, with verified
+          remaining time and no separate allocation. Repair, version assertions,
+          five executed checks and validation use350+5 seconds inclusively and
+          require400 seconds remaining. Preserve separate exit statuses under
+          stimulus_runtime_repair_job_<jobid>. Passing does not activate the
+          actual pixel pilot or establish reader isolation.
+        recipe:
+          command: >-
+            env -u PYTHONPATH
+            PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1
+            OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            timeout --signal=TERM --kill-after=5s 120s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            -m unittest discover -s outputs/tests
+            -p test_private_stimulus_feature_pilot.py -v
+          resources: {cpus: 1, memory: 4Gi, time_limit: 3m}
+      - id: private_pilot_report
+        type: report
+        format: json
+        inputs: [datasets, policy, specification, model_specification, private_adapter, private_launcher, private_launcher_checks, private_pilot_companion, feature_core, assignments, archive_metadata_report]
+        description: >-
+          Selected private pilot for exactly32 inherited development images and
+          DINO_R50, SWAV_R50_800, SUP_R50_V1, RANDOM_R50_S17. Exact acquired
+          archive, authorized inherited descriptor, in-memory JPEG/RGB decode,
+          fixed float32 preprocessing, sequential batch1 inference and private
+          layer1-to-layer4 HDF5 vectors. Persist/reuse the single seed17 random
+          backbone before pixels. Actual1CPU4GiB Slurm allocation or step,
+          with600s internal/660s external plus10s. Explicit pilot002 preserves
+          failed pilot001 and reuses its seed17 checkpoint. Read only this
+          acquisition's private notice and
+          pass the secret through a descriptor, never arguments or environment.
+          Operational report only,
+          no feature values or secret-bearing errors; preserve incomplete files
+          and leave all reader-release/scoring flags false. Same-account
+          procedural separation is disclosed, never enforced or blinded.
+        recipe:
+          command: >-
+            env PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+            timeout --signal=TERM --kill-after=10s 660s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            outputs/tools/run_private_stimulus_feature_pilot.py --attempt pilot002
+          resources: {cpus: 1, memory: 4Gi, time_limit: 15m}
+      - id: full_development_feature_report
+        type: report
+        format: json
+        inputs: [datasets, policy, assignments, private_pilot_report, full_feature_io, full_feature_cli, full_feature_checks, full_feature_producer, private_launcher, feature_core]
+        description: >-
+          Coordinator-selected complete2423-row development extraction with the
+          four fixed backbones and all four layers, using this episode's own
+          source archive and persisted seed17 checkpoint. Requires actual pilot
+          costs and explicit deadline, memory and output allowances; the pilot's
+          serial-model RSS does not measure four-resident-model memory. Preserve
+          failed/partial attempts, require both complete status and completion
+          flag, and keep all reader-release and scoring flags false. Operational
+          report only; no audit pixels or neural responses are opened.
+        recipe:
+          command: >-
+            env PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+            timeout --signal=TERM --kill-after=10s
+            "$((1791846300 - $(date -u +%s) + 10))s"
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            outputs/tools/run_private_development_features.py --attempt full001
+            --pilot-report "$OAK/users/zijiao/br_autoresearch/episode17_cneuromod_model_ranking_stability/outputs/runs/stimulus_features/pilot002/pilot_report.json"
+            --deadline-epoch 1791846300 --rss-limit-kib 3145728
+            --private-byte-cap 268435456 --report-byte-cap 65536
+          resources: {cpus: 1, memory: 4Gi, time_limit: 90m}
+      - id: full_development_feature_bank
+        type: data
+        format: h5
+        inputs: [full_development_feature_report]
+        description: >-
+          One complete private container with original frozen2423-image row
+          order and16 float32 feature matrices. Staging is not development
+          handoff release; authorized reader delivery remains separately gated.
+  source_roles:
+    name: Establish the exact common image universe and concept roles
+    description: >-
+      Event-image joining and B/C/D identity/geometry alignment; exact four-person
+      720-concept support and whole-concept 480/120/120 roles; role-filtered
+      builder, searcher, scorer and evaluator handoffs. The released-event
+      pilot covers only the first retained session; require the complete
+      retained-roster report/projection and prospective eligibility/assignment
+      choices before roles can be established. Event reconciliation alone
+      cannot establish the 720-concept universe or assign roles. No candidate scores.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: metadata_report, from: ../source_metadata.metadata_report}
+      - {id: presentation_identity, from: ../source_metadata.presentation_identity}
+      - {id: event_pilot_report, from: ../released_event_reconciliation.pilot_report}
+      - {id: event_pilot_metadata, from: ../released_event_reconciliation.event_metadata}
+      - {id: retained_event_report, from: ../released_event_reconciliation.retained_report}
+      - {id: retained_event_metadata, from: ../released_event_reconciliation.retained_event_metadata}
+      - {id: eligibility_report, from: ../source_eligibility.eligibility_report}
+      - {id: chronology_report, from: ../source_chronology.chronology_report}
+      - {id: metadata_assignments, from: ../concept_role_assignment.assignment_report}
+      - {id: anatomical_axis, from: ../anatomical_axis.axis_report}
+    outputs:
+      - {id: role_views, type: data, inputs: [goal, datasets, policy, metadata_report, presentation_identity, event_pilot_report, event_pilot_metadata, retained_event_report, retained_event_metadata, eligibility_report, chronology_report, metadata_assignments, anatomical_axis]}
   calibration_support:
     name: Fix anatomical support reliability and positive ceiling weights
     description: >-
       Before candidate scores, fix anatomical ROI crosswalk, finite common
       voxels, support size, subset bank and spatial quotas. Calibration concepts
       alone define repeat reliability and ceilings; freeze thresholds and floors.
-      DK fusiform is nominated, not locally verified or functionally localized.
+      The completed structural mapping retains all nominated DK fusiform label
+      components; this anatomical ROI is not a functional localizer. After
+      successful private role copying the trusted builder may compute private
+      calibration artifacts before search-worker release. This does not qualify
+      physical reader separation or admit candidate fitting/scoring.
     inputs:
       - {id: policy, from: ../policy}
-      - {id: role_views, from: ../source_roles.role_views}
+      - {id: specification, type: data, source: outputs/prediction_qualification_specification.md}
+      - {id: structural_axis, from: ../anatomical_axis.axis_report}
+      - {id: structural_runner, type: data, source: outputs/tools/qualify_structural_support.py}
+      - {id: structural_fixtures, type: data, source: outputs/tests/test_structural_support.py}
+      - {id: calibration_core, type: data, source: outputs/tools/calibration_core.py}
+      - {id: calibration_fixtures, type: data, source: outputs/tests/test_calibration_core.py}
+      - {id: support_core, type: data, source: outputs/tools/support_core.py}
+      - {id: support_fixtures, type: data, source: outputs/tests/test_support_core.py}
+      - {id: private_calibration_runner, type: data, source: outputs/tools/calibrate_private_roles.py}
+      - {id: private_calibration_fixtures, type: data, source: outputs/tests/test_calibrate_private_roles.py}
+      - {id: measurement_core, type: data, source: outputs/tools/measurement_core.py}
+      - {id: private_operator_runner, type: data, source: outputs/tools/derive_private_operators.py}
+      - {id: private_operator_fixtures, type: data, source: outputs/tests/test_derive_private_operators.py}
+      - {id: private_calibration_copy, from: ../role_materialization.column_materialization_report}
+      - {id: assignments, from: ../concept_role_assignment.assignment_report}
+      - {id: eligibility, from: ../source_eligibility.eligibility_report}
+      - {id: chronology, from: ../source_chronology.chronology_report}
     outputs:
-      - {id: operator_maps, type: data, inputs: [policy, role_views]}
+      - id: structural_support
+        type: report
+        format: directory
+        inputs: [policy, specification, structural_axis, structural_runner, structural_fixtures]
+        description: >-
+          Retain all nominated source-label components. Stream the completed
+          original-column table once and freeze eight geometry-only bins per
+          participant/ROI, four y groups then two z halves with original-column
+          ties. Shared q=min(32,floor(minimum of64 bin counts/2)), N=8q;
+          refuse q<8 without lowering quotas, deleting components or replacing
+          an ROI. No calibration values or anatomical/reliability bank yet.
+          Fresh structural_support/attempt001, combined outputs≤2MiB;
+          one CPU2GiB,60s internal/90s external plus10s termination.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 90s python3.12 -B
+            outputs/tools/qualify_structural_support.py
+            --out outputs/runs/structural_support/attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: private_calibration_pilot_report
+        type: report
+        format: json
+        inputs: [policy, specification, structural_axis, calibration_core, support_core, private_calibration_runner, private_calibration_fixtures, private_calibration_copy, assignments, eligibility, chronology]
+        description: >-
+          Fixed first128 ascending original columns of sub01 leftROI, all605
+          eligible calibration images and retained B/C/D repeats. Only private
+          calibration views after successful full attempt002; all headers and
+          touched512-column stripe/padded-row-chunk plans precede values.
+          1CPU2GiB300s internal/360s external plus10s grace,64MiB output cap.
+          Public report contains only operational counts/timing/RSS/status;
+          arrays and exact read plan stay builder-private. No support selection,
+          candidate fit, worker release, audit or scientific score.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 360s python3.12 -B
+            outputs/tools/calibrate_private_roles.py --mode pilot
+          resources: {cpus: 1, memory: 2Gi, time_limit: 7m}
+      - id: private_calibration_report
+        type: report
+        format: json
+        inputs: [policy, specification, structural_axis, calibration_core, calibration_fixtures, support_core, support_fixtures, private_calibration_runner, private_calibration_fixtures, private_calibration_pilot_report, private_calibration_copy, assignments, eligibility, chronology]
+        description: >-
+          Builder-private reliability, ceiling, response eligibility and frozen
+          support products from calibration concepts only. No development/audit
+          response read, candidate fit or score, mixed-source access or reader
+          handoff is implied. Full execution requires the matching cost pilot;
+          the measured plan selects900s internal/960s external plus10s grace,
+          2GiB memory and256MiB combined derived outputs including the pilot.
+          Gain applicability and evaluator qualification remain separate.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 960s python3.12 -B
+            outputs/tools/calibrate_private_roles.py --mode full --max-seconds 900
+          resources: {cpus: 1, memory: 2Gi, time_limit: 17m}
+      - id: derived_operator_report
+        type: report
+        format: json
+        inputs: [policy, specification, measurement_core, support_core,
+                 private_operator_runner, private_operator_fixtures, private_calibration_report]
+        description: >-
+          Read only completed private calibration artifacts. Derive full-axis
+          B-to-C/C-to-D Fisher-z gain designs, fixed support weights, positive
+          ceiling operators and corresponding edge-difference weights. Undefined
+          gain or failed frozen rank/variance criteria makes only the relevant
+          explanation/H component inapplicable; never remove beta endpoints or
+          voxels. Keep maps/designs/applicability builder-private; public report
+          contains operational status/resource counts only. No raw neural,
+          stimulus, model-score access or worker release.120s internal/180s
+          external plus10s grace,2GiB and32MiB new derived-output cap.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 180s python3.12 -B
+            outputs/tools/derive_private_operators.py
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: operator_maps
+        type: data
+        format: directory
+        inputs: [private_calibration_report, derived_operator_report]
+        description: >-
+          Private calibration maps, fixed supports and derived operator arrays
+          with separate applicability records. Downstream model fitting still
+          requires its independently enforced role-reader boundary; neither
+          artifact existence nor a successful builder run grants that release.
   model_pair_registry:
     name: Qualify three controlled model pairs and the trained-random control
     description: >-
@@ -43,11 +866,50 @@ analyses:
       allows recipe-confounded fixed pairs for measurement comparisons, not
       causal training-property attribution. Known overlap is control-only;
       unknown is not clean. Shared models are dependent contrasts.
+      The adopted feature definition uses the three acquired standard-width
+      ResNet50 assets, four layer1-to-layer4 global-average vectors, one
+      common bilinear256-to224 RGB transform and one seed17 supervised-versus-
+      random falsifier. Float32 inference disables autocast and TF32. Exact
+      source-image matching, reader boundary and measured feature resource
+      pilot remain separate prerequisites; no feature execution follows
+      from this metadata specification alone.
     inputs:
       - {id: goal, from: ../goal}
       - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/model_pair_registry_specification.md}
+      - {id: feature_core, type: data, source: outputs/tools/model_features.py}
+      - {id: feature_fixtures, type: data, source: outputs/tests/test_model_features.py}
     outputs:
-      - {id: registry, type: data, inputs: [goal, policy]}
+      - {id: registry, type: data, format: json, inputs: [goal, policy, specification, feature_core, feature_fixtures]}
+  cross_episode_exposure:
+    name: Resolve EP17 and EP18 stimulus overlap from frozen metadata
+    description: >-
+      Preserve both designs and classify evidence as correlated and design-exposed,
+      never independent stimulus-family confirmation. Compare EP17 observed,
+      common and eligible images and each frozen concept role to EP18 main and
+      repeated-session identity sets through the pinned provider THINGS row bridge.
+      Coordinator-provided EP18 metadata snapshots are the only sibling handoff;
+      no live sibling run input, pixels, features, neural values or audit outcomes.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: runner, type: data, source: outputs/tools/qualify_cross_episode_exposure.py}
+      - {id: assignments, from: ../concept_role_assignment.assignment_report}
+      - {id: ep18_overlap, type: data, source: outputs/runs/cross_episode_exposure/ep18_handoff001/source_overlap.json}
+      - {id: ep18_roles, type: data, source: outputs/runs/cross_episode_exposure/ep18_handoff001/frozen_inputs_and_roles.json}
+      - {id: ep18_history, type: data, source: outputs/runs/cross_episode_exposure/ep18_handoff001/ep17_ep18_exposure_record.json}
+      - {id: ep18_features, type: data, source: outputs/runs/cross_episode_exposure/ep18_handoff001/feature_registry.json}
+    outputs:
+      - id: exposure_report
+        type: report
+        format: json
+        inputs: [goal, datasets, runner, assignments, ep18_overlap, ep18_roles, ep18_history, ep18_features]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 90s python3.12 -B
+            outputs/tools/qualify_cross_episode_exposure.py
+            --out outputs/runs/cross_episode_exposure/attempt001
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
   prediction_qualification:
     name: Fix and qualify the common prediction-bank and scoring rules
     description: >-
@@ -56,14 +918,455 @@ analyses:
       support and ceiling. Fix all score-specific margins, error tolerances,
       eligible endpoint/audit homologs and crossed max-t uncertainty before scores.
     inputs:
+      - {id: specification, type: data, source: outputs/prediction_qualification_specification.md}
+      - {id: endpoint_specification, type: data, source: outputs/measurement_contract_specification.md}
+      - {id: response_failure_diagnosis, type: data, source: outputs/tools/diagnose_fit001_response_variance.py}
+      - {id: response_quality_census_runner, type: data, source: outputs/tools/diagnose_fit001_response_quality_census.py}
+      - {id: linking_core, type: data, source: outputs/tools/prediction_core.py}
+      - {id: linking_fixtures, type: data, source: outputs/tests/test_prediction_core.py}
+      - {id: measurement_core, type: data, source: outputs/tools/measurement_core.py}
+      - {id: measurement_fixtures, type: data, source: outputs/tests/test_measurement_core.py}
+      - {id: uncertainty_core, type: data, source: outputs/tools/uncertainty_core.py}
+      - {id: uncertainty_fixtures, type: data, source: outputs/tests/test_uncertainty_core.py}
+      - {id: endpoint_evaluator, type: data, source: outputs/tools/endpoint_evaluator.py}
+      - {id: endpoint_evaluator_tests, type: data, source: outputs/tools/test_endpoint_evaluator.py}
+      - {id: audit_adjudicator, type: data, source: outputs/tools/audit_adjudicator.py}
+      - {id: audit_adjudicator_tests, type: data, source: outputs/tools/test_audit_adjudicator.py}
+      - {id: nested_prediction, type: data, source: outputs/tools/nested_prediction.py}
+      - {id: nested_prediction_tests, type: data, source: outputs/tools/test_nested_prediction.py}
+      - {id: development_prediction_cost, type: data, source: outputs/tools/development_prediction_cost.py}
+      - {id: development_prediction_cost_tests, type: data, source: outputs/tools/test_development_prediction_cost.py}
+      - {id: released_cost_inputs, type: data, source: outputs/tools/released_development_inputs.py}
+      - {id: released_cost_input_checks, type: data, source: outputs/tests/test_released_development_inputs.py}
+      - {id: released_cost_cli, type: data, source: outputs/tools/run_development_prediction_cost.py}
+      - {id: complete_development_inputs, type: data, source: outputs/tools/complete_development_inputs.py}
+      - {id: parallel_nested_prediction, type: data, source: outputs/tools/parallel_nested_prediction.py}
+      - {id: complete_prediction_cli, type: data, source: outputs/tools/run_complete_development_prediction.py}
+      - {id: complete_prediction_job, type: data, source: outputs/tools/run_complete_nested_fit001.sbatch}
+      - {id: adopted_block_variance_rule, type: data, source: outputs/proposed_score_specific_validity_followup.md}
+      - {id: adopted_block_variance_checks, type: data, source: outputs/tests/test_primary_block_variance_amendment.py}
+      - {id: complete_prediction_fit002_job, type: data, source: outputs/tools/run_complete_nested_fit002.sbatch}
+      - {id: complete_prediction_checks, type: data, source: outputs/tests/test_complete_development_prediction.py}
+      - {id: parallel_prediction_checks, type: data, source: outputs/tests/test_parallel_nested_prediction.py}
+      - {id: released_endpoint_family, type: data, source: outputs/tools/released_endpoint_family.py}
+      - {id: endpoint_family_binding_checks, type: data, source: outputs/tests/test_released_endpoint_family.py}
+      - {id: evaluator_dry_run, type: data, source: outputs/tools/outcome_free_evaluator_dry_run.py}
+      - {id: full_development_features, from: ../stimulus_features.full_development_feature_bank}
+      - {id: development_endpoints, type: data, source: outputs/tools/development_endpoints.py}
+      - {id: development_endpoint_tests, type: data, source: outputs/tools/test_development_endpoints.py}
+      - {id: development_forecasts, type: data, source: outputs/tools/development_forecasts.py}
+      - {id: development_forecast_tests, type: data, source: outputs/tools/test_development_forecasts.py}
+      - {id: development_secondary, type: data, source: outputs/tools/development_secondary.py}
+      - {id: development_secondary_tests, type: data, source: outputs/tools/test_development_secondary.py}
+      - {id: audit_prediction, type: data, source: outputs/tools/audit_prediction.py}
+      - {id: audit_prediction_tests, type: data, source: outputs/tools/test_audit_prediction.py}
+      - {id: audit_secondary, type: data, source: outputs/tools/audit_secondary.py}
+      - {id: audit_secondary_tests, type: data, source: outputs/tools/test_audit_secondary.py}
+      - {id: predictor_checkpoint, type: data, source: outputs/tools/predictor_checkpoint.py}
+      - {id: predictor_checkpoint_tests, type: data, source: outputs/tools/test_predictor_checkpoint.py}
+      - {id: development_responses, type: data, source: outputs/tools/development_responses.py}
+      - {id: development_response_tests, type: data, source: outputs/tools/test_development_responses.py}
+      - {id: audit_responses, type: data, source: outputs/tools/audit_responses.py}
+      - {id: audit_response_tests, type: data, source: outputs/tools/test_audit_responses.py}
+      - {id: development_features, type: data, source: outputs/tools/development_features.py}
+      - {id: development_feature_tests, type: data, source: outputs/tools/test_development_features.py}
+      - {id: development_feature_specification, type: data, source: outputs/stimulus_feature_adapter_specification.md}
+      - {id: development_feature_core, type: data, source: outputs/tools/model_features.py}
+      - {id: development_feature_loader, type: data, source: outputs/tools/private_stimulus_feature_pilot.py}
+      - {id: secondary_support_core, type: data, source: outputs/tools/support_core.py}
       - {id: policy, from: ../policy}
       - {id: role_views, from: ../source_roles.role_views}
       - {id: operator_maps, from: ../calibration_support.operator_maps}
       - {id: registry, from: ../model_pair_registry.registry}
+      - {id: exposure_report, from: ../cross_episode_exposure.exposure_report}
     outputs:
       - id: qualification_report
         type: report
-        inputs: [policy, role_views, operator_maps, registry]
+        inputs: [specification, endpoint_specification, linking_core, linking_fixtures, measurement_core, measurement_fixtures, uncertainty_core, uncertainty_fixtures, endpoint_evaluator, endpoint_evaluator_tests, audit_adjudicator, audit_adjudicator_tests, nested_prediction, nested_prediction_tests, development_prediction_cost, development_prediction_cost_tests, development_endpoints, development_endpoint_tests, development_forecasts, development_forecast_tests, development_secondary, development_secondary_tests, audit_prediction, audit_prediction_tests, audit_secondary, audit_secondary_tests, predictor_checkpoint, predictor_checkpoint_tests, development_responses, development_response_tests, development_features, development_feature_tests, development_feature_specification, development_feature_core, development_feature_loader, secondary_support_core, policy, role_views, operator_maps, registry, exposure_report]
+      - id: endpoint_composition_checks
+        type: report
+        format: text
+        description: >-
+          Fourteen focused checks of the fixed seven-endpoint family and eligible H
+          components, original-column and signed model identity, pooled image
+          error sums under crossed multiplicities, shared D bank and equal
+          participant/ROI weighting. The beta block-mean target remains distinct.
+          Frozen primary audit rules retain one common participant intersection,
+          leave-out directions and separate reversal and explanation gates.
+          Width adequacy concerns required components on negative classification;
+          all eligible H terms remain in joint inference. Undetermined negative
+          classifications stay explicit. No private reader, model fitting,
+          full bootstrap rerun, actual audit opening or scientific acceptance.
+        inputs: [endpoint_specification, endpoint_evaluator, endpoint_evaluator_tests, audit_adjudicator, audit_adjudicator_tests, measurement_core, uncertainty_core]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_endpoint_evaluator test_audit_adjudicator'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: nested_prediction_checks
+        type: report
+        format: text
+        description: >-
+          Six focused checks of complete four-model/84-setting nested
+          orchestration, all six outer folds and final development fitting,
+          pooled objectives, training-only rank derivation, row/column bindings,
+          common per-image baselines and resource refusal before row copies.
+          Full-roster control-flow tests instrument numerical kernels; separate
+          small mathematical checks cover pooling and rank derivation. A pass
+          does not qualify empirical ranks, fit quality, source access or full
+          production resources. Run once in a substantive allocation, not a
+          separate short test job. Existing numerical-core evidence is reused.
+        inputs: [specification, nested_prediction, nested_prediction_tests, linking_core, endpoint_evaluator]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_nested_prediction'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+      - id: development_composition_checks
+        type: report
+        format: text
+        description: >-
+          Ten focused checks of the supplied complete development prediction bank
+          to primary endpoint and explanatory forecast compositions. Preserve
+          all four fixed signed pairs, per-image outer-training baselines,
+          pooled whole-block error sums, explicit frozen metadata block order,
+          original columns, frozen spatial bins and one shared D prediction bank. Beta forecasts use
+          the existing twelve/twelve block OLS and final24-block refit; combine
+          ROIs before participant-block absolute errors. Support and ceiling
+          forecasts use pooled development advantages and frozen operators.
+          No new scientific threshold, size-control explanation, CKA substitute,
+          private reader, empirical model fit, audit opening or acceptance.
+          Run within a selected substantive allocation; no standalone short
+          job or inclusion in the existing EP21 companion tail is implied.
+        inputs: [specification, endpoint_specification, development_endpoints, development_endpoint_tests, development_forecasts, development_forecast_tests, nested_prediction, endpoint_evaluator, measurement_core]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_development_endpoints test_development_forecasts'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: development_secondary_checks
+        type: report
+        format: text
+        description: >-
+          Five focused checks of the complete development Fisher-z correlation and
+          linear-CKA callers, with separate eligible six-support families and
+          fixed P1/P2/P3/F1 signs. Literal replicated-row references check
+          centered weighted kernels; full-roster routing checks preserve the
+          selected-layer rank64 transforms, original columns, actual32-bank
+          membership and frozen metadata block coordinates. Fold weights follow
+          resampled image mass; absent people/folds have zero mass, while any
+          positive-mass undefined statistic fails without deletion or redraw.
+          Existing10000-draw uncertainty evidence is reused; focused fixtures
+          do not run a new full bootstrap or qualify empirical model rankings.
+          Run inside a subsequently selected substantive allocation, outside
+          the existing EP21 companion tail; no standalone short test job.
+        inputs: [specification, endpoint_specification, development_secondary, development_secondary_tests, development_endpoints, nested_prediction, endpoint_evaluator, secondary_support_core, linking_core, uncertainty_core]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 175s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_development_secondary'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: audit_prediction_checks
+        type: report
+        format: text
+        description: >-
+          Six focused checks of a selected primary pair's stored all-development
+          PCA/ridge application to supplied audit arrays. Preserve606 images,
+          120 concepts,12 explicit blocks, original columns and the shared
+          development target means. Independent forward and whole-block error
+          references check signs and pooled primary endpoints; constant response
+          blocks fail even with positive SST around a different training mean.
+          Rank64 features use one all-development transform per selected model.
+          No fitting, secondary scoring, bootstrap, adjudication, private reader
+          or actual audit opening occurs. Complete prevalidated relation metadata
+          and physical one-shot access remain caller prerequisites. Run within a
+          subsequently selected substantive allocation, outside the existing EP21
+          companion tail; no standalone short job is selected.
+        inputs: [specification, endpoint_specification, audit_prediction, audit_prediction_tests, audit_adjudicator, nested_prediction, development_endpoints, endpoint_evaluator, linking_core]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_audit_prediction'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: audit_secondary_checks
+        type: report
+        format: text
+        description: >-
+          Five focused audit-secondary checks plus the affected primary
+          application snapshot-retention check. Keep the same immutable
+          response and prediction matrices,606 images,12 ordered blocks and
+          selected primary pair. Prelocked descriptors select scales while
+          every selected scale retains its complete eligible inference family.
+          A literal replicated-row reference checks Fisher composition;
+          instrumented CKA dispatch checks one final rank64 bank and all32
+          anatomical subsets. Retain absent-participant and undefined-component
+          rules, exact audit bounds delegation and resource admission. The
+          existing weighted-kernel checks remain separate and unrun. No actual
+          bootstrap, model fit, private input, audit opening or final verdict.
+          Run within a subsequently selected substantive allocation, outside
+          the existing EP21 companion tail; no standalone short job is selected.
+        inputs: [specification, endpoint_specification, audit_secondary, audit_secondary_tests, audit_prediction, audit_prediction_tests, development_secondary, endpoint_evaluator, secondary_support_core, uncertainty_core]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_audit_secondary test_audit_prediction.AuditPredictionTests.test_complete_application_matches_frozen_parameters_and_raw_block_reference_without_fitting'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: predictor_checkpoint_checks
+        type: report
+        format: text
+        description: >-
+          Five focused checks of complete four-model prediction-result persistence.
+          Preserve every stored array, typed row/fold/block identity, original
+          column axis, all84 selection objectives, outer rank64 transforms and
+          final PCA/ridge state. A direct forward calculation checks restored
+          predictor use. Refuse incomplete states, malformed numeric members,
+          byte/resource overruns and existing destinations; preserve failed
+          partials and distinguish successful publication from cleanup failure.
+          Use one private uncompressed container without pickle or refitting.
+          Fabricated full-row fixtures use only2–5 response columns per group;
+          they establish no empirical model or production resource qualification.
+          Existing node-local scratch is required; reserve512MiB for disposable
+          containers. Run inside a subsequently selected substantive allocation,
+          outside the existing EP21 companion tail; no standalone short job.
+        inputs: [specification, predictor_checkpoint, predictor_checkpoint_tests, nested_prediction, linking_core, endpoint_evaluator]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f test_predictor_checkpoint'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: development_response_checks
+        type: report
+        format: text
+        description: >-
+          Five focused checks of development role-copy delivery to complete
+          image-mean panels. Retain all2423 images,480 concepts, six folds,
+          24 blocks and eight participant/ROI groups at B/C/D. Independent
+          ordered scalar references check equal-repeat float64 accumulation
+          with delivered float32 rounding and variable repeat counts. Preserve
+          original columns, all-header admission, physical-stripe reuse across
+          ROIs and immutable output. Metadata-ineligible rows never enter means;
+          nonfinite selected repeats fail without pruning. Instrument only the
+          existing copied-header helper, with no actual HDF5/source payload,
+          fitting or repeated variance qualification. Reuse the repaired model
+          runtime and EP17-only h5py target without installation. Run inside a
+          subsequently selected substantive allocation, outside the unchanged
+          pending EP21 companion tail; no separate short job is selected.
+        inputs: [specification, development_responses, development_response_tests, nested_prediction, endpoint_evaluator]
+        recipe:
+          command: >-
+            env -u PYTHONPATH
+            PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1
+            OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            timeout --signal=TERM --kill-after=5s 115s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            -m unittest discover -s outputs/tools -p test_development_responses.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: audit_response_checks
+        type: report
+        format: text
+        description: >-
+          Three focused tests of caller-admitted sealed-audit response delivery
+          preserve all606 images,120 concepts,twelve blocks,eight original
+          participant/ROI axes and B/C/D. Bind every metadata row and all twelve
+          existing role-copy headers before values, read each required512-column
+          physical stripe once across both ROIs, and retain the original
+          acquisition-ordered equal-repeat float64 means. Return immutable
+          AuditResponsePanel objects. No variance prescreen, model fitting,
+          scoring, source opening, role release or audit authorization occurs.
+          Independent scalar means, refusal before values and cancellation are
+          checked with supplied fixtures. Actual private reader separation and
+          the frozen relation/predictor/forecast remain caller prerequisites.
+          Run once as the independently recorded EP21 pair5 software companion.
+        inputs: [specification, endpoint_specification, audit_responses,
+                 audit_response_tests, audit_prediction, endpoint_evaluator,
+                 development_responses, development_response_tests, policy, role_views]
+        recipe:
+          command: >-
+            env -u PYTHONPATH
+            PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+            BLIS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            timeout --signal=TERM --kill-after=5s 115s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            -m unittest discover -s outputs/tools -p test_audit_responses.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: development_prediction_cost_checks
+        type: report
+        format: text
+        description: >-
+          Focused full-roster control-flow checks for the previously specified
+          outcome-blind cost pilot. Fixed fold03 through fold06 training and
+          fold02 feature validation exclude fold01 and validation neural values;
+          use the 16 smallest original A_all IDs per group, all four models and
+          the unchanged complete layer/rank/penalty and B/C/D grids. Instrument
+          expensive numerical kernels while checking exact row/column dispatch,
+          complete operation counts, operational-only reporting and honest
+          interruption. Reuse passing numerical-core checks. No empirical cost,
+          score, selector, reader release or resource admission is established.
+          Use one numerical thread inside a future substantive allocation;
+          outside the unchanged EP21 companion, with no separate short job.
+        inputs: [specification, development_prediction_cost, development_prediction_cost_tests, nested_prediction, linking_core, endpoint_evaluator]
+        recipe:
+          command: >-
+            env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+            NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 115s
+            python3.12 -B -m unittest discover -s outputs/tools
+            -p test_development_prediction_cost.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: measured_development_prediction_cost
+        type: report
+        format: json
+        inputs: [specification, development_prediction_cost, released_cost_inputs, released_cost_input_checks, released_cost_cli, full_development_features, role_views, operator_maps]
+        description: >-
+          Separately selected trusted-builder cost probe with the existing
+          complete model/layer/rank/penalty grid, fold03-through-fold06 training,
+          fold02 feature prediction and16 original A_all columns per group.
+          The explicit loader binds existing development copies and complete
+          selected features; neural selections exclude validation and fold01
+          values. Unobserved response cells stay NaN, not a complete fitting
+          release. Report operations/time/memory only, never neural values,
+          validation scores or a selected winner. Requires actual coordinator
+          handoff and resource admission; source implementation grants neither.
+      - id: qualified_endpoint_family
+        type: report
+        format: json
+        inputs: [policy, endpoint_specification, endpoint_evaluator, released_endpoint_family, endpoint_family_binding_checks, operator_maps]
+        description: >-
+          Record the fixed ordered family, scales, directed edges and explicit
+          calibration inapplicability from the completed derived operator attempt,
+          before a selector objective. Reuse existing calibration without raw
+          calibration responses, reselected supports or candidate scores.
+      - id: outcome_free_evaluator_evidence
+        type: report
+        format: json
+        inputs: [evaluator_dry_run, audit_prediction, audit_prediction_tests, endpoint_evaluator, uncertainty_core, audit_adjudicator]
+        description: >-
+          One unmocked primary composition on the existing invented606-image,
+          120-concept,12-block fixture: frozen prediction, registered10000-draw
+          bounds and actual primary adjudication. No acquired study payload,
+          scientific audit opening or empirical finding. Reuse passing secondary
+          and component checks; no new recovery program.
+      - id: complete_development_prediction_bank
+        type: data
+        format: zip
+        inputs: [specification, policy, complete_development_inputs, parallel_nested_prediction, complete_prediction_cli, complete_prediction_job, complete_prediction_fit002_job, adopted_block_variance_rule, adopted_block_variance_checks, audit_prediction, audit_prediction_tests, complete_prediction_checks, parallel_prediction_checks, nested_prediction, predictor_checkpoint, measured_development_prediction_cost, qualified_endpoint_family, outcome_free_evaluator_evidence, full_development_features, role_views, operator_maps, registry, exposure_report]
+        description: >-
+          Complete private prediction checkpoint, using the existing full
+          development response arithmetic and original352-PCA feasibility
+          barrier. One explicitly admitted allocation uses one through four
+          independent model workers, one numerical thread each, shared immutable
+          inputs and one baseline bank. Each model retains all six outer fits
+          and its final fit, all84 settings and all eight participant/ROI groups
+          at B/C/D. Canonical complete assembly uses the existing checkpoint
+          writer; no partial panel or endpoint score is published. The CLI
+          requires a selected completed cost attempt and explicit input,
+          deadline, RSS and checkpoint caps. Full development access, mandatory
+          pre-score qualification and measured resource admission remain
+          coordinator decisions; source implementation grants none of them.
+          The scientist adopted the individual primary-R2 uncertainty-block
+          variance exception on October12; finite inputs/moments and each
+          block's positive finite frozen-training-mean SST remain mandatory.
+          Training/validation/calibration/whole-audit variance, secondary
+          validity and bootstrap families remain unchanged. Selected fresh
+          fit002 preserves fit001 and diagnostics, recomputes all352 PCAs and
+          retains full001/cost002/family001/dry001. The batch runs three new
+          plus one affected check and ASTRA before actual fitting; reuse the
+          passed multiworker and component evidence.31GiB Slurm caps aggregate
+          memory;28GiB observed processRSS guard is not an aggregate limit.
+          No audit access, automatic retry or deadline extension occurs.
+          ASTRA tooling/schema status is recorded, not an execution gate;
+          scientific checks and adopted-policy binding remain required.
+          A separately selected EP21 first-fold discriminator attempt002 runs
+          serially before fitting in this actual4CPU31GiB parent, using one
+          numerical thread and300s/6.5GiB observed processRSS/1MiB output.
+          Its failure is recorded independently; it adds no allocation charge,
+          EP17 scientific gate, concurrent workers or deadline extension.
+        recipe:
+          command: bash outputs/tools/run_complete_nested_fit002.sbatch
+          resources: {cpus: 4, memory: 31Gi, time_limit: 8h}
+      - id: response_variance_diagnosis
+        type: report
+        format: json
+        inputs: [policy, specification, complete_development_inputs, complete_prediction_cli, response_failure_diagnosis]
+        description: >-
+          Exact response-preparation diagnosis of the observed fit001 failure,
+          from the same released complete development inputs. Record categorical
+          refusal and group/stage/partition metadata only. No PCA, model fitting,
+          inner errors, endpoint scores, audit, numerical-cohort change or retry.
+          OneCPU/7GiB companion,6GiB observedRSS and at most15minutes, also bounded
+          by the actual parent and retained episode deadline.
+      - id: response_quality_census
+        type: report
+        format: json
+        inputs: [policy, specification, complete_development_inputs, complete_prediction_cli, response_quality_census_runner, response_variance_diagnosis, nested_prediction, linking_core, full_development_features, role_views, operator_maps]
+        description: >-
+          One complete counts-only diagnosis in the fresh fixed
+          outputs/runs/nested_prediction/fit001_diagnostic002 directory,
+          preserving the original fit and first diagnostic. Reuse the same
+          released full001 development inputs and all calibrated original
+          columns. Count all 24 participant/ROI/stage combinations across
+          22 training, 6 validation and 24 uncertainty partitions: 1248
+          variance-qualification rows. Retain the existing training-mean
+          arithmetic for 36 actual inner/outer SST partitions, 24 block SSTs,
+          7 selection pools and the outer OOF pool per group/stage: 1632
+          denominator rows. Export categorical counts and partition metadata
+          only, with exact-constant/underflow subcounts; never response
+          magnitudes, column identities, predictions, SSE, R-squared or model
+          comparisons. No PCA, fitting, support change, audit access, automatic
+          retry or protocol amendment. Census completion does not establish
+          production qualification or authorize a replacement fit. The
+          coordinator supplies ep17_diag_deadline as the minimum of now plus
+          870 seconds, actual parent end minus 30 seconds, and the retained
+          episode deadline. Use one numerical thread, 6 GiB observed RSS,
+          64 MiB metadata, 256 MiB feature and 512 MiB response caps, and a
+          1 MiB report cap. The external 885-second timeout plus 10-second
+          forced-termination allowance remains within 15 minutes and the
+          actual parent allocation.
+        recipe:
+          command: >-
+            env -u PYTHONPATH
+            PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+            BLIS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            timeout --signal=TERM --kill-after=10s 885s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            outputs/tools/diagnose_fit001_response_quality_census.py
+            --deadline-epoch "$ep17_diag_deadline"
+            --rss-limit-kib 6291456 --metadata-byte-cap 67108864
+            --feature-byte-cap 268435456 --response-byte-cap 536870912
+            --report-byte-cap 1048576
+          resources: {cpus: 1, memory: 7Gi, time_limit: 15m}
+      - id: development_feature_checks
+        type: report
+        format: text
+        description: >-
+          Focused complete-roster checks of the development image-to-feature
+          handoff: all2423 images, four fixed models and four float32 layer
+          banks retain exact typed design identities. Instrument loaders and
+          inference without opening checkpoints or source pixels; preserve
+          one-image batch1 ordering, unchanged preprocessing dispatch, immutable
+          outputs and resource refusal before work. Reuse qualified backbone
+          and preprocessing checks. This does not run the mandatory32-image
+          private pilot, establish input isolation or measure full extraction
+          resources. Run serially in a future substantive allocation, outside
+          the unchanged EP21 companion; no standalone short job is selected.
+        inputs: [specification, development_features, development_feature_tests, development_feature_specification, development_feature_core, development_feature_loader, nested_prediction]
+        recipe:
+          command: >-
+            env -u PYTHONPATH
+            PYTHONPATH="$GROUP_HOME/users/zijiao/ep17_h5py_3_10_0_cp311"
+            PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1
+            OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+            timeout --signal=TERM --kill-after=5s 115s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            -m unittest discover -s outputs/tools -p test_development_features.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
   known_answer_cases:
     name: Recover the registered stable reversal and null patterns
     description: >-
@@ -88,7 +1391,43 @@ analyses:
       - {id: registry, from: ../model_pair_registry.registry}
       - {id: qualification_report, from: ../prediction_qualification.qualification_report}
       - {id: recovery_report, from: ../known_answer_cases.recovery_report}
+      - {id: prediction_bank, from: ../prediction_qualification.complete_development_prediction_bank}
+      - {id: endpoint_family, from: ../prediction_qualification.qualified_endpoint_family}
+      - {id: endpoint_panel_caller, type: data, source: outputs/tools/run_development_endpoint_panel.py}
+      - {id: endpoint_panel_tests, type: data, source: outputs/tests/test_development_endpoint_panel.py}
     outputs:
+      - id: endpoint_caller_checks
+        type: report
+        format: text
+        inputs: [policy, endpoint_panel_caller, endpoint_panel_tests]
+        description: >-
+          Two focused composition and frozen-family binding checks, reusing the
+          existing complete fabricated roster and passing interval-engine checks.
+          No empirical reads or new recovery program.
+        recipe:
+          command: >-
+            env PYTHONPATH=outputs/tools:outputs/tests
+            OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+            NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 120s
+            "$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python" -B
+            -m unittest -v test_development_endpoint_panel
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: complete_development_endpoint_panel
+        type: report
+        format: json
+        inputs: [policy, prediction_bank, endpoint_family, endpoint_panel_caller, endpoint_caller_checks, operator_maps]
+        description: >-
+          Private complete four-pair, five-edge endpoint and forecast panel from
+          the completed frozen prediction bank and the same development inputs.
+          Each pair retains separate F_raw and F_raw_normalized 10000-draw
+          participant-first/block-second max-t families, PCG64 seed1729 and the
+          9501st order statistic. Raw edges use F_raw; normalization and full
+          seven-endpoint stability use F_raw_normalized. Preserve H-empty beta
+          forecast inapplicability and F1 nonpromotion. No refitting, audit,
+          valid-trial adjudication, adaptive-search completion or secondary
+          CKA/correlation claim. Empirical execution and publication require
+          coordinator admission within remaining resources.
       - id: coverage_report
         type: report
         inputs: [policy, role_views, operator_maps, registry, qualification_report, recovery_report]

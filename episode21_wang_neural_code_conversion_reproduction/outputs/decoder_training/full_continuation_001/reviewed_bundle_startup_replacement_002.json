@@ -1,0 +1,25 @@
+{
+  "schema_version": "ep21.reviewed_bundle_startup_replacement.v2",
+  "reviewer": "coordinating_agent",
+  "reviewed_utc": "2026-10-08T00:32:06.550334Z",
+  "predecessor_job_id": "46943996_5",
+  "predecessor_allocation_job_id": "46943996",
+  "logical_work_items": [
+    "work_0006",
+    "work_0013"
+  ],
+  "array_index": 5,
+  "remainder_plan": "outputs/decoder_training/full_continuation_001/deadline_remainders_002.json",
+  "failure_reason": "required_startup_fixture_mutated_shared_terminal_history",
+  "scientific_output_directories_absent": true,
+  "request_or_status_created": false,
+  "scientific_payload_admitted": false,
+  "io_fragment_inspection_started": false,
+  "optional_children_started": false,
+  "automatic_retry": false,
+  "fix_evidence": "The terminal-mutation loop in test_reviewed_bundle_startup_replacement now deep-copies the replayed account before each counterexample. Previously the returned terminal aliased the fixture event: elapsed_seconds=26 then allocated_cpus=0 contaminated the next replay, which correctly rejected invalid accounting outside the expected-exception context. The fixture batch() helper also deep-copies the complete grouped builder result: the production builder retains its immutable plan reference, so the later changed-output-path counterexample must not mutate that plan or its historical batch. Remaining nested mutations were reviewed after isolating both terminal events and grouped plans. No production accounting, scientific runner or numerical guard was relaxed. Required checks remain to execute inside the next registered substantive bundle before any child access.",
+  "terminal_evidence": "Coordinator observed 46943996_5/raw46943996 FAILED 1:0, allocated 1 CPU for 21 seconds at 2026-10-08T00:27:47Z, and appended its charge once. Closed remainder_bundle_checks_job_46943996/checks.txt reports 98 tests in 10.783 seconds, 97 passing and one fixture error before empirical access. The original 46942785_5 charge of 25 seconds remains unchanged.",
+  "absence_evidence": "At 2026-10-08T00:33:15.691480Z the source-repair agent performed bounded lstat of exactly remainder_shards_001/work_0006 and remainder_shards_002/work_0013: both directories were absent, including no symlink at either path. Closed remainder_bundle_checks_job_46943996/status.txt contains only job, parent_charged_once_to, logical_members and required_checks_exit=1. The required gate exited before read-only inspection, optional children or either empirical fit. Submission must independently require the same paths fresh.",
+  "user_authorization_context": "Coordinator explicitly selected this one fixed second startup-history supplement under the existing 500 CPU-hour, 500 GB and 8-worker grant. Preserve review001 and both 25/21-second terminal charges, immutable work6/work13 plan002 and original fragments, exact output paths, one 1 CPU/7 GiB/7200-second index5 reservation and unchanged five-parent I/O quarantine. This is a manual repair of a diagnosed fixture failure; no automatic chaining, empirical retry, extension, assembly, scoring, converter access or separate engineering allocation is authorized.",
+  "previous_startup_review": "outputs/decoder_training/full_continuation_001/reviewed_bundle_startup_replacement_001.json"
+}

@@ -1,0 +1,216 @@
+episode_id: ep10
+clarification_id: v3_m2_numerical_falsifier_clarification_v3
+recorded_date: "2026-09-29"
+status: frozen_prospectively_before_any_M2_outcome_access
+analysis_label: exploratory_development_only
+
+authority_and_scope:
+  parent_contract: outputs/stage0/v3_m2_search_contract.yaml
+  numerical_addendum: outputs/stage0/v3_m2_numerical_falsifier_addendum_v1.yaml
+  prior_clarification: outputs/stage0/v3_m2_numerical_falsifier_clarification_v2.yaml
+  active_policy: SEARCH_POLICY.yaml
+  purpose: >-
+    Resolve only the dimensional incompatibility between the parent's required
+    adjacent-rank sparse-plus-low-rank successor lattice and the v1/v2 rule that
+    initializes a hybrid fit from the coverage-selected low-rank anchor. A
+    low-rank state has exactly its declared number of columns and therefore
+    cannot initialize a controller-authorized hybrid target at a different rank.
+  supersedes_only:
+    - >-
+      v1 optional_sparse_plus_low_rank_execution.initialization.low_rank_block
+      and v2 joint_execution_and_gates.initialization_low_rank_block only for a
+      hybrid target configuration whose rank differs from the rank of the
+      coverage-selected low-rank anchor.
+    - >-
+      Any implementation assumption that a production hybrid provenance receipt
+      may authorize only the coverage-selected rank, and only to the minimum
+      extent needed to authorize the deterministic target-rank anchor below.
+  selected_rank_rule_unchanged: >-
+    When the hybrid target rank equals the coverage-selected rank, the exact v1
+    and v2 selected-best-valid-low-rank-anchor initialization remains required.
+  explicitly_unchanged:
+    - parent_model_formula_and_low_rank_factorization
+    - parent_rank_and_penalty_lattices
+    - parent_adjacent_step_successor_lattice_and_proposal_order
+    - optional_family_triggers_and_named_sparse_edge_selector
+    - mandatory_coverage_nodes_trial_counts_scoring_and_tie_rules
+    - v2_sparse_coordinate_system_optimizer_and_stationarity_gates
+    - exact_zero_sparse_initialization_and_low_rank_then_sparse_block_order
+    - failure_is_invalid_without_alternate_initialization_or_model_change
+    - full_controller_null_replay_and_selected_model_validity_gates
+    - protected_data_and_claim_boundaries
+  candidate_pair_effect_or_M2_score_used_to_freeze_this_clarification: false
+  real_M2_outcome_access_before_freeze: false
+  final_unassigned_or_SWC_access: forbidden
+  M0_full_refit_or_telemetry_access: forbidden
+
+frozen_definitions:
+  ordered_rank_lattice: [1, 2, 3, 4, 6, 8]
+  mandatory_low_rank_coverage_inventory:
+    ordered_nodes:
+      - all_six_ranks_at_rho_0.1_in_rank_order
+      - rank_1_at_rho_1.0
+      - rank_8_at_rho_0.001
+    completion_requirement: all_eight_exact_nodes_are_valid_and_score_bearing
+  coverage_selected_anchor: >-
+    The unique best valid result among the exact eight-node low-rank coverage
+    inventory under the parent's score and fixed lattice tie rule. Its rank is
+    denoted r_star. Trial-16 evidence activates and binds the optional branch;
+    r_star is derived only after all eight low-rank coverage results exist.
+  target_hybrid_rank: >-
+    The rank r in the exact next hybrid configuration derived by the frozen
+    controller/session. Adjacent means adjacent in the ordered rank lattice, not
+    an arithmetic plus or minus one.
+  target_rank_coverage_anchor: >-
+    For each r in the ordered rank lattice, the unique mandatory low-rank
+    coverage node with rank r and rho exactly 0.1.
+
+hybrid_low_rank_initialization:
+  pure_derivation_from_authorized_target:
+    if_target_rank_equals_r_star: >-
+      Use the exact registered solver result for the coverage-selected low-rank
+      anchor, including its selected rho. This is the unchanged v1/v2 rule.
+    if_target_rank_differs_from_r_star: >-
+      Use the exact registered solver result for the unique target-rank coverage
+      anchor at rank r and rho 0.1 from the same objective execution context.
+  scope_of_nonselected_rank_rule: >-
+    The second rule applies to every hybrid target whose rank differs from
+    r_star, including a later rho-only successor at a rank first reached by an
+    adjacent-rank step. Returning to rank r_star restores the unchanged exact
+    coverage-selected-anchor rule.
+  outer_cross_fitted_context: >-
+    Use the target-rank coverage-anchor result fitted on the same outer training
+    fold. A result from another fold, replay, objective, session, or cache owner
+    is not the prescribed initialization.
+  null_replay_context: >-
+    Use the corresponding target-rank low-rank coverage-anchor result produced
+    inside that exact null replicate and fold; no observed-result reuse.
+  synthetic_qualification_context: >-
+    Use the corresponding registered target-free synthetic low-rank anchor from
+    the exact same synthetic objective and fold or scenario.
+  sparse_block: exact_zero_at_every_cold_hybrid_fit
+  hybrid_penalties: >-
+    Initialization provenance does not alter the target hybrid rank, rho_low,
+    rho_sparse, fold-local scales, named sparse edges, or objective.
+  no_additional_search_fit: >-
+    The nonselected-rank initializer is a cache lookup of a mandatory valid
+    score-bearing coverage fit. It is not a ninth low-rank coverage node, a new
+    trial, or a resource-consuming prerequisite search.
+  forbidden:
+    - best_scoring_anchor_within_the_target_rank
+    - rank_1_rho_1.0_or_rank_8_rho_0.001_substitution_unless_it_is_the_r_star_anchor
+    - padding_the_selected_state_with_zero_or_nonzero_columns
+    - truncating_or_projecting_the_selected_state
+    - initializing_from_a_parent_or_other_converged_hybrid_state
+    - a_fresh_target_rho_low_prerequisite_fit_during_search
+    - random_restart_multistart_or_post_result_initializer_choice
+  failure: >-
+    A missing, invalid, unconverged, unregistered, unavailable, or context-mismatched
+    prescribed anchor makes that hybrid attempt invalid. It does not authorize a
+    transformed state, another coverage anchor, a fresh fit, or a model change.
+
+production_receipt_authority:
+  derivation: >-
+    The receipt issuer derives the initializer key from the exact controller- or
+    session-issued target hybrid trial and the already-bound coverage history.
+    A caller may not nominate an initializer rank, rho, result, or cache entry.
+  required_bound_identity_and_integrity:
+    - exact_trial_16_coverage_evidence_and_all_eight_low_rank_score_results
+    - coverage_selected_anchor_configuration_and_r_star
+    - exact_controller_or_session_issued_target_hybrid_trial_and_full_configuration
+    - derived_initializer_configuration_key
+    - exact_registered_fold_local_low_rank_optimizer_result_and_cache_entry
+    - objective_mode_fold_null_replicate_or_synthetic_scenario_as_applicable
+    - session_and_cache_owner_identity
+    - ordered_localized_sparse_edge_identity
+    - every_target_HybridSpec_field_and_fold_local_scale
+    - immutable_integrity_signatures_and_this_rule_version
+  exact_target_configuration_fields:
+    - family_sparse_plus_low_rank
+    - rank
+    - rho_low
+    - rho_sparse
+    - ordered_named_sparse_edges
+  use_time_revalidation: >-
+    Recompute the coverage-selected anchor and the prescribed initializer key,
+    revalidate every bound identity and integrity signature, and require the
+    exact live registered objects before solver entry.
+  invalid_receipts:
+    - raw_cloned_replaced_copied_serialized_or_forged
+    - mutated_or_stale_after_issuance
+    - different_target_configuration_fold_objective_replay_session_or_cache_owner
+    - dead_or_unavailable_external_producer_or_bound_object
+  authority_limit: >-
+    A receipt authorizes only its exact target execution and initializer. It
+    cannot authorize chronology, a rerun, a branch, a cherry-pick, an alternate
+    initializer, or terminal model selection.
+
+selected_full_development_refit:
+  applicability: terminal_selected_configuration_is_sparse_plus_low_rank
+  selection_is_not_reopened: true
+  full_development_precursor_configuration:
+    if_selected_hybrid_rank_equals_r_star: >-
+      The exact coverage-selected low-rank configuration, including its rho.
+    if_selected_hybrid_rank_differs_from_r_star: >-
+      The low-rank configuration at the selected hybrid rank and rho 0.1.
+  precursor_execution: >-
+    Fit that one prescribed low-rank configuration freshly on the same
+    full-development M1 offset and full-development training-only transforms,
+    from its frozen deterministic low-rank initialization. Bind the exact
+    converged result to the terminal selection, objective, and refit receipt.
+  cold_hybrid_repeat: >-
+    Initialize the selected full-development hybrid fit from the exact prescribed
+    full-development low-rank precursor plus an exact-zero sparse block.
+  warm_hybrid_repeat: >-
+    Repeat from the exact registered converged selected full-development hybrid
+    result as required by the parent reproducibility gate.
+  accounting: >-
+    The precursor is internal deterministic final fitting, not a scored search
+    trial, successor, candidate, or opportunity to compare configurations.
+  failure: >-
+    Failure of the prescribed precursor or either hybrid repeat invalidates the
+    selected-model completion gate without fallback, reselection, or alternate
+    initialization.
+
+required_target_free_qualification:
+  derivation_matrix:
+    - every_r_star_and_target_rank_pair_uses_the_exact_rule_above
+    - rank_1_and_rank_8_nonselected_targets_use_only_their_rho_0.1_nodes
+    - ordered_adjacencies_include_4_to_6_6_to_4_6_to_8_and_8_to_6
+    - target_rank_equal_to_r_star_preserves_boundary_rho_winners_exactly
+  initialization_observation:
+    - first_hybrid_evaluation_sees_bit_exact_prescribed_U_and_d
+    - first_hybrid_evaluation_sees_an_exact_zero_sparse_block
+    - target_rank_rho_low_rho_sparse_edges_and_scales_are_unchanged
+    - no_padding_truncation_fresh_low_rank_fit_or_multistart_is_called
+  adversarial_receipt_rejection:
+    - wrong_rank_or_wrong_rho_low_rank_anchor
+    - globally_selected_anchor_supplied_for_a_different_target_rank
+    - nonselected_rank_1_rho_1.0_or_rank_8_rho_0.001_substitution
+    - missing_invalid_or_reordered_eight_result_coverage_inventory
+    - changed_coverage_score_edges_target_configuration_or_scale
+    - raw_clone_replacement_mutation_forgery_or_dead_reference
+    - cross_fold_cross_objective_cross_replay_cross_session_or_cross_cache_use
+  deterministic_and_outcome_independent:
+    - repeated_exact_inputs_derive_the_same_initializer_identity
+    - changing_nonselected_anchor_scores_does_not_create_a_within_rank_choice
+    - hybrid_outcomes_never_feed_back_into_initializer_derivation
+  full_development_refit:
+    - nonselected_rank_uses_a_fresh_full_development_rank_r_rho_0.1_precursor
+    - selected_rank_uses_the_exact_selected_configuration_precursor
+    - outer_fold_anchor_objects_are_rejected_for_full_development
+    - cold_and_warm_repeats_bind_the_same_terminal_configuration_and_receipt
+  regression:
+    - all_four_selected_rank_hybrid_coverage_corners_are_unchanged
+    - controller_lattice_order_trial_counts_and_resource_ceilings_are_unchanged
+    - v2_sparse_coordinate_and_stationarity_qualification_still_passes
+    - observed_and_each_null_replay_apply_the_same_derivation_rule
+
+access_boundary:
+  may_implement_and_qualify_target_free_now: true
+  first_real_M2_outcome_access: remains_governed_by_every_v1_v2_and_parent_preaccess_gate
+  this_clarification_does_not_authorize:
+    - protected_data_access
+    - observed_search_execution_before_all_preaccess_gates_pass
+    - any_change_to_the_search_lattice_or_trial_budget
+    - any_initializer_other_than_the_exact_rule_above

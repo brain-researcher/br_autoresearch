@@ -1,0 +1,1711 @@
+{
+  "schema_version": "ep21.decoder_work_item.v1",
+  "status": "complete_work_item_only",
+  "work_item_id": "work_0052",
+  "participant": "sub-06",
+  "authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training_full_authorization.json",
+  "work_manifest": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/work_manifest.json",
+  "allocation": {
+    "job_id": "47082166",
+    "hostname": "sh04-04n21",
+    "allocated_cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "time_limit_seconds": 28800,
+    "job_end_epoch": 1791556751.0
+  },
+  "resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "minutes": 480,
+    "durable_bytes": 6125293568,
+    "scratch_bytes": 2000000000
+  },
+  "max_work_seconds": 28486.43170928955,
+  "numerical_block_units": 64,
+  "publication_blocks": 4,
+  "training_role": "subject_unique",
+  "training_images": 4712,
+  "units_requested": 1003520,
+  "completed_units": 1003520,
+  "requested_spans": [
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 56,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 57,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 58,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 59,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 60,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 61,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 62,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 63,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 0,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 1,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 2,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 3,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 4,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 5,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 6,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 7,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 8,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 9,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 10,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 11,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 12,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 13,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 14,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 15,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 16,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 17,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 18,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 19,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 20,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 21,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 22,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 23,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 24,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 25,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 26,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 27,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 28,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 29,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 30,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 31,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 32,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 33,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 34,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 35,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 36,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 37,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 38,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 39,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 40,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 41,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 42,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 43,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 44,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 45,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 46,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 47,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    }
+  ],
+  "committed_spans": [
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 56,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 57,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 58,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 59,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 60,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 61,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 62,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 63,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 0,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 1,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 2,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 3,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 4,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 5,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 6,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 7,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 8,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 9,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 10,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 11,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 12,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 13,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 14,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 15,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 16,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 17,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 18,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 19,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 20,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 21,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 22,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 23,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 24,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 25,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 26,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 27,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 28,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 29,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 30,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 31,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 32,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 33,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 34,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 35,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 36,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 37,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 38,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 39,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 40,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 41,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 42,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 43,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 44,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 45,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 46,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 47,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ]
+    }
+  ],
+  "remaining_spans": [],
+  "remaining_interval_status": "exact_uncommitted_coverage",
+  "completed_units_is_lower_bound": false,
+  "original_neural_values_read": false,
+  "retained_neural_state_read": true,
+  "regular_feature_values_read": true,
+  "predictions_or_scores_computed": false,
+  "tau_train_values_read": false,
+  "tau_test_values_read": false,
+  "OOD_access": false,
+  "complete_decoder": false,
+  "successor_authorized": false,
+  "automatic_retry": false,
+  "original_budget_consumption_preserved": true,
+  "fragment": "channels.h5",
+  "scratch_peak_live_bytes": 945717248,
+  "scratch_bytes_written": 18914344960,
+  "scratch_cap_interpretation": "peak_simultaneously_retained_transient_bytes",
+  "block_timings": {
+    "normalization_correlation_RHS_and_exact500_solve_seconds": 10149.497831973262,
+    "select_solve_seconds": 7731.728494946292,
+    "publication_seconds": 283.50964858145744
+  },
+  "channel_timings": [
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 56,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 14.73027996699966,
+      "fitting_seconds": 908.9497905379976
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 57,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 4.843757349997759,
+      "fitting_seconds": 944.6116265890014
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 58,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 4.957085235000704,
+      "fitting_seconds": 953.9842768579983
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 59,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 5.371962574994541,
+      "fitting_seconds": 949.3705947769922
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 60,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 5.297828074006247,
+      "fitting_seconds": 957.6432401899947
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 61,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 5.1166988689947175,
+      "fitting_seconds": 933.9059584400093
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 62,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 5.250025073997676,
+      "fitting_seconds": 942.015203736999
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv1_2",
+      "channel": 63,
+      "spatial_Fortran_interval": [
+        0,
+        50176
+      ],
+      "loading_seconds": 4.987730584995006,
+      "fitting_seconds": 900.6275984109961
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 0,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.4587033839925425,
+      "fitting_seconds": 218.71053152800596
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 1,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.4831951170053799,
+      "fitting_seconds": 224.72154055800638
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 2,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.5681196990044555,
+      "fitting_seconds": 221.81520195899066
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 3,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.981988496001577,
+      "fitting_seconds": 228.50302079001267
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 4,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.734690598997986,
+      "fitting_seconds": 222.90362514999288
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 5,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.8356533920014044,
+      "fitting_seconds": 225.8363385010016
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 6,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.7803391579946037,
+      "fitting_seconds": 219.46060780101107
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 7,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.477932695997879,
+      "fitting_seconds": 223.51582513899484
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 8,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.6380605079903034,
+      "fitting_seconds": 223.00695539799926
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 9,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.610048452988849,
+      "fitting_seconds": 220.91161692999594
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 10,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.7811130619957112,
+      "fitting_seconds": 219.43811082700267
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 11,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.6540503739961423,
+      "fitting_seconds": 221.53043255000375
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 12,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.6813680489867693,
+      "fitting_seconds": 216.39267713099252
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 13,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.0781402529974002,
+      "fitting_seconds": 226.56132060098753
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 14,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.6731448440114036,
+      "fitting_seconds": 227.46174205299758
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 15,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.544775608999771,
+      "fitting_seconds": 227.4162869980064
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 16,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.598743006994482,
+      "fitting_seconds": 223.74492766999174
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 17,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.677931804995751,
+      "fitting_seconds": 220.79919356499158
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 18,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.4614454740076326,
+      "fitting_seconds": 225.4306599489937
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 19,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.967823558006785,
+      "fitting_seconds": 222.8908826179977
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 20,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.6502641620027134,
+      "fitting_seconds": 223.9290104979882
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 21,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.615267750006751,
+      "fitting_seconds": 219.89687978000438
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 22,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.6873233360092854,
+      "fitting_seconds": 225.69148949100054
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 23,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.6658437580044847,
+      "fitting_seconds": 226.13015425500635
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 24,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.670849920992623,
+      "fitting_seconds": 219.80112166999606
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 25,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.266356956009986,
+      "fitting_seconds": 224.59229193499777
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 26,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.7277722599974368,
+      "fitting_seconds": 221.07533936300024
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 27,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.7401937060058117,
+      "fitting_seconds": 217.7483513729967
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 28,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 4.746303987005376,
+      "fitting_seconds": 221.49949861901405
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 29,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.0627748879778665,
+      "fitting_seconds": 221.26622700798907
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 30,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 4.356065874977503,
+      "fitting_seconds": 225.08448772499105
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 31,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.807731828012038,
+      "fitting_seconds": 226.46352232599747
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 32,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.7221596160088666,
+      "fitting_seconds": 222.16106894699624
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 33,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.4877181360207032,
+      "fitting_seconds": 223.8028026120155
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 34,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.5838598269911017,
+      "fitting_seconds": 223.72356620701612
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 35,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.9043923509889282,
+      "fitting_seconds": 222.8818510590063
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 36,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.353225555998506,
+      "fitting_seconds": 223.9825045549951
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 37,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.084796687006019,
+      "fitting_seconds": 222.38564191697515
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 38,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.0735890999785624,
+      "fitting_seconds": 228.45698739698855
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 39,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.7409584400011227,
+      "fitting_seconds": 222.99081708100857
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 40,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.6174253069912083,
+      "fitting_seconds": 219.29120348001015
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 41,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.588349448982626,
+      "fitting_seconds": 222.4740502210043
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 42,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.7735180979943834,
+      "fitting_seconds": 227.30571432798752
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 43,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.075230038986774,
+      "fitting_seconds": 221.10935797198908
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 44,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 1.634616168012144,
+      "fitting_seconds": 221.58007665499463
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 45,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.559981152997352,
+      "fitting_seconds": 218.09480371000245
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 46,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 3.334149959991919,
+      "fitting_seconds": 221.13518993998878
+    },
+    {
+      "participant": "sub-06",
+      "layer": "conv2_1",
+      "channel": 47,
+      "spatial_Fortran_interval": [
+        0,
+        12544
+      ],
+      "loading_seconds": 2.9602334770024754,
+      "fitting_seconds": 224.41270593402442
+    }
+  ],
+  "effective_scratch_bytes": 1012826112,
+  "parallelism_amendment_id": "parallelism_amendment",
+  "runtime": {
+    "python": "3.12.1",
+    "numpy": "1.26.3",
+    "h5py": "3.10.0"
+  },
+  "shared_state_load_seconds": 1.560139577006339,
+  "shared_state_reference": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-06/shared_training_state.npz",
+  "training_row_binding_reference": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shared/sub-06/training_row_binding.json",
+  "training_repetitions": 18844,
+  "eligible_voxels": 12023,
+  "publication_buffer_memory_allowance_bytes": 8388608,
+  "conservative_memory_planning_bytes": 5660094496,
+  "closeout_errors": [],
+  "elapsed_seconds": 18374.120477799996,
+  "peak_RSS_KiB": 2242812,
+  "logical_feature_bytes_read": 19505418240,
+  "durable_bytes_before_final_status": 6066603252,
+  "scratch_bytes_written_is_lower_bound": false,
+  "accounting": {
+    "charge_parent_allocation_once": true,
+    "maximum_CPU_seconds": 28800,
+    "prior_consumption_preserved": true,
+    "terminal_accounting_by_coordinator": true
+  }
+}

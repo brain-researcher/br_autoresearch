@@ -1,0 +1,67 @@
+{
+  "EP11_shared_units_opened": false,
+  "all_positive_capacity_groups_pass": false,
+  "eligible_cells_by_group": {
+    "212074": 0,
+    "220187": 3,
+    "220188": 2,
+    "220190": 1,
+    "221091": 0,
+    "221225": 1,
+    "221418": 0,
+    "221514": 0,
+    "221539": 0,
+    "221588": 3,
+    "221751": 1,
+    "233281": 0
+  },
+  "failure_action": "stop_before_v2_target_construction_and_candidate_search",
+  "final_or_unassigned_files_opened": false,
+  "first_failure_counts": {
+    "axon_annotation_zero": 82,
+    "axon_outside_volume": 27,
+    "soma_not_MOp": 6,
+    "terminal_leaf_nongrey": 74
+  },
+  "globally_eligible_cells": 11,
+  "globally_unknown_excluded_cells": 189,
+  "group_gate_pass": {
+    "212074": false,
+    "220187": false,
+    "220188": false,
+    "220190": false,
+    "221091": false,
+    "221225": false,
+    "221418": false,
+    "221514": false,
+    "221539": true,
+    "221588": false,
+    "221751": false,
+    "233281": false
+  },
+  "input_files": 200,
+  "input_groups": 12,
+  "minimum_overall_eligible_cells": 139,
+  "projection_outcomes_computed": false,
+  "projection_outcomes_emitted": false,
+  "revised_capacity_ceiling": 146,
+  "slurm_job": {
+    "elapsed": "00:04:48",
+    "exit_code": "0:0",
+    "job_id": 45442349,
+    "max_rss_kib": 1150396,
+    "state": "COMPLETED"
+  },
+  "stage": "provider_native_v2_structural_qualification",
+  "status": "complete",
+  "structural_QC_gate_passed": false,
+  "swc_interpretation": "provider_native_topology_v2",
+  "target_construction_authorized": false,
+  "target_vocabulary_loaded": false,
+  "v1_to_v2_cross_audit": {
+    "v1_eligible_and_v2_eligible": 5,
+    "v1_ineligible_and_v2_eligible": 6,
+    "v1_ineligible_and_v2_ineligible": 189,
+    "v1_eligible_and_v2_ineligible": 0
+  }
+}

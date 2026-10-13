@@ -64,10 +64,20 @@ The pre-analysis amendment of 2026-10-02 clarifies nomination: a measurable
 region-inconsistent rival is not an unscoreable rival. The amendment below
 changes eligibility, not numerical margins or the EP07 component role.
 
+The scientist adopted the reviewed eleven-session amendment on 2026-10-10:
+exclude `Mihili_CO_20140306.mat` in both regions, jointly with EP07, for its
+native-count validity failure. Retain three Mihili and four Chewie-L
+development sessions and the same four reserved dates. No replacement,
+renumbering, additional exclusion, budget reset or outcome opening follows.
+The [adopted plan](outputs/paper_plan.md#october-10-eleven-session-amendment-adopted)
+records the reduced support and unchanged two-animal claim limits.
+
 ## Paper integration does not merge outcome access
 
-EP06 keeps its own development session positions 1, 2, 4, 5 and reserved
-positions 3, 6, its within-session whole-trial roles, and its one final opening.
+EP06 keeps original development positions 1, 2, 4 for Mihili and 1, 2, 4, 5 for
+Chewie-L; original positions 3 and 6 remain reserved in both animals. The
+excluded original Mihili position 5 is not renumbered. EP06 keeps its
+within-session whole-trial roles and its one final opening.
 EP07 uses a different chronological source/target split and a different
 calibration/development/held-out trial assignment. Therefore an EP06 fit or
 score can expose spike trials still closed in EP07. Manuscript integration is
@@ -109,6 +119,17 @@ LFP feature block, fit a model on training trials to predict this residual and
 score untouched whole trials. Trial identities, time bins, and population
 coordinates are pooled within a session; the resulting held-out residual score
 is one profile value for that session, region, and feature block.
+
+The prospective primary scoring convention uses the common zero-origin energy
+of the training-template residual in the frozen population coordinates:
+`S_block = 1 - sum((R - prediction_block)^2) / sum(R^2)`, where
+`R = (Y_evaluation - training_direction_time_mean) @ training_population_loadings`.
+Give each whole-trial/native-bin row equal weight and pool squared magnitudes
+across coordinates. Do not recenter evaluation residuals, average coordinate-wise
+ratios, clip negative scores or stabilize the denominator with an epsilon.
+Zero or nonfinite residual energy makes the profile unavailable. This primary
+convention retains evaluation-versus-training mean shifts; it is distinct from
+the later direction-balanced component projection and its positive energy gate.
 
 The component follow-up described below cannot replace this residual score or
 change the primary conclusion. In particular, a strong common time course does
@@ -223,7 +244,8 @@ regional gains are positive; it fails when both regional gains are at or below
 zero. Opposite signs or an average between 0 and 0.01 are unresolved.
 
 For each transfer direction, an outer leave-one-target-session-out loop tests
-the selection rather than merely recomputing it. In each fold, the other three
+the selection rather than merely recomputing it. There are three Mihili and
+four Chewie target folds. In each fold, the other two Mihili or three Chewie
 target development sessions establish numerical scoreability of all three
 components in both regions. An unscoreable rival leaves the complete
 comparison unresolved, with no nominee. Among measured components,
@@ -237,34 +259,40 @@ eligible joint-region account, not a global numerical winner over mixed-sign
 rivals.
 Only a valid prefold nominee receives a frozen support prediction and regional
 evaluation gains in the left-out session. The fold does not inspect the other
-two evaluation components. After all four folds are recorded, the previously
+two evaluation components. After all three or four target folds are recorded, the previously
 unopened development components may
-be scored for a final nomination using all four sessions; they cannot alter the
-outer-fold record. A component claim requires the same nominee in at least
-three of four outer folds, no tied fold within the 0.01 nomination margin, and
-no M1/PMd sign contradiction. Otherwise selection is unstable. The two transfer
-directions must then independently make the same untied final nomination, and
+be scored for a final nomination using all retained target sessions; they cannot
+alter the outer-fold record. Stability requires the same nominee in all three
+Mihili folds and at least three of four Chewie folds, no tied fold within the
+0.01 nomination margin, and no left-out M1/PMd sign contradiction. Missing folds
+never count as agreement. Known failures imply unstable selection; missing
+required evidence remains unresolved. Each final nominee must match its
+direction's stable outer-fold family. The two transfer directions must then
+independently make the same untied final nomination, and
 both are frozen before any reserved-session outcome is opened.
 
 Final nomination uses common sessions on which all three components are
-numerically scoreable in both regions, requiring at least three of four.
+numerically scoreable in both regions, requiring all three Mihili sessions and
+at least three of four Chewie sessions, including every available common session.
 Sign consistency is candidate-specific across that common set, not required
 of every rival. Negative or mixed-sign measurements remain visible and are
 never recoded as missing. The energy, 0.01 tie/preservation margins,
-outer-fold stability and reserved-test rules are unchanged.
+and reserved-test margins are unchanged by the sample-size amendment.
 
 The prediction for each reserved session is made from two quantities visible in
 its calibration trials: split-half reliability of the nominated component's
 frequency profile, and its standardized distance from the source-animal
-profile. For a cross-fitted development prediction, pool the other seven
+profile. For a cross-fitted development prediction, pool the other six
 development sessions to set the reference median and scale; for a reserved
-prediction, use all eight. Standardization subtracts that median and divides by
+prediction, use all seven. The reference mix is two Mihili plus four Chewie
+when a Mihili session is omitted, or three plus three when Chewie is omitted;
+do not substitute animal-weighted medians. Standardization subtracts that median and divides by
 1.4826 times the median absolute deviation. If either scale is zero, the rule
 abstains rather than inventing a cutoff. A zero or nonfinite bandwise
 between-session scale in the profile-distance calculation, or a nonfinite
 split-half reliability, also forces an abstention. The single support index is
 `H = standardized reliability - standardized profile distance`; its equal
-weights are fixed, not learned from eight session outcomes. `H >= 0.25` predicts
+weights are fixed, not learned from seven session outcomes. `H >= 0.25` predicts
 preservation, `H <= -0.25` predicts failure, and the interval between them is a
 declared abstention. Every reserved prediction is written down before its
 held-out trials are scored.
@@ -282,7 +310,8 @@ or a third animal provide adequate precision, this component result is planned
 as part of EP07 rather than as a stand-alone paper.
 
 Report both regional gains, the resulting session status, each support
-prediction, and every abstention. Resample whole trials within a session to
+prediction, and every abstention. Resample whole trials within direction with
+paired regions within a session to
 show measurement uncertainty, then resample sessions within each animal and
 average the two animal-transfer directions equally. Also report each direction
 and every leave-one-session result separately. Trial bins, electrodes, and
@@ -290,29 +319,29 @@ population coordinates never count as independent biological replicates. For
 the support rule, report the exact number correct, wrong, and abstained with an
 interval over sessions. A within-corpus prediction counts as supported only if
 at least three of the four reserved sessions receive a
-non-abstaining prediction and none is wrong. Even four correct predictions from
+non-abstaining prediction with an evaluable outcome and none is wrong.
+An unresolved outcome cannot count as correct. Even four correct predictions from
 only one outcome class do not establish the boundary. Wide uncertainty is an
 unresolved result, not confirmation.
 
 ## Evidence roles and the session split
 
-The current release reports six simultaneous M1/PMd sessions for Mihili and six
-for Chewie-L. After structural eligibility is checked, order each animal's six
-sessions by acquisition date, using the provider session name only to break a
-tie. The roles are fixed by position:
+The release reports six simultaneous M1/PMd sessions for each animal. The
+adopted exclusion removes original Mihili position 5 without changing the
+original acquisition-date ordering or any other role:
 
 | Animal | Development and model selection | Reserved final test |
 | --- | --- | --- |
-| Mihili | positions 1, 2, 4, and 5 | positions 3 and 6 |
+| Mihili | original positions 1, 2, and 4 | original positions 3 and 6 |
 | Chewie-L | positions 1, 2, 4, and 5 | positions 3 and 6 |
 
 Record the resulting session names in `DATASETS.md` before any regional score is
-inspected. Do not move a session because its result is inconvenient. If either
-animal has fewer than six structurally eligible paired sessions, stop for a
-scientific review of sample size instead of reallocating sessions after looking
-at outcomes.
+inspected. The named dates in DATASETS are fixed. The reviewed amendment
+permits exactly five retained Mihili and six Chewie sessions, subject to the
+existing electrode, rank and trial-role support requirements. Further session
+loss requires another scientific review; do not reallocate or renumber dates.
 
-The eight development sessions support model comparison. The four reserved
+The seven development sessions support model comparison. The four reserved
 sessions are opened together once after one analysis is final. Because related
 historical work already exposed this release, that reserved-session test checks a fixed procedure
 within the same corpus; it is not independent confirmation.
@@ -388,13 +417,14 @@ the headline classifier accuracy is high.
 2. Confirm the source, the paired M1/PMd trials, events, electrodes, units, and
    frequency labels. Run small known-answer tests for indexing, held-out
    prediction, and the planned shuffles.
-3. Write the session-role table from the predeclared acquisition-order rule.
+3. Preserve the adopted named session-role table and record exact cross-episode
+   trial roles, freeze/opening dates and information transfers before fits.
 4. Run the fixed low-frequency, full-profile, ridge, CCA, prototype, and
    regularized-classifier starting comparisons.
 5. Change one scientific choice at a time. Every trial records its question,
    full analysis choices, per-session results, controls, runtime, and failure
    reason. The current best model is provisional.
-6. Retest each finalist on all eight development sessions, both transfer
+6. Retest each finalist on all seven development sessions, both transfer
    directions, and all required controls.
 7. Challenge the best model and at most three alternatives with session
    influence, matching, frequency, spike-contamination, time-window, mapping,

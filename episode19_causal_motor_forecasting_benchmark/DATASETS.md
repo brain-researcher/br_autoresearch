@@ -8,6 +8,30 @@ implementation check only, and AJILE12 is outside the primary study.
 
 No held-out signal has been examined for EP19.
 
+## Public online resources — checked October 6, 2026
+
+| Public source | Available information and EP19 use | Remaining limit |
+| --- | --- | --- |
+| [Pinned WAY event generator](https://github.com/luciw/way-eeg-gal-utilities/blob/c81320ab5da20de83b09ec62167200abdcf8c88c/Utilities/WEEG_FindEvents.m) | Public MATLAB source copies the stored window start into `StartTime`, uses a 2-ms first-sample time convention and documents force signs/sensor selections. Use to interpret the released event columns and distinguish generated events from raw acquisition metadata. | This is a downstream event generator, not the missing raw-to-HS/WS exporter. Its 2-ms indexing does not justify a two-second correction or authenticate physical scale. |
+| [Pinned event-to-continuous-series conversion](https://raw.githubusercontent.com/luciw/way-eeg-gal-utilities/c81320ab5da20de83b09ec62167200abdcf8c88c/Utilities/WEEG_GetEventsInHS.m) | Defines weight/friction/mixed series codes, event names and `StartTime + relative event` conversion. Its comments map weight codes 1/2/3 to 165/330/660 g and surface codes to silk/suede/sandpaper. Use these explicit context definitions instead of guessing from numeric codes. | The mapping does not establish when context was available to a forecasting model or the upstream trimmed-series zero. Future-dependent event labels cannot become predictor inputs. |
+| [Pinned EEGLAB importer](https://raw.githubusercontent.com/luciw/way-eeg-gal-utilities/c81320ab5da20de83b09ec62167200abdcf8c88c/Utilities/WEEG_MakeEEGLABDataset.m) | Shows the continuous HS-series input, 32-channel location-file dependency, EEG-specific 0.1 multiplier and import of converted events without a further two-second adjustment. Use as an implementation/format reference. | Its EEG scaling cannot be transferred to force or position channels. Running the importer would not qualify EP19's past-only detector, units or complete onset bound. |
+
+The public methods narrow the remaining source request to the original
+raw-to-HS/WS clock/trim binding and authenticated physical calibration, as
+explained in the [timing handoff](outputs/source_timing_handoff.md). The raw
+event-generator URL was unsupported by the web reader, but its pinned GitHub
+source page was readable. No source data, timestamp correction or forecast
+was opened or executed by this documentation check.
+
+October 7 additions following the actual header extraction:
+
+| Public source | Available information and EP19 use | Remaining limit |
+| --- | --- | --- |
+| [Manufacturer signal-path explanation](https://pressrelease.brainproducts.com/amplifier-signal-pipeline/) | Distinguishes automatic anti-aliasing from optional Recorder filters; supports interpreting the header settings. | Does not specify this recording's complete transfer function or delay. |
+| [Current actiCHamp specification](https://www.brainproducts.com/solutions/actichamp/) | Identifies revision-dependent AUX resolution. | Current values must not replace the historical header scale or sensor calibration. |
+
+See the [acquisition interpretation](outputs/source_timing_handoff.md#october-7-interpreting-the-observed-actichamp-acquisition-settings).
+
 ## Sources and roles
 
 | Source | Scientific role | Current state |
@@ -47,6 +71,14 @@ The expected continuous source contains:
 Exact clocks, units, missing channels, and alignment must be checked directly
 before analysis. Third-party filtered arrays, notebook caches, or previously
 normalized tensors cannot substitute for the continuous source.
+
+The [published importer/event-generator review](outputs/source_timing_handoff.md)
+now establishes direct copying of the stored window start to `StartTime`, a
+separate 2-ms first-sample convention, grip `-FZ`/load `+FX` signs and
+object/wrist sensor identities. It does not authenticate the raw-to-HS/WS
+trim/origin assignment or physical-unit conversion. The observed P1 two-second
+discrepancy remains a timing hypothesis, not a correction to apply; the full
+strictly-below-300-ms onset uncertainty bound is still required.
 
 ### Series roles
 
@@ -120,6 +152,24 @@ from `sub-13` and `sub-15` include extra numbered empty physical channels, not
 additional EEG signals. The archive contains 240 raw EEG runs, while the paper
 reports 238 valid runs; eligibility must therefore follow the event and
 valid-run information rather than filename count.
+
+The development-view metadata also exposes nine embedded-reference discrepancies:
+three headers reference nonmatching original data/marker names, and six marker
+files fail the exact `DataFile` binding check. All155 development runs remain
+represented; no source aliases or scientific exclusions are adopted. The
+publisher's Data Records section defines matching participant/session/run
+stems as corresponding EEG/header/marker files. On October11, that source rule
+and the exact unique release-bound triplets were selected as an explicit
+documentary mapping; original embedded-reference verification remains separate,
+and any competing reference to another extant run remains unresolved. The exact
+participant/session/run list and mapping limits are in the
+[stream-layout handoff](outputs/source_timing_handoff.md#october-11-development-stream-dimensions-and-unresolved-file-references).
+The completed mapping pass leaves three such conflicts: sub-03/session02/
+runs0009,0010,0011 marker files each name the extant run0008 EEG. All155 runs
+remain represented, with152 accepted documentary file associations.
+This issue is separate from238-versus240 valid-run eligibility. Nominal stored
+sample counts and starting NewSegment timestamps do not certify continuous
+acquisition, physical sensor calibration or the full onset timing bound.
 
 The scientific analysis uses the same 29-channel intersection listed for WAY.
 Resampling and channel order must be set before held-out evaluation, and no
@@ -279,14 +329,25 @@ trigger a replacement model, participant, onset rule, or second evaluation.
 
 ## Current readiness
 
-The named archives have been acquired but remain unprepared for EP19 analysis.
-Before signal scoring, the study still needs:
+The original twelve-person WAY S1 peripheral-support panel is complete.
+Seven participants satisfy its conditional support rule; P1, P3, P6, P9 and
+P12 remain unresolved, and all twelve retain their original disposition.
+These counts do not qualify physiological rest, onset timing or an EEG
+forecast. No favorable participant subset was selected. See the
+[full support and implementation record](outputs/README.md).
+
+Finite five-family reference recipes, three non-neural families, mandatory
+controls and grouped development folds are specified. Three enumeration/fold
+checks and the sixteen classical/non-neural backend checks passed. Two
+classical backends and the logistic-hazard fitting/interface are implemented
+on supplied fixtures, with no trained empirical forecast. Before signal
+scoring, the study still needs:
 
 - episode-specific development and held-out data views;
 - direct clock, channel, sampling, gap, and series-boundary checks;
 - executable/frozen onset and stillness rules from the selected component design;
-- the five executable reference model recipes;
-- source-specific non-neural baselines;
+- remaining reference/baseline implementations and raw-feature integration
+  under the fixed recipes;
 - development validation and freezing of the selected four-parameter recipe;
 - confirmation of valid recent and older EEG history at every scored decision
   point, including a boundary that no derived feature crosses;
@@ -296,8 +357,10 @@ Before signal scoring, the study still needs:
 - eligible-stillness exposure for participant-level false-alarm rates;
 - a development-fixed warning threshold, persistence rule, refractory period,
   and numerical false-alarm ceiling;
-- a finite set of allowed model changes and all numeric margins;
-- the five-fold assignment for the 15 self-paced development participants; and
+- the remaining scientific/numerical thresholds, including the minimum
+  meaningful primary EEG gain; the nineteen unset fields are inventoried in
+  the [timing/decision handoff](outputs/source_timing_handoff.md), not treated
+  as nineteen separate user approvals; and
 - synthetic tests that expose future-information leakage and recover a known
   prospective EEG signal.
 

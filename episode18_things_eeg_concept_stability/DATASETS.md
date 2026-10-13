@@ -6,6 +6,20 @@ model. The scientific comparisons are defined in [GOAL.md](GOAL.md); this
 file explains which data are available, how they must be divided, and what
 still has to be built before EEG-driven model comparison.
 
+## Public online resources — checked October 6, with sequence-trigger update October 12, 2026
+
+| Public source | Available information and EP18 use | Remaining limit |
+| --- | --- | --- |
+| [Original data paper, author-hosted copy](https://tijl.github.io/tijl-grootswagers-pdf/Grootswagers_et_al_-_2022_-_Human_EEG_recordings_for_1,854_concepts_presented_.pdf) | Page3 identifies E3 as sequence start, E1 as image onset and E2 as offset; it documents1000Hz acquisition and0.0488281microvolt resolution. Page2 describes72 main sequences of309 images. Checked October12 for the continuous-reader implementation. | Exact E3/event alignment, segment-confined sample spans and padding still come from each authorized record. The provider's epoch-based preprocessing is context, not an adopted EP18 continuous-data recipe. |
+| [OpenNeuro ds003825 v1.2.0 README](https://raw.githubusercontent.com/OpenNeuroDatasets/ds003825/1.2.0/README) | The fixed-release public README describes 50 recorded participants, 1,854 concepts, 22,248 main images and 10-Hz presentation with an orthogonal fixation task; it links the authors' OSF `hd6zk` information/example-code archive. Use for original experimental provenance and finding the provider methods. | These design totals do not replace the fixed local eligibility/event checks or 30/16 roles. No public EEG payload or example outcome was opened. |
+| [Official PyTorch 2.4.1 distribution recipes](https://pytorch.org/get-started/previous-versions/#v241) | Exact `torch==2.4.1` / `torchvision==0.19.1` installation recipes exist for CPU and CUDA 11.8/12.1/12.4, with wheel and Conda routes. The required release pair is publicly available rather than unspecified. | Public availability alone did not qualify Sherlock execution. The separate exact CPU-wheel runtime subsequently qualified in allocation 46842156; the alpha-module route remains stopped. See the preparation evidence below. |
+| [Pinned CLIP ViT-B/32 configuration](https://huggingface.co/openai/clip-vit-base-patch32/raw/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json) | The already-selected model revision exposes readable configuration: 224-pixel vision input, 32-pixel patches, vision hidden size 768 and projection dimension 512. Use to cross-check the prepared asset/feature interface. | Configuration retrieval alone did not establish checkpoint integrity or loading. Both subsequently qualified in allocation 46842156, and label-only encoding completed in 46843116; clean image-exposure claims remain a separate unresolved requirement, and isolated pixel/EEG readers were replaced by procedural separation on 2026-10-12. |
+
+The online resources resolve original-study pointers, exact release
+distribution and model-shape documentation. They do not require changing the
+episode's versions, feature choices or closed audit, and no model weights,
+images, EEG or secrets were downloaded in this check.
+
 ## What is available
 
 | Resource | Current state | EP18 use |
@@ -94,6 +108,13 @@ confirm:
 
 These checks establish the observations that enter the analysis.
 
+The completed outcome-blind source preparation retains all 1,133,808 events
+for the 46 eligible participants. It established that source `sample` values
+are **one-based**; the frozen working join retains originals alongside
+normalized recording indices. The large sub-36/sub-38 clock discontinuities
+were localized to recording-segment/physical-sequence boundaries without
+dropping events. See the [frozen metadata and source-diagnosis records](outputs/README.md).
+
 ## Exact image-event join
 
 Before feature extraction or EEG modeling, build one row for every main and
@@ -133,6 +154,11 @@ audit using the fixed metadata-only rule in `SEARCH_POLICY.yaml`. Because
 in each role if both pass the fixed integrity checks. Freeze all IDs before
 EEG-derived work. No participant may later be swapped, excluded, or replaced
 because of signal quality or effect direction.
+
+This assignment is complete. The frozen development/audit metadata views
+contain 739,440 and 394,368 events respectively, with the exact 30/16 identities
+and montage balance fixed by the reviewed metadata rule. These manifests are
+not runtime access controls; the EEG audit seal remains false.
 
 The participant is the inference and replication unit. Blocks, sequences,
 images, electrodes, folds, and samples are repeated measurements within a
@@ -208,6 +234,15 @@ Outcome-blind setup may proceed while this is unresolved. Under the current
 contract, EEG-driven candidate comparison is prohibited and the one-shot
 audit cannot open until the separation is verified.
 
+**2026-10-12 amendment:** the scientist adopted procedural same-account
+separation with a disclosed weaker claim, replacing the verified-separation
+requirement above and the externally controlled pixel-only worker.
+Development reads only the 30 development participants (pixels only inside
+the image-feature worker); audit EEG is not opened, listed, searched or
+re-downloaded before the single recorded opening, and every audit result must
+state that the separation was procedural. Terms are in
+[GOAL.md](GOAL.md#data-readiness-and-access-boundary).
+
 Audit participants use the same six-fold participant-refit procedure: ten
 blocks fit the model and two blocks are scored. This is replication in new
 participants, not transfer of a development participant's fitted EEG
@@ -215,16 +250,54 @@ coefficients.
 
 ## What must exist before model comparison
 
-The next setup stage must produce:
+The event/identity join, fixed 30/16 roles, common 62-channel order, prospective
+feature registry, private image routing and human-feature crosswalk are
+complete. All 1,854 concepts join to 12 property/size dimensions and 53
+broad-category indicators; 406 concepts with no membership in those categories
+remain included. The private routing preserves 22,448 image identities and
+1,854 name prompts without exposing names to a pixel worker. Feature adapters
+are prepared, but no image-model inference or EEG comparison has run.
 
-- a validated event table and exact image join;
-- the fixed 30/16 participant assignment and role-filtered views;
-- the common 62-channel order and 61-dimensional transform;
-- the image and label feature records;
-- the frozen visual-only distance panel and distant-event ablation rule;
+The [exact-runtime and model-asset qualification](outputs/runs/feature_preparation/exact_cpu_provision_46842156/model_runtime/model_runtime_qualification.json)
+completed in allocation **46842156**: all five fixed public assets passed
+source-integrity checks and all six selected routes loaded offline with the
+exact stable CPU runtime, including Torch 2.4.1 and Torchvision 0.19.1. No
+forward pass or experimental data access occurred in that qualification.
+After the successful first-64-name pilot and explicit coordinator release,
+[all concept-name features](outputs/runs/feature_preparation/all_name_text_46843116/label_feature_report.json)
+completed in allocation **46843116**: **1,854 by 512 float32** CLIP vectors,
+with zero token truncations and zero provider-name fallbacks. This label-only
+preparation read no source pixels, private image routing, events or EEG. It
+does not establish a complete `frozen_feature_record` or either access seal.
+
+The exact EP17 qualified-universe comparison is also complete: all 720 EP17
+concepts and 3,634 qualified image identities occur in EP18's main experiment.
+Both frozen designs are retained as correlated, design-exposed studies. The
+[exposure record](outputs/config/ep17_ep18_exposure_record.json) distinguishes
+source-inventory overlap from that qualified-universe result and does not
+claim identical pixels/features or complete historical exposure knowledge.
+
+The remaining work includes:
+
+- effective pixel-worker delivery and EEG reader separation; the namespace
+  `ENOSPC` route remains stopped, with no weaker boundary substituted
+  (**superseded 2026-10-12** by the adopted procedural separation; see
+  [Development and audit access](#development-and-audit-access));
+- the remaining image/caption feature extraction and complete continuous-EEG
+  fitting/evaluation pipeline; the fixed 61-dimensional sensor transform and
+  supplied-recipe fold composition are implemented and tested, while raw-data
+  preprocessing, complete nested tuning/EDF integration and scoring remain;
+- feature-derived visual-distance/ablation and false-group qualification under
+  the fixed prospective definitions;
 - eight acceptable EEG-blind false partitions;
-- outcome-blind simulations of overlap, leakage, and recovery; and
-- one EP17/EP18 exposure record covering image, concept, and feature reuse.
+- the required leakage/recovery and inferential qualification, without
+  restarting an unrequested simulation expansion.
+
+The historical DTN authentication failure and alpha-module mismatch remain
+preserved in the [execution log](outputs/experiment_log.md). The later finite
+public HTTPS transfer and fresh exact CPU-wheel environment resolved asset
+delivery and runtime compatibility without credentials, a retry of either
+stopped route, or a weaker image/EEG access boundary.
 
 If the event structure, sample separation, design rank, false-group matching,
 reliability, or projected 16-participant precision is inadequate, the study is

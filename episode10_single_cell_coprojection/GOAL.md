@@ -1,5 +1,15 @@
 # Does co-target context predict terminal organization inside a shared target?
 
+## Adopted local closeout — October 6, 2026
+
+The scientist adopted closure of the original M2 objective as **incomplete
+under computational and numerical limits**. The qualified real-data M1
+result and its secondary exploratory gain are retained. This is not a
+biological negative, evidence that M1 is sufficient, or a completed M2 search.
+No successor, optimization probe, budget reset or final/unassigned opening
+is selected. The within-target study below remains an unactivated design.
+See the [adoption record](outputs/experiment_log.md#2026-10-06--v3_search--scientist-adopted-local-closeout).
+
 A neuron can reach the same cortical or subcortical region as another neuron
 without placing its terminal arbors in the same part of that region. EP10 asks
 whether that difference is predictably associated with the neuron's other
@@ -31,12 +41,13 @@ next biological study**. It is no longer an optional panel attached to a
 target-combination paper. The co-target contrast and a branch-level explanation
 must be specified before its held-out evaluation.
 
-This is a prospective biological design. Existing execution contracts and
-recorded attempts remain separate. [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml),
-[DATASETS.md](DATASETS.md) and the [execution ledger](outputs/experiment_log.md)
-govern already initiated work; this narrative changes no operative model,
-observation rule, threshold, budget, stopping decision or data-access permission.
-The terminal-profile study requires its own prospective freeze before execution.
+This writing revision does not amend the frozen, already initiated Gao v3
+execution. That development-only analysis still has M2-minus-M1 conditional
+recorded-positive-pattern log-score gain as its operative primary. Its
+contracts, search budget, stopping decisions, nulls, and final-access limits
+remain unchanged in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml) and the existing
+ASTRA program. The legacy complete-set and A+B/A+C exclusivity endpoints remain
+inactive. No terminal profile has been examined for this redesign.
 
 The new biological endpoint is **planned, not activated or executed**. Its
 profile estimator, anatomical contrast, useful margin, uncertainty,
@@ -157,15 +168,40 @@ examples.
 
 Realized paths and terminal profiles are outcomes. They cannot enter M0/M1/M2
 as predictive geometry, choose the original target panel, or redefine the
-separately frozen observation rule. Profile coordinates may be selected for technical
+frozen v3 observation rule. Profile coordinates may be selected for technical
 repeatability only with context labels blinded; observed B/C separation cannot
 choose the metric, direction, or candidate.
 
-## Execution boundary
+## Preserved Gao v3 execution — closed incomplete
 
-Existing execution history belongs in the [execution ledger](outputs/experiment_log.md).
-This planned anatomical study neither relabels an already-initiated primary
-endpoint nor activates terminal-profile fitting or held-out evaluation.
+The October 6 adopted closeout ends the original M2 objective. This section
+retains its observation model and evidence interpretation, not launch authority.
+
+V1 and v2 complete-set observation failed their prospective development gates.
+The scientist authorized positive-only, unmapped-tolerant v3 on 2026-09-26:
+exactly 194 structurally eligible development cells from 12 conservative
+specimen groups, with group 221588 support 7; six soma_not_MOp cells are excluded.
+
+For the frozen 16-coordinate panel T, P_i contains mapped positive terminal
+observations, K_i_obs = |P_i|, and Omega_i contains every size-K_i_obs subset of
+T. Exact normalization models **recorded-positive patterns**, not complete
+biological projection sets. A zero is no mapped positive recorded, not absence;
+unmapped content is omitted rather than imputed. All 194 cells remain in the
+denominator, including degenerate K_i_obs; pair-informative support is reported
+without outcome-based filtering.
+
+M0 represents recorded-positive prevalence/context, M1 adds geometry-associated
+structure, and M2 adds residual recorded-positive pair structure. Equal-group
+M2-minus-M1 gain was the original primary; M1-minus-M0 is secondary. The
+0.002 bits-per-eligible-cell threshold is an exploratory search threshold,
+not the new terminal-profile meaningful margin. The 99 full-controller nulls
+calibrate this observation-pattern search, **not terminal anatomy**.
+
+Original biological Route A/Route B promotion, shared-target exclusivity,
+external transfer, and final opening are inactive under v3. Any evaluation in
+final groups requires a separately frozen contract before access. Existing
+attempts and adopted incomplete closeout live in
+[experiment_log.md](outputs/experiment_log.md); no next execution is selected.
 
 ## Outcome routes and claim limits
 

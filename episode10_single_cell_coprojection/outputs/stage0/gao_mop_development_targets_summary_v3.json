@@ -1,0 +1,73 @@
+{
+  "episode_id": "ep10",
+  "stage": "v3_positive_only_target_construction_postflight",
+  "status": "pass",
+  "analysis_label": "exploratory",
+  "observation_policy": "positive_only_unmapped_tolerant_v3",
+  "slurm_job": {
+    "job_id": 45463647,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "started_at_utc": "2026-09-27T05:11:52Z",
+    "ended_at_utc": "2026-09-27T05:19:20Z",
+    "wall_clock": "00:07:28",
+    "memory_used_gb": 1.10
+  },
+  "input_files": 200,
+  "input_groups": 12,
+  "eligible_cells": 194,
+  "excluded_cells": 6,
+  "exclusion_counts": {
+    "soma_not_MOp": 6
+  },
+  "eligible_cells_by_group": {
+    "212074": 6,
+    "220187": 35,
+    "220188": 25,
+    "220190": 16,
+    "221091": 33,
+    "221225": 39,
+    "221418": 12,
+    "221514": 5,
+    "221539": 1,
+    "221588": 7,
+    "221751": 13,
+    "233281": 2
+  },
+  "primary_coordinate_count": 16,
+  "K_distribution": {
+    "1": 6,
+    "2": 24,
+    "3": 24,
+    "4": 31,
+    "5": 28,
+    "6": 49,
+    "7": 17,
+    "8": 7,
+    "9": 5,
+    "10": 3
+  },
+  "pair_informative_cells_K_at_least_2": 188,
+  "binary_zero_semantics": "no mapped positive terminal observation recorded for this coordinate; not biological absence, verified non-detection, or a negative label",
+  "postflight_checks": [
+    "exact_194_cells",
+    "exact_group_support",
+    "six_soma_not_MOp_exclusions",
+    "sixteen_per_cell_positive_only_zero_semantics_columns",
+    "K_and_S_coordinate_ids_consistency",
+    "excluded_rows_have_no_target_calls"
+  ],
+  "target_vocabulary_loaded": true,
+  "projection_outcomes_emitted": true,
+  "final_or_unassigned_files_opened": false,
+  "EP11_shared_units_opened": false,
+  "v1_and_v2_relabelled_as_passed": false,
+  "scratch_output_root": "/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_targets_v3",
+  "scratch_output_files": [
+    "aggregate_summary.json",
+    "cell_eligibility_qc.csv",
+    "primary_16_target_calls.csv",
+    "v3_gate_summary.json"
+  ],
+  "model_boundary": "M0/M1/M2 may use only the separately frozen exploratory recorded-positive-pattern estimand; no biological absence, complete-set, Route A/Route B promotion, final opening, or B/C exclusivity claim is authorized."
+}

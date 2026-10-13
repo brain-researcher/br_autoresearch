@@ -31,3 +31,27 @@
   falsifier, and both required diagnostics complete before the single candidate
   decision; one exact full-development rerun of the selected row then completes
   before configuration lock.
+
+## 2026-09-30 — conceptual-figure check
+
+The final generated image was visually inspected. Identical image IDs feed
+all representation branches; model and neural RDMs use the same image order;
+VLM and DINOv2 are compared to the same neural geometry without a learned
+primary model-to-brain mapping. Development is image-disjoint, not participant-
+held-out, and the OOD scope remains conditional stimulus-shift evidence in the
+same five participants. Unmatched checkpoints, excluded exposed images and
+the absence of observed data are labeled. This is a figure-only addition,
+not a new scientific qualification or empirical result.
+
+Focused checks passed: `git diff --check` reports no whitespace errors; the
+new GOAL/README figure and prompt links resolve to readable episode-local
+files; the saved image is a 1536 × 1024 RGB PNG. DATASETS, SEARCH_POLICY and
+ASTRA are unchanged.
+
+## 2026-10-02 local scope review
+
+Checked narrative against native-RSA panel, equal-weight within-category OOD estimand, fixed comparator and 0.02 Fisher-z rule. No scientific validation or formal ASTRA validation run; scoped document checks only.
+
+## 2026-10-02 figure review
+
+Viewed the former 1536 × 1024 PNG and regenerated a sparse 1672 × 941 imagegen figure emphasizing direct native RSA and within-category OOD comparison. Accepted after correcting independent VLM/DINOv2-to-fMRI connectors, neural-RDM symmetry and abstract category exemplars; personally inspected and independently reviewed. Exact prompts saved, earlier assets retained, GOAL/output-index links updated. No source data, outcome, policy, runtime or Git change.

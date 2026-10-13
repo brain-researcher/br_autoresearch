@@ -6,6 +6,10 @@
 #SBATCH --time=12:00:00
 #SBATCH --output=outputs/prelaunch/slurm-margin-diagnostic-%j.out
 
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 
 module purge

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import csv
 import json
-import math
 import os
 import time
 from dataclasses import asdict, dataclass
@@ -18,8 +17,22 @@ except ImportError as exc:  # pragma: no cover
     raise RuntimeError("scientific qualification needs NumPy and SciPy") from exc
 
 from .policy import EpisodePolicy
-from .scientific_models import ScientificModelError, reciprocal_transfer, seed_from
+from .resource_authorization import (
+    assess_projected_core_hours,
+    verify_resource_authorization,
+)
+from .scientific_models import (
+    BOUNDED_LATENT_SUPPORT_PROTOCOL,
+    ScientificModelError,
+    reciprocal_transfer,
+    seed_from,
+)
 from .scientific_synthetic import SCENARIO_TRUTH, generate_synthetic_type
+from .simultaneous_inference import (
+    SimultaneousInferenceError,
+    bilateral_with_aggregate,
+    paired_studentized_max_t,
+)
 from .runtime import EPISODE_ROOT, SCRATCH_ROOT, atomic_json
 from .yaml_subset import load_yaml_subset
 
@@ -36,6 +49,13 @@ CORE_NO_M_SCENARIOS = {
 STRONG_M_SCENARIOS = {"residual_groups_within_continuum"}
 
 
+def _require_active_model_family_conformance() -> None:
+    """Bind qualification to the tested pure bounded-support implementation."""
+
+    if BOUNDED_LATENT_SUPPORT_PROTOCOL != "ep12.pure_bounded_latent_support.v1":
+        raise ValueError("active bounded-U implementation protocol is unsupported")
+
+
 @dataclass(frozen=True)
 class QualificationCell:
     cell_id: str
@@ -50,6 +70,13 @@ class QualificationCell:
 def _contract_settings(contract: Mapping[str, Any]) -> dict[str, Any]:
     """Fail closed unless the executable supports the frozen contract exactly."""
 
+    contract_id = str(contract.get("contract_id", ""))
+    integration_draws = {
+        "ep12_outgoing_tum_post36_v2": 256,
+        "ep12_outgoing_tum_post36_v3": 2048,
+    }.get(contract_id)
+    if integration_draws is None:
+        raise ValueError(f"unknown scientific contract identity: {contract_id}")
     expected = {
         "likelihood": "conditional_multinomial",
         "score": "heldout_log_predictive_density_per_observed_outgoing_count",
@@ -58,7 +85,7 @@ def _contract_settings(contract: Mapping[str, Any]) -> dict[str, Any]:
         "curve_degree": 3,
         "linear_rank": 2,
         "source_cv_folds": 2,
-        "integration_draws": 256,
+        "integration_draws": integration_draws,
         "nuisance_ridge": 0.1,
         "mixture_initializations": 5,
         "mixture_max_iterations": 150,
@@ -106,6 +133,69 @@ def _contract_settings(contract: Mapping[str, Any]) -> dict[str, Any]:
             "mixture_initialization"
         ],
     }
+    if contract_id == "ep12_outgoing_tum_post36_v3":
+        expected.update(
+            {
+                "linear_support": "rank_at_most_2_Gaussian_manifold_in_ILR",
+                "linear_ambient_tube": False,
+                "curved_latent_input": "one_dimensional_standard_Gaussian",
+                "curved_support": (
+                    "nine_node_Gauss_Hermite_on_cubic_Hermite_image"
+                ),
+                "curved_ambient_tube": False,
+                "m_group_offsets": True,
+                "m_within_group_law": (
+                    "same_rank_at_most_2_Gaussian_manifold_as_U_linear"
+                ),
+                "m_ambient_tube": False,
+                "family_integration_rules": True,
+                "same_numerical_tolerance": True,
+                "m_law_matches_linear_u": True,
+                "latent_support_protocol": BOUNDED_LATENT_SUPPORT_PROTOCOL,
+                "score_null_support_parity": True,
+            }
+        )
+        observed.update(
+            {
+                "linear_support": contract["models"]["U_linear"][
+                    "latent_support_geometry"
+                ],
+                "linear_ambient_tube": contract["models"]["U_linear"][
+                    "ambient_residual_tube"
+                ],
+                "curved_latent_input": contract["models"]["U_curved"][
+                    "latent_input"
+                ],
+                "curved_support": contract["models"]["U_curved"][
+                    "integration_support"
+                ],
+                "curved_ambient_tube": contract["models"]["U_curved"][
+                    "ambient_residual_tube"
+                ],
+                "m_group_offsets": contract["models"]["M"]["group_offsets"],
+                "m_within_group_law": contract["models"]["M"][
+                    "within_group_continuous_law"
+                ],
+                "m_ambient_tube": contract["models"]["M"][
+                    "ambient_residual_tube"
+                ],
+                "family_integration_rules": contract["capacity_fairness"][
+                    "family_appropriate_frozen_integration_rules"
+                ],
+                "same_numerical_tolerance": contract["capacity_fairness"][
+                    "same_numerical_tolerance"
+                ],
+                "m_law_matches_linear_u": contract["capacity_fairness"][
+                    "M_within_group_continuous_law_matches_U_linear"
+                ],
+                "latent_support_protocol": contract["execution_parameters"][
+                    "bounded_latent_support_protocol"
+                ],
+                "score_null_support_parity": contract["execution_parameters"][
+                    "predictive_and_fitted_null_use_identical_stored_latent_support_and_weights"
+                ],
+            }
+        )
     if observed != expected:
         raise ValueError(
             "scientific contract requests an implementation not qualified by this executor: "
@@ -244,34 +334,19 @@ def paired_simultaneous_intervals(
     values = np.asarray(type_direction_deltas, dtype=float)
     if values.ndim != 2 or values.shape[1] != 2 or values.shape[0] < 2:
         raise ScientificModelError("simultaneous intervals need >=2 whole types and two directions")
-    observed = values.mean(axis=0)
-    aggregate = float(observed.mean())
-    targets = np.array([observed[0], observed[1], aggregate])
-    standard_errors = np.array(
-        [
-            np.std(values[:, 0], ddof=1) / math.sqrt(len(values)),
-            np.std(values[:, 1], ddof=1) / math.sqrt(len(values)),
-            np.std(values.mean(axis=1), ddof=1) / math.sqrt(len(values)),
-        ]
-    )
-    standard_errors = np.maximum(standard_errors, 1e-9)
-    rng = np.random.default_rng(seed)
-    indices = rng.integers(0, len(values), size=(replicates, len(values)))
-    boot = values[indices].mean(axis=1)
-    boot_targets = np.column_stack([boot[:, 0], boot[:, 1], boot.mean(axis=1)])
-    max_t = np.max(np.abs((boot_targets - targets[None, :]) / standard_errors[None, :]), axis=1)
-    critical = float(np.quantile(max_t, 0.95, method="higher"))
-    lower = targets - critical * standard_errors
-    upper = targets + critical * standard_errors
+    try:
+        result = paired_studentized_max_t(
+            bilateral_with_aggregate(values),
+            replicates=replicates,
+            seed=seed,
+            confidence_level=0.95,
+        )
+    except SimultaneousInferenceError as exc:
+        raise ScientificModelError(str(exc)) from exc
     return {
+        **result,
         "labels": ["left_to_right", "right_to_left", "aggregate"],
-        "estimate": targets.tolist(),
-        "standard_error": standard_errors.tolist(),
-        "critical_max_t": critical,
-        "lower": lower.tolist(),
-        "upper": upper.tolist(),
         "margin": margin,
-        "bootstrap_replicates": replicates,
     }
 
 
@@ -435,7 +510,13 @@ def run_generated_replicate(
     }
 
 
-def _cell_summary(cell: QualificationCell, records: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+def _cell_summary(
+    cell: QualificationCell,
+    records: Sequence[Mapping[str, Any]],
+    *,
+    oracle_enclosure: Mapping[str, Any] | None = None,
+    binomial_confidence_level: float | None = None,
+) -> dict[str, Any]:
     total = len(records)
     terminal_counts = {
         terminal: sum(record["terminal"] == terminal for record in records)
@@ -458,33 +539,87 @@ def _cell_summary(cell: QualificationCell, records: Sequence[Mapping[str, Any]])
         else 0
     )
     estimable = [record for record in records if "intervals" in record]
-    coverage_counts = [0, 0]
+    coverage_counts = [0, 0, 0]
+    joint_coverage_count = 0
     coverage_total = len(estimable) if len(estimable) >= 2 else 0
     if coverage_total:
         estimates = np.asarray(
-            [record["intervals"]["estimate"][:2] for record in estimable],
+            [record["intervals"]["estimate"] for record in estimable],
             dtype=float,
         )
         for record_index, record in enumerate(estimable):
             center = np.delete(estimates, record_index, axis=0).mean(axis=0)
-            for direction in range(2):
-                coverage_counts[direction] += (
-                    record["intervals"]["lower"][direction]
-                    <= center[direction]
-                    <= record["intervals"]["upper"][direction]
+            covered = []
+            for coordinate in range(3):
+                coordinate_covered = (
+                    record["intervals"]["lower"][coordinate]
+                    <= center[coordinate]
+                    <= record["intervals"]["upper"][coordinate]
                 )
+                coverage_counts[coordinate] += coordinate_covered
+                covered.append(coordinate_covered)
+            joint_coverage_count += all(covered)
     false_m_ci = exact_binomial_interval(false_m, total)
     false_adequacy_ci = exact_binomial_interval(false_adequacy, total)
     coverage_rates = [
         coverage_counts[index] / coverage_total if coverage_total else 0.0
-        for index in range(2)
+        for index in range(3)
     ]
     coverage_intervals = [
         exact_binomial_interval(coverage_counts[index], coverage_total)
         if coverage_total
         else (0.0, 1.0)
-        for index in range(2)
+        for index in range(3)
     ]
+    joint_coverage_interval = (
+        exact_binomial_interval(joint_coverage_count, coverage_total)
+        if coverage_total
+        else (0.0, 1.0)
+    )
+    coverage_summary: dict[str, Any] = {
+        "left_to_right": coverage_rates[0],
+        "right_to_left": coverage_rates[1],
+        "aggregate": coverage_rates[2],
+        "joint": (
+            joint_coverage_count / coverage_total if coverage_total else 0.0
+        ),
+        "left_to_right_exact_95_interval": list(coverage_intervals[0]),
+        "right_to_left_exact_95_interval": list(coverage_intervals[1]),
+        "aggregate_exact_95_interval": list(coverage_intervals[2]),
+        "joint_exact_95_interval": list(joint_coverage_interval),
+        "target": 0.95,
+        "scope": "coverage_of_leave_one_replicate_out_generated_center_not_oracle_parameter",
+        "reference_centers_independent": False,
+        "coverage_indicators_independent": False,
+        "exact_binomial_acceptance_valid": False,
+        "binomial_interval_role": "descriptive_reference_only",
+    }
+    if oracle_enclosure is not None:
+        if binomial_confidence_level is None:
+            raise ValueError("successor coverage needs its derived binomial level")
+        from .coverage_successor import assess_cell_coverage
+
+        successor = assess_cell_coverage(
+            outer_intervals=[record["intervals"] for record in estimable],
+            oracle=oracle_enclosure,
+            nominal_coverage=0.95,
+            binomial_confidence_level=float(binomial_confidence_level),
+        )
+        for name in ("left_to_right", "right_to_left", "aggregate", "joint"):
+            readout = successor["readouts"][name]
+            coverage_summary[name] = (
+                readout["certain_successes"] / readout["total"]
+            )
+        coverage_summary.update(
+            {
+                "scope": "infinite_design_expected_fixed_finite_procedure_gain",
+                "reference_centers_independent": True,
+                "coverage_indicators_independent": True,
+                "exact_binomial_acceptance_valid": successor["passed"],
+                "binomial_interval_role": "familywise_successor_gate",
+                "successor_assessment": successor,
+            }
+        )
     return {
         **asdict(cell),
         "truth_family": SCENARIO_TRUTH[cell.scenario],
@@ -494,14 +629,7 @@ def _cell_summary(cell: QualificationCell, records: Sequence[Mapping[str, Any]])
         "false_M_exact_95_interval": list(false_m_ci),
         "false_adequacy_rate": false_adequacy / total,
         "false_adequacy_exact_95_interval": list(false_adequacy_ci),
-        "empirical_interval_coverage": {
-            "left_to_right": coverage_rates[0],
-            "right_to_left": coverage_rates[1],
-            "left_to_right_exact_95_interval": list(coverage_intervals[0]),
-            "right_to_left_exact_95_interval": list(coverage_intervals[1]),
-            "target": 0.95,
-            "scope": "coverage_of_leave_one_replicate_out_generated_center_not_oracle_parameter",
-        },
+        "empirical_interval_coverage": coverage_summary,
         "wall_seconds": float(sum(record["wall_seconds"] for record in records)),
         "cpu_seconds": float(sum(record["cpu_seconds"] for record in records)),
     }
@@ -527,11 +655,19 @@ def _accept_cell(
         and summary["false_adequacy_exact_95_interval"][1] > false_adequacy_max
     ):
         reasons.append("false_adequacy_exact_upper_bound_above_contract_maximum")
-    nominal = float(acceptance["interval_nominal_coverage"])
-    for direction in ("left_to_right", "right_to_left"):
-        interval = summary["empirical_interval_coverage"][f"{direction}_exact_95_interval"]
-        if not interval[0] <= nominal <= interval[1]:
-            reasons.append(f"{direction}_coverage_incompatible_with_contract_nominal")
+    coverage = summary["empirical_interval_coverage"]
+    successor = coverage.get("successor_assessment")
+    if isinstance(successor, Mapping):
+        if successor.get("passed") is not True:
+            reasons.append(f"successor_coverage_{successor.get('status', 'invalid')}")
+    elif coverage.get("exact_binomial_acceptance_valid") is not True:
+        reasons.append("coverage_estimand_or_indicator_independence_not_qualified")
+    else:
+        nominal = float(acceptance["interval_nominal_coverage"])
+        for coordinate in ("left_to_right", "right_to_left", "aggregate", "joint"):
+            interval = coverage[f"{coordinate}_exact_95_interval"]
+            if not interval[0] <= nominal <= interval[1]:
+                reasons.append(f"{coordinate}_coverage_incompatible_with_contract_nominal")
     return not reasons, reasons
 
 
@@ -555,6 +691,8 @@ def _write_csv(path: Path, summaries: Sequence[Mapping[str, Any]]) -> None:
         "numerical_failure",
         "coverage_left_to_right",
         "coverage_right_to_left",
+        "coverage_aggregate",
+        "coverage_joint",
         "wall_seconds",
         "cpu_seconds",
         "passed",
@@ -583,6 +721,8 @@ def _write_csv(path: Path, summaries: Sequence[Mapping[str, Any]]) -> None:
                     "numerical_failure": summary["terminal_counts"]["numerical_failure"],
                     "coverage_left_to_right": summary["empirical_interval_coverage"]["left_to_right"],
                     "coverage_right_to_left": summary["empirical_interval_coverage"]["right_to_left"],
+                    "coverage_aggregate": summary["empirical_interval_coverage"]["aggregate"],
+                    "coverage_joint": summary["empirical_interval_coverage"]["joint"],
                     "wall_seconds": summary["wall_seconds"],
                     "cpu_seconds": summary["cpu_seconds"],
                     "passed": summary["passed"],
@@ -636,7 +776,8 @@ def integration_stability_diagnostic(
 ) -> dict[str, Any]:
     settings = spec["numerical_stability"]
     draws_grid = [int(value) for value in settings["integration_draws"]]
-    if draws_grid != [128, 256, 512]:
+    supported_grids = ([128, 256, 512], [1024, 2048, 4096])
+    if draws_grid not in supported_grids:
         raise ValueError("unsupported integration stability grid")
     started_wall = time.perf_counter()
     started_cpu = time.process_time()
@@ -679,8 +820,8 @@ def integration_stability_diagnostic(
                     ),
                     "source_fit_metadata": result["source_fit_metadata"],
                 }
-            contract_result = by_draws[256]
-            high_result = by_draws[512]
+            contract_result = by_draws[draws_grid[1]]
+            high_result = by_draws[draws_grid[2]]
             changes = [
                 abs(
                     contract_result[f"{direction}_delta"]
@@ -705,9 +846,12 @@ def integration_stability_diagnostic(
                     "selected_model_ids_match": identity_match,
                 }
             )
-    tolerance = margin * float(
-        settings["maximum_absolute_delta_change_relative_to_margin"]
-    )
+    if "maximum_absolute_delta_change" in settings:
+        tolerance = float(settings["maximum_absolute_delta_change"])
+    else:
+        tolerance = margin * float(
+            settings["maximum_absolute_delta_change_relative_to_margin"]
+        )
     model_identity_required = bool(
         settings["selected_model_ids_must_match_at_contract_and_high_draws"]
     )
@@ -740,8 +884,10 @@ def run_scientific_qualification(
     bootstrap_replicates: int | None = None,
     contract_path: Path | None = None,
     qualification_spec_path: Path | None = None,
+    oracle_aggregate_path: Path | None = None,
     episode_root: Path = EPISODE_ROOT,
     policy_path: Path | None = None,
+    resource_authorization_path: Path | None = None,
 ) -> dict[str, Any]:
     episode_root = episode_root.resolve()
     output_dir = output_dir.resolve()
@@ -762,25 +908,37 @@ def run_scientific_qualification(
     if any(output_dir == root or root in output_dir.parents for root in protected_roots):
         raise ValueError("scientific qualification cannot write into a frozen output tree")
     contract_path = (contract_path or (
-        episode_root / "outputs" / "executor" / "SCIENTIFIC_CONTRACT_POST36.yaml"
+        episode_root / "outputs" / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml"
     )).absolute()
     spec_path = (qualification_spec_path or (
         episode_root
         / "outputs"
         / "executor"
-        / "SYNTHETIC_QUALIFICATION_SPEC_POST36.yaml"
+        / "SYNTHETIC_QUALIFICATION_SPEC_POST36_V3.yaml"
     )).absolute()
-    if contract_path.name != "SCIENTIFIC_CONTRACT_POST36.yaml":
-        raise ValueError("qualification requires the active post-36 scientific contract")
-    if spec_path.name != "SYNTHETIC_QUALIFICATION_SPEC_POST36.yaml":
-        raise ValueError("qualification requires the active post-36 specification")
+    if contract_path.name != "SCIENTIFIC_CONTRACT_POST36_V3.yaml":
+        raise ValueError("qualification requires the additive V3 scientific contract")
+    if spec_path.name != "SYNTHETIC_QUALIFICATION_SPEC_POST36_V3.yaml":
+        raise ValueError("qualification requires the additive V3 specification")
     if contract_path.parent != spec_path.parent:
         raise ValueError("post-36 contract and qualification spec must share one executor root")
     contract = load_yaml_subset(contract_path)
     spec = load_yaml_subset(spec_path)
     model_program = _contract_settings(contract)
+    _require_active_model_family_conformance()
     policy_path = (policy_path or (episode_root / "SEARCH_POLICY.yaml")).absolute()
     policy = EpisodePolicy.load(policy_path)
+    resource_authorization_path = (
+        resource_authorization_path
+        or episode_root
+        / "outputs"
+        / "executor"
+        / "DEVELOPMENT_BUDGET_OVERRIDE.yaml"
+    ).absolute()
+    resource_authorization = verify_resource_authorization(
+        authorization_path=resource_authorization_path,
+        policy=policy,
+    )
     integration_draws = int(
         model_program["integration_draws"]
         if integration_draws is None
@@ -814,6 +972,23 @@ def run_scientific_qualification(
         raise ValueError("qualification needs >=1 repetition and >=2 whole types")
     margin = float(policy.meaningful_margin)
     cells = qualification_cells(tier, spec)
+    if oracle_aggregate_path is None:
+        raise ValueError(
+            "V3 qualification requires a completed independent stochastic-oracle aggregate"
+        )
+    oracle_aggregate_path = oracle_aggregate_path.resolve()
+    if allowed_root not in oracle_aggregate_path.parents:
+        raise ValueError("oracle aggregate must stay under episode outputs")
+    try:
+        oracle_report = json.loads(oracle_aggregate_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot load stochastic-oracle aggregate: {exc}") from exc
+    from .coverage_successor import coverage_evidence_by_cell
+
+    oracle_by_cell, coverage_error_budget = coverage_evidence_by_cell(
+        oracle_report,
+        expected_cell_ids=[cell.cell_id for cell in cells],
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
     replicate_results_path = output_dir / "replicate_results.jsonl"
     if replicate_results_path.exists():
@@ -841,7 +1016,14 @@ def run_scientific_qualification(
         os.fsync(result_handle.fileno())
     summaries: list[dict[str, Any]] = []
     for cell in cells:
-        summary = _cell_summary(cell, all_records[cell.cell_id])
+        summary = _cell_summary(
+            cell,
+            all_records[cell.cell_id],
+            oracle_enclosure=oracle_by_cell[cell.cell_id],
+            binomial_confidence_level=(
+                coverage_error_budget.binomial_readout_confidence_level
+            ),
+        )
         passed, reasons = _accept_cell(summary, spec["acceptance"])
         summary["passed"] = passed
         summary["failure_reasons"] = reasons
@@ -874,6 +1056,10 @@ def run_scientific_qualification(
         * (observed_searches + null_searches)
     )
     projected_core_hours = seconds_per_triplet * protocol_triplets / 3600.0
+    cost_authorization = assess_projected_core_hours(
+        projected_core_hours=projected_core_hours,
+        authorization=resource_authorization,
+    )
     cost_profile = {
         "scope": "generated_data_measured_projection_not_real_runtime",
         "measured_wall_seconds": total_wall,
@@ -887,7 +1073,11 @@ def run_scientific_qualification(
         "projected_type_direction_triplets": protocol_triplets,
         "projected_cpu_core_hours": projected_core_hours,
         "policy_cpu_core_hour_ceiling": policy.cpu_core_hour_ceiling,
-        "cost_gate_passed": projected_core_hours <= policy.cpu_core_hour_ceiling,
+        "policy_cpu_core_hour_ceiling_enforced": False,
+        "explicit_resource_authorization": resource_authorization,
+        "cost_gate_passed": cost_authorization[
+            "within_explicit_authorization"
+        ],
         "qualification_configuration": {
             "integration_draws": integration_draws,
             "cross_validation_folds": folds,
@@ -914,6 +1104,8 @@ def run_scientific_qualification(
         "contract_configuration": contract_configuration,
         "contract_path": str(contract_path),
         "spec_path": str(spec_path),
+        "stochastic_oracle_aggregate_path": str(oracle_aggregate_path),
+        "stochastic_oracle_error_budget": asdict(coverage_error_budget),
         "settings": {
             "repetitions_per_cell": repetitions,
             "whole_types_per_replicate": whole_types,
@@ -927,9 +1119,12 @@ def run_scientific_qualification(
         "integration_stability": stability,
         "replicate_results_path": str(replicate_results_path),
     }
-    atomic_json(output_dir / "qualification_report.json", report)
     atomic_json(output_dir / "cost_profile.json", cost_profile)
     atomic_json(output_dir / "integration_stability.json", stability)
     _write_csv(output_dir / "result_table.csv", summaries)
     _write_markdown(output_dir / "result_table.md", summaries, report)
+    # The report is the completion marker. Publish it only after every
+    # companion artifact is durable so independent readiness checks cannot
+    # accept a post-report partial directory.
+    atomic_json(output_dir / "qualification_report.json", report)
     return report

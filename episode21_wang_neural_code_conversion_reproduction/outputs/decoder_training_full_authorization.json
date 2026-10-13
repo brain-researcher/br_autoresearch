@@ -1,0 +1,94 @@
+{
+  "schema_version": "ep21.full_decoder_authorization.v1",
+  "episode_id": "ep21",
+  "purpose": "full_five_participant_decoder_training",
+  "approved": true,
+  "participants": [
+    "sub-01",
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "training_role": "subject_unique",
+  "training_images": 4712,
+  "numerical_block_units": 64,
+  "reuse_protocol_lock": "outputs/protocol_lock.yaml",
+  "work_manifest": "outputs/decoder_training/full_continuation_001/work_manifest.json",
+  "allow_retained_neural_state": true,
+  "allow_original_neural_values_for_state_build": [
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "allow_regular_feature_values": true,
+  "allow_decoder_fitting": true,
+  "allow_decoder_fragment_assembly": true,
+  "assembled_manifest": "outputs/decoder_training/full_continuation_001/assembled_decoder_manifest.json",
+  "allow_tau_train_values": false,
+  "allow_tau_test_values": false,
+  "allow_ood": false,
+  "allow_prediction_or_scoring": false,
+  "allow_converters": false,
+  "allow_reconstruction": false,
+  "allow_external_sites": false,
+  "automatic_retry": false,
+  "automatic_extension": false,
+  "successor_authorized": false,
+  "original_budget_consumption_preserved": true,
+  "approval_source": "Scientist agreed to the concrete EP21 recommendation: 500 CPU-hours aggregate including the current first-layer continuation, up to eight concurrent 1 CPU/7 GiB workers, and 500 GB new durable storage; decoder training only.",
+  "approval_user_message": "i agree with your judgement; EP20 is fine with simulation because we dont have real data",
+  "recorded_utc": "2026-10-06T23:42:12.243029+00:00",
+  "cpu_budget_mode": "actual_allocated_with_full_outstanding_reservations",
+  "included_layer_job": {
+    "job_id": "46801996",
+    "reserved_CPU_seconds": 86400,
+    "durable_bytes": 25000000000
+  },
+  "resume_partial_layer": {
+    "job_id": "46801996",
+    "error": "termination_requested",
+    "cause": "resource_or_deadline"
+  },
+  "partial_layer_transition_reason": "Coordinator-requested checkpoint stop to redistribute exact remaining units under newly approved parallel continuation; not a numerical failure.",
+  "closed_included_layer_storage": {
+    "job_id": "46801996",
+    "files": {
+      "outputs/decoder_training/layer_continuation_001/channels.h5": 4246474208,
+      "outputs/decoder_training/layer_continuation_001/requested_units.json": 22548,
+      "outputs/decoder_training/layer_continuation_001/continuation_status.json": 26974
+    },
+    "metadata_allowance_bytes": 67108864,
+    "charged_bytes": 4313632594
+  },
+  "reuse_completed_units": 716160,
+  "state_build_resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "minutes": 240,
+    "durable_bytes": 8000000000,
+    "scratch_bytes": 2000000000
+  },
+  "assembly_resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "minutes": 240,
+    "durable_bytes": 1000000000,
+    "scratch_bytes": 2000000000
+  },
+  "resources": {
+    "worker_jobs": 75,
+    "state_build_jobs": 1,
+    "assembly_jobs": 1,
+    "maximum_concurrent_jobs": 8,
+    "maximum_allocated_CPU_seconds": 1800000,
+    "durable_bytes": 500000000000,
+    "peak_transient_bytes": 16000000000
+  },
+  "validation_reuse": "46 unchanged full-pipeline checks passed inside job46801996. Six new storage-reclamation tests must pass inside the substantive state parent before empirical access.",
+  "quota_observation": "sh_quota 2026-10-06T23:35Z: OAK 161.5TB/250TB, adequate observed shared capacity; quota observation does not reserve storage.",
+  "bounded_shared_checks": "State parent may include 60-second EP20 component checks and six 30-second ASTRA document validations, charged once within its 4-hour limit and the aggregate cap; no EP20 candidate experiment."
+}

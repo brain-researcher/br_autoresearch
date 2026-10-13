@@ -1,0 +1,106 @@
+{
+  "schema_version": "ep12.contract_transition_probe_spec.v1",
+  "probe_id": "ep12_outcome_blind_contract_transition_invariance_v1",
+  "purpose": "Demonstrate that the post-attestation representation-rank contract clarification changes diagnostics only and leaves fixed synthetic scientific inputs, fitted tensors, selections, and target-side scores byte-identical.",
+  "data_scope": {
+    "generated_examples_only": true,
+    "real_connectivity_access": "forbidden",
+    "connectivity_path_arguments": "forbidden",
+    "annotation_or_outcome_files": "forbidden"
+  },
+  "phases": {
+    "legacy": {
+      "contract_relative_path": "SCIENTIFIC_CONTRACT.yaml"
+    },
+    "post36": {
+      "contract_relative_path": "SCIENTIFIC_CONTRACT_POST36.yaml"
+    }
+  },
+  "source_modules": [
+    "ep12_executor/__init__.py",
+    "ep12_executor/scientific_models.py",
+    "ep12_executor/scientific_synthetic.py"
+  ],
+  "required_environment": {
+    "BLIS_NUM_THREADS": "1",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTHONNOUSERSITE": "1",
+    "TZ": "UTC",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "generator": {
+    "left_neurons": 19,
+    "right_neurons": 19,
+    "count_total": 100,
+    "strength": 1.8,
+    "missing_fraction": 0.1
+  },
+  "fit": {
+    "integration_draws": 256,
+    "folds": 2,
+    "ridge": 0.1,
+    "pseudocount": 0.5,
+    "tie_tolerance": 1e-06,
+    "component_candidates": [
+      2,
+      3
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "adequate_template_count_aware",
+      "scenario": "adequate_template",
+      "seed": 1201,
+      "representation": "count_aware_log_ratio",
+      "rank": 16,
+      "covariance": "diagonal",
+      "covariance_rank": 8
+    },
+    {
+      "case_id": "curved_continuum_low_rank_composition",
+      "scenario": "curved_continuum_dense",
+      "seed": 1202,
+      "representation": "low_rank_composition",
+      "rank": 2,
+      "covariance": "shrinkage",
+      "covariance_rank": 4
+    },
+    {
+      "case_id": "residual_groups_low_rank_count_model",
+      "scenario": "residual_groups_within_continuum",
+      "seed": 1201,
+      "representation": "low_rank_count_model",
+      "rank": 4,
+      "covariance": "low_rank",
+      "covariance_rank": 8
+    }
+  ],
+  "directions": [
+    "left_to_right",
+    "right_to_left"
+  ],
+  "serialization": {
+    "canonical_json": "utf8_sorted_keys_compact_no_nan",
+    "numeric_arrays": "dtype_shape_c_order_bytes_sha256_and_base64",
+    "input_arrays": "dtype_shape_c_order_bytes_sha256",
+    "scalar_floats": "python_float_hex",
+    "hash": "sha256"
+  },
+  "comparison": {
+    "require_exact_input_payload_sha256": true,
+    "require_exact_environment_payload_sha256": true,
+    "require_exact_scientific_payload_sha256": true,
+    "allowed_diagnostic_additions": [
+      "cases.adequate_template_count_aware.directions.left_to_right.models.*.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.right_to_left.models.*.diagnostics.representation_rank"
+    ],
+    "all_other_diagnostic_changes": "forbidden"
+  }
+}

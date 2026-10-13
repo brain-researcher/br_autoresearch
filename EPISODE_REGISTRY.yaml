@@ -55,7 +55,7 @@ incomplete_draft_records:
 
 shared_evidence_groups:
   - group_id: laion_fmri_ep04_ep21
-    episode_ids: [ep04, ep21]
+    episode_ids: [ep04, ep21, ep22]
     required_shared_artifact: exposure_split_ledger
     evidence_independence: correlated_not_independent
   - group_id: lfp_ep05_ep08
@@ -198,5 +198,15 @@ episodes:
     search_policy_ref: episode21_wang_neural_code_conversion_reproduction/SEARCH_POLICY.yaml
     local_role: current_fixed_reproduction_episode
     evidence_mode: fixed_adapted_method_reproduction
+    foundation_adjacent: [F20-02]
+    independent_confirmation: false
+  - episode_id: ep22
+    path: episode22_geometry_gap_decomposition
+    title: Spectrum, eigenvectors or stimulus selection in the VLM–DINOv2 brain-geometry gap
+    search_policy_ref: episode22_geometry_gap_decomposition/SEARCH_POLICY.yaml
+    local_role: current_fixed_diagnostic_episode
+    evidence_mode: fixed_diagnostic_with_sealed_confirmation
+    recorded_on: "2026-10-12"
+    follows_episode_ids: [ep04]
     foundation_adjacent: [F20-02]
     independent_confirmation: false

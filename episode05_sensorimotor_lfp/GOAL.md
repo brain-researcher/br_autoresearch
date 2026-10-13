@@ -62,8 +62,11 @@ that reach differs from the movement expected from its direction and timing.
 The [paper plan](outputs/paper_plan.md) compares this claim with prior work and
 specifies the follow-up predictions, alternatives, and figure-level evidence.
 The held-out-direction test remains the first result; the spike-population
-follow-up cannot change its answer. No real EP05 analysis has run under this
-revised plan.
+follow-up cannot change its answer. The original development search and the
+separately adopted calibration/decomposition work are now complete; see the
+[completed evidence](outputs/paper_plan.md#completed-evidence--october-6-2026).
+No candidate met the practical requirements, so the conditional population
+follow-up and future-session test remain unopened.
 
 ## At a glance
 

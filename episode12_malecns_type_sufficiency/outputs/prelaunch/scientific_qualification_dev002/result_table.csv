@@ -1,0 +1,10 @@
+cell_id,scenario,truth_family,neurons_per_side,count_total,strength,missing_fraction,replicates,false_M_rate,false_adequacy_rate,M_supported,adequate,unresolved,numerical_failure,coverage_left_to_right,coverage_right_to_left,wall_seconds,cpu_seconds,passed,failure_reasons
+adequate_template__n7__N100,adequate_template,T,7,100,1.8,0.3,1,0.0,0.0,0,1,0,0,1.0,1.0,12.52559482702054,24.62763505,True,
+linear_continuum__n7__N100,linear_continuum,U_linear,7,100,1.8,0.3,1,0.0,0.0,0,0,1,0,1.0,1.0,12.500665254192427,24.350997122,True,
+curved_continuum_dense__n7__N100,curved_continuum_dense,U_curved,7,100,1.8,0.3,1,0.0,0.0,0,1,0,0,1.0,1.0,12.599296255037189,24.072305260000007,True,
+curved_continuum_sparse_intermediates__n7__N100,curved_continuum_sparse_intermediates,continuous_connected,7,100,1.8,0.3,1,0.0,0.0,0,1,0,0,1.0,1.0,12.902363055152819,24.665922672000008,True,
+residual_groups_within_continuum__n7__N100,residual_groups_within_continuum,M,7,100,1.8,0.3,1,0.0,1.0,0,1,0,0,1.0,1.0,12.703352617099881,24.193975866000002,False,false_adequacy_rate_above_0.05
+weak_residual_groups__n7__N100,weak_residual_groups,M_near_margin,7,100,1.8,0.3,1,0.0,0.0,0,1,0,0,1.0,1.0,13.29354570992291,25.944225083999996,True,
+side_specific_endpoint_loss__n7__N100,side_specific_endpoint_loss,technical_artifact,7,100,1.8,0.3,1,0.0,0.0,0,0,1,0,1.0,1.0,12.598647959996015,24.565902053000002,True,
+anatomy_quality_confound__n7__N100,anatomy_quality_confound,nuisance_explained,7,100,1.8,0.3,1,0.0,0.0,0,1,0,0,1.0,1.0,12.913027164991945,25.00890825900001,True,
+high_strength_or_influential_cells__n7__N100,high_strength_or_influential_cells,concentrated_artifact,7,100,1.8,0.3,1,0.0,0.0,0,0,1,0,1.0,1.0,12.483072659932077,24.183292693999988,True,

@@ -1,0 +1,24 @@
+test_missing_feature_authority_stops_before_prelude (__main__.FeaturePreludeIntegrationTests.test_missing_feature_authority_stops_before_prelude) ... ok
+test_public_failure_stops_before_empirical_guard (__main__.FeaturePreludeIntegrationTests.test_public_failure_stops_before_empirical_guard) ... ok
+test_public_pass_still_requires_real_lock_and_context_before_payload_imports (__main__.FeaturePreludeIntegrationTests.test_public_pass_still_requires_real_lock_and_context_before_payload_imports) ... ok
+test_cached_pass_avoids_subprocess (__main__.PublicPreludeTests.test_cached_pass_avoids_subprocess) ... ok
+test_changed_input_or_runtime_never_reuses_pass (__main__.PublicPreludeTests.test_changed_input_or_runtime_never_reuses_pass) ... ok
+test_deadline_is_capped_by_source_and_parent_limits (__main__.PublicPreludeTests.test_deadline_is_capped_by_source_and_parent_limits) ... ok
+test_incomplete_attempt_is_not_automatically_retried (__main__.PublicPreludeTests.test_incomplete_attempt_is_not_automatically_retried) ... ok
+test_larger_authorized_parent_is_accepted (__main__.PublicPreludeTests.test_larger_authorized_parent_is_accepted) ... ok
+test_parent_allocation_cannot_extend_approved_time (__main__.PublicPreludeTests.test_parent_allocation_cannot_extend_approved_time) ... ok
+test_partial_or_boundary_violating_report_never_passes (__main__.PublicPreludeTests.test_partial_or_boundary_violating_report_never_passes) ... ok
+test_public_cache_and_temporary_files_are_in_scratch_accounting (__main__.PublicPreludeTests.test_public_cache_and_temporary_files_are_in_scratch_accounting) ... ok
+test_report_cap_is_checked_before_read (__main__.PublicPreludeTests.test_report_cap_is_checked_before_read) ... ok
+test_source_only_approval_cannot_authorize_parent (__main__.PublicPreludeTests.test_source_only_approval_cannot_authorize_parent) ... ok
+test_step_requests_one_cpu_four_gib_no_gpus_in_existing_job (__main__.PublicPreludeTests.test_step_requests_one_cpu_four_gib_no_gpus_in_existing_job) ... ok
+test_substep_does_not_spoof_parent_memory (__main__.PublicPreludeTests.test_substep_does_not_spoof_parent_memory) ... ok
+test_timeout_stops_without_retry_or_continuation (__main__.PublicPreludeTests.test_timeout_stops_without_retry_or_continuation) ... ok
+test_unapproved_parent_and_resource_mismatch_stop (__main__.PublicPreludeTests.test_unapproved_parent_and_resource_mismatch_stop) ... ok
+test_unchanged_pass_reused_without_rewriting_provenance (__main__.PublicPreludeTests.test_unchanged_pass_reused_without_rewriting_provenance) ... ok
+test_virtual_environments_do_not_collapse_into_one_runtime_binding (__main__.PublicPreludeTests.test_virtual_environments_do_not_collapse_into_one_runtime_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.039s
+
+OK

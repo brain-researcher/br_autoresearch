@@ -1,0 +1,1938 @@
+{
+  "astra_analysis_id": "source_qualification",
+  "attempt": 16,
+  "completed_at": "2026-09-30T00:45:39+00:00",
+  "direct_interface_state": {
+    "external_site_feature_handoff": "absent",
+    "external_site_scoring_handoff": "absent",
+    "laion_regular_feature_handoff": "absent",
+    "laion_regular_scoring_handoff": "absent"
+  },
+  "empirical_or_ood_payload_accessed": false,
+  "evidence_inputs": {
+    "figshare_manifest_reconciliation": "recipe_intermediate:audit_manifest_metadata.py",
+    "public_asset_dependencies_metadata_and_runtime": "recipe_intermediate:audit_public_assets.py",
+    "public_model_payload_audit": "recipe_intermediate:audit_public_model_payloads.py",
+    "public_source_identity_and_inventory": "recipe_intermediate:run_source_qualification.py",
+    "structural_manifest": "inputs/conversion_structural_manifest.json",
+    "unmanifested_source_assets": "recipe_intermediate:audit_unmanifested_assets.py",
+    "upstream_pipeline_asset_inventory": "inputs/upstream_pipeline_asset_inventory.json"
+  },
+  "external_readiness": "blocked_unprovisioned_optional_branch",
+  "initial_attempt_outcome": "completed_with_empirical_blockers",
+  "laion_readiness": "blocked",
+  "next_analysis": "pipeline_conformance_after_scientist_protocol_choice_and_required_structural_evidence",
+  "ood_disposition": "not_evaluable_under_current_contract",
+  "paper_code_discrepancy_register": {
+    "activation": {
+      "paper": "ReLU",
+      "state": "recorded_unresolved_for_pipeline_conformance",
+      "tagged_code": "two LeakyReLU(0.2) activations"
+    },
+    "alexnet_backend_and_input_size": {
+      "paper": "official Caffe bvlc_alexnet with 224 by 224 inputs",
+      "state": "recorded_unresolved_for_pipeline_conformance",
+      "tagged_code": "bdpy PyTorch AlexNet port with direct 227 by 227 resize"
+    },
+    "content_loss_weighting": {
+      "paper": "inverse squared norm of true features",
+      "state": "recorded_unresolved_for_pipeline_conformance",
+      "tagged_code": "normalized inverse-squared norm of active per-iteration feature blocks"
+    },
+    "reconstruction_layers": {
+      "paper": "eight-layer description",
+      "state": "recorded_unresolved_for_pipeline_conformance",
+      "tagged_code": "all 19 VGG19 layers in encoder configuration"
+    }
+  },
+  "process_id": 16561,
+  "protocol_lock_present": false,
+  "qualification_outcome": "completed_with_empirical_and_scientific_decision_blockers",
+  "recipe_replay": {
+    "component_tools": [
+      "run_source_qualification.py",
+      "audit_public_assets.py",
+      "audit_public_model_payloads.py",
+      "audit_unmanifested_assets.py",
+      "audit_manifest_metadata.py",
+      "consolidate_qualification.py"
+    ],
+    "isolated_scratch_intermediates_removed": true
+  },
+  "runtime_and_reconstruction": {
+    "bdpy_release_provenance": {
+      "historical_main_environment_install": "unknown",
+      "limitation": "The authors' actual main-environment install time, index, cache, mirror, constraints, and installed bdpy version are not recorded.",
+      "reconstruction_environment_pin": {
+        "commit": "3fefe2db3807362c424115c7e45e00ab7161e533",
+        "source_distribution_sha256": "fb9b41dab270d1103dcfe49f2f79dd6259c3bfc39c52a2b88a8e0530b80c37af",
+        "uploaded_at": "2024-09-11T05:17:29.611863+00:00",
+        "version": "0.25",
+        "wheel_sha256": "dc027f301abce102fc63b47d55cd5b5db2be389c5dbcd3d8750bf73ea2835a48"
+      },
+      "relevant_api_source_equivalence": {
+        "global_release_equivalence_claimed": false,
+        "scope": [
+          "FeatureExtractor",
+          "AlexNet",
+          "VGG19",
+          "layer_map",
+          "pairwise_identification"
+        ],
+        "state": "byte_identical_for_listed_source_files_only",
+        "versions": [
+          "0.25",
+          "0.25.1"
+        ]
+      },
+      "tag_date_fresh_pypi_resolution_surrogate": {
+        "basis": "highest non-yanked Python-3.8-compatible PyPI release available at the 2025-02-22 V1.0.0 tag time under a fresh unconstrained public-index resolution",
+        "source_distribution_sha256": "eee10e394b18aa80663b0e937bf5710ea734041f0cb63f39edb73be5d079a765",
+        "uploaded_at": "2024-10-09T06:09:23.147107+00:00",
+        "version": "0.25.1",
+        "wheel_sha256": "2de138d53c95184ba3df2bdb8096256f89b5518124bae286330c603693873abc"
+      }
+    },
+    "declared_environments": [
+      {
+        "dependency_entry_count": 56,
+        "reproduction_note": "Declared upstream environment; availability on Sherlock is not established by this inventory.",
+        "selected_versions": {
+          "bdpy": [
+            "bdpy"
+          ],
+          "cuda": [
+            "cudatoolkit=11.0"
+          ],
+          "fastl2lir": [
+            "fastl2lir==0.9"
+          ],
+          "hydra_core": [],
+          "python": [
+            "python=3.8.18"
+          ],
+          "pytorch": [
+            "pytorch",
+            "pytorch=1.7.1"
+          ],
+          "torchvision": []
+        },
+        "sha256": "b598e711ea8bca7a7d092f0b83081962232b44190cdbc648b0cfb2245bad8524",
+        "source_path": "env.yaml"
+      },
+      {
+        "dependency_entry_count": 149,
+        "reproduction_note": "Declared upstream environment; availability on Sherlock is not established by this inventory.",
+        "selected_versions": {
+          "bdpy": [
+            "bdpy==0.25"
+          ],
+          "cuda": [
+            "cuda=11.6.1=0",
+            "pytorch-cuda=11.6=h867d48c_1"
+          ],
+          "fastl2lir": [],
+          "hydra_core": [
+            "hydra-core==1.0.6"
+          ],
+          "python": [
+            "python=3.10.10=h7a1cb2a_2"
+          ],
+          "pytorch": [
+            "pytorch",
+            "pytorch=1.13.1=py3.10_cuda11.6_cudnn8.3.2_0"
+          ],
+          "torchvision": [
+            "torchvision=0.14.1=py310_cu116"
+          ]
+        },
+        "sha256": "eb950920316b83862ef4f90cd7bbb0808fd40dfd60490e9c785272f36d5c0f95",
+        "source_path": "reconstruction/env.yaml"
+      }
+    ],
+    "dists_like_custom_loss": {
+      "alpha_coefficients": {
+        "conv1_1": 0.009952859626673973,
+        "conv1_2": 0.003886371646003732,
+        "conv2_1": 0.00024056214287883663,
+        "conv2_2": 0.08084213863904581,
+        "conv3_1": 0.006857140440209977,
+        "conv3_2": 0.0004887923569668929,
+        "conv3_3": 0.00019573287900056505,
+        "conv3_4": 0.014169279688225732,
+        "conv4_1": 0.02880295296139471,
+        "conv4_2": 0.0021716504774059618,
+        "conv4_3": 0.004025735147052829,
+        "conv4_4": 0.030798346318926202,
+        "conv5_1": 0.08536182104218124,
+        "conv5_2": 0.714010791024532,
+        "conv5_3": 0.01975314483213067,
+        "conv5_4": 0.5310432634795051,
+        "fc6": 0.000629031742843134,
+        "fc7": 0.03871265134313895,
+        "fc8": 0.06661523244761258
+      },
+      "beta_coefficients": {
+        "conv1_1": 0.000865427897168344,
+        "conv1_2": 0.008627502425502372,
+        "conv2_1": 0.12888847991806807,
+        "conv2_2": 0.02472305546171304,
+        "conv3_1": 0.0002639605292406699,
+        "conv3_2": 0.039778524165843814,
+        "conv3_3": 0.0004859871528150426,
+        "conv3_4": 0.024733951474856346,
+        "conv4_1": 0.04328555659354602,
+        "conv4_2": 0.03998274022264576,
+        "conv4_3": 0.5166895849277143,
+        "conv4_4": 0.7100372437615771,
+        "conv5_1": 0.002337825161420017,
+        "conv5_2": 0.5074163077203029,
+        "conv5_3": 0.0018775814111698145,
+        "conv5_4": 0.0012780195483159135,
+        "fc6": 0.038457933646483915,
+        "fc7": 0.044481711593671994,
+        "fc8": 0.008304840607742099
+      },
+      "external_dists_weight_file_referenced": false,
+      "implementation_path": "reconstruction/recon_icnn_image_gd.py",
+      "interpretation": "The tagged reconstruction code embeds 19 alpha and 19 beta coefficients in a custom DIST-style loss; it does not reference a separately bundled DISTS checkpoint."
+    },
+    "environment_blocker": "Sherlock module/environment compatibility has not been qualified and no environment installation is authorized by this audit.",
+    "execution_environment_ready": false
+  },
+  "schema_version": "ep21.source_qualification_report.v2",
+  "scope": "consolidated_public_source_asset_and_redacted_structure_qualification",
+  "source_identity": {
+    "archive_file_count": 71,
+    "archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+    "archive_size_bytes": 23110908,
+    "expected_commit": "edbff02edd6a08d3c6c829af45a957fd14bdc460",
+    "observed_commit": "edbff02edd6a08d3c6c829af45a957fd14bdc460",
+    "repository": "https://github.com/KamitaniLab/InterSiteNeuralCodeConversion",
+    "state": "verified",
+    "tag": "V1.0.0",
+    "unsafe_archive_member_names": [],
+    "zenodo_doi": "10.5281/zenodo.14910040",
+    "zenodo_record": 14910040
+  },
+  "source_pipeline_assets": {
+    "classification_counts": {
+      "public_non_neural_reconstruction_model_or_statistic": 4,
+      "source_study_decoded_outcome_fixture": 1,
+      "source_study_empirical_fmri": 15,
+      "source_study_fitted_object_reference": 20,
+      "source_study_stimulus_feature_payload": 20
+    },
+    "declared_dependency_count": 60,
+    "excluded_empirical_derived_or_fitted_asset_count": 56,
+    "figshare_manifest_metadata_reconciliation": {
+      "archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+      "articles": [
+        {
+          "declared_size_bytes": 4561847436,
+          "id": 17985578,
+          "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "value": 1
+          },
+          "logical_asset_count": 15,
+          "physical_file_count": 15,
+          "title": "Inter-individual deep image reconstruction",
+          "url": "https://api.figshare.com/v2/articles/17985578"
+        },
+        {
+          "declared_size_bytes": 1647561742,
+          "id": 21564384,
+          "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT",
+            "value": 3
+          },
+          "logical_asset_count": 4,
+          "physical_file_count": 4,
+          "title": "brain-decoding-cookbook",
+          "url": "https://api.figshare.com/v2/articles/21564384"
+        },
+        {
+          "declared_size_bytes": 248372559801,
+          "id": 26860954,
+          "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "value": 1
+          },
+          "logical_asset_count": 41,
+          "physical_file_count": 43,
+          "title": "Inter-individual and inter-site neural code conversion",
+          "url": "https://api.figshare.com/v2/articles/26860954"
+        }
+      ],
+      "astra_analysis_id": "source_qualification",
+      "attempt": 16,
+      "completed_at": "2026-09-30T00:45:39+00:00",
+      "embedded_manifest_logical_asset_count": 60,
+      "empirical_or_decoded_payload_accessed": false,
+      "group_reconciliation": [
+        {
+          "article_id": 17985578,
+          "declared_size_bytes": 1176900264,
+          "group": "fmri_test",
+          "logical_asset_count": 10,
+          "physical_file_count": 10
+        },
+        {
+          "article_id": 17985578,
+          "declared_size_bytes": 3384947172,
+          "group": "fmri_training",
+          "logical_asset_count": 5,
+          "physical_file_count": 5
+        },
+        {
+          "article_id": 26860954,
+          "declared_size_bytes": 18040345242,
+          "group": "pre-trained-converters",
+          "logical_asset_count": 1,
+          "physical_file_count": 1
+        },
+        {
+          "article_id": 26860954,
+          "declared_size_bytes": 154947898244,
+          "group": "pre-trained-decoders",
+          "logical_asset_count": 19,
+          "physical_file_count": 21
+        },
+        {
+          "article_id": 21564384,
+          "declared_size_bytes": 1647561742,
+          "group": "recon_demo",
+          "logical_asset_count": 4,
+          "physical_file_count": 4
+        },
+        {
+          "article_id": 26860954,
+          "declared_size_bytes": 7585738184,
+          "group": "recon_demo",
+          "logical_asset_count": 1,
+          "physical_file_count": 1
+        },
+        {
+          "article_id": 26860954,
+          "declared_size_bytes": 65101770416,
+          "group": "stimulus_feature",
+          "logical_asset_count": 19,
+          "physical_file_count": 19
+        },
+        {
+          "article_id": 26860954,
+          "declared_size_bytes": 2696807715,
+          "group": "test_image-true_features",
+          "logical_asset_count": 1,
+          "physical_file_count": 1
+        }
+      ],
+      "license_scope_limitation": "Article-level Figshare metadata only; this does not establish LAION DUA/risk eligibility or downstream checkpoint/stimulus rights.",
+      "md5_reconciliation": {
+        "algorithm": "md5",
+        "computed_mismatches": [],
+        "entries_compared": 62,
+        "manifest_vs_figshare_computed_match_count": 62,
+        "manifest_vs_figshare_computed_mismatch_count": 0,
+        "manifest_vs_figshare_supplied_match_count": 62,
+        "manifest_vs_figshare_supplied_mismatch_count": 0,
+        "payload_hashes_computed_by_ep21": 0,
+        "supplied_mismatches": []
+      },
+      "method": "official_Figshare_article_metadata_API",
+      "payload_bytes_downloaded": 0,
+      "payload_file_bodies_downloaded": 0,
+      "physical_files": [
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32709608,
+          "figshare_name": "sub-01_ArtificialImageTest.h5",
+          "figshare_size_bytes": 104534100,
+          "group": "fmri_test",
+          "logical_asset": "sub-01_ArtificialImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-01_ArtificialImageTest.h5",
+          "manifest_md5": "b16c69be57d4e2543696aec58241f9e1",
+          "manifest_url": "https://figshare.com/ndownloader/files/32709608",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32712131,
+          "figshare_name": "sub-01_NaturalImageTest.h5",
+          "figshare_size_bytes": 153612916,
+          "group": "fmri_test",
+          "logical_asset": "sub-01_NaturalImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-01_NaturalImageTest.h5",
+          "manifest_md5": "73f3880f263c610e5b4bf1d912bad498",
+          "manifest_url": "https://figshare.com/ndownloader/files/32712131",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32712197,
+          "figshare_name": "sub-01_NaturalImageTraining.h5",
+          "figshare_size_bytes": 742476916,
+          "group": "fmri_training",
+          "logical_asset": "sub-01_NaturalImageTraining.h5",
+          "logical_key": "data/files.json:fmri_training:sub-01_NaturalImageTraining.h5",
+          "manifest_md5": "591734b434040da2a8b6f7e9239e7c08",
+          "manifest_url": "https://figshare.com/ndownloader/files/32712197",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32712407,
+          "figshare_name": "sub-02_NaturalImageTest.h5",
+          "figshare_size_bytes": 146751956,
+          "group": "fmri_test",
+          "logical_asset": "sub-02_NaturalImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-02_NaturalImageTest.h5",
+          "manifest_md5": "885ad6c29fd36cb164426e150c9cd9d5",
+          "manifest_url": "https://figshare.com/ndownloader/files/32712407",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32712488,
+          "figshare_name": "sub-02_NaturalImageTraining.h5",
+          "figshare_size_bytes": 709311956,
+          "group": "fmri_training",
+          "logical_asset": "sub-02_NaturalImageTraining.h5",
+          "logical_key": "data/files.json:fmri_training:sub-02_NaturalImageTraining.h5",
+          "manifest_md5": "58a56e9d67d485f3b92ee55d5600cf10",
+          "manifest_url": "https://figshare.com/ndownloader/files/32712488",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32712506,
+          "figshare_name": "sub-02_ArtificialImageTest.h5",
+          "figshare_size_bytes": 99865140,
+          "group": "fmri_test",
+          "logical_asset": "sub-02_ArtificialImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-02_ArtificialImageTest.h5",
+          "manifest_md5": "3c4e8341f650dc65f6a6c06f7dd0f7cc",
+          "manifest_url": "https://figshare.com/ndownloader/files/32712506",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32717852,
+          "figshare_name": "sub-03_NaturalImageTest.h5",
+          "figshare_size_bytes": 131758004,
+          "group": "fmri_test",
+          "logical_asset": "sub-03_NaturalImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-03_NaturalImageTest.h5",
+          "manifest_md5": "791b4f627cc72f80698b297f59e72d8d",
+          "manifest_url": "https://figshare.com/ndownloader/files/32717852",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32718017,
+          "figshare_name": "sub-03_NaturalImageTraining.h5",
+          "figshare_size_bytes": 636833204,
+          "group": "fmri_training",
+          "logical_asset": "sub-03_NaturalImageTraining.h5",
+          "logical_key": "data/files.json:fmri_training:sub-03_NaturalImageTraining.h5",
+          "manifest_md5": "e56d4e0185d4e42246cbfa5e314e1545",
+          "manifest_url": "https://figshare.com/ndownloader/files/32718017",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32718050,
+          "figshare_name": "sub-03_ArtificialImageTest.h5",
+          "figshare_size_bytes": 89661588,
+          "group": "fmri_test",
+          "logical_asset": "sub-03_ArtificialImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-03_ArtificialImageTest.h5",
+          "manifest_md5": "7373bb3709dcfbc0a3dc7c8dc6574d55",
+          "manifest_url": "https://figshare.com/ndownloader/files/32718050",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32718092,
+          "figshare_name": "sub-04_NaturalImageTest.h5",
+          "figshare_size_bytes": 136335316,
+          "group": "fmri_test",
+          "logical_asset": "sub-04_NaturalImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-04_NaturalImageTest.h5",
+          "manifest_md5": "aaa37f18f64a415718d882ef52ea259e",
+          "manifest_url": "https://figshare.com/ndownloader/files/32718092",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32718266,
+          "figshare_name": "sub-04_NaturalImageTraining.h5",
+          "figshare_size_bytes": 658959316,
+          "group": "fmri_training",
+          "logical_asset": "sub-04_NaturalImageTraining.h5",
+          "logical_key": "data/files.json:fmri_training:sub-04_NaturalImageTraining.h5",
+          "manifest_md5": "0b29c97b630c98ea937042241103554f",
+          "manifest_url": "https://figshare.com/ndownloader/files/32718266",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32718284,
+          "figshare_name": "sub-04_ArtificialImageTest.h5",
+          "figshare_size_bytes": 92776500,
+          "group": "fmri_test",
+          "logical_asset": "sub-04_ArtificialImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-04_ArtificialImageTest.h5",
+          "manifest_md5": "df01462b778b83e6fd669779b9ae5e92",
+          "manifest_url": "https://figshare.com/ndownloader/files/32718284",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32719436,
+          "figshare_name": "sub-05_NaturalImageTest.h5",
+          "figshare_size_bytes": 131868180,
+          "group": "fmri_test",
+          "logical_asset": "sub-05_NaturalImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-05_NaturalImageTest.h5",
+          "manifest_md5": "3d17fe39b18aae25caa945704e165917",
+          "manifest_url": "https://figshare.com/ndownloader/files/32719436",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32719550,
+          "figshare_name": "sub-05_NaturalImageTraining.h5",
+          "figshare_size_bytes": 637365780,
+          "group": "fmri_training",
+          "logical_asset": "sub-05_NaturalImageTraining.h5",
+          "logical_key": "data/files.json:fmri_training:sub-05_NaturalImageTraining.h5",
+          "manifest_md5": "be2ab2374772e1622b600c7cc4545424",
+          "manifest_url": "https://figshare.com/ndownloader/files/32719550",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 17985578,
+          "figshare_file_id": 32719568,
+          "figshare_name": "sub-05_ArtificialImageTest.h5",
+          "figshare_size_bytes": 89736564,
+          "group": "fmri_test",
+          "logical_asset": "sub-05_ArtificialImageTest.h5",
+          "logical_key": "data/files.json:fmri_test:sub-05_ArtificialImageTest.h5",
+          "manifest_md5": "2b2628a176bc618440553c5f885a03c7",
+          "manifest_url": "https://figshare.com/ndownloader/files/32719568",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 21564384,
+          "figshare_file_id": 38225868,
+          "figshare_name": "VGG_ILSVRC_19_layers.zip",
+          "figshare_size_bytes": 533710127,
+          "group": "recon_demo",
+          "logical_asset": "VGG_ILSVRC_19_layers.zip",
+          "logical_key": "reconstruction/data/files.json:recon_demo:VGG_ILSVRC_19_layers.zip",
+          "manifest_md5": "49f4d6dbf1024f33149352dfd309dc4d",
+          "manifest_url": "https://figshare.com/ndownloader/files/38225868",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "reconstruction/data/files.json"
+        },
+        {
+          "article_id": 21564384,
+          "figshare_file_id": 41520621,
+          "figshare_name": "features-ImageNetTraining-VGG_ILSVRC_19_layers-mean.mat.zip",
+          "figshare_size_bytes": 54459705,
+          "group": "recon_demo",
+          "logical_asset": "features-ImageNetTraining-VGG_ILSVRC_19_layers-mean.mat.zip",
+          "logical_key": "reconstruction/data/files.json:recon_demo:features-ImageNetTraining-VGG_ILSVRC_19_layers-mean.mat.zip",
+          "manifest_md5": "5a0a91fe332804f0aa039c13dcb4d388",
+          "manifest_url": "https://figshare.com/ndownloader/files/41520621",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "reconstruction/data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935107,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip",
+          "figshare_size_bytes": 47702819,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip",
+          "manifest_md5": "d18b7c1b56cd5840c13a4ebf8b3bb11e",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935107",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935194,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip",
+          "figshare_size_bytes": 47853041,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip",
+          "manifest_md5": "a98fb7db31f9cdb109c9277123ffc570",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935194",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935200,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip",
+          "figshare_size_bytes": 11751425,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip",
+          "manifest_md5": "e023dc1b61c5da2e6dd03323fa4647cf",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935200",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935218,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "figshare_size_bytes": 4169252372,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "manifest_md5": "afbc0ddda4fb85977e253a77cc466e86",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935218",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935257,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "figshare_size_bytes": 4221092190,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "manifest_md5": "f1d0a4a7fd1d323314b4de7560d0a674",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935257",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935317,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "figshare_size_bytes": 4288649265,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "manifest_md5": "8b922cd6b35b8f2568c96f918301f29f",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935317",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48935659,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "figshare_size_bytes": 4239043555,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "manifest_md5": "36978879ba0238202d0a3058744877fa",
+          "manifest_url": "https://ndownloader.figshare.com/files/48935659",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48936121,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "figshare_size_bytes": 1135088893,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "manifest_md5": "3b8d6c6bd305df34722d7b3590e62b9d",
+          "manifest_url": "https://ndownloader.figshare.com/files/48936121",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48936253,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "figshare_size_bytes": 1127633733,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "manifest_md5": "00331347cb1d17b96333b10bdad952f7",
+          "manifest_url": "https://ndownloader.figshare.com/files/48936253",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48936373,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "figshare_size_bytes": 1112698087,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "manifest_md5": "85f1037968a81cc9a48b69af5090894a",
+          "manifest_url": "https://ndownloader.figshare.com/files/48936373",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48936496,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "figshare_size_bytes": 1089672471,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "manifest_md5": "1e2c50eb4ce67797dd1a45d281a34347",
+          "manifest_url": "https://ndownloader.figshare.com/files/48936496",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48957658,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "figshare_size_bytes": 8526900256,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "manifest_md5": "a542eb17bb31a1efb4a0939a557cbf74",
+          "manifest_url": "https://ndownloader.figshare.com/files/48957658",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48958615,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "figshare_size_bytes": 8429417983,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "manifest_md5": "5f07acad53adf1498a92c4a72c88d0b5",
+          "manifest_url": "https://ndownloader.figshare.com/files/48958615",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48959299,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "figshare_size_bytes": 8125353087,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "manifest_md5": "a1b9ae34bc7aca81908d2751866afdbb",
+          "manifest_url": "https://ndownloader.figshare.com/files/48959299",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48960073,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "figshare_size_bytes": 8179454063,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "manifest_md5": "bc0614f0c57700ececfbd16a381d25a1",
+          "manifest_url": "https://ndownloader.figshare.com/files/48960073",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48961249,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "figshare_size_bytes": 16864735645,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "manifest_md5": "100095b5993199e44537299c31cf7c7d",
+          "manifest_url": "https://ndownloader.figshare.com/files/48961249",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48963853,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "figshare_size_bytes": 17392414884,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "manifest_md5": "63d82fcc6d6a7c0c33cdfcd91266360b",
+          "manifest_url": "https://ndownloader.figshare.com/files/48963853",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48969991,
+          "figshare_name": "pre-trained-converters.zip",
+          "figshare_size_bytes": 18040345242,
+          "group": "pre-trained-converters",
+          "logical_asset": "pre-trained-converters.zip",
+          "logical_key": "data/files.json:pre-trained-converters:pre-trained-converters.zip",
+          "manifest_md5": "3a32821ffd3d083062728352188b3f6d",
+          "manifest_url": "https://ndownloader.figshare.com/files/48969991",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48972361,
+          "figshare_name": "test_image-true_features-VGG_ILSVRC_19_layers.zip",
+          "figshare_size_bytes": 2696807715,
+          "group": "test_image-true_features",
+          "logical_asset": "test_image-true_features-VGG_ILSVRC_19_layers.zip",
+          "logical_key": "data/files.json:test_image-true_features:test_image-true_features-VGG_ILSVRC_19_layers.zip",
+          "manifest_md5": "b8de5cac4a6409269424c898613c24a4",
+          "manifest_url": "https://ndownloader.figshare.com/files/48972361",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48985585,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip.01",
+          "figshare_size_bytes": 16504868664,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "manifest_md5": "041454ca452bebbe31dd83bd3bff5e7a",
+          "manifest_url": "https://ndownloader.figshare.com/files/48985585",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48985993,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip.02",
+          "figshare_size_bytes": 16504868664,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "manifest_md5": "c35449cbd14c84b1cadf0a788dc0c411",
+          "manifest_url": "https://ndownloader.figshare.com/files/48985993",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 1,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48992341,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip.01",
+          "figshare_size_bytes": 16464723573,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "manifest_md5": "fda480919800b1e60c9dca6213327b1f",
+          "manifest_url": "https://ndownloader.figshare.com/files/48992341",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48992479,
+          "figshare_name": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip.02",
+          "figshare_size_bytes": 16464723574,
+          "group": "pre-trained-decoders",
+          "logical_asset": "pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "logical_key": "data/files.json:pre-trained-decoders:pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "manifest_md5": "88d7862608ba327a91dde8c4e5d50e14",
+          "manifest_url": "https://ndownloader.figshare.com/files/48992479",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 1,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48994978,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "figshare_size_bytes": 444805515,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv5_1.zip",
+          "manifest_md5": "2db165e6b2aed6d05cbe47116cd2ff1d",
+          "manifest_url": "https://ndownloader.figshare.com/files/48994978",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995071,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "figshare_size_bytes": 441568639,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv5_2.zip",
+          "manifest_md5": "45a57c53631a7abcf5e881e1fabea442",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995071",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995164,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "figshare_size_bytes": 441713242,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv5_3.zip",
+          "manifest_md5": "bbc5b533b101d15327b788d89875ced6",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995164",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995206,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "figshare_size_bytes": 434346059,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv5_4.zip",
+          "manifest_md5": "914e710eb30e763ea5bd92d0ff9e4627",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995206",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995218,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-fc6.zip",
+          "figshare_size_bytes": 18117109,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-fc6.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-fc6.zip",
+          "manifest_md5": "4052a10981e5e5ca7ef79f8d08d33e95",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995218",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995221,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-fc7.zip",
+          "figshare_size_bytes": 18020573,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-fc7.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-fc7.zip",
+          "manifest_md5": "0701e8ba893b50bc918b66dab70ec898",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995221",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995224,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-fc8.zip",
+          "figshare_size_bytes": 4443410,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-fc8.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-fc8.zip",
+          "manifest_md5": "5226565c4efde6e1c54fd21e2861cc35",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995224",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995260,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "figshare_size_bytes": 3549883853,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv3_1.zip",
+          "manifest_md5": "be44fccb38f4aec75d45104e333699aa",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995260",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995383,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "figshare_size_bytes": 3548949465,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv3_2.zip",
+          "manifest_md5": "c3539636044838a7bf65ae1ab3518e71",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995383",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995614,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "figshare_size_bytes": 3529835075,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv3_3.zip",
+          "manifest_md5": "1bd12f9ab7152eea58102390df0883da",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995614",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995659,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "figshare_size_bytes": 3559335673,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv3_4.zip",
+          "manifest_md5": "9dc9eacb180163d099c0a5ff8be1ff9e",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995659",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995797,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "figshare_size_bytes": 1783231614,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv4_1.zip",
+          "manifest_md5": "5255c70cb900326a2fe4ad2c23f5c7ff",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995797",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995848,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "figshare_size_bytes": 1782284696,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv4_2.zip",
+          "manifest_md5": "75b624061a0a42a623186e69cc72b538",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995848",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995887,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "figshare_size_bytes": 1780776879,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv4_3.zip",
+          "manifest_md5": "fcf202fc56ca9913773912ca0f52d9a7",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995887",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48995911,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "figshare_size_bytes": 1750138781,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv4_4.zip",
+          "manifest_md5": "ec21ecd959dc2d29d2b5e61c305ab2a3",
+          "manifest_url": "https://ndownloader.figshare.com/files/48995911",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48996307,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "figshare_size_bytes": 6987888989,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv2_1.zip",
+          "manifest_md5": "609ded740ad02cdd6b411b2aedfef962",
+          "manifest_url": "https://ndownloader.figshare.com/files/48996307",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48996568,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "figshare_size_bytes": 7074050553,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv2_2.zip",
+          "manifest_md5": "34b9b2fc8468a644ef0a6139db9b8eb8",
+          "manifest_url": "https://ndownloader.figshare.com/files/48996568",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48996952,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "figshare_size_bytes": 13944703755,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv1_1.zip",
+          "manifest_md5": "7ce7bdba54acf7746fde9cebc47d3602",
+          "manifest_url": "https://ndownloader.figshare.com/files/48996952",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 48997816,
+          "figshare_name": "stimulus_feature-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "figshare_size_bytes": 14007676536,
+          "group": "stimulus_feature",
+          "logical_asset": "stimulus_feature-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "logical_key": "data/files.json:stimulus_feature:stimulus_feature-VGG_ILSVRC_19_layers-conv1_2.zip",
+          "manifest_md5": "bde71afbcd33a54c7ee045560c436d40",
+          "manifest_url": "https://ndownloader.figshare.com/files/48997816",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "data/files.json"
+        },
+        {
+          "article_id": 26860954,
+          "figshare_file_id": 49502619,
+          "figshare_name": "decoded_features.zip",
+          "figshare_size_bytes": 7585738184,
+          "group": "recon_demo",
+          "logical_asset": "decoded_features.zip",
+          "logical_key": "reconstruction/data/files.json:recon_demo:decoded_features.zip",
+          "manifest_md5": "06322c99eb01d56b79ce4b745eed70d6",
+          "manifest_url": "https://ndownloader.figshare.com/files/49502619",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "reconstruction/data/files.json"
+        },
+        {
+          "article_id": 21564384,
+          "figshare_file_id": 52398902,
+          "figshare_name": "bvlc_reference_caffenet.zip",
+          "figshare_size_bytes": 226699018,
+          "group": "recon_demo",
+          "logical_asset": "bvlc_reference_caffenet.zip",
+          "logical_key": "reconstruction/data/files.json:recon_demo:bvlc_reference_caffenet.zip",
+          "manifest_md5": "2e4fe2126c7ed13554e33d716a72c65f",
+          "manifest_url": "https://figshare.com/ndownloader/files/52398902",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "reconstruction/data/files.json"
+        },
+        {
+          "article_id": 21564384,
+          "figshare_file_id": 52399790,
+          "figshare_name": "bvlc_reference_caffenet_generator_ILSVRC2012_Training.zip",
+          "figshare_size_bytes": 832692892,
+          "group": "recon_demo",
+          "logical_asset": "bvlc_reference_caffenet_generator_ILSVRC2012_Training.zip",
+          "logical_key": "reconstruction/data/files.json:recon_demo:bvlc_reference_caffenet_generator_ILSVRC2012_Training.zip",
+          "manifest_md5": "8be66997045859a49b1d2bcef6640490",
+          "manifest_url": "https://figshare.com/ndownloader/files/52399790",
+          "manifest_vs_figshare_computed_md5_match": true,
+          "manifest_vs_figshare_supplied_md5_match": true,
+          "part_index": 0,
+          "source_manifest": "reconstruction/data/files.json"
+        }
+      ],
+      "physical_url_count": 62,
+      "process_id": 16542,
+      "readiness_effect": "none_laion_remains_blocked",
+      "resolved_file_id_count": 62,
+      "schema_version": "ep21.figshare_manifest_metadata_reconciliation.v1",
+      "started_at": "2026-09-30T00:45:36+00:00",
+      "state": "complete_metadata_only_payload_unopened",
+      "total_declared_size_bytes": 254581968979,
+      "unique_figshare_file_id_count": 62,
+      "unresolved_file_ids": []
+    },
+    "payload_bytes_downloaded": 0,
+    "payload_checksum_limitation": "The two public non-empirical VGG/CaffeNet archives were independently size/MD5 checked and every regular member was streamed for SHA256; the other manifest payloads remain metadata-only, checkpoints were not deserialized, and evaluator lab-local copy identity remains unverified.",
+    "payload_verified_public_model_asset_count": 2,
+    "public_model_assets": [
+      {
+        "asset_name": "features-ImageNetTraining-VGG_ILSVRC_19_layers-mean.mat.zip",
+        "declared_md5": "5a0a91fe332804f0aa039c13dcb4d388",
+        "declared_url": "https://figshare.com/ndownloader/files/41520621",
+        "figshare_file_id": 41520621,
+        "md5_matches": true,
+        "metadata_present": true,
+        "name_matches": true,
+        "observed_download_url": "https://ndownloader.figshare.com/files/41520621",
+        "observed_is_link_only": false,
+        "observed_md5": "5a0a91fe332804f0aa039c13dcb4d388",
+        "observed_name": "features-ImageNetTraining-VGG_ILSVRC_19_layers-mean.mat.zip",
+        "observed_size_bytes": 54459705,
+        "part_index": 0
+      },
+      {
+        "asset_name": "VGG_ILSVRC_19_layers.zip",
+        "declared_md5": "49f4d6dbf1024f33149352dfd309dc4d",
+        "declared_url": "https://figshare.com/ndownloader/files/38225868",
+        "figshare_file_id": 38225868,
+        "md5_matches": true,
+        "metadata_present": true,
+        "name_matches": true,
+        "observed_download_url": "https://ndownloader.figshare.com/files/38225868",
+        "observed_is_link_only": false,
+        "observed_md5": "49f4d6dbf1024f33149352dfd309dc4d",
+        "observed_name": "VGG_ILSVRC_19_layers.zip",
+        "observed_size_bytes": 533710127,
+        "part_index": 0
+      },
+      {
+        "asset_name": "bvlc_reference_caffenet.zip",
+        "declared_md5": "2e4fe2126c7ed13554e33d716a72c65f",
+        "declared_url": "https://figshare.com/ndownloader/files/52398902",
+        "figshare_file_id": 52398902,
+        "md5_matches": true,
+        "metadata_present": true,
+        "name_matches": true,
+        "observed_download_url": "https://ndownloader.figshare.com/files/52398902",
+        "observed_is_link_only": false,
+        "observed_md5": "2e4fe2126c7ed13554e33d716a72c65f",
+        "observed_name": "bvlc_reference_caffenet.zip",
+        "observed_size_bytes": 226699018,
+        "part_index": 0
+      },
+      {
+        "asset_name": "bvlc_reference_caffenet_generator_ILSVRC2012_Training.zip",
+        "declared_md5": "8be66997045859a49b1d2bcef6640490",
+        "declared_url": "https://figshare.com/ndownloader/files/52399790",
+        "figshare_file_id": 52399790,
+        "md5_matches": true,
+        "metadata_present": true,
+        "name_matches": true,
+        "observed_download_url": "https://ndownloader.figshare.com/files/52399790",
+        "observed_is_link_only": false,
+        "observed_md5": "8be66997045859a49b1d2bcef6640490",
+        "observed_name": "bvlc_reference_caffenet_generator_ILSVRC2012_Training.zip",
+        "observed_size_bytes": 832692892,
+        "part_index": 0
+      }
+    ],
+    "public_model_metadata_article": {
+      "id": 21564384,
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+        "value": 3
+      },
+      "title": "brain-decoding-cookbook",
+      "url": "https://api.figshare.com/v2/articles/21564384"
+    },
+    "public_model_metadata_method": "official_Figshare_article_metadata_API",
+    "public_model_payload_audit": {
+      "access_boundary": {
+        "allowed_payload_classes": [
+          "pinned_public_source_archive",
+          "two_pinned_public_non_empirical_model_archives"
+        ],
+        "archive_members_streamed_without_extraction": true,
+        "boundary_attestation_basis": "runner code path and exact CLI/cache whitelist; no claim about external filesystem state beyond those validated paths",
+        "cache_regular_file_and_symlink_controls_enforced": true
+      },
+      "assets": {
+        "caffenet": {
+          "archive_inventory": {
+            "entry_count": 5,
+            "file_count": 4,
+            "members": [
+              {
+                "basename": ".gitignore",
+                "compressed_bytes": 107,
+                "crc32": "290a319f",
+                "member_type": "regular_file",
+                "path": "bvlc_reference_caffenet/.gitignore",
+                "sha256": "2899805b16fd70dcecaded3272b6c9975923a9ac97b95df537defab56b0b77c9",
+                "uncompressed_bytes": 142,
+                "unix_mode": "100644"
+              },
+              {
+                "basename": "bvlc_reference_caffenet.pt",
+                "compressed_bytes": 226031739,
+                "crc32": "8ce63c7e",
+                "member_type": "regular_file",
+                "path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+                "sha256": "24016c5822dfc778796f9410fc5d2d474bb451d86094747c8c5b1274f8bd9a00",
+                "uncompressed_bytes": 243866815,
+                "unix_mode": "100444"
+              },
+              {
+                "basename": "estimated_cnn_feat_std_bvlc_reference_caffenet_ImgSize_227x227_chwise_dof1.mat",
+                "compressed_bytes": 13661,
+                "crc32": "d4ff7d51",
+                "member_type": "regular_file",
+                "path": "bvlc_reference_caffenet/estimated_cnn_feat_std_bvlc_reference_caffenet_ImgSize_227x227_chwise_dof1.mat",
+                "sha256": "b88602af2fcc2e5f49c50b9c95337abcf04fe853f3b7dad775355b49ed309ae0",
+                "uncompressed_bytes": 16408,
+                "unix_mode": "100444"
+              },
+              {
+                "basename": "ilsvrc_2012_mean.npy",
+                "compressed_bytes": 652341,
+                "crc32": "e0d01de1",
+                "member_type": "regular_file",
+                "path": "bvlc_reference_caffenet/ilsvrc_2012_mean.npy",
+                "sha256": "97eefba7e046ee097121ad18564329636d2f9c153b748c7313653cae8594a149",
+                "uncompressed_bytes": 1572944,
+                "unix_mode": "100444"
+              }
+            ],
+            "non_regular_member_names": [],
+            "total_uncompressed_bytes": 245456309,
+            "unsafe_member_names": []
+          },
+          "cache": {
+            "cache_filename": "bvlc_reference_caffenet.zip",
+            "cache_mode": "0440",
+            "cache_regular_file_verified": true,
+            "cache_reused_after_identity_check": true,
+            "cache_symlink_rejected": true,
+            "download_content_length": null,
+            "download_http_status": null,
+            "md5_matches": true,
+            "observed_md5": "2e4fe2126c7ed13554e33d716a72c65f",
+            "observed_size_bytes": 226699018,
+            "payload_bytes_downloaded_this_attempt": 0,
+            "sanitized_final_url": null,
+            "size_matches": true
+          },
+          "exact_tagged_checkpoint_named_member_count": 0,
+          "exact_tagged_checkpoint_named_members": [],
+          "pinned_identity": {
+            "article_id": 21564384,
+            "figshare_file_id": 52398902,
+            "filename": "bvlc_reference_caffenet.zip",
+            "md5": "2e4fe2126c7ed13554e33d716a72c65f",
+            "observed_candidate_member_path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+            "size_bytes": 226699018,
+            "tagged_checkpoint_basename": "bvlc_alexnet.pt",
+            "url": "https://ndownloader.figshare.com/files/52398902"
+          }
+        },
+        "vgg19": {
+          "archive_inventory": {
+            "entry_count": 4,
+            "file_count": 3,
+            "members": [
+              {
+                "basename": "VGG_ILSVRC_19_layers.pt",
+                "compressed_bytes": 533010833,
+                "crc32": "b9b00729",
+                "member_type": "regular_file",
+                "path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+                "sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+                "uncompressed_bytes": 574682731,
+                "unix_mode": "100444"
+              },
+              {
+                "basename": "estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat",
+                "compressed_bytes": 46015,
+                "crc32": "ea4a6313",
+                "member_type": "regular_file",
+                "path": "VGG_ILSVRC_19_layers/estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat",
+                "sha256": "3a0dbe06ecbada569f711e56087a5d7cec26fc76fcc9bd02e535295802baf477",
+                "uncompressed_bytes": 53064,
+                "unix_mode": "100444"
+              },
+              {
+                "basename": "ilsvrc_2012_mean.npy",
+                "compressed_bytes": 652341,
+                "crc32": "e0d01de1",
+                "member_type": "regular_file",
+                "path": "VGG_ILSVRC_19_layers/ilsvrc_2012_mean.npy",
+                "sha256": "97eefba7e046ee097121ad18564329636d2f9c153b748c7313653cae8594a149",
+                "uncompressed_bytes": 1572944,
+                "unix_mode": "100444"
+              }
+            ],
+            "non_regular_member_names": [],
+            "total_uncompressed_bytes": 576308739,
+            "unsafe_member_names": []
+          },
+          "cache": {
+            "cache_filename": "VGG_ILSVRC_19_layers.zip",
+            "cache_mode": "0440",
+            "cache_regular_file_verified": true,
+            "cache_reused_after_identity_check": true,
+            "cache_symlink_rejected": true,
+            "download_content_length": null,
+            "download_http_status": null,
+            "md5_matches": true,
+            "observed_md5": "49f4d6dbf1024f33149352dfd309dc4d",
+            "observed_size_bytes": 533710127,
+            "payload_bytes_downloaded_this_attempt": 0,
+            "sanitized_final_url": null,
+            "size_matches": true
+          },
+          "exact_tagged_checkpoint_named_member_count": 1,
+          "exact_tagged_checkpoint_named_members": [
+            {
+              "basename": "VGG_ILSVRC_19_layers.pt",
+              "compressed_bytes": 533010833,
+              "crc32": "b9b00729",
+              "member_type": "regular_file",
+              "path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+              "sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+              "uncompressed_bytes": 574682731,
+              "unix_mode": "100444"
+            }
+          ],
+          "pinned_identity": {
+            "article_id": 21564384,
+            "expected_checkpoint_member_path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+            "figshare_file_id": 38225868,
+            "filename": "VGG_ILSVRC_19_layers.zip",
+            "md5": "49f4d6dbf1024f33149352dfd309dc4d",
+            "size_bytes": 533710127,
+            "tagged_checkpoint_basename": "VGG_ILSVRC_19_layers.pt",
+            "url": "https://ndownloader.figshare.com/files/38225868"
+          }
+        }
+      },
+      "astra_analysis_id": "source_qualification",
+      "attempt": 16,
+      "checkpoint_deserialization_performed": false,
+      "completed_at": "2026-09-30T00:45:36+00:00",
+      "empirical_or_decoded_payload_accessed": false,
+      "evaluator_checkpoint_references": {
+        "alexnet": {
+          "caffenet_equivalence_claim_allowed": false,
+          "content_level_non_equivalence_verified_by_this_runner": false,
+          "exact_public_bvlc_alexnet_named_member_verified": false,
+          "lab_local_path": "/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt",
+          "public_caffenet_candidate_member": {
+            "basename": "bvlc_reference_caffenet.pt",
+            "compressed_bytes": 226031739,
+            "crc32": "8ce63c7e",
+            "member_type": "regular_file",
+            "path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+            "sha256": "24016c5822dfc778796f9410fc5d2d474bb451d86094747c8c5b1274f8bd9a00",
+            "uncompressed_bytes": 243866815,
+            "unix_mode": "100444"
+          },
+          "remaining_action": "Authenticate bvlc_alexnet.pt or lock AlexNet identification findings not_evaluable; do not substitute CaffeNet by convenience.",
+          "state": "lab_local_checkpoint_unmanifested_public_caffenet_not_substitutable"
+        },
+        "vgg19": {
+          "lab_local_byte_identity_verified": false,
+          "lab_local_path": "/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+          "public_reconstruction_member": {
+            "basename": "VGG_ILSVRC_19_layers.pt",
+            "compressed_bytes": 533010833,
+            "crc32": "b9b00729",
+            "member_type": "regular_file",
+            "path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+            "sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+            "uncompressed_bytes": 574682731,
+            "unix_mode": "100444"
+          },
+          "remaining_action": "Authenticate the lab-local evaluator copy or prospectively bind the public member, then validate a strict load in the locked runtime.",
+          "state": "lab_local_copy_unchecksummed_public_member_same_name_only",
+          "strict_bdpy_runtime_load_verified": false
+        }
+      },
+      "ood_or_ep04_payload_accessed": false,
+      "outcome": "completed_public_reconstruction_assets_authenticated_evaluator_checkpoints_unbound",
+      "payload_bytes_downloaded_this_attempt": 0,
+      "process_id": 16525,
+      "public_reconstruction_bindings": {
+        "caffenet": {
+          "candidate_checkpoint_member": {
+            "basename": "bvlc_reference_caffenet.pt",
+            "compressed_bytes": 226031739,
+            "crc32": "8ce63c7e",
+            "member_type": "regular_file",
+            "path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+            "sha256": "24016c5822dfc778796f9410fc5d2d474bb451d86094747c8c5b1274f8bd9a00",
+            "uncompressed_bytes": 243866815,
+            "unix_mode": "100444"
+          },
+          "candidate_checkpoint_member_verified": true,
+          "state": "tagged_manifest_archive_and_candidate_member_authenticated"
+        },
+        "vgg19": {
+          "checkpoint_member": {
+            "basename": "VGG_ILSVRC_19_layers.pt",
+            "compressed_bytes": 533010833,
+            "crc32": "b9b00729",
+            "member_type": "regular_file",
+            "path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+            "sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+            "uncompressed_bytes": 574682731,
+            "unix_mode": "100444"
+          },
+          "checkpoint_member_verified": true,
+          "required_member_paths_verified": [
+            "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+            "VGG_ILSVRC_19_layers/estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat",
+            "VGG_ILSVRC_19_layers/ilsvrc_2012_mean.npy"
+          ],
+          "state": "tagged_manifest_config_and_archive_members_authenticated"
+        }
+      },
+      "schema_version": "ep21.public_model_payload_audit.v2",
+      "scope": "two_pinned_public_non_empirical_model_archives",
+      "source_requirements": {
+        "evaluator_branches": {
+          "alexnet": {
+            "bgr_mean": [
+              104.0,
+              117.0,
+              123.0
+            ],
+            "checkpoint_path": "/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt",
+            "checkpoint_provenance": "lab_local_unchecksummed",
+            "image_size": [
+              227,
+              227
+            ],
+            "layer_map": "alexnet",
+            "model_class": "AlexNet",
+            "setup_call_order": [
+              "to",
+              "load_state_dict",
+              "eval"
+            ]
+          },
+          "vgg19": {
+            "bgr_mean": [
+              104.0,
+              117.0,
+              123.0
+            ],
+            "checkpoint_path": "/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+            "checkpoint_provenance": "lab_local_unchecksummed",
+            "image_size": [
+              224,
+              224
+            ],
+            "layer_map": "vgg19",
+            "model_class": "VGG19",
+            "setup_call_order": [
+              "to",
+              "load_state_dict",
+              "eval"
+            ]
+          }
+        },
+        "preprocessing_assertions": {
+          "branch_feature_extractor_consumption": true,
+          "float32_channel_mean_subtraction": true,
+          "image_to_array": true,
+          "lanczos_resize_to_branch_image_size": true,
+          "rgb_to_bgr_chw": true
+        },
+        "script_path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+        "script_sha256": "922cd26405c276bb5ec0a0c5edd2368011bb6457ddca300d4e1f2eb5ab958d91",
+        "source_archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+        "tagged_reconstruction_binding": {
+          "manifest_assets": {
+            "caffenet": {
+              "extraction_destination": "./models",
+              "figshare_file_id": 52398902,
+              "md5": "2e4fe2126c7ed13554e33d716a72c65f",
+              "name": "bvlc_reference_caffenet.zip",
+              "save_in": "./"
+            },
+            "vgg19": {
+              "extraction_destination": "./models",
+              "figshare_file_id": 38225868,
+              "md5": "49f4d6dbf1024f33149352dfd309dc4d",
+              "name": "VGG_ILSVRC_19_layers.zip",
+              "save_in": "./"
+            }
+          },
+          "manifest_path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/files.json",
+          "manifest_sha256": "70e9d30b0bfd28534c2c7622accba8d92f9133d6f081d089f129ec53075e8d54",
+          "vgg_config": {
+            "archive_member_paths": {
+              "checkpoint": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+              "feature_std": "VGG_ILSVRC_19_layers/estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat",
+              "mean": "VGG_ILSVRC_19_layers/ilsvrc_2012_mean.npy"
+            },
+            "feature_std_file": "./data/models/VGG_ILSVRC_19_layers/estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat",
+            "image_mean_file": "./data/models/VGG_ILSVRC_19_layers/ilsvrc_2012_mean.npy",
+            "input_image_shape": [
+              224,
+              224,
+              3
+            ],
+            "layers": [
+              "conv1_1",
+              "conv1_2",
+              "conv2_1",
+              "conv2_2",
+              "conv3_1",
+              "conv3_2",
+              "conv3_3",
+              "conv3_4",
+              "conv4_1",
+              "conv4_2",
+              "conv4_3",
+              "conv4_4",
+              "conv5_1",
+              "conv5_2",
+              "conv5_3",
+              "conv5_4",
+              "fc6",
+              "fc7",
+              "fc8"
+            ],
+            "name": "vgg19",
+            "parameters_file": "./data/models/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt"
+          },
+          "vgg_config_path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/encoder/vgg19.yaml",
+          "vgg_config_sha256": "8149f5766a2cc31208a4e77b76f57e9e4973d0dc9977d451e9c0a12ec2925692"
+        }
+      },
+      "started_at": "2026-09-30T00:45:26+00:00"
+    },
+    "public_model_payload_bytes_downloaded_this_attempt": 0,
+    "public_model_payload_bytes_inspected": 760409145,
+    "unmanifested_or_unpinned_gaps": {
+      "alexnet_identification_checkpoint": {
+        "affected_endpoints": [
+          "finding_c",
+          "finding_e"
+        ],
+        "any_alexnet_named_manifest_asset": false,
+        "caffenet_archive_equivalence": "unproven_names_state_dict_layer_map_preprocessing_and_hash_binding_absent",
+        "caffenet_equivalence_claim_allowed": false,
+        "evidence": [
+          {
+            "line": 115,
+            "text": "if encoder_name == \"AlexNet\":"
+          },
+          {
+            "line": 116,
+            "text": "self.encoder = AlexNet()"
+          },
+          {
+            "line": 117,
+            "text": "encoder_param_file = '/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt'"
+          }
+        ],
+        "exact_public_bvlc_alexnet_named_member_verified": false,
+        "hard_coded_path": "/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt",
+        "public_caffenet_candidate_member": {
+          "basename": "bvlc_reference_caffenet.pt",
+          "compressed_bytes": 226031739,
+          "crc32": "8ce63c7e",
+          "member_type": "regular_file",
+          "path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+          "sha256": "24016c5822dfc778796f9410fc5d2d474bb451d86094747c8c5b1274f8bd9a00",
+          "uncompressed_bytes": 243866815,
+          "unix_mode": "100444"
+        },
+        "required_action": "Authenticate bvlc_alexnet.pt or lock the affected identification findings not_evaluable; do not substitute the public CaffeNet artifact.",
+        "state": "required_unmanifested_public_caffenet_not_substitutable"
+      },
+      "main_bdpy_dependency": {
+        "evidence": [
+          {
+            "line": 57,
+            "text": "- bdpy"
+          }
+        ],
+        "historical_installed_version": "unknown",
+        "reconstruction_environment_note": "The separate reconstruction environment pins bdpy==0.25, but the main converter/evaluation environment does not.",
+        "relevant_0_25_and_0_25_1_api_sources": "byte_identical_for_listed_interfaces",
+        "required_action": "Use the pinned surrogate only for prospective tagged-code conformance; do not describe it as the authors' historical installed environment.",
+        "state": "historical_install_unknown_tag_date_surrogate_pinned",
+        "tag_date_fresh_resolution_surrogate": "bdpy==0.25.1"
+      },
+      "source_true_image_directory": {
+        "ep21_action": "Do not acquire source-study true images as an EP21 substitute; use only an authorized regular-only LAION feature/stimulus handoff after its access gates pass.",
+        "evidence": [
+          {
+            "line": 202,
+            "text": "true_image_dir = '../../data/test_image/source/'"
+          }
+        ],
+        "hard_coded_path": "../../data/test_image/source/",
+        "state": "source_study_licensed_stimulus_path_not_EP21_input"
+      },
+      "vgg19_identification_checkpoint_binding": {
+        "candidate_archive": "VGG_ILSVRC_19_layers.zip",
+        "evaluator_lab_local_byte_identity_verified": false,
+        "evidence": [
+          {
+            "line": 129,
+            "text": "elif encoder_name == \"VGG19\":"
+          },
+          {
+            "line": 130,
+            "text": "self.encoder = VGG19()"
+          },
+          {
+            "line": 131,
+            "text": "encoder_param_file = '/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt'"
+          }
+        ],
+        "exact_checkpoint_filename_in_manifest": false,
+        "exact_checkpoint_path_bound_by_tagged_manifest_and_config": true,
+        "hard_coded_path": "/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+        "public_checkpoint_member": {
+          "basename": "VGG_ILSVRC_19_layers.pt",
+          "compressed_bytes": 533010833,
+          "crc32": "b9b00729",
+          "member_type": "regular_file",
+          "path": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+          "sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+          "uncompressed_bytes": 574682731,
+          "unix_mode": "100444"
+        },
+        "required_action": "Authenticate the evaluator's lab-local copy or prospectively bind the authenticated public member, then validate a strict load in the locked runtime.",
+        "state": "public_reconstruction_member_authenticated_evaluator_lab_copy_unbound",
+        "strict_bdpy_runtime_load_verified": false
+      }
+    },
+    "verified_public_model_asset_count": 4
+  },
+  "started_at": "2026-09-30T00:45:39+00:00",
+  "structural_qualification_matrix": {
+    "array_shapes_dtypes_finiteness_missingness": {
+      "coverage_missingness": "unknown",
+      "dtypes": "unknown",
+      "finite_nan_masks": "unknown",
+      "shapes": "unknown",
+      "state": "unknown"
+    },
+    "beta_variant": {
+      "evidence": "unknown",
+      "state": "unknown"
+    },
+    "declared_ep21_input_boundary": {
+      "limitation": "No upstream mixed-role or DUA-bound payload was traversed; physical exclusion is established only for declared EP21 inputs.",
+      "physical_exclusion": {
+        "ep21_input_tree_contains_ep04_outputs": false,
+        "ep21_input_tree_contains_legacy_ep04_scratch": false,
+        "ep21_input_tree_contains_ood_payload": false,
+        "scope": "direct_declared_EP21_interfaces_only_no_upstream_payload_traversal"
+      },
+      "state": "verified_for_declared_interfaces_only"
+    },
+    "directed_laion_pair_table": {
+      "eligible_pairs": [],
+      "planning_count": 20,
+      "state": "not_constructible_without_authenticated_participant_ids"
+    },
+    "exact_overlap_and_repetition_gates": {
+      "checks": {
+        "laion_nsd_origin_240_role_disposition": "not_verified",
+        "repetitions_grouped_by_image_identity": "not_verified",
+        "source_unique_vs_target_unique": "not_run_no_role_filtered_identifiers",
+        "tau_train_vs_tau_test": "not_run_no_role_filtered_identifiers",
+        "unique_training_vs_tau_test": "not_run_no_role_filtered_identifiers"
+      },
+      "state": "not_run_no_role_filtered_identifiers"
+    },
+    "license_and_dua": {
+      "evidence": "unresolved",
+      "state": "unresolved"
+    },
+    "native_roi_and_mask_ids": {
+      "evidence": "unknown",
+      "state": "unknown"
+    },
+    "participant_ids": {
+      "planning_count": 5,
+      "state": "unknown",
+      "verified_values": []
+    },
+    "prior_exposure": {
+      "classification": "regular_shared_evidence_previously_opened_in_ep04_lineage",
+      "independence": "retrospective_correlated_not_independent",
+      "state": "verified_from_contract_and_campaign_inventory"
+    },
+    "regular_feature_handoff": {
+      "state": "absent"
+    },
+    "regular_scoring_handoff": {
+      "state": "absent"
+    },
+    "release_package_identifier": {
+      "evidence": "unknown",
+      "state": "unknown"
+    },
+    "session_run_trial_image_repetition_joins": {
+      "evidence": "unknown",
+      "state": "unknown"
+    },
+    "sherlock_risk_classification": {
+      "evidence": "unresolved",
+      "state": "unresolved"
+    },
+    "stimulus_roles_and_tau_partition": {
+      "roles": {
+        "ood_shared": {
+          "ep21_role": "none",
+          "planning_count": 371,
+          "status": "forbidden_and_unmounted"
+        },
+        "regular_shared": {
+          "planning_count": 1121,
+          "status": "unverified"
+        },
+        "subject_unique_regular": {
+          "planning_count_per_participant": 4712,
+          "status": "unverified"
+        },
+        "tau_test_regular_shared": {
+          "planning_count": 224,
+          "status": "unverified"
+        },
+        "tau_train_regular_shared": {
+          "planning_count": 897,
+          "status": "unverified"
+        }
+      },
+      "state": "unverified"
+    }
+  }
+}

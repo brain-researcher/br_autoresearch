@@ -1,0 +1,219 @@
+version: "0.0.14"
+name: EP02 closed-loop dopamine protocol inference
+description: >-
+  Worklist of experiments already required by the existing EP02 policy.
+  No new endpoint, binding threshold, model family, access authority or
+  scientific finding is introduced. Outcome-blind component recipes do not
+  authorize empirical access. Runtime state belongs in experiment_log.md.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.json}
+outputs:
+  - {id: primary_packet, from: primary_audit.primary_packet}
+analyses:
+  source_semantics_design:
+    name: Resolve endpoint semantics and assignment scope
+    description: >-
+      Resolve trial, session, lick-trigger, denominator, time-axis and
+      missingness definitions from authorized documentation. Recover the
+      assignment/exclusion roster or record the assumption-dependent scope.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: semantics_design_report, type: report, format: markdown}
+  role_separation:
+    name: Provision and check the existing evidence-role boundary
+    description: >-
+      Preserve the fixed 9/6/5/4 mouse roles. Candidate workers cannot read
+      the mixed source or audit payloads. No outcome access follows from
+      this worklist or from materialization alone.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: access_report, type: report, format: markdown}
+  implementation_qualification:
+    name: Qualify the frozen endpoint and model implementations
+    description: >-
+      Resolve existing equation/trigger differences, verify independent
+      implementation and raw/continuous lick scoring, and perform the
+      contract-required synthetic recovery and integrity experiments.
+      Synthetic success is not biological mechanism evidence.
+      The October 6 selected article multiplier now accepts an explicit resolved
+      task trigger without the synthetic first-eligible-cap scenario. Its
+      focused arithmetic checks do not qualify the missing empirical trigger
+      or authorize an additional recovery sweep.
+      The generic grouped-binomial quadratic-MAP solver takes caller-fixed
+      design, offsets and penalty. It does not select the observation model
+      or supply an integrated new-mouse predictive distribution.
+      The October 7 prospective observation recipe separately selects one
+      logistic-normal mouse intercept shared across sessions, with fixed
+      caller-supplied mechanism logits and training-only constrained population
+      fitting. Integrated mouse predictions retain plug-in population
+      hyperparameters; this is not full posterior uncertainty or a source
+      semantics/readout implementation.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: semantics_design_report, from: ../source_semantics_design.semantics_design_report}
+      - {id: simulator_port, type: data, source: outputs/code/actr_port.py}
+      - {id: simulator_port_tests, type: data, source: outputs/tests/test_actr_port.py}
+      - {id: independent_equations, type: data, source: outputs/code/independent_actr_checker.py}
+      - {id: development_score_core, type: data, source: outputs/code/development_score_core.py}
+      - {id: development_score_tests, type: data, source: outputs/tests/test_development_score_core.py}
+      - {id: grouped_binomial_map, type: data, source: outputs/code/grouped_binomial_map.py}
+      - {id: grouped_binomial_map_tests, type: data, source: outputs/tests/test_grouped_binomial_map.py}
+      - {id: population_observation_recipe, type: data, source: outputs/paper_plan.md}
+      - {id: population_observation_code, type: data, source: outputs/code/logistic_normal_observation.py}
+      - {id: population_observation_tests, type: data, source: outputs/tests/test_logistic_normal_observation.py}
+      - {id: development_reader, type: data, source: outputs/code/development_role_reader.py}
+      - {id: development_reader_tests, type: data, source: outputs/tests/test_development_role_reader.py}
+      - {id: pinned_critic_core, type: data, source: outputs/code/pinned_critic_core.py}
+      - {id: pinned_critic_tests, type: data, source: outputs/tests/test_pinned_critic_core.py}
+      - {id: rival_model_proposal, type: data, source: outputs/code/rival_model_core.py}
+      - {id: rival_model_tests, type: data, source: outputs/tests/test_rival_model_core.py}
+    outputs:
+      - id: development_reader_checks
+        type: report
+        format: text
+        inputs: [policy, development_reader, development_reader_tests]
+        description: >-
+          Focused fixture checks for the existing nine-control NPY pack reader:
+          admission and exact role/identity checks precede array mapping;
+          original axes and dtype survive, memory is bounded, and readonly maps
+          close on every exit. External runtime admission is required and this
+          library neither implements OS isolation nor authenticates source
+          semantics, margins or empirical access. No actual pack is a test input.
+          Combine with authorized substantive work in a coordinated allocation.
+        recipe:
+          command: >-
+            env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 30s python3.12 -B
+            -m unittest discover -s outputs/tests -p test_development_role_reader.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: synthetic_component_report
+        type: report
+        format: directory
+        description: >-
+          Synthetic source-equation and variant checks plus short recurrent
+          fixtures. This partial preparation precedes verified empirical
+          semantics; it is not the full implementation or model-recovery gate.
+        inputs: [policy, simulator_port, simulator_port_tests]
+        recipe:
+          command: python outputs/code/qualify_actr_port.py --output-root {output}
+          resources: {cpus: 1, memory: 8Gi, time_limit: 10m}
+      - id: independent_component_report
+        type: report
+        format: directory
+        description: >-
+          Compare independent source-equation implementation with the primary
+          component port on independently selected synthetic inputs. This is
+          partial equation qualification, not full model-recovery evidence.
+        inputs: [policy, simulator_port, independent_equations]
+        recipe:
+          command: python outputs/code/compare_actr_implementations.py --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: population_observation_checks
+        type: report
+        format: text
+        description: >-
+          Focused exact zero-variance, common-effect quadrature, constrained
+          fit, prediction immutability, numerical refusal and unchanged
+          whole-panel scoring checks. Include the already-required final
+          nine-control refit, its distinct result type, exact roster and
+          resource-callback abort, reusing the same frozen profile algorithm.
+          This grants neither recipe-lock nor reader-release authority.
+          No generated cohorts, source adapter,
+          empirical observations or complete mechanism qualification.
+          Run within a coordinator-owned substantive allocation.
+        inputs: [policy, population_observation_recipe, population_observation_code, population_observation_tests]
+        recipe:
+          command: python3.12 -B -m unittest discover -s outputs/tests -p test_logistic_normal_observation.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - {id: implementation_report, type: report, format: markdown, inputs: [policy, semantics_design_report, simulator_port, simulator_port_tests, independent_equations, development_score_core, development_score_tests, grouped_binomial_map, grouped_binomial_map_tests, population_observation_recipe, population_observation_code, population_observation_tests, pinned_critic_core, pinned_critic_tests, rival_model_proposal, rival_model_tests]}
+  small_n_binding_calibration:
+    name: Calibrate and freeze the existing small-mouse decision rule
+    description: >-
+      Perform the already-required endpoint-faithful outcome-blind
+      calibration and independent validation. All four raw-unit threshold
+      fields remain unbound until the existing scientist decision.
+      The 462 unblocked labels are sensitivity only without design recovery.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: semantics_design_report, from: ../source_semantics_design.semantics_design_report}
+      - {id: implementation_report, from: ../implementation_qualification.implementation_report}
+    outputs:
+      - {id: approved_binding_rule, type: report, format: markdown}
+  development_search:
+    name: Run the existing whole-mouse control search and falsifiers
+    description: >-
+      Evaluate the retained 28-to-48 complete nine-mouse LOSO trials with
+      equal family budgets, required coverage/ablations, and locked
+      predictions for every declared intervention. Published directions
+      and audit outcomes cannot drive search. No new rival test is added.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: semantics_design_report, from: ../source_semantics_design.semantics_design_report}
+      - {id: access_report, from: ../role_separation.access_report}
+      - {id: implementation_report, from: ../implementation_qualification.implementation_report}
+      - {id: approved_binding_rule, from: ../small_n_binding_calibration.approved_binding_rule}
+    outputs:
+      - {id: development_report, type: report, format: markdown}
+      - {id: locked_prediction_panel, type: data, format: json}
+  evaluator_qualification:
+    name: Qualify the existing atomic aggregate-only evaluator
+    description: >-
+      Check endpoint replay, access separation, no partial feedback, exact
+      raw/standardized transforms and the existing terminal classifier.
+      Individual audit-mouse values cannot be returned.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: access_report, from: ../role_separation.access_report}
+      - {id: implementation_report, from: ../implementation_qualification.implementation_report}
+      - {id: approved_binding_rule, from: ../small_n_binding_calibration.approved_binding_rule}
+    outputs:
+      - {id: evaluator_report, type: report, format: markdown}
+  configuration_lock:
+    name: Evaluate lock eligibility and freeze the existing configuration
+    description: >-
+      Assess the retained development gates and freeze the target,
+      strongest distinct-family runner-up, complete prediction panel,
+      margins, code, endpoint and evaluator behavior before outcomes.
+      A lock is not outcome-opening authority.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_report, from: ../development_search.development_report}
+      - {id: locked_prediction_panel, from: ../development_search.locked_prediction_panel}
+      - {id: approved_binding_rule, from: ../small_n_binding_calibration.approved_binding_rule}
+      - {id: evaluator_report, from: ../evaluator_qualification.evaluator_report}
+    outputs:
+      - {id: final_lock, type: report, format: json}
+  primary_audit:
+    name: Evaluate the unchanged eleven-mouse primary contrast once
+    description: >-
+      Only after separate explicit authorization, score six stimLick-
+      versus five stimLick+ mice in one atomic transaction. Report raw
+      probability gain, its exact standardized companion and the frozen
+      target-consistency classifier. Do not claim unique mechanism
+      identification or design-exact inference from unblocked sensitivity.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: final_lock, from: ../configuration_lock.final_lock}
+      - {id: evaluator_report, from: ../evaluator_qualification.evaluator_report}
+    outputs:
+      - {id: primary_packet, type: report, format: json}
+  boundary_diagnostic:
+    name: Evaluate the optional high-amplitude boundary inside the same transaction
+    description: >-
+      Optional internal evaluator stage after the primary subpacket is
+      committed, before any feedback is released. Four mice and a
+      separately frozen six-session endpoint are descriptive only.
+      This stage is not a second opening and cannot rescue the primary.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: final_lock, from: ../configuration_lock.final_lock}
+      - {id: primary_packet, from: ../primary_audit.primary_packet}
+    outputs:
+      - {id: boundary_state, type: report, format: json}

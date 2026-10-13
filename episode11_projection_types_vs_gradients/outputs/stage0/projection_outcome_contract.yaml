@@ -1,0 +1,167 @@
+schema_version: ep11_projection_outcome_contract_v1
+episode_id: episode11_projection_types_vs_gradients
+status: frozen_outcome_blind_definition_activation_gated
+real_regional_projection_outcomes_opened_by_this_work: false
+
+scope:
+  source_population: harmonized_Allen_SSp_tr
+  primary_resource: Gao_whole_cortex_projectome
+  primary_reconstruction_scope: provider_axon_dendrite_distinguished_only
+  expected_primary_cell_count_before_remaining_QC: 206
+  Axon_only_cells_are_sensitivity_only: 8
+  activation_still_requires:
+    - explicit_cross_brain_sample_estimand_or_provider_confirmation_of_distinct_animals
+    - outcome_blind_complete_axon_and_registration_eligibility_rule
+    - whole_animal_development_and_audit_role_lock
+    - precision_and_synthetic_recovery_qualification
+
+atlas:
+  annotation_asset: annotation_25_ccf_2017.nrrd
+  annotation_sha256: c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42
+  ontology_asset: structure_graph_1.json
+  ontology_sha256: b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386
+  ontology_id: 1
+  root_structure_id: 997
+  grey_structure_id: 8
+  nrrd_header:
+    type: unsigned_int
+    dimension: 3
+    space: left-posterior-superior
+    sizes: [528, 320, 456]
+    spacing_um: [25, 25, 25]
+    origin_um: [0, 0, 0]
+    encoding: gzip
+  provider_coordinate_binding:
+    swc_x_y_z: [AP_um, DV_um, ML_um]
+    annotation_index: floor_each_coordinate_divided_by_25_um
+    voxel_domains_are_half_open: true
+    valid_coordinate_bounds_um:
+      AP: [0, 13200]
+      DV: [0, 8000]
+      ML: [0, 11400]
+    ML_midline_um: 5700
+    left_rule: ML_less_than_5700
+    right_rule: ML_greater_than_or_equal_to_5700
+
+target_vocabulary:
+  artifact: allen_target_vocabulary.csv
+  builder: tools/build_allen_target_vocabulary.py
+  selection_uses_real_axon_outcomes: false
+  named_target_count: 28
+  residual_target_count: 0
+  anatomical_target_count: 28
+  laterality_levels: [ipsilateral, contralateral]
+  fixed_coordinate_count: 56
+  hierarchy_rule:
+    named_target: map_each_grey_structure_to_its_unique_selected_ancestor
+    unclaimed_grey: summarize_as_QC_only_not_as_an_outcome_coordinate
+    cortical_layers_collapsed: true
+    named_mapping_is_nonoverlapping: true
+    named_plus_QC_partition_is_exhaustive_within_grey_ontology: true
+  named_resolution:
+    isocortex: seventeen_direct_children_of_Isocortex
+    other_grey_matter: [OLF, HPF, CTXsp, STR, PAL, TH, HY, MB, P, MY, CB]
+  laterality_rule:
+    reference: soma_side_derived_from_registered_soma_ML
+    segment_side: registered_segment_subpiece_ML_side
+    midline_crossing_segments_are_split: true
+    provider_hemisphere_must_agree_with_soma_side_before_activation: true
+  no_post_outcome_target_filtering_or_merging: true
+
+swc_interpretation:
+  columns: [node_id, node_type, x_um, y_um, z_um, radius_um, parent_id]
+  comments_and_blank_lines: ignored
+  columns_after_first_seven: ignored_and_counted_for_QC
+  required_tree_checks:
+    - finite_coordinates_and_radius
+    - unique_integer_node_ids
+    - exactly_one_root_with_parent_minus_one
+    - every_nonroot_parent_exists
+    - every_node_has_one_parent_path_to_root
+    - no_cycle
+  node_types:
+    soma: [1]
+    axon: [0, 2]
+    excluded_dendrite: [3]
+    ignored_markers: [10, 11, 12]
+    any_other_type: hard_failure
+  axon_edge_rule:
+    include_when_child_type_is_0_or_2_and_parent_type_is_0_1_or_2: true
+    child_axon_with_parent_type_3_or_10_11_12: hard_failure
+    radius_is_used: false
+
+regional_measure:
+  object_id: allen_28_named_target_relative_axon_length_composition_v1
+  biological_quantity: registered_axon_centerline_length_occupying_Allen_grey_matter
+  unit_before_normalization: micrometre
+  segment_allocation:
+    method: exact_line_clipping_at_25um_voxel_and_ML_midline_boundaries
+    do_not_assign_a_whole_edge_by_endpoint_or_midpoint: true
+    each_subsegment_uses_its_annotation_voxel_structure_id: true
+    numerical_zero_tolerance_um: 1.0e-9
+  target_domain:
+    included: descendants_or_self_of_the_28_named_target_anchors
+    excluded_but_separately_summarized:
+      - unclaimed_generic_grey_below_Allen_grey_8_not_descendant_of_selected_anchors
+      - fiber_tracts_structure_1009
+      - ventricular_systems_structure_73
+      - grooves_structure_1024
+      - retina_structure_304325711
+      - annotation_zero_or_outside_volume
+    excluded_length_is_not_a_target_zero_or_target_denominator_term: true
+  terminal_and_passing_rule:
+    infer_terminal_arbors_from_SWCs: false
+    infer_synapses_or_boutons: false
+    include_all_attributed_grey_matter_axon_length: true
+    exclude_recognized_fiber_tract_length_from_target_vector: true
+    limitation: a_passing_axon_inside_grey_matter_can_contribute_length
+  raw_coordinate_definition: L_j_equals_sum_of_allocated_axon_subsegment_lengths
+  normalization:
+    primary_value: p_j_equals_L_j_divided_by_sum_over_all_56_named_coordinates
+    total_projection_mass_role: discarded_by_frozen_normalization
+    all_zero_total_named_target_length: hard_construction_failure_not_cellwise_reselection
+    values_sum_to_one: true
+  zero_rule:
+    coordinate_zero: no_positive_length_allocated_under_the_fixed_geometry
+    pseudocount: forbidden
+    post_outcome_zero_filter: forbidden
+    interpretation: measured_zero_not_proof_of_biological_absence
+  missing_unknown_and_truncation:
+    unknown_atlas_space_is_outside_the_target_estimand_and_reported_separately: true
+    unknown_structure_id_not_in_pinned_ontology: hard_failure
+    incomplete_or_truncated_reconstruction: ineligible_under_preoutcome_QC_not_zero_imputed
+    coordinate_level_missingness_after_eligibility: none_expected
+    any_unexpected_missing_coordinate: marginalized_not_zero_imputed
+
+common_score_measure:
+  scored_object: fixed_56_coordinate_composition
+  support_face: coordinates_with_strictly_positive_measured_length
+  likelihood_must_include_probability_of_active_coordinate_set: true
+  positive_face_transform:
+    id: ordered_Helmert_ILR_v1
+    coordinate_order: ascending_coordinate_index_within_active_set
+    face_dimension: active_coordinate_count_minus_one
+    singleton_active_set: zero_dimensional_point_mass
+    bijective_within_each_support_face: true
+  dominating_measure: counting_measure_over_active_sets_times_face_specific_Hausdorff_measure
+  transform_Jacobian_included_in_reported_log_density: true
+  primary_metric: normalized_log_predictive_density
+  unit: nats_per_neuron_on_frozen_outcome_measure
+  all_adjudicative_models_use_same_cells_vocabulary_transform_and_base_measure: true
+
+interpretation_boundary:
+  permitted_term: reusable_projection_pattern
+  primary_measure_is_not:
+    - synapse_count
+    - bouton_count
+    - terminal_arbor_count
+    - molecular_cell_type
+  provider_projectome_class_fields_may_not_enter_construction_or_validation: true
+  provider_region_projection_summaries_may_not_enter_construction_or_validation: true
+
+sensitivity_tracks_not_primary:
+  - raw_total_attributed_grey_matter_axon_length
+  - finer_Allen_target_resolution_frozen_as_a_separate_track
+  - terminal_tip_or_branch_topology_summaries
+  - eight_provider_Axon_only_reconstructions
+  - A1876_provider_arbors_after_full_axon_validation

@@ -1,0 +1,328 @@
+{
+  "publication": "complete",
+  "job_id": "46673727",
+  "original_job_id": "46424955",
+  "authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/regular_vgg19_continuation_authorization_2026-10-05.json",
+  "protocol_lock": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/protocol_lock.yaml",
+  "partitions": [
+    {
+      "partition": "sub-01",
+      "images": 4712,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_sealed.building.46424955/sub-01",
+      "file_bytes": {
+        "features.h5": 280105563680,
+        "finite_packed.h5": 8753306088,
+        "image_index.tsv": 355700
+      }
+    },
+    {
+      "partition": "sub-03",
+      "images": 4712,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_sealed.building.46424955/sub-03",
+      "file_bytes": {
+        "features.h5": 280105563680,
+        "finite_packed.h5": 8753306088,
+        "image_index.tsv": 355817
+      }
+    },
+    {
+      "partition": "sub-05",
+      "images": 4712,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_continuation_20261005/sub-05",
+      "file_bytes": {
+        "features.h5": 280105563680,
+        "finite_packed.h5": 8753306088,
+        "image_index.tsv": 355753
+      }
+    },
+    {
+      "partition": "sub-06",
+      "images": 4712,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_continuation_20261005/sub-06",
+      "file_bytes": {
+        "features.h5": 280105563680,
+        "finite_packed.h5": 8753306088,
+        "image_index.tsv": 355716
+      }
+    },
+    {
+      "partition": "sub-07",
+      "images": 4712,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_continuation_20261005/sub-07",
+      "file_bytes": {
+        "features.h5": 280105563680,
+        "finite_packed.h5": 8753306088,
+        "image_index.tsv": 355753
+      }
+    },
+    {
+      "partition": "tau_train",
+      "images": 897,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_continuation_20261005/tau_train",
+      "file_bytes": {
+        "features.h5": 53322308800,
+        "finite_packed.h5": 1666329373,
+        "image_index.tsv": 82524
+      }
+    },
+    {
+      "partition": "tau_test",
+      "images": 224,
+      "nonfinite_elements": 0,
+      "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_continuation_20261005/tau_test",
+      "file_bytes": {
+        "features.h5": 13315721504,
+        "finite_packed.h5": 416123520,
+        "image_index.tsv": 20432
+      }
+    }
+  ],
+  "layer_shapes": {
+    "conv1_1": [
+      64,
+      224,
+      224
+    ],
+    "conv1_2": [
+      64,
+      224,
+      224
+    ],
+    "conv2_1": [
+      128,
+      112,
+      112
+    ],
+    "conv2_2": [
+      128,
+      112,
+      112
+    ],
+    "conv3_1": [
+      256,
+      56,
+      56
+    ],
+    "conv3_2": [
+      256,
+      56,
+      56
+    ],
+    "conv3_3": [
+      256,
+      56,
+      56
+    ],
+    "conv3_4": [
+      256,
+      56,
+      56
+    ],
+    "conv4_1": [
+      512,
+      28,
+      28
+    ],
+    "conv4_2": [
+      512,
+      28,
+      28
+    ],
+    "conv4_3": [
+      512,
+      28,
+      28
+    ],
+    "conv4_4": [
+      512,
+      28,
+      28
+    ],
+    "conv5_1": [
+      512,
+      14,
+      14
+    ],
+    "conv5_2": [
+      512,
+      14,
+      14
+    ],
+    "conv5_3": [
+      512,
+      14,
+      14
+    ],
+    "conv5_4": [
+      512,
+      14,
+      14
+    ],
+    "fc6": [
+      4096
+    ],
+    "fc7": [
+      4096
+    ],
+    "fc8": [
+      1000
+    ]
+  },
+  "feature_dtype": "float32",
+  "finite_mask_bitorder": "little",
+  "feature_axes": "NCHW_or_Nvector",
+  "contains_feature_values": false,
+  "contains_neural_values": false,
+  "model_fitting_scoring_run": false,
+  "OOD_access": false,
+  "HDF5_row_rule": "source_index_CSV_ordinal",
+  "feature_recipe": {
+    "layers": [
+      "conv1_1",
+      "conv1_2",
+      "conv2_1",
+      "conv2_2",
+      "conv3_1",
+      "conv3_2",
+      "conv3_3",
+      "conv3_4",
+      "conv4_1",
+      "conv4_2",
+      "conv4_3",
+      "conv4_4",
+      "conv5_1",
+      "conv5_2",
+      "conv5_3",
+      "conv5_4",
+      "fc6",
+      "fc7",
+      "fc8"
+    ],
+    "shapes": [
+      [
+        64,
+        224,
+        224
+      ],
+      [
+        64,
+        224,
+        224
+      ],
+      [
+        128,
+        112,
+        112
+      ],
+      [
+        128,
+        112,
+        112
+      ],
+      [
+        256,
+        56,
+        56
+      ],
+      [
+        256,
+        56,
+        56
+      ],
+      [
+        256,
+        56,
+        56
+      ],
+      [
+        256,
+        56,
+        56
+      ],
+      [
+        512,
+        28,
+        28
+      ],
+      [
+        512,
+        28,
+        28
+      ],
+      [
+        512,
+        28,
+        28
+      ],
+      [
+        512,
+        28,
+        28
+      ],
+      [
+        512,
+        14,
+        14
+      ],
+      [
+        512,
+        14,
+        14
+      ],
+      [
+        512,
+        14,
+        14
+      ],
+      [
+        512,
+        14,
+        14
+      ],
+      [
+        4096
+      ],
+      [
+        4096
+      ],
+      [
+        1000
+      ]
+    ],
+    "dtype": "float32",
+    "checkpoint_members": {
+      "VGG_ILSVRC_19_layers.pt": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+      "ilsvrc_2012_mean.npy": "97eefba7e046ee097121ad18564329636d2f9c153b748c7313653cae8594a149"
+    },
+    "input_rule": "RGB_direct_BICUBIC_224_BGR_CHW_float32_0_255_minus_qualified_channel_means",
+    "HDF5_row_rule": "source_index_CSV_ordinal",
+    "finite_mask_bitorder": "little",
+    "TF32": false,
+    "AMP": false,
+    "historical_Caffe_parity": "unverified"
+  },
+  "runtime": {
+    "python": "3.12.1",
+    "interpreter": "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/bin/python",
+    "prefix": "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv",
+    "numpy": "1.26.3",
+    "torch": "2.4.0a0+gitunknown",
+    "h5py": "3.10.0",
+    "Pillow": "10.2.0",
+    "loaded_module_versions": {
+      "numpy": "1.26.3",
+      "torch": "2.4.0a0"
+    }
+  },
+  "old_partial_preserved": true,
+  "physical_durable_bytes_including_old_partial_and_metadata_reserve": 1651114025290,
+  "new_forward_images": 10545,
+  "reused_generated_images": 14136,
+  "hardlinks_add_no_second_feature_payload_copy": true
+}

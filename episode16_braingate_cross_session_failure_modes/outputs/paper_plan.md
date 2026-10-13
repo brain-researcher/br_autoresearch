@@ -1,5 +1,54 @@
 # EP16 paper plan
 
+## October 6 review — current support and adopted closure
+
+The contract has a **six-development/three-held-out role allocation**, with
+**at least four sufficiently supported development participants** and all
+three sufficiently supported held-out participants. The shorthand "4+3"
+describes minimum supported participants, not an alternative role split.
+T5/T10/T11 are already development; the remaining role assignment is unfinished.
+
+The completed conditional application retained all 729 sessions and evaluated
+32 designs. Only T11 and T9 had numerical passes; T11 is development and T9
+is a held-out candidate, and neither is fully qualified. Block/size/transition
+classification and exposure history remain unresolved. Thus the present
+panel does not support the registered four-development/three-held-out analysis.
+See [the actual support record](experiment_log.md#2026-10-03--structural_support-conditional-numerical-application-completed)
+and [schedule definitions](schedule_definition.md).
+
+It is too strong to say that resolving missing metadata can *only* reduce
+eligible participant support. Authentic exclusions can remove sessions or
+edges, but conditioning, residual lag information, node leverage and connected
+components need not vary monotonically with those removals. Authentic evidence
+about previously unresolved near-duplicate coordinates or size-dependent
+schedules could also resolve a presently unevaluable branch. None guarantees
+adequate support. The current conditional panel is a failed support basis,
+not a proof that every legitimate fully specified panel is impossible.
+Outcome-driven pruning, relaxed tolerances and convenient component selection
+remain forbidden.
+
+**Scientist-adopted disposition, October 6:** close the current three-held-out-participant
+claim under the registered outcome **support_or_uncertainty_prevents_an_answer**.
+This is a support disposition, not a neural result. Reopen only for concrete
+authentic metadata or a prospectively adopted scientific redesign that changes
+the support basis. Before any neural scores, apply the resulting fixed rule to
+the complete structural panel and re-establish the unchanged required counts,
+design conditions and participant exposure/role boundaries. Re-running the
+unchanged support calculation or collecting more arithmetic checks would not
+meet that reopening condition. The exact user acceptance is retained in the
+[adoption record](experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout).
+
+An optional **unadopted case-series draft** would use T11 to specify one fixed
+analysis and T9 as a single subsequent evaluation case, only after both are
+fully eligible and T9's exposure status permits that role. "T11 to T9" means
+method development and evaluation across people, not transferring electrode
+coefficients between people: every session decoder is fitted within its own
+participant. Retain chronological near/long comparisons, the same target trials,
+null/local/transported scores and the 32-label comparison. Report participant
+results and uncertainty without a three-person replication or population claim.
+This draft has no compute allowance: an exact analysis, costed single attempt
+and access decision must be adopted before any payload opening or fitting.
+
 [Current conceptual figure](ep16_question_imagegen-v2.png) · [Exact image-generation record](ep16_question_imagegen-v2-prompt.md).
 
 ## Paper question

@@ -1,6 +1,20 @@
 episode: EP05
 title: Does the LFP explain why one reach was different?
-status: planned; no real-data analysis has run under this revision
+contract_revision: original primary protocol plus separately adopted fixed-HW calibration
+execution_record: outputs/experiment_log.md
+
+saved_component_followup:
+  adopted_date: 2026-10-06
+  authority: scientist_requested_further_analysis_of_current_episodes
+  analysis_id: fixed_prediction_components
+  scope: compare_completed_HW_blend_and_calibrated_HW_decompositions
+  support: all_16_sessions_all_15_bins_both_animals
+  inputs: existing_fixed_prediction_decomposition_and_fixed_HW_calibration_JSON_CSV_only
+  new_source_reads_fits_selection_resampling: false
+  original_45_comparison_stop_and_practical_margins: unchanged
+  evidence: exposed_development_description_not_neural_mechanism_or_confirmation
+  resource: single_CPU_at_most_120_seconds_inside_substantive_EP14_parent
+  accounting: included_once_in_EP14_parent_not_charged_twice
 
 scientific_question:
   primary: >-
@@ -132,3 +146,34 @@ claim_limits:
   - no online BCI claim
   - no raw-voltage claim
   - no broad population claim without a new-animal test
+
+fixed_hw_correction_calibration:
+  authority: scientist explicitly requested continued investigation; coordinator adopted one bounded successor
+  protocol: outputs/paper_plan.md#fixed-hw-correction-calibration
+  source_role: saved exposed-development predictions only
+  scope: one separate calibration comparison; original 45-comparison stop remains unchanged
+  frozen_hw_lambda: 1
+  prediction: B + amplitude * (fixed_HW - B)
+  amplitude_grid: [0, 0.25, 0.5, 0.75, 1]
+  selection: original equal-session-within-animal then equal-animal primary increment on only the other fifteen sessions
+  exact_tie_rule: nearest amplitude to 1
+  application: one scalar for every trial direction bin and XY coordinate of the scored session
+  references: [original_HW_lambda1, original_W_HW_half_blend_lambda1]
+  identity: original exact within-direction whole-trial derangement mean with amplitude fixed
+  primary_margin: 0.01
+  identity_margin: 0.005
+  original_search_reopened: false
+  original_scientific_trial_count_increment: 0
+  successor_comparisons_maximum: 1
+  source_neural_reads: false
+  neural_refits: false
+  future_session_access: false
+  independent_penalty_amendment_adopted: false
+  resources:
+    concurrent_cpu_cores: 1
+    numerical_threads: 1
+    memory_gib: 2
+    internal_seconds_maximum: 180
+    external_seconds_maximum: 210
+  stopping: stop after the one complete comparison or a technical failure; no automatic extension or successor search
+  interpretation: exploratory correction calibration only; no confirmation physiological mechanism or automatic promotion

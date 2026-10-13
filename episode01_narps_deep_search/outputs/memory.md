@@ -133,3 +133,7 @@ scientific reasons for the earlier pivots.
 ## Promotion status
 
 - Not requested.
+
+## 2026-10-02 local scope review
+
+Retain the cognitive-estimand question. The paper's candidate contribution is the controlled specification-to-map connection and descriptive analyst association, not the mere conjunction of three same-participant layers. See [review (consolidated)](paper_plan.md).

@@ -6,6 +6,10 @@
 #SBATCH --time=01:00:00
 #SBATCH --output=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/development_run002/slurm-plan-successor-%j.out
 
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 
 : "${EP12_CYCLE:?EP12_CYCLE must be 1 or 2}"

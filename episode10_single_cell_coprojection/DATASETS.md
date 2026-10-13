@@ -1,264 +1,177 @@
-# Dataset contract — EP10
+# Dataset contract — EP10 within-target terminal implementation
 
-EP10 asks whether specific single-neuron target combinations recur across
-animals and soma positions, what measured alternatives explain them, and how
-complete axon trees implement them. Resource roles will be chosen during the
-run's first data pass; no biological analysis has started.
+The October 6 scientist-adopted [local closeout](outputs/experiment_log.md#2026-10-06--v3_search--scientist-adopted-local-closeout)
+ends the original M2 objective as incomplete under computational/numerical
+limits. Qualified M1 evidence, source semantics, historical charges and all
+development/final/unassigned boundaries are retained. No follow-up source or
+terminal-profile analysis is activated.
 
-The [paper plan](outputs/paper_plan.md) maps these data requirements to the
-claims, figures, failure interpretations, and external evidence needed for a
-manuscript. It does not assign a resource or expand access.
+The proposed biological study asks whether positively observed co-target
+context predicts terminal organization inside a shared target A after measured
+source-space and observation alternatives are included. See
+[GOAL.md](GOAL.md) and the [paper plan](outputs/paper_plan.md).
 
-## Candidate resources
+The proposed terminal endpoint has not been activated. Existing development
+execution remains the frozen Gao v3 positive-observation analysis in
+[SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). This revision changes neither
+provisioned payloads nor the development/final roles, and opens no anatomy or
+final outcomes.
 
-| Resource | Potential role | Current limits |
+## Public online resources — checked October 6, 2026
+
+| Public resource | Available information and use for EP10 |
+| --- | --- |
+| [Gao original Zenodo release](https://zenodo.org/records/16909126) | Open v1 record, published August 22, 2025, for 18,621 reconstructed cortical neurons mapped to Allen CCFv3. It lists `data_v3.zip` (13.6 GB) and MD5 `db2da0aa83e6967b40f6acbe3c991176`. This identifies the original registered-tree distribution used by the active Gao route. |
+| [Source publication: data and code availability](https://www.sciencedirect.com/science/article/abs/pii/S0896627325008001) | The publisher's indexed statement identifies the [Brain Science Data Center alternative](https://doi.org/10.12412/BSDC.1747279998.20001), the same Zenodo record and `mouse.digital-brain.cn/projectome/whole-cortex` visualization interface. These are public source locations, not independent replication datasets. |
+| [Original SEU multiscale archive](https://zenodo.org/records/13944322) | Separately lists native/CCF full trees, axonal and dendritic arbors, tracts and morphometry spreadsheets. This documents the historical qualification resource and available representation types; it does not replace the active Gao observation contract. |
+
+These public locations resolve source discovery and archive identity. They
+do not certify independent animal identities, establish that an unrecorded
+target is absent, or fix the current M2 numerical/resource limitation. No
+archive, viewer outcome or additional tree was opened in this documentation
+pass; existing development/final/unassigned roles remain unchanged.
+
+## Resource roles and actual limits
+
+| Resource | Role | Current limit |
 | --- | --- | --- |
-| **SEU full-morphology release** | Measurement development and, if biological-group support is adequate, grouped discovery or internal evaluation | Metadata, full CCFv3 morphologies, and derived arbor files were acquired into unopened mixed-role steward quarantine. Animal identity, source support, observation quality, outcome-derived metadata removal, and release overlap remain unresolved. |
-| **Gao cortical projectome, 18,621 SWCs** | Main within-source and across-position candidate if its metadata support independent biological groups and complete target observation | Not acquired locally. Animal mapping, source coverage, reconstruction completeness, prior exposure, and overlap with other releases must be established before assigning a role. A large cell count does not establish animal replication. |
-| **MouseLight** | Candidate external validation from a different acquisition and reconstruction workflow | Comparable source and target coverage, animal identity, sampling differences, reconstruction completeness, and duplicate lineage are unverified. It cannot be called external replication until those checks pass. |
-| **Projection-TAGs** | Targeted test of whether independently measured population composition explains a frozen co-projection relationship | Raw-data access and usable accession details remain pending. Target-panel overlap, MOp or SSp support, independent labels, animal replication, and the assay's detection model require separate verification. Tag non-detection is not equivalent to morphological target absence. |
+| Gao cortical projectome, 18,621 SWCs | Active v3 MOp recorded-positive development resource; candidate for a separately frozen terminal follow-up | The exact 200-cell development manifest across 12 conservative fMOST/sample groups was acquired. V3 retains 194 cells, including group 221588 support 7, and excludes six soma_not_MOp cells. Animal identity is uncertified; final/unassigned trees remain sealed. |
+| SEU full-morphology release | Historical qualification; possible morphology measurement reference only after role-safe authorization | Metadata/full-CCFv3 trees/derived arbors are in unopened mixed-role quarantine. MOp has 17 conservative groups and failed the required 12/8 split. No role change or additional payload access follows from this rewrite. |
+| MouseLight | Possible independent workflow/source test if truly comparable | Source, target, sampling, terminal completeness, animal independence, and cell/group overlap remain unverified. It is not assigned external replication. |
+| Projection-TAGs | Possible targeted independent-label or context comparison with its own assay model | Access and usable source/target overlap remain unresolved; tag non-detection is not morphology absence, and the assay does not supply continuous terminal trees. |
 
-[Yuan et al.'s 2024 axonal BARseq study](https://www.nature.com/articles/s41467-024-52756-x)
-is a prior-work and measurement benchmark, not an assigned EP10 validation
-resource. It mapped more than 8,000 auditory-cortex neurons in one male mouse
-and already related co-target status to laminar distribution in a shared
-cortical target. Its barcode rolonies sample projection distribution but do not
-provide a continuous full tree or synaptic partners.
+The active Gao source is **MOp**, not a new provisional choice. Existing roles
+are 12 development, 8 final, and 56 unassigned conservative units under the
+frozen 500-um/0.20 soma common-support rule. All 15 EP11-overlap units remain
+EP10-unassigned. The development role has 209 primary cells; only the frozen
+200-cell common-support manifest was acquired. Unsupported, final, unassigned,
+Axon_only, and EP11-shared trees are not new inputs.
 
-Allen CCFv3 remains the intended common anatomical frame. Its orientation,
-voxel axes, label hierarchy, laterality, and compatibility with each resource
-must be verified before regions are harmonized.
+Do not pool MOp/MOs/SSp to manufacture group support. A boundary-source or
+multi-resource extension requires its own comparability and role decision.
 
-## Source-population strategy
+## Source-paper evidence is a competitor, not independent validation
 
-MOp is the priority feasibility candidate because it can connect the analysis
-to existing whole-morphology and multi-target studies. This is not a frozen
-source choice. MOp is eligible only if an outcome-blind metadata review
-establishes enough independent animals, overlapping soma positions,
-independent labels where needed, and reliable target observation.
+[Gao et al. (Neuron, 2026; online 2025)](https://pubmed.ncbi.nlm.nih.gov/41253150/)
+already analyze subtypes and terminal arborization in this projectome.
+[Liu et al. (2024)](https://www.nature.com/articles/s41467-024-54745-6)
+already analyze multiscale morphology in the SEU resource.
+The same cells or biological groups in another paper/repository do not provide
+an independent sample.
 
-MOs and SSp are later candidates for testing applicability boundaries. They
-must not be pooled with MOp merely to increase cell or animal counts. Any
-multi-source analysis requires a stated pooled estimand, adequate support in
-each source, and an explicit treatment of source heterogeneity.
+[Falasconi et al. (2026)](https://pubmed.ncbi.nlm.nih.gov/42777707/)
+supply an explicit motor-source spatial baseline, not automatic replication.
+Any proposed module covariate must come from a fixed, usable source-space map
+and cannot be derived from the test neuron's axon. Until its exact source
+mapping and sample overlap are established, a flexible continuous soma/layer
+reference is required and the claim cannot say it rules out every published
+module explanation.
 
-Choose the primary source using biological rationale, metadata, independence,
-coverage, and measurement quality. Do not scan target-pair effects, model
-scores, or visually striking morphologies to choose it.
+[Yuan et al.'s axonal BARseq study (2024)](https://www.nature.com/articles/s41467-024-52756-x)
+is a co-target/laminar-organization benchmark, not an assigned EP10 validation
+resource. Its barcode locations can inform a comparable profile question but
+do not provide a continuous reconstructed branching tree or synaptic partners.
 
-## First data pass
+## Frozen active v3 observation model
 
-Before assigning analytical roles, produce a source-by-group support table
-with one row for every observed or expected combination:
+The completed real-data producer has already qualified this observation
+representation for M1: its [independent postflight](outputs/stage0/v3_m1_real_fit_single_thread_v3_job_46332190/independent_postflight.json)
+passes 91 checkpoints and 949 fits on the same 194 cells/12 conservative
+groups. The [paired result](outputs/stage0/v3_m1_compare_m0_v1_job_46424502/v3_m1_minus_m0_comparison.json)
+is a secondary exploratory M1-minus-M0 gain of 0.0026378637 bits/cell.
+This is usable recorded-positive evidence, not a pending data acquisition or
+a claim of biological absence. M2, its required full-search calibration and
+the separate terminal-profile follow-up remain incomplete or unactivated as
+specified in the [current handoff](outputs/README.md#current-execution--october-3-2026).
 
-| Source | Verified animal/specimen | Soma-position stratum | Independent label | Cells available | Observation status | Proposed role | Exclusion reason |
-| --- | --- | --- | --- | ---: | --- | --- | --- |
-| pending | pending | pending | pending | pending | pending | pending | dataset build not completed |
+The frozen panel T has 16 non-overlapping coordinates. For each of the exact
+194 eligible development cells, P_i contains mapped positive terminal
+observations, K_i_obs = |P_i|, and Omega_i is every size-K_i_obs subset of T.
+Unmapped content is omitted; **no mapped positive recorded means unknown,
+not negative or biological absence**.
 
-The first pass should establish:
+All 194 cells remain in the scoring denominator. Retain and report any
+degenerate K_i_obs with zero conditional score gain, plus pair-informative
+support by group, without outcome-dependent filtering. Mapping-quality
+covariates or strata remain target-blind and are identical across fitting,
+evaluation, nulls, and falsification. Do not introduce inverse-probability
+weights without justified observation probabilities.
 
-- cell-to-metadata and morphology joins;
-- the most conservative defensible animal, brain, or specimen identity;
-- coverage of prespecified soma-position strata within animals;
-- provenance and availability of layer, driver-line, molecular, or other
-  labels that are independent of the axonal outcomes;
-- acquisition batch, reconstruction quality, and usable-cell counts; and
-- whether source, position, label, animal, and batch are too confounded to
-  distinguish the proposed explanations.
+The v1/v2 complete-set endpoints failed their frozen gates. They are historical
+or separately redesigned possibilities, not active models of verified absence.
+Axon-derived Projection class cannot define independent labels, source,
+predictors, split, candidate targets, imputation, or validation labels.
+The recorded-positive M0/M1/M2 design, thresholds, budgets, and requirement
+for 99 nulls remain exactly as frozen; this wording does not claim those nulls
+have run. Final/unassigned access still requires a separate
+prospective evaluation contract.
 
-Before roles are assigned, do not inspect exact A+B/A+C counts. Whether A, B,
-and C are prespecified or selected by the target-set controller, assess exact
-eligibility only in development groups after the split. Keep final-group
-outcomes unopened until evaluation. At that point, tabulate B/C exclusivity,
-`K`, other targets, qualifying arborization in A, and common-position support.
-If final groups later contain too few qualifying events, the endpoint is
-inconclusive; do not redefine the combination or retroactively change
-eligibility.
+## Proposed positive-context terminal endpoint
 
-The biological replicate is the verified animal. If animal identity remains
-unresolved, use the most conservative verified specimen grouping and limit the
-claim to cross-group evidence. More neurons from one group do not replace
-biological replication.
+Eligibility requires recorded qualifying terminal arbor in A and a repeatable
+within-A profile. B-context means A and B recorded; C-context means A and C
+recorded. Both contexts may include the same A+B+C-positive neuron. Keep neuron
+identity and overlap covariance, report support and overlap by group, and never
+interpret the two contexts as exclusive biological classes.
 
-## Avoiding duplicated samples
+The context contrast is restricted to common soma/layer and observation-quality
+support. Its primary normalized profile q_iA allocates the qualifying recorded
+terminal-arbor length in A across frozen target-intrinsic bins. Total A arbor
+length is reported separately. A neuron-normalized, group-first profile and an
+amount-weighted pooled map answer different questions.
 
-Use stable identifiers and basic morphology/metadata matching to keep the same
-cell or biological group from crossing the development/final split. If EP09,
-EP10, or EP11 use the same cells, treat those results as correlated evidence,
-not independent replications. A different repository or paper does not by
-itself establish a new sample.
+A follow-up measurement/evaluation contract must freeze:
 
-## Assigning discovery and validation roles
+- source and A/B/C definitions, laterality, support domain, overlap handling,
+  and how recorded-positive counts/other positive co-targets enter adjustment;
+- target-intrinsic coordinate, binning, normalized-profile estimator, signed
+  anatomical summary, predicted direction, and meaningful margin;
+- flexible continuous soma/layer/geometry reference and eligible independent
+  labels, using identical evaluation cells and support for all comparisons;
+- pooled-map estimator and discrepancy readout, uncertainty and multiplicity;
+- profile completeness, registration, atlas-boundary, clipping, mapping-quality,
+  and reconstruction-quality sensitivities; and
+- entry route's role as alternative or possible mediator, and the matched
+  branch-level characterization.
 
-Assign roles from metadata, biological independence, source and position
-coverage, label availability, and measurement comparability. Never assign a
-resource or animal according to the size, direction, significance, or visual
-appeal of a candidate co-projection effect.
+Coordinate/profile reliability can be developed with context labels blinded;
+B/C profile separation cannot select the metric or direction. A/B/C selection
+cannot use terminal-profile effects, and all selection remains development-only.
+Do not open final anatomy for support screening, candidate selection, or
+aesthetic examples. Insufficient final support is inconclusive, not permission
+to redefine the context.
 
-The current contract requires at least 12 whole biological groups for
-development and at least 8 for locked final evaluation. Role assignment occurs
-before candidate association outcomes or outcome-derived support are
-inspected. Additional groups may be required by the coverage and precision
-analysis.
+## Group identity, overlap, and evaluation
 
-A held-out subset of one public release provides internal cross-animal
-evaluation. External replication requires an independent resource with a
-comparable frozen source, target definition, and estimand. Combined development
-must preserve a genuinely unused validation source; data used to choose the
-rule cannot later be relabeled as independent validation. With no defensible
-final role, use grouped cross-validation for exploratory work only.
+The biological replicate is the verified animal. Public Gao metadata currently
+support conservative specimen units, not certified independent animals.
+Use cross-group language until independence is established. Within-neuron
+overlap between B/C summaries is not additional replication.
 
-## Complete target-set observation
+Existing whole-group development/final roles are preserved. This planning
+document does not create a new split or authorize the currently closed final
+role. The new endpoint needs its own prospective evaluation contract and
+adequate group-level precision; the current 194-cell development support alone
+does not establish either.
 
-For every eligible neuron `i`, freeze:
+Cross-release or cross-paper evaluation requires documented independence,
+source and soma-position overlap, comparable target coordinates, terminal
+observation/normalization, sampling quality, and biological-group support.
+If measurement or lineage is incomparable, retain internal scope. Same-cell
+target identity, path, and terminal topography are complementary evidence.
 
-- `V_i`, the non-overlapping candidate targets that could have been scored;
-- `S_i`, the complete set of qualifying detected targets within `V_i`;
-- `K_i = |S_i|`, the detected target count supplied equally to all models; and
-- `Omega_i`, every size-`K_i` subset of `V_i` scored by each model.
+## Leakage and claim boundary
 
-The primary question is conditional on `K_i`; it does not explain why target
-count varies. Every model must score the same neurons and target sets with
-exact normalization.
+Predictive geometry uses independent or development-frozen source/atlas
+quantities available without the test neuron's realized axon. Paths, branch
+points, entry route, and within-A terminal profiles are outcomes, not target-
+presence predictors or reasons to revise the active panel/observation rule.
 
-Before testing the hypothesis, freeze the target resolution, non-overlapping
-vocabulary, laterality convention, atlas-boundary rule, and operational rule
-separating terminal arborization from a passing axon. Full reconstructions are
-the primary source for target calls. Provider-derived arbors may be used only
-after their agreement and failure modes have been checked against full trees.
-Putative boutons are not direct observations of synaptic connectivity.
+A shared axon root is universal, reconstruction endpoints are not synapses,
+and provider arbors are not automatically equivalent to full-tree terminal
+profiles. Adult morphology can resolve implementation, not developmental
+order, energetic cause, physiological function, synaptic connectivity, or
+a new cell type.
 
-For each cell-target pair, distinguish:
-
-1. a qualifying detected target;
-2. a verified non-detection under the frozen observation rule; and
-3. unknown because reconstruction or atlas assignment is incomplete or
-   unreliable.
-
-Unknown is never recoded as zero. If every candidate target cannot receive a
-defensible detection or non-detection status, stop the complete-set endpoint.
-A positive-only or missing-data analysis needs a different scientific question
-and observation model.
-
-Axon-derived `Projection class` cannot define the source, predictors, split,
-candidate targets, imputation, or validation labels. Any label used to test a
-population-mixture explanation needs provenance independent of the target
-outcomes.
-
-## Observation decisions
-
-Retain a reviewable table of accepted targets, passing fibers, boundary cases,
-unknowns, and exclusions. Include the full-tree evidence, agreement with
-provider arbors, clipping or coordinate failures, repeatability for ambiguous
-cases, and the coverage lost under each rule. Target granularity must balance
-biological meaning, observation reliability, recurring-pair support, and
-exact-normalization cost; it cannot change after final outcomes are seen.
-
-For any within-target endpoint, additionally verify registration and the
-target-intrinsic coordinate inside A, terminal-tree completeness and clipping,
-stable boundary assignment, and repeatability of normalized terminal profiles.
-Because both A membership and the profile in A come from the same
-reconstruction, check whether reconstruction quality changes inclusion or the
-apparent profile differently across A+B and A+C.
-
-## Cross-resource comparison
-
-Before transfer, document source and soma-position overlap; non-overlapping
-target and laterality mappings; reconstruction, sampling, and detection
-differences; biological-group support and lineage; permissible recalibration; and how
-assay-specific zero and unknown states alter the estimand. Comparability failure
-narrows or prevents an external claim and does not license post hoc remapping.
-Projection-TAGs can test mixture only for a prespecified overlapping relation
-with an explicit assay model; it does not enter the morphology likelihood.
-
-## Full-tree anatomical characterization
-
-For a small pair list frozen in development, quantify how full axon trees
-implement each supported combination. Freeze measures of:
-
-- the divergence point of the paths reaching the two targets;
-- normalized shared path length before divergence;
-- distinct collaterals and terminal branches; and
-- continuous terminal trees split into two targets by an atlas boundary.
-
-### Shared-target terminal organization
-
-For an eligible candidate, compare neurons with qualifying arborization in a
-shared target A under frozen A+B and A+C definitions. Before final evaluation,
-freeze whether B and C are mutually exclusive, the treatment of other targets
-and `K`, the coordinate within A, one primary terminal-profile metric, the
-predicted contrast, common-support rule, and multiplicity procedure.
-
-The primary profile should describe normalized qualifying terminal-arbor length
-within A. Report total qualifying arbor length in A separately so that a change
-in distribution is not confused with a change in amount. Prespecified
-supporting summaries may include terminal-branch or reconstruction-endpoint
-density, centroid, spread, and focality. Reconstruction endpoints are quality
-indicators and anatomical summaries, not observed synapses.
-
-Display the pooled A profile beside the A+B and A+C profiles and freeze one
-summary of the heterogeneity hidden by pooling; do not infer information loss
-from visual separation alone.
-
-Use the existing whole-group development and final allocation; do not create a
-neuron-random split or new roles for this endpoint. Compare biological-group-
-level effects on common support—the animal when verified, otherwise the most
-conservative specimen—under a frozen adjustment or matching rule for soma
-position, source layer or independent labels, `K` and other targets, total
-morphology, target observability, registration, clipping, and reconstruction
-quality. Treat entry route into A as a prespecified alternative or mediator,
-not an automatic matching variable.
-
-Use reference pairs matched on target distance, soma position, source label,
-prevalence, `K` and other co-targets, total axon extent, registration and
-clipping, and observation quality. Report representative trees with
-group-level distributions rather than only favorable examples. A shared root
-or common ancestor branch is universal, not a finding.
-
-### Leakage boundary
-
-Predictive geometry must come from an independent atlas, external reference, or
-development-frozen rule and be computable for every candidate set without the
-test neuron's realized targets.
-
-Actual routes, branch points, shared paths, collaterals, and terminal trees are
-outcome characterization only. They cannot be predictive geometry, selection
-or eligibility inputs, imputation variables, or reasons to revise vocabulary.
-
-With B/C context labels blinded, development profiles inside A may establish
-technical repeatability and choose the most reliable option from a prespecified
-set of coordinates or profile summaries. They cannot select A, B, or C, define
-B/C exclusivity, or choose a predicted direction. The A+B versus A+C contrast
-cannot choose the coordinate or metric, revise target rules, enter M0, M1, or
-M2, or serve as an independent label. Target identity and terminal anatomy from
-the same reconstruction are complementary outcomes, not independent
-replications.
-
-Adult morphology describes implementation, not developmental order, energetic
-cost, functional coordination, or a causal wiring mechanism.
-
-The morphology resources can resolve arbor topography and branching. They do
-not identify postsynaptic or input partners, synapse number or strength, or the
-cell-type-specific synaptic connectivity sought by EP12.
-
-## What the first run decides
-
-EP10 may start directly from an explicit scientist task. Its first stage asks
-whether one source supports the 12/8 group split, a repeatable
-complete-target rule, overlapping target and position strata, any labels used
-for a mixture analysis, feasible exact normalization, and a defensible anatomy
-analysis. External resources are not needed for that stage; if a genuinely
-comparable independent resource is available, its frozen transfer test is
-required for a Route A claim.
-
-Outcome modeling begins only after those scientific choices are made without
-looking at candidate effects.
-
-Insufficient development A+B/A+C support makes the shared-target endpoint
-ineligible and forbids that claim. Insufficient final support makes an activated
-endpoint inconclusive. Neither outcome changes the preserved target-set primary
-endpoint or justifies pooling incomparable groups.
-
-If these conditions fail, change the data strategy, narrow the claim, or stop.
-Do not pool incomparable areas, assays, specimens, or releases to create
-apparent support.
+This rewrite used only allowed human-readable design and execution records.
+No source payload, held-out profile, or final/unassigned tree was inspected.

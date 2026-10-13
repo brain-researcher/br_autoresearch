@@ -1,0 +1,186 @@
+schema_version: episode10_v3_m0_solver_addendum_v7
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_v7_lambda_1e5_equivalence_probe_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+base_contract:
+  exact_stage0_relative_path: outputs/stage0/v3_m0_model_contract.yaml
+  required_schema_version: episode10_v3_m0_model_v1
+  required_status: frozen_before_real_M0_execution
+  relationship: >-
+    The unchanged v1 contract remains authoritative for the objective, exact
+    fixed-K normalization, ridge grid, development-only scope, resampling,
+    scoring, and interpretation.
+
+predecessor_solver_addendum:
+  exact_stage0_relative_path: outputs/stage0/v3_m0_solver_addendum_v6.yaml
+  required_schema_version: episode10_v3_m0_solver_addendum_v6
+  required_status: frozen_before_v6_weak_grid_probe_and_execution
+  relationship: >-
+    V7 reuses the unchanged V6 exact-Hessian implementation and changes only
+    its routing boundary: lambda 1e-5 joins the three weaker grid values.
+
+reason:
+  failed_v6_full_probe_job: "45495354"
+  diagnostic_job: "45495722"
+  diagnostic_status: complete
+  sole_failing_lambda: 1.0e-5
+  objective_absolute_difference: 1.557132200957767e-11
+  objective_absolute_tolerance: 1.4024999999999995e-7
+  coefficient_max_absolute_difference_report_only: 4.203263770907739e-4
+  marginal_max_absolute_difference: 5.128095807899191e-5
+  marginal_max_absolute_tolerance: 1.0e-5
+  log_probability_max_absolute_difference: 1.1302239417432247e-4
+  log_probability_max_absolute_tolerance: 1.0e-4
+  other_eleven_lambdas_passed: true
+  classification: >-
+    The V6 warm-versus-zero comparison failed only at lambda 1e-5, where the
+    objective-equivalence gate passed but the unchanged marginal and
+    log-probability agreement gates failed. Lambda 1e-5 was the boundary value
+    still routed to V5 L-BFGS.
+
+scope:
+  role: development_only
+  final_or_unassigned_access: forbidden
+  sole_numerical_change: >-
+    Route exactly lambda 1e-5, 1e-6, 1e-7, and 1e-8 through the already tested
+    V6 exact-Hessian line-search Newton implementation. Forward the remaining
+    eight stronger ridge values directly and bitwise to immutable V5.
+  unchanged:
+    - exact 194-cell 12-group development scope
+    - exact targeted probe split of 153 cells and 10 groups
+    - recorded-positive observation semantics and frozen 16-coordinate panel
+    - 17-covariate by 15-target-contrast parameterization
+    - exact fixed-K likelihood and analytic gradient
+    - equal-group weights
+    - 12-value ridge grid and descending order
+    - immediately preceding converged-coefficient warm starts
+    - zero-start comparison definition and thresholds
+    - exact V6 Hessian and bounded Cholesky direction
+    - unchanged V4 exact strong-Wolfe line search
+    - unchanged V5 eligible-stall certificate
+    - 2000-iteration cap
+    - gradient infinity tolerance 1e-7
+    - relative objective-change tolerance 1e-10
+    - no fallback optimizer
+
+solver:
+  algorithm: deterministic_versioned_hybrid
+  parameter_dimension: 255
+  maximum_iterations: 2000
+  routing:
+    immutable_V5_bitwise_forward:
+      - 1000.0
+      - 100.0
+      - 10.0
+      - 1.0
+      - 1.0e-1
+      - 1.0e-2
+      - 1.0e-3
+      - 1.0e-4
+    exact_Hessian_Newton:
+      - 1.0e-5
+      - 1.0e-6
+      - 1.0e-7
+      - 1.0e-8
+  exact_Hessian_implementation: unchanged_V6
+  line_search: unchanged_V4_exact_strong_Wolfe
+  eligible_stall_certificate: unchanged_V5
+  convergence:
+    gradient_infinity_tolerance: 1.0e-7
+    relative_objective_tolerance: 1.0e-10
+    ordinary_rule: gradient_pass AND successive_relative_change_pass
+    certified_stall_rule: unchanged_V5_rule
+  fallback_optimizer: forbidden
+
+ridge_path:
+  ordered_lambdas:
+    - 1000.0
+    - 100.0
+    - 10.0
+    - 1.0
+    - 1.0e-1
+    - 1.0e-2
+    - 1.0e-3
+    - 1.0e-4
+    - 1.0e-5
+    - 1.0e-6
+    - 1.0e-7
+    - 1.0e-8
+  initialization:
+    first_lambda: all_zero_coefficients
+    later_lambdas: immediately_preceding_converged_coefficients
+  auxiliary_lambdas: forbidden
+
+path_seals:
+  wrapper: outputs/stage0/tools/fit_v3_m0_v7.py
+  predecessor_wrapper: outputs/stage0/tools/fit_v3_m0_v6.py
+  predecessor_addendum: outputs/stage0/v3_m0_solver_addendum_v6.yaml
+  base_engine: outputs/stage0/tools/fit_v3_m0.py
+  every_named_file_and_existing_path_component_must_be_unsymlinked: true
+  production_output_basename: v3_m0_fit_v7
+
+telemetry:
+  scalar_only: true
+  solver_branch_labels:
+    V5: strong_grid_immutable_V5
+    V7: v7_exact_Hessian_Newton
+  coefficients_prediction_vectors_scores_or_target_contrasts: forbidden
+
+narrow_lambda_1e5_equivalence_probe:
+  outer_held_group: "212074"
+  inner_held_group: "220187"
+  expected_training_cells: 153
+  expected_training_groups: 10
+  warm_path_start_lambda: 1000.0
+  warm_path_stop_lambda_inclusive: 1.0e-5
+  isolated_zero_start_lambda: 1.0e-5
+  comparison:
+    objective_absolute_tolerance: >-
+      max(1e-10, 1.1 * 255 * 1e-7^2 / (2 * 1e-5))
+    coefficient_max_absolute_difference: report_only
+    marginal_max_absolute_tolerance: 1.0e-5
+    log_probability_max_absolute_tolerance: 1.0e-4
+  require_both_fits_use_V7_exact_Hessian_Newton: true
+  require_both_fits_meet_unchanged_convergence_witness: true
+  require_all_accepted_steps_exact_strong_Wolfe: true
+  held_out_scoring: forbidden
+  coefficient_prediction_score_ID_or_target_contrast_emission: forbidden
+  final_or_unassigned_access: forbidden
+  output_location: unique_job_scoped_EP10_Scratch_child
+
+full_targeted_probe:
+  runs_only_after_narrow_lambda_1e5_equivalence_probe_passes: true
+  outer_held_group: "212074"
+  inner_held_group: "220187"
+  expected_training_cells: 153
+  expected_training_groups: 10
+  deterministic_warm_path_repeats: 2
+  zero_start_comparison_at_every_lambda: true
+  warm_path_max_iterations_exclusive: 1000
+  repeat_checks:
+    objective_absolute_tolerance: 1.0e-12
+    coefficient_max_absolute_tolerance: 1.0e-10
+    prediction_max_absolute_tolerance: 1.0e-10
+  zero_start_checks:
+    objective_absolute_tolerance: >-
+      max(1e-10, 1.1 * parameter_dimension *
+      gradient_infinity_tolerance^2 / (2 * lambda))
+    marginal_max_absolute_tolerance: 1.0e-5
+    log_probability_max_absolute_tolerance: 1.0e-4
+  every_fit_requires_unchanged_convergence_witness: true
+  every_accepted_step_must_satisfy_exact_strong_Wolfe: true
+  held_out_scoring: forbidden
+  coefficient_prediction_score_ID_or_target_contrast_emission: forbidden
+  final_or_unassigned_access: forbidden
+  output_location: unique_job_scoped_EP10_Scratch_child
+
+self_test:
+  require_exact_four_lambda_Newton_routing: true
+  require_other_eight_lambdas_bitwise_V5: true
+  retain_V6_exact_Hessian_math_and_solve_checks: true
+  require_lambda_1e5_deterministic_Newton_recovery: true
+  require_lambda_1e5_warm_zero_synthetic_equivalence: true
+  require_no_objective_grid_warm_start_Wolfe_certificate_tolerance_or_cap_change: true

@@ -1,0 +1,70 @@
+{
+  "accounting_epoch": "wall_reset_20261001",
+  "recorded_at_utc": "2026-10-03T18:20:15Z",
+  "source_snapshot": "outputs/stage0/resource_accounting_20261002_m1_clean_refit_launch.json",
+  "source_authorization": "outputs/stage0/v3_wall_time_reset_authorization_20261001.json",
+  "no_new_wall_reset": true,
+  "historical_strict_wall_hours_preserved": 129.83266666666668,
+  "historical_allocated_core_hours_floor_preserved": 302.02566666666667,
+  "anchor_used_wall_hours": 24.874166666666667,
+  "anchor_lifetime_used_allocated_core_hours": 507.9662222222222,
+  "optional_job_46237243": {
+    "anchor_elapsed_seconds": 75261,
+    "allocated_cpus": 9,
+    "wall_limit_hours": 48,
+    "entire_remaining_hard_limit_reserved": true,
+    "remaining_reservation_from_anchor_wall_hours": 27.094166666666666,
+    "remaining_reservation_from_anchor_core_hours": 243.8475,
+    "latest_coordinator_state": "RUNNING_20261003_1117_PDT_about_43h57_of_48h",
+    "latest_elapsed_is_not_used_to_release_any_reservation": true
+  },
+  "diagnostic_job_46325527": {
+    "state": "TIMEOUT",
+    "terminal_elapsed_seconds": 14424,
+    "allocated_cpus": 2,
+    "anchor_elapsed_seconds_already_charged": 3630,
+    "incremental_charge_wall_hours": 2.998333333333333,
+    "incremental_charge_core_hours": 5.996666666666666
+  },
+  "clean_M1_job_46332190": {
+    "state": "COMPLETED_exit_0",
+    "terminal_elapsed_seconds": 7540,
+    "allocated_cpus": 3,
+    "actual_wall_hours": 2.0944444444444446,
+    "actual_core_hours": 6.283333333333333,
+    "old_12h_times_4CPU_reservation_replaced_not_double_counted": true
+  },
+  "attended_job_46424502_completed_short_chain_charge": {
+    "charged_wall_seconds": 600,
+    "allocated_cpus": 4,
+    "charge_core_hours": 0.6666666666666666,
+    "basis": "Coordinator allocated EP10 ten attended minutes at actual parent allocation CPUs for independent postflight, comparator tests, comparison, adequacy and preservation."
+  },
+  "before_selected_lower_bound_diagnostic": {
+    "used_plus_reserved_wall_hours": 57.227777777777774,
+    "used_plus_reserved_lifetime_core_hours": 764.7603888888889,
+    "unreserved_wall_hours": 86.77222222222223,
+    "unreserved_allocated_core_hours": 1035.2396111111111
+  },
+  "selected_lower_bound_diagnostic_reservation": {
+    "wall_seconds": 600,
+    "conservative_allocated_cpus": 4,
+    "memory_GiB": 8,
+    "numeric_threads": 1,
+    "prefix_deadline_seconds": 300,
+    "core_hours": 0.6666666666666666,
+    "unreserved_wall_hours_after_reservation": 86.60555555555555,
+    "unreserved_allocated_core_hours_after_reservation": 1034.5729444444444,
+    "completed": false,
+    "basis": "At most another ten minutes in task-owned attended allocation; full parent CPU count charged conservatively even if a two-CPU step is used."
+  },
+  "frozen_ceilings": {
+    "wall_hours_this_epoch": 144,
+    "allocated_core_hours_lifetime": 1800,
+    "parallel_cpus": 64,
+    "memory_GiB": 512,
+    "scratch_GiB": 1536,
+    "gpus": 0
+  },
+  "real_M2_and_full_search_nulls_launched": false
+}

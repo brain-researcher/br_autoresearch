@@ -24,6 +24,9 @@ class ModeSupportError(ValueError):
     """The fitted-mode diagnostic input is malformed or numerically invalid."""
 
 
+_SUPPORT_TOLERANCE = 1e-10
+
+
 def _finite_array(value: Array, *, ndim: int, name: str) -> Array:
     result = np.asarray(value, dtype=float)
     if result.ndim != ndim or not np.all(np.isfinite(result)):
@@ -37,16 +40,26 @@ def _gaussian_log_density(points: Array, mean: Array, covariance: Array) -> Arra
     covariance = _finite_array(covariance, ndim=2, name="covariance")
     if points.shape[1] != len(mean) or covariance.shape != (len(mean), len(mean)):
         raise ModeSupportError("Gaussian dimensions disagree")
-    sign, logdet = np.linalg.slogdet(covariance)
-    if sign <= 0:
-        raise ModeSupportError("component covariance must be positive definite")
+    covariance = (covariance + covariance.T) / 2.0
+    eigenvalues, eigenvectors = np.linalg.eigh(covariance)
+    scale = max(1.0, float(np.max(np.abs(eigenvalues))))
+    if float(np.min(eigenvalues)) < -_SUPPORT_TOLERANCE * scale:
+        raise ModeSupportError("component covariance must be positive semidefinite")
+    retained = eigenvalues > _SUPPORT_TOLERANCE * scale
+    if not np.any(retained):
+        raise ModeSupportError("component covariance has no retained support")
+    support = eigenvectors[:, retained]
+    support_eigenvalues = eigenvalues[retained]
     centered = points - mean
-    try:
-        solved = np.linalg.solve(covariance, centered.T).T
-    except np.linalg.LinAlgError as exc:
-        raise ModeSupportError("component covariance is singular") from exc
-    quadratic = np.sum(centered * solved, axis=1)
-    return -0.5 * (len(mean) * math.log(2.0 * math.pi) + logdet + quadratic)
+    coordinates = centered @ support
+    perpendicular = centered - coordinates @ support.T
+    tolerance = _SUPPORT_TOLERANCE * (1.0 + np.linalg.norm(centered, axis=1))
+    if np.any(np.linalg.norm(perpendicular, axis=1) > tolerance):
+        raise ModeSupportError("points fall outside a component affine support")
+    quadratic = np.sum(coordinates**2 / support_eigenvalues[None, :], axis=1)
+    logdet = float(np.sum(np.log(support_eigenvalues)))
+    rank = len(support_eigenvalues)
+    return -0.5 * (rank * math.log(2.0 * math.pi) + logdet + quadratic)
 
 
 def mixture_responsibilities(
@@ -96,11 +109,11 @@ def effective_component_memberships(responsibilities: Array) -> Array:
     return numerator / denominator
 
 
-def pairwise_symmetric_gaussian_kl(
+def _pairwise_symmetric_gaussian_kl_geometry(
     component_means: Array,
     component_covariances: Array,
-) -> Array:
-    """Return the full pairwise symmetric-KL matrix for Gaussian components."""
+) -> tuple[Array, dict[str, Any]]:
+    """Return KL plus explicit geometry for possibly singular Gaussians."""
 
     means = _finite_array(component_means, ndim=2, name="component_means")
     covariances = _finite_array(
@@ -109,32 +122,64 @@ def pairwise_symmetric_gaussian_kl(
     components, dimension = means.shape
     if covariances.shape != (components, dimension, dimension):
         raise ModeSupportError("component covariance dimensions disagree")
-    inverses: list[Array] = []
-    logdets: list[float] = []
+    support: Array | None = None
+    reduced_covariances: list[Array] = []
     for covariance in covariances:
-        sign, logdet = np.linalg.slogdet(covariance)
-        if sign <= 0:
-            raise ModeSupportError("component covariance must be positive definite")
-        try:
-            inverses.append(np.linalg.inv(covariance))
-        except np.linalg.LinAlgError as exc:
-            raise ModeSupportError("component covariance is singular") from exc
-        logdets.append(float(logdet))
+        covariance = (covariance + covariance.T) / 2.0
+        eigenvalues, eigenvectors = np.linalg.eigh(covariance)
+        scale = max(1.0, float(np.max(np.abs(eigenvalues))))
+        if float(np.min(eigenvalues)) < -_SUPPORT_TOLERANCE * scale:
+            raise ModeSupportError("component covariance must be positive semidefinite")
+        retained = eigenvalues > _SUPPORT_TOLERANCE * scale
+        current = eigenvectors[:, retained]
+        if current.shape[1] < 1:
+            raise ModeSupportError("component covariance has no retained support")
+        if support is None:
+            support = current
+        else:
+            left_projector = support @ support.T
+            right_projector = current @ current.T
+            if (
+                current.shape[1] != support.shape[1]
+                or not np.allclose(
+                    left_projector,
+                    right_projector,
+                    atol=_SUPPORT_TOLERANCE,
+                    rtol=0.0,
+                )
+            ):
+                raise ModeSupportError(
+                    "component covariances do not share one retained support"
+                )
+        reduced_covariances.append(support.T @ covariance @ support)
+    assert support is not None
+    inverses = [np.linalg.inv(value) for value in reduced_covariances]
+    logdets = [float(np.linalg.slogdet(value)[1]) for value in reduced_covariances]
+    rank = support.shape[1]
     result = np.zeros((components, components), dtype=float)
+    mutually_singular: list[list[int]] = []
     for left in range(components):
         for right in range(left + 1, components):
             difference = means[right] - means[left]
+            coordinates = support.T @ difference
+            perpendicular = difference - support @ coordinates
+            if np.linalg.norm(perpendicular) > _SUPPORT_TOLERANCE * (
+                1.0 + np.linalg.norm(difference)
+            ):
+                result[left, right] = result[right, left] = np.inf
+                mutually_singular.append([left, right])
+                continue
             left_to_right = 0.5 * (
-                np.trace(inverses[right] @ covariances[left])
-                + difference @ inverses[right] @ difference
-                - dimension
+                np.trace(inverses[right] @ reduced_covariances[left])
+                + coordinates @ inverses[right] @ coordinates
+                - rank
                 + logdets[right]
                 - logdets[left]
             )
             right_to_left = 0.5 * (
-                np.trace(inverses[left] @ covariances[right])
-                + difference @ inverses[left] @ difference
-                - dimension
+                np.trace(inverses[left] @ reduced_covariances[right])
+                + coordinates @ inverses[left] @ coordinates
+                - rank
                 + logdets[left]
                 - logdets[right]
             )
@@ -142,6 +187,23 @@ def pairwise_symmetric_gaussian_kl(
             if not math.isfinite(symmetric) or symmetric < -1e-10:
                 raise ModeSupportError("symmetric component KL is invalid")
             result[left, right] = result[right, left] = max(0.0, symmetric)
+    return result, {
+        "common_covariance_support_rank": int(rank),
+        "ambient_dimension": int(dimension),
+        "mutually_singular_component_pairs": mutually_singular,
+    }
+
+
+def pairwise_symmetric_gaussian_kl(
+    component_means: Array,
+    component_covariances: Array,
+) -> Array:
+    """Return symmetric KL, using infinity for mutually singular pairs."""
+
+    result, _ = _pairwise_symmetric_gaussian_kl_geometry(
+        component_means,
+        component_covariances,
+    )
     return result
 
 
@@ -199,16 +261,54 @@ def point_mode_diagnostics(
 
     if fitted_component_parameter_rank < 1:
         raise ModeSupportError("fitted component parameter rank must be positive")
-    responsibilities = mixture_responsibilities(
-        residuals,
-        model.prior_means,
-        model.prior_covariances,
-        model.prior_weights,
-    )
-    effective = effective_component_memberships(responsibilities)
-    pairwise = pairwise_symmetric_gaussian_kl(
+    pairwise, geometry = _pairwise_symmetric_gaussian_kl_geometry(
         model.prior_means, model.prior_covariances
     )
+    if not np.all(np.isfinite(pairwise)):
+        return {
+            "model_id": model.model_id,
+            "effective_component_memberships": None,
+            "fitted_component_parameter_rank": int(fitted_component_parameter_rank),
+            "all_effective_memberships_exceed_rank_pointwise": False,
+            "pairwise_symmetric_kl": [
+                [float(value) if math.isfinite(float(value)) else None for value in row]
+                for row in pairwise
+            ],
+            "component_partner_contrasts": component_partner_contrasts(model).tolist(),
+            "covariance_support_geometry": geometry,
+            "diagnostic_supported": False,
+            "unsupported_reason": "mutually_singular_component_affine_supports",
+            "point_estimate_only": True,
+            "separation_gate_passed": False,
+            "prevalence_gate_passed": False,
+            "partner_identifiability_gate_passed": False,
+            "required_uncertainty": "whole_type_paired_simultaneous_intervals",
+        }
+    try:
+        responsibilities = mixture_responsibilities(
+            residuals,
+            model.prior_means,
+            model.prior_covariances,
+            model.prior_weights,
+        )
+    except ModeSupportError as exc:
+        return {
+            "model_id": model.model_id,
+            "effective_component_memberships": None,
+            "fitted_component_parameter_rank": int(fitted_component_parameter_rank),
+            "all_effective_memberships_exceed_rank_pointwise": False,
+            "pairwise_symmetric_kl": pairwise.tolist(),
+            "component_partner_contrasts": component_partner_contrasts(model).tolist(),
+            "covariance_support_geometry": geometry,
+            "diagnostic_supported": False,
+            "unsupported_reason": str(exc),
+            "point_estimate_only": True,
+            "separation_gate_passed": False,
+            "prevalence_gate_passed": False,
+            "partner_identifiability_gate_passed": False,
+            "required_uncertainty": "whole_type_paired_simultaneous_intervals",
+        }
+    effective = effective_component_memberships(responsibilities)
     off_diagonal = pairwise[np.triu_indices(len(pairwise), k=1)]
     return {
         "model_id": model.model_id,
@@ -220,6 +320,8 @@ def point_mode_diagnostics(
         "pairwise_symmetric_kl": pairwise.tolist(),
         "minimum_pairwise_symmetric_kl": float(np.min(off_diagonal)),
         "component_partner_contrasts": component_partner_contrasts(model).tolist(),
+        "covariance_support_geometry": geometry,
+        "diagnostic_supported": True,
         "point_estimate_only": True,
         "separation_gate_passed": False,
         "prevalence_gate_passed": False,

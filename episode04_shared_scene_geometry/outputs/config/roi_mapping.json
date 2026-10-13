@@ -1,0 +1,21 @@
+{
+  "adopted_utc": "2026-10-03T21:52:06Z",
+  "authority": "Coordinator selected provider direct same-index mapping after the completed no-threshold active-sform diagnostic; before any mask/beta values",
+  "scope": "The fixed acquired T1w exports for sub-01, sub-03, sub-05, sub-06 and sub-07; 150 beta files and the 45 qualified ROI/component headers",
+  "mode": "provider_native_same_array_index",
+  "array_shape": [143, 143, 143],
+  "index_order": "Decode original NIfTI spatial axes without reorientation. Raw NIfTI storage is X-fastest: reshape a volume in Fortran order to X,Y,Z, then use the same C-order flattened index for beta and ROI arrays, matching the provider loader",
+  "resampling": "none",
+  "interpolation": "none",
+  "active_sform_evidence": "outputs/runs/source_readiness/20261003-roi_grid_offsets01/roi_grid_offsets.json",
+  "maximum_absolute_coordinate_displacement_beta_voxels": 0.000028875447071641247,
+  "maximum_Euclidean_displacement_beta_voxels": 0.000028884325467587986,
+  "diagnostic_threshold_applied": false,
+  "sform_rule": "Use coded sform for the diagnostic; inactive qform differences do not establish mismatch",
+  "provider_index_semantics": "https://github.com/ViCCo-Group/LAION-fMRI/blob/cf82765ced029de81c3bec7254b8cbd6a65e3686/laion_fmri/io.py",
+  "primary_masks": ["laion-ventral", "laion-lateral", "laion-dorsal"],
+  "retinotopic_EVC_components": ["V1d", "V1v", "V2d", "V2v", "V3d", "V3v"],
+  "laion_EVC_substituted": false,
+  "mask_or_neural_values_opened": false,
+  "finite_values_ROI_coverage_and_training_only_reliability_qualified": false
+}

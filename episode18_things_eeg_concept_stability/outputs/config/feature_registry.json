@@ -1,0 +1,184 @@
+{
+  "record_id": "ep18_feature_recipe_20261003",
+  "state": "prospective_choices_selected_before_EEG; extraction_and_runtime_not_yet_qualified",
+  "local_path_base": "episode18_things_eeg_concept_stability/outputs",
+  "policy": "../SEARCH_POLICY.yaml",
+  "scope": "Complete selected feature families and numerical recipes. This is not the emitted frozen_feature_record, an access seal, or evidence of feature extraction.",
+  "EEG_accessed": false,
+  "pixels_or_checkpoints_accessed_for_this_record": false,
+  "audit_seal": false,
+  "core_image_panel": ["low_level_851", "supervised_resnet50_v1", "dino_resnet50", "clip_vit_b32_image", "blip_caption_clip_text"],
+  "expanded_image_panel": ["low_level_851", "supervised_resnet50_v1", "dino_resnet50", "clip_vit_b32_image", "blip_caption_clip_text", "dinov2_vit_b14"],
+  "label_panel": ["concept_name_clip_text", "human_properties_12", "human_categories_53"],
+  "runtime_recipe": {
+    "target_versions": {"python": "3.12.1", "torch": "2.4.1", "torchvision": "0.19.1", "transformers": "4.46.3", "Pillow": "10.2.0", "numpy": "1.26.3", "scipy": "1.12.0", "scikit-image": "0.24.0"},
+    "low_level_modules": "Discovered existing devel/math/viz modules: py-scikit-image/0.24.0_py312 depends on py-scipy/1.12.0_py312 and py-numpy/1.26.3_py312. Load plain py-pillow/10.2.0_py312 last to select that implementation ahead of scikit-image's Pillow-SIMD dependency; record actual imported versions/paths in compute.",
+    "status": "Selected versions, not an assertion that this complete environment exists or has been tested. Module/group-environment discovery precedes any installation.",
+    "remote_model_code": false,
+    "inference": "eval plus inference_mode; float32 model arithmetic and stored embeddings; no autocast, TF32, augmentation, dropout, fine-tuning or EEG-based feature selection",
+    "low_level_arithmetic": "float64 accumulation; final float32 vector",
+    "image_decode": "Pillow decoded raster converted to RGB; preserve pixel orientation as stored, no EXIF transpose or ICC color conversion; remove source metadata before delivery to image worker",
+    "determinism": "Use deterministic supported operations; a missing deterministic implementation is a technical issue to resolve before extraction, not permission to alter features after scores.",
+    "batch_size": "Outcome-blind resource-pilot choice only; record actual value and numerical consistency. It does not select a model or feature family."
+  },
+  "worker_boundaries": {
+    "trusted_builder": "Uses the frozen event/archive join to supply decoded RGB pixels and opaque nonsemantic IDs. Owns the ID-to-source crosswalk outside image workers.",
+    "image_worker_inputs": ["RGB pixel array", "opaque_image_id"],
+    "image_worker_forbidden": ["original filename", "folder", "concept ID", "concept name", "event label", "source crosswalk", "EEG"],
+    "caption_worker": "Same image-only interface. It sees no concept prompt, folder or provider name. Generated text is a pixel-derived output.",
+    "label_worker": "Separate source-metadata process joins uniqueID to provider Word/WordContext and human columns; it does not supply text to image or caption workers.",
+    "deployment": "Implement the declared input/read boundary before extraction; changing names only in final output is insufficient. The failed EEG-runtime sentinel is not a verified boundary for any actual worker."
+  },
+  "features": {
+    "low_level_851": {
+      "required_family": "low_level_color_frequency_texture_and_geometry",
+      "implementation": "Episode-local deterministic descriptor in code/feature_extractors.py; selected formula implemented, actual source-image feature extraction remains pending",
+      "dimension": 851,
+      "training_lineage": "No fitted or pretrained image model",
+      "license": "Episode-authored numerical composition using NumPy/SciPy and scikit-image; scikit-image BSD-3-Clause source license. Image research terms remain separate.",
+      "preprocessing": "RGB whole raster resized to 256x256 with Pillow bilinear; channel values divided by 255. No crop. Original width/height retained for aspect ratio. Gray = 0.2126 R + 0.7152 G + 0.0722 B on these encoded values, without sRGB linearization.",
+      "components_in_order": [
+        {"name": "spatial_RGB_moments", "dimension": 96, "rule": "Split 256x256 into 4x4 nonoverlapping 64x64 cells, row-major. For each cell and R,G,B, append mean then population SD (ddof=0)."},
+        {"name": "RGB_histogram", "dimension": 48, "rule": "R,G,B order; 16 equal bins over [0,1], left-inclusive/right-exclusive except final endpoint included; divide counts by 65536."},
+        {"name": "oriented_frequency_power", "dimension": 64, "rule": "Subtract gray image mean, fft2(norm='forward'); frequencies from fftfreq(256). Radial edges [0,1/128,1/64,1/32,1/16,1/8,1/4,1/2,sqrt(1/2)], angle atan2(fy,fx) modulo pi with 8 equal bins. Radial-major then angular order; mean log1p(abs(F)^2) in each bin, include last radial upper edge. DC is excluded; a geometrically empty bin is exactly zero."},
+        {"name": "Gabor_texture", "dimension": 64, "rule": "Frequencies [1/32,1/16,1/8,1/4] cycles/pixel; theta=k*pi/8 for k=0..7. On integer grid -ceil(3*sigma)..ceil(3*sigma), sigma=0.56/f, K=exp(-(x*x+y*y)/(2*sigma*sigma))*exp(2*pi*i*f*(x*cos(theta)+y*sin(theta))); subtract K's complex mean then divide by sqrt(sum(abs(K)^2)). Convolve gray image with K with scipy.ndimage reflect boundary. Append spatial mean then population SD of complex-response magnitude, frequency-major/theta order."},
+        {"name": "HOG_geometry", "dimension": 576, "rule": "skimage.feature.hog(gray, orientations=9, pixels_per_cell=(32,32), cells_per_block=(1,1), block_norm='L2-Hys', visualize=False, transform_sqrt=False, feature_vector=True, channel_axis=None)."},
+        {"name": "global_geometry_and_contrast", "dimension": 3, "rule": "Original width/height ratio, gray mean, gray population SD; that order."}
+      ],
+      "sources": ["https://scikit-image.org/docs/0.24.x/api/skimage.feature.html#skimage.feature.hog", "https://github.com/scikit-image/scikit-image/blob/v0.24.0/LICENSE.txt"]
+    },
+    "supervised_resnet50_v1": {
+      "required_family": "supervised_vision_features",
+      "model": "torchvision.models.resnet50; ResNet50_Weights.IMAGENET1K_V1, not DEFAULT/V2",
+      "checkpoint": "https://download.pytorch.org/models/resnet50-0676ba61.pth",
+      "training_lineage": "Supervised ImageNet-1K ResNet-50 V1 release",
+      "license": "Torchvision v0.19.1 code is BSD-3-Clause. Its official pretrained-model notice says weight terms may derive from training datasets; no separate weight-specific grant is asserted here. Retain and resolve the applicable source terms before candidate-discriminating scores.",
+      "preprocessing": "RGB PIL shortest-edge resize 256 bilinear, center crop224, divide by255, normalize mean [0.485,0.456,0.406] and SD [0.229,0.224,0.225]; pinned V1 preset",
+      "selected_layer": "Final avgpool flattened, before fc; no classifier logits",
+      "dimension": 2048,
+      "sources": ["https://docs.pytorch.org/vision/0.19/models/generated/torchvision.models.resnet50.html", "https://raw.githubusercontent.com/pytorch/vision/v0.19.1/LICENSE", "https://raw.githubusercontent.com/pytorch/vision/v0.19.1/README.md"]
+    },
+    "dino_resnet50": {
+      "required_family": "self_supervised_vision_features",
+      "model": "Official DINO ResNet-50 backbone loaded into torchvision v0.19.1 ResNet-50 with fc=Identity",
+      "checkpoint": "https://dl.fbaipublicfiles.com/dino/dino_resnet50_pretrain/dino_resnet50_pretrain.pth",
+      "training_lineage": "DINO self-distillation on ImageNet-1K, independently trained from the supervised ResNet checkpoint",
+      "license": "Official DINO source repository Apache-2.0; record the official checkpoint release and applicable training-data notices with the acquired asset rather than relabel ImageNet or THINGS as Apache-2.0.",
+      "preprocessing": "RGB PIL shortest-edge resize256 bicubic, center crop224, divide by255; ImageNet mean [0.485,0.456,0.406], SD [0.229,0.224,0.225], following DINO linear-evaluation transform",
+      "selected_layer": "Final avgpool flattened; projection head and classifier absent",
+      "dimension": 2048,
+      "sources": ["https://github.com/facebookresearch/dino", "https://raw.githubusercontent.com/facebookresearch/dino/main/hubconf.py", "https://raw.githubusercontent.com/facebookresearch/dino/main/eval_linear.py", "https://github.com/facebookresearch/dino/blob/main/LICENSE"]
+    },
+    "clip_vit_b32_image": {
+      "required_family": "vision_language_image_features",
+      "model": "openai/clip-vit-base-patch32",
+      "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "implementation": "transformers.CLIPModel.get_image_features",
+      "training_lineage": "OpenAI CLIP contrastive image-text training on publicly available web image/text; exact overlap with THINGS images is unknown",
+      "license": "Official OpenAI CLIP repository MIT. The inspected HF card has no separate weight-specific license field; retain this distinction and source research-use model card, do not assert an independently verified checkpoint-license statement.",
+      "preprocessing": "RGB, shortest-edge resize224 bicubic, center crop224, rescale1/255; mean [0.48145466,0.4578275,0.40821073], SD [0.26862954,0.26130258,0.27577711]",
+      "selected_layer": "Projected pooled image embedding; L2-normalize each vector (explicit recipe choice)",
+      "dimension": 512,
+      "sources": ["https://huggingface.co/openai/clip-vit-base-patch32/commit/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268", "https://huggingface.co/openai/clip-vit-base-patch32/blob/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json", "https://github.com/openai/CLIP/blob/main/LICENSE", "https://raw.githubusercontent.com/openai/CLIP/main/model-card.md"]
+    },
+    "blip_caption_clip_text": {
+      "required_family": "automatically_generated_caption_features",
+      "model": "Salesforce/blip-image-captioning-base",
+      "revision": "82a37760796d32b1411fe092ab5d4e227313294b",
+      "implementation": "transformers.BlipForConditionalGeneration, image-only unconditional generation",
+      "training_lineage": "Salesforce BLIP multimodal pretraining and COCO image-captioning base release with ViT-base; exact THINGS pretraining overlap unknown",
+      "license": "Official checkpoint card BSD-3-Clause; subsequent CLIP text embedding uses the separately documented CLIP source terms",
+      "preprocessing": "RGB square bicubic resize384x384, no center crop, rescale1/255; CLIP mean and SD as in clip_vit_b32_image",
+      "generation": {"do_sample": false, "num_beams": 1, "num_return_sequences": 1, "max_new_tokens": 32, "min_new_tokens": 0, "repetition_penalty": 1.0, "no_repeat_ngram_size": 0},
+      "generation_rule": "No user/label prompt; use pinned model decoder start/EOS/PAD tokens. Decode with skip_special_tokens=True and clean_up_tokenization_spaces=False; strip surrounding whitespace only. Report length-cap and empty-caption counts; do not exclude or manually rewrite images/captions. Empty generated text is embedded as empty text.",
+      "selected_layer": "Generated caption passed to text_encoder below, projected EOS embedding L2-normalized",
+      "dimension": 512,
+      "sources": ["https://huggingface.co/Salesforce/blip-image-captioning-base/commit/82a37760796d32b1411fe092ab5d4e227313294b", "https://huggingface.co/Salesforce/blip-image-captioning-base/blob/82a37760796d32b1411fe092ab5d4e227313294b/README.md", "https://huggingface.co/Salesforce/blip-image-captioning-base/blob/82a37760796d32b1411fe092ab5d4e227313294b/preprocessor_config.json", "https://huggingface.co/docs/transformers/v4.46.3/en/model_doc/blip"]
+    },
+    "dinov2_vit_b14": {
+      "required_family": "one_additional_independently_trained_image_encoder",
+      "model": "facebook/dinov2-base, ViT-B/14 without register tokens",
+      "revision": "f9e44c814b77203eaa57a6bdbbd535f21ede1415",
+      "implementation": "transformers.Dinov2Model, final last_hidden_state",
+      "training_lineage": "DINOv2 ViT-B distilled from independently pretrained ViT-g on LVD-142M; distinct trained encoder/data lineage from core DINO ResNet-50. Do not describe ViT-B as independently trained from its own DINOv2 teacher.",
+      "license": "Apache-2.0, explicit official DINOv2 model card",
+      "preprocessing": "RGB shortest-edge resize256 bicubic, center crop224, rescale1/255, ImageNet mean [0.485,0.456,0.406], SD [0.229,0.224,0.225] from pinned processor",
+      "selected_layer": "Concatenate final LayerNorm CLS token768 and mean of all 256 final LayerNorm patch tokens768; no register tokens, no classifier, no earlier layers",
+      "dimension": 1536,
+      "all_core_families_retained": true,
+      "sources": ["https://huggingface.co/facebook/dinov2-base/commit/f9e44c814b77203eaa57a6bdbbd535f21ede1415", "https://huggingface.co/facebook/dinov2-base/blob/f9e44c814b77203eaa57a6bdbbd535f21ede1415/preprocessor_config.json", "https://raw.githubusercontent.com/facebookresearch/dinov2/main/MODEL_CARD.md"]
+    },
+    "concept_name_clip_text": {
+      "required_family": "concept_name_embeddings",
+      "source": "runs/feature_preparation/20261003-human_metadata01/concept_crosswalk.tsv, uniqueID join",
+      "name_rule": "Use nonblank provider_WordContext verbatim after surrounding whitespace strip; otherwise provider_Word with an explicit per-concept fallback flag. If both blank, stop source qualification without dropping or inventing a concept name.",
+      "template": "a photo of {name}.",
+      "selected_layer": "text_encoder projected EOS embedding, L2-normalized; numeric/opaque concept identifiers never enter text",
+      "dimension": 512,
+      "lineage_and_license": "Same pinned CLIP text model as generated captions; this shared latent representation is disclosed and is not an independent semantic measurement"
+    },
+    "human_properties_12": {
+      "required_family": "human_property_ratings",
+      "recipe": "config/human_metadata_recipe.json",
+      "source": "runs/feature_preparation/20261003-human_metadata01/human_features_untransformed.tsv",
+      "dimension": 12,
+      "selected_columns": ["property_manmade_mean", "property_precious_mean", "property_lives_mean", "property_heavy_mean", "property_natural_mean", "property_moves_mean", "property_grasp_mean", "property_hold_mean", "property_be-moved_mean", "property_pleasant_mean", "property_arousal_mean", "size_mean"],
+      "lineage": "Pinned THINGS human aggregate means, corrected current arousal and perceived-size rating; preserve source units, no deprecated arousing, trial counts, RTs or worker responses",
+      "missing_rule": "Observed zero missing values in all1854 concepts. No imputation. A later missing/nonfinite value is a source-integrity error; no silent zero-fill or concept removal."
+    },
+    "human_categories_53": {
+      "required_family": "human_category_features",
+      "source": "runs/feature_preparation/20261003-human_metadata01/human_features_untransformed.tsv",
+      "dimension": 53,
+      "column_order": "All category53:: columns in the durable crosswalk table's existing source order",
+      "lineage": "Pinned provider category53_wide-format.tsv, all membership indicators, multi-hot; no27-category taxonomy and no concept-identity one-hot",
+      "missing_rule": "Observed zero missing numeric values. Retain all406 all-zero membership rows; lack of a listed broad category is not missing data. No imputation, reassignment or dropping.",
+      "influence_scope": "Leave-one-broad-category diagnostics use the same53 provider memberships and disclose nonexhaustive and overlapping coverage. Concepts with no membership remain in the full analysis."
+    }
+  },
+  "text_encoder": {
+    "model": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "implementation": "transformers.CLIPTokenizer plus CLIPModel.get_text_features",
+    "tokenizer": "Pinned tokenizer files; model max_length77 including special tokens; truncation=True, truncation_side='right', padding='max_length', preserve terminal EOS. Report every truncated ID without exclusion.",
+    "selected_layer": "Projected pooled EOS text feature512; per-vector L2 normalization",
+    "nonfinite_or_zero_norm": "Technical failure; no silent replacement, exclusion or text regeneration"
+  },
+  "training_only_transforms": {
+    "fit_unit": "Image-family transforms fit once per unique image in the current participant's permitted training blocks; label-family transforms fit once per unique concept represented in those same training blocks. Inner folds fit anew on their eight training blocks; outer refits use ten. Held-out values never fit transforms.",
+    "scaling": "Per-family column mean and population SD (ddof=0) on training rows. Exactly zero-SD columns map to zero and are recorded; no held-out variance estimate.",
+    "PCA": "Centered scaled training matrix, deterministic full SVD in float64; no whitening. Orient each loading so its largest-magnitude entry (lowest-index tie) is positive. Apply training mean/SD/loadings unchanged to validation/held-out rows.",
+    "rank_grid": [32, 64, 128],
+    "effective_rank": "min(requested_rank, number_of_features, number_of_training_rows-1, numerical_training_rank); numerical rank counts singular values greater than max(matrix.shape)*float64_epsilon*largest_singular_value. Record requested and effective ranks. This algebraic cap retains all available human dimensions and all grid branches; no invented zero-padding or family removal.",
+    "post_PCA": "No whitening or extra family variance rescaling. Retain all registered core families, each reduced separately. Expanded panel appends its extra family.",
+    "label_model": "Both linear-label and its capacity-matched RBF slot use the same transformed continuous name/property/category vectors; no uniqueID or concept-number column enters either. Kernel bandwidth multipliers, df matching and penalty grids remain exactly the existing policy.",
+    "RBF_reference_bandwidth": "Median of strictly positive pairwise Euclidean distances among distinct training-concept rows of the concatenated transformed label families; compute separately inside each training fold and rank setting. For policy multiplier m, K(x,y)=exp(-||x-y||^2/(2*(m*median_distance)^2)). A missing positive distance is a model-identifiability failure, not permission to insert an arbitrary scale.",
+    "remaining_model_implementation": "Continuous-time fitting, penalty/df matching and numerical rank/conditioning qualification still require their model implementation. This feature recipe does not claim that implementation exists."
+  },
+  "visual_only_distance": {
+    "families": ["low_level_851", "supervised_resnet50_v1", "dino_resnet50"],
+    "excluded": ["clip_vit_b32_image", "blip_caption_clip_text", "concept_name_clip_text", "human_properties_12", "human_categories_53", "dinov2_vit_b14"],
+    "rationale": "Fix one low-level, supervised and self-supervised family for the explanatory distance. The expanded encoder enriches the terminal image model without changing this prespecified explanatory stratifier.",
+    "normalization": "Use raw selected feature dimensions, training-only column centering/population-SD scaling, then L2 normalization of each vector. No rank search or PCA in this distance panel; zero-SD columns map to zero as above. A zero-norm vector is an explicit technical problem, not an automatic near/distant assignment.",
+    "distance": "Per family, minimum cosine distance from each held-out image to its ten same-concept training exemplars. Average the three distances with equal family weights.",
+    "strata": "For each participant/outer fold, sort all3708 held-out main images by distance ascending then opaque_image_id for exact ties; first1236 near, next1236 middle, final1236 distant. Report boundary tie counts. No held-out EEG is used and image IDs only resolve equal-distance ties.",
+    "false_partition_matching": "This explanatory three-family panel does not narrow the policy's all-registered-image-family, every-fold false-partition acceptance requirements."
+  },
+  "reuse_and_terms": {
+    "exposure_record": "config/ep17_ep18_exposure_record.json",
+    "source_overlap": "runs/input_role_preparation/20261003-freeze_metadata01/source_overlap.json",
+    "checkpoint_reuse": "Official supervised ResNet50 V1 and DINO ResNet50 checkpoint identities were independently documented in the EP17 acquisition handoff. Reuse is possible only as source assets with episode-local loading/recipe records; no live EP17 feature cache, code output or EEG/fMRI-derived selection is an input.",
+    "SwAV": "Known official source candidate from prior acquisition, not selected in this panel and not an additional search branch.",
+    "THINGS_images": "Previously accepted original-archive academic research terms; do not infer CC0 from EEG license and do not redistribute source images with features.",
+    "THINGS_metadata": "Preserved things_metadata_osf_jum2f_20260922/payload/LICENSE declares Attribution CC BY for features/metadata without a version number in that notice; retain attribution and cited THINGS/THINGSplus papers. Separate notices cover images, source nouns/concreteness, COCA, synset vectors and CORnet matrices. The selected human aggregates/categories do not consume COCA, synset or CORnet features. Do not infer CC0 from the EEG license.",
+    "source_and_license_completion": "Before candidate-discriminating scores, the feature record must identify actual acquired revisions/weights, code, source terms and successful selected-layer loading. Official code licenses are not silently promoted to separate data/weight licenses. This existing policy requirement does not create a new human-approval gate."
+  },
+  "remaining_before_frozen_feature_record": [
+    "Qualify actual source-image inference through code/feature_extractors.py. The private routing/name preparation is complete in runs/feature_preparation/20261003-mapping01; its routing file is for the trusted builder only. Actual opaque-ID/pixel worker delivery remains to implement under a supported boundary.",
+    "Discover/qualify the selected runtime and official assets, retaining exact versions and source terms without using sibling output caches.",
+    "Preserve the prepared all1854 name prompts and apply token-truncation accounting during text inference; source-context preparation needed no fallback. Actual numeric human inputs are already complete.",
+    "Run the policy-required outcome-blind resource pilot before bulk extraction and retain all required families; no model substitution or family removal based on concept scores.",
+    "Record actual complete features, qualified source/license status and selected implementation, then emit frozen_feature_record; this prospective JSON alone is not that artifact.",
+    "An actual development/audit boundary is separately required before EEG-driven candidate comparisons; current audit_seal remains false."
+  ]
+}

@@ -7,6 +7,10 @@
 #SBATCH --no-requeue
 #SBATCH --output=/scratch/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/full-null-aggregate-%j.out
 
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 if [[ "$#" -ne 5 ]]; then
   echo "usage: sbatch $0 POLICY PROCEDURE_LOCK RUNTIME_BUNDLE WORK_ROOT DURABLE_ROOT" >&2
@@ -43,5 +47,5 @@ EP12_FULL_NULL_BUNDLE_SHA256=$(python3 -c 'import json,sys; print(json.load(open
 python3 -m ep12_executor.full_search_null \
   --runtime-provider "${EP12_FULL_NULL_RUNTIME_PROVIDER}" \
   --policy "${EP12_POLICY}" \
-  --output-dir "${EP12_FULL_NULL_DURABLE_ROOT}" \
-  --aggregate-only
+  --output-dir "${EP12_FULL_NULL_WORK_ROOT}" \
+  --publish-stage "${EP12_FULL_NULL_DURABLE_ROOT}"

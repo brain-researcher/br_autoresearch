@@ -1,0 +1,167 @@
+{
+  "schema_version": "ep21.outcome_blind_implementation_bindings.v1",
+  "recorded_on": "2026-09-30",
+  "authority": "scientist_delegated_outcome_blind_choices_within_existing_question_and_boundaries",
+  "record_role": "selected_prospective_bindings_not_runtime_conformance_or_protocol_lock",
+  "execution_authority_added": false,
+  "budget_unchanged": true,
+  "neural_values_read": false,
+  "protocol_lock_emitted": false,
+  "fastl2lir": {
+    "version": "0.9",
+    "package_sha256": "2abd8f46c8faa69aaea4e56568c8c4048178c24cc1ea88ad7c33f661151a0412",
+    "receipt": "outputs/source_pipeline_binding/fastl2lir_0_9/source_receipt.json",
+    "normalization": "external_caller_training_axis_0_mean_sample_std_ddof_1",
+    "objective": "sum_squared_residuals_plus_alpha_times_sum_squared_all_coefficients_including_intercept",
+    "bias": "retained_ones_column_penalized_same_alpha_as_other_weights",
+    "W_axes": [
+      "input_voxel",
+      "output_feature_axes"
+    ],
+    "b_axes": [
+      "singleton",
+      "output_feature_axes"
+    ],
+    "multidimensional_Y_W_b_reshape_order": "F",
+    "fit_dtype": "float32",
+    "tagged_bdpy_prediction": "normalize_in_caller_then_cast_X_float32_then_FastL2LiR_default_predict_float64",
+    "voxel_ranking": "per_output_abs_training_Pearson_population_input_variance_below_1e_minus8_gets_correlation_zero",
+    "adopted_tie_adaptation": "ascending_stable_native_voxel_ID_lexsort_nativeIDs_minus_scores_after_finite_validation",
+    "upstream_tie_behavior": "default_numpy_argsort_then_reverse_no_native_ID_tiebreak",
+    "adopted_shortage_adaptation": "fewer_than_500_eligible_voxels_affected_decoder_not_evaluable",
+    "upstream_shortage_behavior": "use_all_features_when_n_feat_exceeds_input_count",
+    "source_lines": {
+      "fit_cast_and_Fortran": [
+        62,
+        70,
+        109,
+        112
+      ],
+      "bias_and_penalty": [
+        151,
+        154,
+        163,
+        182
+      ],
+      "ranking": [
+        158,
+        175,
+        214,
+        249
+      ],
+      "predict": [
+        116,
+        146
+      ]
+    }
+  },
+  "bdpy": {
+    "version": "0.25",
+    "package_sha256": "dc027f301abce102fc63b47d55cd5b5db2be389c5dbcd3d8750bf73ea2835a48",
+    "github_tag_commit": "3fefe2db3807362c424115c7e45e00ab7161e533",
+    "receipt": "outputs/source_pipeline_binding/bdpy_0_25/source_receipt.json",
+    "selection_rationale": "Pinned_tagged_reconstruction_environment_reference_prospectively_bound_for_EP21_main_calls",
+    "historical_main_environment_version": "unknown_unpinned_not_reconstructed",
+    "training_parameters": "explicit_fit_dtype_float32_forwarded_unchanged",
+    "prediction_parameters": "preserve_tagged_empty_model_parameters_and_FastL2LiR_default_float64",
+    "storage": "logical_W_sparse_b_dense_float32_numbered_channel_chunks_preserve_tensor_axes",
+    "guarded_overrides_of_defaults": [
+      "reject_required_nonfinite_normalized_training_inputs_before_package_Inf_to_zero",
+      "disable_evaluation_NaN_column_removal",
+      "reject_nonfinite_candidate_similarity_rows_as_unavailable_no_distractor_denominator_shrink",
+      "require_identical_complete_W_b_chunk_IDs_before_prediction"
+    ],
+    "profile_metric": "Pearson_across_images_per_C_flattened_feature_unit_restore_tensor_axes",
+    "pattern_metric": "Pearson_across_feature_units_per_image_after_both_predicted_and_true_apply_fixed_decoder_training_mean_std",
+    "identification_metric": "1_minus_correlation_distance_strict_true_greater_than_false_exact_finite_ties_incorrect",
+    "source_lines": {
+      "training": [
+        311,
+        382
+      ],
+      "prediction": [
+        519,
+        531,
+        541,
+        545,
+        604
+      ],
+      "storage": [
+        450,
+        457,
+        486,
+        498,
+        560,
+        616
+      ],
+      "profile": [
+        9,
+        34
+      ],
+      "pattern": [
+        37,
+        73
+      ],
+      "identification": [
+        115,
+        157
+      ]
+    }
+  },
+  "vgg19_true_features": {
+    "selected_backend": "BdPy_0_25_PyTorch_VGG19_public_pinned_tag_reconstruction_asset",
+    "checkpoint_member": "VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+    "checkpoint_sha256": "db5a4dbdbbfa55046d57a39663fa4a16d669ef6548051a2968b8df1c4fa057e8",
+    "checkpoint_existing_evidence": "outputs/source_qualification/attempt-017/qualification_report.json",
+    "checkpoint_figshare_file_id": 38225868,
+    "mean_member": "VGG_ILSVRC_19_layers/ilsvrc_2012_mean.npy",
+    "mean_sha256": "97eefba7e046ee097121ad18564329636d2f9c153b748c7313653cae8594a149",
+    "mean_rule": "tagged_reconstruction_per_channel_mean_over_spatial_axes_no_rounding",
+    "image_rule": "RGB_direct_BICUBIC_resize_224x224_no_crop_float32_BGR_CHW_raw_0_to_255_then_subtract_fixed_channel_mean",
+    "model_mode": "eval",
+    "feature_timing": "pre_ReLU_non_inplace_convolution_linear_hooks",
+    "conv_module_indices": [
+      0,
+      2,
+      5,
+      7,
+      10,
+      12,
+      14,
+      16,
+      19,
+      21,
+      23,
+      25,
+      28,
+      30,
+      32,
+      34
+    ],
+    "fc_module_indices": [
+      0,
+      3,
+      6
+    ],
+    "feature_axes": "sample_first_NCHW_convolutions_sample_first_vector_FC",
+    "feature_unit_order": "retain_axes_C_flatten_for_metrics_FastL2LiR_F_reshape_for_fitting_and_restoration",
+    "storage_namespace_aliases": [
+      "caffe/VGG19",
+      "caffe/VGG_ILSVRC_19_layers"
+    ],
+    "alias_note": "historical_storage_labels_only_not_checkpoint_or_backend_identity",
+    "adaptation": "prospectively_pinned_PyTorch_true_feature_extraction_historical_Caffe_extractor_absent",
+    "historical_Caffe_feature_parity": "unverified_no_exact_equivalence_claim",
+    "strict_checkpoint_load": "pending_separately_authorized_compute_and_runtime"
+  },
+  "scientific_critique": {
+    "question": "Can prospective source-bound VGG19 extraction support an adapted replication without claiming missing historical Caffe parity?",
+    "evidence": "authenticated_package_plaintext_existing_qualified_public_asset_inventory_and_official_provider_model_instructions",
+    "BR_review_criteria_reused": "outputs/steward_provisioning/br_fixed_beta_review_directive_2026-09-30.json",
+    "independent_native_review": "beta_design_critique_source_binding_return",
+    "impact": "supports_source_consistent_adapted_binding_strengthens_deviation_disclosure_no_new_equivalence_or_measured_effect_claim",
+    "hosted_independent_BR_verdict_available": false,
+    "canonical_Society": false
+  },
+  "remaining": "real_regular_neural_structural_handoff_exact_compute_runtime_required_implementation_conformance_and_protocol_lock_then_separate_empirical_authority"
+}

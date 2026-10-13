@@ -1,0 +1,105 @@
+episode_id: ep10
+artifact_role: frozen_provider_native_SWC_interpretation_revision
+status: frozen_after_v1_structural_QC_before_v2_projection_construction
+base_contract: projection_observation_contract.yaml
+
+revision_boundary:
+  reason: >-
+    V1 incorrectly treated provider custom node types 10, 11, and 12 as
+    terminal-only markers; 141 of 200 frozen development files stopped at the
+    first resulting transition or nonleaf-marker parser error.
+  evidence_used:
+    - v1_structural_failure_categories_and_first_failure_transitions
+    - aggregate_topology_and_raw_type_counts_from_the_same_200_development_SWCs
+    - public_INCF_SWC_specification
+    - public_provider_pyswcloader_source_code
+  candidate_target_prevalence_or_effect_used_to_choose_revision: false
+  candidate_model_search_started: false
+  v1_outputs_remain_failed_and_are_not_relabelled: true
+  development_manifest_rows: 200
+  development_groups_assigned: 12
+  manifest_or_group_replacement: forbidden
+  final_or_unassigned_morphology_access: forbidden
+
+SWC_interpretation:
+  mode: provider_native_topology_v2
+  raw_types_are_rewritten: false
+  topology_source: node_id_and_parent_id_only
+  allowed_raw_types: [0, 1, 2, 3, 4, 10, 11, 12]
+  provider_custom_types: [10, 11, 12]
+  provider_custom_type_biological_meaning_assigned: false
+  provider_axon_edge_rule: >-
+    include edge (parent, child) exactly when neither endpoint raw type is 3 or 4
+  provider_terminal_rule: >-
+    a topology leaf whose raw type is neither 3 nor 4
+  custom_type_code_does_not_by_itself_terminate_or_split_traversal: true
+  type_1_parent_to_non_dendrite_child_edge_is_included: true
+  retain_v1_tree_integrity_checks: true
+  retain_v1_registration_and_complete_observation_checks: true
+  provider_fidelity_caveat: >-
+    the literal rule includes custom-to-custom edges even inside a custom
+    component bounded by dendrite, while excluding its type-3/type-4 boundary
+    edges; boundary relabelling is not introduced because it would be a new
+    inferred rule
+  primary_sources:
+    INCF_custom_type_definition: >-
+      https://github.com/INCF/swc-specification/blob/main/docs/source/swc.rst
+    provider_edge_rule: >-
+      https://github.com/txgxxx/pyswcloader/blob/bc64d464976dd4fad88619b64d91acd5999526fd/pyswcloader/projection.py#L14-L27
+    provider_terminal_rule: >-
+      https://github.com/txgxxx/pyswcloader/blob/bc64d464976dd4fad88619b64d91acd5999526fd/pyswcloader/projection.py#L108-L119
+
+development_topology_profile:
+  slurm_job_id: 45440950
+  files: 200
+  groups: 12
+  observed_raw_types: [0, 1, 2, 3, 10, 11, 12]
+  raw_type_4_nodes: 0
+  custom_nodes: 1700
+  custom_internal_nodes: 850
+  custom_leaf_nodes: 850
+  custom_components_with_axon_only_boundary: 1623
+  custom_components_with_dendrite_only_boundary: 67
+  custom_components_with_mixed_or_ambiguous_boundary: 0
+  custom_touching_edges_with_positive_length: 2646
+  projection_outcomes_computed: false
+
+revised_structural_QC_attrition_gate:
+  design_scope: exploratory_11_usable_group_analysis
+  unchanged_fixed_manifest_rows: 200
+  revised_recoverable_capacity_ceiling: 146
+  minimum_overall_eligible_cells: 139
+  overall_rule: ceiling_of_0.95_times_revised_recoverable_capacity_ceiling
+  per_group_rule: ceiling_of_0.90_times_revised_group_capacity_ceiling
+  revised_capacity_ceiling_by_group:
+    "212074": 4
+    "220187": 26
+    "220188": 17
+    "220190": 8
+    "221091": 26
+    "221225": 38
+    "221418": 7
+    "221514": 4
+    "221539": 0
+    "221588": 9
+    "221751": 6
+    "233281": 1
+  minimum_eligible_cells_by_group:
+    "212074": 4
+    "220187": 24
+    "220188": 16
+    "220190": 8
+    "221091": 24
+    "221225": 35
+    "221418": 7
+    "221514": 4
+    "221539": 0
+    "221588": 9
+    "221751": 6
+    "233281": 1
+  positive_capacity_groups_required_to_pass: 11
+  assigned_zero_capacity_group: "221539"
+  all_positive_capacity_groups_must_pass: true
+  target_construction_authorized_only_after_gate_passes: true
+  no_further_relaxation_or_replacement: true
+  failure_action: stop_before_v2_target_construction_and_candidate_search

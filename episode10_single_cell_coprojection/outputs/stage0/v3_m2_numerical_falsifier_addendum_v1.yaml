@@ -1,0 +1,379 @@
+episode_id: ep10
+addendum_id: v3_m2_numerical_falsifier_v1
+recorded_date: "2026-09-28"
+status: frozen_prospectively_before_any_M2_outcome_access
+analysis_label: exploratory_development_only
+
+authority_and_scope:
+  parent_contract: outputs/stage0/v3_m2_search_contract.yaml
+  active_policy: SEARCH_POLICY.yaml
+  purpose: >-
+    Freeze the remaining numerical implementation and falsifier dispositions
+    required by the parent contract. This addendum does not change the
+    observation model, estimand, model families, trial counts, thresholds,
+    candidate selector, data roles, or permitted claim.
+  design_inputs: target-free contracts, synthetic fixtures, and audited M1 mechanics only
+  candidate_pair_effect_or_M2_score_used: false
+  final_unassigned_or_SWC_access: forbidden
+  M0_full_refit_or_telemetry_access: forbidden
+  extra_hash_schema_or_attestation_gate_added: false
+
+core_numerical_execution:
+  exact_likelihood: exhaustive_binary64_fixed_K_stable_logsumexp
+  smooth_gradient: exact_exhaustive_candidate_expectation_minus_observed_feature
+  optimizer: deterministic_monotone_FISTA_with_restart_and_backtracking
+  initial_beta: all_120_physical_edge_coefficients_zero
+  range_constraint: identical_to_parent_training_fold_projector
+  prox: deterministic_Dykstra_of_physical_penalty_and_range_indicator
+  Dykstra:
+    warm_start_between_outer_iterations: true
+    infinity_norm_iterate_tolerance: 1.0e-12
+    maximum_iterations: 10000
+    failure: invalid_fit_without_fallback
+  backtracking:
+    initial_L: 1.0
+    multiplier: 2.0
+    smooth_majorization_tolerance: 64_times_binary64_epsilon_times_max_1_or_absolute_objective
+    maximum_trials_per_outer_iteration: 80
+  outer:
+    maximum_iterations: 20000
+    KKT_or_proximal_gradient_infinity_tolerance: 1.0e-7
+    relative_objective_tolerance: 1.0e-10
+    convergence_requires_both: true
+  determinism:
+    fixed_cell_group_candidate_and_pair_order: true
+    BLAS_threads: 1
+    repeat_objective_tolerance: 1.0e-12
+    repeat_probability_maximum_absolute_tolerance: 1.0e-10
+    repeat_identified_pair_contrast_maximum_absolute_tolerance: 1.0e-10
+  fallback_relaxed_tolerance_or_post_result_solver_change: forbidden
+
+lambda_max:
+  common_rule: exact_zero_solution_constrained_KKT_condition_from_parent_contract
+  lasso: >-
+    Project the smooth gradient at beta=0 into the numerical range. The exact
+    lambda_max is the infimum lambda for which a physical l1 subgradient and a
+    range-normal vector sum to the negative smooth gradient.
+  elastic_net: >-
+    At beta=0 the l2 term vanishes; use the same constrained l1 rule divided by
+    alpha.
+  group_lasso: >-
+    Use the exact nonoverlapping 36-group subgradient balls with sqrt(group
+    size) weights and the same range-normal component.
+  solver: deterministic_monotone_bracketing_then_binary_bisection
+  initial_upper_bound: 1.0
+  expansion_factor: 2.0
+  maximum_expansions: 80
+  relative_bracket_tolerance: 1.0e-12
+  zero_gradient: exact_M1_model_for_every_rho_and_no_artificial_nonzero_floor
+  rho_1_required_KKT_residual: 1.0e-7
+
+optional_low_rank_execution:
+  model_formula_ranks_trigger_and_penalty: identical_to_parent_contract
+  physical_matrix:
+    factorization: W = U diag(d) U_transpose
+    U_shape: [16, r]
+    U_constraint: orthonormal_columns
+    d_shape: [r]
+    signs: signed_real_eigenvalues_allowed
+    score_uses: unordered_off_diagonal_entries_only
+    physical_beta: fold_range_projector_times_off_diagonal_vector_of_W
+  representation_only_canonicalization:
+    order: decreasing_absolute_d_then_decreasing_signed_d
+    column_sign: first_maximum_absolute_entry_is_positive
+    coefficient_claim: forbidden
+  deterministic_training_initialization:
+    gradient_matrix: >-
+      Map the fold-range projected physical beta gradient at the M1 null into a
+      symmetric 16-by-16 zero-diagonal matrix, splitting each edge value equally
+      across its two symmetric entries.
+    U: eigenvectors of largest absolute gradient-matrix eigenvalues
+    d: >-
+      The signed rank-r truncation of one negative gradient step with step
+      1/max(1, the core smooth Lipschitz upper bound).
+    eigen_order: decreasing_absolute_eigenvalue_then_decreasing_signed_eigenvalue
+    exact_repeated_eigenvalue_basis: >-
+      Project ordered coordinate unit vectors into the tied eigenspace and use
+      ordered Gram-Schmidt; discard exact zero residuals.
+    loading_sign: >-
+      Make the first maximum-absolute coordinate positive, breaking a maximum
+      tie by the lowest coordinate index.
+    random_or_outcome_selected_multistart: forbidden
+  optimizer:
+    algorithm: deterministic_Riemannian_gradient_with_Armijo_and_QR_retraction
+    U_gradient: tangent_projection_on_the_Stiefel_manifold
+    d_gradient: exact_Euclidean_gradient_in_declared_order
+    initial_step: 1.0
+    shrink_factor: 0.5
+    Armijo_c1: 1.0e-4
+    maximum_line_trials: 80
+    maximum_iterations: 20000
+    Riemannian_gradient_infinity_tolerance: 1.0e-6
+    relative_objective_tolerance: 1.0e-9
+    convergence_requires_both: true
+    global_optimum_certificate: not_claimed
+    failure: invalid_trial_without_alternate_start_or_family_change
+  rank_trials: [1, 2, 3, 4, 6, 8]
+  rho_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+  penalty_scale:
+    name: lambda_reference_not_lambda_max
+    definition: >-
+      Spectral norm of the fold-range-projected physical null-gradient matrix,
+      floored at 1.0e-12 solely to define deterministic units.
+    lambda: rho_times_lambda_reference
+    zero_solution_at_rho_1_required: false
+  mandatory_triggered_anchors:
+    - all_six_ranks_at_rho_0.1_in_rank_order
+    - rank_1_at_rho_1.0
+    - rank_8_at_rho_0.001
+
+optional_sparse_plus_low_rank_execution:
+  model_formula_trigger_edge_cap_and_penalties: identical_to_parent_contract
+  initialization:
+    low_rank_block: >-
+      The uniquely selected best valid low-rank anchor solution under the fixed
+      score and lattice tie rule. Reuse that same solution to initialize all
+      four hybrid rho_low/rho_sparse corners regardless of the corner's
+      rho_low; no missing boundary-rho low-rank prerequisite fit is implied.
+    sparse_block: exact_zero
+  optimizer: deterministic_block_proximal_Riemannian_descent
+  block_order: [low_rank, sparse]
+  low_rank_step: identical_Riemannian_Armijo_step
+  sparse_step: identical_core_Dykstra_range_constrained_prox
+  maximum_sweeps: 20000
+  joint_stationarity_infinity_tolerance: 1.0e-6
+  relative_objective_tolerance: 1.0e-9
+  convergence_requires_both: true
+  global_optimum_certificate: not_claimed
+  random_restart_or_post_result_edge_reselection: forbidden
+  failure: invalid_trial_without_alternate_initialization_or_model_change
+  activation_requires: both_parent_diffuse_low_rank_and_localized_sparse_conditions
+  rho_low_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+  rho_sparse_grid: [1.0, 0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+  anchor_rank: best_valid_low_rank_anchor_with_fixed_lattice_tie_break
+  mandatory_triggered_anchor_corners:
+    - [1.0, 1.0]
+    - [1.0, 0.001]
+    - [0.001, 1.0]
+    - [0.001, 0.001]
+
+target_free_qualification:
+  exact_enumeration:
+    K_values: every_integer_0_through_16
+    candidate_count: choose_16_K
+    active_pair_count_per_candidate: choose_K_2
+    pair_order: exact_parent_lexicographic_order
+  residualization:
+    Gram_and_cross_moments_match_independent_bruteforce_maximum_absolute_error: 1.0e-10
+    M1_span_orthogonality_maximum_absolute_error: 1.0e-10
+    projector_symmetry_and_idempotence_maximum_absolute_error: 1.0e-12
+    validation_outcome_or_weight_enters_training_transform: false
+    numerical_rank_stable_at_0.1x_1x_10x_tolerance: true
+    projector_threshold_after_stability: parent_base_1x_tolerance
+  exact_nesting:
+    beta_zero_log_probability_maximum_absolute_difference_from_M1: 1.0e-12
+    beta_zero_candidate_probability_maximum_absolute_difference_from_M1: 1.0e-12
+    K_0_or_16_M2_minus_M1_gain: exact_zero
+  derivatives:
+    every_physical_smooth_gradient_coordinate: central_difference
+    absolute_tolerance: 1.0e-6
+    relative_tolerance: 1.0e-5
+  proximal_and_KKT:
+    penalties: [lasso, elastic_net, group_lasso]
+    compare_against: independent_small_problem_convex_KKT_solution
+    physical_KKT_infinity_tolerance: 1.0e-7
+    rho_1_zero_solution_required: true
+    range_null_probability_invariance_maximum_absolute_error: 1.0e-10
+  deterministic_repeat:
+    penalties: [lasso, elastic_net, group_lasso]
+    warm_and_zero_initializations: required
+    tolerances: identical_to_core_numerical_execution
+  population_recovery:
+    RNG: numpy_Generator_PCG64
+    seed: 2026092810
+    groups: 8
+    rows_per_group: 17
+    K_schedule: each_group_contains_every_K_0_through_16_once
+    outcome: exact_population_cross_entropy_not_a_finite_sample_acceptance_target
+    planted_cases:
+      - six_sparse_physical_edges_for_lasso
+      - twelve_correlated_physical_edges_for_elastic_net_alpha_0_5
+      - two_complete_four_edge_bilateral_groups_for_group_lasso
+    mean_conditional_KL_maximum_bits: 1.0e-6
+    candidate_probability_maximum_absolute_error: 1.0e-5
+    pair_event_probability_MAE_maximum: 1.0e-5
+    raw_nonidentified_coefficient_recovery_required: false
+  optional_family_recovery:
+    timing: required_before_first_real_trial_of_an_activated_optional_family
+    low_rank: every_activated_rank_recovers_probability_KL_at_most_1.0e-5_bits
+    sparse_plus_low_rank: activated_rank_and_sparse_cap_recover_probability_KL_at_most_1.0e-5_bits
+    representation_recovery_or_global_optimum_claim: forbidden
+  controller_replay:
+    exact_core_16_coverage_inventory: true
+    M1_reference_counts_as_prespecified_anchor: true
+    triggered_coverage_lengths: [24, 28]
+    branch_minimum_totals: [40, 48, 52]
+    branch_minimum_counts: {reference: 8, association: total_minus_8, postcoverage_falsifiers: 10}
+    two_successor_cycles_and_two_decisions: true
+    earliest_patience_stop: branch_minimum_plus_14
+    postcoverage_falsifier_fraction_minimum: 0.40
+    maximum_invalid_retries: 12
+    maximum_valid_trials: 80
+    null_seed_count_and_empty_history: 99
+
+pre_M2_M1_adequacy:
+  prediction_source: all_194_outer_cross_fitted_M1_development_rows
+  exact_marginal_sum_K_every_cell: required
+  equal_group_realized_set_log_score_vs_fixed_K_uniform: strictly_better
+  equal_group_16_target_marginal_Brier_vs_K_over_16_uniform: strictly_lower
+  calibration_in_the_large:
+    sampling: equal_group_then_each_of_16_targets
+    M1_target_residual_RMS_maximum: 0.15
+    M1_target_residual_maximum_absolute_maximum: 0.30
+    M1_RMS_to_fixed_K_uniform_RMS_maximum_ratio: 0.80
+    M1_maximum_absolute_to_fixed_K_uniform_maximum_absolute_maximum_ratio: 0.80
+  report_all_12_groups_without_dropping: true
+  failure: stop_before_first_real_M2_outcome_access
+
+required_falsifier_methods:
+  synthetic_recovery:
+    disposition: pass_only_if_all_target_free_qualification_recovery_gates_pass
+  group_mapping_K_permutation:
+    strata: [conservative_group, segment_unmapped, K_i_obs]
+    operation: permute_complete_recorded_positive_sets_within_stratum
+    frozen_configurations:
+      - {family: lasso, rho: 0.1, base_trial: 28}
+      - {family: elastic_net, alpha: 0.5, rho: 0.1, base_trial: 39}
+      - {family: group_lasso, rho: 0.1, base_trial: 40}
+    triggered_branch_indexing: add_completed_coverage_length_minus_16_to_base_trial
+    interpretation: negative_control_not_incumbent_eligible
+  pair_identification_and_residualization:
+    pass_requires:
+      - beta_zero_exact_M1_nesting
+      - parent_uniform_projection_orthogonality
+      - stable_fold_range_and_projector
+      - invariance_to_range_null_coefficients
+      - no_validation_outcome_in_any_transform
+  independent_label_overlap_confounding_and_ablation:
+    eligible_label_available: false
+    disposition: population_mixture_remains_unresolved
+    pass_claim: forbidden
+    synthetic_or_projection_derived_label_substitution: forbidden
+  capacity_matched_noise_interactions:
+    trials: seven_parent_Rademacher_reference_trials
+    specificity_gate: >-
+      The real nonfalsifier incumbent must exceed the maximum noise-reference
+      gain by at least 0.002 bits per eligible cell. Otherwise residual
+      specificity is unresolved even if aggregate gain is positive.
+  leave_one_group_resource_and_batch_influence:
+    group_metrics:
+      - all_12_groupwise_M2_minus_M1_score_gains
+      - all_12_leave_one_group_equal_group_aggregate_gains
+      - selected_pair_probability_contrast_after_each_group_is_removed
+    no_single_group_dominance_gate: >-
+      max absolute group gain divided by the sum of the 12 absolute group gains
+      is at most 0.50; when the denominator is exactly zero the ratio is zero.
+    direction_stability_gate: >-
+      At least 9 of 12 leave-one-group selected-pair contrasts retain the
+      full-development selected direction; exact zeros do not count as stable.
+    independent_resource_or_batch_key_available: false
+    unavailable_resource_or_batch_disposition: unresolved_not_passed
+  source_position_common_support:
+    source_family: MOp_only
+    source_family_regression_guard_bits_per_cell: 0.01
+    aggregate_MOp_gate: selected_equal_group_M2_minus_M1_gain_at_least_minus_0.01
+    pooling_another_source: forbidden
+    position_strata: >-
+      Eight target-blind soma octants defined by the three full-development
+      medians of the frozen model-interface soma coordinates before M2 outcomes.
+    report: group_by_octant_support_and_M2_minus_M1_gain_without_cell_filtering
+    material_position_boundary: any_occupied_octant_gain_below_minus_0.01_bits_per_cell
+    response_to_boundary: report_scope_limit_never_select_or_drop_an_octant
+  frozen_target_boundary_sensitivity:
+    currently_materialized_variant: none
+    SWC_access_to_create_a_variant: forbidden
+    disposition: >-
+      Unresolved under the active seal. It is never silently passed, no target
+      vocabulary or recorded-positive call may be revised after M2 outcomes,
+      and an all-required-falsifiers-pass completion claim is unavailable unless
+      a target-blind derived variant already authorized by the observation
+      contract is prospectively materialized without reopening SWCs.
+
+full_null_execution:
+  replicates_and_seeds: identical_to_parent_99_PCG64_schedule
+  generator_sampling: exact_exhaustive_categorical_draw_from_fitted_full_M1
+  SeedSequence_entropy: replicate_seed
+  substream_key: [stage_code, fold_ordinal, trial_ordinal, purpose_code]
+  zero_means_not_applicable_ordinal: true
+  stage_code:
+    M0_refit: 1
+    M1_refit: 2
+    M2_fit: 3
+    optional_diagnostic: 4
+    candidate_selector: 5
+  purpose_code:
+    model_fit_or_initialization: 1
+    fitted_M1_categorical_sampling: 2
+    Rademacher_design: 3
+    whole_set_permutation: 4
+    deterministic_tie_auxiliary: 5
+  substream_method: numpy_SeedSequence_with_integer_spawn_key_no_string_hashing
+  each_replay_starts_empty: true
+  rerun_M0_and_M1: true
+  preserve_group_segment_K_covariates_geometry_and_panel: true
+  optional_triggers_and_activated_families_replayed: true
+  output_per_replicate: terminal_primary_and_pair_max_statistics_plus_controller_disposition
+  partial_or_failed_replicate: not_a_null_value_and_must_be_repaired_before_completion
+  target_free_controller_conformance:
+    branches: [untriggered_optional, low_rank_only, low_rank_and_hybrid]
+    requires:
+      - empty_history_and_M0_M1_refit_flags
+      - outcome_bound_optional_edge_and_rank_selection
+      - exact_dynamic_coverage_and_two_decisions
+      - ranked_one_step_successors_and_ordered_exhaustion_seeds
+      - falsifier_fraction_patience_and_trial_80_precedence
+      - exact_194_unique_cell_candidate_selector
+      - collision_free_integer_SeedSequence_substreams_for_every_stage_and_trial
+
+resource_starting_requests:
+  core_target_free_qualification:
+    cpus: 1
+    memory_GiB: 8
+    time_limit: "02:00:00"
+  optional_family_target_free_qualification:
+    cpus: 1
+    memory_GiB: 8
+    time_limit: "04:00:00"
+  observed_controller_initial_ceiling:
+    cpus: 1
+    memory_GiB: 8
+    time_limit: "24:00:00"
+  null_array_initial:
+    tasks: 99
+    maximum_concurrent_tasks: 32
+    cpus_per_task: 1
+    memory_GiB_per_task: 8
+    time_limit_per_task: "24:00:00"
+  benchmark_before_observed_or_null_scale_up: required
+  benchmark_must_project_below_all_parent_resource_ceilings: true
+  GPU: none
+
+access_and_completion_boundary:
+  target_free_core_code_and_qualification_may_run_now: true
+  first_real_M2_outcome_access_requires:
+    - parent_contract_and_this_addendum_pass_independent_conformance_audit
+    - pre_M2_M1_adequacy_gate_pass
+    - core_target_free_qualification_pass
+    - actual_K_only_rank_104_gate_pass_in_every_required_training_fold
+    - benchmark_projects_observed_and_99_null_work_below_all_resource_ceilings
+    - launcher_has_no_final_unassigned_SWC_or_forbidden_M0_route
+  unresolved_independent_label_or_boundary_falsifier_blocks: all_required_falsifiers_pass_completion_claim
+  selected_model_completion_requires:
+    - full_development_selected_configuration_refit_repeated_from_frozen_initializations
+    - repeat_objective_absolute_difference_at_most_1.0e-12
+    - repeat_candidate_probability_maximum_absolute_difference_at_most_1.0e-10
+    - repeat_identified_pair_contrast_maximum_absolute_difference_at_most_1.0e-10
+    - no_single_group_dominance_and_9_of_12_direction_stability
+    - aggregate_MOp_source_guard_pass
+  unresolved_items_do_not_authorize: model_reselection_data_pooling_or_protected_data_access
+  target_free_or_real_job_failure: diagnose_and_repair_before_any_resubmission

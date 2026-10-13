@@ -94,6 +94,16 @@ asset_families:
     shared_requirement: one cell identity biological group duplicate exposure and whole-brain split ledger
     rule: freeze shared evaluation roles before the first candidate-discriminating morphology outcome is opened
 
+  - asset_id: gao_whole_cortex_projectome_zenodo_16909126
+    episodes:
+      - ep10
+      - ep11
+    exposure: provider_metadata_and_canonical_soma_root_rows_open_projection_outcomes_unopened
+    confirmation_status: episodes_are_not_independent_for_15_shared_fMOST_sample_units
+    existing_assets: ep10_outcome_blind_76_unit_role_ledger_with_12_development_8_final_56_unassigned
+    shared_requirement: preserve_the_ep10_row_level_ledger_and_keep_all_15_EP11_overlap_units_EP10_unassigned
+    rule: never_assign_one_fMOST_sample_unit_to_development_in_one_episode_and_final_in_the_other_and_freeze_EP11_roles_before_any_EP11_candidate_discriminating_outcome_is_opened
+
   - asset_id: braingate_long_term_array_performance_dryad_x0k6djj1h_v6
     episodes:
       - ep16

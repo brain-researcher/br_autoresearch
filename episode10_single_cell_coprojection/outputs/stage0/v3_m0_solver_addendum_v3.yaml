@@ -1,0 +1,162 @@
+schema_version: episode10_v3_m0_solver_addendum_v3
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_v3_numerical_probe_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+base_contract:
+  exact_stage0_relative_path: outputs/stage0/v3_m0_model_contract.yaml
+  required_schema_version: episode10_v3_m0_model_v1
+  required_status: frozen_before_real_M0_execution
+  relationship: >-
+    The unchanged v1 contract remains authoritative for the scientific model,
+    data scope, design, exact likelihood, ridge grid, resampling, scoring, and
+    interpretation.
+
+predecessor_solver_addendum:
+  exact_stage0_relative_path: outputs/stage0/v3_m0_solver_addendum_v2.yaml
+  required_schema_version: episode10_v3_m0_solver_addendum_v2
+  required_status: frozen_before_v2_numerical_probe_and_execution
+  relationship: >-
+    V3 retains the v2 full-dimension L-BFGS history, iteration ceiling,
+    telemetry, ridge order, and convergence requirements. It changes only the
+    deterministic line search.
+
+reason:
+  failed_probe_job: "45483386"
+  failed_outer_held_group: "212074"
+  failed_inner_held_group: "220187"
+  failed_lambda: 1.0e-7
+  observed_iterations: 2000
+  observed_gradient_infinity_norm: 2.5942711770906154e-6
+  observed_relative_objective_change: 3.1951522633835556e-9
+  prior_lambda_1e_minus_6_iterations: 1161
+  accepted_step_maximum: 1.0
+  classification: shrink_only_line_search_lacks_weak_ridge_iteration_headroom
+
+scope:
+  role: development_only
+  final_or_unassigned_access: forbidden
+  sole_numerical_change: >-
+    replace Armijo shrink-only search with deterministic safeguarded expanding
+    strong-Wolfe bracketing and bisection zoom
+  unchanged:
+    - 194-cell 12-group development scope
+    - 16-coordinate recorded-positive panel and zero semantics
+    - 17-covariate by 15-target-contrast parameterization
+    - exact fixed-K likelihood and analytic gradient
+    - equal-group training weights
+    - ridge penalty definition and 12-value lambda grid
+    - descending strong-to-weak ridge path and preceding-lambda warm start
+    - L-BFGS history size 255
+    - per-fit maximum 2000 iterations
+    - gradient infinity tolerance 1.0e-7
+    - relative objective tolerance 1.0e-10
+    - convergence requires both tolerances
+    - no fallback optimizer
+
+solver:
+  algorithm: deterministic_L_BFGS
+  parameter_dimension: 255
+  history_size: 255
+  maximum_iterations: 2000
+  line_search:
+    algorithm: deterministic_safeguarded_expanding_strong_Wolfe
+    initial_step: 1.0
+    armijo_c1: 1.0e-4
+    curvature_c2: 0.9
+    expansion_factor: 2.0
+    maximum_step: 1048576.0
+    maximum_evaluations: 80
+    zoom:
+      interpolation: deterministic_bisection
+      bisection_fraction: 0.5
+      maximum_iterations: 60
+    acceptance_requires:
+      - phi_alpha <= phi_0 + c1 * alpha * directional_derivative_0
+      - abs(directional_derivative_alpha) <= c2 * abs(directional_derivative_0)
+  convergence:
+    gradient_infinity_tolerance: 1.0e-7
+    relative_objective_tolerance: 1.0e-10
+    requires_both: true
+  curvature:
+    floor_multiplier: 1.0e-14
+    skipped_pair_action: continue_without_pair
+  nonconvergence_or_line_search_failure: stop
+  fallback_optimizer: forbidden
+
+ridge_path:
+  ordered_lambdas:
+    - 1000.0
+    - 100.0
+    - 10.0
+    - 1.0
+    - 1.0e-1
+    - 1.0e-2
+    - 1.0e-3
+    - 1.0e-4
+    - 1.0e-5
+    - 1.0e-6
+    - 1.0e-7
+    - 1.0e-8
+  initialization:
+    first_lambda: all_zero_coefficients
+    later_lambdas: immediately_preceding_converged_coefficients
+  auxiliary_lambdas: forbidden
+
+path_seals:
+  wrapper: outputs/stage0/tools/fit_v3_m0_v3.py
+  base_engine: outputs/stage0/tools/fit_v3_m0.py
+  predecessor_wrapper: outputs/stage0/tools/fit_v3_m0_v2.py
+  base_contract: outputs/stage0/v3_m0_model_contract.yaml
+  predecessor_addendum: outputs/stage0/v3_m0_solver_addendum_v2.yaml
+  v3_addendum: outputs/stage0/v3_m0_solver_addendum_v3.yaml
+  every_named_file_and_existing_path_component_must_be_unsymlinked: true
+  production_output_basename: v3_m0_fit_v3
+
+telemetry:
+  scalar_only: true
+  per_fit:
+    - iterations
+    - both_convergence_criteria
+    - accepted_step_summary
+    - initial_inverse_hessian_scale_summary
+    - curvature_updates_and_skips
+    - coefficient_l2_norm
+    - line_search_evaluations_expansions_and_zoom_iterations
+    - strong_Wolfe_Armijo_slack_and_curvature_ratio_summaries
+  coefficients_prediction_vectors_or_target_contrasts: forbidden
+
+targeted_probe:
+  outer_held_group: "212074"
+  inner_held_group: "220187"
+  expected_training_cells: 153
+  expected_training_groups: 10
+  full_descending_path_required: true
+  deterministic_warm_path_repeats: 2
+  zero_start_comparison_at_every_lambda: true
+  warm_path_max_iterations_exclusive: 1000
+  repeat_checks:
+    objective_absolute_tolerance: 1.0e-12
+    coefficient_max_absolute_tolerance: 1.0e-10
+    prediction_max_absolute_tolerance: 1.0e-10
+  zero_start_checks:
+    objective_absolute_tolerance: >-
+      max(1e-10, 1.1 * parameter_dimension *
+      gradient_infinity_tolerance^2 / (2 * lambda))
+    marginal_max_absolute_tolerance: 1.0e-5
+    log_probability_max_absolute_tolerance: 1.0e-4
+  every_accepted_step_must_satisfy_both_Wolfe_conditions: true
+  held_out_scoring: forbidden
+  coefficient_prediction_or_target_contrast_vector_emission: forbidden
+  final_or_unassigned_access: forbidden
+  output_location: unique_job_scoped_EP10_Scratch_child
+
+self_test:
+  retain_v1_exact_DP_gradient_optimizer_recovery_and_fold_checks: true
+  retain_v2_255_parameter_ill_conditioned_stress: true
+  require_strong_Wolfe_conditions_for_every_accepted_step: true
+  require_expansion_above_step_one: true
+  require_deterministic_bisection_zoom: true
+

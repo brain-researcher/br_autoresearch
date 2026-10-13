@@ -14,3 +14,6 @@ The next steps are:
 
 No future-session source is currently available, so even a successful
 development analysis would remain exploratory.
+
+The 2026-09-30 imagegen figure and document links are complete. Data preparation
+and all scientific evaluations remain unstarted.

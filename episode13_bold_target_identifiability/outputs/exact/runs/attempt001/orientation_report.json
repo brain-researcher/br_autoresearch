@@ -1,0 +1,424 @@
+{
+  "utc": "2026-10-03T18:03:23.714204+00:00",
+  "hostname": "sh04-18n31.int",
+  "slurm_job_id": "46424502",
+  "python": "3.12.1",
+  "evidence_role": "exact implementation/orientation audit; universal proof is proof.md",
+  "analysis_id": "exact_orientation_suite",
+  "coverage": {
+    "valid_cases": 12,
+    "rejected_inputs": 7,
+    "wrong_kronecker_order_detected": true,
+    "wrong_residualizer_transpose_detected": true,
+    "nonunique_readout_replayed": true,
+    "zero_realized_target_not_confused_with_identifiability": true,
+    "all_required_exact_cases_passed": true
+  },
+  "cases": [
+    {
+      "id": "case_01",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ]
+      ],
+      "tau": "6",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 6,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "6",
+          "0",
+          "0",
+          "0"
+        ],
+        "u": [
+          "3",
+          "0"
+        ],
+        "v": [
+          "2",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_02",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1",
+          "2"
+        ]
+      ],
+      "tau": "3",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 2,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case_03",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "tau": "2",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 2,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case_04",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "4",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case_05",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_06",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_07",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_08",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1"
+        ]
+      ],
+      "tau": "0",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case_09",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "50"
+        ],
+        [
+          "68"
+        ]
+      ],
+      "tau": "372",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 2,
+      "latent_dimension": 6,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "2",
+          "4"
+        ],
+        "u": [
+          "2"
+        ],
+        "v": [
+          "1",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "case_10",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "73"
+        ],
+        [
+          "0"
+        ]
+      ],
+      "tau": "73",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 6,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "1",
+          "0"
+        ],
+        "u": [
+          "1"
+        ],
+        "v": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_11",
+      "valid": true,
+      "identifiable": true,
+      "Y": [
+        [
+          "2",
+          "6"
+        ],
+        [
+          "4",
+          "12"
+        ]
+      ],
+      "tau": "2",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "readout",
+        "w": [
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "u": [
+          "1",
+          "0"
+        ],
+        "v": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "case_12",
+      "valid": true,
+      "identifiable": false,
+      "Y": [
+        [
+          "1/2"
+        ]
+      ],
+      "tau": "-3/35",
+      "observation_identity": true,
+      "target_identity": true,
+      "certificate_valid": true,
+      "operator_rank": 1,
+      "latent_dimension": 4,
+      "equivalent_criteria_agree": true,
+      "certificate": {
+        "kind": "null_witness",
+        "delta_X": [
+          [
+            "35/16",
+            "0"
+          ],
+          [
+            "-35/8",
+            "0"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "case_13",
+      "valid": false,
+      "error": "incompatible vector shape"
+    },
+    {
+      "id": "case_14",
+      "valid": false,
+      "error": "expected exact integer or rational string"
+    },
+    {
+      "id": "case_15",
+      "valid": false,
+      "error": "matrix dimensions must be positive"
+    },
+    {
+      "id": "case_16",
+      "valid": false,
+      "error": "R must be T by T"
+    },
+    {
+      "id": "case_17",
+      "valid": false,
+      "error": "application R must be idempotent"
+    },
+    {
+      "id": "case_18",
+      "valid": false,
+      "error": "expected exact integer or rational string"
+    },
+    {
+      "id": "case_19",
+      "valid": false,
+      "error": "A differs from R S H"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "ep21.public_runtime_conformance.v3",
+  "astra_analysis_id": "pipeline_conformance",
+  "attempt": 7,
+  "job_id": "46424559",
+  "step_id": "0",
+  "outcome": "passed_public_VGG_strict_load_and_focused_decoder_analytic_fixture",
+  "scope": "public_assets_and_contract_required_synthetic_analytic_fixture_only",
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 4,
+    "minutes": 30,
+    "gpus": 0,
+    "durable_bytes": 10000000,
+    "scratch_bytes": 2000000000
+  },
+  "allocation_authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/regular_vgg19_retry_authorization_2026-10-02.json",
+  "VGG_parameter_count": 143667240,
+  "public_mean_shape": [
+    3,
+    256,
+    256
+  ],
+  "strict_load": true,
+  "pre_relu_non_inplace": true,
+  "decoder_penalized_bias_structured_prediction": true,
+  "runtime": {
+    "python": "3.12.1",
+    "numpy": "1.26.3",
+    "torch": "2.4.0a0"
+  },
+  "module_label_torch": "py-pytorch/2.4.1_py312",
+  "module_label_is_not_distribution_version": true,
+  "LAION_images_or_neural_values_read": false,
+  "OOD_access": false,
+  "empirical_fit_score_run": false,
+  "historical_Caffe_feature_parity": "unverified",
+  "GPU_runtime_verified": false,
+  "protocol_lock_emitted": false,
+  "complete_pipeline_conformance": false,
+  "unchanged_guard_reports_reused": [
+    5,
+    6
+  ]
+}

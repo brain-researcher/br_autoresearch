@@ -1,0 +1,81 @@
+{
+  "episode": "EP16",
+  "status": "prospective_partial_definition_not_scoring_authorization",
+  "authority": "existing_pre_score_analysis_choices_and_20261006_coordinator_assignment",
+  "definition": "outputs/schedule_definition.md#october-6-prospective-analysis-and-exposure-definition",
+  "geometry_and_support": "outputs/config/schedule_support.json",
+  "schedule_classification": {
+    "application_status": "specified_not_applied_no_support_rerun",
+    "controller_identity_universally_required": false,
+    "equal_block_target_sets": "sufficient_observed_layout_agreement_not_proof_of_within_trial_motion_absence",
+    "different_block_target_sets": "unresolved_sampling_vs_layout_until_independent_layout_evidence",
+    "known_multiple_or_unstable_layouts": "exclude_with_source_reason_not_to_restore_rank",
+    "packet_target_coverage": "every_schedule_target_occurs_in_each_whole_block_64_trial_side",
+    "coverage_failure": "retain_unresolved_session_no_extra_trials_or_block_pruning",
+    "equal_positive_transition_support": "sufficient_observed_transition_agreement",
+    "different_positive_transition_support": "unresolved_unless_matching_declared_permitted_transitions_resolve_sampling",
+    "known_conflicting_permitted_transitions": "exclude",
+    "size_independent": "requires_specific_source_evidence_not_radial_appearance",
+    "size_dependent_without_sizes": "exclude",
+    "unclassified_size_dependence": "unresolved",
+    "no_completed_cohort_qualification_claim": true
+  },
+  "feature_window": {
+    "bins": 30,
+    "bin_ms": 10,
+    "onset_offset_ms": 0,
+    "origin": "declared_trial_start_not_an_inferred_physiological_cue",
+    "aggregation": "arithmetic_mean_only_if_all_30_values_are_finite",
+    "incomplete_window": "unresolved_trial_no_shortening_or_padding",
+    "nonfinite_channel_window": "missing_channel_feature_not_trial_deletion"
+  },
+  "score": {
+    "loss": "sum_squared_error_over_two_coordinates",
+    "octants": 8,
+    "angle_origin": "positive_x",
+    "angle_direction": "counterclockwise",
+    "boundary_assignment": "half_open_[k*pi/4,(k+1)*pi/4)_modulo_2pi",
+    "weights": "1/(8*number_of_packet_labels_in_the_same_octant)",
+    "missing_octant": "unresolved_packet_no_renormalization_or_trial_replacement",
+    "zero_predictor_score_for_unit_labels": -1.0,
+    "label_unit_norm_numerical_tolerance": 1e-12,
+    "fold_aggregation": "equal_score_average_before_any_difference_or_ratio"
+  },
+  "channel_quality": {
+    "source_scaler": "available_source_fitting_trial_means_only",
+    "minimum_available_fitting_trials": 2,
+    "scale_ddof": 0,
+    "usable_scale": "finite_and_strictly_positive_no_epsilon_floor",
+    "inactive_source_channel": "retain_physical_axis_zero_coordinate",
+    "missing_target_channel": "zero_in_source_coordinates",
+    "amplitude_or_impedance_exclusion_cutoff": null,
+    "variance_direction_is_recording_quality_order": false,
+    "missing_impedance_or_yield_excludes_participant": false,
+    "finite_rate_and_availability_are_recorded_not_inferred_from_scores": true,
+    "direct_observable_no_better_order": "target_declared_available_set_subset_of_source_and_each_shared_channel_complete_window_rate_not_higher_in_both_folds",
+    "crossing_quality_directions": "incomparable_control",
+    "different_fold_orders": "fold_discordant_control",
+    "noise_attenuation_identified_by_this_order": false
+  },
+  "adopted_existing_anchors": {
+    "harmful_long_gap_margin": 0.10,
+    "robust_median_margin": 0.10,
+    "local_signal_fractional_reduction_upper_boundary": -0.15,
+    "gap_recovery_fraction_margin": 0.50,
+    "relative_recovery_gain_margin": 0.10,
+    "recording_change_normalized_error_margin": 0.10
+  },
+  "boundary_equality": "unresolved",
+  "unresolved_internal_choices": [
+    "raw_score_decline_and_positive_denominator_readiness_margins",
+    "recording_extra_loss_and_identity_random_separation_margins",
+    "attenuation_noise_compatible_alternatives_beyond_direct_availability_finite_rate_order",
+    "recovery_gap_class_population_and_ratio_aggregation",
+    "literal_past_only_history_under_reversed_outer_folds",
+    "adaptation_complexity_transformation_stability_and_remaining_joint_uncertainty"
+  ],
+  "roles_assigned": false,
+  "neural_reader_activated": false,
+  "neural_scoring_authorized": false,
+  "synthetic_campaign_selected": false
+}

@@ -1,0 +1,187 @@
+{
+  "record_id": "ep18_source_only_EP17_EP18_exposure",
+  "recorded_date_utc": "2026-10-03",
+  "updated_date_utc": "2026-10-04",
+  "episodes": ["ep17", "ep18"],
+  "scope": "EP18 record of shared official sources and documented handoff metadata; no live sibling outputs are inputs",
+  "metadata_freeze_authorized_under_existing_contract": true,
+  "current_session_eeg_or_image_values_opened": false,
+  "current_session_checkpoint_payloads_opened_by_EP18": false,
+  "first_access_history": [
+    {
+      "date_utc": "2026-09-22",
+      "event": "THINGS metadata and original image archive acquired under recorded project research terms",
+      "source_roots": ["$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/things_metadata_osf_jum2f_20260922", "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/things_images_osf_jum2f_snapshot_20260922"],
+      "evidence": "Existing source ACQUISITION_COMPLETE_UTC and ACCEPTANCE_RECEIPT.txt, read as acquisition metadata only",
+      "claim_limit": "Acquisition is not evidence of image decoding or feature extraction"
+    },
+    {
+      "date_utc": "2026-09-22",
+      "event": "Pinned CNeuroMod stimulus archive acquired under existing research terms",
+      "source_root": "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/cneuromod_images_fmri_pinned_f8f5162_20260922",
+      "evidence": "ACQUISITION_COMPLETE_UTC, ACCEPTANCE_RECEIPT.txt, VERSION_CHAIN.txt"
+    },
+    {
+      "observed_utc": "2026-09-22T18:59:48Z",
+      "event": "Source-only central-directory comparison of pinned CNeuroMod and original THINGS archives",
+      "evidence": "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/cneuromod_images_fmri_pinned_f8f5162_20260922/CENTRAL_DIRECTORY_RECONSTRUCTABILITY_RECEIPT.md",
+      "image_entries": 8640,
+      "mapped_identity_count": 8640,
+      "identical_uncompressed_size_and_crc_count": 0,
+      "image_values_opened": false,
+      "interpretation": "All 8640 experimental archive filename identities map, but all differ in size and/or CRC: they are not interchangeable image bytes. This receipt does not cover the additional test/catch rows in the source stimulus CSV."
+    },
+    {
+      "date_utc": "2026-10-03",
+      "event": "Current EP18 outcome-blind setup reads participant metadata, selected event fields, BrainVision text headers/markers and ZIP central-directory names; binary EEG is statted only",
+      "job_id": "46425841",
+      "evidence": ["outputs/runs/input_role_preparation/20261003-metadata01/structural_input_report.json", "outputs/runs/input_role_preparation/20261003-sample_origin01/sample_origin_report.json", "outputs/runs/input_role_preparation/20261003-clock01/clock_segment_report.json"],
+      "neural_behavioral_model_outcomes_opened": false,
+      "raw_response_RT_correctness_fields_decoded": false
+    },
+    {
+      "date_utc": "2026-10-03",
+      "event": "EP17 source-checkpoint acquisition/strict-load handoff received through the coordinating team; only official checkpoint identities are consumed by EP18",
+      "evidence": "Coordinated metadata handoff from EP17 worker; no EP17 cache, feature array, score or live output file was read",
+      "EP18_checkpoint_payload_access": false
+    },
+    {
+      "observed_utc": "2026-10-03T19:57:23.473720+00:00",
+      "event": "Exact source-inventory overlap computed and deterministic 30/16 roles plus complete normalized event join frozen",
+      "job_id": "46427768",
+      "evidence": "outputs/runs/input_role_preparation/20261003-freeze_metadata01/frozen_inputs_and_roles.json",
+      "overlap_evidence": "outputs/runs/input_role_preparation/20261003-freeze_metadata01/source_overlap.json",
+      "eeg_image_checkpoint_payload_values_opened": false,
+      "audit_seal_verified": false
+    },
+    {
+      "observed_utc": "2026-10-04T23:52:26.433238+00:00",
+      "finished_utc": "2026-10-04T23:52:30.642990+00:00",
+      "event": "Coordinator completed the exact EP17 qualified-universe comparison against frozen EP18 metadata, then supplied an immutable exposure-only report to EP18",
+      "job_id": "46531931",
+      "hostname": "sh02-02n43.int",
+      "evidence": "outputs/runs/cross_episode_exposure/ep17_handoff001/exposure_report.json",
+      "status": "completed",
+      "elapsed_seconds": 4.209763443097472,
+      "peak_rss_kib": 37684,
+      "scope": "Exact source-index identity bridge, frozen concept/image roles, checkpoint recipe metadata and documented access history only; no live sibling run input",
+      "neural_pixel_feature_checkpoint_payload_values_opened": false,
+      "audit_opened": false,
+      "audit_seal_verified": false,
+      "decision": "correlated_design_exposed_unchanged_designs"
+    }
+  ],
+  "history_limit": "This records the reviewed acquisition documents, episode design/setup records and current agent session. It is not a claim that all historical human or other-session access has been exhaustively audited. No earlier shared exposure ledger was found in the scoped episode documentation search.",
+  "source_identity": {
+    "EEG": "OpenNeuro ds003825 v1.2.0",
+    "original_THINGS_archive": "images_THINGS.zip",
+    "CNeuroMod_archive": "images_fmri.zip",
+    "CNeuroMod_stimuli_revision": "f8f5162f79fb2e9fb0d8cbb8bac610db11a54180",
+    "CNeuroMod_source_image_csv": "provider_git/image_paths_fmri.csv",
+    "identity_resolution": "Use provider one-based things_image_nr to select the preserved THINGS image-paths row, cross-check filename and experimental concept folder; flattened test paths use that same explicit index, while blank catch mappings remain unmapped/nonconcept. Never substitute archive bytes."
+  },
+  "exact_overlap": {
+    "source_inventory_with_EP18_presented_images": "Recorded in outputs/runs/input_role_preparation/20261003-freeze_metadata01/source_overlap.json",
+    "source_inventory_rows": 8840,
+    "source_experimental_images": 8640,
+    "source_experimental_concepts": 720,
+    "source_test_images": 100,
+    "source_catch_images_without_THINGS_mapping": 100,
+    "EP18_main_shared_image_identities": 8640,
+    "EP18_main_shared_concepts": 720,
+    "EP18_repeated_shared_image_identities": 100,
+    "EP18_repeated_shared_concepts_with_source_inventory": 200,
+    "repeated_overlap_interpretation": "100 repeated-image identities match CNeuroMod test rows. All 200 repeated concepts occur in CNeuroMod experimental concepts, but none of their repeated image identities is an experimental image.",
+    "EP17_qualified_analysis_universe_with_EP18": {
+      "status": "completed_metadata_comparison",
+      "evidence": "outputs/runs/cross_episode_exposure/ep17_handoff001/exposure_report.json",
+      "identity_rule": "Exact provider image_path selects its one-based things_image_nr; that THINGS image-paths row must agree in folder, filename, concept, category and inherited role/fold/block. No fuzzy-name matching or pixel comparison.",
+      "concepts": 720,
+      "EP18_main_shared_concepts": 720,
+      "concept_roles": {"development": 480, "support_calibration": 120, "sealed_audit": 120},
+      "all_observed": {
+        "images": 4320,
+        "EP18_main_shared_images": 4320,
+        "image_roles": {"development": 2880, "support_calibration": 720, "sealed_audit": 720}
+      },
+      "common_to_four_participants": {
+        "images": 3840,
+        "EP18_main_shared_images": 3840,
+        "image_roles": {"development": 2560, "support_calibration": 640, "sealed_audit": 640}
+      },
+      "repeat_qualified": {
+        "images": 3634,
+        "EP18_main_shared_images": 3634,
+        "image_roles": {"development": 2423, "support_calibration": 605, "sealed_audit": 606}
+      },
+      "EP18_repeated_image_overlap_in_each_EP17_scope": 0,
+      "EP18_repeated_concept_overlap": 200,
+      "repeated_concept_roles": {"development": 126, "support_calibration": 35, "sealed_audit": 39},
+      "selection_changed": false,
+      "historical_source_inventory_overlap_is_preserved_separately": true
+    },
+    "concept_identity": "Provider folder keys cross-checked to a one-to-one EP18 main concept-number mapping; display names are not a feature input",
+    "allowed_claim": "Related, design-exposed THINGS studies; not independent stimulus-family confirmation"
+  },
+  "cross_episode_exposure_decision": {
+    "adopted_date_utc": "2026-10-04",
+    "choice": "correlated_design_exposed_unchanged_designs",
+    "both_existing_designs_and_role_assignments_preserved": true,
+    "disjoint_concept_reassignment_selected": false,
+    "EP18_replication_scope": "New EEG participants conditional on the fixed THINGS concept/image inventory and frozen procedure",
+    "independent_stimulus_family_confirmation": false,
+    "identical_pixel_bytes_claimed": false,
+    "clean_pretraining_exposure_claimed": false,
+    "audit_or_neural_access_activated": false,
+    "evidence": "outputs/runs/cross_episode_exposure/ep17_handoff001/exposure_report.json"
+  },
+  "checkpoint_reuse_candidates_from_official_sources": [
+    {
+      "family": "DINO standard ResNet-50",
+      "filename": "dino_resnet50_pretrain.pth",
+      "official_source": "https://dl.fbaipublicfiles.com/dino/dino_resnet50_pretrain/dino_resnet50_pretrain.pth",
+      "recorded_bytes": 94345885,
+      "EP17_handoff_load": "Strict 318-entry backbone load; Torch 2.4.1+cu121 / Torchvision 0.19.1",
+      "EP18_prospectively_selected": true,
+      "EP18_loaded": false,
+      "EP18_recipe": "outputs/config/feature_registry.json#dino_resnet50"
+    },
+    {
+      "family": "SwAV standard-width ResNet-50, 800 epochs",
+      "filename": "swav_800ep_pretrain.pth.tar",
+      "official_source": "https://dl.fbaipublicfiles.com/deepcluster/swav_800ep_pretrain.pth.tar",
+      "recorded_bytes": 113703565,
+      "EP17_handoff_load": "Strict 318-entry backbone load, projection/prototype heads excluded; Torch 2.4.1+cu121 / Torchvision 0.19.1",
+      "EP18_prospectively_selected": false,
+      "EP18_loaded": false
+    },
+    {
+      "family": "Torchvision supervised ResNet-50 IMAGENET1K_V1, not DEFAULT",
+      "filename": "resnet50-0676ba61.pth",
+      "official_source": "https://download.pytorch.org/models/resnet50-0676ba61.pth",
+      "recorded_bytes": 102530333,
+      "EP17_handoff_load": "267 stored entries plus 53 legacy BatchNorm counters under strict compatibility; Torch 2.4.1+cu121 / Torchvision 0.19.1",
+      "EP18_prospectively_selected": true,
+      "EP18_loaded": false,
+      "EP18_recipe": "outputs/config/feature_registry.json#supervised_resnet50_v1"
+    }
+  ],
+  "checkpoint_reuse_limits": "DINO and supervised ResNet50 V1 are now prospectively selected in outputs/config/feature_registry.json; SwAV is not selected. No EP18 checkpoint payload has been opened, loaded or qualified. The acquisition handoff retained no source-code revision/digest. The new recipe selects layers/transforms/dimensions and target software independently; actual asset/runtime and applicable source-term qualification remain before emitting frozen_feature_record. Neither checkpoint identity nor backbone loading establishes matched feature identity. Never consume EP17 live caches/features.",
+  "role_integrity_review": {
+    "eligibility": "All 46 provider-eligible participants retain all 24648 events; no neural quality selection",
+    "assignment": "Exact three-tier metadata-only optimizer completed; exhaustive fixture and independent implementation review passed",
+    "sample_rule": "Source and marker samples are one-based; retain originals and use sample_zero_based = sample - 1",
+    "clock_semantics": "Large sub-36/sub-38 offsets occur at recording-segment and physical-sequence boundaries; no event shift, deletion or absolute display-accuracy claim",
+    "participant_assignment_can_freeze": true,
+    "event_join_can_freeze": true,
+    "frozen_inputs_and_roles": "outputs/runs/input_role_preparation/20261003-freeze_metadata01/frozen_inputs_and_roles.json",
+    "roles_frozen": true,
+    "join_frozen": true
+  },
+  "access_boundary": {
+    "audit_seal_verified": false,
+    "EEG_candidate_comparison_authorized": false,
+    "same_account_ACL_is_a_seal": false,
+    "required_deployment": "See inputs/README.md: externally controlled development runtime with only development inputs and no route to audit EEG or public redownload"
+  }
+}

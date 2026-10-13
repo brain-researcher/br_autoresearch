@@ -13,9 +13,15 @@ inputs:
     source: SEARCH_POLICY.yaml
   - id: literature_audit
     type: data
-    source: outputs/literature_collision_audit.md
+    source: outputs/paper_plan.md
 
 outputs:
+  - id: exploratory_observed_model_contrasts
+    from: exploratory_observed_model_contrasts.contrast_report
+  - id: exploratory_behavior_descriptions
+    from: exploratory_observed_behavior.descriptive_report
+  - id: exploratory_behavior_fit
+    from: exploratory_observed_behavior.fit_report
   - id: asset_report
     from: public_asset_qualification.asset_report
   - id: behavior_report
@@ -34,6 +40,98 @@ outputs:
     from: integrated_claim_audit.integrated_claim_report
 
 analyses:
+  exploratory_observed_model_contrasts:
+    name: Describe all paired differences among six completed observed-data models
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - id: saved_summary
+        type: data
+        source: outputs/runs/exploratory_observed_behavior/20261005-closeout-46651952/observed_behavior_summary.json
+      - id: comparison_code
+        type: data
+        source: outputs/code/analyze_observed_model_contrasts.py
+    outputs:
+      - id: contrast_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, saved_summary, comparison_code]
+        decisions: [complete_posthoc_menu]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s
+            python outputs/code/analyze_observed_model_contrasts.py
+            --output-dir {output}
+            --figure-prefix outputs/figures/observed_model_contrasts
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+    decisions:
+      complete_posthoc_menu:
+        label: Retain all models and all 15 paired comparisons after outcome exposure
+        default: complete_saved_score_menu
+        options:
+          complete_saved_score_menu:
+            label: >-
+              Post-hoc exploratory interpretation authorized by the scientist's
+              request to keep investigating current episodes. Read only the completed
+              summary, retain all 108 participants and both original scoring directions,
+              and report all six model means and all 15 unique paired contrasts with
+              participant SE, median, positive/negative counts, EI/ER means, and the
+              deterministic range of means after omitting one saved participant score.
+              No refit, new split, likelihood evaluation, bootstrap, inferential
+              threshold, mechanism winner, or independent confirmation is introduced.
+              The figure distinguishes total gain over M0 from the four nested additions;
+              the full report retains every contrast irrespective of its sign.
+  exploratory_observed_behavior:
+    name: Describe actual behavior and evaluate frozen within-session predictions
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - id: original_events
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz
+      - id: implementation
+        type: data
+        source: outputs/code/behavioral_implementation.json
+      - id: observed_runner
+        type: data
+        source: outputs/code/run_observed_behavior.py
+    outputs:
+      - id: descriptive_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, original_events, observed_runner]
+        decisions: [observed_scope]
+        recipe:
+          command: >-
+            python outputs/code/run_observed_behavior.py describe
+            --output-dir {output} --max-seconds 120
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: fit_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, original_events, implementation, observed_runner]
+        decisions: [observed_scope, fixed_menu]
+        recipe:
+          command: >-
+            python outputs/code/run_observed_behavior.py fit
+            --model "$EP_OBS_MODEL" --direction "$EP_OBS_DIRECTION"
+            --implementation outputs/code/behavioral_implementation.json
+            --output-dir {output} --max-seconds 1800
+          resources: {cpus: 4, memory: 8Gi, time_limit: 35m}
+    decisions:
+      observed_scope:
+        label: Claim and access boundary
+        default: exploratory_descriptive_predictive
+        options:
+          exploratory_descriptive_predictive:
+            label: Frozen descriptions and training-only plug-in prediction; recovery and mechanism/neural claims remain deferred
+      fixed_menu:
+        label: Finite observed-data fit menu
+        default: six_models_two_directions
+        options:
+          six_models_two_directions:
+            label: M0 MV MZ MC MVZ MVC each in both primary directions; first M0 runtime pilot then remaining eleven once; compare only complete 108-person models
+
   public_asset_qualification:
     name: Freeze participant and many-team source semantics
     inputs:
@@ -51,6 +149,14 @@ analyses:
         format: json
         inputs: [goal, datasets, search_policy, literature_audit]
         decisions: [event_source, participant_assets, team_assets, sign_semantics]
+        recipe:
+          command: >-
+            python outputs/code/qualify_assets.py
+            --source-root "$NARPS_BIDS_ROOT"
+            --source-mapping outputs/code/original_events_mapping.json
+            --fmriprep-root "$NARPS_FMRIPREP_ROOT"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 30m}
     decisions:
       event_source:
         label: Behavioral event source
@@ -84,12 +190,2391 @@ analyses:
         from: ../public_asset_qualification.asset_report
       - id: search_policy
         from: ../search_policy
+      - id: implementation
+        type: data
+        source: outputs/code/behavioral_implementation.json
+      - id: resume_code
+        type: data
+        source: outputs/code/resume_criterion_recovery.py
+      - id: stopped_recovery_attempt
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261003-MC-SESOI-replicate000-attempt002
+      - id: criterion_code
+        type: data
+        source: outputs/code/run_criterion_recovery.py
+      - id: original_events
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz
+      - id: single_process_specification
+        type: data
+        source: outputs/single_process_recovery_specification.md
+      - id: single_process_code
+        type: data
+        source: outputs/code/run_single_process_recovery.py
+      - id: single_process_tests
+        type: data
+        source: outputs/tests/test_single_process_recovery.py
+      - id: single_process_array
+        type: data
+        source: outputs/code/single_process_recovery_array.sbatch
+      - id: mz_effect_level_code
+        type: data
+        source: outputs/code/run_mz_effect_level_recovery.py
+      - id: mz_effect_level_tests
+        type: data
+        source: outputs/code/test_mz_effect_level_recovery.py
+      - id: mz_effect_level_batch
+        type: data
+        source: outputs/code/mz_effect_level_representatives.sbatch
+      - id: mz_twice_wave_code
+        type: data
+        source: outputs/code/run_mz_twice_wave.py
+      - id: mz_twice_wave_tests
+        type: data
+        source: outputs/code/test_mz_twice_wave.py
+      - id: mz_twice_wave_batch
+        type: data
+        source: outputs/code/mz_twice_wave.sbatch
+      - id: mz_twice_pool_code
+        type: data
+        source: outputs/code/summarize_mz_twice_wave.py
+      - id: mz_twice_pool_tests
+        type: data
+        source: outputs/code/test_mz_twice_wave_pool.py
+      - id: mz_twice_menu_representative_source
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-effect-level-representatives-46603942/twice/replicate0/mz_effect_level_recovery.json
+      - id: mz_twice_menu_pilot_code
+        type: data
+        source: outputs/code/run_twice_mz_menu_pilot.py
+      - id: mz_twice_menu_pilot_tests
+        type: data
+        source: outputs/code/test_twice_mz_menu_pilot.py
+      - id: mz_twice_failed_menu_pilot
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-twice-menu-pilot-46634879-attempt001/twice_mz_menu_pilot.json
+      - id: mz_twice_mvc_repair_pilot_code
+        type: data
+        source: outputs/code/run_twice_mz_mvc_repair_pilot.py
+      - id: mz_twice_mvc_repair_pilot_tests
+        type: data
+        source: outputs/code/test_twice_mz_mvc_repair_pilot.py
+      - id: mz_twice_mvc_repair_pilot_batch
+        type: data
+        source: outputs/code/mz_twice_mvc_repair_pilot.sbatch
+      - id: mz_twice_selected_mvc_repair_report
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-twice-MVC-repair-46642546-attempt001/pilot/twice_mz_mvc_repair_pilot.json
+      - id: mz_twice_repaired_pilot_summary_code
+        type: data
+        source: outputs/code/summarize_twice_mz_repaired_pilot.py
+      - id: mz_twice_repaired_pilot_summary_tests
+        type: data
+        source: outputs/code/test_twice_mz_repaired_pilot.py
+      - id: mz_twice_mvc_repair_component_code
+        type: data
+        source: outputs/code/run_twice_mz_mvc_repair_component.py
+      - id: mz_twice_mvc_repair_component_tests
+        type: data
+        source: outputs/code/test_twice_mz_mvc_repair_component.py
+      - id: mz_twice_mvc_repair_component_batch
+        type: data
+        source: outputs/code/mz_twice_mvc_repair_component.sbatch
+      - id: mz_twice_rival_component_code
+        type: data
+        source: outputs/code/run_twice_mz_rival_component.py
+      - id: mz_twice_rival_component_tests
+        type: data
+        source: outputs/code/test_twice_mz_rival_component.py
+      - id: mz_twice_rival_wave_batch
+        type: data
+        source: outputs/code/mz_twice_rival_wave.sbatch
+      - id: mz_twice_rival_deadline_check
+        type: data
+        source: outputs/code/test_mz_twice_rival_wave_deadline.sh
+      - id: mz_twice_menu_pool_code
+        type: data
+        source: outputs/code/summarize_twice_mz_menu_wave.py
+      - id: mz_twice_menu_pool_tests
+        type: data
+        source: outputs/code/test_twice_mz_menu_wave.py
+      - id: mz_twice_group_bias_code
+        type: data
+        source: outputs/code/run_twice_mz_group_bias.py
+      - id: mz_twice_group_bias_tests
+        type: data
+        source: outputs/code/test_twice_mz_group_bias.py
+      - id: mz_half_wave_code
+        type: data
+        source: outputs/code/run_mz_half_wave.py
+      - id: mz_half_wave_tests
+        type: data
+        source: outputs/code/test_mz_half_wave.py
+      - id: mz_half_wave_batch
+        type: data
+        source: outputs/code/mz_half_wave.sbatch
+      - id: mz_half_pool_code
+        type: data
+        source: outputs/code/summarize_mz_half_wave.py
+      - id: mz_half_pool_tests
+        type: data
+        source: outputs/code/test_mz_half_wave_pool.py
+      - id: mz_urgency_cost_precision_code
+        type: data
+        source: outputs/code/run_mz_urgency_cost_precision_pilot.py
+      - id: mz_urgency_cost_precision_tests
+        type: data
+        source: outputs/code/test_mz_urgency_cost_precision_pilot.py
+      - id: urgency_batched_solver_code
+        type: data
+        source: outputs/code/collapsing_ddm_batched.py
+      - id: urgency_batched_solver_tests
+        type: data
+        source: outputs/code/test_collapsing_ddm_batched.py
+      - id: mz_urgency_batched_benchmark_code
+        type: data
+        source: outputs/code/run_mz_urgency_batched_benchmark.py
+      - id: mz_urgency_batched_benchmark_tests
+        type: data
+        source: outputs/code/test_mz_urgency_batched_benchmark.py
+      - id: urgency_conditional_optimization_code
+        type: data
+        source: outputs/code/urgency_conditional_optimization.py
+      - id: mz_urgency_optimization_cost_code
+        type: data
+        source: outputs/code/run_mz_urgency_optimization_cost_pilot.py
+      - id: mz_urgency_optimization_cost_tests
+        type: data
+        source: outputs/tests/test_mz_urgency_optimization_cost_pilot.py
+      - id: mz_urgency_optimization_cost_batch
+        type: data
+        source: outputs/code/mz_urgency_optimization_cost_pilot.sbatch
+      - id: hierarchical_parallel_candidate_code
+        type: data
+        source: outputs/code/hierarchical_behavior_parallel.py
+      - id: mz_urgency_endpoint_diagnostic_code
+        type: data
+        source: outputs/code/run_mz_urgency_endpoint_diagnostic.py
+      - id: mz_urgency_endpoint_diagnostic_tests
+        type: data
+        source: outputs/code/test_mz_urgency_endpoint_diagnostic.py
+      - id: mz_urgency_endpoint_terminal_probe
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-urgency-optimization-cost-46612782/probe2/mz_urgency_optimization_cost_pilot.json
+      - id: mz_urgency_optimizer_trace_code
+        type: data
+        source: outputs/code/run_mz_urgency_optimizer_trace.py
+      - id: mz_urgency_optimizer_trace_tests
+        type: data
+        source: outputs/code/test_mz_urgency_optimizer_trace.py
+      - id: mz_urgency_optimizer_trace_analysis_code
+        type: data
+        source: outputs/code/analyze_mz_urgency_optimizer_trace.py
+      - id: mz_urgency_crossed_nondecision_code
+        type: data
+        source: outputs/code/run_mz_urgency_crossed_nondecision_diagnostic.py
+      - id: mz_urgency_crossed_nondecision_tests
+        type: data
+        source: outputs/code/test_mz_urgency_crossed_nondecision_diagnostic.py
+      - id: mz_urgency_refined_crossed_code
+        type: data
+        source: outputs/code/run_mz_urgency_refined_crossed_diagnostic.py
+      - id: mz_urgency_refined_crossed_tests
+        type: data
+        source: outputs/code/test_mz_urgency_refined_crossed_diagnostic.py
+      - id: mz_robustness_diagnostics_plot_code
+        type: data
+        source: outputs/code/plot_mz0_robustness_diagnostics.py
+      - id: mz_offer_sequence_influence_code
+        type: data
+        source: outputs/code/summarize_mz0_offer_sequence_influence.py
+      - id: mz_offer_sequence_influence_tests
+        type: data
+        source: outputs/code/test_mz0_offer_sequence_influence.py
+      - id: mz_offer_sequence_refit_code
+        type: data
+        source: outputs/code/run_mz0_offer_sequence_refit.py
+      - id: mz_offer_sequence_refit_tests
+        type: data
+        source: outputs/code/test_mz0_offer_sequence_refit.py
+      - id: mz_offer_sequence_refit_batch
+        type: data
+        source: outputs/code/mz_offer_sequence_refits.sbatch
+      - id: qualified_offer_sequence_support
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-schedule01/schedule_support.json
+      - id: qualified_offer_sequence_membership
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-schedule01/offer_sequence_membership.tsv
+      - id: hierarchical_parallel_candidate_tests
+        type: data
+        source: outputs/tests/test_hierarchical_behavior_parallel.py
+      - id: mz_run_sensitivity_plot_code
+        type: data
+        source: outputs/code/plot_mz0_run_sensitivity.py
+      - id: mz_other_partitions_code
+        type: data
+        source: outputs/code/run_mz_other_partitions.py
+      - id: mz_other_partitions_tests
+        type: data
+        source: outputs/code/test_mz_other_partitions.py
+      - id: mz_other_partitions_batch
+        type: data
+        source: outputs/code/mz_other_partitions.sbatch
+      - id: mz_loo_code
+        type: data
+        source: outputs/code/run_mz_leave_one_run_out.py
+      - id: mz_loo_tests
+        type: data
+        source: outputs/code/test_mz_leave_one_run_out.py
+      - id: mz_loo_pool_code
+        type: data
+        source: outputs/code/summarize_mz_leave_one_run_out.py
+      - id: mz_loo_pool_tests
+        type: data
+        source: outputs/code/test_mz_leave_one_run_out_pool.py
+      - id: mz_loo_batch
+        type: data
+        source: outputs/code/mz_leave_one_run_out.sbatch
+      - id: mz_nonlinear_code
+        type: data
+        source: outputs/code/run_mz_nonlinear.py
+      - id: mz_nonlinear_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear.py
+      - id: mz_nonlinear_pool_code
+        type: data
+        source: outputs/code/summarize_mz_nonlinear.py
+      - id: mz_nonlinear_pool_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_pool.py
+      - id: mz_nonlinear_batch
+        type: data
+        source: outputs/code/mz_nonlinear.sbatch
+      - id: mz_nonlinear_m0_repair_code
+        type: data
+        source: outputs/code/run_mz_nonlinear_m0_repair.py
+      - id: mz_nonlinear_m0_repair_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_m0_repair.py
+      - id: mz_nonlinear_m0_repair_batch
+        type: data
+        source: outputs/code/mz_nonlinear_m0_repair.sbatch
+      - id: mz_nonlinear_m0_terminal1500
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-nonlinear-M0-repair-46611338/mz_nonlinear_m0_repair.json
+      - id: mz_nonlinear_m0_direction_code
+        type: data
+        source: outputs/code/run_mz_nonlinear_m0_direction_repair.py
+      - id: mz_nonlinear_m0_direction_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_m0_direction_repair.py
+      - id: mz_nonlinear_m0_directions_pool_code
+        type: data
+        source: outputs/code/summarize_mz_nonlinear_m0_directions_repaired.py
+      - id: mz_nonlinear_m0_directions_pool_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_m0_directions_repaired.py
+      - id: mz_nonlinear_m0_directions_batch
+        type: data
+        source: outputs/code/mz_nonlinear_m0_directions_repair.sbatch
+      - id: mz_nonlinear_repaired_pool_code
+        type: data
+        source: outputs/code/summarize_mz_nonlinear_repaired.py
+      - id: mz_nonlinear_repaired_pool_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_repaired_pool.py
+      - id: mz_nonlinear_mz_reverse_repair_code
+        type: data
+        source: outputs/code/run_mz_nonlinear_mz_reverse_repair.py
+      - id: mz_nonlinear_mz_reverse_repair_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_mz_reverse_repair.py
+      - id: mz_nonlinear_mz_reverse_repair_batch
+        type: data
+        source: outputs/code/mz_nonlinear_mz_reverse_repair.sbatch
+      - id: mz_nonlinear_both_repaired_pool_code
+        type: data
+        source: outputs/code/summarize_mz_nonlinear_both_repaired.py
+      - id: mz_nonlinear_both_repaired_pool_tests
+        type: data
+        source: outputs/code/test_mz_nonlinear_both_repaired_pool.py
+      - id: mz_common_gain_range_code
+        type: data
+        source: outputs/code/run_mz_common_gain_range.py
+      - id: mz_common_gain_range_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_range.py
+      - id: mz_common_gain_range_pool_code
+        type: data
+        source: outputs/code/summarize_mz_common_gain_range.py
+      - id: mz_common_gain_range_pool_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_range_pool.py
+      - id: mz_common_gain_range_batch
+        type: data
+        source: outputs/code/mz_common_gain_range.sbatch
+      - id: mz_common_gain_failed_directions
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-common-gain-range-46613139
+      - id: mz_common_gain_repair_code
+        type: data
+        source: outputs/code/run_mz_common_gain_range_repair.py
+      - id: mz_common_gain_repair_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_range_repair.py
+      - id: mz_common_gain_repaired_pool_code
+        type: data
+        source: outputs/code/summarize_mz_common_gain_range_repaired.py
+      - id: mz_common_gain_repaired_pool_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_range_repaired_pool.py
+      - id: mz_common_gain_repair_batch
+        type: data
+        source: outputs/code/mz_common_gain_range_repair.sbatch
+      - id: mz_common_gain_terminal_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-common-gain-repair-46615238
+      - id: mz_common_gain_mz_reverse_code
+        type: data
+        source: outputs/code/run_mz_common_gain_mz_reverse_repair.py
+      - id: mz_common_gain_mz_reverse_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_mz_reverse_repair.py
+      - id: mz_common_gain_mz_reverse_pool_code
+        type: data
+        source: outputs/code/summarize_mz_common_gain_mz_reverse_repaired.py
+      - id: mz_common_gain_mz_reverse_pool_tests
+        type: data
+        source: outputs/code/test_mz_common_gain_mz_reverse_pool.py
+      - id: mz_common_gain_reverse_and_trace_batch
+        type: data
+        source: outputs/code/mz_common_gain_mz_reverse_and_trace.sbatch
+      - id: mz_remaining_array
+        type: data
+        source: outputs/code/mz_recovery_remaining.sbatch
+      - id: single_process_pooling
+        type: data
+        source: outputs/code/summarize_single_process_recovery.py
+      - id: single_process_rival_code
+        type: data
+        source: outputs/code/run_single_process_rivals.py
+      - id: single_process_rival_tests
+        type: data
+        source: outputs/tests/test_single_process_rivals.py
+      - id: completed_mz_representative
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-SESOI-replicate000-attempt001
+      - id: mz_complex_rival_code
+        type: data
+        source: outputs/code/run_mz_complex_rival.py
+      - id: mz_complex_rival_tests
+        type: data
+        source: outputs/tests/test_mz_complex_rival.py
+      - id: mz_complex_rival_batch
+        type: data
+        source: outputs/code/mz_complex_rival.sbatch
+      - id: mz_fixed_menu_summary_code
+        type: data
+        source: outputs/code/summarize_mz_fixed_menu.py
+      - id: mz_fixed_menu_summary_tests
+        type: data
+        source: outputs/tests/test_mz_fixed_menu.py
+      - id: preserved_mz199_menu_summary
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-terminal-summaries-46607960/mz199.json
+      - id: preserved_null200_menu_summary
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-terminal-summaries-46607960/null200.json
+      - id: resolved_fixed_menu_counts_code
+        type: data
+        source: outputs/code/summarize_resolved_fixed_menu_counts.py
+      - id: resolved_fixed_menu_counts_tests
+        type: data
+        source: outputs/code/test_resolved_fixed_menu_counts.py
+      - id: mz_group_recovery_code
+        type: data
+        source: outputs/code/summarize_mz_group_recovery.py
+      - id: mz_group_recovery_tests
+        type: data
+        source: outputs/tests/test_mz_group_recovery.py
+      - id: mz_bootstrap_pilot_code
+        type: data
+        source: outputs/code/run_mz_bootstrap_pilot.py
+      - id: mz_bootstrap_pilot_tests
+        type: data
+        source: outputs/tests/test_mz_bootstrap_pilot.py
+      - id: mz_bootstrap_pilot_batch
+        type: data
+        source: outputs/code/mz_bootstrap_pilot.sbatch
+      - id: mz_completed_bootstrap_zero
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-closeout-pilot-46547708/bootstrap000/mz_bootstrap_pilot.json
+      - id: mz_bootstrap_parallel_comparison_code
+        type: data
+        source: outputs/code/run_mz_bootstrap_parallel_comparison.py
+      - id: mz_bootstrap_parallel_comparison_tests
+        type: data
+        source: outputs/code/test_mz_bootstrap_parallel_comparison.py
+      - id: mz_group_closeout_and_pilot_batch
+        type: data
+        source: outputs/code/mz_group_closeout_and_pilot.sbatch
+      - id: mz_saved_replicate_rival_code
+        type: data
+        source: outputs/code/run_mz_saved_replicate_rival.py
+      - id: mz_saved_replicate_rival_tests
+        type: data
+        source: outputs/tests/test_mz_saved_replicate_rival.py
+      - id: mz_saved_simple_rival_batch
+        type: data
+        source: outputs/code/mz_saved_simple_rivals.sbatch
+      - id: mz_saved_mvc_rival_batch
+        type: data
+        source: outputs/code/mz_saved_mvc_rivals.sbatch
+      - id: mz_mvc_convergence_pilot_code
+        type: data
+        source: outputs/code/run_mz_mvc_convergence_pilot.py
+      - id: mz_mvc_convergence_pilot_tests
+        type: data
+        source: outputs/code/test_mz_mvc_convergence_pilot.py
+      - id: mz_mvc_convergence_pilot_batch
+        type: data
+        source: outputs/code/mz_mvc_convergence_pilot.sbatch
+      - id: mz_mvc_failed_representative
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVC-saved-array-46572753/replicate42/mz_saved_replicate_rival.json
+      - id: mz_mvc_failed_1000_pilot
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ42-MVC-convergence-46577369/mz_mvc_convergence_pilot.json
+      - id: mz_mvc_reverse_completion_code
+        type: data
+        source: outputs/code/run_mz_mvc_reverse_completion.py
+      - id: mz_mvc_reverse_completion_tests
+        type: data
+        source: outputs/code/test_mz_mvc_reverse_completion.py
+      - id: mz_mvc_reverse_completion_batch
+        type: data
+        source: outputs/code/mz_mvc42_reverse_completion.sbatch
+      - id: mz_mvc42_completed_reverse
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ42-MVC-reverse-completion-46587905/mz_mvc_reverse_completion.json
+      - id: mz_mvc_general_repair_code
+        type: data
+        source: outputs/code/run_mz_mvc_convergence_repair.py
+      - id: mz_mvc_general_repair_tests
+        type: data
+        source: outputs/code/test_mz_mvc_convergence_repair.py
+      - id: mz_mvc_two_case_repair_batch
+        type: data
+        source: outputs/code/mz_mvc_repair_two_cases.sbatch
+      - id: mz_mvc_repair_wave_batch
+        type: data
+        source: outputs/code/mz_mvc_convergence_repair_wave.sbatch
+      - id: mz_mvc_two_case_repairs
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVC-repair-cases-46597025
+      - id: mz_mvc_fresh_both_repairs
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVC-repair-wave-46597540
+      - id: mz_mvc_reverse_only_repairs
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVC-repair-wave-46597546
+      - id: mz_mvc42_repaired_menu_code
+        type: data
+        source: outputs/code/summarize_mz_mvc_repaired_menu.py
+      - id: mz_mvc42_repaired_menu_tests
+        type: data
+        source: outputs/code/test_mz_mvc_repaired_menu.py
+      - id: mz_repaired_menu_wave_code
+        type: data
+        source: outputs/code/summarize_mz_repaired_menu_wave.py
+      - id: mz_repaired_menu_wave_tests
+        type: data
+        source: outputs/code/test_mz_repaired_menu_wave.py
+      - id: mz_null_representative_code
+        type: data
+        source: outputs/code/run_mz_null_representative.py
+      - id: mz_null_representative_tests
+        type: data
+        source: outputs/code/test_mz_null_representative.py
+      - id: mz_null_representative_batch
+        type: data
+        source: outputs/code/mz_null_representative.sbatch
+      - id: mz_null_indexed_code
+        type: data
+        source: outputs/code/run_mz_null_replicate.py
+      - id: mz_null_indexed_tests
+        type: data
+        source: outputs/code/test_mz_null_replicate.py
+      - id: mz_null_baseline_group_batch
+        type: data
+        source: outputs/code/mz_null_baseline_groups.sbatch
+      - id: mz_null_rival_code
+        type: data
+        source: outputs/code/run_mz_null_rival.py
+      - id: mz_null_baseline_pool_code
+        type: data
+        source: outputs/code/summarize_mz_null_baseline_wave.py
+      - id: mz_null_baseline_pool_tests
+        type: data
+        source: outputs/code/test_mz_null_baseline_wave.py
+      - id: mz_null_indexed_rival_code
+        type: data
+        source: outputs/code/run_mz_null_indexed_rival.py
+      - id: mz_null_indexed_rival_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_rival.py
+      - id: mz_null_indexed_mvz_batch
+        type: data
+        source: outputs/code/mz_null_indexed_mvz_groups.sbatch
+      - id: mz_null_indexed_mvz_ready_batch
+        type: data
+        source: outputs/code/mz_null_indexed_mvz_ready_group.sbatch
+      - id: mz_null_indexed_simple_code
+        type: data
+        source: outputs/code/run_mz_null_indexed_simple_rival.py
+      - id: mz_null_indexed_simple_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_simple_rival.py
+      - id: mz_null_indexed_simple_batch
+        type: data
+        source: outputs/code/mz_null_indexed_simple_groups.sbatch
+      - id: mz_null_failed_baseline35
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline-array-46580387/replicate35
+      - id: mz_null_baseline_completion_code
+        type: data
+        source: outputs/code/run_mz_null_baseline_completion.py
+      - id: mz_null_baseline_completion_tests
+        type: data
+        source: outputs/code/test_mz_null_baseline_completion.py
+      - id: mz_null_baseline_completion_batch
+        type: data
+        source: outputs/code/mz_null_baseline35_completion.sbatch
+      - id: mz_null_completed_baseline35
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline35-completion-46586603
+      - id: mz_null_completed_baseline_rival_code
+        type: data
+        source: outputs/code/run_mz_null_completed_baseline_rival.py
+      - id: mz_null_completed_baseline_rival_tests
+        type: data
+        source: outputs/code/test_mz_null_completed_baseline_rival.py
+      - id: mz_null_completed_baseline_rival_batch
+        type: data
+        source: outputs/code/mz_null35_completed_baseline_rivals.sbatch
+      - id: mz_null_additional_baseline_completion_code
+        type: data
+        source: outputs/code/run_mz_null_additional_baseline_completion.py
+      - id: mz_null_additional_baseline_completion_tests
+        type: data
+        source: outputs/code/test_mz_null_additional_baseline_completion.py
+      - id: mz_null_additional_baseline_completion_batch
+        type: data
+        source: outputs/code/mz_null_additional_baseline_completions.sbatch
+      - id: mz_null_completed_baseline108
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline108-completion-46591918/mz_null_additional_baseline_completion.json
+      - id: mz_null_completed_baseline176
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline176-completion-46591918/mz_null_additional_baseline_completion.json
+      - id: mz_null_additional_completed_rival_code
+        type: data
+        source: outputs/code/run_mz_null_additional_completed_rival.py
+      - id: mz_null_additional_completed_rival_tests
+        type: data
+        source: outputs/code/test_mz_null_additional_completed_rival.py
+      - id: mz_null_additional_completed_rival_batch
+        type: data
+        source: outputs/code/mz_null_additional_completed_rivals.sbatch
+      - id: mz_null_additional_completed_mvc_batch
+        type: data
+        source: outputs/code/mz_null_additional_completed_mvc.sbatch
+      - id: mz_null_indexed_menu_code
+        type: data
+        source: outputs/code/summarize_mz_null_indexed_menu.py
+      - id: mz_null_indexed_menu_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_menu.py
+      - id: mz_null_mvc_repair_admission_code
+        type: data
+        source: outputs/code/mz_null_mvc_repair_admission.py
+      - id: mz_null_mvc_repair_admission_tests
+        type: data
+        source: outputs/code/test_mz_null_mvc_repair_admission.py
+      - id: mz_null_mvc_reverse_completion_code
+        type: data
+        source: outputs/code/run_mz_null_indexed_mvc_reverse_completion.py
+      - id: mz_null_mvc_reverse_completion_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_mvc_reverse_completion.py
+      - id: mz_null_mvc_reverse_completion_batch
+        type: data
+        source: outputs/code/mz_null_mvc_reverse_completion.sbatch
+      - id: mz_null_mvc_reverse_admission_code
+        type: data
+        source: outputs/code/mz_null_mvc_reverse_admission.py
+      - id: mz_null_mvc_reverse_admission_tests
+        type: data
+        source: outputs/code/test_mz_null_mvc_reverse_admission.py
+      - id: mz_null_mc_ready_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MC-indexed-array-46583757
+      - id: mz_null_mc_remaining_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MC-indexed-array-46584095
+      - id: mz_null_mv_ready_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MV-indexed-array-46583757
+      - id: mz_null_mv_remaining_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MV-indexed-array-46584095
+      - id: mz_null_mvz_first_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVZ-indexed-array-46581137
+      - id: mz_null_mvz_ready_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVZ-indexed-array-46584696
+      - id: mz_null_mvz_remaining_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVZ-indexed-array-46585182
+      - id: mz_null_mvc_first_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVC-indexed-array-46591849
+      - id: mz_null_mvc_remaining_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVC-indexed-array-46592261
+      - id: mz_null_mvc_additional_components
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVC-additional-array-46596399
+      - id: mz_null35_completed_mc_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null35-MC-completed-baseline-46589557/mz_null_completed_baseline_rival.json
+      - id: mz_null35_completed_mv_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null35-MV-completed-baseline-46589557/mz_null_completed_baseline_rival.json
+      - id: mz_null35_completed_mvz_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null35-MVZ-completed-baseline-46589557/mz_null_completed_baseline_rival.json
+      - id: mz_null108_completed_mc_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null108-MC-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null108_completed_mv_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null108-MV-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null108_completed_mvz_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null108-MVZ-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null176_completed_mc_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null176-MC-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null176_completed_mv_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null176-MV-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null176_completed_mvz_component
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null176-MVZ-completed-baseline-46595106/mz_null_additional_completed_rival.json
+      - id: mz_null_first_baselines
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline-array-46579924
+      - id: mz_null_remaining_baselines
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-baseline-array-46580387
+      - id: mz_null_rival_tests
+        type: data
+        source: outputs/code/test_mz_null_rival.py
+      - id: mz_null_rival_batch
+        type: data
+        source: outputs/code/mz_null_rivals.sbatch
+      - id: mz_null_representative_source
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-representative-46574266
+      - id: mz_menu_wave_code
+        type: data
+        source: outputs/code/summarize_mz_menu_wave.py
+      - id: mz_menu_wave_tests
+        type: data
+        source: outputs/code/test_mz_menu_wave.py
+      - id: mz_null_menu_code
+        type: data
+        source: outputs/code/summarize_mz_null_menu.py
+      - id: mz_null_menu_tests
+        type: data
+        source: outputs/code/test_mz_null_menu.py
+      - id: mz_null_mc_report
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MC-rival-46577173/mz_null_rival.json
+      - id: mz_null_mv_report
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MV-rival-46577173/mz_null_rival.json
+      - id: mz_null_mvz_report
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVZ-rival-46575931/mz_null_rival.json
+      - id: mz_null_mvc_report
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVC-rival-46576234/mz_null_rival.json
+      - id: mz_null_mvc_repair_code
+        type: data
+        source: outputs/code/run_mz_null_mvc_convergence_repair.py
+      - id: mz_null_mvc_repair_tests
+        type: data
+        source: outputs/code/test_mz_null_mvc_convergence_repair.py
+      - id: mz_null_mvc_repair_batch
+        type: data
+        source: outputs/code/mz_null_mvc_convergence_repair.sbatch
+      - id: mz_null_completed_mvc_repair
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-M0-null-MVC-convergence-46582236/mz_null_mvc_convergence_repair.json
+      - id: mz_null_indexed_mvc_code
+        type: data
+        source: outputs/code/run_mz_null_indexed_mvc.py
+      - id: mz_null_indexed_mvc_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_mvc.py
+      - id: mz_null_indexed_mvc_batch
+        type: data
+        source: outputs/code/mz_null_indexed_mvc.sbatch
+      - id: mz_null_indexed_mvc_repair_code
+        type: data
+        source: outputs/code/run_mz_null_indexed_mvc_repair.py
+      - id: mz_null_indexed_mvc_repair_tests
+        type: data
+        source: outputs/code/test_mz_null_indexed_mvc_repair.py
+      - id: mz_null_indexed_mvc_repair_batch
+        type: data
+        source: outputs/code/mz_null_indexed_mvc_repair.sbatch
+      - id: mz_null_repaired_menu_code
+        type: data
+        source: outputs/code/summarize_mz_null_repaired_menu.py
+      - id: mz_null_repaired_menu_tests
+        type: data
+        source: outputs/code/test_mz_null_repaired_menu.py
+      - id: mz_menu_mc_array
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MC-saved-array-46550138
+      - id: mz_menu_mv_array
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MV-saved-array-46550142
+      - id: mz_menu_mvz_array
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVZ-saved-array-46550145
+      - id: mz_menu_mvc_array
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-MVC-saved-array-46572753
+      - id: mz_menu_representative_simple
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ0-fixed-rivals-attempt001/single_process_rivals.json
+      - id: mz_menu_representative_mvz
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ0-MVZ-rival-46545300/mz_complex_rival.json
+      - id: mz_menu_representative_mvc
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ0-MVC-rival-46545303/mz_complex_rival.json
+      - id: mz_saved_replicate_menu_code
+        type: data
+        source: outputs/code/summarize_mz_saved_replicate_menu.py
+      - id: mz_saved_replicate_menu_tests
+        type: data
+        source: outputs/tests/test_mz_saved_replicate_menu.py
+      - id: completed_mz_initial_cohorts
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-SESOI-array-46538652
+      - id: completed_mz_expanded_cohorts
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-SESOI-array-46539590
+      - id: complete_mz_point_bias_summary
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261005-MZ-closeout-pilot-46547708/group_summary.json
+      - id: mz_group_point_figure_code
+        type: data
+        source: outputs/code/plot_mz_group_recovery.py
+      - id: preserved_synthetic_design
+        type: data
+        source: outputs/runs/behavioral_mechanism_kill_test/20261003-MC-SESOI-replicate000-attempt003/simulated_events.csv.gz
     outputs:
       - id: behavior_report
         type: report
         format: json
         inputs: [asset_report, search_policy]
         decisions: [recovery, robustness_rivals, deadline_likelihood, heldout_partition, mechanism_tier]
+      - id: resumed_criterion_component
+        type: data
+        format: directory
+        inputs: [implementation, resume_code, stopped_recovery_attempt]
+        recipe:
+          command: >-
+            python {inputs.resume_code} --implementation {inputs.implementation}
+            --replicate-index 0 --source-attempt "{inputs.stopped_recovery_attempt}"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 30m}
+      - id: criterion_replicate
+        type: data
+        format: directory
+        inputs: [implementation, criterion_code, original_events]
+        recipe:
+          command: >-
+            python {inputs.criterion_code} --implementation {inputs.implementation}
+            --events {inputs.original_events} --replicate-index $SLURM_ARRAY_TASK_ID
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 90m}
+      - id: single_process_mv_replicate
+        type: data
+        format: directory
+        description: >-
+          Declared MV uniform-SESOI necessary recovery cell, explicit fixed index.
+          All108 participants and both primary half directions; unchanged
+          fitter/likelihood. Passing cannot establish complete recovery or
+          reopen observed behavior/BOLD. The failed MC cell stays closed.
+        inputs: [implementation, single_process_specification, single_process_code, single_process_tests, preserved_synthetic_design]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.single_process_code} --implementation {inputs.implementation}
+            --design-events {inputs.preserved_synthetic_design}
+            --model MV --replicate-index "$EP_RECOVERY_INDEX" --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_effect_level_representative
+        type: data
+        format: directory
+        description: >-
+          Required uniform MZ half/twice-SESOI representatives with physical
+          starting points0.475/0.40 and prospectively fixed disjoint seed
+          namespaces. Preserve the original nuisance/design/likelihood and
+          four M0/MZ primary-half fits under500 sweeps. Half-SESOI diagnostics
+          cannot count against the90-percent at-or-above-SESOI requirement.
+          Only index0 per level is selected; no wave, family/cell rate,
+          interval, heterogeneity or full-recovery verdict follows.
+        inputs: [implementation, single_process_specification, single_process_code, mz_effect_level_code, mz_effect_level_tests, mz_effect_level_batch, preserved_synthetic_design]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_effect_level_code} --implementation {inputs.implementation}
+            --design-events {inputs.preserved_synthetic_design}
+            --level "$EP_MZ_EFFECT_LEVEL" --replicate-index 0
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_other_complementary_partition
+        type: data
+        format: directory
+        description: >-
+          Required MZ0 sensitivity for one registered complementary partition,
+          12_34 or13_24, both directions. Validate/replay the saved primary
+          source before four fresh original500 M0/MZ fits and separately
+          accumulated alternate scores. All108 participants and256 held-out
+          trials per participant remain. Within-cohort nested diagnostics
+          only; no independent replication, rate, curtailment, interval or
+          full-recovery verdict. Leave-one-run-out remains unevaluated.
+        inputs: [implementation, single_process_specification, single_process_rival_code, mz_other_partitions_code, mz_other_partitions_tests, mz_other_partitions_batch, completed_mz_representative]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_other_partitions_code} --implementation {inputs.implementation}
+            --source-dir {inputs.completed_mz_representative}
+            --partition "$EP_MZ_PARTITION" --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_twice_selected_baseline_component
+        type: data
+        format: directory
+        description: >-
+          One externally selected remaining twice-SESOI fixed index1 through199,
+          seed1900057+10007*i and physical z0.40. Reuse the frozen effect-level
+          simulation and four original500 primary M0/MZ fits; only dispatch
+          metadata distinguishes the selected array. No half-level execution,
+          full-menu/rate/interval/gate claim or subsequent-wave selection.
+        inputs: [implementation, single_process_specification, single_process_code, mz_effect_level_code, mz_effect_level_tests, mz_twice_wave_code, mz_twice_wave_tests, mz_twice_wave_batch, preserved_synthetic_design]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_twice_wave_code} --implementation {inputs.implementation}
+            --design-events {inputs.preserved_synthetic_design}
+            --replicate-index "$EP_MZ_TWICE_INDEX" --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_twice_representative_competing_menu
+        type: data
+        format: directory
+        description: >-
+          Fixed twice-SESOI MZ index 0, seed 1900057 and generating z 0.40.
+          Validate and replay the preserved M0/MZ source, then freshly fit
+          MC, MV, MVZ and MVC in that order and both primary directions.
+          Preserve original 500-sweep settings, all 108 people and 256 trials,
+          nine nested comparisons and all eligible/maximal sets. No new
+          simulation, nonnested winner, interval choice or full recovery claim.
+          One four-worker cost pilot precedes any separately selected wave.
+          Keep partial technical evidence and cleanup; no automatic retry.
+        inputs: [implementation, mz_twice_menu_representative_source, mz_twice_pool_code, mz_twice_menu_pilot_code, mz_twice_menu_pilot_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s 5420s python3.12 -B
+            {inputs.mz_twice_menu_pilot_code}
+            --source-report {inputs.mz_twice_menu_representative_source}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 5400
+          resources: {cpus: 4, memory: 8Gi, time_limit: 105m}
+      - id: mz_twice_representative_mvc_numerical_repair
+        type: data
+        format: directory
+        description: >-
+          One separately selected twice-SESOI index0 MVC repair after the
+          preserved forward fit exhausted500 sweeps without subject optimizer
+          failures. Validate the exact original baseline and terminal failure,
+          retain completed MC/MV/MVZ evidence and historical costs, and use
+          fresh original-prior starts for both MVC primary halves. Only a
+          private runtime maximum-sweeps ceiling changes to1500; original
+          likelihoods, priors, support, tolerance and first-convergence rule
+          remain. Reverse fitting requires forward convergence. Preserve
+          partial technical evidence and bounded worker cleanup. No wave
+          retry, full-menu admission, family verdict or historical cost charge.
+        inputs: [implementation, mz_twice_menu_representative_source, mz_twice_representative_competing_menu, mz_twice_failed_menu_pilot, mz_twice_menu_pilot_code, mz_twice_menu_pool_code, mz_twice_mvc_repair_pilot_code, mz_twice_mvc_repair_pilot_tests, mz_twice_mvc_repair_pilot_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s 5420s python3.12 -B
+            {inputs.mz_twice_mvc_repair_pilot_code}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 5400
+          resources: {cpus: 4, memory: 8Gi, time_limit: 100m}
+      - id: mz_twice_selected_mvc_numerical_repair
+        type: data
+        format: directory
+        description: >-
+          Capability for a separately selected indexed MVC repair after pilot
+          qualification. Bind the exact original twice baseline and current
+          failed array46638796 report for that index. Admit only a diagnosed
+          finite500 forward-half exhaustion with no scored half, optimizer
+          failures or cleanup defect. Reuse the qualified timed loop, actual
+          cohort identity and fresh original-prior starts; only private
+          maximum_sweeps changes to1500. Preserve original scoring, failures,
+          partial results and non-additive costs. No dispatcher, automatic
+          retry, menu collection, family or recovery verdict is supplied.
+        inputs: [implementation, mz_twice_selected_baseline_component, mz_twice_selected_rival_component, mz_twice_representative_mvc_numerical_repair, mz_twice_mvc_repair_pilot_code, mz_twice_mvc_repair_component_code, mz_twice_mvc_repair_component_tests, mz_twice_mvc_repair_component_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s 5420s python3.12 -B
+            {inputs.mz_twice_mvc_repair_component_code}
+            --replicate-index "$EP_TWICE_MVC_REPAIR_INDEX"
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 5400
+          resources: {cpus: 4, memory: 8Gi, time_limit: 100m}
+      - id: mz_twice_repaired_representative_menu
+        type: report
+        format: json
+        description: >-
+          After explicit terminal selection, validate the exact original
+          twice0 baseline/pilot and the selected repaired MVC report. Combine
+          only a fully completed validated private1500 MVC pair with unchanged
+          original500 M0/MZ and MC/MV/MVZ scores. Preserve lineage, both128/256
+          scored contributions, cleanup and non-additive historical costs.
+          Produce only the nine existing contrasts and eligible/maximal sets
+          for index0. A technical repair remains unknown even when both fits
+          survived; no event read, refit, full200 collector admission, family
+          selection, interval or full-gate verdict is supplied.
+        inputs: [implementation, mz_twice_menu_representative_source, mz_twice_failed_menu_pilot, mz_twice_representative_mvc_numerical_repair, mz_twice_selected_mvc_repair_report, mz_twice_mvc_repair_pilot_code, mz_twice_menu_pool_code, mz_twice_repaired_pilot_summary_code, mz_twice_repaired_pilot_summary_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 260s python3.12 -B
+            {inputs.mz_twice_repaired_pilot_summary_code}
+            --repair-report {inputs.mz_twice_selected_mvc_repair_report}
+            --implementation {inputs.implementation} --output {output}
+            --max-seconds 240
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_twice_selected_rival_component
+        type: data
+        format: directory
+        description: >-
+          Explicitly selected MC, MV, MVZ or MVC pair for one saved twice-SESOI
+          MZ index 1 through 199. Reuse exact original M0/MZ scores after
+          source validation and replay; fit both primary halves freshly with
+          four workers and unchanged 500-sweep settings. Preserve returned
+          technical fits and scored prefixes without retry or promotion of
+          an incomplete pair. No simulation, new interval or family verdict.
+          Coordinator selects packing, component cap and parent envelope
+          from pilot evidence; the batch wrapper supplies no implicit wave.
+        inputs: [implementation, mz_twice_selected_baseline_component, mz_twice_menu_pilot_code, mz_twice_rival_component_code, mz_twice_rival_component_tests, mz_twice_rival_wave_batch, mz_twice_rival_deadline_check]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s "$EP_TWICE_EXTERNAL_SECONDS" python3.12 -B
+            {inputs.mz_twice_rival_component_code} --model "$EP_TWICE_MODEL"
+            --replicate-index "$EP_TWICE_INDEX" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds "$EP_TWICE_INTERNAL_SECONDS"
+          resources: {cpus: 4, memory: 8Gi, time_limit: 95m}
+      - id: mz_twice_fixed200_competing_menu_diagnostics
+        type: report
+        format: json
+        description: >-
+          Collect only coordinator-selected terminal model/index attempts.
+          Retain all 200 fixed cohorts, original baseline scores and technical
+          unknowns; salvage only independently completed validated model
+          prefixes from the original index 0 pilot. Full six-model menus
+          receive the nine unchanged nested contrasts and descriptive
+          eligible/maximal sets. No nonnested arbitration, family-selection
+          rate, confusion rate, interval coverage or full-gate verdict.
+          No source event reads, new fits, retries or allocation cost sums.
+        inputs: [implementation, mz_twice_representative_competing_menu, mz_twice_selected_rival_component, mz_twice_pool_code, mz_twice_menu_pool_code, mz_twice_menu_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 260s python3.12 -B
+            {inputs.mz_twice_menu_pool_code} --terminal-indices "$EP_TWICE_TERMINAL_INDICES"
+            --component-array "$EP_TWICE_MC_SELECTION"
+            --component-array "$EP_TWICE_MV_SELECTION"
+            --component-array "$EP_TWICE_MVZ_SELECTION"
+            --component-array "$EP_TWICE_MVC_SELECTION"
+            --implementation {inputs.implementation} --output {output} --max-seconds 240
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_twice_fixed200_group_point_bias
+        type: report
+        format: json
+        description: >-
+          Physical rejection displacement from the exact 200 completed
+          twice-SESOI source identities. Reuse 0.5 minus mean expit rho
+          over 54 people and both halves, separately by task version.
+          True displacement and relative-bias denominator are 0.10;
+          the registered relative-bias limit remains 10 percent. Include
+          every valid cohort regardless of predictive-screen success.
+          Unknowns prevent a final cell bias verdict. No bootstrap, new
+          responses, fits, interval coverage, family-selection rate or gate.
+        inputs: [implementation, mz_twice_menu_representative_source, mz_twice_fixed200_necessary_counts, mz_twice_pool_code, mz_twice_group_bias_code, mz_twice_group_bias_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 260s python3.12 -B
+            {inputs.mz_twice_group_bias_code}
+            --terminal-indices "$EP_MZ_TWICE_TERMINAL_INDICES"
+            --first-array-job-id 46606307 --remaining-array-job-id 46606413
+            --implementation {inputs.implementation} --output {output}
+            --max-seconds 240
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_twice_fixed200_necessary_counts
+        type: report
+        format: json
+        description: >-
+          Pool only explicitly selected terminal twice-SESOI reports, preserving
+          their actual phase, seed, z0.40 and original500 fits. Recompute nested
+          necessary-screen conditions from108-person scores; missing/technical
+          cohorts remain unknown in fixed200. Only21 validated core failures
+          make180 successes unreachable. Richer diagnostics remain separate;
+          no full-menu family, interval or behavioral-gate verdict.
+        inputs: [implementation, single_process_specification, mz_effect_level_representative, mz_twice_selected_baseline_component, mz_twice_pool_code, mz_twice_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 240s python3.12 -B
+            {inputs.mz_twice_pool_code} --implementation {inputs.implementation}
+            --terminal-indices "$EP_MZ_TWICE_TERMINAL_INDICES"
+            --first-array-job-id "$EP_MZ_TWICE_FIRST_ARRAY"
+            --remaining-array-job-id "$EP_MZ_TWICE_REMAINING_ARRAY" --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_half_selected_baseline_component
+        type: data
+        format: directory
+        description: >-
+          One externally selected remaining half-SESOI fixed index1 through199,
+          seed1700047+10007*i and physical z0.475. Reuse unchanged simulation
+          and four original500 primary M0/MZ fits. All outcomes at this level
+          are below-SESOI diagnostics; neither the90% criterion nor21-failure
+          curtailment applies. No full-menu/gate or subsequent-wave selection.
+        inputs: [implementation, single_process_specification, single_process_code, mz_effect_level_code, mz_effect_level_tests, mz_half_wave_code, mz_half_wave_tests, mz_half_wave_batch, preserved_synthetic_design]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_half_wave_code} --implementation {inputs.implementation}
+            --design-events {inputs.preserved_synthetic_design}
+            --replicate-index "$EP_MZ_HALF_INDEX" --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_half_fixed200_continuous_diagnostics
+        type: report
+        format: json
+        description: >-
+          Validate explicitly terminal half-SESOI reports with exact phase,
+          seed, z0.475, original500 fits and108 paired participants. Retain
+          continuous gain, SE, version means and recorded median diagnostics;
+          missing or technical cohorts remain unknown in fixed200. No90%
+          recovery criterion,180-success or21-failure boundary, pass-rate,
+          family selection, interval coverage or full-gate verdict applies.
+        inputs: [implementation, single_process_specification, mz_effect_level_representative, mz_half_selected_baseline_component, mz_twice_pool_code, mz_half_pool_code, mz_half_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 240s python3.12 -B
+            {inputs.mz_half_pool_code} --implementation {inputs.implementation}
+            --terminal-indices "$EP_MZ_HALF_TERMINAL_INDICES"
+            --first-array-job-id "$EP_MZ_HALF_FIRST_ARRAY"
+            --remaining-array-job-id "$EP_MZ_HALF_REMAINING_ARRAY" --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_urgency_initialization_cost_precision
+        type: data
+        format: directory
+        description: >-
+          After validating/replaying the full preserved MZ0 cohort, evaluate
+          the first sorted EI/ER participants on both primary training halves,
+          M0/MZ and three existing deterministic first-sweep starts. Pair the
+          registered0.002s/200 mesh with0.001s/400, at most48 likelihood calls.
+          Retain actual unique-drift counts, time and paired log-score changes,
+          including partial work at the1800s cap. No fitting, accuracy threshold,
+          model selection, fitted-support qualification or recovery inference.
+        inputs: [implementation, single_process_specification, completed_mz_representative, single_process_rival_code, mz_urgency_cost_precision_code, mz_urgency_cost_precision_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1800s python3.12 -B
+            {inputs.mz_urgency_cost_precision_code} --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output} --max-seconds 1800
+          resources: {cpus: 1, memory: 2Gi, time_limit: 35m}
+      - id: mz_urgency_batched_equivalence_cost
+        type: data
+        format: directory
+        description: >-
+          Compare an isolated block-diagonal batched finite-volume candidate
+          with the completed48-call scalar initialization reference. Preserve
+          exact training rows, starts, drift values, equations and both meshes;
+          validate/replay the full source and reuse recorded scalar vectors/times.
+          Report per-vector discrepancies and measured costs. The1e-12 replay
+          tolerance is engineering equivalence only. No fit, adoption, inference
+          threshold, fitted-support precision or recovery verdict is supplied.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_initialization_cost_precision, mz_urgency_cost_precision_code, urgency_batched_solver_code, urgency_batched_solver_tests, mz_urgency_batched_benchmark_code, mz_urgency_batched_benchmark_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 600s python3.12 -B
+            {inputs.mz_urgency_batched_benchmark_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 600
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+      - id: mz_run_sensitivity_figure
+        type: data
+        format: directory
+        description: >-
+          PNG and SVG of saved completed MZ0 primary, alternate-partition and
+          four-run LOO diagnostics. Mean held-out gains and two participant-SE
+          whiskers use108 biological units; overlapping folds are sensitivities.
+          No new fitting, interval coverage or full recovery claim.
+        inputs: [completed_mz_representative, mz_other_complementary_partition, mz_leave_one_run_out_pooled_diagnostic, mz_run_sensitivity_plot_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_run_sensitivity_plot_code} --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_leave_one_run_out_direction
+        type: data
+        format: directory
+        description: >-
+          One registered MZ0 omitted-run direction. Fresh original500 M0/MZ
+          fits train on192 trials per participant and score the remaining64
+          as sum(logp)/64. Preserve/replay the original primary source first;
+          no regeneration or score substitution. Within-cohort diagnostics
+          only, with no family/rate/interval/curtailment/gate verdict.
+        inputs: [implementation, single_process_specification, single_process_rival_code, mz_loo_code, mz_loo_tests, mz_loo_batch, completed_mz_representative]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_loo_code} --implementation {inputs.implementation}
+            --source-dir {inputs.completed_mz_representative}
+            --held-out-run "$EP_MZ_HELD_RUN" --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_leave_one_run_out_pooled_diagnostic
+        type: report
+        format: json
+        description: >-
+          After all four explicitly selected LOO child processes complete,
+          average their64-trial per-person scores within each participant.
+          Apply the existing nested contrast to108 paired differences and
+          report omitted-run/EI/ER sign diagnostics. Missing or technical
+          directions leave the combined result unknown; no partial
+          renormalization, independent-replication or recovery-gate claim.
+        inputs: [implementation, single_process_specification, mz_loo_code, mz_loo_pool_code, mz_loo_pool_tests, mz_loo_batch, mz_leave_one_run_out_direction]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_loo_pool_code} --source-root "$EP_MZ_LOO_SOURCE_ROOT"
+            --job-id "$EP_MZ_LOO_PARENT_JOB" --implementation {inputs.implementation}
+            --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_urgency_conditional_optimization_cost
+        type: data
+        format: directory
+        description: >-
+          One of eight prospectively selected conditional first-sweep cost
+          probes: first sorted EI/ER participant, two primary training halves
+          and M0/MZ. Validate/replay the full108-person source and completed
+          exact-panel batching benchmark, then run the original three starts,
+          bounds, conditional prior arithmetic and optimizer options at .002/200.
+          Record each attempt and interrupted cost under one3000s process cap.
+          Eight1CPU steps share a bounded8CPU/16GiB/60m parent allocation.
+          No population update, held-out urgency score, fitted-support precision
+          qualification or full hierarchical model fit is supplied.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_batched_equivalence_cost, mz_urgency_cost_precision_code, urgency_batched_solver_code, urgency_conditional_optimization_code, mz_urgency_optimization_cost_code, mz_urgency_optimization_cost_tests, mz_urgency_optimization_cost_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 3000s python3.12 -B
+            {inputs.mz_urgency_optimization_cost_code}
+            --probe-index "$EP_MZ_URGENCY_PROBE_INDEX"
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 3000
+          resources: {cpus: 1, memory: 2Gi, time_limit: 55m}
+      - id: mz_urgency_endpoint_local_numerics
+        type: data
+        format: directory
+        description: >-
+          Diagnose the fixed unsuccessful probe2/start2 endpoint after full
+          source validation and primary-score replay. Observe the installed
+          unchanged L-BFGS-B nondecision-logit perturbation with one cheap
+          constant recording objective. Evaluate original scalar and batched
+          coarse likelihoods at the endpoint, observed perturbation and one
+          same-effective-step opposite diagnostic point, exactly six calls.
+          Retain all128 trial scores and differences, conditional objectives,
+          local slopes, grid/bin geometry and discrepancy between recomputed
+          endpoint objective and reported optimizer fun. No acceptance
+          threshold, refit, mesh refinement, settings change or inference.
+          Seven focused checks and this bounded diagnostic share available
+          resources in an existing task-owned substantive allocation.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_batched_equivalence_cost, mz_urgency_optimization_cost_code, mz_urgency_endpoint_terminal_probe, mz_urgency_endpoint_diagnostic_code, mz_urgency_endpoint_diagnostic_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 300s python3.12 -B
+            {inputs.mz_urgency_endpoint_diagnostic_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 300
+          resources: {cpus: 1, memory: 2Gi, time_limit: 6m}
+      - id: mz_urgency_original_start_optimizer_trace
+        type: data
+        format: directory
+        description: >-
+          Trace original probe2/start2 from its original initialization under
+          the unchanged conditional optimizer, prior, bounds and coarse batched
+          likelihood. After full source/replay and exact probe validation,
+          record each original likelihood candidate and returned128-vector,
+          objective operands, cost and compact grid/bin metadata. Return the
+          original array unchanged and add no likelihood calls. Preserve
+          original start2 versus local start0, interrupted prefixes and exact
+          recorded x/fun matches, without a reproduction acceptance threshold.
+          Six focused checks and the1200s trace share a5CPU/10GiB/75m parent
+          with the independent4CPU common-gain reverse repair. No optimizer
+          setting, mesh, full urgency fit, precision or inference is selected.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_batched_equivalence_cost, mz_urgency_endpoint_local_numerics, mz_urgency_endpoint_terminal_probe, urgency_conditional_optimization_code, mz_urgency_optimizer_trace_code, mz_urgency_optimizer_trace_tests, mz_common_gain_reverse_and_trace_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1200s python3.12 -B
+            {inputs.mz_urgency_optimizer_trace_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 1200
+          resources: {cpus: 1, memory: 2Gi, time_limit: 21m}
+      - id: mz_urgency_saved_trace_geometry_diagnostic
+        type: report
+        format: json
+        description: >-
+          Analyze only the saved completed490-call original-start trace. Fixed
+          pairs270-to285 and270-to485 distinguish repeated returned-x scores
+          from the different reported-fun state. Validate all five-call
+          base-plus-four-coordinate patterns before describing98 finite
+          difference packets with actual steps, slopes and grid/bin/active
+          changes. Detail270-to273,285-to288 and485-to488 only if that
+          pattern validates; otherwise retain unresolved structure. Partition
+          saved trial-score differences by disjoint geometry-change groups
+          as descriptive accounting only. No new likelihood, optimizer or
+          mesh calls, acceptance/Wolfe reconstruction or causal verdict.
+          One1CPU/1GiB bounded step shares an existing substantive allocation.
+        inputs: [mz_urgency_original_start_optimizer_trace, mz_urgency_optimizer_trace_analysis_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 90s python3.12 -B
+            {inputs.mz_urgency_optimizer_trace_analysis_code}
+            --trace-report "$EP_MZ_URGENCY_COMPLETED_TRACE_REPORT"
+            --output {output} --max-seconds 60
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: mz_urgency_crossed_nondecision_diagnostic
+        type: data
+        format: directory
+        description: >-
+          From recorded A=evaluation270 and B=485, form C by replacing only
+          A's nondecision logit with B's and D by the reverse substitution.
+          Reuse saved batched A/B and the matching completed scalar endpoint A.
+          After full source/replay, prior and anchor validation, make exactly
+          five new unchanged coarse calls: scalar B and scalar/batched C/D.
+          Record all128 scores, geometry and conditional objectives, solver
+          differences, A-to-C and D-to-B contrasts and interaction. Other
+          coordinates and drift grouping remain fixed within each background;
+          horizon/time-step changes remain coupled to nondecision time.
+          No bin-only causal conclusion, new optimizer, mesh, fit or inference
+          qualification. New checks and the180s whole diagnostic share an
+          existing substantive allocation without extension.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_endpoint_local_numerics, mz_urgency_original_start_optimizer_trace, mz_urgency_saved_trace_geometry_diagnostic, mz_urgency_endpoint_diagnostic_code, mz_urgency_optimizer_trace_analysis_code, mz_urgency_crossed_nondecision_code, mz_urgency_crossed_nondecision_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 190s python3.12 -B
+            {inputs.mz_urgency_crossed_nondecision_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 180
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: mz_urgency_refined_crossed_diagnostic
+        type: data
+        format: directory
+        description: >-
+          Exactly two batched .001-second/400-interval evaluations at A and C
+          from the completed coarse crossed diagnostic. Preserve original
+          conditional prior, parameters, ER participant and128 training slots;
+          reuse coarse scores. Report all vectors and geometry, within-point
+          refined-minus-coarse differences and both A-to-C contrasts. No scalar
+          repeats, other point, optimization, interpolation change or acceptance
+          threshold. Resolution dependence at failed conditional states is not
+          fitted-support qualification or adoption. Whole process bounded120s.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_urgency_crossed_nondecision_diagnostic, mz_urgency_refined_crossed_code, mz_urgency_refined_crossed_tests, urgency_batched_solver_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 130s python3.12 -B
+            {inputs.mz_urgency_refined_crossed_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 120
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_robustness_diagnostics_figure
+        type: data
+        format: directory
+        description: >-
+          Saved completed primary, common-gain and nonlinear MZ0 contrasts on
+          one synthetic108-participant cohort. Mean gains and two-participant-SE
+          whiskers preserve distinct trial supports and the curvature-adjusted
+          nonlinear reference. Not independent replications, qualified intervals
+          or a full robustness/recovery verdict. No new fit or score computation.
+        inputs: [completed_mz_representative, mz_common_gain_mz_reverse_repaired_diagnostic, mz_nonlinear_m0_fresh_directions_nested_diagnostic, mz_robustness_diagnostics_plot_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 30s python3.12 -B
+            {inputs.mz_robustness_diagnostics_plot_code} --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: mz_saved_offer_sequence_influence
+        type: report
+        format: json
+        description: >-
+          Join108 saved primary MZ0 participant scores to16 exact ordered
+          offer-sequence groups. Report group support, all16 single omissions
+          and120 unordered pairs, with equal retained-person weighting and
+          EI/ER signs. Cross-version pairs do not equate ordinal labels.
+          Preserve measured onsets and predictions. No source-event read,
+          refit, cluster interval, generalization or full recovery verdict.
+        inputs: [completed_mz_representative, qualified_offer_sequence_support, qualified_offer_sequence_membership, mz_offer_sequence_influence_code, mz_offer_sequence_influence_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 70s python3.12 -B
+            {inputs.mz_offer_sequence_influence_code} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: mz_offer_sequence_omission_refit
+        type: data
+        format: directory
+        description: >-
+          Delete one qualified offer-sequence group from both fit and score
+          support of the saved synthetic MZ0 cohort. Fresh M0/MZ subject and
+          population fits on both original primary directions under unchanged
+          500-sweep settings, using the qualified four-worker fitter. Equal
+          retained-person scores over all256 held-out trials and separate EI/ER
+          summaries. First pilot EI-offers-01; no automatic subsequent omissions.
+          Not unseen-template prediction, cluster intervals or a recovery gate.
+        inputs: [implementation, completed_mz_representative, qualified_offer_sequence_support, qualified_offer_sequence_membership, mz_offer_sequence_refit_code, mz_offer_sequence_refit_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s 5460s python3.12 -B
+            {inputs.mz_offer_sequence_refit_code} --omitted-group EI-offers-01
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 5400
+          resources: {cpus: 4, memory: 8Gi, time_limit: 95m}
+      - id: mz_offer_sequence_remaining_refits
+        type: data
+        format: directory
+        description: >-
+          Complete all remaining15 single offer-group omissions after the
+          EI-offers-01 feasibility pilot. Three array tasks of five fixed groups,
+          each using four workers and the unchanged original500 fitting settings.
+          Each omission has1200s internal and1220s external plus20s grace.
+          Preserve technical failures and continue independent fixed groups;
+          no retries or replacement omissions. Expected typical task cost about
+          19minutes from the229.574s pilot; maximum reservation21 core-hours total.
+          These are sensitivities of one synthetic cohort, not independent
+          replicates, cluster intervals, unseen-template prediction or a gate.
+        inputs: [implementation, completed_mz_representative, qualified_offer_sequence_support, qualified_offer_sequence_membership, mz_offer_sequence_omission_refit, mz_offer_sequence_refit_code, mz_offer_sequence_refit_tests, mz_offer_sequence_refit_batch]
+        recipe:
+          command: >-
+            sbatch --array=1-3
+            --output="$EP_OFFER_SLURM_LOG_DIR/%A_%a.out"
+            --error="$EP_OFFER_SLURM_LOG_DIR/%A_%a.err"
+            {inputs.mz_offer_sequence_refit_batch}
+          resources: {cpus: 4, memory: 8Gi, time_limit: 105m}
+      - id: mz_offer_sequence_refit_summary
+        type: report
+        format: markdown
+        description: >-
+          Per-omission table of saved participant counts, refit and fixed
+          predictive means, task-version means, sweeps and process times in
+          outputs/mz0_offer_sequence_refit_summary.md. These dependent
+          same-cohort sensitivities are not pooled or used as independent
+          replications, cluster intervals, unseen-template prediction or a gate.
+        inputs: [mz_offer_sequence_omission_refit, mz_offer_sequence_remaining_refits]
+      - id: mz_nonlinear_component
+        type: data
+        format: directory
+        description: >-
+          One of M0/MZ with the registered anchored nonlinear gain/loss powers
+          on preserved MZ0, both primary directions freshly fit under original500.
+          Validate and replay the fixed-primary source before separate nonlinear
+          scoring of all256 held-out trials per participant. Nonlinear M0 permits
+          curvature asymmetry; this is a conditional starting-bias diagnostic,
+          with no source generation or family/rate/interval/gate verdict.
+        inputs: [implementation, single_process_specification, single_process_rival_code, mz_nonlinear_code, mz_nonlinear_tests, mz_nonlinear_batch, completed_mz_representative]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_nonlinear_code} --implementation {inputs.implementation}
+            --source-dir {inputs.completed_mz_representative}
+            --model "$EP_MZ_NONLINEAR_MODEL" --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_nonlinear_pooled_diagnostic
+        type: report
+        format: json
+        description: >-
+          After both exact M0/MZ nonlinear reports complete, validate their
+          shared source and primary replay and evaluate the existing nested
+          contrast on108 participant differences. Missing/technical components
+          leave the result unknown. Fixed-primary scores remain separate;
+          no nonnested winner, family rate, interval coverage or gate is inferred.
+        inputs: [implementation, single_process_specification, mz_nonlinear_code, mz_nonlinear_pool_code, mz_nonlinear_pool_tests, mz_nonlinear_batch, mz_nonlinear_component]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_nonlinear_pool_code} --source-root "$EP_MZ_NONLINEAR_SOURCE_ROOT"
+            --job-id "$EP_MZ_NONLINEAR_PARENT_JOB" --implementation {inputs.implementation}
+            --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_nonlinear_m0_repair_component
+        type: data
+        format: directory
+        description: >-
+          One explicitly selected nonlinear M0 numerical repair after diagnosed
+          first-half500 sweep exhaustion. Validate/replay original fixed-primary
+          source and exact failed report, then fit both halves freshly with only
+          the sweep ceiling raised to1500. Preserve original/runtime specs,
+          failed support contacts and costs; no failed warm start or MZ refit.
+          Scientific model, priors, support, starts and tolerances stay unchanged.
+          No full recovery, family, interval or robustness verdict is supplied.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_nonlinear_component, mz_nonlinear_code, mz_nonlinear_m0_repair_code, mz_nonlinear_m0_repair_tests, mz_nonlinear_m0_repair_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 15600s python3.12 -B
+            {inputs.mz_nonlinear_m0_repair_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 15600
+          resources: {cpus: 1, memory: 2Gi, time_limit: 270m}
+      - id: mz_nonlinear_m0_repaired_diagnostic
+        type: report
+        format: json
+        description: >-
+          Validate a selected fresh M0 runtime1500 repair against the original
+          MZ runtime500 report. Preserve the exact failed M0 context, support
+          contacts, original/runtime specifications and cumulative process cost.
+          A missing or technical MZ leaves this diagnostic unknown; only two
+          complete components allow the existing participant-level nested contrast.
+          No nonnested arbitration, recovery rate or full gate follows.
+        inputs: [implementation, completed_mz_representative, mz_nonlinear_component, mz_nonlinear_m0_repair_component, mz_nonlinear_code, mz_nonlinear_pool_code, mz_nonlinear_m0_repair_code, mz_nonlinear_repaired_pool_code, mz_nonlinear_repaired_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_nonlinear_repaired_pool_code}
+            --repair-dir "$EP_MZ_NONLINEAR_M0_REPAIR_DIR"
+            --repair-job-id "$EP_MZ_NONLINEAR_M0_REPAIR_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_nonlinear_mz_reverse_repair_component
+        type: data
+        format: directory
+        description: >-
+          Selected nonlinear MZ reverse-only numerical repair after original500
+          exhaustion. Validate source/replay and exact failure, preserve the
+          converged153-sweep first fit under500 and recompute its held-out scores.
+          Freshly fit reverse under1500 with original science, priors, support,
+          starts and tolerance. Retain each original seven-contact panel and
+          previous process cost separately from new copy/rescore/fit overhead.
+          No automatic retry or scientific recovery verdict follows.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_nonlinear_component, mz_nonlinear_code, mz_nonlinear_pool_code, mz_nonlinear_m0_repair_code, mz_nonlinear_mz_reverse_repair_code, mz_nonlinear_mz_reverse_repair_tests, mz_nonlinear_mz_reverse_repair_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 7800s python3.12 -B
+            {inputs.mz_nonlinear_mz_reverse_repair_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 7800
+          resources: {cpus: 1, memory: 2Gi, time_limit: 140m}
+      - id: mz_nonlinear_both_repaired_diagnostic
+        type: report
+        format: json
+        description: >-
+          Join the explicit M0 repair with a selected MZ reverse repair after
+          both are terminal. M0 uses1500 in both fresh halves; MZ retains first500
+          and fresh reverse1500. Reconstruct both original failures and retain
+          support contacts, primary last bits and each process cost once.
+          Only two complete components supply the existing nested participant
+          diagnostic; technical components remain unknown without a contrast.
+        inputs: [implementation, completed_mz_representative, mz_nonlinear_m0_repair_component, mz_nonlinear_mz_reverse_repair_component, mz_nonlinear_m0_repair_code, mz_nonlinear_mz_reverse_repair_code, mz_nonlinear_repaired_pool_code, mz_nonlinear_both_repaired_pool_code, mz_nonlinear_both_repaired_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_nonlinear_both_repaired_pool_code}
+            --repair-dir "$EP_MZ_NONLINEAR_REVERSE_REPAIR_DIR"
+            --repair-job-id "$EP_MZ_NONLINEAR_REVERSE_REPAIR_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_nonlinear_m0_fresh_direction_component
+        type: data
+        format: directory
+        description: >-
+          Fresh nonlinear M0 in one primary direction after the finite1500
+          first-half exhaustion. Direction0 raises only its maximum to2000;
+          direction1 was unattempted and retains1500. Validate the exact two
+          prior failures and full original500 source/replay. Four participant
+          workers use the original nonlinear likelihood, starts, priors and
+          tolerance, serial population updates and ordered objective arithmetic.
+          Retain128 held-out log sums divided by256 for each of108 participants.
+          Preserve partial progress and worker cleanup under a4800s whole cap.
+          Two4CPU steps run concurrently in one8CPU/16GiB/90m parent; focused
+          checks and ASTRA share that allocation. No failed-state warm start
+          or automatic extension is allowed.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_nonlinear_m0_terminal1500, mz_nonlinear_m0_repair_component, mz_nonlinear_code, mz_nonlinear_m0_repair_code, hierarchical_parallel_candidate_code, mz_nonlinear_m0_direction_code, mz_nonlinear_m0_direction_tests, mz_nonlinear_m0_directions_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 4800s python3.12 -B
+            {inputs.mz_nonlinear_m0_direction_code}
+            --direction "$EP_MZ_NONLINEAR_M0_DIRECTION"
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 4800
+          resources: {cpus: 4, memory: 8Gi, time_limit: 81m}
+      - id: mz_nonlinear_m0_fresh_directions_nested_diagnostic
+        type: report
+        format: json
+        description: >-
+          Validate both new M0 direction reports and preserved completed MZ
+          reverse repair46612046 against the same original MZ0 source/primary
+          scores and exact historical failure contexts. Actual maximums are
+          M0[2000,1500] and MZ[500,1500]. Add M0's two128-trial contributions
+          normalized by256 and compare MZ-minus-M0 over108 equal participants
+          only when all fits/scores validate. Missing or technical directions
+          remain unknown. Count original failures, the failed1500 M0 process,
+          preserved MZ repair and two new processes each once; allocation
+          accounting remains separate. No full recovery, family, interval,
+          nonlinear robustness or gate verdict follows.
+        inputs: [implementation, completed_mz_representative, mz_nonlinear_m0_terminal1500, mz_nonlinear_m0_fresh_direction_component, mz_nonlinear_mz_reverse_repair_component, mz_nonlinear_m0_direction_code, mz_nonlinear_both_repaired_pool_code, mz_nonlinear_m0_directions_pool_code, mz_nonlinear_m0_directions_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_nonlinear_m0_directions_pool_code}
+            --repair-dir "$EP_MZ_NONLINEAR_M0_DIRECTIONS_DIR"
+            --repair-job-id "$EP_MZ_NONLINEAR_M0_DIRECTIONS_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_common_gain_range_direction
+        type: data
+        format: directory
+        description: >-
+          One original primary direction restricted to common gains10 through20.
+          Validate/replay the full source, retain original selected rows and all108
+          participants, and fit fresh original500 M0/MZ with unchanged science.
+          Record actual training/held-out slots and finite held-out log sums/counts,
+          retaining96 EI and176 ER rows per full session. No fixed128/256 count
+          or half-mean averaging is valid for these restricted rows.
+        inputs: [implementation, single_process_specification, completed_mz_representative, single_process_rival_code, mz_common_gain_range_code, mz_common_gain_range_tests, mz_common_gain_range_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_common_gain_range_code} --direction "$EP_MZ_COMMON_GAIN_DIRECTION"
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_common_gain_range_diagnostic
+        type: report
+        format: json
+        description: >-
+          After both explicit direction components terminate, validate their
+          common source/specification and complementary retained slots, then
+          divide each participant/model's combined log sums by their actual
+          total retained count. The existing nested contrast weights108 people
+          equally and preserves EI/ER diagnostics. A common gain range does not
+          match the offer grids or make context within-person; no full recovery,
+          missingness, heterogeneity, template or gate verdict follows.
+        inputs: [implementation, mz_common_gain_range_direction, mz_common_gain_range_code, mz_common_gain_range_pool_code, mz_common_gain_range_pool_tests, mz_common_gain_range_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_common_gain_range_pool_code}
+            --source-root "$EP_MZ_COMMON_GAIN_ROOT" --job-id "$EP_MZ_COMMON_GAIN_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_common_gain_repair_component
+        type: data
+        format: directory
+        description: >-
+          One selected model and common-gain direction after original M0
+          exhaustion at500. Validate the exact failed direction and unchanged
+          full MZ0 source/replay, then retain the same restricted rows/support.
+          M0 freshly uses1500 with only the iteration ceiling changed; MZ is
+          previously unattempted and freshly uses original500. Keep original
+          and runtime specifications, prior contacts/process cost and own new
+          cost separate. Scores remain log sums/counts; no partial contrast.
+          The parent also checks the isolated parallel candidate without
+          adopting it for these original one-CPU scientific fits.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_common_gain_failed_directions, mz_common_gain_range_code, mz_common_gain_repair_code, mz_common_gain_repair_tests, mz_common_gain_repair_batch, hierarchical_parallel_candidate_code, hierarchical_parallel_candidate_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 4200s python3.12 -B
+            {inputs.mz_common_gain_repair_code}
+            --direction "$EP_MZ_COMMON_GAIN_DIRECTION" --model "$EP_MZ_COMMON_GAIN_MODEL"
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 4200
+          resources: {cpus: 1, memory: 2Gi, time_limit: 75m}
+      - id: mz_common_gain_repaired_diagnostic
+        type: report
+        format: json
+        description: >-
+          After all four model/direction components are terminal, validate
+          exact source/failure contexts, original and runtime specifications,
+          same-model complementary slots and same-direction matched support.
+          Only four complete components allow M0[1500,1500]/MZ[500,500] scores:
+          sum the two held-out log sums per model/person, divide by actual
+          total96 EI/176 ER trials, and weight108 participants equally. Prior
+          failure process costs are referenced once per direction, not once
+          per consuming model. Technical components remain unknown; no full
+          recovery, sequence, missingness, heterogeneity or gate verdict follows.
+        inputs: [implementation, completed_mz_representative, mz_common_gain_failed_directions, mz_common_gain_repair_component, mz_common_gain_range_code, mz_common_gain_repair_code, mz_common_gain_repaired_pool_code, mz_common_gain_repaired_pool_tests, mz_common_gain_repair_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_common_gain_repaired_pool_code}
+            --source-root "$EP_MZ_COMMON_GAIN_REPAIR_ROOT"
+            --job-id "$EP_MZ_COMMON_GAIN_REPAIR_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_common_gain_mz_reverse_repair_component
+        type: data
+        format: directory
+        description: >-
+          Repair only the exact direction1 MZ500-sweep exhaustion, preserving
+          all three completed common-gain components. Validate original MZ0
+          source/replay and both historical failure contexts. Freshly fit the
+          same gain10-20 rows with1500 maximum sweeps and four participant
+          workers, original serial population updates and objective order.
+          Likelihood, priors, support, starts, tolerances and first convergence
+          remain fixed. The3600s whole cap includes validation, scoring and
+          bounded worker cleanup; preserve technical prefixes and costs.
+          Twelve producer/pool checks share the substantive5CPU/10GiB/75m
+          parent with an independent1CPU urgency trace.
+        inputs: [implementation, single_process_specification, completed_mz_representative, mz_common_gain_failed_directions, mz_common_gain_terminal_components, mz_common_gain_repair_component, hierarchical_parallel_candidate_code, mz_common_gain_mz_reverse_code, mz_common_gain_mz_reverse_tests, mz_common_gain_reverse_and_trace_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 3600s python3.12 -B
+            {inputs.mz_common_gain_mz_reverse_code}
+            --source-dir {inputs.completed_mz_representative}
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 3600
+          resources: {cpus: 4, memory: 8Gi, time_limit: 61m}
+      - id: mz_common_gain_mz_reverse_repaired_diagnostic
+        type: report
+        format: json
+        description: >-
+          Validate the three preserved completed components and the single
+          fresh reverse-MZ repair, including exact old failure/source/support
+          lineage and mixed M0[1500,1500]/MZ[500,1500] ceilings. Only complete
+          complementary scores supply the MZ-minus-M0 nested diagnostic:
+          sum held-out log sums over each person's actual96 EI/176 ER trials
+          and weight108 people equally. Count each historical process once;
+          keep new process and allocation costs separate. Missing/technical
+          work remains unknown, with no family-rate or full-gate verdict.
+        inputs: [implementation, completed_mz_representative, mz_common_gain_failed_directions, mz_common_gain_terminal_components, mz_common_gain_mz_reverse_repair_component, mz_common_gain_mz_reverse_code, mz_common_gain_mz_reverse_pool_code, mz_common_gain_mz_reverse_pool_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 120s python3.12 -B
+            {inputs.mz_common_gain_mz_reverse_pool_code}
+            --repair-dir "$EP_MZ_COMMON_GAIN_REVERSE_DIR"
+            --repair-job-id "$EP_MZ_COMMON_GAIN_REVERSE_JOB"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_representative_fixed_rivals
+        type: data
+        format: directory
+        description: >-
+          MC both primary directions then MV on the unchanged completed MZ0
+          simulation, reusing saved M0/MZ fits and held-out scores. Nonnested
+          paired comparisons are diagnostics; family selection, confusion,
+          group recovery and full recovery are not evaluated by this output.
+        inputs: [implementation, single_process_specification, single_process_rival_code, single_process_rival_tests, completed_mz_representative]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 3010s python3.12 -B
+            {inputs.single_process_rival_code}
+            --implementation {inputs.implementation}
+            --source-dir {inputs.completed_mz_representative}
+            --output-dir {output} --max-seconds 3000
+          resources: {cpus: 1, memory: 2Gi, time_limit: 55m}
+      - id: mz_representative_complex_rival
+        type: data
+        format: directory
+        description: >-
+          One explicitly selected MVZ or MVC model, fitted in both primary
+          directions on the preserved completed MZ0 cohort. Reuse M0/MZ;
+          do not read a live MC/MV add-on. Paired contrasts are descriptive
+          and missing nested comparisons remain unresolved until full-panel pooling.
+        inputs: [implementation, single_process_specification, single_process_rival_code, mz_complex_rival_code, mz_complex_rival_tests, mz_complex_rival_batch, completed_mz_representative]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_complex_rival_code} --model "$EP_COMPLEX_MODEL"
+            --implementation {inputs.implementation}
+            --source-dir {inputs.completed_mz_representative}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_participant_refit_cost_pilot
+        type: data
+        format: directory
+        description: >-
+          One fixed paired participant bootstrap draw of the preserved MZ0
+          cohort, refitting all individual and population MZ parameters in both
+          primary halves. Requires both versions to pass the complete200-draw
+          point-bias verdict. The coordinator-selected finite dependency chain
+          performs that closeout before conditional refitting. Measures cost only; no
+          bootstrap count, interval convention, coverage or full recovery verdict.
+        inputs: [implementation, completed_mz_representative, mz_bootstrap_pilot_code, mz_bootstrap_pilot_tests, mz_bootstrap_pilot_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_bootstrap_pilot_code}
+            --implementation {inputs.implementation}
+            --source-report {inputs.completed_mz_representative}/single_process_recovery.json
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_bootstrap_zero_parallel_cost_comparison
+        type: data
+        format: directory
+        description: >-
+          One four-worker engineering repeat of the exact completed bootstrap0
+          with two fresh original500 MZ fits. Preserve the serial draw as the
+          sole statistical observation. Report measured wall cost, exact equality
+          and raw numerical discrepancies; absolute1e-12/relative0 agreement is
+          descriptive only. Across-hardware differences are not a controlled
+          speedup, core-hour saving, scientific failure or qualification gate.
+          No new draw, bootstrap count, interval convention or coverage result.
+          Checks and comparison share a bounded step in an existing allocation.
+        inputs: [implementation, completed_mz_representative, mz_completed_bootstrap_zero, mz_bootstrap_pilot_code, mz_bootstrap_parallel_comparison_code, mz_bootstrap_parallel_comparison_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=20s 920s python3.12 -B
+            {inputs.mz_bootstrap_parallel_comparison_code}
+            --source-report {inputs.completed_mz_representative}/single_process_recovery.json
+            --serial-report {inputs.mz_completed_bootstrap_zero}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 900
+          resources: {cpus: 4, memory: 8Gi, time_limit: 20m}
+      - id: mz_complete_group_closeout_and_conditional_pilot
+        type: data
+        format: directory
+        description: >-
+          Explicit fixed200 MZ terminal-report aggregation and group point-bias
+          assessment. Execute through a successful predecessor dependency;
+          conditionally run only bootstrap0 if both frozen group-bias flags pass.
+          Retain failed or incomplete summaries without starting a refit.
+        inputs: [implementation, single_process_pooling, mz_group_recovery_code, mz_bootstrap_pilot_code, mz_group_closeout_and_pilot_batch]
+        recipe:
+          command: bash {inputs.mz_group_closeout_and_pilot_batch}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_saved_replicate_rival
+        type: data
+        format: directory
+        description: >-
+          One declared rival on one unchanged saved MZ cohort with fixed index
+          1 through199. Reuse its original simulation and M0/MZ scores; fit
+          only the selected rival in both primary directions. Paired contrasts
+          are descriptive until the full fixed menu can be evaluated.
+        inputs: [implementation, completed_mz_initial_cohorts, completed_mz_expanded_cohorts, complete_mz_point_bias_summary, mz_saved_replicate_rival_code, mz_saved_replicate_rival_tests, mz_saved_simple_rival_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 3300s python3.12 -B
+            {inputs.mz_saved_replicate_rival_code} --model "$EP_RIVAL_MODEL"
+            --replicate-index "$EP_RIVAL_INDEX" --source-dir "$EP_SAVED_SOURCE"
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 3300
+          resources: {cpus: 1, memory: 2Gi, time_limit: 60m}
+      - id: mz_saved_replicate_mvc_rival
+        type: data
+        format: directory
+        description: >-
+          The remaining MVC model fitted in both primary directions on each
+          unchanged completed MZ cohort, indices1 through199. Preserve original
+          simulations and replayed M0/MZ scores. Larger measured MVC runtime
+          determines its bounded95-minute allocation; no inference gate changes.
+        inputs: [implementation, completed_mz_initial_cohorts, completed_mz_expanded_cohorts, complete_mz_point_bias_summary, mz_saved_replicate_rival_code, mz_saved_replicate_rival_tests, mz_saved_mvc_rival_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_saved_replicate_rival_code} --model MVC
+            --replicate-index "$EP_RIVAL_INDEX" --source-dir "$EP_SAVED_SOURCE"
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_group_point_recovery_figure
+        type: data
+        format: png
+        description: >-
+          EI and ER fixed200-replicate group-effect distributions, truth and
+          means. Simulation variation is not an uncertainty interval; interval
+          coverage and full recovery remain unevaluated.
+        inputs: [complete_mz_point_bias_summary, mz_group_point_figure_code]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_group_point_figure_code}
+            --summary {inputs.complete_mz_point_bias_summary} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_null_representative
+        type: data
+        format: directory
+        description: >-
+          One fresh all-null M0 cohort, fixed seed1300037/index0, with M0/MZ
+          fitted in both primary directions under the unchanged likelihood and
+          centered nuisance regime. Preserves simulation and fit checkpoints
+          for later full-menu completion. Pairwise diagnostics and runtime only;
+          no false-component rate, null curtailment rule or recovery verdict.
+        inputs: [implementation, preserved_synthetic_design, mz_null_representative_code, mz_null_representative_tests, mz_null_representative_batch]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.mz_null_representative_code}
+            --design-events {inputs.preserved_synthetic_design}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: single_process_mz_replicate
+        type: data
+        format: directory
+        description: >-
+          Declared MZ rejection-directed uniform-SESOI necessary recovery cell,
+          explicit fixed index. Preserve all later MC/urgency/nonlinear and group or
+          individual qualification requirements; no empirical outcome access.
+        inputs: [implementation, single_process_specification, single_process_code, single_process_tests, preserved_synthetic_design]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 5400s python3.12 -B
+            {inputs.single_process_code} --implementation {inputs.implementation}
+            --design-events {inputs.preserved_synthetic_design}
+            --model MZ --replicate-index "$EP_RECOVERY_INDEX" --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_null_saved_rival
+        type: data
+        format: directory
+        description: >-
+          Complete the same null representative with one MC, MV, MVZ or MVC
+          model in both directions only after the original four-fit null
+          representative succeeds. Reuse its simulation, fit checkpoints and
+          replayed M0/MZ scores. No new cohort, baseline refit or null wave.
+        inputs: [implementation, mz_null_representative_source, mz_null_rival_code, mz_null_rival_tests, mz_null_rival_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_rival_code}
+            --model "$EP_NULL_MODEL" --source-dir {inputs.mz_null_representative_source}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds "$EP_NULL_CAP"
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_null_baseline_replicate
+        type: data
+        format: directory
+        description: >-
+          Remaining fixed M0-null cohort indices1 through199 for the M0/MZ
+          baseline component, preserving completed representative0. Seed is
+          1300037 plus10007 times index. Retain zero eta/rho/criterion, the
+          centered nuisance regime, exact design and original500-sweep
+          implementation. Four fits cover both primary directions. Save
+          simulations and checkpoints for later same-cohort rivals; pairwise
+          diagnostics establish no full-menu false-selection rate or gate.
+          The bounded group wrapper runs two independent one-CPU workers at a
+          time over four preassigned cohorts (three in the last group).
+        inputs: [implementation, preserved_synthetic_design, mz_null_representative_code, mz_null_indexed_code, mz_null_indexed_tests, mz_null_baseline_group_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_code}
+            --replicate-index "$EP_NULL_INDEX"
+            --design-events {inputs.preserved_synthetic_design}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 2700
+          resources: {cpus: 1, memory: 2Gi, time_limit: 45m}
+      - id: mz_menu_wave_nested_diagnostics
+        type: data
+        format: json
+        description: >-
+          Existing per-cohort nested-menu diagnostics pooled only for explicit
+          terminal indices. Keep all200 fixed cohorts, index1, technical
+          failures and every unselected index unknown, and descriptive counts rather than selected
+          families, confusion rates, coverage or full-gate conclusions.
+        inputs: [implementation, mz_menu_wave_code, mz_menu_wave_tests, mz_saved_replicate_menu_code, mz_saved_replicate_menu_tests, completed_mz_representative, completed_mz_initial_cohorts, completed_mz_expanded_cohorts, mz_menu_mc_array, mz_menu_mv_array, mz_menu_mvz_array, mz_menu_mvc_array, mz_menu_representative_simple, mz_menu_representative_mvz, mz_menu_representative_mvc]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_menu_wave_code}
+            --terminal-indices "$EP_MZ_TERMINAL_INDICES" --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_repaired_menu_wave_diagnostics
+        type: report
+        format: json
+        description: >-
+          Pool explicitly selected terminal MZ cohorts after original or
+          repaired MVC completion. Preserve original0/92/105, exact mixed
+          original500/first1000/reverse1500 completion42, initial repairs2/3,
+          and explicitly supplied fresh-both/reverse-only repair arrays.
+          Reconstruct original failed context, validate original500 baselines,
+          fresh1500 fits and exact preserved first-fit contents/copy timing,
+          then retain baseline score last bits, replay and prior plus new
+          process cost once. Existing nine contrasts and partial-order builder
+          supply each complete menu. Held1, missing, unselected and technical
+          cohorts remain unknown in fixed200, with technical costs retained.
+          Descriptive maximal-set counts imply no family arbitration, recovery
+          rate, interval or scientific gate. Seven focused admission checks
+          validate repaired-source admission inside task-owned compute.
+        inputs: [implementation, completed_mz_representative, completed_mz_initial_cohorts, completed_mz_expanded_cohorts, mz_menu_representative_simple, mz_menu_representative_mvz, mz_menu_representative_mvc, mz_menu_mc_array, mz_menu_mv_array, mz_menu_mvz_array, mz_menu_mvc_array, mz_mvc_failed_representative, mz_mvc_failed_1000_pilot, mz_mvc42_completed_reverse, mz_mvc_two_case_repairs, mz_mvc_fresh_both_repairs, mz_mvc_reverse_only_repairs, mz_mvc_general_repair_code, mz_mvc42_repaired_menu_code, mz_menu_wave_code, mz_repaired_menu_wave_code, mz_repaired_menu_wave_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_repaired_menu_wave_code}
+            --terminal-indices "$EP_MZ_REPAIRED_MENU_TERMINAL_INDICES"
+            --fresh-array-job-id "$EP_MZ_REPAIRED_MENU_FRESH_ARRAY_ID"
+            --reverse-array-job-id "$EP_MZ_REPAIRED_MENU_REVERSE_ARRAY_ID"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: resolved_fixed_menu_counts
+        type: report
+        format: json
+        description: >-
+          Derived decisions for the preserved uniform MZ-at-SESOI and global
+          null fixed200 cells. Validate each completed saved six-model menu
+          and apply the unchanged margins to its nine preserved qualified
+          paired contrasts; means and standard errors are inherited rather
+          than independently recomputed. A unique maximal eligible mechanism set is
+          resolved under the existing rule; incomparable, missing and
+          technical menus remain unknown. Report known correct/incorrect,
+          unknown and false-component counts using all 200 fixed indices,
+          with deterministic missing-outcome bounds, not confidence intervals.
+          Preserve historical summaries, numerical-repair provenance and
+          costs; no new fits, arbitration choice, interval or full-gate claim.
+        inputs: [implementation, single_process_specification, mz_repaired_menu_wave_diagnostics, mz_null_indexed_menu_diagnostics, preserved_mz199_menu_summary, preserved_null200_menu_summary, mz_fixed_menu_summary_code, resolved_fixed_menu_counts_code, resolved_fixed_menu_counts_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 260s python3.12 -B
+            {inputs.resolved_fixed_menu_counts_code} --implementation {inputs.implementation}
+            --output {output} --max-seconds 240
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_null_indexed_mvz
+        type: data
+        format: directory
+        description: >-
+          MVZ only on each completed saved null baseline index1 through199,
+          retaining the actual source identity and original500-sweep specification.
+          Validate all four baseline fits and replay their scores before the two
+          MVZ fits. No resimulation, baseline refit, full-menu wave, family rate
+          or gate. The finite batch groups four cohorts (last group three),
+          running two one-CPU workers at a time within two CPUs/4GiB/two hours.
+        inputs: [implementation, mz_null_first_baselines, mz_null_remaining_baselines, mz_null_baseline_pool_code, mz_null_baseline_pool_tests, mz_null_rival_code, mz_null_indexed_rival_code, mz_null_indexed_rival_tests, mz_null_indexed_mvz_batch, mz_null_indexed_mvz_ready_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_rival_code}
+            --model MVZ --replicate-index "$EP_NULL_MVZ_INDEX"
+            --source-dir "$EP_NULL_MVZ_SOURCE" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 3300
+          resources: {cpus: 1, memory: 2Gi, time_limit: 56m}
+      - id: mz_null_baseline_wave_diagnostics
+        type: data
+        format: json
+        description: >-
+          Pool only explicitly terminal null baselines from the original pilot
+          and the two selected arrays. Validate full source truth/design and
+          four original fits and recompute the MZ versus M0 diagnostic. Keep
+          fixed200 support and technical or missing sources unknown. Counts
+          supply no full-menu false-selection rate, early kill or gate verdict.
+          Execute inside substantive MVZ group2 after both baseline arrays are terminal.
+        inputs: [implementation, mz_null_representative_source, mz_null_first_baselines, mz_null_remaining_baselines, mz_null_baseline_pool_code, mz_null_baseline_pool_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_baseline_pool_code}
+            --first-array-job-id 46579924 --remaining-array-job-id 46580387
+            --terminal-indices "$EP_NULL_MVZ_TERMINAL_INDICES"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: mz_null_indexed_simple_rivals
+        type: data
+        format: directory
+        description: >-
+          Independently selected MC or MV on a completed saved null baseline
+          index1 through199, with original500-sweep fits and exact source
+          identity. Validate all four baseline fits and replay scores before
+          either new model fit. No new simulation, baseline refit, full-menu
+          selection, false-selection rate or gate. The finite combined batch
+          schedules MC then MV for each cohort, four cohorts per group (last
+          group three), at most two one-CPU workers within2 CPUs/4GiB/3hours.
+        inputs: [implementation, mz_null_first_baselines, mz_null_remaining_baselines, mz_null_baseline_pool_code, mz_null_baseline_pool_tests, mz_null_rival_code, mz_null_indexed_simple_code, mz_null_indexed_simple_tests, mz_null_indexed_simple_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_simple_code}
+            --model "$EP_NULL_SIMPLE_MODEL" --replicate-index "$EP_NULL_SIMPLE_INDEX"
+            --source-dir "$EP_NULL_SIMPLE_SOURCE" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 2400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 41m}
+      - id: mz_null_complete_menu_diagnostics
+        type: data
+        format: json
+        description: >-
+          Validate the one completed M0-null source and all four selected
+          same-cohort rivals, then compute the existing nine nested contrasts.
+          Retain the M0 generator and diagnostic-only interpretation; no
+          family selection, false-selection rate, interval or full-gate verdict.
+        inputs: [implementation, mz_null_representative_source, mz_null_menu_code, mz_null_menu_tests, mz_null_mc_report, mz_null_mv_report, mz_null_mvz_report, mz_null_mvc_report]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_menu_code}
+            --base-report {inputs.mz_null_representative_source}/mz_null_representative.json
+            --mc-report {inputs.mz_null_mc_report} --mv-report {inputs.mz_null_mv_report}
+            --mvz-report {inputs.mz_null_mvz_report} --mvc-report {inputs.mz_null_mvc_report}
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: mz_null_baseline35_completion
+        type: data
+        format: directory
+        description: >-
+          Complete only the missing reverse MZ fit on the exact saved null35
+          cohort after its diagnosed2700-second process interruption. Validate
+          and reuse the three converged fits under the original500-sweep
+          specification, recomputing their scores without resimulation or
+          source copies. Fit the missing direction from unchanged starts and
+          preserve the original failure, original/new cost and distinct
+          completion phase. Future repair-source admission is separate;
+          no family, full-menu false-selection rate or gate is evaluated.
+        inputs: [implementation, mz_null_failed_baseline35, mz_null_baseline_pool_code, mz_null_representative_code, mz_null_baseline_completion_code, mz_null_baseline_completion_tests, mz_null_baseline_completion_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_baseline_completion_code}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 2700
+          resources: {cpus: 1, memory: 2Gi, time_limit: 50m}
+      - id: mz_mvc_numerical_convergence_pilot
+        type: data
+        format: directory
+        description: >-
+          One fresh deterministic MVC retry on saved MZ cohort42 after the
+          original fit exhausted500 outer sweeps. Only the runtime outer-sweep
+          ceiling increases to1000; retain the estimator, priors, initialization,
+          likelihood, support, stopping tolerance and first convergence. Preserve
+          original and runtime specifications separately. No wave retry or gate.
+        inputs: [implementation, completed_mz_expanded_cohorts, mz_mvc_failed_representative, mz_mvc_convergence_pilot_code, mz_mvc_convergence_pilot_tests, mz_mvc_convergence_pilot_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_mvc_convergence_pilot_code}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_null35_completed_baseline_rival_components
+        type: data
+        format: directory
+        description: >-
+          Selected MC, MV and MVZ components on the exact completed null35
+          baseline46586603, preserving original simulation/truth and failed
+          worker46580478. Validate original/completion lineage, all four500
+          baseline fits and exact equality of the three preserved fits, then
+          replay saved scores before two fresh original500 fits per model.
+          The finite batch runs MC then MV on one CPU alongside MVZ on one
+          CPU, after six focused checks, inside two CPUs/4GiB/85minutes.
+          Original source-rejected component steps must be terminal before
+          selection. No baseline refit, resimulation, full-menu verdict or rate.
+        inputs: [implementation, mz_null_failed_baseline35, mz_null_completed_baseline35, mz_null_baseline_completion_code, mz_null_rival_code, mz_null_completed_baseline_rival_code, mz_null_completed_baseline_rival_tests, mz_null_completed_baseline_rival_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_completed_baseline_rival_code}
+            --model "$EP_NULL35_RIVAL_MODEL" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds "$EP_NULL35_RIVAL_SECONDS"
+          resources: {cpus: 1, memory: 2Gi, time_limit: 56m}
+      - id: mz_mvc42_reverse_numerical_completion
+        type: data
+        format: directory
+        description: >-
+          One fresh reverse-only MVC fit on saved MZ cohort42 after its exact
+          runtime1000 pilot returned reverse-half nonconvergence. Preserve and
+          rescore the converged666-sweep first fit, validated under its1000
+          runtime specification. Increase only the fresh reverse ceiling to1500;
+          retain original500 baseline validation, priors, support, starts,
+          likelihood, tolerance and first convergence. Bind both failed attempts
+          to the actual source cohort. Preserve prior cumulative process cost
+          plus new process once, with first-fit cost and copy overhead distinct.
+          No failed optimizer state reuse, retry wave or scientific gate verdict.
+        inputs: [implementation, completed_mz_expanded_cohorts, mz_mvc_failed_representative, mz_mvc_failed_1000_pilot, mz_mvc_convergence_pilot_code, mz_menu_wave_code, mz_mvc_reverse_completion_code, mz_mvc_reverse_completion_tests, mz_mvc_reverse_completion_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_mvc_reverse_completion_code}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_mvc_saved_numerical_repairs
+        type: data
+        format: directory
+        description: >-
+          Explicitly selected original500 MVC exhaustion cases from preserved
+          saved MZ cohorts. Increase only the fresh failed-half sweep ceiling
+          to1500 after the successful1067-sweep reverse completion on42.
+          For second-half failures retain and rescore the validated original500
+          first fit; for first-half failures fit both halves freshly. Revalidate
+          original baselines and replay saved scores before fitting. Fresh
+          initialization, tolerance, priors, likelihood, support and first
+          convergence remain unchanged. Preserve failed attempts and cumulative
+          old plus new process costs once. Exclude completed42/92/105 and held1.
+          Initial substantive cases2/3 use two one-CPU workers with12600/6600
+          second process caps in one220-minute allocation. Changed repair
+          checks precede fitting; independent repaired-menu checks and summary
+          failures are retained without blocking qualified fits. No automatic
+          retry, full-menu wave, family-selection or scientific gate verdict.
+          The remaining wave has172 fresh-both cases with12600-second
+          process caps/220-minute allocations and21 reverse-only cases with
+          6600-second caps/115-minute allocations, one CPU/2GiB per case.
+          Explicit disjoint arrays exclude held1, initial2/3 and completed
+          42/92/105. It reuses the checked runner without repeated startup tests.
+        inputs: [implementation, completed_mz_expanded_cohorts, mz_mvc42_completed_reverse, mz_menu_mvc_array, mz_menu_wave_code, mz_mvc_general_repair_code, mz_mvc_general_repair_tests, mz_mvc_two_case_repair_batch, mz_mvc_repair_wave_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_mvc_general_repair_code}
+            --replicate-index "$EP_MZ_MVC_REPAIR_INDEX"
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds "$EP_MZ_MVC_REPAIR_SECONDS"
+          resources: {cpus: 1, memory: 2Gi, time_limit: 220m}
+      - id: mz_mvc42_repaired_menu_diagnostics
+        type: report
+        format: json
+        description: >-
+          One complete nested-model menu on MZ42 using original baselines and
+          MC/MV/MVZ, preserved first MVC fit under1000, and successful reverse
+          MVC completion under1500. Validate exact failed/completed lineage,
+          preserved first-fit equality, original500 baselines and exact saved
+          score replay; then reuse the original nine nested contrasts and
+          partial-order comparison. No family arbitration, rate, interval or
+          full recovery verdict. Its seven tests plus the seven amended
+          reverse-completion fixture tests share the substantive repair allocation.
+        inputs: [implementation, completed_mz_expanded_cohorts, mz_mvc42_completed_reverse, mz_menu_mc_array, mz_menu_mv_array, mz_menu_mvz_array, mz_mvc_failed_representative, mz_mvc_failed_1000_pilot, mz_menu_wave_code, mz_mvc_reverse_completion_code, mz_mvc_reverse_completion_tests, mz_mvc42_repaired_menu_code, mz_mvc42_repaired_menu_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_mvc42_repaired_menu_code}
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: mz_null_mvc_numerical_repair
+        type: data
+        format: directory
+        description: >-
+          One diagnosed reverse-half MVC repair on the unchanged M0-null
+          representative. Revalidate the original converged first fit under500
+          against the actual saved cohort, preserve its fitted values and
+          recompute its held-out score. Fit only the reverse half freshly with
+          maximum_sweeps1000, changing no other likelihood, prior, support,
+          tolerance or stopping rule. Preserve baseline score replay, distinct
+          per-half provenance and original/new costs without double charging.
+          No retry wave, complete-menu acceptance or recovery verdict.
+        inputs: [implementation, mz_null_representative_source, mz_null_mvc_report, mz_null_rival_code, mz_menu_wave_code, mz_null_mvc_repair_code, mz_null_mvc_repair_tests, mz_null_mvc_repair_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_mvc_repair_code}
+            --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 5400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 95m}
+      - id: mz_null_indexed_mvc_first_half_repairs
+        type: data
+        format: directory
+        description: >-
+          Explicit null43/61/168 first-half1000 sweep exhaustion repairs using
+          the checked indexed-MVC loop with isolated process-local changes.
+          Diagnose exact original failed reports under runtime1000, revalidate
+          original500 baseline lineage and replay saved scores, then freshly
+          fit both MVC halves under1500 without changing starts, support,
+          tolerance, priors, likelihood or first convergence. No completed
+          first fit exists in these sources, so no failed optimizer state is
+          reused. Preserve prior attempt plus new process cost once. One CPU/
+          2GiB/220minutes per explicit cohort with12600-second process cap.
+          Initial43 bundles changed tests and ASTRA within12780seconds;
+          61/168 are selected only after those checks and actual source replay.
+          No automatic retry, full-menu selection, scientific rate or gate.
+        inputs: [implementation, mz_null_remaining_baselines, mz_null_mvc_remaining_components, mz_null_indexed_mvc_code, mz_null_indexed_mvc_repair_code, mz_null_indexed_mvc_repair_tests, mz_null_indexed_mvc_repair_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_mvc_repair_code}
+            --replicate-index "$EP_NULL_MVC_REPAIR_INDEX"
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 12600
+          resources: {cpus: 1, memory: 2Gi, time_limit: 220m}
+      - id: mz_null_indexed_mvc_reverse_completions
+        type: data
+        format: directory
+        description: >-
+          Explicitly selected diagnosed indexed-null reverse-only numerical completions. Revalidate
+          the exact prior runtime1000 reverse exhaustion, original500 baseline
+          and saved score replay inside the checked timed indexed loop.
+          Preserve the converged first MVC fit and validate it under1000;
+          copy and rescore its saved fit without optimization. Fit only the
+          reverse freshly under1500 with unchanged initialization, tolerance,
+          priors, likelihood, support and first-convergence rule. Never reuse
+          the failed reverse state. Distinguish original first-fit cost from
+          new copy/rescore cost; retain prior failed process plus new process
+          once. Use a6600-second whole-process cap on one CPU/2GiB. Initial183
+          bundles changed runner checks, optional repair-pool checks, ASTRA and
+          explicit terminal-cohort summaries in125minutes. Later31 requires
+          those runner checks and actual source replay, and uses115minutes.
+          Further coordinator-selected identity additions use the same qualified numerical branch;
+          Null12 bundles changed reverse-admission checks with its substantive fit.
+          Missing or technical evidence remains unknown; no automatic retry,
+          family-selection rate, interval or scientific gate is evaluated.
+        inputs: [implementation, mz_null_remaining_baselines, mz_null_mvc_remaining_components, mz_null_indexed_mvc_code, mz_null_mvc_reverse_completion_code, mz_null_mvc_reverse_completion_tests, mz_null_mvc_reverse_completion_batch, mz_null_indexed_menu_code, mz_null_indexed_menu_tests, mz_null_mvc_repair_admission_code, mz_null_mvc_repair_admission_tests, mz_null_mvc_reverse_admission_code, mz_null_mvc_reverse_admission_tests, mz_repaired_menu_wave_code]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_mvc_reverse_completion_code}
+            --replicate-index "$EP_NULL_MVC_REVERSE_INDEX"
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds 6600
+          resources: {cpus: 1, memory: 2Gi, time_limit: 125m}
+      - id: mz_null_indexed_mvc_components
+        type: data
+        format: directory
+        description: >-
+          One selected fixed null cohort1 through199 per allocation, with two
+          fresh MVC fits under runtime1000, after representative null0 converged.
+          Preserve original500 implementation and baseline fits; change only
+          the MVC sweep ceiling, with the same starts, priors, likelihood,
+          support, tolerance and first-convergence rule. Replay saved baseline
+          scores before fitting. Index35 explicitly validates completion46586603
+          and the original failed-worker lineage without regenerating events.
+          Only terminal complete sources may be selected. The whole process
+          including source reads and final result has an8400-second cap.
+          Index1 bundles seven adapter checks, seven repaired-menu checks and
+          the actual null0 repaired-menu summary in its150-minute allocation.
+          No full-menu wave, scientific rate, gate verdict or automatic retry.
+        inputs: [implementation, mz_null_first_baselines, mz_null_remaining_baselines, mz_null_completed_baseline35, mz_null_completed_mvc_repair, mz_null_rival_code, mz_null_indexed_simple_code, mz_null_completed_baseline_rival_code, mz_null_indexed_mvc_code, mz_null_indexed_mvc_tests, mz_null_indexed_mvc_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_mvc_code}
+            --replicate-index "$EP_NULL_INDEXED_MVC_INDEX" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 8400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 150m}
+      - id: mz_null_additional_baseline_completions
+        type: data
+        format: directory
+        description: >-
+          Complete only the missing reverse MZ fit on exact saved null108/176
+          after their2700-second interruptions, using the checked null35 engine
+          with process-local source identities and a distinct completion phase.
+          Validate exact failed worker and timestamp, preserve and rescore each
+          original three-fit prefix, then fit one fresh reverseMZ under unchanged500.
+          Retain source simulation/truth, original elapsed fields and cumulative
+          prior plus new cost once. Six adapter checks run in the same two-CPU,
+          4GiB,50-minute allocation as the two parallel substantive completions.
+          Each process cap2700 includes reads and fitting. No automatic retry,
+          baseline regeneration, scientific verdict or implicit downstream admission.
+        inputs: [implementation, mz_null_remaining_baselines, mz_null_baseline_completion_code, mz_null_additional_baseline_completion_code, mz_null_additional_baseline_completion_tests, mz_null_additional_baseline_completion_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_additional_baseline_completion_code}
+            --replicate-index "$EP_NULL_EXTRA_INDEX" --implementation {inputs.implementation}
+            --output-dir {output} --max-seconds 2700
+          resources: {cpus: 1, memory: 2Gi, time_limit: 50m}
+      - id: mz_null_repaired_representative_menu
+        type: report
+        format: json
+        description: >-
+          Apply the original nine nested contrasts and partial order to the
+          completed null0 menu. Admit only exact repair46582236, validate the
+          preserved first fit under500 and reverse under1000, and retain
+          baseline scores and cumulative cost lineage. This diagnostic runs
+          inside the first indexed MVC allocation after its seven focused checks.
+          It does not select a family, evaluate a null rate or pass recovery.
+        inputs: [implementation, mz_null_representative_source, mz_null_mc_report, mz_null_mv_report, mz_null_mvz_report, mz_null_mvc_report, mz_null_completed_mvc_repair, mz_null_repaired_menu_code, mz_null_repaired_menu_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_repaired_menu_code}
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: mz_null_additional_completed_simple_components
+        type: data
+        format: directory
+        description: >-
+          Prepared MC/MV/MVZ components for null108/176 on exact successful
+          baseline completion46591918. Preserve the original failed sources,
+          all three reused fits and shared cumulative baseline cost lineage.
+          Original500 baseline scores are replayed before two fresh original500
+          rival fits. The grouped wrapper uses four one-CPU workers,8GiB and
+          90minutes: MC then MV per cohort alongside MVZ per cohort, after
+          changed adapter/menu-pool checks, ASTRA validation and a first actual
+          pool restricted to terminal menus0/127. An independent menu-test or
+          summary failure is retained in the parent result without preventing
+          the qualified rival fits. Existing
+          components bound to immutable incomplete original baselines reject
+          before fitting; their parent jobs and valid cohorts remain untouched.
+          Selection requires terminal successful baselines and no competing
+          valid-source fit. No automatic retry, full-menu or scientific verdict.
+        inputs: [implementation, mz_null_completed_baseline108, mz_null_completed_baseline176, mz_null_additional_baseline_completion_code, mz_null_completed_baseline_rival_code, mz_null_additional_completed_rival_code, mz_null_additional_completed_rival_tests, mz_null_additional_completed_rival_batch, mz_null_indexed_menu_code, mz_null_indexed_menu_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_additional_completed_rival_code}
+            --replicate-index "$EP_NULL_EXTRA_RIVAL_INDEX" --model "$EP_NULL_EXTRA_RIVAL_MODEL"
+            --implementation {inputs.implementation} --output-dir {output}
+            --max-seconds "$EP_NULL_EXTRA_RIVAL_SECONDS"
+          resources: {cpus: 1, memory: 2Gi, time_limit: 56m}
+      - id: mz_null_additional_completed_mvc_components
+        type: data
+        format: directory
+        description: >-
+          MVC components for null108/176 after their exact successful
+          baseline completions and checked additional adapter source replay.
+          Reuse the checked indexedMVC loop with only explicit completed-source
+          admission changed. Original500 baselines are retained; both MVC fits
+          are fresh under runtime1000 with unchanged starts, priors, support,
+          likelihood and stopping tolerance. One CPU/2GiB/150minutes per cohort
+          with8400-second whole-process cap. No simulation, preserved-fit refit,
+          duplicate valid-source fit, automatic retry or scientific verdict.
+          Index108 also runs the changed menu-admission checks and ASTRA,
+          within8580 seconds including timeout graces; an independent menu-test
+          failure is retained without preventing its already-qualified MVC fit.
+        inputs: [implementation, mz_null_completed_baseline108, mz_null_completed_baseline176, mz_null_additional_baseline_completion_code, mz_null_completed_baseline_rival_code, mz_null_indexed_mvc_code, mz_null_additional_completed_rival_code, mz_null_additional_completed_rival_tests, mz_null_additional_completed_mvc_batch]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_additional_completed_rival_code}
+            --replicate-index "$EP_NULL_EXTRA_MVC_INDEX" --model MVC
+            --implementation {inputs.implementation} --output-dir {output} --max-seconds 8400
+          resources: {cpus: 1, memory: 2Gi, time_limit: 150m}
+      - id: mz_null_indexed_menu_diagnostics
+        type: report
+        format: json
+        description: >-
+          Pool only explicitly selected terminal null cohorts using each real
+          report phase and source lineage, including repaired null0 and completed35.
+          Original500 baseline scores and other rivals are preserved; indexed
+          MVC fits are validated under their runtime1000-only override. Reuse
+          the original nine nested contrasts and partial order without new
+          scientific formulas. Missing or technical components remain unknown
+          in fixed200; malformed completed claims abort. Default108/176 remain
+          unknown without reads. An explicit additional MVC-array identity
+          admits only their completion46591918 baselines, replacement MC/MV/MVZ
+          from46595106 and MVC reports from that selected array, with exact
+          lineage and the same fit/replay validation. Optional explicit mappings
+          admit separately selected null43/61/168 numerical repairs with original500
+          baselines, the exact prior1000 failure and two fresh1500 fits. Both
+          process costs are retained once; technical or missing components remain
+          unknown in fixed200. A separate explicit reverse-completion mapping
+          admits explicitly identified reverse completions only after exact prior1000 failure validation,
+          unchanged first1000 fit reuse/rescoring and fresh reverse1500 validation.
+          Original500 baseline last bits and prior/new costs remain distinct.
+          Descriptive complete-menu/M0-only/incomparable counts do not
+          select a family or evaluate scientific rates, intervals or recovery.
+          First execution pools0/127 inside the substantive additional-rival
+          allocation after nine focused checks; changed optional first-half and
+          reverse-repair admission uses focused and affected pool checks inside
+          substantive task-owned compute, without a standalone checking job.
+        inputs: [implementation, mz_null_first_baselines, mz_null_remaining_baselines, mz_null_representative_source, mz_null_completed_baseline35, mz_null_mc_report, mz_null_mv_report, mz_null_mvz_report, mz_null_mvc_report, mz_null_completed_mvc_repair, mz_null_mc_ready_components, mz_null_mc_remaining_components, mz_null_mv_ready_components, mz_null_mv_remaining_components, mz_null_mvz_first_components, mz_null_mvz_ready_components, mz_null_mvz_remaining_components, mz_null_mvc_first_component, mz_null_mvc_remaining_components, mz_null_mvc_additional_components, mz_null35_completed_mc_component, mz_null35_completed_mv_component, mz_null35_completed_mvz_component, mz_null_completed_baseline108, mz_null_completed_baseline176, mz_null108_completed_mc_component, mz_null108_completed_mv_component, mz_null108_completed_mvz_component, mz_null176_completed_mc_component, mz_null176_completed_mv_component, mz_null176_completed_mvz_component, mz_null_additional_completed_rival_code, mz_null_indexed_menu_code, mz_null_indexed_menu_tests, mz_null_mvc_repair_admission_code, mz_null_mvc_repair_admission_tests, mz_null_mvc_reverse_completion_code, mz_null_mvc_reverse_admission_code, mz_null_mvc_reverse_admission_tests]
+        recipe:
+          command: >-
+            python3.12 -B {inputs.mz_null_indexed_menu_code}
+            --terminal-indices "$EP_NULL_MENU_TERMINAL_INDICES"
+            --additional-mvc-array-job-id "$EP_NULL_MENU_ADDITIONAL_MVC_ARRAY_JOB_ID"
+            --mvc-repair-arrays "$EP_NULL_MENU_MVC_REPAIR_ARRAYS"
+            --mvc-reverse-arrays "$EP_NULL_MENU_MVC_REVERSE_ARRAYS"
+            --implementation {inputs.implementation} --output {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
     decisions:
       recovery:
         label: Exact-design recovery

@@ -67,6 +67,15 @@ class ModeSupportInferenceTests(unittest.TestCase):
         self.assertEqual(first["bootstrap"]["replicates"], BOOTSTRAP_REPLICATES)
         self.assertTrue(first["bootstrap"]["directions_resampled_together"])
         self.assertEqual(first["bootstrap"]["unit"], "whole_provider_type")
+        self.assertEqual(
+            first["bootstrap"]["studentization"],
+            "standard_error_recomputed_within_each_resample",
+        )
+        gain = first["diagnostics"]["prediction_gain"]
+        self.assertAlmostEqual(
+            gain["estimate_aggregate"],
+            float(np.mean(gain["estimate_by_direction"])),
+        )
         self.assertTrue(first["scientific_mode_support"])
         self.assertEqual(first["support_state"], "supported")
         self.assertEqual(

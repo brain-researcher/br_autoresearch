@@ -1,0 +1,345 @@
+episode_id: ep10
+clarification_id: v3_m2_numerical_falsifier_clarification_v4
+recorded_date: "2026-09-29"
+status: frozen_prospectively_before_any_M2_outcome_access
+analysis_label: exploratory_development_only
+
+authority_and_scope:
+  parent_contract: outputs/stage0/v3_m2_search_contract.yaml
+  numerical_addendum: outputs/stage0/v3_m2_numerical_falsifier_addendum_v1.yaml
+  prior_hybrid_coordinate_clarification: outputs/stage0/v3_m2_numerical_falsifier_clarification_v2.yaml
+  prior_hybrid_rank_clarification: outputs/stage0/v3_m2_numerical_falsifier_clarification_v3.yaml
+  purpose: >-
+    Freeze only the previously unspecified deterministic Rademacher dictionary,
+    its exact use of the already-computed physical fold range and scaling, the
+    same-objective low-rank precursor required when a Rademacher reference
+    matches a hybrid successor, and the exact whole-set permutation algorithm.
+  supersedes_only:
+    - >-
+      The v3 prohibition on a fresh prerequisite low-rank fit, only for the
+      internal same-objective initializer of a capacity-matched Rademacher
+      reference whose paired successor is sparse-plus-low-rank.
+    - >-
+      Any implementation assumption that a Rademacher reference recomputes its
+      own RMS vector or coefficient range instead of using the paired physical
+      fold's already-computed RMS vector and range projector.
+  explicitly_unchanged:
+    - parent_controller_schedule_trial_counts_seeds_and_dynamic_indexing
+    - parent_model_families_lattices_penalties_optimizers_and_stopping_gates
+    - seven_Rademacher_reference_trials_and_their_paired_successor_configurations
+    - whole_set_permutation_strata_and_complete_set_unit
+    - selector_ineligibility_of_every_falsifier
+    - real_winner_specificity_margin_of_0.002_bits_per_eligible_cell
+    - v2_sparse_coordinate_system_and_v3_physical_hybrid_initializer_rule
+    - full_controller_null_replay_and_selected_model_validity_gates
+    - protected_data_and_claim_boundaries
+  design_inputs: target_free_contracts_synthetic_fixtures_and_audited_M1_M2_mechanics_only
+  candidate_pair_effect_or_M2_score_used_to_freeze_this_clarification: false
+  real_M2_outcome_access_before_freeze: false
+  final_unassigned_or_SWC_access: forbidden
+  M0_full_refit_or_telemetry_access: forbidden
+  extra_hash_schema_or_attestation_gate_added: false
+
+frozen_integer_codes:
+  null_stage_code_M2_fit: 3
+  purpose_code_Rademacher_design: 3
+  purpose_code_whole_set_permutation: 4
+  nonapplicable_fold_ordinal: 0
+
+Rademacher_dictionary:
+  scope: one_exact_dictionary_per_controller_trial_objective
+  shared_across: [all_194_cells, all_12_outer_folds]
+  row_universe:
+    count: 65536
+    order: >-
+      Concatenate K from 0 through 16. Within each K use the exact existing
+      CandidateLibrary basis order, itertools.combinations(range(16), K).
+  columns:
+    count: 120
+    order: exact_existing_lexicographic_unordered_PAIR_INDEX_order
+    interpretation: noise_pseudofeature_labels_only_never_biological_edges
+  flattening: C_row_major_with_column_fastest
+  generator:
+    bit_generator: numpy_random_PCG64
+    global_RNG_state_used: false
+    observed_or_target_free_qualification: PCG64_initialized_directly_from_exact_trial_seed
+    null_replay: >-
+      SeedSequence entropy is the null replicate seed and spawn_key is
+      (3, 0, exact trial valid_index, 3), then initialize PCG64 from that
+      SeedSequence. The scheduled trial seed remains an authenticated part of
+      trial identity but the replicate substream controls null-replay draws.
+  exact_draw:
+    uint64_words_from_PCG64_random_raw: 122880
+    decoded_bits: 7864320
+    bit_order_within_each_word: least_significant_bit_through_most_significant_bit
+    bit_zero_value: -1.0
+    bit_one_value: 1.0
+    reshape: [65536, 120]
+    redraw_after_identity_fixed_point_numerical_or_optimizer_failure: forbidden
+  within_K_centering: >-
+    For each K block and column, compute the exact integer sign sum, divide it
+    once by choose(16,K) in binary64, and subtract that mean from every entry.
+  singleton_K_0_and_K_16: exact_zero_after_centering
+  immutable_read_only_arrays_required: true
+
+Rademacher_fold_transform:
+  physical_fold_objects_reused_exactly:
+    - M1_design_transform
+    - geometry_scales
+    - equal_group_training_weights
+    - G_FF_and_its_deterministic_minimum_norm_pseudoinverse
+    - physical_pair_residual_RMS_vector
+    - physical_pair_range_basis_and_projector
+    - physical_rank_104
+  noise_specific_training_fit: >-
+    On each outer training fold, compute G_FR for the centered Rademacher
+    dictionary against the same centered 261-dimensional M1 sufficient
+    statistic and set A_R = pseudoinverse(G_FF) times G_FR.
+  validation_isolation: >-
+    Apply the training-fold A_R, physical RMS vector, and physical range
+    projector unchanged to held-out cells. No held-out realized set enters a
+    transform, scale, projector, penalty normalizer, or fit.
+  exact_scaled_feature: >-
+    phi_R = ((R_centered - F_centered A_R) divided coordinatewise by the exact
+    physical pair residual RMS vector) right-multiplied by the exact physical
+    fold range projector.
+  coefficient_constraint: exact_physical_fold_range_projector
+  recompute_noise_specific_RMS_or_range_projector: forbidden
+  diagnostic: >-
+    The final projected Rademacher training Gram must have rank 104 at the
+    existing tau/10, tau, and 10*tau binary64 tolerances. Failure invalidates
+    the attempt and never authorizes a redraw or changed tolerance.
+  beta_zero: exact_same_fold_M1_probability
+  penalty_normalizers: >-
+    Recompute core lambda_maximum and optional lambda_reference from the exact
+    Rademacher objective. Never reuse a physical-objective penalty normalizer.
+
+Rademacher_matched_execution:
+  exact_fields_copied_from_paired_successor:
+    - family
+    - alpha_when_applicable
+    - rho
+    - rank_when_applicable
+    - sparse_rho_when_applicable
+    - ordered_named_sparse_axis_indexes_when_applicable
+    - fold_structure
+    - parameter_count
+    - optimizer
+    - stopping_and_validity_gates
+  physical_coverage_history_use: >-
+    Authenticate the exact paired successor and its physical coverage binding.
+    Physical coverage determines only the matched configuration and the
+    low-rank precursor configuration below; no physical optimizer state may
+    initialize a noise objective.
+  hybrid_same_objective_precursor:
+    applicability: paired_successor_family_is_sparse_plus_low_rank
+    configuration_derivation:
+      if_target_rank_equals_physical_r_star: >-
+        Use the exact physical coverage-selected low-rank configuration,
+        including its selected rho, as a configuration key only.
+      if_target_rank_differs_from_physical_r_star: >-
+        Use the mandatory low-rank configuration at the target rank and rho 0.1
+        as a configuration key only.
+    execution: >-
+      On each outer fold, fit exactly one fresh low-rank precursor on the exact
+      same Rademacher dictionary, fold, M1 offset, physical normalization
+      objects, and noise objective, from the frozen deterministic null-gradient
+      initialization. Initialize the matched hybrid from that exact converged
+      precursor and an exact-zero sparse block.
+    accounting: >-
+      The precursor is internal, deterministic, unscored, and included in the
+      Rademacher hybrid resource unit. It is not a controller trial, result,
+      successor, tried configuration, incumbent, or selection opportunity.
+    required_binding:
+      - exact_Rademacher_trial_seed_route_and_dictionary
+      - exact_outer_fold_and_M1_offset
+      - exact_physical_scale_and_projector_objects
+      - exact_precursor_configuration_and_optimizer_result
+      - exact_matched_hybrid_configuration_and_HybridSpec
+      - exact_session_cache_mode_null_replicate_and_attempt
+    forbidden:
+      - observed_or_physical_low_rank_optimizer_state_reuse
+      - alternate_rank_or_rho
+      - transformed_padded_or_truncated_state
+      - redraw_restart_multistart_or_post_result_initializer_choice
+    failure: invalid_Rademacher_attempt_without_fallback
+  pair_discovery_or_candidate_selector_input: forbidden
+
+whole_set_permutation:
+  scope: one_exact_global_mapping_per_controller_trial_objective
+  reused_across: [all_outer_folds, all_inner_M1_paths, M2_fit]
+  strata_order:
+    - frozen_conservative_group_order
+    - segment_unmapped_false_then_true
+    - K_i_obs_0_through_16
+  row_order_within_stratum: exact_canonical_194_cell_execution_cache_order
+  generator:
+    bit_generator: numpy_random_PCG64
+    global_RNG_state_used: false
+    observed_or_target_free_qualification: PCG64_initialized_directly_from_exact_trial_seed
+    null_replay: >-
+      SeedSequence entropy is the null replicate seed and spawn_key is
+      (3, 0, exact trial valid_index, 4), then initialize PCG64 from that
+      SeedSequence.
+  shuffle:
+    algorithm: exact_in_place_Fisher_Yates
+    iteration: i_from_n_minus_1_down_through_1
+    unbiased_index_draw: >-
+      Draw raw uint64 x until x is less than
+      floor(2**64/(i+1))*(i+1), then set j = x modulo (i+1).
+    stratum_size_zero_or_one: draw_nothing
+    fixed_points_or_complete_identity: valid_without_reroll
+  assignment: >-
+    Assign the shuffled donor sequence to recipients in the same stable order
+    and copy the donor's complete recorded-positive set. In the current exact
+    candidate representation this copies observed_index because donor and
+    recipient have identical K.
+  recipient_fields_unchanged:
+    - cell_key
+    - conservative_group
+    - segment_unmapped
+    - K_i_obs
+    - covariates
+    - geometry
+    - panel_and_candidate_order
+  required_invariants:
+    - exact_donor_recipient_bijection_within_every_stratum
+    - every_K_i_obs_preserved
+    - complete_set_copy_not_targetwise_or_partial_shuffle
+    - no_cross_stratum_donor
+  redraw_after_identity_numerical_or_optimizer_failure: forbidden
+
+permutation_M1_and_M2_execution:
+  mapping_timing: before_any_M1_fit_for_that_falsifier_trial
+  M1_rule: >-
+    Run the complete frozen leakage-free outer M1 procedure afresh on each
+    permuted dataset: all 66 unordered leave-two-group warm paths over the
+    frozen 12-lambda grid, frozen one-SE selection separately for each outer
+    fold, then 12 selected-lambda outer fits from the all-zero 261-parameter
+    initialization.
+  held_out_exclusion: >-
+    Held-out groups enter no training transform, tuning path, selected lambda,
+    fit, or checkpoint.
+  forbidden_reuse:
+    - observed_data_M1_theta
+    - observed_data_selected_lambda
+    - observed_data_prediction_or_target_dependent_checkpoint
+    - another_permutation_trial_or_null_replicate_checkpoint
+  checkpoint_namespace: exact_mode_null_replicate_trial_valid_index_and_seed
+  full_development_M1_fit_for_permutation_trial_score: forbidden
+  additional_M0_fit_per_permutation_trial: not_required
+  M2_execution: >-
+    Build an exact physical M2 cache from the permuted cells and their fresh M1
+    offsets, fit the frozen configured family, and score permuted M2 only against
+    its own permuted outer-cross-fitted M1 baseline.
+  outcome_independent_transform_reuse: >-
+    Candidate, uniform-moment, and geometry transforms may be cached only when
+    their exact outcome independence and bit-identical values are reauthenticated;
+    this never authorizes reuse of an M1 coefficient, selected lambda, or score.
+  selector_or_incumbent_eligible: false
+  permutation_pass_threshold_invented: false
+
+production_authority_and_records:
+  generic_production_callback_factory: forbidden
+  named_authorities_required:
+    - Rademacher_reference_adapter
+    - whole_set_permutation_adapter
+  one_attempt_capability_binding:
+    - exact_trial_object_kind_seed_configuration_and_coverage_binding
+    - exact_session_cache_owner_mode_null_replicate_and_attempt_ordinal
+    - exact_physical_transform_source_or_permutation_M1_cache
+    - exact_optional_initializer_receipt_when_applicable
+  consumption: consume_before_solver_entry_and_burn_on_every_BaseException
+  retry: fresh_capability_same_frozen_trial_and_same_dictionary_or_mapping
+  detailed_execution_record_requires:
+    - exact_trial_and_adapter_provenance
+    - all_12_fold_results_and_fits
+    - all_194_unique_cell_scores
+    - exact_M1_identities
+    - exact_dictionary_seed_route_or_194_recipient_to_donor_mapping
+    - exact_transforms_and_configuration
+    - derived_controller_TrialResult
+  ordinary_external_TrialResult_only_receipt: insufficient
+  invalid:
+    - cross_session_cross_kind_cross_cache_cross_fold_or_cross_null_replicate
+    - stale_copied_serialized_forged_mutated_or_dead_producer
+    - duplicate_commit_or_capability_replay
+  resume: >-
+    Persist atomic numeric artifacts and attempt/commit records, but rebuild
+    controller history and issue fresh live process-local capabilities after a
+    restart. Never serialize an authority token.
+
+specificity_and_resource_completion:
+  Rademacher_specificity_gate: >-
+    The selected real nonfalsifier incumbent gain must exceed the maximum valid
+    gain among the exact seven Rademacher references by at least 0.002 bits per
+    eligible cell. Equality at the boundary passes. Missing or invalid required
+    Rademacher results block completion.
+  permutation_selector_and_incumbent_eligible: false
+  required_incremental_target_free_timing_units:
+    - Rademacher_core
+    - Rademacher_low_rank
+    - Rademacher_hybrid_including_internal_precursor
+    - one_outer_only_permutation_M1_plus_configured_M2_fit
+  conservative_maximum_permutation_counts_at_valid_trial_cap_80:
+    coverage_length_16: 43
+    coverage_length_24: 35
+    coverage_length_28: 31
+  minimum_schedule_permutation_count: 3
+  earliest_patience_stop_total_permutation_count: 9
+  existing_core_optional_scale_report: >-
+    Remains a valid measured baseline but is not final falsifier-inclusive
+    resource authorization. Combine it with the measured incremental falsifier
+    supplement without rerunning valid heavy units absent a numerical reason.
+  first_real_M2_access: >-
+    Remains blocked until the named adapters, exact production authorities,
+    target-free qualification, and falsifier-inclusive resource projection pass.
+
+required_target_free_qualification:
+  Rademacher_RNG_and_dictionary:
+    - exact_raw_word_bit_decode_and_65536_by_120_order
+    - repeatability_seed_separation_and_global_RNG_untouched
+    - exact_per_K_centering_and_singleton_zero
+    - one_dictionary_identity_shared_across_cells_and_folds
+    - null_fold_ordinal_zero_substream
+  Rademacher_transform:
+    - M1_span_normal_equation_orthogonality
+    - exact_physical_RMS_basis_projector_identity
+    - stable_projected_rank_104_at_all_three_tolerances
+    - validation_isolation_and_beta_zero_exact_M1_nesting
+    - unchanged_physical_path_regression
+  matched_families:
+    - lasso_elastic_net_group_lasso_low_rank_and_sparse_plus_low_rank
+    - objective_specific_penalty_normalizers
+    - exact_matched_configuration_fields
+    - no_candidate_selector_or_biological_pair_output
+  hybrid_provenance:
+    - exactly_one_same_objective_precursor_per_fold
+    - wrong_seed_fold_rank_rho_cache_or_physical_anchor_rejected
+    - precursor_produces_no_controller_result
+  permutation_mapping:
+    - deterministic_within_stratum_bijection_and_K_preservation
+    - complete_set_copy_singleton_and_fixed_point_acceptance
+    - one_mapping_shared_across_folds
+    - partial_targetwise_or_cross_stratum_shuffle_rejected
+  permutation_M1:
+    - exact_66_warm_paths_and_12_zero_start_outer_refits_per_trial
+    - held_groups_excluded
+    - no_observed_offsets_lambdas_predictions_or_checkpoints_reused
+    - own_permuted_M1_baseline_used
+  authority_terminal_resource_and_resume:
+    - one_shot_retry_wrong_context_and_dead_producer_guards
+    - exact_seven_Rademacher_specificity_boundary
+    - permutations_remain_selector_ineligible
+    - all_three_coverage_lengths_patience_and_exhaustion_counts
+    - no_duplicate_commit_after_resume
+
+access_boundary:
+  may_implement_and_qualify_target_free_now: true
+  first_real_M2_outcome_access: remains_governed_by_every_parent_v1_v2_v3_and_v4_preaccess_gate
+  this_clarification_does_not_authorize:
+    - protected_data_access
+    - observed_search_execution_before_all_preaccess_gates_pass
+    - any_change_to_controller_trial_counts_schedule_lattice_or_thresholds
+    - any_Rademacher_redraw_or_permutation_reroll
+    - any_initializer_other_than_the_exact_same_objective_rule_above

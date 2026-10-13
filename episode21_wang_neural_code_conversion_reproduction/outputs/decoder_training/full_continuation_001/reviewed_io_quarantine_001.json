@@ -1,0 +1,53 @@
+{
+  "schema_version": "ep21.reviewed_io_quarantine.v1",
+  "reviewer": "coordinating_agent",
+  "reviewed_utc": "2026-10-07T23:54:35Z",
+  "cause": "reviewed_2026_10_07_Oak_input_output_error",
+  "allows_only": "fresh_unassigned_manual_workers_or_existing_work6_work13_bundle",
+  "automatic_retry": false,
+  "preserve_original_fragments_assignments_and_charges": true,
+  "validated_coverage_credit": 0,
+  "allow_fragment_reuse": false,
+  "allow_failed_work_retry": false,
+  "allow_failed_work_remainder": false,
+  "allow_assembly_exception": false,
+  "release_durable_reservation": false,
+  "evidence": "Coordinator observed exact FAILED 2:0 scheduler allocations at 2026-10-07T23:48:35Z and charged them in submission.jsonl. Closed work_item_status.json records identify OSError5 on sh04-04n21. Work32/33/47/61 also report fragment-affecting closeout failures; work32/61 report uncertain marker publication. Work62 has an I/O failure with an empty closeout error list. This disposition preserves all five fragments and their full durable reservations, credits no coverage, and permits only independent manual fitting or the already prepared work6/work13 bundle after the storage recovery decision. No fragment repair, reuse, failed-work replay, or assembly is granted.",
+  "failures": [
+    {
+      "work_item_id": "work_0032",
+      "job_id": "46918887_31",
+      "allocation_job_id": "46919303",
+      "elapsed_seconds": 12689,
+      "status_path": "outputs/decoder_training/full_continuation_001/shards/work_0032/work_item_status.json"
+    },
+    {
+      "work_item_id": "work_0033",
+      "job_id": "46918887_32",
+      "allocation_job_id": "46919304",
+      "elapsed_seconds": 12689,
+      "status_path": "outputs/decoder_training/full_continuation_001/shards/work_0033/work_item_status.json"
+    },
+    {
+      "work_item_id": "work_0047",
+      "job_id": "46918887_46",
+      "allocation_job_id": "46919447",
+      "elapsed_seconds": 12689,
+      "status_path": "outputs/decoder_training/full_continuation_001/shards/work_0047/work_item_status.json"
+    },
+    {
+      "work_item_id": "work_0061",
+      "job_id": "46918155_60",
+      "allocation_job_id": "46918155",
+      "elapsed_seconds": 13322,
+      "status_path": "outputs/decoder_training/full_continuation_001/shards/work_0061/work_item_status.json"
+    },
+    {
+      "work_item_id": "work_0062",
+      "job_id": "46918887_61",
+      "allocation_job_id": "46918887",
+      "elapsed_seconds": 12398,
+      "status_path": "outputs/decoder_training/full_continuation_001/shards/work_0062/work_item_status.json"
+    }
+  ]
+}

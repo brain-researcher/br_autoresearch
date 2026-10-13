@@ -1,0 +1,39 @@
+*** Begin Patch
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/run_conditional_component_cost.py
+@@
+ The optional contact-block preconditioner changes only the iterative linear
+-solve; stage-Jacobi remains the default.
++solve; GMRES with stage-Jacobi remains the default. The optional triangular
++contact-Schur solver preserves the original full-state acceptance gates and
++reports its actual strategy and bounded direct-factor/solve metrics.
+@@
+     target["returned_kernel"] = dict(integration_method=kernel.integration_method,
+         radau_preconditioner=kernel.radau_preconditioner,
++        radau_linear_solver=kernel.radau_linear_solver,
++        radau_linear_solver_metadata=kernel.radau_linear_solver_metadata,
+@@
+     parser.add_argument("--radau-preconditioner", choices=("stage_jacobi", "contact_block"),
+         default="stage_jacobi", help="linear preconditioner only; all original equations and tolerances remain")
++    parser.add_argument("--radau-linear-solver", choices=("gmres", "triangular_contact_schur"),
++        default="gmres", help="explicit linear solver; original full-state residual/work gates and limits remain")
+@@
+-            integration_method="radau_iia_2", radau_preconditioner=args.radau_preconditioner)
++            integration_method="radau_iia_2", radau_preconditioner=args.radau_preconditioner,
++            radau_linear_solver=args.radau_linear_solver)
+@@
+             first_two_actions=args.first_two_actions, expected_electrical_intervals=expected_interval_count,
+             selected_radau_preconditioner=args.radau_preconditioner,
++            selected_radau_linear_solver=args.radau_linear_solver,
+@@
+         component_commit_confirmed=bool(confirmed_count), first_two_actions=args.first_two_actions,
+         selected_radau_preconditioner=args.radau_preconditioner,
++        selected_radau_linear_solver=args.radau_linear_solver,
++        confirmed_radau_linear_solvers=sorted({
++            value.kernel_interval.radau_linear_solver for _, value in returned_results}),
+@@
+     print(json.dumps(dict(event="component_terminal", status=report["status"], phase=phase,
+         elapsed_seconds=time.monotonic() - started,
++        selected_radau_linear_solver=args.radau_linear_solver,
++        confirmed_radau_linear_solvers=report["confirmed_radau_linear_solvers"],
+         report=str(run_dir / "component_cost_report.json"))), flush=True)
+*** End Patch

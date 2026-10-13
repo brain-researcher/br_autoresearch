@@ -1,0 +1,370 @@
+version: "0.0.14"
+name: EP14 fixed ROI representation comparison under acquisition shift
+description: >-
+  Compare four prespecified ROI representations with one common ridge age
+  procedure, then condition any public holdout on a locked candidate and a
+  passed exposure review.
+
+inputs:
+  - id: goal
+    type: data
+    source: GOAL.md
+  - id: datasets
+    type: data
+    source: DATASETS.md
+  - id: search_policy
+    type: data
+    source: SEARCH_POLICY.yaml
+  - id: development_bundle
+    type: data
+    source: inputs/openbhb/exposed/
+  - id: diagnostic_specification
+    type: data
+    source: outputs/site_information_diagnostic_prior.md
+  - id: audit_features
+    type: data
+    source: inputs/openbhb/audit_features/
+  - id: audit_label_handoff
+    type: data
+    source: trusted_evaluator_mount_after_candidate_lock_and_freshness_review
+
+outputs:
+  - id: data_check_report
+    from: prepared_bundle_check.data_check_report
+  - id: development_report
+    from: fixed_development_comparison.development_report
+  - id: controls_report
+    from: controls_and_sensitivity.controls_report
+  - id: candidate_lock_record
+    from: candidate_lock.candidate_lock_record
+  - id: exposure_review_report
+    from: audit_exposure_review.exposure_review_report
+  - id: holdout_report
+    from: conditional_public_holdout.holdout_report
+  - id: discarded_direction_report
+    from: discarded_direction_diagnostics.diagnostic_report
+  - id: projection_heterogeneity_report
+    from: projection_heterogeneity.heterogeneity_report
+  - id: age_adjustment_report
+    from: age_adjusted_projection.adjustment_report
+  - id: covariance_protection_report
+    from: covariance_protected_projection.protection_report
+
+analyses:
+  bilateral_regularization:
+    name: Compare anatomical bilateral shrinkage with matched generic pairing
+    description: >-
+      Separate exposed-development comparison under the October6 amendment.
+      Fit-standardized raw Desikan columns enter orthonormal shared/asymmetric
+      blocks. Compare raw ridge with homologous pairing and three fixed
+      provider-family-preserving sham pairings, strictly nested site-held-out
+      tuning and all original robustness views. Original no-candidate result,
+      public-validation closure and no-promotion boundary remain unchanged.
+    inputs:
+      - {id: specification, type: data, source: outputs/representation_research_design.md}
+      - {id: development_bundle, from: ../development_bundle}
+    outputs:
+      - id: regularization_report
+        type: report
+        format: json
+        inputs: [specification, development_bundle]
+        recipe:
+          command: python outputs/tools/run_bilateral_regularization.py --out outputs/runs/bilateral_regularization/attempt001 --workers 3 --max-seconds 3300
+          resources: {cpus: 4, memory: 16Gi, time_limit: 60m}
+  covariance_protected_projection:
+    name: Test exact preservation of fitting age covariance
+    description: >-
+      Orthogonalize original rank-four removal directions against true fitting
+      age covariance or a within-site shuffled-age covariance control. Retain
+      original feature metric, five fixed penalties and original scoring.
+      Report subspace displacement and exact covariance checks. Exposed
+      development only, sharing the continuation resource bound.
+    inputs:
+      - {id: specification, from: ../diagnostic_specification}
+      - {id: development_bundle, from: ../development_bundle}
+      - {id: preceding_intervention, from: ../age_adjusted_projection.adjustment_report}
+      - {id: original_state, type: data, source: outputs/runs/age_adjusted_projection/attempt001/outer}
+    outputs:
+      - id: protection_report
+        type: report
+        format: json
+        inputs: [specification, development_bundle, preceding_intervention, original_state]
+        recipe:
+          command: python3 outputs/tools/run_covariance_protected_projection.py --out outputs/runs/covariance_protected_projection/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 30m}
+  projection_heterogeneity:
+    name: Attribute cached projection cost across domains and ages
+    description: >-
+      Describe every domain, fixed ten-year age bin and leave-one-domain-out
+      sensitivity. Reconstruct paired MSE changes from correction alignment
+      and energy, and separate support restriction from appearance/domain
+      reweighting. No fits, new significance tests or causal attribution.
+    inputs:
+      - {id: specification, from: ../diagnostic_specification}
+      - {id: prior_diagnostic, from: ../discarded_direction_diagnostics.diagnostic_report}
+      - {id: saved_predictions, type: data, source: outputs/runs/discarded_direction_diagnostics/attempt001/outer}
+    outputs:
+      - id: heterogeneity_report
+        type: report
+        format: json
+        inputs: [specification, prior_diagnostic, saved_predictions]
+        recipe:
+          command: python outputs/tools/analyze_projection_heterogeneity.py --out outputs/runs/projection_heterogeneity/attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+  age_adjusted_projection:
+    name: Test fixed linear age adjustment during direction estimation
+    description: >-
+      Four fixed representations: raw, original site removal, linear-age-adjusted
+      direction estimation and within-site shuffled-age adjustment. Rank four,
+      original ROI coordinates, no post-projection scaling, alpha1000 anchor
+      and all five fixed sensitivities. Ordinary seen-site probes quantify
+      unconditional predictability. Exposed development only, no promotion.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: specification, from: ../diagnostic_specification}
+      - {id: development_bundle, from: ../development_bundle}
+      - {id: prior_diagnostic, from: ../discarded_direction_diagnostics.diagnostic_report}
+    outputs:
+      - id: adjustment_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, specification, development_bundle, prior_diagnostic]
+        recipe:
+          command: python outputs/tools/run_age_adjusted_projection.py --out outputs/runs/age_adjusted_projection/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 30m}
+  discarded_direction_diagnostics:
+    name: Diagnose discarded age utility and ridge geometry
+    description: >-
+      Development-only successor to the completed fixed comparison. Test
+      nested four-score age prediction against random and permuted-site
+      controls, and fixed-penalty projection/restoration geometry on both
+      atlases. Preserve original selection and closed holdout.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: specification, from: ../diagnostic_specification}
+      - {id: development_bundle, from: ../development_bundle}
+      - {id: original_report, from: ../fixed_development_comparison.development_report}
+    outputs:
+      - id: diagnostic_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, specification, development_bundle, original_report]
+        decisions: [evidence_role, geometry_anchor]
+        recipe:
+          command: python outputs/tools/run_discarded_direction_diagnostics.py --out outputs/runs/discarded_direction_diagnostics/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 90m}
+    decisions:
+      evidence_role:
+        label: Diagnostic evidence role
+        default: exposed_development_only
+        options:
+          exposed_development_only:
+            label: Exploratory development without candidate promotion or holdout access
+      geometry_anchor:
+        label: Shared geometry penalty
+        default: alpha_1000
+        options:
+          alpha_1000:
+            label: Fixed alpha 1000 anchor with all five original penalties reported
+  prepared_bundle_check:
+    name: Verify the exposed development bundle
+    description: >-
+      Check only the row, feature, alignment, mapping, finite-value, and split
+      conditions needed by the frozen comparison without opening holdout
+      targets.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: search_policy, from: ../search_policy}
+      - {id: development_bundle, from: ../development_bundle}
+    outputs:
+      - id: data_check_report
+        type: report
+        format: json
+        inputs: [goal, datasets, search_policy, development_bundle]
+        decisions: [access_scope]
+        recipe:
+          command: python outputs/tools/run_development.py prepare --out outputs/runs/fixed_development_comparison/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 30m}
+    decisions:
+      access_scope:
+        label: Data-access scope
+        rationale: Bundle checks must not consume public-validation outcomes.
+        default: exposed_development_only
+        options:
+          exposed_development_only:
+            label: Exposed development inputs only
+
+  fixed_development_comparison:
+    name: Run the four-arm development comparison
+    description: >-
+      Evaluate R0 through R3 on the three overlapping RAMP robustness views
+      with common fit-only preprocessing, ridge tuning, and the fixed linear
+      site probe.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: development_bundle, from: ../development_bundle}
+      - id: data_check_report
+        from: ../prepared_bundle_check.data_check_report
+    outputs:
+      - id: development_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, development_bundle, data_check_report]
+        decisions: [primary_atlas, representation_set, primary_estimand]
+        recipe:
+          command: python outputs/tools/run_development.py run --out outputs/runs/fixed_development_comparison/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 2h}
+    decisions:
+      primary_atlas:
+        label: Primary atlas
+        default: desikan
+        options:
+          desikan:
+            label: Desikan 476-ROI feature base
+      representation_set:
+        label: Frozen representation arms
+        default: r0_r1_r2_r3
+        options:
+          r0_r1_r2_r3:
+            label: Raw, bilateral, PCA-64, and rank-four site projection
+      primary_estimand:
+        label: Primary age estimand
+        default: paired_domain_macro_external_mae
+        options:
+          paired_domain_macro_external_mae:
+            label: Paired domain-macro external MAE change versus R0
+
+  controls_and_sensitivity:
+    name: Run falsifiers and the Destrieux sensitivity
+    description: >-
+      Run the fixed sanity controls, rank-matched projection falsifiers,
+      leakage regression, and non-selecting Destrieux repeat.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: development_bundle, from: ../development_bundle}
+      - id: data_check_report
+        from: ../prepared_bundle_check.data_check_report
+    outputs:
+      - id: controls_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, development_bundle, data_check_report]
+        decisions: [control_scope, sensitivity_role]
+        recipe:
+          command: python outputs/tools/run_development.py run --out outputs/runs/fixed_development_comparison/attempt001 --threads 4
+          resources: {cpus: 4, memory: 16Gi, time_limit: 2h}
+    decisions:
+      control_scope:
+        label: Falsifier scope
+        default: frozen_focused_controls
+        options:
+          frozen_focused_controls:
+            label: Age, projection-specificity, leakage, and collapse controls
+      sensitivity_role:
+        label: Destrieux role
+        default: non_selecting_sensitivity
+        options:
+          non_selecting_sensitivity:
+            label: Sensitivity only; cannot change the primary winner
+
+  candidate_lock:
+    name: Select and freeze one development-eligible candidate
+    description: >-
+      Apply the prespecified development gates and deterministic ordering, then
+      either freeze one candidate or record that no candidate is eligible.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - id: development_report
+        from: ../fixed_development_comparison.development_report
+      - id: controls_report
+        from: ../controls_and_sensitivity.controls_report
+    outputs:
+      - id: candidate_lock_record
+        type: report
+        format: yaml
+        inputs: [goal, search_policy, development_report, controls_report]
+        decisions: [selection_rule]
+    decisions:
+      selection_rule:
+        label: Candidate selection rule
+        default: frozen_eligibility_then_ordering
+        options:
+          frozen_eligibility_then_ordering:
+            label: Apply fixed gates, then MAE, worst domain, site BAcc, simplicity
+
+  audit_exposure_review:
+    name: Determine whether the public rows retain a one-shot role
+    description: >-
+      Review actual prior access to row identities, labels, joins, scores, and
+      partial outcomes before any trusted evaluator label mount is created.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: search_policy, from: ../search_policy}
+      - id: candidate_lock_record
+        from: ../candidate_lock.candidate_lock_record
+    outputs:
+      - id: exposure_review_report
+        type: report
+        format: markdown
+        inputs: [goal, datasets, search_policy, candidate_lock_record]
+        decisions: [freshness_rule]
+    decisions:
+      freshness_rule:
+        label: Public holdout eligibility
+        default: actual_outcome_exposure_review
+        options:
+          actual_outcome_exposure_review:
+            label: Fresh only when row-level outcomes and scores were not exposed
+
+  conditional_public_holdout:
+    name: Evaluate one locked candidate on the public holdout
+    description: >-
+      If and only if freshness is established, compare the locked candidate
+      with R0 once on external age error and the internal linear site guardrail.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: audit_features, from: ../audit_features}
+      - {id: audit_label_handoff, from: ../audit_label_handoff}
+      - id: candidate_lock_record
+        from: ../candidate_lock.candidate_lock_record
+      - id: exposure_review_report
+        from: ../audit_exposure_review.exposure_review_report
+    outputs:
+      - id: holdout_report
+        type: report
+        format: json
+        inputs:
+          - goal
+          - search_policy
+          - audit_features
+          - audit_label_handoff
+          - candidate_lock_record
+          - exposure_review_report
+        decisions: [age_margin, site_margin, consumption_rule]
+    decisions:
+      age_margin:
+        label: Confirmed relative age-error margin
+        default: upper_bound_below_minus_two_percent
+        options:
+          upper_bound_below_minus_two_percent:
+            label: One-sided upper bound is below -2 percent
+      site_margin:
+        label: Linear site-decoding noninferiority margin
+        default: upper_bound_at_most_plus_point_zero_one
+        options:
+          upper_bound_at_most_plus_point_zero_one:
+            label: One-sided upper bound is at most +0.01 balanced accuracy
+      consumption_rule:
+        label: One-shot consumption point
+        default: first_candidate_discriminating_outcome
+        options:
+          first_candidate_discriminating_outcome:
+            label: First visible score, partial metric, or prediction-target join

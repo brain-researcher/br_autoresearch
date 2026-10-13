@@ -1,0 +1,27 @@
+{
+  "schema_version": "ep12.contract_transition_probe_failure.v1",
+  "phase": "legacy",
+  "slurm_job_id": "45361897",
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "elapsed": "00:00:18",
+  "started_at": "2026-09-26T05:51:34",
+  "ended_at": "2026-09-26T05:51:52",
+  "failure_stage": "scientific_source_import_before_generated_fits",
+  "cause": "the_archived_package_initializer_required_an_intentionally_unarchived_controller_and_the_wrapper_removed_the_trusted_module_pythonpath_after_loading_scientific_dependencies",
+  "probe_program_started": true,
+  "generated_fit_started": false,
+  "scientific_artifact_produced": false,
+  "log": {
+    "path": "outputs/prelaunch/slurm-contract-probe-45361897.out",
+    "sha256": "2b2fc760909754366cdcf2d7a0c16da4481a44597078d33d2598240dc0f7d2db"
+  },
+  "failed_probe_program_sha256": "d03568c91c1b3f2b8a8652108592bb6402dd54597cb0a842b78bf562e468c4a0",
+  "failed_wrapper_sha256": "0a7ec7bfbd3fcf8063fa3cfe4d58661367e0a5b2b056704dc09dbce78e2fad8a",
+  "corrected_probe_program_sha256": "eb46416bef86fcc0ffeb493ee772be1d68706e3e67f2ecbd4f708d22f9460a42",
+  "corrected_wrapper_sha256": "308eb7eb45935c99500b320eabcfad63f6d60857a4f371e092859604eace06f2",
+  "correction": "load_scientific_modules_under_a_private_namespace_without_executing_package_init_and_preserve_only_the_module_generated_pythonpath",
+  "focused_regression_tests_passed": 31,
+  "real_connectivity_accessed": false,
+  "receipt_sha256": "2a4f2ead5dde0e840578d951507689f80832303b642111ae53a620c775ac3bb4"
+}

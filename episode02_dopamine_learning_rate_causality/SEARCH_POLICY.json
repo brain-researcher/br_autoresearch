@@ -1,12 +1,38 @@
 {
-  "policy_revision": 3,
+  "policy_revision": 5,
   "policy_id": "ep02_dudman_dopamine_learning_rate_causality_adaptive_v3",
   "episode_id": "ep02",
+  "scientist_amendment_20261012": {
+    "authority": "scientist_follow_your_recommendation_at_about_1310_Pacific_for_EP02_EP15_EP17_EP18_evaluation_separation",
+    "authority_record": "../episode15_mdtb_topography_vs_geometry/outputs/experiment_log.md#2026-10-12-1310-pacific--scientist-adopts-procedural-same-account-evaluation-separation",
+    "scope": "procedural_same_account_role_separation_replaces_permission_enforced_isolation",
+    "physical_isolation_verified": false,
+    "development_reads_only_released_development_and_permitted_outcome_free_structural_handoffs": true,
+    "candidate_may_open_list_search_or_reacquire_mixed_or_audit_paths": false,
+    "analysis_choices_and_final_configuration_frozen_before_audit_access": true,
+    "every_audit_role_access_logged_in_experiment_log": true,
+    "unplanned_access_disclosed_and_affected_results_marked": true,
+    "evaluation_reports_must_disclose_procedural_same_account_boundary_never_enforced_or_blinded": true,
+    "legacy_firewall_and_astra_enforced_identity_storage_and_network_denial_wording_superseded": true,
+    "no_reacquisition_role_restrictions_and_atomic_evaluator_output_preserved": true,
+    "development_handoff_scoring_or_audit_opening_authorized_by_this_amendment": false,
+    "all_other_scientific_opening_count_and_resource_requirements_unchanged": true
+  },
+  "scientist_amendment_20261006": {
+    "authority": "scientist_agreed_with_the_presented_judgment_article_task_primary_and_pinned_code_sensitivity",
+    "scope": "select_the_empirical_model_variant_without_asserting_unverified_provider_semantics",
+    "primary": "authenticated_article_task_variant_25ms_and_double_current_beta_DA_on_verified_lick_contingent_trials",
+    "sensitivity": "separately_labeled_pinned_author_code_30ms_and_set_multiplier_four_report_only_no_rescue_selection_or_promotion",
+    "provider_trigger_codebook_time_axis_still_required": true,
+    "rival_interface_proposal_adopted": false,
+    "raw_threshold_tuple_adopted": false,
+    "outcome_access_or_compute_expanded": false
+  },
   "common_protocol_ref": "../ADAPTIVE_SEARCH_PROTOCOL.md",
   "evidence_mode": "adaptive_search",
   "scientific_scope": {
     "question": "What can the released closed-loop dopamine protocol contrast identify about a learning rule when control-qualified alternative implementations must freeze their intervention predictions?",
-    "claim_type": "publication_exposed_role_sequestered_one_shot_reanalysis",
+    "claim_type": "publication_exposed_procedurally_role_separated_same_account_one_shot_reanalysis",
     "primary_preparation": "naive_head_fixed_trace_conditioning_in_male_DAT-Cre_ai32_mice",
     "primary_inferential_unit": "mouse",
     "trial_level_pseudoreplication_allowed": false,
@@ -141,13 +167,18 @@
       "runtime_handoff_required": true,
       "candidate_may_read_steward_or_evaluator_paths": false,
       "firewall_contract_ref": "outputs/firewall/FIREWALL_CONTRACT.json",
+      "firewall_enforced_isolation_wording_superseded_by": "scientist_amendment_20261012",
+      "separation_mode": "procedural_same_account_with_disclosed_weaker_boundary",
       "required_access_controls": [
-        "candidate_cannot_read_mixed_source_or_evaluator_payloads",
+        "record_procedural_roles_permitted_paths_and_development_handoff_release",
+        "candidate_does_not_open_list_search_or_reacquire_mixed_source_or_evaluator_payloads",
         "evaluator_receives_audit_payloads_only_after_final_lock",
-        "candidate_and_evaluator_network_egress_disabled_during_audit",
+        "candidate_and_evaluator_do_not_reacquire_prohibited_inputs_over_network_or_filesystem",
+        "log_every_audit_role_access_and_disclose_unplanned_access_and_affected_results",
+        "report_procedural_same_account_separation_never_enforced_or_blinded",
         "evaluator_returns_one_atomic_aggregate_packet_with_no_partial_feedback"
       ],
-      "physical_firewall_status": "BLOCKED_PENDING_ROLE_SEPARATION",
+      "physical_firewall_status": "UNVERIFIED_NOT_REQUIRED_UNDER_ADOPTED_PROCEDURAL_SEPARATION",
       "development_access_authorized": false,
       "audit_access_authorized": false,
       "legacy_hash_and_signed_receipt_helpers_required": false,
@@ -271,20 +302,20 @@
       "unit_time_constant_ms": {
         "article_methods": 25,
         "pinned_dlRNN_train_learnDA_code": 30,
-        "resolution": "both_are_parity_variants_until_an_outcome_blind_specification_decision_selects_or_reconciles_them"
+        "resolution": "scientist_adopted_article_25ms_primary_and_pinned_code_30ms_report_only_sensitivity_20261006"
       },
       "activation": "tanh",
       "calibrated_stimulation_rule": {
         "article_methods": "multiply_beta_DA_by_two_on_contingent_trials",
         "pinned_code": "set_eta_DA_mult_to_four_on_the_condition_satisfying_trial",
-        "resolution": "both_are_parity_variants_and_the_executable_rule_must_be_frozen_before_development_outcomes"
+        "resolution": "scientist_adopted_article_double_current_beta_DA_primary_and_pinned_code_set_four_report_only_sensitivity_20261006_actual_online_trigger_semantics_still_require_authentication"
       }
     },
     "required_port_qualification": [
       "replace_missing_TNC_CreateGaussian_with_unit_test_equivalent_implementation",
       "replace_missing_initialization_assets_with_seeded_documented_generator",
       "remove_hard_coded_paths_figures_and_global_workspace_dependencies",
-      "resolve_article_vs_pinned_code_time_constant_and_stimulation_rule_differences_without_empirical_intervention_outcomes",
+      "implement_the_20261006_adopted_article_primary_and_separate_pinned_code_sensitivity_without_empirical_intervention_outcomes",
       "reproduce_author_pseudocode_on_synthetic_fixed_seed_fixtures",
       "verify_calibrated_contingency_sign_predictions_without_empirical_intervention_outcomes",
       "independent_equation_level_reimplementation_agrees_with_primary_port_within_frozen_tolerance"
@@ -697,10 +728,10 @@
     ]
   },
   "audit": {
-    "mode": "one_shot_permission_separated_primary_audit_after_configuration_lock",
+    "mode": "one_shot_procedurally_separated_same_account_primary_audit_after_configuration_lock",
     "current_opening_authorized": false,
     "current_positive_mechanistic_terminal_authorized": false,
-    "current_blocking_reason": "endpoint_semantics_and_randomization_block_exclusion_rosters_are_unresolved_the_permission_firewall_is_unprovisioned_and_no_endpoint_faithful_binding_rule_or_scientist_signoff_exists",
+    "current_blocking_reason": "endpoint_semantics_and_randomization_block_exclusion_rosters_development_handoff_and_implementation_are_unresolved_and_no_endpoint_faithful_binding_rule_or_scientist_signoff_exists",
     "required_before_opening": [
       "replace_the_generic_diagnostic_artifact_with_an_endpoint_faithful_independently_validated_binding_calibration",
       "freeze_verified_endpoint_semantics_numerators_denominators_missingness_and_abstention",
@@ -717,8 +748,9 @@
     "maximum_evaluator_payload_roles_within_the_one_opening": 2,
     "audit_updates_search": false,
     "opening_unit": "one_final_lock_bound_eleven_mouse_primary_transaction",
-    "permission_separated_runner_required": true,
-    "runtime_network_egress": "disabled",
+    "permission_separated_runner_required": false,
+    "procedurally_separated_evaluator_required": true,
+    "runtime_network_egress": "procedural_no_reacquisition_of_prohibited_inputs_not_enforced_network_isolation",
     "candidate_or_controller_mount_of_primary_payload": "prohibited",
     "all_eleven_mice_open_and_score_atomically": true,
     "partial_mouse_arm_fold_metric_or_QC_feedback": "prohibited",
@@ -797,7 +829,8 @@
     "role": "post_primary_supraphysiological_amplitude_diagnostic_not_a_second_primary_confirmation",
     "separate_opening_count_max": 0,
     "payload_access_count_max_within_primary_logical_opening": 1,
-    "same_permission_separated_evaluator_transaction_as_primary": true,
+    "same_permission_separated_evaluator_transaction_as_primary": false,
+    "same_procedurally_separated_evaluator_transaction_as_primary": true,
     "primary_subpacket_committed_before_boundary_payload_access": true,
     "primary_feedback_released_before_boundary_payload_access": false,
     "opening_prerequisites": [

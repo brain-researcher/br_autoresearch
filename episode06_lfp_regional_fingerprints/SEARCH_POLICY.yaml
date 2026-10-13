@@ -12,6 +12,17 @@ design_amendment_20261002:
   claim: best_eligible_joint_region_component_not_global_best_over_mixed_sign_rivals
   unchanged: primary_projectors_margins_support_index_roles_budgets_and_reserved_test
 
+design_amendment_20261010:
+  status: scientist_adopted_reviewed_joint_eleven_session_amendment
+  plan: outputs/paper_plan.md#october-10-eleven-session-amendment-adopted
+  excluded_session: Mihili_CO_20140306.mat
+  excluded_regions: [M1, PMd]
+  reason: released_spike_arrays_failed_native_count_validity
+  joint_episode: EP07
+  no_replacement_renumbering_additional_exclusion_or_budget_reset: true
+  further_session_loss: stop_for_new_scientific_review
+  unchanged: four_reserved_dates_trial_role_boundaries_margins_thresholds_EP07_freeze_opening_prerequisite_and_claim_limits
+
 manuscript_scope:
   owner: EP07_history_and_population_components_paper
   EP06_role: recording_domain_frequency_rule_component_consequence
@@ -30,20 +41,33 @@ manuscript_scope:
   operative_contract: >-
     Manuscript integration itself leaves session/trial roles, residual primary,
     controls, component margins, support thresholds, model space and budgets
-    unchanged. The explicit 2026-10-02 nomination amendment is recorded above.
-    Neither writing change authorizes analysis or outcome access.
+    unchanged. The explicit 2026-10-02 nomination and adopted 2026-10-10
+    eleven-session amendments are recorded above. Existing resume authority
+    persists; no EP06 role export, neural opening, test or job was performed by
+    this adoption. EP07 freeze/opening prerequisites and budgets still apply.
+  shared_exposure_record_before_fits: exact_session_trial_IDs_episode_roles_permitted_readers_actual_openings_freezes_and_information_transfers
+  cross_episode_reserved_exposure: EP06_reserved_March3_October6_are_EP07_history_and_March7_October21_are_EP07_targets
+  reader_boundary: procedural_not_OS_isolation
 
 evidence_roles:
   development:
     animals: [Mihili, Chewie-L]
-    sessions_per_animal: 4
-    positions_after_acquisition_date_order: [1, 2, 4, 5]
+    sessions_per_animal: {Mihili: 3, Chewie-L: 4}
+    original_positions_after_acquisition_date_order:
+      Mihili: [1, 2, 4]
+      Chewie-L: [1, 2, 4, 5]
+    sessions:
+      Mihili: [Mihili_CO_20140217.mat, Mihili_CO_20140218.mat, Mihili_CO_20140304.mat]
+      Chewie-L: [Chewie_CO_20160929.mat, Chewie_CO_20161005.mat, Chewie_CO_20161007.mat, Chewie_CO_20161014.mat]
     use: model_selection_and_falsification
     freshness: historically_exposed_exploratory
   reserved_test:
     animals: [Mihili, Chewie-L]
     sessions_per_animal: 2
     positions_after_acquisition_date_order: [3, 6]
+    sessions:
+      Mihili: [Mihili_CO_20140303.mat, Mihili_CO_20140307.mat]
+      Chewie-L: [Chewie_CO_20161006.mat, Chewie_CO_20161021.mat]
     use: one_shot_test_of_the_final_analysis_across_acquisition_dates
     freshness: same_corpus_procedural_test
     available: conditional_on_source_checks_and_isolation
@@ -57,13 +81,29 @@ session_assignment:
   tie_breaker: provider_session_name
   record_session_names_before_regional_scores: true
   reassign_after_outcome_access: false
-  if_fewer_than_six_eligible_sessions_per_animal: stop_for_scientific_review
+  retained_sessions_required: {Mihili: 5, Chewie-L: 6}
+  excluded_original_position: {Mihili: 5}
+  renumber_after_exclusion: false
+  any_further_session_loss: stop_for_new_scientific_review
 
 primary_test:
   unit: one_profile_per_region_per_session
   target: single_trial_spike_population_residual_only
   residual_definition: held_out_spike_response_minus_training_only_direction_by_time_mean
   profile_value: held_out_fraction_of_residual_activity_recovered_by_each_registered_lfp_feature_block
+  profile_definition:
+    selected_before_neural_scoring: "2026-10-10"
+    residual: "R = (Y_evaluation - training_direction_time_mean) @ training_population_loadings"
+    score: "S_block = 1 - sum((R - prediction_block)^2) / sum(R^2)"
+    weighting: uniform_whole_trial_and_native_bin_rows_pool_all_population_coordinates
+    denominator: common_zero_origin_training_template_residual_energy_for_every_block
+    evaluation_recentering: false
+    average_coordinatewise_scores: false
+    clipping_or_denominator_epsilon: false
+    zero_or_nonfinite_energy: unavailable_not_zero_or_failed_prediction
+    component_positive_energy_gate_applies_to_primary: false
+    paired_profile: exact_same_session_trials_directions_native_times_blocks_and_rank_with_independent_regional_axes
+    signed_difference: M1_minus_PMd
   component_followup_may_redefine_primary: false
   directions:
     - train_mihili_test_chewie
@@ -71,6 +111,85 @@ primary_test:
   score: equal_mean_of_two_balanced_accuracies_minus_chance
   report_each_direction_separately: true
   signed_m1_minus_pmd_profile_must_agree_across_animals: true
+  initial_classifier_conventions:
+    selected_before_neural_scoring: "2026-10-11"
+    shape: center_each_region_profile_across_its_declared_blocks_then_unit_L2
+    prototype: equal_session_mean_of_normalized_source_rows_per_assigned_class_then_unit_L2
+    prototype_score: cosine
+    logistic_objective: mean_row_logloss_plus_half_lambda_times_squared_coefficient_norm
+    logistic_intercept: unpenalized
+    logistic_penalty: explicit_positive_candidate_choice
+    logistic_solver: Newton_Armijo_maximum_100_iterations_40_line_search_halvings
+    logistic_convergence: maximum_absolute_gradient_at_most_1e_minus_9
+    exact_prediction_tie: abstain_label_and_half_credit_in_balanced_accuracy
+    unavailable: whole_comparison_if_any_required_profile_or_prototype_has_zero_nonfinite_shape_or_optimizer_fails
+    labels: explicit_complete_paired_session_labels_M1_1_PMd_0_or_declared_within_session_swap
+    block_binding: physically_identical_ordered_blocks_across_every_source_and_target_profile
+    target_fitted_transformation: false
+  initial_comparisons_20261011:
+    specification: outputs/paper_plan.md#october-11-initial-comparisons-and-development-references
+    adopted_before_any_EP06_fit_or_score: true
+    starting_ids: [starting_00, starting_01, starting_02, starting_03, starting_04, starting_05, starting_06, starting_07, starting_08, starting_09, starting_10, starting_11]
+    unique_fit_ids: [starting_00, starting_02, starting_03, starting_04, starting_05, starting_09]
+    all_initial_predictions_fixed_before_development_scoring: true
+    calibration_outcomes_used_in_primary_starts: false
+    future_model_menu_closed: false
+  development_reference:
+    magnitude_specification: outputs/paper_plan.md#october-11-magnitude-and-lmp-comparisons
+    followup_specification: outputs/paper_plan.md#october-11-evidence-led-successors-and-first-recording-controls
+    specification: outputs/paper_plan.md#october-11-initial-comparisons-and-development-references
+    assignments: all_128_independent_within_session_paired_region_label_swaps
+    ordering: three_Mihili_then_four_Chewie_in_declared_order
+    source_label_dependent_steps: refit_for_each_distinct_source_assignment
+    upper_tail: inclusive_count_divided_by_128_no_plus_one_for_exhaustive_reference
+    undefined_assignment: whole_reference_unavailable_no_drop_redraw_or_imputation
+    scope: fixed_candidate_conditional_diagnostic_not_selection_adjusted_or_directional_IUT
+    exchangeability: independent_session_label_exchangeability_unverified
+    alone_authorizes_promotion_or_reserved_opening: false
+    fixed_initial_menu_reference:
+      menu: all_twelve_starting_candidates_no_observed_prefilter
+      statistic: maximum_equal_mean_directional_accuracy_minus_half
+      selection: repeat_on_each_of_the_same_128_assignments_exact_tie_lowest_starting_ID
+      upper_tail: inclusive_count_divided_by_128
+      any_required_candidate_assignment_unavailable: entire_menu_reference_unavailable_no_subset_or_imputation
+      scope: fixed_initial_menu_selection_only_not_adaptive_or_directional_IUT
+      extra_counted_scientific_trial: false
+  signed_profile_agreement:
+    aggregation: raw_equal_session_mean_M1_minus_PMd_per_animal
+    requirement: positive_raw_cosine_and_all_seven_session_omission_cosines_positive
+    zero_or_nonfinite_required_mean: unavailable
+    centered_shape_cosine: separate_diagnostic_not_replacement_for_raw_agreement
+
+development_role_preparation:
+  specification: outputs/experiment_log.md#2026-10-11-0002-pacific--source_session_support--development-role-conventions-selected-from-existing-metadata
+  neural_access_requires: episode_local_EP07_freeze_and_completed_primary_opening_metadata_handoff
+  export_scope: seven_development_sessions_only
+  trial_identity: original_zero_based_MATLAB_struct_position
+  direction: nearest_circular_multiple_of_pi_over_4
+  angular_tolerance_radians: 0.005
+  retain_original_angle: true
+  both_regions_window_ms: "[150,450) relative to movement"
+  native_bin_offsets: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  event_conversion: one_based_idx_movement_on_minus_one
+  within_direction_counts:
+    training: floor(n/2)
+    calibration: floor((n-training)/2)
+    evaluation: n-training-calibration
+  minimum_per_direction: {training: 7, calibration: 4, evaluation: 4}
+  paired_region_assignment: true
+  split_rng: PCG64_SeedSequence_6006101_animal_index_original_session_position_direction
+  animal_indices: {Mihili: 0, Chewie-L: 1}
+  export_order: original_source_row_order
+  calibration_halves: alternate_source_ordered_assigned_rows_within_direction
+  electrode_eligibility: all_nine_guide_bands_and_finite_training_values
+  electrodes_per_region: 15
+  electrode_rng: PCG64_SeedSequence_6006102_animal_index_original_session_position_region_index
+  region_indices: {M1: 0, PMd: 1}
+  electrode_draw: once_without_replacement_then_sort_physical_ids_reuse_across_candidates
+  evaluation_based_redraw: false
+  native_units: retain_all_no_silent_filtering
+  used_window_counts: finite_nonnegative_integer
+  invalid_selected_neural_support: explicit_failure_no_silent_trial_unit_or_session_removal
 
 followup_test:
   state: proposed_not_run
@@ -164,10 +283,11 @@ component_prediction:
       - regional_gain_signs_disagree
       - equal_region_mean_is_between_0_and_0p01
   outer_session_assessment:
-    folds_per_transfer_direction: 4
-    nomination_data_per_fold: other_three_target_development_sessions
+    folds_by_target_animal: {Mihili: 3, Chewie-L: 4}
+    nomination_sessions_per_fold_by_target_animal: {Mihili: 2, Chewie-L: 3}
+    nomination_data_per_fold: all_other_retained_target_development_sessions
     nomination_rule: largest_median_equal_region_gain_among_region_sign_consistent_candidates
-    all_three_candidates_must_be_numerically_scoreable_in_both_regions_in_all_three_nomination_sessions: true
+    all_three_candidates_must_be_numerically_scoreable_in_both_regions_in_every_nomination_session: true
     if_any_candidate_is_numerically_unscoreable: no_nominee_full_comparison_unresolved
     nominee_eligibility: regional_gain_signs_agree_in_every_nomination_session
     measured_mixed_sign_rival: report_as_joint_region_unsupported_without_vetoing_other_eligible_candidates
@@ -179,16 +299,21 @@ component_prediction:
     left_out_H_prediction_is_frozen_before_evaluation: true
     nomination_tie_margin: 0.01
     stability_requires:
-      - same_component_is_nominated_in_at_least_three_of_four_folds
+      - same_component_is_nominated_in_all_three_Mihili_folds_and_at_least_three_of_four_Chewie_folds
       - no_fold_is_tied_within_the_0p01_margin
       - no_left_out_m1_pmd_gain_sign_contradiction
-    otherwise: unstable_selection_and_no_component_claim
+    missing_fold_counts_as_agreement: false
+    known_failed_condition: unstable_selection_and_no_component_claim
+    missing_required_evidence: unresolved_and_no_component_claim
   final_nomination:
     timing: after_outer_assessment_is_recorded
     previously_unopened_development_components_may_then_be_scored: true
     may_change_outer_assessment_record: false
-    may_use_all_four_target_development_sessions: true
+    use_all_retained_target_session_panels: true
     common_numerically_scoreable_sessions_for_all_three_candidates_required: 3
+    required_common_support: all_three_Mihili_and_at_least_three_of_four_Chewie
+    include_every_available_common_scoreable_session: true
+    final_nominee_must_match_that_direction_stable_outer_family: true
     region_sign_consistency: candidate_specific_across_the_common_scoreable_sessions
     rule: largest_median_equal_region_gain_among_eligible_candidates_on_common_scoreable_sessions_with_0p01_tie_margin
     negative_or_mixed_sign_rival_recoded_as_missing: false
@@ -199,8 +324,9 @@ component_prediction:
     - preservation_prediction_requires_both_regional_gains_positive_and_equal_region_mean_at_least_0p01
     - failure_prediction_requires_both_regional_gains_at_most_zero
     - every_reserved_session_prediction_is_written_before_any_evaluation_trial_is_scored
-    - at_least_three_of_four_reserved_sessions_receive_a_nonabstaining_prediction
+    - at_least_three_of_four_reserved_sessions_receive_a_nonabstaining_prediction_with_evaluable_outcome
     - no_nonabstaining_reserved_prediction_is_wrong
+    - unresolved_outcomes_never_count_as_correct
     - one_observed_outcome_class_does_not_establish_the_support_boundary
   support_prediction:
     calibration_visible_inputs:
@@ -208,8 +334,13 @@ component_prediction:
       profile_distance: root_mean_square_bandwise_distance_from_the_applicable_source_regional_prototype_scaled_by_development_between_session_variation
     zero_or_nonfinite_bandwise_between_session_scale: abstain
     nonfinite_split_half_reliability: abstain
-    cross_fitting: scored_development_session_uses_the_other_seven_sessions_for_reference_medians_and_scales
-    reserved_reference: all_eight_development_sessions
+    cross_fitting: scored_development_session_uses_the_other_six_sessions_for_reference_medians_and_scales
+    reserved_reference: all_seven_development_sessions
+    reference_animal_counts:
+      omitted_Mihili: {Mihili: 2, Chewie-L: 4}
+      omitted_Chewie: {Mihili: 3, Chewie-L: 3}
+      reserved: {Mihili: 3, Chewie-L: 4}
+    reference_weighting: pooled_session_median_and_MAD_not_animal_weighted_median
     standardization: subtract_leave_one_out_development_median_and_divide_by_1p4826_times_median_absolute_deviation
     if_either_standardization_scale_is_zero: abstain
     support_index: "H_session = standardized_reliability - standardized_profile_distance"
@@ -223,11 +354,13 @@ component_prediction:
     reserved_sessions_are_held_out_across_acquisition_dates_not_all_later: true
     calendar_gap_alone_is_not_an_explanation: true
   uncertainty:
-    within_session: resample_whole_evaluation_trials_stratified_by_direction
+    within_session: resample_whole_evaluation_trials_stratified_by_direction_with_paired_regions
     across_sessions: resample_sessions_within_animal_and_average_transfer_directions_equally
     always_report_each_animal_direction_and_leave_one_session_result: true
     support_summary: exact_counts_correct_wrong_and_abstained_with_interval_over_sessions
     trials_time_bins_electrodes_and_coordinates_are_independent_biological_replicates: false
+    population_inference_from_two_animals: false
+    fixed_fit_uncertainty_includes_model_selection_uncertainty: false
   competing_explanation:
     name: generic_recording_quality_or_array_label
     prediction: all_component_families_move_together_and_recording_metadata_predicts_regional_gains_and_status_at_least_as_well
@@ -340,6 +473,14 @@ search:
   maximum_valid_trials: 48
   patience_after_minimum: 10
   material_improvement: primary_score_improvement_above_a_prespecified_noise_tolerance_with_all_controls_passing
+  material_improvement_convention:
+    adopted_before_initial_scores: "2026-10-11"
+    paired_reference: same_128_assignments_new_minus_incumbent_equal_mean_accuracy_minus_chance
+    tolerance: 122nd_ordered_absolute_deviation_from_median_of_paired_reference_differences
+    observed_improvement: at_least_1_over_96_and_strictly_greater_than_tolerance
+    applicable_controls_must_pass: true
+    incomplete_reference_resets_patience: false
+    interpretation: search_heuristic_not_confidence_interval_or_selection_adjusted_significance
   stop_before_minimum_only_for:
     - resource_exhaustion
     - technical_impossibility

@@ -1,5 +1,59 @@
 # What Do Neural Loss-Aversion Maps Measure?
 
+## Authorized real-behavior priority — 2026-10-05
+
+The scientist stopped the expanding simulation program and authorized a
+bounded exploratory analysis of actual behavior before recovery is complete.
+This is a separate descriptive and predictive branch, not a passed recovery
+gate or a replacement positive mechanism claim. Preserve earlier validation
+results and partial outputs; do not launch further simulations or repairs
+under this branch.
+
+Before opening observed responses, freeze these outputs and choices:
+
+- Use the qualified original-event table for all 108 participants (54 EI,
+  54 ER), four runs and 27,648 trials. Describe the four response categories
+  plus misses, acceptance/rejection/miss rates, responded RT 10th/50th/90th
+  percentiles by choice, participant/run summaries and the original gain/loss
+  grid separately by task version. Misses remain misses; strong/weak is not
+  an independent confidence measurement.
+- Attempt exactly M0, MV, MZ, MC, MVZ and MVC with fixed bounds, each in both
+  primary directions: train {1,4}/score {2,3}, then reverse. Use fresh starts
+  and the unchanged v6 behavioral implementation, priors, support, contaminant
+  and original 500-sweep ceiling. All individual and population parameters
+  are fitted using training responses only.
+- Report the joint choice/RT/deadline-censoring plug-in predictive score for
+  each complete model and paired differences from M0. Sum the two half-score
+  contributions with the original all-256-trial denominator per participant.
+  Give equal-participant means, participant standard errors, medians and
+  EI/ER means. A model requires both directions and all 108 participants for
+  comparison; numerical failures remain unavailable, without cohort filtering.
+  Report support contacts and convergence, not psychological winners.
+- Freeze the code and report menu before descriptions expose held-out
+  responses to the analyst. No retuning, model substitution or additional
+  splits after that exposure. This is exploratory within-session prediction,
+  not an untouched confirmatory test or independent replication.
+
+Descriptions have a 120-second process cap. The first M0 direction is the
+actual-data runtime pilot; each of the twelve model-direction fits has an
+1800-second cap on four CPUs with 8 GiB. The pilot has a40-minute parent. After its22-second measured fit, the
+remaining eleven fits are grouped into three parallel four-CPU parents:
+five/four/two fits with155/125/65-minute bounds, including termination grace.
+This aggregates short tasks while preserving every1800-second fit cap.
+One10-minute single-CPU closeout may aggregate reports and shared diagnostics. Reserve at most29core-hours overall including setup/checks/
+descriptions/closeout (24core-hours of fit caps). No automatic retries, sweep increases or resource
+extensions are authorized by this branch. Continue the frozen menu only
+after the first attempt establishes a usable execution path.
+
+The choice-only logistic benchmark is registered but not implemented in this
+first report, so the report cannot claim generally best prediction. Logistic,
+urgency/nonlinear and ordinal benchmarks, alternative splits, interval
+calibration, superiority thresholds and recovery remain deferred obligations
+for the original mechanism claim. MZC/MVZC remain closed. The original
+mechanism/neural progression and failed-mechanism replacement ban still apply
+to those claims; they do not prohibit this separately labeled exploratory
+report. No BOLD or team-map analysis is opened by this amendment.
+
 ## The question in plain language
 
 NARPS showed that many teams obtained different answers from the same fMRI

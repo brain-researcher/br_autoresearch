@@ -32,6 +32,12 @@ except ImportError as exc:  # pragma: no cover - exercised by CLI environment gu
 Array = np.ndarray
 
 
+BOUNDED_LATENT_SUPPORT_PROTOCOL = "ep12.pure_bounded_latent_support.v1"
+MAX_LINEAR_LATENT_RANK = 2
+CURVED_LATENT_DIMENSION = 1
+CURVED_HERMITE_DEGREE = 3
+
+
 class ScientificModelError(RuntimeError):
     """The scientific fitter or predictive integrator failed closed."""
 
@@ -105,48 +111,71 @@ def _ridge_regression(design: Array, target: Array, penalty: float) -> Array:
         raise ScientificModelError("nuisance regression is singular") from exc
 
 
-def _shrunk_covariance(values: Array, latent_rank: int, floor: float = 1e-4) -> Array:
-    dimension = values.shape[1]
-    if values.shape[0] <= 1:
-        return np.eye(dimension) * floor
-    covariance = np.cov(values, rowvar=False, ddof=1)
-    covariance = np.atleast_2d(covariance).astype(float)
+def _bounded_covariance(
+    covariance: Array,
+    *,
+    latent_rank: int,
+) -> Array:
+    """Return a PSD covariance supported on at most ``latent_rank`` axes.
+
+    No eigenvalue floor is added: a direction unsupported by the fitted data
+    stays absent rather than becoming either latent or ambient variation.
+    """
+
+    covariance = np.atleast_2d(np.asarray(covariance, dtype=float))
     covariance = (covariance + covariance.T) / 2.0
+    dimension = covariance.shape[0]
+    rank = max(0, min(int(latent_rank), dimension))
+    if rank == 0:
+        return np.zeros((dimension, dimension), dtype=float)
     eigenvalues, eigenvectors = np.linalg.eigh(covariance)
     order = np.argsort(eigenvalues)[::-1]
-    eigenvalues = np.maximum(eigenvalues[order], floor)
+    eigenvalues = np.maximum(eigenvalues[order], 0.0)
     eigenvectors = eigenvectors[:, order]
-    rank = max(1, min(int(latent_rank), dimension))
-    residual = float(np.mean(eigenvalues[rank:])) if rank < dimension else floor
-    residual = max(residual, floor)
-    retained = np.maximum(eigenvalues[:rank] - residual, 0.0)
-    result = np.eye(dimension) * residual
-    result += (eigenvectors[:, :rank] * retained) @ eigenvectors[:, :rank].T
+    retained = eigenvalues[:rank]
+    result = (eigenvectors[:, :rank] * retained) @ eigenvectors[:, :rank].T
     return (result + result.T) / 2.0
+
+
+def _shrunk_covariance(values: Array, latent_rank: int) -> Array:
+    dimension = values.shape[1]
+    if values.shape[0] <= 1:
+        covariance = np.zeros((dimension, dimension), dtype=float)
+    else:
+        covariance = np.cov(values, rowvar=False, ddof=1)
+    return _bounded_covariance(
+        covariance,
+        latent_rank=latent_rank,
+    )
 
 
 def _covariance_for_branch(
     values: Array,
     latent_rank: int,
     covariance_mode: str,
-    floor: float = 1e-4,
 ) -> Array:
     """Estimate one of the three covariance branches declared in the policy."""
 
     dimension = values.shape[1]
     if values.shape[0] <= 1:
-        return np.eye(dimension) * floor
+        return _bounded_covariance(
+            np.zeros((dimension, dimension), dtype=float),
+            latent_rank=latent_rank,
+        )
     if covariance_mode == "diagonal":
         variances = np.var(values, axis=0, ddof=1)
-        return np.diag(np.maximum(variances, floor))
+        return _bounded_covariance(
+            np.diag(np.maximum(variances, 0.0)),
+            latent_rank=latent_rank,
+        )
     if covariance_mode == "shrinkage":
         covariance = LedoitWolf(assume_centered=False).fit(values).covariance_
-        covariance = (covariance + covariance.T) / 2.0
-        eigenvalues, eigenvectors = np.linalg.eigh(covariance)
-        eigenvalues = np.maximum(eigenvalues, floor)
-        return (eigenvectors * eigenvalues) @ eigenvectors.T
+        return _bounded_covariance(
+            covariance,
+            latent_rank=latent_rank,
+        )
     if covariance_mode == "low_rank":
-        return _shrunk_covariance(values, latent_rank, floor=floor)
+        return _shrunk_covariance(values, latent_rank)
     raise ScientificModelError(f"unknown covariance branch: {covariance_mode}")
 
 
@@ -226,9 +255,19 @@ def _normal_qmc(draws: int, dimension: int, seed: int) -> Array:
     return norm.ppf(uniforms)
 
 
+def _cubic_hermite_basis(z: Array) -> Array:
+    values = np.asarray(z, dtype=float).reshape(-1)
+    return np.column_stack(
+        [values, values**2 - 1.0, values**3 - 3.0 * values]
+    )
+
+
 def _covariance_root(covariance: Array) -> Array:
     eigenvalues, eigenvectors = np.linalg.eigh((covariance + covariance.T) / 2.0)
-    eigenvalues = np.maximum(eigenvalues, 1e-8)
+    scale = max(1.0, float(np.max(np.abs(eigenvalues))))
+    if float(np.min(eigenvalues)) < -1e-10 * scale:
+        raise ScientificModelError("latent covariance is not positive semidefinite")
+    eigenvalues = np.where(eigenvalues > 1e-12 * scale, eigenvalues, 0.0)
     return eigenvectors @ np.diag(np.sqrt(eigenvalues))
 
 
@@ -304,6 +343,31 @@ class FittedPredictiveModel:
     diagnostics: Mapping[str, Any]
     pseudocount: float
 
+    def validated_latent_support(self) -> tuple[Array, Array]:
+        """Return the exact finite support and normalized log weights used.
+
+        ``latent_offsets`` is the deterministic integration rule for this
+        fitted model.  Scoring and fitted-null generation must both consume
+        this same object rather than reconstructing a different Gaussian law.
+        """
+
+        offsets = np.asarray(self.latent_offsets, dtype=float)
+        log_weights = np.asarray(self.log_weights, dtype=float)
+        dimension = self.basis.shape[1]
+        if (
+            offsets.ndim != 2
+            or offsets.shape[0] < 1
+            or offsets.shape[1] != dimension
+        ):
+            raise ScientificModelError("latent integration support is malformed")
+        if log_weights.shape != (offsets.shape[0],):
+            raise ScientificModelError("latent integration weights are malformed")
+        _require_finite("latent integration support", offsets)
+        _require_finite("latent integration log weights", log_weights)
+        if not np.isclose(float(logsumexp(log_weights)), 0.0, atol=1e-10):
+            raise ScientificModelError("latent integration weights are not normalized")
+        return offsets, log_weights
+
     def score_neurons(self, counts: Array, covariates: Array) -> Array:
         counts, covariates = validate_profile_arrays(counts, covariates)
         if counts.shape[1] != self.basis.shape[0]:
@@ -314,6 +378,9 @@ class FittedPredictiveModel:
         base_ilr = design @ self.nuisance_coefficients
         totals = counts.sum(axis=1).astype(float)
         result = np.empty(counts.shape[0], dtype=float)
+        latent_support: tuple[Array, Array] | None = None
+        if self.model_id != "T":
+            latent_support = self.validated_latent_support()
         for index, (row, base, total) in enumerate(zip(counts, base_ilr, totals)):
             coefficient = gammaln(total + 1.0) - np.sum(gammaln(row.astype(float) + 1.0))
             if self.model_id == "T":
@@ -323,46 +390,13 @@ class FittedPredictiveModel:
                 result[index] = integrated / total
                 continue
 
-            smoothed = row.astype(float) + self.pseudocount
-            composition = smoothed / smoothed.sum()
-            observed_ilr = np.log(composition) @ self.basis
-            observed_residual = observed_ilr - base
-            measurement_covariance = self.basis.T @ np.diag(1.0 / smoothed) @ self.basis
-            measurement_covariance += np.eye(self.basis.shape[1]) * 1e-6
-            target_draws = (
-                _normal_qmc(
-                    self.integration_draws,
-                    self.basis.shape[1],
-                    seed_from(self.integration_seed, index, "target"),
-                )
-                @ _covariance_root(measurement_covariance).T
-                + observed_residual[None, :]
-            )
-            prior_draws = _draw_gaussian_mixture(
-                self.prior_means,
-                self.prior_covariances,
-                self.prior_weights,
-                draws=self.integration_draws,
-                seed=seed_from(self.integration_seed, index, "prior"),
-            )
-            residual_draws = np.vstack([target_draws, prior_draws])
+            assert latent_support is not None
+            residual_draws, support_log_weights = latent_support
             clr_logits = (base[None, :] + residual_draws) @ self.basis.T
             clr_logits -= np.max(clr_logits, axis=1, keepdims=True)
             log_probabilities = clr_logits - logsumexp(clr_logits, axis=1, keepdims=True)
             log_likelihoods = coefficient + log_probabilities @ row.astype(float)
-            log_prior = _log_mixture_density(
-                residual_draws,
-                self.prior_means,
-                self.prior_covariances,
-                self.prior_weights,
-            )
-            log_target_proposal = _log_gaussian_density(
-                residual_draws, observed_residual, measurement_covariance
-            )
-            log_proposal = np.log(0.5) + np.logaddexp(log_target_proposal, log_prior)
-            integrated = logsumexp(log_likelihoods + log_prior - log_proposal) - math.log(
-                len(residual_draws)
-            )
+            integrated = float(logsumexp(log_likelihoods + support_log_weights))
             result[index] = integrated / total
         _require_finite("held-out predictive scores", result)
         return result
@@ -402,6 +436,7 @@ def fit_predictive_model(
     model_id: str,
     *,
     seed: int,
+    integration_seed: int | None = None,
     integration_draws: int = 64,
     latent_rank: int = 2,
     ridge: float = 0.1,
@@ -411,20 +446,35 @@ def fit_predictive_model(
     covariance_rank: int | None = None,
 ) -> FittedPredictiveModel:
     counts, covariates = validate_profile_arrays(counts, covariates)
+    bounded_latent_rank = max(
+        1,
+        min(int(latent_rank), MAX_LINEAR_LATENT_RANK),
+    )
+    resolved_integration_seed = int(
+        seed if integration_seed is None else integration_seed
+    )
     basis, coefficients, residuals, representation_diagnostics = _fit_common(
         counts,
         covariates,
         ridge=ridge,
         pseudocount=pseudocount,
         representation=representation,
-        latent_rank=latent_rank,
+        latent_rank=bounded_latent_rank,
     )
     dimension = residuals.shape[1]
     offsets: Array
     weights: Array
     diagnostics: dict[str, Any] = dict(representation_diagnostics)
     diagnostics["covariance_mode"] = covariance_mode
-    fitted_covariance_rank = latent_rank if covariance_rank is None else int(covariance_rank)
+    requested_covariance_rank = (
+        bounded_latent_rank if covariance_rank is None else int(covariance_rank)
+    )
+    fitted_covariance_rank = max(
+        1,
+        min(requested_covariance_rank, bounded_latent_rank),
+    )
+    diagnostics["latent_support_protocol"] = BOUNDED_LATENT_SUPPORT_PROTOCOL
+    diagnostics["ambient_residual_tube"] = False
     diagnostics["covariance_rank"] = fitted_covariance_rank
     prior_means: Array
     prior_covariances: Array
@@ -443,13 +493,27 @@ def fit_predictive_model(
         covariance = _covariance_for_branch(
             residuals, fitted_covariance_rank, covariance_mode
         )
-        normals = _normal_qmc(integration_draws, dimension, seed)
+        normals = _normal_qmc(
+            integration_draws, dimension, resolved_integration_seed
+        )
         offsets = normals @ _covariance_root(covariance).T
         weights = np.full(offsets.shape[0], 1.0 / offsets.shape[0])
         prior_means = np.zeros((1, dimension), dtype=float)
         prior_covariances = covariance[None, :, :]
         prior_weights = np.ones(1, dtype=float)
-        parameter_count = coefficients.size + dimension * min(latent_rank, dimension)
+        parameter_count = coefficients.size + dimension * min(
+            fitted_covariance_rank, dimension
+        )
+        support_rank = int(
+            np.linalg.matrix_rank(
+                offsets - offsets.mean(axis=0, keepdims=True),
+                tol=1e-10,
+            )
+        )
+        if support_rank > MAX_LINEAR_LATENT_RANK:
+            raise ScientificModelError("U_linear support exceeds rank two")
+        diagnostics["latent_support_family"] = "rank_bounded_Gaussian_manifold"
+        diagnostics["latent_support_rank"] = support_rank
         diagnostics["covariance_eigenvalues"] = np.linalg.eigvalsh(covariance).tolist()
     elif model_id == "U_curved":
         covariance = _covariance_for_branch(residuals, 1, covariance_mode)
@@ -459,40 +523,30 @@ def fit_predictive_model(
         scale = float(np.std(raw_z, ddof=1)) if len(raw_z) > 1 else 1.0
         scale = max(scale, 1e-6)
         z = raw_z / scale
-        hermite = np.column_stack([z, z**2 - 1.0, z**3 - 3.0 * z])
+        hermite = _cubic_hermite_basis(z)
         curve = _ridge_regression(
             np.column_stack([np.ones(len(z)), hermite]), residuals, ridge
         )[1:, :]
-        curve_fit = hermite @ curve
-        noise_covariance = _covariance_for_branch(
-            residuals - curve_fit, fitted_covariance_rank, covariance_mode
-        )
         quadrature_z, quadrature_weights = np.polynomial.hermite_e.hermegauss(9)
         quadrature_weights = quadrature_weights / math.sqrt(2.0 * math.pi)
-        node_h = np.column_stack(
-            [
-                quadrature_z,
-                quadrature_z**2 - 1.0,
-                quadrature_z**3 - 3.0 * quadrature_z,
-            ]
-        )
+        node_h = _cubic_hermite_basis(quadrature_z)
         prior_means = node_h @ curve
-        prior_covariances = np.repeat(
-            noise_covariance[None, :, :], len(quadrature_z), axis=0
+        prior_covariances = np.zeros(
+            (len(quadrature_z), dimension, dimension), dtype=float
         )
         prior_weights = quadrature_weights / quadrature_weights.sum()
-        normals = _normal_qmc(integration_draws, dimension + 1, seed)
-        draw_z = normals[:, 0]
-        draw_h = np.column_stack(
-            [draw_z, draw_z**2 - 1.0, draw_z**3 - 3.0 * draw_z]
+        offsets = np.array(prior_means, copy=True)
+        weights = np.array(prior_weights, copy=True)
+        parameter_count = coefficients.size + curve.size
+        diagnostics["latent_support_family"] = (
+            "one_dimensional_Gaussian_cubic_Hermite_curve"
         )
-        offsets = draw_h @ curve + normals[:, 1:] @ _covariance_root(noise_covariance).T
-        weights = np.full(offsets.shape[0], 1.0 / offsets.shape[0])
-        parameter_count = coefficients.size + curve.size + dimension * min(latent_rank, dimension)
+        diagnostics["latent_dimension"] = CURVED_LATENT_DIMENSION
+        diagnostics["curve_degree"] = CURVED_HERMITE_DEGREE
+        diagnostics["integration_rule"] = "nine_node_Gauss_Hermite"
+        diagnostics["integration_nodes"] = int(len(quadrature_z))
+        diagnostics["curve_coefficients"] = curve.tolist()
         diagnostics["curve_frobenius_norm"] = float(np.linalg.norm(curve))
-        diagnostics["noise_covariance_eigenvalues"] = np.linalg.eigvalsh(
-            noise_covariance
-        ).tolist()
     elif model_id in {"M2", "M3"}:
         components = int(model_id[1:])
         if counts.shape[0] < components:
@@ -524,7 +578,7 @@ def fit_predictive_model(
             normals = _normal_qmc(
                 per_component,
                 dimension,
-                seed_from(seed, model_id, component),
+                seed_from(resolved_integration_seed, model_id, component),
             )
             pieces.append(mixture.means_[component][None, :] + normals @ root.T)
             piece_weights.append(
@@ -542,10 +596,17 @@ def fit_predictive_model(
             coefficients.size
             + (components - 1)
             + components * dimension
-            + dimension * min(latent_rank, dimension)
+            + dimension * min(fitted_covariance_rank, dimension)
         )
         diagnostics.update(
             {
+                "within_group_latent_support_family": (
+                    "rank_bounded_Gaussian_manifold"
+                ),
+                "within_group_latent_support_rank": int(
+                    np.linalg.matrix_rank(covariance, tol=1e-10)
+                ),
+                "group_offsets": True,
                 "component_weights": mixture.weights_.tolist(),
                 "component_means": mixture.means_.tolist(),
                 "converged": bool(mixture.converged_),
@@ -568,7 +629,7 @@ def fit_predictive_model(
         prior_covariances=prior_covariances,
         prior_weights=prior_weights,
         integration_draws=integration_draws,
-        integration_seed=int(seed),
+        integration_seed=resolved_integration_seed,
         parameter_count=int(parameter_count),
         diagnostics=diagnostics,
         pseudocount=float(pseudocount),
@@ -622,6 +683,7 @@ def cross_validated_candidate(
                     covariates[training],
                     candidate,
                     seed=seed_from(seed, candidate, fold),
+                    integration_seed=seed_from(seed, "cv-integration", fold),
                     integration_draws=integration_draws,
                     latent_rank=latent_rank,
                     ridge=ridge,
@@ -743,11 +805,13 @@ def fit_triplet(
         seed=seed_from(seed, "M-cv"),
         **common,
     )
+    final_integration_seed = seed_from(seed, "final-integration")
     t_model = fit_predictive_model(
         counts,
         covariates,
         "T",
         seed=seed_from(seed, "T-final"),
+        integration_seed=final_integration_seed,
         integration_draws=integration_draws,
         latent_rank=latent_rank,
         ridge=ridge,
@@ -761,6 +825,7 @@ def fit_triplet(
         covariates,
         u_cv.model_id,
         seed=seed_from(seed, "U-final", u_cv.model_id),
+        integration_seed=final_integration_seed,
         integration_draws=integration_draws,
         latent_rank=latent_rank,
         ridge=ridge,
@@ -774,6 +839,7 @@ def fit_triplet(
         covariates,
         m_cv.model_id,
         seed=seed_from(seed, "M-final", m_cv.model_id),
+        integration_seed=final_integration_seed,
         integration_draws=integration_draws,
         latent_rank=latent_rank,
         ridge=ridge,

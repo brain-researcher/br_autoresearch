@@ -48,6 +48,9 @@ work that could already answer the question. Use current retrieval rather
 than memory for novelty claims. Distinguish published evidence from preprints
 and uncertainty. Identify what the nearest work actually tested, what is
 already known, and the specific remaining distinction our data could resolve.
+When an argument relies on a published result or theorem, state the conditions
+it was shown under, such as species, modality, model class or assumptions, and
+whether they hold here; outside them it is a hypothesis to test, not a premise.
 A new model checkpoint, stricter split, or positive familiar comparison is not
 automatically a new scientific finding; say when the value is replication or
 methodological rigor instead. Do not promise publication from a positive result.
@@ -96,9 +99,10 @@ research pattern. Use a pattern only when it helps this question.
 Separate exploratory choices from data roles, resource limits, stopping rules
 and final evaluation commitments. Existing frozen policies remain binding;
 request or document an authorized amendment before changing them. Already-seen
-outcomes cannot become unobserved confirmation after a redesign. Share paper
-ideas across EPs only within scope; sharing a manuscript does not merge their
-data permissions or make overlapping samples independent replications.
+outcomes cannot become unobserved confirmation after a redesign; record which
+results a revised hypothesis was formed after. Share paper ideas across EPs
+only within scope; sharing a manuscript does not merge their data permissions
+or make overlapping samples independent replications.
 
 ## Write one coherent study
 

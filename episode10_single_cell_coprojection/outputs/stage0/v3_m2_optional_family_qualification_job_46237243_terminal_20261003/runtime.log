@@ -1,0 +1,14 @@
+EP10 v3 M2 target-free optional-family qualification log: /scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/v3_m2_optional_family_qualification_job_46237243.log
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) devel   2) math
+Python 3.12.1
+RECOVERY_START workers=9 new_cases=9 reused_cases=3
+RECOVERY_CASE_REUSED family=low_rank_population_recovery rank=1
+RECOVERY_CASE_REUSED family=low_rank_population_recovery rank=2
+RECOVERY_CASE_REUSED family=low_rank_population_recovery rank=3
+RECOVERY_CASE_FAIL sparse_plus_low_rank_population_recovery rank=8: LowRankError: low-rank optimizer reached its iteration cap without both gradient and relative-objective convergence
+RECOVERY_CASE_FAIL low_rank_population_recovery rank=4: LowRankError: low-rank optimizer reached its iteration cap without both gradient and relative-objective convergence
+RECOVERY_CASE_FAIL low_rank_population_recovery rank=8: LowRankError: low-rank optimizer reached its iteration cap without both gradient and relative-objective convergence
+RECOVERY_CASE_FAIL low_rank_population_recovery rank=6: LowRankError: low-rank optimizer reached its iteration cap without both gradient and relative-objective convergence

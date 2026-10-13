@@ -300,11 +300,12 @@ relation.
 
 ## Current next action
 
-Complete the existing outcome-independent checkpoint/pair and anatomical
-support decisions, exposure eligibility, roles and numerical inference choices.
-The design now gives those decisions named targets, not fabricated answers.
-If the nominations cannot qualify under the amended claim-specific rule,
-resolve remaining checkpoint/exposure issues before scores rather than
-silently replacing a model or ROI. No extraction, neural
-access, model fitting, audit opening or canonical action was authorized by
-this writing milestone.
+The October 4 preparation completed concept roles, anatomical mapping/support
+quotas, model-feature and numerical conventions, delegated margin adoption and
+the exact EP18 overlap comparison. The designs remain correlated and exposed;
+all 33 numerical core checks passed. [DATASETS](../DATASETS.md#what-must-exist-before-neural-model-comparison)
+now links those facts. Next resolve authorized encrypted-stimulus delivery,
+the stopped capacity/copy route and reader isolation, then compute the actual
+calibration maps and role-safe features under the adopted rules. Unknown
+checkpoint image exposure remains unknown. These document updates authorize
+no neural score, audit opening or canonical action.

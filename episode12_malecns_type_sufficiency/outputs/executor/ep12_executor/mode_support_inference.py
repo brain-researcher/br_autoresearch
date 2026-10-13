@@ -20,11 +20,17 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from .simultaneous_inference import (
+    SimultaneousInferenceError,
+    bilateral_with_aggregate,
+    paired_studentized_max_t,
+)
+
 
 BOOTSTRAP_REPLICATES = 1_999
 CONFIDENCE_LEVEL = 0.95
-PROTOCOL = "ep12.whole_provider_type_paired_simultaneous_max_t.v1"
-SCHEMA_VERSION = "ep12.mode_support_inference.v1"
+PROTOCOL = "ep12.whole_provider_type_paired_studentized_simultaneous_max_t.v2"
+SCHEMA_VERSION = "ep12.mode_support_inference.v2"
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -313,35 +319,28 @@ def infer_mode_support(
     if np.any(ranks <= 0.0) or np.any(ranks != np.floor(ranks)):
         raise ModeSupportInferenceError("fitted parameter ranks must be positive integers")
 
+    gain_with_aggregate = bilateral_with_aggregate(gain)
     flattened = [
-        gain,
+        gain_with_aggregate,
         kl.reshape(n_types, -1),
         cosine,
         partner.reshape(n_types, -1),
     ]
     widths = [value.shape[1] for value in flattened]
     matrix = np.concatenate(flattened, axis=1)
-    estimates = matrix.mean(axis=0)
-    standard_errors = matrix.std(axis=0, ddof=1) / math.sqrt(n_types)
-
     seed = _seed(contract_sha256, result_table_sha256)
-    rng = np.random.Generator(np.random.PCG64(seed))
-    # The same index matrix is used for every coordinate, preserving both the
-    # source-direction pairing and all between-diagnostic dependence.
-    indices = rng.integers(0, n_types, size=(BOOTSTRAP_REPLICATES, n_types))
-    bootstrap_means = matrix[indices].mean(axis=1)
-    variable = standard_errors > 0.0
-    if np.any(variable):
-        studentized = np.abs(
-            (bootstrap_means[:, variable] - estimates[variable])
-            / standard_errors[variable]
+    try:
+        simultaneous = paired_studentized_max_t(
+            matrix,
+            replicates=BOOTSTRAP_REPLICATES,
+            seed=seed,
+            confidence_level=CONFIDENCE_LEVEL,
         )
-        max_t = np.max(studentized, axis=1)
-    else:
-        max_t = np.zeros(BOOTSTRAP_REPLICATES, dtype=np.float64)
-    critical = float(np.quantile(max_t, CONFIDENCE_LEVEL, method="higher"))
-    lower = estimates - critical * standard_errors
-    upper = estimates + critical * standard_errors
+    except SimultaneousInferenceError as exc:
+        raise ModeSupportInferenceError(str(exc)) from exc
+    estimates = np.asarray(simultaneous["estimate"], dtype=np.float64)
+    lower = np.asarray(simultaneous["lower"], dtype=np.float64)
+    upper = np.asarray(simultaneous["upper"], dtype=np.float64)
 
     cursor = 0
     slices: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
@@ -358,9 +357,9 @@ def infer_mode_support(
     kl_e, kl_l, kl_u = slices[1]
     cosine_e, cosine_l, cosine_u = slices[2]
     partner_e, partner_l, partner_u = slices[3]
-    gain_e = gain_e.reshape(gain.shape[1:])
-    gain_l = gain_l.reshape(gain.shape[1:])
-    gain_u = gain_u.reshape(gain.shape[1:])
+    gain_e = gain_e.reshape(gain_with_aggregate.shape[1:])
+    gain_l = gain_l.reshape(gain_with_aggregate.shape[1:])
+    gain_u = gain_u.reshape(gain_with_aggregate.shape[1:])
     kl_e = kl_e.reshape(kl.shape[1:])
     kl_l = kl_l.reshape(kl.shape[1:])
     kl_u = kl_u.reshape(kl.shape[1:])
@@ -371,7 +370,7 @@ def infer_mode_support(
     partner_l = partner_l.reshape(partner.shape[1:])
     partner_u = partner_u.reshape(partner.shape[1:])
 
-    gain_gate = bool(np.all(gain_l > margin))
+    gain_gate = bool(np.all(gain_l[:2] > margin))
     separation_gate = bool(np.all(kl_l > 0.0))
     cosine_gate = bool(np.all(cosine_l > 0.0))
     prevalence_gate = bool(np.all(memberships > ranks))
@@ -418,18 +417,26 @@ def infer_mode_support(
             "unit": "whole_provider_type",
             "directions_resampled_together": True,
             "interval": "paired_simultaneous_95_percent_max_t",
+            "studentization": "standard_error_recomputed_within_each_resample",
             "confidence_level": CONFIDENCE_LEVEL,
             "replicates": BOOTSTRAP_REPLICATES,
             "seed_derivation": "sha256_of_contract_and_result_table",
             "seed": seed,
             "simultaneous_coordinate_count": int(matrix.shape[1]),
-            "critical_value": critical,
+            "critical_value": simultaneous["critical_max_t"],
+            "bootstrap_zero_standard_error_draws": simultaneous[
+                "bootstrap_zero_standard_error_draws"
+            ],
+            "variable_coordinate_count": simultaneous["variable_coordinate_count"],
         },
         "diagnostics": {
             "prediction_gain": {
-                "estimate_by_direction": gain_e.tolist(),
-                "simultaneous_lower_by_direction": gain_l.tolist(),
-                "simultaneous_upper_by_direction": gain_u.tolist(),
+                "estimate_by_direction": gain_e[:2].tolist(),
+                "simultaneous_lower_by_direction": gain_l[:2].tolist(),
+                "simultaneous_upper_by_direction": gain_u[:2].tolist(),
+                "estimate_aggregate": float(gain_e[2]),
+                "simultaneous_lower_aggregate": float(gain_l[2]),
+                "simultaneous_upper_aggregate": float(gain_u[2]),
                 "strict_threshold": margin,
                 "passed": gain_gate,
             },

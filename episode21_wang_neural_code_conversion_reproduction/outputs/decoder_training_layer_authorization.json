@@ -1,0 +1,88 @@
+{
+  "schema_version": "ep21.decoder_layer_authorization.v1",
+  "episode_id": "ep21",
+  "purpose": "retained_sub01_conv1_1_channels1_through63",
+  "approved": true,
+  "approval_source": "Scientist replied yes go ahead to the pending one-job EP21 first-layer proposal: 1 CPU, 7 GiB, at most 24 hours, 25 GB new durable output; separate 500 CPU-hour proposal remains unapproved",
+  "approval_observed_utc": "2026-10-06T18:47:24Z",
+  "approval_local_date": "2026-10-06",
+  "approval_timezone": "America/Los_Angeles",
+  "participant": "sub-01",
+  "training_role": "subject_unique",
+  "training_images": 4712,
+  "layer": "conv1_1",
+  "channel_interval": [1, 64],
+  "spatial_Fortran_interval": [0, 50176],
+  "units_requested": 3161088,
+  "numerical_block_units": 64,
+  "image_batch": 64,
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 7,
+    "minutes": 1440,
+    "gpus": 0,
+    "durable_bytes": 25000000000,
+    "scratch_bytes": 2000000000
+  },
+  "scratch_cap_interpretation": "peak_simultaneously_retained_transient_bytes",
+  "optional_fixture_prelude": {
+    "episode": "ep19",
+    "test_files": [
+      "outputs/tests/test_classical_forecast_backend.py",
+      "outputs/tests/test_non_neural_forecast_backend.py"
+    ],
+    "test_count": 16,
+    "test_seconds": 120,
+    "astra_seconds": 30,
+    "empirical_payload_access": false,
+    "failure_does_not_gate_EP21_fitting": true,
+    "same_parent_allocation_and_CPU_charge": true
+  },
+  "optional_full_pipeline_checks": {
+    "episode": "ep21",
+    "test_modules": [
+      "test_participant_training_state",
+      "test_train_decoder_work_item",
+      "test_plan_full_decoder_work",
+      "test_decoder_assembly",
+      "test_submit_full_decoder_jobs"
+    ],
+    "test_count": 46,
+    "test_seconds": 120,
+    "empirical_payload_access": false,
+    "failure_does_not_gate_first_layer_fitting": true,
+    "activates_full_decoder_stage": false,
+    "same_parent_allocation_and_CPU_charge": true
+  },
+  "internal_seconds": 86100,
+  "reuse_completed_units": 51328,
+  "reuse_shared_state": "outputs/decoder_training/retained_prefix_001/shared_training_state.npz",
+  "reuse_protocol_lock": "outputs/protocol_lock.yaml",
+  "retained_reports": [
+    "outputs/decoder_training/retained_prefix_001/prefix_status.json",
+    "outputs/decoder_training/continuation_001/continuation_status.json"
+  ],
+  "output": "outputs/decoder_training/layer_continuation_001",
+  "allow_retained_neural_state": true,
+  "allow_original_neural_values": false,
+  "allow_regular_feature_values": true,
+  "allow_decoder_fitting": true,
+  "feature_inputs": [
+    "outputs/steward_provisioning/regular_vgg19_sealed/sub-01/features.h5",
+    "outputs/steward_provisioning/regular_vgg19_sealed/sub-01/image_index.tsv",
+    "outputs/steward_provisioning/regular_vgg19_sealed/sub-01/finite_packed.h5"
+  ],
+  "feature_value_scope": "sub01_conv1_1_channels1_through63_planes_only",
+  "allow_tau_train_values": false,
+  "allow_tau_test_values": false,
+  "allow_ood": false,
+  "allow_prediction_or_scoring": false,
+  "allow_converters": false,
+  "allow_reconstruction": false,
+  "allow_external_sites": false,
+  "automatic_retry": false,
+  "automatic_extension": false,
+  "successor_authorized": false,
+  "original_budget_consumption_preserved": true
+}

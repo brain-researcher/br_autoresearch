@@ -16,12 +16,27 @@ candidate feedback, or fitted state may enter EP07 development. EP06 must
 still freeze its own final procedure before its own one-shot reserved test.
 This ordering creates neither fresh outcomes nor independent replication.
 
+The scientist adopted the joint eleven-session amendment on 2026-10-10.
+`Mihili_CO_20140306.mat` is excluded in both regions for failed native-count
+validity. The seven development and four reserved sessions below are now the
+operative roster. This decision neither opens neural values nor resets budgets.
+
 ## What data are needed?
 
 The intended source is the public Dryad release for Gallego-Carracedo et al.
 (2022), DOI `10.5061/dryad.xd2547dkt`. Provider records describe 24 MATLAB
-session files plus a README. The current episode does not yet have a verified
-read-only copy of those recordings.
+session files plus a README. An existing shared read-only payload is available:
+`/oak/stanford/groups/russpold/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source`.
+The October 6 metadata inventory inspected all 12 named paired sessions and
+3,090 trials: array headers, guide tables, dates, event metadata and shared
+trial-struct positions. It reported no structural problems and read no neural
+or velocity values. All source trials declare 30-ms bins and success label
+`R`. No separate `trial_id`/`trialID` exists; shared MATLAB trial-struct
+position is the explicit structural pairing key, not an invented provider ID.
+Neural eligibility, rank and usable feature support remain
+unqualified. Historical metadata completeness does not validate spike counts;
+the failed March 6 session is now excluded rather than repaired or replaced.
+See [source handoff](outputs/source_handoff.md). No new source copy is required.
 
 EP06 needs the sessions in which M1 and PMd were recorded simultaneously during
 the same reaching task. For each included session, the analysis needs paired
@@ -35,9 +50,22 @@ traveling-wave, and re-referencing analyses are therefore outside this episode.
 
 ## Recording blocks and their roles
 
+### Public online resources — checked October 6, 2026
+
+- [Official Dryad record](https://datadryad.org/dataset/doi:10.5061/dryad.xd2547dkt): the public inventory includes the twelve named paired-session files within the 24-session release and a README; March 6 remains listed at 476.64 MB. No correction notice was visible. The existing local v5 payload is already available, so this is source documentation rather than a download requirement.
+- [Author repository README](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/README.md): makes TrialData an explicit dependency for the published analysis examples. Public code availability does not establish that EP06's new residual/projector/transfer models are implemented or qualified.
+- [Author per-band CCA source](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/MainAnalysis/fCCA.m): defines electrode intersection from the unit/LFP guides, spike square-root transformation, 0.05-width smoothing, PCA and band-specific CCA. These operations document the source method, not a lossless inverse for March 6 or permission to change EP06's training-only residual targets.
+
+This lookup supplies public documentation for the existing recordings; it
+does not authenticate repaired native counts, usable 15-electrode/rank
+support, an eligible third paired animal or compatible joint outcome roles.
+The [detailed public-source handoff](outputs/source_handoff.md#public-source-check--october-6-2026-pacific)
+retains retrieval limits. EP07's freeze/opening dependency and EP06's reserved
+session rules remain active. No neural array or model outcome was opened.
+
 | Block | Reported recordings | Role in EP06 |
 | --- | --- | --- |
-| Mihili | 6 sessions with simultaneous M1 and PMd | Four development sessions and two reserved final-test sessions, if all six pass structural checks |
+| Mihili | 6 reported simultaneous M1/PMd sessions; March 6 excluded in both regions | Three development sessions and the unchanged two reserved dates; all five retained sessions still require scientific support |
 | Chewie-L | 6 sessions with simultaneous M1 and PMd | Four development sessions and two reserved final-test sessions, if all six pass structural checks |
 | Chewie-R | 4 M1-only sessions from a separate implant | Sensitivity analysis only; this is the same animal as Chewie-L |
 | Han | 5 area-2 sessions | Recording-domain sensitivity only |
@@ -49,36 +77,41 @@ are repeated measurements. They are not additional animals.
 
 ## Readable, outcome-blind session roles
 
-After checking only structural eligibility, order the six sessions within each
-primary animal by acquisition date. If two dates tie, use the provider session
-name to break the tie. Assign roles by position:
+Retain the original acquisition-date order, with provider session name as the
+tie breaker. The reviewed exclusion removes only original Mihili position 5;
+do not renumber the remaining sessions or change the reserved dates:
 
 | Animal | Development and selection | Reserved final test |
 | --- | --- | --- |
-| Mihili | positions 1, 2, 4, and 5 | positions 3 and 6 |
+| Mihili | original positions 1, 2, and 4 | original positions 3 and 6 |
 | Chewie-L | positions 1, 2, 4, and 5 | positions 3 and 6 |
 
-Before any regional prediction score is inspected, replace the position labels
-below with the actual provider session names:
+The completed metadata inventory authenticates the names and dates below.
+The role column incorporates the adopted eleven-session amendment. It is not
+an assertion that neural eligibility or reader separation has passed.
 
 | Animal | Position | Session name | Role |
 | --- | ---: | --- | --- |
-| Mihili | 1 | not yet available | development |
-| Mihili | 2 | not yet available | development |
-| Mihili | 3 | not yet available | reserved test |
-| Mihili | 4 | not yet available | development |
-| Mihili | 5 | not yet available | development |
-| Mihili | 6 | not yet available | reserved test |
-| Chewie-L | 1 | not yet available | development |
-| Chewie-L | 2 | not yet available | development |
-| Chewie-L | 3 | not yet available | reserved test |
-| Chewie-L | 4 | not yet available | development |
-| Chewie-L | 5 | not yet available | development |
-| Chewie-L | 6 | not yet available | reserved test |
+| Mihili | 1 | `Mihili_CO_20140217.mat` | development |
+| Mihili | 2 | `Mihili_CO_20140218.mat` | development |
+| Mihili | 3 | `Mihili_CO_20140303.mat` | reserved test |
+| Mihili | 4 | `Mihili_CO_20140304.mat` | development |
+| Mihili | 5 | `Mihili_CO_20140306.mat` | excluded in both regions: native-count validity failure |
+| Mihili | 6 | `Mihili_CO_20140307.mat` | reserved test |
+| Chewie-L | 1 | `Chewie_CO_20160929.mat` | development |
+| Chewie-L | 2 | `Chewie_CO_20161005.mat` | development |
+| Chewie-L | 3 | `Chewie_CO_20161006.mat` | reserved test |
+| Chewie-L | 4 | `Chewie_CO_20161007.mat` | development |
+| Chewie-L | 5 | `Chewie_CO_20161014.mat` | development |
+| Chewie-L | 6 | `Chewie_CO_20161021.mat` | reserved test |
 
-Do not change a session's role because of its neural result. If either animal
-has fewer than six structurally eligible paired sessions, stop before regional
-scoring and review whether the scientific question is still identifiable.
+Do not change a session's role because of its neural result. The reviewed
+[adopted amendment](outputs/paper_plan.md#october-10-eleven-session-amendment-adopted)
+permits the three/four development support above. March 6 was originally
+Mihili's fourth development session, not a fifth development session.
+Further loss among the five retained Mihili or six Chewie sessions requires a
+new scientific review before scoring. No replacement, source transformation
+or automatic support reduction is permitted.
 
 Positions 3 and 6 are **held out across the acquisition dates**. They are not
 both later than the development sessions, so the study must not describe this
@@ -116,10 +149,19 @@ remain frozen in the target animal.
 ## Exposure and independence
 
 Related historical work inspected outcomes from this Dryad release. Treat the
-entire current release as outcome-exposed. The eight development sessions can
+entire current release as outcome-exposed. The seven development sessions can
 support exploratory model selection; the four reserved sessions can test that
 one final procedure was applied without further adaptation. They are not fresh
 biological confirmation.
+
+Before future fits, record each exact session/trial identity, its EP06 and
+EP07 roles, permitted reader, actual opening and freeze dates, and information
+transfers in the shared exposure record. Reserved Mihili March 3/Chewie October
+6 are EP07 historical-training dates; reserved March 7/October 21 are EP07
+target dates with distinct trial roles. EP07 therefore uses outcomes from
+EP06-reserved dates. Preserve the EP07 full-freeze/primary-opening prerequisite
+and the procedural reader-boundary disclosure; a ledger grants no access and
+does not make EP06 reserved results independent confirmation.
 
 A future external test needs a separately sealed third animal with simultaneous
 M1 and PMd recordings, a compatible task, enough sessions and trials, and the
@@ -143,9 +185,17 @@ reach direction to three roles before fitting neural quantities:
 | Calibration | Estimate the component-profile split-half reliability and distance from the source profile; no component score or combining-weight fit is allowed |
 | Evaluation | Apply the frozen projectors and score the frozen weight rules once; these trials do not update an axis, base predictor, weight, boundary, or threshold |
 
-The exact fractions are fixed after checking the available trial counts and
-before regional outcomes are inspected. Every direction must contribute to all
-three roles; otherwise that session is structurally ineligible.
+The October11 metadata-supported development convention sets training=floor(n/2),
+calibration=floor((n-training)/2), and evaluation=remainder within each direction.
+The shared M1/PMd assignment uses local PCG64 SeedSequence
+[6006101,animal_index,original_session_position,direction]. Require at least
+7/4/4 trials per direction in training/calibration/evaluation; the existing
+seven-session metadata has observed minima8/4/5. Preserve all original trial
+positions and export each role in source order. Alternate assigned calibration
+rows in that order within each direction for its two halves. Reserved-session
+outcomes remain closed. The full prospective direction/window/electrode rules
+are in [the selection record](outputs/experiment_log.md#2026-10-11-0002-pacific--source_session_support--development-role-conventions-selected-from-existing-metadata)
+and `SEARCH_POLICY.yaml`; neural support is not established by these metadata.
 
 Training freezes the population axes and the following trial-space projectors:
 
@@ -197,7 +247,7 @@ The data needed for the follow-up are:
 
 | Source | Scientific use | Condition before use |
 | --- | --- | --- |
-| Eight development sessions | Run the outer component-selection and support-prediction audit | In each transfer direction, the other three target sessions nominate one family; only that prefold family and its frozen support prediction are scored in the left-out session |
+| Seven development sessions: three Mihili and four Chewie | Run the outer component-selection and support-prediction assessment | Three Mihili target folds nominate on the other two sessions; four Chewie folds nominate on the other three; only that prefold family and its frozen support prediction are scored in the left-out session |
 | Source-development bandwise predictions | Fit M1, PMd, and pooled component-specific combining weights | No target session may update these weights; swapped only permutes M1 and PMd |
 | Target-session bandwise predictions | Compare correct, pooled, and swapped weights | Same evaluation trials, projectors, denominator, electrodes, axes, model, band support, and base predictions for all three rules |
 | Calibration trials | Measure profile reliability and source-profile distance before an evaluation score is seen | Split-half rule, feature ordering, distance scale, and direction balancing are fixed |
@@ -211,15 +261,18 @@ nonfinite reliability forces an abstention. Profile distance is the
 root-mean-square bandwise difference from the applicable source-animal regional
 prototype, divided band by band by the development between-session scale. A
 zero or nonfinite bandwise scale forces an abstention. For a cross-fitted
-development prediction, the other seven development sessions
-provide the reference median and scale; all eight provide them for a reserved
+development prediction, the other six development sessions
+provide the reference median and scale; all seven provide them for a reserved
 prediction. Standardization subtracts the reference median and divides by
 1.4826 times the median absolute deviation. If either scale is zero, the rule
 abstains. The single support index is standardized reliability minus
-standardized distance. No coefficient is fit to the eight session outcomes.
+standardized distance. Pool the reference sessions directly: two Mihili plus
+four Chewie when Mihili is left out, and three plus three when Chewie is left
+out. Do not substitute animal-weighted medians. No coefficient is fit to the
+seven session outcomes.
 
 In each outer fold, all three components must be numerically scoreable in both
-regions of the other three target development sessions; an unscoreable rival
+regions of the other two Mihili or three Chewie target development sessions; an unscoreable rival
 leaves the full comparison unresolved, with no nominee. Among measured
 components, only candidates whose regional gains agree in sign in every
 nomination session are eligible. Choose the largest median equal-region gain
@@ -229,17 +282,20 @@ but does not veto another eligible candidate. This is the best eligible
 joint-region account, not a global numerical winner over mixed-sign rivals.
 The left-out evaluation trials score only a valid
 prefold nominee; the other two evaluation components stay unopened for the
-fold. After the four prospective folds are recorded, the previously unopened
-development components may be scored for a final nomination using all four
+fold. After the three Mihili or four Chewie prospective folds are recorded, the previously unopened
+development components may be scored for a final nomination using all retained
 target sessions; they cannot alter the outer-fold record. Final medians use the
 sessions on which all three candidates are numerically scoreable in both
-regions, with at least three of four required. Sign consistency is
+regions: all three Mihili sessions and at least three of four Chewie sessions,
+including every available common session. Sign consistency is
 candidate-specific across that common set; negative or mixed-sign rival
 measurements are not missing data. This prospective 2026-10-02 amendment
 changes nomination eligibility, not trial roles or numerical margins.
-The same family must be nominated in at least
-three of four folds, with no 0.01-margin tie or M1/PMd sign contradiction.
-Otherwise the selection is unstable and there is no component claim. Both
+The same family must be nominated in all three Mihili folds and at least
+three of four Chewie folds, with no 0.01-margin tie or left-out M1/PMd sign
+contradiction. Missing folds never establish agreement. A known failure makes
+selection unstable; missing required evidence remains unresolved. Each final
+nominee must match its direction's stable outer-fold family. Both
 transfer directions must make the same final untied nomination before reserved
 outcomes are opened.
 
@@ -250,7 +306,8 @@ index at or above 0.25 predicts preservation, at or below -0.25 predicts
 failure, and the middle is an abstention. These margins and the positive
 component-energy gate are fixed before evaluation and must pass known-answer
 sensitivity checks. The within-corpus prediction needs at least three
-non-abstaining reserved predictions and no wrong prediction; observing only one
+non-abstaining reserved predictions with evaluable outcomes and no wrong
+prediction; unresolved outcomes cannot count as correct. Observing only one
 outcome class cannot establish the support boundary.
 
 M1 and PMd use different arrays in this release. Matching observed metadata can
@@ -267,7 +324,8 @@ are missing, the deeper prediction cannot be tested from this release.
 
 Four reserved sessions cannot estimate a cross-session boundary precisely and
 may not include clear examples on both sides. Report exact session outcomes,
-whole-trial uncertainty, equal-weight animal-direction summaries, and
+whole-trial uncertainty stratified by direction with paired regions,
+session resampling within animal, equal-weight animal-direction summaries, and
 leave-one-session influence. Unless additional sealed sessions supply both
 outcome classes with useful precision, EP06 is a planned component of EP07, not
 an independent publication. The same decision follows if a focused novelty
@@ -277,10 +335,14 @@ check finds that the component claim is already established.
 
 Status: **revise before any scored analysis**.
 
-- The Dryad recordings are not available in `inputs/`.
-- Animal, session, region, trial, event, electrode, unit, and feature meanings
-  have not been verified from the files to be used.
-- The explicit session names have not been entered in the role table.
+- The Dryad recordings are available at the shared source above; EP06's
+  source-specific structural and role qualification remains incomplete.
+- The completed metadata inventory establishes session dates, trial-struct
+  pairing, native bin size, success codes, event metadata and guide/header
+  structure. Neural-value validity and all scientific feature meanings are
+  not thereby established.
+- Exact session names above incorporate the adopted March 6 exclusion;
+  numerical eligibility and final trial roles remain open for retained dates.
 - The four reserved sessions are not yet isolated from development scoring.
 - The analysis code has not passed the targeted indexing, leakage,
   held-out-prediction, and shuffle tests.
@@ -290,7 +352,9 @@ Status: **revise before any scored analysis**.
 - The manuscript ownership decision is now EP07 main line with EP06 as its
   recording-domain component. Exact component-specific source/supplement/code
   overlap remains a scientific limit, not a claim of guaranteed originality.
-- No suitable third-animal source has been identified or sealed.
+- No suitable third-animal source has been identified or sealed in the named
+  handoff. That limits the separately planned external transfer claim; it is
+  not a prerequisite for the already bounded two-animal EP07 component.
 
 ## Storage and compute
 

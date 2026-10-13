@@ -1,0 +1,43 @@
+{
+  "schema_version": "ep21.brain_pair_proposal.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0443-pacific--interindividual_converter_training--two-additional-original-brain-pairs-selected",
+  "operation": "train_and_publish_brain_pair",
+  "jobs": 1,
+  "partition": "russpold",
+  "source": "sub-03",
+  "target": "sub-07",
+  "training_images": 897,
+  "cv_fits": 50,
+  "final_fits": 1,
+  "source_native_voxels": 12897,
+  "target_native_voxels": 12057,
+  "automatic_retry": false,
+  "production_training": true,
+  "model_publication": true,
+  "scoring": false,
+  "resources": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 1440,
+    "gpus": 0,
+    "deadline_seconds": 84600,
+    "rss_limit_bytes": 16106127360,
+    "durable_bytes": 2147483648,
+    "scratch_bytes": 268435456,
+    "final_artifact_bytes": 805306368
+  },
+  "input_scope": {
+    "source_tau_train": "sub-03",
+    "target_tau_train": "sub-07",
+    "tau_test": false,
+    "OOD": false,
+    "subject_unique": false,
+    "features": false,
+    "decoder_payloads": false
+  },
+  "purpose": "One explicitly selected independent original canonical pair7, sub-03 to sub-07, with all897 tau-train images and full12897/12057 native axes. Preserve the original20-pair panel and every earlier attempt; this is not an outcome-selected replacement.",
+  "internal_training_selection": "The existing 897-image tau-train cross-validation scores and selected alpha belong to the fitted model. No tau-test, OOD, scientific evaluation or reconstruction is admitted.",
+  "accounting": "Standing scientist finish-original-work, parallel-jobs and increase-compute instructions select at most72allocatedCPU-hours once for this3CPU16Gi24h parent, with one numerical thread. The two separately selected parents jointly reserve144CPUh. Three new admission methods parameterize both stages and run once in roster006 with changed ASTRA validation; roster007 reuses that evidence. Reuse13passed math/input/artifact/driver methods. Absolute84600-second StartTime deadline bounded by EndTime minus60seconds includes all checks, fitting and publication. Prior consumption remains preserved.",
+  "limitations": "Complete structural metadata do not establish valid training-fold scales. The unchanged full-native source solver decides numerical eligibility; no epsilon, coordinate deletion, reduced grid, alternate solve, resume, automatic retry, extension or automatic successor. SixteenGiB is reasoned headroom from pair5 memory diagnosis, not a completion guarantee. Three CPUs are required by the8000MiB-per-CPU partition limit for16GiB, with one numerical thread. No tau-test/OOD, features, decoders, scoring or reconstruction."
+}

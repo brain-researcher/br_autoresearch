@@ -1,0 +1,1066 @@
+{
+  "schema": "ep04.remaining_controls_plan.v1",
+  "status": "coordinator_selected",
+  "observed_report": "outputs/runs/observed_native_panel/20261005-observed01/observed_native_panel.json",
+  "low_level_dir": "outputs/runs/source_readiness/20261005-low_level_full01",
+  "retained_encoding_report": "outputs/runs/identical_fold_encoding/20261005-pilot01/identical_fold_encoding.json",
+  "retained_null_report": "outputs/runs/registered_nulls/20261005-prefix01/registered_null_unit.json",
+  "null_output_root": "outputs/runs/registered_nulls/20261005-remaining01",
+  "selected_resources": {
+    "cpus_per_task": 1,
+    "memory_mib": 4096,
+    "wall_seconds": 5400,
+    "array_concurrency": 25,
+    "partition": "russpold,normal",
+    "reserved_cpu_hours": 37.5,
+    "coordinator_remaining_cpu_hours": 2486.0169444444
+  },
+  "slots": [
+    {
+      "slot": 0,
+      "participant": "sub-01",
+      "fold": 0,
+      "actions": [
+        {
+          "kind": "null",
+          "participant": "sub-01",
+          "fold": 0,
+          "permutation_range": [
+            256,
+            10000
+          ],
+          "geometry_range": [
+            8,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-01-fold-0-p00256-10000-g0008-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "participant": "sub-01",
+      "fold": 1,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-01",
+          "fold": 1,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-1",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-01",
+          "fold": 1,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-01-fold-1-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "participant": "sub-01",
+      "fold": 2,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-01",
+          "fold": 2,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-2",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-01",
+          "fold": 2,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-01-fold-2-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "participant": "sub-01",
+      "fold": 3,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-01",
+          "fold": 3,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-3",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-01",
+          "fold": 3,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-01-fold-3-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "participant": "sub-01",
+      "fold": 4,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-01",
+          "fold": 4,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-4",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-01",
+          "fold": 4,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-01-fold-4-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "participant": "sub-03",
+      "fold": 0,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-03",
+          "fold": 0,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-0",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-03",
+          "fold": 0,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-03-fold-0-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "participant": "sub-03",
+      "fold": 1,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-03",
+          "fold": 1,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-1",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-03",
+          "fold": 1,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-03-fold-1-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "participant": "sub-03",
+      "fold": 2,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-03",
+          "fold": 2,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-2",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-03",
+          "fold": 2,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-03-fold-2-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "participant": "sub-03",
+      "fold": 3,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-03",
+          "fold": 3,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-3",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-03",
+          "fold": 3,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-03-fold-3-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 9,
+      "participant": "sub-03",
+      "fold": 4,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-03",
+          "fold": 4,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-4",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-03",
+          "fold": 4,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-03-fold-4-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 10,
+      "participant": "sub-05",
+      "fold": 0,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-05",
+          "fold": 0,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-0",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-05",
+          "fold": 0,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-05-fold-0-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 11,
+      "participant": "sub-05",
+      "fold": 1,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-05",
+          "fold": 1,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-1",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-05",
+          "fold": 1,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-05-fold-1-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 12,
+      "participant": "sub-05",
+      "fold": 2,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-05",
+          "fold": 2,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-2",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-05",
+          "fold": 2,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-05-fold-2-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 13,
+      "participant": "sub-05",
+      "fold": 3,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-05",
+          "fold": 3,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-3",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-05",
+          "fold": 3,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-05-fold-3-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 14,
+      "participant": "sub-05",
+      "fold": 4,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-05",
+          "fold": 4,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-4",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-05",
+          "fold": 4,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-05-fold-4-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 15,
+      "participant": "sub-06",
+      "fold": 0,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-06",
+          "fold": 0,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-0",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-06",
+          "fold": 0,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-06-fold-0-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 16,
+      "participant": "sub-06",
+      "fold": 1,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-06",
+          "fold": 1,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-1",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-06",
+          "fold": 1,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-06-fold-1-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 17,
+      "participant": "sub-06",
+      "fold": 2,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-06",
+          "fold": 2,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-2",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-06",
+          "fold": 2,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-06-fold-2-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 18,
+      "participant": "sub-06",
+      "fold": 3,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-06",
+          "fold": 3,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-3",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-06",
+          "fold": 3,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-06-fold-3-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 19,
+      "participant": "sub-06",
+      "fold": 4,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-06",
+          "fold": 4,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-4",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-06",
+          "fold": 4,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-06-fold-4-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 20,
+      "participant": "sub-07",
+      "fold": 0,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-07",
+          "fold": 0,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-0",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-07",
+          "fold": 0,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-07-fold-0-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 21,
+      "participant": "sub-07",
+      "fold": 1,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-07",
+          "fold": 1,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-1",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-07",
+          "fold": 1,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-07-fold-1-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 22,
+      "participant": "sub-07",
+      "fold": 2,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-07",
+          "fold": 2,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-2",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-07",
+          "fold": 2,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-07-fold-2-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 23,
+      "participant": "sub-07",
+      "fold": 3,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-07",
+          "fold": 3,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-3",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-07",
+          "fold": 3,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-07-fold-3-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    },
+    {
+      "slot": 24,
+      "participant": "sub-07",
+      "fold": 4,
+      "actions": [
+        {
+          "kind": "encoding",
+          "participant": "sub-07",
+          "fold": 4,
+          "output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-4",
+          "max_seconds": 300
+        },
+        {
+          "kind": "null",
+          "participant": "sub-07",
+          "fold": 4,
+          "permutation_range": [
+            0,
+            10000
+          ],
+          "geometry_range": [
+            0,
+            1000
+          ],
+          "output_dir": "outputs/runs/registered_nulls/20261005-remaining01/sub-07-fold-4-p00000-10000-g0000-1000",
+          "max_seconds": 4800
+        }
+      ]
+    }
+  ],
+  "remaining_cells": [
+    {
+      "participant": "sub-01",
+      "fold": 0,
+      "encoding_output_dir": null,
+      "permutation_range": [
+        256,
+        10000
+      ],
+      "geometry_range": [
+        8,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-01",
+      "fold": 1,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-1",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-01",
+      "fold": 2,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-2",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-01",
+      "fold": 3,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-3",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-01",
+      "fold": 4,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-01-fold-4",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-03",
+      "fold": 0,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-0",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-03",
+      "fold": 1,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-1",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-03",
+      "fold": 2,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-2",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-03",
+      "fold": 3,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-3",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-03",
+      "fold": 4,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-03-fold-4",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-05",
+      "fold": 0,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-0",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-05",
+      "fold": 1,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-1",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-05",
+      "fold": 2,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-2",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-05",
+      "fold": 3,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-3",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-05",
+      "fold": 4,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-05-fold-4",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "fold": 0,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-0",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "fold": 1,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-1",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "fold": 2,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-2",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "fold": 3,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-3",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-06",
+      "fold": 4,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-06-fold-4",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-07",
+      "fold": 0,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-0",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-07",
+      "fold": 1,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-1",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-07",
+      "fold": 2,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-2",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-07",
+      "fold": 3,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-3",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    },
+    {
+      "participant": "sub-07",
+      "fold": 4,
+      "encoding_output_dir": "outputs/runs/identical_fold_encoding/20261005-remaining01/sub-07-fold-4",
+      "permutation_range": [
+        0,
+        10000
+      ],
+      "geometry_range": [
+        0,
+        1000
+      ]
+    }
+  ],
+  "dispatch": "one_participant_fold_bundle_per_slot"
+}

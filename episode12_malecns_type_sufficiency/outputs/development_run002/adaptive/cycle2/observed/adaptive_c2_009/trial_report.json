@@ -1,0 +1,145 @@
+{
+  "aggregate": {
+    "mean_bilateral_delta": 0.05140978569696188,
+    "mean_left_to_right_delta": 0.0622682111477132,
+    "mean_right_to_left_delta": 0.04055136024621056,
+    "technical_failure_count": 0,
+    "types_with_both_point_estimates_above_margin": 9,
+    "unscorable_type_count": 9,
+    "valid_type_count": 807
+  },
+  "configuration": {
+    "collapsed_partner_count": 7,
+    "component_count": 2,
+    "component_count_candidates": [
+      2
+    ],
+    "composition_pseudocount": 0.1,
+    "configuration_sha256": "277d936ef1cc771c7d1fcb28a6f8351ad4174cd07955bc549700d9eea8c404b9",
+    "covariance": "diagonal",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "endpoint_mapping": "typed partners failing the frozen support/mass branch pool to other_typed; untyped provider status/statusLabel maps deterministically to unknown/untyped/fragment/proofreading",
+    "hierarchy_bin_count": 0,
+    "integration_draws": 256,
+    "minimum_development_type_count": 2,
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_hierarchy_field": null,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 8,
+    "rare_partner_mass_fraction": 0.025,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "raw_partner_key_count": 11771,
+    "regularization": 0.001,
+    "representation": "count_aware_log_ratio",
+    "retained_typed_partner_count": 0,
+    "retained_typed_partners": [],
+    "source_cross_validation_folds": 2,
+    "stage": "adaptive",
+    "trial_id": "adaptive_c2_009"
+  },
+  "cpu_seconds": 1468.5196299,
+  "data_role": "development_only",
+  "failures": [],
+  "final_connectivity_accessed": false,
+  "schema_version": "ep12.development_trial.v1",
+  "scientific_contract_sha256": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006",
+  "status": "completed",
+  "trial_id": "adaptive_c2_009",
+  "unscorable": [
+    {
+      "left_neurons": 24,
+      "provider_type": "Acc. ti flexor MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 23,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 5,
+      "provider_type": "DNES1",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 5,
+      "status": "unscorable",
+      "zero_count_left_neurons": 3,
+      "zero_count_right_neurons": 1
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "ENXXX226",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 10,
+      "status": "unscorable",
+      "zero_count_left_neurons": 0,
+      "zero_count_right_neurons": 3
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "Fe reductor MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 11,
+      "status": "unscorable",
+      "zero_count_left_neurons": 0,
+      "zero_count_right_neurons": 3
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "IN19A114",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 5,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 36,
+      "provider_type": "Lai",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 47,
+      "status": "unscorable",
+      "zero_count_left_neurons": 4,
+      "zero_count_right_neurons": 1
+    },
+    {
+      "left_neurons": 195,
+      "provider_type": "Lawf2",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 188,
+      "status": "unscorable",
+      "zero_count_left_neurons": 55,
+      "zero_count_right_neurons": 50
+    },
+    {
+      "left_neurons": 126,
+      "provider_type": "MeTu1",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 124,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 11,
+      "provider_type": "ltm MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 10,
+      "status": "unscorable",
+      "zero_count_left_neurons": 2,
+      "zero_count_right_neurons": 1
+    }
+  ],
+  "wall_seconds": 1468.8601729488
+}

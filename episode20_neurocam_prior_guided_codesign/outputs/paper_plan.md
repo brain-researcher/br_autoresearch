@@ -1,5 +1,103 @@
 # EP20 paper plan
 
+## October 7: development-field components and power-scale estimator
+
+Continue implementing the existing seven development families using explicit
+caller-supplied grids, time samples, temporal drivers, event draws, reference,
+primary-band transform and common mask. The
+[field-primitives specification](development_field_primitives.md) records the
+selected equations and unresolved numerical world settings. No new condition,
+parameter sweep, draw law, calibrated device value or candidate trial is added.
+Directly constructed surface fields remain distinct from the still-required
+homogeneous/layered and heterogeneous/anisotropic source-to-surface models.
+
+Prospectively select the [rectangular-aperture power-scale estimator](field_power_scale_specification.md)
+for this implementation: uniformly sampled time and regular rectangular common
+spatial grid, unpadded and untapered DFT, cyclic frequencies and explicit physical
+spacing. Retain spatial common mode. Lambda uses the inclusive 1–100 Hz truth
+power; tau uses the temporal power of the full supplied truth after per-location
+time demeaning, as the literal registered definition specifies. Neither uses
+reconstruction outcomes. Zero eligible power is undefined and zero cutoff gives
+infinite scale. Irregular spatial masks remain unsupported by this component;
+they must not be silently zero-filled or selected to change spectral power.
+Finite-aperture leakage remains part of the declared estimator, not a reason to
+rename the generator's nominal wavelength or carrier as the measured scale.
+
+These are prospective delegated implementation decisions, made before generated
+development outcomes. Array-only checks will share a substantive EP21 allocation
+under its existing envelope; no standalone simulation or reference fit is selected.
+Actual observation operators/calibration, physical eligibility, fixed complete
+world configurations and separated final evaluation retain their existing roles.
+
+## October 6: simulation scope exception — adopted
+
+The scientist explicitly agreed to continuing EP20 with simulation: "EP20 is
+fine with simulation because we dont have real data". This retains the modeled
+hardware co-design question and supersedes the earlier deferral recommendation.
+It does not close EP20 as untested or require another confirmation of the same
+scope. Published calibration measurements and the acquired Rat5 recording
+remain real inputs; no fabricated-candidate performance data are available.
+
+Proceed with the selected model components and then the registered reference
+qualification and candidate comparisons as their actual prerequisites are met.
+The next implemented component is the R1 persistent source-line pole with
+explicit switch charge and interval readout. It can be checked without Rat5,
+unknown DAQ settings or invented electrical constants. The selected contact
+component's eleven passing checks remain reusable. Full reference fitting still
+requires the original anchor contexts and supported shared circuit parameters;
+Rat5 qualification is a separate physical-signal dependency.
+
+The existing resource ceilings, matched comparisons, paper calibration/held-
+aside split and closed Rat3/independent final roles remain unchanged. No extra
+budget, actual reference fit or candidate score is implied by this amendment.
+A positive result remains a virtual-design result, not measured superiority of
+an unbuilt device.
+
+### Historical October 6 recommendation — superseded by the decision above
+
+The supplied review is right that the proposed **candidate-comparison outcomes
+are simulated**. The C0–C4 design search and independent modeled final worlds
+compare unbuilt geometries using generated cortical fields and electronics
+models. They would not establish measured superiority of a fabricated device.
+However, "EP20 is all simulation" obscures two real-data inputs: published
+NeuroCam measurements constrain the reference models, and separate recorded
+physical-signal or phantom data check spectral/amplitude/missingness
+plausibility. Those inputs do not turn simulated candidate scores into
+observed hardware outcomes; Rat5 cannot rank unbuilt pad geometries.
+
+The user's priority is real-data findings and stopping an expanding simulation
+program. Recommend **deferring the simulation-centered candidate search**
+while deciding whether this hardware-modeling question remains in scope.
+This is a proposed project disposition, not an adopted pause, terminal outcome
+or activation of any remaining budget. No additional simulation or contact
+test is needed merely to restate the current blocked status.
+
+The existing 4,000 CPU-core-hour and 960 GPU-hour figures are policy ceilings,
+not an estimate of the next narrow step, an expenditure already incurred or
+a newly authorized allocation. No reduced search can claim the full frozen
+comparison without an explicit redesign. The eleven passive-contact checks
+already passed and are not a reason to resume a broader validation program.
+
+If the scientist wishes to retain this question, the next useful external
+evidence is original DAQ/wiring/channel-mask/clock and calibration/noise
+processing information, plus authenticated Rat5 geometry/channel and
+acquisition history. Hardware-lab correspondence is one possible way to obtain
+that evidence; a suitable existing record would also suffice. No contact is
+sent or selected here. The additional rat-named script reviewed on October 6
+uses an external pig map and another recording, so it does not supply the
+missing Rat5 correspondence. No pig-map substitution is proposed.
+
+If this simulation-based question is outside the revised research priorities,
+recommend an explicit **untested/incomplete closure**, retaining the acquired
+file, documented anchors and reusable contact component. That would record
+that the hardware claim was not tested, not a negative co-design result or a
+technical failure inferred from missing correspondence. Reopening would need
+the required source evidence and an explicit decision on the modeled claim
+and resource envelope. Until that choice is made, the active contracts,
+Rat5/Rat3 roles and closed final access are unchanged; no new job is selected.
+
+## Existing scientific plan
+
 [Current conceptual figure](ep20_question_imagegen-v2.png) · [Exact image-generation record](ep20_question_imagegen-v2-prompt.md).
 
 ## Paper question

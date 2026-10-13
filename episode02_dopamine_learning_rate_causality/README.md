@@ -1,13 +1,28 @@
-# Episode 02: Dopamine Learning-Rate Causality
+# EP02 — What does a closed-loop dopamine intervention identify?
 
-EP02 asks whether physiological mesolimbic dopamine changes the magnitude of a
-signed policy update or instead acts as the signed teaching signal or a direct
-reinforcer.
+EP02 separates a behavioral difference between assigned stimulation protocols
+from identification of a unique learning rule. The source paper's rate-gate
+interpretation is prior knowledge; repeating its direction is not a new
+dopamine mechanism. The proposed contribution is a focused reanalysis of
+locked alternative predictions and the limits of the released cohort.
 
-The primary audit, which is not yet eligible to open, compares six
+![EP02 conceptual design](outputs/ep02_conceptual_question.png)
+
+*Schematic only, with no empirical results. Protocol effects do not
+automatically identify a learning algorithm.*
+
+Start with the [scientific question](GOAL.md) and
+[paper plan](outputs/paper_plan.md). The complete operational specification is
+[SEARCH_POLICY.json](SEARCH_POLICY.json). The conceptual figure was made with
+the built-in imagegen tool; its [final prompt set](outputs/ep02_conceptual_question.prompt.md)
+is retained alongside it.
+
+The unchanged primary audit, which is not yet eligible to open, compares six
 `stimLick-` with five `stimLick+` mice. Nine controls are development-only;
 four high-amplitude mice form a post-primary boundary diagnostic that cannot
-rescue the primary result.
+rescue the primary result. The raw primary endpoint is acquisition gain in
+lick probability from session 1 to 8, not a measured latent learning rate.
+`delta_rate_std` remains only the exact development-SD companion.
 
 Read [`GOAL.md`](GOAL.md), [`DATASETS.md`](DATASETS.md), and
 [`SEARCH_POLICY.json`](SEARCH_POLICY.json). The access contract is in
@@ -28,7 +43,12 @@ are a sensitivity space, not the documented randomized design or an ITT
 analysis. Endpoint field/time semantics and the physical firewall also remain
 unresolved.
 
-No generated runtime-qualification packet or calibration result is tracked as
-evidence. Readiness is recorded directly against the scientific and access
-conditions; no custom receipt, signature, or checksum layer is required. No
-search or audit has started.
+The [ASTRA worklist](outputs/astra/v0.0.14/astra.yaml) contains only already-
+required stages, not new experiments or launch authority. No search or audit
+has started. The present writing/design revision did not inspect protected
+outcomes, bind margins, change the search grammar, or authorize execution.
+
+A future positive terminal means rate-gate consistency under the frozen
+contract, not rejection of every alternative mechanism. Formal rival-exclusion
+testing or a new endpoint would need a separate pre-outcome scientific
+decision. This episode is not yet an empirical paper.

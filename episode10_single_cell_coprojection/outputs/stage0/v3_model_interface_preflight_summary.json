@@ -1,0 +1,75 @@
+{
+  "episode_id": "ep10",
+  "stage": "v3_target_blind_model_interface_and_math_preflight",
+  "status": "pass",
+  "analysis_label": "exploratory",
+  "slurm_job": {
+    "job_id": 45470073,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "started_at_utc": "2026-09-27T05:54:33Z",
+    "ended_at_utc": "2026-09-27T06:00:49Z",
+    "wall_clock": "00:06:16",
+    "memory_used_gb": 1.06
+  },
+  "input_development_rows": 200,
+  "interface_rows": 194,
+  "excluded_rows": 6,
+  "exclusion_counts": {
+    "soma_not_MOp": 6
+  },
+  "eligible_cells_by_group": {
+    "212074": 6,
+    "220187": 35,
+    "220188": 25,
+    "220190": 16,
+    "221091": 33,
+    "221225": 39,
+    "221418": 12,
+    "221514": 5,
+    "221539": 1,
+    "221588": 7,
+    "221751": 13,
+    "233281": 2
+  },
+  "segment_unmapped_cells": 109,
+  "segment_mapped_cells": 85,
+  "mapping_overlap_class_counts": {
+    "both_segment_and_terminal_mapping_flags": 108,
+    "neither_mapping_class": 11,
+    "segment_mapping_flags_only": 1,
+    "terminal_mapping_flags_only": 74
+  },
+  "synthetic_math_checks": [
+    "exact_fixed_K_log_partition_p16",
+    "analytic_gradient_matches_finite_difference",
+    "deterministic_optimizer_smoke",
+    "equal_group_weighted_score",
+    "group_mapping_stratum_K_permutation_invariance",
+    "degenerate_K_0_and_16_zero_gain"
+  ],
+  "max_gradient_absolute_error": 2.2916202269129826e-10,
+  "atlas_source": "authorized_steward_acquisition_staged_EP10_locally",
+  "live_sibling_episode_output_used": false,
+  "target_vocabulary_or_calls_loaded": false,
+  "projection_outcomes_opened_or_emitted": false,
+  "raw_lengths_or_terminal_counts_emitted": false,
+  "final_or_unassigned_files_opened": false,
+  "scratch_output_root": "/scratch/users/zijiao/br_autoresearch/episode10_single_cell_coprojection/v3_model_interface_preflight_v1",
+  "scratch_output_files": [
+    "aggregate_overlap_summary.json",
+    "v3_model_interface.csv",
+    "v3_model_interface_summary.json",
+    "validator_overlap_summary.json"
+  ],
+  "validator_overlap_adapter": "target-blind compact policy-by-group projection; no count or eligibility change",
+  "first_replay_attempt": {
+    "job_id": 45471384,
+    "state": "FAILED",
+    "exit_code": "2:0",
+    "target_access_started": false,
+    "reason": "fresh overlap evidence initially lacked the validator's compact policy-by-group view"
+  },
+  "next_job_id": 45472058,
+  "next_gate": "EP10-local steward-atlas v3 target replay exact postflight"
+}

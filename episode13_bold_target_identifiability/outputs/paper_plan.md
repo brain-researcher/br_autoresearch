@@ -6,6 +6,15 @@ A reusable proof-carrying technical reference and lemma package, not an
 empirical benchmark or an adaptive-search report. A standalone research paper
 would require a substantive contribution beyond the present result.
 
+The deliverable is complete, rather than merely proposed: October 3's
+`theorem_verified` result includes the [general proof](exact/proof.md),
+[orientation report](exact/runs/attempt001/orientation_report.json) and
+[independently authored replay](exact/runs/attempt001/independent_replay_report.json).
+All 12 valid exact fixtures and seven invalid-input rejections passed.
+The [evidence index](README.md) and [execution record](experiment_log.md)
+retain the authorship and finite-suite limits. The report structure below
+organizes this existing package and selects no additional matrix sweep.
+
 ## One-sentence result
 
 For Y = A X P^T and tau = s^T X c with X free over the full finite-dimensional
@@ -150,8 +159,86 @@ The following could support a larger paper, but they are outside EP13:
 Adding any of them changes the model family and requires a new scientific
 decision rather than silent expansion of this contract.
 
+### Proposed successor: target uncertainty, calibration and averaging
+
+**Design proposal, October 4, 2026; not activated.** Ask when uncertainty about
+one prespecified contrast comes from measurement noise, and when uncertain
+hemodynamics impose an ambiguity that more averaging cannot remove. The
+completed EP13 result remains the known-operator, exact-observation reference.
+No successor theorem, calculation, simulation or empirical result is claimed.
+
+Start with `y = M_theta x + epsilon`, `tau = ell^T x`, and
+`M_theta = P kron A_theta`, keeping P known. Specify a compact bounded latent
+class C, a structured HRF parameter set Theta, a fixed nonsingular whitening
+map W, and the deterministic noise bound `||W epsilon||_2 <= delta`. The bound
+on x must have a scientific interpretation; unrestricted x can make worst-case
+uncertainty infinite. Declare HRF gain normalization or gain uncertainty and
+whether HRF parameters are shared across conditions or regions. A deterministic
+noise region becomes a confidence statement only with justified coverage.
+
+Compare latent/operator pairs, not merely identifiability at each fixed theta:
+
+\[
+\omega(\delta;\Theta)=\sup\left\{
+ |\ell^\top(x_1-x_2)|:
+ x_1,x_2\in\mathcal C,\ \theta_1,\theta_2\in\Theta,\quad
+ \|W(M_{\theta_1}x_1-M_{\theta_2}x_2)\|_2\le 2\delta
+\right\}.
+\]
+
+These pairs can produce the same observation under the allowed noise. Thus
+`omega/2` is a worst-case estimation-error lower bound; a positive
+`omega(0; Theta)` indicates an ambiguity floor under this model. This is a
+standard indistinguishability argument, not a proposed new general theorem.
+For example, every fixed positive gain in `y = a x` is invertible, yet unknown
+`a in [1-eta, 1+eta]`, with `0 < eta < 1`, leaves multiple possible x values
+even at zero noise. This example checks the formulation; it is not the desired
+scientific contribution.
+
+The smallest informative comparison is between two prespecified uses of the
+same additional acquisition time: repeat measurements with stable latent and
+operator parameters under a specified stochastic noise model to justify a
+smaller delta at fixed coverage, or obtain independent calibration whose
+operator transfers to the target acquisition to restrict Theta. Averaging does
+not automatically shrink an arbitrary deterministic worst-case noise bound.
+Hold the contrast, latent class, initial acquisition and cost accounting fixed.
+Calibration must
+have a declared observation model; a known stimulus schedule does not itself
+provide known neural amplitude. Start with low-dimensional HRF shape
+uncertainty and a target chosen before outcomes. Compare global target bounds
+and the resulting acquisition decision against ordinary contrast efficiency
+and an existing robust-design criterion. The proposed contribution fails if
+the comparison adds only the scalar gain example or reproduces decisions
+already explained by those criteria. A finite HRF dictionary supports claims
+only for that dictionary; a grid is not a certificate over a continuous set.
+
+Closest prior work limits the novelty claim:
+
+- [Smith et al. (2007)](https://pubmed.ncbi.nlm.nih.gov/17070706/) already makes
+  contrast estimability meaningful relative to fMRI noise and effect size.
+- [Kao et al. (2013)](https://arxiv.org/abs/1401.1631) already studies maximin
+  fMRI design under uncertain HRF shapes using locally approximated covariance.
+- [Bekri, Juditsky and Nemirovski (2025)](https://link.springer.com/article/10.1007/s10957-025-02678-5)
+  already develops robust inverse estimation under observation-matrix uncertainty.
+
+The potentially useful distinction is a justified *global, target-specific*
+ambiguity bound that changes a calibration-versus-averaging decision beyond
+these baselines. Novelty is unresolved; further comparison with the closest
+methods is required before presenting this as a research contribution.
+Preprocessing could later be assessed by its effect on the same target bounds,
+but that is only a conceptual connection to information-removal questions in
+other episodes, not evidence that they share EP13's model or failure mechanism.
+
+Execution requires an explicit successor contract or amendment defining these
+new assumptions, data roles, comparisons and resource limits. This proposal
+does not change GOAL.md, DATASETS.md, SEARCH_POLICY.yaml, ASTRA, or their current
+claim and access boundaries, and authorizes no new computation or outcome access.
+
 ## Current status
 
-The theorem statement and proof architecture have been independently reviewed.
-The exact regression suite, independent checker, and locked replay have not
-been implemented or run. No empirical or protected outcome has been accessed.
+The exact package is locally complete as `theorem_verified`, October 3, 2026:
+12 valid fixtures and seven invalid-input rejections passed, with independent
+certificate replay. See the [completion record](exact/runs/attempt001/completion.json)
+and [current navigation](README.md). This is classical technical verification,
+not an empirical or biological finding. The successor above remains proposed
+and unactivated.

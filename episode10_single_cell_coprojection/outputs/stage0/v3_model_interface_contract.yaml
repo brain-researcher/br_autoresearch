@@ -1,0 +1,99 @@
+schema_version: episode10_v3_model_interface_v1
+episode_id: ep10
+recorded_date: "2026-09-26"
+status: frozen_after_independent_v3_policy_audit_before_real_model_fit
+analysis_label: exploratory
+
+authority:
+  user_authorization: v3_user_authorization.yaml
+  observation_contract: projection_observation_contract_v3.yaml
+  policy_audit:
+    root: pass
+    independent_science: pass
+    independent_machine: pass
+  scientific_authority: false
+
+scope:
+  role: development_only
+  frozen_manifest_rows: 200
+  interface_rows: 194
+  excluded_rows: 6
+  exclusion_counts:
+    soma_not_MOp: 6
+  final_or_unassigned_access: forbidden
+  target_vocabulary_or_calls_accepted_by_interface_builder: false
+
+authorized_atlas_source:
+  class: EP10_steward_acquisition_source_only
+  annotation: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/annotation_25_ccf_2017.nrrd
+  ontology: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/structure_graph_1.json
+  execution_copy: EP10_local_Scratch_only
+  live_sibling_episode_output_as_input: forbidden
+
+interface:
+  row_key: provider_neuron_id
+  allowed_columns:
+    - provider_neuron_id
+    - file
+    - fMOST_brain_id
+    - provider_sample_id
+    - source_acronym
+    - provider_hemisphere
+    - soma_x_ccfv3_um
+    - soma_y_ccfv3_um
+    - soma_z_ccfv3_um
+    - segment_unmapped
+    - terminal_unmapped_report_only
+    - mapping_overlap_class_report_only
+  model_mapping_quality_feature: segment_unmapped
+  null_and_permutation_mapping_stratum: segment_unmapped
+  terminal_unmapped_report_only: true
+  raw_lengths_or_terminal_counts_emitted: false
+  raw_lengths_or_terminal_counts_enter_model_or_candidate_selection: false
+  biological_absence_or_negative_label_implied: false
+
+exact_gate:
+  eligible_cells_by_group:
+    "212074": 6
+    "220187": 35
+    "220188": 25
+    "220190": 16
+    "221091": 33
+    "221225": 39
+    "221418": 12
+    "221514": 5
+    "221539": 1
+    "221588": 7
+    "221751": 13
+    "233281": 2
+  segment_unmapped_cells: 109
+  segment_mapped_cells: 85
+  group_by_segment_unmapped:
+    "212074": {"yes": 2, "no": 4}
+    "220187": {"yes": 22, "no": 13}
+    "220188": {"yes": 13, "no": 12}
+    "220190": {"yes": 8, "no": 8}
+    "221091": {"yes": 17, "no": 16}
+    "221225": {"yes": 34, "no": 5}
+    "221418": {"yes": 4, "no": 8}
+    "221514": {"yes": 0, "no": 5}
+    "221539": {"yes": 0, "no": 1}
+    "221588": {"yes": 1, "no": 6}
+    "221751": {"yes": 8, "no": 5}
+    "233281": {"yes": 0, "no": 2}
+  mapping_overlap_class_counts:
+    neither_mapping_class: 11
+    segment_mapping_flags_only: 1
+    terminal_mapping_flags_only: 74
+    both_segment_and_terminal_mapping_flags: 108
+
+preflight:
+  real_target_calls_opened: false
+  required_synthetic_checks:
+    - exact_fixed_K_log_partition
+    - analytic_gradient_against_finite_difference
+    - deterministic_optimizer_smoke
+    - equal_group_weighted_score
+    - group_mapping_stratum_permutation_invariance
+    - degenerate_K_0_and_16_zero_gain
+  failure_action: stop_before_any_real_M0_M1_M2_fit

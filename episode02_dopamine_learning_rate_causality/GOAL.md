@@ -33,6 +33,49 @@ revision does not authorize a run or change a binding decision rule.
 
 ## Scientific question
 
+### Adopted procedural evaluation separation — October 12, 2026
+
+At about 13:10 Pacific the scientist adopted the portfolio recommendation for
+EP02, EP15, EP17 and EP18: same-account procedural separation with its weaker
+boundary disclosed. This replaces EP02's requirement for permission-enforced
+candidate, steward and evaluator separation. The same account can access the
+public mixed source; neither physical isolation nor blinding is established.
+The [decision and propagation record](outputs/experiment_log.md#2026-10-12-1354-pacific--source_roles--adopted-procedural-separation-propagated)
+links the recorded authority.
+
+Development uses only a separately released nine-control handoff and permitted
+outcome-free aggregate structure. Candidate work must not open, list, search
+or reacquire mixed-source, primary-audit or boundary-audit paths. Record the
+responsible procedural roles and their permitted paths; freeze analysis choices
+and the versioned final configuration before any audit access. Log every
+audit-role access, disclose unplanned access and mark affected results. The
+single evaluator transaction still returns only the atomic aggregate packet;
+its optional boundary stage cannot change the primary conclusion. Every
+evaluation result must disclose procedural same-account separation and must
+not describe it as enforced or blinded.
+
+The separation requirement is satisfied procedurally; this adoption grants no
+development handoff, scoring or audit opening. Access flags stay false, all four
+raw margins stay null, and endpoint/source definitions, implementation,
+calibration, final-lock, opening-count, claim and resource rules are unchanged.
+The enforced-isolation and network-denial mechanisms in the legacy firewall
+documents, subsidiary notes and ASTRA are superseded by these procedural
+terms; their data-role, no-reacquisition and aggregate-only rules remain.
+
+### Adopted model choice — October 6, 2026
+
+The scientist agreed with the presented recommendation: use the authenticated
+article/task-defined implementation as primary (25-ms dynamics; double the
+current dopamine factor on verified lick-contingent trials), and retain the
+pinned author-code implementation (30 ms; multiplier set to four) as a
+separately labeled, report-only sensitivity with no rescue, selection or
+promotion role. The model choice is answered. Actual online trigger/cap
+semantics, the release codebook and sample-time axis still require source
+authentication; this choice does not invent them. The optional rival-interface
+proposal and four raw margins are not adopted by this agreement. Existing
+access, claim and resource limits remain. See the
+[adopted implementation handoff](outputs/source_semantics_design.md#adopted-model-choice--october-6-2026).
+
 Can control-qualified learning rules make distinguishable, locked predictions
 for reward-time dopamine stimulation contingent on the absence versus presence
 of preparatory licking? If they can, how much of that distinction is resolved
@@ -225,8 +268,9 @@ tracked in this episode.
 
 ## Candidate-scoring and audit-opening conditions
 
-1. Provision the role-separated, no-reacquisition access boundary in
-   [`outputs/firewall/FIREWALL.md`](outputs/firewall/FIREWALL.md).
+1. Record and provision the procedural role handoff under the
+   [October 12 amendment](#adopted-procedural-evaluation-separation--october-12-2026),
+   preserving no reacquisition and the evaluator's aggregate-only output.
 2. Freeze endpoint, trial, session, missingness, denominator, and time-axis
    semantics from authoritative documentation.
 3. Recover the randomization and exclusion roster, or explicitly limit the
@@ -242,16 +286,18 @@ tracked in this episode.
 Apply each condition only at the stage it governs. Source qualification and
 outcome-blind implementation work do not wait for calibration, final-lock, or
 audit-opening controls. Development scoring requires the endpoint definitions,
-development-role isolation, and the policy's existing pre-development timing
-for the four presigned raw thresholds. Audit outcomes remain closed
-until all audit-opening conditions pass.
+the released development-role handoff, and the policy's existing
+pre-development timing for the four presigned raw thresholds. Audit outcomes
+remain closed until all audit-opening conditions pass.
 
 ## Claim boundary
 
-Any eventual result is a publication-exposed, role-sequestered reanalysis of
-this task, preparation, cohort, and frozen contract—not a literature-blind
-replication or a universal claim about dopamine. The existing release supports
-at most a complete-case protocol contrast under explicit assumptions until
+Any eventual result is a publication-exposed, procedurally role-separated
+reanalysis of this task, preparation, cohort, and frozen contract—not a
+literature-blind replication or a universal claim about dopamine. Same-account
+separation must be disclosed as weaker than enforced isolation and must not be
+called blinded. The existing release supports at most a complete-case protocol
+contrast under explicit assumptions until
 the assignment/attrition record is recovered. Mechanism-consistent behavior
 does not identify a unique neural learning algorithm.
 
@@ -259,7 +305,19 @@ does not identify a unique neural learning algorithm.
 
 No adaptive trial, configuration lock, audit opening, reward, or scientific
 result exists. Endpoint semantics, the documented assignment/exclusion roster,
-role separation, and the endpoint-specific binding rule remain unresolved.
+the development handoff and the endpoint-specific binding rule remain unresolved.
+Procedural same-account separation was adopted on October 12; physical
+isolation remains unverified and is no longer a prerequisite.
 The four raw threshold fields remain null; audit opening and positive-terminal
 authorization remain disabled. Historical tools and dated attempts are kept
 as implementation history, not extra launch gates.
+
+The [October 6 revision](outputs/source_semantics_design.md#october-6-recommendation--provider-semantics-first-variant-choice-unadopted)
+prioritizes the release codebook, sample-time vector and online trigger/cap
+record. Unknown raw-trace timing alone blocks the required continuous-lick
+replication. The existing 462-label fallback is already a noncausal
+exchangeability sensitivity. The subsequent scientist agreement adopts
+article/task primary and separately labeled author-code sensitivity as recorded
+above; that production choice is no longer pending. The software-grid threshold
+tuple is not endorsed as scientifically justified. No outcome access, threshold
+or run is activated by the model-choice amendment.

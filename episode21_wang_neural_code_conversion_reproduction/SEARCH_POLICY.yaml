@@ -2,14 +2,276 @@ schema_version: ep21.search_policy.v1
 policy_id: ep21_wang_laion_fmri_fixed_reproduction
 episode_id: ep21
 recorded_on: "2026-09-28"
+last_decision_update: "2026-10-12"
 evidence_mode: fixed_adapted_retrospective_reproduction
 
 authority:
   local_episode_contract_only: true
+  brain_constant_coordinate_decision: conditionally_adopted_2026_10_12
+  brain_constant_coordinate_decision_source: outputs/experiment_log.md#2026-10-12-1616-pacific--interindividual_converter_training--scientist-adopts-the-constant-coordinate-comparator-conditionally
+  brain_constant_coordinate_rule: outputs/proposed_brain_normalization_followup.md
+  brain_constant_discriminator_lock: outputs/protocol_lock_brain_constant_discriminator_2026-10-12.json
+  brain_constant_discriminator_attempt002_lock: outputs/protocol_lock_brain_constant_discriminator_attempt002_2026-10-12.json
+  brain_constant_discriminator_attempt002_selection: manual_after_attempt001_import_failure_before_data_access
+  brain_constant_discriminator_attempt002_parent: EP17_fit002_actual4CPU31GiB_serial_companion_no_srun
+  brain_constant_discriminator_attempt002_resources: {cpus: 4, parent_memory_gib: 31, numeric_threads: 1, deadline_seconds: 300, rss_limit_bytes: 6979321856, durable_bytes: 1048576, additional_allocated_CPU_hours: 0}
+  brain_constant_discriminator_attempt002_charge: once_in_EP17_parent_reservation
+  brain_constant_discriminator_attempt001_lock_and_outputs: preserved
+  brain_constant_discriminator_authorized: true
+  brain_constant_discriminator_scope: original_sub03_sub01_tau_train_binding_first_sub01_fitting_fold_category_counts_only
+  brain_constant_discriminator_resources: {cpus: 1, parent_memory_gib: 7, gpus: 0, numeric_threads: 1, deadline_seconds: 300, minimum_parent_remaining_seconds: 330, rss_limit_bytes: 6979321856, durable_bytes: 1048576, attempts: 1, additional_allocated_CPU_hours: 0}
+  brain_constant_discriminator_guard: all_invalid_first_fold_target_scales_are_exact_zero_SD_finite_exact_constants_with_original_float32_mean_exactly_equal_to_first_value
+  brain_constant_amended_implementation_before_guard: false
+  brain_constant_amended_fitting_authorized: false
+  brain_constant_amended_scoring_authorized: false
+  brain_constant_original_lock_validator_artifacts_preserved: true
+  brain_constant_prior_tau_test_processing_occurred: true
+  brain_constant_final_score_exposure_reported: false
+  brain_constant_after_score_new_episode_rule_unchanged: true
+  full_original_finding_a_readout_protective_hold_remains: true
+  full_original_finding_a_readout_authorized: true
+  full_original_finding_a_readout_grant: outputs/finding_a_full_readout_authorization.json
+  full_original_finding_a_readout_selection: outputs/experiment_log.md#2026-10-11-0724-pacific--finding_a_feature_decoding--full-original-readout-selected
+  full_original_finding_a_readout_scope: original_five_owners_224_images_19layers_855slots_703decoded_152unavailable_20content_12brain_models
+  full_original_finding_a_readout_decode: {tasks: 1, cpus: 3, memory_gib: 16, minutes: 4320, deadline_seconds: 255600, rss_limit_bytes: 16106127360}
+  full_original_finding_a_readout_draw: {tasks: 63, maximum_concurrent_tasks: 4, cpus: 3, memory_gib: 16, minutes: 1440, deadline_seconds: 84600, rss_limit_bytes: 16106127360}
+  full_original_finding_a_readout_finalize: {tasks: 1, cpus: 1, memory_gib: 7, minutes: 120, deadline_seconds: 6900, rss_limit_bytes: 6979321856}
+  full_original_finding_a_readout_shared_limits: {numeric_threads: 1, gpus: 0, collection_bytes: 824633720832, aggregate_bytes: 833223655424, phase_operational_bytes: 67108864, scratch_bytes: 4294967296, draw_batch_bytes: 33554432}
+  full_original_finding_a_readout_additional_maximum_allocated_CPU_hours: 4754
+  full_original_finding_a_readout_clocks: actual_StartTime_plus_phase_deadline_bounded_by_EndTime_minus60_including_all_children
+  full_original_finding_a_readout_dependencies: actual32_original_model_parents_then_decode_then_whole63_draw_array_then_finalizer_all_successful_closed_no_requeue
+  full_original_finding_a_readout_checks: exact26_existing_component_admission_methods_and_ASTRA_inside_decode_before_payload_later_phases_reuse
+  full_original_finding_a_readout_inference: original1000_synchronized_image_draws_1000_dyadic_draws_and_incoming_summaries_unchanged_weights_support_and_reductions
+  full_original_finding_a_readout_unchanged: prior_grants_charges_first_readout_full_denominators_missing_pairs_margin_and_claim_rules
+  full_original_finding_a_readout_complete_three_method_finding_and_comparability: not_evaluable_under_original_lock
+  full_original_finding_a_readout_forbidden: [training, tau_train_response_values, subject_unique_response_values, regular_images, OOD, B_C_execution, normalization_amendment, available_case_reweighting, outcome_selection, retry, resume, automatic_successor]
+  content_launcher_CPU_check_location_amendment: outputs/experiment_log.md#2026-10-11-0715-pacific--interindividual_converter_training--cpu-launcher-qualification-selected
+  content_launcher_CPU_check_reuse: outputs/runs/content_launcher_qualification/cpu001/status.txt
+  content_launcher_CPU_check_reuse_scope: roster006_007_and_remaining001_002_003_008_through019_only
+  content_launcher_CPU_check_companion_resources: {parent_job: "47376911", cpus: 1, requested_memory_gib: 4, minutes: 10, gpus: 0, numeric_threads: 1, durable_bytes: 67108864, local_bytes: 1073741824, additional_allocated_CPU_hours: 0}
+  content_launcher_CPU_check_companion_limits: exact_existing_ten_methods_no_payloads_no_scientific_changes_no_retry_parent_and_step_deadlines
+  original_remaining_content_pairs_authorized: [0, 1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  original_remaining_content_pair_grants: outputs/content_cuda_remaining_NNN_authorization.json
+  original_remaining_content_pair_scope: fixed_pair_source_unique_4712_full_eligible_axes_19layers_1024updates_original_initialization_schedule_and_final_only
+  original_remaining_content_pair_resources: {cpus: 2, memory_gib: 16, minutes: 2880, gpus: 1, deadline_seconds: 169200, allocated_cpu_hours: 96, allocated_gpu_hours: 48, rss_limit_bytes: 16106127360, minimum_device_bytes: 23622320128, gpu_memory_limit_bytes: 21474836480, durable_bytes: 2147483648, scratch_bytes: 1073741824, final_artifact_bytes: 1073741824}
+  original_remaining_content_pair_device: Tesla_V100_SXM2_32GB
+  original_remaining_content_pair_hardware_amendment: outputs/content_cuda_remaining_hardware_amendment.json
+  original_remaining_content_pair_amended_devices: [Tesla_V100_SXM2_32GB, NVIDIA_H100_80GB_HBM3]
+  original_remaining_content_pair_amendment_scope: exactly16_original_pending_job_ids_with_original_grants_resources_and_scientific_implementation_unchanged
+  original_remaining_content_pair_amendment_checks: two_new_hardware_methods_plus_five_affected_existing_methods_in_separately_scoped_CPU_companion_before_scheduler_release
+  original_remaining_content_pair_total_additional_resources: {allocated_CPU_hours: 1536, GPU_hours: 768}
+  original_remaining_content_pair_checks: pair000_retains_submitted_checks_other_fifteen_reuse_observed_CPU_launcher_qualification_PASS
+  original_remaining_content_pair_unchanged: all20_slots_original_science_missing_pair_rule_prior_charges_existing_readout
+  original_remaining_content_pair_forbidden: [target_neural_matrix, tau, OOD, evaluation, reconstruction, normalization_amendment, automatic_retry, resume, automatic_successor]
+  original_remaining_brain_pairs_authorized: [9, 10, 11, 13, 14, 15, 17, 18, 19]
+  original_remaining_brain_pair_grants: outputs/brain_pair_remaining_NNN_authorization.json
+  original_remaining_brain_pair_scope: fixed_pair_tau_train_897_full_native_50CV_plus_final_only
+  original_remaining_brain_pair_resources: {cpus: 3, memory_gib: 16, minutes: 360, gpus: 0, deadline_seconds: 21000, rss_limit_bytes: 16106127360, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 805306368}
+  original_remaining_brain_pair_total_additional_CPU_hours: 162
+  original_remaining_brain_pair_checks: three_new_methods_once_inside_pair009_other_eight_submit_after_observed_PASS
+  original_remaining_brain_pair_unchanged: all20_slots_original_science_missing_pair_rule_prior_charges_existing_readout
+  original_remaining_brain_pair_forbidden: [tau_test, OOD, features, decoders, evaluation, reconstruction, normalization_amendment, automatic_retry, resume, automatic_successor]
+  # Separate bounded grants below do not confer general empirical/scoring authority.
   empirical_access_authorized: false
   neural_execution_authorized: false
+  retained_decoder_prefix_authorized: true
+  retained_decoder_prefix_authorization: outputs/decoder_training_prefix_authorization.json
+  retained_decoder_prefix_scope: sub01_subject_unique_4712_images_64_fixed_units_each_of_19_layers_only
+  retained_decoder_prefix_resources: {jobs: 1, cpus: 1, memory_gib: 7, minutes: 120, gpus: 0, durable_bytes: 2000000000, scratch_bytes: 10000000000}
+  retained_decoder_prefix_successor_authorized: false
+  retained_decoder_continuation_authorized: true
+  retained_decoder_continuation_authorization: outputs/decoder_training_continuation_authorization.json
+  retained_decoder_continuation_scope: sub01_subject_unique_4712_images_conv1_1_channel0_spatial_Fortran_64_through_50175_only_reuse_prefix_state
+  retained_decoder_continuation_resources: {jobs: 1, cpus: 1, memory_gib: 7, minutes: 1440, gpus: 0, durable_bytes: 1000000000, scratch_bytes: 2000000000}
+  retained_decoder_continuation_successor_authorized: false
+  retained_decoder_first_layer_authorized: true
+  retained_decoder_first_layer_authorization: outputs/decoder_training_layer_authorization.json
+  retained_decoder_first_layer_scope: sub01_subject_unique_4712_images_conv1_1_channels1_through63_all50176_spatial_Fortran_units_only_reuse_retained_state
+  retained_decoder_first_layer_resources: {jobs: 1, cpus: 1, memory_gib: 7, minutes: 1440, gpus: 0, durable_bytes: 25000000000, scratch_bytes: 2000000000}
+  retained_decoder_first_layer_successor_authorized: false
+  full_decoder_training_authorized: true
+  full_decoder_training_authorization: outputs/decoder_training_full_authorization.json
+  full_decoder_training_scope: five_participants_all_19_layers_subject_unique_4712_images_each_preserve_exact_retained_fits
+  full_decoder_training_resources: {maximum_allocated_CPU_hours: 500, maximum_concurrent_jobs: 42, cpus_per_job: 1, memory_gib_per_job: 7, gpus: 0, durable_bytes: 500000000000, peak_transient_bytes: 16000000000}
+  full_decoder_parallelism_amendment:
+    user_instruction: "you should spawn as much as possible jobs and agents!!!!"
+    recorded_date: "2026-10-07"
+    journal: outputs/decoder_training/full_continuation_001/submission.jsonl
+    original_authorization_and_manifest_immutable: true
+    historical_maximum_concurrent_jobs: 8
+    effective_only_after_additive_journal_amendment: true
+    per_physical_worker_transient_bound: largest_declared_4712_by_spatial_float32_channel_bank_plus_64MiB
+    serial_bundle_transient_bound: maximum_member_bound_counted_once
+    unchanged_total_CPU_durable_and_transient_caps: true
+  full_decoder_training_included_prior_job: "46801996"
+  full_decoder_training_budget_mode: actual_allocated_with_full_outstanding_reservations
+  full_decoder_training_job_limits: {state_parents: 1, state_minutes: 240, fit_minutes: 480, assembly_parents: 1, assembly_minutes: 240}
+  full_decoder_training_scoring_or_converter_authority: false
+  full_decoder_training_automatic_retry_extension_or_successor: false
+  content_resource_measurement_authorized: true
+  content_resource_measurement_authorization: outputs/converter_measurement_proposal.json
+  content_resource_measurement_scope: disposable_sub03_to_sub01_four_full_updates_no_model_or_scientific_scores
+  content_resource_measurement_resources: {jobs: 1, cpus: 3, memory_gib: 16, minutes: 120, gpus: 0, durable_bytes: 16777216, scratch_bytes: 268435456}
+  content_resource_measurement_selected_repair: outputs/experiment_log.md#2026-10-10-2102-pacific--content_resource_measurement-allocation-admission-repair
+  content_resource_measurement_automatic_retry_or_successor: false
+  content_io_measurement_authorized: true
+  content_io_measurement_authorization: outputs/converter_io_measurement_authorization.json
+  content_io_measurement_scope: equivalent_input_disposable_sub03_to_sub01_four_updates_bounded_column_stripe_no_model_or_scientific_scores
+  content_io_measurement_resources: {jobs: 1, cpus: 3, memory_gib: 16, minutes: 120, gpus: 0, durable_bytes: 16777216, scratch_bytes: 268435456}
+  content_io_measurement_automatic_retry_or_successor: false
+  content_io_measurement_selected_fixture_cap_repair: outputs/converter_io_measurement_repair_authorization.json
+  content_io_measurement_repair_resources: {jobs: 1, cpus: 3, memory_gib: 16, minutes: 120, gpus: 0, durable_bytes: 16777216, scratch_bytes: 268435456}
+  content_io_measurement_repair_automatic_retry_or_successor: false
+  content_cuda_measurement_authorized: true
+  content_cuda_measurement_authorization: outputs/content_cuda_measurement_authorization.json
+  content_cuda_measurement_scope: same_full_sub03_to_sub01_four_updates_float32_no_TF32_or_AMP_no_model_or_scientific_scores
+  content_cuda_measurement_resources: {jobs: 1, cpus: 2, memory_gib: 16, minutes: 120, gpus: 1, durable_bytes: 33554432, scratch_bytes: 268435456}
+  content_cuda_measurement_automatic_retry_or_successor: false
+  content_cuda_cache_measurement_authorized: true
+  content_cuda_cache_measurement_authorization: outputs/content_cuda_cache_authorization.json
+  content_cuda_cache_measurement_stage: cache-001
+  content_cuda_cache_measurement_scope: same_canonical_pair4_sub03_to_sub01_all4712_rows_full12897_to12294_eligible_axes_19layers_four_updates_sparse256_row512_float32_no_TF32_AMP_model_or_scientific_scores
+  content_cuda_cache_measurement_read_mode: bounded_channel_two_pass_cache
+  content_cuda_cache_measurement_cache_bounds: {maximum_channel_bytes: 1073741824, maximum_retained_bytes: 4294967296}
+  content_cuda_cache_measurement_resources: {jobs: 1, partition: gpu, cpus: 2, memory_gib: 16, minutes: 120, gpus: 1, numeric_threads: 1, maximum_allocated_CPU_hours: 4, maximum_GPU_hours: 2, deadline_seconds: 6300, rss_limit_bytes: 16106127360, minimum_device_bytes: 23622320128, gpu_memory_limit_bytes: 21474836480, durable_bytes: 33554432, scratch_bytes: 268435456}
+  content_cuda_cache_measurement_deadline: absolute_from_Slurm_StartTime_bounded_by_EndTime_minus60_seconds_including_all_serialized_children
+  content_cuda_cache_measurement_checks: four_changed_integration_three_changed_admission_one_existing_GPU_numerical_fixture_and_ASTRA_reuse_three_unchanged_cache_methods
+  content_cuda_cache_measurement_accounting: charge_one_parent_once_preserve_all_prior_grants_and_consumption
+  content_cuda_cache_measurement_target_responses_tau_OOD_production_model_scoring_retry_resume_or_automatic_successor: false
+  content_cuda_cache_order_repair_authorized: true
+  content_cuda_cache_order_repair_authorization: outputs/content_cuda_cache_repair_authorization.json
+  content_cuda_cache_order_repair_stage: cache-002
+  content_cuda_cache_order_repair_scope: same_original_four_full_cached_updates_bind_public_cache_to_canonical_training_layer_order_without_scientific_loop_or_data_changes
+  content_cuda_cache_order_repair_resources: {jobs: 1, partition: gpu, cpus: 2, memory_gib: 16, minutes: 120, gpus: 1, numeric_threads: 1, maximum_allocated_CPU_hours: 4, maximum_GPU_hours: 2, deadline_seconds: 6300, rss_limit_bytes: 16106127360, minimum_device_bytes: 23622320128, gpu_memory_limit_bytes: 21474836480, durable_bytes: 33554432, scratch_bytes: 268435456}
+  content_cuda_cache_order_repair_cache_bounds: {maximum_channel_bytes: 1073741824, maximum_retained_bytes: 4294967296}
+  content_cuda_cache_order_repair_deadline: same_absolute_Slurm_StartTime_plus6300_bounded_by_EndTime_minus60_for_all_serial_children
+  content_cuda_cache_order_repair_checks: three_existing_stage_parameterized_admission_one_existing_GPU_numerical_one_changed_public_cache_canonical_order_method_and_ASTRA
+  content_cuda_cache_order_repair_accounting: charge_one_parent_once_preserve_cache001_failed_attempt_and_all_consumed_grants
+  content_cuda_cache_order_repair_target_responses_tau_OOD_production_model_scoring_resume_automatic_retry_or_successor: false
+  complete_cached_CUDA_pair_preparation: outputs/content_cuda_pair_training_authorization.json
+  complete_cached_CUDA_pair_execution_authorized: true
+  complete_cached_CUDA_pair_scope: original_pair4_sub03_to_sub01_all4712_rows_19layers_1024updates_full12897_to12294_eligible_axes_canonical_initialization_channel_schedule_sparse256_row512_float32_Adam_LR_final_only_publication
+  complete_cached_CUDA_pair_duration_deadline_CPU_GPU_reservations_selected: true
+  complete_cached_CUDA_pair_device: Tesla_V100_SXM2_32GB
+  complete_cached_CUDA_pair_scheduler_constraint: GPU_SKU:V100_SXM2&GPU_MEM:32GB
+  complete_cached_CUDA_pair_resources: {jobs: 1, partition: gpu, cpus: 2, memory_gib: 16, minutes: 2880, gpus: 1, numeric_threads: 1, maximum_allocated_CPU_hours: 96, maximum_GPU_hours: 48, deadline_seconds: 169200, rss_limit_bytes: 16106127360, minimum_device_bytes: 23622320128, gpu_memory_limit_bytes: 21474836480, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 1073741824}
+  complete_cached_CUDA_pair_cache_bounds: {maximum_channel_bytes: 1073741824, maximum_retained_bytes: 4294967296}
+  complete_cached_CUDA_pair_deadline: absolute_StartTime_plus169200_bounded_by_EndTime_minus60_including_all_checks_fit_and_final_publication
+  complete_cached_CUDA_pair_accounting: one_separate_parent_charge_preserve_all_decoder_measurement_and_prior_consumption
+  complete_cached_CUDA_pair_checks: five_new_admission_composition_methods_and_changed_ASTRA_in_same_substantive_parent_reuse_passed_same_device_GPU_cache_driver_evidence
+  complete_cached_CUDA_pair_measurement_can_activate_production: false
+  complete_cached_CUDA_pair_target_responses_tau_OOD_scoring_reconstruction_BC_lock_mutation_resume_automatic_retry_extension_or_next_pair: false
+  original_cached_CUDA_roster_005_006_007_authorized: true
+  original_cached_CUDA_roster_005_006_007_grants: [outputs/content_cuda_roster_005_authorization.json, outputs/content_cuda_roster_006_authorization.json, outputs/content_cuda_roster_007_authorization.json]
+  original_cached_CUDA_roster_005_006_007_stages: [roster-005, roster-006, roster-007]
+  original_cached_CUDA_roster_005_006_007_scope: canonical_pairs5_6_7_source03_to_target05_06_07_all4712rows_19layers_1024updates_full12897_to10891_12023_12057_eligible_axes_original_shared_seed_channel_schedule_sparse256_row512_float32_Adam_LR_final_only_publication
+  original_cached_CUDA_roster_005_006_007_resources_per_parent: {jobs: 1, partition: gpu, cpus: 2, memory_gib: 16, minutes: 2880, gpus: 1, numeric_threads: 1, maximum_allocated_CPU_hours: 96, maximum_GPU_hours: 48, deadline_seconds: 169200, rss_limit_bytes: 16106127360, minimum_device_bytes: 23622320128, gpu_memory_limit_bytes: 21474836480, durable_bytes: 2147483648, scratch_bytes: 1073741824, final_artifact_bytes: 1073741824}
+  original_cached_CUDA_roster_005_006_007_device: Tesla_V100_SXM2_32GB
+  original_cached_CUDA_roster_005_006_007_constraint: GPU_SKU:V100_SXM2&GPU_MEM:32GB
+  original_cached_CUDA_roster_005_006_007_cache_bounds: {maximum_channel_bytes: 1073741824, maximum_retained_bytes: 4294967296}
+  original_cached_CUDA_roster_005_006_007_combined_reservation: {maximum_allocated_CPU_hours: 288, maximum_GPU_hours: 144}
+  original_cached_CUDA_roster_005_006_007_deadline: each_parent_absolute_StartTime_plus169200_bounded_by_EndTime_minus60_including_all_serial_children_fit_publication
+  original_cached_CUDA_roster_005_006_007_checks: pair5_retains_submitted_checks_pair6_and7_reuse_observed_CPU_launcher_qualification_PASS_reuse_unchanged_original_driver_cache_GPU_checks
+  original_cached_CUDA_roster_005_006_007_companions: independently_recorded_EP17_EP19_software_only_serial_children_within_pair5_clock_and_charge_ordinary_failures_do_not_gate_EP21
+  original_cached_CUDA_roster_005_006_007_target_responses_tau_OOD_evaluation_BC_lock_change_normalization_amendment_retry_resume_extension_or_automatic_successor: false
+  first_original_finding_a_readout_authorized: true
+  first_original_finding_a_readout_authorization: outputs/finding_a_first_readout_authorization.json
+  first_original_finding_a_readout_dependency: afterok_47370327_and_complete_original_cuda001_model_and_eleven_checks_and_ASTRA
+  first_original_finding_a_readout_scope: original_sub03_to_sub01_content_and_sub03_within_source_all224_tau_test_images_all19_layers_38decoded_slots_all855_slots_retained
+  first_original_finding_a_readout_resources: {jobs: 1, partition: russpold, cpus: 3, memory_gib: 16, minutes: 4320, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 216, deadline_seconds: 255600, rss_limit_bytes: 16106127360, durable_bytes: 51539607552, scratch_bytes: 4294967296, collection_bytes: 42949672960}
+  first_original_finding_a_readout_deadline: absolute_StartTime_plus255600_bounded_by_EndTime_minus60_including_all_checks_independent_EP19_companion_decoding_inference_and_publication
+  first_original_finding_a_readout_inputs: source03_tau_test_only_common_tau_test_true_features_original_cuda001_model_source03_target01_decoders_five_owner_normalization_metadata
+  first_original_finding_a_readout_inference: original1000_image_and1000_dyadic_draws_all_support_rules_missing_slots_and_target_incoming_summaries_literal_arithmetic_in_batches_of16
+  first_original_finding_a_readout_checks: three_input_two_composition_three_batched_three_admission_and_changed_ASTRA_before_payload
+  first_original_finding_a_readout_accounting: one_separate_parent_charge_preserve_all_prior_attempts_and_consumption_EP19_three_checks_and_ASTRA_are_independent_serialized_companion
+  first_original_finding_a_readout_complete_quantitative_finding_and_comparability: not_evaluable_under_unchanged_lock
+  first_original_finding_a_readout_target_neural_tau_train_OOD_images_training_BC_lock_mutation_normalization_amendment_retry_resume_or_automatic_successor: false
+  brain_prefix_diagnostic_authorized: true
+  brain_prefix_diagnostic_authorization: outputs/brain_prefix_diagnostic_authorization.json
+  brain_prefix_diagnostic_scope: original_sub03_to_sub01_897_tau_train_complete_native_axes_first_fold_normalization_only_no_solve_fit_score_or_model
+  brain_prefix_diagnostic_resources: {parent: content_cuda_measurement, serialized: true, numeric_threads: 1, deadline_seconds: 300, rss_limit_bytes: 6979321856, durable_bytes: 1048576}
+  brain_prefix_diagnostic_tau_test_OOD_retry_or_successor_authority: false
+  public_reconstruction_qualification_authorized: true
+  public_reconstruction_qualification_authorization: outputs/reconstruction_qualification_authorization.json
+  public_reconstruction_qualification_scope: one_fixed_non_neural_modulo257_float32_fixture_zero_decoder_means_actual_public_SD_and_bounds_19_layers_200_updates_seed42
+  public_reconstruction_qualification_resources: {jobs: 1, partition: russpold, cpus: 1, memory_gib: 7, minutes: 120, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 2, deadline_seconds: 6900, rss_limit_bytes: 6979321856, durable_bytes: 1073741824, scratch_bytes: 4294967296}
+  public_reconstruction_qualification_deadline: absolute_from_parent_Slurm_StartTime_and_bounded_by_EndTime_including_all_serialized_children
+  public_reconstruction_qualification_inputs: pinned_generator_Figshare52399790_archive_and_two_members_existing_VGG_checkpoint_and_public_feature_SD_only
+  public_reconstruction_qualification_outputs: authenticated_asset_identity_and_categorical_operational_completion_timing_memory_metadata_only
+  public_reconstruction_qualification_neural_LAION_tau_OOD_empirical_scoring_image_or_lock_mutation_authority: false
+  public_reconstruction_qualification_automatic_retry_extension_or_successor: false
+  brain_prefix_reconstruction_diagnostic_authorized: true
+  brain_prefix_reconstruction_diagnostic_authorization: outputs/brain_prefix_diagnostic_reconstruction_authorization.json
+  brain_prefix_reconstruction_diagnostic_stage: reconstruction-002
+  brain_prefix_reconstruction_diagnostic_scope: original_sub03_to_sub01_897_tau_train_12897_to12295_native_axes_first_fold_normalization_only_before_Gram_solve_CV_fit_score_or_model
+  brain_prefix_reconstruction_diagnostic_resources: {parent: public_reconstruction_qualification, serialized: true, numeric_threads: 1, deadline_seconds: 300, rss_limit_bytes: 6979321856, durable_bytes: 1048576}
+  brain_prefix_reconstruction_diagnostic_accounting: charge_serialized_parent_once_preserve_consumed_prior_grants_and_original_parent_deadline
+  brain_prefix_reconstruction_diagnostic_tau_test_OOD_features_decoders_fit_retry_or_successor_authority: false
+  first_brain_pair_training_authorized: true
+  first_brain_pair_training_authorization: outputs/brain_pair_proposal.json
+  first_brain_pair_training_scope: sub03_to_sub01_897_tau_train_images_complete_native_axes_50_CV_fits_plus_final_refit_and_exclusive_model_only
+  first_brain_pair_training_resources: {jobs: 1, cpus: 1, memory_gib: 7, minutes: 1440, gpus: 0, durable_bytes: 2147483648, scratch_bytes: 268435456}
+  first_brain_pair_training_tau_test_OOD_or_scoring_authority: false
+  first_brain_pair_training_automatic_retry_or_successor: false
+  next_original_brain_pair_training_authorized: true
+  next_original_brain_pair_training_authorization: outputs/brain_pair_next_authorization.json
+  next_original_brain_pair_training_stage: next-001
+  next_original_brain_pair_training_scope: canonical_pair_index5_sub03_to_sub05_all897_tau_train_rows_full12897_to10891_native_axes_unchanged50_CV_fits_plus_one_final_refit_and_exclusive_model
+  next_original_brain_pair_training_resources: {jobs: 1, partition: russpold, cpus: 1, memory_gib: 7, minutes: 1440, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 24, deadline_seconds: 84600, rss_limit_bytes: 6979321856, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 805306368}
+  next_original_brain_pair_training_deadline: absolute_from_Slurm_StartTime_bounded_by_EndTime_minus60_seconds_including_serialized_companions
+  next_original_brain_pair_training_accounting: one_parent_charge_for_fit_and_serialized_checks_preserve_all_consumed_prior_grants
+  next_original_brain_pair_training_collection_check_gates_fit: false
+  next_original_brain_pair_training_tau_test_OOD_features_decoders_scoring_or_reconstruction_authority: false
+  next_original_brain_pair_training_epsilon_coordinate_deletion_grid_reduction_retry_resume_or_automatic_successor: false
+  brain_pair_memory_repair_authorized: true
+  brain_pair_memory_repair_authorization: outputs/brain_pair_memory_authorization.json
+  brain_pair_memory_repair_stage: next-memory-001
+  brain_pair_memory_repair_scope: same_canonical_pair_index5_sub03_to_sub05_all897_tau_train_rows_full12897_to10891_native_axes_unchanged50_CV_plus_final_source_NumPy_solve_float32_input_output
+  brain_pair_memory_repair_resources: {jobs: 1, partition: russpold, cpus: 2, memory_gib: 16, minutes: 1440, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 48, deadline_seconds: 84600, rss_limit_bytes: 16106127360, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 805306368}
+  brain_pair_memory_repair_deadline: absolute_from_Slurm_StartTime_bounded_by_EndTime_minus60_seconds_including_serialized_companions
+  brain_pair_memory_repair_accounting: charge_one_parent_once_preserve_next001_attempt_and_all_consumed_prior_grants
+  brain_pair_memory_repair_checks: five_brain_default_diagnostic_three_collection_three_prospective_cache_and_ASTRA_serial_only_brain_checks_gate_fit
+  brain_pair_memory_repair_collection_cache_ASTRA_gate_fit: false
+  brain_pair_memory_repair_tau_test_OOD_features_decoders_scoring_reconstruction_or_content_cache_activation_authority: false
+  brain_pair_memory_repair_epsilon_coordinate_deletion_grid_reduction_solver_change_resume_or_automatic_retry_extension_successor: false
+  brain_pair_memory_allocation_repair_authorized: true
+  brain_pair_memory_allocation_repair_authorization: outputs/brain_pair_memory_repair_authorization.json
+  brain_pair_memory_allocation_repair_stage: next-memory-002
+  brain_pair_memory_allocation_repair_scope: same_canonical_pair_index5_sub03_to_sub05_all897_tau_train_rows_full12897_to10891_native_axes_unchanged50_CV_plus_final_source_NumPy_solve_float32_input_output
+  brain_pair_memory_allocation_repair_resources: {jobs: 1, partition: russpold, cpus: 3, memory_gib: 16, minutes: 1440, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 72, deadline_seconds: 84600, rss_limit_bytes: 16106127360, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 805306368}
+  brain_pair_memory_allocation_repair_deadline: absolute_from_Slurm_StartTime_bounded_by_EndTime_minus60_seconds_including_serialized_companions
+  brain_pair_memory_allocation_repair_accounting: charge_one_parent_once_preserve_original_two_CPU_request_next_memory001_attempt_and_all_consumed_grants
+  brain_pair_memory_allocation_repair_checks: same_five_brain_default_diagnostic_three_collection_three_prospective_cache_and_ASTRA_serial_only_brain_checks_gate_fit
+  brain_pair_memory_allocation_repair_collection_cache_ASTRA_gate_fit: false
+  brain_pair_memory_allocation_repair_tau_test_OOD_features_decoders_scoring_reconstruction_or_content_cache_activation_authority: false
+  brain_pair_memory_allocation_repair_epsilon_coordinate_deletion_grid_reduction_solver_change_resume_or_automatic_retry_extension_successor: false
+  original_brain_roster_pairs_006_007_authorized: true
+  original_brain_roster_pairs_006_007_grants: [outputs/brain_pair_roster_006_authorization.json, outputs/brain_pair_roster_007_authorization.json]
+  original_brain_roster_pairs_006_007_stages: [roster-006, roster-007]
+  original_brain_roster_pairs_006_007_scope: original_indices6_7_sub03_to_sub06_and_sub07_all897_tau_train_full12897_to12023_or12057_native_axes_unchanged50_CV_plus_final_source_NumPy_solve
+  original_brain_roster_pairs_006_007_resources_per_parent: {jobs: 1, partition: russpold, cpus: 3, memory_gib: 16, minutes: 1440, gpus: 0, numeric_threads: 1, maximum_allocated_CPU_hours: 72, deadline_seconds: 84600, rss_limit_bytes: 16106127360, durable_bytes: 2147483648, scratch_bytes: 268435456, final_artifact_bytes: 805306368}
+  original_brain_roster_pairs_006_007_combined_maximum_allocated_CPU_hours: 144
+  original_brain_roster_pairs_006_007_deadline: each_parent_absolute_Slurm_StartTime_plus84600_bounded_by_EndTime_minus60_including_checks_fitting_publication
+  original_brain_roster_pairs_006_007_checks: three_new_methods_parameterize_both_stages_once_in_pair6_parent_with_changed_ASTRA_pair7_reuses_passing_evidence_both_reuse13_scientific_methods
+  original_brain_roster_pairs_006_007_accounting: charge_each_parent_once_preserve_all_prior_attempts_consumption_and_complete_original_panel
+  original_brain_roster_pairs_006_007_tau_test_OOD_features_decoders_scoring_reconstruction_or_BC_lock_mutation: false
+  original_brain_roster_pairs_006_007_epsilon_coordinate_deletion_grid_reduction_solver_change_resume_automatic_retry_extension_or_next_pair: false
   canonical_brain_researcher_action_authorized: false
   valid_protocol_lock_still_requires_later_execution_instruction: true
+  scientist_fidelity_choice_adopted: pinned_V1_0_0_code_faithful_disclose_paper_deviations
+  remaining_outcome_blind_protocol_decisions: delegated_within_existing_question_and_data_boundaries
+  decision_record: outputs/protocol_decisions_2026-09-30.yaml
+  separate_regular_stimulus_steward_export_authorized: true
+  steward_provisioning_authorization: outputs/steward_provisioning_authorization_2026-09-30.md
+  steward_export_resources: {jobs: 1, cpus: 1, memory_gib: 4, minutes: 30, durable_bytes: 5000000000, scratch_bytes: 10000000000}
+  neural_export_authorized: true
+  neural_export_authorization: outputs/regular_neural_export_authorization_2026-09-30.json
+  neural_export_resources: {jobs: 1, cpus: 1, memory_gib: 4, minutes: 720, durable_bytes: 10000000000, scratch_bytes: 10000000000, gpus: 0}
+  fixed_provider_measurement_exception_adopted: true
+  provider_measurement_amendment: outputs/protocol_provider_beta_amendment_2026-09-30.yaml
+  independent_native_mask_materialization_authorized: true
+  mask_amendment: outputs/protocol_mask_amendment_2026-09-30.yaml
+  mask_materialization_resources: {jobs: 1, cpus: 1, memory_gib: 2, minutes: 10, durable_bytes: 250000000, scratch_bytes: 500000000, gpus: 0}
 
 reproduction_identity:
   source_paper:
@@ -21,7 +283,8 @@ reproduction_identity:
     code_commit: edbff02edd6a08d3c6c829af45a957fd14bdc460
     zenodo_doi: 10.5281/zenodo.14910040
     zenodo_archive_md5: bb80dcc1a038737d6d8fc2c95b3e5586
-    immutable_identity_status: metadata_pinned_archive_inventory_still_requires_verification_before_lock
+    # Established by outputs/source_qualification/attempt-017/qualification_report.json.
+    immutable_identity_status: source_archive_inventory_size_and_MD5_verified_attempt017
   transfer_dataset: laion_fmri
   protocol_class: adapted_reproduction
   exact_reproduction: false
@@ -108,6 +371,7 @@ image_role_separation:
   tau_train_vs_tau_test_exact_overlap: zero_required
   repetitions_grouped_by_image_identity: true
   near_duplicate_rule: resolve_detector_revision_threshold_and_action_or_explicit_no_screen_before_lock
+  within_laion_near_duplicate_choice: no_additional_screen_disclose_limitation_exact_ID_gates_unchanged
   overlap_or_near_duplicate_decision_may_use_neural_outcomes: false
   exact_overlap_failure_action: stop_affected_pair_or_module
   ood_row_in_any_role_action: policy_violation_and_stop
@@ -165,17 +429,23 @@ brain_loss_comparator:
 preprocessing_policy:
   response_space: participant_native
   planned_beta_representation: glmsingle_single_trial_beta
-  exact_beta_variant_and_trial_image_join: unresolved_required_before_lock
+  exact_beta_variant_and_trial_image_join: authenticated_GLMsingle_v1_2_TYPED_betasmd_regular_trial_image_join_inherited_preprocessing_exclusions_unverified
   train_learned_response_normalization: fit_only_on_rows_allowed_for_each_fitted_object
   train_learned_feature_normalization: fit_only_on_rows_allowed_for_each_fitted_object
-  tau_test_contribution_to_learned_transform: forbidden
-  ood_contribution_to_any_normalization_reliability_or_selection: forbidden
+  tau_test_contribution_to_learned_transform: forbidden_for_EP21_fitted_objects_fixed_provider_measurement_exception_only
+  ood_contribution_to_any_normalization_reliability_or_selection: forbidden_for_EP21_computations_fixed_provider_measurement_ancestry_exception_only
   provider_or_session_transductive_normalization:
-    status: unresolved
-    required_action: authenticate_formula_and_stimulus_universe_before_lock_or_mark_affected_endpoint_not_evaluable
-    must_exclude_ood: true
-    interpretation_if_retained: disclosed_adapted_transductive_preprocessing_limit
+    status: accepted_fixed_provider_measurement_upstream_role_exclusions_unverified
+    evidence: outputs/steward_provisioning/provider_beta_eligibility_assessment_2026-09-30.json
+    scientist_amendment: outputs/protocol_provider_beta_amendment_2026-09-30.yaml
+    accepted_measurement: GLMsingle_v1_2_TYPED_betasmd_regular_rows_percent_signal_change_native_space
+    accepted_inherited_dependence: HRF_noise_PC_ridge_autoscaling_internal_normalization_and_PSC_may_use_mixed_tau_test_OOD_inputs
+    exact_upstream_role_exclusion_provenance_required_for_this_replication: false
+    additional_EP21_transductive_normalization: forbidden
+    new_EP21_OOD_reference: forbidden
+    interpretation_if_retained: fixed_provider_measurement_retrospective_replication_with_unverified_upstream_exclusions
   repetition_policy: average_locked_repetitions_by_participant_and_image_only_after_role_assignment
+  training_averaging_disclosure: LAION_adaptation_tagged_decoder_training_retains_trial_rows
   outcome_selected_voxels_rois_or_preprocessing: forbidden
 
 source_pipeline_fidelity:
@@ -183,13 +453,16 @@ source_pipeline_fidelity:
     use: content_loss_and_feature_decoder_targets
     planned_layers: conv1_1_through_conv5_4_plus_fc6_fc7_fc8
     activation: pre_rectification
-    implementation_checkpoint_and_preprocessing: authenticate_before_lock
+    # Public strict-load evidence: outputs/pipeline_conformance/attempt-007/public_runtime_conformance_report.json.
+    implementation_checkpoint_and_preprocessing: selected_public_tagged_PyTorch_VGG19_BdPy_0_25_pre_ReLU_BICUBIC_224_reconstruction_mean_rule_strict_load_verified_historical_Caffe_parity_unverified
   feature_decoder:
     estimator: ridge_regression
     planned_ridge_penalty: 100
     planned_voxel_count_per_feature_unit: 500
     voxel_ranking: highest_absolute_training_only_correlation
-    exact_axis_normalization_intercept_and_tie_rule: authenticate_before_lock
+    normalization_choice: training_axis_0_mean_std_ddof_1_alpha_100_source_facts_authenticated
+    tie_and_shortage_choice: stable_native_voxel_ID_ties_fewer_than_500_not_evaluable
+    exact_axis_normalization_intercept_and_tie_rule: authenticated_fastl2lir_0_9_retained_penalized_bias_external_ddof1_normalization_disclosed_stable_native_ID_tie_adaptation
   content_converter:
     architecture: source_paper_nonlinear_mlp
     planned_hidden_layers: 2
@@ -197,18 +470,28 @@ source_pipeline_fidelity:
     planned_normalization: instance_normalization
     paper_activation: relu
     tagged_v1_activation: leaky_relu_0_2
-    activation_discrepancy_action: resolve_outcome_blind_before_lock_or_mark_affected_findings_not_evaluable
+    activation_discrepancy_action: selected_tagged_LeakyReLU_0_2_scientist_2026_09_30_disclose_paper_deviation
     planned_iterations: 1024
     tagged_feature_map_sampling: one_random_map_per_convolutional_layer_plus_all_fully_connected_units_per_iteration
     paper_vs_tagged_loss_weighting_optimizer_seed_and_checkpoint: authenticate_and_resolve_before_lock
+    selected_weighting: tagged_normalized_inverse_squared_norm_of_active_feature_blocks
+    selected_training: tagged_Adam_lr_5e_minus5_betas_0_5_0_999_1024_iterations_decay_from_512_seed_42_final_checkpoint_no_restarts
   alexnet:
     use: reconstruction_identification_only
     planned_layers: [conv1, conv2, conv3, conv4, conv5, fc6, fc7, fc8]
     implementation_checkpoint_and_preprocessing: authenticate_before_lock
+    selected_backend_and_input: tagged_bdpy_PyTorch_AlexNet_direct_Lanczos_227_exact_bvlc_alexnet_pt_still_required_no_CaffeNet_substitution
+    prospective_amendment:
+      record: outputs/protocol_public_alexnet_amendment_2026-10-03.yaml
+      applies_to: future_identification_lock_only
+      selected_evaluator: official_public_BVLC_AlexNet_converted_to_pinned_BdPy
+      private_author_checkpoint_required_for_future_identification: false
+      existing_protocol_lock_and_vgg19_attempt_unchanged: true
   reconstruction:
     paper_layer_count: 8
     tagged_v1_config_layer_count: 19
-    layer_discrepancy_generator_dists_and_optimizer: authenticate_and_resolve_before_lock
+    layer_discrepancy_generator_dists_and_optimizer: selected_tagged_19_layers_custom_DIST_coefficients_and_SGD_authenticate_generator_runtime_and_exact_schedule_before_lock
+    initialization_choice: tagged_normal_initialization_with_fixed_seed_42_disclosed_adaptation_no_restarts
     true_test_image_or_true_test_features_used_in_optimization: forbidden
     example_selection_after_results: forbidden
   convenient_model_or_modern_framework_substitution: forbidden
@@ -273,6 +556,8 @@ qualitative_reporting:
   words_comparable_similar_or_replicated_as_quantitative_conclusions: forbidden
 
 comparability_policy:
+  selected_state: not_evaluable_missing_outcome_independent_margin
+  margin: null
   applicable_findings: [finding_a, finding_c, finding_e]
   allowed_frameworks: [non_inferiority, equivalence]
   required_before_lock:
@@ -304,14 +589,18 @@ primary_inference:
   participant_direction_reporting: show_all_five_source_level_effects
   participant_population_generalization: forbidden
   forbidden_independent_units: [directed_dyads, images, repetitions, voxels, feature_units, distractor_comparisons, bootstrap_draws]
-  multiplicity: unresolved_required_before_lock_for_each_quantitative_family
+  multiplicity: no_added_hypothesis_tests_descriptive_pointwise_intervals_only_no_simultaneous_or_population_claim
+  image_bootstrap_choice: synchronized_1000_draws_NumPy_RandomState_42_percentile_2_5_97_5_conditional_on_fixed_participants_and_candidate_universe
+  primary_cross_layer_choices: A_pattern_and_profile_equal_19_layer_means_C_equal_8_AlexNet_layer_mean_pixel_separate
+  optional_permutation_tests: not_adopted
 
 source_style_dyadic_bootstrap:
   role: secondary_descriptive_source_fidelity_analysis
   resamples: 1000
   source_ids_and_target_ids_resampled_separately: true
   self_pairs_excluded: true
-  exact_sampling_and_weighting_rule: authenticate_from_source_code_before_lock
+  exact_sampling_and_weighting_rule: independent_source_target_proposals_reject_self_until_20_rows_retain_duplicate_edges_one_row_per_original_dyad
+  delegated_seed_and_bounded_failure: seed_42_cap_1000_proposals_per_draw_missing_dyad_or_cap_failure_interval_not_evaluable
   may_replace_source_participant_primary_aggregation: false
   may_treat_twenty_edges_as_independent: false
   may_support_population_generalization: false
@@ -358,6 +647,8 @@ ood_and_artificial_image_boundary:
   published_category_level_description_allowed: true
   regular_image_result_may_support_ood_claim: false
   protocol_lock_may_unlock_ood: false
+  fixed_regular_measurement_ancestry_exception: outputs/protocol_provider_beta_amendment_2026-09-30.yaml
+  ancestry_exception_grants_direct_OOD_access: false
   future_execution_requires: explicit_scientist_decision_new_role_isolated_handoff_and_regenerated_pre_access_contract
 
 forbidden_actions:
@@ -376,8 +667,8 @@ forbidden_actions:
   - use_ep21_results_to_rank_score_prune_promote_or_audit_ep04_candidates
 
 completion_and_stopping:
-  current_status: contract_authoring_only
-  no_empirical_attempt_has_been_authorized: true
+  current_status: regular_features_complete_two_bounded_decoder_tranches_complete_separate_first_layer_continuation_authorized
+  no_empirical_attempt_has_been_authorized: false
   complete_when:
     - qualification_and_pipeline_conformance_are_reported
     - every_shared_lock_field_is_resolved
@@ -406,3 +697,41 @@ claim_limits:
     - general_scanner_or_site_invariance
     - brain_to_brain_communication
     - ep04_confirmation_or_audit
+
+implementation_bindings: outputs/protocol_implementation_bindings_2026-09-30.yaml
+
+feature_preparation_authority_2026_10_02:
+  authorization: outputs/regular_vgg19_export_authorization_2026-10-02.json
+  source: scientist_approve_and_continue_to_exact_combined_proposal
+  approved_regular_image_feature_execution: true
+  protocol_lock_completion_authorized: true
+  neural_execution_authorized: false
+  OOD_execution_authorized: false
+  resources: {jobs: 1, gpus: 1, cpus: 4, memory_gib: 16, minutes: 480, durable_bytes: 1600000000000, scratch_bytes: 340000000000}
+  prelude_and_protocol_outputs_included_in_caps: true
+  no_automatic_extension_or_resubmission: true
+
+feature_preparation_continuation_authority_2026_10_05:
+  authorization: outputs/regular_vgg19_continuation_authorization_2026-10-05.json
+  source: scientist_agree_please_go_ahead_to_named_EP04_and_EP21_proposals
+  scope: complete_regular_VGG19_features_only_after_terminal_46424955
+  original_authorizations_budgets_claim_lock_and_bindings_preserved: true
+  additional_jobs:
+    publish_sub05: {jobs: 1, gpus: 0, cpus: 1, memory_gib: 4, minutes: 120, internal_seconds: 7080}
+    remaining_export: {jobs: 1, gpus: 1, cpus: 4, memory_gib: 16, minutes: 600, internal_seconds: 35880}
+  additional_maximum_CPU_hours: 42
+  additional_maximum_GPU_hours: 10
+  episode_feature_durable_bytes_including_preserved_partial: 1700000000000
+  scratch_bytes_unchanged: 340000000000
+  reuse_sealed_partitions: [sub-01, sub-03]
+  publish_complete_retained_staging: sub-05
+  new_forward_partitions: [sub-06, sub-07, tau_train, tau_test]
+  new_forward_images: 10545
+  staging_release: only_exact_partition_after_complete_fsynced_size_and_header_index_verified_durable_publication_record
+  old_durable_partial_preserved: true
+  second_stage_requires_successful_publication_and_staging_release: true
+  implementation_and_runtime: reuse_original_lock008_conformance007_and_accepted_loaded_runtime
+  regular_image_feature_execution_authorized: true
+  neural_execution_authorized: false
+  fitting_scoring_reconstruction_external_site_and_OOD_execution_authorized: false
+  automatic_retry_extension_or_successor: prohibited

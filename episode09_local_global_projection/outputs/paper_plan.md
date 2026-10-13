@@ -1,5 +1,170 @@
 # EP09 paper plan
 
+## October 6 public-source lead — brain 236174 and provider key 16124
+
+The original [TeraVR Methods, Data preparation](https://www.nature.com/articles/s41467-019-11443-y)
+explicitly associates brain 236174 with `Gnb4-IRES2-CreERT2;Ai139`. The
+[BrainTell gallery](https://braintell.org/projects/fullmorpho/) lists that exact
+brain ID and links its [genetic-information table](https://braintell.org/projects/fullmorpho/genetic_info.txt).
+The table's `BrainID / GeneticBackground` row is
+`16124 / Gnb4-IRES2-CreERT2;Ai139-hyg_236174-16124`. This supplies an
+original-provider alias/genotype lead for the exact-key mismatch below.
+
+**Identity/genotype reconciliation completed, October 6 Pacific:** the
+[direct metadata observation from job 46842156](runs/metadata_feasibility/attempt002/provider_alias236174_observation_job_46842156.json)
+returned exactly one matching supplement row, row 81. It explicitly records
+Animal ID `236174`, Image ID `16124`, fMOST and
+`Gnb4-IRES2-CreERT2;Ai139`, with `BIL meta (20231223)` provenance. Its
+target description is `Claustral and cortical Car3+ IT`, referencing Peng
+et al. 2021, and its source locator is
+[`mouseID_236174`](https://download.brainimagelibrary.org/7f/53/7f537a62e521a26a/mouseID_236174/).
+The animal ID is absent from the existing 38-animal join. This authenticates
+the previously unresolved identity/genotype; it does not add qualified
+primary-population IT support, missing layers or donor pools. The current
+12-driver-animal/two-potential-donor-animal bound remains unchanged.
+
+The
+[PMC copy of the primary TeraVR Methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC6677772/)
+was retrieved successfully and confirms the brain/genotype statement above.
+The saved [public metadata schema](runs/metadata_feasibility/attempt002/public_metadata_schema.json)
+separately defines column A as `Animal ID` and column B as `Image ID`; the
+current join code matches source brain IDs only against B. The bounded
+[`reconcile_brain236174_provider_alias.py`](tools/reconcile_brain236174_provider_alias.py)
+confirmed the explicit A/B pair without opening source-cell or morphology
+payloads. The original brain key `236174` and frozen join/summary artifacts
+remain unchanged. Reuse the observation as correction evidence; if a later
+operation needs an integrated join, create a separate derived output with
+explicit original brain, animal and image fields. Do not add a general
+fallback join rule or borrow EP11 data. The
+BrainTell gallery's 45-neuron listing also differs from the current 43-cell
+SEU-A1876 metadata group, so gallery counts cannot establish cell-level lineage.
+
+## October 6 metadata feasibility and unadopted exploratory route
+
+**Verified correction:** EP09's own
+[`genotype_support_summary.json`](runs/metadata_feasibility/attempt002/genotype_support_summary.json)
+reports 38 matched brains and 38 distinct animals. Six Cux2, five Plxnd1 and
+one Tlx3 animals have documented cortical IT-driver support: at most 12 before
+source/layer, donor and quality restrictions, not 12–13 verified eligible
+animals. The preserved exact-key join still lists brain 236174 / 43 cells
+as unmatched, but the separate original-provider observation above now
+authenticates its animal/image/genotype identity. EP11 data, roles and results
+were not used. The correction does not enlarge the primary IT-driver cohort.
+
+The active policy already contains `stop_or_downgrade_to_grouped_development_evidence`.
+That permits proposing the route below; it does not itself remove the active
+12/8 requirement or approve any workload. Twenty is a registered design
+minimum without a demonstrated power justification in the reviewed records.
+The proposed nine-animal floor is also not a precision guarantee.
+
+**Completed refinement from existing permitted metadata; no new count job.**
+The October 3 exact-key join already retains all necessary per-animal
+`source_layer_counts`. Reading those small saved tables is within the existing
+metadata-only scope and the instruction to continue; it needs no new access
+approval. The table below is a manual transcription and cardinality deduction
+from [that retained join](runs/metadata_feasibility/attempt002/brain_genotype_join.json),
+not a new workbook read or scientific-code run. No additional entrypoint,
+allocation or compute budget is needed to establish this bound; the existing
+join and genotype-summary tools and their outputs remain unchanged.
+
+Preserve exact animal, recorded source region, recorded layer and genotype
+keys. The provider's non-axon target descriptions support Cux2 L2/3 or L4,
+Plxnd1 L2/3 or L5, and Tlx3 L5. Missing or incompatible layers are not
+authenticated IT membership through that driver annotation. Genotype is only
+the available coarse independent class: any required finer class can split
+these pools, so these counts remain upper bounds even before calipers.
+The policy's actual `minimum_donors_per_pool` remains unset. Its
+`minimum_allowed_value: 4`, together with no self donor, means a potentially
+usable exact stratum needs at least five recorded cells even at that floor.
+No donor threshold is selected by checking this necessary condition.
+
+| Animal / image ID | Exact genotype | All recorded cells | Largest driver-compatible exact source/layer stratum | Strata with at least five cells |
+| --- | --- | ---: | ---: | ---: |
+| 314107 / 17300 | Plxnd1-CreER;Ai82;Ai140 | 6 | 2 | 0 |
+| 325875 / 17543 | Tlx3-Cre_PL56;Ai82;Ai161 | 10 | 2 | 0 |
+| 351325 / 17786 | Plxnd1-CreER+PhiC31-neoAi166 | 4 | 0 | 0 |
+| 351327 / 17787 | Plxnd1-CreER;Ai166 | 12 | 1 | 0 |
+| 351331 / 17788 | Plxnd1-CreER+PhiC31-neo;Ai166 | 4 | 1 | 0 |
+| 374706 / 18461 | Cux2-CreERT2;Ai166 | 12 | 3 | 0 |
+| 374707 / 18452 | Cux2-CreERT2;Ai166 | 7 | 1 | 0 |
+| 374712 / 18453 | Cux2-CreERT2;Ai166 | 105 | 9 | 7 |
+| 380470 / 191812 | Plxnd1-CreER;Ai166 | 32 | 1 | 0 |
+| 382148 / 18864 | Cux2-CreERT2;Ai166 | 115 | 7 | 3 |
+| 420489 / 191801 | Cux2-CreERT2;Ai166 | 5 | 1 | 0 |
+| 423019 / 191803 | Cux2-CreERT2;Ai166 | 1 | 0 | 0 |
+
+Zero in the largest-stratum column denotes no compatible recorded layer,
+not verified biological absence.
+The only strata passing this cardinality condition are:
+
+| Animal | Exact source / layer : recorded cells | Total cells in these strata |
+| --- | --- | ---: |
+| 374712 | MOp / L2/3: 9; MOs / L2/3: 9; SSp-bfd / L4: 7; SSp-m / L4: 9; VISp / L2/3: 9; VISp / L4: 5; VISrl / L2/3: 5 | 53 |
+| 382148 | MOp / L2/3: 6; MOs / L2/3: 7; SSs / L2/3: 6 | 19 |
+
+Thus **at most two authenticated animals and 72 recorded cells in ten strata**
+could contribute under the currently documented driver-compatible exact keys.
+These are not qualified donor pools or a selected cohort. Stable paired cell
+identity and duplicate resolution, finer non-axon class, soma-position and
+quality calipers, morphology integrity, joint donor support, coordinate
+validity, axon observability and positive/negative target support remain
+unresolved. No morphology, axonal value, EP11 crosswalk or closed outcome was
+read. Those further restrictions can only reduce the bound for the current
+keys; authentic corrections or new independent annotations could change the
+keys or labeling route and therefore require a fresh feasibility assessment.
+In particular, missing layers remain unresolved. Brain 236174's
+animal/image/genotype mapping is authenticated above and no longer a missing
+provider fact; incorporation into a future derived join remains an engineering
+step, without altering the preserved historical artifact.
+For example, Plxnd1 animal 380470 has five missing-layer cells alongside one
+L5 cell in each of SSp-m and SSs. Authentic layer recovery could change those
+pools; the missing cells cannot be assigned L5 just to meet the donor floor.
+
+**Recommendation after the refinement:** the current annotation route
+supports neither the original 12/8 study nor the proposed nine-animal
+exploratory route. Do not launch a fit or lower the proposed floor to make
+these records pass. The draft route below remains unadopted and conditional
+on additional authenticated support; it is not a ready next experiment.
+Additional support must address source/layer/class donor cardinality, not
+only increase the raw animal count. A future passing metadata count alone
+would still not authorize payload access or a fit.
+
+The proposed empirical route would have these concrete limits:
+
+- Keep the correct-recipient versus coherent matched-donor dendrite contrast
+  and the context benchmark; do not replace a failed donor comparison with
+  a more favorable benchmark. Preserve recipient targets/missingness and
+  forbid axon-derived IT labels and matching predictors.
+- Hold out one whole animal at a time. Fit feature transformations, nuisance
+  adjustment, donor-representation rules, models and tuning on training
+  animals only. Use held-out recipient/donor dendritic metadata only for
+  the frozen outcome-blind substitution; never its axonal outcomes for
+  model or target selection. Targets must retain the existing training-fold
+  positive/negative-group requirements.
+- Nine animals leave eight in an outer training fold, which meets only the
+  nominal eight-training-group floor for optional shared Platt calibration.
+  Inner grouped fits can have fewer groups; a calibration method is available
+  only where all of its own support rules pass. Do not silently lower the
+  four-positive/four-negative support requirement or treat nine as sufficient
+  for all targets, tuning folds or explanatory analyses.
+- Report every animal's paired effect and an equal-animal aggregate, target
+  support, failures and influence. Treat cross-validation as exploratory
+  development evidence in this exposed lineage, never an independent audit,
+  confirmation, equivalence result or population-level mechanism proof.
+  Insufficient donor/target support remains unavailable, not a zero effect.
+- Before any outcome access, reconcile the shared EP09/10/11 exposure ledger
+  and explicitly amend the original audit-specific decision and qualification
+  obligations, including the stopped simulation program. This draft neither
+  launches nor silently waives those obligations. Cost the complete empirical
+  workload before adopting it; no fit budget is invented here.
+
+The metadata refinement above is complete under existing access; it is not
+awaiting approval. Any future exploratory amendment remains a separate
+scientific decision after adequate support is demonstrated. The active 12/8
+roles, original budget, outcome boundaries and scientific thresholds remain
+unchanged. No roles, features, targets, models or audit openings were produced
+by this revision.
+
 ## Working title
 
 **Within-class dendritic residuals predict exact long-range target vectors in

@@ -1,0 +1,19 @@
+{
+  "schema_version": "ep21.reviewed_startup_replacement.v1",
+  "reviewer": "coordinating_agent",
+  "reviewed_utc": "2026-10-07T09:06:15.279268+00:00",
+  "predecessor_job_id": "46880582_12",
+  "predecessor_allocation_job_id": "46880582",
+  "work_item_id": "work_0013",
+  "array_index": 12,
+  "failure_reason": "required_deadline_partial_fixture_precondition",
+  "shard_directory_absent": true,
+  "request_or_status_created": false,
+  "scientific_payload_admitted": false,
+  "optional_children_started": false,
+  "automatic_retry": false,
+  "fix_evidence": "The negative test now preserves completed fixture worker200_0 and coherently replays a distinct failed terminal for200_4; independent static review confirmed the intended failed_parent guard is reached without production relaxation. Runtime rerun pending in replacement.",
+  "terminal_evidence": "Coordinator observed sacct -X at2026-10-07T09:02:20Z:46880582_12/raw46880582 FAILED1:0,12seconds,1CPU; the12seconds are charged in submission.jsonl.",
+  "absence_evidence": "Coordinator exact-path metadata inspection: shards/work_0013 absent and not a symlink; module_path_repair_job_46880582 absent. Closed stdout contains allocation header only; required tests errored before optional children and empirical worker.",
+  "user_authorization_context": "Existing authorization to resume and complete jobs includes this diagnosed pre-admission engineering replacement within the same500CPU-hour,500GB,maximum8worker grant. Preserve failed attempt, immutable authority/manifest, original scientific assignment and all earlier costs."
+}

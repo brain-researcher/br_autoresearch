@@ -84,3 +84,11 @@ generalizability, and descriptive analysis-ecology associations. It cannot
 establish temporal pre-valuation anatomy, a causal neural mechanism, a stable
 trait, independent replication across teams, causal effects of self-selected
 methods, or individual pipeline rankings from group maps.
+
+## 2026-10-02 local scope review
+
+Scoped document review separates cross-run prediction from same-data team evidence and removes unsupported priority/assumption language. No new scientific test was run; operative policy and ASTRA are unchanged. See [review (consolidated)](paper_plan.md).
+
+## 2026-10-02 figure review
+
+Viewed the former v2 PNG and regenerated the question figure with built-in imagegen. Inspected the final 1672 × 941 v3 after removing an incorrect generated decision-bias sentence. The new figure centers choices/RT, the existing cognitive factorial, within-participant shifts and dependent analyst ecology; no invented activation maps or successful outcomes. Exact generation/edit prompts are saved; earlier assets remain. GOAL, paper plan and output index now link v3. Figure-only change: no scientific policy, data access, runtime, or Git operation.

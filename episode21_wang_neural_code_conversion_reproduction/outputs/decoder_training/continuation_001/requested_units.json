@@ -1,0 +1,74 @@
+{
+  "schema_version": "ep21.decoder_continuation.v1",
+  "status": "admitted_pending",
+  "authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training_continuation_authorization.json",
+  "allocation": {
+    "job_id": "46726793",
+    "hostname": "sh04-04n24",
+    "allocated_cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "time_limit_seconds": 86400,
+    "job_end_epoch": 1791353738
+  },
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 7,
+    "minutes": 1440,
+    "gpus": 0,
+    "durable_bytes": 1000000000,
+    "scratch_bytes": 2000000000
+  },
+  "max_work_seconds": 86088.54878211021,
+  "participant": "sub-01",
+  "training_role": "subject_unique",
+  "training_images": 4712,
+  "training_repetitions": 18843,
+  "layer": "conv1_1",
+  "channel": 0,
+  "requested_spatial_Fortran_interval": [
+    64,
+    50176
+  ],
+  "units_requested": 50112,
+  "retained_prefix_reference": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/retained_prefix_001",
+  "retained_prefix_completed_units": 1216,
+  "shared_state_reference": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/retained_prefix_001/shared_training_state.npz",
+  "training_row_binding_reference": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/retained_prefix_001/training_row_binding.json",
+  "committed_spatial_Fortran_interval": [
+    64,
+    64
+  ],
+  "remaining_spatial_Fortran_interval": [
+    64,
+    50176
+  ],
+  "remaining_interval_status": "exact_uncommitted_coverage",
+  "completed_units_is_lower_bound": false,
+  "repair_requires_new_authorization": true,
+  "feature_admission": {
+    "mode": "approved_complete_regular_export",
+    "physical_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_sealed/sub-01",
+    "global_feature_export_completion_claimed": true
+  },
+  "original_neural_values_read": false,
+  "retained_neural_state_read": false,
+  "regular_feature_values_read": false,
+  "predictions_or_scores_computed": false,
+  "tau_train_values_read": false,
+  "tau_test_values_read": false,
+  "OOD_access": false,
+  "complete_decoder": false,
+  "successor_authorized": false,
+  "automatic_retry": false,
+  "original_budget_consumption_preserved": true,
+  "fragment": "conv1_1_channel0.h5",
+  "memory_limit_is_not_fit_guarantee": true,
+  "bank_bytes": 945717248,
+  "block_timings": {
+    "normalization_correlation_RHS_seconds": 0.0,
+    "select_solve_seconds": 0.0,
+    "publication_seconds": 0.0
+  }
+}

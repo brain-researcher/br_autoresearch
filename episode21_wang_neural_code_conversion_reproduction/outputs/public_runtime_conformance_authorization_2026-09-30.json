@@ -1,0 +1,25 @@
+{
+  "record_role": "scientist_authorized_bounded_public_runtime_conformance",
+  "recorded_on": "2026-10-01",
+  "scientist_response": "ok approve!",
+  "approved": true,
+  "purpose": "public_runtime_conformance",
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 4,
+    "minutes": 30,
+    "gpus": 0,
+    "durable_bytes": 10000000,
+    "scratch_bytes": 2000000000
+  },
+  "approved_proposal": "outputs/pipeline_conformance/proposed_public_runtime_conformance_allocation_2026-09-30.md",
+  "allow_LAION_image_values": false,
+  "allow_neural_values": false,
+  "allow_OOD": false,
+  "allow_empirical_fitting_scoring": false,
+  "protocol_lock_or_empirical_launch_authorized": false,
+  "successor_authorized": false,
+  "single_job_and_stop": "one job; caps stop; no automatic extension or duplicate/resubmission",
+  "scheduler_rule_10": "execution must aggregate genuinely required work into >=10 minutes; no padding or additional experiments"
+}

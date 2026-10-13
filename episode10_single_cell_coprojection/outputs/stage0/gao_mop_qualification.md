@@ -1,11 +1,11 @@
 # Lean Gao MOp qualification — 2026-09-26
 
-**Decision:** Gao MOp passes the released brain/specimen-count and outcome-blind
-soma common-support gates. A 12-development/8-final fMOST/sample-unit split is
-now frozen, with all 15 EP11-overlap units left unassigned. Independent-animal,
-full-reconstruction, and empirical target-observation reliability remain
-unresolved. The target rule itself is frozen prospectively, but outcome search
-remains closed.
+**Decision:** Gao MOp passed the released brain/specimen-count and outcome-blind
+soma common-support gates, but failed the prospectively frozen development
+structural/observation gate: 5/200 cells were globally eligible versus the
+required 190, and none of 12 per-group minima passed. This run must revise or
+stop before candidate search. The 8 final and 56 unassigned units remain
+unopened; all 15 EP11-overlap units remain unassigned.
 
 ## Official source and access boundary
 
@@ -30,8 +30,8 @@ used in selection.
 Slurm job `45396282` later requested bytes 0--4095 from each of the 837
 selected SWC endpoints and consumed only the first validated canonical soma
 root row. It did not retain the remainder of any response or open axon-tree,
-target, branch, terminal, bouton, voxel, or final-group outcomes. Complete SWC
-files have not been acquired.
+target, branch, terminal, bouton, voxel, or final-group outcomes at that stage.
+The later frozen development-only execution is recorded below.
 
 ## Metadata support
 
@@ -54,11 +54,11 @@ brain/specimen-unit interpretation. Cross-animal replication is not yet
 established.
 
 The provider describes the release as complete axon reconstructions, while the
-cell metadata distinguish only `Axon_and_dendrite` from `Axon_only`. EP10 has
-now frozen its own full-tree structural QC and terminal-bearing target rule,
-but it has not tested those rules on complete trees. Unknown or incomplete
-observation cannot be assigned a reconstruction-level zero; for an eligible
-cell, zero means only `not_observed_in_the_eligible_released_reconstruction`.
+cell metadata distinguish only `Axon_and_dendrite` from `Axon_only`. EP10 froze
+its own full-tree structural QC and terminal-bearing target rule before testing
+it on complete trees. Unknown or incomplete observation cannot be assigned a
+reconstruction-level zero; for an eligible cell, zero means only
+`not_observed_in_the_eligible_released_reconstruction`.
 
 ## Outcome-blind soma geometry and role freeze
 
@@ -102,7 +102,7 @@ reconstruction-scope counts, provisional independent label, and EP11 overlap.
 That table records the pre-freeze qualification state; the frozen-role ledger
 is authoritative for current EP10 roles.
 
-## Next gate
+## Development structural-gate result
 
 The [target vocabulary and observation rule](projection_observation_contract.yaml)
 are frozen, including laterality, boundaries, terminal-bearing arbor versus
@@ -110,13 +110,19 @@ passing cable, unknown handling, and the 16-coordinate primary exact panel.
 The [200-file development manifest](gao_mop_development_manifest.csv) contains
 only frozen common-support cells and no unsupported, final, unassigned, or
 EP11-shared rows. Outcome-blind Slurm job `45412269` reproduced that manifest
-and completed the synthetic exact-normalizer throughput benchmark. Before
-candidate co-projection effects are computed, EP10 must acquire only that
-development manifest through an attended authenticated Sherlock DTN session
-and run frozen structural/reconstruction QC. Primary modeling is restricted to
-the fixed 200-cell common-support domain;
-QC must retain at least 190 cells and every frozen per-group minimum across all
-12 development groups, or EP10 revises/stops without replacement. A zero means
-not observed in the eligible released reconstruction rather than biological
-absence. It must then establish precision and 99-null cost. Final-role
-morphology and all final projection outcomes remain unopened.
+and completed the synthetic exact-normalizer throughput benchmark. Service job
+`45438445` then acquired exactly those 200 development trees; constructor job
+`45438680` found 5 globally eligible cells and 195 unknown/excluded cells. The
+exclusions were 141 tree/parser failures, 22 annotation-zero axons, 6
+outside-volume axons, and 26 nongrey terminal leaves. All 12 group minima
+failed.
+
+Diagnostic job `45439110` showed that all 141 parser failures were disallowed
+transitions out of provider types 10, 11, or 12. Those tags occur internally
+in the provider trees, while the frozen contract defines them as terminal-only
+markers. This is a resource/contract incompatibility, not a constructor crash.
+Even if all parser failures were ignored, the maximum possible eligibility
+would be 146/200, still below 190. The frozen action is therefore revise or
+stop without replacement, promotion, tag reinterpretation, rule or threshold
+relaxation. Candidate search was not started, and final-role morphology and all
+final projection outcomes remain unopened.

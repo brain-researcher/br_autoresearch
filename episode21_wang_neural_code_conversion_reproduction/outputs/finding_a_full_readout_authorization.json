@@ -1,0 +1,136 @@
+{
+  "schema_version": "ep21.finding_a_full_readout.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0724-pacific--finding_a_feature_decoding--full-original-readout-selected",
+  "proposal_source": "outputs/experiment_log.md#2026-10-11-0656-pacific--finding_a_feature_decoding--prepare-phase-restricted-runner-and-dependency-scripts",
+  "partition": "russpold",
+  "phases": [
+    "decode",
+    "draw",
+    "finalize"
+  ],
+  "operations": {
+    "decode": "run_full_finding_a_decoded_point",
+    "draw": "run_full_finding_a_draw_batch",
+    "finalize": "finalize_full_finding_a_readout"
+  },
+  "jobs": 65,
+  "draw_tasks": 63,
+  "maximum_concurrent_draw_tasks": 4,
+  "numeric_threads": 1,
+  "test_images": 224,
+  "layers": 19,
+  "total_slots": 855,
+  "decoded_slots": 703,
+  "unavailable_slots": 152,
+  "image_bootstrap_draws": 1000,
+  "dyadic_bootstrap_draws": 1000,
+  "draw_batch_size": 16,
+  "model_policy": "original_locked",
+  "production_training": false,
+  "model_publication": false,
+  "decoded_feature_publication": true,
+  "scientific_scoring": true,
+  "automatic_retry": false,
+  "resumable": false,
+  "resources": {
+    "decode": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 3,
+      "memory_gib": 16,
+      "minutes": 4320,
+      "deadline_seconds": 255600,
+      "rss_limit_bytes": 16106127360
+    },
+    "draw": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 3,
+      "memory_gib": 16,
+      "minutes": 1440,
+      "deadline_seconds": 84600,
+      "rss_limit_bytes": 16106127360
+    },
+    "finalize": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 1,
+      "memory_gib": 7,
+      "minutes": 120,
+      "deadline_seconds": 6900,
+      "rss_limit_bytes": 6979321856
+    }
+  },
+  "input_scope": {
+    "decode": {
+      "tau_test_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "common_true_features": "tau_test",
+      "decoder_payload_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "normalization_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "original_content_models": 20,
+      "original_non_sub01_brain_models": 12,
+      "tau_train_image_ID_metadata": true,
+      "training_response_matrices": false,
+      "tau_train_response_values": false,
+      "regular_images": false,
+      "OOD": false
+    },
+    "draw": {
+      "published_decoded_point": true,
+      "common_true_features": "tau_test",
+      "models": false,
+      "neural_values": false,
+      "decoder_coefficients": false,
+      "OOD": false
+    },
+    "finalize": {
+      "published_decoded_point": true,
+      "all_63_draw_batches": true,
+      "models": false,
+      "neural_values": false,
+      "decoder_coefficients": false,
+      "true_feature_values": false,
+      "OOD": false
+    }
+  },
+  "purpose": "One separately selected full original available-model Finding A readout. Keep all855 original slots,703 decoded and152 unavailable, all224 images/all19 layers, original1000 image and1000 dyadic draws, and incoming summaries. No new scientific model or outcome-based selection.",
+  "activation_requirements": "Finite resource and data-role selection is recorded in approval_source, GOAL, DATASETS and SEARCH_POLICY. Independent source review passed. Bind actual Slurm IDs for all32 original model parents before releasing held submissions. All26 existing component/admission methods and ASTRA must pass inside the substantive decode parent before empirical access. Submission itself does not establish test completion or a scientific finding.",
+  "dependency_policy": "Coordinator writes full001/dependency_bindings.json only from actual returned job IDs. Decode records disjoint afterok_job_ids for live/pending original models and completed_model_job_ids for parents already verified COMPLETED0:0; their union must contain all32 distinct original model parents. Only the live subset goes into sbatch afterok; omit this option if all32 have already completed. Never attach an expired historical Slurm dependency. Submit draw array0-62%4 afterok decode and finalizer afterok the whole array while those predecessors are still active. Use kill-on-invalid-dep and no-requeue. Finalizer additionally requires every successful closed draw report. Fixed loaders still require all32 exact original model artifacts. No invented IDs, polling service, automatic retry or successor.",
+  "resource_basis": "Source estimates: approximately630.31GB numerical collection,63.06TB logical point/draw replay and2.15billion numerical block calculations; largest16-draw scorer states approximately2.6GiB before overhead. Logical replay is not measured network traffic. End-to-end time, RSS and shared-file contention are unmeasured; the selected ceilings do not guarantee completion.",
+  "accounting": "Reserve216CPUh for decode,4536CPUh for63 draw tasks and2CPUh for finalizer:4754 additional allocatedCPUh maximum, noGPU. Every task has one absolute StartTime deadline bounded by EndTime minus60, including its checks/children. Preserve every existing reservation, completed model, failed attempt and consumed charge, including the separately submitted216CPUh partial first readout. Record actual allocated usage and do not double-charge children.",
+  "file_policy": "Isolated empirical children set768GiB soft RLIMIT_FSIZE and default SIGXFSZ before scientific imports. Native file-cap failure is fatal and preserves incomplete artifacts. Aggregate full001 storage counts each(st_dev,st_ino) once, including the shared stage/final HDF inode; phase operational64MiB, compact batch32MiB and local scratch4GiB caps are separate. No second full collection copy is created.",
+  "interpretation": "Training completion, decoded-point publication and completed individual draw batches are not complete scientific inference. Full three-method Finding A and comparability remain not evaluable under the original missing-pair/margin rules. Within-source/content estimates retain their original support requirements; available brain edges remain descriptive. No OOD, B/C, normalization amendment, retraining or follow-up is activated.",
+  "sherlock_storage_note": "The2026-10-11 sh_quota SCRATCH access failure is recorded in the proposal log. This plan already used established OAK and L_SCRATCH_JOB paths; no SCRATCH access, probe or filesystem substitution is selected. The missing SCRATCH quota is not evidence of usable space.",
+  "selection_basis": "Standing scientist instructions to finish original EP01-EP21, resume all possible work, parallelize and increase compute. This activates original fixed-panel execution only, preserving all missing-pair/claim rules and leaving separate scientific follow-ups unactivated."
+}

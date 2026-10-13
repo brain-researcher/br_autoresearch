@@ -1,0 +1,756 @@
+{
+  "schema_version": "ep21.closed_io_fragment_inspection.v1",
+  "observed_utc": "2026-10-08T00:36:00.012358+00:00",
+  "allocation": {
+    "job_id": "46945868",
+    "hostname": "sh04-04n23",
+    "caller_verified_end_epoch": 1791426941.0
+  },
+  "max_seconds": 600,
+  "block_units": 256,
+  "status": "stopped_timed_out",
+  "fragments": [
+    {
+      "work_item_id": "work_0032",
+      "fragment": "outputs/decoder_training/full_continuation_001/shards/work_0032/channels.h5",
+      "status": "consistent",
+      "inspectable": true,
+      "inspection_complete": true,
+      "reported_committed_units": 770560,
+      "reported_committed_units_checked": 770560,
+      "observed_marker_2_units": 770560,
+      "ambiguous_marker_2_units_checked": 0,
+      "channels": [
+        {
+          "layer": "conv1_1",
+          "channel": 20,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 21,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 22,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 23,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 24,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 25,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 26,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 27,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 28,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 29,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 30,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 31,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 32,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 33,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 34,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 35,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 17920,
+          "observed_marker_2_units": 17920,
+          "ambiguous_publication_observation": {
+            "interval": [
+              17920,
+              18176
+            ],
+            "marker_0_units": 256,
+            "marker_2_units": 0,
+            "marker_2_units_with_valid_coefficients": 0,
+            "historical_durability_reconciled": false
+          }
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 36,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 37,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 38,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 39,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        }
+      ],
+      "historical_closeout_errors": [
+        {
+          "stage": "fragment_fsync",
+          "affects_fragment": true,
+          "error_type": "OSError",
+          "error": "[Errno 5] Input/output error"
+        },
+        {
+          "stage": "fragment_close",
+          "affects_fragment": true,
+          "error_type": "RuntimeError",
+          "error": "Can't decrement id ref count (file write failed: time = Wed Oct  7 15:06:46 2026\n, filename = '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0032/channels.h5', file descriptor = 3, errno = 5, error message = 'Input/output error', buf = 0x1c879e8, total write size = 96, bytes this sub-write = 96, bytes actually written = 18446744073709551615, offset = 0)"
+        },
+        {
+          "stage": "fragment_accounting",
+          "affects_fragment": true,
+          "error_type": "BrokenPipeError",
+          "error": "[Errno 108] Cannot send after transport endpoint shutdown: '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0032/channels.h5'"
+        }
+      ],
+      "historical_uncertain_publication": {
+        "participant": "sub-05",
+        "layer": "conv1_1",
+        "channel": 35,
+        "spatial_Fortran_interval": [
+          17920,
+          18176
+        ],
+        "phase": "completion_marker_fsync",
+        "error_type": "OSError"
+      },
+      "repair_coverage_written": false,
+      "original_artifacts_modified": false,
+      "retry_authorized": false,
+      "reuse_authorized": false
+    },
+    {
+      "work_item_id": "work_0033",
+      "fragment": "outputs/decoder_training/full_continuation_001/shards/work_0033/channels.h5",
+      "status": "consistent",
+      "inspectable": true,
+      "inspection_complete": true,
+      "reported_committed_units": 632320,
+      "reported_committed_units_checked": 632320,
+      "observed_marker_2_units": 632320,
+      "ambiguous_marker_2_units_checked": 0,
+      "channels": [
+        {
+          "layer": "conv1_1",
+          "channel": 40,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 41,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 42,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 43,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 44,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 45,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 46,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 47,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 48,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 49,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 50,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 51,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 52,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 30208,
+          "observed_marker_2_units": 30208
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 53,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 54,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 55,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 56,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 57,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 58,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 59,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        }
+      ],
+      "historical_closeout_errors": [
+        {
+          "stage": "fragment_fsync",
+          "affects_fragment": true,
+          "error_type": "OSError",
+          "error": "[Errno 5] Input/output error"
+        },
+        {
+          "stage": "fragment_close",
+          "affects_fragment": true,
+          "error_type": "RuntimeError",
+          "error": "Can't decrement id ref count (file write failed: time = Wed Oct  7 15:06:46 2026\n, filename = '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0033/channels.h5', file descriptor = 3, errno = 108, error message = 'Cannot send after transport endpoint shutdown', buf = 0x1827ce8, total write size = 96, bytes this sub-write = 96, bytes actually written = 18446744073709551615, offset = 0)"
+        },
+        {
+          "stage": "fragment_accounting",
+          "affects_fragment": true,
+          "error_type": "BrokenPipeError",
+          "error": "[Errno 108] Cannot send after transport endpoint shutdown: '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0033/channels.h5'"
+        }
+      ],
+      "historical_uncertain_publication": null,
+      "repair_coverage_written": false,
+      "original_artifacts_modified": false,
+      "retry_authorized": false,
+      "reuse_authorized": false
+    },
+    {
+      "work_item_id": "work_0047",
+      "fragment": "outputs/decoder_training/full_continuation_001/shards/work_0047/channels.h5",
+      "status": "timed_out",
+      "inspectable": true,
+      "inspection_complete": false,
+      "reported_committed_units": 723712,
+      "reported_committed_units_checked": 676096,
+      "observed_marker_2_units": 676352,
+      "ambiguous_marker_2_units_checked": 0,
+      "channels": [
+        {
+          "layer": "conv1_1",
+          "channel": 20,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 21,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 22,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 23,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 24,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 25,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 26,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 27,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 28,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 29,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 30,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 31,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 32,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 33,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 23808,
+          "observed_marker_2_units": 24064
+        }
+      ],
+      "historical_closeout_errors": [
+        {
+          "stage": "fragment_fsync",
+          "affects_fragment": true,
+          "error_type": "BrokenPipeError",
+          "error": "[Errno 108] Cannot send after transport endpoint shutdown"
+        },
+        {
+          "stage": "fragment_close",
+          "affects_fragment": true,
+          "error_type": "RuntimeError",
+          "error": "Can't decrement id ref count (file write failed: time = Wed Oct  7 15:06:46 2026\n, filename = '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0047/channels.h5', file descriptor = 3, errno = 108, error message = 'Cannot send after transport endpoint shutdown', buf = 0x203b628, total write size = 96, bytes this sub-write = 96, bytes actually written = 18446744073709551615, offset = 0)"
+        },
+        {
+          "stage": "fragment_accounting",
+          "affects_fragment": true,
+          "error_type": "BrokenPipeError",
+          "error": "[Errno 108] Cannot send after transport endpoint shutdown: '/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/shards/work_0047/channels.h5'"
+        }
+      ],
+      "historical_uncertain_publication": null,
+      "repair_coverage_written": false,
+      "original_artifacts_modified": false,
+      "retry_authorized": false,
+      "reuse_authorized": false,
+      "error_type": "InspectionTimeout",
+      "error": "closed-fragment inspection time limit reached",
+      "errno": null
+    }
+  ],
+  "original_artifacts_modified": false,
+  "repair_coverage_written": false,
+  "retry_authorized": false,
+  "reuse_authorized": false,
+  "elapsed_seconds": 600.0027525610003,
+  "peak_RSS_KiB": 52872,
+  "all_five_fragments_completely_checked": false,
+  "not_inspected_work_items": [
+    "work_0061",
+    "work_0062"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "ep21.content_measurement_proposal.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0143-pacific--content_resource_measurement--bounded-feature-io-repair-selected",
+  "operation": "measure_content_pair_four_updates",
+  "jobs": 1,
+  "partition": "russpold",
+  "source": "sub-03",
+  "target": "sub-01",
+  "updates": 4,
+  "block_units": 256,
+  "row_chunk_size": 512,
+  "backend": "sparse",
+  "device": "cpu",
+  "feature_read_mode": "bounded_column_stripe",
+  "feature_stripe_bytes": 67108864,
+  "automatic_retry": false,
+  "production_training": false,
+  "model_publication": false,
+  "resources": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 120,
+    "gpus": 0,
+    "deadline_seconds": 6300,
+    "rss_limit_bytes": 16106127360,
+    "durable_bytes": 16777216,
+    "scratch_bytes": 268435456
+  },
+  "input_scope": {
+    "normalization_participants": ["sub-01", "sub-03", "sub-05", "sub-06", "sub-07"],
+    "source_training": "sub-03",
+    "target_decoder": "sub-01",
+    "source_features": "sub-03",
+    "tau": false,
+    "OOD": false
+  },
+  "correction_report": "outputs/pipeline_conformance/converter_loss_correction_001/report.json",
+  "purpose": "Compare four disposable equivalent-input updates after the private bounded feature-read repair; operational time, memory and read counters only.",
+  "accounting": "One deliberately selected column-stripe-001 parent, maximum six additional allocated CPU-hours, charged once including all checks and companion metadata. Preserve prior measurement spending4.9116666667CPU-hours and separate decoder spending440.2625CPU-hours. No decoder balance transfer; no automatic retry or successor.",
+  "companion_scope": "Changed reader/admission and affected interface/loss/measurement checks; current EP21 ASTRA validation. Separately selected EP19 documentary filename mapping: focused changed-code checks and at most75seconds of development header/frame/NewSegment metadata, no binary values/heldout/WAY/model inputs, plus EP19 ASTRA validation. All serial within the same finite parent; no duplicate episode charge.",
+  "limitations": "No production model or resumable prefix, loss/score publication, tau/OOD access, snapshot benchmark or runtime guarantee. New feature buffers are at most64MiB stripe and one channel's packed finite flags. Scientific arithmetic, normalization and block/reduction order remain unchanged; equivalence and actual speed must be measured. Kernel read counters do not isolate physical storage traffic."
+}

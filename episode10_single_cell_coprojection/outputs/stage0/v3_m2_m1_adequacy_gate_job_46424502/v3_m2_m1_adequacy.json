@@ -1,0 +1,1352 @@
+{
+  "M0_full_refit_or_telemetry_opened": false,
+  "M1_summary_and_outer_predictions_opened": true,
+  "SWC_opened": false,
+  "development_cells": 194,
+  "development_groups": 12,
+  "equal_group_M1_minus_uniform_log_score_gain_bits_per_cell": 1.5953602605961161,
+  "equal_group_marginal_Brier_M1": 0.13959451726019392,
+  "equal_group_marginal_Brier_fixed_K_uniform": 0.16889926452670592,
+  "final_or_unassigned_opened": false,
+  "gate": "v3_M2_preaccess_M1_adequacy",
+  "marginal_Brier_improvement": 0.029304747266512,
+  "maximum_absolute_marginal_sum_K_error": 4.440892098500626e-15,
+  "per_group_M1_marginal_Brier": {
+    "212074": 0.12417368787542034,
+    "220187": 0.1710860760649717,
+    "220188": 0.17028149575419477,
+    "220190": 0.14054050901117757,
+    "221091": 0.29247993464617117,
+    "221225": 0.21062957364432555,
+    "221418": 0.12526080392705058,
+    "221514": 0.06461730416419768,
+    "221539": 0.08949235113085721,
+    "221588": 0.09378267449417639,
+    "221751": 0.082984551256965,
+    "233281": 0.10980524515281904
+  },
+  "per_group_fixed_K_uniform_marginal_Brier": {
+    "212074": 0.16796875,
+    "220187": 0.19174107142857144,
+    "220188": 0.1871875,
+    "220190": 0.170166015625,
+    "221091": 0.21957859848484848,
+    "221225": 0.23167067307692307,
+    "221418": 0.18912760416666666,
+    "221514": 0.07890625,
+    "221539": 0.109375,
+    "221588": 0.1640625,
+    "221751": 0.16856971153846154,
+    "233281": 0.1484375
+  },
+  "real_M2_outcomes_opened": false,
+  "status": "pass",
+  "target_calibration_in_the_large": {
+    "M1_equal_group_residual_by_target": {
+      "allen_313_MB__contralateral": -0.11153027973319639,
+      "allen_313_MB__ipsilateral": -0.012370530598201401,
+      "allen_31_ACA__contralateral": -0.15277164732841417,
+      "allen_31_ACA__ipsilateral": -0.10997015773958146,
+      "allen_354_MY__contralateral": -0.0430141632862748,
+      "allen_354_MY__ipsilateral": -0.06626881734102498,
+      "allen_453_SS__contralateral": 0.09684941205394337,
+      "allen_453_SS__ipsilateral": 0.2564803858876762,
+      "allen_477_STR__contralateral": -0.018836809285152127,
+      "allen_477_STR__ipsilateral": 0.14375730219965335,
+      "allen_549_TH__contralateral": -0.12993118775981904,
+      "allen_549_TH__ipsilateral": 0.02467723096592647,
+      "allen_771_P__contralateral": -0.08272045510056743,
+      "allen_771_P__ipsilateral": -0.059078049528717674,
+      "allen_993_MOs__contralateral": 0.025427985284298796,
+      "allen_993_MOs__ipsilateral": 0.2392997813094512
+    },
+    "M1_target_RMS": 0.12149700112033555,
+    "M1_target_maximum_absolute_residual": 0.2564803858876762,
+    "M1_to_fixed_K_uniform_RMS_ratio": 0.5529503510848226,
+    "M1_to_fixed_K_uniform_maximum_absolute_ratio": 0.5262423218433764,
+    "cell_identities_emitted": false,
+    "definition": "for each target, one_twelfth_sum_of_group_mean_observed_minus_expected_residuals",
+    "fixed_K_uniform_equal_group_residual_by_target": {
+      "allen_313_MB__contralateral": -0.211192119512432,
+      "allen_313_MB__ipsilateral": -0.008866112186424671,
+      "allen_31_ACA__contralateral": -0.20100473745004996,
+      "allen_31_ACA__ipsilateral": -0.01701886221417472,
+      "allen_354_MY__contralateral": -0.1626763991217116,
+      "allen_354_MY__ipsilateral": -0.1751367165820291,
+      "allen_453_SS__contralateral": 0.045647429827117336,
+      "allen_453_SS__ipsilateral": 0.4701708231005106,
+      "allen_477_STR__contralateral": -0.08961647293678543,
+      "allen_477_STR__ipsilateral": 0.18801117719086471,
+      "allen_549_TH__contralateral": -0.20724752244283495,
+      "allen_549_TH__ipsilateral": 0.156277355457043,
+      "allen_771_P__contralateral": -0.2055343051046176,
+      "allen_771_P__ipsilateral": -0.11790152122183371,
+      "allen_993_MOs__contralateral": 0.048707217261904766,
+      "allen_993_MOs__ipsilateral": 0.48738076593545343
+    },
+    "fixed_K_uniform_target_RMS": 0.21972497328552726,
+    "fixed_K_uniform_target_maximum_absolute_residual": 0.48738076593545343,
+    "ordered_targets": [
+      "allen_993_MOs__ipsilateral",
+      "allen_993_MOs__contralateral",
+      "allen_453_SS__ipsilateral",
+      "allen_453_SS__contralateral",
+      "allen_31_ACA__ipsilateral",
+      "allen_31_ACA__contralateral",
+      "allen_477_STR__ipsilateral",
+      "allen_477_STR__contralateral",
+      "allen_549_TH__ipsilateral",
+      "allen_549_TH__contralateral",
+      "allen_313_MB__ipsilateral",
+      "allen_313_MB__contralateral",
+      "allen_771_P__ipsilateral",
+      "allen_771_P__contralateral",
+      "allen_354_MY__ipsilateral",
+      "allen_354_MY__contralateral"
+    ],
+    "per_group_inputs": {
+      "212074": {
+        "cells": 6,
+        "mean_K": 4.0,
+        "mean_fixed_K_uniform_marginal": 0.25,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.0010185406853746581,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.08333333333333334,
+            "mean_M1_exact_inclusion_marginal": 0.16768520735204132,
+            "reconstructed_mean_observed_indicator": 0.16666666666666666
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.09963153215543519,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08333333333333337,
+            "mean_M1_exact_inclusion_marginal": 0.23370180117789816,
+            "reconstructed_mean_observed_indicator": 0.33333333333333337
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.23788893897831,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.23788893897831,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.391939524590593,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.391939524590593,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": 0.05662849002545811,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.08333333333333337,
+            "mean_M1_exact_inclusion_marginal": 0.11003817664120853,
+            "reconstructed_mean_observed_indicator": 0.16666666666666663
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.12142329562815919,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.12142329562815919,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.046842275193793415,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.08333333333333331,
+            "mean_M1_exact_inclusion_marginal": 0.2135089418604601,
+            "reconstructed_mean_observed_indicator": 0.16666666666666669
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.5452765517997814,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.75,
+            "mean_M1_exact_inclusion_marginal": 0.45472344820021854,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.18812342954575112,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.18812342954575112,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.3655814465761003,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.41666666666666663,
+            "mean_M1_exact_inclusion_marginal": 0.3010852200905663,
+            "reconstructed_mean_observed_indicator": 0.6666666666666666
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1903528880187335,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.1903528880187335,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.023998985767949604,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08333333333333337,
+            "mean_M1_exact_inclusion_marginal": 0.30933434756538375,
+            "reconstructed_mean_observed_indicator": 0.33333333333333337
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1397731948271461,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.1397731948271461,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.16570711969099872,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08333333333333337,
+            "mean_M1_exact_inclusion_marginal": 0.16762621364233463,
+            "reconstructed_mean_observed_indicator": 0.33333333333333337
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.27312217744316253,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.25,
+            "mean_M1_exact_inclusion_marginal": 0.27312217744316253,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.33366013889529994,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.5833333333333334,
+            "mean_M1_exact_inclusion_marginal": 0.49967319443803343,
+            "reconstructed_mean_observed_indicator": 0.8333333333333334
+          }
+        }
+      },
+      "220187": {
+        "cells": 35,
+        "mean_K": 4.571428571428571,
+        "mean_fixed_K_uniform_marginal": 0.2857142857142857,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.22210711455467194,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2857142857142857,
+            "mean_M1_exact_inclusion_marginal": 0.22210711455467194,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.10100801564291138,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.02857142857142858,
+            "mean_M1_exact_inclusion_marginal": 0.3581508727857685,
+            "reconstructed_mean_observed_indicator": 0.2571428571428571
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.21896942897747637,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2571428571428571,
+            "mean_M1_exact_inclusion_marginal": 0.24754085754890492,
+            "reconstructed_mean_observed_indicator": 0.028571428571428553
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.13579851580984453,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.30722708723841596,
+            "reconstructed_mean_observed_indicator": 0.17142857142857143
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06078856797953939,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.19999999999999998,
+            "mean_M1_exact_inclusion_marginal": 0.1465028536938251,
+            "reconstructed_mean_observed_indicator": 0.08571428571428572
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.014669524547987391,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.14285714285714285,
+            "mean_M1_exact_inclusion_marginal": 0.15752666740513024,
+            "reconstructed_mean_observed_indicator": 0.14285714285714285
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.12607664601684346,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08571428571428569,
+            "mean_M1_exact_inclusion_marginal": 0.24535192541172793,
+            "reconstructed_mean_observed_indicator": 0.3714285714285714
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.33716815878026724,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.48571428571428565,
+            "mean_M1_exact_inclusion_marginal": 0.4342604126483042,
+            "reconstructed_mean_observed_indicator": 0.7714285714285714
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": 0.05579607180600149,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.0,
+            "mean_M1_exact_inclusion_marginal": 0.22991821390828424,
+            "reconstructed_mean_observed_indicator": 0.2857142857142857
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.3510107541118661,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.4285714285714287,
+            "mean_M1_exact_inclusion_marginal": 0.36327496017384825,
+            "reconstructed_mean_observed_indicator": 0.7142857142857144
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1914493072689123,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22857142857142854,
+            "mean_M1_exact_inclusion_marginal": 0.24859216441176946,
+            "reconstructed_mean_observed_indicator": 0.05714285714285716
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.30914651453092395,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11428571428571432,
+            "mean_M1_exact_inclusion_marginal": 0.48057508595949533,
+            "reconstructed_mean_observed_indicator": 0.17142857142857137
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.09357432464258016,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.19999999999999996,
+            "mean_M1_exact_inclusion_marginal": 0.17928861035686589,
+            "reconstructed_mean_observed_indicator": 0.08571428571428573
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.03753332771957836,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.08571428571428574,
+            "mean_M1_exact_inclusion_marginal": 0.23753332771957833,
+            "reconstructed_mean_observed_indicator": 0.19999999999999996
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.2135528661870381,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.19999999999999996,
+            "mean_M1_exact_inclusion_marginal": 0.27216141952724754,
+            "reconstructed_mean_observed_indicator": 0.48571428571428565
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.3014401447724093,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.4571428571428572,
+            "mean_M1_exact_inclusion_marginal": 0.44141699808473356,
+            "reconstructed_mean_observed_indicator": 0.7428571428571429
+          }
+        }
+      },
+      "220188": {
+        "cells": 25,
+        "mean_K": 4.64,
+        "mean_fixed_K_uniform_marginal": 0.29,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.23016673038746135,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.29,
+            "mean_M1_exact_inclusion_marginal": 0.23016673038746135,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.08168808239946979,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.04999999999999993,
+            "mean_M1_exact_inclusion_marginal": 0.32168808239946983,
+            "reconstructed_mean_observed_indicator": 0.24000000000000005
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.27391785396727975,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.29,
+            "mean_M1_exact_inclusion_marginal": 0.27391785396727975,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.23644593486093762,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21000000000000002,
+            "mean_M1_exact_inclusion_marginal": 0.3164459348609376,
+            "reconstructed_mean_observed_indicator": 0.07999999999999996
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": 0.04414692567163209,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.09,
+            "mean_M1_exact_inclusion_marginal": 0.1558530743283679,
+            "reconstructed_mean_observed_indicator": 0.19999999999999998
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.00859668244365479,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.12999999999999995,
+            "mean_M1_exact_inclusion_marginal": 0.16859668244365483,
+            "reconstructed_mean_observed_indicator": 0.16000000000000003
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.18781522322140046,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.14999999999999997,
+            "mean_M1_exact_inclusion_marginal": 0.25218477677859946,
+            "reconstructed_mean_observed_indicator": 0.43999999999999995
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.4223041790863046,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.55,
+            "mean_M1_exact_inclusion_marginal": 0.41769582091369545,
+            "reconstructed_mean_observed_indicator": 0.8400000000000001
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06170776527234688,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.08999999999999997,
+            "mean_M1_exact_inclusion_marginal": 0.2617077652723469,
+            "reconstructed_mean_observed_indicator": 0.2
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.09418326482667068,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.19,
+            "mean_M1_exact_inclusion_marginal": 0.3858167351733293,
+            "reconstructed_mean_observed_indicator": 0.48
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1459456724436169,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.16999999999999998,
+            "mean_M1_exact_inclusion_marginal": 0.2659456724436169,
+            "reconstructed_mean_observed_indicator": 0.12
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.05972110068337418,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.07,
+            "mean_M1_exact_inclusion_marginal": 0.41972110068337415,
+            "reconstructed_mean_observed_indicator": 0.36
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.07442224253813444,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.16999999999999998,
+            "mean_M1_exact_inclusion_marginal": 0.19442224253813442,
+            "reconstructed_mean_observed_indicator": 0.11999999999999998
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.0018098104340419459,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.04999999999999993,
+            "mean_M1_exact_inclusion_marginal": 0.24180981043404198,
+            "reconstructed_mean_observed_indicator": 0.24000000000000005
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.14361075719452926,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.1499999999999999,
+            "mean_M1_exact_inclusion_marginal": 0.29638924280547063,
+            "reconstructed_mean_observed_indicator": 0.4399999999999999
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2823615254297806,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.4300000000000002,
+            "mean_M1_exact_inclusion_marginal": 0.43763847457021954,
+            "reconstructed_mean_observed_indicator": 0.7200000000000002
+          }
+        }
+      },
+      "220190": {
+        "cells": 16,
+        "mean_K": 3.8125,
+        "mean_fixed_K_uniform_marginal": 0.23828125,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.04654546658174791,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11328125,
+            "mean_M1_exact_inclusion_marginal": 0.1715454665817479,
+            "reconstructed_mean_observed_indicator": 0.125
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.1780326344617253,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11328125,
+            "mean_M1_exact_inclusion_marginal": 0.3030326344617253,
+            "reconstructed_mean_observed_indicator": 0.125
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.15287849263514858,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.17578125000000003,
+            "mean_M1_exact_inclusion_marginal": 0.21537849263514855,
+            "reconstructed_mean_observed_indicator": 0.06249999999999997
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.0825972284903874,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.05078125,
+            "mean_M1_exact_inclusion_marginal": 0.2700972284903874,
+            "reconstructed_mean_observed_indicator": 0.1875
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.03866585772715874,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.17578125,
+            "mean_M1_exact_inclusion_marginal": 0.10116585772715875,
+            "reconstructed_mean_observed_indicator": 0.0625
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.050584381336451226,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.17578125,
+            "mean_M1_exact_inclusion_marginal": 0.11308438133645124,
+            "reconstructed_mean_observed_indicator": 0.06250000000000001
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06641064705913088,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11328125,
+            "mean_M1_exact_inclusion_marginal": 0.19141064705913088,
+            "reconstructed_mean_observed_indicator": 0.125
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.3864349257186826,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.51171875,
+            "mean_M1_exact_inclusion_marginal": 0.36356507428131746,
+            "reconstructed_mean_observed_indicator": 0.75
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06923813757982329,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11328125,
+            "mean_M1_exact_inclusion_marginal": 0.1942381375798233,
+            "reconstructed_mean_observed_indicator": 0.125
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.053294408614428954,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.13671875,
+            "mean_M1_exact_inclusion_marginal": 0.32170559138557103,
+            "reconstructed_mean_observed_indicator": 0.375
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.017547284351518658,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.05078125,
+            "mean_M1_exact_inclusion_marginal": 0.20504728435151867,
+            "reconstructed_mean_observed_indicator": 0.1875
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.07112689901286384,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.13671875,
+            "mean_M1_exact_inclusion_marginal": 0.44612689901286384,
+            "reconstructed_mean_observed_indicator": 0.375
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.13630064498245648,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.23828125,
+            "mean_M1_exact_inclusion_marginal": 0.13630064498245648,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.05685836994550065,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.11328124999999997,
+            "mean_M1_exact_inclusion_marginal": 0.18185836994550067,
+            "reconstructed_mean_observed_indicator": 0.12500000000000003
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.0861884147575007,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.07421875,
+            "mean_M1_exact_inclusion_marginal": 0.2263115852424993,
+            "reconstructed_mean_observed_indicator": 0.3125
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.4408682950733006,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.57421875,
+            "mean_M1_exact_inclusion_marginal": 0.37163170492669945,
+            "reconstructed_mean_observed_indicator": 0.8125
+          }
+        }
+      },
+      "221091": {
+        "cells": 33,
+        "mean_K": 5.484848484848484,
+        "mean_fixed_K_uniform_marginal": 0.3428030303030303,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.01782801041788073,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.01782801041788073,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.3142300990962621,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.3142300990962621,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": 0.1156684986368811,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.16098484848484845,
+            "mean_M1_exact_inclusion_marginal": 0.06614968318130071,
+            "reconstructed_mean_observed_indicator": 0.18181818181818182
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.3605603697770086,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.13068181818181818,
+            "mean_M1_exact_inclusion_marginal": 0.5726815818982207,
+            "reconstructed_mean_observed_indicator": 0.2121212121212121
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.4702533245920649,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.4702533245920649,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.49510540521743984,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.49510540521743984,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.8452638916708427,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.5056818181818182,
+            "mean_M1_exact_inclusion_marginal": 0.003220956814005846,
+            "reconstructed_mean_observed_indicator": 0.8484848484848485
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.35969221198490464,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.6571969696969697,
+            "mean_M1_exact_inclusion_marginal": 0.6403077880150954,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": 0.43487624011656784,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.23295454545454553,
+            "mean_M1_exact_inclusion_marginal": 0.14088133564100797,
+            "reconstructed_mean_observed_indicator": 0.5757575757575758
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.9973168589698944,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.65719696969697,
+            "mean_M1_exact_inclusion_marginal": 0.002683141030105799,
+            "reconstructed_mean_observed_indicator": 1.0000000000000002
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.028880987109525597,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.028880987109525597,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.6940729735511828,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.6940729735511828,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1309560383918661,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.1309560383918661,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.42835582463031013,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.3428030303030303,
+            "mean_M1_exact_inclusion_marginal": 0.42835582463031013,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.21760904268212533,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.35416666666666674,
+            "mean_M1_exact_inclusion_marginal": 0.4793606542875717,
+            "reconstructed_mean_observed_indicator": 0.696969696969697
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.030183711277675537,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.6268939393939393,
+            "mean_M1_exact_inclusion_marginal": 0.9998806809746451,
+            "reconstructed_mean_observed_indicator": 0.9696969696969696
+          }
+        }
+      },
+      "221225": {
+        "cells": 39,
+        "mean_K": 6.487179487179487,
+        "mean_fixed_K_uniform_marginal": 0.40544871794871795,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.2550159513006844,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.30288461538461536,
+            "mean_M1_exact_inclusion_marginal": 0.357580053864787,
+            "reconstructed_mean_observed_indicator": 0.10256410256410259
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2240790583530372,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.2612179487179488,
+            "mean_M1_exact_inclusion_marginal": 0.4425876083136296,
+            "reconstructed_mean_observed_indicator": 0.6666666666666667
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.38325561956163506,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.40544871794871795,
+            "mean_M1_exact_inclusion_marginal": 0.38325561956163506,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.33432480492954353,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.40544871794871795,
+            "mean_M1_exact_inclusion_marginal": 0.33432480492954353,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": 0.20632161149460124,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.056089743589743724,
+            "mean_M1_exact_inclusion_marginal": 0.2552168500438604,
+            "reconstructed_mean_observed_indicator": 0.4615384615384617
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.19996647638315346,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.05608974358974356,
+            "mean_M1_exact_inclusion_marginal": 0.26157198515530805,
+            "reconstructed_mean_observed_indicator": 0.4615384615384615
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.17279038199174562,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.20032051282051272,
+            "mean_M1_exact_inclusion_marginal": 0.37791858711995086,
+            "reconstructed_mean_observed_indicator": 0.20512820512820523
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2851202653339695,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.38942307692307687,
+            "mean_M1_exact_inclusion_marginal": 0.5097515295378253,
+            "reconstructed_mean_observed_indicator": 0.7948717948717948
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.17100734484568725,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.14903846153846162,
+            "mean_M1_exact_inclusion_marginal": 0.4274176012559436,
+            "reconstructed_mean_observed_indicator": 0.25641025641025633
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2679959161641045,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.389423076923077,
+            "mean_M1_exact_inclusion_marginal": 0.5268758787076904,
+            "reconstructed_mean_observed_indicator": 0.7948717948717949
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.35117119109024186,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.328525641025641,
+            "mean_M1_exact_inclusion_marginal": 0.4280942680133188,
+            "reconstructed_mean_observed_indicator": 0.07692307692307693
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.025857844528026613,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.15865384615384637,
+            "mean_M1_exact_inclusion_marginal": 0.5382447195745377,
+            "reconstructed_mean_observed_indicator": 0.5641025641025643
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.061416802561203646,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.14903846153846145,
+            "mean_M1_exact_inclusion_marginal": 0.31782705897146013,
+            "reconstructed_mean_observed_indicator": 0.2564102564102565
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2566220693030496,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.20993589743589747,
+            "mean_M1_exact_inclusion_marginal": 0.3587625460815658,
+            "reconstructed_mean_observed_indicator": 0.6153846153846154
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.154817847584621,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.12339743589743579,
+            "mean_M1_exact_inclusion_marginal": 0.43686912963590313,
+            "reconstructed_mean_observed_indicator": 0.28205128205128216
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.4178367023054203,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.5432692307692307,
+            "mean_M1_exact_inclusion_marginal": 0.5308812464125284,
+            "reconstructed_mean_observed_indicator": 0.9487179487179487
+          }
+        }
+      },
+      "221418": {
+        "cells": 12,
+        "mean_K": 4.416666666666667,
+        "mean_fixed_K_uniform_marginal": 0.2760416666666667,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.09696457021612455,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.09696457021612455,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.2893778109258301,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.2893778109258301,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": 0.05035805216808542,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.109375,
+            "mean_M1_exact_inclusion_marginal": 0.11630861449858126,
+            "reconstructed_mean_observed_indicator": 0.16666666666666669
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.2388313736746047,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.10937500000000008,
+            "mean_M1_exact_inclusion_marginal": 0.4054980403412713,
+            "reconstructed_mean_observed_indicator": 0.1666666666666666
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.07531556404053512,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.07531556404053512,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.09123458917953631,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.09123458917953631,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.3011989737194482,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.3072916666666666,
+            "mean_M1_exact_inclusion_marginal": 0.2821343596138851,
+            "reconstructed_mean_observed_indicator": 0.5833333333333333
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.22244377581577324,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.7239583333333333,
+            "mean_M1_exact_inclusion_marginal": 0.7775562241842268,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": 0.21952986783366737,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.05729166666666663,
+            "mean_M1_exact_inclusion_marginal": 0.11380346549966595,
+            "reconstructed_mean_observed_indicator": 0.3333333333333333
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.6262570002300271,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.7239583333333333,
+            "mean_M1_exact_inclusion_marginal": 0.3737429997699729,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.07098141647671333,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.07098141647671333,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.3618026003759001,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.3618026003759001,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06679331601696793,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.06679331601696793,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.2017220279459748,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.2760416666666667,
+            "mean_M1_exact_inclusion_marginal": 0.2017220279459748,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.1008859942720823,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.140625,
+            "mean_M1_exact_inclusion_marginal": 0.3157806723945844,
+            "reconstructed_mean_observed_indicator": 0.4166666666666667
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.027650395186896992,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.4739583333333333,
+            "mean_M1_exact_inclusion_marginal": 0.777650395186897,
+            "reconstructed_mean_observed_indicator": 0.75
+          }
+        }
+      },
+      "221514": {
+        "cells": 5,
+        "mean_K": 1.4,
+        "mean_fixed_K_uniform_marginal": 0.0875,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.0426786266606035,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.0426786266606035,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.10118442816861357,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.11249999999999999,
+            "mean_M1_exact_inclusion_marginal": 0.09881557183138641,
+            "reconstructed_mean_observed_indicator": 0.19999999999999998
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.09305026013783751,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.09305026013783751,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.16685422545133508,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.16685422545133508,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.010981031191323053,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.010981031191323053,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.013085039162519397,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.013085039162519397,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.04316684335180952,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.04316684335180952,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.008507942317820493,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.11249999999999999,
+            "mean_M1_exact_inclusion_marginal": 0.1914920576821795,
+            "reconstructed_mean_observed_indicator": 0.19999999999999998
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.040120160364633416,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.040120160364633416,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.1079674429762368,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.1079674429762368,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.05716217171829589,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.05716217171829589,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.7947685313631425,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.9125,
+            "mean_M1_exact_inclusion_marginal": 0.20523146863685748,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.020952731521344033,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.020952731521344033,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.031072948887217438,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.031072948887217438,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06613317944070485,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.06613317944070485,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.21123624098571597,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.0875,
+            "mean_M1_exact_inclusion_marginal": 0.21123624098571597,
+            "reconstructed_mean_observed_indicator": 0.0
+          }
+        }
+      },
+      "221539": {
+        "cells": 1,
+        "mean_K": 2.0,
+        "mean_fixed_K_uniform_marginal": 0.125,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06266975193369445,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.06266975193369445,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.8858257216408014,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.875,
+            "mean_M1_exact_inclusion_marginal": 0.11417427835919855,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.12407587841068346,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.12407587841068346,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.210784777800506,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.210784777800506,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.015104159397222771,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.015104159397222771,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.018994337040755455,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.018994337040755455,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.04780055290486602,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.04780055290486602,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.24145403476839167,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.24145403476839167,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.06186182891615272,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.06186182891615272,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.19786629910975972,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.19786629910975972,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.1050902614809598,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.1050902614809598,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.6251674529741087,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.875,
+            "mean_M1_exact_inclusion_marginal": 0.3748325470258913,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.03263551482202333,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.03263551482202333,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.051131307825241765,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.051131307825241765,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.08298762055755107,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.08298762055755107,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.25853684964710166,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.125,
+            "mean_M1_exact_inclusion_marginal": 0.25853684964710166,
+            "reconstructed_mean_observed_indicator": 0.0
+          }
+        }
+      },
+      "221588": {
+        "cells": 7,
+        "mean_K": 3.4285714285714284,
+        "mean_fixed_K_uniform_marginal": 0.21428571428571427,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.11585368172979572,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.11585368172979572,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.12962641952276183,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.12962641952276183,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.2055416352561894,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.2055416352561894,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.3048945155673934,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.5,
+            "mean_M1_exact_inclusion_marginal": 0.4093911987183209,
+            "reconstructed_mean_observed_indicator": 0.7142857142857143
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.04485711370138938,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.04485711370138938,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.05656982040174876,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.05656982040174876,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.18765422207033106,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.21428571428571433,
+            "mean_M1_exact_inclusion_marginal": 0.24091720650109752,
+            "reconstructed_mean_observed_indicator": 0.4285714285714286
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.12843669443476644,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.5,
+            "mean_M1_exact_inclusion_marginal": 0.5858490198509478,
+            "reconstructed_mean_observed_indicator": 0.7142857142857143
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.14098141925631955,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.14098141925631955,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.30402801253463474,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.30402801253463474,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.11411470074205197,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.11411470074205197,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.15067403526113227,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.15067403526113227,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.07191171835925192,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.07191171835925192,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.09892129472956691,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.21428571428571427,
+            "mean_M1_exact_inclusion_marginal": 0.09892129472956691,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": 0.3229151096401398,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.3571428571428571,
+            "mean_M1_exact_inclusion_marginal": 0.24851346178843162,
+            "reconstructed_mean_observed_indicator": 0.5714285714285714
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.4891793097822116,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.7857142857142857,
+            "mean_M1_exact_inclusion_marginal": 0.5108206902177884,
+            "reconstructed_mean_observed_indicator": 1.0
+          }
+        }
+      },
+      "221751": {
+        "cells": 13,
+        "mean_K": 3.6153846153846154,
+        "mean_fixed_K_uniform_marginal": 0.22596153846153846,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.11089841719446826,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.11089841719446826,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.13926325074392418,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.13926325074392418,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.10717319851801818,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.14903846153846156,
+            "mean_M1_exact_inclusion_marginal": 0.18409627544109508,
+            "reconstructed_mean_observed_indicator": 0.0769230769230769
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.2798705684490398,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.46634615384615385,
+            "mean_M1_exact_inclusion_marginal": 0.41243712385865244,
+            "reconstructed_mean_observed_indicator": 0.6923076923076923
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.05309021758473465,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.05309021758473465,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.06354988245665895,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.06354988245665895,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": 0.03593911284233618,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08173076923076925,
+            "mean_M1_exact_inclusion_marginal": 0.2717531948499715,
+            "reconstructed_mean_observed_indicator": 0.3076923076923077
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.407570532253842,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.7740384615384616,
+            "mean_M1_exact_inclusion_marginal": 0.5924294677461581,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.05380241079426424,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.14903846153846154,
+            "mean_M1_exact_inclusion_marginal": 0.13072548771734116,
+            "reconstructed_mean_observed_indicator": 0.07692307692307693
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.16012815590510757,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.07211538461538464,
+            "mean_M1_exact_inclusion_marginal": 0.3139743097512614,
+            "reconstructed_mean_observed_indicator": 0.15384615384615383
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.10718333602960312,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.10718333602960312,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.15967183691036105,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.15967183691036105,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.07433950271233915,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.07433950271233915,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.10788232763085515,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.22596153846153846,
+            "mean_M1_exact_inclusion_marginal": 0.10788232763085515,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.012086814095803068,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.08173076923076919,
+            "mean_M1_exact_inclusion_marginal": 0.31977912178811074,
+            "reconstructed_mean_observed_indicator": 0.30769230769230765
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.4256891370309192,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.7740384615384616,
+            "mean_M1_exact_inclusion_marginal": 0.5743108629690808,
+            "reconstructed_mean_observed_indicator": 1.0
+          }
+        }
+      },
+      "233281": {
+        "cells": 2,
+        "mean_K": 3.0,
+        "mean_fixed_K_uniform_marginal": 0.1875,
+        "targets": {
+          "allen_313_MB__contralateral": {
+            "M1_observed_minus_expected_residual": -0.13661649513584906,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.13661649513584906,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_313_MB__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.22594079470341955,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.22594079470341955,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__contralateral": {
+            "M1_observed_minus_expected_residual": -0.20253501230335808,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.20253501230335808,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_31_ACA__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.25372977849334977,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.3125,
+            "mean_M1_exact_inclusion_marginal": 0.24627022150665026,
+            "reconstructed_mean_observed_indicator": 0.5
+          },
+          "allen_354_MY__contralateral": {
+            "M1_observed_minus_expected_residual": -0.05421115041302097,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.05421115041302097,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_354_MY__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.0613793270605418,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.0613793270605418,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__contralateral": {
+            "M1_observed_minus_expected_residual": -0.14474442439253613,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.14474442439253613,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_453_SS__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.21626342789439373,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.31249999999999994,
+            "mean_M1_exact_inclusion_marginal": 0.2837365721056062,
+            "reconstructed_mean_observed_indicator": 0.49999999999999994
+          },
+          "allen_477_STR__contralateral": {
+            "M1_observed_minus_expected_residual": -0.14940139460308377,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.14940139460308377,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_477_STR__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.2605621125715132,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.2605621125715132,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__contralateral": {
+            "M1_observed_minus_expected_residual": -0.17929503638765568,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.17929503638765568,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_549_TH__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.6325499172836284,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.8125,
+            "mean_M1_exact_inclusion_marginal": 0.3674500827163717,
+            "reconstructed_mean_observed_indicator": 1.0
+          },
+          "allen_771_P__contralateral": {
+            "M1_observed_minus_expected_residual": -0.08956942983149586,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.08956942983149586,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_771_P__ipsilateral": {
+            "M1_observed_minus_expected_residual": -0.1159785435903733,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.1159785435903733,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__contralateral": {
+            "M1_observed_minus_expected_residual": -0.19047872219998738,
+            "fixed_K_uniform_observed_minus_expected_residual": -0.1875,
+            "mean_M1_exact_inclusion_marginal": 0.19047872219998738,
+            "reconstructed_mean_observed_indicator": 0.0
+          },
+          "allen_993_MOs__ipsilateral": {
+            "M1_observed_minus_expected_residual": 0.7081693195214631,
+            "fixed_K_uniform_observed_minus_expected_residual": 0.8125,
+            "mean_M1_exact_inclusion_marginal": 0.2918306804785369,
+            "reconstructed_mean_observed_indicator": 1.0
+          }
+        }
+      }
+    },
+    "thresholds": {
+      "M1_target_RMS_maximum": 0.15,
+      "M1_target_maximum_absolute_residual_maximum": 0.3,
+      "M1_to_fixed_K_uniform_metric_ratio_maximum": 0.8
+    }
+  },
+  "target_panel_size": 16
+}

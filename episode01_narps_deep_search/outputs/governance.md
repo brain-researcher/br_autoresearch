@@ -39,3 +39,7 @@
 - canonical_episode_created: not observed
 - landscape_transition_created: not observed
 - scientific_acceptance: false
+
+## 2026-10-02 local scope review
+
+Local writing review only. Model families, thresholds, data roles, execution authority, and canonical status remain unchanged; see [review (consolidated)](paper_plan.md).

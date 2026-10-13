@@ -1,5 +1,16 @@
 # Which visual-model advantages survive changes in the measured cortex?
 
+**October12 adopted primary-score amendment.** The scientist approved the
+[uncertainty-block-only variance rule](outputs/proposed_score_specific_validity_followup.md):
+an individual uncertainty block's centered response variance no longer vetoes
+primary R². All finite-input/moment checks and strictly positive finite SST
+around the matching frozen training mean remain mandatory in every block.
+Training/validation, calibration and whole-audit response-variance rules,
+secondary correlation/CKA validity and all bootstrap/family rules are unchanged.
+This permits a separately selected fresh complete fit; it opens no audit and
+establishes no performance result. Preserve fit001 and both diagnostics. The
+240-hour deadline remains October13 18:29:09UTC (epoch1791916149).
+
 Suppose model A predicts visual-cortex responses better than model B for the
 same images and people. If B wins after denoising the beta estimates, selecting
 more reliable voxels, or dividing by a noise ceiling, what changed?
@@ -500,11 +511,15 @@ are saved; v1 and the support-specific v2 remain historical illustrations.
 ## Data readiness and access boundary
 
 The restricted CNeuroMod source and stimulus archive are available, but EP17
-is not analysis-ready. The stimulus archive remains encrypted and unextracted;
-the exact event-image join, four-person common universe, 480/120/120 roles,
-role-filtered handoffs, B/C/D alignment, ROI crosswalk, support sizes and
-quotas, ceiling estimator, controlled model pairs, feature grids, margins, and
-operator-prediction tolerance remain to be fixed or verified.
+is not analysis-ready. Metadata qualification and the 480/120/120 roles are
+complete; the anatomical mapping, N=256 support quotas, numerical conventions,
+model-feature definitions and scale-specific margins are adopted. Private
+role-filtered neural copying and calibration reliability/ceiling maps with
+fixed voxel supports are complete. Encrypted stimulus delivery, enforced
+reader handoffs (replaced 2026-10-12 by procedural separation; see below),
+remaining calibration-operator applicability, model features
+and the complete evaluator remain unresolved. [DATASETS.md](DATASETS.md#what-must-exist-before-neural-model-comparison)
+links completed preparations and distinguishes them from empirical access.
 
 The 2026-09-30 nominations make the paper question specific; they do not
 complete those scientific decisions. No checkpoint was fetched, stimulus
@@ -516,10 +531,39 @@ builder may create metadata, calibration, and development artifacts; the
 sealed audit handoff remains evaluator-only until the final relation and
 prediction are frozen.
 
-EP17 and EP18 share the THINGS stimulus ecosystem. Before either sealed
-outcome is opened, record exact concept and image overlap, feature or
-checkpoint reuse, and first-access history. The two episodes cannot be called
-independent stimulus-family replications.
+**Evaluation-separation amendment, 2026-10-12 (scientist decision).**
+Procedural same-account separation with a disclosed weaker claim replaces the
+requirement for a supported Slurm route or controlled evaluator identity that
+limits development to its released inputs. Same-UID permissions cannot
+enforce separation here: this account already holds the restricted source
+and the October 9 private role copies, including audit-role bytes. The
+builder, search-worker and evaluator roles are therefore procedural.
+
+- Development processes and agents read only the released development
+  handoff; they do not open, list or search the 120-concept sealed audit, the
+  mixed source, raw calibration responses or any sealed outcome path.
+- All analysis choices that this goal freezes before audit are frozen and
+  recorded before the audit opens; that opening remains one recorded event.
+- Every audit-role or sealed-data access is logged in the
+  [experiment log](outputs/experiment_log.md); unplanned access is disclosed
+  and affected results are marked.
+- Every audit or evaluation result states that separation was procedural
+  (same account, not technically enforced, data readable by the account) and
+  never calls it enforced or blinded evaluation; "sealed" names the audit role.
+
+The 720-concept universe, 480/120/120 roles, N=256/q=32 rule, adopted margins,
+budgets, one-opening limit and every other gate are unchanged. Separation is
+now satisfied procedurally; physical isolation remains unverified. Private
+stimulus delivery through the documented `password_images.txt` interface
+still blocks the 32-image stimulus pilot, followed by resource admission and
+the outcome-free evaluator dry run. Candidate scoring and the audit remain
+closed until those and the other listed gates pass.
+
+EP17 and EP18 share the THINGS stimulus ecosystem. Their completed metadata
+comparison records all 720 EP17 concepts and 3,634 qualified EP17 images in
+EP18's main experiment, alongside known checkpoint reuse and access-history
+limits. Both designs are retained as correlated and design-exposed; they
+cannot be called independent stimulus-family replications.
 
 ## Claim boundary
 

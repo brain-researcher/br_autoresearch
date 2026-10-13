@@ -1,0 +1,67 @@
+{
+  "budget_interpretation": "the original 1000-core-hour stop is disabled for completing the minimum full search; 2750 core-hours is the user-authorized planning scale",
+  "budget_override_sha256": "adac5f1c7f7497450881ca757e9084b4770ba0b72b07d162781f740802fc9e7a",
+  "configuration_count": 18,
+  "configuration_sha256": [
+    "08261d0464d416824406c49757f7d0ca62e3fe646bdc4c5d9fa1158e4c78c912",
+    "d7a57d69915be5f2dcb1d052ef69d7f9715b21000f7d8a922822d3fea7449e6d",
+    "587271aee7500141f7bd2adb14e147ed9ebed0209d1c3d8b0ddb604364c8399c",
+    "5625a61c5677cc8ecbc54a869a798dd05a63b8e8f16a872f0e4b5bc74d4b84ad",
+    "152cb6407414d3f68405339e90d1f3eb973df1a32b077861d1a1713802912287",
+    "a11805e0438dd3014a6b77e9f100cf52d84230638e5e9569f2bbc33867807ac0",
+    "ef16aa337c5c834194d894fee136b6b65685a9f571a26b9ea7e7d75aced8cbf7",
+    "3a747c28ab7cb9eb265e92a04d2643181ff74bc15eb2f3129264cc505a98ac02",
+    "22e47b2c4e4ffc26761056479865b2f2ef03557e1b88edafc3b089f5d5dc5c93",
+    "b582b805712312958028d9a348d74c189c7aaa060fe03dc8eb86d28a95ba523c",
+    "1c2d7c3b87667511c16259d8c96c6c4dfb04f5179fc75354aae5df1959b06e71",
+    "00de1d65eca61235ced359277a6cfca143d9b349c943a8a1e61bf6b19aaf9284",
+    "65d4c3b6a57ca8ffa1fe273efc2e8d5756d3b906104b32ef591b4afa3ded2ceb",
+    "b6cffcddc5a3d13f65770f672879532edc5931269dffd915bdd164dac3432315",
+    "4c911b2a5046cdd4911c0f0b327811e84f7092453779a786e0cf2b0d8f01f999",
+    "94bb0260ea461acb1e848ba2eb731cbdfe34c1c56dec3352e35e6015698fc65c",
+    "31ab947a425d7f4929047f83684a38c5ff06c5af59bf41fb203c2f90cfe6dc00",
+    "1b17a8607e66ada24d1f74a9688f055d86975be879ce1ad6da4fe1192cd7c19b"
+  ],
+  "coverage_minimum": 18,
+  "coverage_proof": {
+    "all_required_pairs_covered": true,
+    "pairs": {
+      "covariance__component_count": {
+        "complete": true,
+        "expected_pair_count": 6,
+        "observed_pair_count": 6
+      },
+      "partner_vocabulary__component_count": {
+        "complete": true,
+        "expected_pair_count": 6,
+        "observed_pair_count": 6
+      },
+      "partner_vocabulary__covariance": {
+        "complete": true,
+        "expected_pair_count": 9,
+        "observed_pair_count": 9
+      },
+      "partner_vocabulary__representation": {
+        "complete": true,
+        "expected_pair_count": 9,
+        "observed_pair_count": 9
+      },
+      "representation__component_count": {
+        "complete": true,
+        "expected_pair_count": 6,
+        "observed_pair_count": 6
+      },
+      "representation__covariance": {
+        "complete": true,
+        "expected_pair_count": 9,
+        "observed_pair_count": 9
+      }
+    }
+  },
+  "final_connectivity_access_authorized": false,
+  "final_connectivity_accessed": false,
+  "phase": "observed_development_coverage",
+  "policy_minimum_valid_trials": 36,
+  "schema_version": "ep12.development_search_plan.v1",
+  "search_policy_sha256": "d64c5c9c56b70f3312472e056b9394f519107eda268902ceb586771d435d8b8d"
+}

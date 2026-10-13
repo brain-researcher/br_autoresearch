@@ -1,9 +1,28 @@
 # Data used in Episode 16
 
+The October 6 scientist-adopted [local closeout](outputs/experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout)
+records **support_or_uncertainty_prevents_an_answer** for the original
+three-held-out-participant claim. Existing structural evidence and exposure
+boundaries remain; no neural analysis, role replacement or case-series
+successor is adopted.
+
 EP16 uses one published BrainGate release to compare how an offline neural
 mapping transfers between sessions from the same participant. This file states
 what is available, how participants are separated between development and the
 final held-out test, and which limitations determine the scientific claim.
+
+## Public online resources — checked October 6, 2026
+
+| Public source | Available information and EP16 use | Remaining limit |
+| --- | --- | --- |
+| [Dryad release and embedded README](https://datadryad.org/dataset/doi:10.5061/dryad.x0k6djj1h) | Download links for the nine decoding archives and yield archives, plus the field codebook: 10-ms bins, task-coordinate x/y positions, zero-based starts/exclusive ends, electrode/array identifiers, impedance in kΩ, `sbp` in µV² and threshold crossings per bin. Use these definitions to implement source readers without guessing units or indexing. | Task families are named, but the documented fields do not supply per-session target size, controller versions or intended-transition rules. Yield arrays need not be synchronized. |
+| [Pinned provider participant/array metadata](https://raw.githubusercontent.com/nptl-stanford/array-paper/93beb76b4329f0e3d5b3fd5ffba9be1c7cfa2834/array_paper/metadata.py) | Explicit decoding-participant order, array names and provider display conventions. Use for identity interpretation and cross-checking array labels. | It is not a session-level task/size map or a record of analyst exposure. |
+| [Pinned provider decoding-method implementation](https://raw.githubusercontent.com/nptl-stanford/array-paper/93beb76b4329f0e3d5b3fd5ffba9be1c7cfa2834/array_paper/metrics/decoding_snr.py) | Public code for the provider's movement-direction/decoding calculation. It is a methods reference for interpreting the published features and task intervals. | The provider's analysis is not EP16's cross-session endpoint; no published scores or data summaries were imported, and its method cannot qualify EP16's missing schedule evidence. |
+
+The online codebook resolves source semantics directly. Authentic session
+annotations and local/publication exposure history remain the targeted gaps;
+their absence from these inspected documents is not proof that no original
+record exists. The fixed release and structural-only access remain unchanged.
 
 ## Source
 
@@ -73,6 +92,13 @@ The release does **not** provide raw continuous voltage, the historical online
 decoder weights or versions, the complete online preprocessing state, reliable
 task names, target size, muscle activity, raw video, or a direct intention
 label. EP16 must not imply that these missing measurements were reconstructed.
+
+The [verified provider-field note](outputs/schedule_definition.md#october-6-public-source-update--documented-fields-and-unresolved-session-annotations)
+records the documented 10-ms bins, task-coordinate positions, zero-based
+starts/exclusive ends, and feature/impedance units. These source definitions
+do not identify each session's size dependence, intended transitions or
+controller history. Published task-family names alone cannot supply that
+session-level evidence.
 
 ## Matching sessions fairly
 
@@ -226,18 +252,35 @@ participant, or second held-out evaluation.
 
 ## Current readiness
 
-The source release and required fields are known, but EP16 is not ready for
-neural scoring. The following still need to be completed:
+The structural inventory is complete for all 729 sessions, 328,548 trials and
+5,150 blocks. The fixed conditional application evaluated 32 numerical designs
+and passed only T11 (already development) and T9 (held-out candidate), pending
+session annotations and exposure qualification. Thus the present panel does
+not supply the required four supported development and three supported
+held-out participants within the unchanged six/three roles. It is not a proof
+that authentic missing metadata cannot change the supported design. See
+[the adopted support disposition](outputs/paper_plan.md#october-6-review--current-support-and-adopted-closure).
 
-- target-schedule and near/long support assessment;
-- source/target design-rank, conditioning, and session-leverage assessment;
+The [prospective analysis definition](outputs/schedule_definition.md#october-6-prospective-analysis-and-exposure-definition)
+also fixes raw score units, octant coverage, 30-bin feature handling,
+source-only scaling, direct recording-quality order and the recorded normalized
+effect anchors. Its three focused arithmetic checks passed; no neural
+comparison or held-out neural outcome has been opened.
+
+The following remain uncompleted requirements of the preserved original
+design, not a selected continuation after this closeout:
+
+- authentic session size/layout/transition evidence and exposure history,
+  followed by qualification of any materially changed support panel;
 - the final six/three participant assignment;
 - the 128-trial block-aware packet builder;
-- a single onset offset and channel-quality rules;
-- numeric readiness, effect, recovery, and decision thresholds;
+- remaining emulation/model rules and unresolved
+  readiness, raw-effect and inference settings;
 - synthetic checks for the score, recalibration, missing-channel emulation,
   uncertainty, and leakage controls; and
 - separate development and held-out data views.
 
-Until those steps are complete, the source is identified but no scientific
-comparison has been run.
+The original support-limited closure is adopted. The optional single-case
+draft remains unadopted. No unchanged support rerun or neural successor is
+selected; authentic new metadata or an adopted redesign must first change
+the support basis before any separately selected reopening.

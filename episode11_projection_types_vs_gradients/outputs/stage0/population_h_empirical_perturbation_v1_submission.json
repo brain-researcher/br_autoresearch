@@ -1,0 +1,26 @@
+{
+  "analysis_id": "population_h_optimizer_recovery",
+  "attempt": "empirical_perturbation_v1",
+  "submitted_at_utc": "2026-10-01T01:15:00.283881+00:00",
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--partition=russpold",
+    "--time=3-00:00:00",
+    "--cpus-per-task=3",
+    "--mem=16G",
+    "--job-name=ep11-pop-h-perturb",
+    "--deadline=2026-10-05T18:12:23",
+    "--export=ALL,EP11_VERIFICATION_STREAM=5602,EP11_TARGET_MCSE=0.005,EP11_START_STABILITY=0.002,EP11_TRUTH_H_UPPER=0.010,EP11_CHUNK_REPLICATES=32,EP11_PRECONDITIONER_REPLICATES=32,EP11_INITIALIZATION_REPLICATES=16,EP11_START_WORKERS=3,EP11_VERIFICATION_REPLICATES=512,EP11_VERIFICATION_WORKERS=3",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/outputs/stage0/tools/run_mixed_support_population_h_recovery.sbatch",
+    "/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population_h_recovery/empirical_perturbation_v1_c_input",
+    "empirical_perturbation_v1"
+  ],
+  "deadline_timezone": "America/Los_Angeles",
+  "returncode": 0,
+  "stdout": "46143347\n",
+  "stderr": "",
+  "job_id": "46143347",
+  "run_directory": "/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population_h_recovery/run_46143347",
+  "log": "/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population-h-recovery-46143347.out"
+}

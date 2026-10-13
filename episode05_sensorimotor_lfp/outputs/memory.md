@@ -12,3 +12,6 @@ scientific commitments are:
 
 No belief about the outcome should be updated until the planned comparisons
 have been run.
+
+The 2026-09-30 imagegen figure makes these commitments visible without adding
+an observation or changing the scientific decision rules.

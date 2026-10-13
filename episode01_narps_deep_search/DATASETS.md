@@ -2,20 +2,38 @@
 
 ## Current status
 
-EP01 is at scientific-design stage. The former smoothing and derivative-
-sufficiency directions were retired before execution. No behavioral model,
-BOLD model, team-map projection, or scientific score has been run under the
-current question.
+EP01 has qualified the original behavioral source. On 2026-10-05 the scientist
+stopped further simulation work and opened the bounded exploratory real-behavior
+branch in GOAL.md before recovery is complete. The earlier simulation results
+are method validation, not findings about participants. The original mechanism
+and neural gates remain incomplete. The authorized observed-data branch is
+complete: all twelve model/direction fits converged for all 108 participants,
+and the October 6 saved-score follow-up completed all fifteen model contrasts.
+These exposed-data predictions do not identify psychological mechanisms or
+open BOLD/team-map analysis. The [current evidence and interpretation](outputs/paper_plan.md#completed-observed-evidence--october-6-2026)
+and [outputs navigation](outputs/README.md) link the preserved reports.
 
 The study uses three evidence layers from one public experiment plus synthetic
 recovery tests. They are complementary, not independent replications.
+
+## Public online resources — checked October 6, 2026
+
+- [OpenNeuro ds001734 v1.0.5 README](https://raw.githubusercontent.com/OpenNeuroDatasets/ds001734/1.0.5/README): public raw/preprocessed fMRI and behavior for 108 participants with four task runs, plus fMRIPrep derivatives and MRIQC reports. This matches the participant source already bound below; it is not a newly acquired cohort.
+- [NARPS results v2.0.1](https://zenodo.org/records/3634120): the public `results.tgz` release already selected here is listed as 52.1 MB, derived from OpenNeuro v1.0.4. Its latest-version link now resolves to [v2.0.3, record 3709275](https://zenodo.org/records/3709275), listed as 52.3 MB and a different CI build. That is a public version-discovery fact, not evidence that local maps need replacing or that any particular defect was corrected. No archive was opened; v2.0.1 remains the bound team-result input, distinct from the v1.0.5 participant release.
+- [Official NARPS analysis repository](https://github.com/poldrack/narps): public imaging/prediction-market code, automated-pipeline instructions and a dependency Dockerfile. These are available methods/provenance references; they do not validate EP01's new behavioral mechanism or authorize its deferred neural analysis.
+
+The public pages do not establish missing team-specific fitted-participant
+identities or complete higher-level designs, nor do they supply EP01 recovery
+or independent confirmation. Any future archive-version comparison must bind
+its actual contents and purpose before use; this documentation adds no data
+download, model rerun or source substitution.
 
 ## Role table
 
 | Resource | Scientific role | What it can establish |
 | --- | --- | --- |
 | Exact-design simulations | Behavioral and synthetic-coordinate recovery | Whether the proposed latent mechanisms and numerical map coordinates are identifiable at the actual design and noise level |
-| NARPS original behavioral events | Mechanism decomposition | Choice-and-RT evidence for valuation asymmetry and value-independent rejection bias |
+| NARPS original behavioral events | Exploratory descriptions and fixed held-out prediction; later mechanism decomposition if validated | Observed choices, RT and misses, and within-session predictive scores; psychological mechanism claims still require recovery |
 | NARPS fMRIPrep BOLD/confounds | Controlled fMRI factorial | How gain/loss maps move when decision-state and response blocks are included under one fixed pipeline |
 | NARPS 70-team unthresholded group maps | Ecological analysis layer | Whether public team maps load differently on the frozen estimand axes |
 | NARPS team method reports | Operationalization layer | Whether declared first-level choices are associated with those shape coordinates beyond the frozen sample, group-model, and map-technical controls |
@@ -41,12 +59,19 @@ reported as no-response in the data descriptor.
 | Component | Location | Current availability |
 | --- | --- | --- |
 | BIDS metadata and original events | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/input/ds001734` | All 108 participants x 4 original event tables present |
-| Common fMRIPrep derivatives | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734/derivatives` | All 432 MNI 2-mm preprocessed BOLD series, confounds, run masks, and QC reports present |
+| Common fMRIPrep derivatives | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734` | The current files are directly under `sub-*/func/`; all 432 MNI 2-mm preprocessed BOLD series, confounds, run masks, and QC reports were documented as present |
 | Existing standardized FitLins analysis | `/oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/analyses/ds001734/task-MGT` | One benchmark pipeline with run/subject gain, loss, gain-minus-loss, all-trial, and RT products |
 
 EP01 uses each `*_events_ORIGINAL.tsv` as the behavioral source. The sibling
 `events.tsv` files are analysis-specific transformations and are not the event
 source for this study.
+
+The exploratory branch reuses the already-qualified normalized table at
+`outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz`.
+It does not repeat asset qualification or open BOLD. Its frozen two-way
+{1,4}/{2,3} fitting keeps individual and population estimation training-only.
+Full-table descriptions expose held-out responses to the analyst, so the
+frozen report is exploratory and cannot be retuned on those descriptions.
 
 The primary fMRI analysis starts from the complete fMRIPrep 21.0.2 series, not
 from the partially materialized raw BOLD collection or the older fMRIPrep 1.1.4

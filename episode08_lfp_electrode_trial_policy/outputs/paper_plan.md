@@ -1,11 +1,21 @@
 # EP08 paper plan: conditional signal value and learnable calibration deficits
 
-Status: scientific-design revision, 2026-09-30. No acquisition result,
-explanatory result, hardware saving, online benefit, or third-animal validation
-is claimed. Exploration of models, summaries and training/calibration states is
-open. The original 16-trial protocol is now an **optional reference experiment**,
-with its numerical decisions unchanged. New branch endpoints and named-rule
-scoring remain unspecified/unactivated, not a new scored primary experiment.
+Current evidence, reconciled October 6: the real-data development search
+stopped at 41 comparisons with the October 4 adopted conclusion
+`development_only_no_initializer_robust_policy`. The
+[final report](final_report.md) is the current paper evidence: early residual
+marginal electrode ranking beats its matched label control by +0.003353 Q
+averaged over three initializer conditions, but Mihili reverses in one
+condition and only one of its four mean-order session effects is positive.
+The evidence supports limited, session-dependent target correspondence, not
+a stable acquisition policy, sensor–trial coupling, hardware savings, online
+benefit or third-animal validation. All four held sessions stay closed and
+no further fitting is selected.
+
+The design narrative below is the September 30 prospective framing. The
+original 16-trial protocol remains an **optional reference experiment** with
+unchanged numerical decisions; unactivated branches are proposed work, not
+missing obligations for the adopted development-only report.
 
 ![EP08: conditional electrode value, trial value and a real electrode swap](figures/ep08_episode_series-v6.png)
 

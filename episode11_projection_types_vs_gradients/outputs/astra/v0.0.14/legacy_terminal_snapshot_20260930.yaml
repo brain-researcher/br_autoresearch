@@ -1,0 +1,71 @@
+version: 0.0.14
+id: episode11_projection_types_vs_gradients
+name: Do nearby somatosensory neurons use reusable output patterns?
+description: 'Brain Researcher autoresearch episode projection. This ASTRA document
+  is non-authoritative: it records a workspace plan or result but grants no execution
+  authority, scientific acceptance, reward, or Landscape transition.'
+tags:
+- brain-researcher
+- autoresearch
+- projection
+- terminal
+- non-authoritative
+inputs:
+- id: goal
+  type: data
+  description: Episode research goal contract.
+  source: GOAL.md
+- id: datasets
+  type: data
+  description: Episode dataset and access contract.
+  source: DATASETS.md
+- id: search_policy
+  type: data
+  description: Episode search and stopping policy.
+  source: SEARCH_POLICY.yaml
+decisions:
+  declared_search_policy:
+    id: declared_search_policy
+    label: Declared episode search policy
+    rationale: policy_id=ep11_reusable_projection_groups_adaptive_v2_gao_ssptr; evidence_mode=adaptive_search
+    default: use_declared_policy
+    options:
+      use_declared_policy:
+        id: use_declared_policy
+        label: Use declared policy
+outputs:
+- id: population_h_recovery_summary
+  type: data
+  format: json
+  description: 'Episode artifact: outputs/stage0/population_h_recovery_summary.json'
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+- id: population_h_recovery_terminal_qc_20260930
+  type: figure
+  format: png
+  description: 'Episode artifact: outputs/figures/population_h_recovery_terminal_qc_20260930.png'
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+findings:
+  terminal_finding:
+    id: terminal_finding
+    claim: The synthetic H optimizer approximates planted truth from a truth-based
+      start but fails reliable recovery across the frozen starts; real projection
+      outcomes remain closed.
+    created_at: '2026-09-30T23:20:59Z'
+    evidence:
+    - id: evidence_1
+      artifact: population_h_recovery_summary
+    - id: evidence_2
+      artifact: population_h_recovery_terminal_qc_20260930
+    derived: true
+    notes: Non-authoritative workspace projection. Brain Researcher review and scientific
+      acceptance remain separate.

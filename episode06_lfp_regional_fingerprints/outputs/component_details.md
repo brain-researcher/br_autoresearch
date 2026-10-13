@@ -212,7 +212,22 @@ not veto another eligible candidate. Choose the largest median among eligible
 candidates under the same tie margin; this is not global superiority over
 mixed-sign rivals. Negative and mixed-sign measurements remain visible.
 
-The `H`, outer-fold stability, and reserved-test rules are unchanged. Do not
+The adopted 2026-10-10 amendment excludes original Mihili March 6 in both
+regions without renumbering dates. Three Mihili target folds nominate on the
+other two sessions; four Chewie folds nominate on the other three. Stability
+requires the same family in all three Mihili folds and at least three of four
+Chewie folds, with no tie or left-out regional-sign contradiction. Final
+nomination uses all three common scoreable Mihili sessions and at least three
+of four Chewie sessions, includes every available common session, and must
+match each direction's stable outer family before the two directions agree.
+Missing folds do not count as agreement.
+
+H keeps pooled session median/MAD arithmetic using the other six development
+sessions or all seven for reserved predictions; animal-weighted medians are
+not substituted. Its +/-0.25 thresholds, component margins, four reserved
+dates, EP07 full-freeze/primary-opening prerequisite and exposed-corpus limits
+remain fixed. At least three reserved predictions need evaluable outcomes and
+none may be wrong; unresolved outcomes cannot count as correct. Do not
 examine all three left-out
 evaluation components before nominating a family. Additional explanatory
 detail is not permission to change that order, fit target combining weights,

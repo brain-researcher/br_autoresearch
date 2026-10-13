@@ -1,0 +1,14 @@
+{
+  "action": "scontrol hold 45332084",
+  "dependency": "afterok:45323481(unfulfilled)",
+  "descendants_in_same_user_queue_before_hold": [],
+  "job_id": "45332084",
+  "job_name": "ep12-attest36",
+  "post_action_priority": 0,
+  "post_action_reason": "JobHeldUser",
+  "post_action_state": "PENDING",
+  "purpose": "Prevent the obsolete mutable-source attestation from racing the reviewed frozen autonomous replacement.",
+  "reversible": true,
+  "schema_version": "ep12.obsolete_attestation_safety_hold.v1",
+  "timestamp": "2026-09-26T06:57:40-0700"
+}

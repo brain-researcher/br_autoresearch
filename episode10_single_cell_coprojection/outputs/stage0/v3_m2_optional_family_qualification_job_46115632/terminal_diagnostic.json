@@ -1,0 +1,66 @@
+{
+  "schema": "ep10.producer_terminal_diagnostic.v1",
+  "analysis_id": "v3_search.adaptive_model_search",
+  "observation_time_utc": "2026-10-01T10:19:15Z",
+  "job_id": 46115632,
+  "scheduler": {
+    "parent_state": "TIMEOUT",
+    "parent_exit_code": "0:0",
+    "elapsed_seconds": 43221,
+    "allocated_cpus": 12,
+    "start_utc": "2026-09-30T22:15:47Z",
+    "end_utc": "2026-10-01T10:16:08Z",
+    "batch_state": "CANCELLED",
+    "batch_exit_code": "0:15",
+    "batch_max_rss_kib": 1348404,
+    "total_cpu": "5-09:19:40"
+  },
+  "cause": "Slurm time limit; no numerical exception reported in preserved logs",
+  "final_qualification_report_produced": false,
+  "completed_required_cases": [
+    {
+      "family": "low_rank_population_recovery",
+      "rank": 1,
+      "status": "pass"
+    },
+    {
+      "family": "low_rank_population_recovery",
+      "rank": 2,
+      "status": "pass"
+    },
+    {
+      "family": "low_rank_population_recovery",
+      "rank": 3,
+      "status": "pass"
+    }
+  ],
+  "completed_case_count": 3,
+  "required_case_count": 12,
+  "incomplete_cases": [
+    "low_rank_population_recovery rank 4",
+    "low_rank_population_recovery rank 6",
+    "low_rank_population_recovery rank 8",
+    "hybrid_population_recovery rank 1",
+    "hybrid_population_recovery rank 2",
+    "hybrid_population_recovery rank 3",
+    "hybrid_population_recovery rank 4",
+    "hybrid_population_recovery rank 6",
+    "hybrid_population_recovery rank 8"
+  ],
+  "qualification_status": "incomplete; overall gate not passed",
+  "biological_interpretation": "none; contract-required numerical QC only",
+  "empirical_M2_opened": false,
+  "frozen_contract_changed": false,
+  "new_job_launched": false,
+  "durable_evidence": [
+    "completed_cases/low_rank_population_recovery_rank_1.json",
+    "completed_cases/low_rank_population_recovery_rank_2.json",
+    "completed_cases/low_rank_population_recovery_rank_3.json",
+    "qualification.log",
+    "slurm.out",
+    "slurm.err",
+    "terminal_postflight_sacct_20261001T101915Z.txt"
+  ],
+  "next_action": "Determine contract-preserving repair or resource/human stop from this diagnosed timeout; continue watching existing timing job 45881554."
+}
+

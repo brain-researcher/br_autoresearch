@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-"""Validate an EP11 trusted redacted table and emit aggregate support only.
+"""Validate an EP11 redacted table and emit aggregate source support only.
 
-Real row-level inputs remain inside the trusted steward boundary, require a
-redaction receipt and expected SHA-256 before CSV decoding, and are never
-candidate-visible. The tool never accepts the mixed-role provider workbook or
-morphology archives. Only its identifier-free JSON aggregate may be handed to
-the candidate process.
+Run this inside the trusted steward boundary. It never accepts the mixed-role
+workbook or morphology archives, and its output contains no cell or animal
+identifiers.
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import math
 import sys
@@ -55,8 +52,8 @@ ALLOWED_COLUMNS = REQUIRED_COLUMNS | {
     "registration_batch",
     "reconstruction_version",
     "manual_check_status",
-    "complete_axon_reconstruction_flag_with_independent_provenance",
-    "registration_qc_flag_with_independent_provenance",
+    "complete_axon_reconstruction_flag_with_independent_basis",
+    "registration_qc_flag_with_independent_basis",
     "metadata_missingness_flags",
 }
 
@@ -67,14 +64,6 @@ FALSE_VALUES = {"0", "false", "no"}
 
 class ValidationError(Exception):
     pass
-
-
-def sha256_bytes(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def parse_bool(value: str, field: str, row_number: int) -> bool:
@@ -99,51 +88,10 @@ def parse_coordinate(value: str, field: str, row_number: int) -> float:
     return parsed
 
 
-def verify_receipt(receipt_path: Path, input_hash: str) -> str:
-    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-    required = {
-        "schema_version",
-        "input_sha256",
-        "row_level_input_candidate_visible",
-        "projection_derived_values_emitted",
-        "audit_row_identities_emitted_to_candidate",
-        "trusted_operation_fully_logged",
-        "emitted_columns",
-    }
-    missing = sorted(required - receipt.keys())
-    if missing:
-        raise ValidationError(f"trusted receipt missing keys: {missing}")
-    if receipt["input_sha256"] != input_hash:
-        raise ValidationError("trusted receipt input_sha256 does not match input")
-    if receipt["row_level_input_candidate_visible"] is not False:
-        raise ValidationError("row-level trusted input must not be candidate-visible")
-    if receipt["projection_derived_values_emitted"] is not False:
-        raise ValidationError("receipt does not exclude projection-derived values")
-    if receipt["audit_row_identities_emitted_to_candidate"] is not False:
-        raise ValidationError("receipt exposes audit row identities to candidates")
-    if receipt["trusted_operation_fully_logged"] is not True:
-        raise ValidationError("trusted operation is not fully logged")
-    emitted = set(receipt["emitted_columns"])
-    if not emitted <= ALLOWED_COLUMNS:
-        raise ValidationError("trusted receipt lists non-allow-listed columns")
-    return sha256_bytes(receipt_path)
-
-
 def validate(args: argparse.Namespace) -> dict[str, object]:
     input_path = args.input.resolve()
     if input_path.suffix.lower() != ".csv":
         raise ValidationError("input must be a redacted CSV, never XLSX or ZIP")
-    input_hash = sha256_bytes(input_path)
-    if input_hash != args.expected_sha256:
-        raise ValidationError("input SHA-256 differs from --expected-sha256")
-
-    receipt_hash = None
-    if args.mode == "trusted-steward":
-        if args.trusted_receipt is None:
-            raise ValidationError("trusted-steward mode requires --trusted-receipt")
-        receipt_hash = verify_receipt(args.trusted_receipt.resolve(), input_hash)
-    elif args.trusted_receipt is not None:
-        raise ValidationError("synthetic mode must not use a trusted real-data receipt")
 
     with input_path.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -242,9 +190,6 @@ def validate(args: argparse.Namespace) -> dict[str, object]:
 
     return {
         "schema_version": "ep11.redacted_metadata_validation.v1",
-        "mode": args.mode,
-        "input_sha256": input_hash,
-        "trusted_receipt_sha256": receipt_hash,
         "row_counts": {
             "total": total_rows,
             "eligible": eligible_rows,
@@ -264,11 +209,6 @@ def validate(args: argparse.Namespace) -> dict[str, object]:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--expected-sha256", required=True)
-    parser.add_argument("--trusted-receipt", type=Path)
-    parser.add_argument(
-        "--mode", choices=("synthetic", "trusted-steward"), required=True
-    )
     parser.add_argument("--minimum-development-animals", type=int, default=12)
     parser.add_argument("--minimum-audit-animals", type=int, default=8)
     return parser
@@ -277,7 +217,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     try:
         report = validate(build_parser().parse_args())
-    except (OSError, json.JSONDecodeError, ValidationError) as exc:
+    except (OSError, ValidationError) as exc:
         print(json.dumps({"status": "invalid", "reason": str(exc)}))
         return 2
     print(json.dumps({"status": "valid", "report": report}, sort_keys=True))

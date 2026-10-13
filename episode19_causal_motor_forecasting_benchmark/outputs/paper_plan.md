@@ -2,6 +2,26 @@
 
 [Current conceptual figure](ep19_question_imagegen-v2.png) · [Exact image-generation record](ep19_question_imagegen-v2-prompt.md).
 
+Preparation through October 6: the original twelve-person S1 support panel,
+finite model/fold definitions and sixteen classical/non-neural backend checks
+are complete; no empirical EEG forecast exists. [DATASETS](../DATASETS.md#current-readiness)
+links those results and the five unresolved support dispositions. The
+[public-source timing handoff](source_timing_handoff.md) narrows the remaining
+clock question to authentic exporter/trim binding and physical calibration;
+neither the observed two-second discrepancy nor the documented two-ms indexing
+convention permits an assumed correction.
+
+October 7 implementation: the registered boosted-hazard and small temporal
+comparators now have [prepared-feature](code/boosted_hazard_backend.py) and
+[complete-window](code/temporal_hazard_backend.py) backends. Each has five
+focused checks, all **unrun**. The temporal model's complete `[t−2,t)` window,
+left-zero operator boundary, mean readout, participant-weighted scaling and
+fixed 100-epoch training are [selected before outcomes](component_details.md#baselines-and-matched-comparison-interface).
+This advances the Figure 2 non-neural comparison without supplying missing
+source calibration or timing. Raw feature extraction, production window
+loading/memory qualification, final refits and empirical baseline selection
+remain unfinished; the temporal backend currently materializes its full fold.
+
 ## Paper question
 
 Does EEG contain prospective information about movement onset 300–600 ms in

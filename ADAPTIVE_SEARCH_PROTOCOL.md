@@ -2,19 +2,17 @@
 
 ## Authority boundary
 
-This protocol is executed inside each explicitly started episode. A local contract,
-controller implementation, or successful development run is not scientific
-acceptance or a Landscape update, but no external registration, readiness
-promotion, evaluator service, or canonical receipt is required to begin the
-episode. Brain Researcher registration remains optional post-run governance for
-review, reward, or confirmation claims.
+This protocol governs candidate-discriminating adaptive execution in episodes
+that adopt it, after an explicit standalone start. It is not an acquisition,
+preliminary-readiness, or universal episode-startup checklist. Repository-wide
+execution and access rules are in [AGENTS.md](AGENTS.md); controller operations
+are in the [controller interface](ADAPTIVE_CONTROLLER_INTERFACE.md).
 
-This protocol governs candidate-discriminating adaptive execution only after
-the episode reaches that stage.  It is not an acquisition or preliminary
-readiness checklist.  Apply the minimum-necessary rule in `AGENTS.md`: preserve
-the scientific decisions and role boundary, but do not add hashes, schemas,
-receipts, manifests, reruns, or synthetic checks unless the active scientific
-stage actually needs them.
+Standalone execution does not require canonical registration. Explicitly
+requested canonical review, reward, confirmation, or promotion requires the
+appropriate current canonical authority at that stage; later registration
+cannot retroactively authorize a run. A local contract or successful development
+run is not scientific acceptance or a Landscape update.
 
 ## Why search is long but not unbounded
 
@@ -33,10 +31,8 @@ correct. Therefore:
 
 ## Immutable before candidate-discriminating development
 
-Record and freeze the scientifically consequential decisions in the lightest
-durable form that makes their pre-outcome timing clear.  A normal versioned
-document or ordered trial log is sufficient; cryptographic hashing is not a
-generic requirement:
+Record and freeze the scientifically consequential decisions in a durable form
+that establishes their pre-outcome timing:
 
 1. scientific estimand, observation and leakage units;
 2. source identities, eligibility, development roles, audit identity, and
@@ -54,6 +50,12 @@ generic requirement:
    classes, and claim boundary.
 
 The exact sequence of admissible hypotheses is deliberately not frozen.
+
+For all stages below, a versioned document, ordered trial log, and uniquely
+identified write-once or versioned lock are sufficient unless a frozen contract
+or concrete integrity risk requires more. Hash chains, custom schemas, manifests,
+and receipt layers are not default requirements. This flexibility does not relax
+identity, timing, immutability, access, or retry guarantees.
 
 ## Program stages
 
@@ -81,9 +83,8 @@ Each proposed challenger must name its parent, directional prediction,
 falsifier, changed operator, unchanged operators, expected information gain,
 and expected cost. Development outcomes may update beliefs and choose the next
 admissible challenger. A counted successor must also reference at least one
-previously recorded score and be entered before its own execution.  Ordinary
-ordered records are enough to establish this sequence; no ledger-prefix hash
-is required.  A prespecified grid row cannot be relabeled as outcome-adaptive
+previously recorded score and be entered before its own execution.
+A prespecified grid row cannot be relabeled as outcome-adaptive
 later. The incumbent is a development state, never a terminal candidate.
 
 ### Stage 3: falsification, ablation, and replication
@@ -102,8 +103,7 @@ rules, report fields, and held-out invocation in one simple lock record.  Bind
 code, environment, or file inventories only when their variation can change
 the result or an observed inconsistency requires it.  A runner-up cannot
 replace the winner after held-out access.  The lock record must be uniquely
-identified and write-once or explicitly versioned before that access; a
-cryptographic hash is optional.
+identified and write-once or explicitly versioned before that access.
 
 ### Stage 5: held-out evaluation
 
@@ -112,8 +112,7 @@ which resolves to the exact immutable/versioned record, and checks the
 scientifically consequential settings against that record.
 It applies the episode's declared held-out or audit rule, emits only predeclared
 outputs, records access, and rejects subsequent development trials for the
-round. A cryptographic lock hash or access receipt is optional unless the
-episode's actual trust boundary requires it. An evaluation result may change
+round. An evaluation result may change
 the conclusion class but cannot enqueue a challenger. Whether this path uses
 process/permission separation is an episode design choice, not a root task-
 startup requirement.
@@ -134,7 +133,7 @@ Engineering repair may reuse a trial identifier only when the scientific
 configuration, scientifically relevant source/release and consumed inputs, and
 all data roles are unchanged. Otherwise it is a new trial. Scored adaptive
 records are append-only; a correction creates a new record that supersedes
-rather than rewrites an old one. A hash chain is not required.
+rather than rewrites an old one.
 
 ## Minimum realized-search evidence
 
@@ -184,14 +183,14 @@ metric, prediction join, or candidate-discriminating diagnostic was emitted,
 and the frozen policy names the exact infrastructure failure. Once any audit
 metric is visible, the audit is consumed.  A trusted runner's log is sufficient
 when it exhaustively covers every declared output channel; otherwise inability
-to establish non-exposure consumes the audit.  Do not create a separate
-receipt or attestation layer by default.
+to establish non-exposure consumes the audit.
 
 ## Terminal encoding
 
 Episode documents may name scientific `conclusion_class` values such as
 `hybrid_supported`, `policy_improved`, `audit_failed`, or `unresolved`. Those
-labels do not invent new outer-loop states. Unless a future frozen program
+labels do not invent new outer-loop states or initiate a canonical workflow.
+For an explicitly requested canonical handoff, unless a frozen program
 explicitly defines a compatible typed extension, the canonical bundle status
 remains one of:
 
@@ -202,5 +201,6 @@ remains one of:
   integrity.
 
 The episode policy must map every conclusion class to one of these outer
-statuses before candidate selection completes. A richer local label cannot
-bypass later Society, reward, approval, or claim review.
+statuses before candidate selection completes. This is an encoding rule, not
+authority to submit a bundle or change canonical state. A richer local label
+cannot bypass later Society, reward, approval, or claim review.

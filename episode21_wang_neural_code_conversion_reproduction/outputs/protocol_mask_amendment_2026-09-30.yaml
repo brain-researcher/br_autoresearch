@@ -1,0 +1,110 @@
+{
+  "schema_version": "ep21.independent_visual_mask_amendment.v1",
+  "recorded_on": "2026-09-30",
+  "status": "scientist_approved_before_neural_outcomes",
+  "approval_context": "Scientist replied ok after the explicit 29-mask amendment and separate mask-only job proposal were explained.",
+  "primary_roi": "adapted_independent_visual_cortex_union_native_space",
+  "replaces": "authenticated_provider_whole_visual_cortex_native_space",
+  "participants": [
+    "sub-01",
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "components": {
+    "retinotopy": [
+      "V1d",
+      "V1v",
+      "V2d",
+      "V2v",
+      "V3d",
+      "V3v",
+      "V3A",
+      "V3B",
+      "hV4",
+      "LO1",
+      "LO2",
+      "TO1",
+      "TO2",
+      "VO1",
+      "VO2",
+      "IPS0"
+    ],
+    "body": [
+      "EBA",
+      "FBA"
+    ],
+    "face": [
+      "OFA",
+      "FFA-1",
+      "FFA-2",
+      "pSTS-faces"
+    ],
+    "object": [
+      "l-objects",
+      "v-objects"
+    ],
+    "place": [
+      "PPA",
+      "OPA",
+      "MPA"
+    ],
+    "character": [
+      "VWFA-1",
+      "VWFA-2"
+    ]
+  },
+  "component_count_per_participant": 29,
+  "source_acquisition": "br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922",
+  "provider_code_commit": "ffb6abef8f787ca37f9a7faa9dd4a97119b6d603",
+  "provenance": {
+    "retinotopy": "independent_retinotopy_localizer",
+    "body": "independent_fLoc",
+    "face": "independent_fLoc",
+    "place": "independent_fLoc",
+    "character": "independent_fLoc",
+    "object": "independent_object_localizer"
+  },
+  "construction": "logical_union_of_supplied_binary_native_masks_no_resampling_morphology_or_response_thresholding",
+  "voxel_order": "ascending_full_grid_C_order_indices",
+  "excluded": [
+    "all_laion_masks",
+    "SPCS",
+    "IPCS",
+    "AFP_1",
+    "AFP_2",
+    "pSTS_words",
+    "MT",
+    "MST",
+    "SPL",
+    "mfs_words"
+  ],
+  "excluded_optional_masks_reason": "common_component_identity_rule_preselected_from_filename_metadata_only",
+  "coverage_claim": "adapted_incomplete_visual_cortex_support_no_whole_VC_or_source_anatomical_equivalence_claim",
+  "comparison_margin": "not_invented_unsupported_subclaims_not_evaluable",
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 2,
+    "minutes": 10,
+    "durable_bytes": 250000000,
+    "scratch_bytes": 500000000,
+    "gpus": 0
+  },
+  "authorized_read": [
+    "listed_independent_mask_values_and_metadata_only"
+  ],
+  "neural_export_authorized": false,
+  "neural_fitting_scoring_authorized": false,
+  "ood_values_or_derivatives_authorized": false,
+  "question_roles_models_inference_scientific_budget_and_stopping_criteria": "unchanged",
+  "remaining_dependencies": [
+    "provider_beta_preprocessing_provenance",
+    "regular_neural_handoff",
+    "model_assets_runtime",
+    "required_conformance",
+    "valid_protocol_lock",
+    "later_neural_execution_authorization"
+  ]
+}

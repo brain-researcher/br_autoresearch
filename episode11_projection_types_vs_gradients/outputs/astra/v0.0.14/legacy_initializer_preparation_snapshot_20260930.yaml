@@ -1,0 +1,71 @@
+version: 0.0.14
+id: episode11_projection_types_vs_gradients
+name: Do nearby somatosensory neurons use reusable output patterns?
+description: 'Brain Researcher autoresearch episode projection. This ASTRA document
+  is non-authoritative: it records a workspace plan or result but grants no execution
+  authority, scientific acceptance, reward, or Landscape transition.'
+tags:
+- brain-researcher
+- autoresearch
+- projection
+- terminal
+- non-authoritative
+inputs:
+- id: goal
+  type: data
+  description: Episode research goal contract.
+  source: GOAL.md
+- id: datasets
+  type: data
+  description: Episode dataset and access contract.
+  source: DATASETS.md
+- id: search_policy
+  type: data
+  description: Episode search and stopping policy.
+  source: SEARCH_POLICY.yaml
+decisions:
+  declared_search_policy:
+    id: declared_search_policy
+    label: Declared episode search policy
+    rationale: policy_id=ep11_reusable_projection_groups_adaptive_v2_gao_ssptr; evidence_mode=adaptive_search
+    default: use_declared_policy
+    options:
+      use_declared_policy:
+        id: use_declared_policy
+        label: Use declared policy
+outputs:
+- id: population_h_empirical_perturbation_v1_regression
+  type: data
+  format: json
+  description: 'Episode artifact: outputs/stage0/population_h_empirical_perturbation_v1_regression.json'
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+- id: population_h_empirical_perturbation_v1_preparation
+  type: report
+  format: md
+  description: 'Episode artifact: outputs/stage0/population_h_empirical_perturbation_v1_preparation.md'
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+findings:
+  terminal_finding:
+    id: terminal_finding
+    claim: The bounded initializer regression passed without optimization. H recovery
+      under the empirical perturbation revision remains untested and gated by unresolved
+      existing resource accounting.
+    created_at: '2026-10-01T00:33:29+00:00'
+    evidence:
+    - id: evidence_1
+      artifact: population_h_empirical_perturbation_v1_regression
+    - id: evidence_2
+      artifact: population_h_empirical_perturbation_v1_preparation
+    derived: true
+    notes: Non-authoritative workspace projection. Brain Researcher review and scientific
+      acceptance remain separate.

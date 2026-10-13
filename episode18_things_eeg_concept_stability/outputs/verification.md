@@ -1,5 +1,9 @@
 # Verification
 
+2026-10-02 — Viewed the actual [ep18_conceptual_question-v2.png](ep18_conceptual_question-v2.png) after generation and targeted corrections; a second reader checked its scientific operators and captions. Edited presentation-rate and model-basis labels, removed illustrative primary winner bars, and qualified the remaining alternative-pattern sketches and fitted ablation interpretation. This verifies the illustration, not empirical results or pipeline readiness.
+
+2026-10-02 — [Scope/novelty review (consolidated)](paper_plan.md): Checked claim wording against the existing primary comparison and post-fit ablation definition. This review supplies no empirical or implementation validation.
+
 Current verification covers the design documents only:
 
 - `GOAL.md`, `DATASETS.md`, and `SEARCH_POLICY.yaml` describe the same primary

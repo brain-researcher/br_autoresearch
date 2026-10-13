@@ -1,0 +1,230 @@
+schema_version: episode10_v3_m1_synthetic_recovery_addendum_v2
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_any_population_recovery_probe
+analysis_label: exploratory
+scientific_authority: false
+
+authority:
+  base_contract:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_model_contract.yaml
+    required_schema_version: episode10_v3_m1_model_v1
+  synthetic_design_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_synthetic_design_addendum_v1.yaml
+    required_schema_version: episode10_v3_m1_synthetic_design_addendum_v1
+  relationship: >-
+    The base contract and synthetic-design addendum remain authoritative for
+    the M1 model, deterministic synthetic design, exact likelihood, geometry,
+    solver, rank and condition checks, warm-versus-zero gate, real-shape
+    benchmark, resources, access timing, and sealing. This addendum changes
+    only the hard-acceptance reference for the 544-row planted recovery gate.
+
+trigger:
+  failed_target_free_probe_job: "45536046"
+  probe_version: v3_m1_target_free_probe_v2
+  summary_status: fail
+  failure_stage: full_544_row_planted_recovery_comparison
+  Slurm_state: FAILED
+  Slurm_exit_code: "2:0"
+  Slurm_elapsed: "00:01:55"
+  Slurm_batch_MaxRSS: 119252K
+  in_engine_elapsed_wall_seconds: 62.54957613896113
+  focused_tests: pass_12_of_12
+  in_probe_unit_gates: pass
+  revised_design_and_joint_rank_gate: pass
+  recovery_fit_completed: true
+  real_shape_benchmark_started: false
+  observed_sampled_recovery_metrics:
+    mean_conditional_KL_bits: 0.3335485051348658
+    exact_inclusion_marginal_MAE: 0.05138927567462354
+    planted_vs_recovered_gamma_cosine_similarity: 0.9671683871173689
+    maximum_candidate_probability_absolute_difference: 0.286698831696509
+    maximum_candidate_log_probability_absolute_difference: 8.600240463453154
+  access_witness:
+    real_target_calls_or_real_K_opened: false
+    M0_prediction_or_fit_artifact_opened: false
+    final_or_unassigned_or_SWC_opened: false
+
+target_free_diagnosis:
+  parameter_dimension: 261
+  sampled_rows: 544
+  equal_sized_groups: 16
+  one_hot_draws_per_row: 1
+  first_order_regular_MLE_expected_KL_bits: 0.3460876890367826
+  formula: parameter_dimension / (2 * sampled_rows * ln(2))
+  observed_to_first_order_ratio: 0.9637687664163513
+  interpretation: >-
+    A fit to one categorical draw from each of 544 conditional distributions
+    is a finite-sample estimator, not the planted population distribution.
+    Its observed 0.33355-bit conditional KL is quantitatively consistent with
+    the approximately 0.34609-bit first-order estimation scale for 261
+    parameters. The 0.01-bit gate was therefore misapplied to categorical
+    sampling error; the evidence does not support relaxing it to the observed
+    value and does not identify a model, optimizer, rank, or geometry failure.
+  first_order_rows_for_0_01_bits: 18827.17028360097
+  row_count_interpretation: >-
+    This asymptotic calculation is diagnostic only. It does not create a new
+    sample-size gate, authorize more synthetic rows, or claim that 194 real
+    development cells are adequate for M1 estimation, cross-validation,
+    calibration, M2 search, or any scientific inference.
+
+sole_change:
+  applies_only_to: full_544_row_target_free_planted_recovery_hard_acceptance
+  old_hard_acceptance_reference: >-
+    A ridge fit to one PCG64 categorical realization per synthetic row.
+  new_hard_acceptance_reference: >-
+    A ridge fit from zero to the exact planted population cross-entropy,
+    computed by exhaustive conditional expectations over every candidate in
+    each row's frozen Omega_i.
+  numeric_recovery_thresholds_changed: false
+  sampled_categorical_generation_changed: false
+  sampled_fit_retained: true
+  sampled_fit_role: descriptive_finite_sample_diagnostic_only
+  sampled_fit_solver_requirement: >-
+    Use the unchanged lambda, zero initialization, and deterministic solver,
+    and require its existing convergence witness. Report the same sampled
+    recovery metrics, but do not compare their sampling error with the hard
+    population-recovery thresholds.
+
+exact_population_definition:
+  notation:
+    theta: row_major_vectorization_of_B_followed_by_gamma
+    theta_star: frozen_planted_B_and_planted_gamma
+    F_i_S: frozen_261_dimensional_joint_sufficient_statistic_for_candidate_S
+    p_i_star_S: >-
+      exp(theta_star^T F_i(S)) divided by the exact exhaustive sum over
+      A in Omega_i of exp(theta_star^T F_i(A)).
+    mu_i_star: exact sum over S in Omega_i of p_i_star(S) times F_i(S)
+    p_i_theta_S: same exact softmax evaluated at theta
+    mu_i_theta: exact sum over S in Omega_i of p_i_theta(S) times F_i(S)
+    cell_weight: 1 / (16 * 34)
+  objective_nats: >-
+    L_pop(theta) = sum_i w_i * [log Z_i(theta) -
+    theta^T mu_i_star] + lambda * ||theta||_2^2 / 2.
+  gradient: >-
+    grad L_pop(theta) = sum_i w_i * [mu_i_theta - mu_i_star]
+    + lambda * theta.
+  Hessian: >-
+    Hessian L_pop(theta) = sum_i w_i *
+    Cov_{p_i_theta}[F_i(S)] + lambda * I_261.
+  exact_population_KL_nats: >-
+    sum_i w_i * sum over S in Omega_i of p_i_star(S) times
+    log[p_i_star(S) / p_i_theta(S)].
+  exact_population_KL_bits: exact_population_KL_nats / ln(2)
+  computation:
+    candidate_enumeration: exhaustive_in_frozen_lexicographic_order
+    arithmetic: binary64
+    candidate_batch_maximum: 4096
+    accumulation: same_streamed_21_dimensional_moments_and_261_expansion
+    stochastic_or_sampled_expectation: forbidden
+    singleton_K_0_or_16: exact_zero_data_KL_gradient_and_Hessian_contribution
+
+prospective_implementation_consistency_witness:
+  role: >-
+    Contract-derived check that the exact population evaluator, ridge fit, and
+    frozen convergence witness agree. It is not a new scientific threshold or
+    evidence of real-sample adequacy.
+  planted_parameter_norm_components:
+    planted_B_Frobenius_norm_squared: 2.25
+    planted_gamma_norm_squared: 0.6775
+    theta_star_norm_squared: 2.9275
+  frozen_lambda: 1.0e-6
+  planted_ridge_penalty_nats: 1.46375e-6
+  frozen_parameter_dimension: 261
+  frozen_gradient_infinity_tolerance: 1.0e-7
+  worst_case_solver_objective_gap_bound_nats: 1.305e-6
+  solver_bound_formula: >-
+    parameter_dimension * gradient_infinity_tolerance^2 / (2 * lambda).
+  raw_population_KL_upper_bound_nats: 2.76875e-6
+  raw_population_KL_upper_bound_bits: 3.9944618944613175e-6
+  derivation: >-
+    The recovered penalized objective is at most its optimum plus the solver
+    gap, the optimum is no greater than the objective at theta_star, and the
+    recovered ridge penalty is nonnegative. Therefore its exact population
+    data KL is at most lambda*||theta_star||^2/2 plus the solver gap.
+  pre_frozen_numerical_headroom_fraction: 0.10
+  implementation_witness_ceiling_nats: 3.045625e-6
+  implementation_witness_ceiling_bits: 4.3939080839074494e-6
+  witness_pass_rule: >-
+    The directly enumerated exact population KL must not exceed the
+    implementation witness ceiling. This check supplements but does not
+    replace or redefine the unchanged recovery acceptance thresholds.
+  Pinsker_report_only_implication:
+    raw_mean_inclusion_marginal_MAE_upper_bound: 0.0011765946625750094
+    with_headroom_mean_inclusion_marginal_MAE_upper_bound: 0.0012340228928184437
+    formula: sqrt(population_KL_upper_bound_nats / 2)
+    role: report_only_no_additional_MAE_gate
+
+unchanged_population_recovery_acceptance:
+  initialization: all_261_parameters_zero
+  recovery_fit_lambda: 1.0e-6
+  lambda_tuning_or_nested_resampling: forbidden
+  mean_conditional_KL_maximum_bits: 0.01
+  exact_inclusion_marginal_MAE_maximum: 0.02
+  planted_vs_recovered_gamma_cosine_similarity_minimum: 0.90
+  optimizer_and_convergence_witness: exactly_as_base_contract
+  rule: >-
+    Apply these three unchanged numeric thresholds to the exact planted
+    population fit. Do not apply them as hard acceptance criteria to the
+    retained one-hot categorical fit.
+
+required_conformance_checks:
+  - >-
+    With mu_i_star replaced by an exact one-hot sufficient statistic, the
+    population evaluator must reproduce the existing sampled objective,
+    gradient, and Hessian to the frozen numerical tolerances.
+  - >-
+    The exact population gradient and Hessian-vector products must pass the
+    existing finite-difference tolerances, including the ridge term.
+  - >-
+    At theta_star, the unpenalized population gradient must be numerical zero;
+    the penalized gradient must equal lambda times theta_star to the existing
+    gradient tolerance.
+  - >-
+    Exact planted probabilities, expected sufficient statistics, KL, and
+    inclusion marginals must be finite, exhaustive, and normalized for every
+    K from 0 through 16.
+
+unchanged:
+  - 544 recovery rows, 16 equal groups, row order, and K schedule
+  - revised target-free hemisphere schedule from synthetic design addendum v1
+  - seeds 20260927 and 20260928 and one-PCG64-per-schedule rule
+  - normal-block then categorical-uniform-block RNG order and uniform count
+  - exact sampled categorical sets and sampled-fit execution
+  - target anchors, soma formulas, covariate transforms, and geometry features
+  - planted B, planted gamma, parameter dimension, and coefficient sharing
+  - exact fixed-K softmax model, centering, scaling, and exhaustive normalization
+  - recovery lambda, zero initialization, optimizer, and convergence thresholds
+  - original 0.01-bit, 0.02-MAE, and 0.90-cosine recovery thresholds
+  - rank and condition definitions and thresholds
+  - complete 68-row categorical warm-versus-zero gate and all its thresholds
+  - target-free 194-row real-shape schedules, benchmark, and resource envelope
+  - 8-hour, 4-CPU, 16-GB, no-GPU full target-free probe request
+  - remaining-budget reconciliation before any actual-K access
+  - real-K, target-call, M0-artifact, SWC, realized-route, final, and unassigned seals
+
+execution_order:
+  first: >-
+    Independently audit the implementation, then run one narrow target-free
+    population-recovery probe containing the population conformance checks,
+    the unchanged 544-row rank gate, the exact population recovery fit, and
+    the retained sampled diagnostic. It must accept no real-data input path.
+  narrow_probe_resource_ceiling: >-
+    No greater than the frozen 8-hour, 4-CPU, 16-GB, no-GPU target-free
+    resource envelope; this does not change the full-probe request.
+  narrow_pass_authorizes_only: complete_target_free_v3_probe
+  after_narrow_pass: >-
+    Run the complete target-free probe, including the unchanged 68-row
+    warm-versus-zero gate, all target-free real-shape rank and condition
+    checks, and the all-K8 benchmark. Reconcile whole-job resource use and the
+    remaining EP10 budget.
+  actual_K_access: >-
+    Forbidden until the complete target-free probe and independent postflight
+    pass. Passing this narrow recovery probe alone does not authorize actual K,
+    realized positive-set membership, or any real M1 fit.
+
+implementation_boundary:
+  implementation_modified_by_this_addendum: false
+  Slurm_job_submitted_by_this_addendum: false
+  population_probe_executed_before_freeze: false
+  next_probe_output_basename: v3_m1_synthetic_population_recovery_v2_job_JOBID

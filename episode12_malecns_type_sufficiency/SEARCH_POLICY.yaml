@@ -3,9 +3,54 @@ episode_id: ep12
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
+local_closeout_2026_10_06:
+  authority: explicit_scientist_acceptance_of_recommended_closeout
+  user_quote: "i agree with your judgement; EP20 is fine with simulation because we dont have real data"
+  scope: original_outgoing_T_U_M_comparison
+  disposition: incomplete_search
+  reason: expired_execution_and_incomplete_qualification
+  retained_deliverable: completed_observed_outgoing_description_and_figure
+  scientific_success_or_biological_null: false
+  adequate_single_population_conclusion: false
+  successor_selected: false
+  circuit_round_or_decoder_proposal_adopted: false
+  execution_resumption_authorized: false
+  budgets_and_prior_charges_preserved: true
+  incoming_and_final_focal_access: false
+  canonical_BR_action: false
+  adoption_record: outputs/experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout
+
+observed_outgoing_description_2026_10_05:
+  authority: scientist_same_for_other_questions_real_data_priority_and_continue_instruction
+  analysis_id: observed_outgoing_description
+  mode: separate_in_sample_development_description
+  original_search_deadline_reset: false
+  prior_consumption_preserved: true
+  source: existing_development_snapshot_v1_only
+  development_types: 816
+  focal_neurons: 84735
+  partner_bins: 11771
+  positive_mass_rows: normalize_over_complete_existing_vocabulary
+  zero_mass_rows: explicitly_undefined_not_zero_compositions
+  within_side: neuron_equal_mean_TV_to_own_side_centroid_including_self
+  between_sides: TV_of_left_and_right_neuron_equal_centroids
+  no_positive_mass_side: retain_type_and_mark_required_composition_undefined
+  required_tables: [all_1632_type_side_rows, all_816_bilateral_rows]
+  unknown_untyped_status_partner_mass: retained_explicitly
+  population_inference_or_subtype_claim: false
+  T_U_M_fit_or_model_selection: false
+  incoming_access: false
+  final_focal_access: false
+  new_simulation_or_recovery: false
+  allocation: {cpus: 1, memory_gib: 4, gpu: 0, wall_minutes: 30, internal_seconds: 1680}
+  maximum_additional_allocated_cpu_hours: 0.5
+  automatic_retry_or_rematerialization: false
+  source_or_runtime_failure: stop_and_preserve_partial_output
+
 # Planning metadata for a possible follow-up.
 # It does not implement or start that controller.
-# The executable scientific contract in this file remains the outgoing round.
+# The preserved scientific contract below describes the outgoing round;
+# local_closeout_2026_10_06 selects no resumption of its execution.
 research_program:
   paper_question: when_does_a_cell_type_average_hide_input_output_pathway_organization
   plan_ref: outputs/paper_plan.md

@@ -1,5 +1,53 @@
 # When does a cell-type average distort a circuit's wiring?
 
+## Adopted original-study closeout — October 6, 2026
+
+The scientist adopted closure of the original outgoing T/U/M comparison as
+**incomplete under its expired execution and qualification limits**. The
+separate completed observed-data description and figure below remain finished
+deliverables. No biological null, adequate-single-population result or T/U/M
+success follows. No simulation, empirical successor, circuit round or
+final/incoming opening is selected. See the [adoption record](outputs/experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout).
+
+## Separate observed-data description — adopted 2026-10-05
+
+**Completed October 5; figure completed October 6 UTC.** The
+[complete report and tables](outputs/runs/observed_outgoing_description/20261005-description01/)
+retain all 816 types and 84,735 neurons, including 126 zero-mass neurons.
+All type-side and bilateral descriptions are defined. The
+[observed-data figure](outputs/figures/observed_outgoing_description/20261005-description01/observed_outgoing_description.png)
+is a finished descriptive deliverable. The specification below records its
+adopted scope; it does not select another pass or reopen the original T/U/M
+study. See the [completion record](outputs/experiment_log.md#2026-10-05-2301-utc--observed_outgoing_description--completed).
+
+The scientist's instruction to stop simulation expansion and apply the same
+real-data priority to the other question sets authorizes this bounded
+descriptive branch. Describe the already-open outgoing development snapshot:
+how much neuron-equal outgoing composition varies around each provider
+type/side mean, and how different the two side means are. Retain all 816
+development types and all 11771 existing partner bins, including unknown mass.
+Normalize only positive-mass neurons; report every zero-mass neuron and every
+unscorable type/side explicitly. Report within-side mean total variation and
+between-side centroid total variation, with all support denominators.
+
+These are in-sample descriptive quantities from one male fly. Each neuron is
+included in its own side mean; this is not a held-out error, a new subtype,
+bilateral reproducibility, a circuit consequence or population inference.
+The provider taxonomy is connectivity-informed. No p-values, uncertainty
+calibration, T/U/M fit, model selection, incoming query or final-type access
+is included. The [exact specification](outputs/paper_plan.md) is fixed before
+this pass; previous development exposure is retained in its interpretation.
+
+Use the existing development snapshot once, with **1 CPU, 4 GiB, no GPU,
+30 minutes walltime and 1680 seconds internal time** (at most 0.5 allocated
+CPU-hours, accounted in addition to preserved historical consumption).
+This separate analysis does not reset or extend the expired original search
+clock or restart its stopped generated qualification. No automatic retry,
+rematerialization, parameter change or simulation repair is authorized.
+Unavailable/corrupt inputs or a deadline end the attempt with preserved
+partial output. The original study and its unresolved requirements below
+remain distinct from this descriptive report.
+
 Neurons assigned to the same cell type are often summarized by one wiring
 profile. That summary may hide meaningful differences. Some cells could
 prefer one set of downstream partners, while others of the same type prefer
@@ -33,7 +81,7 @@ The [paper plan](outputs/paper_plan.md) sets out the circuit follow-up,
 closest prior work, decisive comparisons, and evidence needed for each claim.
 The T/U/M test below remains the unchanged primary **outgoing** round. Circuit
 consequence is co-primary for the proposed **paper**, not an added endpoint
-of the running outgoing search. The rounds have separate locks, statistical
+of the original outgoing search. The rounds have separate locks, statistical
 decisions and results; one cannot rescue or overwrite the other.
 
 ## At a glance
@@ -377,5 +425,5 @@ described here, subject to the data roles above. It does not itself establish
 formal acceptance, reward, or a shared scientific claim. This 2026-09-30
 narrative/figure repair runs no analysis, amends no operative model or threshold,
 and opens no incoming, external or final-role connectivity. Recorded execution
-history and the active generated-only qualification chain remain in
+history and the stopped generated-only qualification chain remain in
 `outputs/experiment_log.md`.

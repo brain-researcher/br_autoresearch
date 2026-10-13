@@ -5,6 +5,14 @@ fitted paper-derived reference, cortical-field model, electronics model,
 physical-signal source, phantom source, or design rules have been prepared as
 EP20 inputs.
 
+2026-10-03: one Rat5 acquisition file from DANDI 000932 is staged outside Git
+under [`outputs/cache/physical_signal_development/dandi000932/`](../outputs/cache/physical_signal_development/dandi000932/).
+It is not yet a qualified input: the NWB stores 5-kHz voltage data but zeroed
+electrode coordinates and incomplete acquisition-history metadata. See the
+[source selection and limitations](../DATASETS.md#selected-acquisition-candidate-dandi-000932)
+and [observed header checks](../outputs/experiment_log.md#2026-10-03---model_specification---physical-source-acquisition-attempt-001).
+Rat3 is a whole-animal final-source candidate and remains undownloaded/unopened.
+
 ## What must be ready before candidate scoring
 
 - approved article and supplement use, with clearly sourced published values;

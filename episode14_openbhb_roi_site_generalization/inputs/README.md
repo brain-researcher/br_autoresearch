@@ -1,15 +1,19 @@
-# Episode 14 inputs
+# EP14 inputs
 
 `inputs/` is read-only after provisioning.
 
-The ignored directory `openbhb/exposed/` contains the development feature
-matrices, train labels, fixed development split manifest, and atlas reference
-text. `openbhb/audit_features/` contains feature-only public-validation rows.
+`openbhb/exposed/` contains the development ROI matrices, development age and
+`siteXacq` labels, the three fixed RAMP robustness views, and atlas reference
+text. These inputs may support the fixed four-arm development comparison.
 
-Raw `participants.tsv`, original participant identifiers, and validation
-targets are not retained here. They are fetched into an external temporary
-directory only by the trusted provisioning/audit process. This reduces
-accidental leakage but does not make publicly downloadable labels secret; a
-final audit also requires a network-disabled worker.
+`openbhb/audit_features/` contains 757 public-validation feature rows with
+opaque identities. They are feature-only and must not be used before one
+candidate is locked and the exposure review establishes a valid one-shot role.
 
-Do not write candidate artifacts, predictions, or caches under `inputs/`.
+Public-validation age, `siteXacq`, and internal/external role labels are absent
+from this workspace and remain closed to candidate code. Do not retrieve,
+search for, reconstruct, or join them during design or development work.
+
+Do not write code, predictions, caches, or reports under `inputs/`. Durable
+artifacts belong under `outputs/`; transient execution belongs in the
+episode-specific Scratch directory.

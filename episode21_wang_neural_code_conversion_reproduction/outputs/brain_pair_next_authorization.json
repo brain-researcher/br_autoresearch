@@ -1,0 +1,43 @@
+{
+  "schema_version": "ep21.brain_pair_proposal.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0330-pacific--interindividual_converter_training--next-original-brain-pair-selected",
+  "operation": "train_and_publish_brain_pair",
+  "jobs": 1,
+  "partition": "russpold",
+  "source": "sub-03",
+  "target": "sub-05",
+  "training_images": 897,
+  "cv_fits": 50,
+  "final_fits": 1,
+  "source_native_voxels": 12897,
+  "target_native_voxels": 10891,
+  "automatic_retry": false,
+  "production_training": true,
+  "model_publication": true,
+  "scoring": false,
+  "resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "minutes": 1440,
+    "gpus": 0,
+    "deadline_seconds": 84600,
+    "rss_limit_bytes": 6979321856,
+    "durable_bytes": 2147483648,
+    "scratch_bytes": 268435456,
+    "final_artifact_bytes": 805306368
+  },
+  "input_scope": {
+    "source_tau_train": "sub-03",
+    "target_tau_train": "sub-05",
+    "tau_test": false,
+    "OOD": false,
+    "subject_unique": false,
+    "features": false,
+    "decoder_payloads": false
+  },
+  "purpose": "Advance the next original canonical brain pair, index5 sub-03 to sub-05, with all50 fixed cross-validation fits and the selected final refit. Preserve the consumed first pair and its not-evaluable result; never substitute a smaller training set, voxel axis or alpha grid.",
+  "internal_training_selection": "The existing 897-image tau-train cross-validation scores and selected alpha belong to the fitted model. No tau-test, OOD, scientific evaluation or reconstruction is admitted.",
+  "accounting": "Selected under the scientist's standing continuation and increased-compute instruction: reserve at most24allocatedCPU-hours once for this parent, including focused admission checks, independent collection checks and changed ASTRA validation. Every child shares the absolute84600-second deadline from actual Slurm StartTime, bounded by EndTime minus60seconds; no timer reset. Reuse13passing component checks from47334643. Preserve closed decoder and separate content-measurement accounting; no automatic successor or extra pair.",
+  "limitations": "Source-derived matrix size is561888472bytes, not peak process memory. All51fits may not complete inside24hours/6.5GiB RSS. Failure preserves partial or visible final artifacts without automatic retry, resume, extra pair or extension. One pair is not a complete twenty-pair finding. Operational reports contain no neural values or cross-validation scores. Independent collection-check failure cannot gate this unchanged brain fit."
+}

@@ -6,6 +6,10 @@
 #SBATCH --time=00:20:00
 #SBATCH --output=/scratch/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/readiness-%j.out
 
+# Exact-once launchers use a sanitized environment; initialize Sherlock Lmod
+# explicitly before enabling nounset.
+# shellcheck source=/etc/profile
+. /etc/profile >/dev/null
 set -euo pipefail
 
 EP12_ROOT=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency
@@ -26,7 +30,7 @@ python3 -m ep12_executor.production_readiness \
   --falsifier-plan "${EP12_ROOT}/outputs/executor/OBSERVED_POST36_TAIL_PLAN.json" \
   --policy "${EP12_ROOT}/SEARCH_POLICY.yaml" \
   --prefix-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT.yaml" \
-  --active-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT_POST36.yaml" \
+  --active-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT_POST36_V3.yaml" \
   --budget-override "${EP12_ROOT}/outputs/executor/DEVELOPMENT_BUDGET_OVERRIDE.yaml" \
   --output-dir "${EP12_OUTPUT_DIR}" \
   --require-for observed_tail

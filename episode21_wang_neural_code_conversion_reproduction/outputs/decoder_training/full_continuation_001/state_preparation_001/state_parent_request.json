@@ -1,0 +1,52 @@
+{
+  "schema_version": "ep21.decoder_state_parent.v1",
+  "status": "admitted_pending",
+  "authorization": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training_full_authorization.json",
+  "work_manifest": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training/full_continuation_001/work_manifest.json",
+  "allocation": {
+    "job_id": "46833971",
+    "hostname": "sh03-06n08",
+    "allocated_cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "time_limit_seconds": 14400,
+    "job_end_epoch": 1791344896.0
+  },
+  "resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "gpus": 0,
+    "minutes": 240,
+    "durable_bytes": 8000000000,
+    "scratch_bytes": 2000000000
+  },
+  "max_work_seconds": 14040.130445480347,
+  "participants_requested": [
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "participants_completed": [],
+  "participants_remaining": [
+    "sub-03",
+    "sub-05",
+    "sub-06",
+    "sub-07"
+  ],
+  "participant_states": [],
+  "training_images_each": 4712,
+  "training_role": "subject_unique",
+  "sub01_state_reused_unchanged": true,
+  "sub01_state_recomputed": false,
+  "regular_feature_values_read": false,
+  "tau_train_values_read": false,
+  "tau_test_values_read": false,
+  "OOD_access": false,
+  "predictions_or_scores_computed": false,
+  "decoder_units_fitted": 0,
+  "complete_decoder": false,
+  "automatic_retry": false,
+  "successor_authorized": false,
+  "original_budget_consumption_preserved": true
+}

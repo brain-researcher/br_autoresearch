@@ -1,7 +1,37 @@
 # EP05 paper plan: can LFPs explain why this reach differs from the average?
 
-Status: proposed study design, 2026-09-24. No real-data or future-session
-result is claimed here.
+The primary paper framework was proposed on 2026-09-24. The separately adopted
+[fixed-HW calibration](#fixed-hw-correction-calibration) below is a bounded
+development-only successor; execution evidence belongs in the experiment log.
+
+## Completed evidence — October 6, 2026
+
+The [primary development closeout](primary_development_report.md) records the
+ordinary patience stop after 45 comparisons across all sixteen M1 sessions
+(six Mihili, ten Chewie; two animals). The W/HW incumbent's animal-balanced
+primary gain is +0.002678854 and trial-identity increment +0.004559395, below
+the registered 0.01/0.005 margins. Positive means and session-level signs did
+not establish an eligible candidate. No future-session or spike-population
+follow-up was activated; the conditional architecture below remains a plan.
+
+The separately adopted [fixed-HW calibration](runs/fixed_hw_correction_calibration/attempt001/interpretation.md)
+completed with amplitude 0.75 selected from the other fifteen sessions in
+every fold. Its primary +0.002732680 and identity +0.004210788 still fail both
+practical margins. The small primary advantage over the blend is sensitive to
+individual Chewie sessions. This is one exposed-development successor, not a
+restart of the original search or independent confirmation.
+
+The [saved-prediction component comparison](figures/fixed_prediction_components_attempt001/interpretation.md)
+retains all sixteen sessions and fifteen bins. The blend's total gain contains
++0.002542631 net trial-varying correction and +0.000136223 mean correction.
+Calibrated HW has a smaller +0.002326927 trial-varying term and a larger
++0.000405753 mean correction; the lower trial-varying contribution holds in
+both animal averages. Thus the slightly larger total score does not mean more
+trial-specific information. These algebraic descriptions establish no neural
+mechanism and cannot rescue failed practical requirements. See the
+[full component figure](figures/fixed_prediction_components_attempt001/fixed_prediction_components.png)
+and [execution log](experiment_log.md) for exact replay, validation and shared
+allocation accounting. No additional successor is selected here.
 
 ![Conceptual study logic; illustrative traces are not observed data](ep05_question_imagegen.png)
 
@@ -209,3 +239,87 @@ The abstract should eventually say what was predicted beyond the behavioral
 template, which LFP features carried it, whether it tracked the spike
 population state, where it replicated, and which BCI claim remains untested.
 A better model score by itself is not the paper conclusion.
+
+## Fixed-HW correction calibration
+
+Adopted by the coordinator on2026-10-05 under the scientist's explicit request
+to continue investigating these results. This is **one separate development-only
+calibration comparison**, not a reopening of the original45-comparison search
+or a revision of its failed0.01/0.005 practical requirements. It does not adopt
+the independent-component-penalty amendment, change the original W/HW blend,
+or activate the conditional spike-population explanation.
+
+**Question.** Can simple attenuation of the already fitted HW correction
+reproduce the improvement associated with the frozen current/history blend?
+The completed fixed-prediction decomposition found that the blend lowered
+trial-varying correction energy more than it lost covariance benefit. That
+motivates amplitude calibration; it does not establish that it will improve
+prediction, remove neural noise, or identify a biological mechanism.
+
+**Fixed predictions and support.** Use all sixteen original sessions and
+their native XY target0:+14, baseline B, trial IDs, directions and denominator.
+Fix the original HW lambda1 arrays from
+`runs/adaptive_search/primary_history_repeatability_weight_control_attempt002/`
+and the saved original half-blend arrays from
+`runs/adaptive_search/primary_history_blend_summary_attempt001/selected_predictions/`.
+The existing original W bank may be read only to replay the saved blend and
+common support. Neural source fields, incomplete banks and future sessions
+are excluded. No decoder, feature, baseline, lag, rank or ridge penalty is fit
+or chosen again. Fixed lambda1 is a prior exposed-development choice, not
+independently confirmed tuning.
+
+For `a` in exactly`[0,0.25,0.5,0.75,1]`, compute
+`P_a = B + a*(P_HW - B)`. At0 and1 reuse literal B and HW arrays. No negative,
+greater-than-one or finer-grid weight is permitted. There is one scalar,
+without an intercept, per-coordinate coefficients, per-bin weights or
+evaluation-derived centering.
+
+**Training-only calibration.** For each scored session, choose the amplitude
+maximizing original primary deltaR2 on only the other fifteen sessions. First
+average their session scores within each of Mihili and Chewie, then average
+the two animals equally. An exact score tie selects the amplitude nearest1;
+there is no near-tie tolerance. Apply that one scalar to every direction,
+trial, bin and XY coordinate in the scored session. Only primary scores enter
+selection; neither scored-session outcomes, identity, session-majority screens
+nor omission results can choose an amplitude. The complete sixteen-session
+panel must exist before selecting or reporting the calibration. This is new
+statistical calibration of saved predictions, not another descriptive replay.
+
+The original leave-one-direction-out neural fits remain unchanged. Use the
+raw fixed lambda1 banks directly, not other sessions' adaptively chosen
+winners. Other-fifteen-session calibration prevents direct use of a scored
+session to choose its scalar but does not undo prior whole-corpus exposure or
+the choice of this follow-up after seeing development results.
+
+**Evaluation.** Preserve original whole-session native-XY scoring and exact
+within-direction whole-trial derangement mean, holding amplitude fixed in the
+identity calculation. Report all five score cells, selected scalar, training
+session list/scores, every session, both animal means, original practical
+margins and fixed-prediction session omissions. Compare directly with frozen
+HW and the original lambda1 half-blend on common targets/denominators. Retain
+all fifteen bins and all directions in the existing decomposition, without
+selecting intervals. An omission is descriptive and does not recalibrate.
+Literal global equality to HW, baseline or the blend is explicitly reported;
+do not force a nontrivial scalar to produce a new-looking policy.
+
+No new practical margin, equivalence assertion or promotion rule is introduced.
+Improvement over HW assesses correction calibration under this recipe;
+improvement over the blend would not identify its biological cause. Passing
+the original numerical margins alone would not certify missing finalist
+controls or independent confirmation. A negative comparison is retained, and
+no amplitude-grid extension or subsequent candidate follows automatically.
+
+**Finite implementation and resources.**
+`tools/calibrate_fixed_hw_correction.py` writes one fresh
+`runs/fixed_hw_correction_calibration/attempt001/`, including `calibration.json`,
+selected prediction arrays, session and reference-contrast CSVs, and all-bin
+decomposition. One complete comparison is recorded in this successor; the
+original45 comparisons and original patience stop remain immutable. The
+fifteen outer folds, five amplitudes and fixed references add no comparisons.
+This successor uses the original aggregate resource allowance without resetting
+the original wall-clock deadline. One CPU/numerical thread,2GiB,180seconds
+internal and210seconds external are the full bound. Exact saved-support and
+score replay plus focused endpoint, animal-weighting, leakage, tie and brute-
+force identity fixtures are checked in the coordinator's compute allocation.
+No login-node execution, automatic retry, deadline extension, new data,
+further candidate search or future-session opening is part of this adoption.

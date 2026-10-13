@@ -1,0 +1,28 @@
+{
+  "schema_version": "ep21.reviewed_bundle_startup_replacement.v3",
+  "reviewer": "coordinating_agent",
+  "reviewed_utc": "2026-10-08T00:49:53.895112Z",
+  "predecessor_job_id": "46945868_5",
+  "predecessor_allocation_job_id": "46945868",
+  "logical_work_items": [
+    "work_0006",
+    "work_0013"
+  ],
+  "array_index": 5,
+  "remainder_plan": "outputs/decoder_training/full_continuation_001/deadline_remainders_002.json",
+  "failure_reason": "bounded_quarantine_inspection_timeout_before_decoder_fits",
+  "io_fragment_inspection_started": true,
+  "optional_children_started": false,
+  "automatic_retry": false,
+  "fix_evidence": "All 100 required checks passed in parent46945868. The separate read-only inspection reached its fixed600-second bound before finishing all five quarantined fragments; it reported InspectionTimeout rather than a storage or semantic defect. That inspection is not a prerequisite for unrelated clean work6/work13 fitting. The newly selected full_remainders_003_bundle.sbatch preserves the required source checks, optional EP15/ASTRA children and the exact two decoder remainders, and removes only the inspection gate. No numerical decoder kernel changes, fragment reuse, retry of quarantined assignments or assembly authority are introduced.",
+  "terminal_evidence": "Coordinator observed46945868_5/raw46945868 FAILED1:0, allocated1CPU for625seconds at2026-10-08T00:46:26Z, and charged625seconds once. Existing25/21-second failed startup charges remain. Required_checks_exit=0 preceded closed_io_inspection_exit=2. Coordinator reported work32 fully checked770560 units; work33 fully checked632320; work47 checked676096 of723712 before InspectionTimeout; work61/62 unread. These inspection observations grant no reusable coverage.",
+  "absence_evidence": "At 2026-10-08T00:49:53.895112Z bounded lstat found exactly remainder_shards_001/work_0006 and remainder_shards_002/work_0013 absent, including no symlink at either name. Closed parent status contains required_checks_exit=0 and closed_io_inspection_exit=2 with no later child status. Quarantined payload WAS read by the inspection; the decoder fitting children and their request/status outputs were never created. Optional EP15/ASTRA children did not start. Fresh output guards remain mandatory at new submission.",
+  "user_authorization_context": "Coordinator explicitly selected one fixed review003 supplement under the existing500CPU-hour,500GB and8-worker grant. Preserve historical review001/review002, all25/21/625-second charges, unchanged plan002 work6/work13 intervals/output paths and original fragments, one1CPU7GiB7200-second index5 reservation, and unchanged five-parent quarantine with zero reusable coverage. Fresh independent workers may follow the new bundle required-check gate; unfinished inspection need not block them. No automatic chaining, retry of any started decoder fit, extra budget, storage release, assembly, scoring or converter execution is authorized.",
+  "previous_startup_review": "outputs/decoder_training/full_continuation_001/reviewed_bundle_startup_replacement_002.json",
+  "scientific_fit_children_absent": true,
+  "decoder_fit_output_directories_absent": true,
+  "decoder_fit_request_or_status_created": false,
+  "read_only_quarantine_payload_inspected": true,
+  "io_fragment_inspection_outcome": "bounded_timeout",
+  "quarantine_inspection_required_before_unrelated_fits": false
+}

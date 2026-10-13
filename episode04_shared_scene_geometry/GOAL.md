@@ -152,6 +152,13 @@ definitions:
 Raw stimulus access, new detector execution, or new embeddings are outside
 this grammar unless their DUA, source/model identity, frozen settings, and
 complete coverage are separately approved before fixed-panel scoring.
+The scientist's 2026-10-05 approval activates the exact
+[`ep04_rgb_block_moments_5_10_20_v1` control](outputs/low_level_control_proposal.md):
+the fixed 60-image timing sample followed by all 23,560 participant-unique
+development images from the accepted LAION-fMRI source. Its float64 Euclidean
+RDM supplies the existing low-level partial-Spearman control. This exception
+does not activate shared or OOD images, a trained detector, or new model
+embeddings; complete finite development coverage remains required.
 Arbitrary code mutation, outcome-based caption editing, per-audit-category
 model selection, and nearest-neighbour access across folds are forbidden.
 

@@ -110,12 +110,17 @@ as general field-potential coupling.
 
 ## Recording days and trial roles
 
-The primary study uses twelve simultaneous M1/PMd recording days from two
-animals. Earlier and later days are assigned chronologically.
+The primary study uses eleven simultaneous M1/PMd recording days from two
+animals under the scientist-approved October 10 joint EP06/EP07 amendment.
+Mihili 2014-03-06 is excluded in both regions solely for failed native-count
+validity. Preserve the historical twelve-session qualification evidence and
+original session positions; do not substitute another day, infer a count
+conversion, or reinsert a corrected day after freeze without a separately
+declared revision. Earlier and later roles remain chronological.
 
 | Animal | Earlier days used for model fitting | Later days used for calibration and evaluation |
 | --- | --- | --- |
-| Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-06, 2014-03-07 |
+| Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-07 |
 | Chewie-L | 2016-09-29, 2016-10-05, 2016-10-06 | 2016-10-07, 2016-10-14, 2016-10-21 |
 
 M1 and PMd from the same recording day always receive the same role. No trial
@@ -203,8 +208,10 @@ evaluation; the residual estimand, frozen bridge and trial-identity comparison
 do not. Explore calibration-visible mechanism indicators broadly rather than
 preselecting two. Their eventual forecasting rule must be chosen using allowed
 development feedback, with no held-out-day benefit used to predict itself.
-Six target days limit the evidence for that rule, not the number of hypotheses
-that can be explored. Any result-driven discovery remains development evidence
+Five target days provide five outer held-day folds for benefit forecasting;
+all indicator selection, scaling and tuning exclude the predicted day. This
+limits the evidence for that rule, not the number of hypotheses that can be
+explored. Any result-driven discovery remains development evidence
 until tested on genuinely new days.
 
 The existing numerical budgets below still bound this round; this writing
@@ -223,8 +230,10 @@ Every history-assisted model is judged against both:
 Performance is measured with one joint `R2_SSE` across all held-out trials,
 native time bins, and eligible neurons within a day and region. Negative scores
 remain visible. Differences are first calculated for each later day, then
-averaged across the three days within each animal, and finally averaged equally
-across the two animals. M1 and PMd remain separate. Both comparators are always
+averaged across the two Mihili days or three Chewie-L days, and finally averaged
+equally across the two animals. Each Mihili new day has weight 1/4 and each
+Chewie-L new day 1/6, including in every bootstrap draw; neither trials nor
+neurons determine day weights. M1 and PMd remain separate. Both comparators are always
 reported; a favorable comparison with only one is insufficient.
 
 ## Search size and stopping
@@ -232,15 +241,23 @@ reported; a favorable comparison with only one is insufficient.
 The history-assisted and today-only model streams receive exactly the same
 number of development evaluations:
 
-1. 16 diverse starting models in each stream;
-2. between 2 and 14 paired adaptive successors, one new model per stream in
+1. 16 diverse starting configurations attempted in each stream, retaining the
+   15 complete paired evaluations and excluding unscored `starting_08` after
+   its two permitted numerical attempts, under the scientist-adopted October10
+   starting-count amendment;
+2. at least3 valid paired adaptive successors within at most14 attempted
+   successor pairs, one new model per stream in
    each pair; and
 3. exactly 10 paired alternative-explanation checks on the two selected
    finalists.
 
-Each stream therefore receives 28--40 outcome-contacting evaluations, or
-56--80 jointly. At least 41.67% of post-starting-model evaluations are devoted
-to alternative explanations. After at least two valid successor pairs, the
+Each complete stream therefore receives 28--39 completed evaluations, or
+56--78 jointly. All partial contacts remain separately disclosed and charged;
+failed unscored fits consume attempts, never completed evaluations. The minimum
+post-starting control fraction remains10/24 (41.67% rounded). Preserve all
+16 starting identities, the failed artifacts and all consumed resources;
+do not impute, replace or make a third attempt at `starting_08`.
+After at least three valid successor pairs, the
 adaptive stage stops when it reaches 14 pairs, exhausts the allowed model
 space, or seven consecutive valid pairs improve neither stream by at least
 `0.002 R2`. That value controls search patience only; it is not the scientific
@@ -250,6 +267,10 @@ The resource limit is CPU only: at most 800 aggregate CPU-hours, 96 wall-clock
 hours, 32 concurrent cores, and 500 GB temporary storage. Running out of
 resources means the search is incomplete; it is not evidence for or against
 the scientific hypothesis.
+
+The October 10 amendment does not reset consumed resources or any started
+execution clock, increase these limits, or authorize automatic additional
+session exclusions.
 
 ## Alternative explanations that must be checked
 
@@ -274,6 +295,21 @@ correspondence, one influential day, generic regularization, or one optional
 component. A failed scientific check makes that finalist ineligible; it does
 not trigger a search for a more convenient runner-up.
 
+The scientist adopted the October10
+[prospective control interpretation](outputs/paper_plan.md#october-10-finalist-control-interpretation-adopted).
+All ten paired controls remain mandatory. Require declared intervention
+integrity and prospectively specified, mathematically justified invariance or
+calibration-comparator identity. Ablation score changes are sensitivity
+evidence unless a corresponding scientific criterion is specified before
+execution; a mean-preserving shuffle need not eliminate valid primary gain.
+An unavailable/invalid control remains incomplete. Freeze recipes,
+hyperparameters, seeds and ensemble membership/mixing coefficients; refit
+affected parameters for each declared intervention without tuning on its
+feedback. The four fixed bounded known-answer recoveries remain required,
+with generation rules, oracle quantities and tolerances selected before
+their outcomes. Preserve the separate, stricter residual and trial-identity
+criteria for a coupling explanation.
+
 ## Held-out decision
 
 All analysis choices are made from the permitted earlier-day, calibration, and
@@ -286,15 +322,28 @@ comparators by more than `0.01 R2`. Uncertainty is estimated with 9,999 paired
 whole-trial bootstrap samples within day and reach direction. M1 and PMd are
 the two prespecified tests and use one-sided Holm control at familywise
 `alpha = 0.05`.
+The seed remains 7007999; keep time bins, neurons and comparator pairing
+together. This uncertainty is conditional on the five fixed new days and two
+animals, not on newly sampled days or animals.
 
 A setting is supported only when all of the following hold:
 
 - the `0.01 R2` margin is cleared against both comparators after multiplicity
   control;
-- the mean improvement is positive in both Mihili and Chewie-L;
-- at least two of three later days improve within each animal;
-- the conclusion remains positive after omitting each later day in turn; and
+- each comparator's mean improvement is positive in both Mihili and Chewie-L;
+- both Mihili new days and at least two of three Chewie-L new days are positive
+  against both comparators on the same day;
+- all five frozen-prediction new-day omission checks below are positive; and
 - all required alternative-explanation and data-separation checks pass.
+
+For each omission, remove one new day without refitting or repeating search,
+average the remaining days equally within animal and keep animals at 1/2 each.
+For each comparator, both remaining animal means and the aggregate point
+estimate must be positive. These influence checks add no confidence interval,
+significance test, multiplicity adjustment or new 0.01 margin. The full-panel
+2/2 and 2/3 frequency requirements are not reapplied inside an omission.
+If another retained day or region is unavailable, do not drop it and
+renormalize the required panel.
 
 The final report distinguishes support in M1 only, PMd only, both, an
 ambiguous result, a clean failure to clear the rule, an incomplete search, and
@@ -374,10 +423,11 @@ bootstrap draw, recompute `Delta_correct` and the mismatch center using the same
 paired derangement bank for both models. A bootstrap draw with no self-free
 derangement is nonestimable and contributes the adverse infinite tail rather
 than being redrawn. Effects are computed by day, averaged
-equally across the three days within each animal, and then equally across the
-two animals; M1 and PMd use the same one-sided Holm control as the primary
+equally across the two Mihili or three Chewie-L days, and then equally across
+the two animals (day weights 1/4 and 1/6 in every draw); M1 and PMd use the same one-sided Holm control as the primary
 test. Every direction must retain at least six held-out trials or that day's
-explanatory result is unavailable.
+explanatory result is unavailable. Do not omit an unavailable retained day-region
+and renormalize the explanatory panel.
 
 The follow-up then asks which LFP bands and population dimensions carry the
 gain, whether it remains when 100--400 Hz features are excluded, whether it is
@@ -403,7 +453,8 @@ results were seen.
 
 A successful primary result would show that earlier days add predictive
 information after limited same-day calibration for the supported M1/PMd
-setting in these two animals and six fixed later days. It would not show that
+setting in these two animals and five fixed later days, with reduced precision
+and robustness relative to the original six-new-day design. It would not show that
 the same neurons or electrode weights remain stable, that LFP causes spiking,
 that the method transfers to a new session or animal, or that an online BCI
 would improve.

@@ -1,5 +1,9 @@
 # Verification
 
+2026-10-02 — Viewed the actual [ep15_conceptual_question-v2.png](ep15_conceptual_question-v2.png) after generation and targeted corrections; a second reader checked its scientific operators and captions. Replaced the crowded figure and incorrect 6×6 geometry label with a three-panel design; preserved M3 geometry literally and distinguished condition geometry from cortical coordinates. This verifies the illustration, not empirical results or pipeline readiness.
+
+2026-10-02 — [Scope/novelty review (consolidated)](paper_plan.md): Checked the repaired prose against the existing non-nested selection rule. No empirical or implementation validation was performed by this review.
+
 Current verification covers design and source availability only:
 
 - the source metadata and participant archive structure were inspected without

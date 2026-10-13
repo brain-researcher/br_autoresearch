@@ -2,6 +2,27 @@ policy_id: ep17_cneuromod_model_ranking_stability
 episode_id: ep17
 evidence_mode: development_then_one_shot_concept_audit
 
+primary_block_variance_amendment_2026_10_12:
+  status: adopted
+  scientist_decision: "采用仅针对小块方差的修订（推荐）"
+  decision_reference: request_user_input_async_call6o13giUJ
+  specification: outputs/proposed_score_specific_validity_followup.md
+  scope: individual_uncertainty_block_centered_response_variance_veto_for_primary_R2_only
+  required_in_every_individual_block:
+    - finite_response_inputs
+    - finite_computed_moments
+    - strictly_positive_finite_SST_around_matching_frozen_training_mean
+  block_centered_variance_or_relative_threshold_independent_veto: false
+  training_validation_calibration_and_whole_audit_variance_rules: unchanged
+  correlation_CKA_actual_scored_vector_validity: unchanged
+  bootstrap_seed_draws_families_and_undefined_draw_rules: unchanged
+  column_block_participant_ROI_stage_and_model_support: unchanged
+  audit_application: same_narrow_rule_only_after_original_predictor_relation_freeze
+  new_audit_access_authorized: false
+  completed_census: outputs/runs/nested_prediction/fit001_diagnostic002/diagnostic_report.json
+  prior_failed_attempts_preserved: true
+  original_deadline_epoch: 1791916149
+
 paper_focus:
   milestone: "2026-10-02"
   status: pre_score_design_nomination_not_execution_lock
@@ -85,7 +106,7 @@ data_roles:
     - measurement_contracts
 
 access_boundary:
-  mixed_source_visible_to_search_worker: false
+  mixed_source_visible_to_search_worker: false  # 2026-10-12: procedural; not provided, opened, listed or searched, though readable by the account
   required_handoffs:
     metadata_only:
       contents: IDs_roles_folds_blocks_repeat_stage_and_geometry_mappings
@@ -104,6 +125,33 @@ access_boundary:
   materialized_role_filtered_files_required: true
   links_back_to_mixed_source: prohibited
   candidate_scoring_before_role_separation: prohibited
+  # Scientist decision 2026-10-12; see GOAL.md "Data readiness and access
+  # boundary". Replaces the supported-route/controlled-identity reader
+  # boundary. Builder, search_worker and evaluator are procedural roles of one
+  # account, not OS identities.
+  separation_amendment_2026_10_12:
+    mode: procedural_same_account_not_technically_enforced
+    replaced_requirement: supported_Slurm_route_or_controlled_evaluator_identity
+    development_reads_only: released_development_handoff
+    not_opened_listed_or_searched_during_development:
+      - sealed_audit_120_concepts
+      - mixed_source
+      - raw_calibration_responses
+      - sealed_outcome_paths
+    analysis_choices_frozen_and_recorded_before_audit_opening: true
+    audit_opening: single_recorded_event_within_audit_maximum_open_count
+    audit_or_sealed_access: every_access_logged_in_outputs_experiment_log
+    unplanned_access: disclosed_and_affected_results_marked
+    required_result_disclosure: procedural_same_account_not_technically_enforced_data_readable_by_account
+    enforced_or_blinded_evaluation_claim: prohibited
+    separation_precondition: satisfied_procedurally
+    physical_isolation: not_established
+    access_still_gated_by:
+      - private_stimulus_delivery_via_documented_password_images_interface_before_32_image_pilot
+      - empirical_resource_admission
+      - outcome_free_evaluator_dry_run
+      - remaining_qualification_before_neural_scores_items
+    universe_roles_supports_margins_budgets_open_count_and_other_gates: unchanged
 
 eligibility_and_assignment:
   common_universe: exact_image_ID_intersection_across_all_four_participants
@@ -159,7 +207,9 @@ response:
   voxel_eligibility:
     determined_before_candidate_model_outputs: true
     requires_finite_response_and_nondegenerate_variance_at_every_edge_endpoint: true
-    numerical_variance_threshold: null
+    # Adopted October 4 23:24 UTC; see prediction_qualification_specification.md.
+    numerical_variance_threshold: "V_population > 1e-12 * mean(y**2) and V_population > 0"
+    primary_uncertainty_block_exception: primary_block_variance_amendment_2026_10_12
     threshold_must_be_frozen_before_scores: true
     one_common_voxel_set_per_edge: true
     pairwise_complete_deletion: prohibited
@@ -245,11 +295,12 @@ scores:
     own_margin_and_scale: true
 
   practical_margins:
-    raw_R2: null
-    ceiling_normalized_R2: null
-    heldout_correlation: null
-    linear_CKA: null
-    beta_high_minus_low_gain: null
+    # Existing October 4 23:24 UTC adoption, recorded here October 6.
+    raw_R2: 0.01
+    ceiling_normalized_R2: 0.05
+    heldout_correlation: 0.02
+    linear_CKA: 0.02
+    beta_high_minus_low_gain: 0.01
     each_fixed_before_candidate_scores: true
     component_uses_margin_on_its_own_scale: true
 
@@ -346,16 +397,19 @@ calibration_estimators:
   repeat_reliability:
     statistic: Pearson_correlation_across_calibration_images_between_the_two_half_responses
     beta_operator_scale: Fisher_z
-    atanh_boundary_tolerance: null
+    atanh_boundary_tolerance: 0.0000001
     boundary_tolerance_fixed_before_scores: true
     stage_change: Fisher_z_later_stage_minus_Fisher_z_earlier_stage
     R_N_ranking_stage: D
     finite_value_required: true
   noise_ceiling:
-    estimator: null
+    # Complete calibration roster: n_i >= 2, M >= 120, finite inputs,
+    # and positive V qualified by the adopted relative variance rule.
+    # m_i = image mean; v_i = unbiased within-image variance.
+    estimator: "NC = 1 - mean_i(v_i/n_i) / sample_variance_i(m_i)"
     stage_specific_for: [B, C, D]
-    floor_tau_by_stage: null
-    V_NC_quality_threshold: null
+    floor_tau_by_stage: {B: 0.10, C: 0.10, D: 0.10}
+    V_NC_quality_threshold: finite_NC_from_complete_estimator_without_positive_NC_selection
     estimator_floor_thresholds_fixed_before_scores: true
     calibration_concepts_only: true
 
@@ -525,7 +579,7 @@ qualification_before_neural_scores:
   required:
     - exact_event_image_join_and_720_concept_universe
     - fixed_repeat_completeness_and_480_120_120_roles
-    - role_filtered_handoffs_and_permissions
+    - role_filtered_handoffs_and_permissions  # 2026-10-12: permissions part procedural (access_boundary.separation_amendment_2026_10_12); handoff release still pending
     - aligned_B_C_D_trial_response_geometry_and_voxel_axes
     - frozen_ROI_crosswalk_N_subset_bank_spatial_bins_and_quotas
     - calibration_reliability_maps_and_stage_specific_noise_ceilings
@@ -583,10 +637,11 @@ audit:
   negative_classification:
     heldout_nonreplication_requires_adequate_fixed_width: true
     adequacy_width_thresholds:
-      raw_R2: null
-      ceiling_normalized_R2: null
-      heldout_correlation: null
-      linear_CKA: null
+      # Maximum full simultaneous audit interval widths; not half-widths.
+      raw_R2: 0.02
+      ceiling_normalized_R2: 0.10
+      heldout_correlation: 0.04
+      linear_CKA: 0.04
     numeric_thresholds_frozen_before_candidate_scores: true
     adequate_patterns:
       - practical_equivalence

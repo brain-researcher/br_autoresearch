@@ -1,0 +1,124 @@
+schema_version: episode10_v3_m0_solver_addendum_v2
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_v2_numerical_probe_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+base_contract:
+  required_basename: v3_m0_model_contract.yaml
+  required_schema_version: episode10_v3_m0_model_v1
+  required_status: frozen_before_real_M0_execution
+  relationship: >-
+    Numerical solver addendum only. The referenced v1 model contract remains
+    authoritative and unchanged for the scientific model, data scope, design,
+    exact likelihood, ridge grid, resampling, scoring, and interpretation.
+
+reason:
+  failed_job: "45476204"
+  failed_outer_held_group: "212074"
+  failed_inner_held_group: "220187"
+  failed_lambda: 1.0e-5
+  observed_iterations: 500
+  observed_gradient_infinity_norm: 5.92721e-5
+  observed_relative_objective_change: 2.66655e-7
+  classification: deterministic_iteration_cap_exhaustion_under_weak_ridge
+
+scope:
+  role: development_only
+  final_or_unassigned_access: forbidden
+  permitted_changes:
+    - increase L-BFGS curvature history to the full 255-dimensional parameter space
+    - increase the per-fit iteration ceiling
+    - record numerical convergence telemetry
+  unchanged:
+    - 194-cell 12-group development scope
+    - 16-coordinate panel and recorded-positive observation semantics
+    - 17-covariate by 15-target-contrast parameterization
+    - exact fixed-K likelihood and analytic gradient
+    - equal-group training weights
+    - ridge penalty definition and 12-value lambda grid
+    - descending strong-to-weak ridge path with prior-lambda warm start
+    - deterministic Armijo backtracking line search
+    - gradient and relative-objective convergence tolerances
+    - convergence requires both tolerances
+    - no fallback optimizer
+
+solver:
+  algorithm: deterministic_L_BFGS
+  parameter_dimension: 255
+  history_size: 255
+  maximum_iterations: 2000
+  line_search:
+    algorithm: Armijo_backtracking
+    initial_step: 1.0
+    armijo_c1: 1.0e-4
+    backtrack_factor: 0.5
+    maximum_evaluations: 80
+  convergence:
+    gradient_infinity_tolerance: 1.0e-7
+    relative_objective_tolerance: 1.0e-10
+    requires_both: true
+  curvature:
+    floor_multiplier: 1.0e-14
+    skipped_pair_action: continue_without_pair
+  nonconvergence_or_line_search_failure: stop
+  fallback_optimizer: forbidden
+
+ridge_path:
+  ordered_lambdas:
+    - 1000.0
+    - 100.0
+    - 10.0
+    - 1.0
+    - 1.0e-1
+    - 1.0e-2
+    - 1.0e-3
+    - 1.0e-4
+    - 1.0e-5
+    - 1.0e-6
+    - 1.0e-7
+    - 1.0e-8
+  initialization:
+    first_lambda: all_zero_coefficients
+    later_lambdas: immediately_preceding_converged_coefficients
+  auxiliary_lambdas: forbidden
+
+telemetry:
+  per_fit:
+    - iterations
+    - accepted_steps
+    - objective
+    - gradient_infinity_norm
+    - relative_objective_change
+    - accepted_step_summary
+    - initial_inverse_hessian_scale_summary
+    - line_search_evaluations
+    - curvature_updates
+    - curvature_skips
+    - coefficient_l2_norm
+  coefficients_or_prediction_vectors_in_solver_telemetry: forbidden
+
+targeted_probe:
+  outer_held_group: "212074"
+  inner_held_group: "220187"
+  expected_training_cells: 153
+  expected_training_groups: 10
+  full_descending_path_required: true
+  deterministic_warm_path_repeats: 2
+  zero_start_comparison_at_every_lambda: true
+  warm_path_max_iterations_exclusive: 1000
+  repeat_checks:
+    objective_absolute_tolerance: 1.0e-12
+    coefficient_max_absolute_tolerance: 1.0e-10
+    prediction_max_absolute_tolerance: 1.0e-10
+  zero_start_checks:
+    objective_absolute_tolerance: >-
+      max(1e-10, 1.1 * parameter_dimension *
+      gradient_infinity_tolerance^2 / (2 * lambda))
+    marginal_max_absolute_tolerance: 1.0e-5
+    log_probability_max_absolute_tolerance: 1.0e-4
+  held_out_scoring: forbidden
+  coefficient_or_prediction_vector_emission: forbidden
+  final_or_unassigned_access: forbidden
+  output_location: unique_job_scoped_EP10_Scratch_child

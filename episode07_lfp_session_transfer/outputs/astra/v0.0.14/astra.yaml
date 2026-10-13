@@ -1,0 +1,466 @@
+version: "0.0.14"
+name: "EP07: history added value and the information that survives recording days"
+description: >-
+  Standalone experiment program; execution evidence lives in the experiment log.
+  The adopted October 10 eleven-session panel preserves the original score,
+  margins and search; explanations are conditional and
+  cannot rescue it. EP06 is a separately specified same-corpus paper component,
+  not a run input. No new recording-day source is selected.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+outputs:
+  - {id: primary_report, from: primary_evaluation.primary_report}
+  - {id: explanation_report, from: trial_identity.pairing_report}
+analyses:
+  source_support:
+    name: Confirm named source sessions and scientific measurement support
+    description: >-
+      Preserve the historical twelve-date qualification and prepare the eleven
+      retained dates, excluding Mihili March 6 jointly in M1/PMd. Check trial identities,
+      native windows, feature meanings, trial support and eligible neuron sets
+      before any score. Save original positions, EP06 session roles and unchanged
+      whole-trial splitting. Fresh attempt002 preserves failed attempt001.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: supported_views
+        type: data
+        inputs: [goal, datasets, policy]
+        recipe:
+          command: bash outputs/tools/prepare_roles.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+  data_separation:
+    name: Demonstrate the contract-required separation of fitting and closed targets
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: supported_views, from: ../source_support.supported_views}
+    outputs:
+      - {id: separation_report, type: report, inputs: [goal, supported_views]}
+  known_answer_cases:
+    name: Recover stable drifting null and scale-shift known answers
+    description: >-
+      The four existing cases qualify selected finalists before held-out opening.
+      They are not a new prerequisite for starting development search. A failed
+      scientific case makes that finalist ineligible; no runner-up substitution.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selected_pair, from: ../matched_search.selected_pair}
+      - {id: recovery_specification, type: data, source: outputs/paper_plan.md}
+      - {id: recovery_code, type: data, source: outputs/tools/known_answer_cases.py}
+      - {id: recovery_tests, type: data, source: outputs/tools/test_known_answer_cases.py}
+      - {id: continuation_code, type: data, source: outputs/tools/resume_known_answer_cases.py}
+      - {id: continuation_tests, type: data, source: outputs/tools/test_resume_known_answer_cases.py}
+    outputs:
+      - id: recovery_report
+        type: report
+        description: >-
+          Four fixed identified-signal constructions, actual selected recipes,
+          The adopted numerical continuation retains32 unique member tasks
+          with33 cumulative attempts including one failed numerical fit,
+          reuses the first passed cell and allows586 additional seconds after
+          charging14 prior seconds. Native conditional-mean NRMSE at most0.20
+          and the declared coupling-slope tolerance; no successful repeats,
+          tuning or replacement finalist after a completed recovery failure.
+          These qualify a method, not biological history transfer.
+        inputs: [policy, selected_pair, recovery_specification, recovery_code, continuation_code]
+      - id: continuation_checks
+        type: report
+        format: text
+        description: >-
+          Two focused checks of exact predecessor reuse, the one declared
+          numerical retry, unchanged case/model bindings and cumulative
+          attempt/time accounting. Fabricated or mocked execution only;
+          run within the substantive continuation, not as a separate job.
+        inputs: [policy, recovery_code, continuation_code, continuation_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_resume_known_answer_cases ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+  matched_search:
+    name: Fit equally budgeted history-assisted and today-only streams
+    description: >-
+      Diverse feature/alignment/weighting/mapping combinations; sixteen
+      attempted starts are not fixed finalists. The adopted October10
+      amendment requires fifteen complete starting pairs, retaining excluded
+      unscored starting08 and its exhausted attempts. At least three valid
+      adaptive pairs within fourteen attempts, with unchanged patience and
+      resource limits; development outcomes remain scorer-only.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: separation_report, from: ../data_separation.separation_report}
+      - {id: candidate_reader, type: data, source: outputs/tools/view_access.py}
+      - {id: native_trial_code, type: data, source: outputs/tools/native_trials.py}
+      - {id: native_trial_tests, type: data, source: outputs/tools/test_native_trials.py}
+      - {id: lfp_feature_code, type: data, source: outputs/tools/lfp_features.py}
+      - {id: lfp_feature_tests, type: data, source: outputs/tools/test_lfp_features.py}
+      - {id: primary_population, type: data, source: outputs/tools/primary_population.py}
+      - {id: primary_population_tests, type: data, source: outputs/tools/test_primary_population.py}
+      - {id: primary_design, type: data, source: outputs/tools/primary_design.py}
+      - {id: primary_design_tests, type: data, source: outputs/tools/test_primary_design.py}
+      - {id: regression, type: data, source: outputs/tools/regression.py}
+      - {id: regression_tests, type: data, source: outputs/tools/test_regression.py}
+      - {id: primary_model, type: data, source: outputs/tools/primary_model.py}
+      - {id: primary_model_tests, type: data, source: outputs/tools/test_primary_model.py}
+      - {id: starting_recipes, type: data, source: outputs/tools/starting_recipes.py}
+      - {id: prediction_publication, type: data, source: outputs/tools/candidate_predictions.py}
+      - {id: prediction_publication_tests, type: data, source: outputs/tools/test_candidate_predictions.py}
+      - {id: development_score, type: data, source: outputs/tools/development_score.py}
+      - {id: development_score_tests, type: data, source: outputs/tools/test_development_score.py}
+      - {id: starting_worker, type: data, source: outputs/tools/run_starting_models.py}
+      - {id: starting_scorer, type: data, source: outputs/tools/score_starting_models.py}
+      - {id: source_weighting, type: data, source: outputs/tools/source_weighting.py}
+      - {id: source_weighting_tests, type: data, source: outputs/tools/test_source_weighting.py}
+      - {id: weighted_primary, type: data, source: outputs/tools/weighted_primary_model.py}
+      - {id: weighted_primary_tests, type: data, source: outputs/tools/test_weighted_primary_model.py}
+      - {id: ensemble_predictions, type: data, source: outputs/tools/ensemble_predictions.py}
+      - {id: ensemble_tests, type: data, source: outputs/tools/test_ensemble_predictions.py}
+      - {id: adaptive_progress, type: data, source: outputs/tools/adaptive_progress.py}
+      - {id: adaptive_progress_tests, type: data, source: outputs/tools/test_adaptive_progress.py}
+      - {id: adaptive_recipes, type: data, source: outputs/tools/adaptive_recipes.py}
+      - {id: adaptive_worker, type: data, source: outputs/tools/run_adaptive_models.py}
+      - {id: adaptive_scorer, type: data, source: outputs/tools/score_adaptive_models.py}
+    outputs:
+      - id: fitting_input_checks
+        type: report
+        format: text
+        description: >-
+          Focused array and interface checks of complete permitted native trial
+          packs, calibration-only means, native-bin nine-band features and
+          independently fitted history/today transformations. No empirical
+          targets or model search are opened. Run only inside a substantive
+          allocation; this is not a separate checking job or full model qualification.
+        inputs: [policy, candidate_reader, native_trial_code, native_trial_tests, lfp_feature_code, lfp_feature_tests, primary_population, primary_population_tests, primary_design, primary_design_tests, regression, regression_tests, primary_model, primary_model_tests, prediction_publication, prediction_publication_tests, development_score, development_score_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_native_trials test_lfp_features
+            test_primary_population test_primary_design test_regression test_primary_model
+            test_candidate_predictions test_development_score ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: starting_development_feedback
+        type: report
+        format: json
+        description: >-
+          Sixteen starting pairs only; no adaptive successors, finalist checks,
+          model selection or held-out access. Each complete pair receives the
+          same two regional development aggregates. Joint R2 uses summed SSE
+          over summed per-neuron SST across trials/native bins. The common
+          selection objective averages the two animal-balanced regional scores.
+          Four numeric workers share the requested four-CPU/28-GiB parent;
+          admission permits four to six allocated CPUs for memory rounding.
+        inputs: [policy, supported_views, separation_report, candidate_reader, native_trial_code, lfp_feature_code, primary_population, primary_design, regression, primary_model, starting_recipes, prediction_publication, development_score, starting_worker, starting_scorer]
+        recipe:
+          command: bash outputs/tools/starting_models.sbatch
+          resources: {cpus: 4, memory: 28Gi, time_limit: 2h}
+      - id: selected_pair
+        type: data
+        inputs: [policy, supported_views, separation_report, starting_development_feedback, repaired_starting_feedback, adaptive_development_feedback, continued_development_feedback, candidate_reader, native_trial_code, lfp_feature_code]
+      - id: repaired_starting_feedback
+        type: report
+        format: json
+        description: >-
+          Second and final numerical attempts for unscored starting08 and10,
+          both streams only. Keep penalty, L1 ratio, scaling, absolute KKT1e-5
+          and every scientific role fixed; allow at most100000 cyclic sweeps
+          within allocation/search deadlines. Fresh residual KKT determines
+          convergence. Preserve fourteen completed pairs and their feedback;
+          the repair scorer contacts only two complete repaired pairs. Retain
+          the original96-hour clock and charge this parent allocation once.
+          Two affected elastic-net and four new source-weighting checks precede fitting.
+          Source weighting remains dormant during these equal-weight fits.
+        inputs: [policy, supported_views, separation_report, starting_development_feedback, candidate_reader, native_trial_code, lfp_feature_code, primary_population, primary_design, regression, regression_tests, primary_model, starting_recipes, prediction_publication, development_score, starting_worker, starting_scorer, source_weighting, source_weighting_tests]
+        recipe:
+          command: bash outputs/tools/repair_starting_models.sbatch
+          resources: {cpus: 2, memory: 14Gi, time_limit: 2h}
+      - id: adaptive_development_feedback
+        type: report
+        format: json
+        description: >-
+          Seven genuinely new paired development opportunities selected from
+          completed starting feedback, using histogram ridge and networks,
+          calibration-similarity and reliability source weights, and a fixed
+          two-member prediction ensemble. One numerical process at a time;
+          separate scorer validates both panels before target contact.
+          Reuse the original clock, preserve starting08 as exhausted and
+          unscored, and retain all contact/attempt/patience counts. New
+          development does not choose finalists, waive scientific checks or
+          authorize held-out access. The first batch ran before adoption of
+          the fifteen-complete-start amendment; retain its historical accounting.
+        inputs: [policy, supported_views, separation_report, starting_development_feedback, repaired_starting_feedback, candidate_reader, native_trial_code, lfp_feature_code, primary_population, primary_design, regression, primary_model, source_weighting, weighted_primary, weighted_primary_tests, prediction_publication, ensemble_predictions, ensemble_tests, development_score, adaptive_progress, adaptive_progress_tests, adaptive_recipes, adaptive_worker, adaptive_scorer]
+        recipe:
+          command: bash outputs/tools/adaptive_models.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+      - id: continued_development_feedback
+        type: report
+        format: json
+        description: >-
+          Remaining adaptive07 through13 are declared prospectively from the
+          existing permitted feedback. Stop at the original patience/cap, even
+          if declared later comparisons remain unrun. Replay all earlier
+          opportunities and contacts without a reset. The same bounded batch
+          then selects the independent global incumbents, fits all ten paired
+          controls and runs the four fixed recoveries. It never opens empirical
+          held-out features or responses. Aggregate this substantive work with
+          the affected implementation checks and separate EP06 array companion.
+        inputs: [policy, supported_views, separation_report, starting_development_feedback, repaired_starting_feedback, adaptive_development_feedback, adaptive_recipes, adaptive_worker, adaptive_scorer, adaptive_progress, adaptive_progress_tests]
+        recipe:
+          command: bash outputs/tools/complete_development.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+  alternative_explanations:
+    name: Evaluate the ten registered paired finalist checks
+    description: >-
+      Earlier-day label and correspondence disruption, calibration disruption,
+      no-history and mean-only reductions, equal source weights, each source-day
+      omission, and first-active-component omission. A scientific failure makes
+      the finalist ineligible; never substitute a favorable runner-up.
+      The adopted October10 interpretation requires intervention integrity and
+      prospectively justified invariance/comparator identity. Score changes
+      are sensitivity evidence unless a scientific veto is specified before
+      execution; mean-preserving disruptions need not eliminate primary gain.
+      Refit affected parameters with recipes and ensemble membership/weights
+      fixed. Four bounded known-answer recoveries remain mandatory.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selected_pair, from: ../matched_search.selected_pair}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: recovery_report, from: ../known_answer_cases.recovery_report}
+      - {id: control_conventions, type: data, source: outputs/paper_plan.md}
+      - {id: fit_scope, type: data, source: outputs/tools/primary_fit_scope.py}
+      - {id: primary_control, type: data, source: outputs/tools/primary_control.py}
+      - {id: primary_control_tests, type: data, source: outputs/tools/test_primary_control.py}
+      - {id: fit_mismatch, type: data, source: outputs/tools/fit_mismatch.py}
+      - {id: fit_mismatch_tests, type: data, source: outputs/tools/test_fit_mismatch.py}
+      - {id: control_assembly, type: data, source: outputs/tools/finalist_controls.py}
+      - {id: control_assembly_tests, type: data, source: outputs/tools/test_finalist_controls.py}
+      - {id: control_runner, type: data, source: outputs/tools/run_finalist_controls.py}
+    outputs:
+      - id: check_report
+        type: report
+        inputs: [policy, selected_pair, supported_views, recovery_report, control_conventions, fit_scope, primary_control, fit_mismatch, control_assembly, control_runner]
+      - id: control_refit_checks
+        type: report
+        format: text
+        description: >-
+          Four source/nuisance-refit, three whole-trial mismatch and three
+          assembly tests verify the intervention with fabricated arrays. They are
+          implementation checks, not the ten empirical controls or the four
+          scientific recovery cases. Bundle with substantive computation.
+        inputs: [policy, fit_scope, primary_control, primary_control_tests, fit_mismatch, fit_mismatch_tests, control_assembly, control_assembly_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 180s
+            python3.12 -B -m unittest -v test_primary_control test_fit_mismatch test_finalist_controls ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+  primary_result_figure:
+    name: Display the completed primary comparison and failed support conditions
+    inputs:
+      - {id: primary_report, from: ../primary_evaluation.primary_report}
+      - {id: figure_code, type: data, source: outputs/tools/plot_primary_result.py}
+    outputs:
+      - id: result_figure
+        type: data
+        format: png
+        description: >-
+          Existing day and aggregate differences against both comparators.
+          Neither region satisfies the complete prespecified rule: M1 fails
+          day-frequency and omission requirements; PMd fails the 0.01 margin.
+          No new fit, resampling, outcome opening or mechanistic inference.
+          PNG and PDF derive only from the completed primary report.
+        inputs: [primary_report, figure_code]
+        recipe:
+          command: python3.12 -B outputs/tools/plot_primary_result.py
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+  primary_evaluation:
+    name: Open held-out trials once and apply the adopted five-new-day rule
+    description: >-
+      Joint native-count R2_SSE; 0.01 R2 against both comparisons; two Mihili
+      and three Chewie-L days averaged within animal, then animals equally
+      (day weights 1/4 and 1/6 in every draw); 9999 whole-trial draws; unchanged
+      Holm across M1 and PMd. Both Mihili days and at least two Chewie-L days
+      must beat both comparators on the same day; each animal mean is positive.
+      Five frozen-prediction omissions require positive aggregate and remaining
+      animal means for each comparator, without refits or new significance tests.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selected_pair, from: ../matched_search.selected_pair}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: check_report, from: ../alternative_explanations.check_report}
+      - {id: inference_code, type: data, source: outputs/tools/primary_inference.py}
+      - {id: inference_tests, type: data, source: outputs/tools/test_primary_inference.py}
+      - {id: paired_publication, type: data, source: outputs/tools/final_predictions.py}
+      - {id: paired_publication_tests, type: data, source: outputs/tools/test_final_predictions.py}
+      - {id: final_feature_reader, type: data, source: outputs/tools/final_view_access.py}
+      - {id: final_feature_tests, type: data, source: outputs/tools/test_final_features.py}
+      - {id: final_fit, type: data, source: outputs/tools/final_fit.py}
+      - {id: final_fit_tests, type: data, source: outputs/tools/test_final_fit.py}
+      - {id: final_scorer, type: data, source: outputs/tools/final_score.py}
+      - {id: final_scorer_tests, type: data, source: outputs/tools/test_final_score.py}
+      - {id: primary_runner, type: data, source: outputs/tools/run_primary_evaluation.py}
+    outputs:
+      - id: primary_report
+        type: report
+        description: >-
+          Final target access follows complete publication of both frozen
+          prediction streams and the calibration comparator for all ten native
+          cells. Publication alone grants neither opening authority nor support.
+          Completed search, all ten paired controls and four fixed recoveries
+          precede the full analysis freeze. Trusted fitted state is persisted
+          before held features; a durable single opening precedes counts.
+          Residual follow-up is not performed in this primary evaluation;
+          later choices on exposed outcomes remain exploratory.
+        inputs: [policy, selected_pair, supported_views, check_report, inference_code, paired_publication, final_feature_reader, final_fit, final_scorer, primary_runner]
+        recipe:
+          command: bash outputs/tools/finish_primary.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+      - id: final_transport_checks
+        type: report
+        format: text
+        description: >-
+          Two fitted-state and two held-count transport checks use fabricated
+          arrays/files. Verify complete paired frozen deployment and literal
+          target binding after a durable opening callback. No empirical held
+          features or outcomes are used by these tests.
+        inputs: [policy, final_fit, final_fit_tests, final_scorer, final_scorer_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 180s
+            python3.12 -B -m unittest -v test_final_fit test_final_score ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: paired_publication_checks
+        type: report
+        format: text
+        description: >-
+          Two paired publication and four feature-reader/prediction tests of
+          complete native axes, literal held-out roles, response nonaccess,
+          stream identity and incomplete-artifact refusal. No empirical held-out
+          features or responses are used; bundle with substantive computation.
+        inputs: [policy, paired_publication, paired_publication_tests, final_feature_reader, final_feature_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_final_predictions test_final_features ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: inference_arithmetic_checks
+        type: report
+        format: text
+        description: >-
+          Four focused array-only tests of paired whole-trial bootstrap,
+          recomputed native-count SST, centered margin tails, IUT and fixed
+          two-region Holm family, plus strict animal/day/omission gates.
+          Dormant arithmetic tests run within substantive development compute;
+          they do not consume held-out data or qualify a finalist.
+        inputs: [policy, inference_code, inference_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 180s
+            python3.12 -B -m unittest -v test_primary_inference ) > {output} 2>&1
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+  frozen_bridge:
+    name: Learn and freeze identified population coordinates before residualizing
+    description: >-
+      Use unresidualized training/calibration responses only. Preserve the
+      existing rank, 64-anchor, condition-number and every-source-link support
+      rules; unavailable links are not rescued by dropping a source. Freeze
+      within each candidate/fitting fold before its residual fit or score,
+      not one permanent bridge before development search.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: candidate_reader, type: data, source: outputs/tools/view_access.py}
+      - {id: native_trial_code, type: data, source: outputs/tools/native_trials.py}
+      - {id: population_bridge_code, type: data, source: outputs/tools/population_bridge.py}
+      - {id: population_bridge_tests, type: data, source: outputs/tools/test_population_bridge.py}
+    outputs:
+      - id: population_bridge_checks
+        type: report
+        format: text
+        description: >-
+          Independent native-count fixtures for exact rank/anchor/QR gates,
+          all-source support, independent neuron axes, explicit alignment
+          arithmetic and history/today isolation. Full predictor capacity
+          matching and empirical bridge support remain separate. Run inside
+          substantive compute, not as a standalone checking allocation.
+        inputs: [policy, candidate_reader, native_trial_code, population_bridge_code, population_bridge_tests]
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_population_bridge ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - {id: bridge, type: data, inputs: [policy, supported_views, native_trial_code, population_bridge_code]}
+  residual_prediction:
+    name: Conditionally finalize matched residual-only history and today-only models
+    description: >-
+      Primary support gates the final explanation, not exploratory residual
+      fitting in matched_search. Freeze selected procedures before applicable
+      outcome access. Remove allowed-data means from inputs and targets;
+      no direction/time shortcut; reconstruct native-neuron residuals.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: bridge, from: ../frozen_bridge.bridge}
+      - {id: primary_report, from: ../primary_evaluation.primary_report}
+    outputs:
+      - id: residual_predictions
+        type: data
+        inputs: [policy, supported_views, bridge, primary_report]
+  trial_identity:
+    name: Evaluate history's incremental correct-versus-mismatched pairing gain
+    description: >-
+      Keep both prediction sets fixed; identical within-direction whole-trial
+      derangements; 9999 mismatch draws and paired whole-trial uncertainty;
+      simultaneous residual and pairing lower bounds over 0.01 R2. No refitting,
+      no convenient redraw, and no absolute-history-pairing shortcut. Use the
+      same two/three-day animal-balanced weights in every draw; unavailable
+      retained day-regions cannot be dropped to renormalize.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: residual_predictions, from: ../residual_prediction.residual_predictions}
+    outputs:
+      - id: pairing_report
+        type: report
+        inputs: [policy, supported_views, residual_predictions]
+  signal_boundary:
+    name: Planned low-frequency and spike-rich-signal explanation
+    description: >-
+      Existing conditional follow-up: LMP/low-frequency views, removal of
+      100-400 Hz, electrode proximity and spike-quality support. Freeze the
+      comparison before relevant outcome access; not a new primary veto.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: pairing_report, from: ../trial_identity.pairing_report}
+    outputs:
+      - {id: signal_report, type: report, inputs: [goal, supported_views, pairing_report]}
+  benefit_forecast:
+    name: Planned development search for a calibration-visible benefit forecast
+    description: >-
+      Open indicator exploration without an arbitrary two-score cap; day-wise
+      cross-fit selection, scaling and tuning in five outer held-day folds.
+      Five target days limit evidential
+      strength, not hypothesis breadth. Freeze the chosen rule before new-day
+      outcomes; existing budgets apply and no fresh confirmation is claimed.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: supported_views, from: ../source_support.supported_views}
+      - {id: pairing_report, from: ../trial_identity.pairing_report}
+    outputs:
+      - {id: forecast_rule, type: data, inputs: [goal, supported_views, pairing_report]}
+  new_day_test:
+    name: Planned forward test on genuinely new recording days
+    description: >-
+      No compatible new source selected. Freeze the full measurement, source,
+      calibration, rule and inference before accessing newly sequestered
+      outcomes. A new day in the same animal is not a third-animal replication.
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: forecast_rule, from: ../benefit_forecast.forecast_rule}
+      - {id: signal_report, from: ../signal_boundary.signal_report}
+    outputs:
+      - {id: forward_report, type: report, inputs: [datasets, forecast_rule, signal_report]}

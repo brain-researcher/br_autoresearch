@@ -1,0 +1,34 @@
+{
+  "annotation_only_eligible_type_count_used": 1020,
+  "cost_gate_passed": true,
+  "cpu_seconds_per_type_direction_triplet": 0.5990639207434771,
+  "development_type_count_used": 816,
+  "explicit_resource_authorization": {
+    "authorization_path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/DEVELOPMENT_BUDGET_OVERRIDE.yaml",
+    "authorization_source": "explicit_user_instruction_in_active_EP12_Codex_task",
+    "development_only": true,
+    "final_connectivity_access_authorized": false,
+    "final_connectivity_accessed": false,
+    "measured_planning_core_hours": 2750.224361392,
+    "new_hard_cpu_ceiling": null,
+    "required_null_replicates": 99,
+    "runtime_projected_maximum_program_allocated_core_hours": null,
+    "scope": "minimum_full_development_search_including_observed_and_required_99_null_searches"
+  },
+  "measured_cpu_seconds": 24154.257284377,
+  "measured_type_direction_triplets": 40320,
+  "measured_wall_seconds": 24162.17644311901,
+  "minimum_trials": 36,
+  "observed_plus_null_searches": 100,
+  "policy_cpu_core_hour_ceiling": 1000.0,
+  "policy_cpu_core_hour_ceiling_enforced": false,
+  "projected_cpu_core_hours": 977.6723186533548,
+  "projected_type_direction_triplets": 5875200,
+  "qualification_configuration": {
+    "bootstrap_replicates": 1999,
+    "cross_validation_folds": 2,
+    "integration_draws": 256,
+    "whole_types_per_replicate": 8
+  },
+  "scope": "generated_data_measured_projection_not_real_runtime"
+}

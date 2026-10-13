@@ -1,15 +1,115 @@
 episode_id: ep10
 policy_id: ep10_residual_coprojection_adaptive
 
-# EP10 can be launched now. Data qualification is the first scientific stage
-# of the run rather than a separate administrative launch gate.
+# The original M2 objective is closed; the recorded design remains historical.
+local_closeout_2026_10_06:
+  authority: explicit_scientist_acceptance_of_recommended_closeout
+  user_quote: "i agree with your judgement; EP20 is fine with simulation because we dont have real data"
+  scope: original_v3_M2_objective
+  disposition: incomplete_search
+  reason: computational_and_numerical_limits
+  retained_evidence: qualified_real_data_M1_and_secondary_exploratory_M1_minus_M0_gain
+  scientific_success: false
+  biological_negative_or_M1_sufficiency: false
+  successor_selected: false
+  execution_resumption_authorized: false
+  budgets_and_prior_charges_preserved: true
+  data_roles_and_closed_outcomes_preserved: true
+  canonical_BR_action: false
+  adoption_record: outputs/experiment_log.md#2026-10-06--v3_search--scientist-adopted-local-closeout
+
 launch:
-  ready: true
+  ready: false
   first_stage: qualify one candidate morphology resource before fitting outcome models
   minimum_to_start:
     - >-
       read-only access to candidate morphologies and basic neuron, source, and
       animal-or-specimen metadata
+
+active_regime: v3_positive_only_exploratory
+active_exploratory_v3_override:
+  authority: explicit_scientist_authorization_2026-09-26
+  precedence:
+    rank: highest
+    controller_rule: >-
+      fail closed unless canonical operative keys agree with this override;
+      legacy complete-set values are documentation only while active_regime is
+      v3_positive_only_exploratory
+    supersedes_paths:
+      - data.final_opening
+      - observation.legacy_complete_set_definition
+      - models.M0
+      - models.M1
+      - models.M2
+      - models.common_scoring
+      - candidate_combination.event_semantics
+      - full_axon_anatomy.status
+      - shared_target_question.status
+      - external_evaluation.status
+      - objectives
+      - full_search_null
+      - required_falsifiers
+      - final_decision.active_v3
+  activation_gate:
+    eligible_development_cells: 194
+    excluded_development_cells: 6
+    exclusion_reason: soma_not_MOp
+    conservative_group_count: 12
+    group_221588_support: 7
+    require_exact_postflight_before_modeling: true
+  scope: development_only
+  relationship_to_original_policy: >-
+    This block overrides conflicting complete-set, biological-promotion, and
+    shared-target-exclusivity language for the active Gao v3 analysis. The
+    original complete-set design remains documented as a failed historical or
+    future endpoint and is not silently relabelled.
+  observation:
+    target_panel_T: frozen_16_nonoverlapping_coordinates
+    P_i: mapped positive terminal observations within T
+    K_i_obs: cardinality of P_i; recorded-positive count, not biological target count
+    Omega_i: every size-K_i_obs subset of T
+    zero_semantics: no mapped positive terminal observation recorded; unknown and not negative
+    unmapped_content: omit from positive target assignment; never impute absence
+    exact_normalization_interpretation: conditional recorded-positive-pattern probability
+  scoring_population:
+    denominator: all_194_structurally_eligible_development_cells
+    K_i_obs_0_or_16: >-
+      retain and report by group; singleton Omega gives exactly zero log-score
+      gain for every model
+    pair_informative_support: report 2 <= K_i_obs <= 15 by group without post-hoc filtering
+  mapping_quality:
+    rule: freeze target-blind covariates or strata before target-effect inspection
+    reuse: identical in fitting evaluation null simulation and falsifiers
+    inverse_probability_weighting: forbidden without externally justified observation probabilities
+  model_interpretation:
+    M0: recorded-positive label frequency, source context, and eligible independent labels
+    M1: geometry-associated recorded-positive structure beyond M0
+    M2: residual pair structure among recorded positives beyond M1
+  objectives:
+    primary: equal-group held-out conditional log-score gain for P_i of M2 over M1
+    secondary: equal-group held-out conditional log-score gain for P_i of M1 over M0
+    smallest_useful_gain_bits_per_eligible_cell: 0.002
+    threshold_interpretation: exploratory search threshold, not a biological effect margin
+  null_and_falsification:
+    generator: >-
+      fitted v3 M1 conditional on each fixed K_i_obs, group, source, soma,
+      eligible independent and technical covariates, and frozen mapping-quality state
+    preserve: group sizes, covariate strata, mapping-quality strata, and each K_i_obs
+    reruns: 99 full controller replays with empty search history
+    interpretation: excess observation-pattern predictability, not biological co-projection
+    permutation: >-
+      permute recorded-positive labels within conservative group and frozen
+      mapping-quality strata while preserving every K_i_obs
+  candidate_language:
+    permitted: A and B recorded
+    forbidden:
+      - treating any zero as B-negative or C-negative
+      - biological presence absence or exclusivity claims
+  inactive_under_v3:
+    - original Route A biological promotion
+    - original Route B biological promotion
+    - shared-target B-positive/C-negative exclusivity endpoint
+    - final data opening without a separately frozen v3 evaluation contract
 
 data:
   candidate_resources:
@@ -25,7 +125,7 @@ data:
   minimum_final_groups: 8
   split_timing: before inspecting candidate co-projection outcomes
   split_rule: whole groups with no cell or group appearing on both sides
-  final_opening: once after development choices and analysis rules are fixed
+  final_opening: forbidden_under_active_v3_without_separately_frozen_evaluation_contract
   post_final_tuning_or_reselection: forbidden
   source_family_definition: prespecified source-by-resource strata with adequate evaluation support
   if_group_requirements_fail: >-
@@ -33,18 +133,23 @@ data:
   shared_cells_with_ep09_or_ep11_are_independent_replication: false
 
 first_analysis_stage:
-  purpose: decide what can be measured and tested with the available data
+  purpose: freeze the active v3 development-only recorded-positive-pattern analysis
+  scope: development_only
   before_candidate_effect_search:
-    - choose one supported source and assign whole groups to development and final evaluation
+    - confirm the already frozen Gao MOp development source and 12 conservative groups
     - >-
-      define target resolution, laterality, and the distinction among
-      arborization, passing axon, absence, and unknown
-    - confirm common soma-position support and usable complete reconstructions
+      freeze the 16-coordinate panel, laterality, positive-terminal rule, and
+      unknown-zero interpretation without claiming absence
     - >-
-      if a shared-target endpoint may be pursued, verify context-blinded
-      coordinate and terminal-profile repeatability without selecting A, B, or C
+      freeze target-blind mapping-quality covariates or strata for identical use
+      in fitting, evaluation, null simulation, and falsification
+    - confirm the exact 194-cell denominator and report K_i_obs support by group
     - estimate precision and the cost of exact scoring and 99 full-search null reruns
-  decision: proceed revise or stop
+  excluded_under_active_v3:
+    - final-group opening or evaluation
+    - verified absence or biological complete-set claims
+    - shared-target exclusivity or full-axon anatomy endpoints
+  decision: proceed with exploratory development modeling, revise, or stop
 
 observation:
   full_reconstructions_are_primary: true
@@ -57,28 +162,37 @@ observation:
     - target vocabulary and resolution
     - laterality and atlas-boundary rules
     - arborization versus passing-axon rule
-    - verified non-detection versus unknown rule
-  complete_set_definition:
+    - mapped positive observation versus unknown rule
+  active_recorded_positive_definition:
+    T: frozen 16-coordinate panel
+    P_i: mapped positive terminal observations within T
+    K_i_obs: number of recorded positives in P_i supplied equally to all models
+    Omega_i: every size-K_i_obs subset of T scored by each model
+    interpretation: recorded-positive observation patterns, not complete biological target sets
+  legacy_complete_set_definition:
+    status: inactive_for_active_v3
     V_i: non-overlapping targets that could have been scored for neuron i
     S_i: complete set of qualifying detected targets within V_i
     K_i: number of targets in S_i supplied equally to all models
     Omega_i: every size-K_i subset of V_i scored by each model
-  failure_action: if non-detection cannot be defended revise or stop the complete-set endpoint
+  failure_action: >-
+    the Gao complete-set endpoint stopped; active v3 may model recorded-positive
+    patterns only and may not infer non-detection or absence
 
 models:
   M0:
     question: >-
-      what is expected from target prevalence, source context, and verified
-      independent labels?
-    interpretation: an additive reference model not a claim of unconditional independence
+      what recorded-positive labels are expected from their observed frequency,
+      source context, frozen mapping-quality state, and verified independent labels?
+    interpretation: an additive observation-pattern reference, not biological independence
     terms:
-      - target preference conditional on target count K
+      - recorded-positive label preference conditional on K_i_obs
       - smooth soma-position and sampling-composition effects
       - eligible source and layer information
       - documented technical covariates
       - independently measured driver or molecular labels when available
   M1:
-    question: how much do measured spatial organization and routing add beyond M0?
+    question: how much geometry-associated recorded-positive structure adds beyond M0?
     inherits: M0
     pooling_options: [global, source_hierarchical, bounded_K_partial_pooling]
     geometry:
@@ -87,7 +201,7 @@ models:
       - soma-anchored target-set geometry
       - independent-atlas or development-fold routing priors
   M2:
-    question: is reproducible target-pair structure left after M1?
+    question: is residual pair structure among recorded positives left after M1?
     inherits: M1
     core_family: sparse
     penalties: [lasso, elastic_net, group_lasso]
@@ -112,10 +226,13 @@ models:
       - the same model with and without the label block
     if_no_eligible_label: report that population mixture remains unresolved
   common_scoring:
-    condition_on_K: true
+    condition_on_K_i_obs: true
+    K_i_obs_interpretation: recorded-positive count, not biological target count
     same_neurons_and_candidate_sets: true
     exact_normalization: true
     equal_group_weighting: true
+    denominator: all 194 eligible development cells
+    degenerate_K_i_obs: retain K_i_obs 0 or 16 with zero model gain and report by group
   forbidden:
     - pseudolikelihood or approximate normalization
     - random-neuron splits
@@ -127,6 +244,7 @@ models:
 
 candidate_combination:
   selected_in: grouped development only
+  event_semantics: A and B recorded; no negative or exclusivity inference from zeros
   freeze_before_final_evaluation:
     - target pair or target set
     - effect direction and probability-contrast scale
@@ -145,6 +263,7 @@ candidate_combination:
       - a pathway interpretation that would change after confirmation or refutation
 
 full_axon_anatomy:
+  status: inactive_under_active_v3_until_separately_rewritten_and_frozen
   timing: after the target definition and candidate combination are chosen in development
   freeze_before_final_anatomy:
     - each metric and its normalization
@@ -174,6 +293,7 @@ full_axon_anatomy:
   leakage_rule: a test neuron's realized path branch or terminal tree cannot enter M0 M1 or M2
 
 shared_target_question:
+  status: inactive_under_active_v3_because_zeros_cannot_define_B_or_C_negativity
   role: conditional secondary endpoint
   contrast: neurons arborizing in A under development-chosen A+B versus A+C definitions
   activate_only_when:
@@ -213,6 +333,7 @@ shared_target_question:
     direction
 
 external_evaluation:
+  status: inactive_under_active_v3_without_separately_frozen_evaluation_contract
   launch_requirement: false
   eligible_only_if: >-
     source, target, and detection rules are genuinely comparable and samples
@@ -225,11 +346,12 @@ external_evaluation:
   if_none_is_eligible: keep the claim internal and state why
 
 objectives:
-  primary: equal-group held-out complete-set log-predictive gain of M2 over M1
-  secondary: equal-group held-out complete-set log-predictive gain of M1 over M0
+  primary: equal-group held-out conditional recorded-positive-pattern log-score gain of M2 over M1
+  secondary: equal-group held-out conditional recorded-positive-pattern log-score gain of M1 over M0
   smallest_useful_primary_gain_bits_per_cell: 0.002
+  smallest_useful_primary_gain_interpretation: exploratory bits per eligible cell, not a biological effect margin
   max_source_family_regression_bits_per_cell: 0.01
-  secondary_can_rescue_failed_primary: only through the complete Route B explanation
+  secondary_can_rescue_failed_primary: false
   validity_requires:
     - adequate M1 calibration
     - exact probability normalization
@@ -250,6 +372,8 @@ budgets:
   cpu_core_hour_ceiling: 1800
   gpu_hour_ceiling: 0
   wall_clock_hour_ceiling: 144
+  wall_clock_accounting_epoch: wall_reset_20261001
+  wall_clock_reset_authorization: outputs/stage0/v3_wall_time_reset_authorization_20261001.json
   parallel_core_ceiling: 64
   memory_gb_ceiling: 512
   scratch_gb_ceiling: 1536
@@ -271,56 +395,76 @@ model_search_coverage:
 
 full_search_null:
   replicates: 99
-  generator: fitted development M1 with the same verified labels and spatial terms
+  generator: >-
+    fitted active-v3 development M1 conditional on every fixed K_i_obs,
+    conservative group, source, soma, eligible independent and technical
+    covariates, and frozen mapping-quality state
   each_replicate_starts_with_empty_search_history: true
   rerun:
     - M0 and M1 development
     - M2 core, extension-trigger decisions, activated extensions, and model-search coverage
     - combination direction common support and applicability selection
-    - finalist route and stopping decisions
+    - active-v3 exploratory outcome classification and stopping decisions
   preserve:
     - biological groups group sizes and resource strata
     - soma position independent labels and technical covariates
-    - candidate targets target count and observation structure
+    - frozen mapping-quality strata
+    - fixed candidate panel T, label vocabulary, observation encoding, and every K_i_obs
   monte_carlo_p: (1 + null results at least as large as observed) / 100
   pass_threshold: 0.05
   rule: >-
-    each null reruns every outcome-dependent choice with the observed grammar,
-    budgets, and stopping rules
+    each null reruns every outcome-dependent choice with the active-v3 grammar,
+    budgets, and stopping rules; the p value tests excess observation-pattern
+    predictability, not biological co-projection
 
 required_falsifiers:
-  - synthetic recovery for M0 M1 sparse M2 and every activated extension
-  - group-preserving target-label permutation that preserves target count
-  - pair-feature identification and residualization checks
-  - independent-label overlap confounding and ablation checks
-  - capacity-matched noise interactions
-  - leave-one-group pair resource and batch influence checks
-  - source-position common-support checks
-  - frozen target-boundary sensitivities
-  - matched branch path collateral and terminal-tree comparisons
-  - when activated the frozen A+B versus A+C profile and its prespecified sensitivities
+  active_v3:
+    - synthetic recovery for M0 M1 sparse M2 and every activated extension
+    - >-
+      conservative-group- and mapping-quality-stratum-preserving permutation of
+      recorded-positive labels that preserves every K_i_obs
+    - pair-feature identification and residualization checks
+    - independent-label overlap confounding and ablation checks
+    - capacity-matched noise interactions
+    - leave-one-group pair resource and batch influence checks
+    - source-position common-support checks
+    - frozen target-boundary sensitivities for recorded-positive calls
+  inactive_legacy_complete_set:
+    status: inactive_under_active_v3
+    checks:
+      - matched branch path collateral and terminal-tree comparisons
+      - frozen A+B versus A+C profile and its prespecified sensitivities
 
 final_decision:
-  common_requirements:
-    - at least 40 valid trials under one M0 M1 and M2 specification
-    - model-search coverage is complete under the 16-anchor rule
-    - two adaptive successor cycles and two incumbent-challenger decisions
-    - at least 40 percent of post-coverage trials devoted to falsification
-    - all 99 complete-search null reruns finish and the observed Monte Carlo p is at most 0.05
-    - reproducible refit and required falsifiers pass
-  route_A_residual_combination_with_anatomy:
-    requires:
-      - useful M2-over-M1 gain in final groups
-      - a chosen combination that reproduces on common support
-      - full-axon organization that survives matched structural comparisons
-      - the within-A prediction also reproduces if that endpoint was activated
-      - when a comparable independent resource exists its frozen transfer test supports the claim
-  route_B_spatial_or_known_population_explanation:
-    requires:
-      - the combination phenomenon first reproduces in final groups
-      - the spatial or independently labeled explanation reproduces and is calibrated
-      - residual M2 value is bounded below the useful margin
-      - synthetic recovery shows that useful residual effects were detectable
+  active_v3:
+    status: incomplete_search
+    biological_candidate_promotion: inactive
+    route_A: inactive
+    route_B: inactive
+    final_opening: forbidden_without_separately_frozen_v3_evaluation_contract
+    permitted_result: observation-pattern evidence only
+    completion_requirements:
+      - at least 40 valid trials under one active-v3 M0 M1 and M2 specification
+      - model-search coverage is complete under the 16-anchor rule
+      - two adaptive successor cycles and two incumbent-challenger decisions
+      - at least 40 percent of post-coverage trials devoted to active-v3 falsification
+      - all 99 active-v3 full-search null reruns finish
+      - reproducible refit and active-v3 required falsifiers pass
+  legacy_complete_set_routes:
+    status: inactive_under_active_v3
+    route_A_residual_combination_with_anatomy:
+      requires:
+        - useful M2-over-M1 gain in final groups
+        - a chosen combination that reproduces on common support
+        - full-axon organization that survives matched structural comparisons
+        - the within-A prediction also reproduces if that endpoint was activated
+        - when a comparable independent resource exists its frozen transfer test supports the claim
+    route_B_spatial_or_known_population_explanation:
+      requires:
+        - the combination phenomenon first reproduces in final groups
+        - the spatial or independently labeled explanation reproduces and is calibrated
+        - residual M2 value is bounded below the useful margin
+        - synthetic recovery shows that useful residual effects were detectable
   predictive_gain_only: preliminary and not a candidate
   no_valid_comparison: no candidate
 
@@ -335,11 +479,16 @@ stopping:
   budget_stop_is_success_or_negative_result: false
 
 reporting:
-  show:
-    - group position label coverage exclusions missingness and target definition
-    - held-out M0 M1 and M2 prediction and calibration by group
-    - chosen combination contrasts across groups positions and applicability boundaries
+  active_v3_show:
+    - group position label coverage exclusions mapping quality and unknown-zero definition
+    - K_i_obs and pair-informative support by conservative group
+    - held-out M0 M1 and M2 recorded-positive-pattern prediction and calibration by group
+    - selected recorded-positive combination contrasts across positions and applicability boundaries
     - independent-label contrasts and remaining confounding
-    - branch shared-path collateral terminal-tree and boundary-reference results
-    - pooled and context-specific shared-target profiles when activated
-    - external transfer only when a comparable independent resource exists
+    - active-v3 null and falsification results with observation-pattern interpretation
+  inactive_legacy_complete_set_show:
+    status: inactive_under_active_v3
+    items:
+      - branch shared-path collateral terminal-tree and boundary-reference results
+      - pooled and context-specific shared-target profiles
+      - external transfer or biological Route A or Route B claims

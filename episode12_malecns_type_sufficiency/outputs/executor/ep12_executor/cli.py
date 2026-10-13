@@ -36,8 +36,50 @@ def build_parser() -> argparse.ArgumentParser:
     methods.add_argument("--output-dir", type=Path)
     methods.add_argument("--episode-root", type=Path, default=EPISODE_ROOT)
     methods.add_argument("--policy", type=Path)
+    methods.add_argument(
+        "--resource-authorization",
+        type=Path,
+        default=(
+            EPISODE_ROOT
+            / "outputs"
+            / "executor"
+            / "DEVELOPMENT_BUDGET_OVERRIDE.yaml"
+        ),
+    )
     methods.add_argument("--contract", type=Path, required=True)
     methods.add_argument("--qualification-spec", type=Path, required=True)
+    methods.add_argument("--oracle-aggregate", type=Path, required=True)
+
+    oracle_shard = subcommands.add_parser(
+        "run-oracle-shard",
+        help="run one generated-only independent stochastic-oracle cell/look shard",
+    )
+    oracle_shard.add_argument(
+        "--tier",
+        choices=("conformance", "cost_pilot", "smoke", "qualification"),
+        required=True,
+    )
+    oracle_shard.add_argument("--look-index", type=int, required=True)
+    oracle_shard.add_argument("--cell-index", type=int, required=True)
+    oracle_shard.add_argument("--output-dir", type=Path, required=True)
+    oracle_shard.add_argument("--episode-root", type=Path, default=EPISODE_ROOT)
+    oracle_shard.add_argument("--contract", type=Path, required=True)
+    oracle_shard.add_argument("--qualification-spec", type=Path, required=True)
+
+    oracle_aggregate = subcommands.add_parser(
+        "aggregate-oracle-look",
+        help="verify stochastic-oracle shards and publish a simultaneous enclosure",
+    )
+    oracle_aggregate.add_argument(
+        "--tier",
+        choices=("conformance", "cost_pilot", "smoke", "qualification"),
+        required=True,
+    )
+    oracle_aggregate.add_argument("--look-index", type=int, required=True)
+    oracle_aggregate.add_argument("--bank-root", type=Path, required=True)
+    oracle_aggregate.add_argument("--output", type=Path, required=True)
+    oracle_aggregate.add_argument("--episode-root", type=Path, default=EPISODE_ROOT)
+    oracle_aggregate.add_argument("--qualification-spec", type=Path, required=True)
 
     margin = subcommands.add_parser(
         "diagnose-margin",
@@ -149,8 +191,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             bootstrap_replicates=arguments.bootstrap_replicates,
             contract_path=arguments.contract,
             qualification_spec_path=arguments.qualification_spec,
+            oracle_aggregate_path=arguments.oracle_aggregate,
             episode_root=arguments.episode_root,
             policy_path=arguments.policy,
+            resource_authorization_path=arguments.resource_authorization,
         )
         print(
             json.dumps(
@@ -165,6 +209,68 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
         )
         return 0 if report["qualification_passed"] else 1
+
+    if arguments.command == "run-oracle-shard":
+        for variable in (
+            "OMP_NUM_THREADS",
+            "OPENBLAS_NUM_THREADS",
+            "MKL_NUM_THREADS",
+            "NUMEXPR_NUM_THREADS",
+        ):
+            os.environ[variable] = "1"
+        from .coverage_successor import run_oracle_shard
+
+        report = run_oracle_shard(
+            tier=arguments.tier,
+            look_index=arguments.look_index,
+            cell_index=arguments.cell_index,
+            output_dir=arguments.output_dir,
+            contract_path=arguments.contract,
+            qualification_spec_path=arguments.qualification_spec,
+            episode_root=arguments.episode_root,
+        )
+        print(
+            json.dumps(
+                {
+                    "complete": report["complete"],
+                    "cell_id": report["cell"]["cell_id"],
+                    "look_index": report["look_index"],
+                    "records": len(report["records"]),
+                    "real_connectivity_accessed": False,
+                },
+                sort_keys=True,
+            )
+        )
+        return 0 if report["complete"] else 1
+
+    if arguments.command == "aggregate-oracle-look":
+        from .coverage_successor import aggregate_oracle_look
+
+        report = aggregate_oracle_look(
+            tier=arguments.tier,
+            look_index=arguments.look_index,
+            bank_root=arguments.bank_root,
+            output_path=arguments.output,
+            qualification_spec_path=arguments.qualification_spec,
+            episode_root=arguments.episode_root,
+        )
+        print(
+            json.dumps(
+                {
+                    "precision_met": report["all_cells_precision_met"],
+                    "next_action": report["next_action"],
+                    "cell_count": report["cell_count"],
+                    "real_connectivity_accessed": False,
+                },
+                sort_keys=True,
+            )
+        )
+        if arguments.tier == "cost_pilot":
+            ready = report["bounded_full_bank_cost_projection"][
+                "full_bank_submission_ready"
+            ]
+            return 0 if ready else 1
+        return 0
 
     if arguments.command == "diagnose-margin":
         for variable in (
@@ -307,3 +413,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0 if not report["aggregate"]["technical_failure_count"] else 1
 
     raise SystemExit(f"unsupported command: {arguments.command}")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

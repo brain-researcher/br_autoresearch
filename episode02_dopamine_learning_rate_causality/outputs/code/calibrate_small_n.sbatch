@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH --job-name=ep02-small-n
-#SBATCH --account=russpold
 #SBATCH --partition=normal
 #SBATCH --time=00:15:00
 #SBATCH --cpus-per-task=1

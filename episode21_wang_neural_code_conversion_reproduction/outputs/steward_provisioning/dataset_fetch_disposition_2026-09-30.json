@@ -1,0 +1,53 @@
+{
+  "record_role": "eligible_dataset_fetch_disposition",
+  "recorded_on": "2026-09-30",
+  "scientist_request": "ok please fetch these dataset",
+  "scope": "LAION-fMRI by context; optional NSD/THINGS scope clarification pending",
+  "existing_artifacts": {
+    "regular_stimuli_interface": "inputs/laion_regular_feature_handoff",
+    "regular_stimuli_count": 24681,
+    "independent_native_masks_interface": "inputs/laion_independent_visual_masks",
+    "participants": [
+      "sub-01",
+      "sub-03",
+      "sub-05",
+      "sub-06",
+      "sub-07"
+    ],
+    "cached_main_session_beta_headers_previously_verified": 150,
+    "source_headers_and_role_checks_reused": true,
+    "mixed_beta_cache_status": "exists locally, not an eligible EP21 neural handoff"
+  },
+  "frozen_inventory_lookup": {
+    "provider_code_commit": "ffb6abef8f787ca37f9a7faa9dd4a97119b6d603",
+    "manifest_path": "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/provider_manifests/glmsingle.json",
+    "objects": 4459,
+    "explicit_regular_training_tau_split_reference_named_candidates": 0,
+    "lookup_is_not_exhaustive_proof_of_absence": true
+  },
+  "current_public_metadata_check": {
+    "urls": [
+      "https://laion-fmri.hebartlab.com/glmsingle_betas.html",
+      "https://raw.githubusercontent.com/ViCCo-Group/LAION-fMRI/main/docs/source/glmsingle_betas.rst",
+      "https://laion-fmri.hebartlab.com/data_access.html",
+      "https://github.com/ViCCo-Group/LAION-fMRI/releases"
+    ],
+    "identified_delivery": "derivatives/glmsingle-tedana, GLMsingle v1.2 final TYPED betasmd",
+    "eligible_candidate_identified": false,
+    "actual_tau_test_OOD_fit_reference_exclusions_established": false,
+    "current_wrapper_revision_verified": false,
+    "limitation": "scripts-tree/API lookup unsuccessful; no exhaustive wrapper review or current HEAD verification claimed"
+  },
+  "new_neural_or_image_payloads_downloaded": false,
+  "neural_array_or_OOD_values_read": false,
+  "job_submitted": false,
+  "protocol_lock_created": false,
+  "neural_execution_opened": false,
+  "new_public_QC_text_incidentally_returned_to_delegate": true,
+  "public_QC_values_used_for_any_decision": false,
+  "status": "required_eligible_neural_artifact_not_identified_within_checked_metadata",
+  "next_required_artifact": "actual wrapper/input/options provenance proving the existing derivative satisfies tau-test/OOD exclusions, or authenticated eligible regular-only training-reference derivative",
+  "provider_request_draft": "outputs/steward_provisioning/provider_beta_preprocessing_request.md",
+  "ASTRA_program_changed": false,
+  "budget_roles_OOD_boundary_and_stopping_criteria_changed": false
+}

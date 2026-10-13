@@ -4,6 +4,102 @@ Design/writing revision: 2026-09-30. No empirical analysis or outcome opening
 has occurred. This plan reorganizes the existing contract; it does not enact
 new endpoints, model families, thresholds, terminal rules, or access rights.
 
+The subsequent October 6 scientist agreement adopts the
+[authenticated article/task primary and report-only pinned-code sensitivity](source_semantics_design.md#adopted-model-choice--october-6-2026).
+That variant choice is answered; provider trigger/codebook facts, meaningful
+margin rationale and empirical implementation remain unfinished. The agreement
+does not adopt optional rival operators or validate a confirmatory decision rule.
+
+The [current source and implementation handoff](source_semantics_design.md)
+incorporates the subsequent October 3–6 work: exact unresolved provider fields,
+the unsent source request, separate article/pinned-code variants, the already
+noncausal 462-label fallback, passing arithmetic components and eleven passing
+checks of unadopted rival interfaces. Those checks are preparation rather than
+empirical or full-model qualification. The four proposed margins remain
+inactive, physical reader separation is unprovisioned and no empirical result
+is available. The [execution log](experiment_log.md) is the evidence for that
+progress; the results narrative below remains conditional.
+
+## October 7: selected prospective population observation recipe
+
+Under the scientist's delegated judgment, select the following common
+observation layer **now, before empirical outcomes**, within the existing
+session-binomial, training-only partial-pooling and new-mouse prediction
+grammar. The earlier specification did not select a Gaussian mouse effect;
+this is the explicit prospective choice, not a recovered source fact.
+
+For fixed mechanism session logits `h_ms`, use
+`K_ms | u_m ~ Binomial(n_ms, sigmoid(h_ms + b + u_m))`, with one
+`u_m ~ Normal(0, sigma^2)` shared by **all** sessions of mouse m. Mouse effects
+are independent across mice. One common population offset b calibrates the
+observation level. The caller must supply fixed mechanism logits and cannot
+simultaneously estimate another free readout intercept: their additive levels
+would not be jointly identified. Mechanism/readout fitting and the actual
+trial-to-session probability map still need their own explicit recipe; this
+observation layer neither supplies them nor guesses source timing.
+
+[`logistic_normal_observation.py`](code/logistic_normal_observation.py)
+implements constrained marginal maximum likelihood using the eight training
+mice of each fixed development fold. A caller-frozen finite nonnegative SD
+grid includes zero; each point receives the same bounded common-offset solve.
+All grid points must pass numerical checks. Choose the smallest SD within the
+explicit numerical profile-likelihood tie tolerance of the best training
+likelihood. Freeze the bounds, SD grid and numerical tolerances before
+development access and use the same recipe for all mechanism families,
+folds and seeds. These numerical settings are implementation work, not another
+request for permission or a new scientific effect margin.
+
+Every fit returns its complete SD likelihood profile and whether its offset
+is on a supplied boundary. Estimates are constrained by those offset bounds
+and the finite SD grid; an upper-grid SD estimate does not establish an
+interior optimum, unique variance identification or a global continuous-SD
+maximum. Selected population hyperparameters are plug-in training estimates.
+The new-mouse Gaussian effect is integrated, but uncertainty in fitted
+population/mechanism parameters is not a Bayesian posterior or automatically
+propagated interval. Report that distinction rather than claiming complete
+uncertainty coverage.
+
+The October 9 implementation also supplies the policy's final refit after
+recipe lock: `refit_final_observation_model` requires exactly the fixed nine
+development controls, the same frozen recipe and an explicit resource callback.
+It reuses the fold fitter's constrained profile algorithm and returns a distinct
+`FinalObservationFit`, which cannot enter the leave-one-mouse-out prediction
+helper. The caller must already have legitimate recipe-lock and reader-release
+authority; passing arrays does not create either. This supplies an observation
+refit component, not mechanism fitting, source semantics or an empirical result.
+Three new focused checks and the six affected existing checks remain unrun for
+this source revision.
+
+For a new mouse, integrate the **product** of its conditional session
+likelihoods against the one shared Gaussian effect, then take the logarithm.
+Do not multiply separately marginalized session probabilities or insert a mean
+probability into a binomial likelihood. Normalize by that mouse's total
+eligible trials, average the five seed scores, and then apply the unchanged
+equal-mouse minimum/median/mean ranking against the constant-rate null.
+No held-mouse outcomes enter fitting or prediction construction. Scoring uses
+the same frozen quadrature nodes/orders for every outcome and refuses
+unresolved numerical agreement; it never refits, chooses a new order or tunes
+the distribution to those outcomes. Zero SD uses the exact binomial-product
+limit. Explicit zero-trial sessions contribute zero information while staying
+in the session roster; every mouse must have positive total support. This
+does not relax the separate endpoint requirement of at least 30 eligible
+trials in both sessions 1 and 8, or authenticate missing-session semantics.
+
+Six [focused checks](tests/test_logistic_normal_observation.py) are prepared,
+**unrun**: exact zero-SD and zero-information limits, shared-effect integration
+against independent scalar quadrature, known constrained optima, grouped
+heterogeneity and immutable prediction, invalid/unfinished numerical cases,
+and the unchanged complete-panel seed/mouse aggregation. No simulated cohort,
+recovery sweep, scientific payload or empirical fit is involved. Existing
+passed component checks remain reusable.
+
+The coordinator obtained BR advisory rubric `ext_review_dir_70ff8d44da21` at
+2026-10-07 09:37:57 UTC. Its repeated-measures, leakage/held-out-selection,
+well-posed-parameter and fit-versus-mechanism criteria inform this choice.
+It did not review these artifacts, issue a verdict or grant canonical
+scientific acceptance. Source codebook/time/trigger facts, data isolation,
+four unbound margins and full mechanism/readout fitting remain unfinished.
+
 ## The question a reader should remember
 
 What can reward-time dopamine stimulation contingent on licking tell us about

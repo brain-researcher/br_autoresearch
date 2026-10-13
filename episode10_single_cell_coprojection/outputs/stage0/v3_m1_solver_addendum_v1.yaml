@@ -1,0 +1,205 @@
+schema_version: episode10_v3_m1_solver_addendum_v1
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_stable_line_difference_implementation_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+authority:
+  base_contract:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_model_contract.yaml
+    required_schema_version: episode10_v3_m1_model_v1
+  synthetic_design_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_synthetic_design_addendum_v1.yaml
+    required_schema_version: episode10_v3_m1_synthetic_design_addendum_v1
+  synthetic_recovery_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_synthetic_recovery_addendum_v2.yaml
+    required_schema_version: episode10_v3_m1_synthetic_recovery_addendum_v2
+  relationship: >-
+    The base contract and both earlier addenda remain authoritative. This
+    addendum changes only the binary64 evaluation of mathematically identical
+    line-objective differences and directional derivatives used by the frozen
+    strong-Wolfe predicates and successive-objective convergence predicate.
+
+trigger:
+  failed_complete_target_free_job: "45540327"
+  scalar_diagnostic_job: "45585270"
+  diagnostic_stage: exact_68_row_warm_zero_gate
+  first_failed_phase: warm_repeat1
+  first_failed_lambda: 1000.0
+  initialization: all_261_parameters_zero
+  accepted_steps_before_failure: 1
+  failed_optimizer_iteration: 2
+  all_line_search_values_finite: true
+  current_objective: 6.215630573370164
+  current_gradient_infinity_norm: 6.9385468515204e-7
+  frozen_gradient_tolerance: 1.0e-7
+  upward_rounded_relative_objective_gap_bound: 1.010793330691067e-14
+  frozen_relative_objective_tolerance: 1.0e-10
+  Newton_directional_derivative: -1.1166124992486456e-15
+  Newton_quadratic_predicted_decrease: 5.583062496243228e-16
+  objective_binary64_ULP: 8.881784197001252e-16
+  predicted_decrease_in_objective_ULPs: 0.6285969544416798
+  terminal_zoom_bracket_width: 6.938893903907228e-18
+  observed_classification: >-
+    The second Newton step has a bounded-backward-error finite descent direction,
+    but its predicted decrease is below one ULP of the represented total
+    objective. Subtracting two separately rounded total objectives therefore
+    cannot reliably evaluate the unchanged Armijo and successive-change
+    predicates. The gradient gate correctly prevented the existing objective-
+    gap certificate from accepting the current iterate.
+  access_witness:
+    real_target_calls_or_real_K_opened: false
+    M0_prediction_or_fit_artifact_opened: false
+    final_or_unassigned_or_SWC_opened: false
+
+sole_numerical_change:
+  applies_only_to:
+    - strong_Wolfe_Armijo_objective_difference
+    - strong_Wolfe_objective_bracketing_comparison
+    - accepted_step_successive_relative_objective_change
+    - strong_Wolfe_trial_directional_derivative
+  old_evaluation: >-
+    Subtract separately rounded total objectives for line-objective differences
+    and obtain the trial directional derivative by dotting the separately
+    accumulated full gradient with the direction.
+  new_evaluation: >-
+    Evaluate the exact same objective difference and directional derivative
+    directly in binary64 from exhaustive conditional likelihood ratios, then
+    use those scalars in the unchanged strong-Wolfe and convergence predicates.
+  changes_model_objective_or_gradient: false
+  changes_candidate_set_or_normalization: false
+  changes_Newton_direction_formula: false
+  changes_trial_step_generation_constants: false
+  corrected_predicates_may_change_the_realized_accepted_step_sequence: true
+  downstream_directions_may_differ_only_after_a_changed_acceptance: true
+  changes_Wolfe_constants_or_acceptance_inequalities: false
+  changes_convergence_or_certificate_thresholds: false
+  adds_acceptance_slack_tie_rule_or_fallback: false
+
+stable_line_identity:
+  notation:
+    theta: current_261_parameter_vector
+    p: unchanged_Newton_search_direction
+    alpha: unchanged_trial_step
+    h: alpha_times_p
+    F_i_A: joint_261_sufficient_statistic_for_candidate_A
+    O_i: observed_synthetic_candidate_for_row_i
+    p_theta_i_A: exact_exhaustive_conditional_probability_at_theta
+    r_i_A: h_transpose_times_F_i_A_minus_F_i_O_i
+  per_cell_exact_NLL_difference: >-
+    delta_i = log(sum over A in Omega_i of
+    p_theta_i_A * exp(r_i_A)).
+  small_increment_binary64_form: >-
+    When max_A absolute(r_i_A) is at most 0.5, compute delta_i as
+    log1p(sum_A p_theta_i_A * expm1(r_i_A)).
+  general_binary64_form: >-
+    Otherwise compute the same quantity as
+    logsumexp(q_theta_i_A + h^T F_i_A) -
+    logsumexp(q_theta_i_A) - h^T F_i_O_i, equivalently
+    logsumexp(q_theta_i_A + r_i_A) - logsumexp(q_theta_i_A), using separate
+    exhaustive maxima and shifted normalizers for the combined and baseline
+    scores, explicit observed-increment centering, lexicographic candidate
+    order, and the frozen candidate batch maximum. Do not multiply a rounded
+    normalized baseline probability by exp(r_i_A): a baseline-underflow
+    candidate can be revived by a large r.
+  full_objective_difference: >-
+    delta_F = sum_i w_i*delta_i
+    + lambda*(theta^T h + ||h||_2^2/2)
+    + linear_correction^T h when the frozen population evaluator is active.
+  trial_directional_derivative: >-
+    Sum w_i times the exact trial-distribution expectation of
+    p^T(F_i(A)-F_i(O_i)), then add
+    lambda*(theta+h)^T p and linear_correction^T p when active.
+    Use the same direct analytic form at alpha=0 for the initial descent and
+    strong-Wolfe reference derivative; do not obtain either derivative by
+    dotting a separately accumulated full gradient with p.
+  accepted_step_relative_objective_change: >-
+    absolute(delta_F) divided by
+    max(1, absolute(F_old), absolute(F_new)).
+  branch_boundary:
+    small_form_includes: max_A_absolute_r_i_A_less_than_or_equal_to_0.5
+    general_form_begins: max_A_absolute_r_i_A_greater_than_0.5
+    exact_boundary_and_nextafter_above_boundary_must_be_tested: true
+  singleton_K_0_or_16_data_terms: exact_zero
+  arithmetic: binary64
+  scalar_summation: >-
+    math.fsum within each fixed lexicographic candidate batch, math.fsum over
+    those batch results for a cell, and math.fsum over fixed-order cell,
+    ridge, and optional correction contributions
+  nonfinite_or_invalid_log1p_domain: fail_closed
+
+unchanged:
+  - exact conditional fixed-K set-softmax objective and full analytic gradient
+  - exhaustive candidate membership, order, and normalization
+  - 261-parameter model, ridge grid, path order, and initialization
+  - exact-Hessian Newton direction, Cholesky rules, and solve checks
+  - Armijo c1 of 1e-4 and strong-Wolfe curvature c2 of 0.9
+  - initial step, expansion factor, maximum step, evaluation cap, and zoom cap
+  - every accepted step must satisfy both exact strong-Wolfe inequalities
+  - gradient infinity tolerance of 1e-7
+  - relative objective tolerance of 1e-10
+  - ordinary convergence requires both frozen predicates
+  - >-
+    eligible finite-precision stall certificate requires gradient infinity at
+    most 1e-7 and certified relative objective gap at most 1e-10
+  - prior successive objective change is report-only inside that certificate
+  - no fallback optimizer
+  - recovery, warm-versus-zero, rank, condition, and benchmark gates
+  - target-free 8-hour 4-CPU 16-GB complete-probe request
+  - actual-K, target-call, M0-artifact, SWC, final, and unassigned seals
+
+required_conformance_checks:
+  - >-
+    Direct line differences agree with independently evaluated ordinary-sized
+    objective differences where subtraction is well resolved.
+  - >-
+    Small-increment and general likelihood-ratio forms agree on an overlapping
+    finite test domain; the exact 0.5 boundary uses the small form and the next
+    binary64 value above 0.5 uses the general form; both return exact zero for
+    h equal to zero.
+  - >-
+    A cancellation regression has distinct mathematical trial differences
+    whose separately rounded total objectives are equal; the stable evaluator
+    preserves the correct Armijo decision without slack.
+  - >-
+    Direct trial directional derivatives agree with the analytic full-gradient
+    dot direction where that dot product is well resolved, and the direct form
+    is used at alpha=0 as well as at every trial.
+  - >-
+    Singleton K=0/16 rows and candidate-constant score increments have exactly
+    zero data difference and data directional derivative. Ridge-only and
+    active population-linear-correction examples equal their closed forms.
+  - >-
+    Nonfinite inputs, nonfinite intermediates, and an invalid log1p domain fail
+    closed; no tolerance, ULP tie, acceptance slack, or fallback is added.
+  - >-
+    An adversarial general-branch case in which a baseline exponential
+    underflows but the same candidate is revived by r agrees with independent
+    two-normalizer logsumexp and remains finite.
+  - >-
+    Existing expansion, zoom, nonfinite, certificate, derivative, population,
+    sealing, and deterministic regressions continue to pass.
+  - >-
+    Candidate absolute objective and full gradient returned for an accepted
+    trial remain the unchanged evaluator outputs.
+
+execution_order:
+  first: >-
+    Independently audit implementation, then run exactly the 68-row synthetic
+    warm-repeat1, warm-repeat2, and zero-start gate with seed 20260928 and all
+    12 lambdas. It must accept no real input path.
+  narrow_pass_authorizes_only: complete_target_free_v4_probe
+  after_narrow_pass: >-
+    Relaunch the complete target-free probe once, including population
+    recovery, the complete 68-row gate, all 79 real-shape rank/condition sets,
+    and the all-K8 throughput benchmark.
+  actual_K_access: >-
+    Forbidden until the complete target-free probe, independent postflight,
+    and remaining-budget reconciliation pass.
+
+implementation_boundary:
+  implementation_modified_by_this_addendum: false
+  Slurm_job_submitted_by_this_addendum: false
+  stable_line_probe_executed_before_freeze: false
+  next_probe_output_basename: v3_m1_synthetic_warm_zero_diagnostic_v1_job_JOBID

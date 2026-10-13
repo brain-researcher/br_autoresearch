@@ -9,6 +9,8 @@ creating hashes, manifests, receipts, schemas, or environment attestations.
 from __future__ import annotations
 
 import argparse
+import csv
+import fcntl
 import json
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
@@ -19,10 +21,36 @@ from .adaptive_search import validate_development_configuration
 from .contract_roles import RANK_RULE, load_contract_provenance
 from .policy import EpisodePolicy
 from .runtime import EPISODE_ROOT, atomic_json
+from .scientific_qualification import _accept_cell, _cell_summary, qualification_cells
 from .yaml_subset import load_yaml_subset
 
 
 OUTPUTS_ROOT = EPISODE_ROOT / "outputs"
+QUALIFICATION_SPEC = (
+    OUTPUTS_ROOT / "executor" / "SYNTHETIC_QUALIFICATION_SPEC_POST36_V3.yaml"
+)
+QUALIFICATION_ARTIFACTS = (
+    "replicate_results.jsonl",
+    "cost_profile.json",
+    "integration_stability.json",
+    "result_table.csv",
+    "result_table.md",
+    "qualification_report.json",
+)
+QUALIFICATION_NONFAILURE_TERMINALS = frozenset(
+    {
+        "M_supported_before_full_search_null",
+        "single_population_adequate_before_sensitivity_gate",
+        "unresolved",
+    }
+)
+REQUIRED_READINESS_CHECK_IDS = (
+    "scientific_contract_roles",
+    "full_synthetic_qualification",
+    "observed_36_trial_provisional_chain",
+    "post36_falsifier_plan",
+    "development_resource_authorization",
+)
 _CHAIN_SOURCES = (
     ("coverage", 18, Path("search_plan/coverage_configurations.json"), Path("observed")),
     (
@@ -116,15 +144,72 @@ def verify_contract_roles(
 
 
 def verify_full_synthetic_qualification(
-    *, qualification_dir: Path, outputs_root: Path = OUTPUTS_ROOT, **_: Any
+    *,
+    qualification_dir: Path,
+    qualification_spec_path: Path = QUALIFICATION_SPEC,
+    outputs_root: Path = OUTPUTS_ROOT,
+    **_: Any,
 ) -> dict[str, Any]:
     directory = _inside(qualification_dir, outputs_root, label="qualification directory")
+    artifacts = {name: directory / name for name in QUALIFICATION_ARTIFACTS}
+    for name, path in artifacts.items():
+        _require(path.is_file() and not path.is_symlink(), f"missing qualification artifact: {name}")
+
+    spec = load_yaml_subset(qualification_spec_path)
+    expected_cells = qualification_cells("qualification", spec)
+    expected_cell_ids = {cell.cell_id for cell in expected_cells}
+    expected_repetitions = int(
+        spec["run_tiers"]["qualification_replicates_per_core_error_cell"]
+    )
+    expected_whole_types = int(spec["run_tiers"]["whole_types_per_replicate"])
+    expected_record_count = len(expected_cells) * expected_repetitions
     report = _mapping(
-        _read_json(directory / "qualification_report.json", label="qualification report"),
+        _read_json(artifacts["qualification_report.json"], label="qualification report"),
         label="qualification report",
     )
+    oracle_path_value = report.get("stochastic_oracle_aggregate_path")
+    _require(
+        isinstance(oracle_path_value, str) and oracle_path_value,
+        "qualification report lacks its stochastic-oracle aggregate",
+    )
+    oracle_path = _inside(
+        Path(oracle_path_value), outputs_root, label="stochastic-oracle aggregate"
+    )
+    oracle_report = _mapping(
+        _read_json(oracle_path, label="stochastic-oracle aggregate"),
+        label="stochastic-oracle aggregate",
+    )
+    from .coverage_successor import coverage_evidence_by_cell
+
+    oracle_by_cell, coverage_error_budget = coverage_evidence_by_cell(
+        oracle_report,
+        expected_cell_ids=sorted(expected_cell_ids),
+    )
+    _require(report.get("tier") == "qualification", "qualification tier is not full")
+    _require(
+        report.get("qualification_scope") == "actual_T_U_M_generated_data_only",
+        "qualification scope is not the actual generated T/U/M fitter",
+    )
+    _require(
+        report.get("contract_configuration") is True
+        and report.get("scientific_contract_enforced") is True,
+        "qualification did not use the frozen scientific contract configuration",
+    )
     cells = report.get("cells")
-    _require(isinstance(cells, list) and cells, "qualification has no scientific cells")
+    _require(isinstance(cells, list), "qualification cells must be a list")
+    _require(
+        len(cells) == len(expected_cells),
+        f"qualification has {len(cells)} cells; expected {len(expected_cells)}",
+    )
+    observed_cell_ids = [
+        str(cell.get("cell_id", "")) if isinstance(cell, Mapping) else ""
+        for cell in cells
+    ]
+    _require(
+        len(set(observed_cell_ids)) == len(observed_cell_ids)
+        and set(observed_cell_ids) == expected_cell_ids,
+        "qualification cell inventory differs from the frozen full tier",
+    )
     _require(
         report.get("qualification_passed") is True,
         "scientific qualification has not passed",
@@ -133,20 +218,205 @@ def verify_full_synthetic_qualification(
         all(isinstance(cell, Mapping) and cell.get("passed") is True for cell in cells),
         "one or more scientific qualification cells failed",
     )
-    stability = report.get("integration_stability")
-    if isinstance(stability, Mapping) and "passed" in stability:
-        _require(stability.get("passed") is True, "integration stability failed")
+    _require(
+        all(int(cell.get("replicates", -1)) == expected_repetitions for cell in cells),
+        "one or more qualification cells has the wrong replicate count",
+    )
+    settings = _mapping(report.get("settings"), label="qualification settings")
+    _require(
+        int(settings.get("repetitions_per_cell", -1)) == expected_repetitions
+        and int(settings.get("whole_types_per_replicate", -1)) == expected_whole_types,
+        "qualification settings differ from the frozen full tier",
+    )
+
+    cost_profile = _mapping(report.get("cost_profile"), label="qualification cost profile")
+    _require(cost_profile.get("cost_gate_passed") is True, "qualification cost gate failed")
+    _require(
+        int(cost_profile.get("measured_type_direction_triplets", -1))
+        == expected_record_count * expected_whole_types * 2,
+        "qualification cost profile has the wrong measured triplet count",
+    )
+    _require(
+        _read_json(artifacts["cost_profile.json"], label="cost profile artifact")
+        == cost_profile,
+        "cost profile artifact differs from the qualification report",
+    )
+    stability = _mapping(
+        report.get("integration_stability"), label="integration stability"
+    )
+    _require(stability.get("passed") is True, "integration stability failed")
+    _require(
+        _read_json(
+            artifacts["integration_stability.json"],
+            label="integration stability artifact",
+        )
+        == stability,
+        "integration stability artifact differs from the qualification report",
+    )
+
+    seen_records: set[tuple[str, int]] = set()
+    records_by_cell: dict[str, list[dict[str, Any]]] = {
+        cell.cell_id: [] for cell in expected_cells
+    }
+    try:
+        with artifacts["replicate_results.jsonl"].open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                record = _mapping(json.loads(line), label=f"qualification record {line_number}")
+                cell_id = str(record.get("cell_id", ""))
+                replicate_index = int(record.get("replicate_index", -1))
+                key = (cell_id, replicate_index)
+                _require(cell_id in expected_cell_ids, "qualification record has an unknown cell")
+                _require(
+                    0 <= replicate_index < expected_repetitions,
+                    "qualification record has an invalid replicate index",
+                )
+                _require(key not in seen_records, "qualification replicate record is duplicated")
+                _require(
+                    record.get("terminal") in QUALIFICATION_NONFAILURE_TERMINALS,
+                    "qualification replicate lacks a valid nonfailure terminal",
+                )
+                _mapping(
+                    record.get("intervals"),
+                    label="qualification replicate intervals",
+                )
+                _mapping(
+                    record.get("controls"),
+                    label="qualification replicate controls",
+                )
+                type_records = record.get("type_records")
+                _require(
+                    isinstance(type_records, list)
+                    and len(type_records) == expected_whole_types,
+                    "qualification replicate has the wrong whole-type count",
+                )
+                type_indices: set[int] = set()
+                for type_record_number, type_record_value in enumerate(type_records):
+                    type_record = _mapping(
+                        type_record_value,
+                        label=(
+                            "qualification type record "
+                            f"{line_number}:{type_record_number}"
+                        ),
+                    )
+                    type_index = type_record.get("synthetic_type_index")
+                    _require(
+                        isinstance(type_index, int) and not isinstance(type_index, bool),
+                        "qualification type record has an invalid type index",
+                    )
+                    type_indices.add(type_index)
+                    deltas = type_record.get("deltas")
+                    _require(
+                        isinstance(deltas, list) and len(deltas) == 2,
+                        "qualification type record must contain two directional deltas",
+                    )
+                    _mapping(
+                        type_record.get("source_fit_metadata"),
+                        label="qualification type record source fit metadata",
+                    )
+                _require(
+                    type_indices == set(range(expected_whole_types)),
+                    "qualification replicate type indices are incomplete or duplicated",
+                )
+                _require(
+                    record.get("numerical_failures") == [],
+                    "qualification replicate contains a numerical failure",
+                )
+                seen_records.add(key)
+                records_by_cell[cell_id].append(record)
+    except (OSError, UnicodeError, json.JSONDecodeError, TypeError, ValueError) as error:
+        if isinstance(error, ReadinessError):
+            raise
+        raise ReadinessError(f"cannot validate qualification records: {error}") from error
+    _require(
+        len(seen_records) == expected_record_count,
+        f"qualification has {len(seen_records)} replicate records; expected {expected_record_count}",
+    )
+
+    reported_cells = {
+        str(cell["cell_id"]): dict(cell)
+        for cell in cells
+        if isinstance(cell, Mapping) and "cell_id" in cell
+    }
+    recomputed_cells: dict[str, dict[str, Any]] = {}
+    try:
+        for cell in expected_cells:
+            summary = _cell_summary(
+                cell,
+                records_by_cell[cell.cell_id],
+                oracle_enclosure=oracle_by_cell[cell.cell_id],
+                binomial_confidence_level=(
+                    coverage_error_budget.binomial_readout_confidence_level
+                ),
+            )
+            passed, reasons = _accept_cell(summary, spec["acceptance"])
+            summary["passed"] = passed
+            summary["failure_reasons"] = reasons
+            recomputed_cells[cell.cell_id] = summary
+    except (ArithmeticError, IndexError, KeyError, TypeError, ValueError) as error:
+        raise ReadinessError(
+            f"cannot recompute qualification operating characteristics: {error}"
+        ) from error
+    failed_recomputed = [
+        cell_id
+        for cell_id, summary in recomputed_cells.items()
+        if summary.get("passed") is not True
+    ]
+    _require(
+        not failed_recomputed,
+        "recomputed qualification acceptance failed for cells: "
+        + ", ".join(failed_recomputed[:3]),
+    )
+    summaries_match = all(
+        reported_cells[cell_id] == summary
+        for cell_id, summary in recomputed_cells.items()
+    )
+    _require(
+        summaries_match,
+        "qualification report cell summaries differ from recomputed replicate results",
+    )
+
+    try:
+        with artifacts["result_table.csv"].open("r", encoding="utf-8", newline="") as handle:
+            table_rows = list(csv.DictReader(handle))
+    except (OSError, UnicodeError, csv.Error) as error:
+        raise ReadinessError(f"cannot read qualification result table: {error}") from error
+    _require(
+        {str(row.get("cell_id", "")) for row in table_rows} == expected_cell_ids
+        and len(table_rows) == len(expected_cells),
+        "qualification result table differs from the frozen cell inventory",
+    )
+    for row in table_rows:
+        try:
+            table_repetitions = int(row.get("replicates", ""))
+        except (TypeError, ValueError) as error:
+            raise ReadinessError(
+                "qualification result table has an invalid replicate count"
+            ) from error
+        _require(
+            table_repetitions == expected_repetitions,
+            "qualification result table has the wrong replicate count",
+        )
+        _require(
+            str(row.get("passed", "")).strip().lower() == "true",
+            "qualification result table contains a failed cell",
+        )
+    _require(
+        artifacts["result_table.md"].stat().st_size > 0,
+        "qualification markdown result table is empty",
+    )
     _require(
         report.get("real_connectivity_accessed") is False,
         "qualification accessed real connectivity",
     )
     _require(
-        report.get("real_connectivity_access_authorized") is False,
-        "qualification authorized real connectivity",
+        report.get("real_connectivity_access_authorized") == "development_only",
+        "qualification authorization differs from the frozen development-only contract",
     )
     return {
-        "tier": report.get("tier"),
+        "tier": "qualification",
         "scientific_cell_count": len(cells),
+        "replicates_per_cell": expected_repetitions,
+        "replicate_record_count": len(seen_records),
         "qualification_passed": True,
         "real_connectivity_accessed": False,
     }
@@ -325,7 +595,7 @@ def evaluate_production_readiness(
     budget_override_path: Path = OUTPUTS_ROOT / "executor" / "DEVELOPMENT_BUDGET_OVERRIDE.yaml",
     policy_path: Path = EPISODE_ROOT / "SEARCH_POLICY.yaml",
     prefix_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT.yaml",
-    active_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT_POST36.yaml",
+    active_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml",
     outputs_root: Path = OUTPUTS_ROOT,
     **_: Any,
 ) -> dict[str, Any]:
@@ -422,19 +692,137 @@ def evaluate_production_readiness(
 def write_readiness_artifacts(
     output_dir: Path, report: Mapping[str, Any], *, outputs_root: Path = OUTPUTS_ROOT
 ) -> None:
-    """Write the single readiness decision; retries must be identical."""
+    """Publish one readiness decision with a single monotone revise-to-pass step."""
 
     directory = _inside(output_dir, outputs_root, label="readiness output directory")
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / "production_readiness.json"
-    if path.exists():
-        current = _mapping(
-            _read_json(path, label="existing readiness report"),
-            label="existing readiness report",
+    candidate = dict(report)
+    candidate_state = _validate_readiness_publication(candidate)
+    lease_path = directory / ".production_readiness.lock"
+    with lease_path.open("a+b") as lease:
+        fcntl.flock(lease.fileno(), fcntl.LOCK_EX)
+        try:
+            if path.is_symlink() or path.exists():
+                _require(
+                    path.is_file() and not path.is_symlink(),
+                    "existing readiness decision is not an ordinary file",
+                )
+                current = _mapping(
+                    _read_json(path, label="existing readiness report"),
+                    label="existing readiness report",
+                )
+                current_state = _validate_readiness_publication(current)
+                if current == candidate:
+                    return
+                _require(
+                    current_state["status"] == "revise"
+                    and candidate_state["status"] == "pass",
+                    "readiness decision may only advance from revise to pass",
+                )
+                _require(
+                    current_state["identity"] == candidate_state["identity"],
+                    "readiness revise-to-pass identity differs",
+                )
+                atomic_json(path, candidate)
+                return
+            atomic_json(path, candidate)
+        finally:
+            fcntl.flock(lease.fileno(), fcntl.LOCK_UN)
+
+
+def _validate_readiness_publication(report: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate the semantic shape used to authorize a monotone publication."""
+
+    _require(
+        report.get("episode_id") == "ep12", "readiness episode identity is invalid"
+    )
+    policy_id = report.get("policy_id")
+    _require(
+        isinstance(policy_id, str) and policy_id,
+        "readiness policy identity is missing",
+    )
+    _require(
+        report.get("gate_scope") == "readiness_for_observed_post36_tail_only",
+        "readiness gate scope is invalid",
+    )
+    checks = report.get("checks")
+    _require(
+        isinstance(checks, list) and checks,
+        "readiness checks must be a nonempty list",
+    )
+    check_ids: list[str] = []
+    failed: list[str] = []
+    for value in checks:
+        check = _mapping(value, label="readiness check")
+        check_id = check.get("check_id")
+        _require(isinstance(check_id, str) and check_id, "readiness check ID is missing")
+        check_ids.append(check_id)
+        passed = check.get("passed")
+        _require(
+            isinstance(passed, bool),
+            f"readiness check result is invalid: {check_id}",
         )
-        _require(current == dict(report), "existing readiness decision differs")
-        return
-    atomic_json(path, dict(report))
+        if passed:
+            _mapping(check.get("evidence"), label=f"readiness check evidence {check_id}")
+        else:
+            _require(
+                isinstance(check.get("reason"), str) and bool(check.get("reason")),
+                f"failed readiness check lacks a reason: {check_id}",
+            )
+            failed.append(check_id)
+    _require(
+        len(check_ids) == len(set(check_ids))
+        and set(check_ids) == set(REQUIRED_READINESS_CHECK_IDS),
+        "readiness check inventory differs from the required gate set",
+    )
+    reported_failed = report.get("failed_foundational_checks")
+    _require(
+        isinstance(reported_failed, list)
+        and len(reported_failed) == len(set(map(str, reported_failed)))
+        and set(map(str, reported_failed)) == set(failed),
+        "readiness failed-check inventory is inconsistent",
+    )
+    passed = not failed
+    _require(
+        report.get("status") == ("pass" if passed else "revise")
+        and report.get("production_readiness_passed") is passed,
+        "readiness status is inconsistent with its checks",
+    )
+    guards = _mapping(report.get("claim_guards"), label="readiness claim guards")
+    observed_guard = _mapping(
+        guards.get("observed_post36_tail_launch"),
+        label="observed-tail readiness guard",
+    )
+    missing = observed_guard.get("missing")
+    _require(
+        observed_guard.get("permitted") is passed
+        and isinstance(missing, list)
+        and set(map(str, missing)) == set(failed),
+        "observed-tail readiness guard is inconsistent",
+    )
+    _require(
+        report.get("observed_outcome_values_read") is False,
+        "readiness publication decoded observed outcomes",
+    )
+    for key in (
+        "procedure_locked",
+        "full_search_null_completed",
+        "final_connectivity_accessed",
+        "final_connectivity_access_authorized",
+    ):
+        _require(
+            report.get(key) is False,
+            f"readiness publication unexpectedly sets {key}",
+        )
+    return {
+        "status": "pass" if passed else "revise",
+        "identity": {
+            "episode_id": report["episode_id"],
+            "policy_id": policy_id,
+            "gate_scope": report["gate_scope"],
+        },
+    }
 
 
 def claim_is_permitted(report: Mapping[str, Any], claim: str) -> bool:

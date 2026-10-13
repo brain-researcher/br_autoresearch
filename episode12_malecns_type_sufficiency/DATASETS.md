@@ -1,7 +1,59 @@
 # Dataset contract — Episode 12
 
+The October 6 scientist-adopted [original-study closeout](outputs/experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout)
+classifies T/U/M as incomplete and preserves the completed description below.
+Existing 816/204 roles, incoming/final access limits and source history remain
+unchanged; no successor or new source access is selected.
+
+## Observed descriptive branch — 2026-10-05
+
+**Completed evidence, reconciled October 6:** the selected pass and figure
+are complete. The [report and full tables](outputs/runs/observed_outgoing_description/20261005-description01/)
+retain all 84,735 neurons (84,609 positive-mass and 126 zero-mass), all 816
+types, 1,632 type-side rows and 816 bilateral comparisons. Every type has
+positive-mass support on both sides; all 11,771 partner bins remain in the
+denominator. The [figure and interpretation](outputs/figures/observed_outgoing_description/20261005-description01/figure_caption.md)
+show the full descriptive scope without a held-out or population claim.
+
+The separately adopted descriptive branch may reuse only the already-open
+development snapshot at
+`$SCRATCH/br_autoresearch/episode12_malecns_type_sufficiency/development_snapshot_v1`:
+`development_outgoing_counts.npz`, `development_focal_neurons.parquet` and
+`raw_partner_vocabulary.json`. The recorded materialization contains 84735
+development neurons, 816 types, 11771 partner bins and 4688114 nonzero cells.
+The saved annotation-only role manifest and existing materialization record
+bind this source; the completed compute job verified availability for that
+pass, not indefinite Scratch persistence. Missing/invalid files stop without source
+rematerialization or an alternate route. The previously stopped Scratch log
+read is not retried. All 204 final focal types and incoming scope stay closed.
+
+This branch publishes complete type-side/bilateral descriptive tables,
+including zero-mass/support accounting. Partner bins may name final types
+as targets of development-owned outgoing edges; no final focal profile or
+incoming grouping is opened. Historical source/exposure statements below
+describe their respective stages and do not erase prior development exposure.
+
 EP12 uses the existing MaleCNS v1.0 flat-connectome release. It creates no new
 data asset and grants no new access by itself.
+
+## Public online resources — checked October 6, 2026
+
+| Public resource | Available information and use for EP12 |
+| --- | --- |
+| [Official MaleCNS project](https://male-cns.janelia.org/) | Identifies the June 8, 2026 v1.0 release and links the source publication, release notes, annotation interfaces and downloads. The pinned source is a real public connectome, not a dataset awaiting discovery. |
+| [Official download and API documentation](https://male-cns.janelia.org/download/) | Documents the v1.0 `flat-connectome` Google Storage path, Feather annotation/type/side tables, neurotransmitter predictions, body synapse statistics and `connectome-weights-male-cns-v1.0-minconf-0.5.feather` as the full connection graph. It also provides Python/R neuPrint examples for `male-cns:v1.0`; that API uses an account/token, while bulk objects are separately published. |
+
+The download documentation distinguishes connectivity-table objects from
+optional synapse-coordinate/partner tables and morphology assets. It states
+that native SWC coordinates use 8-nm units, whereas the unisex-template
+skeletons use microns; these are useful measurement definitions if a future
+anatomical analysis is separately selected. No such payload or API query was
+opened here.
+
+These sources resolve release identity, file purpose, formats and access
+interfaces. They do not qualify the unfinished T/U/M model, provide a second
+male specimen, or authorize incoming/final focal-profile access. The existing
+completed development description and fixed 816/204 type roles are unchanged.
 
 ## Data source
 

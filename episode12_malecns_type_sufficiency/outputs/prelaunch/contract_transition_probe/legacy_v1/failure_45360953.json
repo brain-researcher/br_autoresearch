@@ -1,0 +1,23 @@
+{
+  "schema_version": "ep12.contract_transition_probe_failure.v1",
+  "phase": "legacy",
+  "slurm_job_id": "45360953",
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "elapsed": "00:00:28",
+  "started_at": "2026-09-26T05:40:05",
+  "ended_at": "2026-09-26T05:40:33",
+  "failure_stage": "environment_initialization_before_python",
+  "cause": "sanitized_environment_defined_the_Lmod_function_but_left_MODULEPATH_empty_so_the_compute_node_could_not_exec_python3",
+  "scientific_probe_started": false,
+  "scientific_artifact_produced": false,
+  "log": {
+    "path": "outputs/prelaunch/slurm-contract-probe-45360953.out",
+    "sha256": "11b6c77884d59c3c10403ba0c8370b8d28fe04e992e53a4a249bfa741ddf6d6a"
+  },
+  "failed_wrapper_sha256": "4cc1b98e8b0545e02eef2f85dd6e582573117812556b972a2311e95be3b2e09f",
+  "corrected_wrapper_sha256": "930dec33e8e33425540d83a0cb8de8868bd22c16168daebf7bd3d03c015c2c36",
+  "correction": "freeze_Sherlock_MODULEPATH_and_require_python3_after_module_load",
+  "real_connectivity_accessed": false,
+  "receipt_sha256": "d55d25e98540f9a3c011472ee878e3434119cbd6476e63e70da36ae216ad8da4"
+}

@@ -1,0 +1,151 @@
+*** Begin Patch
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/conditioned_array_solver.py
+@@
+ from radau_contact_preconditioner import prepare_contact_blocks
++from radau_triangular_contact_schur import prepare_triangular_contact_schur
+@@
+     integration_method: str = "midpoint"
+     radau_preconditioner: str = "stage_jacobi"
++    radau_linear_solver: str = "gmres"
+ 
+     def __post_init__(self):
+@@
+         if self.radau_preconditioner == "contact_block" and self.integration_method != "radau_iia_2":
+             raise ValueError("contact_block preconditioning requires radau_iia_2")
++        if self.radau_linear_solver not in ("gmres", "triangular_contact_schur"):
++            raise ValueError("radau_linear_solver must be gmres or triangular_contact_schur")
++        if self.radau_linear_solver == "triangular_contact_schur" and self.integration_method != "radau_iia_2":
++            raise ValueError("triangular_contact_schur requires radau_iia_2")
+@@
+     numerical_dissipation_joule: float = 0.0
+     integration_method: str = "midpoint"
+     radau_preconditioner: str = "stage_jacobi"
++    radau_linear_solver: str = "gmres"
++    radau_linear_solver_metadata: object = None
+ 
+ 
+ class _Counter:
+@@
+-        contact_block_plan = None
+-        if use_radau and controls.radau_preconditioner == "contact_block":
++        triangular_plan, triangular_info = None, {}
++        if use_radau and controls.radau_linear_solver == "triangular_contact_schur":
++            # Preparation inspects the actual interval matrices and admits its
++            # complete additional workspace before any boundary transition.
++            # Only unsupported structure may fall back; failures propagate.
++            triangular_plan = prepare_triangular_contact_schur(self._capacitance,
++                conductance, controlled_drives,
++                max_workspace_bytes=controls.max_workspace_bytes - workspace,
++                check=check, fallback_info=triangular_info)
++        contact_block_plan = None
++        if use_radau and triangular_plan is None and controls.radau_preconditioner == "contact_block":
+@@
+-                        contact_block_plan=contact_block_plan)
++                        contact_block_plan=contact_block_plan, triangular_plan=triangular_plan)
+@@
+                     float(np.max(np.abs(work - coarse_work))), varying_work, physical_work,
+                     numerical_dissipation, controls.integration_method,
+-                    "contact_block" if contact_block_plan is not None else "stage_jacobi")
++                    ("not_used" if triangular_plan is not None else
++                     "contact_block" if contact_block_plan is not None else "stage_jacobi"),
++                    "triangular_contact_schur" if triangular_plan is not None else "gmres",
++                    (dict(triangular_info, **triangular_plan.metadata)
++                     if triangular_plan is not None else dict(triangular_info)))
+*** Update File: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/tools/conditioned_radau_step.py
+@@
+                    step_seconds, stage_times, time_varying_forcing=None,
+-                   contact_block_plan=None):
++                   contact_block_plan=None, triangular_plan=None):
+@@
+     if contact_block_plan is not None:
+@@
+         workspace += extra
++    if triangular_plan is not None:
++        if contact_block_plan is not None:
++            raise ValueError("direct Radau solve cannot also select a preconditioner")
++        extra = triangular_plan.estimated_workspace_bytes
++        if triangular_plan.state_count != size or type(extra) is not int or extra < 0:
++            raise ValueError("triangular plan must retain the complete admitted state basis")
++        workspace += extra
+@@
+-    # Nodewise 2x2 stage-Jacobi inverse. It retains the Radau stage coupling
+-    # without forming a dense 2N matrix; controlled cross-node terms remain
+-    # in the actual Jacobian. Scaling avoids squaring dimensional C/G values.
+-    q = step * diagonal
+-    scale = np.maximum(cdiagonal, q)
+-    if not np.all(np.isfinite(q)) or not np.all(np.isfinite(scale)):
+-        raise SolverConvergenceError("nonfinite Radau preconditioner")
+-    c, g = cdiagonal / scale, q / scale
+-    determinant = scale * (c * c + (2. / 3.) * c * g + g * g / 6.)
+-    if np.any(determinant <= 0) or not np.all(np.isfinite(determinant)):
+-        raise SolverConvergenceError("invalid Radau preconditioner")
+-    p00, p01 = (c + g / 4.) / determinant, (g / 12.) / determinant
+-    p10, p11 = (-3. * g / 4.) / determinant, (c + 5. * g / 12.) / determinant
+-    if any(not np.all(np.isfinite(item)) for item in (p00, p01, p10, p11)):
+-        raise SolverConvergenceError("unrepresentable Radau preconditioner")
+-
+-    def precondition(value):
+-        check()
+-        first, second = value.reshape(2, size)
+-        return np.concatenate((p00 * first + p01 * second, p10 * first + p11 * second))
+-
+-    preconditioner = LinearOperator((block_size, block_size), matvec=precondition, dtype=np.dtype(float))
+-    if contact_block_plan is not None:
+-        # Prepared by the caller from this interval's actual C/G topology and
+-        # admitted against the combined outer/helper numeric-workspace cap.
+-        # Only GMRES M changes; the physical residual and Jacobian below do not.
+-        preconditioner = contact_block_plan.for_step(step, fallback=preconditioner, check=check)
+-    stages = np.vstack((old, old))
++    if triangular_plan is not None:
++        # The two forcing snapshots above are consumed exactly once. Every
++        # recovered original stage still passes the unmodified residual/work
++        # gate below; no iterative solver or preconditioner is constructed.
++        stages = triangular_plan.solve_stages(step_seconds=step, old=old,
++            stage_currents=tuple(currents), stage_drives=tuple(drives),
++            passive_product=passive_product, check=check)
++        stages = _array("recovered triangular Radau stages", stages, (2, size))
++    else:
++        # Nodewise 2x2 stage-Jacobi inverse. It retains the Radau stage coupling
++        # without forming a dense 2N matrix; controlled cross-node terms remain
++        # in the actual Jacobian. Scaling avoids squaring dimensional C/G values.
++        q = step * diagonal
++        scale = np.maximum(cdiagonal, q)
++        if not np.all(np.isfinite(q)) or not np.all(np.isfinite(scale)):
++            raise SolverConvergenceError("nonfinite Radau preconditioner")
++        c, g = cdiagonal / scale, q / scale
++        determinant = scale * (c * c + (2. / 3.) * c * g + g * g / 6.)
++        if np.any(determinant <= 0) or not np.all(np.isfinite(determinant)):
++            raise SolverConvergenceError("invalid Radau preconditioner")
++        p00, p01 = (c + g / 4.) / determinant, (g / 12.) / determinant
++        p10, p11 = (-3. * g / 4.) / determinant, (c + 5. * g / 12.) / determinant
++        if any(not np.all(np.isfinite(item)) for item in (p00, p01, p10, p11)):
++            raise SolverConvergenceError("unrepresentable Radau preconditioner")
++    
++        def precondition(value):
++            check()
++            first, second = value.reshape(2, size)
++            return np.concatenate((p00 * first + p01 * second, p10 * first + p11 * second))
++    
++        preconditioner = LinearOperator((block_size, block_size), matvec=precondition, dtype=np.dtype(float))
++        if contact_block_plan is not None:
++            # Prepared by the caller from this interval's actual C/G topology and
++            # admitted against the combined outer/helper numeric-workspace cap.
++            # Only GMRES M changes; the physical residual and Jacobian below do not.
++            preconditioner = contact_block_plan.for_step(step, fallback=preconditioner, check=check)
++        stages = np.vstack((old, old))
+@@
+     for _ in range(controls.max_newton_iterations):
+         check()
+-        counter.newton += 1
++        if triangular_plan is None:
++            counter.newton += 1
+@@
+-        def jacobian_product(value):
++        if triangular_plan is not None:
++            # Direct stage recovery is accepted only by the original full
++            # componentwise charge and C-inverse voltage residual above.
++            # Numerical failure never switches methods or relaxes tolerances.
++            raise SolverConvergenceError("triangular Radau recovered stage residual exceeds original tolerance")
++
++        def jacobian_product(value):
+*** End Patch

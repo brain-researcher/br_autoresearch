@@ -1,5 +1,116 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
+On October12 the scientist **conditionally adopted** the
+[constant-coordinate comparator](outputs/proposed_brain_normalization_followup.md).
+The separate [regenerated discriminator-only lock](outputs/protocol_lock_brain_constant_discriminator_2026-10-12.json)
+inherits the preserved original lock and opens only one bounded first-fold
+category check. An isolated adapted implementation follows only if every
+invalid target scale meets the exact-constant/exact-mean guard; otherwise the
+original not-evaluable disposition remains. No amended fitting, model reuse,
+scoring or release of held full readout47382805 is authorized by this step.
+The stopped first readout already processed tau-test data; no final collection,
+completion report or final-score exposure was reported. Preserve the documented
+source/file-identity limits and the original after-score new-episode rule.
+
+The first discriminator stopped at its NumPy import before data access.
+The [separately selected attempt002 lock](outputs/protocol_lock_brain_constant_discriminator_attempt002_2026-10-12.json)
+preserves attempt001 and its lock. It admits direct serial reuse of the actual
+EP17 fit0024CPU/31GiB parent with one numerical thread, unchanged300seconds,
+6.5GiB observed processRSS and1MiB categorical output. This is not a separate
+1CPU/7GiB hard memory boundary or an automatic retry; charge the parent once
+to EP17. Guard, axes, calculations and readout hold remain unchanged.
+
+The [pending remaining-pair hardware amendment](outputs/content_cuda_remaining_hardware_amendment.json)
+admits the previously qualified Tesla V100-SXM2-32GB or NVIDIA H10080GB HBM3
+for the sixteen original remaining-pair parents only. Exact device names and
+existing job identities are bound in that amendment. Original per-pair grants,
+resources, clocks, float32/noAMP/noTF32 and all scientific/data-role rules
+remain. It changes no source03 roster job or scientific implementation and
+does not release held-out evaluation. Separate changed admission checks precede
+the coordinator's scheduler update and release of those temporarily held jobs.
+
+The separate [full original Finding A grant](outputs/finding_a_full_readout_authorization.json)
+selects the fixed five-owner readout after all32 original eligible model parents
+succeed:20 content models and12 original non-sub01 brain models. All224 test
+images,19 layers and855 slots remain, with703 decoded and152 explicitly
+unavailable. Preserve the original1000 synchronized image draws,1000 dyadic
+draws, support, weights, reductions and incoming summaries. Full three-method
+Finding A and comparability remain not evaluable under the original missing-
+pair/margin rules; within/content estimates retain their own support rules.
+This original execution does not adopt the separate normalization follow-up.
+
+The grant selects one3CPU/16GiB/72h decode task,63 separate3CPU/16GiB/24h
+draw tasks with at most4 concurrent, and one1CPU/7GiB/2h finalizer:4754
+additional allocatedCPUh maximum, noGPU, one numerical thread/task. Its
+absolute clocks,768GiB collection,776GiB aggregate by unique inode and phase
+caps are fixed in the grant. All26 existing checks and ASTRA must pass inside
+decode before test payloads. Draw/finalize require successful closed
+predecessors; no retry, resume or automatic scientific successor follows.
+The existing partial-readout grant and all earlier charges remain separate.
+
+The separate `outputs/content_cuda_remaining_NNN_authorization.json` grants
+select original content pairs0–3,8–11,12–15,16–19: sources01/05/06/07 to
+the other four original participants. Together with the four source03 grants,
+these cover all20 original content fits, each preserving all4712 images,
+19 layers,1024 updates, full frozen eligible axes, canonical20-model
+initialization/shared schedule and the existing numerical implementation.
+Each2CPU/16GiB/one qualified V100-SXM2-32GB or H10080GB/48h parent has the same169200-second
+actual-StartTime clock, EndTime-minus60 bound,15GiB RSS,20GiB CUDA,
+1GiB channel,4GiB retained cache,1GiB final,2GiB run and1GiB scratch caps.
+The sixteen reserve1536CPUh plus768GPUh separately from preserved history.
+Pair000 retains its five submitted checks. The other15 reuse the same five
+methods passed in the CPU-only launcher companion, as recorded in
+`outputs/experiment_log.md` under the October11 check-location amendment. These training-only grants do not broaden
+the fixed readout, amend science, or permit retries, resumes or successors.
+
+The separately selected `outputs/brain_pair_remaining_NNN_authorization.json`
+grants cover original brain pairs 9,10,11,13,14,15,17,18,19 only: each of
+sub05/sub06/sub07 to the other participants among sub03/sub05/sub06/sub07.
+Each preserves all 897 tau-train images, full native axes, 50 CV fits and
+one final refit under the unchanged original solver and scale rules. Each
+3 CPU/16 GiB/6-hour parent has one numerical thread, a 21000-second actual
+StartTime deadline bounded by EndTime minus 60, 15 GiB RSS, 2 GiB run,
+256 MiB scratch and 768 MiB final-model limits. The nine parents reserve
+162 CPU-hours in addition to all preserved history. Three shared checks
+run once before pair009 fitting; the other eight require observed PASS
+before submission. These training-only exceptions grant no test-data
+access, scientific amendment, retry, resume or automatic successor. The
+original 20-pair denominator and missing-pair claim limits are unchanged.
+
+The separately selected original [content pair5](outputs/content_cuda_roster_005_authorization.json),
+[pair6](outputs/content_cuda_roster_006_authorization.json) and
+[pair7](outputs/content_cuda_roster_007_authorization.json) grants admit only
+sub03→sub05/sub06/sub07. Each keeps all4712 source-unique rows,19 layers,
+1024 updates, complete12897→10891/12023/12057 eligible axes and unchanged
+canonical seed/channel schedule, float32 sparse cached CUDA fit and final-only
+model publication. Each2CPU/16GiB/one measured V100-SXM2-32GB/48h parent
+reserves96CPUh plus48GPUh, with169200seconds from actual StartTime bounded by
+EndTime minus60, including every serial child. The original pair4 memory,
+cache and durable caps remain; these new parents allow1GiB local scratch
+for the independently selected EP17 checkpoint fixture. Pair5 retains its
+submitted five-method checks and companions. Pair6/7 reuse the same five
+methods passed in the CPU-only launcher companion under the October11
+check-location amendment, without waiting for pair5 GPU admission. The three grants reserve288CPUh plus144GPUh separately, preserve
+all history and grant no target neural, tau/OOD, scoring, B/C amendment,
+normalization change, retry, resume or automatic successor. The already
+selected partial readout below retains its original fixed scope.
+
+The separately selected [first original Finding A readout](outputs/finding_a_first_readout_authorization.json)
+opens only source sub-03 tau-test responses and common true features after
+successful original sub-03→sub-01 content training and the eleven new checks
+plus ASTRA validation. It decodes that original content pair and the sub-03
+within-source baseline on all224 images/all19 layers. All855 panel slots,
+1000 image draws,1000 dyadic draws and existing support/claim rules remain.
+Its one3CPU/16GiB/72-hour CPU parent reserves216allocatedCPUh, one numerical
+thread, an absolute255600-second StartTime deadline bounded by EndTime minus60,
+15GiB process RSS,40GiB collection,48GiB total output and4GiB local scratch.
+All checks and the independent EP19 software companion share that clock and
+one parent charge. Runtime is unmeasured. The complete quantitative Finding A
+and comparability remain not evaluable under the original missing-pair rule.
+This exception grants no fitting, target neural responses, tau-train, OOD,
+images, B/C execution, normalization amendment, retry or automatic successor.
+Earlier grants below retain their own narrower scopes and consumed history.
+
 Wang et al. (2025) introduced a content-loss neural code converter that maps
 functional MRI activity from a source participant into a target participant's
 neural space without requiring the two participants to view the same training
@@ -18,6 +129,156 @@ source-to-target participant pairs. A separate inter-site branch may add
 LAION-to-NSD, NSD-to-LAION, LAION-to-THINGS, and THINGS-to-LAION conversions
 only after those external datasets and their native decoders are independently
 qualified and provisioned.
+
+On 2026-09-30 the scientist approved a primary-ROI amendment to the fixed
+union of 29 independently defined retinotopy/fLoc/object masks per participant,
+in native space. This is adapted, incomplete visual-cortex support; it does not
+claim equivalence to the source study's whole visual cortex. The exact component
+identities, construction rule and separate mask-only allocation are in
+`outputs/protocol_mask_amendment_2026-09-30.yaml`. Tau-test/OOD responses cannot
+contribute to this mask selection. Neural access is limited to the three earlier
+retained-decoder grants and the October 6 full-decoder training grant in
+`SEARCH_POLICY.yaml`. The latter permits at most 500 aggregate allocated
+CPU-hours including the first-layer attempt and 500 GB new durable output,
+preserving every saved fit. The October 7 instruction to maximize jobs
+authorizes up to 42 concurrent one-CPU/7-GiB workers after an additive journal
+amendment. The original eight-worker authority and manifest remain immutable;
+new admission bounds the largest declared single feature bank plus 64 MiB per
+physical worker within the unchanged 16 GB aggregate transient cap. These grant no
+scoring, converter, reconstruction, tau/OOD or automatic-successor access.
+
+Separate later execution exceptions are explicitly bounded in the search
+policy: disposable content resource measurements use the named subject-unique
+training slice, and the October11 first brain-comparator grant permits only
+sub-03 to sub-01 on897 tau-train images, the fixed50CV fits plus final refit
+and exclusive final model. Its one-CPU/7GiB/24-hour grant is separate from
+decoder and content-measurement accounts. It grants no tau-test/OOD, evaluation,
+other-pair, retry or automatic-successor access and changes no scientific rule.
+
+The independent [next original brain-pair grant](outputs/brain_pair_next_authorization.json)
+admits only canonical pair index 5, sub-03 → sub-05, through stage `next-001`:
+all 897 tau-train images, complete 12,897/10,891 native voxel axes, the same
+50 cross-validation fits and one final refit with exclusive model publication.
+It preserves the original 20-pair roster and does not reopen index 4. Its
+one-CPU/7-GiB/24-hour parent has one numerical thread, at most 24 allocated
+CPU-hours, an absolute 84,600-second deadline from Slurm StartTime bounded by
+EndTime minus 60 seconds, 6.5-GiB process RSS, 2-GiB durable output, 256-MiB
+node-local work and a 768-MiB final artifact cap. Serialized component checks
+share one parent charge; the independent collection check cannot gate the
+brain fit. No epsilon, coordinate removal, reduced search grid, tau-test/OOD,
+scoring, reconstruction, retry, resume or automatic next pair is authorized.
+
+The separately selected [brain-pair memory repair](outputs/brain_pair_memory_authorization.json)
+admits one fresh `next-memory-001` attempt of that same canonical pair 5.
+It retains all 897 rows, the complete 12,897/10,891 axes, the unchanged 50 CV
+fits and final refit, including the source NumPy solve and float32 input/output.
+Only its finite allocation changes: two CPUs, 16 GiB and 24 hours, one
+numerical thread, at most 48 allocated CPU-hours and 15-GiB process RSS.
+The absolute 84,600-second StartTime deadline, EndTime-minus-60 bound,
+2-GiB durable, 256-MiB node-local and 768-MiB final-model limits remain.
+The prior `next-001` attempt and all other grants remain preserved; this
+explicit memory repair grants no automatic retry or extension. Five changed
+brain/default-diagnostic checks, three collection checks, three prospective
+cache checks and ASTRA validation share the parent serially and are charged
+once. Only the brain checks gate fitting; independent collection, cache and
+ASTRA results do not. No scientific, data-role or B/C lock rule changes.
+
+The separately selected [memory-allocation correction](outputs/brain_pair_memory_repair_authorization.json)
+admits one fresh `next-memory-002` attempt with three CPUs, 16 GiB and 24
+hours, one numerical thread and at most 72 allocated CPU-hours. The declared
+three CPUs account for the partition's 8,000-MiB-per-CPU limit at 16,384 MiB.
+The same pair, complete rows/axes, 50 CV fits plus final refit, source NumPy
+solve, 15-GiB RSS, absolute clock and storage limits remain unchanged. The
+earlier two-CPU request, `next-memory-001` attempt and all consumed grants
+remain preserved. The same serial companions share one parent charge, with
+only brain checks gating fitting; no automatic retry or broader access follows.
+
+The separately selected original [pair6](outputs/brain_pair_roster_006_authorization.json)
+and [pair7](outputs/brain_pair_roster_007_authorization.json) grants admit
+sub-03→sub-06 and sub-03→sub-07 independently, preserving the complete original
+panel. Each uses all897 tau-train images and full12897→12023 or12897→12057
+native axes,50 fixedCV fits and one final refit with unchanged source NumPy
+solve and numerical eligibility. The new fixed `roster-006`/`roster-007`
+entrypoint preserves earlier launchers. Each3CPU/16GiB/24-hour parent has one
+numerical thread,72allocatedCPUh maximum,15GiB RSS,2GiB durable,256MiB local
+scratch and768MiB final artifact. All work shares an absolute84600-second
+StartTime deadline bounded by EndTime minus60seconds. Three new admission
+methods parameterize both stages and run once in pair6's parent; pair7 reuses
+those checks, and both reuse passed scientific checks. This jointly reserves
+144additionalCPUh under standing increased-compute authority. No scientific
+rule, data role, B/C lock, automatic retry, extension or successor changes.
+
+The separate October11 CUDA measurement grant permits the same four disposable
+full content updates on one assigned GPU, retaining float32 without AMP/TF32;
+its2CPU/16GiB/1GPU/two-hour parent grants no production or evaluation access.
+The separate brain-prefix diagnostic grant may share that parent serially for
+at most300seconds/6.5GiB process RSS. It permits only the original sub-03 to
+sub-01 tau-train binding and first-fold normalization, stopping before any
+solve, fit, score or model. It cannot retry the consumed full brain attempt.
+
+The separately selected [cached CUDA measurement](outputs/content_cuda_cache_authorization.json)
+admits one `cache-001` attempt of those same four full updates. It changes
+only feature reading and exact reuse between the normalization and gradient
+passes, retaining the original provider's admission and binding checks. The
+selected channel plus packed flags are bounded by 1 GiB and the retained
+19-layer LossBlock arrays by 4 GiB; these are separate from the 15-GiB process
+RSS and 20-GiB Torch allocator limits. Its two-CPU/16-GiB/one-GPU/two-hour
+parent reserves at most four allocated CPU-hours plus two GPU-hours once,
+including serial integration and admission checks, the existing numerical
+fixture on the assigned GPU, and ASTRA validation. All children share an
+absolute 6,300-second deadline from actual Slurm StartTime, bounded by EndTime
+minus 60 seconds. The 32-MiB durable and 256-MiB node-local caps remain.
+No full production, model, scientific score, tau-test/OOD, target-response
+access, retry, resume or automatic successor is admitted.
+
+A separately selected [canonical-order repair](outputs/content_cuda_cache_repair_authorization.json)
+admits one fresh `cache-002` attempt with those exact scientific and resource
+limits. The public cache follows the existing training schedule's layer order;
+the scientific loop is unchanged. One changed existing cache regression and
+three stage-parameterized admission methods, the existing GPU numerical fixture
+and ASTRA share the same absolute allocation clock and parent charge. The old
+`cache-001` grant, attempt and consumption are preserved. This explicit repair
+grants no automatic retry or broader access.
+
+The separately selected [complete cached CUDA pair grant](outputs/content_cuda_pair_training_authorization.json)
+admits one original full pair-4 fit, sub-03→sub-01, on the measured Tesla
+V100-SXM2-32GB family. It retains all 4,712 rows, 19 layers, 1,024 updates,
+canonical initialization/channel schedule and exclusive final-only publication.
+The parent requests two CPUs, 16 GiB, one GPU and 48 hours, with one numerical
+thread and a separate maximum reservation of 96 allocated CPU-hours plus
+48 GPU-hours. Its absolute 169,200-second StartTime deadline includes serial
+checks, fitting and final publication and is bounded by EndTime minus 60 seconds.
+The 15-GiB host RSS, 20-GiB Torch allocator, 1-GiB channel/4-GiB retained cache,
+1-GiB final artifact, 2-GiB attempt and 256-MiB node-local bounds are fixed.
+The four-update measurement is not a resumable prefix or production authority;
+this explicit full-fit selection preserves all prior accounts and failed work.
+No target responses, tau-test/OOD, scientific scoring, reconstruction, B/C lock
+amendment, resume, automatic retry, extension or additional pair is admitted.
+
+The separate October 11 [public reconstruction qualification grant](outputs/reconstruction_qualification_authorization.json)
+permits one fixed non-neural fixture through the actual pinned generator and
+VGG19, with all 19 layers and 200 reconstruction updates. It uses one CPU,
+7 GiB, two hours, one numerical thread and at most two allocated CPU-hours;
+the absolute 6,900-second deadline starts at the allocation's StartTime and is
+also bounded by its end. Process RSS is limited to 6.5 GiB, retained output to
+1 GiB including the pinned generator archive, and node-local work to 4 GiB.
+Qualification reports contain only asset and operational metadata. This
+qualification neither admits empirical reconstruction nor
+changes the Finding B/C `not_evaluable_locked` states or their amendment and
+regenerated-lock requirements.
+
+A [separate relocation grant](outputs/brain_prefix_diagnostic_reconstruction_authorization.json)
+permits stage `reconstruction-002` of the original first-fold brain diagnostic
+inside that CPU parent. Its own admission precedes the same 897 tau-train rows
+and complete native axes, with a 300-second/6.5-GiB/1-MiB limit and zero fits.
+All serialized children share the parent's original deadline and are charged
+once. The earlier diagnostic stage and consumed full fitting attempt remain
+preserved; neither grant authorizes a retry, extension or automatic successor.
+
+The separate October10 resource-measurement exception in `SEARCH_POLICY.yaml`
+admits four disposable full-size content-converter updates for sub-03→sub-01,
+using its own bounded allocation and operational outputs only. It does not
+authorize production training, scientific scoring, tau/OOD access or successors.
 
 The defining no-shared-stimulus test is preserved in the training roles. For
 each directed LAION pair, the target VGG19 decoder is trained on the target
@@ -43,7 +304,7 @@ split.
 | What is the primary biological reporting unit? | The source participant, averaging equally over that source's four outgoing targets; all 20 directed dyads remain visible, and source-style dyadic resampling is secondary. |
 | What is separate from the LAION analysis? | A provisioning-contingent 70-directed-pair LAION↔NSD/THINGS inter-site branch. |
 | What remains closed? | The entire 371-image LAION-fMRI OOD payload and every derivative, because it is reserved for EP04. |
-| What has been executed? | Nothing. EP21 is at contract-authoring stage only. |
+| Where is execution evidence maintained? | [Current outputs](outputs/README.md) and the experiment log distinguish complete feature export, saved decoder fits and the approved bounded full-decoder continuation. Scoring and broader reproduction remain outside the training grants. |
 
 ## Conceptual figure
 
@@ -72,17 +333,18 @@ The reproduction target is the official source repository's `V1.0.0` tag at
 commit `edbff02edd6a08d3c6c829af45a957fd14bdc460`, together with the
 paper-linked Zenodo archive at
 [10.5281/zenodo.14910040](https://doi.org/10.5281/zenodo.14910040). The moving
-default branch is not a reproduction identity. Qualification must verify the
-archive inventory and checksum and pin every external model asset before the
-protocol lock.
+default branch is not a reproduction identity. The retained source
+qualification verifies the archive inventory and checksum. Individual model
+assets retain their own qualification requirements; see the
+[established data and method facts](DATASETS.md#established-data-and-method-facts--october-6-2026).
 
 The paper and tagged implementation are not interchangeable specifications.
-At minimum, qualification must resolve the paper's ReLU description against
-the tagged converter's LeakyReLU behavior, authenticate feature-map sampling
-and weighting in the content loss, and reconcile the paper's eight-layer
-reconstruction description with the tagged configuration that appears to
-request all 19 VGG19 layers. These are pre-score fidelity decisions; EP21 may
-not choose between them after seeing neural outcomes.
+The scientist adopted the tagged code-faithful choices on September 30:
+LeakyReLU(0.2), tagged feature-map sampling and active-block loss weights, and
+all 19 reconstruction layers, with the paper/code discrepancies disclosed.
+The [decision record](outputs/protocol_decisions_2026-09-30.yaml) fixes these
+before scores. They are no longer pending choices and cannot be changed after
+seeing neural outcomes.
 
 ## Fixed training and evaluation design
 
@@ -92,9 +354,12 @@ For each participant used as a target, fit the participant's VGG19 feature
 decoders on that target's own subject-unique regular images. The planning count
 for LAION-fMRI is 4,712 images per participant. Each decoder is a ridge model
 using the source-paper feature hierarchy and the prespecified 500-voxel
-selection procedure. The exact voxel-selection unit, regularization rule,
-feature normalization, VGG19 implementation, and layer list must be resolved
-and tested before a protocol lock is issued.
+selection procedure. The [implementation bindings](outputs/protocol_implementation_bindings_2026-09-30.yaml)
+fix per-feature training-only correlation ranking, ridge alpha 100, retained
+penalized bias, training-axis ddof-1 normalization, feature layout and native-ID
+tie handling. Completed bounded fits use those definitions; their progress
+and limits are recorded in the execution log, not inferred to cover all
+participants or feature units.
 
 The target decoder is frozen before converter fitting. Target neural responses
 to the source participant's subject-unique images do not exist and are not
@@ -117,7 +382,7 @@ This branch must satisfy all of the following:
 - no target response to a source training image enters the loss;
 - converter architecture, initialization, optimizer, stopping, and seeds are
   fixed without inspecting evaluation outcomes; and
-- every learned transform is fitted within the declared training role.
+- every EP21-fitted learned transform is fitted within the declared training role; the scientist-approved fixed-provider measurement exception below is disclosed separately.
 
 The phrase *without shared stimuli* refers to converter and decoder training.
 Using common held-out images to compare source, converted, and within-person
@@ -333,14 +598,55 @@ A technical repair may replay the smallest affected stage with the scientific
 configuration unchanged. A consequential change after any neural outcome is
 seen ends this episode rather than opening an adaptive search inside it.
 
-## Current status — 2026-09-28
+## Current status — updated 2026-09-30
 
 The scientist corrected the proposal identity before any EP21 empirical
-attempt. This document authorizes contract writing only. No role-filtered input
-has been provisioned, no neural value or reconstruction has been inspected, no
-protocol lock exists, and no local process or Slurm job has run. Canonical
-Brain Researcher review, reward, confirmation, and Landscape transitions are
-outside this authorization.
+attempt, then instructed Codex to launch and babysit EP21. Bounded
+outcome-blind public-source qualification and protocol-neutral synthetic
+conformance processes completed without opening an empirical handoff. No
+neural scoring input has been provisioned, no neural value or reconstruction
+has been inspected, and no protocol lock exists. A separately authorized
+regular-only stimulus export now provides 24,681 images through the read-only
+feature interface; no neural fitting or scoring job has run. Bounded public
+qualification jobs remain recorded under their original access boundary. Canonical
+Brain Researcher review, reward,
+confirmation, and Landscape transitions are outside this authorization.
+
+On 2026-09-30 the scientist selected the pinned V1.0.0 code-faithful choices,
+delegated the remaining outcome-blind protocol decisions within this question
+and its data boundaries, and explicitly retained the closed empirical gate.
+The adopted specification uses tagged LeakyReLU(0.2), normalized active-block
+content-loss weighting, all 19 reconstruction layers, and the tagged PyTorch
+AlexNet/227-pixel evaluator convention, with exact asset and runtime bindings
+still required. Every paper/code discrepancy is disclosed. LAION brain-loss
+regularization uses a prospectively specified five-fold, image-grouped
+`tau`-training-only rule over the source-listed penalties instead of copying
+the original participants' per-dyad values. LAION training repetitions are
+image-averaged after role assignment as required by the adapted data policy;
+this differs from the tagged decoder's retained trial rows.
+
+Comparability subclaims for A, C, and E are `not_evaluable` because no
+outcome-independent scientific margin is supplied. Absolute estimates and
+signed method differences remain reportable. Prospective aggregation,
+descriptive uncertainty, failure handling, and display-selection rules are
+recorded in `outputs/protocol_decisions_2026-09-30.yaml` and the updated
+protocol table. No new experiment, empirical access, resource allocation,
+protocol lock, or execution authorization follows from those decisions.
+The scientist supplied LAION-fMRI Terms v2026-05-12 acceptance and Low Risk,
+then approved a separate regular-stimulus export with explicit bounded
+resources. Slurm 46135794 published the owner-only read-only 3.36 GB artifact,
+excluding all 371 OOD images. Real metadata authenticates five unique 4,712-
+image pools, zero exact overlap for all 20 directed pairs and the provider's
+shared `tau` variant 0 (897 train/224 test); its role/trial binding record is
+`outputs/steward_provisioning/source_structural_manifest.json`. The real-metadata
+QC figure is `outputs/figures/regular_role_support_qc_2026-09-30.png`.
+Native whole-VC eligibility remains unresolved: the provider broad mask uses
+main-experiment R² and does not authenticate exclusion of held-out/OOD responses.
+See `outputs/steward_provisioning/whole_visual_cortex_gate.md`. Neural
+provisioning, exact runtime/assets and the real lock remain required; fitting
+and scoring are closed.
+The budget, OOD reservation, biological reporting unit, and stopping criteria
+are unchanged.
 
 ## Claim boundary
 
@@ -351,3 +657,42 @@ the declared NSD and THINGS participants. It cannot establish exact
 quantitative reproduction, population generalization, formal equivalence
 without locked margins, successful artificial-image transfer, OOD robustness,
 scanner invariance in general, or a fresh independent confirmation of EP04.
+
+
+## Scientist-approved fixed provider measurement — 2026-09-30
+
+The scientist approved standard released GLMsingle v1.2 final TYPED `betasmd`
+regular-trial rows as fixed measurement inputs for this adapted retrospective
+replication. Record: `outputs/protocol_provider_beta_amendment_2026-09-30.yaml`.
+Their upstream HRF/noise-PC/ridge/autoscaling/internal-normalization/percent-
+signal-change role exclusions remain unverified. Possible inherited tau-test/
+OOD influence is accepted and disclosed; no custom replacement release or raw
+BOLD reprocessing is required for this measurement definition. This explicitly
+supersedes earlier blanket upstream-eligibility gates for these fixed regular
+measurements only. All direct OOD payload/statistic/outcome access stays closed.
+
+EP21 downstream normalization, voxel ranking, model fitting, CV, tuning and
+stopping remain training-only. No-shared-stimulus claims refer to decoder and
+converter training image IDs, not the whole upstream estimation pipeline.
+Method contrasts do not establish cancellation of upstream dependence. Results
+are conditional on fixed provider measurements, regular-image support and the
+five participants; no clean-measurement, fresh-confirmation, OOD or population
+claim follows. Neural export resources, role-isolated missingness metadata,
+exact runtime/assets, required remaining conformance, a valid protocol lock
+and separate fitting/scoring authority are still required.
+
+
+## Outcome-blind implementation bindings — 2026-09-30
+
+Under the existing delegated protocol choices, exact FastL2LiR0.9 source now binds the penalized retained bias, sum-SSE ridge convention and Fortran target-unit reshaping. Previously adopted native-ID ties and fewer-than-500 failure rules remain disclosed adaptations. BdPy0.25 is prospectively pinned from the tagged reconstruction environment; its historical main-environment revision is unknown. True VGG19 features use the authenticated public tagged PyTorch weights, the pinned non-inplace pre-ReLU architecture, direct BICUBIC224 input and tagged reconstruction mean-file rule. The source code has no historical true-feature extractor; Caffe parity is unverified. Record: `outputs/protocol_implementation_bindings_2026-09-30.yaml`. No model import, fit, score, new resources or lock follows. The approved regular-neural steward export46172551 is running.
+
+
+## Regular-neural provisioning completion — 2026-10-01
+
+The single authorized steward job46172551 completed successfully in55:02. All5participants and150native-session bindings are provisioned in `outputs/steward_provisioning/regular_neural_sealed/`; the readable structural completion marker is `outputs/steward_provisioning/regular_neural_structural_report.json`. It records151,861preserved regular trial repetitions,0nonfinite elements and7,550,850,918B durable payload. No OOD arrays were formed/retained/summarized. The accepted inherited preprocessing limitation remains unverified, not clean. This provisioned payload stays sealed: no scoring handoff, empirical fitting/scoring or lock is authorized. Required public runtime conformance remains pending the separately requested source-only allocation. Existing question, budget, stopping criteria, masks/role definitions and passing checks remain unchanged.
+
+
+Public-runtime allocation update2026-10-01: source-only limits are approved and retained in `outputs/public_runtime_conformance_authorization_2026-09-30.json`. Execution is not launched: the prepared short bundle is held under Sherlock AGENTS rule10 useful-work aggregation. See `outputs/pipeline_conformance/public_runtime_scheduling_disposition_2026-10-01.md`. No scientific contract, lock, result or empirical authority changed.
+
+
+Harness correction2026-10-02: required public conformance no longer implies a standalone short job. It is a bounded prelude within a separately authorized substantive EP21 allocation, with unchanged scientific lock/data gates and no new compute authority. See `outputs/pipeline_conformance/harness_repair_2026-10-02.md`.19focused regressions pass; actual public model/fixture execution remains pending. Existing source-only approval and completed data/QC are retained.

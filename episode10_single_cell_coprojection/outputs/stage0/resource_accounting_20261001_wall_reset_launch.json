@@ -1,0 +1,59 @@
+{
+  "observed_at_utc": "2026-10-01T22:13:35Z",
+  "accounting_epoch": "wall_reset_20261001",
+  "authorization_artifact": "outputs/stage0/v3_wall_time_reset_authorization_20261001.json",
+  "historical_used_wall_hours_preserved": 129.83266666666668,
+  "lifetime_used_allocated_core_hours": 302.02566666666667,
+  "new_window_used_wall_hours": 0,
+  "planned_producers": {
+    "optional_resume": {
+      "requested_cpus": 9,
+      "numerical_workers": 9,
+      "conservative_allocated_cpu_reservation": 10,
+      "wall_limit_hours": 48,
+      "memory_GiB": 8,
+      "gpu_count": 0,
+      "reused_case_count": 3,
+      "new_case_count": 9,
+      "job_id": 46237243
+    },
+    "falsifier_timing": {
+      "requested_cpus": 8,
+      "numerical_workers": 8,
+      "conservative_allocated_cpu_reservation": 8,
+      "wall_limit_hours": 48,
+      "memory_GiB": 8,
+      "gpu_count": 0,
+      "complete_probe_count": 8,
+      "job_id": 46237247
+    }
+  },
+  "reserved_wall_hours": 96,
+  "reserved_allocated_core_hours": 864,
+  "remaining_unreserved_wall_hours": 48,
+  "remaining_unreserved_allocated_core_hours": 633.9743333333333,
+  "maximum_reserved_parallel_cores": 18,
+  "maximum_reserved_memory_GiB": 16,
+  "reservation_pass": true,
+  "actual_job_ids": [
+    46237243,
+    46237247
+  ],
+  "scale_24h_request_fits_wall_after_these_reservations": true,
+  "scale_not_submitted_and_still_requires_complete_optional_report": true,
+  "combined_99_replay_gate": "unresolved until all required reports exist and actual remaining budgets are reconciled",
+  "note": "Test-only predicts9 and8CPUs; reserve one extra optional CPU until actual allocation is known. All core usage remains cumulative.",
+  "last_scheduler_observed_at_utc": "2026-10-01T22:16:02Z",
+  "actual_scheduler_state": {
+    "46237243": {
+      "state": "PENDING",
+      "elapsed_seconds": 0,
+      "allocated_cpus": 0
+    },
+    "46237247": {
+      "state": "PENDING",
+      "elapsed_seconds": 0,
+      "allocated_cpus": 0
+    }
+  }
+}

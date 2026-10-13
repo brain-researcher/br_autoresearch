@@ -23,6 +23,239 @@ inputs:
   type: data
   description: Episode search and stopping policy.
   source: SEARCH_POLICY.yaml
+- id: prospective_feature_recipe
+  type: data
+  description: Selected outcome-blind image and label recipes; not evidence of qualified extraction or an access seal.
+  source: outputs/config/feature_registry.json
+- id: selected_model_asset_map
+  type: data
+  description: Exact official asset revisions/files and prospectively selected ftfy runtime; not acquired weights or a qualified feature record.
+  source: outputs/config/model_runtime_asset_map_proposal.json
+- id: model_runtime_setup_code
+  type: data
+  description: Fresh private GROUP_HOME CPU-wheel environment with every selected release; preserves the stopped prior environment.
+  source: outputs/code/prepare_exact_cpu_runtime.sh
+- id: model_runtime_requirements
+  type: data
+  description: Exact CPU releases, unchanged feature-registry versions and previously selected text dependencies.
+  source: outputs/config/cpu_runtime_requirements.txt
+- id: model_provisioning_wrapper
+  type: data
+  description: Single finite one-CPU/7-GiB/two-hour provisioning allocation; no feature inference or EEG access.
+  source: outputs/code/provision_exact_cpu_runtime_001.sbatch
+- id: model_runtime_qualification_code
+  type: data
+  description: Sequential offline CPU loading and selected-layer checks; no forward pass, images, prompts or EEG.
+  source: outputs/code/qualify_model_runtime.py
+- id: model_asset_transfer_code
+  type: data
+  description: Bounded public HTTPS acquisition of exact files on Slurm compute; no DTN login, credential handling or retries.
+  source: outputs/code/acquire_model_assets.py
+- id: name_text_pilot_code
+  type: data
+  description: Fixed first64 prepared-name resource pilot using the qualified local CLIP text model; no image/EEG access or bulk mode.
+  source: outputs/code/run_name_text_pilot.py
+- id: all_name_text_code
+  type: data
+  description: Conditional separate all1854 label-only driver; requires a completed feasible pilot and explicit coordinator invocation, not activated by preparation.
+  source: outputs/code/run_all_name_text_features.py
+- id: continuous_model_code
+  type: data
+  description: >-
+    Matrix-free sequence-local event expansion, direct joint nuisance/feature
+    ridge fit and post-fit event-contribution ablation. Caller supplies exact
+    timing, selected temporal basis, sample weights and column penalties;
+    no data reader, preprocessing choice, score release or access seal.
+  source: outputs/code/continuous_sequence_model.py
+- id: continuous_fold_code
+  type: data
+  description: >-
+    Complete six-outer/five-inner split composition over explicitly supplied
+    continuous sequences, training-only preparation, common nuisance-residual
+    whitening and original-EEG joint fits. Returns paired per-sequence errors;
+    no raw reader, unselected normalization convention or scientific release.
+  source: outputs/code/continuous_fold_runner.py
+- id: continuous_preparation_code
+  type: data
+  description: >-
+    Explicit72-sequence metadata/marker/span join and sequence-local FIR,
+    detrending and250Hz sampling with full filter-support masks. Caller owns
+    authentic spans, voltage-scaled reader, recipe and resource admission.
+  source: outputs/code/prepare_continuous_eeg.py
+- id: continuous_preparation_checks
+  type: data
+  source: outputs/code/test_prepare_continuous_eeg.py
+- id: continuous_tuning_code
+  type: data
+  description: >-
+    Prepare each of36 nested splits once, scan all13 penalties, retain exact
+    fold-local EDF matches, select using baseline-only losses and rematch on
+    outer training. All empirical recipe and dense-memory choices are explicit.
+  source: outputs/code/continuous_tuning.py
+- id: continuous_tuning_checks
+  type: data
+  source: outputs/code/test_continuous_tuning.py
+- id: brainvision_reader_code
+  type: data
+  description: >-
+    Explicit development-manifest binding, header voltage scaling, recorded
+    E3/segment spans and lazy interval reading after metadata validation.
+    Caller supplies the preprocessing recipe and actual EEG-access selection.
+  source: outputs/code/brainvision_sequence_reader.py
+- id: brainvision_reader_checks
+  type: data
+  source: outputs/code/test_brainvision_sequence_reader.py
+- id: sequence_geometry_fir_code
+  type: data
+  description: >-
+    Development header/marker inspection with EEG binary stat only, and one
+    prospective FIR coefficient response. Preserves every recorded E3 interval;
+    does not read EEG amplitudes, adopt a recipe or release main-sequence identities.
+  source: outputs/code/inspect_sequence_geometry_and_fir.py
+- id: development_geometry_manifest
+  type: data
+  description: Existing explicit thirty-participant development role binding; no audit view or mixed-role lookup.
+  source: outputs/runs/input_role_preparation/20261003-freeze_metadata01/development_manifest.json
+- id: development_geometry_binding_code
+  type: data
+  source: outputs/code/bind_development_sequence_geometry.py
+- id: development_eeg_release
+  type: data
+  description: Coordinator-selected development-only EEG preparation input release; no audit or scientific-score release.
+  source: outputs/config/development_eeg_release_20261012_001.json
+- id: development_eeg_preparation_code
+  type: data
+  source: outputs/code/run_development_eeg_preprocessing.py
+- id: development_eeg_cache_code
+  type: data
+  source: outputs/code/continuous_eeg_cache.py
+- id: development_eeg_cache_checks
+  type: data
+  source: outputs/code/test_continuous_eeg_cache.py
+- id: development_eeg_batch
+  type: data
+  source: outputs/code/run_development_eeg_preprocessing_001.sbatch
+- id: recorded_channel_order_release
+  type: data
+  source: outputs/runs/feature_preparation/recorded_channel_order_release001.json
+- id: image_cost_pilot_code
+  type: data
+  description: >-
+    Trusted first32 fixed-UUID archive-to-RGB delivery and sequential all-six-
+    family cost pilot. Reuses qualified local assets; preserves source routing
+    and any archive credential exclusively in the builder. No EEG access or
+    automatic full extraction.
+  source: outputs/code/run_image_feature_pilot.py
+- id: pixel_feature_worker_code
+  type: data
+  description: >-
+    Fresh bounded CPU process for one fixed image family, receiving only
+    metadata-free RGB arrays, opaque IDs and qualified model assets. Same-
+    account procedural separation, never OS isolation or blinded evaluation.
+  source: outputs/code/image_pixel_worker.py
+- id: full_image_delivery_code
+  type: data
+  description: Trusted one-pass archive delivery into bounded metadata-free RGB packs for all 22448 frozen opaque IDs.
+  source: outputs/code/prepare_image_feature_shards.py
+- id: full_image_worker_code
+  type: data
+  description: One qualified CPU model per complete assigned image range; no source crosswalk, credentials, EEG or automatic retries.
+  source: outputs/code/run_image_feature_shard.py
+- id: full_image_assembly_code
+  type: data
+  description: Requires all 26 selected tasks and exact six-family coverage before publishing complete arrays.
+  source: outputs/code/assemble_image_features.py
+- id: full_image_resource_selection
+  type: data
+  description: Pilot-based finite CPU, memory, storage, task ranges and absolute execution deadline; no scientific-model changes.
+  source: outputs/config/full_image_extraction_20261012_001.json
+- id: full_image_job_wrapper
+  type: data
+  description: Qualified runtime, clean process environment and phase deadlines for separately submitted builder, worker arrays and assembler.
+  source: outputs/code/run_full_image_features_001.sbatch
+- id: training_transform_code
+  type: data
+  description: >-
+    Registered training-only population scaling/PCA retaining every feature
+    family, fixed 62-to-61 Helmert sensor coordinates, and explicitly parameterized
+    training-nuisance covariance whitening. No held-out statistics, automatic
+    shrinkage choice, data reader or access seal.
+  source: outputs/code/training_transforms.py
+- id: slot_capacity_code
+  type: data
+  description: >-
+    Exact dense spectral added-term EDF with incremental full-model EDF
+    reported separately, common weighted base and explicit numerical rank
+    tolerance. Lists admissible pairs on the existing thirteen penalties;
+    no penalty selection, RBF construction, data reader or capacity release.
+  source: outputs/code/slot_capacity.py
+- id: selected_design_diagnostics
+  type: data
+  description: Exact conditional-design singular spectrum and full joint weighted-smoother leverage for all eight frozen slots in all six folds; explicitly selected prospective metric definitions and unchanged tolerances.
+  source: outputs/code/selected_design_diagnostics.py
+- id: selected_design_diagnostic_checks
+  type: data
+  source: outputs/code/test_selected_design_diagnostics.py
+- id: false_partition_input_builder
+  type: data
+  description: Explicit development-only event/UUID bridge for all30 people and all six complete image families; no EEG, partition generation or acceptance claim.
+  source: outputs/code/prepare_false_partition_inputs.py
+- id: false_partition_search_code
+  type: data
+  description: Exact two-group swap updates, full image/context acceptance and bounded manual checkpoint continuation; empirical recipe and resources are separate selections.
+  source: outputs/code/false_partition_search.py
+- id: false_partition_search_checks
+  type: data
+  source: outputs/code/test_false_partition_search.py
+- id: false_partition_development_release
+  type: data
+  description: >-
+    Literal four-field release of the completed22448-image/six-family bank,
+    existing private UUID routing, development manifest and all30 exact source
+    event paths. Main-event structural fields and unchanged target/button flags
+    only; no RT, accuracy, captions, pixels, audit data or EEG amplitudes.
+  source: outputs/config/false_partition_release_20261012_001.json
+- id: false_partition_production_selection
+  type: data
+  description: >-
+    Complete first-development-participant production cache/search selection,
+    original actual-E3 spans,128-past/0-future context support,72GiB cache,
+    64MiB segment allowance and unchanged absolute October13 deadline.
+    Processing sub-07 first does not select a scientific participant subset.
+  source: outputs/config/false_partition_sub07_20261012_001.json
+- id: false_partition_production_wrapper
+  type: data
+  description: >-
+    One finite normal13-CPU/96-GiB/four-hour request after existing assembler
+    success. Observed site memory normalization increased the earlier12-CPU
+    request to13. Permit actual allocation13..16CPUs, record actual CPUs and
+    four-hour reservation52..64CPUh, and run one worker/numerical thread only.
+    All30 input binding, complete first
+    production cache and one bounded search segment; no retry or successor.
+  source: outputs/code/run_false_partition_cost_001.sbatch
+- id: label_rbf_code
+  type: data
+  description: >-
+    Registered median-distance RBF kernel on the unchanged three-family label
+    panel; training U sqrt(d) and evaluation K U/sqrt(d) preserve ridge geometry.
+    Explicit numerical rank/reconstruction tolerances, no held-out fitting,
+    identifier features, penalty selection, EDF acceptance or data reader.
+  source: outputs/code/label_rbf.py
+- id: label_geometry_preparation_code
+  type: data
+  description: >-
+    Finite label-only PCA/RBF cache preparation with all requested branch aliases,
+    no repeated equivalent kernels, and the first necessary kernel retained as
+    the outcome-blind cost pilot. Prepared only; no standalone allocation selected.
+  source: outputs/code/prepare_label_geometry.py
+- id: cross_episode_exposure_record
+  type: data
+  description: Current shared-stimulus and access-history decision; no independent stimulus-family claim or access seal.
+  source: outputs/config/ep17_ep18_exposure_record.json
+- id: qualified_ep17_exposure_handoff
+  type: data
+  description: Immutable coordinator-supplied metadata comparison; no live sibling run input or scientific payload.
+  source: outputs/runs/cross_episode_exposure/ep17_handoff001/exposure_report.json
 decisions:
   declared_search_policy:
     id: declared_search_policy
@@ -44,4 +277,606 @@ outputs:
   - search_policy
   decisions:
   - declared_search_policy
+analyses:
+  input_role_preparation:
+    name: Outcome-blind event-image qualification, participant roles and access views
+    inputs:
+    - {id: goal, from: ../goal}
+    - {id: datasets, from: ../datasets}
+    - {id: search_policy, from: ../search_policy}
+    - {id: sequence_geometry_fir_code, from: ../sequence_geometry_fir_code}
+    - {id: brainvision_reader_code, from: ../brainvision_reader_code}
+    - {id: development_geometry_manifest, from: ../development_geometry_manifest}
+    - {id: development_geometry_binding_code, from: ../development_geometry_binding_code}
+    - {id: recorded_channel_order_release, from: ../recorded_channel_order_release}
+    outputs:
+    - id: complete_development_main_geometry
+      type: report
+      format: json
+      inputs: [search_policy, development_geometry_manifest, recorded_channel_order_release, development_geometry_binding_code, brainvision_reader_code]
+      description: >-
+        Complete30-person,72-main-sequence-per-person binding of original source
+        events, frozen development event-image join, E1/E3 markers, recording
+        segments and original frozen62-channel order. Preserve actual variable
+        cue gaps. Raw extent is actual E3 through last image+800ms inclusive;
+        common score window is first image-800ms through last image+800ms
+        inclusive, with the fixed causal128-past/0-future support and original
+        recording-grid phase0. No EEG amplitudes, image values, behavioral
+        fields or audit inputs; no fitting or scientific comparison. Stream
+        the frozen role join once and retain counts only. At most300seconds,
+        2GiB softRSS and8MiB durable output inside a substantive allocation.
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 300s python -B
+          outputs/code/bind_development_sequence_geometry.py
+          --development-manifest "$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/runs/input_role_preparation/20261003-freeze_metadata01/development_manifest.json"
+          --bids-root "$OAK/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source"
+          --frozen-channel-order "$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/runs/feature_preparation/recorded_channel_order_release001.json"
+          --output {output} --deadline "$EP18_GEOMETRY_DEADLINE"
+          --rss-byte-cap 2147483648
+        resources: {cpus: 1, memory: 2Gi, time_limit: 305s}
+    - id: structural_input_report
+      type: report
+      format: json
+      inputs: [goal, datasets, search_policy]
+      recipe:
+        command: >-
+          python outputs/code/qualify_structural_inputs.py
+          --bids-root "$EP18_BIDS_ROOT"
+          --metadata-root "$EP18_METADATA_ROOT"
+          --image-archive "$EP18_IMAGE_ARCHIVE"
+          --working-dir "$EP18_WORKING_DIR"
+          --output-dir {output}
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    - id: frozen_inputs_and_roles
+      type: report
+      format: json
+      description: >-
+        Deterministic whole-participant roles and qualified event metadata join,
+        with source-only EP17/18 overlap. This does not verify runtime isolation
+        or authorize EEG candidate comparison.
+      inputs: [goal, datasets, search_policy]
+      recipe:
+        command: >-
+          python outputs/code/freeze_metadata_views.py
+          --normalization-report outputs/runs/input_role_preparation/20261003-sample_origin01/sample_origin_report.json
+          --role-proposal outputs/runs/input_role_preparation/20261003-role_proposal01/role_proposal.json
+          --clock-report outputs/runs/input_role_preparation/20261003-clock01/clock_segment_report.json
+          --cneuromod-image-csv "$EP17_SOURCE_IMAGE_CSV"
+          --things-image-paths "$EP18_THINGS_IMAGE_PATHS"
+          --exposure-record outputs/config/ep17_ep18_exposure_record.json
+          --output-dir {output}
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    - id: metadata_and_fir
+      type: report
+      format: json
+      inputs: [frozen_inputs_and_roles, development_geometry_manifest, sequence_geometry_fir_code, brainvision_reader_code, search_policy]
+      description: >-
+        Prospective serial companion inside the next substantive allocation,
+        never a separate tiny job. Reads only the exact thirty development
+        participants' header/marker leaves and stats their EEG binary lengths;
+        no EEG amplitudes, event TSV, private join, behavior values or audit
+        inputs. Retains every E3-delimited interval, including empty intervals;
+        only nonempty intervals contribute to support conjunctions. A known
+        failure dominates unknown, and missing observations cannot pass.
+        The single 129-tap causal 100-Hz Kaiser-beta8.6 coefficient response
+        reports 64-ms delay and measured passband/stopband bounds. This report
+        does not adopt that filter/span recipe, infer the main72 sequence
+        identities, prepare EEG or satisfy scientific release. One CPU,
+        threads1, 2-GiB soft RSS, 180-second execution plus5-second kill grace,
+        16-MiB durable allowance; coordinator deadline also respects the parent
+        allocation. Header/marker bounds are8MiB/128MiB, one person at a time.
+        The fresh output directory retains settings, metadata_and_fir.json
+        and categorical operational status; incomplete execution cannot pass.
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 180s
+          "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_46842156/bin/python"
+          outputs/code/inspect_sequence_geometry_and_fir.py
+          --development-manifest "$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/runs/input_role_preparation/20261003-freeze_metadata01/development_manifest.json"
+          --bids-root "$OAK/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source"
+          --output {output}
+          --deadline "$EP18_GEOMETRY_DEADLINE"
+          --rss-byte-cap 2147483648
+        resources: {cpus: 1, memory: 2Gi, time_limit: 185s}
+    - id: runtime_feasibility
+      type: report
+      format: json
+      description: >-
+        Historical stopped sentinel-only isolation route; not selected for
+        re-execution. The October 12 procedural separation amendment replaces
+        this deployment prerequisite; no actual audit seal is claimed.
+      inputs: [goal, datasets, search_policy]
+      recipe:
+        command: >-
+          python outputs/code/check_isolated_runtime.py
+          --scratch-dir "$EP18_RUNTIME_SENTINEL_DIR"
+          --output-dir {output}
+        resources: {cpus: 1, memory: 512Mi, time_limit: 1m}
+    - id: procedural_access_boundary
+      type: report
+      format: md
+      description: >-
+        Scientist-adopted October 12 terms in GOAL.md, SEARCH_POLICY.yaml and
+        the experiment log: explicit development-only reads, no audit listing
+        or opening until the one recorded evaluation, frozen choices and
+        disclosed same-account separation. Satisfied procedurally, never
+        technically enforced or blinded; audit-seal flag remains false.
+      inputs: [goal, datasets, search_policy]
+  feature_preparation:
+    name: Freeze image, label, visual-distance and cross-episode exposure records
+    inputs:
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: search_policy, from: ../search_policy}
+    - {id: prospective_feature_recipe, from: ../prospective_feature_recipe}
+    - {id: model_asset_map, from: ../selected_model_asset_map}
+    - {id: runtime_setup_code, from: ../model_runtime_setup_code}
+    - {id: runtime_requirements, from: ../model_runtime_requirements}
+    - {id: provisioning_wrapper, from: ../model_provisioning_wrapper}
+    - {id: runtime_qualification_code, from: ../model_runtime_qualification_code}
+    - {id: asset_transfer_code, from: ../model_asset_transfer_code}
+    - {id: text_pilot_code, from: ../name_text_pilot_code}
+    - {id: full_text_code, from: ../all_name_text_code}
+    - {id: image_cost_pilot_code, from: ../image_cost_pilot_code}
+    - {id: pixel_feature_worker_code, from: ../pixel_feature_worker_code}
+    - {id: full_image_delivery_code, from: ../full_image_delivery_code}
+    - {id: full_image_worker_code, from: ../full_image_worker_code}
+    - {id: full_image_assembly_code, from: ../full_image_assembly_code}
+    - {id: full_image_resource_selection, from: ../full_image_resource_selection}
+    - {id: full_image_job_wrapper, from: ../full_image_job_wrapper}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    - {id: label_geometry_preparation_code, from: ../label_geometry_preparation_code}
+    - {id: cross_episode_exposure_record, from: ../cross_episode_exposure_record}
+    - {id: qualified_ep17_exposure_handoff, from: ../qualified_ep17_exposure_handoff}
+    outputs:
+    - id: human_metadata_crosswalk
+      type: report
+      format: json
+      description: >-
+        Exact frozen-concept join to aggregate properties and one 53-category
+        taxonomy, preserving missing values and source units without fitted
+        transforms. This is not the complete feature-panel freeze.
+      inputs: [frozen_inputs_and_roles, search_policy]
+      recipe:
+        command: >-
+          python outputs/code/prepare_human_metadata.py
+          --frozen-record outputs/runs/input_role_preparation/20261003-freeze_metadata01/frozen_inputs_and_roles.json
+          --metadata-root "$EP18_METADATA_ROOT"
+          --recipe outputs/config/human_metadata_recipe.json
+          --output-dir {output}
+        resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+    - id: private_feature_metadata
+      type: report
+      format: json
+      description: >-
+        Private trusted-builder image routing and separate provider-context
+        name prompts from the frozen metadata. This is not an image-worker
+        input, completed feature extraction or an access seal.
+      inputs: [frozen_inputs_and_roles, search_policy, prospective_feature_recipe]
+      recipe:
+        command: >-
+          python outputs/code/prepare_feature_metadata.py
+          --frozen-record outputs/runs/input_role_preparation/20261003-freeze_metadata01/frozen_inputs_and_roles.json
+          --human-report outputs/runs/feature_preparation/20261003-human_metadata01/human_metadata_report.json
+          --registry outputs/config/feature_registry.json
+          --output-dir {output}
+        resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+    - id: runtime_environment
+      type: data
+      format: directory
+      description: >-
+        Fresh private CPU-wheel installation and exact-version import report.
+        The enclosing provisioning wrapper creates EP18_PROVISION_RUN and fixes
+        the new GROUP_HOME environment by allocation ID. Uses Python3.12.1,
+        torch2.4.1+cpu and torchvision0.19.1+cpu without importing the stopped
+        alpha modules. All other selected versions remain fixed; ordinary
+        dependencies are resolved and recorded. Prior environment is preserved.
+        Imports establish no loaded models, features or reader isolation.
+      inputs: [prospective_feature_recipe, model_asset_map, runtime_setup_code, runtime_requirements, provisioning_wrapper, runtime_qualification_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 2400s
+          bash outputs/code/prepare_exact_cpu_runtime.sh
+        resources: {cpus: 1, memory: 7Gi, time_limit: 41m}
+    - id: public_model_assets
+      type: data
+      format: directory
+      description: >-
+        The exact declared public files at the existing asset root. Finite
+        coordinator Slurm HTTPS transfer with byte checks and no retries;
+        partial failures are preserved. Source hashes are checked by the
+        following offline loader before models are opened.
+      inputs: [model_asset_map, runtime_environment, asset_transfer_code, provisioning_wrapper]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 1800s
+          "$EP18_RUNTIME_ENV/bin/python" outputs/code/acquire_model_assets.py
+          --asset-map outputs/config/model_runtime_asset_map_proposal.json
+          --max-seconds 1800
+        resources: {cpus: 1, memory: 7Gi, time_limit: 31m}
+    - id: model_runtime_qualification
+      type: data
+      format: directory
+      description: >-
+        After exact public assets are acquired on coordinator-owned compute,
+        verify declared source integrity and sequentially load the six fixed
+        adapter routes on CPU. Preserve exact layers, dimensions, float32,
+        local-only loading and selected ftfy cleaning. Whole process1200s.
+        No forward pass, image/EEG/prompt access, feature freeze or audit seal.
+      inputs: [prospective_feature_recipe, model_asset_map, runtime_environment, public_model_assets, runtime_qualification_code, asset_transfer_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 1210s
+          "$EP18_RUNTIME_ENV/bin/python"
+          outputs/code/qualify_model_runtime.py
+          --asset-map outputs/config/model_runtime_asset_map_proposal.json
+          --output-dir {output} --max-seconds 1200
+        resources: {cpus: 1, memory: 7Gi, time_limit: 21m}
+    - id: name_text_cost_pilot
+      type: data
+      format: directory
+      description: >-
+        A separate source-metadata label process encodes only the first64
+        uniqueID-sorted prepared prompts, preserving their verbatim text.
+        Records CPU time, peak RSS, token truncation, float32 unit-normalized
+        512-vectors and first4 singleton batch consistency. Requires the
+        completed allocation46842156 asset/runtime qualification; no source
+        image routing, pixels, events or EEG input. A cost projection does not
+        release all1854 names or establish a complete feature record or seal.
+      inputs: [private_feature_metadata, prospective_feature_recipe, model_runtime_qualification, text_pilot_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 610s
+          "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_46842156/bin/python"
+          outputs/code/run_name_text_pilot.py --output-dir {output} --max-seconds 600
+        resources: {cpus: 1, memory: 7Gi, time_limit: 11m}
+    - id: complete_concept_name_features
+      type: data
+      format: directory
+      description: >-
+        The required label-only feature family: all 1854 uniqueID-sorted,
+        verbatim prepared name prompts encoded with the qualified local CLIP
+        text model in batches of 32. Requires the completed feasible first64
+        pilot and explicit coordinator release. Preserves the pilot artifacts
+        and emits concept_name_clip_text.npy (1854 by 512 float32 unit vectors),
+        concept_ids_and_tokens.json and label_feature_report.json. No source
+        image routing, pixels, events or EEG input. This single feature family
+        does not establish the complete frozen feature record or any seal.
+      inputs: [private_feature_metadata, prospective_feature_recipe, model_runtime_qualification, name_text_cost_pilot, full_text_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 610s
+          "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_46842156/bin/python"
+          outputs/code/run_all_name_text_features.py --run-full-labels
+          --pilot-report "$EP18_NAME_TEXT_PILOT_REPORT"
+          --output-dir {output} --max-seconds 600
+        resources: {cpus: 1, memory: 7Gi, time_limit: 11m}
+    - id: label_geometry_cache
+      type: data
+      format: directory
+      description: >-
+        Planned complete or explicitly partial label-only cache: shared PCA
+        parameters, at most six transformed geometries and eighteen RBF
+        eigensystems, with all 27 rank triples and 81 rank/width aliases.
+        Reads no EEG, images or event payload. Identical permitted training
+        concept sets justify reuse; no complete feature freeze or seal follows.
+        Bundle with substantive due compute; no minimum-runtime padding.
+      inputs: [frozen_inputs_and_roles, human_metadata_crosswalk, complete_concept_name_features, prospective_feature_recipe, training_transform_code, label_rbf_code, label_geometry_preparation_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 1800s
+          "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_46842156/bin/python"
+          outputs/code/prepare_label_geometry.py --output-dir {output} --max-seconds 1750
+        resources: {cpus: 1, memory: 7Gi, time_limit: 30m}
+    - id: image_feature_cost_pilot
+      type: data
+      format: directory
+      description: >-
+        Fixed first32 existing opaque UUIDs in lexical order, all six selected
+        image families and batch size one, with measured load/encoding cost,
+        peak RSS and complete feature/caption diagnostics. Trusted builder
+        reads only the frozen development image join and original archive;
+        fresh worker gets pixels and opaque IDs. Deadline is actual allocation
+        StartTime plus6900 seconds bounded by EndTime minus60, one CPU/7GiB,
+        no GPU,256MiB local pixel pack,1GiB local and64MiB durable allowance.
+        Extrapolation does not release bulk extraction or establish the full
+        feature record. No EEG, audit opening, retry or automatic successor.
+      inputs: [private_feature_metadata, frozen_inputs_and_roles, prospective_feature_recipe, model_runtime_qualification, image_cost_pilot_code, pixel_feature_worker_code]
+      recipe:
+        command: >-
+          "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_46842156/bin/python"
+          outputs/code/run_image_feature_pilot.py
+          --image-archive "$EP18_IMAGE_ARCHIVE"
+          --password-file "$EP18_PRIVATE_ARCHIVE_NOTICE"
+          --output-dir {output} --local-dir "$EP18_PILOT_LOCAL"
+          --deadline-unix "$EP18_PILOT_DEADLINE"
+        resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+    - id: all_image_pixel_delivery
+      type: data
+      format: directory
+      description: >-
+        All 22448 original images decoded once into 32-image metadata-free
+        RGB packs; maximum1GiB per pack and256GiB total. Only the trusted
+        builder receives the original archive, source crosswalk and private
+        notice. Temporary private cache persists across the selected family
+        jobs; no automatic deletion or new credential acceptance occurs.
+      inputs: [private_feature_metadata, image_feature_cost_pilot, full_image_delivery_code, full_image_resource_selection, full_image_job_wrapper]
+      recipe:
+        command: bash outputs/code/run_full_image_features_001.sbatch builder
+        resources: {cpus: 1, memory: 7Gi, time_limit: 6h}
+    - id: complete_image_feature_shards
+      type: data
+      format: directory
+      description: >-
+        Fixed six-family panel, batch1, all22448 original UUIDs per family.
+        Shard counts2/1/1/2/16/4 give26 independent one-model jobs. Ten faster
+        tasks request2h each with concurrency6; sixteen BLIP tasks request4h
+        each with concurrency16. At most22 tasks run concurrently. Every job
+        ends on failure without retries and retains its partial outputs.
+        Workers receive only the public resource config, pixel packs, opaque
+        IDs and qualified assets under procedural same-account separation.
+      inputs: [all_image_pixel_delivery, model_runtime_qualification, full_image_worker_code, full_image_resource_selection, full_image_job_wrapper]
+      recipe:
+        command: bash outputs/code/run_full_image_features_001.sbatch worker
+        resources: {cpus: 1, memory: 7Gi, time_limit: 4h}
+    - id: complete_image_feature_arrays
+      type: data
+      format: directory
+      description: >-
+        Assemble only after all26 tasks complete successfully, requiring every
+        image exactly once in each of six families. Preserves generated caption
+        details and float32 features, with no EEG access or complete feature
+        freeze claimed. Whole selected chain reserves91CPUh, zeroGPU and8GiB
+        durable run allowance plus256GiB temporary pixel cache. All phases stop
+        by2026-10-13T21:30:00Z and retain prior attempts and completed work.
+      inputs: [complete_image_feature_shards, full_image_assembly_code, full_image_resource_selection, full_image_job_wrapper]
+      recipe:
+        command: bash outputs/code/run_full_image_features_001.sbatch assembly
+        resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+    - id: frozen_feature_record
+      type: report
+      format: json
+      description: Qualified actual features and source/runtime records implementing the prospective recipe; not emitted by writing that recipe alone.
+      inputs: [frozen_inputs_and_roles, search_policy, prospective_feature_recipe, complete_concept_name_features, label_geometry_cache, complete_image_feature_arrays, cross_episode_exposure_record, qualified_ep17_exposure_handoff]
+  false_partition_preparation:
+    name: Generate all eight EEG-blind partitions under fixed matching tolerances
+    inputs:
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: frozen_feature_record, from: ../feature_preparation.frozen_feature_record}
+    - {id: complete_image_feature_arrays, from: ../feature_preparation.complete_image_feature_arrays}
+    - {id: complete_development_main_geometry, from: ../input_role_preparation.complete_development_main_geometry}
+    - {id: search_policy, from: ../search_policy}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    - {id: input_builder, from: ../false_partition_input_builder}
+    - {id: search_code, from: ../false_partition_search_code}
+    - {id: search_checks, from: ../false_partition_search_checks}
+    - {id: development_release, from: ../false_partition_development_release}
+    - {id: production_selection, from: ../false_partition_production_selection}
+    - {id: production_wrapper, from: ../false_partition_production_wrapper}
+    - {id: selected_design_diagnostics, from: ../selected_design_diagnostics}
+    - {id: selected_design_checks, from: ../selected_design_diagnostic_checks}
+    outputs:
+    - id: accepted_partition_bank
+      type: report
+      format: json
+      inputs: [frozen_feature_record, provisional_image_context_bank, selected_design_match_report, search_policy]
+      description: >-
+        Final all-required-participant bank only after all eight frozen members
+        meet image/context, diversity and exact selected-design spectrum,
+        leverage and term-EDF tolerances in every required fold. The production
+        cost wrapper does not emit this accepted-bank report or grant EEG
+        comparison access; a completed first-person candidate is insufficient.
+    - id: real_image_context_production_cost
+      type: data
+      format: directory
+      inputs: [complete_image_feature_arrays, complete_development_main_geometry, development_release, production_selection, production_wrapper, input_builder, search_code, search_checks, search_policy]
+      description: >-
+        Actual-image/context production cost stage after assembler47551339
+        succeeds and complete22448-ID/all-six-family coverage is checked.
+        Prepare all30 development records once in
+        outputs/runs/false_partition_preparation/inputs_20261012_001, within
+        300seconds,2GiB softRSS cap and128MiB durable output. Use sub-07 solely
+        as the first production participant, preserving all22248 main images,
+        six folds and six feature families. Build its complete pair/context
+        cache in outputs/cache/false_partition_sub07_20261012_001 within3hours
+        and72GiB; incomplete preparation stops before search. Only a completed
+        cache enters a search segment of at most1hour, with80GiB array admission,
+        90GiB softRSS cap and64MiB segment storage. The one normal allocation
+        requests13CPUs/52CPUh, accepts site allocation rounding through16CPUs,
+        records four hours times actual CPUs as the52..64CPUh upper reservation,
+        runs one worker/thread, and stops by the minimum of actual
+        start+4hours-60seconds, scheduler end-60seconds and2026-10-13T21:30:00Z.
+        Preserve seed20261012,8members,64starts/member,100000legal swaps/start,
+        all tolerance checks and consumed logical counters. Context uses signed
+        20ms bins over928ms each side, actual-E3 spans, unchanged binary target
+        flags and a coarse button flag at the flagged stimulus onset, never RT.
+        No EEG amplitudes, accuracy, audit data or candidate-discriminating scores.
+        Operational stages are under
+        outputs/runs/false_partition_preparation/false_partition_operations_20261012_001/initial_JOBID.
+        A resource stop preserves a search checkpoint only if one was written;
+        loading can stop before the first checkpoint. Partial preparation and
+        completed outputs remain for separate reviewed continuation. No tests
+        are repeated, no search budget resets, no automatic retries/successors,
+        and no final false-bank qualification are selected by this cost stage.
+      recipe:
+        command: bash outputs/code/run_false_partition_cost_001.sbatch
+        resources: {cpus: 13, memory: 96Gi, time_limit: 4h}
+    - id: provisional_image_context_bank
+      type: data
+      format: npz
+      inputs: [search_policy, real_image_context_production_cost, input_builder, search_code, search_checks]
+      description: >-
+        Explicitly selected outcome-free search retains all eight members,
+        64 starts and100000 legal proposals per start, every fold and feature
+        family, exact distribution tolerances and ARI diversity. A saved
+        resource-incomplete state preserves assignments, RNG and counters;
+        no automatic restart occurs. This provisional bank still requires
+        the unchanged selected-design/EDF checks and cannot be regenerated
+        from EEG. The selected first-person cost step can emit a candidate
+        only after all eight image/context matches finish; resource-incomplete
+        checkpoints and exhausted-search reports are not candidate banks.
+        Completing that step does not claim complete participant coverage or
+        establish full-scale selected-design feasibility.
+    - id: selected_design_match_report
+      type: report
+      format: json
+      inputs: [search_policy, provisional_image_context_bank, slot_capacity_code, selected_design_diagnostics, selected_design_checks]
+      description: >-
+        Prospective definition: singular values of F=[(I-H0)Za;sqrt(P0)B]
+        define the conditional design spectrum; squared singular values are
+        retained separately. Leverage is the diagonal of the full joint
+        weighted-data smoother at the selected penalties, using the same base,
+        weights and training rows. Both distributions pass the existing
+        standardized mean/W1/five-quantile bounds and the additional .10
+        relative quantile bound; the true sample SD scales discrepancies and
+        zero reference scales/quantiles use absolute equality within1e-12.
+        Added-term EDF remains primary with the existing .05 capacity bound.
+        All eight identical frozen partitions must pass in all six outer folds;
+        failure cannot regenerate partitions from EEG or relax tolerances.
+        Dense-array memory estimates exclude native workspaces and do not
+        establish full-scale feasibility. Resource refusal is incomplete
+        execution, not an observed scientific matching failure.
+  simulation_qualification:
+    name: Real-event overlap, leakage, recovery and distant-contribution simulations
+    inputs:
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: frozen_feature_record, from: ../feature_preparation.frozen_feature_record}
+    - {id: accepted_partition_bank, from: ../false_partition_preparation.accepted_partition_bank}
+    - {id: search_policy, from: ../search_policy}
+    - {id: continuous_model_code, from: ../continuous_model_code}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    outputs:
+    - {id: simulation_report, type: report, format: json}
+  cost_pilot:
+    name: Required outcome-blind resource pilot before candidate scores
+    inputs:
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: frozen_feature_record, from: ../feature_preparation.frozen_feature_record}
+    - {id: search_policy, from: ../search_policy}
+    - {id: continuous_model_code, from: ../continuous_model_code}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    outputs:
+    - {id: cost_report, type: report, format: json}
+  development_eeg_preprocessing:
+    name: Prepare all development continuous EEG under the fixed sequence recipe
+    inputs:
+    - {id: geometry, from: ../input_role_preparation.complete_development_main_geometry}
+    - {id: coefficients, from: ../input_role_preparation.metadata_and_fir}
+    - {id: search_policy, from: ../search_policy}
+    - {id: release, from: ../development_eeg_release}
+    - {id: preparation_code, from: ../development_eeg_preparation_code}
+    - {id: cache_code, from: ../development_eeg_cache_code}
+    - {id: cache_checks, from: ../development_eeg_cache_checks}
+    - {id: batch, from: ../development_eeg_batch}
+    - {id: reader, from: ../brainvision_reader_code}
+    - {id: sequence_preparation, from: ../continuous_preparation_code}
+    outputs:
+    - id: complete_development_eeg
+      type: report
+      format: json
+      inputs: [geometry, coefficients, search_policy, release, preparation_code, cache_code, cache_checks, batch, reader, sequence_preparation]
+      description: >-
+        All30 original development participants,2160 main sequences and667440
+        main events, with62 frozen recorded channels in float64 volts. Reuse
+        the stored129tap100Hz causal Kaiser8.6 coefficients,128past/0future
+        support and absolute phase0 decimation to250Hz. Keep full sample
+        grids, fixed common scoring masks, structural events and original
+        acquisition timestamps, including the declared64ms filter delay.
+        Process one participant at a time; private complete participant NPZ
+        and metadata artifacts survive a resource stop. Publish the whole
+        manifest only on exact30-person completion. No learned transforms,
+        reference projection, EEG-driven exclusion, model fit or score.
+        The fold runner owns the one62-to-61 projection and training-only
+        transforms. Target/button values later join separately authorized
+        event arrays; absence in this structural cache does not mean zero.
+        One1CPU7GiB2h parent reserves2CPUh once, including two cache checks,
+        changed ASTRA and independent EP21 hardware-admission software checks.
+        Maximum6GiB softRSS,12GiB durable,512MiB per-person/local stage,
+        64MiB raw-interval buffer. All work shares StartTime+7140seconds,
+        EndTime-60 and October13 21:30UTC limits. No automatic continuation.
+      recipe:
+        command: bash outputs/code/run_development_eeg_preprocessing_001.sbatch
+        resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+  baseline_search:
+    name: Fixed 19-44-trial label-baseline search with concept scores hidden
+    inputs:
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: procedural_access_boundary, from: ../input_role_preparation.procedural_access_boundary}
+    - {id: frozen_feature_record, from: ../feature_preparation.frozen_feature_record}
+    - {id: accepted_partition_bank, from: ../false_partition_preparation.accepted_partition_bank}
+    - {id: simulation_report, from: ../simulation_qualification.simulation_report}
+    - {id: cost_report, from: ../cost_pilot.cost_report}
+    - {id: search_policy, from: ../search_policy}
+    - {id: continuous_model_code, from: ../continuous_model_code}
+    - {id: continuous_fold_code, from: ../continuous_fold_code}
+    - {id: continuous_preparation_code, from: ../continuous_preparation_code}
+    - {id: continuous_preparation_checks, from: ../continuous_preparation_checks}
+    - {id: complete_development_eeg, from: ../development_eeg_preprocessing.complete_development_eeg}
+    - {id: continuous_tuning_code, from: ../continuous_tuning_code}
+    - {id: continuous_tuning_checks, from: ../continuous_tuning_checks}
+    - {id: brainvision_reader_code, from: ../brainvision_reader_code}
+    - {id: brainvision_reader_checks, from: ../brainvision_reader_checks}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    outputs:
+    - {id: fixed_baseline, type: report, format: json}
+  development_scientific_release:
+    name: One scientific release and complete development conjunction
+    inputs:
+    - {id: fixed_baseline, from: ../baseline_search.fixed_baseline}
+    - {id: search_policy, from: ../search_policy}
+    - {id: continuous_model_code, from: ../continuous_model_code}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    outputs:
+    - {id: development_vectors_and_controls, type: report, format: json}
+  preaudit_precision:
+    name: Fixed 16-person margin, error and control-power gate
+    inputs:
+    - {id: development_vectors_and_controls, from: ../development_scientific_release.development_vectors_and_controls}
+    - {id: search_policy, from: ../search_policy}
+    outputs:
+    - {id: preaudit_decision, type: report, format: json}
+  audit_evaluation:
+    name: One joint 16-participant refit replication under the frozen procedure
+    inputs:
+    - {id: preaudit_decision, from: ../preaudit_precision.preaudit_decision}
+    - {id: fixed_baseline, from: ../baseline_search.fixed_baseline}
+    - {id: procedural_access_boundary, from: ../input_role_preparation.procedural_access_boundary}
+    - {id: search_policy, from: ../search_policy}
+    - {id: continuous_model_code, from: ../continuous_model_code}
+    - {id: continuous_fold_code, from: ../continuous_fold_code}
+    - {id: training_transform_code, from: ../training_transform_code}
+    - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: label_rbf_code, from: ../label_rbf_code}
+    outputs:
+    - {id: audit_report, type: report, format: json}
+  development_terminal_report:
+    name: Report a closed development or preaudit outcome without opening audit
+    inputs:
+    - {id: development_vectors_and_controls, from: ../development_scientific_release.development_vectors_and_controls}
+    - {id: preaudit_decision, from: ../preaudit_precision.preaudit_decision}
+    - {id: goal, from: ../goal}
+    - {id: search_policy, from: ../search_policy}
+    outputs:
+    - {id: closed_development_report, type: report, format: markdown}
+  scientific_report:
+    name: Prespecified classification and restricted scientific interpretation
+    inputs:
+    - {id: development_vectors_and_controls, from: ../development_scientific_release.development_vectors_and_controls}
+    - {id: preaudit_decision, from: ../preaudit_precision.preaudit_decision}
+    - {id: audit_report, from: ../audit_evaluation.audit_report}
+    - {id: goal, from: ../goal}
+    outputs:
+    - {id: final_report, type: report, format: markdown}
 findings: {}

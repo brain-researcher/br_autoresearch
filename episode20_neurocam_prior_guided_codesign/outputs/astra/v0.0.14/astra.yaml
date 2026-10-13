@@ -1,0 +1,1055 @@
+# Design worklist for existing EP20 comparisons; outputs are planned artifacts.
+# The source documentary lookup is executable; no fitted models or findings are asserted.
+version: "0.0.14"
+name: EP20 coupled field-measurement-reconstruction design
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: dataset_contract, type: data, source: DATASETS.md}
+  - {id: search_policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: component_design, type: data, source: outputs/component_details.md}
+  - {id: starting_catalogue, type: data, source: outputs/parameter_candidate_catalogue.md}
+  - {id: electrical_mechanisms_and_probes, type: data, source: outputs/electrical_model_and_probes.md}
+outputs:
+  - id: final_report
+    from: scientific_report.final_report
+analyses:
+  model_specification:
+    name: Source roles, finite pad-scan catalogue, field-electronics interfaces and resource rules
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: component_design, from: ../component_design}
+      - {id: starting_catalogue, from: ../starting_catalogue}
+      - {id: electrical_mechanisms_and_probes, from: ../electrical_mechanisms_and_probes}
+      - {id: passive_contact_code, type: data, source: outputs/tools/passive_contact.py}
+      - {id: passive_contact_tests, type: data, source: outputs/tools/test_passive_contact.py}
+      - {id: switched_line_code, type: data, source: outputs/tools/switched_line.py}
+      - {id: switched_line_tests, type: data, source: outputs/tools/test_switched_line.py}
+      - {id: r1_noise_code, type: data, source: outputs/tools/r1_noise.py}
+      - {id: loaded_node_code, type: data, source: outputs/tools/loaded_node.py}
+      - {id: loaded_node_tests, type: data, source: outputs/tools/test_loaded_node.py}
+      - {id: coupled_rc_code, type: data, source: outputs/tools/coupled_rc.py}
+      - {id: coupled_rc_tests, type: data, source: outputs/tools/test_coupled_rc.py}
+      - {id: sparse_array_rc_code, type: data, source: outputs/tools/sparse_array_rc.py}
+      - {id: sparse_array_rc_tests, type: data, source: outputs/tools/test_sparse_array_rc.py}
+      - {id: causal_cpe_code, type: data, source: outputs/tools/causal_cpe.py}
+      - {id: causal_cpe_tests, type: data, source: outputs/tools/test_causal_cpe.py}
+      - {id: cpe_array_code, type: data, source: outputs/tools/cpe_array.py}
+      - {id: cpe_array_tests, type: data, source: outputs/tools/test_cpe_array.py}
+      - {id: analog_conditioning_code, type: data, source: outputs/tools/analog_conditioning.py}
+      - {id: analog_conditioning_tests, type: data, source: outputs/tools/test_analog_conditioning.py}
+      - {id: conditioned_solver_code, type: data, source: outputs/tools/conditioned_array_solver.py}
+      - {id: conditioned_solver_tests, type: data, source: outputs/tools/test_conditioned_array_solver.py}
+      - {id: conditioned_array_tests, type: data, source: outputs/tools/test_conditioned_cpe_array.py}
+      - {id: spectral_noise_code, type: data, source: outputs/tools/spectral_noise.py}
+      - {id: spectral_noise_tests, type: data, source: outputs/tools/test_spectral_noise.py}
+      - {id: physical_noise_ports_code, type: data, source: outputs/tools/physical_noise_ports.py}
+      - {id: physical_noise_ports_tests, type: data, source: outputs/tools/test_physical_noise_ports.py}
+      - {id: cpe_noise_tests, type: data, source: outputs/tools/test_cpe_noise.py}
+      - {id: external_daq_noise_tests, type: data, source: outputs/tools/test_external_daq_noise.py}
+      - {id: circuit_noise_provider_code, type: data, source: outputs/tools/circuit_noise_provider.py}
+      - {id: circuit_noise_provider_tests, type: data, source: outputs/tools/test_circuit_noise_provider.py}
+      - {id: physical_noise_acquisition_tests, type: data, source: outputs/tools/test_physical_noise_acquisition.py}
+      - {id: acquisition_readout_code, type: data, source: outputs/tools/acquisition_readout.py}
+      - {id: acquisition_readout_tests, type: data, source: outputs/tools/test_acquisition_readout.py}
+      - {id: daq_mux_hold_code, type: data, source: outputs/tools/daq_mux_hold.py}
+      - {id: daq_mux_hold_tests, type: data, source: outputs/tools/test_daq_mux_hold.py}
+      - {id: daq_external_input_tests, type: data, source: outputs/tools/test_daq_external_inputs.py}
+      - {id: cpe_external_input_tests, type: data, source: outputs/tools/test_cpe_external_inputs.py}
+      - {id: external_input_acquisition_tests, type: data, source: outputs/tools/test_external_input_acquisition.py}
+      - {id: array_acquisition_code, type: data, source: outputs/tools/array_acquisition.py}
+      - {id: array_acquisition_tests, type: data, source: outputs/tools/test_array_acquisition.py}
+      - {id: development_field_specification, type: data, source: outputs/development_field_primitives.md}
+      - {id: development_field_code, type: data, source: outputs/tools/development_fields.py}
+      - {id: development_field_tests, type: data, source: outputs/tools/test_development_fields.py}
+      - {id: field_power_scale_specification, type: data, source: outputs/field_power_scale_specification.md}
+      - {id: field_power_scale_code, type: data, source: outputs/tools/field_power_scales.py}
+      - {id: field_power_scale_tests, type: data, source: outputs/tools/test_field_power_scales.py}
+      - {id: surface_to_contact_code, type: data, source: outputs/tools/surface_to_contact.py}
+      - {id: surface_to_contact_tests, type: data, source: outputs/tools/test_surface_to_contact.py}
+      - {id: raw_world_time_code, type: data, source: outputs/tools/raw_world_time.py}
+      - {id: raw_world_time_tests, type: data, source: outputs/tools/test_raw_world_time.py}
+      - {id: observation_nuisance_code, type: data, source: outputs/tools/observation_nuisance.py}
+      - {id: observation_nuisance_tests, type: data, source: outputs/tools/test_observation_nuisance.py}
+      - {id: raw_time_recipe, type: data, source: outputs/development_world_recipe.md}
+      - {id: raw_input_hold_code, type: data, source: outputs/tools/raw_input_hold.py}
+      - {id: raw_input_hold_tests, type: data, source: outputs/tools/test_raw_input_hold.py}
+      - {id: development_simulation_code, type: data, source: outputs/tools/development_simulation.py}
+      - {id: development_simulation_tests, type: data, source: outputs/tools/test_development_simulation.py}
+      - {id: streaming_readout_code, type: data, source: outputs/tools/streaming_acquisition_readout.py}
+      - {id: streaming_readout_tests, type: data, source: outputs/tools/test_streaming_acquisition_readout.py}
+      - {id: streaming_array_code, type: data, source: outputs/tools/streaming_array_acquisition.py}
+      - {id: streaming_array_tests, type: data, source: outputs/tools/test_streaming_array_acquisition.py}
+      - {id: quantizer_hash_patch, type: data, source: outputs/tools/batch_quantizer_hash.patch}
+      - {id: quantizer_hash_tests, type: data, source: outputs/tools/test_quantizer_hash_batch.py}
+      - {id: owned_quantizer_code, type: data, source: outputs/tools/owned_quantizer_snapshot.py}
+      - {id: owned_quantizer_patch, type: data, source: outputs/tools/owned_quantizer_reuse.patch}
+      - {id: owned_quantizer_tests, type: data, source: outputs/tools/test_owned_quantizer_snapshot.py}
+      - {id: conditional_component_profiler, type: data, source: outputs/tools/profile_conditional_component_cost.py}
+      - {id: streaming_input_plan_code, type: data, source: outputs/tools/streaming_input_plan.py}
+      - {id: streaming_input_plan_tests, type: data, source: outputs/tools/test_streaming_input_plan.py}
+      - {id: streaming_midpoint_code, type: data, source: outputs/tools/streaming_midpoint_hold.py}
+      - {id: streaming_midpoint_tests, type: data, source: outputs/tools/test_streaming_midpoint_hold.py}
+      - {id: repeating_schedule_code, type: data, source: outputs/tools/repeating_acquisition_schedule.py}
+      - {id: repeating_schedule_tests, type: data, source: outputs/tools/test_repeating_acquisition_schedule.py}
+      - {id: streaming_output_code, type: data, source: outputs/tools/streaming_simulation_output.py}
+      - {id: streaming_output_tests, type: data, source: outputs/tools/test_streaming_simulation_output.py}
+      - {id: streaming_simulation_code, type: data, source: outputs/tools/streaming_development_simulation.py}
+      - {id: streaming_simulation_tests, type: data, source: outputs/tools/test_streaming_development_simulation.py}
+      - {id: conditional_forward_recipe, type: data, source: outputs/conditional_forward_recipe.md}
+      - {id: conditional_forward_code, type: data, source: outputs/tools/conditional_forward_recipe.py}
+      - {id: conditional_acquisition_code, type: data, source: outputs/tools/conditional_acquisition_recipe.py}
+      - {id: conditional_cost_driver, type: data, source: outputs/tools/run_conditional_forward_cost.py}
+      - {id: conditional_cost_entrypoint, type: data, source: outputs/tools/run_conditional_forward_cost.sh}
+      - {id: conditional_component_cost_driver, type: data, source: outputs/tools/run_conditional_component_cost.py}
+      - {id: conditional_preflight_cost_driver, type: data, source: outputs/tools/run_conditional_preflight_cost.py}
+      - {id: conditional_preflight_only_tests, type: data, source: outputs/tools/test_conditional_preflight_only.py}
+      - {id: preflight_progress_patch, type: data, source: outputs/tools/preflight_window_progress.patch}
+      - {id: preflight_progress_tests, type: data, source: outputs/tools/test_preflight_window_progress.py}
+      - {id: cubic_noise_code, type: data, source: outputs/tools/polynomial_noise.py}
+      - {id: cubic_circuit_forcing_code, type: data, source: outputs/tools/polynomial_circuit_forcing.py}
+      - {id: cubic_noise_tests, type: data, source: outputs/tools/test_polynomial_noise.py}
+      - {id: cubic_circuit_tests, type: data, source: outputs/tools/test_cpe_polynomial_noise.py}
+      - {id: cubic_acquisition_tests, type: data, source: outputs/tools/test_polynomial_acquisition.py}
+      - {id: conditional_noise_clock_tests, type: data, source: outputs/tools/test_conditional_noise_clock.py}
+      - {id: radau_step_code, type: data, source: outputs/tools/conditioned_radau_step.py}
+      - {id: radau_step_tests, type: data, source: outputs/tools/test_conditioned_radau_step.py}
+      - {id: radau_contact_code, type: data, source: outputs/tools/radau_contact_preconditioner.py}
+      - {id: radau_contact_tests, type: data, source: outputs/tools/test_radau_contact_preconditioner.py}
+      - {id: radau_contact_integration_tests, type: data, source: outputs/tools/test_contact_block_radau_integration.py}
+      - {id: radau_triangular_code, type: data, source: outputs/tools/radau_triangular_contact_schur.py}
+      - {id: radau_triangular_patch, type: data, source: outputs/tools/triangular_contact_schur_integration.patch}
+      - {id: radau_triangular_tests, type: data, source: outputs/tools/test_radau_triangular_contact_schur.py}
+      - {id: radau_forcing_code, type: data, source: outputs/tools/radau_polynomial_forcing.py}
+      - {id: radau_forcing_tests, type: data, source: outputs/tools/test_radau_polynomial_forcing.py}
+      - {id: radau_integration_tests, type: data, source: outputs/tools/test_conditioned_radau_integration.py}
+      - {id: frozen_cubic_binding_code, type: data, source: outputs/tools/frozen_cubic_noise_binding.py}
+      - {id: frozen_cubic_binding_tests, type: data, source: outputs/tools/test_frozen_cubic_noise_binding.py}
+      - {id: saved_development_worlds, type: data, source: outputs/runs/development_worlds_job_47085635/panel/development_worlds.h5}
+    outputs:
+      - {id: model_and_resource_specification, type: report, format: json}
+      - id: conditional_forward_cost_report
+        type: report
+        format: json
+        description: >-
+          One bounded full-size conditional R3 cost attempt using saved B2 seed2001,
+          G0, all4096 pads,64 sources,24 ADC holds and the full16s record.
+          Preserve69848 states,104M raw conversions,17.984M observations and
+          original frozen physical-noise draws. Parameters are prospective
+          engineering assumptions, not calibration or accepted reference values.
+          Fixed1pA/10nV noise-hold tolerances and10nV field-hold tolerance are
+          numerical input bounds, not a validated output error. Stop on6000s
+          internal wall,6.5GiB sampled RSS,40M split or other explicit limits;
+          retain failure phase and actual physical frontier. Do not relax
+          tolerances or reduce the channel count, rate or duration to finish.
+          Full-plan preparation may exhaust the attempt before any state advances.
+          The selected repair reuses attempt002 named quadratures directly and
+          evaluates a fixed cubic on each original physical mux slot. The same
+          pointwise A/V bounds apply; all physical work uses actual internal
+          midpoint states and participates in refinement before commit.
+          Affected implementation checks execute within this substantive allocation.
+          The24GiB output payload cap and32GiB total storage reservation include
+          streamed tables and the separately retained original factor/draw archive.
+          This measurement neither scores candidates nor opens independent outcomes.
+        inputs: [goal, dataset_contract, search_policy, conditional_forward_recipe,
+                 conditional_forward_code, conditional_acquisition_code,
+                 conditional_cost_driver, conditional_cost_entrypoint,
+                 saved_development_worlds, streaming_simulation_code,
+                 cubic_noise_code, cubic_circuit_forcing_code, cubic_noise_tests,
+                 cubic_circuit_tests, cubic_acquisition_tests, conditional_noise_clock_tests]
+        recipe:
+          command: >-
+            bash outputs/tools/run_conditional_forward_cost.sh
+            "$OAK/users/zijiao/br_autoresearch/episode20_neurocam_prior_guided_codesign/outputs/runs/model_specification/conditional_forward_cost_attempt003"
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+      - id: conditional_component_cost_report
+        type: report
+        format: json
+        description: >-
+          Bounded full-dimensional engineering measurement using the saved
+          B2 seed2001 G0 world and the retained original spectral realization.
+          Separate original cubic construction, physical-port projection and
+          actual explicitly selected Radau propagation for the first physical
+          action's first aperture split and a targeted contiguous diagnostic
+          through the first two original actions. Preserve all 69848 states, 4096 pads,
+          64 sources, 24 ADCs, original charges and selected solver/forcing tolerances.
+          This does not admit the complete schedule, simulate a full16s record,
+          establish calibration, score candidates or measure general throughput.
+          Preserve finite refusals and actual work rather than extrapolating
+          one startup interval into a certified complete-case cost.
+        inputs: [goal, dataset_contract, search_policy, conditional_forward_recipe,
+                 conditional_forward_code, conditional_acquisition_code,
+                 conditional_component_cost_driver, saved_development_worlds,
+                 conditioned_solver_code, radau_step_code, radau_forcing_code, radau_contact_code,
+                 radau_triangular_code, radau_triangular_tests,
+                 cpe_array_code, circuit_noise_provider_code, spectral_noise_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 300s
+            python3.12 -u -B outputs/tools/run_conditional_component_cost.py
+            --first-two-actions --radau-preconditioner contact_block
+            --radau-linear-solver triangular_contact_schur
+            --run-dir outputs/runs/model_specification/conditional_component_cost_attempt004
+          resources: {cpus: 1, memory: 7Gi, time_limit: 6m}
+      - id: contact_block_preconditioner_checks
+        type: report
+        format: text
+        description: >-
+          Focused checks of the optional grouped contact-block Radau GMRES
+          preconditioner against independent dense linear algebra and the
+          existing full physical solve. Preserve actual C/G principal blocks,
+          all states, nonlinear drives, residuals, physical work, refinement
+          and acceptance criteria. Bound all additional workspace under the
+          shared solver cap, retain unsupported-topology fallback and refuse
+          resource failure before state commit. These checks do not establish
+          full-record throughput, calibration or a candidate result.
+        inputs: [conditioned_solver_code, radau_step_code, radau_contact_code,
+                 radau_contact_tests, radau_contact_integration_tests,
+                 radau_step_tests, radau_integration_tests, conditioned_solver_tests]
+        recipe:
+          command: >-
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f
+            test_radau_contact_preconditioner test_contact_block_radau_integration
+            test_conditioned_radau_step test_conditioned_radau_integration
+            test_conditioned_array_solver'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+      - id: triangular_contact_schur_checks
+        type: report
+        format: text
+        description: >-
+          Four focused finite-system checks of optional exact feed-forward
+          Radau contact elimination, plus affected existing solver regressions.
+          Require the separately prepared integration patch before running
+          the integration check. Compare all reconstructed stages with an
+          independent full two-stage dense system, including initial contact
+          charge, stage-specific noise and clipping, severe common-mode
+          cancellation, unsupported topology, shared workspace and callback
+          refusal, and exact-step cache replacement. Preserve original full
+          charge/C-inverse voltage residuals, physical work, energy and
+          partition refinement, operator counters and transactional commit.
+          Default GMRES remains unchanged; direct factor/solve metrics are
+          distinct from unused GMRES/preconditioning. A numerical failure
+          refuses the preview. These checks do not establish full-size cost,
+          full-record feasibility, calibration or scientific findings.
+          Execute serially in the substantive allocation after its active
+          preflight terminates and remaining time admits the bounded checks.
+        inputs: [conditioned_solver_code, radau_step_code, radau_triangular_code,
+                 radau_triangular_patch, radau_triangular_tests, radau_contact_code,
+                 radau_contact_integration_tests, radau_step_tests,
+                 radau_integration_tests, conditioned_solver_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f
+            test_radau_triangular_contact_schur test_conditioned_radau_step
+            test_conditioned_radau_integration test_conditioned_array_solver
+            test_contact_block_radau_integration'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: quantizer_hash_batch_checks
+        type: report
+        format: text
+        description: >-
+          Three owned-snapshot checks, two hash checks and affected existing
+          readout, repeating-schedule, replay, progress and preflight-only checks.
+          Share only admitted immutable builtin payloads while preserving fresh
+          quantizer objects, public-field reassignment refusal and original
+          subclass/nonfloat endpoint semantics. Retain bounded ownership with
+          no global cache or window history; generic inputs fully validate.
+          Verify byte identity against independent scalar packing, signed zero,
+          exact and partial chunks, changed transfers between fresh windows,
+          bounded 4096-value packs and unchanged per-window cache lifetime.
+          Preserve all admission checks and numerical limits. These checks
+          establish neither full-plan runtime nor scientific results.
+        inputs: [quantizer_hash_patch, quantizer_hash_tests, streaming_array_code,
+                 streaming_array_tests, acquisition_readout_code, streaming_readout_code,
+                 streaming_readout_tests, repeating_schedule_code, repeating_schedule_tests,
+                 owned_quantizer_code, owned_quantizer_patch, owned_quantizer_tests,
+                 conditional_preflight_only_tests, preflight_progress_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f
+            test_owned_quantizer_snapshot test_quantizer_hash_batch
+            test_streaming_acquisition_readout test_repeating_acquisition_schedule
+            test_streaming_array_acquisition test_preflight_window_progress
+            test_conditional_preflight_only'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: conditional_component_profile_report
+        type: report
+        format: json
+        description: >-
+          Profile the existing first-two-actions contact-block diagnostic using
+          the original saved B2 seed2001 world and noise realization, all 69848
+          states and unchanged numerical controls. Preserve the delegated
+          component report and exit status. Retain bounded function counts and
+          self/cumulative times in component_function_profile.json, at most
+          2MiB, including available evidence on failure. The original 290-second
+          inclusive work limit and 6.5GiB RSS guard remain; the outer process
+          limit is 300 seconds plus five-second termination grace. Profiling
+          includes setup and tracing overhead; cumulative times are nonadditive.
+          This does not establish full-record throughput or alter the original
+          16-second plan. Run serially within the existing substantive allocation.
+        inputs: [goal, dataset_contract, search_policy, conditional_forward_recipe,
+                 conditional_forward_code, conditional_acquisition_code,
+                 conditional_component_cost_driver, conditional_component_profiler,
+                 saved_development_worlds, conditioned_solver_code, radau_step_code,
+                 radau_forcing_code, radau_contact_code, cpe_array_code,
+                 circuit_noise_provider_code, spectral_noise_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 300s
+            python3.12 -u -B outputs/tools/profile_conditional_component_cost.py
+            --run-dir outputs/runs/model_specification/conditional_component_profile_attempt001
+          resources: {cpus: 1, memory: 7Gi, time_limit: 6m}
+      - id: conditional_preflight_cost_report
+        type: report
+        format: json
+        description: >-
+          Measure complete original 16-second hold and acquisition preflight
+          with the explicitly owned immutable spectral-clock binding. Retain
+          saved B2 seed2001 and the original noise draw, all 69848 states and
+          original 104M-conversion schedule and limits. Stop before electrical
+          execution without creating a writer or producing observations.
+          Preserve terminal failure and measured cost; a successful preflight
+          does not establish full-record solver throughput or calibration.
+          The selected attempt uses byte-identical bounded quantizer hash
+          batching and the qualified owned immutable quantizer payload reuse.
+          Fresh quantizer objects and per-window value digests remain; repeated
+          full validation of the already admitted immutable payload is removed.
+          Completed-window progress is retained without promoting an unfinished
+          prefix to full-plan success. All replay and DAQ/layout checks remain.
+        inputs: [conditional_preflight_cost_driver, saved_development_worlds,
+                 conditional_forward_code, conditional_acquisition_code,
+                 streaming_simulation_code, streaming_array_code,
+                 frozen_cubic_binding_code, conditional_preflight_only_tests,
+                 quantizer_hash_patch, quantizer_hash_tests,
+                 owned_quantizer_code, owned_quantizer_patch, owned_quantizer_tests,
+                 preflight_progress_patch, preflight_progress_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 6100s
+            python3.12 -u -B outputs/tools/run_conditional_preflight_cost.py
+            --run-dir outputs/runs/model_specification/conditional_preflight_cost_attempt003
+          resources: {cpus: 1, memory: 7Gi, time_limit: 102m}
+      - id: preflight_only_wrapper_check
+        type: report
+        format: text
+        description: >-
+          Existing-fixture checks of complete preflight and hold parity with
+          default execution, proving the explicit preflight-only mode creates
+          no writer and performs no electrical advance or run. Two additional
+          focused checks address lost progress on constructor failure: report
+          only fully validated, closed and digested windows; preserve snapshot
+          ownership and refuse early/late failures without promoting a prefix
+          or an all-window snapshot to finalized preflight success. The progress
+          patch is applied and its focused and affected checks are reusable.
+          Reuse the existing finite fixture; no scientific input is added.
+        inputs: [conditional_preflight_only_tests, streaming_simulation_code,
+                 streaming_simulation_tests, streaming_array_code,
+                 preflight_progress_patch, preflight_progress_tests,
+                 streaming_array_tests, conditional_preflight_cost_driver]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v -f
+            test_preflight_window_progress test_conditional_preflight_only
+            test_streaming_development_simulation test_streaming_array_acquisition'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+      - id: frozen_cubic_binding_checks
+        type: report
+        format: text
+        description: >-
+          Focused checks of explicitly owned spectral arrays and original-cell
+          clock descriptors that remove duplicate cubic generation during
+          preflight and replay. Verify source mutation independence, unchanged
+          clock arithmetic and polynomial origin, actual layout and DAQ phase
+          checks, zero-port constraints, finite arithmetic fallback, unchanged
+          polynomial storage admission and complete eager/streaming parity.
+          Arbitrary callbacks retain exhaustive coefficient replay; physical
+          propagation still materializes and validates original coefficients.
+          This optional path changes no production factory default and does
+          not establish full-record preflight or propagation feasibility.
+        inputs: [frozen_cubic_binding_code, frozen_cubic_binding_tests,
+                 spectral_noise_code, circuit_noise_provider_code, cubic_noise_code,
+                 physical_noise_ports_code, cpe_array_code, array_acquisition_code,
+                 streaming_array_code, cubic_acquisition_tests,
+                 physical_noise_acquisition_tests, streaming_array_tests]
+        recipe:
+          command: >-
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -f
+            test_frozen_cubic_noise_binding test_polynomial_acquisition
+            test_physical_noise_acquisition.PhysicalNoiseAcquisitionTests.test_late_bad_layout_or_sample_and_canceling_replay_drift_refuse_before_mutation
+            test_physical_noise_acquisition.PhysicalNoiseAcquisitionTests.test_single_live_sample_numeric_cap_and_legacy_none_path
+            test_streaming_array_acquisition.StreamingArrayAcquisitionTests.test_cumulative_limits_failed_sink_and_shared_quantizer_binding -v'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+      - id: radau_step_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused checks of the optional two-stage Radau IIA step and explicit
+          current-interval left-limit polynomial adapter and outer solver integration,
+          addressing the demonstrated
+          stiff-decay false agreement of midpoint partition estimates. Compare
+          analytical decay, prescribed polynomial states and every physical work
+          integral; check finite resource abort and current-cell endpoint ownership.
+          Temporary two-stage solves retain the full supplied state basis and
+          matrix-free operators. Numerical dissipation is separate from physical
+          heat. The outer solver must retain its raw physical energy tolerance.
+          These component checks do not select a production integrator, certify
+          full-array accuracy or feasibility, or launch another full-record case.
+          Require the optional solver integration to be applied before executing
+          its tests; unchanged default midpoint behavior remains a regression.
+          Verify uncompensated energy refusal, preview/commit and full CPE
+          polynomial work against the existing independent reference.
+          Eager and streaming summaries retain accepted-interval numerical
+          dissipation separately from physical heat/work, including partial totals.
+        inputs: [conditioned_solver_code, conditioned_solver_tests, analog_conditioning_code,
+                 radau_step_code, radau_step_tests, cubic_noise_code,
+                 cubic_circuit_forcing_code, physical_noise_ports_code,
+                 radau_forcing_code, radau_forcing_tests, radau_integration_tests,
+                 cpe_array_code, conditioned_array_tests, cubic_circuit_tests,
+                 cubic_acquisition_tests, development_simulation_code,
+                 development_simulation_tests, streaming_array_code, streaming_array_tests]
+        recipe:
+          command: >-
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest
+            test_conditioned_radau_step test_radau_polynomial_forcing
+            test_conditioned_radau_integration test_conditioned_array_solver
+            test_conditioned_cpe_array test_cpe_polynomial_noise test_polynomial_acquisition
+            test_development_simulation.DevelopmentSimulationTests.test_full_state_matches_direct_components_and_retains_work_readout_output
+            test_development_simulation.DevelopmentSimulationTests.test_operator_and_elapsed_caps_preserve_partial_state_without_replay
+            test_streaming_array_acquisition.StreamingArrayAcquisitionTests.test_cross_seam_aperture_dependencies_charge_and_final_flush_match_eager
+            test_streaming_array_acquisition.StreamingArrayAcquisitionTests.test_cumulative_limits_failed_sink_and_shared_quantizer_binding -v'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+      - id: conditional_active_stage_checks
+        type: report
+        format: text
+        description: >-
+          Focused conditional R3 buffer/filter/loaded-recovery and physical-noise
+          checks and affected
+          passive/acquisition regressions, within a coordinator-selected
+          substantive allocation. All64 sources receive explicit input loads
+          and128 retained buffer/filter states; physical mux paths address
+          filter nodes and preserve ADC IDs and external marker paths. A clipped
+          unilateral controlled voltage drives the same full-state integration,
+          with bounded implicit-midpoint/Newton/GMRES and step-doubling estimates.
+          Compare independent continuous linear solutions and quadratic work
+          integrals, target-rail clipping and loaded recovery, charge/state refusal
+          before commit, hold-aperture routing and finite resource callbacks.
+          Carry controlled-source terminal work and drive-branch heat separately
+          through eager/streamed accounting. Rails do not clamp physical output
+          nodes. Physical noise uses explicit finite-band Gaussian spectral
+          factors, a shared named frozen quadrature basis and physical current/
+          voltage ports. Preserve exact eliminated-contact forcing correlations,
+          field-port work corrections, signed noise-source work and input-referred
+          amplifier noise before gain/clip. Both midpoint planners satisfy
+          explicit per-port A/V tolerances; original physical samples join the
+          existing replay checks and persist across aperture/storage seams.
+          Sparse spectral zeros and explicit omitted components are conditional
+          modeling choices, not verified absence. No continuous-white-noise,
+          ergodicity, complete noise inventory, supply efficiency, quiescent power,
+          authentic NI topology, calibrated constants or candidate score is
+          established. External current ports bind actual ADC/input branches,
+          retain signed noise work across the original nonzero-voltage terminals
+          and correct ideal-source supply work. Complete-plan preflight checks
+          the actual track/off phase, including zero-conductance refusal.
+          The scalar R1 pole accepts an explicitly conjugate held-current
+          reduction with original-port, nodal and offset work; full64-line R1
+          contact/neighbour/DAQ acquisition remains a separate missing adapter.
+          Its time constant does not infer thermal noise. Unchanged
+          field generation and other passing checks are reused.
+        inputs: [electrical_mechanisms_and_probes, component_design,
+                 switched_line_code, switched_line_tests, r1_noise_code,
+                 coupled_rc_code, coupled_rc_tests,
+                 analog_conditioning_code, analog_conditioning_tests,
+                 conditioned_solver_code, conditioned_solver_tests,
+                 spectral_noise_code, spectral_noise_tests,
+                 physical_noise_ports_code, physical_noise_ports_tests, cpe_noise_tests,
+                 external_daq_noise_tests,
+                 circuit_noise_provider_code, circuit_noise_provider_tests,
+                 physical_noise_acquisition_tests,
+                 cpe_array_code, conditioned_array_tests, cpe_array_tests,
+                 daq_mux_hold_code, daq_mux_hold_tests, cpe_external_input_tests,
+                 daq_external_input_tests, external_input_acquisition_tests,
+                 array_acquisition_code, array_acquisition_tests,
+                 development_simulation_code, development_simulation_tests,
+                 streaming_array_code, streaming_array_tests,
+                 streaming_simulation_code, streaming_simulation_tests,
+                 raw_input_hold_code, raw_input_hold_tests,
+                 streaming_midpoint_code, streaming_midpoint_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 300s bash -c
+            'cd outputs/tools && python3.12 -B -m unittest -v
+            test_analog_conditioning test_conditioned_array_solver test_conditioned_cpe_array
+            test_spectral_noise test_physical_noise_ports test_cpe_noise
+            test_external_daq_noise test_daq_external_inputs test_external_input_acquisition
+            test_switched_line test_coupled_rc.CoupledRCTests.test_scalar_limit_matches_existing_r1_and_input_work
+            test_circuit_noise_provider test_physical_noise_acquisition
+            test_cpe_array test_daq_mux_hold test_cpe_external_inputs
+            test_array_acquisition test_development_simulation
+            test_streaming_array_acquisition test_streaming_development_simulation
+            test_raw_input_hold test_streaming_midpoint_hold'
+          resources: {cpus: 1, memory: 7Gi, time_limit: 6m}
+      - id: streaming_simulation_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Twenty-three focused checks of windowed readout, persistent array execution,
+          midpoint-plan clipping, bounded HDF5 output and the saved-world forward
+          chain. Preflight the complete replayable metadata/provider plan before
+          mutation; preserve all array/contact/DAQ states, unfinished apertures,
+          digital dependencies, exact held inputs and once-only charges across
+          windows. Bound live conversion/output records and cumulative work;
+          either retain the bounded legacy hold tuple or replay a physical-action
+          factory with one live action/refinement stack and bounded raw edges.
+          The full-record scheduler repeats an explicit4ms/64row template4000
+          times with24 physical ADC groups, preserving caller wiring, G1 work,
+          delayed publications and all4096 sites. Physical conversion counts are
+          separate from the100kS/s/source returned-word proxy. No electrical state
+          reset or inferred device constants; cross-cycle digital dependencies
+          remain explicitly unsupported. Compare identical eager/streamed
+          physical segmentation and preserve partial failure/interrupt evidence
+          without replay. Separate computed values, returned callbacks and writer
+          persistence. Saved N1-N4 nuisances apply after digital decoding through
+          explicit site/time bindings, validated without reading nuisance values
+          and bound across replay. Preserve raw records, physical work, clipping,
+          truth, timestamps and nonpixel outputs. Physical settings and limits
+          are explicit caller inputs; calibration and throughput remain separate.
+        inputs: [component_design, raw_time_recipe, development_simulation_code,
+                 raw_world_time_code, observation_nuisance_code,
+                 raw_input_hold_code, cpe_array_code, array_acquisition_code,
+                 acquisition_readout_code, streaming_readout_code, streaming_readout_tests,
+                 streaming_array_code, streaming_array_tests,
+                 streaming_input_plan_code, streaming_input_plan_tests,
+                 streaming_midpoint_code, streaming_midpoint_tests,
+                 repeating_schedule_code, repeating_schedule_tests,
+                 streaming_output_code, streaming_output_tests,
+                 streaming_simulation_code, streaming_simulation_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 300s bash -c
+            'cd outputs/tools && python3.12 -B -m unittest -v
+            test_streaming_acquisition_readout test_streaming_array_acquisition
+            test_streaming_input_plan test_streaming_simulation_output
+            test_streaming_development_simulation test_streaming_midpoint_hold
+            test_repeating_acquisition_schedule'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 6m}
+      - id: observation_nuisance_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Three focused checks of the selected post-readout N1-N4 overlay:
+          saved line units and phases, paired native-clock masks and dead rows,
+          aperture-union site/time bindings, metadata-only admission, unchanged
+          truth, invalid values, timing and clipping. No new worlds, physical
+          pickup model, calibrated electronics or candidate results.
+        inputs: [raw_time_recipe, raw_world_time_code, observation_nuisance_code,
+                 observation_nuisance_tests, acquisition_readout_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 120s python3.12 -B
+            -m unittest discover -s outputs/tools -p 'test_observation_nuisance.py' -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: development_simulation_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Four focused saved-world and conditional forward-chain integration
+          checks: exact completed-group loading without regeneration, full
+          retained array/contact/DAQ state and readout agreement with direct
+          components, physical energy/source-work aggregation, failed-work and
+          elapsed caps with terminal state preservation, and explicit refusal
+          of unresolved nuisance placement or upstream-owned access. Exact
+          physical parameters, clocks, initial states and limits remain caller
+          inputs. No calibrated reference, production throughput qualification,
+          full-panel electrical completion or candidate score is inferred.
+        inputs: [component_design, raw_time_recipe, development_simulation_code,
+                 development_simulation_tests, surface_to_contact_code, raw_world_time_code,
+                 raw_input_hold_code, cpe_array_code, acquisition_readout_code, array_acquisition_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 180s python3.12 -B
+            outputs/tools/test_development_simulation.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: raw_input_hold_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Check the selected numerical midpoint-input approximation using
+          explicit caller voltage tolerance and finite interval/work caps.
+          Analytic derivative enclosures and outward-rounded nonnegative
+          arithmetic bound the input hold error only. Preserve raw switches,
+          supplied physical boundaries, once-only physical charges and one
+          persistent electrical state through compact provider intervals.
+          Future truth and subdivisions stay internal to the simulator;
+          nuisances, waveform arithmetic and complete circuit-output error
+          remain separate. No physical DAQ settings or candidate scores.
+        inputs: [component_design, raw_time_recipe, raw_world_time_code,
+                 surface_to_contact_code, array_acquisition_code,
+                 raw_input_hold_code, raw_input_hold_tests]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 120s python3.12 -B
+            outputs/tools/test_raw_input_hold.py -v
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: raw_world_time_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Six focused checks cover all28 native raw-driver replays on private
+          spatial fixtures, analytic intersample values, event silence/overlap,
+          M4 right-continuous switches, separate observation nuisances and the
+          one-time immutable contact binding. Fixed numerical replay tolerance
+          5e-12; no amplitude refit, primary-band acquisition input, hold
+          convention, physical clock, electrical advance or candidate scoring.
+        inputs: [raw_time_recipe, raw_world_time_code, raw_world_time_tests, surface_to_contact_code]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 120s python3.12 -B
+            outputs/tools/test_raw_world_time.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 3m}
+      - id: surface_to_contact_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Six focused spatial bridge checks with explicit orientation, analytic
+          Gaussian and directional wave pad integrals, bilinear raster averaging
+          with constant outer half-cells, unchanged raw temporal amplitudes and
+          one microvolt-to-volt conversion. Zero-gap development only; no temporal
+          interpolation, DAQ, physical eligibility, reference fit or scoring.
+        inputs: [component_design, starting_catalogue, surface_to_contact_code, surface_to_contact_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_surface_to_contact.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: development_field_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Array-only checks of selected surface-field primitives with explicit
+          caller grids, drivers, event draws and primary-band transforms.
+          These do not select all development-world settings or qualify a
+          source-to-surface model, calibrated reference or candidate score.
+        inputs: [component_design, starting_catalogue, development_field_specification, development_field_code, development_field_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_development_fields.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: field_power_scale_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Analytic checks of the prospectively specified rectangular-aperture
+          cyclic-frequency periodogram estimator. Spatial common mode is
+          retained; lambda uses 1-100 Hz truth and tau uses the time-demeaned
+          full supplied truth. Irregular masks are unresolved and rejected.
+          No reconstruction, reference fit or candidate scoring is executed.
+        inputs: [component_design, field_power_scale_specification, field_power_scale_code, field_power_scale_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_field_power_scales.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: passive_contact_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Analytic checks of the selected frequency-domain contact equations
+          and equilibrium thermal PSD with explicit caller parameters. No
+          fitted device values, causal CPE approximation, complete reference
+          qualification or scientific candidate score is produced.
+        inputs: [electrical_mechanisms_and_probes, passive_contact_code, passive_contact_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_passive_contact.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+      - id: switched_line_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Analytic checks of the selected R1 persistent source-line equation,
+          fixed-capacitance switch charge and causal interval readout. All
+          parameters and time intervals are supplied explicitly. No fitted
+          reference, actual ADC configuration or candidate score is produced.
+        inputs: [electrical_mechanisms_and_probes, switched_line_code, switched_line_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_switched_line.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+      - id: source_documentary_lookup
+        type: report
+        format: json
+        inputs: [dataset_contract]
+        recipe:
+          command: >-
+            python3 outputs/tools/inspect_rat_map_archive_directory.py
+            --out outputs/runs/model_specification/rat_map_directory_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+      - id: loaded_node_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Analytic checks of the documented scalar loaded-node transfer and
+          independent-source noise propagation. All impedances, spectra and
+          temperature are explicit; no physical noise regime, cross-site
+          independence, sampling aperture or calibrated reference is selected.
+        inputs: [electrical_mechanisms_and_probes, passive_contact_code, loaded_node_code, loaded_node_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_loaded_node.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: nested_source_documentary_lookup
+        type: report
+        format: json
+        inputs: [dataset_contract]
+        recipe:
+          command: >-
+            python3.12 outputs/tools/inspect_rat_map_nested_directories.py
+            --outer-report outputs/runs/model_specification/rat_map_directory_attempt001/directory_lookup.json
+            --out outputs/runs/model_specification/rat_map_nested_directory_attempt001
+            --max-seconds 240 --max-transfer-bytes 20971520
+          resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+      - id: coupled_rc_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Analytic checks of the selected R2 passive coupled RC equation in
+          small networks, persistent unobserved states, exact constant-input
+          interval means and capacitance-switch charge/energy accounting.
+          Explicit caller matrices only; this dense kernel is limited to 64
+          electrical states and supplies neither fitted parameters, complete
+          switch power, full-array capacity nor a candidate comparison.
+        inputs: [electrical_mechanisms_and_probes, switched_line_code, coupled_rc_code, coupled_rc_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_coupled_rc.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: sparse_array_rc_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused sparse/dense agreement, charge and energy identities,
+          numerical work-limit behavior, grounded capacitor-component checks
+          permitting zero reference capacitance, and one full 4096-pad/64-source
+          retained-state integration. Explicit non-device fixtures only;
+          no reference calibration, measured acquisition configuration or
+          candidate score. Partition disagreement is reported as an estimated
+          consistency check, not a certified integration-error bound.
+        inputs: [electrical_mechanisms_and_probes, coupled_rc_code, sparse_array_rc_code, sparse_array_rc_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_sparse_array_rc.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: causal_cpe_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused positive log-quadrature admittance, finite-time step response,
+          area scaling, two-terminal RC stamping, persistent switched states
+          and exact alpha-one capacitor checks with explicit arithmetic fixtures.
+          Pole-truncation bounds exclude quadrature error; finite-grid checks
+          do not certify whole-band total error or infinite temporal tails.
+          Stamping targets the generic sparse network; expanded full-array
+          voltage-boundary integration has separate cpe_array checks below.
+          No calibrated reference, physical constants or candidate score.
+        inputs: [electrical_mechanisms_and_probes, passive_contact_code, coupled_rc_code,
+                 sparse_array_rc_code, sparse_array_rc_tests, causal_cpe_code, causal_cpe_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_causal_cpe.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: cpe_array_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused structured passive-star Schur action, physical voltage-port
+          work, ideal driven-capacitor charge and energy balance, exact ideal
+          contact response, full mixed-array state retention and atomic refusal
+          checks. The complete array retains 4160 base states plus every
+          fractional RC state and ideal-contact series-interface state.
+          An optional joint DAQ frontend adds its explicitly supplied hold
+          states; separate mux/hold integration checks cover that path below.
+          All physical inputs and waveform boundaries are explicit; no unknown
+          source capacitance is introduced or dynamic contact state removed.
+          Retained numeric-storage limits do not bound transient process memory.
+          No reference calibration, actual DAQ configuration or candidate score.
+        inputs: [electrical_mechanisms_and_probes, sparse_array_rc_code, sparse_array_rc_tests,
+                 passive_contact_code, causal_cpe_code, cpe_array_code, cpe_array_tests, daq_mux_hold_code]
+        recipe:
+          command: python3.12 -B outputs/tools/test_cpe_array.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: acquisition_readout_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused checks of explicitly declared rectangular apertures from
+          exact analog interval means, raw quantization before digital averaging,
+          absent invalid values without reweighting, independent clipping,
+          atomic coverage refusal and metadata-first causal history access.
+          All declared conversions, returned samples and retained pixels count
+          separately, including unused startup and marker/reference work.
+          Two additional fixtures check monotone fresh-only publication,
+          cumulative-query independence and cursor preservation on a failed
+          batch; five checks total. Publication plans sort once and advance
+          only after successful batch construction. Existing cumulative,
+          history and finalization behavior is preserved. Conversion/sample/
+          observation inventories in this eager API remain materialized;
+          the separate streaming implementation retains only live dependencies.
+          These checks do not qualify production memory or throughput.
+          No physical ADC defaults, R3 conditioner, calibrated reference,
+          transport/power estimate or candidate comparison is supplied.
+          Run these short checks within a coordinated substantive allocation.
+        inputs: [electrical_mechanisms_and_probes, acquisition_readout_code, acquisition_readout_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_acquisition_readout.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: daq_mux_hold_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused joint array/mux-hold comparisons against an independently
+          reduced dense circuit, persistent hold state, bidirectional loading,
+          charge/energy accounting, aperture readout and invalid-selection
+          refusal. One explicitly parameterized physical hold state per ADC
+          group joins the same passive solve as all array/contact states;
+          array interval means are not used as constant downstream inputs.
+          Fixed source shunts explicitly exclude the represented frontend.
+          Explicit marker/reference voltage ports can share these same physical
+          ADC groups. Include selected and off-leak conductances in the joint
+          solve, preserve the hold state across neural/marker switches, and
+          retain signed external-source work separately from cortical-source
+          and kernel Norton work. Whole-plan checks bind all external voltages
+          to the same reference before propagation; replay and storage seams
+          preserve their immutable values. Marker conversions retain their
+          actual ADC identity and work count, with no extra neural source.
+          All clocks, mapping and physical constants remain caller inputs.
+          This is a passive R3 mechanism component, not identified NI circuitry,
+          active conditioning/noise/saturation, reference qualification or a
+          candidate comparison. Run inside a substantive coordinated allocation.
+        inputs: [electrical_mechanisms_and_probes, sparse_array_rc_code, cpe_array_code,
+                 cpe_array_tests, daq_mux_hold_code, daq_mux_hold_tests, acquisition_readout_code,
+                 daq_external_input_tests, cpe_external_input_tests, external_input_acquisition_tests,
+                 array_acquisition_code, raw_input_hold_code, streaming_array_code,
+                 development_simulation_code]
+        recipe:
+          command: >-
+            bash -c 'cd outputs/tools && python3.12 -B -m unittest -v
+            test_daq_mux_hold test_daq_external_inputs test_cpe_external_inputs
+            test_external_input_acquisition'
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: array_acquisition_implementation_checks
+        type: report
+        format: text
+        description: >-
+          Focused finite open-loop recording checks that connect the complete
+          persistent array to explicit raw conversions and published observations.
+          Prevalidate physical intervals, source/hold input bindings, aperture
+          support and bounded plan storage before analog advancement; split at
+          exact supplied aperture endpoints and apply each boundary charge once.
+          Advance unsampled physical gaps, preserve separate physical time and
+          final publication horizon, and latch execution failure to prevent
+          replay from already advanced state. No waveform/clock generation,
+          adaptive scan, physical configuration qualification or candidate score.
+          Provider intervals prevalidate fields in bounded memory, preserve
+          exact integer keys, retain packed32-byte numeric digests and regenerate
+          one field per physical event with sparse boundary charge. Numeric
+          drift permanently stops before that event advances. Seven checks
+          include the provider regressions and fresh-only publication route.
+          Incremental delivery preserves the existing advance_next contract
+          without rebuilding all earlier observations; cumulative query and
+          finalization semantics are unchanged. Complete conversion/readout
+          plans in this eager API are still materialized; the separate streaming
+          executor carries one persistent array across bounded readout windows.
+          Runtime checks belong inside a substantive coordinated allocation.
+        inputs: [electrical_mechanisms_and_probes, cpe_array_code, cpe_array_tests,
+                 daq_mux_hold_code, acquisition_readout_code, array_acquisition_code, array_acquisition_tests]
+        recipe:
+          command: python3.12 -B outputs/tools/test_array_acquisition.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+  development_surface_fields:
+    name: Construct the complete registered direct-surface development field panel
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: starting_catalogue, from: ../starting_catalogue}
+      - {id: world_recipe, type: data, source: outputs/development_world_recipe.md}
+      - {id: field_primitives, type: data, source: outputs/tools/development_fields.py}
+      - {id: dense_scale_estimator, type: data, source: outputs/tools/field_power_scales.py}
+      - {id: factorized_scale_estimator, type: data, source: outputs/tools/factorized_field_power_scales.py}
+      - {id: factorized_scale_tests, type: data, source: outputs/tools/test_factorized_field_power_scales.py}
+      - {id: focal_generator, type: data, source: outputs/tools/development_focal_worlds.py}
+      - {id: focal_tests, type: data, source: outputs/tools/test_development_focal_worlds.py}
+      - {id: panel_generator, type: data, source: outputs/tools/development_worlds.py}
+      - {id: panel_tests, type: data, source: outputs/tools/test_development_worlds.py}
+    outputs:
+      - id: implementation_checks
+        type: report
+        format: text
+        inputs: [world_recipe, field_primitives, dense_scale_estimator, factorized_scale_estimator, factorized_scale_tests, focal_generator, focal_tests, panel_generator, panel_tests]
+        description: >-
+          Focused equivalence and integration checks for exact factorized power
+          statistics, finite focal/surprise worlds and the complete initial panel.
+          Run inside the substantive generation allocation; reuse previously
+          passing field primitives rather than launch another short checking job.
+        recipe:
+          command: >-
+            ( cd outputs/tools && timeout --signal=TERM --kill-after=5s 180s
+            python3.12 -B -m unittest -v -f test_factorized_field_power_scales
+            test_development_focal_worlds test_development_worlds ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: constructed_surface_worlds
+        type: data
+        format: directory
+        inputs: [search_policy, starting_catalogue, world_recipe, field_primitives, factorized_scale_estimator, focal_generator, panel_generator]
+        description: >-
+          All 28 B1-N4 conditions at each of three fixed development seeds:
+          25-micrometre 384x384 target grid and 500-Hz 16-second raw truth,
+          stored as exact float64 spatial and temporal factors in one HDF5
+          container with primary-band factors, nuisance inputs and diagnostics.
+          All same-seed conditions share one independence group: 84 worlds are
+          three independent seed groups, not 84 independent replicates.
+          These are constructed development inputs, not calibrated electronics,
+          source-to-surface qualification, candidate scores or final worlds.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/development_worlds.py
+            --output-root {output} --max-seconds 6000
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+  outcome_blind_calibration:
+    name: Existing synthetic calibration of numerical tolerances and interval-width planning
+    inputs:
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: calibration_report, type: report, format: json}
+  reference_fit:
+    name: Fit predeclared paper-derived variants using assigned calibration measurements only
+    inputs:
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+      - {id: calibration_report, from: ../outcome_blind_calibration.calibration_report}
+      - {id: dataset_contract, from: ../dataset_contract}
+    outputs:
+      - {id: fitted_reference_variants, type: report, format: json}
+  reference_check:
+    name: Held-aside published-measurement check retaining all passing variants
+    inputs:
+      - {id: fitted_reference_variants, from: ../reference_fit.fitted_reference_variants}
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+      - {id: calibration_report, from: ../outcome_blind_calibration.calibration_report}
+      - {id: dataset_contract, from: ../dataset_contract}
+    outputs:
+      - {id: accepted_reference_models, type: report, format: json}
+  development_worlds:
+    name: Registered field, contact and nuisance realizations with common truth and absolute inputs
+    inputs:
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+      - {id: calibration_report, from: ../outcome_blind_calibration.calibration_report}
+      - {id: constructed_surface_worlds, from: ../development_surface_fields.constructed_surface_worlds}
+      - {id: conditional_simulation_runner, type: data, source: outputs/tools/streaming_development_simulation.py}
+    outputs:
+      - id: development_world_specification
+        type: report
+        format: json
+        description: >-
+          Combine retained surface worlds with explicitly specified contact,
+          circuit, acquisition and nuisance conditions. The conditional runner
+          consumes saved worlds and preserves the full retained-state forward
+          chain under caller parameters, but supplies no physical defaults or
+          calibrated reference. Replayable bounded windows preserve unfinished
+          apertures, digital dependencies, one persistent analog state and total
+          costs; output records stream into a bounded sink. A compact full
+          midpoint-hold tuple remains retained. Explicit prospective parameters permit
+          conditional simulation; authentic measurement context is separately
+          required for calibration claims. N1-N4 use the selected decoded-pixel
+          overlay with explicit site/time bindings; this is not physical pickup
+          or electrically failed circuitry. Completed field generation and
+          component implementation alone do not complete this artifact.
+  sentinel_rank_stability:
+    name: Existing small sentinel design panel across every accepted reference model
+    inputs:
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: development_world_specification, from: ../development_worlds.development_world_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: sentinel_rank_report, type: report, format: json}
+  published_frontier:
+    name: Complete C0-C1 published-setting frontier and C1-only optimized-family selection
+    inputs:
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: sentinel_rank_report, from: ../sentinel_rank_stability.sentinel_rank_report}
+      - {id: development_world_specification, from: ../development_worlds.development_world_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: frontier_and_software, type: report, format: json}
+  initial_coverage:
+    name: Existing sixteen-arm C0-C4 coverage charged to the shared trial allowance
+    inputs:
+      - {id: frontier_and_software, from: ../published_frontier.frontier_and_software}
+      - {id: development_world_specification, from: ../development_worlds.development_world_specification}
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: coverage_report, type: report, format: json}
+  adaptive_search:
+    name: Existing 32-64-trial search including required coupled-field and electronics challenges
+    inputs:
+      - {id: coverage_report, from: ../initial_coverage.coverage_report}
+      - {id: frontier_and_software, from: ../published_frontier.frontier_and_software}
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: development_world_specification, from: ../development_worlds.development_world_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: search_and_frozen_families, type: report, format: json}
+  development_plausibility:
+    name: Existing development physical-signal or phantom plausibility comparison
+    inputs:
+      - {id: search_and_frozen_families, from: ../adaptive_search.search_and_frozen_families}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+    outputs:
+      - {id: development_plausibility_report, type: report, format: json}
+  condition_rule:
+    name: Fit and held-out-development test of the unchanged absolute-input D0-D3 rule
+    inputs:
+      - {id: search_and_frozen_families, from: ../adaptive_search.search_and_frozen_families}
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: development_world_specification, from: ../development_worlds.development_world_specification}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: frozen_condition_rule, type: report, format: json}
+  finalist_rank_stability:
+    name: Registered rank-stability repeat for frozen D0-D3 representatives
+    inputs:
+      - {id: search_and_frozen_families, from: ../adaptive_search.search_and_frozen_families}
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: finalist_rank_report, type: report, format: json}
+  design_nomination:
+    name: Existing decision selecting exactly one candidate only after all development requirements
+    inputs:
+      - {id: search_and_frozen_families, from: ../adaptive_search.search_and_frozen_families}
+      - {id: development_plausibility_report, from: ../development_plausibility.development_plausibility_report}
+      - {id: frozen_condition_rule, from: ../condition_rule.frozen_condition_rule}
+      - {id: finalist_rank_report, from: ../finalist_rank_stability.finalist_rank_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: nominated_virtual_specification, type: report, format: json}
+  independent_final:
+    name: One joint independent-model comparison of the complete frontier and frozen family rule
+    inputs:
+      - {id: nominated_virtual_specification, from: ../design_nomination.nominated_virtual_specification}
+      - {id: frozen_condition_rule, from: ../condition_rule.frozen_condition_rule}
+      - {id: accepted_reference_models, from: ../reference_check.accepted_reference_models}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - {id: independent_report, type: report, format: json}
+  final_plausibility:
+    name: Separate final physical-signal or phantom catastrophic-plausibility check
+    inputs:
+      - {id: nominated_virtual_specification, from: ../design_nomination.nominated_virtual_specification}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: model_and_resource_specification, from: ../model_specification.model_and_resource_specification}
+    outputs:
+      - {id: final_plausibility_report, type: report, format: json}
+  scientific_report:
+    name: Report virtual-device and transferable-rule outcomes separately with model uncertainty
+    inputs:
+      - {id: independent_report, from: ../independent_final.independent_report}
+      - {id: final_plausibility_report, from: ../final_plausibility.final_plausibility_report}
+      - {id: nominated_virtual_specification, from: ../design_nomination.nominated_virtual_specification}
+      - {id: goal, from: ../goal}
+    outputs:
+      - {id: final_report, type: report, format: markdown}

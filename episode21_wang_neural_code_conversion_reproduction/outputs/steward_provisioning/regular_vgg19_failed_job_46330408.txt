@@ -1,0 +1,36 @@
+JobId=46330408 JobName=ep21_regular_vgg19
+   UserId=zijiao(467774) GroupId=russpold(254778) MCS_label=N/A
+   Priority=145854 Nice=0 Account=russpold QOS=normal
+   JobState=FAILED Reason=NonZeroExitCode Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=1:0
+   RunTime=00:00:17 TimeLimit=08:00:00 TimeMin=N/A
+   SubmitTime=2026-10-02T11:52:10 EligibleTime=2026-10-02T11:52:10
+   AccrueTime=2026-10-02T11:53:30
+   StartTime=2026-10-02T11:55:14 EndTime=2026-10-02T11:55:31 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-02T11:55:14 Scheduler=Backfill
+   Partition=gpu AllocNode:Sid=sh04-ln04:8034
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=sh03-12n08
+   BatchHost=sh03-12n08
+   StepMgrEnabled=Yes
+   NumNodes=1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=4,mem=16G,node=1,billing=23,gres/gpu=1
+   AllocTRES=cpu=4,mem=16G,energy=32576,node=1,billing=23,gres/gpu=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=fs_oak LicensesAlloc=fs_oak:1 Network=(null)
+   Command=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/tools/export_regular_vgg19.sbatch
+   SubmitLine=sbatch --parsable --output=outputs/steward_provisioning/regular_vgg19_attempt001-%j.out --error=outputs/steward_provisioning/regular_vgg19_attempt001-%j.err outputs/steward_provisioning/tools/export_regular_vgg19.sbatch
+   WorkDir=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction
+   StdErr=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_attempt001-46330408.err
+   StdIn=/dev/null
+   StdOut=/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/steward_provisioning/regular_vgg19_attempt001-46330408.out
+   TresPerJob=gres/gpu:1
+   TresPerTask=cpu=4
+
+JobID             State    Elapsed  Timelimit  AllocCPUS     ReqMem     MaxRSS ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+46330408         FAILED   00:00:17   08:00:00          4        16G                 1:0 
+46330408.ba+     FAILED   00:00:17                     4                27064K      1:0 
+46330408.ex+  COMPLETED   00:00:17                     4                            0:0 

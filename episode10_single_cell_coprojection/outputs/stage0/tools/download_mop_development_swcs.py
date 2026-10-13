@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download only the frozen EP10 Gao MOp model-eligible manifest on a DTN.
+"""Download only the frozen EP10 Gao MOp model-eligible manifest.
 
 The manifest is outcome-blind.  A normal run reads SWC bodies and therefore is
 permitted only after the EP10 target-observation contract has been frozen.
@@ -256,12 +256,19 @@ def validate_scratch_output(path: Path) -> Path:
     return resolved
 
 
-def assert_dtn_host() -> None:
+def assert_transfer_host() -> None:
     host = socket.gethostname().split(".", 1)[0].lower()
-    if not host.startswith("dtn"):
-        raise AcquisitionError(
-            f"full-tree transfer must run on a Sherlock DTN, not {host!r}"
-        )
+    if (
+        os.environ.get("SLURM_JOB_ID")
+        and os.environ.get("SLURM_JOB_PARTITION") == "service"
+    ):
+        return
+    raise AcquisitionError(
+        "public-HTTP full-tree transfer must run inside a Slurm "
+        "service-partition data-movement job; observed "
+        f"host={host!r} job={os.environ.get('SLURM_JOB_ID')!r} "
+        f"partition={os.environ.get('SLURM_JOB_PARTITION')!r}"
+    )
 
 
 def response_length(response, filename: str) -> int:
@@ -477,7 +484,7 @@ def main() -> None:
         )
         return
 
-    assert_dtn_host()
+    assert_transfer_host()
     os.umask(0o077)
     output_root.mkdir(parents=True, exist_ok=True)
     swc_root = output_root / "swc"

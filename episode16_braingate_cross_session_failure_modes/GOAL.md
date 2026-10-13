@@ -1,5 +1,15 @@
 # Why does a human iBCI mapping work in one session but not another?
 
+## Adopted local closeout — October 6, 2026
+
+The scientist adopted the original three-held-out-participant claim's
+registered disposition **support_or_uncertainty_prevents_an_answer**. This
+is a support limitation, not a neural result or biological null. Completed
+structural and analysis-definition work is retained; no neural outcome,
+single-case successor or unchanged support rerun is selected. Reopening
+requires concrete authentic metadata or a prospectively adopted redesign
+that changes the support basis. See the [adoption record](outputs/experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout).
+
 Train a direction-prediction mapping on an earlier BrainGate session, then
 apply it unchanged to a later session from the same participant. If it performs
 worse, the score alone does not tell us why. The later session might contain
@@ -348,11 +358,18 @@ model family, and participant set. It cannot establish:
 
 ## Current status
 
-The scientific design is specified, but no EP16 experiment has started and no
-held-out neural result has been examined. The remaining pre-run work is to
-complete the target-schedule support check, choose the six development and
-three held-out participants, set the still-missing numeric thresholds, and
-test the analysis on synthetic cases.
+The support-limited original-claim closeout above is adopted. The following
+evidence explains that disposition; it is not a pending launch checklist.
+
+The structural support work covers all 729 sessions; only T11 and T9 pass
+the current conditional numerical design, and neither is fully qualified.
+That panel does not meet the unchanged minimum of four supported development
+and three supported held-out participants within the six/three roles.
+Source annotations, exposure history, role/reader qualification and remaining
+analysis components are still needed. The selected score/window/scaling
+arithmetic passed three focused checks. No neural comparison or held-out
+neural result has been examined. [Current readiness](DATASETS.md#current-readiness)
+separates these completed preparations from the remaining work.
 
 Dataset details are in [DATASETS.md](DATASETS.md). Exact compact methods and
 resource rules are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed

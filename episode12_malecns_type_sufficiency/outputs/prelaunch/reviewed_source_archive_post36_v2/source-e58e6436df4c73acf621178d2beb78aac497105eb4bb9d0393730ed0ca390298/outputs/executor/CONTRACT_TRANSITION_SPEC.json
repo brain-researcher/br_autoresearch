@@ -1,0 +1,209 @@
+{
+  "allowed_contract_changes": [
+    {
+      "classification": "lineage_metadata",
+      "new": "ep12.scientific_contract.v2",
+      "old": "ep12.scientific_contract.v1",
+      "operation": "replace",
+      "path": "/schema_version"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": "ep12_outgoing_tum_post36_v2",
+      "old": "ep12_outgoing_tum_v1",
+      "operation": "replace",
+      "path": "/contract_id"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": "frozen_for_post36_qualification_and_null_execution",
+      "old": "frozen_for_development_execution",
+      "operation": "replace",
+      "path": "/status"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": {
+        "predecessor_contract_ref": "SCIENTIFIC_CONTRACT.yaml",
+        "predecessor_contract_sha256": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006",
+        "transition_id": "ep12_post36_representation_rank_v1",
+        "transition_spec_ref": "CONTRACT_TRANSITION_SPEC.json"
+      },
+      "operation": "add",
+      "path": "/lineage"
+    },
+    {
+      "classification": "scientific_definition_resolution",
+      "new": "representation_latent_effective_rank",
+      "operation": "add",
+      "path": "/mode_support/prevalence_parameter_rank_definition"
+    }
+  ],
+  "allowed_qualification_spec_changes": [
+    {
+      "classification": "lineage_metadata",
+      "new": "ep12.synthetic_scientific_qualification.v2",
+      "old": "ep12.synthetic_scientific_qualification.v1",
+      "operation": "replace",
+      "path": "/schema_version"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": "SCIENTIFIC_CONTRACT_POST36.yaml",
+      "old": "SCIENTIFIC_CONTRACT.yaml",
+      "operation": "replace",
+      "path": "/contract_ref"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": "frozen_before_post36_scientific_qualification_run",
+      "old": "frozen_before_scientific_qualification_run",
+      "operation": "replace",
+      "path": "/status"
+    },
+    {
+      "classification": "lineage_metadata",
+      "new": {
+        "predecessor_spec_ref": "SYNTHETIC_QUALIFICATION_SPEC.yaml",
+        "predecessor_spec_sha256": "e4a3e81b08b3c46b793823112758fbb811603e8ba4ea7bc9febfe2066ba5eac0",
+        "transition_id": "ep12_post36_representation_rank_v1",
+        "transition_spec_ref": "CONTRACT_TRANSITION_SPEC.json"
+      },
+      "operation": "add",
+      "path": "/lineage"
+    }
+  ],
+  "episode_id": "ep12",
+  "implementation_lineage": {
+    "pre_null_rank_evaluator": {
+      "allowed_change": "remove_covariance_rank_and_configuration_fallback_require_fitted_representation_rank_bind_mixed_epoch_contract_provenance_snapshot_and_require_explicit_staged_policy_contract_transition_and_plan_paths",
+      "new_sha256": "17d929e1c52e5d0d86ce9fb64342eecbdada72b23505a1342df0480e3682a184",
+      "old_sha256": "480e359e2f8e52e86ded8979fa55825a077b96ad3faf9befc1f6be9c1c35569d",
+      "path": "ep12_executor/pre_null_materializer.py"
+    },
+    "scientific_models": {
+      "allowed_change": "diagnostics_only_add_representation_rank_for_count_aware_branch_and_definition_label",
+      "new_sha256": "233cbf7a8d70d630e884bfb6fe57d1cec8502233ee7d0fffb438024c2f456db9",
+      "old_sha256": "55218de7b35e78e7ad5b39ab38295eef84200d753d54a0c5b5e051aec15625f8",
+      "path": "ep12_executor/scientific_models.py"
+    }
+  },
+  "new_contract": {
+    "contract_id": "ep12_outgoing_tum_post36_v2",
+    "path": "SCIENTIFIC_CONTRACT_POST36.yaml",
+    "schema_version": "ep12.scientific_contract.v2",
+    "sha256": "e700526485eff5fed158a009fc31286a91fb28d1becce88e103c1fa3fe3f94e4"
+  },
+  "new_qualification_spec": {
+    "path": "SYNTHETIC_QUALIFICATION_SPEC_POST36.yaml",
+    "schema_version": "ep12.synthetic_scientific_qualification.v2",
+    "sha256": "8ceffe0c5ad6efda2b8dc8fcf9d72504dfc2432887e0d223a7ef813d3d74afef"
+  },
+  "old_contract": {
+    "contract_id": "ep12_outgoing_tum_v1",
+    "path": "SCIENTIFIC_CONTRACT.yaml",
+    "schema_version": "ep12.scientific_contract.v1",
+    "sha256": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006"
+  },
+  "old_qualification_spec": {
+    "path": "SYNTHETIC_QUALIFICATION_SPEC.yaml",
+    "schema_version": "ep12.synthetic_scientific_qualification.v1",
+    "sha256": "e4a3e81b08b3c46b793823112758fbb811603e8ba4ea7bc9febfe2066ba5eac0"
+  },
+  "outcome_firewall": {
+    "final_connectivity_accessed": false,
+    "operator_development_outcome_values_displayed": true,
+    "operator_exposure_incident": {
+      "file_sha256": "0ab9a2070643ac37f10f05a5899417a96d9cdf7b54923c7ef1442be6d248a6c1",
+      "relative_path": "outputs/prelaunch/exposure_incidents/development_outcome_terminal_exposure_20260926T061201-0700.json",
+      "schema_version": "ep12.operator_exposure_incident.v1",
+      "semantic_sha256": "37f5bdfcbecd8c522e994473522502ca708e9afd057f9e7629b6408e5c1c1618"
+    },
+    "permitted_observed_fields": [
+      "trial_id",
+      "source_report_schema",
+      "source_report_status",
+      "source_trial_report_sha256",
+      "declared_scientific_contract_sha256",
+      "data_role",
+      "final_connectivity_accessed"
+    ],
+    "programmatic_transition_extraction_outcome_fields_accessed": false,
+    "values_used_for_transition_decisions": false
+  },
+  "rank_definition_decision": {
+    "covariance_rank_is_component_parameter_rank": false,
+    "definition": "representation_latent_effective_rank",
+    "interpretation": "effective_dimension_of_the_representation_in_which_component_mean_offsets_are_fitted",
+    "missing_diagnostic_behavior": "technical_failure_fail_closed",
+    "operator_development_outcome_values_displayed": true,
+    "outcome_values_used_for_rank_definition_decision": false
+  },
+  "receipt_schema_version": "ep12.scientific_contract_transition_receipt.v2",
+  "required_observed_attestation": {
+    "attestation_schema_version": "ep12.observed_trial_attestation_set.v1",
+    "development_only": true,
+    "exact_stage_trial_counts": {
+      "adaptive_cycle_1": 9,
+      "adaptive_cycle_2": 9,
+      "coverage": 18
+    },
+    "exact_trial_count": 36,
+    "objective_values_compared": false,
+    "objective_values_emitted": false,
+    "objective_values_read": false
+  },
+  "required_observed_attestation_authority": {
+    "cancellation_receipt_relative_path": "outputs/prelaunch/replacement_attestation_launch/obsolete_cancellation/receipt.json",
+    "controller_receipt_policy": "bind_if_present_require_before_irreversible_transition",
+    "controller_receipt_relative_path": "outputs/prelaunch/post36_orchestration/receipt.json",
+    "dynamic_replacement_required": true,
+    "obsolete_job_id": "45332084",
+    "obsolete_result_authoritative": false,
+    "schema_version": "ep12.dynamic_observed_attestation_authority_requirement.v1",
+    "source_archive_required": true,
+    "start_authorization_relative_path": "outputs/prelaunch/post36_orchestration/start_authorization.json",
+    "terminal_identity_relative_path": "outputs/prelaunch/replacement_attestation_launch/terminal_identity.json"
+  },
+  "superseded_observed_attestation_job_identity": {
+    "authoritative": false,
+    "disposition": "terminally_cancelled_superseded_non_authoritative",
+    "file_sha256": "ebc9269fde1d27fe9dff1430a33353c779c60a00317a6fc3caeeddca223c48eb",
+    "identity_sha256": "2a9426a35ec1c250e8768d82a0730591703f57bb8174a7e6dd3b0c84bbf010b2",
+    "relative_path": "outputs/prelaunch/observed_attestation_job_identity_45332084.json",
+    "schema_version": "ep12.pending_observed_attestation_job_identity.v1",
+    "slurm_job_id": "45332084"
+  },
+  "required_synthetic_invariance_evidence": {
+    "allowed_diagnostic_additions": [
+      "cases.adequate_template_count_aware.directions.left_to_right.models.M.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.left_to_right.models.T.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.left_to_right.models.U.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.right_to_left.models.M.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.right_to_left.models.T.diagnostics.representation_rank",
+      "cases.adequate_template_count_aware.directions.right_to_left.models.U.diagnostics.representation_rank"
+    ],
+    "covered_fixed_cases": [
+      {
+        "case_id": "adequate_template_count_aware",
+        "covariance": "diagonal",
+        "representation": "count_aware_log_ratio"
+      },
+      {
+        "case_id": "curved_continuum_low_rank_composition",
+        "covariance": "shrinkage",
+        "representation": "low_rank_composition"
+      },
+      {
+        "case_id": "residual_groups_low_rank_count_model",
+        "covariance": "low_rank",
+        "representation": "low_rank_count_model"
+      }
+    ],
+    "probe_spec_sha256": "76539bd7ede65609a56a493c22232c49b4f664d9a7bbd1d346522d07f63e57c2",
+    "schema_version": "ep12.contract_transition_invariance_comparison.v1"
+  },
+  "schema_version": "ep12.scientific_contract_transition_spec.v2",
+  "transition_id": "ep12_post36_representation_rank_v1",
+  "transition_spec_sha256": "22428039fecf59628d68b7d7a3d52307e7f42dce02808c8011697bcd859380ec"
+}

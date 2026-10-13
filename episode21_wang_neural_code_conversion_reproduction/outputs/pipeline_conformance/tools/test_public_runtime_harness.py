@@ -32,7 +32,11 @@ class PublicPreludeTests(unittest.TestCase):
                                      "scratch_bytes": 340000000000}}
         self.env = {"SLURM_JOB_ID": "TEST_ONLY", "SLURM_CPUS_PER_TASK": "4",
                     "SLURM_MEM_PER_NODE": "16384", "SLURM_JOB_START_TIME": "1",
-                    "SLURM_JOB_END_TIME": "2000", "SCRATCH": "/TEST_ONLY_SCRATCH"}
+                    "SLURM_JOB_END_TIME": "2000", "SCRATCH": "/TEST_ONLY_SCRATCH",
+                    "EP21_VALIDATED_PARENT_JOB_ID": "TEST_ONLY",
+                    "EP21_VALIDATED_PARENT_TIME_LIMIT_SECONDS": "28800"}
+        query = mock.patch.object(harness, "read_job_time_limit", return_value=28800)
+        query.start(); self.addCleanup(query.stop)
         self.report = {"schema_version": "ep21.public_runtime_conformance.v3",
                        "outcome": harness.OUTCOME, "scope": harness.SCOPE,
                        "resources": harness.RESOURCES,
@@ -70,7 +74,8 @@ class PublicPreludeTests(unittest.TestCase):
 
     def test_step_requests_one_cpu_four_gib_no_gpus_in_existing_job(self):
         with mock.patch.dict(os.environ, self.env, clear=True):
-            command = harness.step_command(Path("TEST_ONLY_authorization.json"), job_id="TEST_ONLY", timeout=120)
+            command = harness.step_command(Path("TEST_ONLY_authorization.json"), job_id="TEST_ONLY", timeout=120,
+                allocation_time_receipt={"job_id": "TEST_ONLY", "time_limit_seconds": 28800})
         for argument in ("--jobid=TEST_ONLY", "--exact", "--ntasks=1", "--cpus-per-task=1",
                          "--mem=4G", "--gres=none", "--time=00:30:00", "CUDA_VISIBLE_DEVICES=",
                          "OMP_NUM_THREADS=1", "OPENBLAS_NUM_THREADS=1", "MKL_NUM_THREADS=1"):
@@ -98,9 +103,27 @@ class PublicPreludeTests(unittest.TestCase):
             harness.stage_timeout(self.env, now=1990)
 
     def test_parent_allocation_cannot_extend_approved_time(self):
-        with self.assertRaisesRegex(RuntimeError, "parent_allocation_time_approval"):
+        with mock.patch.object(harness, "read_job_time_limit", return_value=28801), \
+             self.assertRaisesRegex(RuntimeError, "parent_allocation_time_approval"):
             harness.validate_allocation_authorization(self.parent,
                 {**self.env, "SLURM_JOB_END_TIME": "28802"})
+
+    def test_actual_time_limit_allows_missing_or_unrelated_start_timestamp(self):
+        for start in (None, "0", "-999999"):
+            env = dict(self.env)
+            if start is None:
+                env.pop("SLURM_JOB_START_TIME")
+            else:
+                env["SLURM_JOB_START_TIME"] = start
+            receipt = harness.validate_allocation_authorization(self.parent, env)
+            self.assertEqual(receipt, {"job_id": "TEST_ONLY", "time_limit_seconds": 28800})
+
+    def test_scheduler_time_record_requires_actual_job_and_bounded_duration(self):
+        self.assertEqual(harness.parse_job_time_limit("JobId=TEST_ONLY TimeLimit=08:00:00", "TEST_ONLY"), 28800)
+        self.assertEqual(harness.parse_job_time_limit("JobId=TEST_ONLY TimeLimit=1-00:00:00", "TEST_ONLY"), 86400)
+        for record in ("JobId=OTHER_TEST_ONLY TimeLimit=08:00:00", "JobId=TEST_ONLY TimeLimit=UNLIMITED"):
+            with self.assertRaises(RuntimeError):
+                harness.parse_job_time_limit(record, "TEST_ONLY")
 
     def test_unchanged_pass_reused_without_rewriting_provenance(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -205,19 +228,25 @@ class FeaturePreludeIntegrationTests(unittest.TestCase):
         self.feature.BASE = root
         self.feature.PROV = root / "outputs/steward_provisioning"
         self.feature.PROV.mkdir()
-        auth = {"approved": True, "purpose": "regular_vgg19_derivative_export",
-                "resources": self.feature.RESOURCES,
-                "allow_ood": False, "allow_neural_values": False,
-                "allow_fitting": False, "allow_scoring": False}
-        self.auth = root / "outputs/regular_vgg19_export_authorization_2026-09-30.json"
+        auth = {"schema_version": "ep21.feature_only_execution_authorization.v1",
+                "episode_id": "ep21", "approved": True, "purpose": "regular_vgg19_derivative_export",
+                "resources": self.feature.RESOURCES, "allow_protocol_lock_completion": True,
+                "allow_regular_image_values_after_valid_lock": True, "includes_public_runtime_conformance": True,
+                "allow_ood": False, "allow_neural_values": False, "allow_fitting": False,
+                "allow_scoring": False, "allow_reconstruction": False, "allow_external_site_execution": False,
+                "neural_execution_authorized": False, "permitted_image_count": 24681,
+                "permitted_image_roles": ["subject_unique", "tau_train", "tau_test"],
+                "scientist_response": "TEST_ONLY_STAND_IN"}
+        self.auth = root / "outputs/regular_vgg19_export_authorization_2026-10-02.json"
         self.auth.write_text(json.dumps(auth))
         self.environment = mock.patch.dict(os.environ, {"SLURM_JOB_ID": "TEST_ONLY",
-            "SLURM_CPUS_PER_TASK": "4", "SLURM_MEM_PER_NODE": "16384"})
+            "SLURM_CPUS_PER_TASK": "4", "SLURM_MEM_PER_NODE": "16384",
+            "SLURM_JOB_END_TIME": "9999999999"})
         self.environment.start(); self.addCleanup(self.environment.stop)
 
     def test_public_failure_stops_before_empirical_guard(self):
         with mock.patch.object(self.feature, "run_in_allocation", side_effect=RuntimeError("TEST_ONLY_public_failure")), \
-             mock.patch.object(self.feature.importlib.util, "spec_from_file_location") as guard:
+             mock.patch.object(self.feature, "complete_protocol_lock") as guard:
             with self.assertRaisesRegex(RuntimeError, "TEST_ONLY_public_failure"):
                 self.feature.main()
             guard.assert_not_called()
@@ -229,8 +258,9 @@ class FeaturePreludeIntegrationTests(unittest.TestCase):
                 raise AssertionError("payload package reached before real context")
             return original_import(name, *args, **kwargs)
         with mock.patch.object(self.feature, "run_in_allocation", return_value={"TEST_ONLY_public_report": True}) as public, \
+             mock.patch.object(self.feature, "complete_protocol_lock", side_effect=RuntimeError("TEST_ONLY_real_protocol_lock_missing")), \
              mock.patch("builtins.__import__", side_effect=forbid_payload_import):
-            with self.assertRaisesRegex(ValueError, "E_EMPIRICAL_CONTEXT_UNAVAILABLE"):
+            with self.assertRaisesRegex(RuntimeError, "TEST_ONLY_real_protocol_lock_missing"):
                 self.feature.main()
             public.assert_called_once_with(self.auth)
         self.assertFalse((self.feature.PROV / "regular_vgg19_export_job_claim.json").exists())

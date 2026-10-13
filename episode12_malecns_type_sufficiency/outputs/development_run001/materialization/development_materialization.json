@@ -1,0 +1,44 @@
+{
+  "cpu_seconds": 352.382386322,
+  "development_focal_left_count": 42224,
+  "development_focal_neuron_count": 84735,
+  "development_focal_right_count": 42511,
+  "development_observed_outgoing_weight": 87415060,
+  "development_type_count": 816,
+  "development_weight_rows_retained": 40891895,
+  "environment": {
+    "numeric_thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "numpy": "1.26.3",
+    "pandas": "2.2.1",
+    "platform": "Linux-3.10.0-1160.156.1.el7.tuxcare.els4.x86_64-x86_64-with-glibc2.17",
+    "pyarrow": "18.1.0",
+    "python": "3.12.1",
+    "scipy": "1.12.0"
+  },
+  "episode_root": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency",
+  "final_focal_connectivity_materialized_or_summarized": false,
+  "final_type_count_locked": 204,
+  "matrix_nonzero_cells": 4688114,
+  "matrix_shape": [
+    84735,
+    11771
+  ],
+  "raw_partner_key_count": 11771,
+  "role_rows_hash": "d41645505864e44a02f5733f7fdc003661b79c3f8b0417d281b9f788d11a3d79",
+  "schema_version": "ep12.development_materialization.v1",
+  "scratch_artifact_sha256": {
+    "development_body_statistics.parquet": "bb72c8352adf089ee1186d2340904db903004222c65af0a764f75960c3950754",
+    "development_focal_neurons.parquet": "d0c391a9ad03eba39f73ebf42c386d099458b982dc8be6de8e175f8a4758d6f9",
+    "development_outgoing_counts.npz": "1d8a40cb483e7216e4802c14d4e4a57cd989c223f99db163d909ce281bd81d3e",
+    "raw_partner_vocabulary.json": "486dd716ec84c43d4c8d35adbd509dce296b8b6017a83646effebc6128ad7908"
+  },
+  "scratch_artifacts_are_development_only": true,
+  "scratch_root": "/scratch/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/development_snapshot_v1",
+  "source_root": "/oak/stanford/groups/russpold/data/br_autoresearch_data/flyem_male_cns/gcs-male-cns-v1.0-flat-connectome",
+  "wall_seconds": 352.6727521489993
+}

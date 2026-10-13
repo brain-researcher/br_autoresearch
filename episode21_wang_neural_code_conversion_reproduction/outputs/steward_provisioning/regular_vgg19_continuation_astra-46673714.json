@@ -1,0 +1,62 @@
+/bin/sh: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+Traceback (most recent call last):
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/bin/astra-tools", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/click/core.py", line 1631, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/click/core.py", line 1552, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/click/core.py", line 2032, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/click/core.py", line 1415, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/click/core.py", line 910, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/astra/cli.py", line 288, in validate
+    _validate_one(file, analysis, verify_evidence, skip_evidence)
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/astra/cli.py", line 433, in _validate_one
+    schema_errors = validate_analysis_data(data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/astra/validation/schema.py", line 78, in validate_analysis_data
+    from astra.datamodel.astra_pydantic import Analysis
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/astra/datamodel/__init__.py", line 2, in <module>
+    from .analysis import *
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/astra/datamodel/analysis.py", line 32, in <module>
+    from linkml_runtime.linkml_model.meta import (
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/__init__.py", line 6, in <module>
+    from linkml_runtime.utils.schemaview import SchemaView
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/utils/schemaview.py", line 22, in <module>
+    from linkml_runtime.linkml_model.meta import (
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/linkml_model/__init__.py", line 1, in <module>
+    from .annotations import Annotatable as Annotatable
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/linkml_model/annotations.py", line 15, in <module>
+    from linkml_runtime.utils.metamodelcore import empty_dict
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/utils/metamodelcore.py", line 14, in <module>
+    from linkml_runtime.utils.namespaces import Namespaces
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/linkml_runtime/utils/namespaces.py", line 5, in <module>
+    from prefixmaps.io.parser import load_context
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/prefixmaps/__init__.py", line 1, in <module>
+    from .datamodel.context import Context, PrefixExpansion, StatusType
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/prefixmaps/datamodel/context.py", line 10, in <module>
+    import curies
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/curies/__init__.py", line 3, in <module>
+    from .api import (
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/curies/api.py", line 28, in <module>
+    from pydantic import (
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/pydantic/__init__.py", line 5, in <module>
+    from ._migration import getattr_migration
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/pydantic/_migration.py", line 4, in <module>
+    from pydantic.warnings import PydanticDeprecatedSince20
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/pydantic/warnings.py", line 5, in <module>
+    from .version import version_short
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/pydantic/version.py", line 7, in <module>
+    from pydantic_core import __version__ as __pydantic_core_version__
+  File "/home/groups/russpold/users/zijiao/brain-researcher-astra/releases/a9188f0ede69912179a8b2e926f0b890c046a75d-5734fb966834bc284ec523913b573e3130038be3-modules/venv/lib/python3.12/site-packages/pydantic_core/__init__.py", line 6, in <module>
+    from typing_extensions import Sentinel
+ImportError: cannot import name 'Sentinel' from 'typing_extensions' (/share/software/user/open/py-pytorch/2.4.1_py312/lib/python3.12/site-packages/typing_extensions.py). Did you mean: '_Sentinel'?

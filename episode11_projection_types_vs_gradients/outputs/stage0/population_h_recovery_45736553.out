@@ -1,0 +1,17 @@
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) devel   2) math
+R=1 H start 1/2 (self_test_truth) completed: objective=6.58941451732, KKT_converged=False
+R=1 H start 2/2 (self_test_embedded) completed: objective=3.55630631551, KKT_converged=False
+R=1 H start 1/2 (self_test_truth) completed: objective=6.58941451732, KKT_converged=False
+R=1 H start 2/2 (self_test_embedded) completed: objective=3.55630631551, KKT_converged=False
+Rebuilding the fitted-C R=8192 group-stratified SAA store
+Jointly optimizing all H blocks from three prespecified starts
+R=8192 H start 1/3 (embedded_fitted_C) completed: objective=4.57373073603, KKT_converged=True
+R=8192 H start 2/3 (truth_based_nonzero_signature) completed: objective=4.44457198869, KKT_converged=True
+R=8192 H start 3/3 (empirical_nonzero_signature) completed: objective=5.09571420903, KKT_converged=False
+Polishing the best H solution from one fixed start
+Running fresh paired verification on stream 5601
+EP11_POPULATION_H_RECOVERY_RUN_DIR=/scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population_h_recovery/run_45736553

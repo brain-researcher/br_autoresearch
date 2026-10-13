@@ -1,0 +1,44 @@
+{
+  "observed_at_utc": "2026-10-01T13:14:08Z",
+  "scope": "Final two producer jobs only; parent allocations counted once; prior conservative floor retained",
+  "prior_accounting_artifact": "outputs/stage0/resource_accounting_20260930_resume.json",
+  "terminal_accounting_artifacts": [
+    "outputs/stage0/v3_m2_optional_family_qualification_job_46115632/terminal_postflight_sacct_20261001T101915Z.txt",
+    "outputs/stage0/v3_m2_falsifier_timing_v1_job_45881554/terminal_postflight_sacct_20261001T131408Z.txt"
+  ],
+  "prior_used_strict_wall_hours": 104.80877777777779,
+  "prior_used_allocated_core_hours": 141.59733333333335,
+  "actual_parent_jobs": {
+    "46115632": {
+      "state": "TIMEOUT",
+      "elapsed_seconds": 43221,
+      "allocated_cpus": 12
+    },
+    "45881554": {
+      "state": "TIMEOUT",
+      "elapsed_seconds": 172829,
+      "allocated_cpus": 2
+    }
+  },
+  "incremental_elapsed_seconds_since_prior": {
+    "46115632": 39737,
+    "45881554": 50349
+  },
+  "used_strict_wall_hours": 129.83266666666668,
+  "used_allocated_core_hours": 302.02566666666667,
+  "wall_hour_ceiling": 144,
+  "cpu_core_hour_ceiling": 1800,
+  "remaining_live_reservation_wall_hours": 0,
+  "remaining_live_reservation_core_hours": 0,
+  "unreserved_wall_hours": 14.167333333333318,
+  "unreserved_core_hours": 1497.9743333333333,
+  "unchanged_scale_request_wall_hours": 24,
+  "unchanged_scale_request_reservable": false,
+  "combined_99_replay_resource_gate": "unresolved; required optional, scale, and timing reports absent",
+  "empirical_M2_access": "closed",
+  "old_accounting_discrepancy": "Prior conservative floor preserved; lower historical totals confer no additional budget",
+  "contract_changed": false,
+  "no_new_execution": true,
+  "producer_watch_complete": true,
+  "human_disposition_question": "Pending; silence is not authority for execution or formal episode disposition"
+}

@@ -1,0 +1,704 @@
+version: "0.0.14"
+name: EP04 native VLM geometry across image-distribution shift
+description: >-
+  Fixed three-VLM panel with DINOv2 comparator and one conditional sealed OOD
+  audit. Metadata-only role joins and grouped fold preparation completed on
+  2026-10-03 in job46430982.8; structural array/ROI metadata completed in step14.
+  The provider native index mapping was adopted after active-sform measurement.
+  Development-only native embedding handoff completed in job46433944.3.
+  Neural preprocessing choices are adopted prospectively; only the fixed
+  first-session selected-row NIfTI/ROI cost pilot completed. The same source-only
+  handoff is selected for the remaining149 sessions in five participant groups.
+  Full numerical source qualification and audit remain pending.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+outputs:
+  - id: boundary_report
+    from: ood_audit.boundary_report
+analyses:
+  source_readiness:
+    name: Establish role-filtered source identity and pre-score scientific choices
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: handoff, type: data, source: outputs/source_handoff.md}
+      - {id: metadata_config, type: data, source: outputs/config/development_metadata.json}
+      - {id: metadata_adapter, type: data, source: outputs/code/prepare_source_metadata.py}
+      - {id: array_inspector, type: data, source: outputs/code/inspect_array_metadata.py}
+      - {id: frozen_trial_metadata, type: data, source: outputs/runs/source_readiness/20261003-metadata_folds04/source_metadata_report.json}
+      - {id: prior_beta_headers, type: data, source: outputs/runs/source_readiness/20261003-array_metadata01/array_metadata.json}
+      - {id: completed_array_metadata, type: data, source: outputs/runs/source_readiness/20261003-array_metadata02/array_metadata.json}
+      - {id: grid_descriptor, type: data, source: outputs/code/describe_roi_grid_offsets.py}
+      - {id: roi_mapping, type: data, source: outputs/config/roi_mapping.json}
+      - {id: embedding_handoff, type: data, source: outputs/code/prepare_development_embeddings.py}
+      - {id: neural_recipe, type: data, source: outputs/neural_preprocessing_proposal.md}
+      - {id: neural_handoff, type: data, source: outputs/code/prepare_development_neural_pilot.py}
+      - {id: neural_handoff_checks, type: data, source: outputs/tests/test_development_neural_pilot.py}
+      - {id: completed_neural_pilot, type: data, source: outputs/runs/source_readiness/20261003-development_neural_pilot01/neural_handoff.json}
+      - {id: participant_handoff, type: data, source: outputs/code/prepare_development_neural_participant.py}
+      - {id: participant_handoff_checks, type: data, source: outputs/tests/test_development_neural_participant.py}
+      - {id: neural_full_batch, type: data, source: outputs/code/development_neural_full01.sbatch}
+    outputs:
+      - id: metadata_folds
+        type: report
+        format: directory
+        inputs: [datasets, metadata_config, metadata_adapter]
+        description: >-
+          Pinned small provider grouping metadata, exact unique-image/trial joins
+          and five globally grouped source-balanced folds. Original run-local
+          beta indices and session TSV row positions remain distinct. Excluded roles emit
+          aggregate counts only. Does not establish neural validity, source
+          isolation, full preprocessing design or complete source qualification.
+          Completed metadata result: outputs/runs/source_readiness/20261003-metadata_folds04/source_metadata_report.json.
+        recipe:
+          command: >-
+            python3.12 outputs/code/prepare_source_metadata.py
+            --source-root "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: array_metadata
+        type: report
+        format: directory
+        inputs: [datasets, array_inspector, frozen_trial_metadata, prior_beta_headers]
+        description: >-
+          Exact150 beta headers and sidecars versus frozen TSV row counts,
+          four default embedding dataset shapes/dtypes and small whitelisted
+          model metadata, fifteen primary ROI headers and acquisition presence
+          of thirty retinotopic EVC components. No dataset/voxel values, feature
+          identities or valid-mask values; no source/audit qualification claim.
+          Reuse the completed150 beta header/sidecar records from attempt01
+          after exact identity/row-count checks; repair its attribute API failure.
+          Completed in outputs/runs/source_readiness/20261003-array_metadata02/array_metadata.json;
+          all45 ROI components are present but literal grid fields differ.
+        recipe:
+          command: >-
+            python3.12 outputs/code/inspect_array_metadata.py
+            --source-root "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922"
+            --metadata-dir outputs/runs/source_readiness/20261003-metadata_folds04
+            --prior-beta-report outputs/runs/source_readiness/20261003-array_metadata01/array_metadata.json
+            --output-dir {output} --max-seconds 300
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: roi_grid_offsets
+        type: report
+        format: directory
+        inputs: [completed_array_metadata, grid_descriptor]
+        description: >-
+          Active-sform ROI-to-beta voxel transforms and eight-corner
+          displacements from existing header JSON only. No threshold,
+          voxel-mapping acceptance, resampling rule or numeric source access.
+          Completed in outputs/runs/source_readiness/20261003-roi_grid_offsets01/roi_grid_offsets.json;
+          subsequent coordinator mapping decision is separately recorded in roi_mapping.
+        recipe:
+          command: >-
+            python3.12 outputs/code/describe_roi_grid_offsets.py
+            --metadata-report outputs/runs/source_readiness/20261003-array_metadata02/array_metadata.json
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+      - id: development_embeddings
+        type: data
+        format: directory
+        inputs: [frozen_trial_metadata, completed_array_metadata, embedding_handoff]
+        description: >-
+          All23560 frozen development image IDs in common order across the four
+          native released float16 feature arrays. Complete ID joins precede
+          selected-only validity/feature reads in512-row chunks. Missing,
+          invalid, nonfinite or zero development vectors stop without fold
+          shrinkage. Original values are preserved, with no normalization,
+          RDM, fitting, neural/ROI or raw-image access. HDF5 internal storage
+          chunks may include excluded rows, but excluded value elements are
+          not returned to Python or exported. This is not full source or audit
+          qualification and does not establish OS-level source isolation.
+          Completed in outputs/runs/source_readiness/20261003-development_embeddings01/embedding_handoff.json.
+        recipe:
+          command: >-
+            python3.12 outputs/code/prepare_development_embeddings.py
+            --source-root "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922"
+            --metadata-dir outputs/runs/source_readiness/20261003-metadata_folds04
+            --array-metadata outputs/runs/source_readiness/20261003-array_metadata02/array_metadata.json
+            --output-dir {output} --max-seconds 270
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: development_neural_pilot
+        type: report
+        format: directory
+        inputs: [frozen_trial_metadata, completed_array_metadata, roi_mapping, neural_recipe, neural_handoff, neural_handoff_checks]
+        description: >-
+          Fixed sub-01/ses-01 I/O pilot only: nine registered mask components,
+          original session-axis role selection before numerical decoding,
+          NIfTI F-storage to provider C-flat indices, original float32 zeros
+          and nonfinite betas preserved in development-only selected rows.
+          Excluded volumes may pass through gzip as opaque bytes but are not
+          numerical arrays or summaries. Sequential NPY output uses at most
+          16GiB transient scratch. No session standardization, reliability,
+          repeat eligibility, RDM, model fit, raw-image read or all150 launch.
+          The adopted downstream recipe requires a matched training-image
+          raw RSA/reliability/provider-formula NC table and separately labeled
+          held-fold raw high-level/EVC RSA; neither is computed by this pilot.
+        recipe:
+          command: >-
+            python3.12 outputs/code/prepare_development_neural_pilot.py
+            --source-root "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922"
+            --metadata-dir outputs/runs/source_readiness/20261003-metadata_folds04
+            --array-metadata outputs/runs/source_readiness/20261003-array_metadata02/array_metadata.json
+            --roi-mapping outputs/config/roi_mapping.json
+            --payload-dir "$SCRATCH/br_autoresearch/episode04_shared_scene_geometry/neural_pilot01"
+            --output-dir {output} --max-seconds 540
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+      - id: development_neural_full
+        type: report
+        format: directory
+        inputs: [frozen_trial_metadata, completed_array_metadata, roi_mapping, neural_recipe, neural_handoff, completed_neural_pilot, participant_handoff, participant_handoff_checks, neural_full_batch]
+        description: >-
+          Five sequential participant handoff tasks over the exact frozen150
+          sessions. Reuse sub-01/ses-01 from the completed pilot without reading
+          its beta or ROI arrays; remaining149 sessions use fresh paths and
+          unchanged selected-trial decoding. Each task retains all session
+          attempts and stops on failure without retry or successful-subset
+          promotion. Array0-4 concurrency3, normal/CPU_SKU:7502, no requeue,
+          1 requested CPU/2GiB/30min per task, numeric threads1; observed site
+          rounding can allocate2 CPUs/task, hence up to6 allocated CPUs at
+          concurrency3 and at most5 allocated core-hours. Participant internal1740s,
+          session maximum540s and cumulative16GiB scratch including pilot.
+          No standardization, reliability, repeat eligibility, RDMs or models.
+          Readiness requires review/checks; no array submission is implied by
+          this program record. Per-participant completion does not claim all150.
+        recipe:
+          command: sbatch outputs/code/development_neural_full01.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 30m}
+      - id: qualified_source
+        type: report
+        format: json
+        description: >-
+          Future source, model-array, low-level, ROI, exposure and role-separated
+          handoff using the adopted native index route after remaining
+          requirements are satisfied; not yet supplied.
+  low_level_control:
+    name: Extract the approved unique-development RGB block-moment control
+    description: >-
+      Scientist approved the exact fixed RGB5/10/20 mean/population-SD control
+      on 2026-10-05. Time sixty deterministic unique-development images before
+      the complete23560-image pass. No shared/OOD pixels, trained detector,
+      neural values, candidate scores or automatic continuation.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: specification, type: data, source: outputs/low_level_control_proposal.md}
+      - {id: metadata, type: data, source: outputs/runs/source_readiness/20261003-metadata_folds04}
+      - {id: reader, type: data, source: outputs/code/prepare_low_level_proposal.py}
+      - {id: transform, type: data, source: outputs/code/low_level_pixels_proposal.py}
+      - {id: command, type: data, source: outputs/code/run_low_level_control.sh}
+      - {id: raw_identity, type: data, source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_raw_stimuli_dua_20260922/payload/task-images_metadata.csv"}
+      - {id: approved_image_pack, type: data, source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_raw_stimuli_dua_20260922/payload/task-images_stimuli.h5"}
+    outputs:
+      - id: representative
+        type: report
+        format: directory
+        inputs: [policy, specification, metadata, reader, transform, command, raw_identity, approved_image_pack]
+        description: >-
+          Four lowest lexicographic development IDs per15 participant/source
+          cells:60 images,3150 float64 features each, actual versions and separate
+          read/transform timing. Internal300s/external310s plus10s grace, inside
+          the coordinator's attended1CPU2Gi90-minute allocation. A complete
+          representative does not establish full feature coverage.
+        recipe:
+          command: bash outputs/code/run_low_level_control.sh representative 300 {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 6m}
+      - id: complete_features
+        type: data
+        format: directory
+        inputs: [policy, specification, metadata, reader, transform, command, raw_identity, approved_image_pack]
+        description: >-
+          All23560 exact unique-development IDs with3150 finite float64 features,
+          Euclidean nuisance geometry, unchanged folds and no exclusions.
+          The successful60-image representative took21.98 seconds; measured
+          variable/total scaling predicts2 to2.4 hours. The selected complete
+          pass uses1CPU2Gi3h, internal10680s with external10s/10s grace.
+          Partial reports/features do not establish coverage. Complete finite
+          coverage remains required before any primary panel score.
+        recipe:
+          command: sbatch outputs/code/low_level_full01.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3h}
+  implementation_qualification:
+    name: Qualify determinate RSA equations and proposed analytic nuisance geometry
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: equations, type: data, source: outputs/code/native_rsa.py}
+      - {id: tests, type: data, source: outputs/tests/test_native_rsa.py}
+      - {id: low_level_proposal, type: data, source: outputs/low_level_control_proposal.md}
+      - {id: low_level_component, type: data, source: outputs/code/low_level_pixels_proposal.py}
+      - {id: low_level_checks, type: data, source: outputs/tests/test_low_level_pixels_proposal.py}
+    outputs:
+      - id: component_report
+        type: report
+        format: directory
+        inputs: [policy, equations, tests]
+        description: >-
+          Synthetic analytic checks only; not qualification of empirical
+          preprocessing, full null loops, all diagnostics or audit execution.
+        recipe:
+          command: python outputs/code/qualify_native_rsa.py --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: low_level_analytic_checks
+        type: report
+        format: text
+        inputs: [low_level_proposal, low_level_component, low_level_checks]
+        description: >-
+          Three generated-pixel closed-form checks only. Does not open source
+          images, approve the raw-source extension or establish empirical coverage.
+        recipe:
+          command: >-
+            python3.12 -m unittest discover -s outputs/tests
+            -p test_low_level_pixels_proposal.py -v > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+  neural_preprocessing:
+    name: Fit adopted training-only session preprocessing and repeat means
+    inputs:
+      - {id: recipe, type: data, source: outputs/neural_preprocessing_proposal.md}
+      - {id: metadata, type: data, source: outputs/runs/source_readiness/20261003-metadata_folds04}
+      - {id: completed_participant, type: data, source: outputs/runs/source_readiness/20261003-development_neural_full01/sub-05/participant_handoff.json}
+      - {id: implementation, type: data, source: outputs/code/preprocess_development_neural.py}
+      - {id: checks, type: data, source: outputs/tests/test_neural_preprocessing.py}
+    outputs:
+      - id: fold_patterns
+        type: report
+        format: directory
+        inputs: [recipe, metadata, completed_participant, implementation, checks]
+        description: >-
+          Initial complete participant sub-05, all30 completed role-filtered
+          session handoffs and all five frozen folds. Training-image-only
+          float64 session means/ddof0 scales; across-session finite/positive
+          voxel support; common three-primary presentation validity and
+          equal-weight all-valid-repeat means with minimum2/complete4 flags.
+          EVC uses its own valid repeats on primary-eligible image IDs and
+          cannot change primary support. Four separate ROI arrays preserve
+          different repeat means at overlapping voxels. Original C-flat voxel
+          identities, trial/image validity and explicit unavailable reasons
+          are retained. No mixed source arrays, embeddings, RDMs, reliability,
+          NC, model scores, raw pixels or audit. Unknown support is not a
+          negative result. Completion is this participant only; all five are
+          required for the eventual full fixed panel.16GiB scratch maximum.
+        recipe:
+          command: >-
+            python3.12 outputs/code/preprocess_development_neural.py
+            --participant sub-05
+            --participant-handoff outputs/runs/source_readiness/20261003-development_neural_full01/sub-05/participant_handoff.json
+            --metadata-dir outputs/runs/source_readiness/20261003-metadata_folds04
+            --payload-dir "$SCRATCH/br_autoresearch/episode04_shared_scene_geometry/neural_preprocessing01/sub-05"
+            --output-dir {output} --max-seconds 840
+          resources: {cpus: 1, memory: 4Gi, time_limit: 15m}
+  training_neural_context:
+    name: Describe training-only repeat reliability and provider-formula noise ceiling
+    inputs:
+      - {id: patterns, from: ../neural_preprocessing.fold_patterns}
+      - {id: recipe, type: data, source: outputs/neural_preprocessing_proposal.md}
+      - {id: completed_preprocessing, type: data, source: outputs/runs/neural_preprocessing/20261003-sub05-folds01/preprocessing.json}
+      - {id: metadata, type: data, source: outputs/runs/source_readiness/20261003-metadata_folds04}
+      - {id: implementation, type: data, source: outputs/code/training_neural_context.py}
+      - {id: checks, type: data, source: outputs/tests/test_training_neural_context.py}
+      - {id: sub01_preprocessing, type: data, source: outputs/runs/neural_preprocessing/20261003-remaining-folds01/sub-01/preprocessing.json}
+      - {id: sub01_context_report, type: data, source: outputs/runs/training_neural_context/20261005-sub01-context-46654794/training_context.json}
+      - {id: sub01_continuation, type: data, source: outputs/code/run_training_context_sub01.py}
+      - {id: sub01_batch, type: data, source: outputs/code/training_context_sub01.sbatch}
+      - {id: sub03_preprocessing, type: data, source: outputs/runs/neural_preprocessing/20261003-remaining-folds01/sub-03/preprocessing.json}
+      - {id: sub06_preprocessing, type: data, source: outputs/runs/neural_preprocessing/20261003-remaining-folds01/sub-06/preprocessing.json}
+      - {id: sub07_preprocessing, type: data, source: outputs/runs/neural_preprocessing/20261003-remaining-folds01/sub-07/preprocessing.json}
+      - {id: remaining_participants_batch, type: data, source: outputs/code/training_context_remaining_participants.sbatch}
+      - {id: matched_rsa_implementation, type: data, source: outputs/code/run_training_context_rsa.py}
+      - {id: matched_rsa_math, type: data, source: outputs/code/native_rsa.py}
+      - {id: development_embeddings, type: data, source: outputs/runs/source_readiness/20261003-development_embeddings01/embedding_handoff.json}
+      - {id: matched_rsa_batch, type: data, source: outputs/code/training_context_rsa_pilot.sbatch}
+      - {id: matched_rsa_remaining_batch, type: data, source: outputs/code/training_context_rsa_remaining_participants.sbatch}
+      - {id: sub03_context_report, type: data, source: outputs/runs/training_neural_context/20261005-remaining-context-46655460/sub-03/training_context.json}
+      - {id: sub05_context_report, type: data, source: outputs/runs/training_neural_context/20261003-sub05-folds01/training_context.json}
+      - {id: sub06_context_report, type: data, source: outputs/runs/training_neural_context/20261005-remaining-context-46655460/sub-06/training_context.json}
+      - {id: sub07_context_report, type: data, source: outputs/runs/training_neural_context/20261005-remaining-context-46655460/sub-07/training_context.json}
+    outputs:
+      - id: reliability_context
+        type: report
+        format: directory
+        inputs: [patterns, recipe, completed_preprocessing, metadata, implementation, checks]
+        description: >-
+          Initial sub-05 all-five-fold training-only context. Reuse saved
+          means/scales, ROI masks and presentation validity without refitting.
+          The common primary/EVC training-image intersection is diagnostic only;
+          preserve original primary image coverage and explicit EVC missingness.
+          Retain all valid per-ROI repeats, alternating by session/numeric run/
+          original session-axis index. Equal-image within-image ddof1 residual
+          variance and mean inverse repeat count define provider-formula NC.
+          Preserve signed split-repeat Pearson correlations and undefined values;
+          eta0 gives NC100, eta>=1 gives NC0, with no voxel selection/normalization.
+          Export exact training IDs, per-ROI C-flat voxel support, repeat assignments,
+          repeat/session counts and voxelwise values with median/p10/p90 context.
+          No released NC maps, mixed sources, images, embeddings, RDM or RSA.
+          This component alone does not complete the matched training-context
+          RSA diagnostic and establishes neither independent errors nor a strict
+          Spearman RSA ceiling. Single-thread float64 chunks of256 voxels.
+          Preserve the original sub-05 artifact at
+          outputs/runs/training_neural_context/20261003-sub05-folds01/training_context.json.
+        recipe:
+          command: >-
+            timeout 900s python3.12 outputs/code/training_neural_context.py
+            --preprocessing-report outputs/runs/neural_preprocessing/20261003-sub05-folds01/preprocessing.json
+            --metadata-dir outputs/runs/source_readiness/20261003-metadata_folds04
+            --output-dir {output} --max-seconds 840
+          resources: {cpus: 1, memory: 4Gi, time_limit: 15m}
+      - id: reliability_context_sub01
+        type: report
+        format: directory
+        inputs: [recipe, metadata, implementation, checks, sub01_preprocessing, sub01_continuation, sub01_batch]
+        description: >-
+          Separate sub-01 full five-fold, four-ROI training context. The fixed
+          continuation reuses original loading, repeat assignments, roi_context
+          and summary helpers with unchanged 256-column order and saved training
+          parameters. It does not refit preprocessing, change primary support,
+          select voxels or compute RDMs/RSA. Returned chunks are durable with
+          explicit completed-voxel prefixes; unfinished trailing values are
+          uncomputed, not measured missingness. Preserve prior partial attempts
+          and the completed original sub-05 context. Completed sub-01 artifact:
+          outputs/runs/training_neural_context/20261005-sub01-context-46654794/training_context.json.
+          One CPU, 4 GiB, all numerical threads one; fixed 2400-second internal
+          cap and 2460-second external cap plus 10-second termination grace.
+          No retry, resume or automatic later-participant dispatch.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 2460s
+            python3.12 -u -B outputs/code/run_training_context_sub01.py
+            --output-dir {output}
+          resources: {cpus: 1, memory: 4Gi, time_limit: 45m}
+      - id: reliability_context_remaining_participants
+        type: report
+        format: directory
+        inputs: [recipe, metadata, implementation, checks, sub03_preprocessing, sub06_preprocessing, sub07_preprocessing, remaining_participants_batch]
+        description: >-
+          One finite pack for exactly sub-03, sub-06 and sub-07, using the original
+          unchanged training_neural_context.py on each participant's completed
+          preprocessing and all five folds/four ROIs. Preserve the original
+          256-column arithmetic, training-only image intersection, repeat and
+          voxel support, signed reliability and provider-formula NC semantics.
+          Three concurrent exclusive one-CPU/4-GiB steps, all numerical threads
+          one, within one three-CPU/12-GiB/20-minute parent. Each participant has
+          an 840-second internal cap and a 900-second external cap plus 10-second
+          termination grace. Wait for all children and retain individual exit
+          statuses; any failure leaves that participant incomplete without
+          successful-subset promotion, retry or rerunning sub-01/sub-05.
+          Selected output root:
+          outputs/runs/training_neural_context/20261005-remaining-context-46655460/,
+          with sub-03, sub-06 and sub-07 training_context.json files and
+          participant_exit_status.tsv. This declaration does not assert their
+          completion or completion of the matched training-context RSA table.
+          No embeddings, raw images, RDM/RSA, model comparison or OOD access.
+        recipe:
+          command: sbatch outputs/code/training_context_remaining_participants.sbatch
+          resources: {cpus: 3, memory: 12Gi, time_limit: 20m}
+      - id: matched_training_rsa_pilot
+        type: report
+        format: directory
+        inputs: [recipe, sub01_preprocessing, sub01_context_report, matched_rsa_implementation, matched_rsa_math, development_embeddings, matched_rsa_batch]
+        description: >-
+          Fixed sub-01 pilot, all five folds, four ROIs and four released models:
+          80 descriptive training-context rows. Reuse completed preprocessing
+          mean patterns and sub-01 context at
+          outputs/runs/training_neural_context/20261005-sub01-context-46654794/training_context.json.
+          Match exact common training image IDs, original voxel identities and
+          saved presentation/repeat support. Read only selected training rows
+          from qualified mean-pattern and development-embedding arrays. Use
+          original float64 native_rsa RDM/rank/correlation/Fisher functions,
+          caching four model rank vectors per fold and one neural vector at a
+          time. Attach existing matched repeat reliability and provider-formula
+          NC summaries; no refitting or strict Spearman-ceiling claim. No raw
+          beta/image, shared/OOD, held-fold performance, primary-panel score,
+          candidate selection, null draw or automatic remainder dispatch.
+          Retain exact ID lists, undefined rows and incomplete prefixes. The
+          scientific child is capped at 1500 seconds internally and 1560 seconds
+          externally plus 10-second grace; its enclosing one-CPU/7-GiB/40-minute
+          shared parent also runs separately selected EP03/EP19 steps sequentially.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1560s python3.12 -u -B
+            outputs/code/run_training_context_rsa.py --participant sub-01
+            --output-dir {output} --max-seconds 1500
+          resources: {cpus: 1, memory: 7Gi, time_limit: 40m}
+      - id: matched_training_rsa_remaining_participants
+        type: report
+        format: directory
+        inputs: [recipe, completed_preprocessing, sub03_preprocessing, sub06_preprocessing, sub07_preprocessing, sub03_context_report, sub05_context_report, sub06_context_report, sub07_context_report, matched_rsa_implementation, matched_rsa_math, development_embeddings, matched_rsa_remaining_batch]
+        description: >-
+          Fixed sub-03, sub-05, sub-06 and sub-07 continuation of the identical
+          matched training-context calculation, 80 rows per participant and
+          320 rows overall. Select only after the sub-01 pilot's complete
+          support and measured cost have been reviewed. Preserve that pilot;
+          no sub-01 repeat. Four exclusive single-CPU/7-GiB child steps use
+          unchanged original native-RSA arithmetic, saved mean patterns and
+          exact matched training image/voxel/repeat support, with six numerical
+          threads capped at one. Each child has a 1500-second internal and
+          1560-second external deadline plus 10-second grace. Retain all four
+          exit statuses and incomplete/undefined rows; no successful-subset
+          promotion or automatic retry. These descriptive training rows are
+          not held-out performance, primary-panel scoring or candidate selection.
+          No raw images, beta reread, shared/OOD outcomes or null draws.
+          The enclosing four-CPU/28-GiB/45-minute parent also accommodates
+          separately scoped EP03/EP19 source steps after these workers finish;
+          their scientific artifacts stay in their respective episodes.
+        recipe:
+          command: sbatch outputs/code/training_context_rsa_remaining_participants.sbatch
+          resources: {cpus: 4, memory: 28Gi, time_limit: 45m}
+  training_context_display:
+    name: Display all five participants' descriptive training-context comparisons
+    inputs:
+      - {id: pilot, from: ../training_neural_context.matched_training_rsa_pilot}
+      - {id: remaining_participants, from: ../training_neural_context.matched_training_rsa_remaining_participants}
+      - {id: implementation, type: data, source: outputs/code/summarize_training_context_rsa.py}
+    outputs:
+      - id: training_context_table_and_figure
+        type: report
+        format: directory
+        inputs: [pilot, remaining_participants, implementation]
+        description: >-
+          Require all five complete reports and exactly 400 finite evaluable
+          participant/fold/ROI/model rows; copy all saved values and support,
+          reliability and provider-NC context to CSV. PNG/SVG show each
+          participant's equal-five-fold saved Fisher-z mean transformed back
+          to r, with fixed model/ROI order and no ranking, contrast, inference,
+          null or uncertainty interval. Label overlapping training folds and
+          different participant image pools. No raw arrays, new RDM/RSA,
+          held-out performance or candidate selection. One attended step in
+          the existing shared allocation only if all scientific workers finish
+          and adequate resources remain; no standalone short plotting job.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 110s python3.12 -u -B
+            outputs/code/summarize_training_context_rsa.py --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+  fold_freeze:
+    name: Freeze eligible unique-image groups and training-only preprocessing
+    inputs:
+      - {id: source, from: ../source_readiness.qualified_source}
+      - {id: metadata_folds, from: ../source_readiness.metadata_folds}
+      - {id: neural_patterns, from: ../neural_preprocessing.fold_patterns}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: development_design, type: report, format: json}
+  fixed_panel:
+    name: Evaluate all native VLM and DINOv2 rows on identical image folds
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: design, from: ../source_readiness.metadata_folds}
+      - {id: embeddings, from: ../source_readiness.development_embeddings}
+      - {id: low_level_features, from: ../low_level_control.complete_features}
+      - {id: component_report, from: ../implementation_qualification.component_report}
+      - {id: preprocessing, type: data, source: outputs/code/run_training_context_rsa.py}
+      - {id: implementation, type: data, source: outputs/code/run_observed_native_panel.py}
+      - {id: mathematics, type: data, source: outputs/code/native_rsa.py}
+      - {id: command, type: data, source: outputs/code/observed_native_panel01.sbatch}
+      - {id: training_context_sub01, from: ../training_neural_context.reliability_context_sub01}
+      - {id: training_context_sub05, from: ../training_neural_context.reliability_context}
+      - {id: training_context_remaining, from: ../training_neural_context.reliability_context_remaining_participants}
+    outputs:
+      - id: panel_scores
+        type: report
+        format: directory
+        inputs: [policy, design, embeddings, low_level_features, component_report, preprocessing, implementation, mathematics, command, training_context_sub01, training_context_sub05, training_context_remaining]
+        description: >-
+          All400 fixed evaluation-fold comparisons across five participants,
+          five folds, four models and four ROIs, each with native and low-level
+          partial Spearman RSA. Require complete finite23560-image features,
+          exact approved low-level sources and saved25-fold metadata joins
+          before scores. Reuse training-fitted mean patterns, original native
+          RSA/partial arithmetic and frozen training reliability context.
+          Record first_panel_evaluation_utc to start the120h budget; retain
+          undefined/incomplete rows. EVC raw/native completeness is diagnostic;
+          partial EVC is descriptive. Equal-weight primary effects are reported
+          without null thresholds, screening, winner or lock. Registered nulls,
+          remaining sensitivities and encoding must precede candidate decision.
+          One CPU4Gi45m, internal2400s/external2460s plus10s grace, no requeue.
+          Submit with afterok on the selected full low-level extraction and
+          invalid-dependency cancellation; driver independently verifies coverage.
+        recipe:
+          command: sbatch outputs/code/observed_native_panel01.sbatch
+          resources: {cpus: 1, memory: 4Gi, time_limit: 45m}
+  controls_diagnostics:
+    name: Complete selection-aware nulls, mandatory sensitivities and diagnostics
+    inputs:
+      - {id: panel, from: ../fixed_panel.panel_scores}
+      - {id: design, from: ../source_readiness.metadata_folds}
+      - {id: low_level_features, from: ../low_level_control.complete_features}
+      - {id: sensitivities, type: data, source: outputs/code/run_native_sensitivities.py}
+      - {id: encoding, type: data, source: outputs/code/run_identical_fold_encoding.py}
+      - {id: nulls, type: data, source: outputs/code/run_registered_null_unit.py}
+      - {id: encoding_checks, type: data, source: outputs/tests/test_identical_fold_encoding.py}
+      - {id: null_checks, type: data, source: outputs/tests/test_registered_null_unit.py}
+      - {id: null_collector, type: data, source: outputs/code/collect_registered_nulls.py}
+      - {id: encoding_collector, type: data, source: outputs/code/collect_identical_fold_encoding.py}
+      - {id: null_collection_checks, type: data, source: outputs/tests/test_collect_registered_nulls.py}
+      - {id: encoding_collection_checks, type: data, source: outputs/tests/test_collect_identical_fold_encoding.py}
+      - {id: panel_screen_checks, type: data, source: outputs/tests/test_screen_registered_panel.py}
+      - {id: first_pass_batch, type: data, source: outputs/code/controls_first_pass01.sbatch}
+      - {id: first_pass_worker, type: data, source: outputs/code/controls_first_pass_worker.sh}
+      - {id: remaining_plan, type: data, source: outputs/code/remaining_controls_plan.json}
+      - {id: remaining_dispatch, type: data, source: outputs/code/remaining_controls_tasks.py}
+      - {id: remaining_batch, type: data, source: outputs/code/remaining_controls_array.sbatch}
+      - {id: remaining_selected, type: data, source: outputs/code/remaining_controls_selected/20261005-full01/manifest.json}
+      - {id: collection_entrypoint, type: data, source: outputs/code/collect_and_screen_full01.sh}
+      - {id: collection_batch, type: data, source: outputs/code/collect_and_screen_full01.sbatch}
+      - {id: training_context, from: ../training_neural_context.reliability_context}
+      - {id: training_context_sub01, from: ../training_neural_context.reliability_context_sub01}
+      - {id: training_context_remaining_participants, from: ../training_neural_context.reliability_context_remaining_participants}
+      - {id: matched_training_rsa_pilot, from: ../training_neural_context.matched_training_rsa_pilot}
+      - {id: matched_training_rsa_remaining_participants, from: ../training_neural_context.matched_training_rsa_remaining_participants}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: first_controls_pass
+        type: report
+        format: directory
+        inputs: [panel, design, low_level_features, sensitivities, encoding, nulls, encoding_checks, null_checks, null_collection_checks, encoding_collection_checks, panel_screen_checks, first_pass_batch, first_pass_worker, policy]
+        description: >-
+          After the complete observed panel, two exclusive1CPU4Gi steps in a
+          2CPU8Gi50-minute allocation. One computes all1600 fixed rows across
+          four registered sensitivities, internal2400s. The other runs four
+          focused ridge checks, then fixed sub01/fold0 encoding (16 rows,
+          internal1200s), then focused cached-null equivalence checks and
+          sub01/fold0 permutation0:256 and geometry0:8 perVLM (internal1200s).
+          Both scientific prefixes are retained in the eventual complete
+          calculations; no duplicate reruns or full remainder dispatch follows
+          automatically. Existing120h panel clock is enforced without restart.
+          Primary sensitivity support never shrinks for EVC; EVC is descriptive.
+          Null output preserves signed per-model/ROI/draw contributions, with
+          no local winner or threshold. Full null and encoding reservations
+          require the observed cost and remaining budget. All action statuses
+          and partial results survive failure; missing cells block completeness.
+          No rawbeta/image read, new preprocessing, candidate decision or OOD.
+          The existing allocation also checks the two complete-panel collectors
+          and final screen arithmetic/publication, without executing collection
+          or selecting a candidate. A separately
+          scoped EP12 completed-table figure shares the allocation after the
+          sensitivity worker, followed by a separately scoped EP19 public
+          documentation-page read. EP04 science consumes no sibling outputs
+          and the shared resource charge is recorded once.
+        recipe:
+          command: sbatch outputs/code/controls_first_pass01.sbatch
+          resources: {cpus: 2, memory: 8Gi, time_limit: 50m}
+      - id: control_scores
+        type: report
+        format: json
+        inputs: [panel, sensitivities, null_collector, encoding_collector, remaining_plan, remaining_dispatch, remaining_batch, remaining_selected, collection_entrypoint, collection_batch, policy]
+        description: >-
+          Complete registered-null and encoding collections bind explicit unit
+          reports to all25 participant/fold cells and the original panel clock.
+          Null collection requires all10000 image permutations and1000 random
+          geometries perVLM, applies the unconditional pooled gain argmax and
+          retains signed alignment with the higher95th quantile. Encoding
+          retains all400 rows and negativeR2, with equal biological weighting
+          and explicit RSA/encoding and high-level/EVC descriptive comparisons.
+          No collector screens or selects a candidate. Measured first-pass cost
+          selected25 explicit participant/fold bundles, each1CPU4Gi90m, up to25
+          concurrent; encoding300s then null4800s within5190s including graces.
+          The selected manifest preserves sub01/fold0 encoding and null prefixes
+          and complete disjoint residual ranges for the frozen sub01/03/05/06/07
+          roster. Fully recorded not-evaluable encoding remains scientific
+          non-evaluability and does not suppress the independent null action.
+          Technical failures stop. The dispatcher never submits or retries;
+          collection still requires every complete registered input.
+  candidate_decision:
+    name: Screen every panel row then select the highest passing native VLM
+    inputs:
+      - {id: panel, from: ../fixed_panel.panel_scores}
+      - {id: controls, from: ../controls_diagnostics.control_scores}
+      - {id: policy, from: ../policy}
+      - {id: implementation, type: data, source: outputs/code/screen_registered_panel.py}
+      - {id: focused_checks, type: data, source: outputs/tests/test_screen_registered_panel.py}
+    outputs:
+      - id: single_decision
+        type: report
+        format: json
+        inputs: [panel, controls, policy, implementation, focused_checks]
+        description: >-
+          Prepared complete-panel consumer; launch requires completed full null,
+          sensitivity and encoding collections plus the existing matched training
+          RSA/context. Admit all25 cells and required diagnostics before applying
+          frozen gates, including low-level partial gain and every participant
+          leave-one-out gain positive. Select the highest passing native row with
+          the frozen tie rule, or close without a candidate. Publish one atomic
+          no-overwrite decision at outputs/runs/panel_decision/registered_panel_decision.json;
+          admission failure is not a scientific decision. A selected row still
+          requires its exact full rerun; no configuration lock or OOD opening.
+  decision_reporting:
+    name: Show all saved native effects and registered gates
+    inputs:
+      - {id: decision, from: ../candidate_decision.single_decision}
+      - {id: implementation, type: data, source: outputs/code/plot_registered_panel_decision.py}
+    outputs:
+      - id: complete_panel_figure
+        type: report
+        format: directory
+        inputs: [decision, implementation]
+        description: >-
+          PNG, SVG and caption from the one fully admitted saved decision only.
+          Show all15 participant gains, three saved means, three unsubtracted
+          alignments, separate stored image/geometry null thresholds and all36
+          Boolean gates. No score recomputation or model/participant selection.
+          Development evidence remains selection-exposed; no population
+          confirmation, configuration lock or OOD result. Reporting is bounded
+          at120s internally and its exit is separate from scientific completion.
+  development_rerun:
+    name: Recompute the selected row once with its mandatory falsifiers
+    inputs:
+      - {id: decision, from: ../candidate_decision.single_decision}
+      - {id: design, from: ../fold_freeze.development_design}
+      - {id: panel, from: ../fixed_panel.panel_scores}
+      - {id: controls, from: ../controls_diagnostics.control_scores}
+      - {id: policy, from: ../policy}
+      - {id: implementation, type: data, source: outputs/code/run_selected_development_rerun.py}
+      - {id: focused_checks, type: data, source: outputs/tests/test_selected_development_rerun.py}
+      - {id: batch, type: data, source: outputs/code/selected_development_rerun.sbatch}
+    outputs:
+      - id: full_rerun
+        type: report
+        format: json
+        inputs: [decision, design, panel, controls, policy, implementation, focused_checks, batch]
+        description: >-
+          Conditional on the one saved selected_candidate_pending_exact_full_rerun
+          decision. Recompute selected VLM and DINO native/partial RSA, four
+          mandatory sensitivities, all10000 permutation components and1000
+          selected random geometries in each of25 frozen participant/fold cells.
+          Preserve original model seed indices and the original120h clock.
+          Complete nonselected null components are retained; all three-VLM
+          familywise winners, signed statistics and higher95th thresholds are
+          rebuilt with fresh DINO and compared to the immutable originals.
+          No second candidate decision, configuration lock or OOD access.
+          Existing encoding, EVC and training-context diagnostics remain complete
+          without refitting. All six focused checks run before values in each
+          substantive unit allocation. Root first selects the actual candidate
+          and remaining budget, then submits array slots1-24%24 with the explicit
+          one-hour override and argument unit. One dependent90-minute job runs
+          slot0 and collection, aggregating the short final stage with useful
+          computation. Root binds EP04_RERUN_ARRAY_JOB to that actual array ID;
+          no standalone collector allocation, automatic retry or successor.
+          Fixed fresh output is outputs/runs/selected_development_rerun/20261005-once01/collection/selected_development_rerun.json.
+          Closed/missing decisions or incomplete/mismatched units cannot report
+          successful rerun completion. Preparation alone grants no launch.
+        recipe:
+          command: >-
+            test -n "$EP04_RERUN_ARRAY_JOB" &&
+            sbatch --dependency="afterok:$EP04_RERUN_ARRAY_JOB" --kill-on-invalid-dep=yes
+            outputs/code/selected_development_rerun.sbatch finish
+          resources: {cpus: 1, memory: 4Gi, time_limit: 90m}
+  configuration_lock:
+    name: Record the one write-once native-geometry configuration
+    inputs:
+      - {id: decision, from: ../candidate_decision.single_decision}
+      - {id: rerun, from: ../development_rerun.full_rerun}
+    outputs:
+      - {id: locked_configuration, type: report, format: json}
+  ood_audit:
+    name: Execute the sealed within-category boundary audit once
+    inputs:
+      - {id: lock, from: ../configuration_lock.locked_configuration}
+      - {id: source, from: ../source_readiness.qualified_source}
+      - {id: policy, from: ../policy}
+    outputs:
+      - id: boundary_report
+        type: report
+        format: json
+        description: >-
+          Conditional future report after an independent custodian verifies
+          exposure, permissions and complete non-neural coverage; no runner
+          or audit source is currently bound.

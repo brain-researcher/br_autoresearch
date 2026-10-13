@@ -1,0 +1,18 @@
+{
+  "schema_version": "ep21.reviewed_pre_admission_replacement.v1",
+  "reviewed_utc": "2026-10-07T00:58:00Z",
+  "reviewer": "coordinating_agent",
+  "predecessor_job_id": "46839670_7",
+  "predecessor_allocation_job_id": "46839670",
+  "work_item_id": "work_0008",
+  "array_index": 7,
+  "failure_reason": "actual_work_item_allocation_mismatch",
+  "shard_directory_absent": true,
+  "request_or_status_created": false,
+  "scientific_payload_admitted": false,
+  "automatic_retry": false,
+  "fix_evidence": "verify_allocation now queries exact SLURM_ARRAY_JOB_ID_SLURM_ARRAY_TASK_ID, requires one scheduler record and matches actual numeric JobId plus both array IDs; independent static review passed. Six regression checks and the reviewed-replacement accounting checks must pass inside the replacement allocation before payload access.",
+  "terminal_evidence": "Coordinator sacct observation 2026-10-07T00:55:42Z: 46839670_7 numeric46839670 FAILED2:0 AllocCPUS1 ElapsedRaw15; exact15-second parent charge recorded once in submission.jsonl. stdout reports actual_work_item_allocation_mismatch. Exact task-qualified scontrol returns only task7; bare master returns all8 task records, ending with task0 and explaining the original flattened mismatch.",
+  "absence_evidence": "Coordinator bounded observation after the2026-10-07T00:55:42Z scheduler closeout: outputs/decoder_training/full_continuation_001/shards/work_0008 does not exist. All seven other assignments have their own admitted requested_units.json records with matching distinct job IDs; none owns work_0008.",
+  "user_authorization_context": "The scientist's 'ok shall we resume now' continues the approved 500 allocated CPU-hour aggregate, maximum8 concurrent1CPU/7GiB workers,0GPU,500GB decoder-only grant and the standing instruction to finish authorized jobs. Coordinator selects one diagnosed mechanical pre-admission replacement, preserving the15-second failed attempt, exact75 immutable scientific assignments and original authority/manifest; no new scientific comparison, automatic retry or aggregate-resource increase is authorized. This explicit repair is an additional execution attempt for the same unstarted assignment."
+}

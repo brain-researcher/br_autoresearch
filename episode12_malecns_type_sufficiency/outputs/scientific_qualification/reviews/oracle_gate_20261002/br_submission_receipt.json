@@ -1,0 +1,150 @@
+{
+  "ok": true,
+  "directive_id": "ext_review_dir_c87e4d3047c6",
+  "verdict_id": "ext_review_verdict_084bd26019de",
+  "stored_at": "2026-10-02T18:06:34Z",
+  "reviewer": "codex/root/interpret_gate with root evidence cross-check",
+  "inner_verdict": {
+    "correctness": {
+      "decision": "pass",
+      "findings": []
+    },
+    "judgment": {
+      "decision": "sound",
+      "estimand_complete": true,
+      "method_defensible": true,
+      "issues": [
+        "Review is limited to completed look6, the frozen oracle specification and relevant wrappers; it is not full estimator conformance or episode acceptance.",
+        "Oracle precision uncertainty is distinct from false-M, false-adequacy and interval-coverage validity.",
+        "Constant-variance width extrapolation suggests possible unresolved precision at the frozen cap but is not an observed outcome or stopping rule.",
+        "The simultaneous oracle enclosure retains the declared multivariate-CLT assumption; error-budget accounting alone does not establish exact finite-sample coverage."
+      ],
+      "reviewer_questions": [],
+      "judgment_status": "ok",
+      "judge_transport_error": null,
+      "raw_response_text": null
+    },
+    "completeness": {
+      "decision": "incomplete",
+      "checklist": {
+        "oracle_estimand_declared": true,
+        "seed_namespace_declared": true,
+        "multiplicity_and_error_budget_declared": true,
+        "bounded_look_schedule_declared": true,
+        "completed_look6_reviewed": true,
+        "all_cell_precision_reached": false,
+        "full_operating_characteristic_qualification_available": false,
+        "real_development_replay_released": false
+      },
+      "missing_caveats": [
+        "Later aggregate precision and full generated-method qualification remain unresolved.",
+        "No real-connectivity result, final-data result, Formal Society decision or canonical acceptance is evaluated."
+      ]
+    },
+    "review_scope": "pipeline_run",
+    "overall_decision": "explore_more",
+    "claim_strength": null,
+    "report_action": "continue_loop",
+    "required_next_actions": [
+      "Continue only the already-running frozen refinement through aggregate-directed looks7/8; do not duplicate it or infer results from partial shards.",
+      "Run the existing dependent generated qualification only if the latest aggregate satisfies its precision-release guards.",
+      "Require passing frozen conformance and operating-characteristic qualification before real-development prefix replay; apply production readiness before subsequent adaptive work.",
+      "If the frozen oracle bound remains unresolved, fail closed and request a scientific amendment before extending resources, changing thresholds or continuing past the gate."
+    ],
+    "validation_status": {
+      "review_directive": "ext_review_dir_c87e4d3047c6",
+      "evidence_scope": "generated completed-look6 summaries and frozen qualification/refinement contracts",
+      "current_action": "unchanged; existing bounded refinement remains scientifically defensible",
+      "operating_characteristic_validity": "not yet established by look6",
+      "final_connectivity": "not accessed; authorization unchanged"
+    },
+    "line_directive": null,
+    "rationale": "The scoped correctness review identifies no diagnosed failure requiring repair or cancellation. Completeness remains incomplete, so the directive's overall rollup is explore_more. Here continue_loop means only the existing authorized bounded EP12 refinement and its guarded generated-qualification dependency; it grants no new execution authority."
+  },
+  "kg_rule_feedback": {
+    "registry_id": "scientific_review_rule_registry_v1",
+    "cited_rule_ids": [],
+    "kg_rule_hits": [],
+    "unknown_rule_ids": [],
+    "status": "no_rule_citations"
+  },
+  "logged_event_id": "research_evt_0002",
+  "logged_run_id": "br_20261002_180338_768d0b0039",
+  "_agent_directive": {
+    "review_handoff": {
+      "protocol": "br.review_handoff.directive.v1",
+      "review_type": "scientific_review",
+      "inner_verdict": {
+        "overall_decision": "explore_more",
+        "correctness_decision": "pass",
+        "judgment_decision": "sound",
+        "completeness_decision": "incomplete",
+        "claim_strength": null,
+        "report_action": "continue_loop",
+        "line_directive": null,
+        "required_next_actions": [
+          "Continue only the already-running frozen refinement through aggregate-directed looks7/8; do not duplicate it or infer results from partial shards.",
+          "Run the existing dependent generated qualification only if the latest aggregate satisfies its precision-release guards.",
+          "Require passing frozen conformance and operating-characteristic qualification before real-development prefix replay; apply production readiness before subsequent adaptive work.",
+          "If the frozen oracle bound remains unresolved, fail closed and request a scientific amendment before extending resources, changing thresholds or continuing past the gate."
+        ],
+        "missing_caveats": [
+          "Later aggregate precision and full generated-method qualification remain unresolved.",
+          "No real-connectivity result, final-data result, Formal Society decision or canonical acceptance is evaluated."
+        ],
+        "missing_checklist_items": [
+          "all_cell_precision_reached",
+          "full_operating_characteristic_qualification_available",
+          "real_development_replay_released"
+        ]
+      },
+      "findings_summary": [
+        "COMPLETENESS: Later aggregate precision and full generated-method qualification remain unresol",
+        "COMPLETENESS: No real-connectivity result, final-data result, Formal Society decision or canon"
+      ],
+      "reviewer_questions": [
+        "Review is limited to completed look6, the frozen oracle specification and relevant wrappers; it is not full estimator conformance or episode acceptance.",
+        "Oracle precision uncertainty is distinct from false-M, false-adequacy and interval-coverage validity.",
+        "Constant-variance width extrapolation suggests possible unresolved precision at the frozen cap but is not an observed outcome or stopping rule.",
+        "The simultaneous oracle enclosure retains the declared multivariate-CLT assumption; error-budget accounting alone does not establish exact finite-sample coverage."
+      ],
+      "actions": [
+        {
+          "type": "independent_second_opinion",
+          "required": false,
+          "reason": "inner_model_flagged_issues",
+          "prompt": "The BR scientific review flagged methodological or specification issues in this run. As an independent reviewer with access to the user's conversation context, assess: (1) whether the flagged scientific or completeness issues are genuine concerns or already acknowledged by the user, (2) whether the statistical method matches the experimental design, and (3) whether additional reviewer questions should be raised. Do not assume the internal review is correct; form your own judgment."
+        },
+        {
+          "type": "acknowledge_or_override",
+          "required": false,
+          "reason": "user_may_have_context",
+          "prompt": "If the user has previously acknowledged any flagged scientific caveat or missing specification, note that context rather than re-flagging it without qualification."
+        }
+      ]
+    },
+    "research_logging": {
+      "protocol": "br.research_logging.directive.v1",
+      "state": {
+        "session_id": "codex:01a0f493-e4a4-70a0-be03-a76cafbde7de",
+        "client_session_id": "01a0f493-e4a4-70a0-be03-a76cafbde7de",
+        "source_client": "codex",
+        "snapshot_required_on_close": true,
+        "session_closed": false,
+        "post_close_actions_available": false,
+        "note_policy": "optional_enrichment_only",
+        "server_mid_session_telemetry": true,
+        "transcript_capture_supported": true,
+        "external_trace_capture_supported": true,
+        "preferred_transcript_context_key": "transcript",
+        "preferred_trace_context_key": "external_trace_events"
+      },
+      "actions": [],
+      "directive_ref": {
+        "mode": "compact_repeat",
+        "full_directive_emitted_once": true,
+        "refresh": "Set BR_MCP_RESEARCH_LOGGING_DIRECTIVE_MODE=always to receive the full closeout instruction block on every response."
+      }
+    }
+  }
+}

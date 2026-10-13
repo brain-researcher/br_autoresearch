@@ -1,10 +1,78 @@
 # EP11 paper plan — Do nearby somatosensory neurons use reusable output patterns?
 
-Writing revision: 2026-09-30. This is a prospective anatomical inference plan,
-not a biological result, cohort activation or authorization to open outcomes.
-Existing execution contracts govern active work; this narrative changes no
-operative endpoint, role assignment or decision rule. Actual feasibility and
-optimizer history stay in [experiment_log.md](experiment_log.md).
+Writing revision: 2026-09-30. This is an anatomical inference plan, not a
+biological result or authorization to open outcomes. The operative v2
+56-coordinate endpoint, B/P/C/D/H grammar, 12/8/16 role design, and frozen
+decision rules remain unchanged. Detailed feasibility and optimizer history
+stay in [GOAL.md](../GOAL.md) and [experiment_log.md](experiment_log.md).
+
+## October 6 public-source update — release locations, no new identity certification
+
+The official [Gao reconstruction release](https://zenodo.org/records/16909126)
+still identifies the Allen-CCFv3 SWC archive `data_v3.zip`. The associated
+[publication's data-availability statement](https://www.sciencedirect.com/science/article/pii/S0896627325008001)
+also names the [Brain Science Data Center distribution](https://doi.org/10.12412/BSDC.1747279998.20001)
+and a provider resource-request route. The publication supports that alternate
+distribution link; its contents were not separately acquired or inspected.
+
+This bounded online review found no new authenticated animal-ID crosswalk,
+one-sample-per-animal statement, or cell-specific completeness/truncation
+record. That is a limit of this review, not proof that such records do not
+exist. The current 36 brain/sample pairs remain grouping proxies. General
+whole-brain wording cannot establish independence or certify every cell;
+completeness remains EP11's own outcome-blind eligibility rule, not a newly
+required provider certificate. A focused next source request would seek exact
+identity and reconstruction evidence. No request was sent, projection payload
+opened, EP09 crosswalk reused, or expired execution window extended.
+
+## October 6 review — primary closure and optional exploratory draft
+
+**Verified status:** production recovery and precision remain unqualified;
+the latest bounded H attempt is closed after timeout, and the renewed window
+expired at **2026-10-06 01:12:23 UTC**. Real projection outcomes remain closed.
+The two H attempts cost approximately **374.45 allocated CPU-hours** in total:
+158.4267 hours for the completed attempt that failed its initializer-recovery
+gates, and 216.025 hours for the timed-out successor. The successor's terminal
+scientific artifact remains unverified, not proven absent. This is not a
+single 374-hour completed qualification or an established biological failure.
+
+The often-quoted **51 audit units** is a conditional calculation using the
+synthetic diagnostic's observed unit variance for a one-sided half-width
+below 0.05 nats/neuron. Its **D12/A23** arm had a mean half-width of 0.0759
+and passed that precision threshold in only 0.219 of 32 repeats. That arm is
+itself an infeasible diagnostic ceiling, not 23 qualified available audit
+animals. The geometry frontier assigned at most 33 units under each tested
+depth convention, without one common expanded assignment. A subsequent
+generator audit invalidated the absolute proxy-effect calibration while
+preserving the paired arm comparison. Thus 51 is a warning about the tested
+precision regime, not a universal sample-size theorem or a production power
+calculation. See the diagnostic discussion in [GOAL.md](../GOAL.md)
+and the preserved September 26 execution entry.
+
+Animal independence still requires authentic identity evidence. In contrast,
+completeness/truncation/registration eligibility is EP11's own outcome-blind
+measurement rule to specify and apply using adequate reconstruction evidence;
+it is not necessarily a missing provider-issued pass/fail certificate. Neither
+identity confirmation nor better optimization alone resolves precision.
+
+**Scientist-adopted disposition, October 6:** close the current cross-animal primary as
+unresolved/incomplete at its expired bound, preserving every attempt and the
+absence of an empirical adjudication. Do not call the result continuity,
+absence of reusable patterns, or an informative biological null. The exact
+acceptance and preserved boundaries are in the [adoption record](experiment_log.md#2026-10-06--population_h_optimizer_recovery--scientist-adopted-primary-closeout).
+
+An optional **draft-only, still unadopted** alternative would describe one anatomy-selected
+allocation contrast in the fixed 56-coordinate vocabulary using only the
+existing prospective development role, after identity interpretation,
+outcome-blind eligibility, shared exposure and the exact authorized role view
+are resolved. It would show every eligible group and a fixed spatial baseline;
+it would not search for projection groups, compare the full C/H families,
+open audit/reserve outcomes, or claim cross-animal confirmation. A proposed
+**at-most-48-CPU-hour aggregate cap** would include preparation, fitting and
+reporting and prohibit automatic retries. This is a review ceiling, not new
+compute allowance: adopting an exact estimand, reader boundary and explicit
+time/resource authorization would still be necessary. No new allocation or
+synthetic qualification is selected by this draft.
 
 ![EP11 scientific question schematic](ep11_conceptual_question-v2.png)
 
@@ -26,18 +94,28 @@ and improves prediction beyond a qualified continuum. A sufficiently precise
 continuous result would bound the added value of the tested group description.
 Neither result would discover molecular or functional cell types.
 
-## What the proposed data must support
+## What the current data can and cannot answer
 
-The proposed Gao study uses brain/sample units only as inventory identifiers
-until independent-animal identity is established. Its intended regional outcome
-and role layout require their own prospective execution contract; a paper plan
-does not activate them. Geometry support alone cannot establish reconstruction
-eligibility, group recovery or sufficient precision.
+The prospective scope is 206 axon/dendrite-distinguished reconstructions in
+36 one-to-one fMOST/provider-sample pairs. The pairs are verified inventory
+units, not provider-certified independent animals. The active design uses
+12 development and eight audit units, with 16 unassigned reserves; no role
+assignment is locked and no real regional projection vector is open.
 
-A paper-level result requires both production recovery and adequate uncertainty
-at the biological-replicate level. More simulated draws can improve a numerical
-check but cannot increase the real number of independent replicates. More cells
-cannot silently substitute for more animals or justified replicate units.
+The geometry screen establishes that some intended allocations are feasible.
+It does not establish animal independence, complete reconstructions, group
+recovery, or adequate precision. Existing synthetic recovery and precision
+checks have not qualified the production evaluator. The passing population-C
+pilot closes one optimizer diagnostic only. The completed fitted-H attempt
+failed its recovery gates; its selected successor timed out with the terminal
+artifact unresolved, as recorded in the October 5 closeout. No fresh scheduler
+or scratch inspection was performed for this writing revision.
+
+Consequently the current evidence cannot establish groups, prove continuity,
+or substantiate a paper-level anatomical result. Even perfect recovery with
+many simulated draws would not increase the real number of independent
+replicates. Eight audit units make replicate-level uncertainty the binding
+quantity; more cells cannot silently substitute for more units.
 
 ## What has already been published
 
@@ -74,7 +152,7 @@ prior study has performed a comparable held-out adjudication.
 
 ## A concrete biological object, not a clustering score
 
-The proposed Gao outcome is a 56-coordinate composition: relative axon
+The existing primary outcome is a 56-coordinate composition: relative axon
 centerline length in 28 fixed named Allen targets, crossed with laterality.
 Passing grey-matter axon contributes. Normalization discards total
 named-target length. This is not synapse count, terminal-arbor mass,
@@ -195,8 +273,8 @@ primary release, not a blanket guarantee of independent animals or pipelines.
 
 ## Present handoff
 
-This is a prospective paper-design handoff. Existing execution contracts,
-scientist authority and recorded attempts remain separate; see the
-[execution ledger](experiment_log.md) for current stage and next action.
-This writing task submits no jobs, changes no compute budget and grants no
-new outcome access.
+The original v2 cross-animal primary is closed unresolved/incomplete under
+the October 6 adopted disposition. Preserve the recorded qualification
+attempts and their limits; real regional outcomes and audit remain closed.
+The optional narrower design is still a draft, with no successor, renewed
+window, additional compute budget or new outcome access selected.

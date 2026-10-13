@@ -1,5 +1,26 @@
 # At what biological resolution does dendrite–projectome coupling live?
 
+## Current feasibility and proposed route, October 6
+
+The preserved October 3 non-axon metadata join matches 38 brains to 38 distinct animals,
+but only 12 animals have documented cortical IT-driver support before further
+restrictions. The original 12-development/8-audit study is therefore blocked
+on this label source. The October 6 provider check separately authenticates
+brain/animal `236174`, image `16124` and its Gnb4 genotype; identity is no
+longer missing. This does not establish a thirteenth eligible primary IT
+animal. [DATASETS](DATASETS.md#primary-source) records the correction while
+preserving the original exact-Image-ID join.
+
+The [living plan](outputs/paper_plan.md#october-6-metadata-feasibility-and-unadopted-exploratory-route)
+now refines that bound directly from retained permitted metadata: only two
+animals have recorded driver-compatible exact source/layer strata large enough
+for four nonself donors, before finer class, quality and other restrictions.
+No new count job is needed. Authentic additional metadata could change that
+support. The proposed exploratory leave-one-animal-out route with at least
+nine animals remains **unadopted and unsupported by the current metadata**;
+the existing question, 12/8 roles, thresholds, budgets, access and simulation
+requirements below are not changed or activated by this factual update.
+
 ## The question in plain language
 
 Two neurons can belong to the same cortical IT population, sit in the same source

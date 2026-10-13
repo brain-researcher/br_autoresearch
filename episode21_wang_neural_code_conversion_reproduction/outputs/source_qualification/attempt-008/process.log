@@ -1,0 +1,11 @@
+{"event": "ep21_figshare_manifest_metadata_audit_started", "pid": 46002, "started_at": "2026-09-29T23:18:23+00:00"}
+Traceback (most recent call last):
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/tools/audit_manifest_metadata.py", line 393, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/tools/audit_manifest_metadata.py", line 363, in main
+    parts, logical_count = flatten_manifests(read_manifests(args.archive))
+                                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/outputs/source_qualification/tools/audit_manifest_metadata.py", line 103, in read_manifests
+    raise ValueError(f"expected one safe archive member ending {suffix!r}")
+ValueError: expected one safe archive member ending 'data/files.json'

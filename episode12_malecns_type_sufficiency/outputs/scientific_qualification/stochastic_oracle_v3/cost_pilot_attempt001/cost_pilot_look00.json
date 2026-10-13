@@ -1,0 +1,131 @@
+{
+  "all_cells_precision_met": true,
+  "bounded_full_bank_cost_projection": {
+    "cell_count": 35,
+    "explicit_shard_wall_limit_seconds": 43200,
+    "full_bank_submission_ready": true,
+    "maximum_generated_whole_types": 3500000,
+    "maximum_incremental_oracle_replicates_per_cell": 4608,
+    "maximum_oracle_replicates_per_cell": 12500,
+    "maximum_whole_types_in_one_cell_look_shard": 36864,
+    "measured_cpu_seconds_per_whole_type": 0.2686258228652341,
+    "projected_cpu_core_hours": 261.16399445231093,
+    "projected_cpu_seconds": 940190.3800283194,
+    "projected_maximum_shard_cpu_seconds": 9902.622334103991,
+    "projection_required_before_full_bank_submission": true,
+    "whole_types_per_oracle_replicate": 8
+  },
+  "cell_count": 1,
+  "cells": [
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "adequate_template__n7__N100__s1p8__m0p3",
+        "count_total": 100,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 7,
+        "scenario": "adequate_template",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9875,
+        "critical_max_t": 2.844156270455707,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.0010681221966953606,
+          0.0015250816165693032,
+          0.0012966019066323311
+        ],
+        "half_width": [
+          0.0008821712293882384,
+          0.0008601890803415302,
+          0.0006143853918795978
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.00018595096730712236,
+          0.000664892536227773,
+          0.0006822165147527334
+        ],
+        "maximum_half_width": 0.0008821712293882384,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 4095,
+        "monte_carlo_failure_probability": 0.012500000000000011,
+        "monte_carlo_quantile_order_one_based": 4060,
+        "monte_carlo_underestimate_probability_upper_bound": 0.010424437764489598,
+        "oracle_replicate_rows": 128,
+        "precision_met": true,
+        "simultaneous_cell_count": 1,
+        "simultaneous_coordinate_count": 3,
+        "standard_error": [
+          0.0003101697464910716,
+          0.00030244086419474616,
+          0.00021601674924182608
+        ],
+        "upper": [
+          0.001950293426083599,
+          0.0023852706969108334,
+          0.001910987298511929
+        ]
+      }
+    }
+  ],
+  "completed_oracle_replicates_per_cell": 128,
+  "error_accounting": {
+    "binomial_across_cells_and_readouts": "bonferroni",
+    "combined_alpha_upper_bound": 0.050000000000000044,
+    "global_oracle_interval": {
+      "cell_count": 1,
+      "confidence_level": 0.9875,
+      "coordinate_count": 3,
+      "critical_max_t": 2.844156270455707,
+      "independent_cell_multiplier_streams": true,
+      "method": "independent_cell_gaussian_multiplier_max_t",
+      "monte_carlo_draws": 4095,
+      "monte_carlo_failure_probability": 0.012500000000000011,
+      "monte_carlo_quantile_order_one_based": 4060,
+      "monte_carlo_underestimate_probability_upper_bound": 0.010424437764489598,
+      "raw_index_bootstrap_used": false
+    },
+    "oracle_across_looks": "bonferroni",
+    "oracle_all_cells_and_coordinates": "independent_cell_gaussian_multiplier_max_t",
+    "rule": "equal_split_then_union_bound",
+    "same_five_percent_spent_twice": false
+  },
+  "error_budget": {
+    "binomial_compatibility_alpha": 0.025000000000000022,
+    "binomial_readout_confidence_level": 0.99375,
+    "cell_count": 1,
+    "familywise_confidence_level": 0.95,
+    "oracle_enclosure_alpha": 0.025000000000000022,
+    "oracle_look_confidence_level": 0.9875,
+    "oracle_model_alpha": 0.012500000000000011,
+    "oracle_monte_carlo_alpha": 0.012500000000000011,
+    "oracle_monte_carlo_failure_probability_per_look": 0.012500000000000011,
+    "planned_look_count": 1,
+    "readouts_per_cell": 4,
+    "total_alpha": 0.050000000000000044
+  },
+  "final_connectivity_accessed": false,
+  "look_index": 0,
+  "measured_cpu_seconds": 137.53642130699987,
+  "next_action": {
+    "action": "oracle_precision_complete",
+    "at_bound": true,
+    "completed_rows": 128,
+    "next_rows": null
+  },
+  "real_connectivity_accessed": false,
+  "schema_version": "ep12.stochastic_oracle_coverage.v1",
+  "scientific_gate": false,
+  "summed_task_wall_seconds": 137.56621948734391,
+  "tier": "cost_pilot",
+  "whole_types_per_oracle_replicate": 4
+}

@@ -86,46 +86,92 @@ def verify_resource_authorization(
             "resource authorization requires an eligible development-only procedure lock",
         )
 
-    authorized = authorization.get("measured_planning_core_hours")
-    if authorized is None:
-        authorized = authorization.get("authorized_core_hours")
+    planning_hours = authorization.get("measured_planning_core_hours")
     _require(
-        isinstance(authorized, (int, float))
-        and not isinstance(authorized, bool)
-        and math.isfinite(float(authorized))
-        and float(authorized) > 0,
-        "authorized core hours must be positive and finite",
+        isinstance(planning_hours, (int, float))
+        and not isinstance(planning_hours, bool)
+        and math.isfinite(float(planning_hours))
+        and float(planning_hours) > 0,
+        "measured planning core hours must be positive and finite",
     )
+    _require(
+        "new_hard_cpu_ceiling" in authorization
+        and authorization.get("new_hard_cpu_ceiling") is None,
+        "minimum-full-search authorization must explicitly have no new hard CPU ceiling",
+    )
+    projected: float | None = None
     if runtime_bundle is not None:
         plan_path = runtime_bundle.resolve(strict=True) / "resource_plan.json"
         plan = _read(plan_path)
-        projected = plan.get("projected_maximum_program_allocated_core_hours")
+        projected_value = plan.get("projected_maximum_program_allocated_core_hours")
         _require(
-            isinstance(projected, (int, float))
-            and not isinstance(projected, bool)
-            and math.isfinite(float(projected)),
+            isinstance(projected_value, (int, float))
+            and not isinstance(projected_value, bool)
+            and math.isfinite(float(projected_value))
+            and float(projected_value) >= 0.0,
             "runtime resource plan lacks a finite maximum projection",
         )
-        _require(
-            float(projected) <= float(authorized),
-            "runtime resource projection exceeds the explicit authorization",
-        )
+        projected = float(projected_value)
     limits = authorization.get("unchanged_limits", {})
-    if isinstance(limits, Mapping):
-        _require(
-            int(limits.get("minimum_valid_trials", policy.minimum_valid_trials))
-            == policy.minimum_valid_trials
-            and int(limits.get("maximum_valid_trials", policy.maximum_valid_trials))
-            == policy.maximum_valid_trials,
-            "resource authorization changes the bounded-search trial limits",
-        )
+    _require(isinstance(limits, Mapping), "unchanged bounded-search limits are missing")
+    expected_limits = {
+        "minimum_valid_trials": policy.minimum_valid_trials,
+        "maximum_valid_trials": policy.maximum_valid_trials,
+        "cpu_cores_per_trial_max": policy.cpu_cores_per_trial_maximum,
+        "memory_gib_per_trial_max": policy.memory_gib_per_trial_maximum,
+        "wall_hours_per_trial_max": policy.wall_hours_per_trial_maximum,
+        "wall_clock_hour_ceiling": policy.raw["budgets"]["wall_clock_hour_ceiling"],
+        "gpu_hour_ceiling": policy.gpu_hour_ceiling,
+    }
+    _require(
+        all(float(limits.get(key, math.nan)) == float(value) for key, value in expected_limits.items()),
+        "resource authorization changes the bounded-search execution limits",
+    )
     return {
         "authorization_path": str(path),
         "authorization_source": source,
         "scope": scope,
-        "authorized_core_hours": float(authorized),
+        "measured_planning_core_hours": float(planning_hours),
+        "new_hard_cpu_ceiling": None,
+        "runtime_projected_maximum_program_allocated_core_hours": projected,
         "required_null_replicates": policy.null_replicates,
         "development_only": True,
+        "final_connectivity_accessed": False,
+        "final_connectivity_access_authorized": False,
+    }
+
+
+def assess_projected_core_hours(
+    *, projected_core_hours: float, authorization: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Record a projection under the explicit no-new-ceiling authorization."""
+
+    planning_hours = authorization.get("measured_planning_core_hours")
+    _require(
+        isinstance(projected_core_hours, (int, float))
+        and not isinstance(projected_core_hours, bool)
+        and math.isfinite(float(projected_core_hours))
+        and float(projected_core_hours) >= 0.0,
+        "projected core hours must be finite and nonnegative",
+    )
+    _require(
+        isinstance(planning_hours, (int, float))
+        and not isinstance(planning_hours, bool)
+        and math.isfinite(float(planning_hours))
+        and float(planning_hours) > 0.0,
+        "verified authorization lacks positive finite planning core hours",
+    )
+    _require(
+        authorization.get("new_hard_cpu_ceiling") is None,
+        "verified authorization unexpectedly imposes a hard CPU ceiling",
+    )
+    return {
+        "projected_core_hours": float(projected_core_hours),
+        "measured_planning_core_hours": float(planning_hours),
+        "new_hard_cpu_ceiling": None,
+        "within_explicit_authorization": True,
+        "projection_is_recorded_not_a_hard_gate": True,
+        "original_policy_cpu_ceiling_enforced": False,
         "final_connectivity_accessed": False,
         "final_connectivity_access_authorized": False,
     }
@@ -135,5 +181,6 @@ __all__ = [
     "AUTHORIZATION_SCOPE",
     "AUTHORIZATION_SOURCE",
     "ResourceAuthorizationError",
+    "assess_projected_core_hours",
     "verify_resource_authorization",
 ]

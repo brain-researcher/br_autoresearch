@@ -1,0 +1,633 @@
+"""Persistent full-array execution of a replayable, bounded window schedule.
+
+Window boundaries are storage boundaries, not electrical switches. Every raw
+aperture and digital dependency is managed by one streaming readout, while one
+NeurocamCPEArray retains all pad/source/contact/DAQ states. No schedule, physical
+parameter, field approximation, calibration or acquisition policy is inferred.
+
+A complete metadata/provider preflight precedes the first analog mutation.
+A packed digest per window binds the two traversals; per-window field digests
+then bind each value at use. These replace retained eager snapshots, not a
+provenance campaign. Inputs must remain frozen for the attempt. Failure is
+terminal; earlier emitted records and electrical advances are never replayed.
+"""
+from __future__ import annotations
+
+from collections.abc import Mapping
+from dataclasses import dataclass, fields, is_dataclass, replace
+import hashlib
+import json
+import math
+import struct
+import time
+
+import numpy as np
+
+from array_acquisition import (AcquisitionExecutionError, ArrayInputBinding,
+                               IntervalEvidence, ProviderInterval, _joint_input_digest,
+                               _daq_external_numeric_bytes, _bind_noise_provider, _provider_noise)
+from acquisition_readout import QuantizerTransfer
+from cpe_array import NeurocamCPEArray
+from polynomial_noise import NoisePolynomial
+from sparse_array_rc import SolverControls, _array
+from streaming_acquisition_readout import (ReadoutWindow, StreamingAcquisitionReadout,
+                                           StreamingReadoutLimits)
+
+
+def _finite(value, name):
+    if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, float, np.integer, np.floating)):
+        raise ValueError(f"{name} must be finite and real")
+    value = float(value)
+    if not math.isfinite(value):
+        raise ValueError(f"{name} must be finite and real")
+    return value
+
+
+@dataclass(frozen=True, slots=True)
+class StreamPhysicalInterval:
+    """A piece of one constant-field event, possibly continued across a seam.
+
+    Event IDs start at zero and increase by one. Repeating the immediately
+    preceding ID is permitted only for the first fragment of the next window;
+    it preserves the exact row, reference, DAQ selection, key and field values,
+    with empty injected charge. A new ID denotes an actual supplied input event,
+    including numerical hold changes; it does not assert a new hardware action.
+    """
+    event_index: int
+    interval: ProviderInterval
+
+    def __post_init__(self):
+        if type(self.event_index) is not int or self.event_index < 0 or not isinstance(self.interval, ProviderInterval):
+            raise ValueError("explicit nonnegative event index and compact ProviderInterval required")
+
+
+@dataclass(frozen=True, slots=True)
+class ArrayWindow:
+    index: int
+    start: float
+    end: float
+    physical_intervals: tuple
+    readout_window: ReadoutWindow
+
+    def __post_init__(self):
+        if type(self.index) is not int or self.index < 0 or not isinstance(self.physical_intervals, tuple):
+            raise ValueError("explicit window index and finite tuple of physical fragments required")
+        start, end = _finite(self.start, "window start"), _finite(self.end, "window end")
+        if start >= end or not math.isfinite(end - start) or not isinstance(self.readout_window, ReadoutWindow):
+            raise ValueError("positive finite window and explicit ReadoutWindow required")
+        object.__setattr__(self, "start", start)
+        object.__setattr__(self, "end", end)
+
+
+@dataclass(frozen=True)
+class StreamingArrayLimits:
+    max_windows: int
+    max_input_bindings: int
+    max_physical_events: int
+    max_total_fragments: int
+    max_window_fragments: int
+    max_split_intervals: int
+    max_window_split_intervals: int
+    max_stored_window_numeric_bytes: int
+    max_window_digest_bytes: int
+    max_total_operator_products: int
+
+    def __post_init__(self):
+        for name, value in vars(self).items():
+            if type(value) is not int or value < 1:
+                raise ValueError(f"{name} must be an explicit positive integer")
+
+
+def _canonical(value, quantizers):
+    if isinstance(value, QuantizerTransfer):
+        identity = id(value)
+        if identity not in quantizers:
+            digest = hashlib.sha256()
+            digest.update(struct.pack("<ddQQ", value.input_min_volts, value.input_max_volts,
+                                      len(value.thresholds_volts), len(value.code_volts)))
+            for sequence in (value.thresholds_volts, value.code_volts):
+                # Preserve the scalar little-endian byte stream, including
+                # signed zero, without one Python pack/update call per value.
+                # Temporary packed data is at most 32 KiB. The tuple slice and
+                # argument expansion additionally retain O(4096) references
+                # to existing floats: conservatively three pointer arrays
+                # (~96 KiB on 64-bit CPython), plus object headers. These are
+                # transient hash workspace under the caller's RSS guard,
+                # not stored window history or a cross-window transfer cache.
+                for offset in range(0, len(sequence), 4096):
+                    chunk = sequence[offset:offset + 4096]
+                    digest.update(struct.pack(f"<{len(chunk)}d", *chunk))
+            quantizers[identity] = digest.hexdigest()
+        # Equal transfer values produce the same digest independently of the
+        # identity/sharing pattern used by the replayed immutable records.
+        return {"quantizer_value_sha256": quantizers[identity]}
+    if is_dataclass(value):
+        return {field.name: _canonical(getattr(value, field.name), quantizers) for field in fields(value)}
+    if isinstance(value, Mapping):
+        return {key: _canonical(item, quantizers) for key, item in value.items()}
+    if isinstance(value, (tuple, list)):
+        return [_canonical(item, quantizers) for item in value]
+    if value is None or type(value) in (str, int, float, bool):
+        return value
+    if isinstance(value, np.integer):
+        return int(value)
+    if isinstance(value, np.floating):
+        return float(value)
+    raise ValueError("window metadata must consist of explicit scalar/dataclass records")
+
+
+def _window_digest(window, field_digests):
+    digest, quantizers = hashlib.sha256(), {}
+    encoder = json.JSONEncoder(sort_keys=True, allow_nan=False, separators=(",", ":"))
+    def record(value):
+        for part in encoder.iterencode(_canonical(value, quantizers)):
+            digest.update(part.encode("utf-8"))
+        digest.update(b"\n")
+    record((window.index, window.start, window.end))
+    record(("physical_intervals", len(window.physical_intervals)))
+    for fragment in window.physical_intervals:
+        record(fragment)
+    readout = window.readout_window
+    record((readout.index, readout.start, readout.end))
+    for name in ("conversions", "returned_samples", "observations", "raw_last_use_windows",
+                 "sample_last_use_windows", "nuisance_bindings"):
+        sequence = getattr(readout, name)
+        record((name, len(sequence)))
+        for item in sequence:
+            record(item)
+    digest.update(field_digests)
+    return digest.digest()
+
+
+@dataclass
+class _PlanCursor:
+    time: float
+    windows: int = 0
+    last_event: int = -1
+    last_signature: object = None
+    events: int = 0
+    fragments: int = 0
+    splits: int = 0
+
+
+class StreamingArrayAcquisition:
+    """One preflighted finite attempt; summaries and bounded callbacks only.
+
+    ``window_factory()`` must return a fresh deterministic iterator over the
+    same immutable ArrayWindow records. ``field_provider(key)`` is frozen and
+    deterministic. All fields are prevalidated, then a regenerated window is
+    checked before its first physical advance; fields are checked again at use.
+    Optional noise_provider(key) uses the same existing key and the array's
+    immutable physical port layout. Its original amplitudes join those same
+    digests, and the one live sample is held across every aperture/solver split.
+    Window seams repeat a deterministic evaluation of the same key, not a draw.
+    One 32-byte digest/window is retained under a separate explicit cap. No full
+    conversion/field/state trajectory or publication history is retained here.
+
+    Physical windows exactly cover acquisition_window, including unsampled
+    periods. A later publication horizon advances digital availability only.
+    Callbacks belong to the internal simulator/output sink, never a policy.
+    The window numeric cap includes field digests, one live 4096-value field,
+    the shared zero-charge vector and one full sparse-charge expansion buffer.
+    Each retained external input voltage adds eight bytes per physical fragment.
+    A configured noise provider adds one live physical-amplitude vector per
+    window, never a vector per retained event or fragment. Temporary physical
+    projection/digest arrays remain solver/provider workspace, not history.
+    Numeric-byte limits exclude Python objects, the supplied array, readout
+    storage (separately capped), provider parameters and solver workspace.
+    ``check`` supplies the caller's deadline/cancellation guard; it is invoked
+    between finite operations and cannot interrupt an ongoing sparse solve.
+    Do not advance or mutate the supplied array outside this attempt.
+    """
+    def __init__(self, *, array, window_factory, field_provider, input_bindings,
+                 acquisition_window, final_publication_horizon, controls, limits,
+                 readout_limits, on_raw, on_observation, on_interval, check,
+                 observation_nuisance=None, noise_provider=None):
+        if (not isinstance(array, NeurocamCPEArray) or not isinstance(controls, SolverControls)
+                or not isinstance(limits, StreamingArrayLimits)
+                or not isinstance(readout_limits, StreamingReadoutLimits)):
+            raise ValueError("explicit full array, numerical controls and streaming limits required")
+        if any(not callable(value) for value in (window_factory, field_provider, on_raw, on_observation, on_interval, check)):
+            raise ValueError("explicit replayable factory, provider, sinks and deadline guard required")
+        bounds = tuple(acquisition_window)
+        if len(bounds) != 2:
+            raise ValueError("explicit acquisition start/end required")
+        start, end = (_finite(bounds[0], "acquisition start"), _finite(bounds[1], "acquisition end"))
+        horizon = _finite(final_publication_horizon, "final publication horizon")
+        if start >= end or not math.isfinite(end - start) or horizon < end:
+            raise ValueError("positive finite physical window and later digital horizon required")
+        bindings = []
+        for binding in input_bindings:
+            check()
+            if not isinstance(binding, ArrayInputBinding) or len(bindings) >= limits.max_input_bindings:
+                raise ValueError("unsupported/excessive input binding")
+            bindings.append(binding)
+        by_id = {binding.input_id: binding for binding in bindings}
+        if not bindings or len(by_id) != len(bindings):
+            raise ValueError("nonempty unique input bindings required")
+        hold_ids = set() if array.daq_frontend is None else {g.adc_id for g in array.daq_frontend.groups}
+        for binding in bindings:
+            if (binding.kind == "hold" and binding.hold_adc_id not in hold_ids
+                    or binding.kind == "source" and binding.adc_id in hold_ids):
+                raise ValueError("bindings must use the assembled physical ADC/hold path")
+        self._array, self._factory, self._provider = array, window_factory, field_provider
+        self._noise_layout, self._noise_bytes = _bind_noise_provider(array, noise_provider)
+        self._noise_provider = noise_provider
+        self._bindings, self._limits, self._controls = by_id, limits, controls
+        self._check, self._on_interval = check, on_interval
+        self._start, self._end, self._horizon = start, end, horizon
+        self._readout_kwargs = dict(input_ids=tuple(by_id), acquisition_start=start,
+            acquisition_end=end, final_publication_horizon=horizon, limits=readout_limits,
+            observation_nuisance=observation_nuisance)
+        self._zero_charge = np.zeros(len(array.state_ids))
+        self._zero_charge.flags.writeable = False
+        self._max_window_numeric_bytes = 0
+        self._preflight(on_raw, on_observation)
+        self._physical_time, self._status, self._failure = start, "ready", None
+        self._iterator = iter(window_factory())
+        self._cursor = _PlanCursor(start)
+        self._operators = self._updates = self._events_started = self._fragments_executed = 0
+        self._last_executed_event = -1
+        self._failed_operator_upper = 0
+        self._max_error = self._solver_seconds = self._failed_solver_seconds = 0.
+        self._maximum_returned_step_seconds = 0.
+        self._energy_start = self._energy_end = None
+        self._accounting_complete = True
+        self._numerical_integration = None
+        self._work = dict.fromkeys(("field_source_boundary_work_joule", "supplied_charge_boundary_work_joule",
+                                   "field_source_interval_work_joule", "daq_external_source_interval_work_joule",
+                                   "controlled_voltage_source_interval_work_joule",
+                                   "conditioning_drive_branch_dissipation_joule",
+                                   "noise_current_source_interval_work_joule",
+                                   "noise_access_voltage_source_interval_work_joule",
+                                   "physical_boundary_energy_change_joule",
+                                   "physical_interval_energy_change_joule"), 0.)
+        self._report = None
+
+    def _new_readout(self, *, validate_only, on_raw, on_observation):
+        return StreamingAcquisitionReadout(**self._readout_kwargs, on_raw=on_raw,
+                                           on_observation=on_observation, validate_only=validate_only)
+
+    def _prepare(self, raw_window, cursor):
+        self._check()
+        if not isinstance(raw_window, ArrayWindow):
+            raise ValueError("window_factory must produce ArrayWindow records")
+        window = raw_window
+        if (window.index != cursor.windows or window.start != cursor.time or window.end > self._end
+                or cursor.windows >= self._limits.max_windows
+                or (window.readout_window.index, window.readout_window.start, window.readout_window.end)
+                    != (window.index, window.start, window.end)):
+            raise ValueError("physical/readout windows must be identical, contiguous and consecutively indexed")
+        count = len(window.physical_intervals)
+        if not 0 < count <= self._limits.max_window_fragments:
+            raise ValueError("window fragment count exceeds its explicit bound")
+        if cursor.fragments + count > self._limits.max_total_fragments:
+            raise ValueError("total physical fragment cap exceeded")
+        numeric_bytes = 32 * count + 8 * 4096 + 2 * self._zero_charge.nbytes + self._noise_bytes
+        copied, digests, local = [], bytearray(), replace(cursor)
+        position = window.start
+        for fragment in window.physical_intervals:
+            self._check()
+            if not isinstance(fragment, StreamPhysicalInterval):
+                raise ValueError("explicit indexed physical fragments required")
+            event = fragment.interval
+            a, b = _finite(event.start, "event start"), _finite(event.end, "event end")
+            if a != position or not a < b <= window.end or not math.isfinite(b - a):
+                raise ValueError("physical fragments must cover each window exactly")
+            if (type(event.gate_row) is not int or not 0 <= event.gate_row < 64
+                    or event.voltage_reference_id != self._array.voltage_reference_id):
+                raise ValueError("legal row and unchanged explicit voltage reference required")
+            frontend = self._array.daq_frontend
+            if frontend is None:
+                if event.daq_selected_sources is not None:
+                    raise ValueError("DAQ selections require the explicit assembled frontend")
+            else:
+                frontend.resistor_edges(selected_sources=event.daq_selected_sources, source_node_offset=4096,
+                    first_hold_state=len(self._array.state_ids) - frontend.hold_state_count)
+                frontend.external_drives(selected_sources=event.daq_selected_sources,
+                    first_hold_state=len(self._array.state_ids) - frontend.hold_state_count,
+                    voltage_reference_id=event.voltage_reference_id)
+            if any(index >= len(self._zero_charge) for index, _ in event.injected_charge_coulomb):
+                raise ValueError("sparse charge lies outside the full retained state")
+            numeric_bytes += (16 * len(event.injected_charge_coulomb)
+                              + _daq_external_numeric_bytes(event.daq_selected_sources))
+            if numeric_bytes > self._limits.max_stored_window_numeric_bytes:
+                raise ValueError("retained window numeric-byte cap exceeded")
+            normalized = ProviderInterval(a, b, event.gate_row, event.field_key, event.voltage_reference_id,
+                                           event.daq_selected_sources, event.injected_charge_coulomb)
+            field = _array("provider field", self._provider(normalized.field_key), (64, 64))
+            noise = _provider_noise(self._array, self._noise_provider, self._noise_layout, normalized.field_key,
+                                    normalized.daq_selected_sources, interval_start=a, interval_end=b,
+                                    admitted_numeric_bytes=self._noise_bytes, verify_only=True)
+            digest = _joint_input_digest(field, noise, noise_provider=self._noise_provider)
+            del field, noise
+            selection = None if normalized.daq_selected_sources is None else tuple(sorted(normalized.daq_selected_sources.items()))
+            signature = (normalized.gate_row, normalized.field_key, normalized.voltage_reference_id, selection, digest)
+            if fragment.event_index == local.last_event:
+                if copied or window.index == 0 or signature != local.last_signature or normalized.injected_charge_coulomb:
+                    raise ValueError("seam continuation must retain the exact held event without new charge")
+            elif fragment.event_index == local.last_event + 1:
+                local.events += 1
+                if local.events > self._limits.max_physical_events:
+                    raise ValueError("unique physical input-event cap exceeded")
+            else:
+                raise ValueError("physical event IDs must start at zero and advance consecutively")
+            local.last_event, local.last_signature = fragment.event_index, signature
+            copied.append(StreamPhysicalInterval(fragment.event_index, normalized))
+            digests.extend(digest)
+            position = b
+        if position != window.end:
+            raise ValueError("window has an unrepresented physical gap")
+        normalized_window = ArrayWindow(window.index, window.start, window.end, tuple(copied), window.readout_window)
+        local.time, local.windows, local.fragments = window.end, cursor.windows + 1, cursor.fragments + count
+        self._max_window_numeric_bytes = max(self._max_window_numeric_bytes, numeric_bytes)
+        return normalized_window, bytes(digests), local
+
+    def _splits(self, window, readout):
+        boundaries = {window.start, window.end}
+        boundaries.update(fragment.interval.start for fragment in window.physical_intervals)
+        boundaries.update(t for t in readout.required_aperture_boundaries if window.start < t < window.end)
+        if len(boundaries) - 1 > self._limits.max_window_split_intervals:
+            raise ValueError("live-window split count exceeds its finite cap")
+        ordered, index = sorted(boundaries), 0
+        for start, end in zip(ordered, ordered[1:]):
+            while start >= window.physical_intervals[index].interval.end:
+                index += 1
+            yield index, start, end
+
+    def _validate_bindings(self, window, used):
+        for conversion in window.readout_window.conversions:
+            binding = self._bindings.get(conversion.input_id)
+            if binding is None or binding.adc_id != conversion.adc_id:
+                raise ValueError("raw conversion must match its explicit source/hold ADC binding")
+            used.add(conversion.input_id)
+
+    def _preflight(self, on_raw, on_observation):
+        cursor, digests, used = _PlanCursor(self._start), bytearray(), set()
+        dry = self._new_readout(validate_only=True, on_raw=lambda _: None, on_observation=lambda _: None)
+        for supplied in self._factory():
+            window, fields, following = self._prepare(supplied, cursor)
+            if len(digests) + 32 > self._limits.max_window_digest_bytes:
+                raise ValueError("complete-plan window-digest cap exceeded")
+            self._validate_bindings(window, used)
+            dry.accept_window(window.readout_window)
+            for _, start, end in self._splits(window, dry):
+                self._check()
+                following.splits += 1
+                if following.splits > self._limits.max_split_intervals:
+                    raise ValueError("complete-plan interval-update cap exceeded")
+                dry.validate_interval(start=start, end=end, input_ids=dry.active_input_ids(start, end))
+                dry.advance_publication(end)
+            dry.close_window(window.index)
+            digests.extend(_window_digest(window, fields))
+            cursor = following
+        if not cursor.windows or cursor.time != self._end or used != set(self._bindings):
+            raise ValueError("the complete physical record and exact input bindings must be covered")
+        self._check()
+        dry_report = dry.finalize()
+        self._expected_digests = bytes(digests)
+        self._expected_windows = cursor.windows
+        self._preflight_report = dict(windows=cursor.windows, physical_input_events=cursor.events,
+            physical_fragments=cursor.fragments, split_intervals=cursor.splits,
+            window_digest_bytes=len(digests), maximum_window_numeric_bytes=self._max_window_numeric_bytes,
+            readout=dry_report)
+        self._readout = self._new_readout(validate_only=False, on_raw=on_raw, on_observation=on_observation)
+
+    @property
+    def status(self):
+        return self._status
+
+    @property
+    def physical_time(self):
+        return self._physical_time
+
+    @property
+    def failure(self):
+        return None if self._failure is None else dict(self._failure)
+
+    @property
+    def preflight_summary(self):
+        return dict(self._preflight_report)
+
+    @property
+    def accounting_summary(self):
+        """Confirmed partial totals remain available after terminal failure.
+
+        These are electrical progress/port diagnostics, never invented final
+        readout counts. A failing non-returned solver call has unknown work
+        bounded by its remaining allowance. The caller retains final state
+        directly from its single supplied array; no mutable history is exposed.
+        """
+        report = dict(attempt_complete=self._status == "complete", physical_time=self._physical_time,
+            completed_electrical_intervals=self._updates, physical_input_events=self._events_started,
+            physical_fragments=self._fragments_executed, readout_windows_closed=self._readout.windows_closed,
+            confirmed_operator_products=self._operators,
+            failed_call_operator_products=None if self._failed_operator_upper else 0,
+            failed_call_operator_upper_bound=self._failed_operator_upper,
+            total_operator_limit=self._limits.max_total_operator_products,
+            measured_solver_seconds=self._solver_seconds, measured_failed_solver_seconds=self._failed_solver_seconds,
+            maximum_returned_step_seconds=self._maximum_returned_step_seconds,
+            maximum_local_scaled_partition_error=self._max_error,
+            physical_initial_energy_joule=self._energy_start, physical_final_energy_joule=self._energy_end,
+            physical_work=dict(self._work),
+            physical_work_complete_for_returned_intervals=self._accounting_complete,
+            readout_accounting=self._readout.accounting(),
+            modeled_complete_device_power_watt=None)
+        if self._numerical_integration is not None:
+            report["numerical_integration"] = dict(self._numerical_integration)
+        return report
+
+    def _require_live(self):
+        if self._status == "failed":
+            raise AcquisitionExecutionError("streaming attempt failed permanently; state and outputs cannot replay")
+
+    def _abort(self, error, phase, returned):
+        self._status = "failed"
+        self._failure = dict(phase=phase, window_index=self._cursor.windows,
+            completed_split_intervals=self._updates, physical_time=self._physical_time,
+            array_call_returned=returned, confirmed_operator_products=self._operators,
+            failed_call_operator_products=None if self._failed_operator_upper else 0,
+            failed_call_operator_upper_bound=self._failed_operator_upper,
+            exception_type=type(error).__name__, message=str(error)[:1000],
+            partial_accounting=self.accounting_summary)
+        if not isinstance(error, Exception):
+            raise error
+        raise AcquisitionExecutionError(f"streaming attempt failed during {phase}; no replay permitted") from error
+
+    def _account(self, result):
+        self._operators += result.kernel_interval.operator_products
+        self._max_error = max(self._max_error, result.kernel_interval.maximum_scaled_partition_error)
+        if getattr(result.kernel_interval, "integration_method", None) == "radau_iia_2":
+            # Only returned, committed electrical intervals enter this sum.
+            # It remains separate from every physical source-work/heat field.
+            if self._numerical_integration is None:
+                self._numerical_integration = dict(integration_method="radau_iia_2",
+                    returned_electrical_intervals=0, numerical_dissipation_joule=0.,
+                    complete_for_returned_intervals=True,
+                    scope="accepted_intervals_only_not_physical_heat_or_source_work")
+            try:
+                value = float(result.kernel_interval.numerical_dissipation_joule)
+                if not math.isfinite(value) or value < 0:
+                    raise ValueError("returned numerical dissipation must be finite and nonnegative")
+                total = math.fsum((self._numerical_integration["numerical_dissipation_joule"], value))
+                if not math.isfinite(total) or total < 0:
+                    raise ValueError("nonrepresentable accumulated numerical dissipation")
+                self._numerical_integration["numerical_dissipation_joule"] = total
+                self._numerical_integration["returned_electrical_intervals"] += 1
+            except BaseException:
+                self._numerical_integration["complete_for_returned_intervals"] = False
+                raise
+        if self._energy_start is None:
+            self._energy_start = result.physical_energy_before_boundary_joule
+        self._energy_end = result.physical_energy_end_joule
+        increments = {key: getattr(result, key) for key in (
+            "field_source_boundary_work_joule", "supplied_charge_boundary_work_joule", "field_source_interval_work_joule",
+            "daq_external_source_interval_work_joule", "controlled_voltage_source_interval_work_joule",
+            "conditioning_drive_branch_dissipation_joule", "noise_current_source_interval_work_joule",
+            "noise_access_voltage_source_interval_work_joule")}
+        increments.update(physical_boundary_energy_change_joule=
+            result.physical_energy_after_boundary_joule - result.physical_energy_before_boundary_joule,
+            physical_interval_energy_change_joule=result.physical_energy_end_joule - result.physical_energy_after_boundary_joule)
+        for key, value in increments.items():
+            self._work[key] = math.fsum((self._work[key], value))
+            if not math.isfinite(self._work[key]):
+                raise ValueError("nonrepresentable accumulated physical work")
+
+    def advance_window(self):
+        """Verify and execute one complete window; emit bounded records to sinks."""
+        self._require_live()
+        if self._status in ("physical_complete", "complete"):
+            raise ValueError("physical record finished; only final publication remains")
+        phase, returned = "window replay verification", False
+        try:
+            self._check()
+            window, digests, following = self._prepare(next(self._iterator), self._cursor)
+            offset = 32 * window.index
+            if _window_digest(window, digests) != self._expected_digests[offset:offset + 32]:
+                raise ValueError("regenerated window metadata or provider fields differ from complete preflight")
+            self._validate_bindings(window, set())
+            self._readout.accept_window(window.readout_window)
+            self._status = "running"
+            active_fragment, field, noise = None, None, None
+            for fragment_index, start, end in self._splits(window, self._readout):
+                self._check()
+                if self._updates >= self._limits.max_split_intervals:
+                    raise ValueError("cumulative interval-update cap exceeded")
+                fragment = window.physical_intervals[fragment_index]
+                event = fragment.interval
+                returned, phase = False, "field materialization"
+                new_fragment = fragment_index != active_fragment
+                if new_fragment:
+                    field = _array("provider field", self._provider(event.field_key), (64, 64))
+                    noise = _provider_noise(self._array, self._noise_provider, self._noise_layout, event.field_key,
+                                            event.daq_selected_sources, interval_start=event.start, interval_end=event.end,
+                                            admitted_numeric_bytes=self._noise_bytes)
+                    if _joint_input_digest(field, noise, noise_provider=self._noise_provider) != digests[32 * fragment_index:32 * (fragment_index + 1)]:
+                        raise ValueError("provider changed a window-verified field or physical noise before use")
+                    field.flags.writeable = False
+                    active_fragment = fragment_index
+                new_event = fragment.event_index != self._last_executed_event
+                charge = self._zero_charge
+                if new_event and event.injected_charge_coulomb:
+                    charge = np.zeros(len(self._zero_charge))
+                    for index, value in event.injected_charge_coulomb:
+                        charge[index] = value
+                    charge.flags.writeable = False
+                active = self._readout.active_input_ids(start, end)
+                sources = tuple(sorted({self._bindings[key].source_index for key in active
+                                        if self._bindings[key].kind == "source"})) or (0,)
+                remaining = self._limits.max_total_operator_products - self._operators
+                if remaining < 1:
+                    raise ValueError("cumulative propagation-operator cap exhausted before next advance")
+                controls = replace(self._controls, max_operator_products=min(self._controls.max_operator_products, remaining))
+                phase = "array propagation"
+                clock = time.monotonic()
+                try:
+                    result = self._array.advance_row(gate_row=event.gate_row, duration_seconds=end - start,
+                        field_volts=field, voltage_reference_id=event.voltage_reference_id,
+                        observed_sources=sources, injected_charge_coulomb=charge, controls=controls,
+                        daq_selected_sources=event.daq_selected_sources,
+                        **({"check": self._check} if self._array.analog_conditioning is not None else {}),
+                        **({"noise_sample": noise} if self._noise_provider is not None else {}),
+                        **({"interval_start_seconds": start} if isinstance(noise, NoisePolynomial) else {}))
+                except BaseException:
+                    elapsed = time.monotonic() - clock
+                    self._solver_seconds += elapsed
+                    self._failed_solver_seconds += elapsed
+                    self._failed_operator_upper = controls.max_operator_products
+                    raise
+                elapsed = time.monotonic() - clock
+                self._solver_seconds += elapsed
+                self._maximum_returned_step_seconds = max(self._maximum_returned_step_seconds, elapsed)
+                returned, self._physical_time = True, end
+                self._events_started += int(new_event)
+                self._fragments_executed += int(new_fragment)
+                self._last_executed_event = fragment.event_index
+                self._updates += 1
+                phase = "physical accounting"
+                try:
+                    self._account(result)
+                except BaseException:
+                    self._accounting_complete = False
+                    raise
+                phase = "streaming readout accumulation"
+                source_means = dict(zip(sources, result.kernel_interval.observation.output_mean_volts))
+                hold_means = {item.adc_id: item.mean_volts for item in result.daq_hold_observations}
+                means = {key: (source_means[self._bindings[key].source_index]
+                    if self._bindings[key].kind == "source" else hold_means[self._bindings[key].hold_adc_id]) for key in active}
+                self._readout.add_interval(start=start, end=end, mean_volts_by_input=means)
+                phase = "causal publication"
+                self._readout.advance_publication(end)
+                phase = "interval output"
+                self._on_interval(IntervalEvidence(fragment.event_index, start, end, new_event))
+            phase = "window close"
+            self._readout.close_window(window.index)
+            following.splits = self._updates
+            self._cursor = following
+            if self._cursor.windows == self._expected_windows:
+                sentinel = object()
+                if next(self._iterator, sentinel) is not sentinel:
+                    raise ValueError("replayed plan acquired an extra window")
+                if self._physical_time != self._end:
+                    raise ValueError("replayed plan stopped before the full physical record")
+                self._status = "physical_complete"
+        except BaseException as error:
+            self._abort(error, phase, returned)
+
+    def finalize(self):
+        self._require_live()
+        if self._status == "complete":
+            return dict(self._report)
+        if self._status != "physical_complete":
+            raise ValueError("all physical windows must finish before final digital publication")
+        try:
+            self._check()
+            report = self._readout.finalize()
+            report.update(physical_end_time=self._physical_time, final_publication_horizon=self._horizon,
+                windows_executed=self._cursor.windows, physical_input_events=self._events_started,
+                physical_fragments=self._fragments_executed, split_intervals_executed=self._updates,
+                window_digest_bytes=len(self._expected_digests),
+                maximum_window_numeric_bytes=self._max_window_numeric_bytes,
+                propagation_operator_products=self._operators, total_operator_limit=self._limits.max_total_operator_products,
+                maximum_local_scaled_partition_error=self._max_error, measured_solver_seconds=self._solver_seconds,
+                measured_failed_solver_seconds=self._failed_solver_seconds,
+                maximum_returned_step_seconds=self._maximum_returned_step_seconds,
+                physical_initial_energy_joule=self._energy_start, physical_final_energy_joule=self._energy_end,
+                physical_work=dict(self._work), modeled_complete_device_power_watt=None,
+                readout_accounting=self._readout.accounting(),
+                actual_DAQ_configuration_qualified=False, full_field_or_conversion_history_retained=False)
+            if self._numerical_integration is not None:
+                report["numerical_integration"] = dict(self._numerical_integration)
+            if self._noise_provider is not None:
+                report.update(physical_noise_applied=True, live_physical_noise_numeric_bytes=self._noise_bytes,
+                              provider_digest_binds_physical_noise=True)
+            self._report, self._status = report, "complete"
+        except BaseException as error:
+            self._abort(error, "final digital publication", False)
+        return dict(self._report)
+
+    def run(self):
+        self._require_live()
+        while self._status not in ("physical_complete", "complete"):
+            self.advance_window()
+        return self.finalize()

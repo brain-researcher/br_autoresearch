@@ -20,7 +20,12 @@ episode's held-out evaluation path.
 The agent proposes; the controller validates and executes. Arbitrary candidate
 code is not an acceptable substitute for grammar enforcement.
 
-## Required operations
+## Operations under the active policy
+
+Implement the operations needed by the episode's activated scientific stages.
+The [adaptive-search protocol](ADAPTIVE_SEARCH_PROTOCOL.md) defines their
+scientific sequence and frozen requirements; [AGENTS.md](AGENTS.md) defines
+general execution and recordkeeping boundaries.
 
 ```text
 load_policy(policy, source_ref, split_roles)
@@ -33,24 +38,28 @@ run_development_trial(trial_id) -> blinded_evaluator_outputs
 apply_falsifiers(trial_id) -> control_status
 score_trial(trial_id) -> environment_metrics, constraints
 update_archive(trial_id) -> retired | challenger | incumbent
-run_full_search_null(generator_lock_ref, replicate_plan)
-    -> null_distribution, monte_carlo_p
 check_stop() -> continue | stop(reason)
 lock_configuration(incumbent_id) -> lock_id
 run_audit(lock_id) -> one_shot_audit_result
 ```
 
-These names describe scientific operations, not required artifact formats.  A
-plain policy file, split table, ordered log, and uniquely identified write-once
-or versioned lock record are sufficient by default; custom schemas,
-cryptographic hashes, manifests, and receipts are not implied.
+Only episodes whose policy requires a full-search null also implement:
+
+```text
+run_full_search_null(generator_lock_ref, replicate_plan)
+    -> null_distribution, monte_carlo_p
+```
+
+These names describe scientific operations, not required artifact formats.
+Use the protocol's record requirements for the policy, split roles, ordered
+log, and uniquely identified write-once or versioned lock record.
 
 ## Trust boundary
 
-- Every episode must enforce its declared role visibility through the
-  controller/loader API. Search fitting functions receive only their permitted
-  inputs and configuration; held-out labels are excluded from fitting and
-  proposal decisions.
+- An episode using this interface must enforce its declared role visibility
+  through the controller/loader API. Search fitting functions receive only
+  their permitted inputs and configuration; held-out labels are excluded from
+  fitting and proposal decisions.
 - Physical process, Unix-identity, network, cache, or mount separation is
   required only when the episode policy claims that stronger boundary. A
   same-user logical boundary is allowed for an internal episode but must be
@@ -60,9 +69,11 @@ cryptographic hashes, manifests, and receipts are not implied.
   labels remain unavailable to proposal, search, cache, log, and development
   evaluator processes except for the minimal input-readability check required
   by the actual evaluator.
-- The controller rejects unregistered operators, data-dependent scientific
-  configuration changes, undeclared outputs, and any transform that requests
-  forbidden held-out metadata.
+- Permitted development outcomes may guide successor configurations within
+  the frozen grammar. The controller rejects unregistered operators, changes
+  outside the frozen grammar, roles, metrics, thresholds, or budgets,
+  undeclared outputs, and transforms requesting forbidden held-out metadata.
+  It also rejects post-audit development changes.
 
 ## Persistence and recovery
 
@@ -77,14 +88,14 @@ For an `outcome_adaptive_successor`, the controller also verifies that every
 outcome-evidence reference names a scored record committed before the proposal
 timestamp, that at least one parent trial is named, and that the proposal
 record identifies the prior evidence visible at that point. Prespecified grid
-rows cannot be relabeled as adaptive successors after execution.  A timestamp
-or monotone sequence number is sufficient; a prefix hash is not required.
+rows cannot be relabeled as adaptive successors after execution. A timestamp
+or monotone sequence number is sufficient.
 
 Lock and audit transitions are trial-log records as well. The audit record
 names the selected lock identity, which resolves to the exact immutable or
 versioned lock record, and records whether outcomes were exposed. This makes
 audit-open count, mechanical failures, and any forbidden post-audit development
-mutation inspectable without requiring a configuration hash or access receipt.
+mutation inspectable.
 
 For episodes that require a full-search null, `run_full_search_null` starts each
 replicate from an empty ledger and reruns the complete controller under a

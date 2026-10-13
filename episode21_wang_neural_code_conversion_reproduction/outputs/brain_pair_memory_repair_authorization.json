@@ -1,0 +1,43 @@
+{
+  "schema_version": "ep21.brain_pair_proposal.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0359-pacific--interindividual_converter_training--scheduler-cpu-adjustment-diagnosed-corrected-memory-attempt-selected",
+  "operation": "train_and_publish_brain_pair",
+  "jobs": 1,
+  "partition": "russpold",
+  "source": "sub-03",
+  "target": "sub-05",
+  "training_images": 897,
+  "cv_fits": 50,
+  "final_fits": 1,
+  "source_native_voxels": 12897,
+  "target_native_voxels": 10891,
+  "automatic_retry": false,
+  "production_training": true,
+  "model_publication": true,
+  "scoring": false,
+  "resources": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 1440,
+    "gpus": 0,
+    "deadline_seconds": 84600,
+    "rss_limit_bytes": 16106127360,
+    "durable_bytes": 2147483648,
+    "scratch_bytes": 268435456,
+    "final_artifact_bytes": 805306368
+  },
+  "input_scope": {
+    "source_tau_train": "sub-03",
+    "target_tau_train": "sub-05",
+    "tau_test": false,
+    "OOD": false,
+    "subject_unique": false,
+    "features": false,
+    "decoder_payloads": false
+  },
+  "purpose": "One explicitly selected correction of scheduler CPU admission after47366908 refused actual3CPU/16GiB before input access. The russpold8000MiB-per-CPU cap requires3CPUs for16G. Preserve both previous failures and perform the unchanged original pair5/full897/full-native-axis50CV fits and final refit.",
+  "internal_training_selection": "The existing 897-image tau-train cross-validation scores and selected alpha belong to the fitted model. No tau-test, OOD, scientific evaluation or reconstruction is admitted.",
+  "accounting": "Standing scientist increase-compute instruction selects at most72allocatedCPU-hours once for this3CPU16Gi24h parent, one numerical thread, including five brain admission/default-diagnostic methods, three independent collection methods, three prospective cache methods and changed ASTRA validation. All share the absolute84600-second StartTime deadline bounded by EndTime minus60seconds. Reuse13passing math/input/artifact/driver methods. Preserve all prior consumed costs and failed attempts. No automatic retry, successor or extra pair.",
+  "limitations": "The earlier7GiB attempt ended in an explicit Slurm OOM with unknown fit progress and no final/partial/report. NumPy1.26.3 uses a double solve internally then casts to the input result dtype; dense solver copies/workspace exceed the final model size. SixteenGiB supplies reasoned headroom, not an empirical peak-memory or24-hour completion guarantee. Preserve all failed/partial/visible artifacts, with no automatic retry or resume. Independent collection/cache/ASTRA failures cannot gate this unchanged brain fit; they do not qualify themselves through parent success. The prior2CPU16G request was adjusted to3CPUs by Slurm and refused by its strict batch before imports. This new attempt explicitly requests/admit3CPUs without loosening the resource checks; one numerical thread remains fixed."
+}

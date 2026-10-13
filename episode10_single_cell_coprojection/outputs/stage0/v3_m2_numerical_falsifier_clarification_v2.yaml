@@ -1,0 +1,161 @@
+episode_id: ep10
+clarification_id: v3_m2_numerical_falsifier_clarification_v2
+recorded_date: "2026-09-29"
+status: frozen_prospectively_before_any_M2_outcome_access
+analysis_label: exploratory_development_only
+
+authority_and_scope:
+  parent_contract: outputs/stage0/v3_m2_search_contract.yaml
+  numerical_addendum: outputs/stage0/v3_m2_numerical_falsifier_addendum_v1.yaml
+  active_policy: SEARCH_POLICY.yaml
+  purpose: >-
+    Resolve the sparse-coordinate ambiguity in the already-authorized
+    sparse-plus-low-rank family and the binary64 resolution of numerically
+    degenerate low-rank initialization eigenspaces. The parent formula, ranks,
+    trigger, named-edge selector, penalties, trial counts, thresholds, data
+    roles, and permitted claim are unchanged.
+  supersedes_only:
+    - >-
+      v1 optional_sparse_plus_low_rank_execution.sparse_step. The phrase
+      identical_core_Dykstra_range_constrained_prox is withdrawn for the raw
+      named coefficient block because imposing both named support and direct
+      Range(P) membership generally collapses that authorized block to zero.
+    - >-
+      v1 exact-eigenvalue equality detection for the low-rank initialization
+      basis. Binary64 backward-error clusters below replace bit-equality of
+      LAPACK-returned eigenvalues only for deterministic initialization.
+  candidate_pair_effect_or_M2_score_used: false
+  real_M2_outcome_access_before_freeze: false
+  final_unassigned_or_SWC_access: forbidden
+  M0_full_refit_or_telemetry_access: forbidden
+  extra_hash_schema_or_attestation_gate_added: false
+
+sparse_plus_low_rank_coordinate_clarification:
+  named_edge_set:
+    symbol: C
+    source: exact_parent_localized_sparse_selector
+    maximum_edges: 16
+    order: frozen_parent_lexicographic_physical_edge_order
+    post_result_reselection: forbidden
+  sparse_coefficients:
+    symbol: a
+    shape: number_of_named_edges
+    coordinates: raw_named_physical_edge_coefficients_before_range_projection
+    embedding: >-
+      E_C a is the 120-vector with coefficient a_j on the j-th named physical
+      edge in C and exact zero on every other physical edge.
+  effective_coefficient:
+    formula: beta = P * (offdiag(U diag(d) U_transpose) + E_C a)
+    P: exact_training_fold_range_projector_from_the_parent_contract
+    interpretation: >-
+      The complete low-rank-plus-named-sparse physical tilt is passed through
+      the same fold-local identified range projector. The raw supported vector
+      E_C a is not separately required to lie in Range(P).
+    forbidden_interpretation: >-
+      Do not intersect the at-most-16-edge coordinate subspace with Range(P),
+      because that generally collapses the prospectively named sparse block to
+      the zero vector and no longer implements the parent's named physical
+      sparse edge tilt.
+  objective:
+    smooth_term: exact_parent_fixed_K_negative_log_likelihood_at_effective_beta
+    low_rank_penalty: rho_low_times_lambda_reference_times_sum_d_squared_over_2
+    sparse_penalty: rho_sparse_times_core_lasso_lambda_max_times_sum_absolute_a
+  gradients:
+    projected_physical_gradient: P * gradient_beta_of_the_exact_smooth_term
+    low_rank: exact_v1_Riemannian_and_d_gradients_from_projected_physical_gradient
+    sparse: transpose(E_C) * projected_physical_gradient
+
+sparse_block_execution:
+  v1_sparse_step_disposition: explicitly_superseded_by_this_clarification
+  reason: >-
+    The parent requires a named physical sparse edge tilt. A Dykstra indicator
+    on the raw at-most-16-edge vector's intersection with the 104-dimensional
+    fold range is generically the zero subspace. Instead, the complete physical
+    tilt is mapped by P and the named raw coefficients retain their parent L1
+    penalty.
+  algorithm: deterministic_monotone_proximal_gradient_with_backtracking_on_a
+  initialization: exact_zero
+  initial_L: >-
+    max(1, core smooth Lipschitz upper bound times the squared spectral norm of
+    P E_C), recomputed within each training fold.
+  L_state: initialize_once_then_carry_monotonically_across_sparse_blocks
+  backtracking_multiplier: 2.0
+  acceptance: standard_smooth_objective_quadratic_majorization
+  maximum_line_trials_per_sparse_block: 80
+  prox: exact_coordinatewise_soft_threshold_at_step_times_sparse_penalty
+  stationarity_mapping: >-
+    With the carried accepted L, G_L(a) = L times [a minus soft_threshold(a
+    minus sparse_gradient/L, sparse_penalty_strength/L)]. Use the infinity norm
+    of G_L at the post-sparse-block state.
+  nonfinite_majorization_failure_or_line_trial_exhaustion: invalid_trial_without_fallback
+
+low_rank_initialization_numerical_degeneracy:
+  scope: deterministic_null_gradient_initialization_only
+  reason: >-
+    Bit-equality of binary64 eigensolver outputs does not reliably recognize an
+    exactly repeated spectrum after an orthogonal similarity. Treat only
+    eigenspaces unresolved at the eigensolver's measured backward-error scale
+    as numerical tie clusters; this makes the nonconvex initialization stable
+    without changing the fitted objective or probability family.
+  eigensolver: deterministic_symmetric_binary64_under_the_frozen_one_thread_backend
+  per_eigenpair_residual: l2_norm(A_v_minus_lambda_v)
+  spectral_norm_A: maximum_absolute_returned_eigenvalue_using_the_same_eigh_call
+  rounding_guard: 64_times_16_times_binary64_epsilon_times_max_1_or_spectral_norm_A
+  interval_radius: per_eigenpair_residual_plus_rounding_guard
+  cluster_rule: >-
+    In increasing signed-eigenvalue order, join consecutive eigenvalues when
+    their closed [lambda-radius, lambda+radius] intervals overlap; take the
+    transitive closure. Singleton clusters remain ordinary separated
+    eigenpairs. This is explicitly a numerical-degeneracy rule, not a claim of
+    exact algebraic multiplicity.
+  cluster_projector: symmetrized_V_cluster_times_V_cluster_transpose
+  cluster_basis: >-
+    Project ordered coordinate unit vectors into the cluster projector and use
+    ordered two-pass Gram-Schmidt. Accept a residual only when its l2 norm is
+    strictly greater than 256 times 16 times binary64 epsilon; stop immediately
+    after exactly the cluster cardinality is reached and fail closed if all 16
+    coordinates do not produce that cardinality. Canonicalize each accepted
+    vector so its first maximum-absolute coordinate is positive.
+  cluster_initial_eigenvalue: >-
+    math.fsum of cluster eigenvalues in increasing signed order divided by the
+    exact integer cluster cardinality.
+  cluster_order: decreasing_absolute_cluster_mean_then_decreasing_signed_cluster_mean
+  within_cluster_order: ordered_coordinate_basis_order
+  rank_cut_inside_cluster: retain_the_first_required_canonical_cluster_vectors
+  certificates:
+    orthogonality_maximum_absolute_entry: 1024_times_16_times_binary64_epsilon
+    projector_reconstruction_maximum_absolute_entry: 1024_times_16_times_binary64_epsilon
+    common_value_residual_l2_maximum: >-
+      max_i absolute(lambda_i minus cluster_mean), plus four times the maximum
+      cluster interval radius.
+  failure: >-
+    invalid fit if cardinality, orthogonality, projector reconstruction, or any
+    common-value residual certificate fails; no fallback eigensystem or basis.
+
+joint_execution_and_gates:
+  initialization_low_rank_block: exact_v1_selected_best_valid_low_rank_anchor
+  initialization_sparse_block: exact_zero
+  block_order: [low_rank, sparse]
+  low_rank_step: exact_v1_Riemannian_Armijo_step_holding_a_fixed
+  sparse_step: clarified_sparse_block_step_holding_U_and_d_fixed
+  maximum_sweeps: 20000
+  post_sweep_evaluation: >-
+    Re-evaluate the complete penalized objective and all three stationarity
+    components after both blocks, at the same current U, d, and a.
+  joint_stationarity: >-
+    Maximum of the low-rank Riemannian U gradient infinity norm, the exact d
+    gradient including rho_low times lambda_reference times d, and the sparse
+    proximal-gradient mapping infinity norm defined above.
+  joint_stationarity_infinity_tolerance: 1.0e-6
+  relative_objective_tolerance: 1.0e-9
+  relative_objective_definition: >-
+    Absolute full-sweep objective change divided by max(1, absolute previous
+    full-sweep objective, absolute current full-sweep objective).
+  convergence_requires_both: true
+  random_restart_alternate_initialization_or_model_change: forbidden
+  all_other_v1_and_parent_clauses: unchanged_and_still_required
+
+access_boundary:
+  may_implement_and_qualify_target_free_now: true
+  first_real_M2_outcome_access: remains_governed_by_every_v1_preaccess_gate
+  protected_data_seals: unchanged

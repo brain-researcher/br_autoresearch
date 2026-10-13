@@ -1,0 +1,459 @@
+{
+  "activation_checks": [
+    {
+      "fixture": "black_nonsquare",
+      "layer": "conv1",
+      "max_abs_error": 0.00029206275939941406,
+      "max_tolerance_fraction": 0.22342250262202265,
+      "passed": true,
+      "shape": [
+        1,
+        96,
+        55,
+        55
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "conv2",
+      "max_abs_error": 0.00026798248291015625,
+      "max_tolerance_fraction": 0.13133718265010577,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        27,
+        27
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "conv3",
+      "max_abs_error": 0.00013828277587890625,
+      "max_tolerance_fraction": 0.10356071186798373,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "conv4",
+      "max_abs_error": 8.96453857421875e-05,
+      "max_tolerance_fraction": 0.07930030678493803,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "conv5",
+      "max_abs_error": 6.389617919921875e-05,
+      "max_tolerance_fraction": 0.04078869666207467,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "fc6",
+      "max_abs_error": 1.811981201171875e-05,
+      "max_tolerance_fraction": 0.012831153150688782,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "fc7",
+      "max_abs_error": 7.62939453125e-06,
+      "max_tolerance_fraction": 0.005844948077453575,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "black_nonsquare",
+      "layer": "fc8",
+      "max_abs_error": 4.291534423828125e-06,
+      "max_tolerance_fraction": 0.0035691087323321837,
+      "passed": true,
+      "shape": [
+        1,
+        1000
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "conv1",
+      "max_abs_error": 0.0006103515625,
+      "max_tolerance_fraction": 0.13107398160362943,
+      "passed": true,
+      "shape": [
+        1,
+        96,
+        55,
+        55
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "conv2",
+      "max_abs_error": 0.0001888275146484375,
+      "max_tolerance_fraction": 0.10577429786048524,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        27,
+        27
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "conv3",
+      "max_abs_error": 0.000118255615234375,
+      "max_tolerance_fraction": 0.06246344789694674,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "conv4",
+      "max_abs_error": 8.0108642578125e-05,
+      "max_tolerance_fraction": 0.038642337500756976,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "conv5",
+      "max_abs_error": 4.38690185546875e-05,
+      "max_tolerance_fraction": 0.032912795991335744,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "fc6",
+      "max_abs_error": 1.2159347534179688e-05,
+      "max_tolerance_fraction": 0.008929645418609227,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "fc7",
+      "max_abs_error": 5.245208740234375e-06,
+      "max_tolerance_fraction": 0.004683473818890159,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "color_nonsquare",
+      "layer": "fc8",
+      "max_abs_error": 4.5299530029296875e-06,
+      "max_tolerance_fraction": 0.0032383870630322896,
+      "passed": true,
+      "shape": [
+        1,
+        1000
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "conv1",
+      "max_abs_error": 0.0010986328125,
+      "max_tolerance_fraction": 0.2572992621868802,
+      "passed": true,
+      "shape": [
+        1,
+        96,
+        55,
+        55
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "conv2",
+      "max_abs_error": 0.000640869140625,
+      "max_tolerance_fraction": 0.4192195995005901,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        27,
+        27
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "conv3",
+      "max_abs_error": 0.0009002685546875,
+      "max_tolerance_fraction": 0.41383759900540423,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "conv4",
+      "max_abs_error": 0.0004100799560546875,
+      "max_tolerance_fraction": 0.21705274984931444,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "conv5",
+      "max_abs_error": 0.000213623046875,
+      "max_tolerance_fraction": 0.1461252971725185,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "fc6",
+      "max_abs_error": 4.1961669921875e-05,
+      "max_tolerance_fraction": 0.030961219985250157,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "fc7",
+      "max_abs_error": 1.33514404296875e-05,
+      "max_tolerance_fraction": 0.011981316515875204,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "structured_nonsquare",
+      "layer": "fc8",
+      "max_abs_error": 5.9604644775390625e-06,
+      "max_tolerance_fraction": 0.005222125674402282,
+      "passed": true,
+      "shape": [
+        1,
+        1000
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "conv1",
+      "max_abs_error": 0.00048828125,
+      "max_tolerance_fraction": 0.10327977888815743,
+      "passed": true,
+      "shape": [
+        1,
+        96,
+        55,
+        55
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "conv2",
+      "max_abs_error": 0.0006103515625,
+      "max_tolerance_fraction": 0.3653157009435221,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        27,
+        27
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "conv3",
+      "max_abs_error": 0.0003814697265625,
+      "max_tolerance_fraction": 0.19967694818850526,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "conv4",
+      "max_abs_error": 0.00029754638671875,
+      "max_tolerance_fraction": 0.1849992567472925,
+      "passed": true,
+      "shape": [
+        1,
+        384,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "conv5",
+      "max_abs_error": 0.0001385211944580078,
+      "max_tolerance_fraction": 0.10676005985251934,
+      "passed": true,
+      "shape": [
+        1,
+        256,
+        13,
+        13
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "fc6",
+      "max_abs_error": 2.1457672119140625e-05,
+      "max_tolerance_fraction": 0.01893684979621129,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "fc7",
+      "max_abs_error": 8.106231689453125e-06,
+      "max_tolerance_fraction": 0.0054418645659755184,
+      "passed": true,
+      "shape": [
+        1,
+        4096
+      ],
+      "violating_elements": 0
+    },
+    {
+      "fixture": "random_nonsquare_seed_21",
+      "layer": "fc8",
+      "max_abs_error": 3.814697265625e-06,
+      "max_tolerance_fraction": 0.002908655530140618,
+      "passed": true,
+      "shape": [
+        1,
+        1000
+      ],
+      "violating_elements": 0
+    }
+  ],
+  "author_lab_checkpoint_identity_verified": false,
+  "empirical_images_or_neural_values_read": false,
+  "evaluator": "public_BVLC_AlexNet_converted_to_pinned_BdPy",
+  "exact_parameter_mapping": {
+    "passed": true,
+    "tensor_count": 16
+  },
+  "hostname": "sh04-18n32.int",
+  "output": "episode21_wang_neural_code_conversion_reproduction/outputs/cache/model_checkpoints/public_bvlc_alexnet/bvlc_alexnet_public_converted.pt",
+  "output_bytes": 243865638,
+  "preprocessing": "RGB_direct_Lanczos_227_BCHW_BGR_float32_0_255_minus_104_117_123",
+  "reference_backend": "OpenCV_Caffe_importer_CPU_fusion_disabled",
+  "runtime": {
+    "numpy": "1.26.3",
+    "opencv": "4.10.0",
+    "pillow": "10.2.0",
+    "torch": "2.4.0a0"
+  },
+  "safe_weights_only_reload": true,
+  "slurm_job_id": "46426204",
+  "sources": {
+    "bdpy_models": "episode21_wang_neural_code_conversion_reproduction/outputs/source_pipeline_binding/bdpy_0_25/plaintext/bdpy/dl/torch/models.py",
+    "caffemodel": "/scratch/users/zijiao/br_autoresearch/episode21_wang_neural_code_conversion_reproduction/public_model_assets/bvlc_alexnet.caffemodel",
+    "deploy": "episode21_wang_neural_code_conversion_reproduction/outputs/cache/model_checkpoints/public_bvlc_alexnet/deploy.prototxt"
+  },
+  "status": "passed",
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.0001,
+    "rule": "every_element"
+  }
+}

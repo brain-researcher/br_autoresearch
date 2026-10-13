@@ -1,0 +1,903 @@
+# Source metadata recipe is executable; scientific outputs remain planned.
+# Secondary factorial report availability does not require factorial success.
+version: "0.0.14"
+name: EP19 prospective EEG forecasting experiment program
+inputs:
+  - {id: goal, type: data, source: ../../../GOAL.md}
+  - {id: datasets, type: data, source: ../../../DATASETS.md}
+  - {id: policy, type: data, source: ../../../SEARCH_POLICY.yaml}
+  - {id: components, type: data, source: ../../component_details.md}
+  - {id: finite_model_recipes, type: data, source: ../../model_recipe_registry.json}
+outputs:
+  - id: final_report
+    from: scientific_report.final_report
+analyses:
+  component_specification:
+    name: Specify sensor risk states, EEG blocks, baselines and four-parameter calibration
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: policy, from: ../policy}
+      - {id: components, from: ../components}
+    outputs:
+      - {id: component_design, type: report, format: markdown}
+  source_views_and_timing:
+    name: Prepare role-separated views and assess development clocks, gaps, sensors and onset timing
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: component_design, from: ../component_specification.component_design}
+      - {id: inventory_code, type: data, source: ../../code/inventory_source_members.py}
+      - {id: header_code, type: data, source: ../../code/inspect_development_headers.py}
+      - {id: acquisition_header_code, type: data, source: ../../code/inspect_development_acquisition.py}
+      - {id: acquisition_header_tests, type: data, source: ../../tests/test_development_acquisition.py}
+      - {id: stream_layout_code, type: data, source: ../../tools/development_stream_layout.py}
+      - {id: stream_layout_tests, type: data, source: ../../tests/test_development_stream_layout.py}
+      - {id: completed_development_headers, type: data, source: ../../runs/source_views_and_timing/job_46425841_headers/development_headers.json}
+      - {id: builder_code, type: data, source: ../../code/prepare_development_views.py}
+      - {id: development_member_plan, type: data, source: ../../development_member_plan.json}
+      - {id: structure_code, type: data, source: ../../code/inspect_way_development_structure.py}
+      - {id: peripheral_pilot_code, type: data, source: ../../code/pilot_way_peripheral_onset.py}
+      - {id: peripheral_detector_code, type: data, source: ../../code/peripheral_onset.py}
+      - {id: peripheral_detector_tests, type: data, source: ../../tests/test_peripheral_onset.py}
+      - {id: completed_return_code, type: data, source: ../../code/way_completed_return.py}
+      - {id: completed_return_tests, type: data, source: ../../tests/test_way_completed_return.py}
+      - {id: way_risk_stream_code, type: data, source: ../../code/way_risk_stream.py}
+      - {id: way_risk_stream_tests, type: data, source: ../../tests/test_way_risk_stream.py}
+      - {id: forecast_label_projection, type: data, source: ../../code/forecast_labels.py}
+      - {id: rest_support_panel_code, type: data, source: ../../code/check_way_rest_support_panel.py}
+      - {id: p2_support_trace_code, type: data, source: ../../code/run_way_p2_support_trace.py}
+      - {id: remaining_s1_support_code, type: data, source: ../../code/run_way_remaining_s1_support.py}
+      - {id: completed_p1_peripheral_pilot, type: data, source: ../../runs/source_views_and_timing/20261003-peripheral-pilot02/peripheral_pilot_report.json}
+      - {id: completed_p2_support_trace, type: data, source: ../../runs/source_views_and_timing/20261005-P2-support-46658777/p2_support_trace.json}
+      - {id: completed_development_view, type: data, source: ../../runs/source_views_and_timing/job_46425841_development_view/development_view.json}
+      - {id: led_diagnostic_code, type: data, source: ../../code/inspect_way_led_levels.py}
+      - {id: cue_metadata_reader, type: data, source: ../../code/read_way_cue_metadata.py}
+      - {id: cue_polarity_code, type: data, source: ../../code/check_way_cue_polarity.py}
+      - {id: cue_metadata_tests, type: data, source: ../../tests/test_way_cue_metadata.py}
+      - {id: way_information_reader, type: data, source: ../../code/read_way_information_page01.sh}
+      - {id: source_timing_handoff, type: data, source: ../../source_timing_handoff.md}
+    outputs:
+      - id: development_stream_layout
+        type: report
+        format: directory
+        inputs: [datasets, stream_layout_code, stream_layout_tests, completed_development_headers, completed_development_view, development_member_plan, source_timing_handoff]
+        description: >-
+          Exact155 self-paced development runs only. Reuse completed header and
+          materialization declarations; stat declared binary files without
+          opening samples and read only NewSegment marker metadata for declared
+          segment positions and optional timestamps. No stimulus descriptions,
+          labels, EEG/peripheral arrays, WAY, held-out or archive payloads.
+          Unsupported binary conventions and missing segment information stay
+          unresolved. Preserve original embedded-reference verification and
+          discrepancies separately from the explicitly selected publisher
+          same-entity filename correspondence over unique frozen triplets.
+          Known competing references to another extant identified run remain
+          unresolved; no aliases, source rewrite or cohort exclusions.
+          Declared segments do not prove all acquisition gaps are
+          known; no physical calibration, delay bound, valid-run eligibility,
+          onset rule or forecasting readiness follows. Focused fixture checks
+          run within the same coordinated allocation before metadata extraction.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 75s python3.12 -u -B
+            outputs/tools/development_stream_layout.py --output-dir {output}
+            --max-seconds 60 --mapping-basis publisher_same_entity_filename_contract
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: completed_return_checks
+        type: report
+        format: text
+        inputs: [component_design, completed_return_code, completed_return_tests]
+        description: >-
+          Focused array-only checks of the already selected WAY completed-return
+          predicate: exact250-tick prestart support on the native500-Hz grid,
+          both digit clearances, all eight low paths, separate object and plate
+          tolerances, initial/after-reach cue chronology, history resets and
+          unknown prerequisites. No reader, calibration, onset integration,
+          empirical replay or full timing qualification. Run serially inside a
+          future substantive allocation; no separate short job. This recipe is
+          outside the unchanged pending EP21 companion proposal.
+        recipe:
+          command: >-
+            env PYTHONPATH=outputs/code OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+            NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 30s python3.12 -B
+            -m unittest discover -s outputs/tests -p test_way_completed_return.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: way_risk_stream_checks
+        type: report
+        format: text
+        inputs: [component_design, completed_return_code, forecast_label_projection, way_risk_stream_code, way_risk_stream_tests]
+        description: >-
+          Six focused sequential-trace checks of exact-start return arming,
+          same-tick crossing suspension, all-path detection during pending and
+          fresh250-tick stillness requalification, first accepted onset identity,
+          immutable prefix evidence, one reach per cue, and exclusive end/gap
+          closure. Bind labels to the same stream and cue with independent
+          follow-up coverage; no future restoration or cross-cue label joins.
+          These are small software traces, not physiological recovery evidence
+          or empirical labels. Source calibration, timing, cue meaning and the
+          self-paced detector remain unresolved. Run in a future substantive
+          allocation, outside the unchanged EP21 companion; no separate short
+          job or source replay is selected.
+        recipe:
+          command: >-
+            env PYTHONPATH=outputs/code OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+            NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 30s python3.12 -B
+            -m unittest discover -s outputs/tests -p test_way_risk_stream.py -v
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: development_acquisition_metadata
+        type: report
+        format: directory
+        inputs: [datasets, header_code, acquisition_header_code, acquisition_header_tests, completed_development_headers, completed_development_view]
+        description: >-
+          Extract recorded amplifier/channel hardware cutoff and software-filter
+          settings omitted by the earlier header parser. Read exactly the same
+          155 materialized development .vhdr files, bound to both completed
+          reports and all 15 development people. No archive, signal, marker,
+          event or held-out header read. Preserve unknown or unsupported fields;
+          recorded settings do not authenticate physical accelerometer calibration,
+          filter transfer/group delay or the full onset timing bound. Keep the
+          original header report unchanged. Run the four focused text/access
+          fixtures inside the shared substantive allocation, with no extra job.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 75s
+            python3.12 -u -B outputs/code/inspect_development_acquisition.py
+            --output-dir {output} --max-seconds 60
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: way_information_page01
+        type: report
+        format: directory
+        inputs: [datasets, way_information_reader, source_timing_handoff]
+        description: >-
+          One bounded retrieval of the exact193612-byte public WAY supplementary
+          PDF identified by the official article XML. Preserve source links/PDF
+          and extract page1 only with the existing Poppler module; participant
+          and held-series note pages remain unread. This is source documentation,
+          not sensor calibration, timing qualification or forecasting. Run within
+          the already-reserved shared allocation, with separate status and one
+          parent charge; no separate short job, automatic retry or fallback URL.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 90s
+            bash outputs/code/read_way_information_page01.sh
+          resources: {cpus: 1, memory: 4Gi, time_limit: 2m}
+      - id: development_views
+        type: data
+        format: directory
+        inputs: [datasets, builder_code, development_member_plan]
+        description: >-
+          Development-only continuous raw member projection; source timing,
+          onset and scoring readiness remain separate unresolved requirements.
+        recipe:
+          command: >-
+            python outputs/code/prepare_development_views.py
+            --source-root /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/ep19_public_sources
+            --member-plan outputs/development_member_plan.json
+            --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 20m}
+      - {id: source_report, type: report, format: json}
+      - id: p2_support_trace_report
+        type: report
+        format: directory
+        inputs: [datasets, p2_support_trace_code, rest_support_panel_code, peripheral_detector_code, peripheral_pilot_code, completed_development_view]
+        description: >-
+          Exact fitting HS_P2_S1 source-only trace through the original one_file
+          function and unchanged PilotSettings, with support_only true. Durable
+          stage progress and returned support survive interruption. The whole-HS
+          load incidentally decodes EEG before discarding it; no EEG features,
+          thresholds, onset/risk labels or forecast scores. No P1 or other
+          participant reread. Cue polarity, return phase and timing stay conditional.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 190s
+            python3.12 -u -B outputs/code/run_way_p2_support_trace.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output} --max-seconds 180
+          resources: {cpus: 1, memory: 4Gi, time_limit: 4m}
+      - id: remaining_s1_support_report
+        type: report
+        format: directory
+        inputs: [datasets, remaining_s1_support_code, p2_support_trace_code, rest_support_panel_code, peripheral_detector_code, peripheral_pilot_code, completed_development_view, completed_p1_peripheral_pilot, completed_p2_support_trace]
+        description: >-
+          Complete only the fixed remaining P3 through P12 S1 support panel,
+          sequentially, after exact admission of all ten original fitting-role
+          manifest identities, paths and sizes. Reuse original one_file,
+          PilotSettings and support_only true, with the P2 tracing bindings.
+          P1/P2 are preserved references, not reread inputs or repeated payloads.
+          Retain every participant outcome and per-file stages in
+          remaining_s1_support.json and P3_S1 through P12_S1/support_trace.json;
+          uncompleted participants remain unknown. No successful-subset selection,
+          noise thresholds, onset/risk labels, EEG features/scores, feedback or
+          held-out access. Whole-HS incidental EEG decoding remains disclosed.
+          One CPU and all six numerical thread limits one; whole-process 600-second
+          cap, external 620 seconds plus 10-second grace. No automatic retry or
+          follow-on dispatch. The coordinator accounts the shared parent once.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 620s
+            python3.12 -u -B outputs/code/run_way_remaining_s1_support.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output} --max-seconds 600
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: rest_support_panel_report
+        type: report
+        format: directory
+        inputs: [datasets, rest_support_panel_code, peripheral_detector_code, peripheral_pilot_code, peripheral_detector_tests, completed_p1_peripheral_pilot, completed_development_view]
+        description: >-
+          Fixed S1 panel across all12 WAY participants, all in fitting roles.
+          Reuse P1_S1 and read only the other11 exact fitting files. Keep every
+          file and window result with unchanged candidate-rest rules. A support-only
+          branch returns before noise-threshold estimation; no onset/risk labels,
+          successful-subset selection or EEG features/scores. Cue interpretation
+          remains conditional, return unknown and total onset bound null.
+        recipe:
+          command: >-
+            python outputs/code/check_way_rest_support_panel.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output} --max-seconds 240
+          resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: cue_polarity_report
+        type: report
+        format: directory
+        inputs: [datasets, cue_metadata_reader, cue_polarity_code, cue_metadata_tests, peripheral_pilot_code]
+        description: >-
+          Compare official fitting-only WS_P1_S1 scalar LED timing metadata with
+          continuous HS_P1_S1 LED crossings. Skip windowed waveform matrix
+          payloads without decoding them; compression-byte access is disclosed.
+          Source-semantic comparison only, never predictor/event-label input,
+          return qualification or a total onset timing bound.
+        recipe:
+          command: >-
+            python outputs/code/check_way_cue_polarity.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+      - id: led_diagnostic_report
+        type: report
+        format: directory
+        inputs: [datasets, led_diagnostic_code, peripheral_pilot_code]
+        description: >-
+          One fitting-file ParticipantLED distribution and retrospective
+          threshold-crossing sensitivity. No cue decoder is selected; polarity,
+          completed return and total onset timing remain unauthenticated.
+          Nested non-LED modalities are incidentally decoded then discarded.
+        recipe:
+          command: >-
+            python outputs/code/inspect_way_led_levels.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: peripheral_pilot_report
+        type: report
+        format: directory
+        inputs: [datasets, component_design, peripheral_pilot_code, peripheral_detector_code, peripheral_detector_tests]
+        description: >-
+          One fitting HS_P1_S1 peripheral detector pilot with prospectively
+          selected rest support, all five EMG and three hand paths, and seven
+          component tests. Fixed0.5 raw cue threshold follows the fitting-file
+          distribution and all34 illumination-duration matches. Absolute
+          provider annotation origin and completed end/return remain unresolved.
+          No WS timestamps enter this pilot. Incidental nested EEG decoding is
+          disclosed; no EEG features or scores. Any replay gives conditional
+          candidate risk only, never qualified scientific labels. Unknown
+          timing components stay unknown.
+        recipe:
+          command: >-
+            python outputs/code/pilot_way_peripheral_onset.py
+            --development-view $SCRATCH/br_autoresearch/episode19_causal_motor_forecasting_benchmark/development_view_job_46425841
+            --output-dir {output} --max-seconds 540
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: archive_inventory
+        type: report
+        format: directory
+        inputs: [datasets, inventory_code]
+        description: ZIP central-directory metadata only; no source payload or timing qualification.
+        recipe:
+          command: >-
+            python outputs/code/inventory_source_members.py
+            --source-root /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/ep19_public_sources
+            --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: development_header_report
+        type: report
+        format: directory
+        inputs: [datasets, header_code]
+        description: Development BrainVision text headers and selected source documents; no signal or held-out header access.
+        recipe:
+          command: >-
+            python outputs/code/inspect_development_headers.py
+            --archive /oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/ep19_public_sources/archives/freewill/Freewill_EEG_Reaching_Grasping.zip
+            --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: selected_way_structure_report
+        type: report
+        format: directory
+        inputs: [datasets, structure_code]
+        description: >-
+          Explicit development HS_P1_S1.mat modality/rate/shape inspection;
+          nested arrays are deserialized but no signal values or scores emitted.
+          Invoke the reader with the selected materialized development-view path.
+  development_specification:
+    name: Set required pre-score margins, finite model ranges, reference recipes and participant folds
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: component_design, from: ../component_specification.component_design}
+      - {id: source_report, from: ../source_views_and_timing.source_report}
+      - {id: finite_model_recipes, from: ../finite_model_recipes}
+    outputs:
+      # Finite recipes/folds are prepared; this future complete output still
+      # requires qualified source semantics, actual backends and all margins.
+      - {id: method_settings, type: report, format: json}
+  past_only_controls:
+    name: Run required streaming, known-signal, leakage, censoring and calibration checks
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: source_report, from: ../source_views_and_timing.source_report}
+      - {id: finite_model_recipes, from: ../finite_model_recipes}
+      - {id: component_code, type: data, source: ../../code/forecast_components.py}
+      - {id: classical_backend_code, type: data, source: ../../code/classical_forecast_backend.py}
+      - {id: classical_backend_tests, type: data, source: ../../tests/test_classical_forecast_backend.py}
+      - {id: non_neural_backend_code, type: data, source: ../../code/non_neural_forecast_backend.py}
+      - {id: non_neural_backend_tests, type: data, source: ../../tests/test_non_neural_forecast_backend.py}
+      - {id: boosted_backend_code, type: data, source: ../../code/boosted_hazard_backend.py}
+      - {id: boosted_backend_tests, type: data, source: ../../tests/test_boosted_hazard_backend.py}
+      - {id: temporal_backend_code, type: data, source: ../../code/temporal_hazard_backend.py}
+      - {id: temporal_backend_tests, type: data, source: ../../tests/test_temporal_hazard_backend.py}
+      - {id: gru_backend_code, type: data, source: ../../code/gru_forecast_backend.py}
+      - {id: gru_backend_tests, type: data, source: ../../tests/test_gru_forecast_backend.py}
+      - {id: tcn_backend_code, type: data, source: ../../code/tcn_forecast_backend.py}
+      - {id: tcn_backend_tests, type: data, source: ../../tests/test_tcn_forecast_backend.py}
+      - {id: eegnet_backend_code, type: data, source: ../../code/eegnet_forecast_backend.py}
+      - {id: eegnet_backend_tests, type: data, source: ../../tests/test_eegnet_forecast_backend.py}
+      - {id: ensemble_backend_code, type: data, source: ../../code/ensemble_forecast_backend.py}
+      - {id: ensemble_backend_tests, type: data, source: ../../tests/test_ensemble_forecast_backend.py}
+      - {id: forecast_scoring_code, type: data, source: ../../code/forecast_scoring.py}
+      - {id: forecast_scoring_tests, type: data, source: ../../tests/test_forecast_scoring.py}
+      - {id: forecast_labels_code, type: data, source: ../../code/forecast_labels.py}
+      - {id: forecast_labels_tests, type: data, source: ../../tests/test_forecast_labels.py}
+    outputs:
+      - {id: control_report, type: report, format: json}
+      - id: selected_component_report
+        type: report
+        format: directory
+        inputs: [policy, component_code]
+        description: Synthetic censoring/calibration/fixed-slot checks only; does not complete production past-only controls.
+        recipe:
+          command: python outputs/code/qualify_forecast_components.py --output-root {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: classical_backend_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, classical_backend_tests, non_neural_backend_code, non_neural_backend_tests]
+        description: >-
+          Planned small arithmetic and interface checks for censored classical
+          corrections and logistic hazard, fitting-only feature geometry/scaling,
+          whole-group roles, fixed-slot masks and timestamped past-only windows.
+          Include the prepared-context logistic baseline interface, fixed schema,
+          declared availability, participant routing and failed-fit handling.
+          Prepared-vector checks do not verify raw source feature construction.
+          Run only inside an authorized substantive allocation; no separate short
+          job, physiological simulation program, source payload or forecast.
+          Passing does not qualify source timing or complete production controls.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_classical_forecast_backend
+            test_non_neural_forecast_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: boosted_backend_checks
+        type: report
+        format: text
+        inputs: [policy, classical_backend_code, non_neural_backend_code, non_neural_backend_tests, boosted_backend_code, boosted_backend_tests]
+        description: >-
+          Five focused checks for the registered boosted non-neural hazard
+          comparator: conditional censoring masks, retained participant weights,
+          unresolved single-class heads, one tiny exact 200-tree-per-head fit
+          and canonical source/fold/past-only interfaces. Run inside a
+          substantive allocation with the site NumPy, SciPy and scikit-learn
+          modules. This is no empirical forecast or timing qualification.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_boosted_hazard_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: temporal_backend_checks
+        type: report
+        format: text
+        inputs: [policy, classical_backend_code, non_neural_backend_code, boosted_backend_code, temporal_backend_code, temporal_backend_tests]
+        description: >-
+          Five source-free checks of the selected small non-neural TCN:
+          complete-window left-zero causality, censored loss and global minibatch
+          weights, training-only grouped scaling/roles, unresolved heads/budget
+          refusal, and one tiny exact 100-epoch CPU float32 fit with frozen
+          19-category inference. No raw feature extraction, empirical fit or
+          large-data memory qualification. Use one numerical thread inside the
+          coordinator's substantive allocation; no separate short job.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_temporal_hazard_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: ensemble_backend_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, non_neural_backend_code, finite_model_recipes, ensemble_backend_code, ensemble_backend_tests]
+        description: >-
+          Five focused checks of the existing fixed three-seed probability mean
+          before four-parameter calibration, exact saved-row alignment, complete
+          fitted members and canonical scopes/FIRs, shared reset suffix inference,
+          and unchanged prefix censoring/weights/identity fallback. Includes tiny
+          actual classical fits for interface compatibility. Prefix eligibility,
+          first-32-event selection and the history guard remain upstream. Use
+          one numerical thread inside a substantive allocation; no separate
+          short job, source admission or empirical forecast is selected here.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 60s
+            python3.12 -B -m unittest -v test_ensemble_forecast_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: forecast_scoring_checks
+        type: report
+        format: text
+        inputs: [policy, classical_backend_code, ensemble_backend_code, finite_model_recipes, forecast_scoring_code, forecast_scoring_tests]
+        description: >-
+          Five focused array-only checks of registered horizon boundaries,
+          explicit full-upper-edge follow-up coverage, stable binary log scores,
+          natural-prevalence pooling before equal participant weighting,
+          complete canonical cohorts and matched rows, and participant-specific
+          strongest surrogates selected separately for each horizon. No source
+          reads, empirical prediction, bootstrap, margin or scientific decision.
+          Completed folds, admitted row coverage and recipe/adaptation matching
+          remain upstream. Use one numerical thread inside a substantive
+          allocation; do not submit a separate short job.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 60s
+            python3.12 -B -m unittest -v test_forecast_scoring ) > {output} 2>&1
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: forecast_labels_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, forecast_scoring_code, forecast_labels_code, forecast_labels_tests]
+        description: >-
+          Five focused checks of exact integer-tick event boundaries, complete
+          censoring bins and zero-information rows, independent full-horizon
+          follow-up eligibility, prefix-limited adjudication and earlier pending
+          crossings, and recording/reset identity binding. Caller-qualified
+          risk states and as-of-cut onset evidence remain upstream; this helper
+          does not construct or qualify source labels. No recording access,
+          empirical forecast, clock repair or timing claim. Run only within a
+          future substantive allocation, outside the unchanged EP21 companion;
+          no separate short job. Runtime and RSS remain unmeasured.
+        recipe:
+          command: >-
+            ( cd outputs/tests && env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 30s
+            python3.12 -B -m unittest -v test_forecast_labels ) > {output} 2>&1
+          resources: {cpus: 1, memory: 1Gi, time_limit: 1m}
+      - id: gru_backend_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, non_neural_backend_code, finite_model_recipes, gru_backend_code, gru_backend_tests]
+        description: >-
+          Six focused checks for the selected one-direction GRU correction:
+          fixed baseline offsets and censored likelihood, global participant
+          weights, original state carry and factorial slot resets, shared
+          two-summary capacity and masked-block invariance, canonical folds,
+          complete past windows, and one tiny fixed 100-epoch CPU fit.
+          Use one numerical thread inside a substantive allocation with the
+          existing PyTorch environment. This does not qualify source timing,
+          production memory, Q11 equivalence or empirical forecasting.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_gru_forecast_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: tcn_backend_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, non_neural_backend_code, finite_model_recipes, gru_backend_code, tcn_backend_code, tcn_backend_tests]
+        description: >-
+          Five prepared checks for the registered 16/32-channel EEG TCN:
+          the finite left-zero causal residual operator, original full-window
+          and factorial slot-local two-mean summaries, matched capacity and
+          masked invariance, canonical development roles and complete windows,
+          fixed offsets/global person weights, and one tiny fixed 100-epoch fit
+          with budget refusal and frozen inference. The TCN reuses the GRU
+          likelihood helpers, whose separate checks remain required. Use one
+          numerical thread and the existing PyTorch environment inside a
+          substantive allocation; this recipe requests no separate short job.
+          No source timing/calibration, production resources, Q11 equivalence,
+          held-out access or empirical forecast is established by these checks.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_tcn_forecast_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: eegnet_backend_checks
+        type: report
+        format: text
+        inputs: [policy, component_code, classical_backend_code, non_neural_backend_code, finite_model_recipes, gru_backend_code, eegnet_backend_code, eegnet_backend_tests]
+        description: >-
+          Six prepared checks for compact causal EEGNet: exact raw/post-pool4
+          kernel durations, an independent finite-sum operator comparison and
+          future-sample mutation, full-window pooling phase across reset
+          factorial slots, matched capacity/masked invariance, canonical folds
+          and complete windows, unchanged offsets/global participant weights,
+          and one tiny fixed 100-epoch fit with budget and frozen-inference
+          checks. Shared GRU likelihood checks remain separate. Use one
+          numerical thread and the existing PyTorch environment inside a
+          substantive allocation; no separate short job. Component results
+          do not establish source timing/calibration, production-memory
+          feasibility, Q11 equivalence, empirical forecasts or held-out access.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest -v test_eegnet_forecast_backend ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+  non_neural_selection:
+    name: Select a strong source-specific peripheral baseline before candidate EEG scores
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: finite_model_recipes, from: ../finite_model_recipes}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: control_report, from: ../past_only_controls.control_report}
+      - {id: logistic_hazard_backend, type: data, source: ../../code/classical_forecast_backend.py}
+      - {id: logistic_hazard_model, type: data, source: ../../code/non_neural_forecast_backend.py}
+      - {id: boosted_hazard_model, type: data, source: ../../code/boosted_hazard_backend.py}
+      - {id: temporal_hazard_model, type: data, source: ../../code/temporal_hazard_backend.py}
+      - {id: baseline_driver, type: data, source: ../../code/development_baseline_driver.py}
+      - {id: baseline_driver_tests, type: data, source: ../../tests/test_development_baseline_driver.py}
+      - {id: baseline_final_refit, type: data, source: ../../code/baseline_final_refit.py}
+      - {id: baseline_final_refit_tests, type: data, source: ../../tests/test_baseline_final_refit.py}
+      - {id: ensemble_cost_measurement, type: data, source: ../../code/baseline_ensemble_cost.py}
+      - {id: ensemble_cost_tests, type: data, source: ../../tests/test_baseline_ensemble_cost.py}
+      - {id: ensemble_backend, type: data, source: ../../code/ensemble_forecast_backend.py}
+      - {id: horizon_scoring, type: data, source: ../../code/forecast_scoring.py}
+    outputs:
+      - id: baseline_recipe
+        type: report
+        format: json
+        description: >-
+          Complete source-specific selection over all nine registered baseline
+          configurations and three seeds. WAY fits all72 person/series folds
+          (1944 fits), pooling OOF rows within each person before equal-person
+          scoring. Self-paced fits all five whole-person folds (135 fits),
+          using each validation person's first32-event calibration as the fixed
+          primary condition and no-label predictions on the identical guarded
+          suffix as secondary. Requires caller-qualified source inputs, prefix
+          truncation and history guards; this library does not establish them.
+          Tie-breaks use primary-adaptation censored NLL, actual ensemble
+          parameter count, latency and recipe name. The prepared measurement
+          callback counts actual fitted inference coordinates and scaler values
+          across all three seeds and measures nearest-rank p95 single-decision
+          prediction plus probability averaging on fixed label-free fitting-fold
+          probes shared across recipes. Warmup and pass counts are explicit;
+          raw feature construction, resets, calibration and I/O are excluded.
+          This is not end-to-end latency qualification. Costs are measured after
+          each complete three-seed fit, before validation; retain every fold
+          cost and take separate maxima
+          across required folds. No partial ranking, final refit, source access
+          or empirical method freeze is supplied. Production resources remain
+          unmeasured; no empirical execution recipe is selected.
+      - id: baseline_driver_checks
+        type: report
+        format: text
+        inputs: [policy, finite_model_recipes, baseline_driver, baseline_driver_tests, logistic_hazard_backend, logistic_hazard_model, boosted_hazard_model, temporal_hazard_model, ensemble_backend, horizon_scoring]
+        description: >-
+          Five source-free composition fixtures exercise the complete registered
+          scopes with instrumented fitting interfaces, unequal-series pooling,
+          seed probability averaging, prefix-only calibration, shared suffix
+          state, full-follow-up eligibility, measured cost tie-breaks and
+          refusal of incomplete support or fits. Reuse the numerical backend
+          evidence; these checks do not rerun backend qualification or establish
+          real-data timing, calibration, production memory or forecast results.
+          Run inside a suitable coordinator-owned substantive allocation.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 120s
+            python3.12 -B -m unittest discover -s outputs/tests
+            -p test_development_baseline_driver.py -v > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: baseline_final_refit_checks
+        type: report
+        format: text
+        description: >-
+          Five focused composition checks plus four affected scope checks.
+          Admit final WAY series1-7 separately for all12 people or one all15
+          self-paced fit, retain three seeds and equal-person weights, and
+          construct log-mean-probability training offsets before calibration.
+          A separate existing-development-fold entrypoint excludes its outer
+          validation roles. Training offsets are not OOF scores. Numerical
+          fitting is instrumented; no empirical access or final evaluation.
+        inputs: [policy, finite_model_recipes, baseline_final_refit, baseline_final_refit_tests, baseline_driver, logistic_hazard_backend, logistic_hazard_model, boosted_hazard_model, temporal_hazard_model, ensemble_backend]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 175s bash -c
+            'cd outputs/tests && python3.12 -B -m unittest -v -f
+            test_baseline_final_refit
+            test_non_neural_forecast_backend.NonNeuralWrapperTests.test_registered_roles_weights_and_scope_rejection_precede_fit
+            test_boosted_hazard_backend.BoostedHazardTests.test_model_keeps_canonical_roles_fitting_weights_and_past_only_frozen_offsets
+            test_temporal_hazard_backend.TemporalHazardTests.test_group_roles_and_training_only_channel_summary_scaling
+            test_ensemble_forecast_backend.EnsembleForecastTests.test_fitted_seed_reports_bind_recipe_fold_grid_and_incomplete_members'
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: ensemble_cost_checks
+        type: report
+        format: text
+        inputs: [policy, finite_model_recipes, ensemble_cost_measurement, ensemble_cost_tests, baseline_driver, baseline_driver_tests, logistic_hazard_backend, logistic_hazard_model, boosted_hazard_model, temporal_hazard_model, ensemble_backend]
+        description: >-
+          Three focused checks of actual backend storage counting, single-decision
+          seed probability averaging and timing, shared probe/reset behavior,
+          fitting-role and seed refusals, and budget-failure cleanup. Uses
+          explicit component fixtures without numerical model fitting. Does not
+          establish empirical timing, source admission or production resources.
+          Run serially inside a suitable coordinator-owned substantive allocation.
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=5s 115s
+            python3.12 -B -m unittest discover -s outputs/tests
+            -p test_baseline_ensemble_cost.py -v > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+  legacy_compatibility:
+    name: Test the required near-event positive control on WAY series 1-6 to 7 only
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: control_report, from: ../past_only_controls.control_report}
+    outputs:
+      - {id: compatibility_report, type: report, format: json}
+  reference_panel:
+    name: Fit five fixed families with 12 configurations and three seeds for all horizons
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: finite_model_recipes, from: ../finite_model_recipes}
+      - {id: components, from: ../components}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: baseline_recipe, from: ../non_neural_selection.baseline_recipe}
+      - {id: compatibility_report, from: ../legacy_compatibility.compatibility_report}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: classical_backend, type: data, source: ../../code/classical_forecast_backend.py}
+      - {id: classical_backend_tests, type: data, source: ../../tests/test_classical_forecast_backend.py}
+      - {id: gru_backend, type: data, source: ../../code/gru_forecast_backend.py}
+      - {id: gru_backend_tests, type: data, source: ../../tests/test_gru_forecast_backend.py}
+      - {id: tcn_backend, type: data, source: ../../code/tcn_forecast_backend.py}
+      - {id: tcn_backend_tests, type: data, source: ../../tests/test_tcn_forecast_backend.py}
+      - {id: eegnet_backend, type: data, source: ../../code/eegnet_forecast_backend.py}
+      - {id: eegnet_backend_tests, type: data, source: ../../tests/test_eegnet_forecast_backend.py}
+      - {id: ensemble_backend, type: data, source: ../../code/ensemble_forecast_backend.py}
+      - {id: ensemble_backend_tests, type: data, source: ../../tests/test_ensemble_forecast_backend.py}
+      - {id: model_recipe_code, type: data, source: ../../code/model_recipes.py}
+      - {id: baseline_final_refit, type: data, source: ../../code/baseline_final_refit.py}
+      - {id: reference_final_refit, type: data, source: ../../code/reference_final_refit.py}
+      - {id: reference_final_refit_tests, type: data, source: ../../tests/test_reference_final_refit.py}
+      - {id: reference_development_prediction, type: data, source: ../../code/reference_development_prediction.py}
+      - {id: reference_development_prediction_tests, type: data, source: ../../tests/test_reference_development_prediction.py}
+      - {id: reference_development_panel, type: data, source: ../../code/reference_development_panel.py}
+      - {id: reference_development_panel_tests, type: data, source: ../../tests/test_reference_development_panel.py}
+      - {id: reference_development_driver, type: data, source: ../../code/reference_development_driver.py}
+      - {id: reference_development_driver_tests, type: data, source: ../../tests/test_reference_development_driver.py}
+      - {id: forecast_scoring, type: data, source: ../../code/forecast_scoring.py}
+    outputs:
+      - id: reference_final_refit_checks
+        type: report
+        format: text
+        inputs: [policy, finite_model_recipes, components, reference_final_refit, reference_final_refit_tests, baseline_final_refit, model_recipe_code, classical_backend, classical_backend_tests, gru_backend, gru_backend_tests, tcn_backend, tcn_backend_tests, eegnet_backend, eegnet_backend_tests, ensemble_backend, ensemble_backend_tests]
+        description: >-
+          Three array-only composition checks cover both the canonical
+          development-fold and final-refit entrypoints. Explicit final_refit admits one WAY person's
+          complete series1-7 or all15 self-paced development people while
+          development fits one canonical five-series WAY or twelve-person
+          self-paced fold, excluding validation and feedback roles. Reuse the
+          five unchanged backend scope/report checks passed previously. Join frozen uncalibrated baseline
+          training offsets by exact row identity; dispatch one frozen recipe
+          and supplied condition to exactly three seeds, then construct the
+          existing probability-mean ensemble. Reject incomplete cohorts,
+          altered offset roles and failed members without retry or partial
+          ensembles. Instrumented composition reuses existing numerical
+          backend evidence. No empirical input, source release, method freeze,
+          full-panel completion, calibration or final evaluation is established.
+          Run serially in the coordinator's substantive allocation, not a
+          separate short job; this check recipe is not an empirical fit recipe.
+        recipe:
+          command: >-
+            ( cd outputs/tests && env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 115s
+            python3.12 -B -m unittest -v -f test_reference_final_refit
+            ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: reference_development_prediction_checks
+        type: report
+        format: text
+        inputs: [policy, components, finite_model_recipes, reference_development_prediction,
+                 reference_development_prediction_tests, reference_final_refit,
+                 baseline_final_refit, model_recipe_code, ensemble_backend]
+        description: >-
+          Three focused array-only checks cover one complete canonical
+          development validation fold for either source, the frozen non-neural
+          baseline and all four registered EEG conditions with three seeds.
+          Share the uncalibrated baseline probability-mean evaluation offsets
+          before fusion; average each completed model's seed probabilities
+          before separate self-paced participant/condition calibration. Prefix
+          and guarded suffix reset separately; the same suffix prediction
+          supplies primary calibration and zero-label conditions. Check
+          identity/role joins, incomplete members, cancellation and explicitly
+          flagged calibration fallback without retry. Return internal arrays,
+          never a partial-fold score, ranking, selection or aggregate feedback.
+          Source timing, condition construction and valid32-event prefix/guard
+          qualification remain external prerequisites. No input release occurs.
+        recipe:
+          command: >-
+            ( cd outputs/tests && env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 175s
+            python3.12 -B -m unittest -v test_reference_development_prediction
+            ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: reference_development_panel_checks
+        type: report
+        format: text
+        inputs: [policy, components, finite_model_recipes, reference_development_panel,
+                 reference_development_panel_tests, reference_development_prediction,
+                 forecast_scoring, model_recipe_code]
+        description: >-
+          Focused supplied-array composition checks require all72 WAY or all
+          five self-paced canonical validation folds, every participant and
+          original matched condition, one consistent registered baseline/EEG
+          recipe and exact caller-admitted row identities and labels. Reject
+          missing/duplicate folds and changed rows, labels, roles or recipes
+          before feedback. Reuse the unchanged three-horizon scorer with
+          natural-prevalence within-person pooling and equal-person weights;
+          preserve separate self-paced calibration modes and fallback evidence.
+          No model fit, source qualification, condition construction, margin,
+          selection, scientific result or empirical access is established.
+        recipe:
+          command: >-
+            ( cd outputs/tests && env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 175s
+            python3.12 -B -m unittest -v test_reference_development_panel
+            ) > {output} 2>&1
+          resources: {cpus: 1, memory: 4Gi, time_limit: 3m}
+      - id: reference_development_driver_checks
+        type: report
+        format: text
+        inputs: [policy, components, finite_model_recipes, reference_development_driver,
+                 reference_development_driver_tests, reference_final_refit,
+                 reference_development_prediction, reference_development_panel,
+                 baseline_final_refit, ensemble_backend, model_recipe_code, forecast_scoring]
+        description: >-
+          Three focused integration checks execute every canonical development
+          fold for one fixed recipe through the existing seed loop, matched
+          prediction/calibration and complete-source scorer, using instrumented
+          fitted models. Verify all72 WAY or five self-paced folds, four EEG
+          conditions and three seeds, shared fitting labels/offsets, and release
+          of each fold's EEG models before the next fit. Late-fold identity,
+          condition, offset and scored-label defects must refuse before fitting;
+          fit/resource failures must propagate without retry or partial scoring.
+          These software fixtures establish no empirical support, condition
+          construction, source access or production resource qualification.
+          Run in a suitable coordinator-owned substantive allocation; this is
+          not a standalone short-job or empirical execution recipe.
+        recipe:
+          command: >-
+            ( cd outputs/tests && env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+            MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+            timeout --signal=TERM --kill-after=5s 175s
+            python3.12 -B -m unittest -v test_reference_development_driver
+            ) > {output} 2>&1
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+      - id: reference_results
+        type: report
+        format: json
+        inputs: [policy, finite_model_recipes, development_views, baseline_recipe, compatibility_report, method_settings, classical_backend, gru_backend, tcn_backend, eegnet_backend, ensemble_backend, model_recipe_code, baseline_final_refit, reference_final_refit, reference_development_prediction, reference_development_panel, reference_development_driver, forecast_scoring]
+        description: >-
+          Complete required development reference comparisons. The prepared
+          development and final-refit compositions each fit one recipe, one
+          condition and one canonical fitting scope per call; they supply no scientific selection or
+          empirical execution recipe. A separate array-only bridge now applies
+          all four matched conditions and the baseline to one complete
+          validation fold, preserving uncalibrated offsets and original
+          seed-mean/prefix/suffix calibration. It returns internal arrays only.
+          The complete-source composition joins all canonical folds and the
+          unchanged matched scorer without partial feedback, preserving
+          calibration modes and continuous increments. The fixed-recipe
+          development driver now composes fitting and prediction across every
+          required fold before scoring, reusing already fitted baselines and
+          releasing per-fold EEG models. Final recipe freeze, genuine matched
+          conditions, qualified source timing/preprocessing, admitted labels/
+          prefixes, source readers and production resource admission remain
+          separate. These array interfaces do not authorize empirical scoring.
+  initial_coverage:
+    name: Complete the existing 12 coverage trials across classical, temporal, representation and fusion branches
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: reference_results, from: ../reference_panel.reference_results}
+      - {id: baseline_recipe, from: ../non_neural_selection.baseline_recipe}
+    outputs:
+      - {id: coverage_results, type: report, format: json}
+  adaptive_search:
+    name: Continue to 24-40 total valid trials with existing follow-up, challenge and resource rules
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: coverage_results, from: ../initial_coverage.coverage_results}
+      - {id: reference_results, from: ../reference_panel.reference_results}
+      - {id: baseline_recipe, from: ../non_neural_selection.baseline_recipe}
+    outputs:
+      - {id: search_results, type: report, format: json}
+  temporal_factorial_development:
+    name: Fit all five fixed-shape factorial panels, test both mutations and develop signed edge predictions
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: components, from: ../components}
+      - {id: development_views, from: ../source_views_and_timing.development_views}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: reference_results, from: ../reference_panel.reference_results}
+      - {id: baseline_recipe, from: ../non_neural_selection.baseline_recipe}
+    outputs:
+      - {id: factorial_results, type: report, format: json}
+  freeze_final_comparison:
+    name: Freeze the existing joint comparison, calibration, warning rules and development-selected models
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: source_report, from: ../source_views_and_timing.source_report}
+      - {id: method_settings, from: ../development_specification.method_settings}
+      - {id: control_report, from: ../past_only_controls.control_report}
+      - {id: baseline_recipe, from: ../non_neural_selection.baseline_recipe}
+      - {id: reference_results, from: ../reference_panel.reference_results}
+      - {id: search_results, from: ../adaptive_search.search_results}
+      - {id: factorial_results, from: ../temporal_factorial_development.factorial_results}
+    outputs:
+      - {id: final_comparison, type: report, format: json}
+  joint_final_evaluation:
+    name: Evaluate WAY 8-9 and all eight self-paced people once, including calibration inside the sealed joint evaluator
+    inputs:
+      - {id: datasets, from: ../datasets}
+      - {id: policy, from: ../policy}
+      - {id: finite_model_recipes, from: ../finite_model_recipes}
+      - {id: horizon_scoring, type: data, source: ../../code/forecast_scoring.py}
+      - {id: factorial_uncertainty_code, type: data, source: ../../code/forecast_uncertainty.py}
+      - {id: factorial_uncertainty_tests, type: data, source: ../../tests/test_forecast_uncertainty.py}
+      - {id: final_comparison, from: ../freeze_final_comparison.final_comparison}
+    outputs:
+      - id: factorial_uncertainty_checks
+        type: report
+        format: text
+        inputs: [policy, finite_model_recipes, horizon_scoring, factorial_uncertainty_code, factorial_uncertainty_tests]
+        description: >-
+          Array-only checks of the fixed forty-endpoint factorial-equivalence
+          family, complete twelve-WAY/eight-self-paced participant cohorts,
+          shared draws within each source and independent draws between sources,
+          one maximum absolute centered bootstrap statistic and two-sided 95%
+          simultaneous intervals from 10000 draws. The caller supplies a
+          prospectively frozen seed and equivalence margins; absent margins
+          remain unresolved. This does not read source data, admit final
+          evaluation or establish the complete temporal explanation. Run within
+          a substantive allocation with one numerical thread, not a separate
+          short job.
+        recipe:
+          command: >-
+            ( cd outputs/tests && timeout --signal=TERM --kill-after=5s 60s
+            python3.12 -B -m unittest -v test_forecast_uncertainty ) > {output} 2>&1
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: joint_results
+        type: report
+        format: json
+        inputs: [datasets, policy, finite_model_recipes, horizon_scoring, factorial_uncertainty_code, final_comparison]
+  scientific_report:
+    name: Report the joint evidence with primary, factorial, ordering and second-task claim limits
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: policy, from: ../policy}
+      - {id: reference_results, from: ../reference_panel.reference_results}
+      - {id: search_results, from: ../adaptive_search.search_results}
+      - {id: joint_results, from: ../joint_final_evaluation.joint_results}
+    outputs:
+      - {id: final_report, type: report, format: markdown}

@@ -1,0 +1,193 @@
+version: 0.0.14
+id: episode11_projection_types_vs_gradients
+name: EP11 — Do nearby somatosensory neurons use reusable output patterns?
+description: 'Brain Researcher autoresearch episode projection. This ASTRA document
+  is non-authoritative: it records a workspace plan or result but grants no execution
+  authority, scientific acceptance, reward, or Landscape transition. On October 6
+  the scientist adopted the original cross-animal primary closeout as unresolved
+  and incomplete at its expired execution and qualification bound. Preserved
+  analyses do not select a successor or open real projection outcomes.'
+tags:
+- brain-researcher
+- autoresearch
+- projection
+- plan
+- non-authoritative
+inputs:
+- id: goal
+  type: data
+  description: Episode research goal contract.
+  source: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/GOAL.md
+- id: datasets
+  type: data
+  description: Episode dataset and access contract.
+  source: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/DATASETS.md
+- id: search_policy
+  type: data
+  description: Episode search and stopping policy.
+  source: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/SEARCH_POLICY.yaml
+decisions:
+  declared_search_policy:
+    id: declared_search_policy
+    label: Declared episode search policy
+    rationale: policy_id=ep11_reusable_projection_groups_adaptive_v2_gao_ssptr; evidence_mode=adaptive_search
+    default: use_declared_policy
+    options:
+      use_declared_policy:
+        id: use_declared_policy
+        label: Use declared policy
+outputs:
+- id: planned_episode_result
+  type: report
+  format: md
+  description: Planned empirical episode report was not produced; the adopted incomplete primary closeout is recorded in outputs/experiment_log.md.
+  inputs:
+  - goal
+  - datasets
+  - search_policy
+  decisions:
+  - declared_search_policy
+- id: fitted_h_diagnostic
+  from: population_h_optimizer_recovery.h_summary
+findings:
+  h_optimizer_initialization_sensitivity:
+    id: h_optimizer_initialization_sensitivity
+    claim: 'On the synthetic amplitude-1.25 R8192 diagnostic, the best truth-initialized
+      H fit approximates planted truth (one-sided 95% upper score deficit 0.001997
+      < 0.010), but recovery across the frozen initializations fails: the empirical
+      start reaches 1200 iterations, and the best-two fresh H score gap is 0.129459
+      > 0.002.'
+    created_at: '2026-09-30T23:20:59Z'
+    evidence:
+    - id: h_terminal_summary
+      artifact: fitted_h_diagnostic
+    derived: true
+    notes: Synthetic optimizer diagnostic only. Monte Carlo uncertainty concerns generated
+      draws, not biological replicates. Panel A and real outcome access remain closed.
+      Attempts and next authority gate are in the ledger.
+analyses:
+  population_c_saa:
+    name: Positive-amplitude population-C SAA stability diagnostic
+    description: Existing prospectively frozen r128_three_fresh_v1 attempt. Its passing
+      pilot establishes C stability at diagnostic amplitude 1.25; it does not complete
+      Panel A. Runtime and prior failed attempts remain in the ledger.
+    inputs:
+    - id: search_policy
+      from: ../search_policy
+    - &id001
+      id: inventory
+      type: data
+      source: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/outputs/stage0/whole_cortex_ssptr_inventory.csv
+    - &id002
+      id: vocabulary
+      type: data
+      source: /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/outputs/stage0/allen_target_vocabulary.csv
+    outputs:
+    - id: c_summary
+      type: report
+      format: json
+      inputs:
+      - search_policy
+      - inventory
+      - vocabulary
+      description: 'Actual passing summary preserved at outputs/stage0/population_saa_r128_three_fresh_full_ladder_summary.json.
+        Source runner filename: population_saa_pilot_summary.json.'
+    - id: c_model_state
+      type: data
+      format: npz
+      inputs:
+      - search_policy
+      - inventory
+      - vocabulary
+      description: 'Actual fitted-C checkpoint preserved at outputs/stage0/population_saa_r128_three_fresh_C_model_state.npz.
+        Source filename: population_saa_C_model_state.npz.'
+  population_h_optimizer_recovery:
+    name: Synthetic fitted-H population optimizer recovery
+    description: The diagnostic consumes the passing C
+      result and jointly optimizes all H blocks from three frozen starts. R=8192,
+      1200 iterations per main start, 600 polish iterations, verification stream 5601
+      with 512 replicates, thresholds 0.005/0.002/0.010 remain unchanged. This record
+      grants no execution authority; it does not complete Panel A. The empirical
+      initializer revision is implemented and passed its focused regression. Its
+      terminal scientific artifact remains unverified after the successor timed
+      out; absence is not established. The user explicitly reset
+      the 120h wall clock from 2026-10-01T01:12:23Z through 2026-10-06T01:12:23Z.
+      CPU ceiling and prior CPU usage remain unchanged. One revised attempt
+      was selected within this now-expired window. The October 6 original-primary
+      closeout selects no successor; runtime history remains in the ledger.
+      Legacy result and finding are retained.
+    inputs:
+    - id: goal
+      from: ../goal
+    - id: search_policy
+      from: ../search_policy
+    - id: c_summary
+      from: ../population_c_saa.c_summary
+    - id: c_model_state
+      from: ../population_c_saa.c_model_state
+    - *id001
+    - *id002
+    outputs:
+    - id: h_summary
+      type: report
+      format: json
+      inputs:
+      - goal
+      - search_policy
+      - c_summary
+      - c_model_state
+      - inventory
+      - vocabulary
+      description: Actual terminal diagnostic summary preserved at outputs/stage0/population_h_recovery_summary.json.
+        Its scope is the synthetic implemented family on provisional A8 metadata support;
+        it does not complete Panel A or support a real-data conclusion.
+      recipe:
+        command: sbatch outputs/stage0/tools/run_mixed_support_population_h_recovery.sbatch
+          /scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population_saa/run_45589596/results
+        resources:
+          cpus: 3
+          memory: 16Gi
+          time_limit: 72h
+    - id: h_initializer_regression
+      type: report
+      format: json
+      inputs:
+      - c_model_state
+      - inventory
+      - vocabulary
+      description: Actual passing bounded initializer regression preserved at
+        outputs/stage0/population_h_empirical_perturbation_v1_regression.json.
+        One synthetic replicate, no optimizer; establishes code behavior only.
+      recipe:
+        command: python outputs/stage0/tools/check_population_h_empirical_perturbation.py
+          --episode-root /oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients
+          --scratch-dir /scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/initializer_regression
+          --output outputs/stage0/population_h_empirical_perturbation_v1_regression.json
+    - id: h_revised_summary
+      type: report
+      format: json
+      inputs:
+      - goal
+      - search_policy
+      - c_summary
+      - c_model_state
+      - inventory
+      - vocabulary
+      description: Prospective empirical_perturbation_v1 recovery output, not
+        produced. Same three starts, R8192, 1200/600 caps and thresholds;
+        empirical helper seed 20269193, fresh streams 5602/5702, distinct
+        population_h_empirical_perturbation_v1_summary.json. The explicit
+        renewed wall window ends 2026-10-06T01:12:23Z; absolute deadline and
+        no requeue bound this single attempt. Queue time consumes the window.
+      recipe:
+        command: TZ=America/Los_Angeles sbatch --partition=russpold
+          --time=3-00:00:00 --cpus-per-task=3 --mem=16G --no-requeue
+          --job-name=ep11-pop-h-perturb --deadline=2026-10-05T18:12:23
+          --export=ALL,EP11_VERIFICATION_STREAM=5602,EP11_TARGET_MCSE=0.005,EP11_START_STABILITY=0.002,EP11_TRUTH_H_UPPER=0.010,EP11_CHUNK_REPLICATES=32,EP11_PRECONDITIONER_REPLICATES=32,EP11_INITIALIZATION_REPLICATES=16,EP11_START_WORKERS=3,EP11_VERIFICATION_REPLICATES=512,EP11_VERIFICATION_WORKERS=3
+          outputs/stage0/tools/run_mixed_support_population_h_recovery.sbatch
+          /scratch/users/zijiao/br_autoresearch/episode11_projection_types_vs_gradients/population_h_recovery/empirical_perturbation_v1_c_input
+          empirical_perturbation_v1
+        resources:
+          cpus: 3
+          memory: 16Gi
+          time_limit: 72h

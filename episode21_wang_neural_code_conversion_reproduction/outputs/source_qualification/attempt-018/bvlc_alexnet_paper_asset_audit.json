@@ -1,0 +1,150 @@
+{
+  "access_boundary": {
+    "attestation_basis": "exact frozen code paths and identity-validated inputs/cache; no claim about unrelated external filesystem state",
+    "public_metadata_hosts": [
+      "raw.githubusercontent.com"
+    ],
+    "public_model_host": "dl.caffe.berkeleyvision.org",
+    "qualification_input": "outputs/source_qualification/attempt-017/qualification_report.json",
+    "scratch_cache_relative_purpose": "public_model_assets_only"
+  },
+  "asset_distinctions": {
+    "official_paper_cited_bvlc_alexnet": {
+      "authenticated_as_official_provider_asset": true,
+      "filename": "bvlc_alexnet.caffemodel",
+      "format": "Caffe protobuf",
+      "provider_published_sha1": "9116a64c0fbe4459d18f4bb6b56d647b63920377"
+    },
+    "public_bvlc_reference_caffenet": {
+      "authenticated_as_caffenet_candidate": true,
+      "authorized_as_alexnet_substitute": false,
+      "basename": "bvlc_reference_caffenet.pt",
+      "format": "PyTorch",
+      "path": "bvlc_reference_caffenet/bvlc_reference_caffenet.pt",
+      "sha256": "24016c5822dfc778796f9410fc5d2d474bb451d86094747c8c5b1274f8bd9a00",
+      "uncompressed_bytes": 243866815
+    },
+    "tagged_evaluator_bvlc_alexnet": {
+      "authenticated": false,
+      "basename": "bvlc_alexnet.pt",
+      "format": "PyTorch",
+      "path": "/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt",
+      "provenance": "lab_local_unchecksummed"
+    }
+  },
+  "astra_analysis_id": "source_qualification",
+  "attempt": 18,
+  "checkpoint_deserialization_performed": false,
+  "completed_at": "2026-09-30T02:13:14+00:00",
+  "empirical_or_ood_payload_accessed": false,
+  "empirical_readiness": "blocked",
+  "ep04_or_legacy_scratch_accessed": false,
+  "feature_or_scoring_handoff_accessed": false,
+  "model_asset": {
+    "cache_filename": "bvlc_alexnet.caffemodel",
+    "cache_mode": "0440",
+    "cache_nlink": 1,
+    "cache_reused_after_identity_check": false,
+    "http_content_length_observed_this_attempt": 243862414,
+    "observed_sha1": "9116a64c0fbe4459d18f4bb6b56d647b63920377",
+    "observed_size_bytes": 243862414,
+    "payload_bytes_downloaded_this_attempt": 243862414,
+    "prepared_expected_size_bytes": 243862414,
+    "prepared_size_basis": "prior HTTP Content-Length observation; re-observed and byte-counted when a download occurs",
+    "provider_metadata_declares_size_bytes": false,
+    "provider_published_sha1": "9116a64c0fbe4459d18f4bb6b56d647b63920377",
+    "provider_transport": "http_bytes_with_integrity_anchored_by_pinned_https_provider_metadata",
+    "provider_url": "http://dl.caffe.berkeleyvision.org/bvlc_alexnet.caffemodel"
+  },
+  "model_inference_performed": false,
+  "next_analysis": "pipeline_conformance_after_scientist_choice_and_structural_handoff",
+  "official_deploy_definition": {
+    "feature_layers": [
+      "conv1",
+      "conv2",
+      "conv3",
+      "conv4",
+      "conv5",
+      "fc6",
+      "fc7",
+      "fc8"
+    ],
+    "grouped_convolution_layers": [
+      "conv2",
+      "conv4",
+      "conv5"
+    ],
+    "input_shape": [
+      10,
+      3,
+      227,
+      227
+    ],
+    "network_name": "AlexNet"
+  },
+  "outcome": "completed_official_bvlc_alexnet_provider_asset_authenticated",
+  "process_id": 32550,
+  "protocol_lock_emitted": false,
+  "provider_metadata": {
+    "declared_fields": {
+      "caffe_commit": "709dc15af4a06bebda027c1eb2b3f3e3375d5077",
+      "caffemodel": "bvlc_alexnet.caffemodel",
+      "caffemodel_url": "http://dl.caffe.berkeleyvision.org/bvlc_alexnet.caffemodel",
+      "license": "unrestricted",
+      "name": "BAIR/BVLC AlexNet Model",
+      "sha1": "9116a64c0fbe4459d18f4bb6b56d647b63920377"
+    },
+    "deploy_sha256": "b564ba76416b4ac1e062c6621cbd80d9c19304ba152d9d791c75870f3182c4fa",
+    "deploy_url": "https://raw.githubusercontent.com/BVLC/caffe/9b891540183ddc834a02b2bd81b31afae71b2153/models/bvlc_alexnet/deploy.prototxt",
+    "license_semantics": "provider-declared string only; no DUA, Sherlock risk-classification, or legal determination is inferred",
+    "readme_sha256": "a537febafb2bfc7d33d11e645a4eba6b873bf577a1a874214d3a5170a503e67e",
+    "readme_url": "https://raw.githubusercontent.com/BVLC/caffe/9b891540183ddc834a02b2bd81b31afae71b2153/models/bvlc_alexnet/readme.md",
+    "repository": "https://github.com/BVLC/caffe",
+    "repository_commit": "9b891540183ddc834a02b2bd81b31afae71b2153"
+  },
+  "schema_version": "ep21.bvlc_alexnet_paper_asset_audit.v1",
+  "scientific_boundary": {
+    "caffemodel_to_pytorch_conversion_performed": false,
+    "official_caffemodel_equivalent_to_tagged_bvlc_alexnet_pt_verified": false,
+    "official_caffemodel_satisfies_tagged_checkpoint_requirement": false,
+    "official_deploy_input_shape": [
+      10,
+      3,
+      227,
+      227
+    ],
+    "paper_caffe_vs_tagged_pytorch_backend_decision_resolved": false,
+    "paper_cited_official_bvlc_caffe_asset_authenticated": true,
+    "paper_description_from_bound_qualification": "official Caffe bvlc_alexnet with 224 by 224 inputs",
+    "paper_faithful_pipeline_runtime_ready": false,
+    "paper_faithful_pipeline_specification_complete": false,
+    "paper_reports_resize_pixels": [
+      224,
+      224
+    ],
+    "paper_text_224_vs_official_deploy_227_decision_resolved": false,
+    "public_caffenet_substitution_authorized": false,
+    "remaining_actions": {
+      "fallback": "Lock Findings C and E not_evaluable.",
+      "paper_route": "Resolve paper-described 224 versus official-deploy 227; bind a native Caffe runtime or documented deterministic conversion; strict-load the official model; and lock mean, color, crop, layer, and activation conventions.",
+      "tagged_route": "Authenticate the exact bvlc_alexnet.pt and strict-load it through the tagged bdpy implementation; this official Caffe asset cannot clear that checkpoint requirement."
+    },
+    "tagged_description_from_bound_qualification": "bdpy PyTorch AlexNet port with direct 227 by 227 resize",
+    "tagged_evaluator_reports_direct_resize_pixels": [
+      227,
+      227
+    ],
+    "tagged_pytorch_checkpoint_authenticated_by_this_audit": false
+  },
+  "scope": "paper_cited_official_public_bvlc_alexnet_provider_asset_only",
+  "started_at": "2026-09-30T02:12:45+00:00",
+  "tensor_or_device_context_created": false,
+  "upstream_qualification_binding": {
+    "analysis_id": "source_qualification",
+    "attempt": 17,
+    "relative_path": "outputs/source_qualification/attempt-017/qualification_report.json",
+    "schema_version": "ep21.source_qualification_report.v2",
+    "sha256": "98b9e5e30947f12484dc2df66d5ef06b666cb84f2e84cc01b8b0a1c609e07126",
+    "size_bytes": 93245
+  }
+}

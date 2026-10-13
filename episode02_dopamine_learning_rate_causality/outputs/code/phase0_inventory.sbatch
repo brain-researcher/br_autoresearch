@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH --job-name=ep02-dudman-p0
-#SBATCH --account=russpold
 #SBATCH --partition=normal
 #SBATCH --time=00:10:00
 #SBATCH --cpus-per-task=1

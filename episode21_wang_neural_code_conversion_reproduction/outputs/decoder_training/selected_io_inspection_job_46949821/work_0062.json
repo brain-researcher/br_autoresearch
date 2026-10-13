@@ -1,0 +1,290 @@
+{
+  "schema_version": "ep21.closed_io_fragment_inspection.v1",
+  "observed_utc": "2026-10-08T01:27:32.593064+00:00",
+  "allocation": {
+    "job_id": "46949821",
+    "hostname": "sh04-04n21",
+    "caller_verified_end_epoch": 1791451570.0
+  },
+  "max_seconds": 600,
+  "block_units": 256,
+  "requested_work_items": [
+    "work_0062"
+  ],
+  "unrequested_work_items": [
+    "work_0032",
+    "work_0033",
+    "work_0047",
+    "work_0061"
+  ],
+  "quarantined_work_items": [
+    "work_0032",
+    "work_0033",
+    "work_0047",
+    "work_0061",
+    "work_0062"
+  ],
+  "status": "consistent_observations_only",
+  "fragments": [
+    {
+      "work_item_id": "work_0062",
+      "fragment": "outputs/decoder_training/full_continuation_001/shards/work_0062/channels.h5",
+      "status": "consistent",
+      "inspectable": true,
+      "inspection_complete": true,
+      "reported_committed_units": 571904,
+      "reported_committed_units_checked": 571904,
+      "observed_marker_2_units": 571904,
+      "ambiguous_marker_2_units_checked": 0,
+      "channels": [
+        {
+          "layer": "conv1_1",
+          "channel": 20,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 21,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 22,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 23,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 24,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 25,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 26,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 27,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 28,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 29,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 30,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 50176,
+          "observed_marker_2_units": 50176
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 31,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": true,
+          "reported_committed_units_checked": 19968,
+          "observed_marker_2_units": 19968
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 32,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 33,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 34,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 35,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 36,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 37,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 38,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        },
+        {
+          "layer": "conv1_1",
+          "channel": 39,
+          "requested_interval": [
+            0,
+            50176
+          ],
+          "present": false,
+          "reported_committed_units_checked": 0,
+          "observed_marker_2_units": 0
+        }
+      ],
+      "historical_closeout_errors": [],
+      "historical_uncertain_publication": null,
+      "repair_coverage_written": false,
+      "original_artifacts_modified": false,
+      "retry_authorized": false,
+      "reuse_authorized": false
+    }
+  ],
+  "original_artifacts_modified": false,
+  "repair_coverage_written": false,
+  "retry_authorized": false,
+  "reuse_authorized": false,
+  "elapsed_seconds": 164.02749125000082,
+  "peak_RSS_KiB": 51812,
+  "attempted_work_items": [
+    "work_0062"
+  ],
+  "completely_checked_work_items": [
+    "work_0062"
+  ],
+  "not_inspected_requested_work_items": [],
+  "all_requested_fragments_completely_checked": true,
+  "all_five_fragments_completely_checked": false,
+  "not_inspected_work_items": [
+    "work_0032",
+    "work_0033",
+    "work_0047",
+    "work_0061"
+  ]
+}

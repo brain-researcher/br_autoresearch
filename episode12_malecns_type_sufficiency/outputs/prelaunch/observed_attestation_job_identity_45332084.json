@@ -1,0 +1,34 @@
+{
+  "schema_version": "ep12.pending_observed_attestation_job_identity.v1",
+  "slurm_job_id": "45332084",
+  "slurm_job_name": "ep12-attest36",
+  "submission_user": "zijiao",
+  "submitted_at": "2026-09-26T00:56:15-0700",
+  "identity_captured_at": "2026-09-26T06:15:26-0700",
+  "dependency": "afterok:45323481",
+  "partition": "normal",
+  "cpus_per_task": 1,
+  "memory_gib": 2,
+  "time_limit": "00:30:00",
+  "spooled_batch_script_sha256": "863524ca57f950418c130bc4d3982ef9e6cf8fff067bbe7e9679c96ff56f9d44",
+  "current_on_disk_wrapper_sha256": "3fd9002acfb1dcd6a1de41254ecf72f4995c4289d3aa3d536b5e3c6d717ab917",
+  "spooled_script_matches_current_on_disk_wrapper": false,
+  "spooled_script_uses_live_oak_python_imports": true,
+  "pre_run_live_import_source_sha256": {
+    "SEARCH_POLICY.yaml": "d64c5c9c56b70f3312472e056b9394f519107eda268902ceb586771d435d8b8d",
+    "outputs/executor/ep12_executor/__init__.py": "d237e4097707272af42a71200dd8d67ba79e73dabb3f8cb8bc19767f5ea98e01",
+    "outputs/executor/ep12_executor/attest_observed_trials.py": "52b2f6407c2dc6d1616692fdafbc4022b1a7b943e511de5f484c37b5b0e1f422",
+    "outputs/executor/ep12_executor/controller.py": "ca5153947ec163ccc2e58ffe49e935a1e919886172d04d02ee720e6dbb060ec7",
+    "outputs/executor/ep12_executor/journal.py": "b1a31a71db3fcf15739c44423e8c75a21683af5c49ef1b1575a9231899e2779a",
+    "outputs/executor/ep12_executor/policy.py": "93acbcc9d94447166e37d7594073707743213b1d4d293a32dba25cdf26e8c421",
+    "outputs/executor/ep12_executor/yaml_subset.py": "3bee902c7adf03c25c44514a8718b6b7d5937132322307b58d5338f3de893f81"
+  },
+  "identity_limitations": [
+    "the_job_was_submitted_before_the_source_freeze_launcher_existed",
+    "the_spooled_script_does_not_cryptographically_freeze_transitive_imports",
+    "the_record_captures_pre_run_live_bytes_and_requires_post_run_rehash_before_acceptance"
+  ],
+  "real_connectivity_outcome_values_read_to_build_identity": false,
+  "final_connectivity_accessed": false,
+  "identity_sha256": "2a9426a35ec1c250e8768d82a0730591703f57bb8174a7e6dd3b0c84bbf010b2"
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import unittest
+from dataclasses import replace
 from types import MappingProxyType
 
 import numpy as np
@@ -13,6 +14,7 @@ from ep12_executor.fitted_null import (
     FittedNullDesign,
     FittedNullError,
     TypePooledExpansionPlan,
+    fitted_generator_sha256,
     freeze_null_seed_manifest,
     null_seed_binding,
     sample_fitted_null,
@@ -311,6 +313,73 @@ class FittedNullSamplingTests(unittest.TestCase):
                 np.testing.assert_array_equal(
                     another.raw_counts.sum(axis=1), design.raw_counts.sum(axis=1)
                 )
+
+    def test_U_hash_and_sampling_use_the_exact_stored_support(self) -> None:
+        design = _design()
+        base = _model(design, "U_linear")
+        neutral_coefficients = np.zeros_like(base.nuisance_coefficients)
+        desired_logits = np.asarray([1000.0, -1000.0, 0.0, 0.0])
+        support = (desired_logits @ base.basis)[None, :]
+        opposite = (-desired_logits @ base.basis)[None, :]
+        model = replace(
+            base,
+            nuisance_coefficients=neutral_coefficients,
+            latent_offsets=support,
+            log_weights=np.zeros(1, dtype=float),
+            # These legacy descriptive arrays intentionally point the other
+            # way.  The sampler must consume latent_offsets/log_weights.
+            prior_means=opposite,
+            prior_covariances=np.zeros_like(base.prior_covariances),
+        )
+        changed = replace(model, latent_offsets=opposite)
+        self.assertNotEqual(
+            fitted_generator_sha256(model, design),
+            fitted_generator_sha256(changed, design),
+        )
+
+        plan = TypePooledExpansionPlan.build(design)
+        generators = {
+            key: model for key in sorted(set(zip(design.focal_types, design.sides)))
+        }
+        sample = sample_fitted_null(
+            design,
+            generators,
+            plan,
+            seed_manifest=_manifest(design, generators, plan),
+            replicate_index=0,
+            selection_sha256=SELECTION_SHA256,
+        )
+        typed_totals = design.raw_counts[:, design.typed_raw_mask].sum(axis=1)
+        np.testing.assert_array_equal(sample.collapsed_counts[:, 0], typed_totals)
+        np.testing.assert_array_equal(
+            sample.collapsed_counts[:, 1], np.zeros(len(typed_totals), dtype=np.int64)
+        )
+
+        changed_generators = {key: changed for key in generators}
+        with self.assertRaises(FittedNullError):
+            sample_fitted_null(
+                design,
+                changed_generators,
+                plan,
+                seed_manifest=_manifest(design, generators, plan),
+                replicate_index=0,
+                selection_sha256=SELECTION_SHA256,
+            )
+        changed_sample = sample_fitted_null(
+            design,
+            changed_generators,
+            plan,
+            seed_manifest=_manifest(design, changed_generators, plan),
+            replicate_index=0,
+            selection_sha256=SELECTION_SHA256,
+        )
+        np.testing.assert_array_equal(
+            changed_sample.collapsed_counts[:, 0],
+            np.zeros(len(typed_totals), dtype=np.int64),
+        )
+        np.testing.assert_array_equal(
+            changed_sample.collapsed_counts[:, 1], typed_totals
+        )
 
     def test_selects_the_frozen_generator_for_each_type_and_side(self) -> None:
         design = _design()

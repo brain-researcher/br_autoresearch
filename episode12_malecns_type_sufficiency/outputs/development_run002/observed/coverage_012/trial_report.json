@@ -1,0 +1,2065 @@
+{
+  "aggregate": {
+    "mean_bilateral_delta": -0.000704516679593236,
+    "mean_left_to_right_delta": -0.0008074825309450831,
+    "mean_right_to_left_delta": -0.0006015508282413884,
+    "technical_failure_count": 0,
+    "types_with_both_point_estimates_above_margin": 0,
+    "unscorable_type_count": 249,
+    "valid_type_count": 567
+  },
+  "configuration": {
+    "collapsed_partner_count": 7,
+    "component_count": 3,
+    "component_count_candidates": [
+      3
+    ],
+    "composition_pseudocount": 1.0,
+    "configuration_sha256": "00de1d65eca61235ced359277a6cfca143d9b349c943a8a1e61bf6b19aaf9284",
+    "covariance": "shrinkage",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "endpoint_mapping": "typed partners failing the frozen support/mass branch pool to other_typed; untyped provider status/statusLabel maps deterministically to unknown/untyped/fragment/proofreading",
+    "hierarchy_bin_count": 0,
+    "integration_draws": 256,
+    "minimum_development_type_count": 2,
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_hierarchy_field": null,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 4,
+    "rare_partner_mass_fraction": 0.05,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "raw_partner_key_count": 11771,
+    "regularization": 100.0,
+    "representation": "low_rank_count_model",
+    "retained_typed_partner_count": 0,
+    "retained_typed_partners": [],
+    "source_cross_validation_folds": 2,
+    "stage": "coverage",
+    "trial_id": "coverage_012"
+  },
+  "cpu_seconds": 1130.199680102,
+  "data_role": "development_only",
+  "failures": [],
+  "final_connectivity_accessed": false,
+  "schema_version": "ep12.development_trial.v1",
+  "scientific_contract_sha256": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006",
+  "status": "completed",
+  "trial_id": "coverage_012",
+  "unscorable": [
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AMMC019",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AMMC026",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN07B069_b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN08B098",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN08B113",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN09A005",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN09B004",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN10B035",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN10B053",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN12B060",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AN19B101",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "ANXXX169",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AOTU038",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AOTU059",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AVLP145",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AVLP191",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "AVLP387",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 24,
+      "provider_type": "Acc. ti flexor MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 23,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB0743",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1109",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1114",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1227",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1322",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1357",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1359",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1570",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1805",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1918",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1923",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1932",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB1997",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB2148",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB2290",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB2342",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB2814",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB3417",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4082",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4086",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4087",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4094",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4122",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4130",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CB4243",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CL090_d",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CL091",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CL182",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CL210_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "CRE103",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "Cm24",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DA2_lPN",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DL3_lPN",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "provider_type": "DNES1",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 5,
+      "status": "unscorable",
+      "zero_count_left_neurons": 3,
+      "zero_count_right_neurons": 1
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DNg02_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DNg12_b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DNge019",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DNge071",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "DNpe015",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "ENXXX226",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 10,
+      "status": "unscorable",
+      "zero_count_left_neurons": 0,
+      "zero_count_right_neurons": 3
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "ER1_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 7,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "ER2_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "ER3d_d",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "ER4m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "FB2I_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "FLA004m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "Fe reductor MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 11,
+      "status": "unscorable",
+      "zero_count_left_neurons": 0,
+      "zero_count_right_neurons": 3
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "GFC2",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "GNG332",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "GNG410",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "GNG454",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IB002",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IB054",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN01A050",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN01A079",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 11,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN01B080",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN02A044",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A031",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A037",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A039",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A051",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A052",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A059",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A068",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A073",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03A075",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN03B055",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN04B018",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN04B032",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A102",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A104",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A106",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A116",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A117",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06A132",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 8,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06B017",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06B063",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN06B074",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN07B061",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN07B065",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN07B079",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN07B081",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN07B086",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN08A030",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN08A031",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN08A034",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN08A047",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN09A055",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN09A079",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN09A093",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN10B044",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN10B050",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN11B013",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN11B018",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN11B020",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN12A054",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN12B048",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN12B056",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN12B059",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN13A035",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN13A057",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN13B022",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN13B078",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN14A020",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN14A023",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN14A029",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN16B077",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN16B083",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN16B099",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN17A061",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN18B038",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 9,
+      "provider_type": "IN19A114",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 5,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN19B071",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN19B089",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A006",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A012",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A043",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A058",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A060",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A069",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A071",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN20A.22A084",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 7,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN21A037",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN23B032",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN23B037",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN23B046",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "IN23B056",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX045",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX217",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX295",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX363",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX396",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "INXXX436",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LAL048",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LAL087",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LAL090",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LAL150",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LC23",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LC46b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LH008m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAD1c2",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV2b4",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV4g1",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV5a2_a3",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV5a2_a4",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV6a3",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV6b3",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHAV7b1",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHPD2c2",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHPV2e1_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHPV4b4",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LHPV6f1",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LPT116",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LPi3c",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LT70",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 36,
+      "provider_type": "Lai",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 47,
+      "status": "unscorable",
+      "zero_count_left_neurons": 4,
+      "zero_count_right_neurons": 1
+    },
+    {
+      "left_neurons": 195,
+      "provider_type": "Lawf2",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 188,
+      "status": "unscorable",
+      "zero_count_left_neurons": 55,
+      "zero_count_right_neurons": 50
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LoVC27",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LoVP16",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LoVP27",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 7,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "LoVP4",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 126,
+      "provider_type": "MeTu1",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 124,
+      "status": "unscorable",
+      "zero_count_left_neurons": 1,
+      "zero_count_right_neurons": 0
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "MeVPMe2",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 7,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PAM03",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PLP115_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PLP150",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PLP158",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PLP188",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PRW008",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PS072",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PS208",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PS353",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PVLP007",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PVLP008_c",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PVLP034",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PVLP082",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "PVLP214m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SAD001",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SAD004",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SAD045",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SAD057",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SAD117",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SCL001m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SCL002m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SIP047",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SIP053",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SIP100m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SIP135m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP036",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP187",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP267",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP268",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP275",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP283,SLP284",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP288",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP289",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP295",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP300",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP324",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP405_b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP414",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SLP421",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP025",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP105_a",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP133",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP219",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP245",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP281",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP317",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP408_d",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP427",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "SMP723m",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "Tr extensor MN",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "TuBu05",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "TuBu06",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "VES022",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WED004",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WED035",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WED042",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WED092",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WED096",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "WEDPN1A",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "aSP10A_b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "aSP10B",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 6,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 7,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "hDeltaA",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "hDeltaL",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "lLN12A",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "lLN2P_b",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 7,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 6,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "lLN2X12",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    },
+    {
+      "left_neurons": 11,
+      "provider_type": "ltm MN",
+      "reason_code": "zero_observed_target_count",
+      "right_neurons": 10,
+      "status": "unscorable",
+      "zero_count_left_neurons": 2,
+      "zero_count_right_neurons": 1
+    },
+    {
+      "left_neurons": 5,
+      "minimum_source_neurons_for_component_cv": 6,
+      "provider_type": "v2LN46",
+      "reason_code": "source_side_below_frozen_support_after_integrity_filter",
+      "right_neurons": 5,
+      "status": "unscorable"
+    }
+  ],
+  "wall_seconds": 1131.9714069683105
+}

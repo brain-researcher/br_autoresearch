@@ -1,0 +1,75 @@
+{
+  "C_parameter_count": 3109,
+  "H_parameter_count": 3224,
+  "checks": {
+    "H_state_responsibilities_sum_to_one": true,
+    "analytic_gradient_probe_passes_for_every_H_parameter_block": true,
+    "checkpoint_basis_change_above_tolerance_is_rejected": true,
+    "checkpoint_basis_roundoff_within_tolerance_is_accepted": true,
+    "checkpoint_basis_sign_or_column_change_is_rejected": true,
+    "chunked_C_and_embedded_H_objectives_match": true,
+    "empirical_H_start_has_nonzero_signature": true,
+    "exact_C_embedding_preserves_cellwise_scores_with_arbitrary_gate": true,
+    "false_upstream_C_pass_gate_is_rejected": true,
+    "fresh_verification_stream_collision_is_rejected": true,
+    "group_stratified_store_weights_sum_to_one": true,
+    "revised_C_start_schedule_contract_is_enforced": true,
+    "sequential_and_spawned_H_optimizer_results_match": true,
+    "serial_and_spawned_fresh_verification_match": true,
+    "superseded_two_start_first_rung_is_rejected": true,
+    "truth_based_H_start_has_nonzero_signature": true,
+    "vectorized_H_matches_explicit_two_by_seven_enumeration": true,
+    "zero_signature_embedding_has_zero_gate_gradient": true
+  },
+  "diagnostic": "EP11_population_H_recovery_structural_self_test",
+  "maximum_absolute_finite_difference_error_by_H_block": {
+    "base_support": 1.187414569447931e-09,
+    "base_value": 3.758874782613941e-10,
+    "continuous_support": 8.881784210350492e-10,
+    "continuous_value": 9.741683892059274e-17,
+    "gate_beta": 6.519839824276064e-10,
+    "group_support": 6.934450930140557e-10,
+    "group_value": 4.999738904137851e-10,
+    "log_sigma": 7.143935443210125e-11
+  },
+  "parallel_start_equivalence": {
+    "SAA_replicates": 1,
+    "comparisons": [
+      {
+        "absolute_tolerance": 1e-12,
+        "maximum_absolute_scalar_diagnostic_difference": 0.0,
+        "maximum_absolute_theta_difference": 0.0,
+        "pass": true,
+        "status_iteration_evaluation_and_message_match": true,
+        "structured_diagnostics_match": true
+      },
+      {
+        "absolute_tolerance": 1e-12,
+        "maximum_absolute_scalar_diagnostic_difference": 0.0,
+        "maximum_absolute_theta_difference": 0.0,
+        "pass": true,
+        "status_iteration_evaluation_and_message_match": true,
+        "structured_diagnostics_match": true
+      }
+    ],
+    "design_rank": 1,
+    "metadata_rows": 3,
+    "multiprocessing_context": "spawn",
+    "optimizer_iterations": 1,
+    "parameter_count": 449,
+    "pass": true,
+    "scope_limit": "reduced_deterministic_dispatch_and_replay_probe_not_a_fit",
+    "starts": 2,
+    "workers": 2
+  },
+  "parallel_verification_equivalence": {
+    "absolute_tolerance": 1e-12,
+    "multiprocessing_context": "spawn",
+    "pass": true,
+    "replicates": 2,
+    "scope_limit": "reduced_deterministic_scoring_probe_not_a_fit",
+    "workers": 2
+  },
+  "status": "pass",
+  "uses_real_projection_outcomes": false
+}

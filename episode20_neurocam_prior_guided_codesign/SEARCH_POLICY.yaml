@@ -143,6 +143,11 @@ reference_model_equivalence_and_rank_stability:
     reporting_one_optimum_per_model_is_sensitivity_analysis_only: true
 
 scientific_target:
+  # Scientist: "EP20 is fine with simulation because we dont have real data".
+  # October 6 exception supersedes the earlier cross-episode simulation stop
+  # for EP20; existing source roles, qualification and resource limits remain.
+  simulation_scope: scientist_authorized_EP20_exception_2026_10_06
+  simulated_candidate_comparisons_are_measured_hardware_results: false
   primary: cortical_surface_voltage_on_common_dense_grid
   primary_band_hz: [1, 100]
   descriptive_reduced_mode_band_hz: [100, 400]

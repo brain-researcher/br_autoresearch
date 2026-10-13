@@ -8,3 +8,6 @@ The historical Dryad release remains outcome-exposed. It may support
 development and explanation, but it cannot be relabeled as fresh confirmation.
 Any future-session evaluation begins only after the complete analysis has been
 chosen without seeing those session outcomes.
+
+The 2026-09-30 figure update is presentation-only; it adds no source, execution,
+acceptance, or campaign authority.

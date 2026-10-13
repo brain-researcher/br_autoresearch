@@ -1,0 +1,30 @@
+{
+  "documentation": [
+    "DATASETS.md: OpenNeuro ds001734 v1.0.5 original events and four-second deadline",
+    "https://doi.org/10.1038/s41597-019-0113-7",
+    "Source README and original-event fields/aggregate inspected in Slurm 46424502 on 2026-10-03; no fitted scores"
+  ],
+  "participant_group_field": "group",
+  "task_versions": {
+    "equalIndifference": "EI",
+    "equalRange": "ER"
+  },
+  "fields": {
+    "onset": "onset",
+    "duration": "duration",
+    "gain": "gain",
+    "loss": "loss",
+    "response_time": "RT",
+    "response": "participant_response"
+  },
+  "loss_multiplier": 1,
+  "rt_seconds_multiplier": 1,
+  "response_categories": {
+    "strongly_accept": "strong_accept",
+    "weakly_accept": "weak_accept",
+    "weakly_reject": "weak_reject",
+    "strongly_reject": "strong_reject",
+    "NoResp": "no_response"
+  },
+  "no_response_rt_values": [0]
+}

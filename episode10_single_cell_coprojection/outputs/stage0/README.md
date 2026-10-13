@@ -29,13 +29,12 @@ The later [lean Gao MOp qualification](gao_mop_qualification.md) intentionally
 does not extend the SEU launch machinery with another schema, hash manifest, or
 test harness. Its 76-row [source/group table](gao_source_group_support.csv)
 shows that Gao MOp passes the released brain/specimen-count screen (837 cells,
-76 fMOST/sample units). Canonical soma-root rows, and no axon-tree rows, were
-opened for geometry: 837/837 cells were eligible, and the outcome-blind
+76 fMOST/sample units). Canonical soma-root rows were first opened for
+geometry: 837/837 cells were eligible, and the outcome-blind
 radius-first rule froze 500 um/0.20 common support. The
 [role ledger](gao_mop_frozen_roles.csv) fixes 12 development, 8 final, and 56
 unassigned units; all 15 units shared with EP11 are unassigned. Independent-
-animal identity, full-tree reconstruction QC, and complete-target observation
-remain unresolved. No complete Gao tree or projection outcome was opened.
+animal identity remains unresolved.
 
 The outcome-blind [projection-observation contract](projection_observation_contract.yaml)
 is now frozen. Its full 56-coordinate atlas map replaces `MO` with `MOs`, and
@@ -52,9 +51,26 @@ The four `Axon_only` cells cannot support a sensitivity under the frozen roles
 (0 development, 1 final, 3 unassigned) and will not be opened for development.
 The [development manifest](gao_mop_development_manifest.csv) contains exactly
 200 common-support primary trees from the 12 frozen development groups and no
-unsupported, final, unassigned, or EP11-shared row. Full-tree acquisition is pending an attended
-authenticated DTN session; no tree body was fetched while preparing these
-artifacts.
+unsupported, final, unassigned, or EP11-shared row.
+
+The manifest was executed after the freeze. Slurm service job `45438445`
+downloaded all 200 trees (625,064,526 bytes) and no files outside the manifest.
+Constructor job `45438680` retained only 5 globally eligible cells and excluded
+195: 141 tree/parser failures, 22 annotation-zero axons, 6 outside-volume
+axons, and 26 nongrey terminal leaves. All 12 frozen per-group minima failed.
+Diagnostic job `45439110` found that every parser failure was a transition out
+of provider node type 10, 11, or 12. The files use these tags internally, while
+the prospectively frozen contract defines them as terminal-only markers. None
+of the 141 rows parsed successfully under that rule. Even ignoring every parser
+failure could retain at most 146/200, below the frozen overall minimum of 190.
+The durable [structural-QC summary](gao_mop_development_structural_qc_summary.json)
+records the decision.
+
+Stage 0 therefore returns `revise_or_stop_before_candidate_search`. This run
+must not replace or promote cells/groups, reinterpret provider tags, relax the
+observation rule or attrition threshold, open final/unassigned trees, or begin
+M0/M1/M2. A future attempt needs a new prospectively frozen resource or
+observation contract after authoritative provider semantics are established.
 
 Outcome-blind Slurm preflight job `45412269` completed successfully. It
 re-derived the exact 200-supported/9-excluded development-cell boundary,

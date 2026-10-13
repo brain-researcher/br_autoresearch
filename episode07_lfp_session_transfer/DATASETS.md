@@ -2,8 +2,8 @@
 
 EP07 uses the public motor-cortex LFP and population-spiking release from
 [Dryad DOI 10.5061/dryad.xd2547dkt](https://doi.org/10.5061/dryad.xd2547dkt)
-(metadata version 7, file-bearing version 5). The Dryad record lists all twelve
-named session files below and describes extracellular neural and behavioral
+(metadata version 7, file-bearing version 5). The Dryad record lists the original
+twelve session files and describes extracellular neural and behavioral
 recordings during an eight-target reaching task. That establishes that the
 planned sessions and broad measurement types exist; it does not yet establish
 the field-level trial correspondence, usable condition cells, or alignment
@@ -11,15 +11,32 @@ rank required by EP07. The release has been used in earlier work, so the
 present study can provide a careful internal test but not an independent
 replication.
 
-No neural analysis has started for this episode. The remaining preparation is
-to confirm that the named sessions support the planned time windows, reach
-directions, trial counts, LFP features, and population-spike targets.
+Execution state is recorded in [outputs](outputs/README.md). October 3 source
+qualification checked all twelve named sessions: eleven pass the fixed
+native-count eligibility checks; Mihili March 6 fails in both M1 and PMd
+across all 217 trials. That session has finite nonnegative values but lacks
+the required integer count representation, with no authenticated simple
+rates-to-counts correction. The scientist approved the [joint eleven-session
+amendment](outputs/paper_plan.md#october-10-eleven-session-amendment-adopted)
+on October 10: exclude that session in both regions, preserving all historical
+qualification evidence and original session positions. A corrected March 6
+export is no longer a prerequisite for the retained panel; it cannot be
+reinserted after freeze without a separately declared revision. Bridge support
+and remaining model qualification remain separate requirements.
+
+The eleven-session candidate/scorer/held-out views are now published for2873
+eligible whole trials. The [source-support report](outputs/runs/source_support/attempt002/source_support_report.json)
+and [role table](outputs/runs/source_support/attempt002/trial_roles.csv) bind
+native identities/windows and both episodes' session roles. Separate files and
+the candidate reader enforce a procedural boundary; the same account retains
+access to the public originals. No fitted bridge or scientific score is implied.
 
 ## Paper integration without a new data split
 
 EP07 owns the history-and-population-components paper; EP06 is a supporting
 recording-domain component study. This decision does not merge their data
-roles. EP07 keeps its chronological three-source/three-target day assignment
+roles. EP07 keeps three chronological source days per animal and the retained
+two Mihili / three Chewie-L target days
 and whole-trial calibration/development/held-out split. EP06's development and
 reserved session positions are different and may expose trials still closed
 in EP07. No EP06 outcome or fitted object may enter EP07 model development.
@@ -27,6 +44,19 @@ On this corpus, score the EP06 component only after EP07's choices are frozen
 and its single primary opening is complete, unless a scientist prospectively
 approves a compatible joint-role design before any relevant score is viewed.
 Same-corpus component evidence is not an independent replication or a new day.
+
+The converse exposure also matters: EP06's reserved March 3 and October 6
+sessions are historical-training days in EP07, and EP06's reserved March 7
+and October 21 sessions are EP07 target days. EP06's reserved label therefore
+does not make these outcomes unseen across the combined project. A shared
+session/trial exposure record is included in the published `trial_roles.csv` export:
+EP07 day/trial role, source trial index, original session position, joint M1/PMd
+identity and deterministic EP06 session role. Its preparation report records
+`preparation_only_no_scientific_scores`; later actual openings still require
+recording. EP06 development March 4 and October 7/14 also overlap EP07 target
+roles. This record does not imply compatible shared trial assignments or fresh
+confirmation; current access order remains binding. No sibling fitted artifacts
+are research inputs.
 
 The EP06 common-time, direction-by-time, and trial-residual projections answer
 a frequency-rule consequence question, not EP07's history-minus-today-only
@@ -36,19 +66,27 @@ outcomes are likewise not inputs to this episode.
 
 ## The recordings used in the primary study
 
-The primary corpus contains twelve simultaneous M1/PMd recording days from
-Mihili and Chewie-L. The first three days from each animal supply historical
-training data; the next three are new days on which transfer is tested.
+The active primary corpus contains eleven simultaneous M1/PMd recording days
+from Mihili and Chewie-L; the original twelve-session catalog is retained for
+historical qualification. The first three days per animal supply historical
+training data; two Mihili and three Chewie-L new days test transfer.
 
 | Animal | Earlier days | New days |
 | --- | --- | --- |
-| Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-06, 2014-03-07 |
+| Mihili | 2014-02-17, 2014-02-18, 2014-03-03 | 2014-03-04, 2014-03-07 |
 | Chewie-L | 2016-09-29, 2016-10-05, 2016-10-06 | 2016-10-07, 2016-10-14, 2016-10-21 |
 
 Transfer is permitted only within the same animal, implant, and cortical
 region. A trial from a new day never enters the historical fit for another new
 day. M1 and PMd from the same behavioral trial always receive the same data
 role.
+
+Mihili retains original positions 1, 2, 3, 4 and 6; Chewie-L retains 1–6.
+Position 5 (Mihili March 6) is excluded jointly, without renumbering. EP06
+reserved dates remain Mihili March 3/7 and Chewie October 6/21; its other
+retained sessions are development. No further automatic exclusion or substitute
+session is authorized. New-day effects use day weights 1/4 for Mihili and 1/6
+for Chewie-L in every draw, preserving equal animal weight.
 
 Chewie-R represents another implant in Chewie. It may later be used to ask
 whether the result is sensitive to implant identity, but it is not an
@@ -69,6 +107,22 @@ the released LMP and band-power features. These LFP features were processed by
 the provider at the session level and raw voltage is not available here. All
 models therefore use the same released features unchanged, and conclusions
 are limited to that offline representation.
+
+### Public online resources — checked October 6, 2026
+
+- [Official Dryad release](https://datadryad.org/dataset/doi:10.5061/dryad.xd2547dkt): public files/README and acquisition notes, with the August 2022 inventory still listing March 6. No corrected-file notice was visible. The selected local v5 source remains bound; a listing is not a newly authenticated count export.
+- [Author signal-construction code](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/Generate_all_figures.m): its zero-lower-frequency branch averages signal, whereas the power branches average squared signal. Together with the previously reviewed paper methods, this authenticates the unique `(0,0)` LMP guide meaning recorded in the [source-method log](outputs/experiment_log.md#2026-10-03--source_support--steward-preparation-selected). This check read source code, not generated figures or their data.
+- [Author `fCCA.m`](https://raw.githubusercontent.com/BeNeuroLab/Relationship_between_latent_dynamics_and_LFP/master/MainAnalysis/fCCA.m): documents downstream spike square-root/smoothing operations. It does not identify the invalid released March 6 representation or provide its lossless inverse. Current public code is a method reference, not permission to transform EP07's native-count response.
+
+The observed eight power-guide classes remain 0.5–4, 4–8, 8–12, 12–25,
+25–50, 50–100, 100–200 and 200–400 Hz. Source fields identify Chewie and the
+arrays but no hemisphere; Chewie-L remains the contract's named-date
+assignment. Missing online evidence is an authenticated 30-ms count export or
+documented lossless correction for 43 M1 and 86 PMd columns across the original
+217 March 6 trials, preserving guides/events/LFP correspondence. The bounded
+search does not prove a correction absent everywhere. That October 6 search
+introduced no MAT payload, fitted outcome, amendment or role opening. The
+separate October 10 approval above now governs the active panel.
 
 ## Which trials and neurons are eligible?
 
@@ -94,8 +148,9 @@ uses a shared low-dimensional representation, it must learn that representation
 from the permitted earlier-day and calibration data.
 
 Every primary day must contain all eight directions and at least 15 complete
-trials per direction. If either animal lacks the required six eligible days,
-the study stops for redesign before neural scores are examined. Days,
+trials per direction. If any of the fixed five Mihili or six Chewie-L sessions
+lacks required support, the study stops for redesign before neural scores are
+examined; do not drop the unavailable retained day or region and renormalize. Days,
 directions, or time windows are not replaced after seeing results.
 
 ## How new-day trials are divided
@@ -216,9 +271,9 @@ reported only as a diagnostic.
 
 | Requirement | Current status | Consequence if absent |
 | --- | --- | --- |
-| Simultaneous trial-level LFP and spike responses with a common trial identity | The release was created for LFP--population analysis, but a common field-level trial key has not yet been checked locally | Without verified correspondence, do not claim trial-specific coupling |
-| Direction and native time-bin labels on earlier-day training and new-day calibration trials | Dryad documents an eight-target task; complete cells and event indices still must be checked in every named file | Without complete common cells, the planned behavioral alignment is not identified |
-| Unresidualized calibration spike vectors for the new day's retained neurons | Dryad documents extracellular recordings and sorted spikes; the required trial-wise vectors have not yet been checked locally | Without them, the target population basis and reconstruction loading cannot be learned |
+| Simultaneous trial-level LFP and spike responses with a common trial identity | Source qualification checked the twelve named trial structs and paired-region identity/window predicates; role packs remain unpublished after the historical March 6 failure | Prepare the eleven approved sessions with their original trial/guide/event/LFP joins; fitting requires the complete published role view |
+| Direction and native time-bin labels on earlier-day training and new-day calibration trials | Eleven sessions passed the fixed eight-direction/window/minimum-count predicates; their minimum complete trials per direction are 17–85, and March 6 has zero eligible trials solely because its counts fail | Retain the completed support evidence; do not replace a failed count predicate with a claim that reach directions are absent |
+| Unresidualized calibration spike vectors for the new day's retained neurons | Native count validity passed on eleven sessions; no complete role pack, target basis or bridge qualification was published | Valid counts alone do not establish the fixed 64-cell, rank, condition-number or singular-value gates |
 | At least six held-out trials per direction for mismatching | The primary minimum supplies six | If attrition breaks this minimum, mark that day-region explanation unavailable before outcomes are scored |
 
 These are readiness checks, not optional follow-up conveniences. Record their
@@ -234,10 +289,12 @@ explanation and prediction rule have been chosen.
 The public source has been identified, but the following scientific checks are
 still required before scoring:
 
-- confirm the twelve named days and their M1/PMd pairing;
-- confirm eight directions and at least 15 complete trials per direction;
-- confirm both native-bin time windows and event-index conversion;
-- verify the meanings of LMP and the released band-power features;
+- preserve the completed twelve-date/M1–PMd inventory and jointly exclude
+  March 6 under the adopted amendment without changing source payloads;
+- retain the completed direction/window/count eligibility evidence for the
+  eleven passing sessions and export their roles with the unchanged
+  eight-direction, native-window and minimum-trial predicates;
+- retain the authenticated LMP and eight-band guide mapping above;
 - build the per-day neuron sets without using outcome values;
 - confirm that unresidualized training/calibration spike responses meet the
   fixed 64-cell, rank, condition-number, and singular-value bridge gates;
@@ -247,6 +304,16 @@ still required before scoring:
 - document previous access to this public corpus; and
 - run one small end-to-end test showing that development and held-out spike
   targets cannot enter candidate fitting.
+
+The prepared steward and [candidate reader](outputs/tools/view_access.py)
+separate earlier/calibration fits, development features, development targets
+and held-out data by runner interface. Source failure left partial role files
+unpublished in historical attempt001; their presence is not a complete handoff.
+The next fresh attempt002 uses the approved eleven-session roster and unchanged
+split seed, with no reuse or modification of those partial files. This is procedural
+separation: the same Unix account can still reach the original public source.
+No model fitting, candidate score or held-out opening is established by these
+implemented interfaces.
 
 Large source files remain outside Git. Temporary computation belongs in
 `$SCRATCH/br_autoresearch/episode07_lfp_session_transfer/`; only compact data

@@ -1,0 +1,146 @@
+episode_id: ep10
+artifact_role: frozen_positive_only_unmapped_tolerant_exploratory_revision
+status: frozen_after_v2_outcome_blind_overlap_before_v3_target_construction
+base_contracts:
+  observation: projection_observation_contract.yaml
+  provider_native_revision: projection_observation_contract_v2.yaml
+authorization_record: v3_user_authorization.yaml
+
+revision_boundary:
+  reason: >-
+    Provider-native v2 parsing was successful for all 200 frozen development
+    trees, but the complete-observation endpoint retained only 11 cells. An
+    outcome-blind overlap diagnostic showed that 194 cells satisfy all tree,
+    soma, and positive-provider-axon requirements when segment and terminal
+    mapping incompleteness are tolerated. The scientist explicitly authorized
+    a positive-only, unmapped-tolerant exploratory redesign using those 194
+    cells and group 221588 support of 7.
+  evidence_used:
+    - v2_provider_native_structural_qualification_job_45442349
+    - v2_target_blind_mapping_overlap_diagnostic_job_45443462
+    - explicit_scientist_authorization_recorded_in_v3_user_authorization.yaml
+  target_vocabulary_loaded_by_revision_evidence: false
+  candidate_target_ids_or_prevalence_used_to_choose_revision: false
+  candidate_model_search_started: false
+  v1_and_v2_outputs_remain_failed_and_are_not_relabelled: true
+  development_manifest_rows: 200
+  development_groups_assigned: 12
+  manifest_group_or_cell_replacement: forbidden
+  final_or_unassigned_morphology_access: forbidden
+
+SWC_interpretation:
+  inherited_exactly_from: projection_observation_contract_v2.yaml
+  mode: provider_native_topology_v2
+  raw_types_are_rewritten: false
+  allowed_raw_types: [0, 1, 2, 3, 4, 10, 11, 12]
+  provider_axon_edge_rule: >-
+    include edge (parent, child) exactly when neither endpoint raw type is 3 or 4
+  provider_terminal_rule: >-
+    a topology leaf whose raw type is neither 3 nor 4
+  custom_type_code_does_not_by_itself_terminate_or_split_traversal: true
+  primary_sources:
+    INCF_custom_type_definition: >-
+      https://github.com/INCF/swc-specification/blob/main/docs/source/swc.rst
+    provider_edge_rule: >-
+      https://github.com/txgxxx/pyswcloader/blob/bc64d464976dd4fad88619b64d91acd5999526fd/pyswcloader/projection.py#L14-L27
+    provider_terminal_rule: >-
+      https://github.com/txgxxx/pyswcloader/blob/bc64d464976dd4fad88619b64d91acd5999526fd/pyswcloader/projection.py#L108-L119
+
+positive_only_observation_endpoint:
+  analysis_label: exploratory
+  endpoint_name: mapped_positive_terminal_observation_set
+  target_vocabulary: unchanged_56_coordinate_v1_v2_vocabulary
+  primary_panel: unchanged_fixed_16_coordinates
+  positive_call: >-
+    a provider-native topology terminal whose final positive-length incoming
+    provider-axon component is assigned to a named target coordinate
+  tolerated_mapping_incompleteness:
+    - positive_provider_axon_length_outside_atlas_volume
+    - positive_provider_axon_length_in_annotation_zero
+    - provider_terminal_outside_atlas_volume
+    - provider_terminal_in_annotation_zero
+    - provider_terminal_in_nongrey_structure
+  treatment_of_tolerated_content: >-
+    omit the unmapped fragment or terminal from target assignment while
+    retaining mapped positive terminal observations from the same cell
+  binary_zero_semantics: >-
+    no positive terminal observation was recorded for this coordinate among
+    mapped reconstruction fragments; zero is not biological absence, verified
+    non-detection, or evidence that the complete target set was observed
+  forbidden_interpretations:
+    - complete_biological_target_set
+    - verified_coordinate_level_non_detection
+    - unknown_as_absence
+    - negative_projection_label
+  raw_lengths_or_terminal_counts_enter_candidate_selection: false
+
+v3_structural_gate:
+  frozen_manifest_rows: 200
+  expected_eligible_cells: 194
+  expected_excluded_cells: 6
+  exclusion_rule: >-
+    exclude only parser/tree-integrity, canonical-soma, provider-soma-side,
+    soma-registration/MOp, or no-positive-provider-axon failures
+  tolerated_mapping_flags_do_not_exclude: true
+  expected_exclusion_counts:
+    soma_not_MOp: 6
+  expected_eligible_cells_by_group:
+    "212074": 6
+    "220187": 35
+    "220188": 25
+    "220190": 16
+    "221091": 33
+    "221225": 39
+    "221418": 12
+    "221514": 5
+    "221539": 1
+    "221588": 7
+    "221751": 13
+    "233281": 2
+  all_12_groups_must_match_expected_support: true
+  group_221588_authorized_support: 7
+  target_construction_authorized_only_after_exact_gate_passes: true
+  no_further_relaxation_replacement_or_threshold_tuning: true
+  failure_action: stop_before_v3_target_construction_and_candidate_search
+
+exploratory_model_redesign:
+  estimand: >-
+    the distribution and reproducible co-occurrence structure of mapped
+    positive terminal observations in the fixed 16-coordinate panel, not the
+    distribution of complete biological projection sets
+  per_cell_outcome:
+    P_i: set of positively observed mapped terminal coordinates
+    K_i: number of coordinates in P_i
+    zero_coordinates: unobserved_or_unknown_not_negative
+  common_scoring:
+    condition_on_observed_positive_count_K: true
+    exact_normalization_over_fixed_16_coordinate_recorded_positive_sets: true
+    same_cells_and_candidate_sets_for_M0_M1_M2: true
+    equal_group_weighting: true
+    grouped_development_resampling_only: true
+  M0:
+    role: additive_reference_for_recorded_positive_sets
+    terms:
+      - recorded_target_preference_conditional_on_observed_K
+      - smooth_soma_position_and_sampling_composition
+      - eligible_source_and_layer_information
+      - frozen_target_blind_mapping_quality_strata_or_weights
+  M1:
+    role: spatial_and_routing_structure_beyond_M0_for_recorded_positives
+    inherits: M0
+    terms:
+      - source_to_target_geometry
+      - pairwise_target_geometry
+      - soma_anchored_target_set_geometry
+  M2:
+    role: sparse_residual_pair_structure_among_recorded_positives
+    inherits: M1
+    pair_features_residualized_against_M1: true
+  claim_limit: >-
+    every fitted effect, selected combination, and held-out prediction must be
+    described as an observation-process result for mapped positive terminals;
+    no absence, sensitivity, complete-set, or biological prevalence claim is
+    licensed by v3
+  final_opening: >-
+    remains forbidden until v3 development choices, implementation,
+    uncertainty, multiplicity, and final evaluation rules are frozen

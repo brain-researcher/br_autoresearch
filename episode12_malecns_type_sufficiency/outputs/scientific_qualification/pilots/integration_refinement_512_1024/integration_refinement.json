@@ -1,0 +1,514 @@
+{
+  "absolute_delta_change_tolerance": 0.002,
+  "all_selected_model_metadata_exactly_match": false,
+  "candidate_draws": 512,
+  "deterministic_replay": {
+    "exact_row_replay": true,
+    "passed": true,
+    "performed": true,
+    "primary_sha256": "0095f629f16451edf54ab8d7ca2682a3c6103208d6c895a815969a92498b62f1",
+    "replay_sha256": "0095f629f16451edf54ab8d7ca2682a3c6103208d6c895a815969a92498b62f1"
+  },
+  "final_connectivity_accessed": false,
+  "fixture_configuration": {
+    "count_total": 100,
+    "folds": 2,
+    "generator_strength": 1.8,
+    "latent_rank": 2,
+    "missing_fraction": 0.1,
+    "neurons_per_side": 19,
+    "ridge": 0.1,
+    "scenarios": [
+      "adequate_template",
+      "curved_continuum_dense",
+      "residual_groups_within_continuum"
+    ],
+    "seeds": [
+      1201,
+      1202
+    ]
+  },
+  "high_draws": 1024,
+  "integration_draws_grid": [
+    256,
+    512,
+    1024
+  ],
+  "maximum_observed_absolute_delta_change": 0.001403143430177588,
+  "numerical_criterion_passed": false,
+  "passed": false,
+  "pilot_scope": "generated_data_only",
+  "real_connectivity_accessed": false,
+  "rows": [
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": -0.0022190409538521286,
+          "right_to_left_delta": 0.000336615480432481,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "T",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": -0.0021544460576512388,
+          "right_to_left_delta": 0.0001822579482935212,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "T",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": -0.0020461589074252675,
+          "right_to_left_delta": 0.00016840704640280903,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "T",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 0.00017288204642686112,
+        "right_to_left": 0.00016820843402967194
+      },
+      "comparison_passed": true,
+      "fit_seed": 2983617163,
+      "fixture_seed": 1201,
+      "scenario": "adequate_template",
+      "selected_model_metadata_exact_match": true
+    },
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": -0.003634088848109086,
+          "right_to_left_delta": 0.0009458679942017832,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_curved",
+              "null_generator": "U_curved",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": -0.004035451979909031,
+          "right_to_left_delta": 0.00027163981213856,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_curved",
+              "null_generator": "U_curved",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": -0.003701826867257284,
+          "right_to_left_delta": 0.00096396883656691,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_curved",
+              "null_generator": "U_curved",
+              "reference": "T"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 6.77380191481977e-05,
+        "right_to_left": 1.8100842365126823e-05
+      },
+      "comparison_passed": true,
+      "fit_seed": 2912501246,
+      "fixture_seed": 1202,
+      "scenario": "adequate_template",
+      "selected_model_metadata_exact_match": true
+    },
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": 0.00048780263829681516,
+          "right_to_left_delta": 0.0013132686084475092,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": 0.0033328898706090583,
+          "right_to_left_delta": 0.003249143616429673,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": 0.0011800277310786305,
+          "right_to_left_delta": 0.0014837333321973268,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 0.0006922250927818153,
+        "right_to_left": 0.00017046472374981762
+      },
+      "comparison_passed": false,
+      "fit_seed": 103613061,
+      "fixture_seed": 1201,
+      "scenario": "curved_continuum_dense",
+      "selected_model_metadata_exact_match": false
+    },
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": -0.0012820289489115218,
+          "right_to_left_delta": -0.00849527422982381,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": -0.003227612169355497,
+          "right_to_left_delta": -0.008430322084893003,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": 0.00012111448126606612,
+          "right_to_left_delta": -0.008109160461131549,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 0.001403143430177588,
+        "right_to_left": 0.0003861137686922613
+      },
+      "comparison_passed": true,
+      "fit_seed": 711407925,
+      "fixture_seed": 1202,
+      "scenario": "curved_continuum_dense",
+      "selected_model_metadata_exact_match": true
+    },
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": -0.0036844175133495145,
+          "right_to_left_delta": -0.003128621109435481,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": -0.004127856078233979,
+          "right_to_left_delta": -0.003507406988468359,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": -0.0036422721607159776,
+          "right_to_left_delta": -0.002793612639080706,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 4.21453526335369e-05,
+        "right_to_left": 0.000335008470354775
+      },
+      "comparison_passed": true,
+      "fit_seed": 758794500,
+      "fixture_seed": 1201,
+      "scenario": "residual_groups_within_continuum",
+      "selected_model_metadata_exact_match": true
+    },
+    {
+      "by_integration_draws": {
+        "1024": {
+          "left_to_right_delta": 0.0006538190044876149,
+          "right_to_left_delta": -0.0007789984139555045,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "256": {
+          "left_to_right_delta": 0.000750280213793494,
+          "right_to_left_delta": 0.0004896056630074484,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        },
+        "512": {
+          "left_to_right_delta": 8.024357817469265e-05,
+          "right_to_left_delta": -0.00031401726752683086,
+          "source_fit_metadata": {
+            "left": {
+              "M": "M3",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            },
+            "right": {
+              "M": "M2",
+              "U": "U_linear",
+              "null_generator": "U_linear",
+              "reference": "U_linear"
+            }
+          }
+        }
+      },
+      "candidate_to_high_absolute_delta_change": {
+        "left_to_right": 0.0005735754263129222,
+        "right_to_left": 0.0004649811464286736
+      },
+      "comparison_passed": true,
+      "fit_seed": 802882977,
+      "fixture_seed": 1202,
+      "scenario": "residual_groups_within_continuum",
+      "selected_model_metadata_exact_match": true
+    }
+  ],
+  "runtime": {
+    "deterministic_replay": {
+      "cpu_seconds": 40.37902700000001,
+      "wall_seconds": 40.46131935098674
+    },
+    "primary": {
+      "cpu_seconds": 40.416923491999995,
+      "wall_seconds": 40.54181865201099
+    },
+    "total_cpu_seconds": 80.84761672500001,
+    "total_wall_seconds": 81.05871340999147
+  },
+  "schema_version": "ep12.integration_refinement.v1",
+  "scientific_qualification_path_modified": false,
+  "selected_model_criterion": "exact_source_fit_metadata_equality",
+  "sobol_prefix_validation": {
+    "checks": [
+      {
+        "dimension": 1,
+        "exact_prefix_match": true,
+        "high_draws": 512,
+        "low_draws": 256,
+        "seed": 4228854722
+      },
+      {
+        "dimension": 1,
+        "exact_prefix_match": true,
+        "high_draws": 1024,
+        "low_draws": 512,
+        "seed": 4228854722
+      },
+      {
+        "dimension": 2,
+        "exact_prefix_match": true,
+        "high_draws": 512,
+        "low_draws": 256,
+        "seed": 1082294336
+      },
+      {
+        "dimension": 2,
+        "exact_prefix_match": true,
+        "high_draws": 1024,
+        "low_draws": 512,
+        "seed": 1082294336
+      },
+      {
+        "dimension": 10,
+        "exact_prefix_match": true,
+        "high_draws": 512,
+        "low_draws": 256,
+        "seed": 1524895735
+      },
+      {
+        "dimension": 10,
+        "exact_prefix_match": true,
+        "high_draws": 1024,
+        "low_draws": 512,
+        "seed": 1524895735
+      }
+    ],
+    "generator": "nested_scrambled_sobol_standard_normal",
+    "grid": [
+      256,
+      512,
+      1024
+    ],
+    "passed": true
+  }
+}

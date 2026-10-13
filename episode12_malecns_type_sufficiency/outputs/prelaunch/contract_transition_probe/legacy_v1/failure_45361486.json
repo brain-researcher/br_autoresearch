@@ -1,0 +1,23 @@
+{
+  "schema_version": "ep12.contract_transition_probe_failure.v1",
+  "phase": "legacy",
+  "slurm_job_id": "45361486",
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "elapsed": "00:00:21",
+  "started_at": "2026-09-26T05:46:41",
+  "ended_at": "2026-09-26T05:47:02",
+  "failure_stage": "srun_environment_handoff_before_python",
+  "cause": "the_batch_shell_loaded_python_but_SLURM_EXPORT_ENV_from_the_explicit_sbatch_export_prevented_srun_from_inheriting_the_module_updated_PATH",
+  "scientific_probe_started": false,
+  "scientific_artifact_produced": false,
+  "log": {
+    "path": "outputs/prelaunch/slurm-contract-probe-45361486.out",
+    "sha256": "d1c5b43fca8b462bf8d2ffe99feeb307239ed87a5ec112730be25e3383ca38a8"
+  },
+  "failed_wrapper_sha256": "930dec33e8e33425540d83a0cb8de8868bd22c16168daebf7bd3d03c015c2c36",
+  "corrected_wrapper_sha256": "0a7ec7bfbd3fcf8063fa3cfe4d58661367e0a5b2b056704dc09dbce78e2fad8a",
+  "correction": "run_the_single_task_payload_directly_in_the_allocated_batch_shell",
+  "real_connectivity_accessed": false,
+  "receipt_sha256": "3a6e549e00c5d70398bb53b83247df257c8ed6143b49bbfab2d9c339e8992b0b"
+}

@@ -1,0 +1,85 @@
+{
+  "absolute_external_path_scan_complete_for_identification_script": true,
+  "archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+  "astra_analysis_id": "source_qualification",
+  "attempt": 6,
+  "completed_at": "2026-09-29T23:01:05+00:00",
+  "empirical_or_decoded_payload_accessed": false,
+  "gaps": {
+    "alexnet_identification_checkpoint": {
+      "affected_endpoints": [
+        "finding_c",
+        "finding_e"
+      ],
+      "any_alexnet_named_manifest_asset": false,
+      "caffenet_archive_equivalence": "unproven_names_state_dict_layer_map_preprocessing_and_hash_binding_absent",
+      "evidence": [
+        {
+          "line": 115,
+          "text": "if encoder_name == \"AlexNet\":"
+        },
+        {
+          "line": 116,
+          "text": "self.encoder = AlexNet()"
+        },
+        {
+          "line": 117,
+          "text": "encoder_param_file = '/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt'"
+        }
+      ],
+      "hard_coded_path": "/home/kiss/data/models_shared/pytorch/bvlc_alexnet/bvlc_alexnet.pt",
+      "required_action": "Authenticate and provision the exact AlexNet checkpoint and preprocessing/layer mapping before identification may be runnable; otherwise lock affected findings not_evaluable.",
+      "state": "required_unmanifested"
+    },
+    "main_bdpy_dependency": {
+      "evidence": [
+        {
+          "line": 57,
+          "text": "- bdpy"
+        }
+      ],
+      "reconstruction_environment_note": "The separate reconstruction environment pins bdpy==0.25, but the main converter/evaluation environment does not.",
+      "required_action": "Authenticate the bdpy revision/API compatibility used by the tagged pipeline before the runtime environment can be locked.",
+      "state": "declared_but_unpinned"
+    },
+    "source_true_image_directory": {
+      "ep21_action": "Do not acquire source-study true images as an EP21 substitute; use only an authorized regular-only LAION feature/stimulus handoff after its access gates pass.",
+      "evidence": [
+        {
+          "line": 202,
+          "text": "true_image_dir = '../../data/test_image/source/'"
+        }
+      ],
+      "hard_coded_path": "../../data/test_image/source/",
+      "state": "source_study_licensed_stimulus_path_not_EP21_input"
+    },
+    "vgg19_identification_checkpoint_binding": {
+      "candidate_archive": "VGG_ILSVRC_19_layers.zip",
+      "evidence": [
+        {
+          "line": 129,
+          "text": "elif encoder_name == \"VGG19\":"
+        },
+        {
+          "line": 130,
+          "text": "self.encoder = VGG19()"
+        },
+        {
+          "line": 131,
+          "text": "encoder_param_file = '/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt'"
+        }
+      ],
+      "exact_checkpoint_filename_in_manifest": false,
+      "hard_coded_path": "/home/kiss/data/models_shared/pytorch/VGG_ILSVRC_19_layers/VGG_ILSVRC_19_layers.pt",
+      "required_action": "Download and checksum the declared public archive in an authorized compute workflow, then verify the exact checkpoint member, state-dict identity, layer mapping, and preprocessing before use.",
+      "state": "candidate_archive_metadata_verified_payload_binding_unproven"
+    }
+  },
+  "identification_script": "evaluation/identification_accuracy/recon_image_eval_dnn.py",
+  "outcome": "completed_with_verified_absent_and_unknown_assets",
+  "payload_bytes_downloaded": 0,
+  "process_id": 5972,
+  "schema_version": "ep21.unmanifested_source_asset_report.v1",
+  "scope": "pinned_public_source_code_and_manifests_only",
+  "started_at": "2026-09-29T23:01:05+00:00"
+}

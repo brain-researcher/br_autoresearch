@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Stable ASTRA milestone adapter for one direct-child standalone episode.
+# Compatibility-only single-analysis ASTRA snapshot adapter.
+# This does not create the episode's multi-analysis ASTRA experiment program.
 
 set -euo pipefail
 
@@ -13,6 +14,10 @@ stage=$1
 episode_arg=$2
 shift 2
 [[ "$stage" == plan || "$stage" == terminal ]] || usage
+
+printf '%s\n' \
+  'astra-milestone: compatibility snapshot only; not an ASTRA experiment program or handoff.' \
+  >&2
 
 export_args=()
 while [[ $# -gt 0 ]]; do

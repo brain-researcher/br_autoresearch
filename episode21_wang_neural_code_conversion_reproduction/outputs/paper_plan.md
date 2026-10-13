@@ -7,6 +7,41 @@ no allocation, protocol lock or data access. See the
 [execution ledger](experiment_log.md) for current authorized stages,
 attempts and next actions.
 
+## Evidence and interpretation — October 11, 2026
+
+The real-data inputs and full five-participant,19-layer decoder collection
+are complete. The assembled decoder records74,306,440 validated units;
+these are fitted input models, not held-out findings. See the [data inventory](../DATASETS.md#established-data-and-method-facts--october-6-2026)
+and [current execution records](README.md) for evidence and active original
+converter fits. No scientific score is inferred from model-fitting progress.
+
+The original brain comparator has an observed sub-01 fold0 normalization
+failure. Identical participant-local inputs, folds and moments imply the
+same unsatisfied prerequisite in its other seven directed pairs. Those
+seven are source-inferred dispositions, not additional executed failures.
+See the [complete pair table and reasoning](experiment_log.md#2026-10-11-0449-pacific--interindividual_converter_training--shared-sub01-prerequisite-establishes-eight-brain-pair-dispositions).
+
+Under the existing missing-pair rule, the **complete three-method Finding A
+quantitative finding is not evaluable**. All brain source and target summaries
+need missing edges; available brain-pair estimates remain descriptive, with
+all20 slots and denominators preserved. Content and within-source estimates,
+and supported content-minus-within differences, remain potentially reportable
+on their own complete supports. They cannot rescue complete Finding A or
+establish comparability without the absent scientific margin. No held-out
+score has yet been established by these fitting stages.
+
+The [constant-coordinate follow-up proposal](proposed_brain_normalization_followup.md)
+is explicitly inactive and preserves the original result. It gives a narrow
+training-only numerical adaptation, its changed CV interpretation, the
+remaining causal diagnosis and the explicit scientific decision required.
+The current original jobs and lock remain unchanged. B/C remain locked not
+evaluable despite public asset/runtime qualification; OOD stays closed, and
+external sites remain contingent. The accepted provider-preprocessing,
+visual-mask and historical Caffe-parity limitations still apply.
+
+The intended study structure below is retained for transparent reporting of
+what was requested and what is unsupported; it is not a completed replication.
+
 ## The question
 
 ![EP21 primary adapted reproduction](ep21_neural_code_conversion_design-v3.png)
@@ -72,9 +107,10 @@ The implementation target is the official
 [GitHub V1.0.0 release](https://github.com/KamitaniLab/InterSiteNeuralCodeConversion/releases/tag/V1.0.0)
 (commit `edbff02edd6a08d3c6c829af45a957fd14bdc460`) and the paper-linked
 [Zenodo archive, record 14910040](https://doi.org/10.5281/zenodo.14910040).
-The expected archive MD5 is `bb80dcc1a038737d6d8fc2c95b3e5586`.
-Qualification must verify the archive contents before the protocol lock; a
-moving default branch is not a reproduction identity.
+The retained source qualification verified archive MD5
+`bb80dcc1a038737d6d8fc2c95b3e5586` and its contents. A moving default branch
+is not a reproduction identity; this completed source verification does not
+imply authentication of every downstream model asset.
 
 On 2026-09-30 the scientist adopted the V1.0.0 code-faithful choices: tagged
 LeakyReLU(0.2), normalized active-block content-loss weighting, all 19

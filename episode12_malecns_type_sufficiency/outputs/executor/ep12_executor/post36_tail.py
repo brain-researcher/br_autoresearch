@@ -52,7 +52,7 @@ from .adaptive_successors import (
 )
 from .journal import EventJournal
 from .policy import EpisodePolicy, digest_object
-from .production_readiness import claim_is_permitted
+from .production_readiness import REQUIRED_READINESS_CHECK_IDS, claim_is_permitted
 from .runtime import EPISODE_ROOT, SCRATCH_ROOT, atomic_json
 
 
@@ -80,6 +80,14 @@ _SNAPSHOT_FILES = (
     "development_body_statistics.parquet",
     "raw_partner_vocabulary.json",
 )
+_COMPOSITE_FIT_ARTIFACTS = frozenset(
+    {
+        "trial_report.json",
+        "manifest.json",
+        "result_table.csv",
+        "type_direction_receipts.jsonl",
+    }
+)
 
 
 class TailControllerError(RuntimeError):
@@ -100,6 +108,318 @@ class TailExecutionError(TailControllerError):
 
 class TailControllerBusy(TailControllerError):
     """A second process tried to drive the same tail concurrently."""
+
+
+def _bundle_evidence_file(directory: Path, value: Any, *, label: str) -> Path:
+    relative = Path(str(value))
+    _require(
+        not relative.is_absolute() and relative.parts and ".." not in relative.parts,
+        f"{label} is not a safe relative path",
+    )
+    path = _inside(directory / relative, directory, label=label)
+    _require(path.is_file() and not path.is_symlink(), f"{label} is missing or unsafe")
+    return path
+
+
+def _validated_branch_manifest(
+    value: Any, *, control_id: str, label: str
+) -> dict[str, Any]:
+    manifest = dict(_mapping(value, label=label))
+    branch_sha256 = manifest.get("branch_sha256")
+    _require(
+        isinstance(branch_sha256, str)
+        and branch_sha256
+        == digest_object(
+            {key: item for key, item in manifest.items() if key != "branch_sha256"}
+        ),
+        f"{label} hash is invalid",
+    )
+    _require(
+        manifest.get("control_id") == control_id
+        and isinstance(manifest.get("branch_id"), str)
+        and bool(manifest.get("branch_id")),
+        f"{label} identity is invalid",
+    )
+    _require(
+        manifest.get("complete_T_U_M_result") is True
+        and manifest.get("applicability_checks_passed") is True
+        and manifest.get("conservation_checks_passed") is True
+        and manifest.get("capacity_checks_passed") is True
+        and manifest.get("development_roles_only") is True
+        and manifest.get("final_connectivity_accessed") is False,
+        f"{label} scientific completion gates failed",
+    )
+    _mapping(manifest.get("artifacts"), label=f"{label} artifacts")
+    return manifest
+
+
+def _verify_composite_branch_artifacts(
+    *,
+    directory: Path,
+    control_result: Mapping[str, Any],
+    representative_trial_dir: Path,
+) -> None:
+    """Authenticate every persisted composite branch and analytic dependency."""
+
+    control_id = str(control_result.get("falsifier_id", ""))
+    raw_manifests = control_result.get("branch_manifests")
+    _require(
+        isinstance(raw_manifests, list) and bool(raw_manifests),
+        "recovered composite control has no branch manifests",
+    )
+    receipt_manifests = [
+        _validated_branch_manifest(
+            value,
+            control_id=control_id,
+            label=f"receipt branch manifest {index}",
+        )
+        for index, value in enumerate(raw_manifests)
+    ]
+    receipt_ids = [str(manifest["branch_id"]) for manifest in receipt_manifests]
+    expected_ids = [
+        str(value) for value in control_result.get("expected_branch_ids", [])
+    ]
+    observed_ids = [
+        str(value) for value in control_result.get("observed_branch_ids", [])
+    ]
+    _require(
+        len(receipt_ids) == len(set(receipt_ids))
+        and receipt_ids == expected_ids == observed_ids,
+        "recovered composite branch inventory is inconsistent",
+    )
+
+    branch_root = _inside(
+        directory / "control_branches",
+        directory,
+        label="composite branch root",
+    )
+    _require(
+        branch_root.is_dir() and not branch_root.is_symlink(),
+        "recovered composite branch root is missing or unsafe",
+    )
+    physical_manifests: dict[str, dict[str, Any]] = {}
+    physical_trial_dirs: dict[str, Path] = {}
+    for result_root in sorted(branch_root.iterdir(), key=lambda path: path.name):
+        _require(
+            result_root.is_dir() and not result_root.is_symlink(),
+            "recovered composite branch entry is not a safe directory",
+        )
+        checkpoint_path = _bundle_evidence_file(
+            result_root,
+            "branch_manifest.json",
+            label="composite branch checkpoint",
+        )
+        checkpoint = _validated_branch_manifest(
+            _read_json(checkpoint_path, label="composite branch checkpoint"),
+            control_id=control_id,
+            label=f"physical branch manifest {result_root.name}",
+        )
+        branch_id = str(checkpoint["branch_id"])
+        _require(
+            branch_id not in physical_manifests,
+            "recovered composite branch checkpoint is duplicated",
+        )
+        _require(
+            checkpoint.get("branch_kind") == "complete_triplet_fit",
+            "persisted composite branch is not a complete triplet fit",
+        )
+        trial_directories = [
+            path
+            for path in result_root.iterdir()
+            if path.name != "branch_manifest.json"
+            and path.is_dir()
+            and not path.is_symlink()
+        ]
+        _require(
+            len(trial_directories) == 1,
+            "persisted composite branch does not contain exactly one trial directory",
+        )
+        trial_dir = trial_directories[0]
+        artifacts = dict(
+            _mapping(
+                checkpoint.get("artifacts"),
+                label=f"physical branch artifacts {branch_id}",
+            )
+        )
+        _require(
+            set(artifacts) == _COMPOSITE_FIT_ARTIFACTS,
+            "persisted composite branch artifact inventory is incomplete",
+        )
+        for artifact_name, expected_sha256 in artifacts.items():
+            artifact_path = _bundle_evidence_file(
+                trial_dir,
+                artifact_name,
+                label=f"composite branch artifact {branch_id}/{artifact_name}",
+            )
+            _require(
+                _sha256_file(artifact_path) == str(expected_sha256),
+                "composite branch artifact digest mismatch: "
+                f"{branch_id}/{artifact_name}",
+            )
+        _require(
+            checkpoint.get("complete_T_U_M_result_sha256")
+            == artifacts["trial_report.json"],
+            f"composite branch T/U/M digest mismatch: {branch_id}",
+        )
+        physical_manifests[branch_id] = checkpoint
+        physical_trial_dirs[branch_id] = trial_dir.resolve()
+
+    _require(
+        "weighted_baseline" in physical_trial_dirs
+        and representative_trial_dir.resolve()
+        == physical_trial_dirs["weighted_baseline"],
+        "composite representative is not the authenticated weighted baseline",
+    )
+    baseline_report = _bundle_evidence_file(
+        representative_trial_dir,
+        "trial_report.json",
+        label="composite baseline trial report",
+    )
+    baseline_sha256 = _sha256_file(baseline_report)
+    for manifest in receipt_manifests:
+        branch_id = str(manifest["branch_id"])
+        branch_kind = manifest.get("branch_kind")
+        artifacts = dict(
+            _mapping(
+                manifest.get("artifacts"),
+                label=f"receipt branch artifacts {branch_id}",
+            )
+        )
+        if branch_kind == "complete_triplet_fit":
+            _require(
+                physical_manifests.get(branch_id) == manifest,
+                f"receipt branch manifest differs from checkpoint: {branch_id}",
+            )
+        elif branch_kind == "analytic_from_complete_triplet":
+            _require(
+                artifacts == {"baseline_trial_report.json": baseline_sha256}
+                and manifest.get("complete_T_U_M_result_sha256")
+                == baseline_sha256,
+                "analytic branch is not bound to the authenticated baseline: "
+                f"{branch_id}",
+            )
+        else:
+            raise TailControllerError(
+                f"recovered composite branch kind is unsupported: {branch_id}"
+            )
+
+
+def verify_recovered_slot_artifacts(
+    *,
+    directory: Path,
+    realization: Mapping[str, Any],
+    proposal: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Re-authenticate the scientific evidence before replaying a slot."""
+
+    from .control_trial import (
+        FalsifierControlError,
+        verify_development_trial_artifacts,
+    )
+    from .falsifier_controls import COUNTABLE_COMPOSITE_CONTROLS
+
+    evidence = _mapping(realization.get("evidence"), label="realization evidence")
+    proposal_path = _bundle_evidence_file(
+        directory, evidence.get("proposal"), label="slot proposal evidence"
+    )
+    control_path = _bundle_evidence_file(
+        directory, evidence.get("control_result"), label="slot control evidence"
+    )
+    result_table_path = _bundle_evidence_file(
+        directory, evidence.get("result_table"), label="slot result-table evidence"
+    )
+    _require(
+        _read_json(proposal_path, label="slot proposal evidence") == dict(proposal),
+        "recovered slot proposal differs from the committed proposal",
+    )
+    control_result = _mapping(
+        _read_json(control_path, label="slot control evidence"),
+        label="slot control evidence",
+    )
+    _require(
+        control_result == realization.get("control_result")
+        and control_result.get("control_passed") is True,
+        "recovered slot control evidence is inconsistent or failed",
+    )
+    proposal_falsifier_id = proposal.get("registered_falsifier_id")
+    _require(
+        control_result.get("falsifier_id") == proposal_falsifier_id,
+        "recovered slot control identity differs from the committed proposal",
+    )
+    receipt_sha256 = control_result.get("receipt_sha256")
+    composite = proposal_falsifier_id in COUNTABLE_COMPOSITE_CONTROLS
+    _require(
+        (composite and isinstance(receipt_sha256, str) and bool(receipt_sha256))
+        or (not composite and receipt_sha256 is None),
+        "recovered slot composite receipt presence is inconsistent",
+    )
+    if composite:
+        _require(
+            receipt_sha256
+            == digest_object(
+                {
+                    key: value
+                    for key, value in control_result.items()
+                    if key != "receipt_sha256"
+                }
+            ),
+            "recovered composite control receipt is invalid",
+        )
+    _require(
+        result_table_path.name == "result_table.csv",
+        "slot result-table evidence has the wrong filename",
+    )
+    trial_dir = result_table_path.parent
+    if composite:
+        _verify_composite_branch_artifacts(
+            directory=directory,
+            control_result=control_result,
+            representative_trial_dir=trial_dir,
+        )
+    configuration = dict(
+        _mapping(proposal.get("configuration"), label="slot configuration")
+    )
+    configuration["trial_id"] = trial_dir.name
+    configuration_hash = digest_object(configuration)
+    try:
+        verified = verify_development_trial_artifacts(
+            result_root=trial_dir.parent,
+            configuration=configuration,
+            configuration_hash=configuration_hash,
+        )
+    except FalsifierControlError as error:
+        raise TailExecutionError(
+            "recovered slot scientific artifacts failed verification",
+            evidence={"trial_dir": str(trial_dir), "reason": str(error)},
+        ) from error
+    _require(
+        verified.get("objective") == realization.get("objective")
+        and int(verified.get("valid_type_count", -1))
+        == int(realization.get("valid_type_count", -2))
+        and int(verified.get("unscorable_type_count", -1))
+        == int(realization.get("unscorable_type_count", -2)),
+        "recovered slot realization differs from verified scientific artifacts",
+    )
+    return dict(verified)
+
+
+def procedure_lock_handoff_permitted(
+    *, action: str, stop_record: Mapping[str, Any] | None
+) -> bool:
+    """Expose only the frozen stop record's downstream-launch permission."""
+
+    return bool(
+        action == "stopped"
+        and isinstance(stop_record, Mapping)
+        and stop_record.get("completed_promotable_search") is True
+        and isinstance(stop_record.get("promotion_gates"), Mapping)
+        and bool(stop_record["promotion_gates"])
+        and all(value is True for value in stop_record["promotion_gates"].values())
+        and stop_record.get("procedure_lock_submission_permitted") is True
+        and stop_record.get("next_tail_slot_submission_permitted") is False
+        and stop_record.get("final_connectivity_accessed") is False
+        and stop_record.get("final_connectivity_access_authorized") is False
+    )
 
 
 def _utc_now() -> str:
@@ -494,15 +814,39 @@ def verify_readiness_directory(
 
     directory = _inside(readiness_dir, outputs_root, label="readiness directory")
     report_path = directory / "production_readiness.json"
-    report = _mapping(_read_json(report_path, label="readiness report"), label="readiness report")
-    _require(report.get("production_readiness_passed") is True, "readiness did not pass")
-    _require(claim_is_permitted(report, "observed_tail"), "readiness does not permit the observed tail")
+    report = _mapping(
+        _read_json(report_path, label="readiness report"), label="readiness report"
+    )
+    _require(report.get("status") == "pass", "readiness status is not pass")
+    _require(
+        report.get("production_readiness_passed") is True,
+        "readiness did not pass",
+    )
+    _require(
+        claim_is_permitted(report, "observed_tail"),
+        "readiness does not permit the observed tail",
+    )
+    checks = report.get("checks")
+    _require(isinstance(checks, list) and checks, "readiness checks are missing")
+    check_ids = [
+        str(check.get("check_id", "")) if isinstance(check, Mapping) else ""
+        for check in checks
+    ]
+    _require(
+        len(check_ids) == len(set(check_ids))
+        and set(check_ids) == set(REQUIRED_READINESS_CHECK_IDS),
+        "readiness check inventory differs from the required gate set",
+    )
     _require(
         all(
             isinstance(check, Mapping) and check.get("passed") is True
-            for check in report.get("checks", [])
+            for check in checks
         ),
         "one or more foundational readiness checks failed",
+    )
+    _require(
+        report.get("failed_foundational_checks") == [],
+        "passing readiness retains failed foundational checks",
     )
     _require(
         report.get("observed_outcome_values_read") is False,
@@ -512,7 +856,10 @@ def verify_readiness_directory(
         (report.get("procedure_locked"), "procedure lock"),
         (report.get("full_search_null_completed"), "full-search null"),
         (report.get("final_connectivity_accessed"), "final connectivity access"),
-        (report.get("final_connectivity_access_authorized"), "final connectivity authorization"),
+        (
+            report.get("final_connectivity_access_authorized"),
+            "final connectivity authorization",
+        ),
     ):
         _require(value is False, f"readiness unexpectedly records {label}")
     return {
@@ -1046,6 +1393,22 @@ class Post36TailController:
 
     def _append_stop(self, state: TailReplay, status: Mapping[str, Any]) -> Mapping[str, Any]:
         _require(status.get("action") == "stop", "cannot record an inactive stop")
+        promotion_gates = _mapping(
+            status.get("promotion_gates", {}), label="stop promotion gates"
+        )
+        completed_promotable_search = bool(
+            status.get("completed_promotable_search") is True
+            and promotion_gates
+            and all(value is True for value in promotion_gates.values())
+        )
+        procedure_lock_permitted = bool(
+            completed_promotable_search
+            and status.get(
+                "procedure_lock_submission_permitted",
+                completed_promotable_search,
+            )
+            is True
+        )
         payload = {
             "record_kind": "controller_stop",
             **self.active_contract_fields,
@@ -1054,8 +1417,8 @@ class Post36TailController:
             "reason": status.get("reason"),
             "stop_class": status.get("stop_class", "scientific_search_stop"),
             "patience": status.get("patience"),
-            "promotion_gates": status.get("promotion_gates"),
-            "completed_promotable_search": status.get("completed_promotable_search"),
+            "promotion_gates": promotion_gates,
+            "completed_promotable_search": completed_promotable_search,
             "wall_budget": dict(
                 _mapping(status.get("wall_budget", {}), label="stop wall budget")
             ),
@@ -1064,10 +1427,7 @@ class Post36TailController:
                 "next_tail_slot_submission_permitted", False
             )
             is True,
-            "procedure_lock_submission_permitted": status.get(
-                "procedure_lock_submission_permitted", True
-            )
-            is True,
+            "procedure_lock_submission_permitted": procedure_lock_permitted,
             "incumbent_trial_id": state.incumbent["trial_id"],
             "incumbent_configuration_sha256": state.incumbent[
                 "configuration_sha256"
@@ -1447,6 +1807,9 @@ class Post36TailController:
             "wall_deadline_pending": action == "wall_deadline_pending",
             "wall_deadline_decision": dict(wall_deadline_decision or {}),
             "next_tail_slot_submission_permitted": action == "continue",
+            "procedure_lock_submission_permitted": procedure_lock_handoff_permitted(
+                action=action, stop_record=state.stop_record
+            ),
             "ledger": self.journal.status(),
             "procedure_locked": False,
             "full_search_null_completed": False,
@@ -1717,6 +2080,11 @@ class ProductionSlotExecutor:
             realization, self.contract_provenance, active=True,
             label="slot realization",
         )
+        verify_recovered_slot_artifacts(
+            directory=directory,
+            realization=realization,
+            proposal=proposal,
+        )
         return realization
 
     def recover(self, proposal: Mapping[str, Any]) -> Mapping[str, Any] | None:
@@ -1886,6 +2254,13 @@ class ProductionSlotExecutor:
                 **dict(suite_result["control_receipt"]),
                 **self.active_contract_fields,
             }
+            control_result["receipt_sha256"] = digest_object(
+                {
+                    key: value
+                    for key, value in control_result.items()
+                    if key != "receipt_sha256"
+                }
+            )
             representative = suite_result["representative"]
             report = representative["report"]
             verified = representative["verified"]

@@ -1,6 +1,43 @@
 # EP01 paper plan: what do neural loss-aversion maps measure?
 
-This is a prospective paper architecture. It reports no empirical result.
+The original mechanism/neural paper architecture remains prospective. The
+separately authorized observed-behavior branch now has the bounded results
+below; they do not satisfy the original mechanism or neural gates.
+
+## Completed observed evidence — October 6, 2026
+
+The [observed description](runs/exploratory_observed_behavior/20261005-job46650095/descriptions/observed_behavior_descriptive.json)
+contains 108 participants and 27,648 trials: 15,201 accepts, 12,253 rejects and
+194 misses. Median responded accept/reject RT is 1.459/1.547 seconds. EI and ER
+have different offer designs; their differences are descriptive rather than
+causal task-version effects. Original events, misses and the four response
+categories retain their declared meanings.
+
+All twelve frozen fits (M0, MV, MZ, MC, MVZ and MVC, each in both {1,4}/{2,3}
+directions) converged and retained all 108 people. The
+[complete predictive report](runs/exploratory_observed_behavior/20261005-closeout-46651952/observed_behavior_summary.json)
+uses training-only individual/population fitting, all 256 trials per person's
+complete score and equal participant weighting. Mean gains over M0 range
+0.039537–0.121581 nat/trial. The [execution closeout](experiment_log.md#2026-10-05-1918-utc--complete-observed-data-menu-and-report-allocations-closed)
+retains convergence, the two disclosed support contacts and the observed
+branch's 0.6758333333 allocated core-hours.
+
+The [complete fifteen-contrast follow-up](runs/exploratory_observed_model_contrasts/20261006-job46735127/observed_model_contrasts.md)
+uses only saved scores: MV−M0 is +0.115012 nat/trial and positive for 89/108
+people; adding Z or C to MV gives +0.006569 and +0.005612, positive for 65 and
+58 people. MV−MC is +0.025828 in EI but −0.002012 in ER. These smaller
+incremental gains and task-version sign differences are useful predictive
+descriptions, not evidence identifying valuation, starting bias or drift
+criterion. See the [comparison figure](figures/observed_model_contrasts.png).
+
+The scientist stopped simulation expansion; all 88 remaining synthetic parents
+were cancelled with saved outputs preserved. The selected observed branch and
+saved-score follow-up are complete. Recovery/interval calibration, logistic,
+urgency/nonlinear and ordinal benchmarks, additional splits, formal superiority
+decisions and neural work remain deferred. Full-table description exposed the
+held-out responses to the analyst, so the frozen results are exploratory
+within-session predictions rather than fresh confirmation. No new fit or
+scientific amendment is selected by this documentation update.
 
 ![EP01 cognitive-specification study design](ep01_conceptual_question-imagegen-v3.png)
 

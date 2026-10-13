@@ -4,6 +4,14 @@ EP14 uses the pinned OpenBHB FreeSurfer ROI bundle already provisioned for this
 episode. This document declares data roles; it does not authorize target
 access, provision new data, or turn public labels into fresh audit evidence.
 
+The completed reference, diagnostic sequence and bilateral comparison all
+used the existing exposed development roles. Their
+[integrated evidence](outputs/paper_plan.md#completed-empirical-evidence--reconciled-october-6)
+and [result navigation](outputs/README.md) distinguish real MRI-derived results
+from the prospective design below. The original no-candidate decision and all
+757 closed public-validation outcomes are preserved; no new source or role
+assignment is needed to read these already released result summaries.
+
 ## September 30 representation refocusing — design only
 
 The main question returns to transferable age representations built from the
@@ -21,10 +29,29 @@ bilateral basis contains the same information as its original pairs.
 
 The [representation design](outputs/representation_research_design.md) keeps
 search broad while separating anatomical organization from generic shrinkage,
-compression and predictor capacity. Search ranges and confirmation scope
-remain prospective choices, not newly authorized holdout endpoints.
+compression and predictor capacity. The adopted bilateral comparison fixes
+its own ranges; other search ranges and confirmation scope remain prospective
+choices, not newly authorized holdout endpoints.
 
 ### Optional prior site diagnostic
+
+The subsequent continued-work amendment adopts cached projection attribution
+and one fixed linear-age-adjusted direction-estimation comparison, including
+within-site shuffled-age control and ordinary seen-site probes. It uses only
+the existing exposed development rows. Fitting ages may enter the declared
+training-only residualization; every evaluation transform still receives only
+ROI features. Public-validation rows and conditional-site probes remain outside
+this scope. See the [exact specification](outputs/site_information_diagnostic_prior.md#adopted-continuation--projection-heterogeneity-and-age-adjusted-directions).
+The final exact-covariance counterfactual additionally permits true or the
+same within-site shuffled fitting ages to construct one protected feature
+direction. Its transforms also receive only ROI features at evaluation.
+
+October 4 adopted scope: the [diagnostic specification](outputs/site_information_diagnostic_prior.md#adopted-development-diagnostic--october-4-2026)
+now authorizes the narrow discarded-score utility and matched-geometry
+development comparison on `inputs/openbhb/exposed/`. Its fit-defined support
+and evaluator-only centered scoring are fixed prospectively. This supersedes
+the earlier unactivated wording only for that comparison; conditional-site
+probes and public-validation endpoints remain outside the adopted scope.
 
 The retained optional diagnostic would use development ages to define fit-only shared
 age support and to fit auxiliary discarded-score age models and age-conditional
@@ -38,14 +65,41 @@ support are required to distinguish useful discarded information from a
 domain-average age shortcut. Support and age variation must be reported per
 domain; insufficient overlap is a scientific limitation, not a reason to
 silently drop inconvenient domains. All fitting, weights, directions, and any
-residualization remain inside training roles. The diagnostic is unactivated
-until its prospective amendment is frozen.
+residualization remain inside training roles. The discarded-score utility and
+matched-geometry components were adopted and completed under the October 4
+amendment; their common age-support comparison contained 226 participants in
+nine domains, all younger than 35, with uncertain utility contrasts. The
+conditional-site probe in this broader prior remains unactivated. The
+[completed interpretation](outputs/runs/discarded_direction_diagnostics/attempt001/interpretation.md)
+separates these scopes.
 
 The current conditional holdout authorizes no new diagnostic endpoint. A new
 endpoint on those rows requires an explicit pre-outcome amendment, a valid
 exposure review, and a compatible evaluator scope. Otherwise these diagnostics
 are development or retrospective evidence and need genuinely new confirmation
 material. Conditional site prediction cannot identify causal scanner effects.
+
+## Public online resources — checked October 6, 2026
+
+| Public resource | Available information and use for EP14 |
+| --- | --- |
+| [Original OpenBHB dataset documentation](https://baobablab.github.io/bhb/dataset) | Describes the ten-cohort/5,330-scan/71-site source benchmark, one retained session per participant, uniformly prepared Quasi-Raw/CAT12/FreeSurfer derivatives, and Desikan/Destrieux ROI thickness, area and curvature. It documents FreeSurfer `recon-all`, fsaverage registration and Euler-number QC. These are the public acquisition/preprocessing and representation definitions behind the ROI bundle. |
+| [RAMP kit README at the pinned commit](https://raw.githubusercontent.com/ramp-kits/brain_age_with_site_removal/0e79d8b400b08afc2d25ff299f92c994aa775cf7/README.md) | Provides the benchmark data organization, starting-kit interface, downloader and split/access descriptions, with 3,227 training and 757 validation images. Its downloader includes validation/all modalities, so it is documentation rather than an EP14 acquisition instruction. |
+
+The README's external-validation count of 396 is inconsistent with its total
+and with the qualified pinned bundle's **395**; EP14 keeps its verified
+3,227/362/395 inventory. Public documentation also mentions vertex-wise
+fsaverage features and a private challenge evaluation resource. Their existence
+does not place them in EP14's current ROI-only source scope or grant access.
+
+These links resolve what data, representations, preprocessing and benchmark
+code are publicly available. They do not supply independent confirmation of
+the exposed-development findings, change feature exclusions/license terms,
+or open the 757 public-validation outcomes. No archive or dataset table was
+requested. A separate Hugging Face card lookup incidentally returned embedded
+numeric preview rows; that route was stopped without using values, changing
+any analysis or selecting participants/features. Only the documentation above
+supports this resource addition.
 
 ## Fixed upstream material
 
@@ -93,6 +147,11 @@ Age and fit-role `siteXacq` may be supplied only to their declared supervised
 fit steps and fixed probes.
 
 ## Exposed development roles
+
+The October 6 bilateral-regularization amendment uses only this existing exposed
+development bundle and its provider reference metadata. Homologous and shuffled
+pairings share these roles; full provider measurement-family names constrain all
+shuffles. No new source, audit feature or public-validation target is opened.
 
 The official RAMP definitions provide three overlapping robustness views:
 

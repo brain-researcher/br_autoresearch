@@ -1,0 +1,33 @@
+{
+  "analysis_id": "input_role_preparation",
+  "fixed_before_optimization": true,
+  "encoding_date": "2026-10-03",
+  "source_profile": "outputs/runs/input_role_preparation/20261003-role_profile01/role_metadata_profile.json",
+  "eligible_cohort_size": 46,
+  "audit_size": 16,
+  "development_size": 30,
+  "age": {
+    "encoding": "integer-valued continuous age as observed, without imputation",
+    "variance": "sum((age_i - mean_age)^2) / 45"
+  },
+  "categorical_fields": ["gender", "native_english", "language_profile", "language_spoken_at_home"],
+  "categorical_encoding": "all exact recorded nominal levels after outer whitespace trim",
+  "language_profile_is_ordinal": false,
+  "home_language_combinations_split": false,
+  "categorical_variance": "p*(1-p), p=eligible_count_of_level/46",
+  "zero_variance_columns": "drop and record",
+  "duplicate_nonconstant_columns": "retain as separately registered features",
+  "acquisition_quartile_sizes": [12, 12, 11, 11],
+  "audit_count_per_quartile": 4,
+  "quartile_indicators_in_objective": "all four; retain their fixed nonzero imbalance",
+  "split_pair": ["sub-49", "sub-50"],
+  "split_pair_audit_count": 1,
+  "standardized_imbalance": "(46*audited_feature_sum - 16*cohort_feature_sum) / (480*feature_SD)",
+  "objective_order": [
+    "minimize maximum absolute standardized imbalance",
+    "minimize sum of squared standardized imbalances among exact minimax optima",
+    "lexicographically smallest sorted audit ID tuple among exact optima of both tiers"
+  ],
+  "role_status_after_solver": "proposal_only_pending_exposure_and_access_review",
+  "eeg_or_image_values_used": false
+}

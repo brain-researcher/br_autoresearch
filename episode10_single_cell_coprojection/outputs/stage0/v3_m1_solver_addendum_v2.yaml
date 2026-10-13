@@ -1,0 +1,98 @@
+schema_version: episode10_v3_m1_solver_addendum_v2
+episode_id: ep10
+recorded_date: "2026-09-27"
+status: frozen_before_one_shot_convergence_confirmation_implementation_and_execution
+analysis_label: exploratory
+scientific_authority: false
+
+authority:
+  base_contract:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_model_contract.yaml
+    required_schema_version: episode10_v3_m1_model_v1
+  prior_solver_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_solver_addendum_v1.yaml
+    required_schema_version: episode10_v3_m1_solver_addendum_v1
+  relationship: >-
+    The base contract and solver addendum v1 remain authoritative. This
+    addendum changes only when an otherwise unchanged exact-Hessian Newton fit
+    may return after its first accepted-step convergence witness.
+
+trigger:
+  narrow_job: "45591145"
+  gate: exact_68_row_warm_repeat1_warm_repeat2_zero_start
+  completed_fits: 36
+  fit_failures: 0
+  failed_lambda: 1.0e-8
+  sole_failed_comparison: zero_start_log_probability_max_absolute_difference
+  observed: 0.0011745975798476138
+  frozen_maximum: 1.0e-4
+  warm_gradient_infinity_norm: 3.411083809356088e-14
+  zero_gradient_infinity_norm: 4.9176049732301205e-11
+  zero_last_relative_objective_change: 3.7268275187758454e-11
+  access_witness:
+    real_target_calls_or_real_K_opened: false
+    M0_prediction_or_fit_artifact_opened: false
+    final_or_unassigned_or_SWC_opened: false
+
+sole_numerical_change:
+  rule: >-
+    When an accepted Newton/Wolfe step first satisfies both frozen ordinary
+    convergence predicates, record that witness and make exactly one further
+    attempt using the unchanged exact Hessian, Newton direction, and strong-
+    Wolfe line search. If that attempt accepts a step which also satisfies the
+    same two predicates, return it. If it accepts a step which does not, resume
+    the ordinary loop and return at the next unchanged witness without another
+    forced confirmation. An eligible finite-precision line-search stall remains
+    governed only by the existing gradient-and-gap certificate.
+  scope: every_M1_fit_independent_of_lambda_initialization_or_data_role
+  fixed_confirmation_attempt_count: 1
+  accepted_step_exact_binary64_zero_gradient_may_return_without_confirmation: true
+  first_witness_is_recorded_in_telemetry: true
+  warm_zero_or_other_validation_metric_enters_optimizer_stopping: false
+  initial_state_repeated_unchanged_witness: unchanged
+  changes_model_objective_gradient_or_Hessian: false
+  changes_Newton_direction_or_factorization: false
+  changes_Wolfe_constants_steps_caps_or_inequalities: false
+  changes_convergence_or_certificate_thresholds: false
+  changes_lambda_grid_or_initialization: false
+  adds_acceptance_slack_tie_rule_or_fallback: false
+
+unchanged:
+  - exact fixed-K conditional set-softmax model and exhaustive normalization
+  - stable line-objective and direct-derivative implementation from addendum v1
+  - gradient infinity tolerance of 1e-7
+  - relative objective tolerance of 1e-10
+  - ordinary convergence requires both frozen predicates
+  - existing finite-stall certificate requires both its gradient and relative-gap predicates
+  - every warm-versus-zero comparison threshold, including 1e-4 maximum log-probability difference
+  - all target-free, actual-K, M0-artifact, SWC, final, and unassigned access seals
+
+required_conformance:
+  - >-
+    first accepted-step convergence is recorded and cannot return before one
+    confirmation attempt unless its gradient infinity norm is exactly binary64 zero
+  - at most one forced confirmation attempt occurs per fit
+  - every accepted confirmation step satisfies the unchanged strong-Wolfe inequalities
+  - the initial-state repeated-unchanged witness remains available for an exact stationary start
+  - every returned ordinary fit still satisfies gradient infinity at most 1e-7 and relative objective change at most 1e-10
+  - the exact seed-20260928 68-row warm-repeat and zero-start gate passes at all 12 lambdas
+  - all parser and access seals remain closed to real targets, M0 artifacts, SWCs, final, and unassigned data
+
+execution_order:
+  first: >-
+    Independently review implementation and run exactly one new 68-row
+    synthetic warm-repeat1, warm-repeat2, and zero-start qualification with seed
+    20260928 and all 12 lambdas.
+  narrow_pass_authorizes_only: complete_target_free_v4_probe
+  after_narrow_pass: >-
+    Relaunch the complete target-free probe once, including population
+    recovery, the complete 68-row gate, all 79 real-shape rank/condition sets,
+    and the all-K8 throughput benchmark.
+  actual_K_access: >-
+    Forbidden until the complete target-free probe, independent postflight,
+    and remaining-budget reconciliation pass.
+
+implementation_boundary:
+  implementation_modified_by_this_addendum: false
+  Slurm_job_submitted_by_this_addendum: false
+  next_probe_output_basename: v3_m1_synthetic_warm_zero_diagnostic_v2_job_JOBID

@@ -1,0 +1,164 @@
+schema_version: ep22.search_policy.v1
+policy_id: ep22_geometry_gap_decomposition_v1
+episode_id: ep22
+recorded_on: "2026-10-12"
+status: proposed_not_frozen
+evidence_mode: fixed_diagnostic_with_sealed_confirmation
+adaptive_search_protocol_applies: false
+follows_episode: ep04
+
+scientist_decisions:
+  - on: "2026-10-12"
+    decision: run_this_diagnostic_before_theory_level_episodes
+  - on: "2026-10-12"
+    decision: reassign_371_shared_laion_fmri_ood_images_from_ep04_to_ep22_as_one_shot_confirmation
+    conditions: [completed_outcome_blind_exposure_review, corrected_ood_embeddings_bound, write_once_lock]
+  - on: "2026-10-12"
+    decision: adopt_default_procedural_ood_separation_and_authorize_D0
+  - on: "2026-10-12"
+    decision: authorize_D1_D2_D3_on_development_after_D0
+  - on: "2026-10-12"
+    decision: adopt_restated_C1_extended_C2_kept_C3_and_min20_category_rule_and_authorize_ood_exposure_review
+
+authorization:
+  d0_outcome_blind_spectra_authorized: true
+  development_compute_authorized: true  # D1-D3, development responses only
+  ood_exposure_review_authorized: true
+  configuration_lock: outputs/ood_confirmation_lock.json  # written 2026-10-13T00:00:35Z, sha256 efb07381e6c2ed90e14f68337d0fe4c7f311234b09d82822af9f1efe3488b6e1; confirmation design frozen
+  # Additionally requires the exposure review, coverage check and lock.
+  ood_opening_authorized: false
+  raw_image_access_authorized: false
+
+dataset_roles:
+  development:
+    slice: subject_unique_regular_images
+    images_per_participant: 4712
+    participants: [sub-01, sub-03, sub-05, sub-06, sub-07]
+    exposure: exposed_in_ep04_as_selection_exposed_development
+    analyses: [D0, D1, D2, D3]
+  excluded:
+    slice: regular_shared_images
+    images: 1121
+    reason: responses_opened_in_ep04_earlier_round
+  confirmation:
+    slice: shared_ood_images
+    images: 371
+    maximum_openings: 1
+    confirmatory_categories: [cropped, relations, selfmade, unusual]  # photographic, >=20 images, equal weights; adopted 2026-10-12
+    descriptive_categories: [illusion-natural, gabor, gaudy, illusion-classic, shape]
+    category_membership_check: outcome_blind_before_lock
+    embedding_version_required: provider_2026-09-28_transparency_corrected
+
+reused_frozen_definitions_read_only:
+  folds_and_tables: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-metadata_folds04/
+  development_embeddings: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-development_embeddings01/
+  neural_preprocessing: ../episode04_shared_scene_geometry/outputs/neural_preprocessing_proposal.md
+  roi_mapping: ../episode04_shared_scene_geometry/outputs/config/roi_mapping.json
+
+models:
+  rows: [DINOv2, CLIP, PEcore, SigLIP2]
+  source: provider_released_embeddings_only
+  row_normalization: l2
+  native_rdm: euclidean_on_column_centered_l2_rows  # rank-equivalent to EP04 cosine RDM
+  new_embeddings_layers_or_models: out_of_scope
+
+neural:
+  primary_rois: [laion-ventral, laion-lateral, laion-dorsal]
+  descriptive_rois: [retinotopic_EVC]
+  rdm: correlation_distance_on_repetition_averaged_session_standardized_typed_betas
+  repeat_rule: at_least_2_valid_presentations
+  rsa: spearman_then_fisher_z
+  aggregation: equal_fold_then_sector_then_participant
+
+analyses:
+  D0_outcome_blind_spectra:
+    neural_data: none
+    measures: [participation_ratio_ED, spectral_decay, linear_CKA_between_models, leading_eigenvector_principal_angles]
+    strata: [laion, things, thingsplus, ood_photographic, ood_synthetic]
+    size_matching: equal_size_random_subsets
+    ood_embeddings_allowed_before_lock: true
+  D1_eigen_factorial:
+    geometries: [U_m_Sigma_m, U_r_Sigma_r, U_m_Sigma_r, U_r_Sigma_m]
+    reference_r: DINOv2
+    spectrum_imposition: rank_order
+    decomposition: two_factor_E_val_plus_E_vec_equals_native_gap
+    neural_fitting: none
+  D2_flexibility_ladder:
+    matched_flexibility: same_rung_applied_to_vlm_and_dinov2
+    fitting_data: training_images_only
+    rungs:
+      R0: native
+      R1: spectral_exponent_alpha_0_to_4_step_0.1_leading_256_training_pca_basis  # widened from 0-2 on 2026-10-12 (boundary hit)
+      R2: nonnegative_per_axis_weights_leading_64_axes_split_half_lambda_0_to_100
+      R3: ridge_encoding_predicted_response_geometry
+    estimand: gap_closure_1_minus_abs_gap_R_over_abs_gap_R0
+  D3_selection_intervention:
+    images: laion_stratum_within_each_evaluation_fold
+    selectors: [DINOv2, CLIP, PEcore, SigLIP2]
+    selection: greedy_participation_ratio_maximization_in_64d_pca
+    subset_fraction: 0.5
+    minimum_random_baselines: 20
+    estimand: own_selection_effect_O_s
+  uncertainty: whole_image_bootstrap_within_participant_plus_all_five_participant_values
+  open_exploratory_choices: [bootstrap_count, alpha_grid_resolution, ridge_grid, per_axis_k_sensitivity, subset_fraction_sensitivity, D0_subset_size]
+  reporting: every_family_reported_in_full
+
+confirmation:
+  estimand: within_category_spearman_fisher_z_equal_category_and_sector_weights_then_equal_participants
+  margin_fisher_z: 0.02
+  participant_rule: at_least_4_of_5
+  # Adopted 2026-10-12 after D0-D3; frozen at the write-once lock.
+  predictions:
+    C1_discriminating: clip_minus_dinov2_native_gap_on_confirmatory_categories_le_minus_margin_supports_spectral_account_gt_minus_margin_supports_selection_only_account_mean_4_of_5_and_leave_one_category_out_reported
+    C1_secondary: same_classification_reported_for_PEcore
+    # C2 rewritten post hoc 2026-10-12 after the pre-lock dev-test (within-category swap closed only 22-30%).
+    C2a_within_category: for_CLIP_and_SigLIP2_within_category_E_val_negative_for_mean_and_4_of_5
+    C2b_all_pairs: for_CLIP_and_SigLIP2_all_pairs_eigenvalue_swap_closes_at_least_half_of_native_gap_mean_and_4_of_5_evaluable_only_if_gap_le_minus_margin_confirmatory_only_if_dev_test_met_rule
+    C2_secondary_PEcore: within_category_E_val_negative_and_E_vec_positive_for_mean_and_4_of_5
+    C3_transfer_secondary: development_fitted_alpha_raises_each_vlm_ood_rsa_above_native
+  informativeness_gate: dinov2_photographic_within_category_rsa_above_95th_percentile_of_10000_within_category_whole_image_permutations_shared_across_participants_and_sectors
+  direction_rule: development_may_restate_or_drop_a_prediction_before_lock_with_recorded_reason
+  frozen_after_opening: [predictions, categories, margins, models, aggregation, preprocessing]
+  separation: procedural_same_account_disclosed_as_procedurally_sealed  # adopted 2026-10-12
+  lock: write_once_outputs_file_with_evaluator_checksum_settings_predictions_and_review_outcomes
+  retry: exact_software_retry_only_if_no_score_was_produced
+
+budgets:
+  cpu_core_hour_ceiling: 400
+  gpu_hour_ceiling: 0
+  max_parallel_cores: 32
+  per_job_memory_gib_max: 64
+  durable_output_gb_max: 20
+  scratch_gb_max: 200
+  development_wall_clock_hours: 72
+  ood_openings: 1
+
+stop:
+  - cpu_ceiling_reached
+  - development_wall_clock_exceeded
+  - exposure_review_finds_ood_exposure_closes_ood_route
+  - corrected_ood_embeddings_unavailable_closes_ood_route
+  - single_ood_opening_completed
+
+terminal_classes:
+  confirmation_complete: ood_opened_once_each_prediction_recorded_pass_fail_or_not_evaluable
+  confirmation_uninformative: informativeness_gate_failed
+  development_only: ood_route_closed_or_not_authorized_development_reported
+  technical_failure: source_join_coverage_or_executable_evaluation_cannot_be_established
+  policy_violation: prohibited_outcome_access_leakage_or_post_opening_change
+
+# Only for a canonical outer status, if EP22 is ever registered there; EP22 has no model candidate.
+terminal_mapping:
+  confirmation_complete: closed_no_candidate
+  confirmation_uninformative: closed_no_candidate
+  development_only: closed_no_candidate
+  technical_failure: technical_failure
+  policy_violation: technical_failure
+
+claim_limits:
+  - five_ep04_participants_no_population_or_participant_replication
+  - ood_is_a_stimulus_shift_within_the_same_participants
+  - released_stages_differ_dinov2_layer23_patch_mean_vs_vlm_projection_heads
+  - no_causal_claim_about_training_objectives_or_language_supervision
+  - selection_intervention_tests_direction_not_provider_magnitude
+  - procedurally_sealed_unless_independent_steward

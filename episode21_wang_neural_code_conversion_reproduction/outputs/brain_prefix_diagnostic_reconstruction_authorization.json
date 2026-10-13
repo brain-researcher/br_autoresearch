@@ -1,0 +1,18 @@
+{
+  "schema_version": "ep21.brain_prefix_diagnostic.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0304-pacific--source_qualification--bounded-full-reconstruction-runtime-selected",
+  "operation": "diagnose_brain_first_fold",
+  "attempts": 1,
+  "source": "sub-03", "target": "sub-01",
+  "training_images": 897, "source_native_voxels": 12897, "target_native_voxels": 12295,
+  "fits": 0, "scoring": false, "model_publication": false, "automatic_retry": false,
+  "parent_authorization": "outputs/reconstruction_qualification_authorization.json",
+  "resources": {"deadline_seconds": 300, "rss_limit_bytes": 6979321856, "durable_bytes": 1048576},
+  "input_scope": {
+    "source_tau_train": "sub-03", "target_tau_train": "sub-01",
+    "tau_test": false, "OOD": false, "subject_unique": false, "features": false, "decoder_payloads": false
+  },
+  "purpose": "Relocate the never-entered original sub-03 to sub-01 first-fold diagnostic into fixed reconstruction-002, under standing scientist continuation and increased-compute authority. Preserve attempt001's skipped status and the consumed full brain-fit failure. Stop after original input binding and first-fold normalization, before Gram products, solves, CV selection or any fit, score or model. Only allowlisted categorical failures may be reported; a passing prefix remains not_localized.",
+  "accounting": "Serialized one-thread child inside the separately selected1CPU/7GiB/120-minute CPU-only reconstruction-qualification parent, at most300seconds/6.5GiB process RSS/1MiB output. The parent performs actual allocation and remaining-time admission. Charge all children once to that parent; no extra job, duplicate charge, automatic retry, full-fit retry or successor. Historical CUDA parent47360846 and attempt001 metadata remain unchanged."
+}

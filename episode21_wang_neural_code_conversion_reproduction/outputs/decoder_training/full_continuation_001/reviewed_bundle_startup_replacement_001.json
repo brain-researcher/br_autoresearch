@@ -1,0 +1,24 @@
+{
+  "schema_version": "ep21.reviewed_bundle_startup_replacement.v1",
+  "reviewer": "coordinating_agent",
+  "reviewed_utc": "2026-10-08T00:11:20Z",
+  "predecessor_job_id": "46942785_5",
+  "predecessor_allocation_job_id": "46942785",
+  "logical_work_items": [
+    "work_0006",
+    "work_0013"
+  ],
+  "array_index": 5,
+  "remainder_plan": "outputs/decoder_training/full_continuation_001/deadline_remainders_002.json",
+  "failure_reason": "required_quarantine_fixtures_nested_autospec",
+  "scientific_output_directories_absent": true,
+  "request_or_status_created": false,
+  "scientific_payload_admitted": false,
+  "io_fragment_inspection_started": false,
+  "optional_children_started": false,
+  "automatic_retry": false,
+  "fix_evidence": "Two test_reviewed_io_quarantine fixtures now use a plain replacement function instead of attempting nested autospec of Path.is_file already mocked by metadata(). No scientific runner condition was relaxed. Required startup checks and five exact replacement checks remain to run in the replacement allocation.",
+  "terminal_evidence": "Coordinator observed46942785_5/raw46942785 FAILED1:0, allocated1CPU for25seconds; the25seconds were appended to submission.jsonl. Closed checks.txt reports93tests in10.524s,91passing and twoInvalidSpecError exceptions before empirical work.",
+  "absence_evidence": "Coordinator and independent exact-path lstat review confirmed remainder_shards_001/work_0006 and remainder_shards_002/work_0013 absent, with no symlinks or scientific outputs. Closed remainder_bundle_checks_job_46942785/status.txt contains only job, parent owner, logical members and required_checks_exit=1. Stdout contains the allocation header only; fragment inspection, optional EP15/ASTRA and both empirical children did not start.",
+  "user_authorization_context": "Coordinator explicitly selected one finite manual technical replacement under the existing500CPU-hour,500GB and8worker grant. Preserve the failed25second charge, immutable work6/work13 plan002 and separate original deadline fragments, exact output paths, one1CPU7GiB7200second index5 reservation and unchanged five-parent I/O quarantine. No automatic retry, empirical retry, extension, assembly, scoring or converter access."
+}

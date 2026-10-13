@@ -1,6 +1,183 @@
 policy_id: ep15_mdtb_topography_vs_geometry
 episode_id: ep15
-evidence_mode: development_then_one_shot_participant_audit
+evidence_mode: exploratory_real_development_now_formal_class_decision_and_audit_deferred
+
+scientist_amendment_20261012_finite_support:
+  status: adopted
+  adopted_at_utc: '2026-10-12T23:18:00Z'
+  authority: >-
+    Scientist zijiao replied "adopt the EP15 finite-support proposal" at about
+    16:18 Pacific.
+  specification: outputs/proposed_finite_support_followup.md
+  applies_to_route: observed_beta_development_descriptive
+  amends:
+    - scientist_amendment_20261012_observed_beta.fixed_panel.common_support_locations
+    - scientist_amendment_20261012_observed_beta.observed_map_loss.voxel_weights
+    - anatomical_support_specification_no_later_Task_A_B_revision_rule_for_this_route_only
+  derived_support: >-
+    M = M0 AND, over all 9024 released selected development maps, a valid
+    strict positive-weight stencil with a finite interpolated value, using the
+    unchanged sampler, headers, affines, transform, scaling, ordering and
+    positive-weight corner rule.
+  M0: unchanged_byte_for_byte_and_retained_for_every_other_route
+  original_208_point_route: retained_as_distinct_route
+  prohibited_mask_inputs: [instructions, shared_Task_B_conditions, audit_people_or_values, private_reliability, beta_magnitude_sign_variance_or_effect_size, model_residuals_or_scores]
+  prohibited_repairs: [interpolation_repair, zero_filling, weight_renormalization, smoothing, nearest_neighbour_replacement, participant_condition_run_or_regressor_removal]
+  mask_scope: one_frozen_mask_common_to_every_fold_model_condition_partition_and_control
+  voxel_weights: equal_over_M_weight_1_over_abs_M
+  geometry_adaptation: rebuild_median_split_and_graph_basis_on_M_with_deterministic_floor_ceiling_cells_preserving_depths_modes_ties_tolerances_bounds_ranks_and_parameter_counts
+  stop_conditions: [empty_support, insufficient_geometry, failed_numerical_certificate]
+  stop_does_not_permit: [smaller_cohort, altered_capacities, weaker_cutoff, another_support_search]
+  interpretation: >-
+    Availability-conditioned descriptive route with a changed spatial estimand.
+    The mask uses target Task-B availability, so Task B is not described as
+    wholly unseen. No comparison with a 208-location loss and no reliability,
+    recovery, adequacy, superiority, winning-class, mechanism or causal claim.
+  mask_constructed: true
+  derived_support_artifact: outputs/runs/observed_beta_development/finite_support001/selection.npz
+  retained_support_locations: 188
+  implementation_status: variable_support_parameterization_implemented_affected_compute_checks_passed
+  additional_authorization_conditions:
+    - complete_derived_mask_built_once_through_the_released_reader_and_strict_sampler_under_a_recorded_bounded_request
+    - variable_support_axis_joins_mask_identity_uneven_cells_and_unchanged_operator_control_algebra_checked
+  budgets_and_search_clock: unchanged_no_reset
+  this_amendment_releases_data_or_selects_a_job: false
+
+scientist_amendment_20261012_observed_beta:
+  status: adopted
+  adopted_at_utc: '2026-10-12T22:29:00Z'
+  authority: scientist_explicitly_selected_the_proposed_observed_map_prediction_route
+  route_id: observed_beta_development_descriptive
+  specification: outputs/proposed_observed_beta_followup.md
+  implementation_status: implemented  # for the 208-point support; variable-support version pending under scientist_amendment_20261012_finite_support
+  precedence: >-
+    For this route only, supersedes the error-independence-support fitting and
+    scoring prerequisite in scientist_amendment_20261012,
+    scientist_amendment_20261006.exploratory_real_data.before_scoring and
+    response_and_space.independent_error_assumption_checked_before_candidate_scores.
+    All other requirements remain; the original reliable-variation and formal
+    routes retain their error-support and qualification requirements.
+  full_panel_fit_authorized: true
+  authorization_conditions:
+    - coordinator_recorded_development_handoff_release_for_this_route
+    - deployed_published_parameter_and_cache_firewall
+    - authenticated_functionally_valid_fixed_source_maps_support_and_training_only_scales
+    - qualified_complete_model_control_and_observed_loss_reporting_implementation
+    - relevant_unchanged_numerical_locality_and_identifiability_certificates
+    - recorded_complete_route_cost_admission_remaining_budget_and_bounded_resources
+    - explicit_scratch_allowance_before_launch
+  this_amendment_releases_data_or_selects_a_job: false
+  fixed_panel:
+    development_participants: [sub-08, sub-12, sub-14, sub-15, sub-17, sub-18, sub-20, sub-21, sub-24, sub-25, sub-27, sub-31]
+    Task_B_only_conditions: unchanged_all_18
+    # 2026-10-12 23:18 UTC (scientist_amendment_20261012_finite_support): was 208.
+    common_support_locations: derived_common_finite_availability_mask_M_per_scientist_amendment_20261012_finite_support
+    fixed_variants: unchanged_all_16_in_canonical_order
+    comparators_and_controls: unchanged_M0a_M0b_and_every_existing_matched_control_and_draw
+    run_partitions_weights_and_source_exclusions: unchanged
+    target_personalization: anatomy_and_all_29_Task_A_conditions_only
+    reduced_or_outcome_selected_panel: prohibited
+    incomplete_execution: preserve_failure_no_partial_scientific_panel_or_automatic_retry
+  observed_map_loss:
+    formula: equal_participant_mean_of_equal_four_partition_mean_of_domain_weighted_condition_mean_of_spatially_centered_squared_prediction_error
+    # 2026-10-12 (scientist_amendment_20261012_finite_support): was equal_over_all_208_locations.
+    voxel_weights: equal_over_all_locations_of_M_weight_1_over_abs_M
+    domain_weights: equal_over_seven_domains_conditions_equal_within_domain
+    noise_or_reliability_correction: none
+    controls: loss_for_each_fixed_draw_before_averaging_not_loss_of_averaged_predictions
+    retained_contributions: all_participants_conditions_partitions_variants_comparators_and_controls
+    independent_reporting_unit: participant_12
+  legacy_signed_statistics:
+    permitted: signed_map_and_geometry_cross_partition_statistics_and_paired_comparator_summaries
+    required_label: conditional_on_unresolved_cross_partition_error_assumptions_not_reliable_signal
+    Task_A_diagnostic_subtraction_or_noise_calibration: prohibited
+  prohibited_claims_and_outputs:
+    - reliable_signal_or_recovery_fractions_including_one_minus_R_over_V
+    - adequacy_equivalence_or_formal_superiority
+    - winning_model_class_or_psychological_neural_or_causal_mechanism
+    - positive_condition_or_participant_subset_selection
+    - calibrated_uncertainty_or_formal_qualification_from_descriptive_summaries
+    - audit_opening_or_private_reliability_access
+  original_accepted_standards: retained_not_observed_loss_pass_thresholds
+  original_question_and_formal_route: retained_unresolved_not_validated_by_Task_A_diagnostic
+  procedural_same_account_separation: unchanged_and_disclosed
+  resource_limits: unchanged_trial_and_search_limits
+  historical_charges_and_search_clock: retained_no_reset
+  clock_admission: coordinator_records_applicable_search_start_and_remaining_allowance_before_launch_not_inferred_from_source_preparation_date
+  provider_estimation_scope_information: helpful_for_original_error_support_not_a_prerequisite_for_this_descriptive_route
+
+scientist_amendment_20261012:
+  authority: >-
+    Scientist zijiao replied "follow your recommendation" at about 13:10
+    Pacific to one evaluation-separation decision for EP02, EP15, EP17 and
+    EP18: procedural separation with a disclosed weaker claim, because the same
+    account can read the evaluation data and the October 3 sandbox route failed
+    (namespace ENOSPC, EP18 job 46427768). The SRCC request is not sent.
+  replaces: enforced_reader_isolation_by_separate_execution_account_restricted_runtime_or_Apptainer_route_or_independent_steward
+  separation_mode: procedural_same_account_not_technically_enforced
+  reader_separation_precondition: satisfied_procedurally
+  development_reads_only: released_development_role_inputs_of_the_12_development_participants_plus_Task_B_free_shared_inputs_already_fixed_such_as_the_208_location_support
+  not_opened_listed_or_searched_during_development:
+    - mixed_original_archives
+    - audit_calibration_containers
+    - sealed_audit_Task_B_containers
+    - private_Task_A_reliability_values
+    - exposed_fitted_caches
+  analysis_choices_frozen_and_recorded_before_any_audit_access: true
+  audit_access_order: unchanged_panel_lock_before_audit_calibration_and_prediction_lock_before_the_single_recorded_sealed_audit_opening
+  every_audit_calibration_or_sealed_audit_access: recorded_in_outputs_experiment_log_md
+  unplanned_access: disclosed_and_affected_results_marked
+  claim_limit: >-
+    Every result using audit-calibration or sealed-audit data, and any statement
+    that audit data stayed sealed, states that separation was procedural (same
+    account, not technically enforced, data readable by that account) and is
+    never described as enforced or blinded evaluation.
+  unchanged: >-
+    Data roles, the exploratory 12-participant route with tau_remaining 0.20
+    and tau_increment 0.05, the 16 fixed model variants, deferred formal items,
+    thresholds, opening counts, budgets and every other blocker. The
+    exploratory branch still prohibits audit opening.
+  access_flags_changed: none
+  development_access_still_requires: separately_recorded_development_handoff_release_not_yet_performed
+  empirical_fitting_still_requires:
+    - deployed_published_parameter_cache_firewall
+    # Original route; the later observed-beta amendment provides the sole exception.
+    - functional_validity_and_error_independence_support_GLM7_versus_GLM4_5_6_provenance_and_geometry_pairs_possibly_within_one_scanning_session
+    - resource_admission_measured_full_panel_time_and_memory_and_fixed_scratch_limit
+
+scientist_amendment_20261006:
+  authority: scientist_agreed_with_presented_exploratory_real_data_direction_and_80_percent_recovery_plus_5_percentage_point_increment
+  accepted_intended_standards: {tau_remaining: 0.20, tau_increment: 0.05}
+  remaining_five_margin_values_adopted: false
+  scientific_calibration_or_confirmatory_inference_validated: false
+  exploratory_real_data:
+    source_role: existing_12_development_participants_only
+    # 2026-10-12 (scientist_amendment_20261012): was
+    # only_after_existing_reader_isolation_and_development_handoff_release.
+    # Separation is now procedural; the release itself is still pending.
+    access: only_after_procedural_reader_separation_and_development_handoff_release
+    targets: unchanged_18_Task_B_only_conditions_on_fixed_208_location_support
+    fitting: unchanged_leave_one_participant_out_shared_fits_target_personalization_from_anatomy_and_Task_A_only
+    report: signed_map_and_geometry_signal_residual_and_comparator_point_summaries
+    accepted_standards_role: prospective_descriptive_reference_not_statistical_pass_or_class_selection
+    ratio_display: only_with_positive_finite_signal_and_explicitly_unresolved_signal_strength_and_uncertainty
+    # The observed-beta route explicitly prohibits recovery/reliability ratios.
+    unapproved_signal_equivalence_and_native_signature_thresholds: not_applied
+    uncertainty: unfinished_no_calibrated_bounds_or_confirmatory_language
+    formal_class_decision_or_audit_opening: prohibited
+    before_scoring:
+      # 2026-10-12 (scientist_amendment_20261012): was
+      # enforced_reader_boundary_and_published_parameter_cache_firewall.
+      # The reader half is satisfied procedurally; the firewall half remains.
+      - procedural_reader_boundary_per_scientist_amendment_20261012_and_published_parameter_cache_firewall
+      - fixed_source_map_recipe_and_training_only_geometry_scales
+      - functional_validity_and_error_independence_support_for_cross_replicate_estimands
+      - fixed_executable_model_control_recipes_and_relevant_identifiability_certificates
+      - resource_bounded_execution_within_existing_limits
+    full_seven_world_100_seed_program: deferred_not_a_prerequisite_for_this_exploratory_branch
+    seven_fixture_replacement_and_Bonferroni_interval_proposals: remain_unadopted
+  original_formal_route: retained_incomplete_not_satisfied_by_exploratory_results
+  split_support_access_and_resource_limits: unchanged
 
 scientific_question:
   primary: >-
@@ -13,8 +190,8 @@ scientific_question:
   deeper_prediction: >-
     Task_A_predicts_the_signed_participant_specific_deviation_of_the_full_Task_B_only_condition_geometry_matrix
   strongest_permitted_claim: >-
-    One constrained explanation is uniquely supported for stable individual
-    organization within the MDTB release.
+    Exploratory development comparisons now; a uniquely supported constrained
+    explanation only under the separately completed original formal route.
   prohibited_claims:
     - task_dependence_separate_from_session
     - external_replication
@@ -44,7 +221,9 @@ data:
       evaluator_access_after_prediction_lock: Task_B_only
       replacement: prohibited
       reduced_n_primary_analysis: prohibited
-    status: not_yet_instantiated
+    # Assignment completed October 4; opaque handoffs remain unreleased.
+    # Evidence: outputs/experiment_log.md, 2026-10-04 21:31 UTC.
+    status: instantiated
 
   role_assignment:
     Task_B_blind: true
@@ -71,6 +250,7 @@ data:
     missing_categorical_value: explicit_level
     missing_age_or_reliability: block_assignment
     outcome_blind_12_12_decision_simulation_required: true
+    decision_simulation_scope: original_formal_class_decision_not_exploratory_point_reporting
     changing_split_requires_explicit_preoutcome_amendment: true
 
   endpoint:
@@ -89,6 +269,10 @@ data:
     shared_A_B_conditions_including_rest: postdecision_diagnostic_only
 
 access_boundary:
+  # 2026-10-12: separation is procedural, not OS-enforced (scientist_amendment_20261012).
+  # The same account can read the mixed archives and audit containers; false
+  # below means the search worker does not open, list or search them.
+  separation_mode: procedural_same_account_per_scientist_amendment_20261012
   mixed_audit_archives_visible_to_search_worker: false
   handoffs:
     development:
@@ -141,6 +325,7 @@ response_and_space:
     - partition_1_cross_partition_2
     - partition_3_cross_partition_4
   independent_error_assumption_checked_before_candidate_scores: true
+  # The observed-beta descriptive route alone has the explicit exception above.
 
 fitting_contract:
   development_pseudo_target:
@@ -297,6 +482,7 @@ estimands:
     M1_and_M2_can_change_voxel_weighted_geometry: true
 
   signal_gates:
+    scope: original_formal_route_not_applied_to_exploratory_point_summaries
     map_present: simultaneous_lower_bound_of_V_map_minus_tau_signal_times_S_map_above_zero
     map_negligible: simultaneous_upper_bound_of_same_contrast_below_zero
     map_otherwise: unresolved
@@ -306,8 +492,8 @@ estimands:
 
   scientific_margins:
     tau_signal: null
-    tau_remaining: null
-    tau_increment: null
+    tau_remaining: 0.20
+    tau_increment: 0.05
     tau_geometry: null
     scale_definitions:
       tau_signal: fraction_of_positive_development_crossvalidated_source_map_energy
@@ -315,9 +501,11 @@ estimands:
       tau_increment: dimensionless_map_or_geometry_recovery_fraction
       tau_geometry: individual_geometry_variation_relative_to_K0_energy
     scientist_approval_before_candidate_scores: required
+    approval_scope: formal_class_decision_route_except_two_intended_standards_adopted_20261006
     synthetic_qualification_may_choose_or_widen_margin: false
 
   native_signature_margins:
+    scope: original_formal_route_remaining_values_not_required_for_exploratory_point_summaries
     M1_boundary_enrichment: null
     M2_gradient_alignment_advantage: null
     M4_mode_ablation_observed_geometry_gain: null
@@ -364,6 +552,7 @@ estimands:
     crossing_a_decision_boundary: unresolved
 
   uncertainty:
+    scope: original_formal_route_not_yet_qualified_not_applied_to_exploratory_point_reporting
     participant_pair_statistic_variance: delete_one_participant_jackknife_pseudovalues
     branch_claim: intersection_union_of_every_required_component
     class_family_control: Holm_inverted_one_sided_bounds_across_M1_M2_M3_M4
@@ -371,6 +560,7 @@ estimands:
     fixed_and_simulation_tested_before_candidate_scores: true
 
 trial_and_search:
+  application: existing_model_space_and_resource_limits_retained_formal_completion_not_inferred_from_exploratory_reporting
   valid_trial: >-
     one_frozen_model_or_falsifier_scored_for_all_12_development_pseudo_targets_all_18_conditions_map_halves_geometry_replicates_endpoints_and_native_signatures
   folds_conditions_domains_partitions_seeds_metrics_or_scheduler_jobs_are_not_trials: true
@@ -442,6 +632,7 @@ trial_and_search:
     scratch_limit_required_before_launch: true
 
 synthetic_qualification:
+  scope: original_formal_class_decision_route_deferred_for_20261006_exploratory_branch
   runs_before_candidate_discriminating_scores: true
   purpose: decision_code_and_operating_characteristics_not_margin_selection
   seeds_per_world: 100
@@ -460,10 +651,12 @@ synthetic_qualification:
   full_12_12_selection_and_decision_simulation_required: true
 
 qualification_before_candidate_scores:
+  scope: original_formal_route_exploratory_branch_uses_20261006_before_scoring_as_amended_by_20261012_observed_beta_for_that_route_only
   required:
     - common_registration_route_and_support_for_all_24_participants
     - Task_B_blind_12_12_roles_and_balance_report
-    - role_filtered_handoffs_and_permissions
+    # 2026-10-12 (scientist_amendment_20261012): was role_filtered_handoffs_and_permissions.
+    - role_filtered_handoffs_and_procedural_role_separation_per_scientist_amendment_20261012
     - fixed_map_halves_geometry_partitions_and_error_independence_support
     - seven_domain_condition_and_pair_weights
     - actual_M3_source_geometry_K0_and_positive_scales

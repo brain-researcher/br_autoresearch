@@ -1,0 +1,23 @@
+test_actual_time_limit_allows_missing_or_unrelated_start_timestamp (test_public_runtime_harness.PublicPreludeTests.test_actual_time_limit_allows_missing_or_unrelated_start_timestamp) ... ok
+test_cached_pass_avoids_binding_source_reads_and_subprocess (test_public_runtime_harness.PublicPreludeTests.test_cached_pass_avoids_binding_source_reads_and_subprocess) ... ok
+test_completed_v2_report_keeps_its_legacy_provenance (test_public_runtime_harness.PublicPreludeTests.test_completed_v2_report_keeps_its_legacy_provenance) ... ok
+test_deadline_is_capped_by_source_and_parent_limits (test_public_runtime_harness.PublicPreludeTests.test_deadline_is_capped_by_source_and_parent_limits) ... ok
+test_incomplete_attempt_is_not_automatically_retried (test_public_runtime_harness.PublicPreludeTests.test_incomplete_attempt_is_not_automatically_retried) ... ok
+test_known_relevant_change_stops_cached_reuse (test_public_runtime_harness.PublicPreludeTests.test_known_relevant_change_stops_cached_reuse) ... ok
+test_larger_authorized_parent_is_accepted (test_public_runtime_harness.PublicPreludeTests.test_larger_authorized_parent_is_accepted) ... ok
+test_parent_allocation_cannot_extend_approved_time (test_public_runtime_harness.PublicPreludeTests.test_parent_allocation_cannot_extend_approved_time) ... ok
+test_partial_or_boundary_violating_report_never_passes (test_public_runtime_harness.PublicPreludeTests.test_partial_or_boundary_violating_report_never_passes) ... ok
+test_public_cache_and_temporary_files_are_in_scratch_accounting (test_public_runtime_harness.PublicPreludeTests.test_public_cache_and_temporary_files_are_in_scratch_accounting) ... ok
+test_report_cap_is_checked_before_read (test_public_runtime_harness.PublicPreludeTests.test_report_cap_is_checked_before_read) ... ok
+test_scheduler_time_record_requires_actual_job_and_bounded_duration (test_public_runtime_harness.PublicPreludeTests.test_scheduler_time_record_requires_actual_job_and_bounded_duration) ... ok
+test_source_only_approval_cannot_authorize_parent (test_public_runtime_harness.PublicPreludeTests.test_source_only_approval_cannot_authorize_parent) ... ok
+test_step_requests_one_cpu_four_gib_no_gpus_in_existing_job (test_public_runtime_harness.PublicPreludeTests.test_step_requests_one_cpu_four_gib_no_gpus_in_existing_job) ... ok
+test_substep_does_not_spoof_parent_memory (test_public_runtime_harness.PublicPreludeTests.test_substep_does_not_spoof_parent_memory) ... ok
+test_timeout_stops_without_retry_or_continuation (test_public_runtime_harness.PublicPreludeTests.test_timeout_stops_without_retry_or_continuation) ... ok
+test_unapproved_parent_and_resource_mismatch_stop (test_public_runtime_harness.PublicPreludeTests.test_unapproved_parent_and_resource_mismatch_stop) ... ok
+test_unchanged_pass_reused_without_rewriting_provenance (test_public_runtime_harness.PublicPreludeTests.test_unchanged_pass_reused_without_rewriting_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.011s
+
+OK

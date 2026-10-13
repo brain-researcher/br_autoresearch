@@ -1,0 +1,41 @@
+{
+  "schema_version": "ep21.content_measurement_proposal.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-10-2102-pacific--content_resource_measurement-allocation-admission-repair",
+  "operation": "measure_content_pair_four_updates",
+  "jobs": 1,
+  "partition": "russpold",
+  "source": "sub-03",
+  "target": "sub-01",
+  "updates": 4,
+  "block_units": 256,
+  "row_chunk_size": 512,
+  "backend": "sparse",
+  "device": "cpu",
+  "automatic_retry": false,
+  "production_training": false,
+  "model_publication": false,
+  "resources": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 120,
+    "gpus": 0,
+    "deadline_seconds": 6300,
+    "rss_limit_bytes": 16106127360,
+    "durable_bytes": 16777216,
+    "scratch_bytes": 268435456
+  },
+  "input_scope": {
+    "normalization_participants": ["sub-01", "sub-03", "sub-05", "sub-06", "sub-07"],
+    "source_training": "sub-03",
+    "target_decoder": "sub-01",
+    "source_features": "sub-03",
+    "tau": false,
+    "OOD": false
+  },
+  "correction_report": "outputs/pipeline_conformance/converter_loss_correction_001/report.json",
+  "purpose": "Measure actual full-size content-converter resource costs; disposable four-update run, not a production fit or scientific result.",
+  "accounting": "Selected replacement attempt002: maximum six allocated CPU-hours (three CPUs, 16GiB, single-threaded kernels), plus preserved failed attempt001 actual18CPU-seconds, total commitment6.005CPU-hours. Do not borrow from or recharge the closed500-CPU-hour decoder grant.",
+  "companion_scope": "Only new source-free EP06 component-scoring and nomination, EP17 endpoint-evaluator/primary-audit adjudicator/nested prediction composition, and EP19 final-refit/offset checks plus changed ASTRA validation. Twelve EP06 methods share60+5seconds; twenty EP17 methods share235+5seconds. The EP17 full-roster fixture instruments numerical kernels and has an unmeasured planned envelope up to7GiB. Configured serial tail is625seconds within the existing630-second allowance and two-hour parent, with actual remaining-time admission. Previously completed checks and package repairs are not repeated; no empirical sibling payload access.",
+  "limitations": "Four updates may not finish within the bound. No retry, checkpoint, model continuation, snapshot/write benchmark, loss reporting, tau/OOD access, scoring or successor. First-update time includes pair setup; logical feature bytes are not measured physical storage traffic."
+}

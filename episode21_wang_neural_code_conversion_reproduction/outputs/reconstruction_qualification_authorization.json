@@ -1,0 +1,54 @@
+{
+  "schema_version": "ep21.reconstruction_qualification.v1",
+  "authorized": true,
+  "approval_source": "scientist standing instruction to resume original EP01-EP21 and increase compute; root selected bounded original public-model qualification on 2026-10-11",
+  "operation": "qualify_public_reconstruction_runtime",
+  "jobs": 1,
+  "partition": "russpold",
+  "resources": {
+    "cpus": 1,
+    "memory_gib": 7,
+    "minutes": 120,
+    "gpus": 0,
+    "numeric_threads": 1,
+    "deadline_seconds": 6900,
+    "rss_limit_bytes": 6979321856,
+    "durable_bytes": 1073741824,
+    "scratch_bytes": 4294967296,
+    "separate_diagnostic_durable_bytes": 1048576
+  },
+  "fixture": {
+    "count": 1,
+    "features": "C_order_float32_((unit_index_modulo_257)-128)/128_each_full_layer",
+    "decoder_means": "float32_zeros",
+    "layers": 19,
+    "updates": 200,
+    "seed": 42,
+    "method": "within_source",
+    "source": "protocol-neutral-fixture",
+    "device": "cpu"
+  },
+  "input_scope": {
+    "generator_figshare_file": 52399790,
+    "generator_archive_bytes": 832692892,
+    "generator_archive_md5": "8be66997045859a49b1d2bcef6640490",
+    "generator_members": ["generator_relu7.pt", "relu7_act_range_3x.txt"],
+    "reuse_VGG_archive": true,
+    "VGG_members": ["VGG_ILSVRC_19_layers.pt", "estimated_cnn_feat_std_VGG_ILSVRC_19_layers_ImgSize_224x224_chwise_dof1.mat"],
+    "neural_values": false,
+    "LAION_images": false,
+    "decoded_features": false,
+    "tau": false,
+    "OOD": false
+  },
+  "automatic_retry": false,
+  "empirical_reconstruction": false,
+  "scientific_scoring": false,
+  "image_publication": false,
+  "protocol_lock_mutation": false,
+  "serialized_companions": {
+    "focused_checks_and_ASTRA": true,
+    "brain_prefix_separate_authorization": "outputs/brain_prefix_diagnostic_reconstruction_authorization.json",
+    "charge_parent_once": true
+  }
+}

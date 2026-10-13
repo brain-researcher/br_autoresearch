@@ -1,0 +1,26 @@
+{
+  "schema_version": "ep12.legacy_observed_scientific_source_manifest.v1",
+  "capture_date": "2026-09-26",
+  "data_scope": "outcome_blind_source_identity_only",
+  "real_connectivity_outcomes_inspected": false,
+  "purpose": "Preserve the scientific source bytes present while the legacy observed-development DAG was still running, before any post-attestation contract transition.",
+  "historical_identity_limitation": "The legacy launch artifacts did not authenticate every transitive Python dependency. This archive preserves the then-current bytes but, by itself, does not prove which transitive bytes each historical process imported.",
+  "archive": {
+    "path": "outputs/prelaunch/legacy_observed_scientific_source_v1.tar",
+    "sha256": "5b444b7478a768d9c182448ab4a3c517d9e53a34593ba4ba2c7f71b3e6c639c9"
+  },
+  "members_sha256": {
+    "outputs/executor/SCIENTIFIC_CONTRACT.yaml": "f7de6c70fac3f6690b909a47162c2c9183cc8747ce6fa7c2fc281c7e2363b006",
+    "outputs/executor/SYNTHETIC_QUALIFICATION_SPEC.yaml": "e4a3e81b08b3c46b793823112758fbb811603e8ba4ea7bc9febfe2066ba5eac0",
+    "outputs/executor/ep12_executor/__init__.py": "d237e4097707272af42a71200dd8d67ba79e73dabb3f8cb8bc19767f5ea98e01",
+    "outputs/executor/ep12_executor/adaptive_search.py": "3abb836d26764a2f7503c984713d58b241731df94af2d72d14230ac02b29b14e",
+    "outputs/executor/ep12_executor/adaptive_trial.py": "cbcb58d8f8e8e4e5b9dc37b0715b269851a1c675a38d9288e5cf30e95a5e63f5",
+    "outputs/executor/ep12_executor/development_trial.py": "12019fa1cf3703ff6c1c219e68445f38ad8738266f45e2bfdac655583fe48827",
+    "outputs/executor/ep12_executor/policy.py": "93acbcc9d94447166e37d7594073707743213b1d4d293a32dba25cdf26e8c421",
+    "outputs/executor/ep12_executor/scientific_models.py": "55218de7b35e78e7ad5b39ab38295eef84200d753d54a0c5b5e051aec15625f8",
+    "outputs/executor/ep12_executor/scientific_qualification.py": "6c28310ec1992cb34efca01212bf1e421b17205b00a2fb1d94cb523e3767edb4",
+    "outputs/executor/ep12_executor/scientific_synthetic.py": "badb0cc945e6a6d65fe860452c9adb3fa02b9882d8cb498c27770cedd64ed29c",
+    "outputs/executor/ep12_executor/synthetic.py": "dc728b82a503259eb4ca5f9fea60d641e00b3d6083936e814a99707d6dd0c48b",
+    "outputs/executor/ep12_executor/yaml_subset.py": "3bee902c7adf03c25c44514a8718b6b7d5937132322307b58d5338f3de893f81"
+  }
+}

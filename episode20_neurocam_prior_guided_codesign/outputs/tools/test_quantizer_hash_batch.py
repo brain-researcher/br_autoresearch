@@ -1,0 +1,99 @@
+"""Focused byte-equivalence and bounded-packing checks; no circuit execution.
+
+Prepared inside an unapplied patch. Run only in the coordinator's allocation
+after this specific repair is selected and applied; both methods are UNRUN.
+"""
+from dataclasses import replace
+import hashlib
+import struct
+import unittest
+from unittest.mock import patch
+
+from acquisition_readout import QuantizerTransfer, RawConversion
+from streaming_acquisition_readout import ReadoutWindow
+import streaming_array_acquisition as acquisition
+
+
+def scalar_digest(transfer):
+    """Independent historical scalar byte stream, never the new bulk path."""
+    digest = hashlib.sha256()
+    digest.update(struct.pack("<ddQQ", transfer.input_min_volts, transfer.input_max_volts,
+        len(transfer.thresholds_volts), len(transfer.code_volts)))
+    for number in transfer.thresholds_volts:
+        digest.update(struct.pack("<d", number))
+    for number in transfer.code_volts:
+        digest.update(struct.pack("<d", number))
+    return digest.hexdigest()
+
+
+def transfer_with_codes(count):
+    return QuantizerTransfer(-1., float(count),
+        tuple(index + .5 for index in range(count - 1)),
+        tuple(-0.0 if index == 0 else float(index) for index in range(count)))
+
+
+def metadata_window(transfer):
+    first = RawConversion("r:0", "adc", "input", "signal", 0., .5, .5, .25, transfer, True)
+    second = replace(first, conversion_id="r:1")
+    readout = ReadoutWindow(0, 0., 1., (first, second), (), (),
+        (("r:0", 0), ("r:1", 0)), ())
+    # Only the hash input is exercised; no acquisition constructor or physical
+    # plan admission is called for this metadata-only window.
+    return acquisition.ArrayWindow(0, 0., 1., (), readout)
+
+
+class QuantizerHashBatchTests(unittest.TestCase):
+    def test_scalar_byte_equivalence_chunk_edges_signed_zero_and_changed_window(self):
+        # Threshold/code lengths straddle exact and partial 4096-value chunks.
+        for count in (2, 4096, 4097, 8192, 8193):
+            with self.subTest(code_count=count):
+                transfer = transfer_with_codes(count)
+                self.assertEqual(acquisition._canonical(transfer, {}),
+                    {"quantizer_value_sha256": scalar_digest(transfer)})
+        negative_zero = QuantizerTransfer(-1., 1., (-0.0,), (-.5, .5))
+        positive_zero = replace(negative_zero, thresholds_volts=(0.0,))
+        for transfer in (negative_zero, positive_zero):
+            self.assertEqual(acquisition._canonical(transfer, {}),
+                {"quantizer_value_sha256": scalar_digest(transfer)})
+        self.assertNotEqual(scalar_digest(negative_zero), scalar_digest(positive_zero))
+        self.assertNotEqual(acquisition._canonical(negative_zero, {}),
+                            acquisition._canonical(positive_zero, {}))
+        base = transfer_with_codes(4097)
+        changed = replace(base, code_volts=(-.25, *base.code_volts[1:]))
+        field_digest = b"fixed field digest"
+        original_window_digest = acquisition._window_digest(metadata_window(base), field_digest)
+        self.assertEqual(original_window_digest,
+            acquisition._window_digest(metadata_window(replace(base)), field_digest))
+        self.assertNotEqual(original_window_digest,
+            acquisition._window_digest(metadata_window(changed), field_digest))
+
+    def test_pack_calls_are_bounded_and_cache_is_per_window_only(self):
+        transfer = transfer_with_codes(8193)
+        window = metadata_window(transfer)
+        native_pack, calls = struct.pack, []
+
+        def observed_pack(format_string, *values):
+            packed = native_pack(format_string, *values)
+            calls.append((format_string, len(values), len(packed)))
+            return packed
+
+        with patch.object(acquisition.struct, "pack", side_effect=observed_pack):
+            within_window_cache = {}
+            acquisition._canonical(transfer, within_window_cache)
+            acquisition._canonical(transfer, within_window_cache)
+            first = acquisition._window_digest(window, b"same field")
+            second = acquisition._window_digest(window, b"same field")
+        self.assertEqual(first, second)
+        one_transfer = [("<ddQQ", 4, 32),
+            ("<4096d", 4096, 32768), ("<4096d", 4096, 32768),
+            ("<4096d", 4096, 32768), ("<4096d", 4096, 32768),
+            ("<1d", 1, 8)]
+        # One explicit-cache hash, then one hash in EACH fresh window call.
+        # Two raw conversions sharing a transfer must not double the work.
+        self.assertEqual(calls, one_transfer * 3)
+        self.assertTrue(all(arguments <= 4096 and payload_bytes <= 32768
+            for _, arguments, payload_bytes in calls))
+
+
+if __name__ == "__main__":
+    unittest.main()

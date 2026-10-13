@@ -1,0 +1,115 @@
+{
+  "archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+  "astra_analysis_id": "source_qualification",
+  "attempt": 3,
+  "blocker": "Sherlock module/environment compatibility has not been qualified and no environment installation is authorized by this audit.",
+  "completed_at": "2026-09-29T22:53:54+00:00",
+  "dists_like_custom_loss": {
+    "alpha_coefficients": {
+      "conv1_1": 0.009952859626673973,
+      "conv1_2": 0.003886371646003732,
+      "conv2_1": 0.00024056214287883663,
+      "conv2_2": 0.08084213863904581,
+      "conv3_1": 0.006857140440209977,
+      "conv3_2": 0.0004887923569668929,
+      "conv3_3": 0.00019573287900056505,
+      "conv3_4": 0.014169279688225732,
+      "conv4_1": 0.02880295296139471,
+      "conv4_2": 0.0021716504774059618,
+      "conv4_3": 0.004025735147052829,
+      "conv4_4": 0.030798346318926202,
+      "conv5_1": 0.08536182104218124,
+      "conv5_2": 0.714010791024532,
+      "conv5_3": 0.01975314483213067,
+      "conv5_4": 0.5310432634795051,
+      "fc6": 0.000629031742843134,
+      "fc7": 0.03871265134313895,
+      "fc8": 0.06661523244761258
+    },
+    "beta_coefficients": {
+      "conv1_1": 0.000865427897168344,
+      "conv1_2": 0.008627502425502372,
+      "conv2_1": 0.12888847991806807,
+      "conv2_2": 0.02472305546171304,
+      "conv3_1": 0.0002639605292406699,
+      "conv3_2": 0.039778524165843814,
+      "conv3_3": 0.0004859871528150426,
+      "conv3_4": 0.024733951474856346,
+      "conv4_1": 0.04328555659354602,
+      "conv4_2": 0.03998274022264576,
+      "conv4_3": 0.5166895849277143,
+      "conv4_4": 0.7100372437615771,
+      "conv5_1": 0.002337825161420017,
+      "conv5_2": 0.5074163077203029,
+      "conv5_3": 0.0018775814111698145,
+      "conv5_4": 0.0012780195483159135,
+      "fc6": 0.038457933646483915,
+      "fc7": 0.044481711593671994,
+      "fc8": 0.008304840607742099
+    },
+    "external_dists_weight_file_referenced": false,
+    "implementation_path": "reconstruction/recon_icnn_image_gd.py",
+    "interpretation": "The tagged reconstruction code embeds 19 alpha and 19 beta coefficients in a custom DIST-style loss; it does not reference a separately bundled DISTS checkpoint."
+  },
+  "environments": [
+    {
+      "dependency_entry_count": 56,
+      "reproduction_note": "Declared upstream environment; availability on Sherlock is not established by this inventory.",
+      "selected_versions": {
+        "bdpy": [
+          "bdpy"
+        ],
+        "cuda": [
+          "cudatoolkit=11.0"
+        ],
+        "fastl2lir": [
+          "fastl2lir==0.9"
+        ],
+        "hydra_core": [],
+        "python": [
+          "python=3.8.18"
+        ],
+        "pytorch": [
+          "pytorch",
+          "pytorch=1.7.1"
+        ],
+        "torchvision": []
+      },
+      "sha256": "b598e711ea8bca7a7d092f0b83081962232b44190cdbc648b0cfb2245bad8524",
+      "source_path": "env.yaml"
+    },
+    {
+      "dependency_entry_count": 149,
+      "reproduction_note": "Declared upstream environment; availability on Sherlock is not established by this inventory.",
+      "selected_versions": {
+        "bdpy": [
+          "bdpy==0.25"
+        ],
+        "cuda": [
+          "cuda=11.6.1=0",
+          "pytorch-cuda=11.6=h867d48c_1"
+        ],
+        "fastl2lir": [],
+        "hydra_core": [
+          "hydra-core==1.0.6"
+        ],
+        "python": [
+          "python=3.10.10=h7a1cb2a_2"
+        ],
+        "pytorch": [
+          "pytorch",
+          "pytorch=1.13.1=py3.10_cuda11.6_cudnn8.3.2_0"
+        ],
+        "torchvision": [
+          "torchvision=0.14.1=py310_cu116"
+        ]
+      },
+      "sha256": "eb950920316b83862ef4f90cd7bbb0808fd40dfd60490e9c785272f36d5c0f95",
+      "source_path": "reconstruction/env.yaml"
+    }
+  ],
+  "execution_environment_ready": false,
+  "process_id": 67479,
+  "schema_version": "ep21.public_runtime_environment_report.v1",
+  "started_at": "2026-09-29T22:53:52+00:00"
+}

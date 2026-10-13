@@ -1,0 +1,2138 @@
+{
+  "all_cells_precision_met": false,
+  "bounded_full_bank_cost_projection": {
+    "cell_count": 35,
+    "explicit_shard_wall_limit_seconds": 43200,
+    "full_bank_submission_ready": true,
+    "maximum_generated_whole_types": 3500000,
+    "maximum_incremental_oracle_replicates_per_cell": 4608,
+    "maximum_oracle_replicates_per_cell": 12500,
+    "maximum_whole_types_in_one_cell_look_shard": 36864,
+    "measured_cpu_seconds_per_whole_type": 0.1690102019102022,
+    "projected_cpu_core_hours": 164.31547407936324,
+    "projected_cpu_seconds": 591535.7066857077,
+    "projected_maximum_shard_cpu_seconds": 6230.392083217694,
+    "projection_required_before_full_bank_submission": true,
+    "whole_types_per_oracle_replicate": 8
+  },
+  "cell_count": 35,
+  "cells": [
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "adequate_template__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "adequate_template",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.008435404935431629,
+          0.008796923930213875,
+          0.00861616443282278
+        ],
+        "half_width": [
+          0.0013643564339410209,
+          0.0014025646249821977,
+          0.0009970416810401277
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.007071048501490608,
+          0.007394359305231677,
+          0.0076191227517826525
+        ],
+        "maximum_half_width": 0.0014025646249821977,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0003084973440518561,
+          0.0003171366740421733,
+          0.0002254430754736147
+        ],
+        "upper": [
+          0.00979976136937265,
+          0.010199488555196073,
+          0.009613206113862908
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "adequate_template__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "adequate_template",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.0011531365887991725,
+          0.0009838981815485381,
+          0.0010685173851738543
+        ],
+        "half_width": [
+          0.0003431955974858359,
+          0.000313859350435351,
+          0.00023007959176373914
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.0008099409913133366,
+          0.0006700388311131871,
+          0.0008384377934101152
+        ],
+        "maximum_half_width": 0.0003431955974858359,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          7.76006384261659e-05,
+          7.096736131881806e-05,
+          5.202375362765149e-05
+        ],
+        "upper": [
+          0.0014963321862850084,
+          0.001297757531983889,
+          0.0012985969769375935
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "adequate_template__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "adequate_template",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0001596393684191461,
+          -0.00015685840562468478,
+          -0.0001582488870219157
+        ],
+        "half_width": [
+          9.257176356512601e-06,
+          9.227775325153524e-06,
+          6.567185373944866e-06
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0001688965447756587,
+          -0.0001660861809498383,
+          -0.00016481607239586058
+        ],
+        "maximum_half_width": 9.257176356512601e-06,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.093158538604603e-06,
+          2.0865106129885224e-06,
+          1.4849193329239431e-06
+        ],
+        "upper": [
+          -0.0001503821920626335,
+          -0.00014763063029953126,
+          -0.00015168170164797084
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "linear_continuum__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "linear_continuum",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.04733271700620234,
+          0.047010521870184035,
+          0.04717161943819317
+        ],
+        "half_width": [
+          0.005084016388866547,
+          0.005153727304211243,
+          0.003703353414464247
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.042248700617335794,
+          0.04185679456597279,
+          0.04346826602372892
+        ],
+        "maximum_half_width": 0.005153727304211243,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0011495570468715492,
+          0.001165319520445367,
+          0.0008373725985573216
+        ],
+        "upper": [
+          0.05241673339506889,
+          0.05216424917439528,
+          0.050874972852657414
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "linear_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "linear_continuum",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.034435254325200386,
+          0.03634066701149825,
+          0.03538796066834929
+        ],
+        "half_width": [
+          0.0055285067266300225,
+          0.00565867599831031,
+          0.004060364423999839
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.028906747598570363,
+          0.03068199101318794,
+          0.03132759624434945
+        ],
+        "maximum_half_width": 0.00565867599831031,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.001250061640279486,
+          0.0012794944729261116,
+          0.0009180970672512279
+        ],
+        "upper": [
+          0.03996376105183041,
+          0.04199934300980856,
+          0.03944832509234913
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "linear_continuum__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "linear_continuum",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.001459893456540274,
+          -0.0014382218985587573,
+          -0.0014490576775495188
+        ],
+        "half_width": [
+          0.00030891546854471246,
+          0.0002332571596071187,
+          0.0001921903154772
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0017688089250849864,
+          -0.001671479058165876,
+          -0.0016412479930267188
+        ],
+        "maximum_half_width": 0.00030891546854471246,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          6.984949036176728e-05,
+          5.274223980607309e-05,
+          4.345653408614157e-05
+        ],
+        "upper": [
+          -0.0011509779879955615,
+          -0.0012049647389516386,
+          -0.0012568673620723188
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_dense__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "curved_continuum_dense",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.04746939226196742,
+          0.04895618234687046,
+          0.04821278730441895
+        ],
+        "half_width": [
+          0.006110868769656781,
+          0.005668201721021296,
+          0.004244774432047203
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.04135852349231064,
+          0.04328798062584916,
+          0.043968012872371745
+        ],
+        "maximum_half_width": 0.006110868769656781,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0013817406788950903,
+          0.0012816483530144875,
+          0.0009597943805660943
+        ],
+        "upper": [
+          0.0535802610316242,
+          0.05462438406789175,
+          0.05245756173646615
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_dense__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_dense",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.048109540065066646,
+          0.046897002547593596,
+          0.04750327130633013
+        ],
+        "half_width": [
+          0.006136302488996409,
+          0.006216969988880709,
+          0.004382752421033788
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.04197323757607024,
+          0.040680032558712886,
+          0.04312051888529634
+        ],
+        "maximum_half_width": 0.006216969988880709,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0013874915477079936,
+          0.0014057314363811661,
+          0.000990992857797608
+        ],
+        "upper": [
+          0.054245842554063055,
+          0.053113972536474305,
+          0.051886023727363915
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_dense__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "curved_continuum_dense",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.002757699050673875,
+          -0.0026665046383990555,
+          -0.0027121018445364705
+        ],
+        "half_width": [
+          0.0005253770265361175,
+          0.00043450678611670155,
+          0.0003344728969679801
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0032830760772099925,
+          -0.003101011424515757,
+          -0.0030465747415044505
+        ],
+        "maximum_half_width": 0.0005253770265361175,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00011879404331614719,
+          9.82471927092513e-05,
+          7.562833128136406e-05
+        ],
+        "upper": [
+          -0.0022323220241377575,
+          -0.002231997852282354,
+          -0.0023776289475684904
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_sparse_intermediates__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.08272922603442308,
+          0.0874297371527187,
+          0.08507948159357095
+        ],
+        "half_width": [
+          0.0109690995591257,
+          0.010608373396980356,
+          0.00765685105692715
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.07176012647529738,
+          0.07682136375573835,
+          0.0774226305366438
+        ],
+        "maximum_half_width": 0.0109690995591257,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.002480244895284414,
+          0.0023986803860524607,
+          0.0017313058055068206
+        ],
+        "upper": [
+          0.09369832559354878,
+          0.09803811054969906,
+          0.0927363326504981
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_sparse_intermediates__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.07563097842940684,
+          0.07867167807288385,
+          0.07715132825114539
+        ],
+        "half_width": [
+          0.0114409582302991,
+          0.011711260076684757,
+          0.00840667975973207
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.06419002019910774,
+          0.06696041799619909,
+          0.06874464849141332
+        ],
+        "maximum_half_width": 0.011711260076684757,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0025869377969364813,
+          0.0026480562844723365,
+          0.0019008510632962262
+        ],
+        "upper": [
+          0.08707193665970595,
+          0.0903829381495686,
+          0.08555800801087746
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "curved_continuum_sparse_intermediates__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "curved_continuum_sparse_intermediates",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0012485216800407694,
+          -0.0005691397580929215,
+          -0.0009088307190668467
+        ],
+        "half_width": [
+          0.0005662425693606808,
+          0.0009315728268166215,
+          0.0005405306852154111
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0018147642494014502,
+          -0.001500712584909543,
+          -0.0014493614042822578
+        ],
+        "maximum_half_width": 0.0009315728268166215,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00012803423239796902,
+          0.00021063978276825485,
+          0.00012222046718818983
+        ],
+        "upper": [
+          -0.0006822791106800886,
+          0.0003624330687237,
+          -0.00036830003385143555
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "residual_groups_within_continuum__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.040972662892308005,
+          0.04117278494247216,
+          0.04107272391739006
+        ],
+        "half_width": [
+          0.004386421461371283,
+          0.004335954947485725,
+          0.0031555053416056286
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.03658624143093672,
+          0.036836829994986435,
+          0.03791721857578443
+        ],
+        "maximum_half_width": 0.004386421461371283,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0009918224717981564,
+          0.000980411388074031,
+          0.0007134975823105649
+        ],
+        "upper": [
+          0.04535908435367929,
+          0.045508739889957885,
+          0.04422822925899569
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "residual_groups_within_continuum__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.028324105923874084,
+          0.02785206927407547,
+          0.028088087598974805
+        ],
+        "half_width": [
+          0.004340919480566169,
+          0.004180083528354505,
+          0.003084502572039856
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.023983186443307915,
+          0.023671985745720967,
+          0.02500358502693495
+        ],
+        "maximum_half_width": 0.004340919480566169,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0009815339285126395,
+          0.0009451669918009277,
+          0.0006974430050120972
+        ],
+        "upper": [
+          0.03266502540444025,
+          0.03203215280242998,
+          0.03117259017101466
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "residual_groups_within_continuum__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0007050807477018032,
+          -0.000731296941763559,
+          -0.0007181888447326801
+        ],
+        "half_width": [
+          0.00016856521169818282,
+          0.00014475874050267506,
+          0.00010998201628794647
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.000873645959399986,
+          -0.0008760556822662341,
+          -0.0008281708610206266
+        ],
+        "maximum_half_width": 0.00016856521169818282,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          3.8114614931098156e-05,
+          3.273168642916194e-05,
+          2.4868252220787468e-05
+        ],
+        "upper": [
+          -0.0005365155360036204,
+          -0.000586538201260884,
+          -0.0006082068284447336
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "weak_residual_groups__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "weak_residual_groups",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.01584014846323934,
+          0.016386245095771423,
+          0.016113196779505363
+        ],
+        "half_width": [
+          0.002032441919027698,
+          0.002060320896829778,
+          0.0014735168616245532
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.013807706544211642,
+          0.014325924198941645,
+          0.01463967991788081
+        ],
+        "maximum_half_width": 0.002060320896829778,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0004595594804713671,
+          0.00046586325153358043,
+          0.00033317982524092493
+        ],
+        "upper": [
+          0.017872590382267038,
+          0.0184465659926012,
+          0.017586713641129917
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "weak_residual_groups__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "weak_residual_groups",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.012325087796784704,
+          0.01204466418564624,
+          0.012184875991215463
+        ],
+        "half_width": [
+          0.0012442477034478386,
+          0.0011872181866792557,
+          0.0008987965553559178
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.011080840093336866,
+          0.010857445998966984,
+          0.011286079435859546
+        ],
+        "maximum_half_width": 0.0012442477034478386,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00028133932036184683,
+          0.0002684442630161289,
+          0.00020322867490669508
+        ],
+        "upper": [
+          0.013569335500232543,
+          0.013231882372325495,
+          0.013083672546571381
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "weak_residual_groups__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "weak_residual_groups",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0006015628912472531,
+          -0.0006126728779283563,
+          -0.0006071178845878042
+        ],
+        "half_width": [
+          9.795854351207062e-05,
+          9.325653010050256e-05,
+          6.673672973544001e-05
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0006995214347593237,
+          -0.0007059294080288589,
+          -0.0006738546143232442
+        ],
+        "maximum_half_width": 9.795854351207062e-05,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.21496009025808e-05,
+          2.1086419307889348e-05,
+          1.5089974556443333e-05
+        ],
+        "upper": [
+          -0.0005036043477351825,
+          -0.0005194163478278537,
+          -0.0005403811548523642
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "side_specific_endpoint_loss__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.00848235238149157,
+          0.008345891389064627,
+          0.0084141218852781
+        ],
+        "half_width": [
+          0.0014037878139746955,
+          0.0013496988282199573,
+          0.0009858386982093746
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.007078564567516874,
+          0.00699619256084467,
+          0.007428283187068725
+        ],
+        "maximum_half_width": 0.0014037878139746955,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0003174132517355618,
+          0.00030518308369978234,
+          0.0002229099467670912
+        ],
+        "upper": [
+          0.009886140195466265,
+          0.009695590217284585,
+          0.009399960583487474
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "side_specific_endpoint_loss__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.0016745022278734862,
+          0.0016087918716810553,
+          0.0016416470497772678
+        ],
+        "half_width": [
+          0.000353399261502115,
+          0.0003662622280000315,
+          0.0002569926352179693
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.0013211029663713712,
+          0.0012425296436810237,
+          0.0013846544145592985
+        ],
+        "maximum_half_width": 0.0003662622280000315,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          7.99078091700506e-05,
+          8.281628008169715e-05,
+          5.810911535530476e-05
+        ],
+        "upper": [
+          0.002027901489375601,
+          0.0019750540996810867,
+          0.001898639684995237
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "side_specific_endpoint_loss__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.00406828101259548,
+          0.001551678371155298,
+          0.0028099796918753884
+        ],
+        "half_width": [
+          0.00023878932464425147,
+          8.083900145066064e-05,
+          0.00012573104284382573
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.0038294916879512285,
+          0.0014708393697046374,
+          0.0026842486490315626
+        ],
+        "maximum_half_width": 0.00023878932464425147,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          5.399312863420886e-05,
+          1.8278667233089787e-05,
+          2.8429295906312357e-05
+        ],
+        "upper": [
+          0.0043070703372397314,
+          0.0016325173726059587,
+          0.002935710734719214
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "anatomy_quality_confound__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "anatomy_quality_confound",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.009726382637870921,
+          0.01012869571385628,
+          0.00992753917586361
+        ],
+        "half_width": [
+          0.0014564639123992185,
+          0.0014976638592864716,
+          0.001066207894917173
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.008269918725471703,
+          0.008631031854569808,
+          0.008861331280946436
+        ],
+        "maximum_half_width": 0.0014976638592864716,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00032932394900990925,
+          0.00033863975085875696,
+          0.00024108238551634028
+        ],
+        "upper": [
+          0.01118284655027014,
+          0.011626359573142751,
+          0.010993747070780782
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "anatomy_quality_confound__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "anatomy_quality_confound",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.0011855146935261756,
+          0.0012859907967455375,
+          0.001235752745135857
+        ],
+        "half_width": [
+          0.0003869260505045286,
+          0.0003893595206659866,
+          0.0002714811144566135
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.000798588643021647,
+          0.0008966312760795509,
+          0.0009642716306792435
+        ],
+        "maximum_half_width": 0.0003893595206659866,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          8.748861804413304e-05,
+          8.803885481728384e-05,
+          6.138513418240944e-05
+        ],
+        "upper": [
+          0.0015724407440307043,
+          0.001675350317411524,
+          0.0015072338595924705
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "anatomy_quality_confound__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "anatomy_quality_confound",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.00016686793356139758,
+          -0.00016381653490833638,
+          -0.00016534223423486674
+        ],
+        "half_width": [
+          9.737121007377138e-06,
+          9.592998894468658e-06,
+          6.877107122565398e-06
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.00017660505456877472,
+          -0.00017340953380280504,
+          -0.00017221934135743213
+        ],
+        "maximum_half_width": 9.737121007377138e-06,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.2016797771902735e-06,
+          2.1690920398913185e-06,
+          1.554996355272981e-06
+        ],
+        "upper": [
+          -0.00015713081255402044,
+          -0.00015422353601386772,
+          -0.00015846512711230134
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "high_strength_or_influential_cells__n5__N10__s2p2__m0p0",
+        "count_total": 10,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 5,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 2.2
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.05864739241674715,
+          0.05828681635273346,
+          0.058467104384740266
+        ],
+        "half_width": [
+          0.007159991969531217,
+          0.0069548482723642314,
+          0.004957171389107735
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.051487400447215934,
+          0.051331968080369224,
+          0.05350993299563253
+        ],
+        "maximum_half_width": 0.007159991969531217,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0016189600100705683,
+          0.0015725745611141048,
+          0.001120875871953923
+        ],
+        "upper": [
+          0.06580738438627837,
+          0.06524166462509769,
+          0.063424275773848
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "high_strength_or_influential_cells__n7__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 7,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.029612143954368935,
+          0.030148725224865027,
+          0.029880434589616978
+        ],
+        "half_width": [
+          0.004872088779600636,
+          0.004887515624789696,
+          0.003455065626028951
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.024740055174768297,
+          0.025261209600075333,
+          0.026425368963588027
+        ],
+        "maximum_half_width": 0.004887515624789696,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": false,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0011016376740717734,
+          0.0011051258686883198,
+          0.0007812317534032838
+        ],
+        "upper": [
+          0.03448423273396957,
+          0.035036240849654725,
+          0.03333550021564593
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "core_operating_characteristic",
+        "cell_id": "high_strength_or_influential_cells__n19__N1000__s1p25__m0p3",
+        "count_total": 1000,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "high_strength_or_influential_cells",
+        "strength": 1.25
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.006377975728153555,
+          0.006224219447753695,
+          0.006301097587953629
+        ],
+        "half_width": [
+          0.0002451409377200262,
+          0.0002171488153474791,
+          0.0001738612385381753
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.006132834790433529,
+          0.006007070632406216,
+          0.0061272363494154535
+        ],
+        "maximum_half_width": 0.0002451409377200262,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          5.5429304486483425e-05,
+          4.909995008064008e-05,
+          3.9312110082307127e-05
+        ],
+        "upper": [
+          0.006623116665873581,
+          0.006441368263101174,
+          0.006474958826491804
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "residual_groups_within_continuum__n19__N100__s0p0__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 0.0
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0009749380797838887,
+          -0.000987978310963556,
+          -0.0009814581953737243
+        ],
+        "half_width": [
+          0.00010080667766382376,
+          0.00010206315228114505,
+          7.392760098114305e-05
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0010757447574477124,
+          -0.001090041463244701,
+          -0.0010553857963548673
+        ],
+        "maximum_half_width": 0.00010206315228114505,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.2793598174452967e-05,
+          2.30777021466038e-05,
+          1.6715916741001655e-05
+        ],
+        "upper": [
+          -0.0008741314021200649,
+          -0.0008859151586824109,
+          -0.0009075305943925812
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "residual_groups_within_continuum__n19__N100__s0p9__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 0.9
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.003207981429297886,
+          0.003376453325262186,
+          0.0032922173772800345
+        ],
+        "half_width": [
+          0.0005370762610065112,
+          0.0005421603521804034,
+          0.000380000545497812
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.0026709051682913747,
+          0.0028342929730817827,
+          0.0029122168317822225
+        ],
+        "maximum_half_width": 0.0005421603521804034,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00012143938046688798,
+          0.00012258895442355023,
+          8.59226783471152e-05
+        ],
+        "upper": [
+          0.003745057690304397,
+          0.0039186136774425895,
+          0.0036722179227778465
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "residual_groups_within_continuum__n19__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0024635703717189664,
+          -0.002454817352664482,
+          -0.0024591938621917244
+        ],
+        "half_width": [
+          0.0007107291392811544,
+          0.000714698345452618,
+          0.0005108937573347134
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.003174299511000121,
+          -0.0031695156981171,
+          -0.0029700876195264377
+        ],
+        "maximum_half_width": 0.000714698345452618,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0001607043777960269,
+          0.00016160186288967924,
+          0.00011551920254091449
+        ],
+        "upper": [
+          -0.001752841232437812,
+          -0.0017401190072118642,
+          -0.001948300104857011
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "residual_groups_within_continuum__n19__N100__s2p7__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 2.7
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.00393261202883417,
+          -0.0038898440175250434,
+          -0.003911228023179613
+        ],
+        "half_width": [
+          0.00090678136937188,
+          0.0009992777509020647,
+          0.0006740312416034795
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.00483939339820605,
+          -0.004889121768427108,
+          -0.0045852592647830925
+        ],
+        "maximum_half_width": 0.0009992777509020647,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.00020503413706848313,
+          0.0002259486776728356,
+          0.00015240654323885945
+        ],
+        "upper": [
+          -0.0030258306594622896,
+          -0.0028905662666229787,
+          -0.0032371967815761336
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "residual_groups_within_continuum__n19__N100__s3p6__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "residual_groups_within_continuum",
+        "strength": 3.6
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.004080924500957815,
+          -0.0041320178496974036,
+          -0.004106471175327607
+        ],
+        "half_width": [
+          0.0009417106962176247,
+          0.0009414001000725503,
+          0.000658809954837569
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.005022635197175439,
+          -0.005073417949769954,
+          -0.004765281130165176
+        ],
+        "maximum_half_width": 0.0009417106962176247,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          0.0002129320765609554,
+          0.00021286184704948422,
+          0.00014896482784578505
+        ],
+        "upper": [
+          -0.00313921380474019,
+          -0.0031906177496248533,
+          -0.003447661220490038
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "side_specific_endpoint_loss__n19__N100__s1p8__m0p0",
+        "count_total": 100,
+        "missing_fraction": 0.0,
+        "neurons_per_side": 19,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0015161020203409165,
+          -0.001554188143840284,
+          -0.0015351450820905996
+        ],
+        "half_width": [
+          8.87188404351182e-05,
+          8.545807695965789e-05,
+          6.0946632855320105e-05
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0016048208607760347,
+          -0.001639646220799942,
+          -0.0015960917149459197
+        ],
+        "maximum_half_width": 8.87188404351182e-05,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.0060393281934364e-05,
+          1.9323095573845646e-05,
+          1.3780764246817485e-05
+        ],
+        "upper": [
+          -0.0014273831799057983,
+          -0.0014687300668806262,
+          -0.0014741984492352795
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "side_specific_endpoint_loss__n19__N100__s1p8__m0p1",
+        "count_total": 100,
+        "missing_fraction": 0.1,
+        "neurons_per_side": 19,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          -0.0005878027047559244,
+          -0.001253048569754962,
+          -0.000920425637255444
+        ],
+        "half_width": [
+          0.0001138572960941443,
+          8.847530385022967e-05,
+          7.254813894752148e-05
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          -0.0007016600008500687,
+          -0.0013415238736051917,
+          -0.0009929737762029655
+        ],
+        "maximum_half_width": 0.0001138572960941443,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          2.5744499437371854e-05,
+          2.0005326740854217e-05,
+          1.6404003839793454e-05
+        ],
+        "upper": [
+          -0.0004739454086617801,
+          -0.0011645732659047324,
+          -0.0008478774983079225
+        ]
+      }
+    },
+    {
+      "cell": {
+        "acceptance_role": "resolution_diagnostic_only",
+        "cell_id": "side_specific_endpoint_loss__n19__N100__s1p8__m0p3",
+        "count_total": 100,
+        "missing_fraction": 0.3,
+        "neurons_per_side": 19,
+        "scenario": "side_specific_endpoint_loss",
+        "strength": 1.8
+      },
+      "oracle_enclosure": {
+        "confidence_level": 0.9986111111111111,
+        "critical_max_t": 4.42258729369055,
+        "estimand": "infinite_design_expected_fixed_finite_procedure_gain",
+        "estimate": [
+          0.004520701130686392,
+          0.0005770651688290242,
+          0.002548883149757709
+        ],
+        "half_width": [
+          0.0003519144360676239,
+          0.0001346561286153735,
+          0.0001940628651457381
+        ],
+        "independent_cell_multiplier_streams": true,
+        "independent_of_outer_qualification": true,
+        "integration_tolerance": 0.002,
+        "labels": [
+          "left_to_right",
+          "right_to_left",
+          "aggregate"
+        ],
+        "lower": [
+          0.004168786694618768,
+          0.00044240904021365066,
+          0.002354820284611971
+        ],
+        "maximum_half_width": 0.0003519144360676239,
+        "method": "independent_cell_gaussian_multiplier_max_t",
+        "monte_carlo_draws": 65535,
+        "monte_carlo_failure_probability": 0.00138888888888889,
+        "monte_carlo_quantile_order_one_based": 65472,
+        "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+        "oracle_replicate_rows": 1152,
+        "precision_met": true,
+        "simultaneous_cell_count": 35,
+        "simultaneous_coordinate_count": 105,
+        "standard_error": [
+          7.957207234093033e-05,
+          3.044736478293592e-05,
+          4.3879940012172584e-05
+        ],
+        "upper": [
+          0.0048726155667540155,
+          0.0007117212974443977,
+          0.002742946014903447
+        ]
+      }
+    }
+  ],
+  "completed_oracle_replicates_per_cell": 1152,
+  "error_accounting": {
+    "binomial_across_cells_and_readouts": "bonferroni",
+    "combined_alpha_upper_bound": 0.050000000000000044,
+    "global_oracle_interval": {
+      "cell_count": 35,
+      "confidence_level": 0.9986111111111111,
+      "coordinate_count": 105,
+      "critical_max_t": 4.42258729369055,
+      "independent_cell_multiplier_streams": true,
+      "method": "independent_cell_gaussian_multiplier_max_t",
+      "monte_carlo_draws": 65535,
+      "monte_carlo_failure_probability": 0.00138888888888889,
+      "monte_carlo_quantile_order_one_based": 65472,
+      "monte_carlo_underestimate_probability_upper_bound": 0.0012005490140083858,
+      "raw_index_bootstrap_used": false
+    },
+    "oracle_across_looks": "bonferroni",
+    "oracle_all_cells_and_coordinates": "independent_cell_gaussian_multiplier_max_t",
+    "rule": "equal_split_then_union_bound",
+    "same_five_percent_spent_twice": false
+  },
+  "error_budget": {
+    "binomial_compatibility_alpha": 0.025000000000000022,
+    "binomial_readout_confidence_level": 0.9998214285714285,
+    "cell_count": 35,
+    "familywise_confidence_level": 0.95,
+    "oracle_enclosure_alpha": 0.025000000000000022,
+    "oracle_look_confidence_level": 0.9986111111111111,
+    "oracle_model_alpha": 0.012500000000000011,
+    "oracle_monte_carlo_alpha": 0.012500000000000011,
+    "oracle_monte_carlo_failure_probability_per_look": 0.00138888888888889,
+    "planned_look_count": 9,
+    "readouts_per_cell": 4,
+    "total_alpha": 0.050000000000000044
+  },
+  "final_connectivity_accessed": false,
+  "look_index": 4,
+  "measured_cpu_seconds": 54515.93072815482,
+  "next_action": {
+    "action": "refine_oracle_bank",
+    "additional_rows": 1152,
+    "at_bound": false,
+    "completed_rows": 1152,
+    "next_rows": 2304
+  },
+  "real_connectivity_accessed": false,
+  "schema_version": "ep12.stochastic_oracle_coverage.v1",
+  "scientific_gate": true,
+  "summed_task_wall_seconds": 54529.45379956014,
+  "tier": "qualification",
+  "whole_types_per_oracle_replicate": 8
+}

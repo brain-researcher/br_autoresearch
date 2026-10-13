@@ -1,0 +1,1072 @@
+{
+  "A8_cells": 76,
+  "A8_units": 8,
+  "C_parameter_count": 3109,
+  "D12_to_A8_transport_evaluated": false,
+  "P_design_rank": 26,
+  "Panel_A_population_calibration_complete": false,
+  "SAA_ladder": [
+    128,
+    512,
+    2048,
+    8192
+  ],
+  "acceptance": {
+    "Panel_A_population_calibration_complete": false,
+    "SAA_ladder_completed": true,
+    "all_fit_validation_terminal_streams_are_distinct": true,
+    "at_least_two_physical_KKT_converged_starts_at_every_level": true,
+    "best_solution_numerical_boundaries_inactive_at_every_level": true,
+    "best_two_terminal_scores_differ_below_threshold": true,
+    "best_two_validation_scores_differ_below_threshold_at_every_level": true,
+    "exact_analytic_anchors_pass": true,
+    "fitted_H_population_optimizer_recovery_completed": false,
+    "fixed_start_polishing_fresh_score_improvement_below_threshold": true,
+    "last_ladder_increase_changes_fresh_score_below_threshold_with_precise_pair": true,
+    "recommended_terminal_SAA_ladder_128_512_2048_8192_completed": true,
+    "terminal_population_calibration_pass": false,
+    "terminal_truth_minus_C_MCSE_at_most_target": true
+  },
+  "amplitude": 1.25,
+  "anchors": {
+    "C_amplitude_zero": {
+      "amplitude": 0.0,
+      "analytic_parameter_boundary_diagnostics": {
+        "active_parameter_bound_count": 0,
+        "active_parameter_bound_count_by_block": {
+          "base_support": 0,
+          "base_value": 0,
+          "continuous_support": 0,
+          "continuous_value": 0,
+          "log_sigma": 0
+        },
+        "active_parameter_bound_fraction": 0.0,
+        "hard_predictor_clipping": false,
+        "maximum_absolute_gate_predictor": 0.0,
+        "maximum_absolute_support_predictor": 2.417128335843321,
+        "sigma": 0.42,
+        "sigma_at_numerical_bound": false
+      },
+      "cell_score_comparisons": 304,
+      "family": "C",
+      "maximum_absolute_score_error": 2.842170943040401e-14,
+      "numerical_boundaries_inactive": true,
+      "parameters_within_codec_bounds": true,
+      "pass": true,
+      "replicates": 2,
+      "tolerance": 1e-10
+    },
+    "H_requested_amplitude": {
+      "amplitude": 1.25,
+      "analytic_parameter_boundary_diagnostics": {
+        "active_parameter_bound_count": 0,
+        "active_parameter_bound_count_by_block": {
+          "base_support": 0,
+          "base_value": 0,
+          "continuous_support": 0,
+          "continuous_value": 0,
+          "gate_beta": 0,
+          "group_support": 0,
+          "group_value": 0,
+          "log_sigma": 0
+        },
+        "active_parameter_bound_fraction": 0.0,
+        "hard_predictor_clipping": false,
+        "maximum_absolute_gate_predictor": 0.6820935441626054,
+        "maximum_absolute_support_predictor": 3.142128335843321,
+        "sigma": 0.42,
+        "sigma_at_numerical_bound": false
+      },
+      "cell_score_comparisons": 304,
+      "family": "H",
+      "maximum_absolute_score_error": 6.572520305780927e-14,
+      "numerical_boundaries_inactive": true,
+      "parameters_within_codec_bounds": true,
+      "pass": true,
+      "replicates": 2,
+      "tolerance": 1e-10
+    }
+  },
+  "default_ladder_is_a_pilot_not_terminal_Panel_A_calibration": false,
+  "diagnostic": "EP11_group_stratified_population_C_SAA_pilot",
+  "group_integration": "exact_two_stratum_probability_weighting_per_metadata_row",
+  "ladder": [
+    {
+      "SAA_replicates": 128,
+      "at_least_two_physical_KKT_converged_starts": true,
+      "best_solution_numerical_boundaries_inactive": true,
+      "best_two_validation_score_paired_difference": {
+        "mcse": 1.0828843830372306e-07,
+        "mean": -7.213498371544391e-08,
+        "replicates": 128
+      },
+      "best_vs_previous_level_validation_score_paired_difference": null,
+      "effective_start_workers": 3,
+      "fresh_starts_scheduled": 3,
+      "optimizer": {
+        "converged_starts": 3,
+        "design_rank": 26,
+        "family": "C",
+        "parameter_count": 3109,
+        "scheduled_starts": 3,
+        "starts": [
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 14.07150673411062,
+              "sigma": 0.4158389070132093,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 209,
+            "iterations": 193,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.380788127926758,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              10.0
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 2.884104471044535e-08,
+              "base_value": 1.1748381432280519e-07,
+              "continuous_support": 7.619126818629758e-08,
+              "continuous_value": 3.006117922749966e-07,
+              "log_sigma": 8.689645783314937e-08
+            },
+            "physical_projected_gradient_infinity_norm": 3.006117922749966e-07,
+            "scaled_projected_gradient_infinity_norm": 3.461826430433495e-07,
+            "start": 0
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 8.503482723995479,
+              "sigma": 0.4167495793668975,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 101,
+            "iterations": 95,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.910465673987466,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              5.392026147009328
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 1.0622000616968344e-07,
+              "base_value": 1.0389768804325294e-07,
+              "continuous_support": 1.970104149702761e-07,
+              "continuous_value": 1.985398358789886e-07,
+              "log_sigma": 1.1983712769510213e-07
+            },
+            "physical_projected_gradient_infinity_norm": 1.985398358789886e-07,
+            "scaled_projected_gradient_infinity_norm": 4.969072186044576e-07,
+            "start": 1
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 14.071622133660682,
+              "sigma": 0.4158389095434142,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 195,
+            "iterations": 182,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.380788127926332,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              10.0
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 4.328069789529248e-08,
+              "base_value": 1.1031118541011964e-07,
+              "continuous_support": 8.538436924508094e-08,
+              "continuous_value": 2.3463637841979364e-07,
+              "log_sigma": 2.8332958149773768e-08
+            },
+            "physical_projected_gradient_infinity_norm": 2.3463637841979364e-07,
+            "scaled_projected_gradient_infinity_norm": 4.3483430931762687e-07,
+            "start": 2
+          }
+        ]
+      },
+      "previous_level_warm_starts_scheduled": 0,
+      "validation": [
+        {
+          "mcse_C_log_density": 0.05632819622013118,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.005387053632566428,
+          "mean_C_log_density": -4.713625652054165,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.24694498351427724,
+          "paired_C_log_density_minus_next_solution": {
+            "mcse": 1.0828843830372306e-07,
+            "mean": -7.213498371544391e-08,
+            "replicates": 128
+          },
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.380788127926332,
+          "training_rank": 1
+        },
+        {
+          "mcse_C_log_density": 0.05632819211367864,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.005387046871175138,
+          "mean_C_log_density": -4.7136255799191815,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.24694491137929353,
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.380788127926758,
+          "training_rank": 2
+        }
+      ],
+      "validation_stream": 5202
+    },
+    {
+      "SAA_replicates": 512,
+      "at_least_two_physical_KKT_converged_starts": true,
+      "best_solution_numerical_boundaries_inactive": true,
+      "best_two_validation_score_paired_difference": {
+        "mcse": 0.0008258264701221197,
+        "mean": -0.0002954517937369741,
+        "replicates": 128
+      },
+      "best_vs_previous_level_validation_score_paired_difference": {
+        "mcse": 0.00470057558502236,
+        "mean": 0.0855098807754102,
+        "replicates": 128
+      },
+      "effective_start_workers": 3,
+      "fresh_starts_scheduled": 2,
+      "optimizer": {
+        "converged_starts": 3,
+        "design_rank": 26,
+        "family": "C",
+        "parameter_count": 3109,
+        "scheduled_starts": 3,
+        "starts": [
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 13.083652682777078,
+              "sigma": 0.4187493252145232,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 297,
+            "iterations": 271,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.574876608008907,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              10.0
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 8.946269520419131e-08,
+              "base_value": 2.807687334072974e-07,
+              "continuous_support": 9.915615530381645e-08,
+              "continuous_value": 3.0942099640691154e-07,
+              "log_sigma": 5.168498852336882e-07
+            },
+            "physical_projected_gradient_infinity_norm": 5.168498852336882e-07,
+            "scaled_projected_gradient_infinity_norm": 4.981765527539689e-07,
+            "start": 0
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 7.862294472648468,
+              "sigma": 0.41938319571936367,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 78,
+            "iterations": 74,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 5.098649024201842,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              5.241731881304167
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 7.936958656143888e-08,
+              "base_value": 1.2675531523935457e-07,
+              "continuous_support": 1.3993528297315955e-07,
+              "continuous_value": 2.0888090886743925e-07,
+              "log_sigma": 2.085389974642183e-06
+            },
+            "physical_projected_gradient_infinity_norm": 2.085389974642183e-06,
+            "scaled_projected_gradient_infinity_norm": 4.965136875612383e-07,
+            "start": 1
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 12.610475252755068,
+              "sigma": 0.41858284770335513,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 103,
+            "iterations": 100,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.574732959214104,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              5.288745983142769
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 7.881224726801568e-08,
+              "base_value": 1.5250514562466493e-07,
+              "continuous_support": 1.2314011809999624e-07,
+              "continuous_value": 2.865706528680349e-07,
+              "log_sigma": 1.4560296718313381e-10
+            },
+            "physical_projected_gradient_infinity_norm": 2.865706528680349e-07,
+            "scaled_projected_gradient_infinity_norm": 3.6118979925675097e-07,
+            "start": 2
+          }
+        ]
+      },
+      "previous_level_warm_starts_scheduled": 1,
+      "validation": [
+        {
+          "mcse_C_log_density": 0.056012413722264044,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.002776943496874681,
+          "mean_C_log_density": -4.628115771278756,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.16143510273886702,
+          "paired_C_log_density_minus_next_solution": {
+            "mcse": 0.0008258264701221197,
+            "mean": -0.0002954517937369741,
+            "replicates": 128
+          },
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.574732959214104,
+          "training_rank": 1
+        },
+        {
+          "mcse_C_log_density": 0.05608195837030689,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.00286768253690979,
+          "mean_C_log_density": -4.627820319485018,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.16113965094512994,
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.574876608008907,
+          "training_rank": 2
+        }
+      ],
+      "validation_stream": 5202
+    },
+    {
+      "SAA_replicates": 2048,
+      "at_least_two_physical_KKT_converged_starts": true,
+      "best_solution_numerical_boundaries_inactive": true,
+      "best_two_validation_score_paired_difference": {
+        "mcse": 0.0004876858215691884,
+        "mean": -0.0001357882217955242,
+        "replicates": 128
+      },
+      "best_vs_previous_level_validation_score_paired_difference": {
+        "mcse": 0.002373572474224008,
+        "mean": 0.025330400106228564,
+        "replicates": 128
+      },
+      "effective_start_workers": 3,
+      "fresh_starts_scheduled": 2,
+      "optimizer": {
+        "converged_starts": 3,
+        "design_rank": 26,
+        "family": "C",
+        "parameter_count": 3109,
+        "scheduled_starts": 3,
+        "starts": [
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 12.449604604602323,
+              "sigma": 0.41936240510232925,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 234,
+            "iterations": 221,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.5597903126480155,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              10.0
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 2.861765972811273e-08,
+              "base_value": 1.020564272944031e-07,
+              "continuous_support": 1.554460022861159e-07,
+              "continuous_value": 3.279739121550768e-07,
+              "log_sigma": 5.18648591341141e-08
+            },
+            "physical_projected_gradient_infinity_norm": 3.279739121550768e-07,
+            "scaled_projected_gradient_infinity_norm": 3.992562404761432e-07,
+            "start": 0
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 7.508763561806957,
+              "sigma": 0.41950446784294626,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 89,
+            "iterations": 81,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 5.082657875571935,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              5.220755827929699
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 6.398229233583953e-08,
+              "base_value": 1.2531415970962949e-07,
+              "continuous_support": 1.1549424624031053e-07,
+              "continuous_value": 1.341034822643656e-07,
+              "log_sigma": 1.2759041249986273e-06
+            },
+            "physical_projected_gradient_infinity_norm": 1.2759041249986273e-06,
+            "scaled_projected_gradient_infinity_norm": 3.037819639400357e-07,
+            "start": 1
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 11.554469111219833,
+              "sigma": 0.4192242341830038,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 79,
+            "iterations": 77,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.559829564668537,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              4.958236008342732
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 6.686161703063479e-08,
+              "base_value": 3.0094678272140317e-07,
+              "continuous_support": 1.681823669667417e-07,
+              "continuous_value": 5.027966902235203e-07,
+              "log_sigma": 5.020919594914434e-07
+            },
+            "physical_projected_gradient_infinity_norm": 5.027966902235203e-07,
+            "scaled_projected_gradient_infinity_norm": 4.3961223920169863e-07,
+            "start": 2
+          }
+        ]
+      },
+      "previous_level_warm_starts_scheduled": 1,
+      "validation": [
+        {
+          "mcse_C_log_density": 0.056213926773340084,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.0015744483395659494,
+          "mean_C_log_density": -4.602785371172526,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.1361047026326384,
+          "paired_C_log_density_minus_next_solution": {
+            "mcse": 0.0004876858215691884,
+            "mean": -0.0001357882217955242,
+            "replicates": 128
+          },
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.5597903126480155,
+          "training_rank": 1
+        },
+        {
+          "mcse_C_log_density": 0.056180089945733425,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.0016124724709153176,
+          "mean_C_log_density": -4.602649582950731,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.1359689144108429,
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.559829564668537,
+          "training_rank": 2
+        }
+      ],
+      "validation_stream": 5202
+    },
+    {
+      "SAA_replicates": 8192,
+      "at_least_two_physical_KKT_converged_starts": true,
+      "best_solution_numerical_boundaries_inactive": true,
+      "best_two_validation_score_paired_difference": {
+        "mcse": 0.00027248258712493634,
+        "mean": -5.949534566067338e-05,
+        "replicates": 128
+      },
+      "best_vs_previous_level_validation_score_paired_difference": {
+        "mcse": 0.0013439253749411996,
+        "mean": 0.0045445986399537674,
+        "replicates": 128
+      },
+      "effective_start_workers": 3,
+      "fresh_starts_scheduled": 2,
+      "optimizer": {
+        "converged_starts": 3,
+        "design_rank": 26,
+        "family": "C",
+        "parameter_count": 3109,
+        "scheduled_starts": 3,
+        "starts": [
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 12.13689995768977,
+              "sigma": 0.41956899088529975,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 266,
+            "iterations": 240,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.573742337544612,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              10.0
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 6.753319484880887e-08,
+              "base_value": 2.7927093872318005e-07,
+              "continuous_support": 1.2834028767597658e-07,
+              "continuous_value": 3.8032752871521884e-07,
+              "log_sigma": 1.609532894775471e-07
+            },
+            "physical_projected_gradient_infinity_norm": 3.8032752871521884e-07,
+            "scaled_projected_gradient_infinity_norm": 4.889586138030236e-07,
+            "start": 0
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 7.423337367738282,
+              "sigma": 0.41959553379665965,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 81,
+            "iterations": 77,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 5.095368078671019,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              5.437805322405338
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 8.538934437313109e-08,
+              "base_value": 9.9976206816667e-08,
+              "continuous_support": 7.57038711101483e-08,
+              "continuous_value": 1.4328915673676283e-07,
+              "log_sigma": 2.1554820140616895e-07
+            },
+            "physical_projected_gradient_infinity_norm": 2.1554820140616895e-07,
+            "scaled_projected_gradient_infinity_norm": 3.5322608722070136e-07,
+            "start": 1
+          },
+          {
+            "at_iteration_cap": false,
+            "boundary_diagnostics": {
+              "active_parameter_bound_count": 0,
+              "active_parameter_bound_count_by_block": {
+                "base_support": 0,
+                "base_value": 0,
+                "continuous_support": 0,
+                "continuous_value": 0,
+                "log_sigma": 0
+              },
+              "active_parameter_bound_fraction": 0.0,
+              "hard_predictor_clipping": false,
+              "maximum_absolute_gate_predictor": 0.0,
+              "maximum_absolute_support_predictor": 12.187203010523225,
+              "sigma": 0.4196361654157835,
+              "sigma_at_numerical_bound": false
+            },
+            "evaluations": 95,
+            "iterations": 92,
+            "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+            "objective": 4.573730736031306,
+            "optimizer_scale_range": [
+              0.2380915289699863,
+              4.848476354632341
+            ],
+            "optimizer_success": true,
+            "physical_KKT_converged": true,
+            "physical_projected_gradient_block_infinity_norms": {
+              "base_support": 4.1929170036022735e-08,
+              "base_value": 1.3864947119877007e-07,
+              "continuous_support": 1.0712851162704746e-07,
+              "continuous_value": 3.848471963752159e-07,
+              "log_sigma": 3.10734055109993e-08
+            },
+            "physical_projected_gradient_infinity_norm": 3.848471963752159e-07,
+            "scaled_projected_gradient_infinity_norm": 3.7130257671603684e-07,
+            "start": 2
+          }
+        ]
+      },
+      "previous_level_warm_starts_scheduled": 1,
+      "validation": [
+        {
+          "mcse_C_log_density": 0.056211320144323756,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.0007394101200977921,
+          "mean_C_log_density": -4.598240772532574,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.13156010399268464,
+          "paired_C_log_density_minus_next_solution": {
+            "mcse": 0.00027248258712493634,
+            "mean": -5.949534566067338e-05,
+            "replicates": 128
+          },
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.573730736031306,
+          "training_rank": 1
+        },
+        {
+          "mcse_C_log_density": 0.0562067717452354,
+          "mcse_truth_log_density": 0.05610661843481039,
+          "mcse_truth_minus_C_nats_per_neuron": 0.0007185456387180021,
+          "mean_C_log_density": -4.598181277186913,
+          "mean_truth_log_density": -4.4666806685398885,
+          "mean_truth_minus_C_nats_per_neuron": 0.131500608647024,
+          "replicates": 128,
+          "training_negative_mean_log_density": 4.573742337544612,
+          "training_rank": 2
+        }
+      ],
+      "validation_stream": 5202
+    }
+  ],
+  "last_ladder_validation_change_nats_per_neuron": 0.0045445986399537674,
+  "model_state_checkpoint": {
+    "C_codec_block_array_order": [
+      "base_support",
+      "base_value",
+      "continuous_support",
+      "continuous_value",
+      "log_sigma"
+    ],
+    "family": "C",
+    "filename": "population_saa_C_model_state.npz",
+    "format": "compressed_NPZ_with_finite_float_arrays_only",
+    "frozen_theta": {
+      "NPZ_array": "frozen_theta",
+      "deduplicated_fit_objective_rank": 1,
+      "fit_stream_candidate_sources": [
+        "polished",
+        "pre_polish_best"
+      ],
+      "fit_stream_training_objective": 4.573730736031306,
+      "identical_terminal_candidate_array": "terminal_candidate_thetas[0]",
+      "selection_rule": "minimum_final_fit_stream_training_objective_after_parameter_equivalence_deduplication",
+      "terminal_scores_used_for_parameter_selection": false,
+      "zero_based_terminal_candidate_index": 0
+    },
+    "schema_version": 1,
+    "stream_id_array_order": [
+      "fit",
+      "validation",
+      "terminal",
+      "anchor",
+      "truth_template"
+    ],
+    "terminal_candidate_source_flag_columns": [
+      "polished",
+      "pre_polish_best",
+      "original_second"
+    ],
+    "write_status": "training_objective_replayed_then_atomic_write_completed"
+  },
+  "objective_memory_contract": {
+    "maximum_aggregate_rows_across_concurrent_worker_chunks": 14592,
+    "maximum_concurrent_optimizer_workers": 3,
+    "maximum_resident_replicates_per_objective_chunk": 32,
+    "maximum_resident_rows_per_worker_objective_chunk": 4864,
+    "storage": "two_temporary_disk_backed_numpy_arrays"
+  },
+  "outcome_bearing_search_authorized": false,
+  "pilot_acceptance": {
+    "SAA_ladder_completed": true,
+    "all_fit_validation_terminal_streams_are_distinct": true,
+    "at_least_two_physical_KKT_converged_starts_at_every_level": true,
+    "best_solution_numerical_boundaries_inactive_at_every_level": true,
+    "best_two_terminal_scores_differ_below_threshold": true,
+    "best_two_validation_scores_differ_below_threshold_at_every_level": true,
+    "exact_analytic_anchors_pass": true,
+    "fixed_start_polishing_fresh_score_improvement_below_threshold": true,
+    "last_ladder_increase_changes_fresh_score_below_threshold_with_precise_pair": true,
+    "terminal_truth_minus_C_MCSE_at_most_target": true
+  },
+  "polishing": {
+    "fit_stream": 5101,
+    "fresh_score_improvement_nats_per_neuron": 1.0061396160665481e-16,
+    "maximum_iterations": 600,
+    "optimizer": {
+      "converged_starts": 1,
+      "design_rank": 26,
+      "family": "C",
+      "parameter_count": 3109,
+      "scheduled_starts": 1,
+      "starts": [
+        {
+          "at_iteration_cap": false,
+          "boundary_diagnostics": {
+            "active_parameter_bound_count": 0,
+            "active_parameter_bound_count_by_block": {
+              "base_support": 0,
+              "base_value": 0,
+              "continuous_support": 0,
+              "continuous_value": 0,
+              "log_sigma": 0
+            },
+            "active_parameter_bound_fraction": 0.0,
+            "hard_predictor_clipping": false,
+            "maximum_absolute_gate_predictor": 0.0,
+            "maximum_absolute_support_predictor": 12.187203010523225,
+            "sigma": 0.4196361654157835,
+            "sigma_at_numerical_bound": false
+          },
+          "evaluations": 1,
+          "iterations": 0,
+          "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+          "objective": 4.573730736031306,
+          "optimizer_scale_range": [
+            0.2380915289699863,
+            4.688984802662624
+          ],
+          "optimizer_success": true,
+          "physical_KKT_converged": true,
+          "physical_projected_gradient_block_infinity_norms": {
+            "base_support": 4.192917006496416e-08,
+            "base_value": 1.3864947120375063e-07,
+            "continuous_support": 1.0712851162650197e-07,
+            "continuous_value": 3.8484719638763e-07,
+            "log_sigma": 3.107340551414348e-08
+          },
+          "physical_projected_gradient_infinity_norm": 3.8484719638763e-07,
+          "scaled_projected_gradient_infinity_norm": 4.752825600774296e-07,
+          "start": 0
+        }
+      ]
+    },
+    "pre_polish_and_polished_validation": [
+      {
+        "mcse_C_log_density": 0.056211320144323756,
+        "mcse_truth_log_density": 0.05610661843481039,
+        "mcse_truth_minus_C_nats_per_neuron": 0.0007394101200977921,
+        "mean_C_log_density": -4.598240772532574,
+        "mean_truth_log_density": -4.4666806685398885,
+        "mean_truth_minus_C_nats_per_neuron": 0.13156010399268464,
+        "paired_C_log_density_minus_next_solution": {
+          "mcse": 5.241191878961704e-17,
+          "mean": -1.0061396160665481e-16,
+          "replicates": 128
+        },
+        "replicates": 128,
+        "training_negative_mean_log_density": 4.573730736031306,
+        "training_rank": 1
+      },
+      {
+        "mcse_C_log_density": 0.05621132014432374,
+        "mcse_truth_log_density": 0.05610661843481039,
+        "mcse_truth_minus_C_nats_per_neuron": 0.0007394101200977933,
+        "mean_C_log_density": -4.598240772532574,
+        "mean_truth_log_density": -4.4666806685398885,
+        "mean_truth_minus_C_nats_per_neuron": 0.1315601039926846,
+        "replicates": 128,
+        "training_negative_mean_log_density": 4.573730736031306,
+        "training_rank": 2
+      }
+    ],
+    "pre_polish_minus_polished_paired_validation_score": {
+      "mcse": 5.241191878961704e-17,
+      "mean": -1.0061396160665481e-16,
+      "replicates": 128
+    },
+    "start_workers": 1,
+    "threshold_nats_per_neuron": 0.005,
+    "verification_stream": 5202
+  },
+  "preconditioner": {
+    "fit_stream_prefix_replicates": 32,
+    "independent_of_objective_chunk_replicates": true
+  },
+  "remaining_before_Panel_A_completion": [
+    "demonstrate_fitted_H_population_optimizer_recovery",
+    "apply_all_prespecified_Panel_A_acceptance_checks"
+  ],
+  "scope": "implemented_smoke_family_on_fixed_provisional_A8_metadata_support",
+  "start_schedule": {
+    "SLURM_cpus_per_task": 3,
+    "first_level_effective_workers": 3,
+    "first_level_fresh_starts_requested": 3,
+    "first_level_scheduled_starts": 3,
+    "initialization_prefix_replicates": 16,
+    "later_level_effective_workers": 3,
+    "later_level_fresh_starts_requested": 2,
+    "later_level_scheduled_starts": 3,
+    "later_levels_add_previous_level_best_as_one_extra_warm_start": true,
+    "maximum_iterations_for_fixed_start_polish": 600,
+    "maximum_iterations_per_main_start": 1200,
+    "multiprocessing_context": "spawn",
+    "objective_or_draw_sharding": false,
+    "policy": "first_rung_fresh_override_then_later_fresh_plus_previous_best_warm_v1",
+    "polish_start_workers": 1,
+    "polish_uses_one_fixed_start_from_final_ladder_best": true,
+    "result_collection_order": "original_start_order",
+    "start_workers_requested": 3
+  },
+  "status": "pass_population_C_SAA_pilot_gates_not_Panel_A_calibration",
+  "streams": {
+    "all_distinct": true,
+    "anchor": 5401,
+    "fit": 5101,
+    "fit_ladder_uses_nested_prefixes": true,
+    "terminal": 5303,
+    "terminal_stream_opened_only_after_final_ladder_fit": true,
+    "truth_template": 5501,
+    "validation": 5202
+  },
+  "support_and_value_noise_integration": "nested_sample_average_approximation",
+  "terminal": {
+    "best_two_score_paired_difference": {
+      "mcse": 0.00012416617805485747,
+      "mean": -0.00013686464293532347,
+      "replicates": 512
+    },
+    "deduplicated_fit_objective_ranking": [
+      {
+        "fit_stream_training_objective": 4.573730736031306,
+        "rank": 1,
+        "sources": [
+          "polished",
+          "pre_polish_best"
+        ],
+        "terminal_scored": true
+      },
+      {
+        "fit_stream_training_objective": 4.573742337544612,
+        "rank": 2,
+        "sources": [
+          "original_second"
+        ],
+        "terminal_scored": true
+      }
+    ],
+    "parameter_equivalence_tolerances": {
+      "absolute": 1e-10,
+      "relative": 1e-10
+    },
+    "raw_candidate_pool": [
+      {
+        "fit_stream_training_objective": 4.573730736031306,
+        "source": "polished"
+      },
+      {
+        "fit_stream_training_objective": 4.573730736031306,
+        "source": "pre_polish_best"
+      },
+      {
+        "fit_stream_training_objective": 4.573742337544612,
+        "source": "original_second"
+      }
+    ],
+    "replicates": 512,
+    "selection_rule": "deduplicate_polished_pre_polish_best_and_original_second_by_parameter_equivalence_then_rank_by_fit_stream_training_objective;_terminal_scores_never_select_parameters",
+    "solutions": [
+      {
+        "fit_stream_candidate_sources": [
+          "polished",
+          "pre_polish_best"
+        ],
+        "mcse_C_log_density": 0.025861731053832163,
+        "mcse_truth_log_density": 0.025853636567549916,
+        "mcse_truth_minus_C_nats_per_neuron": 0.00035677800547848337,
+        "mean_C_log_density": -4.580403681562595,
+        "mean_truth_log_density": -4.448607113676431,
+        "mean_truth_minus_C_nats_per_neuron": 0.13179656788616417,
+        "paired_C_log_density_minus_next_solution": {
+          "mcse": 0.00012416617805485747,
+          "mean": -0.00013686464293532347,
+          "replicates": 512
+        },
+        "replicates": 512,
+        "training_negative_mean_log_density": 4.573730736031306,
+        "training_rank": 1
+      },
+      {
+        "fit_stream_candidate_sources": [
+          "original_second"
+        ],
+        "mcse_C_log_density": 0.02586628162685537,
+        "mcse_truth_log_density": 0.025853636567549916,
+        "mcse_truth_minus_C_nats_per_neuron": 0.00034501709458122017,
+        "mean_C_log_density": -4.58026681691966,
+        "mean_truth_log_density": -4.448607113676431,
+        "mean_truth_minus_C_nats_per_neuron": 0.1316597032432289,
+        "replicates": 512,
+        "training_negative_mean_log_density": 4.573742337544612,
+        "training_rank": 2
+      }
+    ],
+    "stream": 5303
+  },
+  "terminal_population_calibration_pass": false,
+  "thresholds": {
+    "analytic_anchor_maximum_absolute_error": 1e-10,
+    "maximum_fresh_score_gain_from_polishing_nats_per_neuron": 0.005,
+    "physical_projected_gradient": 2e-05,
+    "successive_ladder_validation_change_nats_per_neuron": 0.005,
+    "terminal_MCSE_nats_per_neuron": 0.005,
+    "terminal_start_stability_nats_per_neuron": 0.005,
+    "validation_start_stability_nats_per_neuron": 0.002
+  },
+  "uses_real_projection_outcomes": false
+}

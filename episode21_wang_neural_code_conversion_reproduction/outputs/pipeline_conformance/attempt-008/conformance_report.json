@@ -1,0 +1,102 @@
+{
+  "schema_version": "ep21.resolved_conformance_report.v1",
+  "astra_analysis_id": "pipeline_conformance",
+  "attempt": 8,
+  "job_id": "46424955",
+  "outcome": "passed_required_shared_and_Finding_A_protocol_conformance",
+  "converter_conformance": {
+    "passed": true,
+    "fixture_only": true,
+    "source_members": {
+      "brain_params": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/params/converter_params_VC.csv",
+        "sha256": "5e0749536a636dcc49e426441a6114efbd0a01edf1ce26115601436112d06b59"
+      },
+      "brain_train": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+        "sha256": "28c74907a963dba3bd6063a86d8706a535c356129757054407065275409cefea"
+      },
+      "content_models": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+        "sha256": "0596691b7fa7b9868c0864ddfaadd28e7f7937b1e0660ea231e02cfe1cec413b"
+      },
+      "content_train": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+        "sha256": "b92fe3419c329f952b323a51b8ca901216cb2f35708664343b3bac0b3ecf288e"
+      },
+      "content_utils": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+        "sha256": "f95799f1b0f03cd13def2507b7e7bd8d768a2fb86989acf4470bc86d9fefe1e0"
+      },
+      "reconstruction": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+        "sha256": "2f37541c98b1b9fd6562f21f788794f6c4b0062fe3c3c7fd4fcc40bd13d95444"
+      },
+      "reconstruction_config": {
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+        "sha256": "0085210754b7b0384b02319d160e0f161b5aa8ebb65634bae8c477089a8e7c93"
+      }
+    },
+    "hidden_width": "source_input_width//2_for_both_hidden_layers",
+    "normalization": {
+      "kind": "InstanceNorm1d",
+      "num_features": 1,
+      "eps": 1e-05,
+      "affine": false,
+      "track_running_stats": false,
+      "axes": "per_sample_across_hidden_positions_of_N_1_hidden_tensor_biased_variance"
+    },
+    "activation": "LeakyReLU_negative_slope_0.2",
+    "loss": "float32_norms_of_complete_active_blocks_inverse_squared_then_normalize_sum_to_one_times_per_block_mean_MSE_sum_over_layers",
+    "feature_normalization": "source_training_image_features_use_target_decoder_training_mean_and_ddof1_std_per_unit",
+    "degenerate_active_norm": "stop_affected_fit_no_added_epsilon_or_block_exclusion",
+    "runtime": {
+      "numpy": "1.26.3",
+      "torch": "2.4.0a0"
+    },
+    "real_images_or_neural_values_read": false,
+    "OOD_access": false,
+    "empirical_fitting_scoring": false
+  },
+  "module_states": {
+    "source_qualification": "runnable_locked",
+    "pipeline_conformance": "runnable_locked",
+    "pair_and_split_conformance": "runnable_locked",
+    "source_pipeline_asset_conformance": "runnable_locked",
+    "laion_feature_preparation": "runnable_locked",
+    "laion_target_decoders": "runnable_locked",
+    "laion_within_source_decoders": "runnable_locked",
+    "laion_content_converters": "runnable_locked",
+    "laion_brain_loss_converters": "runnable_locked",
+    "finding_a_feature_decoding": "runnable_locked",
+    "finding_b_reconstruction": "not_evaluable_locked",
+    "finding_c_identification": "not_evaluable_locked",
+    "inter_site_decoders_and_converters": "not_evaluable_locked",
+    "finding_d_inter_site_reconstruction": "not_evaluable_locked",
+    "finding_e_inter_site_identification": "not_evaluable_locked",
+    "artificial_image_module": "not_evaluable_locked",
+    "comparability_A_C_E": "not_evaluable_locked",
+    "visual_subareas": "not_evaluable_locked",
+    "noise_ceiling_correction": "not_evaluable_locked"
+  },
+  "not_evaluable_reasons": {
+    "finding_b_reconstruction": "generator_archive_available_but_checkpoint_config_latent_and_DIST_runtime_binding_unqualified",
+    "finding_c_identification": "reconstruction_unqualified_and_exact_tagged_bvlc_alexnet_pt_checkpoint_not_authenticated",
+    "inter_site_decoders_and_converters": "external_native_data_and_handoffs_unprovisioned",
+    "finding_d_inter_site_reconstruction": "external_native_data_and_handoffs_unprovisioned",
+    "finding_e_inter_site_identification": "external_native_data_and_handoffs_unprovisioned",
+    "artificial_image_module": "complete_371_image_OOD_pool_reserved_for_EP04",
+    "comparability_A_C_E": "no_outcome_independent_margin_supplied_no_margin_invented",
+    "visual_subareas": "unqualified_anatomical_crosswalk",
+    "noise_ceiling_correction": "unqualified_estimator_no_threshold_invented"
+  },
+  "public_runtime_report": "outputs/pipeline_conformance/attempt-007/public_runtime_conformance_report.json",
+  "reused_unchanged_checks": [
+    "pipeline_conformance/attempt-005",
+    "pipeline_conformance/attempt-006"
+  ],
+  "actual_neural_fitting_scoring": false,
+  "real_images_or_neural_values_read": false,
+  "OOD_access": false,
+  "protocol_lock": "outputs/protocol_lock.yaml"
+}

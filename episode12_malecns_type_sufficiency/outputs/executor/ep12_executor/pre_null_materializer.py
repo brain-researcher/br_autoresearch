@@ -1069,6 +1069,8 @@ def fit_selected_mode_and_generators(
     parameter_ranks: list[list[list[int]]] = []
     generators: dict[tuple[str, str], Any] = {}
     coordinate_metadata: list[dict[str, Any]] = []
+    mode_diagnostics_supported = True
+    mode_unsupported_reasons: list[dict[str, str]] = []
     for provider_type in scorable:
         type_mask = types == provider_type
         left = type_mask & (side_values == "L")
@@ -1146,12 +1148,29 @@ def fit_selected_mode_and_generators(
         left_aligned = left_contrast[left_order]
         right_aligned = right_contrast[right_order]
         pair_indices = np.triu_indices(int(configuration["component_count"]), k=1)
-        left_kl = np.asarray(
-            source_diagnostics[0]["pairwise_symmetric_kl"], dtype=float
-        )[pair_indices]
-        right_kl = np.asarray(
-            source_diagnostics[1]["pairwise_symmetric_kl"], dtype=float
-        )[pair_indices]
+        if all(
+            diagnostic.get("diagnostic_supported") is True
+            for diagnostic in source_diagnostics
+        ):
+            left_kl = np.asarray(
+                source_diagnostics[0]["pairwise_symmetric_kl"], dtype=float
+            )[pair_indices]
+            right_kl = np.asarray(
+                source_diagnostics[1]["pairwise_symmetric_kl"], dtype=float
+            )[pair_indices]
+        else:
+            mode_diagnostics_supported = False
+            left_kl = np.zeros(len(pair_indices[0]), dtype=float)
+            right_kl = np.zeros(len(pair_indices[0]), dtype=float)
+            for side, diagnostic in zip(("L", "R"), source_diagnostics):
+                if diagnostic.get("diagnostic_supported") is not True:
+                    mode_unsupported_reasons.append(
+                        {
+                            "provider_type": provider_type,
+                            "side": side,
+                            "reason": str(diagnostic.get("unsupported_reason")),
+                        }
+                    )
 
         prediction_gain.append(replayed.tolist())
         symmetric_kl.append([left_kl.tolist(), right_kl.tolist()])
@@ -1161,8 +1180,16 @@ def fit_selected_mode_and_generators(
         )
         memberships.append(
             [
-                list(map(float, source_diagnostics[0]["effective_component_memberships"])),
-                list(map(float, source_diagnostics[1]["effective_component_memberships"])),
+                (
+                    list(map(float, source_diagnostics[0]["effective_component_memberships"]))
+                    if source_diagnostics[0]["effective_component_memberships"] is not None
+                    else [0.0] * int(configuration["component_count"])
+                ),
+                (
+                    list(map(float, source_diagnostics[1]["effective_component_memberships"]))
+                    if source_diagnostics[1]["effective_component_memberships"] is not None
+                    else [0.0] * int(configuration["component_count"])
+                ),
             ]
         )
         parameter_ranks.append(source_ranks)
@@ -1239,7 +1266,9 @@ def fit_selected_mode_and_generators(
         prevalence_parameter_rank_definition=prevalence_parameter_rank_definition,
         whole_provider_type_ids=scorable,
         prediction_gain_by_type_direction=np.asarray(prediction_gain),
-        component_symmetric_kl_by_type_direction=np.asarray(symmetric_kl),
+        component_symmetric_kl_by_type_direction=(
+            np.asarray(symmetric_kl) if mode_diagnostics_supported else None
+        ),
         matched_contrast_cosine_by_type=np.asarray(matched_cosine),
         partner_contrast_by_type_direction=np.asarray(partner_contrasts),
         effective_memberships_by_direction_component=np.asarray(memberships),
@@ -1251,6 +1280,8 @@ def fit_selected_mode_and_generators(
         "collapsed_partner_vocabulary": list(collapsed_vocabulary),
         "partner_term_layout": "matched_component_major_then_collapsed_partner",
         "provider_type_component_matches": coordinate_metadata,
+        "bounded_support_diagnostic_supported": mode_diagnostics_supported,
+        "bounded_support_unsupported_reasons": mode_unsupported_reasons,
     }
     mode_core.update(
         {

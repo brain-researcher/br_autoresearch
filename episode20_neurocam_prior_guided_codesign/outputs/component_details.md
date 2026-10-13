@@ -153,6 +153,50 @@ field twice. Ordinary ECoG already reflects its own contacts and reference:
 use it for the specified plausibility checks, not as dense unfiltered truth
 for ranking unbuilt geometries.
 
+#### October 9: direct-surface spatial contact bridge, implemented and checked
+
+[surface_to_contact.py](tools/surface_to_contact.py) now supplies the missing
+spatial bridge from the selected constructed surface factors to 4,096
+once-averaged contact factors. The five registered mathematical pad maps use
+150-µm lattice centres `x=(column+0.5)*150`, `y=(row+0.5)*150` in the 9.6-mm
+square. The caller must explicitly provide whether x or y is the short pad
+axis: the available catalogue says to retain published orientation but does
+not establish its registration to these simulation axes. Returned metadata
+marks both that registration and physical eligibility as unverified. Centre
+origin and axis naming are prospective mathematical conventions, not recovered
+NeuroCam layout or Rat5 facts.
+
+Focal, surprise and interaction Gaussian modes use exact normalized rectangular
+integrals from the stored centres/FWHM; wave quadratures use their stored
+phase, origin and cyclic wavevector with the two directional sinc factors.
+Analytic parameters must reproduce the stored unscaled spatial samples within
+fixed float64 roundoff tolerances (`rtol=2e-13`, `atol=2e-14`); missing or
+inconsistent parameters fail without fitting them from the raster. Spatial
+mode peaks are not renormalized: all existing event/whole-world amplitude
+scales remain in the unchanged raw temporal drivers.
+
+For grid-defined broad and mixture modes, select bilinear interpolation of the
+25-µm target samples, extended constantly across each outer half-cell to the
+aperture edge. Sparse separable weights integrate that declared interpolant
+exactly over each rectangle. This is a numerical surface model, not an
+additional recovered transfer function. No nearest-sample pad approximation,
+radial-only attenuation, reference subtraction or second pad average is added.
+All methods preserve spatial common mode and the original ideal target.
+
+`build_contact_factors` returns a 4,096-by-rank matrix and an owned unchanged
+copy of the raw drivers. `raw_voltage_block(start,stop,...)` reconstructs only
+the requested existing driver sample indices in a bounded block and converts
+microvolts to volts once. It selects no temporal interpolation or hold law,
+does not apply observation nuisances, contact-gap changes, contact impedance,
+electronics or DAQ, and does not qualify a physical geometry or reference.
+The bridge currently supports zero-gap direct-surface development worlds only.
+
+Six [focused checks](tools/test_surface_to_contact.py) cover catalogue geometry,
+explicit orientation, common mode and edge integration, independent Gaussian/
+wave quadrature, mixed spatial modes, raw-amplitude/unit preservation and
+refusal of missing metadata or exceeded bounds. All six passed in **0.032
+seconds** in allocation47086577; the closed execution log records the evidence.
+
 ### Causal analog state followed by actual conversions
 
 The observation chain is
@@ -192,6 +236,93 @@ nuisance content through the forward chain to expose aliasing and saturation.
 Primary-band evaluation is not permission to pre-remove those effects before
 measurement. Evaluation filtering, warm-up, edge masks and reporting latency
 must be common across arms and must not supply future data to the inverse.
+
+### October 9: conditional active buffer/filter integration
+
+The selected [conditional R3 model](electrical_model_and_probes.md#october-9-conditional-active-conditioning-and-loaded-recovery)
+adds explicit input loading and 128 persistent states for all 64 source lines.
+[analog_conditioning.py](tools/analog_conditioning.py) binds the buffer/filter
+parameters; [conditioned_array_solver.py](tools/conditioned_array_solver.py)
+advances them jointly with every pad, source, contact and ADC hold. The optional
+path in [cpe_array.py](tools/cpe_array.py) routes neural mux inputs to filter
+nodes, preserving all physical ADC identities and external marker paths.
+Original source observations remain diagnostics. No row, aperture or storage
+boundary resets the added state, and input loading is applied once.
+
+The controlled drive clips an internal target, not a physical capacitor
+voltage. Loaded nodes may exceed those rails while recovering. This is a
+prospective effective mechanism with explicit constants, not a measured
+amplifier, hard output clamp or identified NI circuit. Selecting it does not
+accept an additional reference model. The conditional physical-noise path
+below supplies declared stochastic forcing; a complete noise inventory and
+calibrated parameter values remain separate requirements. Saved N1–N4
+observation overlays do not provide them.
+
+The nonlinear path uses bounded implicit midpoint, Newton/GMRES and step
+doubling. Full-state endpoints, aperture means and work quadratures must meet
+caller tolerances before commit. These are consistency estimates, not
+certified stiff-mode or continuous-time error bounds. Explicit callbacks run
+inside the solver; finite iteration, operator and numeric workspace limits
+do not replace process memory or walltime limits. The passive exponential
+path remains selected when conditioning is absent.
+
+Eager and streaming runners carry controlled voltage-source terminal work
+and its drive-branch heat separately from field/external-source work and
+stored energy. Terminal work may be negative during backdrive and is not
+total supply consumption. The solver's partially restored Norton dissipation
+does not include every physical voltage-port heat correction. Complete device
+power remains unspecified. Source-review and execution evidence belongs in
+the [implementation log](experiment_log.md#2026-10-09--model_specification-conditional-active-stage-implemented-checks-unrun).
+
+### October 9: physical noise through the retained R2/R3 array
+
+[spectral_noise.py](tools/spectral_noise.py) represents a caller's finite-band
+cross spectrum using sparse complex factors and a named, frozen Gaussian
+quadrature basis. Paired designs reuse the same frequency grid and draws.
+[physical_noise_ports.py](tools/physical_noise_ports.py) binds current/voltage
+amplitudes to actual retained-node and contact-star ports; it preserves the
+induced correlations and field-source work correction from exact contact
+junction elimination. Amplifier input noise enters before gain/target clipping.
+No physical parameter, temperature, bandwidth or source independence is inferred.
+
+[circuit_noise_provider.py](tools/circuit_noise_provider.py) connects that
+trajectory to the assembled array and explicit per-port A/V tolerances. Both
+midpoint planners refine against field and noise bounds. Eager and streaming
+executors prevalidate original physical amplitudes, replay the same held
+sample through aperture/storage seams, and retain only one live sample. A
+noise layout fixed on an array requires an explicit sample on every advance;
+omitting it cannot silently remove noise. The optional simulation factory
+binds the trajectory before hold planning, with source evaluation/work counts
+reported separately from solver products. The existing noise-free path remains
+available as an explicit conditional mechanism.
+
+The representation is a finite Gaussian spectral expansion, not ideal white
+noise or proof of ergodicity. Analytic forcing bounds exclude spectral
+discretization, waveform arithmetic and circuit-output error. A zero entry
+means zero only in the declared conditional model. The physical layout owns
+star branches/access noise; separately retained charge-transfer edges require
+their own current port or an explicit omitted-component reason. Named external
+DAQ current ports now own actual `(ADC, external input)` switch branches.
+They add current at the hold node, signed noise work across its true terminals,
+and the corresponding external ideal-source work correction. Their immutable
+inventory includes track/off conductances; acquisition preflight refuses a
+nonzero resistor-noise source on a later disconnected path before advancing
+any state. Existing noise coordinates keep their order; external currents are
+appended. This does not supply a switching-dependent thermal spectrum.
+
+The separate [R1 reduction](tools/r1_noise.py) specifies original held current
+ports, their conjugate one-state coefficients and voltage offsets. The scalar
+[source-line pole](tools/switched_line.py) propagates the resulting constant
+current exactly, retaining original, equivalent nodal and offset work before
+committing. No RNG, temperature or spectral defaults enter this component.
+It is not yet connected to a full R1 acquisition engine: 64 persistent poles
+and their separate contact/neighbour/DAQ response remain to be integrated.
+See the [external and R1 port equations](electrical_model_and_probes.md#october-9-external-daq-noise-and-the-reduced-r1-port).
+
+Complete source inventory, spectra and numerical settings still
+need selection; none of this establishes a calibrated reference or candidate
+advantage. See the [equations and limits](electrical_model_and_probes.md#october-9-replayable-finite-band-physical-noise)
+and [source implementation record](experiment_log.md#2026-10-09--model_specification-physical-noise-connected-source-review-complete).
 
 ### Resource accounting is attached to the event sequence
 
@@ -396,7 +527,212 @@ future development amendment. It is not a post-final-outcome repair of this
 rule. Keep candidate success, transferable-rule success and model uncertainty
 as separate reportable outcomes.
 
+## October 9: continuous raw time and bounded acquisition storage
+
+[raw_world_time.py](tools/raw_world_time.py) implements the analytic extension
+in the [world recipe](development_world_recipe.md#october-9-continuous-raw-time-extension-for-acquisition).
+`RawWorldTime` checks the saved native raw record in bounded 512-sample blocks
+against its fixed parameters before accepting the extension. The numerical
+replay allowance is `5e-12 * (max(1, mode_native_peak) + abs(native_value))`
+in microvolts; this is a floating-point consistency tolerance, not calibration
+acceptance. Queries stay in `[0,16)`, preserve event silence/overlap and exact
+M4 switches, and keep N1/N2 line signals and N3/N4 availability separate.
+The breakpoint API exposes support/taper and switch boundaries; time16 is
+boundary-only. No hold convention, real DAQ clock or electrical parameters are
+inferred. `bind_contact_factors` validates raw identity once and owns a read-only
+spatial snapshot; its reusable `volts(times)` avoids a full native-record scan
+on each physical interval and performs one microvolt-to-volt conversion.
+
+[array_acquisition.py](tools/array_acquisition.py) adds `ProviderInterval`
+with an immutable field key and sparse boundary-charge entries. A caller-frozen
+deterministic provider supplies each 64-by-64 voltage field. Complete schedule,
+binding, aperture and field validation precedes any array advancement. Fields
+are validated in one bounded-memory traversal and regenerated one physical
+interval at a time. Packed 32-byte digests detect numeric changes between the
+two traversals; these replace the eager route's field snapshots, not a generic
+provenance check. A drift or provider failure permanently closes that attempt
+before the current interval advances. Aperture splits reuse one field;
+boundary charge is applied once and all electrical/readout state persists.
+
+For 256000 physical intervals, digest payload is 8,192,000 bytes instead of
+8,388,608,000 bytes of retained float64 fields. Sparse charges and the shared
+zero vector replace per-interval dense charges. This is not a peak-RSS estimate:
+descriptors, conversion/output plans, provider factors and solver workspaces
+still need their explicit bounds. Existing eager callers keep their behavior.
+
+Independent source reviews are complete, including correction of integer
+provider keys larger than `2**53`. All six raw-time and seven acquisition
+checks **passed in allocation47090250**, together with the six new midpoint
+checks and changed ASTRA validation; see the
+[compute evidence](experiment_log.md#2026-10-09-0142-pacific--model_specification-all-nineteen-raw-input-checks-and-astra-passed).
+All84 completed worlds remain unchanged. These implementations do not establish
+a calibrated reference, completed electrical integration or candidate result.
+
+### October 9: saved-world simulation orchestration and incremental publication
+
+[development_simulation.py](tools/development_simulation.py) exposes three
+bounded Python interfaces. `load_saved_development_world` selects one completed
+condition/seed group from the existing generator HDF5 container, checks numeric
+shapes/dtypes/bytes before loading, and preserves its development identity and
+seed group. Its scalar variable-length metadata byte cap is checked after that
+single string is read. `run_development_simulation` accepts the existing world,
+explicit pad orientation, full circuit/initial-state inputs, physical actions,
+raw conversions, returned samples, observations, and caller numerical/resource
+limits. `save_simulation_result` writes one exclusive HDF5 record with bounded
+serialized payload. It does not overwrite an attempt or regenerate its world.
+
+The runner constructs assembler-owned contact access, then preserves every one
+of the 4096 pad and 64 source states, all contact memory and supplied DAQ hold
+states across row, field and aperture changes. Raw support/M4 boundaries and
+every declared aperture endpoint enter the same midpoint plan. Original action
+charges remain once-only. Existing circuit results supply streaming physical
+stored-energy changes and source/charge work; readout retains actual declared
+conversion, return, pixel and bit counts. Complete device power remains unknown.
+The remaining global propagation-product cap can tighten a per-interval work
+cap without loosening numerical tolerances. Elapsed limits are checked between
+operations; neither work counts nor retained numeric-byte caps certify peak
+RSS, factorization cost or hard wall time. Failed solves contribute elapsed
+time; their unreturned work count stays unknown with its explicit upper bound.
+An incomplete attempt retains terminal state and diagnostics without replay.
+
+`AcquisitionReadout.new_observations_available_by` now consumes a monotone
+cursor over publication plans sorted once by availability and identity. Each
+successful fresh batch is delivered once; a failing batch leaves the cursor
+unchanged. `ArrayAcquisition.advance_next` uses this path. Existing cumulative
+and history queries do not consume it, and finalization still reports the
+complete declared outputs. This removes repeated construction of all prior
+observations at every interval without changing visibility, counts or physics.
+
+The new [four orchestration checks](tools/test_development_simulation.py) and
+the changed readout/array suites are **unrun**. The latter contain five readout
+checks, including two new incremental-publication fixtures, and seven array
+checks. Passing raw-time/hold evidence remains valid; prior array/readout passes
+do not cover the current edits. See the
+[current handoff](experiment_log.md#2026-10-09-0202-pacific--model_specification-saved-world-orchestration-and-incremental-publication-implemented).
+
+This earlier integration retains eager conversion, returned-sample and
+observation inventories; the streaming extension below addresses that design.
+The paper's 6.4-million/s
+digitized-stream proxy would give 102.4 million conversion records over sixteen
+seconds, but it does not establish actual physical ADC work. Full-scale support
+requires compact ordered chunks carrying analog state, unfinished apertures,
+digital averaging/publication state and cumulative costs; rerunning independent
+chunks with fresh arrays is prohibited. Physical parameter/initialization and
+DAQ recipes are explicit caller dependencies, not defaults selected here.
+A prospective development recipe suffices for conditional simulation;
+authenticated measurement context is separately needed for calibration claims.
+This earlier eager route still refuses N1–N4; their selected observation-side
+placement is now implemented in the streaming route below.
+The 84 field inputs remain complete; no complete 84-world electrical panel,
+accepted reference, calibrated co-design comparison or candidate score exists.
+
+### October 9: persistent streaming forward chain
+
+[streaming_development_simulation.py](tools/streaming_development_simulation.py)
+accepts the retained `DevelopmentWorld` loaded by the bounded loader above,
+explicit geometry/orientation, circuit and initial states, physical actions,
+input bindings, a replayable `ReadoutWindow` factory, acquisition/publication
+horizons, solver/readout/array limits, midpoint tolerance/caps, output limits and
+a settings reference. It supplies no physical or DAQ defaults. It compiles the
+bounded midpoint hold once without collecting a full ADC aperture plan, then
+[streaming_input_plan.py](tools/streaming_input_plan.py) clips its immutable
+intervals across windows without resampling held fields or repeating charge.
+Later aperture splits retain the same held input and analytic input-error bound.
+The compact full hold tuple remains in memory.
+
+[streaming_array_acquisition.py](tools/streaming_array_acquisition.py) uses one
+`NeurocamCPEArray` throughout. Complete bounded metadata/provider preflight
+checks the entire schedule before analog mutation; packed window digests bind
+replay, and current-window field digests detect numeric provider drift before
+use. Shared quantizer tables are hashed once by numeric value per window instead
+of expanded into every record. Windows partition all physical time, including
+unsampled gaps. Continuation fragments preserve event identity, row, held field,
+reference and DAQ selection, and carry no repeated charge. Unique events and
+every solver split/work count remain separate. All 4096 pads, source/contact
+states and supplied DAQ memory persist. Explicit caps cover windows, live
+fragments, numeric/digest storage, updates and cumulative propagation products;
+these are not a measured peak-RSS or hard solve-time guarantee.
+
+[streaming_acquisition_readout.py](tools/streaming_acquisition_readout.py) keeps
+only declared live conversions, digital dependencies and pending publications.
+Canonical increasing IDs and explicit last-use windows support bounded eviction
+without full identity histories. Cross-window apertures and delayed observations
+survive until their dependencies are complete. Final publication can extend
+beyond acquisition without advancing physical state. Quantization, invalid
+contributors and signed averaging retain existing readout semantics. Metadata
+preflight exercises the same coverage/dependency/eviction rules without analog
+values. Earlier eager/cumulative APIs retain their behavior.
+
+[streaming_simulation_output.py](tools/streaming_simulation_output.py) streams
+raw, observation/dependency and interval evidence into one exclusive HDF5 file
+with bounded batches and payload/record/identifier caps. It keeps no complete
+output tuple. Final reports preserve initial/terminal states and cumulative
+energy/source-work and conversion accounting, distinguishing computation,
+returned callbacks and persisted records. Failure is terminal without replay;
+best-effort interrupt closeout preserves completed work before rethrowing the
+interrupt. Unknown interrupted solver work remains explicit. Output payload
+caps exclude HDF5 overhead and do not replace external storage limits.
+
+[observation_nuisance.py](tools/observation_nuisance.py) implements the selected
+N1–N4 post-readout overlay from the same saved raw-time snapshot. Each pixel
+needs a physical-site index and explicit acquisition point inside the union of
+its contributing apertures and no later than publication. Preflight checks
+metadata only. Replay digests bind this mapping; delayed outputs retain it
+until publication. Line values convert microvolts to volts once, while missing
+pixels remain records with absent values. Raw records, physical work, bit costs,
+clipping, truth and non-pixel outputs are unchanged. Paired mask lookup reuses
+the cached 500-Hz edges without Cartesian expansion. The settings reference
+must retain the binding-generating convention; output records retain their
+original site ID/support/times rather than extra binding columns. This does
+not model analog pickup, ADC saturation from that pickup or electrical faults.
+
+Independent source review closed for the streaming modules and nuisance
+adapter. **17 streaming checks** (readout 5, executor 4, input plan 2, writer 3,
+orchestration 3), **3 adapter**, **6 changed raw-time** and the previous **16
+affected checks** remain **unrun: 42 total**. Changed ASTRA validation is pending.
+The source path from saved world to streamed forward result is implemented,
+but full-panel runtime and memory are unmeasured. All 84 saved inputs remain
+intact. An explicit prospective electrical/initial-state/DAQ recipe still must
+be selected for conditional engineering simulation; authentic calibration is a
+separate claim. N1–N4 require complete explicit observation bindings. Future
+truth/splits remain simulator-private, and no calibrated reference, full-panel
+electrical result, acquisition-policy release or candidate score is implied.
+
 ## 6. Next component choices, not an execution claim
+
+### October 9: selected numerical midpoint input approximation
+
+The continuous raw waveform will connect to the constant-input electrical
+executor through a numerical midpoint hold. This is an integration choice,
+not a physical DAQ hold, clock or calibration assumption. The caller must
+provide `epsilon_input_volts`, a maximum interval count and a maximum work
+count before execution. No tolerance is selected from candidate outcomes.
+
+For contact coefficients `A`, raw temporal drivers `d_r`, interval `[a,b)`
+and midpoint `m`, a derivative bound `L_r` gives the input approximation bound
+`1e-6 * max(m-a,b-m) * max_i sum_r abs(A_ir) * L_r` volts. Use outward-rounded
+nonnegative arithmetic. A sinusoid has bound `2*pi*f*abs(scale)`; M4 within
+one fixed coefficient interval uses `abs(scale)*(2*pi*f*1.25 + 0.25*pi)`.
+The selected finite biphasic event and taper admit `abs(scale)/sigma` on
+their support, zero outside; overlapping events add their bounds.
+
+Start from raw support/taper/switch boundaries and caller-supplied physical
+row/DAQ/aperture boundaries. Accept an interval only if its bound meets the
+input tolerance; otherwise bisect deterministically. Stop unresolved at an
+explicit work or interval cap without loosening tolerance. Preserve M4 jumps
+as exact boundaries. Only the first numerical subdivision receives the
+original physical boundary charge; all subdivisions share persistent
+electrical/readout state. Materialize midpoint fields through the compact
+provider interface without retaining a dense field plan.
+
+Future truth, event boundaries and numerical subdivisions belong only to the
+forward simulator. They must not become information supplied to an adaptive
+acquisition policy. Observation nuisances remain separate. This certificate
+covers the analytic input-hold approximation, not floating-point waveform
+evaluation, complete circuit-output error, or physical model correctness.
+The implementation in `tools/raw_input_hold.py` and supporting derivative
+enclosures passed independent code/mathematical review and six focused compute
+checks. No production electrical integration or candidate comparison has run.
 
 The starting catalogue supplies concrete field controls, proposed discrete pad
 maps and scan sequences. The electrical note now specifies six starting

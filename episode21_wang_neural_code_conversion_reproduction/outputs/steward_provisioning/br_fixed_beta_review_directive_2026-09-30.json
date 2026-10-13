@@ -1,0 +1,327 @@
+{
+  "ok": true,
+  "protocol": "br.external_review.directive.v1",
+  "directive_id": "ext_review_dir_3ad95d13d0ff",
+  "session_id": null,
+  "issued_at": "2026-10-01T05:28:07Z",
+  "review_type": "scientific_review",
+  "goal": "Focused prospective design critique, not result adjudication or formal Society: assess an adapted retrospective replication of Wang2025 using fixed released LAION-fMRI GLMsingle v1.2 final TYPED betasmd regular rows as measurement inputs. Compare the inference supported by this definition with training-only upstream re-estimation. Is the downstream no-shared-training-stimulus claim interpretable, and what claim limits follow from possible inherited tau-test/OOD-dependent upstream preprocessing?",
+  "hints_applied": {
+    "public_and_structural_metadata_only": true,
+    "no_completed_empirical_run": true,
+    "scientist_approved_measurement_exception": true,
+    "method_pin": "KamitaniLab InterSiteNeuralCodeConversion V1.0.0 edbff02edd6a08d3c6c829af45a957fd14bdc460",
+    "provider_metadata": "TYPED betasmd; representative session lists GLMsingle1.2, HRF library/GLMdenoise/fractional ridge enabled,12 mixed-role runs and mean BOLD across runs; actual role-exclusion pools unverified",
+    "design": "5 LAION participants;20 directed pairs;decoder target-own4712 unique regular images;converter source-own disjoint4712 unique regular images;brain comparator shared tau train897;common tau test224;independent localizer masks",
+    "strict_downstream_constraints": "train-only normalization, voxel selection, learned fitting/tuning/stopping;regular-only handoff;no direct OOD arrays/maps/statistics;no EP04 inputs;no comparability margins;no population/fresh-confirmation claim",
+    "requested_focus": [
+      "fixed measurement estimation versus downstream model leakage",
+      "upstream dependency as a competing explanation and limits of replication claims",
+      "minimum scientifically necessary provenance, avoiding unrequested custom preprocessing or audit loops"
+    ],
+    "formal_society": false
+  },
+  "rubric_detail": "summary",
+  "evaluation_axes": {
+    "correctness": {
+      "decision_space": [
+        "pass",
+        "flag",
+        "block"
+      ],
+      "required_outputs": [
+        "decision",
+        "findings[]"
+      ],
+      "criteria_summary": {
+        "count": 4,
+        "preview": [
+          "Confirm the statistical/analytic specification matches the declared research question.",
+          "Verify the design matrix / model structure is well-posed (no rank deficiency, no collinear nuisance regressors)."
+        ]
+      },
+      "kg_derived_criteria_summary": {
+        "count": 67,
+        "rule_ids": [
+          "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "CONFOUND_REGRESSION_OUTSIDE_CV",
+          "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "DOUBLE_DIPPING",
+          "FEATURE_SELECTION_OUTSIDE_CV",
+          "HARMONIZATION_OUTSIDE_CV",
+          "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "NESTED_CV_INNER_PARTITION_GAP",
+          "NESTED_CV_MANIFEST_SCHEMA",
+          "NESTED_CV_OUTER_HOLDOUT_CONFLICT"
+        ]
+      }
+    },
+    "completeness": {
+      "decision_space": [
+        "complete",
+        "incomplete"
+      ],
+      "required_outputs": [
+        "decision",
+        "checklist{}",
+        "missing_caveats[]"
+      ],
+      "criteria_summary": {
+        "count": 5,
+        "preview": [
+          "Random seed is pinned and reported.",
+          "Atlas / parcellation version is declared when atlas-based features are used."
+        ]
+      },
+      "kg_derived_criteria_summary": {
+        "count": 37,
+        "rule_ids": [
+          "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "LONGITUDINAL_NO_SUBJECT_EFFECT",
+          "MOTION_UNCONTROLLED_GROUP_DIFF",
+          "POOLED_VARIANCE_POPULATION_CLAIM",
+          "PSEUDOREPLICATION",
+          "REPEATED_MEASURES_INDEPENDENT_TEST",
+          "SPATIAL_DOMAIN_MISMATCH",
+          "UNCORRECTED_WHOLEBRAIN",
+          "ABOVE_CHANCE_NO_PERMUTATION",
+          "AD_HOC_CLUSTER_EXTENT",
+          "ANALYTIC_FLEXIBILITY"
+        ]
+      }
+    },
+    "judgment": {
+      "decision_space": [
+        "sound",
+        "questionable",
+        "unsound"
+      ],
+      "required_outputs": [
+        "decision",
+        "estimand_complete",
+        "method_defensible",
+        "issues[]",
+        "reviewer_questions[]"
+      ],
+      "criteria_summary": {
+        "count": 4,
+        "preview": [
+          "The estimand is clearly specified (population, unit, causal vs. associational).",
+          "The chosen method is defensible for that estimand, not just conventional."
+        ]
+      },
+      "kg_derived_criteria_summary": {
+        "count": 21,
+        "rule_ids": [
+          "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+          "DOUBLE_DIPPING",
+          "POOLED_VARIANCE_POPULATION_CLAIM",
+          "ACTIVATION_MISMATCH",
+          "BEHAVIOR_COVARIATE_MISSING",
+          "CLUSTER_LOCALIZATION_OVERCLAIM",
+          "CORRELATION_AS_PREDICTION",
+          "DYNAMIC_FC_NO_NULL",
+          "EXTREME_EFFECT",
+          "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+          "FIT_AS_MECHANISM",
+          "GRAPH_THRESHOLD_NO_SENSITIVITY"
+        ]
+      }
+    },
+    "overall": {
+      "decision_space": [
+        "proceed",
+        "diagnose",
+        "explore_more",
+        "stop_with_rationale"
+      ],
+      "required_outputs": [
+        "overall_decision",
+        "report_action"
+      ],
+      "criteria_summary": {
+        "count": 6,
+        "preview": [
+          "Synthesize correctness + completeness + judgment into a single overall_decision.",
+          "Blocking correctness issues -> stop_with_rationale."
+        ]
+      }
+    }
+  },
+  "verdict_schema_ref": "br.ScientificReviewVerdict.v1",
+  "submission_tool": "submit_external_scientific_review_verdict",
+  "tailored_checks": [],
+  "full_rubric_available": true,
+  "full_rubric_request": {
+    "tool": "request_external_scientific_review_directive",
+    "argument": "include_full_rubric",
+    "value": true
+  },
+  "agent_instructions": [
+    "Read the run artifacts yourself - BR has not read them.",
+    "For each axis, produce the required_outputs and pick a decision from decision_space.",
+    "Use kg_derived_criteria summaries when present; request include_full_rubric=true if you need the full rubric or JSON schema.",
+    "Roll up to overall_decision using the rules under the overall axis.",
+    "Submit the completed verdict via submission_tool, echoing directive_id.",
+    "Round-trip verdict submission requires a session_id or client_session_id; re-issue this directive with one before calling submit_external_scientific_review_verdict."
+  ],
+  "kg_rule_registry": {
+    "registry_id": "scientific_review_rule_registry_v1",
+    "source": "BRKG",
+    "criteria_count": 125,
+    "criteria_counts_by_axis": {
+      "correctness": 67,
+      "completeness": 37,
+      "judgment": 21
+    },
+    "rule_ids_by_axis": {
+      "correctness": [
+        "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+        "CONFOUND_REGRESSION_OUTSIDE_CV",
+        "DECLARED_SUBJECT_SET_MISSING_SUBJECT_COLUMN",
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "DOUBLE_DIPPING",
+        "FEATURE_SELECTION_OUTSIDE_CV",
+        "HARMONIZATION_OUTSIDE_CV",
+        "LONGITUDINAL_NO_SUBJECT_EFFECT",
+        "MOTION_UNCONTROLLED_GROUP_DIFF",
+        "NESTED_CV_INNER_PARTITION_GAP",
+        "NESTED_CV_MANIFEST_SCHEMA",
+        "NESTED_CV_OUTER_HOLDOUT_CONFLICT",
+        "NESTED_CV_OUTER_MISSING_INNER_RESAMPLING",
+        "NESTED_CV_OUTER_PARTITION_GAP",
+        "PERMUTATION_EXCHANGEABILITY",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "PSEUDOREPLICATION",
+        "REPEATED_MEASURES_INDEPENDENT_TEST",
+        "SPATIAL_DOMAIN_MISMATCH",
+        "SPLIT_GROUPING_MISMATCH",
+        "STANDARDIZATION_OUTSIDE_CV",
+        "SUBJECT_INTERSECTION_COVERAGE",
+        "SUBJECT_INTERSECTION_SELECTION_SOURCE_CONFLICT",
+        "SUBJECT_INTERSECTION_SUBSET_CONFLICT",
+        "SUBJECT_MANIFEST_COVERAGE",
+        "SUBJECT_MANIFEST_SELECTION_SOURCE_CONFLICT",
+        "SUBJECT_SELECTION_SOURCE_COVERAGE",
+        "TEMPORAL_SPLIT_AUTOCORRELATION",
+        "TEST_SET_MODEL_SELECTION",
+        "UNCORRECTED_WHOLEBRAIN",
+        "ABOVE_CHANCE_NO_PERMUTATION",
+        "AD_HOC_CLUSTER_EXTENT",
+        "ANALYTIC_FLEXIBILITY",
+        "BIDS_VALIDATION_FAILED",
+        "CLUSTER_FORMING_THRESHOLD_LENIENT",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "COBIDAS_MANDATORY_MISSING",
+        "CORRELATION_AS_PREDICTION",
+        "CV_FOLD_ERROR_AS_INDEPENDENT",
+        "DYNAMIC_FC_NO_NULL",
+        "EPI_DISTORTION_UNADDRESSED",
+        "EXTREME_EFFECT",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "GENE_MAP_NO_SPATIAL_NULL",
+        "GRAPH_THRESHOLD_NO_SENSITIVITY",
+        "GSR_NO_SENSITIVITY",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "HRF_CANONICAL_ASSUMPTION",
+        "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+        "ICV_NOT_CONTROLLED",
+        "LAYER_SELECTION_POST_HOC",
+        "MOTION_REPORTING_GAP",
+        "MULTISITE_SITE_CONFOUND",
+        "NO_EXTERNAL_VALIDATION",
+        "PPI_SPECIFICATION",
+        "QC_MISSING",
+        "RANDOM_SEED_MISSING",
+        "ROI_MULTIPLE_COMPARISONS",
+        "RSA_HIERARCHICAL_UNCERTAINTY",
+        "RSA_MODEL_COMPARISON_NO_CORRECTION",
+        "RSA_VOXELWISE_CENTERING_SCALING",
+        "RSA_WITHIN_RUN_ESTIMATION",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "SOFTWARE_VERSION_MISSING",
+        "STIMULUS_FIXED_EFFECT",
+        "TASK_FC_HRF_RESIDUAL"
+      ],
+      "completeness": [
+        "BRAINMAP_CORRELATION_NO_SPATIAL_NULL",
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "LONGITUDINAL_NO_SUBJECT_EFFECT",
+        "MOTION_UNCONTROLLED_GROUP_DIFF",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "PSEUDOREPLICATION",
+        "REPEATED_MEASURES_INDEPENDENT_TEST",
+        "SPATIAL_DOMAIN_MISMATCH",
+        "UNCORRECTED_WHOLEBRAIN",
+        "ABOVE_CHANCE_NO_PERMUTATION",
+        "AD_HOC_CLUSTER_EXTENT",
+        "ANALYTIC_FLEXIBILITY",
+        "BIDS_VALIDATION_FAILED",
+        "CLUSTER_FORMING_THRESHOLD_LENIENT",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "COBIDAS_MANDATORY_MISSING",
+        "CV_FOLD_ERROR_AS_INDEPENDENT",
+        "EPI_DISTORTION_UNADDRESSED",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "GENE_MAP_NO_SPATIAL_NULL",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "ICC_MISSING_FOR_INDIVIDUAL_DIFF",
+        "ICV_NOT_CONTROLLED",
+        "MOTION_REPORTING_GAP",
+        "MULTISITE_SITE_CONFOUND",
+        "NO_EXTERNAL_VALIDATION",
+        "PPI_SPECIFICATION",
+        "QC_MISSING",
+        "RANDOM_SEED_MISSING",
+        "ROI_MULTIPLE_COMPARISONS",
+        "RSA_HIERARCHICAL_UNCERTAINTY",
+        "RSA_MODEL_COMPARISON_NO_CORRECTION",
+        "RSA_VOXELWISE_CENTERING_SCALING",
+        "RSA_WITHIN_RUN_ESTIMATION",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "SOFTWARE_VERSION_MISSING"
+      ],
+      "judgment": [
+        "DEMOGRAPHIC_CONFOUND_UNCONTROLLED",
+        "DOUBLE_DIPPING",
+        "POOLED_VARIANCE_POPULATION_CLAIM",
+        "ACTIVATION_MISMATCH",
+        "BEHAVIOR_COVARIATE_MISSING",
+        "CLUSTER_LOCALIZATION_OVERCLAIM",
+        "CORRELATION_AS_PREDICTION",
+        "DYNAMIC_FC_NO_NULL",
+        "EXTREME_EFFECT",
+        "FACTORIAL_SEPARATE_SIMPLE_EFFECTS",
+        "FIT_AS_MECHANISM",
+        "GRAPH_THRESHOLD_NO_SENSITIVITY",
+        "GSR_NO_SENSITIVITY",
+        "HARMONIZATION_METHOD_SENSITIVITY",
+        "HRF_CANONICAL_ASSUMPTION",
+        "NO_EXTERNAL_VALIDATION",
+        "REVERSE_INFERENCE",
+        "SINGLE_ROI_EXTREME",
+        "SMALL_SAMPLE_STRONG_CLAIM",
+        "STIMULUS_FIXED_EFFECT",
+        "TASK_FC_HRF_RESIDUAL"
+      ]
+    }
+  },
+  "round_trip_hint": {
+    "session_binding_required": true,
+    "submission_tool": "submit_external_scientific_review_verdict",
+    "message": "This directive was issued without session_id/client_session_id. Verdict submission requires a session binding, so issue the directive with session_id or client_session_id for the directive -> verdict round trip."
+  },
+  "review_route": {
+    "selected": "external_directive",
+    "source": {
+      "kind": "external",
+      "value": null
+    },
+    "target_tool": "request_external_scientific_review_directive"
+  }
+}

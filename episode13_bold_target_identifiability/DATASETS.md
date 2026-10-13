@@ -4,6 +4,25 @@ EP13 has no participant dataset, images, BOLD time series, or statistical
 train/test split. Its inputs are exact matrices, theorem statements, proofs,
 and replayable certificates.
 
+## Public online resources — checked October 6, 2026
+
+The primary methods reference is [S. R. Searle (1965), *Additional Results
+Concerning Estimable Functions and Generalized Inverse Matrices*](https://academic.oup.com/jrsssb/article/27/3/486/7026850),
+JRSS B 27(3), 486–490, DOI
+[10.1111/j.2517-6161.1965.tb00608.x](https://doi.org/10.1111/j.2517-6161.1965.tb00608.x).
+The publisher's public record supplies the bibliographic identity, abstract
+and references. Its abstract concerns estimating linear-model estimable
+functions and their variance/covariance. The full article is a separate PDF;
+this check did not assume unrestricted full-text access or retrieve it.
+
+This gives a directly citable classical-methods foundation for EP13's
+estimability framing and its novelty limitation. It is not a BOLD dataset,
+an empirical validation set or proof that finite numerical examples establish
+the general theorem. EP13's explicit separable criterion, zero branches and
+constructive certificates are established by the retained episode proof and
+exact replay, under the fixed domain below. No empirical source or additional
+simulation is required for the completed scope.
+
 ## Fixed mathematical domain
 
 All dimensions T, Q, V, and K are positive integers. The known objects are
@@ -79,14 +98,20 @@ The implementation regression suite must include:
 
 ## Independence and access boundary
 
-No current checker, proof lock, or independent replay output exists. A future
-independent checker may use this frozen statement and its own implementation,
-but it must not import historical evaluator code, constants, expected labels,
-or precomputed answers.
+The current package completed on October 3 with local status
+`theorem_verified`. The [proof](outputs/exact/proof.md),
+[attempt lock](outputs/exact/runs/attempt001/package_lock.json),
+[12-case orientation and seven-rejection report](outputs/exact/runs/attempt001/orientation_report.json)
+and [independent replay](outputs/exact/runs/attempt001/independent_replay_report.json)
+are retained. The independent checker was authored from the frozen contracts
+and interface before its author inspected the main implementation, fixtures
+or results; it imported no historical evaluator code, constants, expected
+labels or precomputed answers. The [execution record](outputs/experiment_log.md)
+documents that authorship boundary and actual completion.
 
-There is no protected biological outcome to open. The only future separation
-is between the authored theorem package and a separately authored replay of
-that package. A replay can find an implementation or orientation error; it
+There is no protected biological outcome to open. The separation is between
+the authored theorem package and its separately authored replay. A replay
+can find an implementation or orientation error; it
 cannot create universal evidence beyond the proof.
 
 Inputs remain read-only. Durable proof documents, exact fixtures, checker

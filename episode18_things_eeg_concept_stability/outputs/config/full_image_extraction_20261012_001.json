@@ -1,0 +1,67 @@
+{
+  "analysis_id": "feature_preparation",
+  "role": "outcome_blind_full_image_feature_extraction",
+  "image_count": 22448,
+  "families": [
+    "low_level_851",
+    "supervised_resnet50_v1",
+    "dino_resnet50",
+    "clip_vit_b32_image",
+    "blip_caption_clip_text",
+    "dinov2_vit_b14"
+  ],
+  "run_dir": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/runs/feature_preparation/image_features_full_20261012_001",
+  "pixel_cache_dir": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/cache/image_pixels_full_20261012_001",
+  "family_shard_counts": {
+    "low_level_851": 2,
+    "supervised_resnet50_v1": 1,
+    "dino_resnet50": 1,
+    "clip_vit_b32_image": 2,
+    "blip_caption_clip_text": 16,
+    "dinov2_vit_b14": 4
+  },
+  "pixel_pack_images": 32,
+  "pixel_pack_byte_cap": 1073741824,
+  "pixel_cache_byte_cap": 274877906944,
+  "metadata_byte_cap": 8388608,
+  "worker_artifact_byte_cap": {
+    "low_level_851": 134217728,
+    "supervised_resnet50_v1": 268435456,
+    "dino_resnet50": 268435456,
+    "clip_vit_b32_image": 134217728,
+    "blip_caption_clip_text": 134217728,
+    "dinov2_vit_b14": 134217728
+  },
+  "assembled_byte_cap": 2147483648,
+  "run_artifact_byte_cap": 8589934592,
+  "rss_bytes": 6979321856,
+  "slurm_memory_mib": 7168,
+  "builder_max_seconds": 21600,
+  "worker_max_seconds": {
+    "low_level_851": 7200,
+    "supervised_resnet50_v1": 7200,
+    "dino_resnet50": 7200,
+    "clip_vit_b32_image": 7200,
+    "blip_caption_clip_text": 14400,
+    "dinov2_vit_b14": 7200
+  },
+  "assembly_max_seconds": 3600,
+  "max_parallel_tasks": 22,
+  "run_cpu_hour_cap": 91,
+  "not_after_unix": 1791927000,
+  "not_after_utc": "2026-10-13T21:30:00Z",
+  "submission_groups": {
+    "fast": {"array": "0-5,22-25%6", "time": "02:00:00", "maximum_concurrent_tasks": 6},
+    "blip": {"array": "6-21%16", "time": "04:00:00", "maximum_concurrent_tasks": 16},
+    "builder": {"time": "06:00:00"},
+    "assembly": {"time": "01:00:00"}
+  },
+  "reservation_accounting": "One CPU per job: builder6h +10fast tasks*2h +16BLIP tasks*4h +assembly1h =91CPUh, including all startup/validation and any explicitly integrated660s companion inside the builder parent. No additional companion reservation.",
+  "storage_accounting": "Task/assembly/metadata reservations total5.5078125GiB; the8GiB run allowance retains operational and failure-marker headroom. Each full-inventory2048-D ResNet matrix alone is183894016bytes, so its task allowance is256MiB. Pixel cache is separate and restricted temporary research data.",
+  "pilot_evidence": "outputs/runs/feature_preparation/image_feature_pilot_47547023_repair001/image_feature_pilot_report.json",
+  "validation_reused": "All three full-runner tests passed in parent47547023 after the ownership repair; no test rerun is selected by this production wrapper.",
+  "separation": "procedural_same_account_not_OS_isolation",
+  "EEG_or_audit_access": false,
+  "automatic_retry_or_requeue": false,
+  "pixel_cleanup": "No automatic deletion. After all image features are verified, the coordinator records a separate decision about removing this generated temporary pixel cache; source inputs and historical artifacts remain preserved."
+}

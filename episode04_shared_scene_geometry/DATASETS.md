@@ -2,9 +2,16 @@
 
 ## Status and known source
 
-This contract does not assert that absent data have been acquired. The intended
-source is the LAION-fMRI release. Before scoring, the episode must identify a
-read-only release and its scientific joins rather than read mutable run outputs.
+The LAION-fMRI development source was qualified and the complete fixed panel
+finished with `closed_no_candidate` at October 6, 01:21 UTC. All 23,560
+development images have complete finite 3,150-coordinate low-level controls;
+the 400 observed comparisons, required sensitivities, encoding diagnostics and
+full null panel were admitted. See the [source handoff and completed evidence](outputs/source_handoff.md#completed-development-evidence--october-6-2026)
+and [terminal decision](outputs/experiment_log.md#2026-10-06-0121-utc--candidate_decision--closed_no_candidate-reporting-complete).
+No model met the registered selection criteria, so no configuration lock or
+OOD audit follows. The source specifications below preserve the fixed data
+roles and historical qualification requirements; they are not outstanding
+requests to restart the completed development branch.
 
 Reported source-release structure:
 
@@ -19,8 +26,10 @@ Reported source-release structure:
 - subject-unique images span reported LAION-natural, THINGS, and THINGSplus
   sources, while the shared pool also contains NSD-origin images.
 
-Verify counts, identifiers, access terms, missing trials, and exact usable rows
-from the identified release. Planning counts are not observed data.
+The completed source records distinguish reported whole-release counts from
+qualified development support: 23,560 images, 94,216 presentations and 14,285
+frozen grouping units. The metadata preserve 23,536 four-repeat and 24
+three-repeat images separately from intended four-repeat coverage.
 
 ### Physical-location record
 
@@ -39,12 +48,24 @@ through the root
   candidate after durable-destination verification, not a migration
   destination.
 
-The steward source has been relocated, but no source has been provisioned into
-this episode. These location records are inventory pointers, not role-filtered
-handoffs, scientific qualification, or permission to inspect neural or
-stimulus outcomes.
+The location record alone does not authorize source access. Subsequent
+episode-local selected-development handoffs and their qualification evidence
+are linked in [source_handoff.md](outputs/source_handoff.md); the mixed sources,
+regular-shared responses and OOD outcomes do not become evaluator inputs.
 
 ## Evidence exposure status
+
+### Public online resources — checked October 6, 2026
+
+- [Provider access documentation](https://laion-fmri.hebartlab.com/data_access.html): fMRI, derivatives, metadata, captions, embeddings and segmentations are public CC0 assets with anonymous access. The packed raw-image HDF5 is a separate DUA-controlled asset. EP04 already has its accepted DUA and selected development handoffs; this is no new acceptance or download request.
+- [Provider stimulus derivatives](https://laion-fmri.hebartlab.com/stimulus_derivatives.html): documents four float16 embedding arrays with common `image_ids` and `valid` fields, 1,024 coordinates for CLIP/DINOv2/PEcore and 1,152 for SigLIP2. It reports three human captions per unique image, but object masks only for the 1,492 shared images. Caption availability is therefore distinct from absent unique-image segmentation coverage. The page also flags the September 28 transparency correction for 116 OOD images; existing local development arrays remain bound, and any later OOD use needs the correct version rather than an unrecorded refresh.
+- [Provider GLMsingle documentation](https://laion-fmri.hebartlab.com/glmsingle_betas.html): public TYPED-only native-T1w beta, trial-mapping, sidecar and noise-ceiling specifications. Each trial TSV row aligns with one beta volume/column. Its current prose still describes `beta_index` as session-wide; the earlier local source diagnosis found run-local resets. Preserve original row position as the session beta-axis coordinate, as documented in the existing source handoff, rather than replacing that qualified join with web prose.
+
+These resources supply usable documentation and public assets, but do not
+establish local optional-caption coverage, OOD exposure/reader isolation or an
+independent participant cohort. No image, beta, caption-content or embedding
+payload was opened in this lookup. The completed `closed_no_candidate`
+disposition and its data roles are unchanged.
 
 | Slice | Current role | Exposure statement |
 | --- | --- | --- |
@@ -123,6 +144,19 @@ are not required. If a proposed extension requires raw images or a new
 detector, stop until the separate DUA and model/version are approved and freeze
 a revised policy before neural scoring.
 
+On 2026-10-05 the scientist approved the exact
+[RGB block-moment control](outputs/low_level_control_proposal.md), using the
+already accepted September 22 LAION-fMRI raw-image acquisition. The authorized
+reader joins frozen `20261003-metadata_folds04` identities to the source CSV
+before reading only the selected HDF5 image elements: first the fixed 60-image
+representative, then all 23,560 unique development images. The grids are
+5/10/20, with fixed mean/population-SD scaling, 3,150 float64 coordinates and
+Euclidean nuisance geometry. Shared and OOD images remain excluded. This
+approval preceded extraction. Complete finite coverage for all 23,560 images
+was subsequently established by job 46674207, as recorded in the
+[October 5 completion](outputs/experiment_log.md#2026-10-05-2331-utc--full-low-level-coverage-complete-observed-panel-running),
+and admitted by the final fixed-panel decision.
+
 ## Development and selection firewall
 
 - Compare the fixed panel only on subject-unique response outcomes with
@@ -180,22 +214,23 @@ leave-one-participant-out gain to remain positive after within-category control
 for the low-level RDM. Missing pre-open coverage makes the audit technically
 unevaluable.
 
-## Missing assets and blockers
+## Remaining scope after development closure
 
-- No immutable fixed-panel LAION-fMRI input pack is yet bound here.
-- A complete exposure audit is required to establish whether all 371 OOD
-  responses remain sealed; this contract does not assume that conclusion.
-- The exact subject-unique eligible images, folds, missing trials, ROI coverage,
-  released model versions, and legal-use clearance must be established.
-- Subject-unique VLM, DINOv2, and low-level feature coverage has not been
-  verified and blocks primary neural scoring. Caption/object coverage remains
-  unresolved but blocks only the corresponding secondary anchor.
-- The packed stimulus-image DUA is unresolved for any raw-image-dependent
-  extension; such extensions remain excluded by default.
-- No new independent participant or compatible dataset has been acquired.
-- The scoring code has not yet been shown to implement the frozen comparison
-  policy; this blocks candidate scoring and audit opening, not explicit task
-  startup.
+Development identities, folds, selected beta/ROI handoffs, all four native
+embedding arrays, the approved low-level control and required computation
+were sufficient for the admitted terminal decision. They are no longer
+missing-development blockers. Subject-unique object masks are absent from
+the release and the optional object anchor was not supplied; optional anchors
+do not rescue or reopen the native-panel result.
+
+OOD exposure/permission separation, its corrected embedding-version binding
+and complete feature coverage were not established by development. They remain
+conditional audit requirements, but no audit is activated after
+`closed_no_candidate`. The accepted DUA and October 5 approval cover only the
+specified unique-development RGB control; other raw-image extensions remain
+outside that scope. No new independent participant or compatible dataset was
+acquired. A negative candidate decision is not a missing-information request
+or evidence that every possible VLM lacks an advantage.
 
 ## Storage boundary
 

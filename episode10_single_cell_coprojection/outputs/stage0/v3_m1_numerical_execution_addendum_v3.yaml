@@ -1,0 +1,147 @@
+schema_version: episode10_v3_m1_numerical_execution_addendum_v3
+episode_id: ep10
+recorded_date: "2026-09-28"
+status: frozen_before_single_thread_qualification_and_clean_production
+analysis_label: exploratory
+scientific_authority: false
+
+authority:
+  base_contract:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_model_contract.yaml
+    required_schema_version: episode10_v3_m1_model_v1
+  stable_line_solver_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_solver_addendum_v1.yaml
+    required_schema_version: episode10_v3_m1_solver_addendum_v1
+  confirmation_solver_addendum:
+    exact_stage0_relative_path: outputs/stage0/v3_m1_solver_addendum_v2.yaml
+    required_schema_version: episode10_v3_m1_solver_addendum_v2
+  relationship: >-
+    The model contract and both solver addenda remain authoritative. This
+    addendum changes only the prospective numerical-library execution mode for
+    M1 qualification and production; it does not amend the optimizer.
+
+trigger:
+  failed_production_job: "45609750"
+  failed_training_set: leave_two__221418__221588
+  failed_lambda: 1000.0
+  failed_phase: forced_post_witness_confirmation
+  four_thread_original_backend_diagnostic_job: "45619301"
+  four_thread_result: >-
+    Both independent AMD-7502/OpenBLAS-Zen four-thread repetitions failed at
+    lambda 1000 when the stable direct directional derivative rounded to exact
+    zero after the ordinary convergence witness.
+  four_thread_gradient_infinity_norm: 6.661338147750939e-16
+  four_thread_certificate_gradient_predicate_pass: true
+  four_thread_certificate_relative_gap_predicate_pass: true
+  four_thread_certificate_failure_eligible: false
+  single_thread_diagnostic_job: "45620682"
+  single_thread_result: >-
+    Both independent AMD-7502/OpenBLAS-Zen one-thread warm paths completed all
+    12 lambdas; all 12 repeat objective, coefficient, and candidate-probability
+    differences were exactly zero.
+  single_thread_completed_fits: 24
+  single_thread_repeat_objective_maximum_absolute_difference: 0.0
+  single_thread_repeat_coefficient_maximum_absolute_difference: 0.0
+  single_thread_repeat_probability_maximum_absolute_difference: 0.0
+  access_witness:
+    development_membership_opened: true_diagnostic_only
+    M0_prediction_or_fit_artifact_opened: false
+    final_or_unassigned_or_SWC_opened: false
+
+sole_execution_change:
+  scope: every_M1_qualification_and_production_optimizer_or_evaluator_call
+  scheduler_constraint: "CPU_SKU:7502"
+  requested_cpus_per_task: 1
+  numerical_thread_environment:
+    OMP_NUM_THREADS: 1
+    OPENBLAS_NUM_THREADS: 1
+    MKL_NUM_THREADS: 1
+    NUMEXPR_NUM_THREADS: 1
+  effective_OpenBLAS_threads_required: 1
+  dispatched_OpenBLAS_core_required: Zen
+  dispatched_CPU_model_must_contain: AMD EPYC 7502
+  inherited_OPENBLAS_CORETYPE_override: forbidden
+  inherited_NumPy_CPU_feature_override: forbidden
+  rounded_Slurm_CPU_allocation: recorded_as_telemetry_not_a_numerical_thread_source
+  changes_model_estimand_objective_gradient_or_Hessian: false
+  changes_Newton_direction_formula_or_factorization: false
+  changes_Wolfe_constants_steps_caps_or_inequalities: false
+  changes_convergence_or_certificate_thresholds: false
+  changes_lambda_grid_initialization_fold_order_or_selection_rule: false
+  adds_retry_acceptance_slack_tie_rule_or_fallback: false
+
+unchanged:
+  - exact fixed-K conditional set-softmax model and exhaustive normalization
+  - stable line-objective and direct-derivative implementation from solver addendum v1
+  - one-shot post-witness confirmation rule from solver addendum v2
+  - exact-Hessian Newton solve and strong-Wolfe line search
+  - gradient infinity tolerance of 1e-7
+  - relative objective tolerance of 1e-10
+  - finite-stall certificate eligibility and both certificate predicates
+  - 12-lambda descending grid and all-zero then within-path warm initialization
+  - 12-outer and 11-inner LOGO folds and largest-lambda one-SE selection
+  - all warm-repeat, warm-versus-zero, and boundary-review thresholds
+  - all target, M0-artifact, SWC, final, and unassigned access boundaries
+
+checkpoint_policy:
+  four_thread_job_45609750_checkpoints_reusable: false
+  reason: >-
+    Numerical thread count changes binary64 evaluation. Mixing the 53
+    four-thread checkpoints with one-thread fits is forbidden.
+  clean_job_id_and_output_root_required: true
+  copy_link_or_read_old_checkpoint_coefficients: forbidden
+
+required_qualification:
+  data: deterministic_synthetic_only
+  scheduler_constraint: "CPU_SKU:7502"
+  effective_OpenBLAS_threads: 1
+  seed: 20260928
+  rows: 68
+  groups: 4_equal_groups_of_17_rows
+  phase_order: [warm_repeat1, warm_repeat2, zero]
+  lambdas: all_12_frozen_values
+  required_fits: 36
+  repeat_objective_absolute_tolerance: 1.0e-12
+  repeat_coefficient_max_absolute_tolerance: 1.0e-10
+  repeat_probability_max_absolute_tolerance: 1.0e-10
+  zero_start_objective_absolute_tolerance: >-
+    max(1e-10, 1.1 * 261 * 1e-7^2 / (2 * lambda))
+  zero_start_probability_max_absolute_tolerance: 1.0e-5
+  zero_start_log_probability_max_absolute_tolerance: 1.0e-4
+  every_fit_must_meet_the_frozen_convergence_witness: true
+  real_target_calls_or_real_K_or_membership_opened: false
+  M0_prediction_or_fit_artifact_opened: false
+  final_or_unassigned_or_SWC_opened: false
+  pass_authorizes_only: clean_single_thread_development_M1_production_fit
+  failure_action: >-
+    Stop before production and review scalar failure context; do not retry with
+    a different CPU family, thread count, tolerance, or solver rule.
+
+resource_reconciliation:
+  authorization_basis: frozen_conservative_path_equivalents
+  conservative_path_equivalents: 157
+  actual_executed_path_equivalents_with_exact_fold_reuse: 91
+  one_thread_measurement_job: "45620682"
+  measured_seconds_per_path_equivalent_including_diagnostic_overhead: 105.0
+  projected_seconds_for_157_path_equivalents: 16485.0
+  frozen_eight_hour_request_80_percent_seconds: 23040.0
+  projected_time_below_80_percent_of_request: true
+  minimum_time_and_memory_headroom_fraction: 0.25
+
+production_boundary:
+  scheduler_constraint: "CPU_SKU:7502"
+  requested_wall_time: "08:00:00"
+  requested_cpus_per_task: 1
+  requested_memory: 16G
+  effective_OpenBLAS_threads: 1
+  backend_attestation_before_membership_access: required
+  new_Slurm_job_id_and_clean_job_scoped_output_root: required
+  M0_opening_before_complete_M1_outer_predictions_and_full_refit: forbidden
+  final_or_unassigned_or_SWC_access: forbidden
+
+implementation_boundary:
+  M1_engine_or_solver_modified_by_this_addendum: false
+  qualification_launcher_modified_by_this_addendum: false
+  production_launcher_modified_by_this_addendum: false
+  Slurm_job_submitted_by_this_addendum: false
+  next_qualification_output_basename: v3_m1_synthetic_warm_zero_diagnostic_v2_job_JOBID

@@ -1,0 +1,40 @@
+{
+  "schema_version": "ep21.content_cuda_measurement.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0406-pacific--content_resource_measurement--cuda-stripe-completed-cached-cuda-measurement-selected",
+  "operation": "measure_content_pair_cuda_cached_four_updates",
+  "jobs": 1,
+  "partition": "gpu",
+  "source": "sub-03",
+  "target": "sub-01",
+  "updates": 4,
+  "block_units": 256,
+  "row_chunk_size": 512,
+  "backend": "sparse",
+  "device": "cuda:0",
+  "feature_read_mode": "bounded_channel_two_pass_cache",
+  "maximum_channel_bytes": 1073741824,
+  "maximum_retained_bytes": 4294967296,
+  "automatic_retry": false,
+  "production_training": false,
+  "model_publication": false,
+  "amp": false,
+  "tf32": false,
+  "correction_report": "outputs/pipeline_conformance/converter_loss_correction_001/report.json",
+  "resources": {
+    "cpus": 2, "memory_gib": 16, "minutes": 120, "gpus": 1,
+    "deadline_seconds": 6300, "rss_limit_bytes": 16106127360,
+    "minimum_device_bytes": 23622320128, "gpu_memory_limit_bytes": 21474836480,
+    "durable_bytes": 33554432, "scratch_bytes": 268435456
+  },
+  "input_scope": {
+    "normalization_participants": ["sub-01", "sub-03", "sub-05", "sub-06", "sub-07"],
+    "source_training": "sub-03", "target_decoder": "sub-01", "source_features": "sub-03",
+    "target_response_matrix": false, "tau": false, "OOD": false
+  },
+  "purpose": "Measure four unchanged full empirical CUDA converter updates using an exact selected-channel reader and retained normalization-to-gradient blocks; all 4712 source rows, 19 layers, canonical pair4 initialization/channel schedule and sparse float32 Adam/LR arithmetic retained. No saved model, scientific score or production continuation.",
+  "deadline": "Absolute minimum of actual Slurm StartTime plus 6300 seconds and EndTime minus 60 seconds, including every serialized check; fresh process admission cannot reset it.",
+  "accounting": "Standing scientist continuation and increased-compute authority; reserve at most 4 allocated CPU-hours plus 2 GPU-hours once for this one parent, including serialized checks. Preserve all consumed prior grants and attempts. No automatic retry, extension or successor.",
+  "companions": "Four changed reader/provider/driver integration methods, three changed CUDA admission methods, one unchanged CUDA numerical fixture on the newly assigned hardware, and changed ASTRA validation. Reuse the three unchanged standalone cache methods passed under job47367352. No independent empirical companions.",
+  "limitations": "1GiB channel/packed-flag and 4GiB retained-block caps do not bound all process memory; 15GiB host RSS remains separate. The 20GiB Torch allocator cap is not total physical GPU memory. Four disposable updates do not qualify all1024 production updates. One numerical thread, no AMP/TF32, no tau/OOD or target response access. GPU_MEM constraints use discovered24/32/48/80GB features and actual device memory must be at least22GiB."
+}

@@ -425,13 +425,19 @@ claims, which a positive result does not establish:
 
 ## Current status
 
-The data sources are identified, but no EP19 signal analysis has started and no
-held-out result has been examined. Before scoring, the study still needs
+The twelve-person S1 peripheral-support panel is complete, with five
+participants unresolved under the unchanged conditional rule. The finite
+model/fold definitions and passing classical/non-neural backend checks are
+implementation preparation. No EEG forecast or held-out result has been
+evaluated. Before scoring, the study still needs
 source-specific timing and onset checks, separated development and held-out
 data views, validation/freezing of the selected component/calibration procedures,
 all numeric margins, the development false-alarm ceiling and warning rule,
-the executable five-family, four-condition factorial panel and mutation tests,
-the finite model-search ranges, and synthetic tests of past-only information flow.
+the complete executable five-family, four-condition factorial panel and
+mutation tests, and qualification of past-only information flow. The public
+timing conventions do not resolve the original export clock or physical units;
+[current data readiness](DATASETS.md#current-readiness) separates those gaps
+from the completed support and backend work.
 
 Dataset details are in [DATASETS.md](DATASETS.md). Compact methods and budgets
 are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed paper story is in

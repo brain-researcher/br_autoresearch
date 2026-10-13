@@ -1,5 +1,14 @@
 # What Makes a Neuroanatomical Age Representation Transfer?
 
+The original reference and adopted diagnostic/bilateral comparisons are
+complete. The [current evidence synthesis](outputs/paper_plan.md#completed-empirical-evidence--reconciled-october-6)
+records the original no-candidate result, the limits of age-covariance
+protection, and the tradeoff between improved equal-domain accuracy and worse
+participant/older-age accuracy under stronger ridge regularization. No
+additional anatomical benefit is established, and public validation remains
+closed. The broader question below remains open; completed scope does not
+authorize an automatic successor.
+
 ## The question in plain language
 
 The same FreeSurfer measurements can be represented as individual ROIs,
@@ -76,6 +85,12 @@ anatomical mappings; no connectivity or physical surface scales are inferred.
 
 ## Research design and the operative reference
 
+The October 6 continued-work request adopts the bounded exposed-development
+[bilateral regularization comparison](outputs/representation_research_design.md#october-6-adopted-bounded-bilateral-comparison).
+Its explicit candidate ranges, matched controls and4CPU/16GiB/60-minute cap are
+separate from the original closed reference. Public validation and candidate
+promotion remain closed; no other proposed representation branch is activated.
+
 The existing executable contract remains the frozen R0--R3 reference below:
 Desikan, the common ridge procedure, external domain-macro MAE, the +0.01 linear-site
 guardrail, the -2% age margin, all controls, and the existing holdout rules are
@@ -89,6 +104,22 @@ to the fixed reference, not to what may be considered during design. No new
 analysis, holdout endpoint or ASTRA experiment is activated by this text.
 
 ## Optional site-information diagnostic
+
+The scientist's subsequent request to continue adopts the
+[cached heterogeneity and fixed linear-age-adjustment follow-ups](outputs/site_information_diagnostic_prior.md#adopted-continuation--projection-heterogeneity-and-age-adjusted-directions).
+These narrow development diagnostics retain the completed comparison and
+closed holdout. The linear adjustment is not guaranteed age protection and
+its ordinary site probe does not identify scanner-specific nuisance.
+The subsequent [exact fitting-covariance counterfactual](outputs/site_information_diagnostic_prior.md#adopted-final-counterfactual--exact-fitting-covariance-protection)
+directly tests that property using the original removal subspace and one
+within-site shuffled-age control, within the same shared execution bound.
+
+October 4 continuation: the scientist adopted the narrow development-only
+discarded-score utility and matched-geometry comparison in the
+[diagnostic specification](outputs/site_information_diagnostic_prior.md#adopted-development-diagnostic--october-4-2026).
+This explicit amendment supersedes the earlier unactivated status for that
+subset only. It preserves the completed fixed reference, broader search
+boundary and closed holdout. The conditional-site probe is not activated.
 
 The earlier [discarded-direction plan](outputs/site_information_diagnostic_prior.md)
 is retained as an optional, unactivated branch. It can diagnose a projection

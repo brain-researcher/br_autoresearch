@@ -1,0 +1,33 @@
+{
+  "schema_version": "ep12.operator_exposure_incident.v1",
+  "episode_id": "ep12",
+  "episode_root": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency",
+  "observed_at": "2026-09-26T06:12:01-0700",
+  "actor": "codex_root_agent",
+  "access_class": "accidental_terminal_tool_output",
+  "intended_purpose": "search_executor_and_cost_metadata_for_resource_planning_terms",
+  "cause": "the_read_only_grep_scope_incorrectly_included_outputs_development_run002",
+  "displayed_content_classes": [
+    "development_provider_type_identifiers",
+    "development_model_scores",
+    "development_directional_deltas",
+    "development_source_fit_metadata"
+  ],
+  "displayed_path_patterns": [
+    "outputs/development_run002/observed/*/result_table.csv",
+    "outputs/development_run002/observed/*/type_direction_receipts.jsonl"
+  ],
+  "development_connectivity_outcome_values_displayed": true,
+  "development_connectivity_outcome_values_intentionally_requested": false,
+  "development_connectivity_outcome_values_analyzed": false,
+  "development_connectivity_outcome_values_used_for_scientific_decisions": false,
+  "scientific_contract_or_threshold_changed_after_display": false,
+  "final_connectivity_accessed": false,
+  "remediation": [
+    "do_not_search_or_print_development_result_files",
+    "use_allowlisted_status_hash_and_resource_metadata_readers_only",
+    "bind_this_incident_into_the_post36_transition_limitation_evidence",
+    "do_not_claim_global_operator_outcome_blindness"
+  ],
+  "incident_sha256": "37f5bdfcbecd8c522e994473522502ca708e9afd057f9e7629b6408e5c1c1618"
+}

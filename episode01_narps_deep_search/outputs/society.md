@@ -37,3 +37,7 @@
 - A Society decision is not scientist reward, protected-outcome access,
   execution, scientific acceptance, memory, ClaimCard, or Landscape
   transition.
+
+## 2026-10-02 local scope review
+
+Primary-source literature review informed introductory wording; this was not a Society call or verdict. The sources and remaining empirical objections are in [review (consolidated)](paper_plan.md).

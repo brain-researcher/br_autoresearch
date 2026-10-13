@@ -1,0 +1,406 @@
+{
+  "schema": "ep18_model_runtime_asset_map_v1",
+  "status": "public_assets_and_exact_CPU_runtime_qualified_all1854_label_features_complete_no_image_or_EEG_access_seal",
+  "registry": "outputs/config/feature_registry.json",
+  "metadata_checked_utc_date": "2026-10-05",
+  "scope": "Only selected public model assets and runtime loading; no images, EEG, concepts, inference, audit seal, or frozen feature record.",
+  "asset_root": "outputs/cache/model_assets",
+  "scratch_alternative": "$SCRATCH/br_autoresearch/episode18_things_eeg_concept_stability/model_assets (explicit coordinator path substitution; never the only durable copy)",
+  "transfer": "Coordinator-selected one-CPU Slurm compute acquires the exact listed public HTTPS files within1800seconds, preserving names/revision directories and partial failures without retries. Existing offline loader verifies bytes/source checksums before loading. No DTN login, credentials, implicit HF downloads or sibling feature caches. Sherlock DTN accepts externally initiated transfers only; the old interactive-DTN handoff was invalid.",
+  "selected_private_CPU_route": {
+    "selected_under": "Standing scientist resume/repair instruction; coordinator selected a mechanical route preserving exact model/runtime versions and all reader boundaries.",
+    "setup": "outputs/code/prepare_exact_cpu_runtime.sh",
+    "requirements": "outputs/config/cpu_runtime_requirements.txt",
+    "wrapper": "outputs/code/provision_exact_cpu_runtime_001.sbatch",
+    "environment": "$GROUP_HOME/users/zijiao/ep18_model_runtime_cpu241_py312_${SLURM_JOB_ID}; fresh only, preserve prior environment",
+    "official_torch_source": "https://pytorch.org/get-started/previous-versions/#v241",
+    "torch_index": "https://download.pytorch.org/whl/cpu",
+    "other_package_index": "https://pypi.org/simple",
+    "selected_torch_distribution": "2.4.1+cpu",
+    "selected_torchvision_distribution": "0.19.1+cpu",
+    "resources": {
+      "cpus": 1,
+      "memory_gib": 7,
+      "slurm_minutes": 120,
+      "gpus": 0
+    },
+    "phase_seconds": {
+      "setup": 2400,
+      "public_asset_transfer": 1800,
+      "offline_loader": 1200
+    },
+    "limits": "No source build, automatic retry, alpha module import, credential request, namespace attempt, image/EEG access, inference or text pilot. Local compatibility and7GiB sufficiency remain unmeasured until execution."
+  },
+  "runtime_proposal": {
+    "historical_module_route": "The fields below preserve the stopped October5 module-based route; selected_private_CPU_route above records the current separate preparation.",
+    "selected_versions": {
+      "python": "3.12.1",
+      "torch": "2.4.1",
+      "torchvision": "0.19.1",
+      "transformers": "4.46.3",
+      "Pillow": "10.2.0",
+      "numpy": "1.26.3",
+      "scipy": "1.12.0",
+      "scikit-image": "0.24.0"
+    },
+    "discovered_modules": [
+      "py-pytorch/2.4.1_py312",
+      "py-torchvision/0.19.1_py312",
+      "py-safetensors/0.4.2_py312",
+      "py-scikit-image/0.24.0_py312",
+      "py-pillow/10.2.0_py312"
+    ],
+    "missing_selected_module": "transformers4.46.3; only4.39.1_py312 and4.57.3_py314 advertised",
+    "incompatible_py312_dependencies": {
+      "tokenizers": "module0.15.2; required>=0.20,<0.21",
+      "huggingface-hub": "module0.22.1; required>=0.23.2,<1.0"
+    },
+    "dependency_source": "https://raw.githubusercontent.com/huggingface/transformers/v4.46.3/src/transformers/dependency_versions_table.py",
+    "environment_path_proposal": "$GROUP_HOME/users/zijiao/ep18_model_runtime_py312 (created in coordinator allocation46624388; preserved but unqualified)",
+    "environment_action": "STOPPED: selected shared PyTorch/torchvision module imports do not match frozen release versions. Preserve the existing venv and seven installed added packages; no shared-module probe, repair, alpha-as-release relabeling or automatic rerun. The separate selected_private_CPU_route creates a fresh environment without these modules.",
+    "runtime_qualified": false,
+    "installed_added_packages": [
+      "transformers4.46.3",
+      "tokenizers0.20.3",
+      "huggingface-hub0.26.2",
+      "ftfy6.3.1",
+      "wcwidth0.2.13",
+      "tqdm4.66.5",
+      "regex2024.7.24"
+    ],
+    "stopped_route_evidence": {
+      "job_id": "46624388",
+      "repair_log": "outputs/runs/feature_preparation/20261005-runtime-regex-repair-46624388/repair.txt",
+      "observed_versions_record": "outputs/runs/feature_preparation/20261005-runtime-regex-repair-46624388/observed_module_versions.json",
+      "torch": {
+        "selected": "2.4.1",
+        "observed": "2.4.0a0",
+        "path": "/share/software/user/open/py-pytorch/2.4.1_py312/lib/python3.12/site-packages/torch/__init__.py"
+      },
+      "torchvision": {
+        "selected": "0.19.1",
+        "observed": "0.19.1a0",
+        "path": "/share/software/user/open/py-torchvision/0.19.1_py312/lib/python3.12/site-packages/torchvision/__init__.py"
+      },
+      "matching_imports": {
+        "transformers": "4.46.3",
+        "Pillow": "10.2.0",
+        "numpy": "1.26.3",
+        "scipy": "1.12.0",
+        "scikit-image": "0.24.0"
+      },
+      "regex_correction": {
+        "distribution": "2024.7.24",
+        "module_internal_version": "2.5.146",
+        "path": "/home/groups/russpold/users/zijiao/ep18_model_runtime_py312/lib/python3.12/site-packages/regex/__init__.py",
+        "distribution_metadata_qualified": true
+      },
+      "model_assets_loaded": false,
+      "inference_performed": false
+    },
+    "pillow_order": "Load plain py-pillow/10.2.0_py312 last, ahead of torchvision/scikit-image Pillow-SIMD dependencies; qualification checks imported implementation.",
+    "clip_optional_text_cleaner": "Coordinator selected ftfy6.3.1 + wcwidth0.2.13 prospectively before inference, for both concept and caption text. Reject BasicTokenizer fallback.",
+    "loader_resources_proposed": {
+      "cpus": 1,
+      "memory_gib": 8,
+      "slurm_minutes": 30,
+      "whole_process_seconds": 1200,
+      "gpus": 0,
+      "estimate_measured": false
+    },
+    "text_followup": "After successful asset/runtime loading, run only the first64 uniqueID-sorted existing name prompts as the separate text-only cost pilot. All1854 require measured feasibility and coordinator release. No image or EEG worker is released by this loader.",
+    "clip_cleaner_source": "https://raw.githubusercontent.com/openai/CLIP/main/requirements.txt",
+    "stopped_module_command_not_for_execution": "ml devel math viz python/3.12.1 py-torchvision/0.19.1_py312 py-scikit-image/0.24.0_py312 py-safetensors/0.4.2_py312\nml py-pillow/10.2.0_py312",
+    "regex_module_removed": "Do not load py-regex/20247.24_py312: project regex2024.7.24 now supplies both package and required distribution metadata. This does not resolve the separate stopped Torch/vision route.",
+    "existing_metadata_only_dependencies": {
+      "base_python": {
+        "packaging": "23.2"
+      },
+      "pytorch_module": {
+        "filelock": "3.16.1",
+        "fsspec": "2024.9.0",
+        "PyYAML": "6.0.2",
+        "requests": "2.32.3",
+        "typing_extensions": "4.12.2",
+        "charset-normalizer": "3.3.2",
+        "idna": "3.10",
+        "urllib3": "2.2.3",
+        "certifi": "2024.8.30"
+      },
+      "limits": "Read only named package METADATA within declared module paths; these are not successful import/runtime qualification claims."
+    },
+    "historical_environment_commands_not_for_rerun": [
+      "EP18_ENV=\"$GROUP_HOME/users/zijiao/ep18_model_runtime_py312\"",
+      "python3.12 -m venv --system-site-packages \"$EP18_ENV\"",
+      "EP18_WHEELHOUSE=\"$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/cache/model_runtime_wheels\"",
+      "\"$EP18_ENV/bin/python\" -m pip install --no-index --no-deps --find-links \"$EP18_WHEELHOUSE\" transformers==4.46.3 tokenizers==0.20.3 huggingface-hub==0.26.2 ftfy==6.3.1 wcwidth==0.2.13 tqdm==4.66.5",
+      "Historical initial six-wheel setup only. The existing environment now also contains the separately installed regex2024.7.24 wheel. Preserve it; the shared Torch/vision runtime route is stopped."
+    ],
+    "additional_wheels": [
+      {
+        "filename": "transformers-4.46.3-py3-none-any.whl",
+        "bytes": 10034536,
+        "sha256": "a12ef6f52841fd190a3e5602145b542d03507222f2c64ebb7ee92e8788093aef",
+        "url": "https://files.pythonhosted.org/packages/51/51/b87caa939fedf307496e4dbf412f4b909af3d9ca8b189fc3b65c1faa456f/transformers-4.46.3-py3-none-any.whl"
+      },
+      {
+        "filename": "tokenizers-0.20.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 2997679,
+        "sha256": "f2b7cb962564785a83dafbba0144ecb7f579f1d57d8c406cdaa7f32fe32f18ad",
+        "url": "https://files.pythonhosted.org/packages/9e/65/c83cb3545a65a9eaa2e13b22c93d5e00bd7624b354a44adbdc93d5d9bd91/tokenizers-0.20.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+      },
+      {
+        "filename": "huggingface_hub-0.26.2-py3-none-any.whl",
+        "bytes": 447536,
+        "sha256": "98c2a5a8e786c7b2cb6fdeb2740893cba4d53e312572ed3d8afafda65b128c46",
+        "url": "https://files.pythonhosted.org/packages/60/bf/cea0b9720c32fa01b0c4ec4b16b9f4ae34ca106b202ebbae9f03ab98cd8f/huggingface_hub-0.26.2-py3-none-any.whl"
+      },
+      {
+        "filename": "ftfy-6.3.1-py3-none-any.whl",
+        "bytes": 44821,
+        "sha256": "7c70eb532015cd2f9adb53f101fb6c7945988d023a085d127d1573dc49dd0083",
+        "url": "https://files.pythonhosted.org/packages/ab/6e/81d47999aebc1b155f81eca4477a616a70f238a2549848c38983f3c22a82/ftfy-6.3.1-py3-none-any.whl"
+      },
+      {
+        "filename": "wcwidth-0.2.13-py2.py3-none-any.whl",
+        "bytes": 34166,
+        "sha256": "3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859",
+        "url": "https://files.pythonhosted.org/packages/fd/84/fd2ba7aafacbad3c4201d395674fc6348826569da3c0937e75505ead3528/wcwidth-0.2.13-py2.py3-none-any.whl"
+      },
+      {
+        "filename": "tqdm-4.66.5-py3-none-any.whl",
+        "bytes": 78351,
+        "sha256": "90279a3770753eafc9194a0364852159802111925aa30eb3f9d85b0e805ac7cd",
+        "url": "https://files.pythonhosted.org/packages/48/5d/acf5905c36149bbaec41ccf7f2b68814647347b72075ac0b1fe3022fdc73/tqdm-4.66.5-py3-none-any.whl"
+      },
+      {
+        "filename": "regex-2024.7.24-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 790854,
+        "sha256": "d55588cba7553f0b6ec33130bc3e114b355570b45785cebdc9daed8c637dd440",
+        "source_page": "https://pypi.org/project/regex/2024.7.24/",
+        "acquisition_status": "Installed separately by coordinator in allocation46624388; package and distribution metadata qualified."
+      }
+    ],
+    "additional_wheel_bytes": 14427943
+  },
+  "assets": {
+    "supervised_resnet50_v1": {
+      "kind": "checkpoint",
+      "local_path": "resnet50/resnet50-0676ba61.pth",
+      "terms": "Torchvision code BSD-3-Clause; weights/training-data notice remains separate as frozen registry states.",
+      "files": [
+        {
+          "name": "resnet50-0676ba61.pth",
+          "bytes": 102530333,
+          "url": "https://download.pytorch.org/models/resnet50-0676ba61.pth",
+          "sha256_prefix": "0676ba61",
+          "head_version_id": "dt9fchIIxVq2g10OsAubEbm8XK0.BWy0",
+          "head_etag": "6cecaa697be829768858526333fd5179-6"
+        }
+      ]
+    },
+    "dino_resnet50": {
+      "kind": "checkpoint",
+      "local_path": "dino_resnet50/dino_resnet50_pretrain.pth",
+      "terms": "DINO code Apache-2.0; preserve checkpoint/training-data notice separately.",
+      "files": [
+        {
+          "name": "dino_resnet50_pretrain.pth",
+          "bytes": 94345885,
+          "url": "https://dl.fbaipublicfiles.com/dino/dino_resnet50_pretrain/dino_resnet50_pretrain.pth",
+          "source_metadata_md5": "1d3f7d6782498e28853351e21f493b68",
+          "head_version_id": "DNZyiGZtLVrrNzHuH2L7J_tjPiXEXQfh",
+          "head_etag": "41129206a3007f3003cec76467bce045-6"
+        }
+      ]
+    },
+    "clip": {
+      "kind": "huggingface_snapshot",
+      "model_id": "openai/clip-vit-base-patch32",
+      "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "local_path": "clip/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "metadata_url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32/revision/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268?blobs=true",
+      "terms": "OpenAI CLIP code MIT; pinned HF card has no separate weight-license field. Preserve research-use card and frozen registry distinction.",
+      "files": [
+        {
+          "name": "README.md",
+          "bytes": 7942,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/README.md",
+          "git_blob_sha1": "8522e1fe72cb2372ff825dad901ccd718ce45d6b"
+        },
+        {
+          "name": "config.json",
+          "bytes": 4186,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json",
+          "git_blob_sha1": "a2a88b96561196777ca173b15309ea859f4d2ce0"
+        },
+        {
+          "name": "merges.txt",
+          "bytes": 524657,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/merges.txt",
+          "git_blob_sha1": "bbfec752c9a675946c6dce106def6f35c882dcc2"
+        },
+        {
+          "name": "preprocessor_config.json",
+          "bytes": 316,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json",
+          "git_blob_sha1": "5a12a1eb250987a4eee0e3e7d7338c4b22724be1"
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 605247071,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/pytorch_model.bin",
+          "sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f"
+        },
+        {
+          "name": "special_tokens_map.json",
+          "bytes": 389,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/special_tokens_map.json",
+          "git_blob_sha1": "9bfb42aa97dcd61e89f279ccaee988bccb4fabae"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 2224041,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/tokenizer.json",
+          "git_blob_sha1": "564c0ebd5ce29c4ee4864004aee693deadd3128c"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 592,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/tokenizer_config.json",
+          "git_blob_sha1": "4fdaf6842dd5a725b940c92b6b692490ce59d548"
+        },
+        {
+          "name": "vocab.json",
+          "bytes": 862328,
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/vocab.json",
+          "git_blob_sha1": "182766ce89b439768edadda342519f33802f5364"
+        }
+      ]
+    },
+    "blip": {
+      "kind": "huggingface_snapshot",
+      "model_id": "Salesforce/blip-image-captioning-base",
+      "revision": "82a37760796d32b1411fe092ab5d4e227313294b",
+      "local_path": "blip/82a37760796d32b1411fe092ab5d4e227313294b",
+      "metadata_url": "https://huggingface.co/api/models/Salesforce/blip-image-captioning-base/revision/82a37760796d32b1411fe092ab5d4e227313294b?blobs=true",
+      "terms": "Pinned official model card BSD-3-Clause; CLIP caption embeddings retain separate CLIP terms.",
+      "files": [
+        {
+          "name": "README.md",
+          "bytes": 6359,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/README.md",
+          "git_blob_sha1": "64edbaf39fa2a02d2879a810bf4f9e8fd9b382c8"
+        },
+        {
+          "name": "config.json",
+          "bytes": 4563,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/config.json",
+          "git_blob_sha1": "097cf86f841795297c18434d5753a83bd0eecdb1"
+        },
+        {
+          "name": "preprocessor_config.json",
+          "bytes": 287,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/preprocessor_config.json",
+          "git_blob_sha1": "6573d0934c7c476133f6885e97be9f7e36d14bed"
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 989820849,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/pytorch_model.bin",
+          "sha256": "d6638651a5526cc2ede56f2b5104d6851b0755816d220e5e046870430180c767"
+        },
+        {
+          "name": "special_tokens_map.json",
+          "bytes": 125,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/special_tokens_map.json",
+          "git_blob_sha1": "a8b3208c2884c4efb86e49300fdd3dc877220cdf"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 711396,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/tokenizer.json",
+          "git_blob_sha1": "688882a79f44442ddc1f60d70334a7ff5df0fb47"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 506,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/tokenizer_config.json",
+          "git_blob_sha1": "c73526e58988f76f1e1f28995c79a41a09e4b1ab"
+        },
+        {
+          "name": "vocab.txt",
+          "bytes": 231508,
+          "url": "https://huggingface.co/Salesforce/blip-image-captioning-base/resolve/82a37760796d32b1411fe092ab5d4e227313294b/vocab.txt",
+          "git_blob_sha1": "fb140275c155a9c7c5a3b3e0e77a9e839594a938"
+        }
+      ]
+    },
+    "dinov2": {
+      "kind": "huggingface_snapshot",
+      "model_id": "facebook/dinov2-base",
+      "revision": "f9e44c814b77203eaa57a6bdbbd535f21ede1415",
+      "local_path": "dinov2/f9e44c814b77203eaa57a6bdbbd535f21ede1415",
+      "metadata_url": "https://huggingface.co/api/models/facebook/dinov2-base/revision/f9e44c814b77203eaa57a6bdbbd535f21ede1415?blobs=true",
+      "terms": "Pinned official model card Apache-2.0. Base model has native518 image/1370 positions; selected processor224 and interpolation yield256 patch slots plusCLS, not a native224 weight shape.",
+      "files": [
+        {
+          "name": "README.md",
+          "bytes": 3047,
+          "url": "https://huggingface.co/facebook/dinov2-base/resolve/f9e44c814b77203eaa57a6bdbbd535f21ede1415/README.md",
+          "git_blob_sha1": "d3184b255c704e4613cd9bbb11ea4127b810e264"
+        },
+        {
+          "name": "config.json",
+          "bytes": 548,
+          "url": "https://huggingface.co/facebook/dinov2-base/resolve/f9e44c814b77203eaa57a6bdbbd535f21ede1415/config.json",
+          "git_blob_sha1": "5df0129f878aa42d71fa74d27a50f382d13ed71e"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 346345912,
+          "url": "https://huggingface.co/facebook/dinov2-base/resolve/f9e44c814b77203eaa57a6bdbbd535f21ede1415/model.safetensors",
+          "sha256": "d73036b56966966d07975d696bde331762f37297e2f095de8cea0040c3aa0841"
+        },
+        {
+          "name": "preprocessor_config.json",
+          "bytes": 436,
+          "url": "https://huggingface.co/facebook/dinov2-base/resolve/f9e44c814b77203eaa57a6bdbbd535f21ede1415/preprocessor_config.json",
+          "git_blob_sha1": "ff5b47c2edcd1d3556d63c01a65d93b58b9efce1"
+        }
+      ]
+    }
+  },
+  "total_selected_file_bytes": 2142873276,
+  "transfer_command_in_authenticated_DTN_shell": "cd \"$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability\"\npython3 outputs/code/acquire_model_assets.py --asset-map outputs/config/model_runtime_asset_map_proposal.json --max-seconds 1800",
+  "transfer_state": "Historical DTN proposal above was not executable: Sherlock DTN provides no interactive shell. All five selected public assets were subsequently acquired through bounded public HTTPS in compute job 46842156 and verified offline. No authentication workaround or credential retry was used.",
+  "current_qualified_runtime": {
+    "job_id": "46842156",
+    "environment_path": "/home/groups/russpold/users/zijiao/ep18_model_runtime_cpu241_py312_46842156",
+    "runtime_versions_record": "outputs/runs/feature_preparation/exact_cpu_provision_46842156/runtime_environment.json",
+    "model_qualification_record": "outputs/runs/feature_preparation/exact_cpu_provision_46842156/model_runtime/model_runtime_qualification.json",
+    "all_five_assets_integrity_verified": true,
+    "all_six_routes_loaded": true,
+    "forward_passes": 0,
+    "image_or_EEG_or_concept_data_read": false,
+    "audit_seal_verified": false,
+    "image_worker_boundary_verified": false,
+    "actual_allocated_CPU_seconds": 347,
+    "historical_runtime_proposal_preserved": true
+  },
+  "completed_label_features": {
+    "job_id": "46843116",
+    "report": "outputs/runs/feature_preparation/all_name_text_46843116/label_feature_report.json",
+    "completed_concepts": 1854,
+    "feature_shape": [1854, 512],
+    "feature_dtype": "float32",
+    "elapsed_seconds": 169.4548144149594,
+    "max_rss_kib": 609144,
+    "truncated_concepts": 0,
+    "provider_Word_fallbacks": 0,
+    "image_pixels_or_private_routing_or_events_or_EEG_read": false,
+    "audit_seal_verified": false,
+    "image_worker_boundary_verified": false,
+    "frozen_feature_record_emitted": false
+  }
+}

@@ -14,7 +14,11 @@ two independently useful acquisition methods.
 
 This is a testable application of established conditional sensor selection and
 experimental design, **not a first algorithm or a demonstrated biological
-mechanism**. The public source is absent and no neural analysis has run. The
+mechanism**. The public source and separated development roles supported a
+completed real-data search: the October 4
+[final report](outputs/final_report.md) adopts a development-only conclusion
+after 41 comparisons, without an initializer-robust policy. All four held
+sessions remain closed. The
 original matched-budget protocol is now an **optional reference scenario**,
 not the research-wide prerequisite. Its numerical decision remains unchanged.
 Additional named-rule scoring remains proposed and unactivated, detailed in the
@@ -53,8 +57,9 @@ only the optional 16-trial reference case. Earlier PNG/SVG assets are retained.
 All branches share the existing search/resource allowance and the single
 held-session opening. Development can revise candidates; the chosen final
 protocol, comparisons, endpoints and decisions are fixed before held scoring.
-The source and external third-animal data remain unavailable; no analysis or
-Git action is launched by this amendment.
+External third-animal data remain unavailable. The amendment itself did not
+launch analysis or Git actions; subsequent source preparation is recorded in
+the execution log.
 
 ## Candidate predictions, not a closed hypothesis menu
 

@@ -1,9 +1,12 @@
 version: 0.0.14
 id: episode15_mdtb_topography_vs_geometry
 name: Why do people have different cerebellar task maps?
-description: 'Brain Researcher autoresearch episode projection. This ASTRA document
-  is non-authoritative: it records a workspace plan or result but grants no execution
-  authority, scientific acceptance, reward, or Landscape transition.'
+description: >-
+  EP15 experiment program under its frozen Task-A-to-Task-B comparison.
+  Source qualification and permission-separated roles precede candidate scores.
+  The adopted exploratory branch reports development point summaries while
+  formal margins, decision qualification and audit claims remain deferred.
+  This program does not itself grant outcome access or scientific acceptance.
 tags:
 - brain-researcher
 - autoresearch
@@ -23,6 +26,280 @@ inputs:
   type: data
   description: Episode search and stopping policy.
   source: SEARCH_POLICY.yaml
+- id: metadata_join_code
+  type: data
+  description: Metadata-only source join; no numeric image payloads or role assignment.
+  source: outputs/tools/join_source_metadata.py
+- id: nifti_header_reader
+  type: data
+  description: Shared 348-byte NIfTI header reader, including scaling metadata.
+  source: outputs/tools/inspect_registration_headers.py
+- id: prior_anatomical_headers
+  type: data
+  description: Completed all-participant anatomical headers, reused without reopening anatomy.
+  source: outputs/runs/source_qualification/attempt001/anatomical_headers.json
+- id: completed_metadata_join
+  type: data
+  description: Completed all24 source membership and Task-A/native-mask header join.
+  source: outputs/runs/source_qualification/metadata_join001/source_metadata.json
+- id: completed_regressor_members
+  type: data
+  description: Existing metadata-only table of all 36,480 literal beta members, regressor identities and run partitions.
+  source: outputs/runs/source_qualification/metadata_join001/regressor_members.tsv
+- id: condition_partition_plan_code
+  type: data
+  description: Compile fixed condition, run-partition and participant-role labels from four bounded public metadata inputs.
+  source: outputs/tools/build_condition_partition_plan.py
+- id: condition_partition_plan_tests
+  type: data
+  description: Source-free fixtures for literal members, arithmetic weights, role boundaries and incomplete-publication failures.
+  source: outputs/tests/test_condition_partition_plan.py
+- id: role_handoff_preparation_code
+  type: data
+  description: Exact planned-member ZIP-directory inventory and bounded unreleased Task-A literal-copy pilot.
+  source: outputs/tools/prepare_role_handoffs.py
+- id: role_handoff_materialization_code
+  type: data
+  description: Four-worker literal copy into36 unreleased role-filtered ZIP_STORED containers with preserved pilot reuse.
+  source: outputs/tools/materialize_role_handoffs.py
+- id: spatial_operator_code
+  type: data
+  description: Array-only registered row-wise M3 and paired M4 operators, proper inverses and raw numerical residuals; no fitting or scientific acceptance.
+  source: outputs/tools/spatial_deformation_operators.py
+- id: spatial_operator_tests
+  type: data
+  description: Small known-answer algebra checks for isometry, noncommuting operator order, paired zero stretch, inverse and input preservation.
+  source: outputs/tests/test_spatial_deformation_operators.py
+- id: m3_task_a_fit_code
+  type: data
+  description: Array-only weighted Task-A Procrustes fit for a supplied centered orthonormal basis; explicit gain rule and tolerances, no reader or capacity selection.
+  source: outputs/tools/fit_m3_task_a.py
+- id: m3_task_a_fit_tests
+  type: data
+  description: Five source-free focused checks of fit orientation, weights, positive gain, rank/uniqueness refusal and input validity.
+  source: outputs/tests/test_fit_m3_task_a.py
+- id: m4_task_a_fit_code
+  type: data
+  description: Array-only paired Task-A stretch fitter with explicit common gain, fixed O, trace-free modes, rank/capacity/spectral bounds and Frechet gradient; no uniqueness or locality certification.
+  source: outputs/tools/fit_m4_task_a.py
+- id: m4_task_a_fit_tests
+  type: data
+  description: Focused checks of noncommuting stretch recovery, analytic gradient, spectral constraints, exact paired zero stretch, unidentified inputs and failed-optimizer refusal.
+  source: outputs/tests/test_fit_m4_task_a.py
+- id: development_lopo_code
+  type: data
+  description: Complete twelve-person M0b/M3 and optional four-variant M1/M2 LOPO with 132 nested participant-deletion refits and explicit source/model callbacks; no empirical reader.
+  source: outputs/tools/development_lopo.py
+- id: development_lopo_tests
+  type: data
+  description: Focused source-free dependency, identity, nested-refit, geometry-prediction and fold-specific projection checks.
+  source: outputs/tests/test_development_lopo.py
+- id: development_handoff_reader_code
+  type: data
+  description: Explicit released-development ZIP adapter preserving all12 people,208 locations,29 A conditions and18 B-only conditions with existing scaled NIfTI and strict trilinear arithmetic; no release authority or fit.
+  source: outputs/tools/development_handoff_reader.py
+- id: development_handoff_reader_tests
+  type: data
+  description: Six source-free adapter checks for genuine partitions, arithmetic, complete metadata/header preflight, forbidden streams, scaling, support and failure without partial cohort.
+  source: outputs/tests/test_development_handoff_reader.py
+- id: development_point_panel_code
+  type: data
+  description: Supplied-array integration of all12 development targets and all16 fixed variants with genuine-A calibration falsifiers and existing matched controls; no reader release or empirical dispatch.
+  source: outputs/tools/development_point_panel.py
+- id: development_point_panel_tests
+  type: data
+  description: Three source-free integration checks for complete axis/value joins before fitting, fixed source/model/control wiring and failure propagation without partial scoring.
+  source: outputs/tests/test_development_point_panel.py
+- id: development_point_panel_cli
+  type: data
+  description: Explicit released-view entrypoint for the complete12-person16-variant exploratory panel, with caller-selected deadline/RSS/durable limits and no automatic release, scientific admission or audit access.
+  source: outputs/tools/run_development_point_panel.py
+- id: observed_beta_summary_code
+  type: data
+  source: outputs/tools/observed_beta_summary.py
+- id: observed_beta_summary_checks
+  type: data
+  source: outputs/tests/test_observed_beta_summary.py
+- id: development_release_builder
+  type: data
+  source: outputs/tools/prepare_development_release.py
+- id: development_release_checks
+  type: data
+  source: outputs/tests/test_prepare_development_release.py
+- id: task_a_error_support_code
+  type: data
+  source: outputs/tools/run_task_a_error_support.py
+- id: task_a_error_support_checks
+  type: data
+  source: outputs/tests/test_task_a_error_support.py
+- id: anatomical_support_test_fixtures
+  type: data
+  description: Existing in-memory NIfTI fixture reused by the adapter tests, without empirical inputs.
+  source: outputs/tests/test_anatomical_support.py
+- id: task_a_mapping_test_fixtures
+  type: data
+  description: Existing float NIfTI fixture reused by the adapter tests, without running the historical mapping pilot.
+  source: outputs/tests/test_task_a_mapping.py
+- id: local_anatomical_basis_code
+  type: data
+  description: Fixed208-location anatomical cell basis with canonical centered graph modes, explicit capacity/locality options and no response input.
+  source: outputs/tools/local_anatomical_basis.py
+- id: local_anatomical_basis_tests
+  type: data
+  description: Five focused basis tests of support, spatial/eigenvalue ties, row-order equivariance and local orthogonality.
+  source: outputs/tests/test_local_anatomical_basis.py
+- id: local_functional_source_code
+  type: data
+  description: Training-Task-A-anchored functional source and block-constrained M3 callbacks, actual four-partition geometry and common pre-operator gain; no empirical reader.
+  source: outputs/tools/local_functional_source.py
+- id: local_functional_source_tests
+  type: data
+  description: Six focused local-model tests of source inverse orientation, global source and local cross ranks, gain, geometry/scales and LOPO integration.
+  source: outputs/tests/test_local_functional_source.py
+- id: local_parcel_prediction_code
+  type: data
+  description: Four initial M1 predictors with anatomy-only 4/8/16 profile cells, source-A temperature, target-A soft/hard memberships, common gain and actual four-partition geometry; no native-signature certificate.
+  source: outputs/tools/local_parcel_prediction.py
+- id: local_parcel_prediction_tests
+  type: data
+  description: Six focused M1 tests of probabilities, four-map geometry, B exclusion, explicit ties, computability and nested LOPO integration.
+  source: outputs/tests/test_local_parcel_prediction.py
+- id: common_cardinal_source_code
+  type: data
+  description: One anatomy-only constant-augmented cardinal source representation for all classes, exact native values, analytic derivatives and explicit off-grid amplification limits.
+  source: outputs/tools/common_cardinal_source.py
+- id: smooth_relocation_code
+  type: data
+  description: Four bounded M2 pull fields, analytic global geometry/inverse bounds and deterministic common-gain Task-A fitting; no global optimum, half stability or matched-warp claim.
+  source: outputs/tools/smooth_relocation.py
+- id: smooth_relocation_tests
+  type: data
+  description: Seven focused interpolation, field, derivative, single nonzero fit, four-map prediction and optional LOPO callback checks; no empirical data.
+  source: outputs/tests/test_smooth_relocation.py
+- id: matched_random_warp_code
+  type: data
+  description: Eight geometry-admitted global SO(3) rotations per fitted M2 field, retaining exact displacement norms and derivative singular spectra; conditional direction falsifier only.
+  source: outputs/tools/matched_random_warp.py
+- id: matched_random_warp_tests
+  type: data
+  description: Five focused checks of geometric matching, bounded score-blind rejection, identity degeneracy, actual per-draw LOPO aggregation and role/gain/budget refusal; no new nonlinear fits.
+  source: outputs/tests/test_matched_random_warp.py
+- id: local_isometry_variants_code
+  type: data
+  description: Four anatomy-only M3 target operator variants on one unchanged reference functional source and common gain; explicit dimensions, locality and discrete reflection capacity.
+  source: outputs/tools/local_isometry_variants.py
+- id: local_isometry_variants_tests
+  type: data
+  description: Five focused operator/geometry, tight-sign, rank/locality, source/gain reuse and LOPO reference/dataflow checks; no empirical access.
+  source: outputs/tests/test_local_isometry_variants.py
+- id: paired_stretch_variants_code
+  type: data
+  description: Four bounded M4 families paired to the reference M3, with sufficient curvature and first-order gap acceptance, actual full-space locality and unchanged four-partition source geometry.
+  source: outputs/tools/paired_stretch_variants.py
+- id: paired_stretch_variants_tests
+  type: data
+  description: Five focused fixed-mode, analytic curvature/gap, refusal, noncommuting prediction and reference/budget boundary checks; no empirical data or nonlinear fit sweep.
+  source: outputs/tests/test_paired_stretch_variants.py
+- id: anatomical_group_baseline_code
+  type: data
+  description: M0a equal-person raw anatomical group mean from exact fold training records, without target input or functional alignment; actual four-partition geometry.
+  source: outputs/tools/anatomical_group_baseline.py
+- id: anatomical_group_baseline_tests
+  type: data
+  description: Three focused signed geometry, exclusion-before-read and LOPO baseline/dataflow checks; M0b remains the residual origin.
+  source: outputs/tests/test_anatomical_group_baseline.py
+- id: matched_random_basis_code
+  type: data
+  description: Eight anatomy-only M3 subspace perturbations with matched capacity and maximum Rayleigh energy, actual numerical tie handling and disclosed trace changes; shared source and gain retained.
+  source: outputs/tools/matched_random_basis.py
+- id: matched_random_basis_tests
+  type: data
+  description: Four focused gauge-versus-subspace, actual prediction, boundary-tie/refusal and draw-level LOPO checks; no null-power simulation campaign.
+  source: outputs/tests/test_matched_random_basis.py
+- id: participant_covariance_code
+  type: data
+  description: Coordinatewise participant cross-replicate covariance with participant-variance scaling; no feature contraction or scientific gate.
+  source: outputs/tools/participant_cross_replicate_covariance.py
+- id: calibration_falsifier_code
+  type: data
+  description: Explicit genuine Task-A half packets, source-reliability-stratified condition relabeling and donor-excluded paired identity refits for the fixed sixteen variants; one draw each and no empirical reader.
+  source: outputs/tools/calibration_falsifiers.py
+- id: calibration_falsifier_tests
+  type: data
+  description: Focused packet, exclusion-before-conversion, fixed mapping, nested deletion, source reuse, per-packet common gain and paired residual checks; no permutation-inference qualification.
+  source: outputs/tests/test_calibration_falsifiers.py
+- id: m2_alignment_code
+  type: data
+  description: Literal source-map change from retained prediction divided by common gain minus G, scored against both B halves with equal domains and participant weights; exploratory point statistic only.
+  source: outputs/tools/m2_alignment_signature.py
+- id: m2_alignment_tests
+  type: data
+  description: Signed half/domain arithmetic, common-gain removal, baseline invariance and complete full/deleted fold controls; no half-field stability certificate.
+  source: outputs/tests/test_m2_alignment_signature.py
+- id: participant_covariance_tests
+  type: data
+  description: Known-answer pair identity, factor-of-two normalization, matched permutation, separate feature offsets and negative covariance fixtures.
+  source: outputs/tests/test_participant_cross_replicate_covariance.py
+- id: participant_jackknife_code
+  type: data
+  description: Paired participant deletion and pseudovalues for supplied matched covariance arrays, preserving feature coordinates and signed values.
+  source: outputs/tools/participant_jackknife_pseudovalues.py
+- id: participant_jackknife_tests
+  type: data
+  description: Direct paired-deletion comparisons, signed three-participant known answers, axis and order preservation, and invalid-input refusal.
+  source: outputs/tests/test_participant_jackknife_pseudovalues.py
+- id: registered_endpoint_code
+  type: data
+  description: Array-only selected map and full signed geometry metrics, K0 projection, participant covariance contractions and 18+2Q oriented point contrasts.
+  source: outputs/tools/registered_endpoint_metrics.py
+- id: registered_endpoint_tests
+  type: data
+  description: Seven deterministic arithmetic checks of complete weights, signed replicate geometry, fold-specific projection, covariance normalization and oriented contrasts.
+  source: outputs/tests/test_registered_endpoint_metrics.py
+- id: registered_endpoint_specification
+  type: data
+  description: Existing paper plan with the October5 selected metric, projection and signed contrast conventions; unresolved inference and margins remain explicit.
+  source: outputs/paper_plan.md
+- id: anatomical_support_code
+  type: data
+  description: Sequential all24 anatomical intersection without beta or individual anatomy exports.
+  source: outputs/tools/build_anatomical_support.py
+- id: anatomical_support_specification
+  type: data
+  description: Prospectively adopted absolute-XYZ pull, SUIT-derived stride3 lattice and strict finite stencils.
+  source: outputs/anatomical_support_specification.md
+- id: task_a_mapping_pilot_code
+  type: data
+  description: First-participant Task-A mapping with unchanged support and operational-only output.
+  source: outputs/tools/pilot_task_a_mapping.py
+- id: completed_anatomical_support
+  type: data
+  description: Completed all24 support report and immutable 208-location common-support array.
+  source: outputs/runs/source_qualification/anatomical_support001
+- id: task_a_mapping_pilot_specification
+  type: data
+  description: Adopted exact Task-A member scope, strict sampling, arithmetic halves and bounded cost pilot.
+  source: outputs/task_a_mapping_pilot_specification.md
+- id: private_task_a_reliability_code
+  type: data
+  description: All24 Task-A reliability builder with operational-only public report and complete-cohort private publication.
+  source: outputs/tools/build_private_task_a_reliability.py
+- id: private_task_a_reliability_specification
+  type: data
+  description: Registered centered spatial Pearson median, fixed support, private handoff and bounded resources.
+  source: outputs/private_task_a_reliability_specification.md
+- id: role_assignment_code
+  type: data
+  description: Exact exhaustive participant assignment with a pre-read documentary lineage gate and completion-only publication.
+  source: outputs/tools/assign_participant_roles.py
+- id: role_assignment_specification
+  type: data
+  description: Adopted exact assignment conventions and documented conservative EP03 exposure treatment.
+  source: outputs/role_assignment_specification.md
+- id: role_lineage_review_record
+  type: data
+  description: Existing episode log containing the named pre-role review; unknown overlap is treated as potentially correlated exposure.
+  source: outputs/experiment_log.md
 decisions:
   declared_search_policy:
     id: declared_search_policy
@@ -35,13 +312,780 @@ decisions:
         label: Use declared policy
 outputs:
 - id: planned_episode_result
-  type: report
-  format: md
-  description: Planned episode result; no terminal result is asserted.
-  inputs:
-  - goal
-  - datasets
-  - search_policy
-  decisions:
-  - declared_search_policy
+  from: final_report.study_report
 findings: {}
+analyses:
+  source_qualification:
+    name: Authenticate common cerebellar registration and source support
+    description: >-
+      Verify a common route for all24 participants from anatomical metadata,
+      anatomy and TaskA only. Qualify transform direction, reference grid,
+      interpolation, gray-matter support, map partitions and error independence.
+      Review published-parameter and EP03 exposure; no TaskB values are needed
+      for source or split preparation. Join all24 ZIP indexes and48 design
+      tables, aggregate demographic completeness and one TaskA beta header
+      per participant. These metadata recipes do not establish numeric common
+      support, private TaskA reliability, or participant roles. The separate
+      anatomical recipe freezes the all24 intersection on the source-derived
+      zero-based stride3 lattice, with scaled GMc at least0.5 and every positive
+      trilinear corner inside the native cerebellar mask. No beta values,
+      TaskA reliability, participant roles or scientific margins are activated.
+    inputs:
+    - {id: datasets, from: ../datasets}
+    - {id: policy, from: ../search_policy}
+    - {id: metadata_code, from: ../metadata_join_code}
+    - {id: header_reader, from: ../nifti_header_reader}
+    - {id: prior_anatomy, from: ../prior_anatomical_headers}
+    - {id: completed_metadata, from: ../completed_metadata_join}
+    - {id: support_code, from: ../anatomical_support_code}
+    - {id: support_specification, from: ../anatomical_support_specification}
+    - {id: task_a_pilot_code, from: ../task_a_mapping_pilot_code}
+    - {id: completed_support, from: ../completed_anatomical_support}
+    - {id: task_a_pilot_specification, from: ../task_a_mapping_pilot_specification}
+    outputs:
+    - id: anatomical_header_report
+      type: report
+      format: json
+      inputs: [datasets, policy]
+      recipe:
+        command: python3 outputs/tools/inspect_registration_headers.py
+    - id: metadata_join_report
+      type: report
+      format: json
+      inputs: [datasets, policy, metadata_code, header_reader, prior_anatomy]
+      recipe:
+        command: >-
+          python3 outputs/tools/join_source_metadata.py
+          --output-dir outputs/runs/source_qualification/metadata_join001
+          --max-seconds 540
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    - id: anatomical_support
+      type: data
+      format: directory
+      inputs: [datasets, policy, header_reader, prior_anatomy, completed_metadata, support_code, support_specification]
+      recipe:
+        command: >-
+          python3 outputs/tools/build_anatomical_support.py
+          --output-dir outputs/runs/source_qualification/anatomical_support001
+          --max-seconds 540
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    - id: task_a_mapping_pilot
+      type: report
+      format: json
+      inputs: [datasets, policy, header_reader, prior_anatomy, completed_metadata, completed_support, support_code, support_specification, task_a_pilot_code, task_a_pilot_specification]
+      recipe:
+        command: >-
+          python3 outputs/tools/pilot_task_a_mapping.py
+          --output-dir outputs/runs/source_qualification/task_a_mapping_pilot001
+          --max-seconds 540
+        resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+    - {id: source_report, type: report, format: json, inputs: [datasets, policy]}
+  private_task_a_reliability:
+    name: Prepare all24 private Task-A reliability scalars
+    description: >-
+      After the first-person mapping pilot, reuse the exact all24 metadata,
+      fixed208 support, scaled NIfTI reader and strict trilinear sampling.
+      Read each person's forward transform and noninstruction TaskA betas
+      only. Average regressors within run and then equal runs1-8 and9-16;
+      take the median of29 centered spatial Pearson correlations with no
+      clipping, correction or variance floor. Any missing, constant or
+      nonfinite condition blocks the whole cohort without exclusion or
+      support changes. Publish only the complete24 median scalars privately;
+      coordinator and candidate workers do not read that artifact. Restrictive
+      permissions reduce accidental disclosure but do not separate same-UID
+      readers. No TaskB, roles, candidate scores or margins are activated.
+    inputs:
+    - {id: datasets, from: ../datasets}
+    - {id: policy, from: ../search_policy}
+    - {id: mapping_pilot, from: ../source_qualification.task_a_mapping_pilot}
+    - {id: header_reader, from: ../nifti_header_reader}
+    - {id: prior_anatomy, from: ../prior_anatomical_headers}
+    - {id: completed_metadata, from: ../completed_metadata_join}
+    - {id: completed_support, from: ../completed_anatomical_support}
+    - {id: support_code, from: ../anatomical_support_code}
+    - {id: mapping_code, from: ../task_a_mapping_pilot_code}
+    - {id: reliability_code, from: ../private_task_a_reliability_code}
+    - {id: specification, from: ../private_task_a_reliability_specification}
+    outputs:
+    - id: operational_report
+      type: report
+      format: json
+      description: >-
+        outputs/runs/source_qualification/private_task_a001/private_task_a_reliability_report.json
+        contains operational counts, finite-computability flags, bytes, time,
+        peak RSS and the private artifact path. No reliability values, signs,
+        extrema or ranks are exported. This single recipe also publishes the
+        private_reliability handoff after all24 participants succeed.
+      inputs: [datasets, policy, mapping_pilot, header_reader, prior_anatomy, completed_metadata, completed_support, support_code, mapping_code, reliability_code, specification]
+      recipe:
+        command: >-
+          python3 outputs/tools/build_private_task_a_reliability.py
+          --output-dir outputs/runs/source_qualification/private_task_a001
+          --private-dir outputs/cache/task_a_private_reliability/attempt001
+          --max-seconds 540
+        resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+    - id: private_reliability
+      type: data
+      format: csv
+      description: >-
+        Private steward handoff at
+        outputs/cache/task_a_private_reliability/attempt001/task_a_reliability.csv,
+        produced by the operational_report recipe in a fresh0700 directory
+        with0600 file creation and no-overwrite complete-cohort publication.
+        Contains only24 participant IDs and their median centered spatial
+        correlations. Only the future trusted role assigner may consume it;
+        coordinator and candidate workers must not inspect its contents.
+      inputs: [datasets, policy, mapping_pilot, header_reader, prior_anatomy, completed_metadata, completed_support, support_code, mapping_code, reliability_code, specification]
+  role_assignment:
+    name: Task-B-blind twelve/twelve participant roles and separate handoffs
+    description: >-
+      The adopted numerical implementation visits all2704156 twelve-person
+      audit-ID tuples, including complementary assignments, and minimizes the
+      frozen lexicographic objective: maximum and sum categorical-level count
+      imbalance, absolute standardized age mean difference and empirical
+      equal-weight1-Wasserstein distance, then the same two TaskA reliability
+      components. Parse serialized decimals exactly as rationals and compare
+      common-scaled integers; all24 population SD and group-size factors are
+      constant across assignments, with zero-spread components exactly zero.
+      Exact ties select the lexicographically first sorted audit-ID tuple.
+      Keep all24 people; missing/nonfinite age or reliability blocks assignment,
+      while missing categorical values form explicit levels. Before reading
+      demographics or private reliability, require an explicit documentary
+      attestation of the existing EP03/MDTB lineage review and a unique nonempty
+      named section in the episode log. The documented comparison treats
+      EP03/EP15 exposure as potentially correlated with unknown extent. The
+      partial EP03 inventory does not prove absent overlap, complete inventory
+      coverage or independence. Exclude EP03 functional maps, fitted parameters,
+      priors and descendants from assignment, model initialization, support or
+      selection. Later source information updates the exposure assessment,
+      never the frozen participant split. Only the trusted assigner consumes the
+      private handoff; only complete roles and aggregate balance may be published,
+      atomically without overwrite after exhaustive completion. No partial best
+      split or participant numeric values are released. Same-UID stewardship is
+      not an OS seal. Development, audit-calibration and sealed-audit physical
+      handoffs remain separately required; roles alone authorize no mount,
+      TaskB access, candidate scoring or scientific margin activation.
+    inputs:
+    - {id: datasets, from: ../datasets}
+    - {id: policy, from: ../search_policy}
+    - {id: source_report, from: ../source_qualification.source_report}
+    - {id: completed_metadata, from: ../completed_metadata_join}
+    - {id: reliability_report, from: ../private_task_a_reliability.operational_report}
+    - {id: private_reliability, from: ../private_task_a_reliability.private_reliability}
+    - {id: assignment_code, from: ../role_assignment_code}
+    - {id: specification, from: ../role_assignment_specification}
+    - {id: lineage_review, from: ../role_lineage_review_record}
+    outputs:
+    - id: roles
+      type: report
+      format: json
+      description: >-
+        outputs/runs/role_assignment/attempt001/participant_roles.json contains
+        the complete twelve/twelve ID partition and aggregate balance only.
+        This single recipe also writes role_assignment_report.json with
+        operational completion, counts, bytes, time and peak RSS. Neither file
+        releases participant ages, categorical rows or reliability values.
+        The internal deadline is540seconds and external envelope600seconds;
+        incomplete enumeration publishes no roles and triggers no automatic retry.
+      inputs: [datasets, policy, source_report, completed_metadata, reliability_report, private_reliability, assignment_code, specification, lineage_review]
+      recipe:
+        command: >-
+          timeout --signal=TERM 600s python3 outputs/tools/assign_participant_roles.py
+          --output-dir outputs/runs/role_assignment/attempt001
+          --lineage-review-complete
+          --lineage-review-section '2026-10-04 21:23 UTC — EP15 pre-role lineage review'
+          --max-seconds 540
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    - id: operational_report
+      type: report
+      format: json
+      description: >-
+        outputs/runs/role_assignment/attempt001/role_assignment_report.json,
+        produced by the roles recipe. Operational facts and fixed failure
+        categories only; no private inputs or partial best assignment.
+      inputs: [datasets, policy, source_report, completed_metadata, reliability_report, private_reliability, assignment_code, specification, lineage_review]
+  condition_partition_plan:
+    name: Compile fixed condition partitions and planned role members
+    description: >-
+      Read only the completed source-metadata JSON, its regressor-members TSV,
+      and the complete role-assignment roles and operational report. Preserve
+      all 36,480 literal members across 24 participants and 48 sessions, including
+      instruction rows with zero map weight. Keep 29 Task A conditions, 32 Task B
+      conditions, 14 shared conditions and 18 Task-B-only conditions; shared Task B
+      conditions remain post-decision diagnostics. Average repeated regressors
+      within each condition and run, then give equal weight to runs 1-8 and 9-16
+      for map halves and four runs in each of the fixed geometry quarters.
+      Preserve primary geometry pairs 1/2 and 3/4 and exact one-seventh domain
+      weights with equal conditions within each domain. Conditions remain
+      separate. Label planned development, audit-calibration and sealed-audit
+      members without opening source archives or images or reading private
+      participant values. Numeric geometry-pair weights, sensitivity pairings,
+      error-independence qualification and anatomy manifests remain separate
+      work. These labels establish neither physical handoffs nor reader
+      isolation and activate no audit calibration, Task B access, scientific
+      margins or candidate scoring. Partial publication or a deadline leaves
+      the plan incomplete; both files require the complete terminal report.
+    inputs:
+    - {id: datasets, from: ../datasets}
+    - {id: policy, from: ../search_policy}
+    - {id: completed_metadata, from: ../completed_metadata_join}
+    - {id: regressor_members, from: ../completed_regressor_members}
+    - {id: roles, from: ../role_assignment.roles}
+    - {id: role_report, from: ../role_assignment.operational_report}
+    - {id: metadata_code, from: ../metadata_join_code}
+    - {id: plan_code, from: ../condition_partition_plan_code}
+    - {id: plan_tests, from: ../condition_partition_plan_tests}
+    outputs:
+    - id: plan
+      type: data
+      format: directory
+      description: >-
+        outputs/runs/source_qualification/condition_partition_plan001 contains
+        condition_partition_plan.json, role_member_plan.tsv and
+        condition_partition_plan_report.json. Only a completed terminal report
+        makes the two metadata plan files usable. The fixed internal deadline
+        is 120 seconds, external limit 180 seconds and termination grace 10 seconds;
+        publication never overwrites an attempt or triggers automatic retry.
+      inputs: [datasets, policy, completed_metadata, regressor_members, roles, role_report, metadata_code, plan_code, plan_tests]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 180s python3 outputs/tools/build_condition_partition_plan.py
+          --output-dir outputs/runs/source_qualification/condition_partition_plan001
+          --max-seconds 120
+        resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+  role_handoff_preparation:
+    name: Prepare unreleased ordinary role-filtered handoffs
+    description: >-
+      Inventory the exact completed member plan and four anatomy members per
+      participant from the24 declared ZIP directories. Fixed roles route anatomy
+      to development or audit calibration and TaskB only to its assigned role.
+      Inventory opens no member payload. A later bounded sub-08 TaskA pilot
+      requires the completed byte forecast and selected cap. Literal copies
+      establish no reader isolation, audit opening or scoring authorization.
+    inputs:
+    - {id: datasets, from: ../datasets}
+    - {id: policy, from: ../search_policy}
+    - {id: roles, from: ../role_assignment.roles}
+    - {id: plan, from: ../condition_partition_plan.plan}
+    - {id: prior_anatomy, from: ../prior_anatomical_headers}
+    - {id: preparation_code, from: ../role_handoff_preparation_code}
+    - {id: materialization_code, from: ../role_handoff_materialization_code}
+    - {id: development_release_builder, from: ../development_release_builder}
+    - {id: development_release_checks, from: ../development_release_checks}
+    - {id: development_panel_cli, from: ../development_point_panel_cli}
+    - {id: task_a_diagnostic, from: ../task_a_error_support_code}
+    - {id: source_metadata, from: ../completed_metadata_join}
+    outputs:
+    - id: inventory
+      type: data
+      format: directory
+      description: >-
+        Exact ZIP-directory sizes and ordinary member metadata for36,480
+        functional plus96 anatomy members, including a fixed740-member
+        sub-08 TaskA/anatomy pilot forecast. Require terminal completion;
+        partial reports cannot authorize copying. No image values are read.
+      inputs: [datasets, policy, roles, plan, prior_anatomy, preparation_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 180s python3
+          outputs/tools/prepare_role_handoffs.py inventory
+          --output-dir {output} --max-seconds 120
+        resources: {cpus: 1, memory: 2Gi, time_limit: 4m}
+    - id: development_task_a_copy_pilot
+      type: data
+      format: directory
+      description: >-
+        Unreleased sub-08 pilot only:736 TaskA beta files plus four anatomy
+        files, totaling1,049,390,078 bytes from the completed inventory.
+        Literal streaming and closed-copy CRC/size checks, no array decoding,
+        TaskB/audit streams or reader activation. This is not a full handoff.
+      inputs: [datasets, policy, roles, plan, prior_anatomy, preparation_code, inventory]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 610s python3
+          outputs/tools/prepare_role_handoffs.py pilot
+          --inventory outputs/runs/role_handoffs/inventory001/inventory.json
+          --output-dir {output}
+          --private-dir outputs/cache/private/role_handoffs/sub08_TaskA_pilot001
+          --max-output-bytes 1049390078 --max-seconds 600
+        resources: {cpus: 1, memory: 2Gi, time_limit: 11m}
+    - id: unreleased_role_materialization
+      type: data
+      format: directory
+      description: >-
+        Four deterministic participant packs copy the exact36,576-member
+        inventory into36 ZIP_STORED containers: twelve development, twelve
+        audit calibration and twelve sealed audit. Reuse the740 completed
+        pilot files after original size/CRC validation; preserve that pilot.
+        Keep original member paths and bytes and verify each closed container
+        before publication. The64GiB preparation ceiling includes the retained
+        pilot; later search scratch policy remains unchanged. Record actual raw
+        audit-byte copying separately from evaluator/scoring opening. Copies
+        remain unreleased and establish neither reader isolation nor scoring
+        authorization. Deadline3300s; no retry, respawn or partial success.
+      inputs: [datasets, policy, roles, plan, prior_anatomy, inventory, development_task_a_copy_pilot, preparation_code, materialization_code]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=20s 3360s python3.12 -B
+          outputs/tools/materialize_role_handoffs.py
+          --output-dir {output}
+          --private-dir outputs/cache/private/role_handoffs/full001
+          --max-seconds 3300
+        resources: {cpus: 4, memory: 8Gi, time_limit: 60m}
+    - id: development_metadata_views
+      type: data
+      format: directory
+      inputs: [unreleased_role_materialization, prior_anatomy, source_metadata, plan, development_release_builder, development_release_checks, development_panel_cli, task_a_diagnostic]
+      description: >-
+        Explicit trusted-builder selection of the fixed twelve development
+        containers and metadata. Publish complete-panel and Task-A-only views
+        using their existing literal ZIPs and unchanged208-location support.
+        Reuse the closed-container verification and stat only development
+        containers; do not open original archives, audit paths or voxel values.
+        The coordinator records procedural release before empirical use;
+        publication alone grants no scoring, independent-error certificate or
+        cache-firewall completion.
+  implementation_qualification:
+    name: Certify scientific operators and the full decision procedure
+    description: >-
+      For the original formal class-decision route, freeze scientist-approved
+      scientific/signature margins, exact contrasts,
+      capacities, scratch bound and numerical tolerances before candidate
+      scores. Certify M3 isometry and TaskA identification and paired M4's
+      zero-stretch reduction. Test the complete12/12 selection and decision
+      in the registered seven synthetic worlds with100seeds each. Do not tune
+      margins to pass; ambiguous cases must abstain. Consume the fixed metadata
+      condition-partition plan without treating its role labels as physical
+      handoffs, reader isolation or authorization for scoring. The array-only
+      M3/M4 algebra prerequisite has its own engineering transcript and does
+      not complete a fitted-model certificate or the full decision procedure.
+      Under the October6 amendment, the full seven-world qualification and
+      formal inference are deferred for exploratory development point summaries.
+      Focused implementation checks do not establish inference or release readers.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: roles, from: ../role_assignment.roles}
+    - {id: condition_plan, from: ../condition_partition_plan.plan}
+    - {id: operator_code, from: ../spatial_operator_code}
+    - {id: operator_tests, from: ../spatial_operator_tests}
+    - {id: m3_fit_code, from: ../m3_task_a_fit_code}
+    - {id: m3_fit_tests, from: ../m3_task_a_fit_tests}
+    - {id: m4_fit_code, from: ../m4_task_a_fit_code}
+    - {id: m4_fit_tests, from: ../m4_task_a_fit_tests}
+    - {id: lopo_code, from: ../development_lopo_code}
+    - {id: lopo_tests, from: ../development_lopo_tests}
+    - {id: development_reader_code, from: ../development_handoff_reader_code}
+    - {id: development_reader_tests, from: ../development_handoff_reader_tests}
+    - {id: development_panel_code, from: ../development_point_panel_code}
+    - {id: development_panel_tests, from: ../development_point_panel_tests}
+    - {id: development_panel_cli, from: ../development_point_panel_cli}
+    - {id: development_metadata_views, from: ../role_handoff_preparation.development_metadata_views}
+    - {id: task_a_diagnostic, from: ../task_a_error_support_code}
+    - {id: task_a_diagnostic_checks, from: ../task_a_error_support_checks}
+    - {id: support_code, from: ../anatomical_support_code}
+    - {id: mapping_code, from: ../task_a_mapping_pilot_code}
+    - {id: header_reader, from: ../nifti_header_reader}
+    - {id: metadata_code, from: ../metadata_join_code}
+    - {id: handoff_preparation_code, from: ../role_handoff_preparation_code}
+    - {id: support_test_fixtures, from: ../anatomical_support_test_fixtures}
+    - {id: mapping_test_fixtures, from: ../task_a_mapping_test_fixtures}
+    - {id: local_basis_code, from: ../local_anatomical_basis_code}
+    - {id: local_basis_tests, from: ../local_anatomical_basis_tests}
+    - {id: functional_source_code, from: ../local_functional_source_code}
+    - {id: functional_source_tests, from: ../local_functional_source_tests}
+    - {id: parcel_code, from: ../local_parcel_prediction_code}
+    - {id: parcel_tests, from: ../local_parcel_prediction_tests}
+    - {id: cardinal_code, from: ../common_cardinal_source_code}
+    - {id: relocation_code, from: ../smooth_relocation_code}
+    - {id: relocation_tests, from: ../smooth_relocation_tests}
+    - {id: matched_warp_code, from: ../matched_random_warp_code}
+    - {id: matched_warp_tests, from: ../matched_random_warp_tests}
+    - {id: isometry_variants_code, from: ../local_isometry_variants_code}
+    - {id: isometry_variants_tests, from: ../local_isometry_variants_tests}
+    - {id: stretch_variants_code, from: ../paired_stretch_variants_code}
+    - {id: stretch_variants_tests, from: ../paired_stretch_variants_tests}
+    - {id: anatomical_baseline_code, from: ../anatomical_group_baseline_code}
+    - {id: anatomical_baseline_tests, from: ../anatomical_group_baseline_tests}
+    - {id: random_basis_code, from: ../matched_random_basis_code}
+    - {id: random_basis_tests, from: ../matched_random_basis_tests}
+    - {id: calibration_falsifier_code, from: ../calibration_falsifier_code}
+    - {id: calibration_falsifier_tests, from: ../calibration_falsifier_tests}
+    - {id: m2_alignment_code, from: ../m2_alignment_code}
+    - {id: m2_alignment_tests, from: ../m2_alignment_tests}
+    - {id: covariance_code, from: ../participant_covariance_code}
+    - {id: covariance_tests, from: ../participant_covariance_tests}
+    - {id: jackknife_code, from: ../participant_jackknife_code}
+    - {id: jackknife_tests, from: ../participant_jackknife_tests}
+    - {id: endpoint_code, from: ../registered_endpoint_code}
+    - {id: endpoint_tests, from: ../registered_endpoint_tests}
+    - {id: endpoint_specification, from: ../registered_endpoint_specification}
+    outputs:
+    - id: task_a_error_support_assessment
+      type: report
+      format: json
+      inputs: [policy, development_metadata_views, task_a_diagnostic, task_a_diagnostic_checks, development_panel_cli, covariance_code, mapping_code]
+      description: >-
+        Fixed descriptive assessment of twelve development people, sixteen
+        Task-A runs,29 conditions and208 locations. Spatially centered four-run
+        partition maps give signed voxel-mean S=U(P1-P3,P2-P4) and
+        N=U(P1-P2,P3-P4), plus descriptive delete-one-person ranges for all
+        conditions. No p-value, equivalence threshold or automatic admission.
+        Session signal changes and measurement nuisance are not separable;
+        common-across-session nuisance is invisible and Task-B validity is
+        not established. Actual release and resources are selected separately.
+    - id: spatial_operator_algebra_checks
+      type: report
+      format: text
+      description: >-
+        Focused source-free arithmetic transcript for row-wise XQ and XL,
+        active order O exp(C), inverse exp(-C) O transpose and the exact zero-C
+        route to M3. Raw residuals do not select numerical, locality, rank,
+        capacity or scientific acceptance thresholds. The fixture comparison
+        tolerance is not a fitted-operator tolerance. Run as a one-CPU step
+        within a shared substantive allocation, with no separate Slurm job.
+        No functional inputs, reader activation or scientific audit access.
+      inputs: [policy, operator_code, operator_tests]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=10s 50s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_spatial_deformation_operators.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+    - id: m3_task_a_fit_checks
+      type: report
+      format: text
+      description: >-
+        Five deterministic source-free checks of weighted row-wise Procrustes,
+        optional one-positive-global-gain fitting, source/cross-product rank,
+        unique polar solution and input preservation. No selected basis,
+        locality/capacity/tolerance default, source construction or reader release.
+        Run briefly inside the coordinator's substantive allocation, not a new job.
+      inputs: [policy, operator_code, m3_fit_code, m3_fit_tests]
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 110s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_fit_m3_task_a.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+    - id: m4_task_a_fit_checks
+      type: report
+      format: text
+      description: >-
+        Seven bounded array-only checks of the paired stretch optimizer and its
+        Frechet derivative. Fixed caller inputs preserve Q, B and the one common
+        positive gain. Rank and spectral constraints are imposed during fitting,
+        without repairing a fitted result. Numerical convergence does not
+        establish global optimality, a unique solution, locality, a selected
+        empirical recipe or reader authorization. Run inside the coordinator's
+        substantive allocation; no standalone checking job or synthetic sweep.
+      inputs: [policy, operator_code, m3_fit_code, m4_fit_code, m4_fit_tests]
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 110s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_fit_m4_task_a.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+    - id: participant_covariance_algebra_checks
+      type: report
+      format: text
+      description: >-
+        Coordinatewise participant-centered cross-products divided by n minus1,
+        equal to unordered pair products divided by n times n minus1. Retain
+        all feature coordinates and negative values. Shape agreement does not
+        prove identity matching or error independence. No feature weighting,
+        geometry convention, uncertainty procedure, margin or certificate.
+        Short checks share an existing substantive allocation without a new job.
+      inputs: [policy, covariance_code, covariance_tests]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 10s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_participant_cross_replicate_covariance.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+    - id: participant_jackknife_arithmetic_checks
+      type: report
+      format: text
+      description: >-
+        Paired delete-one covariance and participant pseudovalues for at least
+        three matched participants. Preserve participant order, feature axes
+        and negative estimates. These checks do not decide nuisance refitting,
+        interval distributions, feature weights, Holm inversion or margins,
+        and do not qualify scientific inference. No source reader or model fit.
+        Bundle the short transcript with a substantive coordinated allocation.
+      inputs: [policy, covariance_code, jackknife_code, jackknife_tests]
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 10s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_participant_jackknife_pseudovalues.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+    - id: registered_endpoint_arithmetic_checks
+      type: report
+      format: text
+      description: >-
+        Seven deterministic checks implement the already selected equal-domain
+        map metric, all171 signed geometry entries in28 equally weighted blocks,
+        supplied fold-specific K0 projection, participant-variance contraction
+        and all18+2Q oriented point contrasts. Required native-signature estimates,
+        complete mode identities and source-only scales remain caller inputs.
+        This is no confidence-bound construction, class decision, margin adoption,
+        seven-world qualification or reader authorization. Reuse passing covariance
+        and jackknife evidence. Run with one numerical thread inside the
+        coordinator's substantive allocation; no separate short job.
+      inputs: [policy, endpoint_specification, covariance_code, endpoint_code, endpoint_tests]
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 50s python3.12 -B
+          -m unittest discover -s outputs/tests
+          -p test_registered_endpoint_metrics.py -v > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 1m}
+    - id: development_lopo_checks
+      type: report
+      format: text
+      description: >-
+        Focused checks cover affected LOPO/source integration, M1, M2,
+        matched-warp, M3-variant, M4, M0a, random-basis and the two
+        Task-A calibration falsifiers and the retained-fit M2 alignment statistic.
+        All twelve targets and 132 nested refits preserve source exclusions,
+        common Task-A gain and fold-specific geometry. Four initial M1 variants
+        retain all 208 locations and eighteen B conditions, source-A-only
+        temperature, explicit hard ties and actual four-source-map geometry.
+        M2 adds exact-node cardinal derivatives, bounded global pull fields,
+        inverse consistency, raw versus centered interpolation amplification,
+        one nonzero nonlinear fit and four-partition predictions. Nested M2
+        dataflow uses a cheap callback fixture, not hundreds of nonlinear fits.
+        Matched warps reuse existing fits, keep all eight separate control draws
+        per variant, and average residual statistics after evaluating each draw.
+        This conditional direction falsifier is not an omnibus capacity test,
+        calibrated p-value or certified average operator.
+        M3 variants preserve the one reference source and gain, reuse the
+        reference fit, certify actual operator locality and geometry, and
+        distinguish the tight variant's sixteen discrete signs from continuous
+        flexibility. No rank-failing variant drops directions or changes source.
+        M4 tests use analytic curvature and linear-support gap oracles, retain
+        noncommuting reference rotation/stretch order, and refuse unverified
+        certificates without changing modes or bounds. Numerical acceptance
+        does not assert an exact optimizer or an interval-arithmetic proof.
+        M0a preserves exact fold exclusion before reading raw partitions, uses
+        no target A or B, and retains the separately defined M0b residual origin.
+        Random-basis checks distinguish a vacuous within-span rotation from
+        a changed subspace, preserve the maximum Rayleigh ceiling, handle
+        actual boundary ties and retain each draw before residual averaging.
+        Average roughness, full spectrum and M4 output roughness are not matched.
+        Calibration falsifiers use genuine Task-A half packets, current-source
+        reliability strata and one fixed condition/identity cycle. Target B
+        enters only after predictions. Identity true/donor arms exclude both
+        people from one matched source and keep their reduced-source estimand
+        separate from ordinary LOPO. All sixteen variants share each packet's
+        refitted gain; donor/condition mappings and source exclusions follow
+        the complete deletion procedure. One draw supplies no permutation
+        p-value, and M3's projected geometry contrast remains algebraically zero.
+        M2 alignment removes common gain before subtracting G, preserving the
+        literal source-map change and equal participant weights. It retains
+        both B halves and all eight controls per variant, with seven equal
+        domain weights; each control is scored before averaging. Its three
+        checks do not certify half-field stability or a native threshold.
+        Reuse previously passing unchanged anatomy/source/operator checks.
+        Callback arguments do not enforce OS isolation. These checks do not
+        certify native signatures, class adequacy, uncertainty or reader release.
+        Run serially in a coordinator-owned substantive allocation, with no
+        separate short job or additional compute reservation.
+      inputs: [policy, m3_fit_code, m4_fit_code, endpoint_code, lopo_code, lopo_tests, local_basis_code, functional_source_code, functional_source_tests, parcel_code, parcel_tests, cardinal_code, relocation_code, relocation_tests, matched_warp_code, matched_warp_tests, isometry_variants_code, isometry_variants_tests, stretch_variants_code, stretch_variants_tests, anatomical_baseline_code, anatomical_baseline_tests, random_basis_code, random_basis_tests, calibration_falsifier_code, calibration_falsifier_tests, m2_alignment_code, m2_alignment_tests]
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 120s bash -c
+          'cd outputs/tests && exec python3.12 -B -m unittest -v
+          test_development_lopo test_local_parcel_prediction
+          test_smooth_relocation test_matched_random_warp
+          test_local_isometry_variants test_paired_stretch_variants
+          test_anatomical_group_baseline test_matched_random_basis
+          test_local_functional_source test_calibration_falsifiers
+          test_m2_alignment_signature' > {output} 2>&1
+        resources: {cpus: 1, memory: 7Gi, time_limit: 3m}
+    - id: development_handoff_adapter_checks
+      type: report
+      format: text
+      description: >-
+        Nine focused source-free reader and point-panel checks cover complete twelve-person/208-location
+        assembly, equal regressor then equal run arithmetic, genuine A halves
+        and four B-only partitions, role/condition/member rejection before
+        sampling, real scaled NIfTI and strict trilinear beta integration,
+        closed diagnostic/instruction streams, all-participant header preflight,
+        fixed support/absolute pull and late failure without a partial cohort.
+        Three panel integration checks bind all A/B views before fitting, connect
+        all16 fixed model variants and existing controls, and refuse partial
+        scoring on failure. Reuse the existing in-memory NIfTI fixtures and passing mapping/model
+        components. No real B decoding, source discovery, fitting or scoring
+        occurs. Explicit release bindings and callback restrictions do not
+        establish isolation or authorize access; actual enforced development
+        reader deployment and release remain required before numeric mapping.
+        Run only these two selected modules serially inside a coordinator-owned substantive
+        allocation. No separate short job, expanded simulation program or
+        automatic empirical successor is selected.
+      inputs: [policy, development_reader_code, development_reader_tests, development_panel_code, development_panel_tests, support_code, mapping_code, header_reader, metadata_code, handoff_preparation_code, support_test_fixtures, mapping_test_fixtures, lopo_code, functional_source_code, calibration_falsifier_code, endpoint_code, local_basis_code, parcel_code, relocation_code, matched_warp_code, isometry_variants_code, stretch_variants_code, anatomical_baseline_code, random_basis_code, random_basis_tests, calibration_falsifier_tests, m2_alignment_code]
+      recipe:
+        command: >-
+          env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+          NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
+          timeout --signal=TERM --kill-after=5s 120s bash -c
+          'cd outputs/tests && python3.12 -B -m unittest -v
+          test_development_handoff_reader test_development_point_panel' > {output} 2>&1
+        resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+    - {id: qualification_report, type: report, format: json, inputs: [policy, roles, condition_plan]}
+  observed_beta_development:
+    name: Complete conditional observed-map development panel
+    description: >-
+      Scientist-adopted October12 descriptive route: all12 participants,
+      18 Task-B-only conditions,one common finite-availability axis,16 variants, baselines and every
+      fixed control. Retain all24 shared source fits and48 calibration panels.
+      Compute spatially centered observed-map squared error with equal partition,
+      seven-domain and participant weights; score each control draw before its
+      losses are averaged. Legacy cross-partition summaries remain conditional
+      on unresolved error assumptions. No recovery fractions, class decision,
+      audit opening or scientific subset is authorized.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: released_view, from: ../role_handoff_preparation.development_metadata_views}
+    - {id: panel_code, from: ../development_point_panel_code}
+    - {id: panel_cli, from: ../development_point_panel_cli}
+    - {id: observed_loss, from: ../observed_beta_summary_code}
+    - {id: observed_checks, from: ../observed_beta_summary_checks}
+    - {id: mapping_quality_census, type: data, source: outputs/tools/diagnose_cost001_mapping_quality.py}
+    - {id: finite_support_code, type: data, source: outputs/tools/build_finite_development_support.py}
+    - {id: finite_support_axis, type: data, source: outputs/tools/finite_development_support.py}
+    outputs:
+    - id: common_finite_support
+      type: data
+      format: directory
+      inputs: [policy, released_view, finite_support_code, finite_support_axis]
+      description: >-
+        Scientist-adopted one complete9024-map strict-validity intersection over
+        original208 locations, with exact original IDs and retained ordering.
+        All maps are checked even for an empty intersection; empty or invalid
+        geometry stops fitting. Preserve original support and every participant,
+        condition, run and regressor. No beta magnitudes or scores select support.
+        Target availability conditions this descriptive spatial estimand.
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 600s python -B
+          outputs/tools/build_finite_development_support.py
+          --manifest "$OAK/users/zijiao/br_autoresearch/episode15_mdtb_topography_vs_geometry/outputs/runs/development_release/attempt001/view/point_panel_manifest.json"
+          --output-dir {output}
+        resources: {cpus: 1, memory: 7Gi, time_limit: 605s}
+    - id: complete_mapping_quality
+      type: report
+      format: json
+      inputs: [policy, released_view, panel_cli, mapping_quality_census]
+      description: >-
+        Diagnosis of an observed strict-stencil failure on the fixed208-location
+        support. Retain original complete release/header/native-coordinate checks
+        and inspect every required A and B-only map from all12 participants.
+        Report only invalidity counts and input identities, with no magnitudes,
+        returned numeric cohort, fitting, imputation, support change or audit.
+        Preserve failed attempts and stop on other identity/resource errors.
+      recipe:
+        command: >-
+          timeout --signal=TERM --kill-after=5s 600s python -B
+          outputs/tools/diagnose_cost001_mapping_quality.py
+          --manifest "$OAK/users/zijiao/br_autoresearch/episode15_mdtb_topography_vs_geometry/outputs/runs/development_release/attempt001/view/point_panel_manifest.json"
+          --output-dir {output} --max-seconds 595 --rss-limit-kib 6291456
+        resources: {cpus: 1, memory: 7Gi, time_limit: 605s}
+    - id: observed_loss_checks
+      type: report
+      format: text
+      inputs: [observed_loss, observed_checks, panel_cli]
+      description: >-
+        Five focused checks of direct loss arithmetic, all fixed draws and
+        source-matched controls, complete private publication and failure.
+        Reuse unchanged reader/fitting checks; no empirical data or new recovery
+        program. Execute serially inside the substantive full-panel allocation.
+    - id: private_observed_beta_panel
+      type: data
+      format: directory
+      inputs: [policy, released_view, panel_code, panel_cli, observed_loss, observed_loss_checks, common_finite_support]
+      description: >-
+        One bounded first complete-route cost execution, with all observed-loss
+        contributions and assumption-conditional legacy summaries retained in
+        a complete private0600 JSON. Operational time/memory/dimensions are
+        reported separately without scientific scores. A later explicit
+        coordinator release can reuse this exact completed summary without
+        refitting. No automatic publication, retry or reduced panel. Requires
+        recorded development release, remaining search budget and resources.
+      recipe:
+        command: >-
+          python -B outputs/tools/run_development_point_panel.py
+          --manifest "$OAK/users/zijiao/br_autoresearch/episode15_mdtb_topography_vs_geometry/outputs/runs/development_release/attempt001/view/point_panel_manifest.json"
+          --output-dir {output} --deadline-epoch "$EP15_COST_DEADLINE"
+          --derived-support "$OAK/users/zijiao/br_autoresearch/episode15_mdtb_topography_vs_geometry/outputs/runs/observed_beta_development/finite_support001/selection.npz"
+          --rss-limit-kib 6291456 --durable-byte-cap 33554432
+          --analysis-scope conditional_observed_beta
+          --publication-mode withheld_cost_measurement
+        resources: {cpus: 1, memory: 7Gi, time_limit: 24h}
+  development_search:
+    name: Full grouped M1-M4 development and native falsifiers
+    description: >-
+      Score registered20-trial coverage, then40–96 valid trials, at least two
+      adaptive successor cycles and40percent postcoverage falsification within
+      original resources. Fit shared quantities without each pseudo-target's
+      TaskB. Preserve every model class and native signature; there is no
+      cross-branch scalar winner or audit-guided decision.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: roles, from: ../role_assignment.roles}
+    - {id: qualification, from: ../implementation_qualification.qualification_report}
+    outputs:
+    - {id: development_report, type: report, format: json, inputs: [policy, roles, qualification]}
+  panel_lock:
+    name: Lock all four classes, their controls and audit decisions
+    description: >-
+      Refit development-only shared quantities and select one certified M1,
+      M2,M3 and the paired M4, with M0a,M0b and negative controls. Freeze
+      margins, source geometry, support, operator certificates, uncertainty,
+      capacities and retry rule; no class may be omitted because it is difficult.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: development, from: ../development_search.development_report}
+    outputs:
+    - {id: panel, type: report, format: json, inputs: [policy, development]}
+  audit_predictions:
+    name: All audit predictions from anatomy and TaskA alone
+    description: >-
+      Calibrate each of12 audit participants only after panel lock, with
+      audit TaskB physically unavailable. Do not update shared parameters.
+      Write and freeze all18-condition predictions and their signed geometry.
+    inputs:
+    - {id: roles, from: ../role_assignment.roles}
+    - {id: panel, from: ../panel_lock.panel}
+    outputs:
+    - {id: prediction_bundle, type: data, format: npz, inputs: [roles, panel]}
+  internal_audit:
+    name: One opening of all twelve audit TaskB outcomes
+    description: >-
+      Trusted evaluator computes every locked signal, adequacy, signature,
+      increment and equivalence component using participant-level jackknife
+      pseudovalues and Holm-inverted class bounds. All assigned people remain;
+      invalid input is technical failure, never exclusion, refit or rescue.
+      Multiple supported nonnested accounts remain non-identifiable.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: panel, from: ../panel_lock.panel}
+    - {id: predictions, from: ../audit_predictions.prediction_bundle}
+    outputs:
+    - {id: primary_decision, type: report, format: json, inputs: [policy, panel, predictions]}
+  final_report:
+    name: Model-class conclusion and nonrescuing diagnostics
+    description: >-
+      Report the full class-status panel, every participant/domain, uncertainty
+      and registered interpretation including unresolved or technical failure.
+      Open shared-condition and within-session diagnostics only after the
+      primary decision. Preserve task/session confounding and internal-public-
+      corpus limitations; diagnostics cannot change the primary conclusion.
+    inputs:
+    - {id: goal, from: ../goal}
+    - {id: decision, from: ../internal_audit.primary_decision}
+    outputs:
+    - {id: study_report, type: report, format: md, inputs: [goal, decision]}

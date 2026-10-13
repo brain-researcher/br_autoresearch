@@ -1,5 +1,55 @@
 # Outputs
 
+[Public online resources, checked October 6](../DATASETS.md#public-online-resources--checked-october-6-2026): original Gao/SEU archive inventories and the source publication's alternate distribution interfaces.
+
+**October 6 adopted closeout:** the original M2 objective is **incomplete
+under computational and numerical limits**. Qualified M1 and its small
+exploratory gain are retained; no successor is selected. This is not a
+biological negative or evidence that M1 is sufficient. See the
+[adoption record](experiment_log.md#2026-10-06--v3_search--scientist-adopted-local-closeout)
+and [adopted disposition](paper_plan.md#october-6-review--m2-closure-adopted).
+Prior charges, remaining budget and closed outcomes are preserved.
+
+## Current execution — October 3, 2026
+
+This retained October 3 evidence summary precedes the adopted October 6
+closeout above; it is not an active-job or launch instruction.
+
+The repaired clean M1 producer `46332190` completed successfully in 2h05m40s.
+Its exact artifacts are preserved in
+[the current producer directory](stage0/v3_m1_real_fit_single_thread_v3_job_46332190/).
+[Independent postflight](stage0/v3_m1_real_fit_single_thread_v3_job_46332190/independent_postflight.json)
+passes 91 checkpoints/949 fits, 194 cells/12 groups, saved one-SE decisions,
+score/calibration identities and numerical/access bindings. The current fitting
+process did not open M0, SWCs, final or unassigned outcomes; the historical
+post-fit M0 opening remains recorded.
+
+The [frozen paired comparison](stage0/v3_m1_compare_m0_v1_job_46424502/v3_m1_minus_m0_comparison.json)
+passes with an equal-group M1-minus-M0 gain of `0.0026378637` bits/cell
+(secondary, exploratory). The [current M1 adequacy gate](stage0/v3_m2_m1_adequacy_gate_job_46424502/v3_m2_m1_adequacy.json)
+also passes: gain over uniform `1.59536026` bits/cell, Brier improvement
+`0.02930475`, target calibration RMS `0.12149700`. Neither is an M2 result.
+The [bounded resource diagnostic with distinct CPU placement](stage0/v3_m2_resource_lower_bound_job_46425841_isolated_cpu3_attempt002/resource_lower_bound.json)
+now prevents launching the current M2 implementation under its frozen budget.
+Optional-family job `46237243` also has four required nonconvergent cases;
+the coordinator stopped its remaining workers and preserved the failed attempt.
+The [terminal resource reconciliation](stage0/resource_accounting_20261003_m2_diagnostics_terminal.json)
+retains historical usage and releases only the unused reservation; 1,064.35
+allocated core-hours remain, below the current 1,900-core-hour lower bound.
+The [bounded triangular-solve comparison](stage0/v3_m1_triangular_prefix_job_46428039/paired/paired_prefix.json)
+completed in job **46428039**. Six tests passed and both 12-lambda paths agreed
+numerically, but wall times were **98.63/98.59 s**: no useful whole-path speedup.
+This does not establish complete-permutation feasibility or M2 readiness.
+Its batch plus ASTRA check consumed 0.0625 core-hour, leaving approximately
+1,064.289 core-hours under the unchanged lifetime ceiling. Optional-family failures remain
+unresolved; no further optimization probe or real M2 run is selected.
+Permutation diagnostic `46325527` previously timed out; its
+in-memory fit cannot resume. These are incomplete-search/technical outcomes,
+not biological negatives. Follow the latest
+[execution-log entry](experiment_log.md) for actual results and next action.
+The within-target terminal-anatomy study below remains a separate unactivated
+design; the completed evidence remains development-only Gao v3.
+
 ## Current paper design — 2026-09-30
 
 The [scientific goal](../GOAL.md) and [paper plan](paper_plan.md) now place
@@ -18,10 +68,13 @@ The explicit B+C example illustrates overlapping positive contexts; the
 pooled/context-resolved drawings use the same schematic arbor locations.
 Previous terminal and target-combination figures remain historical.
 
-The new terminal endpoint is planned, not activated; its measurement and
-evaluation-access contract remain to be frozen. Existing execution contracts
-and attempts are unchanged by this design. See the latest
-[execution-log entries](experiment_log.md) for runtime state.
+The preserved Gao v3 execution is a separate development-only positive-observation
+track, now closed incomplete for M2. Its thresholds, roles and historical
+attempts are retained. The new terminal endpoint is planned, not activated; its
+measurement and evaluation-access contract remain to be frozen. No final or
+unassigned outcome was opened. Use the latest dated
+[execution-log entries](experiment_log.md) for the execution handoff, rather
+than treating the older Stage-0 narrative below as current live state.
 
 ## Historical Stage-0 narrative
 
@@ -43,9 +96,7 @@ the necessary specimen-count screen. The provider metadata do not certify
 those units as distinct animals. Canonical soma-root-only access established
 837/837 atlas-geometry eligibility and froze the 500 um/0.20 common-support
 condition. The prospective outcome-blind split is 12 development, 8 final,
-and 56 unassigned units; all 15 EP11-overlap units are unassigned. Full-tree
-reconstruction QC and complete-target observation remain unresolved. No Gao
-axon tree or projection outcome was opened.
+and 56 unassigned units; all 15 EP11-overlap units are unassigned.
 
 The target-observation rule and role-safe development handoff are also frozen.
 The primary complete-set vocabulary is an outcome-blind 16-coordinate
@@ -56,9 +107,24 @@ from 12 groups, with no unsupported, final, unassigned, or EP11-shared files.
 Primary modeling is limited to those 200 cells, subject to the
 predeclared 190-cell and per-group structural-QC attrition gate. A zero means
 not observed in the eligible released reconstruction, not biological absence;
-the role-incompatible four-cell `Axon_only` sensitivity is omitted. The current
-session has not authenticated to the Sherlock DTN, so no complete SWC body has
-yet been transferred.
+the role-incompatible four-cell `Axon_only` sensitivity is omitted.
+
+The development pass is now complete and fails its frozen gate. Service job
+`45438445` downloaded exactly 200 manifest SWCs (625,064,526 bytes), with no
+final, unassigned, unsupported, or EP11-shared file. Constructor job `45438680`
+found only 5 globally eligible cells: 141 failed tree parsing, 22 had positive
+axon in annotation-zero space, 6 extended outside the atlas, and 26 ended in
+nongrey structures. Diagnostic job `45439110` established that all 141 parser
+failures are transitions out of provider types 10, 11, or 12; the frozen
+contract treats those types as terminal-only markers, while the provider files
+use them internally. All 12 per-group minima fail. Even treating all parser
+failures as eligible would give at most 146/200, below the required 190.
+
+Accordingly, this run stops before candidate search. M0/M1/M2, full-search
+nulls, candidate anatomy, final acquisition, and final evaluation were not run.
+Final and unassigned trees remain absent. A future revision needs a new
+prospectively frozen resource/observation contract rather than replacement,
+promotion, tag reinterpretation, or threshold relaxation inside this run.
 
 Stage-0 preflight job `45412269` completed with exit 0. It exactly reproduced
 the 200-cell manifest and frozen role split and completed 99 outcome-blind
@@ -74,5 +140,7 @@ observed values and is not evidence of execution or a scientific result.
 required evidence, alternatives, figures, and stop decisions; it does not
 report a result or start a follow-up analysis.
 
-Stage 0 is a local exploratory qualification record. It is not Society review,
-confirmation, scientific acceptance, or a Landscape transition.
+Stage 0 is a local exploratory qualification record whose frozen
+reconstruction/observation gate returned `revise_or_stop_before_candidate_search`.
+It is not Society review, confirmation, scientific acceptance, or a Landscape
+transition.

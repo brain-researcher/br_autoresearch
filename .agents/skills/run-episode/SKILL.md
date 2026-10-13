@@ -111,6 +111,15 @@ Separate exploratory evidence, held-out evaluation, replication and formal
 confirmation. A performance win alone does not identify its cause. Negative
 results and informative limitations are valid outcomes, not failed storytelling.
 
+Report how a result was actually reached. When a hypothesis, explanation or
+analysis choice is formed after seeing results, record it in the log with the
+results it was formed after and label it post hoc in reports. A post hoc
+explanation can be a good hypothesis; it is not a confirmed prediction. State,
+from the log, how many alternatives were compared when selecting a result. A
+score used to select an ROI, feature set, model, metric or threshold is
+optimistic for the option it selected; re-estimate that option on permitted
+data not used for the selection, or label the score selection-biased.
+
 At consequential scientific decisions, use exposed read-only BR literature/KG
 retrieval or focused plan/result critique within the disclosure boundary.
 Reuse prior evidence and inspect tool schemas only as needed. Record the

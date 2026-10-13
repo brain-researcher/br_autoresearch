@@ -1,0 +1,28 @@
+{
+  "analysis_id": "population_h_optimizer_recovery",
+  "job_id": "45736553",
+  "evidence_class": "QC_partial_synthetic_optimizer_execution",
+  "rendered_at": "2026-09-30T16:14:10-07:00",
+  "source_log": "outputs/stage0/population_h_resume_20260930/population-h-recovery-45736553.out",
+  "completed_logged_starts": [
+    {
+      "start_index": 1,
+      "start": "embedded_fitted_C",
+      "training_objective": 4.57373073603,
+      "physical_KKT_converged": true
+    },
+    {
+      "start_index": 2,
+      "start": "truth_based_nonzero_signature",
+      "training_objective": 4.44457198869,
+      "physical_KKT_converged": true
+    }
+  ],
+  "empirical_start_result": null,
+  "truth_initialized_training_improvement_relative_to_embedded_C": 0.12915874734,
+  "fresh_verification_scores": null,
+  "frozen_H_gate_adjudication": null,
+  "Panel_A_complete": false,
+  "real_projection_outcomes_opened": false,
+  "interpretation": "Training improvement depends on initialization; no held-out recovery or biological conclusion follows from this partial log."
+}

@@ -1,0 +1,939 @@
+version: "0.0.14"
+name: EP08 open information-value and acquisition experiment program
+description: >-
+  Experiments required by the EP08 contracts. Source support precedes
+  separated data handoffs and neural scoring. Models summaries and information
+  states remain open; the original 16-trial numerical protocol is an optional
+  reference. The fixed random-subset baseline, five selectors and three
+  direction-control, capacity, residual-selector, acquired-only, trial-allocation,
+  arrival-order and mapping comparisons completed on eight development sessions.
+  The mapping heuristic underperforms balance in both animals; its acquired-row
+  grouping ablation reduced that loss without beating balance. A session-cross-
+  fitted linear electrode ranker with three donor-label controls is adopted;
+  donor supervision adds information/cost beyond matched target acquisition.
+  Additional named explanatory scoring remains inactive and held sessions closed.
+  One shared budget and held opening apply.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: data_contract, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: open_design, type: data, source: outputs/open_exploration_design.md}
+  - {id: development_recipe, type: data, source: outputs/development_comparison_proposal.md}
+  - {id: selector_recipe, type: data, source: outputs/selector_comparison_proposal.md}
+  - {id: direction_recipe, type: data, source: outputs/direction_confounding_proposal.md}
+  - {id: capacity_recipe, type: data, source: outputs/representation_capacity_proposal.md}
+  - {id: residual_selection_recipe, type: data, source: outputs/residual_selection_proposal.md}
+  - {id: acquired_only_recipe, type: data, source: outputs/acquired_only_proposal.md}
+  - {id: trial_allocation_recipe, type: data, source: outputs/trial_allocation_proposal.md}
+  - {id: arrival_order_recipe, type: data, source: outputs/trial_arrival_order_proposal.md}
+  - {id: mapping_recipe, type: data, source: outputs/mapping_variance_proposal.md}
+  - {id: mapping_original_reference, type: data, source: outputs/runs/development_search/trial_allocation_attempt001/trial_allocation.json}
+  - {id: mapping_arrival_reference, type: data, source: outputs/runs/development_search/arrival_order_attempt001/arrival_order.json}
+  - {id: grouping_recipe, type: data, source: outputs/mapping_grouping_control_proposal.md}
+  - {id: grouping_mapping_reference, type: data, source: outputs/runs/development_search/mapping_variance_attempt001/mapping_variance.json}
+  - {id: learned_electrode_recipe, type: data, source: outputs/learned_electrode_value_proposal.md}
+  - {id: learned_electrode_reference, type: data, source: outputs/runs/development_search/acquired_only_attempt001/acquired_only.json}
+  - {id: reverse_animal_recipe, type: data, source: outputs/reverse_animal_electrode_value_proposal.md}
+  - {id: reverse_animal_training, type: data, source: outputs/runs/development_search/learned_electrode_attempt001/learned_electrode_value.json}
+  - {id: initializer_target_label_recipe, type: data, source: outputs/initializer_target_label_control_proposal.md}
+  - {id: lmp_correspondence_recipe, type: data, source: outputs/lmp_only_correspondence_proposal.md}
+  - {id: high_power_correspondence_recipe, type: data, source: outputs/high_power_correspondence_proposal.md}
+  - {id: high_power_lmp_reference, type: data, source: outputs/runs/development_search/lmp_correspondence_attempt001/lmp_correspondence.json}
+  - {id: high_power_completed_fits, type: data, source: outputs/runs/development_search/high_power_correspondence_attempt001/high_power_correspondence.json}
+  - {id: initializer_target_label_reference, type: data, source: outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json}
+  - {id: initializer_repeatability_recipe, type: data, source: outputs/initializer_repeatability_proposal.md}
+  - {id: initializer_logdet_recipe, type: data, source: outputs/initializer_logdet_proposal.md}
+  - {id: initializer_cv_utility_recipe, type: data, source: outputs/initializer_cv_utility_proposal.md}
+  - {id: initializer_raw_marginal_recipe, type: data, source: outputs/initializer_raw_marginal_proposal.md}
+  - {id: initializer_robustness_recipe, type: data, source: outputs/initializer_robustness_proposal.md}
+  - {id: cv_utility_completed_pilot, type: data, source: outputs/runs/development_search/initializer_cv_utility_pilot_attempt001/initializer_cv_utility.json}
+  - {id: initializer_conditional_recipe, type: data, source: outputs/initializer_conditional_gain_proposal.md}
+  - {id: conditional_uniform_reference, type: data, source: outputs/runs/development_search/initializer_repeatability_attempt001/initializer_repeatability.json}
+  - {id: conditional_completed_pilot, type: data, source: outputs/runs/development_search/initializer_conditional_pilot_attempt001/initializer_conditional_gain.json}
+outputs:
+  - {id: final_report, from: final_report.study_report}
+analyses:
+  source_support:
+    name: Establish source roles and scientific support
+    description: >-
+      Confirm existing source requirements, twelve-session and animal identity,
+      physical electrodes, geometry fallback, feature meanings, fixed
+      population target, permitted fitting pool and separated evaluation.
+      Establish support separately for offline value and sequential variants.
+      Pilot and full-grid support apply only if the reference case is selected;
+      lack of that support does not stop other supported branches. Determine
+      replay and swap support only for claims that require those contrasts.
+      No source is implied to be acquired by this plan.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: data_contract, from: ../data_contract}
+      - {id: open_design, from: ../open_design}
+      - id: completed_metadata
+        type: data
+        source: outputs/runs/source_support/attempt002/metadata_support.json
+      - {id: development_recipe, from: ../development_recipe}
+      - {id: initializer_robustness_recipe, from: ../initializer_robustness_recipe}
+      - id: completed_trial_roles
+        type: data
+        source: outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+    outputs:
+      - id: support_report
+        type: report
+        format: json
+        inputs: [goal, data_contract, open_design]
+        recipe:
+          command: >-
+            python3 outputs/tools/source_support.py
+            --source $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --out $EP08_METADATA_REPORT
+      - id: development_trial_roles
+        type: report
+        format: json
+        inputs: [completed_metadata, open_design]
+        recipe:
+          command: >-
+            python3 outputs/tools/prepare_development_trial_roles.py
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --output-dir $EP08_TRIAL_ROLE_OUTPUT
+      - id: initializer_robustness_roles
+        type: report
+        format: json
+        inputs: [completed_metadata, completed_trial_roles, initializer_robustness_recipe]
+        description: >-
+          Metadata-only creation of24 separate session/order roles. Three
+          ordinary seeded twelve-ID queues per direction remain entirely in
+          the original96 fitting whitelist; unchanged40 evaluation IDs/order.
+          Each first-four direction prefix is a new32-row initializer. Record
+          all32/48/64/80/96 nested prefixes and original-style position-mod4
+          metadata folds; actual later CV remains initializer-conditioned.
+          Preserve old roles, never read neural values, redraw or select orders.
+        recipe:
+          command: >-
+            timeout 90s python3.12 outputs/tools/initializer_robustness_roles.py
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --output-dir outputs/runs/source_support/initializer_robustness_roles_attempt001
+          resources: {cpus: 1, memory: 1Gi, time_limit: 2m}
+      - id: training_cost_pilot
+        type: report
+        format: json
+        inputs: [completed_metadata, completed_trial_roles, development_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/training_cost_pilot.py
+            --source-file $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source/Mihili_CO_20140217.mat
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --output-dir $EP08_COST_PILOT_OUTPUT
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+  offline_information_value:
+    name: Development information-state and conditional-value exploration
+    description: >-
+      Explore models temporal summaries fitting amounts coverage and declared
+      training/calibration states without requiring a separate pilot or an
+      acquisition-policy win. Separate fitting from evaluation, cross-fit
+      transferred value labels by session and match decoder target and tuning
+      when comparing selection value. No sequential-efficiency claim follows
+      from access to the whole training pool. Endpoints and stopping decisions
+      need prospective specification; this node does not activate them.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: open_design, from: ../open_design}
+      - {id: support_report, from: ../source_support.support_report}
+    outputs:
+      - {id: offline_value_report, type: report, format: json, inputs: [policy, open_design, support_report]}
+  simple_comparisons:
+    name: Cost-matched random spatial reliability and fixed-trial comparisons
+    description: >-
+      Establish the existing simple rules, repeated random choices, common
+      decoder and full-resource ceiling on development sessions with matched
+      allowed information, actual initial and later exposure, target, decoder
+      and tuning. A common 16-trial pilot is required only for the reference.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: support_report, from: ../source_support.support_report}
+      - {id: development_recipe, from: ../development_recipe}
+      - {id: trial_roles, from: ../source_support.development_trial_roles}
+      - {id: training_cost_pilot, from: ../source_support.training_cost_pilot}
+    outputs:
+      - id: comparison_report
+        type: report
+        format: json
+        inputs: [policy, support_report, development_recipe, trial_roles, training_cost_pilot]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_baseline.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --max-seconds $EP08_SELECTED_COMPARISON_SECONDS
+            --output-dir $EP08_DEVELOPMENT_BASELINE_OUTPUT
+  development_search:
+    name: Open bounded development acquisition search and controls
+    description: >-
+      Explore selectors allocators models summaries and initial information
+      states; candidate menus are not exhaustive. Perform applicable controls
+      within 40 to 112 valid evaluations and the existing patience and resource
+      limits. Use whole-session cross-fitting and one global policy; preserve
+      the original nine cells and four factorial combinations only when
+      running the optional reference. New endpoints and stopping rules need
+      specification before their first scored search; final choices and
+      decisions are locked before one shared internal held-session opening.
+      The completed first five selector panels motivate direction-only and
+      within-direction alternatives. Completed D/W/R shows direction means
+      outperform the raw selectors while residual ridge adds prediction beyond
+      direction means. Temporal representation and model capacity have a
+      completed three-panel recipe. Reduced-rank ridge leads in aggregate but
+      its gain differs by animal. Completed residual marginal and conditional
+      selection improve the matched random decoder in aggregate; conditional
+      beats its within-direction permutation control but not marginal selection.
+      Acquired-only initial selection completed one20cell comparison, bringing
+      the total to16. Its modest heterogeneous performance gain uses greater
+      initial observation cost. The adopted next comparison uses fixed-random
+      electrodes for mean-value versus mean-error trial allocation with a
+      balanced reference, frozen initial rank/alpha and common initial scoring
+      normalization. Both allocator panels completed, bringing the total to18.
+      Mean-value improves modestly in both animal means; mean-error is below
+      balance in both means, with heterogeneous session effects. Initial/final
+      models are shared. A three-order fixed-initializer robustness comparison
+      completed one shared evaluation and zero new method families, bringing
+      the total to19. Mean-value gain across the three orders is below0.001
+      and reverses in some animal/order and omission summaries. The adopted
+      mapping-informed successor uses acquired LFP design-index reduction on
+      all four fixed orders, preserving initializer coordinates and penalty,
+      decoder fairness and post-fit reference reuse. It is a dimensionless
+      full-linear proxy, not calibrated uncertainty or a coupling claim.
+      The completed mapping comparison is below balance in both animals,
+      all eight session means and all four order aggregates. The adopted
+      three-seed grouping ablation shuffles only acquired row-to-direction
+      utility association, preserving actual counts, same-history global
+      geometry and true decoder labels/targets. This is one alternative-
+      explanation comparison, not a rescue or new named explanatory endpoint.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: policy, from: ../policy}
+      - {id: comparison_report, from: ../simple_comparisons.comparison_report}
+      - {id: selector_recipe, from: ../selector_recipe}
+      - {id: direction_recipe, from: ../direction_recipe}
+      - {id: capacity_recipe, from: ../capacity_recipe}
+      - {id: residual_selection_recipe, from: ../residual_selection_recipe}
+      - {id: acquired_only_recipe, from: ../acquired_only_recipe}
+      - {id: trial_allocation_recipe, from: ../trial_allocation_recipe}
+      - {id: arrival_order_recipe, from: ../arrival_order_recipe}
+      - {id: mapping_recipe, from: ../mapping_recipe}
+      - {id: mapping_original_reference, from: ../mapping_original_reference}
+      - {id: mapping_arrival_reference, from: ../mapping_arrival_reference}
+      - {id: grouping_recipe, from: ../grouping_recipe}
+      - {id: grouping_mapping_reference, from: ../grouping_mapping_reference}
+      - {id: learned_electrode_recipe, from: ../learned_electrode_recipe}
+      - {id: learned_electrode_reference, from: ../learned_electrode_reference}
+      - {id: reverse_animal_recipe, from: ../reverse_animal_recipe}
+      - {id: reverse_animal_training, from: ../reverse_animal_training}
+      - {id: initializer_target_label_recipe, from: ../initializer_target_label_recipe}
+      - {id: lmp_correspondence_recipe, from: ../lmp_correspondence_recipe}
+      - {id: high_power_correspondence_recipe, from: ../high_power_correspondence_recipe}
+      - {id: high_power_lmp_reference, from: ../high_power_lmp_reference}
+      - {id: high_power_completed_fits, from: ../high_power_completed_fits}
+      - {id: initializer_target_label_reference, from: ../initializer_target_label_reference}
+      - {id: initializer_repeatability_recipe, from: ../initializer_repeatability_recipe}
+      - {id: initializer_logdet_recipe, from: ../initializer_logdet_recipe}
+      - {id: initializer_cv_utility_recipe, from: ../initializer_cv_utility_recipe}
+      - {id: initializer_raw_marginal_recipe, from: ../initializer_raw_marginal_recipe}
+      - {id: initializer_robustness_recipe, from: ../initializer_robustness_recipe}
+      - {id: initializer_robustness_roles, from: ../source_support.initializer_robustness_roles}
+      - {id: cv_utility_completed_pilot, from: ../cv_utility_completed_pilot}
+      - {id: initializer_conditional_recipe, from: ../initializer_conditional_recipe}
+      - {id: conditional_uniform_reference, from: ../conditional_uniform_reference}
+      - {id: conditional_completed_pilot, from: ../conditional_completed_pilot}
+    outputs:
+      - id: selection_report
+        type: report
+        format: json
+        inputs: [goal, policy, comparison_report]
+        description: >-
+          Local completed-development synthesis at outputs/development_summary.json.
+          Reconcile 41 valid comparisons, conservative 26 consecutive no-progress
+          evaluations after the completed 13-15 block, and 11 alternative checks
+          among 21 post-coverage comparisons. No mandatory 60 floor; no reset from
+          a first new-support score, subthreshold raw challenger or initializer
+          sensitivity. Preserve the residual-marginal development reference and
+          limited average target-correspondence finding; stable initializer-
+          independent policy is not established. Coordinator and independent
+          scientific/stopping reviews support the adopted local development-only
+          terminal conclusion. The patience counter is explicitly reconstructed.
+          No held protocol, named explanation or canonical transition is selected.
+      - id: selector_comparison_report
+        type: report
+        format: json
+        inputs: [goal, policy, comparison_report, selector_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_selectors.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --baseline-report outputs/runs/simple_comparisons/development_baseline_attempt001/development_baseline.json
+            --max-seconds 840
+            --output-dir outputs/runs/development_search/selector_comparison_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+      - id: mapping_variance_report
+        type: report
+        format: json
+        inputs: [goal, policy, mapping_recipe, mapping_original_reference, mapping_arrival_reference]
+        recipe:
+          command: >-
+            python3.12 outputs/tools/development_mapping_variance.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --original-report outputs/runs/development_search/trial_allocation_attempt001/trial_allocation.json
+            --arrival-report outputs/runs/development_search/arrival_order_attempt001/arrival_order.json
+            --max-seconds 840
+            --output-dir outputs/runs/development_search/mapping_variance_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+      - id: mapping_grouping_control_report
+        type: report
+        format: json
+        inputs: [goal, policy, grouping_recipe, grouping_mapping_reference, mapping_original_reference, mapping_arrival_reference]
+        description: >-
+          Three fixed MC seeds, all four orders, all eight development sessions
+          and sixteen fixed electrode sets. Pseudo labels only group acquired
+          row gains, retain actual direction-count multiset and include exhausted
+          groups before actual legality filtering. True coordinates/M/eta/A,
+          direction labels and targets remain unchanged at the same history.
+          Different histories can acquire different rows and A. Every actual
+          group mapping is retained; no future or cross-history observations.
+          Share identical initializer/final fits only, average seed correct/wrong
+          SSE rather than predictions, preserve all twenty resource cells and
+          equal order/session/animal aggregation. Reuse completed references only
+          after all new fits and verify endpoint scores/capacity/normalization.
+          One control comparison within the shared budget; no held or named
+          explanatory opening.1140s internal,1200s external, no retry.
+        recipe:
+          command: >-
+            timeout 1200s python3.12 outputs/tools/development_mapping_grouping.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --mapping-report outputs/runs/development_search/mapping_variance_attempt001/mapping_variance.json
+            --original-report outputs/runs/development_search/trial_allocation_attempt001/trial_allocation.json
+            --arrival-report outputs/runs/development_search/arrival_order_attempt001/arrival_order.json
+            --max-seconds 1140
+            --output-dir outputs/runs/development_search/mapping_grouping_control_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 20m}
+      - id: learned_electrode_pilot_report
+        type: report
+        format: json
+        inputs: [goal, policy, learned_electrode_recipe]
+        description: >-
+          Complete predetermined Mihili20140217 target with seven donor sessions,
+          matching24/32 initializer views, three fixed predictors, mean-loss
+          alpha1 donor labels and weighted-mean-loss alpha1 ranker. All20 target
+          rankings freeze before later target rows; all65 target models precede
+          evaluation. Separate per-unit time means, no neuron averaging. Three
+          ordinary donor-label shuffles, score means not prediction ensembles.
+          Only timing/completion/exposure released until the complete cohort;
+          no old reference outcomes read during pilot, no decoder serialization.
+          Equal target acquisition does not mean equal donor information/cost.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_learned_electrodes.py
+            --mode pilot
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/learned_electrode_pilot_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: learned_electrode_comparison_report
+        type: report
+        format: json
+        inputs: [goal, policy, learned_electrode_recipe, learned_electrode_reference]
+        description: >-
+          Remaining seven complete target sessions plus the complete predetermined
+          pilot, with old acquired-only scores read after all new fits. Two
+          learned-selector/control comparisons; three seeds are one control.
+          Full-electrode score/capacity replay required. Remaining resource bound
+          is selected only from measured pilot timing, not its scientific scores.
+        recipe:
+          command: >-
+            timeout 600s python3.12 outputs/tools/development_learned_electrodes.py
+            --mode remaining
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --pilot-report outputs/runs/development_search/learned_electrode_pilot_attempt001/learned_electrode_value.json
+            --reference-report outputs/runs/development_search/acquired_only_attempt001/acquired_only.json
+            --max-seconds 540
+            --output-dir outputs/runs/development_search/learned_electrode_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 10m}
+      - id: reverse_animal_electrode_report
+        type: report
+        format: json
+        inputs: [goal, policy, reverse_animal_recipe, reverse_animal_training, learned_electrode_reference]
+        description: >-
+          Both transfer directions use only four other-animal donor sessions and
+          the unchanged three-predictor alpha1 ranker. Reuse forty existing donor
+          views as declared training inputs; physically parse the combined report
+          before fits but use no old outcome fields for fitting. Forty shared
+          rankers,520 target models,three original label-control seeds. All target
+          orderings precede future reads; all65 models precede each evaluation.
+          Reference outcomes are used only after all new fits. Inherited donor
+          costs remain explicit; target-cost matching is not total-cost matching.
+          Two complete panels count two evaluations, with held sessions closed.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_reverse_animal_electrodes.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --training-report outputs/runs/development_search/learned_electrode_attempt001/learned_electrode_value.json
+            --reference-report outputs/runs/development_search/acquired_only_attempt001/acquired_only.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/reverse_animal_electrode_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: initializer_target_label_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_target_label_recipe, learned_electrode_reference]
+        description: >-
+          Five ordinary original-trial-ID permutations within each direction and
+          each 24/32-row initializer view affect marginal electrode ranking only.
+          True targets train every decoder. All25 orders precede future fitting
+          rows and all80 distinct target models precede evaluation per session.
+          Mean five correct/wrong SSEs, never prediction averaging. The existing
+          true-marginal reference is read after all new fits; five common all96
+          cells replay scores and exact capacity/physical IDs for every seed.
+          One control comparison across eight sessions, twenty cells, equal
+          session/animal weights; four held sessions remain closed. No donor
+          supervision or new causal/complementarity/coupling endpoint.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_initializer_target_labels.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/acquired_only_attempt001/acquired_only.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/initializer_target_label_control_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: lmp_correspondence_report
+        type: report
+        format: json
+        inputs: [goal, policy, lmp_correspondence_recipe, initializer_target_label_reference, learned_electrode_reference]
+        description: >-
+          Native guide0/0 LMP only in selection and decoding, one real coordinate
+          per electrode. Scalar alpha1 marginal gain and five identical original
+          within-direction target-label maps; true-Y decoders and real E-wide
+          legal ranks. All30 orders precede future reads and95 distinct models
+          precede evaluation in every session. Mean five control SSEs, no
+          prediction ensemble. One-band source bytes and bandwidth are explicit.
+          Reuse old references after all new fitting for source-role/map/target
+          denominator/direction-null comparison, not three-band prediction replay.
+          Full96-LMP scores/capacity replay within the new six-branch run.
+          Two completed panels add two evaluations; held sessions stay closed.
+          This spectral sensitivity changes capacity and does not certify LMP
+          spike independence, a causal mechanism or a successful joint rule.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_lmp_correspondence.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --acquired-reference outputs/runs/development_search/acquired_only_attempt001/acquired_only.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/lmp_correspondence_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: high_power_correspondence_report
+        type: report
+        format: json
+        inputs: [goal, policy, high_power_correspondence_recipe, initializer_target_label_reference, high_power_lmp_reference]
+        description: >-
+          Only native100-200 and200-400Hz guide rows enter numerical acquisition,
+          selection and decoding, with two actual coordinates per electrode.
+          Two-coordinate alpha1 marginal gains use fitting-only normalization
+          and the exact five original within-direction target-label maps.
+          True-Y heads use actual2E legal ranks and unpadded selected columns.
+          All30 orders precede future reads;95 distinct models precede evaluation
+          per session. Mean five seed SSEs;20 equal cells and two equal animals.
+          Old three-band and LMP-only panels are read only after all new fits.
+          Target denominators/direction-null replay across representations and
+          full96 capacity/scores replay within the new six-branch run.
+          Own-control correspondence and residual-direction screens are separate.
+          Spectral pipeline differences alter information and capacity and do
+          not identify contamination, independent physiology or complementarity.
+          Two complete comparisons add two evaluations; held sessions stay closed.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_high_power_correspondence.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --lmp-reference outputs/runs/development_search/lmp_correspondence_attempt001/lmp_correspondence.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/high_power_correspondence_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: high_power_finalized_report
+        type: report
+        format: json
+        inputs: [goal, policy, high_power_correspondence_recipe, high_power_completed_fits, initializer_target_label_reference, high_power_lmp_reference]
+        description: >-
+          Resume only post-fit finalization from all eight complete saved
+          sessions after the known legacy initial_marginal missing-SSE schema
+          failure. Exact recipe, stage, counts, role records and information
+          barriers are required. No source path, neural reads or target refits.
+          Every recorded original field replays between reference packets;
+          no missing legacy SSE or denominator is fabricated or claimed replayed.
+          Required target denominators still replay against the original label
+          control and both LMP panels. Original fit costs remain preserved;
+          finalization cost is separate. Two comparisons charge only on complete
+          reference checks, fixed summaries and final report; held stays closed.
+        recipe:
+          command: >-
+            timeout 90s python3.12 outputs/tools/finalize_high_power_correspondence.py
+            --completed-fit-report outputs/runs/development_search/high_power_correspondence_attempt001/high_power_correspondence.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --lmp-reference outputs/runs/development_search/lmp_correspondence_attempt001/lmp_correspondence.json
+            --max-seconds 60
+            --output-dir outputs/runs/development_search/high_power_correspondence_attempt002
+          resources: {cpus: 1, memory: 4Gi, time_limit: 2m}
+      - id: initializer_repeatability_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_repeatability_recipe, initializer_target_label_reference, learned_electrode_reference]
+        description: >-
+          Initial24/32-row fitting views use the unchanged raw-X direction-
+          repeatability formula, averaged over three features per electrode.
+          Population targets are absent from the selector API but acquired for
+          true-target decoding. Five ordinary full physical-ID permutations
+          yield uniform nested control sets without tied-score sorting bias.
+          All30 orders precede future source reads and95 distinct models precede
+          evaluation per session. Mean five seed SSEs; all20 cells and both
+          animals retained. Existing three-band full96 score/capacity and target
+          denominators/direction-null scores replay after all new fits.
+          Two completed panels add two evaluations; no held or named endpoint
+          opens. Equal initializer exposure does not imply random selection
+          needs the extra observations or establish acquisition efficiency.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_initializer_repeatability.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --acquired-reference outputs/runs/development_search/acquired_only_attempt001/acquired_only.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/initializer_repeatability_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: initializer_logdet_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_logdet_recipe, conditional_uniform_reference]
+        description: >-
+          Target-free residual-input group log-determinant selector on the
+          original24/32-row initializer views. X-only direction centering and
+          population SD, zero-to-one convention, alpha1 mean-loss Gram and
+          exactly32 greedy groups; exact physical-ID ties and explicit numerical
+          negative-gain failure tolerance without clipping. True-target heads
+          use unchanged3E representation/capacity. All five orders precede
+          future reads and20 distinct models precede evaluation per session.
+          Read completed repeatability/uniform/marginal references only after
+          all160 new fits; no reference refits or charges. Exact source roles,
+          matched exposure, recorded target denominators/direction nulls and
+          original full96 capacity/scores replay. Legacy marginal SSE fields
+          were not saved and are not reconstructed. Candidate Q versus matched
+          uniform and versus marginal have separate positive-both-animal screens;
+          repeatability and direction contrasts remain descriptive. One complete
+          candidate adds one evaluation; no named explanation or held opening.
+        recipe:
+          command: >-
+            timeout 210s python3.12 outputs/tools/development_initializer_logdet.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/initializer_repeatability_attempt001/initializer_repeatability.json
+            --max-seconds 180
+            --output-dir outputs/runs/development_search/initializer_logdet_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 4m}
+      - id: initializer_robustness_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_robustness_recipe, initializer_robustness_roles, initializer_target_label_reference]
+        description: >-
+          Fixed residual-marginal candidate and five within-direction target
+          controls under each of three separately paid initializer orders.
+          Exact original fitting whitelist and evaluation preserved; new role
+          artifacts validated before source reads. All30 orders precede future
+          reads within a condition and285 models across allthree conditions
+          precede one shared evaluation read/session. Complete2280 models,
+          45600 inner fits,228000 capacity scores,720 orders,4800 direction
+          maps and69120 marginal score solves. Average seed SSE within each
+          order's denominator, then mean three Qs; no crossorder pooled SSE
+          or prediction ensemble. Exact common full96 scores/capacity only
+          within an order; changed CV forbids assuming old/crossorder equality.
+          Old initializer context parsed only after all new fits, separately
+          displayed without recharge. Primary mean-order and stricter each-
+          order both-animal correspondence screens are sensitivity criteria,
+          not new patience resets or automatic promotion. Two complete panels
+          charge39to41; no automatic stopping, held opening or new explanation.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/development_initializer_robustness.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --prepared-roles outputs/runs/source_support/initializer_robustness_roles_attempt001/initializer_robustness_roles.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --max-seconds 600
+            --output-dir outputs/runs/development_search/initializer_robustness_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: initializer_raw_marginal_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_raw_marginal_recipe, initializer_target_label_reference]
+        description: >-
+          Fixed initializer-only raw/global standardized alpha1 marginal
+          three-coordinate ranking, then unchanged direction-residual reduced-
+          rank decoding. Earlier raw selection was reselected at each fitting
+          prefix with raw heads; this freezes24/32-view orders through later
+          acquired-only histories. Global input SD differs from residual SD.
+          Five exact original within-direction whole-target maps preserve
+          direction means; they test within-direction pairing, not all target
+          association. True targets feed all actual decoders. All30 orders
+          precede future reads and95 models precede evaluation/session. Across
+          eight sessions,760 models,240 orders,23040 logical marginal score
+          solves,40 raw normalization views and1600 direction maps. Read the
+          original target-label report only after all new fits; replay25 map
+          sets or200 direction maps/session, recorded target denominators and
+          old candidate/every seed full96 scores/capacity. Known legacy marginal
+          SSE absence is explicit. Candidate versus residual marginal and own
+          mean-five-SSE control have positive-both-animal screens. Two charges
+          only on full completion; no held opening or named explanation.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_initializer_raw_marginal.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/initializer_raw_marginal_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: initializer_cv_utility_pilot
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_cv_utility_recipe]
+        description: >-
+          Predetermined complete Mihili20140217 resource pilot. Original24/32
+          main selector views contain balanced three/four internal folds with
+          sixteen/twenty-four fitting and eight validation rows. All proxy
+          normalizers and coefficients are fitting-only. Rank signed true
+          validation-SSE benefit of alpha1 three-coordinate electrode proxies,
+          without a positive floor. Five new target maps operate only within
+          each internal fitting direction; validation and actual decoder Y
+          remain true. All30 orders precede future reads;95 actual models precede
+          evaluation. Count9216 proxy models separately from1900 actual inner
+          fits,9500 capacity scores,640 maps and16 normalization views. No old
+          reference or pilot scientific score is released before the remaining
+          bound is selected from resource evidence. Pilot is uncharged and
+          preserved for exact reuse after all remaining new fits; no held opening.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_initializer_cv_utility.py
+            --mode pilot
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/initializer_cv_utility_pilot_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: initializer_cv_utility_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_cv_utility_recipe, cv_utility_completed_pilot, conditional_uniform_reference]
+        description: >-
+          Seven new sessions plus exact reuse of the completed predetermined
+          first-session pilot. The remaining bound is selected from pilot
+          resources before its scientific-score release. No pilot or historical
+          result JSON is parsed until every remaining new session finishes.
+          Require exact pilot recipe/roles,95 models,9216 proxy models,16
+          normalization views,640 maps and30 orders; no pilot refit or charge.
+          Across the completed cohort,73728 proxy models and5120 fitting-only
+          direction maps remain separate from760 actual decoder fits. Compare
+          candidate Q with its own mean-five control and marginal incumbent;
+          uniform/repeatability/direction contrasts are descriptive. Preserve
+          full96 and recorded target-only replays and the legacy missing-SSE
+          limitation. Two comparisons charge only on full completion; held and
+          named explanations stay closed. Combined resource cost includes the
+          preserved pilot and remaining executions without counting idle time.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/development_initializer_cv_utility.py
+            --mode remaining
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --pilot-report outputs/runs/development_search/initializer_cv_utility_pilot_attempt001/initializer_cv_utility.json
+            --reference-report outputs/runs/development_search/initializer_repeatability_attempt001/initializer_repeatability.json
+            --max-seconds 600
+            --output-dir outputs/runs/development_search/initializer_cv_utility_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: initializer_conditional_pilot
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_conditional_recipe]
+        description: >-
+          Complete first Mihili20140217 target session, all six branches and
+          five fitting views. Qualified alpha1 conditional ridge proxy takes
+          exactly32 greedy steps with independent control state and the exact
+          original target-label maps. True-Y decoders; all30 orders before
+          future reads and95 models before evaluation. Only timing/memory/
+          support/numerical validity released to select the remaining bound;
+          scientific scores withheld. Pilot is reused later without refit and
+          does not charge a comparison by itself. No old reference JSON read.
+        recipe:
+          command: >-
+            timeout 300s python3.12 outputs/tools/development_initializer_conditional.py
+            --mode pilot
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --max-seconds 270
+            --output-dir outputs/runs/development_search/initializer_conditional_pilot_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 5m}
+      - id: initializer_conditional_report
+        type: report
+        format: json
+        inputs: [goal, policy, initializer_conditional_recipe, initializer_target_label_reference, conditional_uniform_reference, conditional_completed_pilot]
+        description: >-
+          Complete pilot plus seven newly fitted sessions; remaining bound is
+          selected from measured pilot resources before scientific-score release.
+          Pilot and historical references are parsed only after all seven new
+          sessions finish fitting. Exact pilot recipe/roles/counts are required,
+          with combined resource cost retained. Compare conditional selection
+          with its own mean-five target-label control and initial marginal;
+          matched uniform/repeatability references are descriptive and not
+          refitted/recharged. All96 three-band capacity/scores and target-only
+          quantities replay after all fits. Two complete comparisons; held and
+          named electrode-removal/complementarity endpoints remain closed.
+        recipe:
+          command: >-
+            timeout 630s python3.12 outputs/tools/development_initializer_conditional.py
+            --mode remaining
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --pilot-report outputs/runs/development_search/initializer_conditional_pilot_attempt001/initializer_conditional_gain.json
+            --target-reference outputs/runs/development_search/initializer_target_label_control_attempt001/initializer_target_label_control.json
+            --uniform-reference outputs/runs/development_search/initializer_repeatability_attempt001/initializer_repeatability.json
+            --max-seconds 600
+            --output-dir outputs/runs/development_search/initializer_conditional_attempt001
+          resources: {cpus: 1, memory: 4Gi, time_limit: 11m}
+      - id: direction_control_report
+        type: report
+        format: json
+        inputs: [goal, policy, comparison_report, selector_recipe, direction_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_direction_controls.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --selector-report outputs/runs/development_search/selector_comparison_attempt001/development_selectors.json
+            --max-seconds 540
+            --output-dir outputs/runs/development_search/direction_controls_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: capacity_comparison_report
+        type: report
+        format: json
+        inputs: [goal, policy, comparison_report, direction_recipe, capacity_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_capacity.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --direction-report outputs/runs/development_search/direction_controls_attempt001/direction_controls.json
+            --max-seconds 540
+            --output-dir outputs/runs/development_search/capacity_comparison_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: residual_selector_report
+        type: report
+        format: json
+        inputs: [goal, policy, direction_recipe, capacity_recipe, residual_selection_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_residual_selectors.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --capacity-report outputs/runs/development_search/capacity_comparison_attempt001/capacity_comparison.json
+            --direction-report outputs/runs/development_search/direction_controls_attempt001/direction_controls.json
+            --max-seconds 540
+            --output-dir outputs/runs/development_search/residual_selectors_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: acquired_only_report
+        type: report
+        format: json
+        inputs: [goal, policy, capacity_recipe, residual_selection_recipe, acquired_only_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_acquired_only.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --selection-report outputs/runs/development_search/residual_selectors_attempt001/residual_selectors.json
+            --capacity-report outputs/runs/development_search/capacity_comparison_attempt001/capacity_comparison.json
+            --max-seconds 840
+            --output-dir outputs/runs/development_search/acquired_only_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+      - id: trial_allocation_report
+        type: report
+        format: json
+        inputs: [goal, policy, capacity_recipe, acquired_only_recipe, trial_allocation_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_trial_allocation.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --max-seconds 540
+            --output-dir outputs/runs/development_search/trial_allocation_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+      - id: arrival_order_report
+        type: report
+        format: json
+        inputs: [goal, policy, trial_allocation_recipe, arrival_order_recipe]
+        recipe:
+          command: >-
+            python3 outputs/tools/development_arrival_order.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --reference-report outputs/runs/development_search/trial_allocation_attempt001/trial_allocation.json
+            --max-seconds 840
+            --output-dir outputs/runs/development_search/arrival_order_attempt001
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+  internal_held_policy:
+    name: One-shot selected protocols in four internal held sessions
+    description: >-
+      For the optional reference, apply unchanged aggregation, 0.005 R2_SSE margin, both-animal,
+      three-of-four-session and scarce-resource requirements and required
+      controls. Other selected branches need their own prospectively fixed
+      decisions; none is invented here. Score only analyses selected before
+      the one shared opening. These source-exposed sessions do not confirm an explanation
+      selected after their outcomes. No partial results return to search.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selection_report, from: ../development_search.selection_report}
+    outputs:
+      - {id: policy_report, type: report, format: json, inputs: [policy, selection_report]}
+  conditional_electrode_value:
+    name: Allowed-information prediction of conditional electrode-removal value
+    description: >-
+      Test the existing removal-loss labels and quality-matched swap contrasts
+      under supported fitting information states, without requiring a policy
+      winner or a 16-trial pilot, with session cross-fitting versus reliability. Additional named
+      proxy scoring choices need a separate prospective amendment; this node
+      does not activate those choices or open held outcomes.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: support_report, from: ../source_support.support_report}
+    outputs:
+      - {id: electrode_value_report, type: report, format: json, inputs: [policy, support_report]}
+  repeatable_direction_value:
+    name: Existing pre-choice prediction of repeatable next-direction benefit
+    description: >-
+      Branch every legal direction at supported frozen balanced states across
+      prospectively specified ordinary replay orders; the original reference
+      retains at least three explanation orders. Compare predictions with
+      average realized loss benefit beyond balance and one lucky future trial.
+      Future features and targets are not inputs to pre-choice predictions.
+      Initial information state is open; the reference checkpoints/order
+      requirements apply only to that reference. New branch replay support,
+      proxy scores and margins remain prospective choices, not activated here.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: support_report, from: ../source_support.support_report}
+    outputs:
+      - {id: direction_value_report, type: report, format: json, inputs: [policy, support_report]}
+  electrode_trial_coupling:
+    name: Existing sensor-dependent trial ordering and factorial interaction
+    description: >-
+      Hold calibration trials fixed during quality-matched electrode swaps.
+      Test predicted direction-order changes across states orders sessions and
+      animals. The original reference retains its resolved interaction
+      requirement; other branch decisions need prospective specification. Two additive
+      component gains do not support a joint principle. Insufficient branch
+      or swap support limits the claim without changing the policy decision.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: electrode_value_report, from: ../conditional_electrode_value.electrode_value_report}
+      - {id: direction_value_report, from: ../repeatable_direction_value.direction_value_report}
+    outputs:
+      - {id: coupling_report, type: report, format: json, inputs: [policy, electrode_value_report, direction_value_report]}
+  resource_axes:
+    name: Existing separate electrode and trial resource-step explanation
+    description: >-
+      Report selected prospectively specified electrode and trial contrasts;
+      the old nine-cell steps apply only to the reference. Include session
+      and animal influence and actual initialization/later exposure. No common
+      cost, power or bandwidth equivalence is inferred.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: selection_report, from: ../development_search.selection_report}
+      - {id: policy_report, from: ../internal_held_policy.policy_report}
+    outputs:
+      - {id: resource_report, type: report, format: json, inputs: [policy, selection_report, policy_report]}
+  external_animal_confirmation:
+    name: Conditional planned third-animal explanation and policy confirmation
+    description: >-
+      Run only with a separately selected compatible newly sequestered source
+      and prospective external protocol. No such third-animal source is
+      currently available; Chewie-R is the same animal. Test conditional
+      electrode value, direction value, coupling and policy transfer in every
+      eligible session. This plan provides no execution or access authority.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: data_contract, from: ../data_contract}
+      - {id: coupling_report, from: ../electrode_trial_coupling.coupling_report}
+      - {id: resource_report, from: ../resource_axes.resource_report}
+    outputs:
+      - {id: external_report, type: report, format: json, inputs: [goal, data_contract, coupling_report, resource_report]}
+  final_report:
+    name: Development-only conclusion with initializer and evidence limits
+    description: >-
+      Synthesize the completed development comparisons at outputs/final_report.md
+      with the machine-readable development summary. Average correspondence
+      remains positive, but Mihili reverses in one initializer order and three
+      of four mean-order session effects are nonpositive. Preserve this limited
+      finding without a stable-policy, joint-principle or confirmation claim.
+      The development-only terminal route consumes completed development
+      evidence; it does not require or pretend to complete the unselected held,
+      conditional-explanation or external-confirmation branches above. All four
+      held sessions remain closed and any later held protocol needs a separate
+      prospective decision. Optional 16-trial reference criteria and 0.005 margin
+      do not transfer automatically; 0.001 is search resolution only.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: policy, from: ../policy}
+      - {id: open_design, from: ../open_design}
+      - {id: selection_report, from: ../development_search.selection_report}
+      - {id: initializer_robustness_report, from: ../development_search.initializer_robustness_report}
+      - {id: raw_initializer_report, from: ../development_search.initializer_raw_marginal_report}
+      - {id: original_initializer_report, from: ../initializer_target_label_reference}
+    outputs:
+      - id: study_report
+        type: report
+        format: markdown
+        inputs: [goal, policy, open_design, selection_report, initializer_robustness_report, raw_initializer_report, original_initializer_report]
+        description: >-
+          outputs/final_report.md: local development-only report and stopping
+          rationale, with exact initializer contrasts, session/animal influence,
+          claim limits, resource evidence and links to complete source reports
+          and figure data. Companion outputs/development_summary.json records
+          the adopted development_only_no_initializer_robust_policy route.
+          Coordinator and independent scientific/stopping reviews passed;
+          no held confirmation or canonical acceptance is claimed.

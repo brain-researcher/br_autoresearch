@@ -35,6 +35,13 @@ conditions.
 It would still not show that an unbuilt device outperforms fabricated NeuroCam,
 works chronically in vivo, or is ready for manufacturing.
 
+On October 6, 2026, the scientist explicitly retained EP20 as an exception to
+the cross-episode simulation stop: simulated hardware co-design is in scope.
+Published NeuroCam measurements and the acquired Rat5 recording remain real
+inputs with distinct calibration and plausibility roles; they are not measured
+outcomes for unbuilt candidate devices. This scope decision preserves the
+reference checks, final-data separation and resource limits below.
+
 ![EP20: field/device conditions, the correct design-family mapping and model uncertainty](outputs/ep20_question_imagegen-v2.png)
 
 The D0–D3 table is the diagnostic factorial, not a replacement for the main
@@ -527,12 +534,23 @@ biocompatibility, reliability, lifetime, or in-vivo performance.
 
 ## Current status
 
-EP20 is specified but not ready to run. The article and aggregate published
-measurements and anchor roles are identified, but source-use approval, usable
-measurement contexts, the accepted reference-model set and rank-stability check,
-the paper-derived reference model, legal pad catalogue,
-development field and device models, resource rules, independent final models,
-and physical-signal or phantom data do not yet exist as episode inputs.
+EP20 is specified but has no tested candidate result. Published measurements
+and anchor roles, the starting pad/scan catalogue and passive-contact equations
+are documented; the implemented contact component passed eleven checks. One
+Rat5 segment is acquired but not source-qualified, while Rat3 remains unopened.
+Original DAQ/calibration context, authentic Rat5 mapping/history, a fitted
+reference and accepted-model/rank-stability set, full coupled models and
+resource accounting remain unfinished. [DATASETS](DATASETS.md#current-readiness)
+separates completed preparation from those dependencies. The October 6 EP20
+exception permits progressing the simulated study under its existing scientific
+contract. The selected persistent R1 source-line component is implemented and
+its seven analytic checks passed. Scalar loading/noise propagation is also
+implemented independently of Rat5 and its six checks passed. The passive
+coupled RC component is implemented for small networks with persistent state,
+explicit matrices and charge-conserving capacitance changes; its eight checks
+passed. This component does not supply full-array capacity or missing
+circuit/DAQ facts. These components do not qualify a complete reference while
+source dependencies remain unresolved.
 
 The starting catalogue is documented, but its physical eligibility is not
 established. Published source-stream sample counts also do not identify

@@ -1,0 +1,256 @@
+schema_version: ep21.delegated_protocol_decisions.v1
+episode_id: ep21
+recorded_on: "2026-09-30"
+astra_analysis_id: pipeline_conformance
+record_role: prospective_scientific_decisions_not_execution_evidence_or_protocol_lock
+protocol_lock_emitted: false
+empirical_payload_accessed: false
+scientific_results_produced: false
+
+authority:
+  scientist_instruction: >-
+    Use the pinned V1.0.0 code-faithful choices and disclose all deviations from
+    the paper. I delegate the remaining outcome-blind protocol decisions within
+    EP21’s existing research question and data boundaries. Do not invent
+    comparability margins; mark those subclaims not evaluable where necessary.
+    DUA/risk clearance and regular-only handoffs are still unresolved. Keep
+    empirical execution closed until those inputs and the protocol lock are
+    ready. Preserve the existing budget, OOD boundary, and stopping criteria.
+  code_fidelity_choice_adopted: true
+  remaining_outcome_blind_protocol_decisions_delegated: true
+  empirical_access_authorized: false
+  empirical_execution_authorized: false
+  neural_scoring_authorized: false
+  new_resource_request_or_budget: false
+  budget_and_resource_contract: unchanged_no_empirical_allocation_or_spend
+  canonical_brain_researcher_action_authorized: false
+  successor_authorized: false
+
+source_identity:
+  tag: V1.0.0
+  commit: edbff02edd6a08d3c6c829af45a957fd14bdc460
+  archive_md5: bb80dcc1a038737d6d8fc2c95b3e5586
+  identity_evidence: source_qualification/attempt-017/qualification_report.json
+  accepted_evidence:
+    - source_qualification/attempt-017/qualification_report.json
+    - source_qualification/attempt-018/bvlc_alexnet_paper_asset_audit.json
+    - source_qualification/attempt-019/public_method_semantics_audit.json
+    - pipeline_conformance/attempt-005/neutral_conformance_report.json
+    - pipeline_conformance/attempt-006/adapter_conformance_report.json
+  evidence_reuse_scope: >-
+    Immutable public source facts and unchanged mechanical guard behavior are
+    reused. Prior reports remain bound to their original protocol-table bytes;
+    they are not conformance evidence for a completed new lock, and their
+    historical unresolved-choice fields are not rewritten.
+
+adopted_tagged_choices:
+  content_converter:
+    architecture_reference: NCC_content_loss/models.py_at_pinned_commit
+    activation: two_LeakyReLU_negative_slope_0_2
+    loss_reference: NCC_content_loss/NCC_train.py_and_utils.py_at_pinned_commit
+    loss_weighting: normalized_inverse_squared_norm_of_active_per_iteration_feature_blocks
+    loss_and_normalization_exact_semantics: selected_tagged_expressions_implementation_conformance_pending
+    convolutional_sampling: one_random_feature_map_per_convolutional_layer_per_iteration
+    fully_connected_sampling: all_units_each_iteration
+    optimizer: Adam
+    learning_rate: 0.00005
+    betas: [0.5, 0.999]
+    iterations: 1024
+    linear_decay_start_iteration: 512
+    scheduler_reference: tagged_LambdaLR_expression_no_reinterpretation
+    seed: 42
+    checkpoint: final_iteration_only
+    early_stopping: none
+    restarts: none
+    degenerate_active_feature_norm: stop_affected_fit_no_added_epsilon_or_outcome_selected_block_exclusion
+  feature_decoder:
+    estimator_reference: tagged_FastL2LiR
+    required_dependency: fastl2lir_0_9_exact_source_authenticated_runtime_binding_pending
+    alpha: 100
+    voxels_per_feature_unit: 500
+    voxel_ranking: descending_absolute_training_only_Pearson_correlation
+    voxel_ties: ascending_stable_native_voxel_identifier
+    fewer_than_500_eligible_voxels: affected_decoder_not_evaluable_no_smaller_fallback
+    mean_axis: 0
+    standard_deviation_axis: 0
+    standard_deviation_ddof: 1
+    dtype: float32
+    intercept_and_coefficient_reference: authenticated_fastl2lir_0_9_penalized_retained_bias_Fortran_target_unit_layout
+    feature_network_reference: caffe_VGG19_as_named_by_tagged_decoder_configuration
+    vgg19_layers: [conv1_1, conv1_2, conv2_1, conv2_2, conv3_1, conv3_2, conv3_3, conv3_4, conv4_1, conv4_2, conv4_3, conv4_4, conv5_1, conv5_2, conv5_3, conv5_4, fc6, fc7, fc8]
+    activation_timing: pre_rectification
+    incompatible_modern_checkpoint_substitution: forbidden
+  reconstruction:
+    source_reference: reconstruction/recon_icnn_image_gd.py_and_tagged_200iter_configuration
+    decoded_layers: all_19_configured_VGG19_layers
+    custom_DIST_loss: tagged_embedded_19_alpha_and_19_beta_coefficients
+    standalone_DISTS_checkpoint: not_referenced_by_tagged_implementation
+    optimizer: SGD
+    iterations: 200
+    learning_rate_endpoints: [2.0, 0.0000000001]
+    momentum_endpoints: [0.9, 0.9]
+    decay_endpoints: [0.01, 0.01]
+    snapshot_interval: 10
+    exact_schedule_and_latent_conventions: selected_tagged_expressions_authentication_and_conformance_pending
+    initialization: tagged_numpy_normal_distribution_with_fixed_seed_42
+    restarts: none
+    scoring_and_display_image: final_iteration_only
+    true_test_image_or_true_features_in_optimization: forbidden
+  identification:
+    alexnet_backend: tagged_bdpy_PyTorch_AlexNet_port
+    alexnet_checkpoint: exact_bvlc_alexnet_pt_authentication_pending
+    alexnet_input: direct_Lanczos_resize_227_by_227
+    vgg19_evaluator_input: direct_Lanczos_resize_224_by_224
+    tagged_preprocessing: RGB_to_BGR_CHW_float32_subtract_BGR_means_104_117_123
+    model_mode: evaluation
+    caffenet_substitution: forbidden
+    similarity: Pearson_correlation
+    finite_exact_tie: incorrect_under_existing_strict_greater_than_rule
+    tie_tolerance: none
+    nonfinite_candidate_similarity: image_score_unavailable_no_candidate_dropping
+    dependency_binding: authenticate_bdpy_metric_semantics_before_any_score
+
+delegated_LAION_adaptations:
+  training_repetitions:
+    rule: assign_roles_then_average_declared_presentations_by_participant_and_image_within_each_role
+    equal_image_weighting: true
+    empirical_image_and_repetition_ids: pending_authenticated_structural_handoff
+    deviation: tagged_decoder_training_retains_trial_rows_current_LAION_contract_declares_image_averaging
+  test_repetitions:
+    rule: average_declared_repetitions_by_participant_and_image_before_conversion_or_prediction
+  brain_loss:
+    estimator: tagged_FastL2LiR_regularized_linear_mapping
+    n_feat: 0
+    chunk_size: 0
+    dtype: float32
+    intercept: tagged_flattened_b_appended_to_M_append_ones_at_prediction
+    required_pairing: separately_image_average_source_and_target_then_exact_join_on_tau_train_image_ID
+    source_study_dyad_alpha_table_ported_to_LAION: false
+    alpha_grid: [620, 640, 660, 740, 780, 800, 820, 1000, 1200, 1400]
+    grid_provenance: attempt_019_authenticated_tagged_source_table_unique_alpha_values
+    selection: fixed_five_fold_image_grouped_cross_validation_on_tau_train_only
+    fold_assignment: NumPy_RandomState_42_permutation_of_bytewise_sorted_authenticated_image_IDs_then_index_modulo_5
+    same_folds_for_source_target_and_all_directed_pairs: true
+    repeated_image_group_split_across_folds: forbidden
+    fold_normalization: fold_training_axis_0_means_and_ddof_1_standard_deviations_only
+    criterion: equal_weight_mean_over_validation_images_of_mean_squared_error_over_fixed_target_voxels_in_fold_training_standardized_target_space
+    fold_score_aggregation: validation_image_count_weighted_mean_of_fold_MSE
+    exact_selection_tie: smallest_alpha
+    nonfinite_scale_or_score_or_invalid_fold: affected_pair_not_evaluable_no_outcome_selected_grid_or_fold_repair
+    final_fit: refit_selected_alpha_on_all_and_only_authenticated_tau_train_image_averages
+    final_normalization: all_tau_train_axis_0_means_and_ddof_1_standard_deviations
+    tau_test_in_selection_or_normalization: forbidden
+    deviation: source_uses_original_subject_specific_penalties_current_rule_is_prospective_LAION_training_only_selection
+  response_and_ROI:
+    added_transductive_normalization: forbidden_for_EP21_fitted_objects
+    provider_measurement_exception: scientist_adopted_fixed_standard_GLMsingle_regular_betas
+    provider_measurement_amendment: outputs/protocol_provider_beta_amendment_2026-09-30.yaml
+    required_provider_normalization_provenance: disclose_actual_upstream_role_exclusions_unverified_no_custom_release_gate
+    OOD_contribution_to_any_normalization: forbidden_for_new_EP21_transforms_inherited_fixed_provider_measurement_exception_only
+    unresolved_provider_normalization_or_unverified_OOD_exclusion: accepted_measurement_limitation_not_automatic_endpoint_not_evaluable
+    nonfinite_required_training_slice: stop_affected_fit_no_imputation_or_post_lock_favorable_row_exclusion
+    zero_variance_input_voxel_rule: training_role_only_validity_filter_before_fixed_native_input_space_no_test_filtering
+    zero_variance_required_brain_loss_source_or_target_scale: affected_pair_not_evaluable
+    whole_visual_cortex: superseded_by_scientist_approved_adapted_independent_visual_union
+    primary_visual_roi: fixed_29_independent_localizer_union_native_space
+    mask_amendment: outputs/protocol_mask_amendment_2026-09-30.yaml
+    coverage_and_comparability: adapted_incomplete_no_claim_of_source_whole_VC_equivalence_no_invented_margin
+    voxel_order: carry_provider_canonical_native_voxel_order_and_identifiers
+    duplicate_voxel_identifier: stop_affected_mask
+    subarea_crosswalk_missing: subarea_report_not_evaluable_only
+  image_identity:
+    exact_role_disjointness: required_unchanged
+    near_duplicate_screen: no_additional_within_LAION_screen
+    limitation: near_duplicate_training_or_test_independence_is_not_verified_by_exact_ID_separation
+    external_cross_dataset_near_duplicate_requirement: unchanged_separate_required_audit_if_external_branch_qualifies
+  numerical_reproducibility:
+    content_and_reconstruction_seed: 42
+    initializations_per_pair_and_image: one_fixed_seed_initialization_no_score_selected_restart
+    scheduling_may_change_seed: false
+    worker_limit: explicitly_bind_to_approved_allocated_CPU_count_no_n_jobs_minus_one
+    budget: no_empirical_resources_authorized_or_requested_by_this_record
+
+reporting_and_inference:
+  required_biological_support: all_five_LAION_sources_and_all_20_directed_pairs
+  pair_ID_rule: LAION_colon_percent_encoded_source_ID_arrow_LAION_colon_percent_encoded_target_ID
+  primary_source_summary: equal_weight_mean_over_four_outgoing_targets
+  episode_summary: equal_weight_mean_over_five_source_summaries
+  within_source_baseline: computed_once_per_source_and_endpoint
+  all_source_and_dyad_results: required
+  correlation_summary: arithmetic_tagged_style_mean_no_Fisher_transform
+  undefined_correlation_rule: report_finite_numerator_denominator_and_undefined_counts_all_undefined_is_unavailable_no_zero_imputation
+  paired_correlation_contrast_support: identical_defined_image_or_feature_unit_IDs_across_compared_methods_required_unequal_support_makes_affected_contrast_not_evaluable_source_style_absolute_summaries_remain_descriptive
+  outcome_selected_correlation_unit_or_image_exclusion: forbidden
+  finding_A_primary_summaries: separate_pattern_and_profile_equal_weight_means_of_19_VGG19_layer_scores
+  finding_C_primary_summary: equal_weight_mean_of_8_AlexNet_layer_identification_accuracies
+  pixel_identification: separately_reported
+  directional_contrast: content_loss_minus_brain_loss_signed_estimates_and_descriptive_intervals
+  descriptive_direction_labels: positive_estimate_nonpositive_estimate_or_not_evaluable_no_hypothesis_test_pass_label
+  comparability:
+    state: not_evaluable_missing_outcome_independent_margin
+    applies_to: [finding_A, finding_C, finding_E]
+    margin: null
+    equivalence_or_noninferiority_test: not_run
+    CI_overlap_or_nonsignificance_as_comparability: forbidden
+  image_bootstrap:
+    draws: 1000
+    seed: 42
+    RNG: NumPy_RandomState
+    interval: percentile_2_5_and_97_5
+    draw_unit: authenticated_image_identity_carrying_all_repetitions
+    synchronized_across: methods_outgoing_targets_all_five_sources_and_layer_endpoints
+    recomputation: complete_correlation_layer_summary_and_source_aggregation_each_draw
+    identification_candidate_universe: original_locked_full_candidate_set_recomputed_against_each_sampled_true_image_no_duplicate_ID_self_distractors
+    conditional_scope: stimulus_resampling_sensitivity_given_these_five_participants_and_fixed_candidate_universe_not_population_inference
+    degenerate_draw: record_unavailable_draw_no_replacement_or_silent_nanpercentile_complete_interval_unavailable_if_any_required_draw_is_unavailable
+  extra_permutation_or_hypothesis_tests: not_adopted
+  multiplicity: no_hypothesis_test_family_descriptive_pointwise_intervals_not_simultaneous_claims
+  secondary_source_style_bootstrap:
+    draws: 1000
+    seed: 42
+    RNG: NumPy_RandomState
+    sampling: independently_draw_one_source_and_one_target_with_replacement_reject_self_pairs_until_20_accepted_edge_rows
+    duplicate_edges: retained
+    endpoint_rows_per_original_dyad: one_before_resampling
+    synchronize_draw_matrix: across_methods_layers_and_endpoints
+    proposal_cap_per_draw: 1000
+    cap_failure_or_incomplete_original_pair_table: interval_not_evaluable_report_reason
+    interval: percentile_2_5_and_97_5
+    interpretation: secondary_descriptive_source_fidelity_not_20_independent_biological_samples
+  required_missing_dyad_or_source: full_required_quantitative_finding_not_evaluable_report_available_estimates_descriptively_without_reweighting
+  failed_reconstruction: preserve_requested_cell_and_failure_no_cherry_picking_or_candidate_replacement
+  incomplete_required_identification_support: affected_complete_quantitative_endpoint_not_evaluable_no_favorable_available_case_comparison
+  fixed_display:
+    pair: bytewise_lexically_first_directed_pair_from_complete_authenticated_20_pair_table
+    images: first_four_bytewise_lexically_sorted_authenticated_tau_test_image_IDs
+    methods: [within_source, content_loss, brain_loss]
+    reference: authorized_regular_original_image_display_only_never_reconstruction_optimization_input
+    processing: tagged_resize_color_processing_no_post_result_crop_selection
+    missing_cells: labelled_failure_placeholders
+    complete_manifest: all_requested_reconstructions_and_failures
+    actual_ID_manifest: must_be_instantiated_and_frozen_from_structural_metadata_before_any_reconstruction_output_is_visible
+  optional_897_image_sensitivities: not_activated
+  full_1121_descriptive_extension: not_activated
+  source_style_noise_ceiling_correction: not_evaluable_unqualified_estimator_and_repetition_metadata_no_invented_threshold
+  external_branch: currently_not_evaluable_unprovisioned_directions_do_not_block_primary_LAION
+  OOD_and_artificial_analogue: not_evaluable_under_existing_EP04_reservation_no_payload_access
+
+remaining_required_before_valid_lock:
+  - LAION_license_DUA_and_Sherlock_Low_or_Moderate_Risk_clearance
+  - authenticated_release_participant_trial_image_role_tau_split_repetition_and_exact_overlap_metadata
+  - authenticated_beta_mask_voxel_order_coverage_and_preprocessing_provenance_without_neural_values
+  - physically_role_isolated_regular_only_feature_and_scoring_interfaces
+  - exact_feature_extraction_and_decoder_reconstruction_backend_checkpoint_preprocessing_bindings
+  - pinned_fastl2lir_and_main_bdpy_runtime_metric_and_intercept_semantics
+  - authentic_generator_and_custom_DIST_implementation_asset_binding
+  - required_protocol_dependent_conformance_against_the_selected_settings
+  - complete_pre_access_protocol_lock_and_separate_existing_or_later_explicit_execution_authority
+
+next_action: >-
+  Stop at the steward handoff gate with no empirical execution. Once permitted
+  authenticated structural evidence exists, resolve input-dependent identities,
+  complete only required remaining implementation conformance and the real
+  protocol lock, and continue the existing ASTRA program only under applicable
+  execution and resource authority. No successor is launched.
+
+implementation_bindings: outputs/protocol_implementation_bindings_2026-09-30.yaml

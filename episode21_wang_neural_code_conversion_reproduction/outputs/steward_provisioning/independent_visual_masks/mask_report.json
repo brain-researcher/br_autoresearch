@@ -1,0 +1,1620 @@
+{
+  "schema_version": "ep21.independent_native_mask_report.v1",
+  "evidence_status": "QC",
+  "scientist_amendment": "outputs/protocol_mask_amendment_2026-09-30.yaml",
+  "provider_code_commit": "ffb6abef8f787ca37f9a7faa9dd4a97119b6d603",
+  "primary_roi": "adapted_independent_visual_cortex_union_native_space",
+  "subjects": [
+    {
+      "participant": "sub-01",
+      "component_count": 29,
+      "grid": {
+        "shape": [
+          143,
+          143,
+          143
+        ],
+        "affine": [
+          [
+            -1.7777800559997559,
+            9.248562804486937e-09,
+            -2.0696084845894802e-09,
+            125.83255004882812
+          ],
+          [
+            -9.216225116404075e-09,
+            1.7777800559997559,
+            5.174021211473701e-10,
+            -126.412841796875
+          ],
+          [
+            0.0,
+            5.174021211473701e-10,
+            1.7777800559997559,
+            -127.7374496459961
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "zooms": [
+          1.7777800559997559,
+          1.7777800559997559,
+          1.7777800559997559
+        ],
+        "units": [
+          "unknown",
+          "unknown"
+        ],
+        "qform_code": 0,
+        "sform_code": 2,
+        "qform": null,
+        "sform": [
+          [
+            -1.7777800559997559,
+            9.248562804486937e-09,
+            -2.0696084845894802e-09,
+            125.83255004882812
+          ],
+          [
+            -9.216225116404075e-09,
+            1.7777800559997559,
+            5.174021211473701e-10,
+            -126.412841796875
+          ],
+          [
+            0.0,
+            5.174021211473701e-10,
+            1.7777800559997559,
+            -127.7374496459961
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "components": [
+        {
+          "family": "retinotopy",
+          "label": "V1d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V1d_mask.nii.gz",
+          "sha256": "dfc1cd811ebd37042f8710710795d4ba0d1273ec8b2283143cd45a8b32fe30a4",
+          "voxel_count": 695,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V1v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V1v_mask.nii.gz",
+          "sha256": "2bbc4bbec721138f205d681fd79f7d07f714cc49fd2fbf443f131d25b7781efd",
+          "voxel_count": 606,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V2d_mask.nii.gz",
+          "sha256": "6ee4a497e81ae11543ab186e98b77ef3b68f196c65ecdf3d4b72eac46a4dec7c",
+          "voxel_count": 630,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V2v_mask.nii.gz",
+          "sha256": "4cce9735d65beed3b14ed9ed7b6eba61cdba675c751f5b1697576462e6efdcb7",
+          "voxel_count": 675,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V3d_mask.nii.gz",
+          "sha256": "91ef58f2f10913e0a8f7f63dc9e49085f68105e2f6921b11e7d6e56841e4c83c",
+          "voxel_count": 508,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V3v_mask.nii.gz",
+          "sha256": "b8f61b0cffd5df3c8006bc739ccc0ef50fcaf0ff02c7ea6a44f645e9e719ef23",
+          "voxel_count": 508,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3A",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V3A_mask.nii.gz",
+          "sha256": "80948fa6c932d0d9c98913f7c2758b561ddb193d78ae6b2def78b831128f2cee",
+          "voxel_count": 285,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3B",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-V3B_mask.nii.gz",
+          "sha256": "fbe8067e8bd0dbab63344661f05549b2579b9d96630575823a34ecac21fe0da2",
+          "voxel_count": 238,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "hV4",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-hV4_mask.nii.gz",
+          "sha256": "cd1bdebdce95bc43feb41ba188b9ba0100c67298dc7088f4d01d1356c1dd2940",
+          "voxel_count": 372,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-LO1_mask.nii.gz",
+          "sha256": "edf5365bc882d4ab273e06b5752f35dc4f72dff462534d1f770d6f92c29aed9e",
+          "voxel_count": 266,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-LO2_mask.nii.gz",
+          "sha256": "8b6a46a6aff16bb5823045b2ecde7fa6db82a3688f8e7374f1c5725d6403b066",
+          "voxel_count": 241,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-TO1_mask.nii.gz",
+          "sha256": "ab16806855594bebe0a2bf705449ad06967f939771c89ec81d6a1afe0708a153",
+          "voxel_count": 179,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-TO2_mask.nii.gz",
+          "sha256": "9869d9021d98779d5be0f8eddab5062d39e7b6320616ebe49197c0f7fc23b827",
+          "voxel_count": 327,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-VO1_mask.nii.gz",
+          "sha256": "e0ad9271c694ddf825dfeaef4068efd51250ce7849fe09000033e593c90f0437",
+          "voxel_count": 135,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-VO2_mask.nii.gz",
+          "sha256": "2f4e2208c69fa612275e40f7e663cc74a5cedcf22d5530b39af1893ec28c5d54",
+          "voxel_count": 109,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "IPS0",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/retinotopy/sub-01_space-T1w_res-1pt8_label-IPS0_mask.nii.gz",
+          "sha256": "45e912c8fa681d2f34a073be5db5348a17cc7517b98ef72576a1f23b44d6f2e5",
+          "voxel_count": 340,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "body",
+          "label": "EBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/body/sub-01_space-T1w_res-1pt8_label-EBA_mask.nii.gz",
+          "sha256": "255f9ac8a6eca6452aa28e45e9d8727d4391ebccd9669d87271dafe66fe508c7",
+          "voxel_count": 1242,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "body",
+          "label": "FBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/body/sub-01_space-T1w_res-1pt8_label-FBA_mask.nii.gz",
+          "sha256": "b7bbaf17422bbb6113e39754ba10a24bdbe75c81aef080df224521d08d70248a",
+          "voxel_count": 297,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "OFA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/face/sub-01_space-T1w_res-1pt8_label-OFA_mask.nii.gz",
+          "sha256": "41ccb84dff7975c7302d07935e6c02bf9a286158499acb5851106ba5c0548d45",
+          "voxel_count": 254,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/face/sub-01_space-T1w_res-1pt8_label-FFA-1_mask.nii.gz",
+          "sha256": "d58dac449af9791d12fc6296ff08facf8936ce308c36bf57c60c8859f8cb23c3",
+          "voxel_count": 222,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/face/sub-01_space-T1w_res-1pt8_label-FFA-2_mask.nii.gz",
+          "sha256": "b6a58b84ac5f49a657ddb292a3f4d3815f3e7d7e998a66f94b9bd36fe6a00a57",
+          "voxel_count": 335,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "pSTS-faces",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/face/sub-01_space-T1w_res-1pt8_label-pSTS-faces_mask.nii.gz",
+          "sha256": "3bcac25a24845ec8aa610a175762d1a209054453e165b18f3fce871892dae40f",
+          "voxel_count": 289,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "object",
+          "label": "l-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/object/sub-01_space-T1w_res-1pt8_label-l-objects_mask.nii.gz",
+          "sha256": "24b4d6dc872c20b790652cd278213fdc3a29f594a18f9d7a5875fc800078b440",
+          "voxel_count": 1870,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "object",
+          "label": "v-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/object/sub-01_space-T1w_res-1pt8_label-v-objects_mask.nii.gz",
+          "sha256": "5aea4447d28b03dd286b1ca6b513c00d6e3c4a29d3a9fc9fe12ecc1776529f72",
+          "voxel_count": 955,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "place",
+          "label": "PPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/place/sub-01_space-T1w_res-1pt8_label-PPA_mask.nii.gz",
+          "sha256": "029be67e0de29c1da5fc85b15d6e7118e75050b235fe912225c38818df8fb560",
+          "voxel_count": 975,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "OPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/place/sub-01_space-T1w_res-1pt8_label-OPA_mask.nii.gz",
+          "sha256": "5b6dc651426a378153cb2aabf106c428e1a4ea9eac6f15d893d861d8770de9e2",
+          "voxel_count": 1275,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "MPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/place/sub-01_space-T1w_res-1pt8_label-MPA_mask.nii.gz",
+          "sha256": "73fe163065ea5abcb519a2624fcb979fd12215403b774e47cf9a6165ed551346",
+          "voxel_count": 269,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/character/sub-01_space-T1w_res-1pt8_label-VWFA-1_mask.nii.gz",
+          "sha256": "5d96f0f0cad8b75dd1ed96fe6b39156cc804fa375e505dd4ca6f39828dc3b1c1",
+          "voxel_count": 477,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-01/character/sub-01_space-T1w_res-1pt8_label-VWFA-2_mask.nii.gz",
+          "sha256": "96ffd476c3730d36be27d575d0d65ee4112a3501ff0ce23ee0cf5266a1a8498d",
+          "voxel_count": 355,
+          "localizer_origin": "independent_fLoc"
+        }
+      ],
+      "union_voxel_count": 12295,
+      "summed_component_voxels": 14929,
+      "overlap_deduplicated": true,
+      "mask_file": "sub-01_space-T1w_desc-independentVisualUnion_mask.nii.gz",
+      "mask_sha256": "f5363f00f01856e3b6411b55e6f8ce12d4fbd8236be31e5b166d1cc3c4c1c5b7",
+      "voxel_indices_file": "sub-01_space-T1w_desc-independentVisualUnion_voxel_indices.npy",
+      "voxel_indices_sha256": "6a36cb630d1f9e847dc542cc8a663b358ff5e78b71ccce6a8d820b4be249c31f",
+      "index_order": "ascending_full_grid_C_order",
+      "real_union_and_index_regression": "passed"
+    },
+    {
+      "participant": "sub-03",
+      "component_count": 29,
+      "grid": {
+        "shape": [
+          143,
+          143,
+          143
+        ],
+        "affine": [
+          [
+            -1.7777799367904663,
+            -1.8109072019711903e-09,
+            0.0,
+            128.11880493164062
+          ],
+          [
+            1.8109072019711903e-09,
+            1.777780294418335,
+            0.0,
+            -114.13802337646484
+          ],
+          [
+            -1.6556866100359002e-08,
+            4.1392165250897506e-09,
+            1.7777799367904663,
+            -130.702880859375
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "zooms": [
+          1.7777799367904663,
+          1.777780294418335,
+          1.7777799367904663
+        ],
+        "units": [
+          "unknown",
+          "unknown"
+        ],
+        "qform_code": 0,
+        "sform_code": 2,
+        "qform": null,
+        "sform": [
+          [
+            -1.7777799367904663,
+            -1.8109072019711903e-09,
+            0.0,
+            128.11880493164062
+          ],
+          [
+            1.8109072019711903e-09,
+            1.777780294418335,
+            0.0,
+            -114.13802337646484
+          ],
+          [
+            -1.6556866100359002e-08,
+            4.1392165250897506e-09,
+            1.7777799367904663,
+            -130.702880859375
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "components": [
+        {
+          "family": "retinotopy",
+          "label": "V1d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V1d_mask.nii.gz",
+          "sha256": "887f5e97a44fc0ee3a46526804957961cd53e5058e0f6392c3724a72195d4c9e",
+          "voxel_count": 703,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V1v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V1v_mask.nii.gz",
+          "sha256": "61653fbbb61edb09385b956833c641ab69eeb0fdadfcb82527c24fcf9783ef1f",
+          "voxel_count": 881,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V2d_mask.nii.gz",
+          "sha256": "db164d84b2d640fce0c575fa231d8d7b8ed2b2f274c8ad377d0e45975457b5b4",
+          "voxel_count": 874,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V2v_mask.nii.gz",
+          "sha256": "08d228f8d4362c9c07ac27be40f0dc16b68d043e57af978c3ac8ec56d6e0d21f",
+          "voxel_count": 786,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V3d_mask.nii.gz",
+          "sha256": "8e843ed37baf42e3ec64f4ebb09e3e1acbc2df58e1418b7449d4d4064f28b5b1",
+          "voxel_count": 601,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V3v_mask.nii.gz",
+          "sha256": "c8a9f7c9660fd00f6af6d9ca9d1022533bc4b1ff379ea6ba692124eb3dfc7183",
+          "voxel_count": 636,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3A",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V3A_mask.nii.gz",
+          "sha256": "459dc30fa2a2c0422551c5163140f255373009ad4150152f0ef37982b20428db",
+          "voxel_count": 310,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3B",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-V3B_mask.nii.gz",
+          "sha256": "0ac88c33ae47bc87f0944d1b2c08cc5f4c1a1810b3406092a78603ed3ca1fa41",
+          "voxel_count": 204,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "hV4",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-hV4_mask.nii.gz",
+          "sha256": "6412ff223cbf4642f08eb2b49d610dfd657c3b6dbf9007a055667c1790ff81b8",
+          "voxel_count": 362,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-LO1_mask.nii.gz",
+          "sha256": "bae980b1f2da36fff9a95ff8e2c6c212f9d94772e534831a4fecca0e8e2f32c9",
+          "voxel_count": 301,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-LO2_mask.nii.gz",
+          "sha256": "2a5877e1ccd273089f2b90814a86549c0fd1de2622e32ec926cb6a0e93ba6afb",
+          "voxel_count": 310,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-TO1_mask.nii.gz",
+          "sha256": "74126d473dc1969df2ccd2e65a5575fe53b542e08c4633f5b4364b4f503544e2",
+          "voxel_count": 390,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-TO2_mask.nii.gz",
+          "sha256": "1b6494a8bdedb557af49cef65c9ab3b5501eef18bc66939bc269c187e574ee6c",
+          "voxel_count": 221,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-VO1_mask.nii.gz",
+          "sha256": "9201d7225f6c3d12662767344a672c8208a7ef697258b8316af9e6c055f213df",
+          "voxel_count": 264,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-VO2_mask.nii.gz",
+          "sha256": "2861fc47febe5f9c4103adaff28d1f1625d05a4574e5bf50021ab741e5c793cf",
+          "voxel_count": 244,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "IPS0",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/retinotopy/sub-03_space-T1w_res-1pt8_label-IPS0_mask.nii.gz",
+          "sha256": "01a6fcd874afc04e7f20150714b6a9f5cd7acbdcb25bea803f03fb637db1cca1",
+          "voxel_count": 393,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "body",
+          "label": "EBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/body/sub-03_space-T1w_res-1pt8_label-EBA_mask.nii.gz",
+          "sha256": "0895b5cd99dff3e41dd376c337dd4a3b0bffd840d07f66bd8a7fc4e4aa79f10f",
+          "voxel_count": 1883,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "body",
+          "label": "FBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/body/sub-03_space-T1w_res-1pt8_label-FBA_mask.nii.gz",
+          "sha256": "ccf250d6a8bbc38977b61c68cad089e2e8ebe627eef26bfc75e1ee0671720598",
+          "voxel_count": 410,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "OFA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/face/sub-03_space-T1w_res-1pt8_label-OFA_mask.nii.gz",
+          "sha256": "5fa240c2837684a590f384e4ef8335556ef80c078a0ed52fd84c1439a580be14",
+          "voxel_count": 427,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/face/sub-03_space-T1w_res-1pt8_label-FFA-1_mask.nii.gz",
+          "sha256": "853327eb99bd92f1f99676241b2b01d02bc8e8bc212e530102bda4146ddd2b2d",
+          "voxel_count": 149,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/face/sub-03_space-T1w_res-1pt8_label-FFA-2_mask.nii.gz",
+          "sha256": "5301e4825bf021869d8b5c8fd15e1fcd9d9f8f7b118ae38ecdc8667a841aee1a",
+          "voxel_count": 366,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "pSTS-faces",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/face/sub-03_space-T1w_res-1pt8_label-pSTS-faces_mask.nii.gz",
+          "sha256": "44af149c532b894019796ff7a652a941697eca25625c4f4491fc4d2c11e18afd",
+          "voxel_count": 305,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "object",
+          "label": "l-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/object/sub-03_space-T1w_res-1pt8_label-l-objects_mask.nii.gz",
+          "sha256": "2e33a4154f420eb52f2c1f1cf0f6a45497af896a2074c2b03302cf6ed7be03af",
+          "voxel_count": 1475,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "object",
+          "label": "v-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/object/sub-03_space-T1w_res-1pt8_label-v-objects_mask.nii.gz",
+          "sha256": "e6e599bc7f071248057639b90ea279fc26ac488cd1e2de2e5a0399d34a167c4c",
+          "voxel_count": 591,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "place",
+          "label": "PPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/place/sub-03_space-T1w_res-1pt8_label-PPA_mask.nii.gz",
+          "sha256": "024b4b4e4d7b6af96e1f76d19a62ff18dfbd1abeefc1d1d7f044f58f007c6b7a",
+          "voxel_count": 1017,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "OPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/place/sub-03_space-T1w_res-1pt8_label-OPA_mask.nii.gz",
+          "sha256": "3748ac86aabf2087f35d705d0c526c3d2ee538ba47b9f53ff26888e5f8482463",
+          "voxel_count": 1172,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "MPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/place/sub-03_space-T1w_res-1pt8_label-MPA_mask.nii.gz",
+          "sha256": "95d943bb5f47f1b3e3810fe2494559568015b171072e46e6902a1ad2c99b8ac3",
+          "voxel_count": 332,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/character/sub-03_space-T1w_res-1pt8_label-VWFA-1_mask.nii.gz",
+          "sha256": "a3b9e8b79968a367831ed81a4e6272f1659319ade9e7f49b72d1a776c9a7ccde",
+          "voxel_count": 274,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-03/character/sub-03_space-T1w_res-1pt8_label-VWFA-2_mask.nii.gz",
+          "sha256": "050e7efe4c61369f762517b4523970e6e141726972e57169aceb2d78bf275e7f",
+          "voxel_count": 226,
+          "localizer_origin": "independent_fLoc"
+        }
+      ],
+      "union_voxel_count": 12897,
+      "summed_component_voxels": 16107,
+      "overlap_deduplicated": true,
+      "mask_file": "sub-03_space-T1w_desc-independentVisualUnion_mask.nii.gz",
+      "mask_sha256": "897e7581701c4df0d208d9e48a1a4bb38e6b349e98f187ff3db2f20e931986e7",
+      "voxel_indices_file": "sub-03_space-T1w_desc-independentVisualUnion_voxel_indices.npy",
+      "voxel_indices_sha256": "b1855aeb3593dcf4c3879e0225e3fd7925a8c28093ba166406e8e0fb26ae7b22",
+      "index_order": "ascending_full_grid_C_order",
+      "real_union_and_index_regression": "passed"
+    },
+    {
+      "participant": "sub-05",
+      "component_count": 29,
+      "grid": {
+        "shape": [
+          143,
+          143,
+          143
+        ],
+        "affine": [
+          [
+            -1.7777798175811768,
+            -5.174025652365799e-10,
+            4.139220521892639e-09,
+            126.33195495605469
+          ],
+          [
+            5.174025652365799e-10,
+            1.7777798175811768,
+            0.0,
+            -110.93960571289062
+          ],
+          [
+            4.139220521892639e-09,
+            8.278441043785278e-09,
+            1.7777798175811768,
+            -134.9192657470703
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "zooms": [
+          1.7777798175811768,
+          1.7777798175811768,
+          1.7777798175811768
+        ],
+        "units": [
+          "unknown",
+          "unknown"
+        ],
+        "qform_code": 0,
+        "sform_code": 2,
+        "qform": null,
+        "sform": [
+          [
+            -1.7777798175811768,
+            -5.174025652365799e-10,
+            4.139220521892639e-09,
+            126.33195495605469
+          ],
+          [
+            5.174025652365799e-10,
+            1.7777798175811768,
+            0.0,
+            -110.93960571289062
+          ],
+          [
+            4.139220521892639e-09,
+            8.278441043785278e-09,
+            1.7777798175811768,
+            -134.9192657470703
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "components": [
+        {
+          "family": "retinotopy",
+          "label": "V1d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V1d_mask.nii.gz",
+          "sha256": "a868d11ef4bb6ed4f4815af8f0ca423bbd33b8bdbe356e852992070623094a84",
+          "voxel_count": 582,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V1v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V1v_mask.nii.gz",
+          "sha256": "15cb35b6f86d03065b653b2be3dc5f77305d93315374d53edf5044f190ed7c62",
+          "voxel_count": 786,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V2d_mask.nii.gz",
+          "sha256": "7214f249530e8fb30791fb1e813e6530da60554e9b03dc4e38037e3a54e62d9c",
+          "voxel_count": 626,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V2v_mask.nii.gz",
+          "sha256": "c3e3dc4d3ae8ee1d84a55ee09606ba54599bc8c428ef7979a16b1cf05b7d2050",
+          "voxel_count": 749,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V3d_mask.nii.gz",
+          "sha256": "0d65baef2c210f6ab7f691cf20faad69a2717b14f966662fb305dd30543825e4",
+          "voxel_count": 456,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V3v_mask.nii.gz",
+          "sha256": "2947b8dd29e473dc0a34568c820ee875f544c923e15e3d54210df221883105b4",
+          "voxel_count": 535,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3A",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V3A_mask.nii.gz",
+          "sha256": "ced5d69f87289b5133bd2fef2385dd6072fafaf0834ab2e4fffe0e7b0e1a403d",
+          "voxel_count": 300,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3B",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-V3B_mask.nii.gz",
+          "sha256": "68508c7a5626b59826c4b9eb5a9ecae8ab78cf7b168215ac2a28635d418b5f26",
+          "voxel_count": 67,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "hV4",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-hV4_mask.nii.gz",
+          "sha256": "4a0eba45315834ca4f9520b7dcb05ca70c5a3670c3c21f04bb4de4b2de6250f3",
+          "voxel_count": 394,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-LO1_mask.nii.gz",
+          "sha256": "1ac9e39cc4d743418717438d6b3042a7fa545f66785d96379b1f57feef36685b",
+          "voxel_count": 199,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-LO2_mask.nii.gz",
+          "sha256": "ca78f4ca7d22c219ffbd4f2d9180fb98ffdad879ef628139ac9e90d25b4f95a3",
+          "voxel_count": 184,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-TO1_mask.nii.gz",
+          "sha256": "4cf6df2970325ca3a587fae427397aef9a67e0008a799b5ee23e6dac75edfe46",
+          "voxel_count": 95,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-TO2_mask.nii.gz",
+          "sha256": "5f948151aa208d3b1d0f3b4fa2520d993f0b6e526629ae30ce7e981c9c77e192",
+          "voxel_count": 93,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-VO1_mask.nii.gz",
+          "sha256": "c4837186fe9f56d6a3dbfc49c00c6ceea00c9d4d040b8c971a6d6d7e5e7e781a",
+          "voxel_count": 123,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-VO2_mask.nii.gz",
+          "sha256": "541c71086f6abf3f9471453d65ed187852b0ed33e71491a5fd8db9abc4ecae24",
+          "voxel_count": 128,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "IPS0",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/retinotopy/sub-05_space-T1w_res-1pt8_label-IPS0_mask.nii.gz",
+          "sha256": "d540c95758c1e91d32a60fb8be1d7db79227ad71097aa4304d871a9ba2784ff7",
+          "voxel_count": 231,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "body",
+          "label": "EBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/body/sub-05_space-T1w_res-1pt8_label-EBA_mask.nii.gz",
+          "sha256": "790b73a973f9c1669d8a9f56c46df1e130b0faa14d589c846d08ccacbeb512c3",
+          "voxel_count": 1566,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "body",
+          "label": "FBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/body/sub-05_space-T1w_res-1pt8_label-FBA_mask.nii.gz",
+          "sha256": "bedef70a512301f42c6f5b9bbce19a77386c95ba5fe2bda97372a9318e749da2",
+          "voxel_count": 271,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "OFA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/face/sub-05_space-T1w_res-1pt8_label-OFA_mask.nii.gz",
+          "sha256": "4d5971f241e25be4929000bc3d87764dcd713774b4a15b6dc2c7c9ffda459308",
+          "voxel_count": 586,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/face/sub-05_space-T1w_res-1pt8_label-FFA-1_mask.nii.gz",
+          "sha256": "9b4b0d756b34af11de29cb496cbe67d1bdb42e43b35b65b6aa6e8dbb0692cf5f",
+          "voxel_count": 157,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/face/sub-05_space-T1w_res-1pt8_label-FFA-2_mask.nii.gz",
+          "sha256": "131a0f0c3032c1772a6db715964bd0656157d8ccea04c593e2715570ead9c89a",
+          "voxel_count": 280,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "pSTS-faces",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/face/sub-05_space-T1w_res-1pt8_label-pSTS-faces_mask.nii.gz",
+          "sha256": "40fd06d269b4beeb946273821266672d2ec9a005d5b7486db495aabafb3c32f6",
+          "voxel_count": 400,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "object",
+          "label": "l-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/object/sub-05_space-T1w_res-1pt8_label-l-objects_mask.nii.gz",
+          "sha256": "969a2fe5dfd1544850599c9876e0724d19a22ac19b82222529a224cb48a24ed0",
+          "voxel_count": 1024,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "object",
+          "label": "v-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/object/sub-05_space-T1w_res-1pt8_label-v-objects_mask.nii.gz",
+          "sha256": "3182e472c2aa72078318a87aec0ee30e6ef259f09692f19a77b22fa07315d54c",
+          "voxel_count": 785,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "place",
+          "label": "PPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/place/sub-05_space-T1w_res-1pt8_label-PPA_mask.nii.gz",
+          "sha256": "49cad26669cb6cd3becf5cd4b6c594f573656dd7aa4d12fafcb627c2fe64bc17",
+          "voxel_count": 686,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "OPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/place/sub-05_space-T1w_res-1pt8_label-OPA_mask.nii.gz",
+          "sha256": "2c6cac6f60104308f0827099aa7787fed6a8a2758452392d9ad9bdbb448827c1",
+          "voxel_count": 911,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "MPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/place/sub-05_space-T1w_res-1pt8_label-MPA_mask.nii.gz",
+          "sha256": "aecd2fa61806e8e9a7e91ef558d01d23cff89a778a266af6942476f5e8831719",
+          "voxel_count": 506,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/character/sub-05_space-T1w_res-1pt8_label-VWFA-1_mask.nii.gz",
+          "sha256": "a40eff4674459e6d3fc4610140a91875a8438d5ea8739289ce57c8491cb016eb",
+          "voxel_count": 194,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-05/character/sub-05_space-T1w_res-1pt8_label-VWFA-2_mask.nii.gz",
+          "sha256": "64a0d58216d3ff70dc2453f0e5c1452b12230e959aae83065c550ae5912ae1a0",
+          "voxel_count": 113,
+          "localizer_origin": "independent_fLoc"
+        }
+      ],
+      "union_voxel_count": 10891,
+      "summed_component_voxels": 13027,
+      "overlap_deduplicated": true,
+      "mask_file": "sub-05_space-T1w_desc-independentVisualUnion_mask.nii.gz",
+      "mask_sha256": "38cbca48fc25027b565784f152b99ede27836e01cfdb8131b29d8150364612e4",
+      "voxel_indices_file": "sub-05_space-T1w_desc-independentVisualUnion_voxel_indices.npy",
+      "voxel_indices_sha256": "17248f11feb0f3c3a9cd62dc529baa2ee1c78897eabdf4e11c48d031c9626df5",
+      "index_order": "ascending_full_grid_C_order",
+      "real_union_and_index_regression": "passed"
+    },
+    {
+      "participant": "sub-06",
+      "component_count": 29,
+      "grid": {
+        "shape": [
+          143,
+          143,
+          143
+        ],
+        "affine": [
+          [
+            -1.7777799367904663,
+            5.820773307796401e-10,
+            2.0696082625448753e-09,
+            125.89897155761719
+          ],
+          [
+            -8.407783358421739e-10,
+            1.7777799367904663,
+            0.0,
+            -121.02558135986328
+          ],
+          [
+            0.0,
+            1.6556866100359002e-08,
+            1.7777798175811768,
+            -119.93017578125
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "zooms": [
+          1.7777799367904663,
+          1.7777799367904663,
+          1.7777798175811768
+        ],
+        "units": [
+          "unknown",
+          "unknown"
+        ],
+        "qform_code": 0,
+        "sform_code": 2,
+        "qform": null,
+        "sform": [
+          [
+            -1.7777799367904663,
+            5.820773307796401e-10,
+            2.0696082625448753e-09,
+            125.89897155761719
+          ],
+          [
+            -8.407783358421739e-10,
+            1.7777799367904663,
+            0.0,
+            -121.02558135986328
+          ],
+          [
+            0.0,
+            1.6556866100359002e-08,
+            1.7777798175811768,
+            -119.93017578125
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "components": [
+        {
+          "family": "retinotopy",
+          "label": "V1d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V1d_mask.nii.gz",
+          "sha256": "0b6acda7344c74a5f05e51cd123ba5ca79969abd5ad14cce59a2c4e5926e98d4",
+          "voxel_count": 448,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V1v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V1v_mask.nii.gz",
+          "sha256": "13973fe812ecff62a8902fd40a4152cef5b02f88044757eb5d4838eeb7fbc7a3",
+          "voxel_count": 733,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V2d_mask.nii.gz",
+          "sha256": "e633d7b02e6486280f7f61331d0a95e8246f460d1979720bda076342ed7c16b2",
+          "voxel_count": 1038,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V2v_mask.nii.gz",
+          "sha256": "35b0aeea761314f6d03a60ffac31cae430fd4e9e03fdacd8df3feeb0ecb563ec",
+          "voxel_count": 728,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V3d_mask.nii.gz",
+          "sha256": "2df8b9839d5d3a94ad3afc2bca94b3098afcf570e98a4090dd56fbaf08c7ed5a",
+          "voxel_count": 559,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V3v_mask.nii.gz",
+          "sha256": "c16f88ccec6041732d6cc4427134f24dc128b41ef6825657b20e02a6aa52e98c",
+          "voxel_count": 631,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3A",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V3A_mask.nii.gz",
+          "sha256": "9ae0a2726d841b7db0ac101f81d4f62aa9a750b286418a13f4aa96b2df180879",
+          "voxel_count": 223,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3B",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-V3B_mask.nii.gz",
+          "sha256": "036891de05b15c9a7f8ee9e769d6f0a512f3184b3bbfe69b0ba9c7ac6777f1e1",
+          "voxel_count": 162,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "hV4",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-hV4_mask.nii.gz",
+          "sha256": "856fb24701209fdb7ee70da7b12ae4bf4611fb40641826a0968b72b761c50925",
+          "voxel_count": 379,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-LO1_mask.nii.gz",
+          "sha256": "db769a18fb120f24de3fea14f290ab1b30662426e3da6a2f9b61fb3228e31eb2",
+          "voxel_count": 466,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-LO2_mask.nii.gz",
+          "sha256": "74b4e28840a35de270ceb918293370ffe1862ff08cdbc29bef903a4b1e984238",
+          "voxel_count": 342,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-TO1_mask.nii.gz",
+          "sha256": "021bddca8c43d8fc606e71c70471af52204d4e1a3b78cc56df937ea9d4f4c2f3",
+          "voxel_count": 188,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-TO2_mask.nii.gz",
+          "sha256": "7e8825c496c0033b33532f6364db95afa2cddd5d94b4998aec060993e016e852",
+          "voxel_count": 281,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-VO1_mask.nii.gz",
+          "sha256": "d6ae35a5647bda30c80eb753fe3496a63c11d8c37d2ea4f2c7852d09b3dca823",
+          "voxel_count": 262,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-VO2_mask.nii.gz",
+          "sha256": "995ee7e506b246c8c4077d3511bdd15ec5ff18e0f815081fdcbdc543b0bc98dd",
+          "voxel_count": 54,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "IPS0",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/retinotopy/sub-06_space-T1w_res-1pt8_label-IPS0_mask.nii.gz",
+          "sha256": "a221038eb2ed44baf82eef74dbadf0e469c208de38688db514230de732ee1008",
+          "voxel_count": 202,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "body",
+          "label": "EBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/body/sub-06_space-T1w_res-1pt8_label-EBA_mask.nii.gz",
+          "sha256": "8e9c8d28163f04a663463fea517ccd7f8cc6f9c9a7a8fb39396ab3c33f30ceef",
+          "voxel_count": 1989,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "body",
+          "label": "FBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/body/sub-06_space-T1w_res-1pt8_label-FBA_mask.nii.gz",
+          "sha256": "61ad092a107b23502b05152ebf343524180bce646937ce0efb611991b574f3ab",
+          "voxel_count": 331,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "OFA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/face/sub-06_space-T1w_res-1pt8_label-OFA_mask.nii.gz",
+          "sha256": "8f8b77a4ba9f491054590adc92fd0638775a69da1a2ec7e4febd34be3c68803f",
+          "voxel_count": 236,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/face/sub-06_space-T1w_res-1pt8_label-FFA-1_mask.nii.gz",
+          "sha256": "386a961b605c27a25c87ff618638e6932fe3e45254e5001a5caa21bf3aa627ef",
+          "voxel_count": 205,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/face/sub-06_space-T1w_res-1pt8_label-FFA-2_mask.nii.gz",
+          "sha256": "0e8783e8691846107c73dde9d56b8b501f229bb6fd1a9813eebfe585473fb0d1",
+          "voxel_count": 317,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "pSTS-faces",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/face/sub-06_space-T1w_res-1pt8_label-pSTS-faces_mask.nii.gz",
+          "sha256": "79b8e1aa46050fd69bba590bd10cfb58a64c563ccef0a2ec2b89b0223a0bb051",
+          "voxel_count": 116,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "object",
+          "label": "l-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/object/sub-06_space-T1w_res-1pt8_label-l-objects_mask.nii.gz",
+          "sha256": "e28fbc36ea30abadcd55b8d5f64ebec094a3d6efa80f4c4b1448d09b0c7f5775",
+          "voxel_count": 2271,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "object",
+          "label": "v-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/object/sub-06_space-T1w_res-1pt8_label-v-objects_mask.nii.gz",
+          "sha256": "bc09e8d49640dd08ee4bdc150f046148c50e902e8562e33e221de05fca16ecd1",
+          "voxel_count": 1630,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "place",
+          "label": "PPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/place/sub-06_space-T1w_res-1pt8_label-PPA_mask.nii.gz",
+          "sha256": "4a622d97d71e596cabc4762bcfea94ec2f3c7c5b9fbdd6d72765212f595fe2f4",
+          "voxel_count": 1131,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "OPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/place/sub-06_space-T1w_res-1pt8_label-OPA_mask.nii.gz",
+          "sha256": "6f6737d07668241ee4876c68890bb5047d50cbd53efa78249ed1859902fc1980",
+          "voxel_count": 901,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "MPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/place/sub-06_space-T1w_res-1pt8_label-MPA_mask.nii.gz",
+          "sha256": "a334b4ebb44342d24a125c2197c5e15f20e7dd777c5d9a07d5bf4ffdffec80d2",
+          "voxel_count": 259,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/character/sub-06_space-T1w_res-1pt8_label-VWFA-1_mask.nii.gz",
+          "sha256": "328ac2bf6a6c8117496682ce54c8ab8d5298ef34ab7d72a244c6e82814c43b42",
+          "voxel_count": 199,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-06/character/sub-06_space-T1w_res-1pt8_label-VWFA-2_mask.nii.gz",
+          "sha256": "08009ba78b1b34bbe0c89962ef63147bc978984f8bfa7fd10a6dbec76c5f1285",
+          "voxel_count": 184,
+          "localizer_origin": "independent_fLoc"
+        }
+      ],
+      "union_voxel_count": 12023,
+      "summed_component_voxels": 16465,
+      "overlap_deduplicated": true,
+      "mask_file": "sub-06_space-T1w_desc-independentVisualUnion_mask.nii.gz",
+      "mask_sha256": "d337d018edc72739d7d3d16113ca543394a6a141f4a1be34fb27200c5771e567",
+      "voxel_indices_file": "sub-06_space-T1w_desc-independentVisualUnion_voxel_indices.npy",
+      "voxel_indices_sha256": "fa4d3ef88cd413a9a86683ef1a27b55c848885cae90cb0789693a674bfa1b421",
+      "index_order": "ascending_full_grid_C_order",
+      "real_union_and_index_regression": "passed"
+    },
+    {
+      "participant": "sub-07",
+      "component_count": 29,
+      "grid": {
+        "shape": [
+          143,
+          143,
+          143
+        ],
+        "affine": [
+          [
+            -1.7777798175811768,
+            -8.375446114428087e-09,
+            2.0696082625448753e-09,
+            126.6720199584961
+          ],
+          [
+            1.293505164090547e-10,
+            1.7777796983718872,
+            1.6556866100359002e-08,
+            -117.38556671142578
+          ],
+          [
+            0.0,
+            -8.278433050179501e-09,
+            1.7777796983718872,
+            -144.36398315429688
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "zooms": [
+          1.7777798175811768,
+          1.7777796983718872,
+          1.7777796983718872
+        ],
+        "units": [
+          "unknown",
+          "unknown"
+        ],
+        "qform_code": 0,
+        "sform_code": 2,
+        "qform": null,
+        "sform": [
+          [
+            -1.7777798175811768,
+            -8.375446114428087e-09,
+            2.0696082625448753e-09,
+            126.6720199584961
+          ],
+          [
+            1.293505164090547e-10,
+            1.7777796983718872,
+            1.6556866100359002e-08,
+            -117.38556671142578
+          ],
+          [
+            0.0,
+            -8.278433050179501e-09,
+            1.7777796983718872,
+            -144.36398315429688
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "components": [
+        {
+          "family": "retinotopy",
+          "label": "V1d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V1d_mask.nii.gz",
+          "sha256": "36aeabb5f71c33b239eef25b93e0d4bf6fdad8067ea55ea757a1362656c2fda8",
+          "voxel_count": 576,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V1v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V1v_mask.nii.gz",
+          "sha256": "3093ad054f40ebd96bb234b3232734418611d2b11752647675b6ceeae1f44ac3",
+          "voxel_count": 837,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V2d_mask.nii.gz",
+          "sha256": "d421c9a9449ed94b78ebbb313fb3e5ed219bf77c75f4acbdc0b75032e36a8c8b",
+          "voxel_count": 773,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V2v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V2v_mask.nii.gz",
+          "sha256": "9e29bc3cbce3b2366dd72fdf089db41835e29cfe8ba51a7f4e9e0f78ba3b5e8f",
+          "voxel_count": 683,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3d",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V3d_mask.nii.gz",
+          "sha256": "1a7eb1b550d70c485d7e275b29a883a53840f259208851c008633db35842ff6c",
+          "voxel_count": 342,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3v",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V3v_mask.nii.gz",
+          "sha256": "b1b03f8e5dc19561da13c69838d086d3d0152f59fb6b7080bdd7aea08990d5a1",
+          "voxel_count": 431,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3A",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V3A_mask.nii.gz",
+          "sha256": "9a8292f145781351c1e9dbe2938788046eb6072f9fb8d75d12bfdbbc19efe513",
+          "voxel_count": 275,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "V3B",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-V3B_mask.nii.gz",
+          "sha256": "3125cccd42077bf880888b682a1e0c756e037982108ba345ca4e2a59fad9377c",
+          "voxel_count": 125,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "hV4",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-hV4_mask.nii.gz",
+          "sha256": "067aa8a42325fdd8cc2a6febde353c9e2b9ad3e653b947174147e6665b560ded",
+          "voxel_count": 216,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-LO1_mask.nii.gz",
+          "sha256": "e781e999112f8b679da37c453f13bdd8e9efa0cd058607687edf1429f32137c8",
+          "voxel_count": 261,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "LO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-LO2_mask.nii.gz",
+          "sha256": "dcbe45372a8a4f13cee32bfdf7b19bd46927f9d35efbc6d3d9dee7b751243cc5",
+          "voxel_count": 161,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-TO1_mask.nii.gz",
+          "sha256": "8c6e3f39033c84ed29750a8ae051cdd0bc6f95643fb25a364b1a55cc51f1059e",
+          "voxel_count": 432,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "TO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-TO2_mask.nii.gz",
+          "sha256": "ccef2d129b55019131659d8d28a09323316154141c7bf4974bb37a42554a7fa8",
+          "voxel_count": 217,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-VO1_mask.nii.gz",
+          "sha256": "42757390c588e0fa178e403620a0719c3878f00a50abd0440a387da67b8d0ef5",
+          "voxel_count": 186,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "VO2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-VO2_mask.nii.gz",
+          "sha256": "3bf68bae5bc3c0b8aaab770422901923ebd2ceb4518c02a556f69fa19019cdb3",
+          "voxel_count": 261,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "retinotopy",
+          "label": "IPS0",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/retinotopy/sub-07_space-T1w_res-1pt8_label-IPS0_mask.nii.gz",
+          "sha256": "d53fc85c60a046dcf36df097ab670675745e282fa7ea645939e0c92a6a4a3cd9",
+          "voxel_count": 375,
+          "localizer_origin": "independent_retinotopy_localizer"
+        },
+        {
+          "family": "body",
+          "label": "EBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/body/sub-07_space-T1w_res-1pt8_label-EBA_mask.nii.gz",
+          "sha256": "58b9f44ff148d00291424c3ecafd05f150abab760c1ebd65ba81e518f66df4f4",
+          "voxel_count": 1862,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "body",
+          "label": "FBA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/body/sub-07_space-T1w_res-1pt8_label-FBA_mask.nii.gz",
+          "sha256": "14af1cf5960a6f8940e156b7f3b444444ee1547e614ef933e7c41d58724d3127",
+          "voxel_count": 369,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "OFA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/face/sub-07_space-T1w_res-1pt8_label-OFA_mask.nii.gz",
+          "sha256": "398c2f60ddb5d3ad4d07be17a844c19276b4a82c8574a4e604fc057732a6c047",
+          "voxel_count": 275,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/face/sub-07_space-T1w_res-1pt8_label-FFA-1_mask.nii.gz",
+          "sha256": "3c751b11fb78fa2c69fd34efac9041e94f55ece3ed686c776a6affdb7bf0ad70",
+          "voxel_count": 215,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "FFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/face/sub-07_space-T1w_res-1pt8_label-FFA-2_mask.nii.gz",
+          "sha256": "0aa92507fef62861ccdf8a5a6f5b4865134b631640bf9bf5542bafc028980ce5",
+          "voxel_count": 164,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "face",
+          "label": "pSTS-faces",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/face/sub-07_space-T1w_res-1pt8_label-pSTS-faces_mask.nii.gz",
+          "sha256": "7143807557144afcb869662730f9f6f09972b63e392652b9caf7505e63a3998f",
+          "voxel_count": 164,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "object",
+          "label": "l-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/object/sub-07_space-T1w_res-1pt8_label-l-objects_mask.nii.gz",
+          "sha256": "65e47521caec705bda0bc853e6a6abc54a953317add8238af06666f9c596b164",
+          "voxel_count": 1427,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "object",
+          "label": "v-objects",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/object/sub-07_space-T1w_res-1pt8_label-v-objects_mask.nii.gz",
+          "sha256": "256f7b6eaaade3ba99dee2bdfa2c595605884d76f9b1e97e268c23c1c6afe376",
+          "voxel_count": 764,
+          "localizer_origin": "independent_object_localizer"
+        },
+        {
+          "family": "place",
+          "label": "PPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/place/sub-07_space-T1w_res-1pt8_label-PPA_mask.nii.gz",
+          "sha256": "f783ef9ea25aa92a8db01093ff6122c8bd5409aaabc92f827a9308e6d47c4ee4",
+          "voxel_count": 1282,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "OPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/place/sub-07_space-T1w_res-1pt8_label-OPA_mask.nii.gz",
+          "sha256": "a1b04dc83cb5fa9f666dc2d095f43d21a5297fc5bd5d9e991c6401a988f3d8f6",
+          "voxel_count": 1249,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "place",
+          "label": "MPA",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/place/sub-07_space-T1w_res-1pt8_label-MPA_mask.nii.gz",
+          "sha256": "31122dd1165ae46e10b0297dcd3baeba47e4fd0c59d130dde9cfaeb1ba7ed7ff",
+          "voxel_count": 529,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-1",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/character/sub-07_space-T1w_res-1pt8_label-VWFA-1_mask.nii.gz",
+          "sha256": "09d73139aac11e992b83e27d1fb6ccf7cedc844dc2537e2217959acdfa41c38d",
+          "voxel_count": 516,
+          "localizer_origin": "independent_fLoc"
+        },
+        {
+          "family": "character",
+          "label": "VWFA-2",
+          "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/derivatives/rois/sub-07/character/sub-07_space-T1w_res-1pt8_label-VWFA-2_mask.nii.gz",
+          "sha256": "4d7e6bbe23665bb1ab800bf8307730055b0b2770d7565d7e6ec1f294ce1a70a6",
+          "voxel_count": 173,
+          "localizer_origin": "independent_fLoc"
+        }
+      ],
+      "union_voxel_count": 12057,
+      "summed_component_voxels": 15140,
+      "overlap_deduplicated": true,
+      "mask_file": "sub-07_space-T1w_desc-independentVisualUnion_mask.nii.gz",
+      "mask_sha256": "d97ec110a95c23198a8620464f470297904c207ebc1fed61c4e3efc07f9562f0",
+      "voxel_indices_file": "sub-07_space-T1w_desc-independentVisualUnion_voxel_indices.npy",
+      "voxel_indices_sha256": "2ae652c253d73c2a989ef5ef486d3996e479cf246ff144abf83f415aeab73027",
+      "index_order": "ascending_full_grid_C_order",
+      "real_union_and_index_regression": "passed"
+    }
+  ],
+  "coverage_claim": "adapted_incomplete_visual_cortex_support_no_whole_VC_or_source_anatomical_equivalence_claim",
+  "resources": {
+    "jobs": 1,
+    "cpus": 1,
+    "memory_gib": 2,
+    "minutes": 10,
+    "durable_bytes": 250000000,
+    "scratch_bytes": 500000000,
+    "gpus": 0
+  },
+  "job_id": "46141362",
+  "input_bytes": 7568460,
+  "numpy_version": "1.26.3",
+  "nibabel_version": "5.4.0",
+  "mask_values_only": true,
+  "beta_values_read": false,
+  "ood_values_or_derivatives_read": false,
+  "neural_fitting_scoring_run": false,
+  "beta_grid_alignment": "not_yet_authenticated_no_beta_values_read",
+  "construction": "logical_union_of_supplied_binary_native_masks_no_resampling_morphology_or_response_thresholding",
+  "publication": "complete"
+}

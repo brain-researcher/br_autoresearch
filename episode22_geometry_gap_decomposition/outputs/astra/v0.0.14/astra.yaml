@@ -1,0 +1,123 @@
+version: "0.0.14"
+name: EP22 VLM–DINOv2 brain-geometry gap decomposition
+description: >-
+  Diagnostic follow-up to EP04. Development analyses ask whether native-RSA gaps
+  between released VLM and DINOv2 embeddings arise from spectrum, eigenvectors or
+  CLIP-space stimulus selection. One procedurally sealed OOD opening tests the
+  development explanation once on the photographic OOD categories.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+outputs:
+  - id: confirmation_report
+    from: ood_confirmation.confirmation_report
+analyses:
+  d0_outcome_blind_spectra:
+    name: Outcome-blind embedding spectra and corrected OOD embedding binding
+    description: >-
+      Size-matched spectra (participation-ratio ED, decay, anisotropy, nearest-
+      neighbour spacing) and cross-model CKA/subspace overlap per source stratum,
+      plus the row-level binding of the provider's 2026-09-28 corrected OOD
+      embeddings and the outcome-blind OOD category table. No neural values.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_embeddings, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-development_embeddings01}
+      - {id: stimulus_metadata, type: data, source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/stimuli/task-images_metadata.csv"}
+      - {id: original_embeddings, type: data, source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/laion_fmri_mixed_role_20260922/dataset/stimuli"}
+      - {id: corrected_embeddings, type: data, source: inputs/laion_ood_embeddings_corrected}
+      - {id: analysis_code, type: data, source: outputs/code/d0_outcome_blind_spectra.py}
+      - {id: plot_code, type: data, source: outputs/code/plot_d0_spectra.py}
+    outputs:
+      - id: ood_embedding_binding
+        type: report
+        format: json
+        inputs: [policy, stimulus_metadata, original_embeddings, corrected_embeddings, development_embeddings, analysis_code]
+        description: Changed-row comparison of original versus corrected files and the development-handoff identity check.
+        recipe:
+          command: sbatch outputs/code/d0_outcome_blind_spectra.sbatch
+          resources: {cpus: 4, memory: 16Gi, time_limit: 30m}
+      - id: ood_category_table
+        type: data
+        format: csv
+        inputs: [stimulus_metadata, ood_embedding_binding]
+        description: Provider OOD type, proposed photographic or synthetic subset and correction flag per OOD image.
+      - id: spectra_summary
+        type: report
+        format: json
+        inputs: [development_embeddings, corrected_embeddings, ood_embedding_binding, analysis_code]
+        description: Per-stratum spectral and cross-model measures and the LAION-minus-other relative-ED contrasts.
+      - id: spectra_figure
+        type: figure
+        format: png
+        inputs: [spectra_summary, plot_code]
+        description: Relative ED and CKA with DINOv2 by stratum, rendered from the saved summary only.
+  d1_eigen_factorial:
+    name: Eigenvalue × eigenvector factorial of native-RSA gaps
+    description: >-
+      Native and swapped geometries U_a Σ_b on each evaluation fold; exact split of
+      each VLM's native gap to DINOv2 into eigenvalue and eigenvector parts, with
+      100 whole-image bootstrap replicates. Computed by the shared D1–D3 cell runner.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_embeddings, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-development_embeddings01}
+      - {id: saved_patterns, type: data, source: "$SCRATCH/br_autoresearch/episode04_shared_scene_geometry/neural_preprocessing01"}
+      - {id: preprocessing_reports, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/neural_preprocessing}
+      - {id: observed_panel, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/observed_native_panel/20261005-observed01/observed_native_panel.json}
+      - {id: cell_runner, type: data, source: outputs/code/d123_cell.py}
+      - {id: collector, type: data, source: outputs/code/d123_collect.py}
+    outputs:
+      - id: factorial_report
+        type: report
+        format: json
+        inputs: [policy, development_embeddings, saved_patterns, preprocessing_reports, observed_panel, cell_runner, collector]
+        description: D1 section of the collected summary; per-cell values live in the attempt's cells directory.
+        recipe:
+          command: sbatch --array=0-24 outputs/code/d123_cells.sbatch && sbatch outputs/code/d123_collect.sbatch
+          resources: {cpus: 4, memory: 16Gi, time_limit: 1h}
+  d2_flexibility_ladder:
+    name: Matched-flexibility reweighting ladder on held-out development images
+    description: >-
+      R0 native, R1 one spectral exponent per model and fold (leading-256 training
+      PCA basis), R2 non-negative per-axis weights on 64 training axes, R3 EP04
+      ridge-encoding-predicted geometry; each rung applied to VLMs and DINOv2.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: cell_runner, type: data, source: outputs/code/d123_cell.py}
+    outputs:
+      - {id: ladder_report, type: report, format: json, inputs: [policy, cell_runner], description: "D2 section of the collected summary."}
+  d3_selection_intervention:
+    name: ED-maximizing selection in each model's own space
+    description: >-
+      Greedy participation-ratio maximization over half of each fold's LAION
+      evaluation images in each selector's 64-d PCA space, versus 20 random
+      half-subsets; own-selection effect O(s) on native RSA.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: cell_runner, type: data, source: outputs/code/d123_cell.py}
+    outputs:
+      - {id: selection_report, type: report, format: json, inputs: [policy, cell_runner], description: "D3 section of the collected summary."}
+  ood_exposure_review:
+    name: Outcome-blind review that OOD responses and summaries remain unopened
+    inputs:
+      - {id: datasets, from: ../datasets}
+    outputs:
+      - {id: exposure_review, type: report, format: json, description: "Planned; covers EP04 rounds, canonical history, EP21 and other readers."}
+  configuration_lock:
+    name: Write-once lock of the confirmation evaluator and predictions
+    inputs:
+      - {id: binding, from: ../d0_outcome_blind_spectra.ood_embedding_binding}
+      - {id: categories, from: ../d0_outcome_blind_spectra.ood_category_table}
+      - {id: factorial, from: ../d1_eigen_factorial.factorial_report}
+      - {id: ladder, from: ../d2_flexibility_ladder.ladder_report}
+      - {id: selection, from: ../d3_selection_intervention.selection_report}
+      - {id: exposure, from: ../ood_exposure_review.exposure_review}
+    outputs:
+      - {id: locked_configuration, type: report, format: json}
+  ood_confirmation:
+    name: Single procedurally sealed OOD opening
+    inputs:
+      - {id: lock, from: ../configuration_lock.locked_configuration}
+      - {id: policy, from: ../policy}
+    outputs:
+      - {id: confirmation_report, type: report, format: json, description: "Planned; C1–C3 verdicts and the informativeness gate."}

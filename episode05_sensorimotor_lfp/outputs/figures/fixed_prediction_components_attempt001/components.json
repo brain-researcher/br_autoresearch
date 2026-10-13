@@ -1,0 +1,102 @@
+{
+  "analysis_id": "fixed_prediction_components",
+  "status": "complete",
+  "sources": [
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/decomposition.json",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/sessions.csv",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/descriptive_secondary/fixed_prediction_decomposition_attempt001/bins.csv",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/fixed_hw_correction_calibration/attempt001/calibration.json",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/fixed_hw_correction_calibration/attempt001/decomposition_sessions.csv",
+    "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode05_sensorimotor_lfp/outputs/runs/fixed_hw_correction_calibration/attempt001/direction_bins.csv"
+  ],
+  "aggregates": [
+    {
+      "group": "Mihili",
+      "recipe": "HW",
+      "mean_gain": -0.0005207769306428634,
+      "within_gain": 0.001540619333445379,
+      "primary_increment": 0.0010198424028025155,
+      "identity_increment": 0.004613634813059173
+    },
+    {
+      "group": "Chewie",
+      "recipe": "HW",
+      "mean_gain": 0.0005394089054612603,
+      "within_gain": 0.0031232576380901874,
+      "primary_increment": 0.0036626665435514475,
+      "identity_increment": 0.006615133121626629
+    },
+    {
+      "group": "animal_balanced",
+      "recipe": "HW",
+      "mean_gain": 9.315987409198488e-06,
+      "within_gain": 0.002331938485767783,
+      "primary_increment": 0.0023412544731769816,
+      "identity_increment": 0.005614383967342901
+    },
+    {
+      "group": "Mihili",
+      "recipe": "blend",
+      "mean_gain": -0.0002625906284119205,
+      "within_gain": 0.001801657054106536,
+      "primary_increment": 0.0015390664256946154,
+      "identity_increment": 0.00363383423178101
+    },
+    {
+      "group": "Chewie",
+      "recipe": "blend",
+      "mean_gain": 0.0005350371580218791,
+      "within_gain": 0.0032836052784834743,
+      "primary_increment": 0.0038186424365053533,
+      "identity_increment": 0.00548495520576533
+    },
+    {
+      "group": "animal_balanced",
+      "recipe": "blend",
+      "mean_gain": 0.00013622326480497934,
+      "within_gain": 0.002542631166295005,
+      "primary_increment": 0.0026788544310999843,
+      "identity_increment": 0.00455939471877317
+    },
+    {
+      "group": "Mihili",
+      "recipe": "calibrated_HW",
+      "mean_gain": -9.1212650774255e-05,
+      "within_gain": 0.001699354212800654,
+      "primary_increment": 0.001608141562026399,
+      "identity_increment": 0.00346022610979438
+    },
+    {
+      "group": "Chewie",
+      "recipe": "calibrated_HW",
+      "mean_gain": 0.0009027187694575055,
+      "within_gain": 0.0029544991053204244,
+      "primary_increment": 0.0038572178747779302,
+      "identity_increment": 0.004961349841219972
+    },
+    {
+      "group": "animal_balanced",
+      "recipe": "calibrated_HW",
+      "mean_gain": 0.0004057530593416252,
+      "within_gain": 0.002326926659060539,
+      "primary_increment": 0.0027326797184021646,
+      "identity_increment": 0.004210787975507176
+    }
+  ],
+  "sessions": 16,
+  "bins_per_session": 15,
+  "session_rows": 48,
+  "bin_rows": 720,
+  "session_contrast_rows": 32,
+  "source_score_reconstruction_passed": true,
+  "new_fits": 0,
+  "new_selection": false,
+  "original_search_reopened": false,
+  "primary_margin": 0.01,
+  "identity_margin": 0.005,
+  "evidence_role": "comparative description of completed exposed-development results",
+  "hostname": "sh04-18n31.int",
+  "job_id": "46735127",
+  "finished_utc": "2026-10-06T07:24:30.741461+00:00",
+  "elapsed_seconds": 6.890203382004984
+}

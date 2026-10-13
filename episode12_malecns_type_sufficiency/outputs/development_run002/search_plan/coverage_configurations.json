@@ -1,0 +1,488 @@
+[
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.1,
+    "covariance": "diagonal",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 2,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 0.001,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_001"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 1.0,
+    "covariance": "shrinkage",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 4,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 0.01,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_002"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.5,
+    "covariance": "shrinkage",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 16,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 0.1,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_003"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.1,
+    "covariance": "low_rank",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 2,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 1.0,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_004"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 1.0,
+    "covariance": "low_rank",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 8,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 10.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_005"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.5,
+    "covariance": "diagonal",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "development_frequency_pooling",
+    "rank": 16,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 100.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_006"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.5,
+    "covariance": "shrinkage",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 8,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 0.001,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_007"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.1,
+    "covariance": "low_rank",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 16,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 0.01,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_008"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 1.0,
+    "covariance": "low_rank",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 4,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 0.1,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_009"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.5,
+    "covariance": "diagonal",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 8,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 1.0,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_010"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.1,
+    "covariance": "diagonal",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 2,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 10.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_011"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 1.0,
+    "covariance": "shrinkage",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "explicit_unknown_untyped_fragment_and_proofreading_bins",
+    "rank": 4,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 100.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_012"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 1.0,
+    "covariance": "low_rank",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 2,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 0.001,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_013"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.5,
+    "covariance": "diagonal",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 4,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 0.01,
+    "representation": "count_aware_log_ratio",
+    "stage": "coverage",
+    "trial_id": "coverage_014"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.1,
+    "covariance": "diagonal",
+    "covariance_rank": 8,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 16,
+    "rare_partner_pooling_mass_fraction": 0.05,
+    "regularization": 0.1,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_015"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 1.0,
+    "covariance": "shrinkage",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 5,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 8,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 2,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 1.0,
+    "representation": "low_rank_composition",
+    "stage": "coverage",
+    "trial_id": "coverage_016"
+  },
+  {
+    "component_count": 2,
+    "composition_pseudocount": 0.5,
+    "covariance": "shrinkage",
+    "covariance_rank": 2,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 0,
+    "partner_hierarchy_depth": 1,
+    "partner_minimum_development_type_count": 2,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 8,
+    "rare_partner_pooling_mass_fraction": 0.01,
+    "regularization": 10.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_017"
+  },
+  {
+    "component_count": 3,
+    "composition_pseudocount": 0.1,
+    "covariance": "low_rank",
+    "covariance_rank": 4,
+    "data_mode": "development",
+    "models": [
+      "T_type_template",
+      "U_flexible_unimodal",
+      "M_residual_modes"
+    ],
+    "nuisance": [
+      "connection_strength_exposure",
+      "reconstruction_and_status",
+      "prespecified_anatomical_effects"
+    ],
+    "nuisance_spline_df": 3,
+    "partner_hierarchy_depth": 2,
+    "partner_minimum_development_type_count": 4,
+    "partner_vocabulary": "bounded_hierarchical_partner_categories",
+    "rank": 16,
+    "rare_partner_pooling_mass_fraction": 0.025,
+    "regularization": 100.0,
+    "representation": "low_rank_count_model",
+    "stage": "coverage",
+    "trial_id": "coverage_018"
+  }
+]

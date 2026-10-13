@@ -1,5 +1,15 @@
 # EP17 data: CNeuroMod responses, concepts, and measurement roles
 
+The October12 [adopted block-variance amendment](outputs/proposed_score_specific_validity_followup.md)
+retains every original development image, column, participant, ROI, stage and
+uncertainty block. For primary R² only, a block need not have positive centered
+variance; it must still have finite responses/computed moments and positive
+finite SST in every column around the matching frozen training mean. No
+support is selected or repaired using development values. All training and
+validation variance, calibration support and secondary-statistic rules remain.
+The same block rule applies to the sealed audit only after its original
+predictor/relation freeze; audit access and opening count are unchanged.
+
 EP17 uses one source, CNeuroMod-THINGS 1.0.1, to ask whether a controlled
 visual-model relation is stable or changes for a predictable measurement
 reason. [GOAL.md](GOAL.md) defines the scientific comparisons; this file
@@ -15,6 +25,20 @@ amendment permits named recipe-confounded pairs for a controlled measurement
 comparison, not causal attribution to the recipe; checkpoint and exposure
 qualification are still required.
 
+## Public online resources — checked October 6, 2026
+
+| Public source | Available information and EP17 use | Remaining limit |
+| --- | --- | --- |
+| [Official CNeuroMod-THINGS repository README](https://raw.githubusercontent.com/courtois-neuromod/cneuromod-things/main/README.md) | Navigates the event/preprocessing records under `THINGS/fmriprep`, trial/image beta and analysis code under `THINGS/glmsingle`, anatomical products, and fLoc/retinotopy methods. It explains selective DataLad retrieval without fetching the full collection. Use the source tree to identify the specific format/processing documentation needed by an adapter. | This is the current public repository description, not a change to the fixed 1.0.1 input. Available functional-localizer or public noise-ceiling products do not replace the frozen anatomical ROI or calibration-only estimator. |
+| [Pinned stimulus README](https://raw.githubusercontent.com/courtois-neuromod/things.stimuli/f8f5162f79fb2e9fb0d8cbb8bac610db11a54180/README.md) | Names `images_fmri.zip` and its documented `password_images.txt` interface. Also identifies `annotations/task-things_desc-manual_annotation.tsv` as CC0 and THINGSplus annotations as CC BY. Use for archive identity, annotation provenance and the distinction between annotation and pixel terms. | No password file was opened. Research/noncommercial pixel terms and authorized private adapter delivery still apply; annotation licensing does not grant pixel redistribution. |
+| [Official access guide](https://docs.cneuromod.ca/contents/access.html) | Lists all four EP17 participants among the openly shared subset and distinguishes that route from the agreement for the entire six-person databank. | Public neural availability does not establish episode-specific reader isolation or change the accepted stimulus terms. No new access application is needed merely to read these public instructions. |
+
+These online resources supply actionable format, acquisition-route and
+annotation information. The remaining task is implementing authorized delivery
+and role separation, not asking the scientist to identify an unspecified
+public source. No neural arrays, pixels, secrets or result notebooks were
+opened during this check.
+
 ## What is available
 
 | Resource | Current state | EP17 use |
@@ -22,7 +46,7 @@ qualification are still required.
 | CNeuroMod-THINGS 1.0.1 neural and structural subset | Acquired in restricted, read-only storage | B/C/D GLMsingle responses, anatomical candidates, events, masks, and run metadata |
 | Official release archive | Preserved with the source | Provider provenance and recovery |
 | CNeuroMod fMRI stimulus archive | Acquired under its source terms; encrypted and unextracted | Exact pixels for model features and event-image alignment |
-| THINGS/THINGSplus taxonomy | Available but not yet frozen for EP17 | Role balance and one optional semantic-stratum analysis |
+| THINGS/THINGSplus taxonomy | Metadata crosswalk and deterministic role assignment completed October 4 | Fixed role balance; optional semantic analysis remains subject to its contract |
 
 The restricted source is approximately 128 GiB and contains all four planned
 participants: `sub-01`, `sub-02`, `sub-03`, and `sub-06`. Source availability
@@ -78,8 +102,11 @@ primary image must:
 - map to the same trial across B, C, and D; and
 - pass only structural checks defined before model features or neural values.
 
-The public design suggests 720 common concepts, but that count is not treated
-as an observed local fact. If the event-derived universe is not exactly 720
+The completed metadata qualification establishes 720 eligible concepts and
+3,634 repeat-qualified image identities (from 4,320 observed and 3,840 common
+identities). The retained role counts are 2,423 development, 605 calibration
+and 606 audit images. These are metadata findings, not decoded pixel identity
+or neural response qualification. If the event-derived universe is not exactly 720
 eligible concepts, stop before neural access and revise the design explicitly
 or abandon it.
 
@@ -101,6 +128,13 @@ Assign each whole concept globally:
 
 Every exemplar, repetition, participant row, beta stage, and derived neural
 value inherits its concept's role. No concept may cross roles.
+
+The metadata assignment completed October 4: the 480/120/120 concept roles,
+six development folds, 24 development uncertainty blocks and twelve audit
+blocks are fixed. [The completion record](outputs/experiment_log.md)
+and [source-role specification](outputs/source_roles_proposal.md) preserve the
+exact assignment and bounded optimization rule. This does not release neural
+or audit-feature handoffs.
 
 Use one deterministic metadata-only assignment that balances the frozen
 THINGS/THINGSplus taxonomy, five- versus six-exemplar status, session and
@@ -154,9 +188,12 @@ operator uses the Fisher-z change between stages; `R_N` ranks the D-stage
 calibration reliability within each participant and ROI. The numerical
 Fisher-z boundary rule is fixed before scores.
 
-The exact noise-ceiling estimator, its stage-specific floor, and the finite
-ceiling-quality threshold still need to be chosen before launch. They cannot
-be filled in after candidate scores are visible.
+The [prediction/calibration specification](outputs/prediction_qualification_specification.md)
+and [endpoint contracts](outputs/measurement_contract_specification.md) were
+adopted October 4 before scores, including the repeat-aware ceiling estimator,
+0.10 denominator floor and numerical eligibility rules. The actual
+calibration maps and eligible voxel set have not been computed; those
+prospective choices cannot be revised after candidate scores are visible.
 
 The builder releases those fixed artifacts, not the underlying calibration
 responses. Development and audit concepts never select voxel support or
@@ -164,8 +201,10 @@ estimate a ceiling.
 
 ## Anatomical support and geometry
 
-The acquired `aparcaseg` volumes are candidates, not yet a finished visual-ROI
-definition. Before model scoring:
+The acquired `aparcaseg` volumes now have a qualified structural mapping to
+the nominated bilateral fusiform ROIs. The following rules govern model
+scoring; structural mapping and quota construction are complete, while the
+calibration-dependent finite universe remains unfinished:
 
 1. freeze a parcel-to-visual-ROI crosswalk;
 2. resample labels to each participant's GLMsingle T1w mask with
@@ -180,6 +219,17 @@ The primary reliable support `R_N` and every anatomical subset in `A_N` must
 contain the same number of voxels in every subparcel and spatial bin. Without
 that match, a support comparison also changes spatial composition.
 
+Structural mapping has completed with original-column identity preserved
+across all 881,359 source columns and every nominated anatomical component.
+The adopted bilateral fusiform route fixes N=256, eight spatial bins and
+32 voxels per bin for each participant/ROI. Private calibration-dependent
+finite support, reliability membership and ceilings are now computed under
+those unchanged definitions; see the
+[empirical calibration completion](outputs/experiment_log.md#2026-10-09-0141-pacific--calibration_support-full-empirical-maps-and-supports-completed).
+The
+[structural and calibration specifications](outputs/prediction_qualification_specification.md)
+separate these completed geometry decisions from neural eligibility.
+
 For a pure support comparison, create one common out-of-fold prediction bank
 for all eligible voxels and apply both support masks afterward. Separate
 support-specific model fitting is not allowed.
@@ -190,6 +240,11 @@ The exact CNeuroMod stimulus archive cannot be replaced by filenames or by
 selecting similarly named images from another THINGS archive. The trusted
 builder must extract the authorized source, join each provider image ID to the
 event table, and supply role-safe image features.
+
+The [pinned provider README](https://raw.githubusercontent.com/courtois-neuromod/things.stimuli/f8f5162f79fb2e9fb0d8cbb8bac610db11a54180/README.md)
+names `password_images.txt` for `images_fmri.zip`. This documents the interface;
+authorized local delivery and bounded use are unverified. No secret is stored
+here. Existing accepted research terms remain in force.
 
 Before neural scoring, freeze three controlled promotion pairs, one
 trained-versus-random falsifier, and at most one optional pair. For each
@@ -202,31 +257,38 @@ a clean promotion claim. Unknown exposure remains unknown.
 
 ## EP18 overlap
 
-EP17 and EP18 share the THINGS stimulus ecosystem. Before either sealed
-outcome is opened, record exact concept and image overlap, feature or
-checkpoint reuse, and first-access history. Either reserve disjoint concepts
-or freeze both designs and describe later evidence as correlated and
-design-exposed. Different measurement modalities do not make the stimulus
-evidence independent.
+The completed metadata comparison establishes that all 720 EP17 concepts and
+all 3,634 qualified EP17 image identities occur in EP18's main experiment.
+Both designs and roles are retained as correlated, design-exposed studies;
+neither supplies independent stimulus-family confirmation of the other.
+This is an identity/crosswalk finding, not proof of pixel-byte or feature-array
+identity. Known checkpoint reuse and access history, with their limitations,
+are retained in the [completed exposure record](outputs/experiment_log.md#2026-10-04-2353-utc--cross_episode_exposure-exact-overlap-completed).
 
 ## What must exist before neural model comparison
 
-EP17 is not analysis-ready. The next setup stage must produce or freeze:
+The common universe, concept roles/folds/blocks, structural atlas/column
+mapping, N/quotas, model-feature definitions, linking/calibration conventions,
+scale-specific margins, seven-endpoint/five-edge audit contracts and EP18
+exposure disposition are recorded. The calibration/support/operator/uncertainty
+cores passed 33 focused checks. The adopted margins do not require a new
+personal ratification; see the [decision provenance](outputs/source_roles_proposal.md#october-6-access-and-decision-handoff--recommendations-unadopted).
 
-- controlled extraction and the exact event-image join;
-- the verified 720-concept common universe and repeat-completeness rule;
-- the deterministic 480/120/120 assignment, folds, and concept blocks;
-- role-filtered handoffs and their access checks;
-- B/C/D trial, response, geometry, and voxel alignment;
-- the visual-ROI crosswalk, `N`, subset-bank size, spatial bins, and quotas;
-- the calibration reliability maps, ceiling estimator, floor, and eligible
-  voxel set;
-- named controlled model pairs, exposure records, layers, PCA and ridge grids;
-- practical effect margins, operator-prediction error margins, and the exact
-  crossed-bootstrap procedure;
-- the five-edge contract table, every endpoint's same-stage/same-support audit
-  homolog, separate raw and normalized margins, and audit adequacy widths; and
-- the EP17/EP18 exposure decision and an outcome-free evaluator dry run.
+EP17 is not analysis-ready. The remaining setup must supply:
+
+- authorized stimulus delivery/extraction and pixel-to-event verification;
+- enforced reader release and access checks for the completed private
+  role-filtered copies (amended 2026-10-12: procedural same-account
+  separation replaces the enforced boundary, per the
+  [GOAL amendment](GOAL.md#data-readiness-and-access-boundary); the
+  development view is still released separately, and audit/sealed access is
+  logged and disclosed);
+- remaining development/audit response qualification and calibration-operator
+  applicability; completed private B/C/D calibration maps, ceilings and fixed
+  supports do not establish those separate conditions;
+- role-safe features and full common-grid feature feasibility, with unknown
+  pretrained-image exposure retained as unknown; and
+- the complete evaluator and an outcome-free dry run.
 
 Until these are complete, neural candidate scoring and audit access remain
 closed. A failure of role identity, data alignment, or access separation is a

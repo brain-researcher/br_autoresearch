@@ -13,3 +13,12 @@ This revision was checked at the document level only:
 
 No scientific model, source-data check, publication reproduction,
 future-session evaluation, or outcome computation has run.
+
+## 2026-09-30 — current concept figure
+
+The imagegen PNG was visually inspected after a targeted correction. The
+baseline and LFP branches are independent, wrong-trial arrows swap behavioral
+trial identities, and the follow-up is explicitly conditional and offline.
+All traces and possible outcomes are schematic. The PNG and prompt links
+resolve, and the edited text passes the scoped whitespace check. The earlier
+SVG check above is historical, not a claim about a new analysis.

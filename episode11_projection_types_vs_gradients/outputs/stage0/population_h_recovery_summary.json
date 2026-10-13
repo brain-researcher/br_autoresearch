@@ -1,0 +1,445 @@
+{
+  "A8_cells": 76,
+  "A8_units": 8,
+  "C_input_validation": {
+    "checkpoint_schema_version": 1,
+    "checkpoint_training_objective_replayed_on_rebuilt_store": true,
+    "numeric_crosslinks": {
+      "frozen_training_objective_matches": true,
+      "ordered_terminal_candidate_count": 2,
+      "ordered_terminal_candidate_objectives_match": true,
+      "pass": true,
+      "terminal_scored_candidate_count": 2
+    },
+    "summary_and_checkpoint_share_one_result_directory": true,
+    "summary_status": "pass_population_C_SAA_pilot_gates_not_Panel_A_calibration"
+  },
+  "C_parameter_count": 3109,
+  "D12_to_A8_transport_evaluated": false,
+  "H_parameter_count": 3224,
+  "P_design_rank": 26,
+  "Panel_A_population_calibration_complete": false,
+  "acceptance": {
+    "accepted_C_summary_checkpoint_numeric_crosslinks_pass": true,
+    "all_H_parameters_jointly_optimized": true,
+    "all_scheduled_H_starts_avoid_iteration_cap": false,
+    "at_least_two_physical_KKT_converged_H_starts": true,
+    "best_H_training_objective_no_worse_than_embedded_C": true,
+    "exact_fitted_C_embedding_training_objective_matches_C": true,
+    "fitted_C_checkpoint_strictly_validated_and_training_objective_replayed": true,
+    "fixed_start_H_polish_KKT_converged": true,
+    "fixed_start_H_polish_numerical_boundaries_inactive": true,
+    "fixed_start_polish_fresh_score_gain_MCSE_at_most_0_005": true,
+    "fixed_start_polish_fresh_score_gain_at_most_0_005": true,
+    "fresh_H_anchor_and_verification_streams_all_distinct": true,
+    "fresh_best_two_H_scores_differ_below_threshold": false,
+    "fresh_exact_H_anchor_passes_1e_10": true,
+    "fresh_paired_verification_completed": true,
+    "fresh_paired_verification_maximum_MCSE_at_most_target": true,
+    "fresh_truth_minus_H_one_sided_95_upper_below_threshold": true,
+    "identical_R8192_group_stratified_training_store_rebuilt": true,
+    "main_H_optimizer_budget_is_frozen_at_1200_iterations": true,
+    "passing_population_C_summary_strictly_validated": true,
+    "three_prespecified_H_start_types_completed": true,
+    "top_two_selected_H_candidates_not_at_iteration_cap": true,
+    "top_two_selected_H_candidates_numerical_boundaries_inactive": true,
+    "truth_and_empirical_starts_have_nonzero_group_signatures": true
+  },
+  "amplitude": 1.25,
+  "amplitude_role": "diagnostic_positive_amplitude_not_population_calibrated_0.100_nat_fixture",
+  "diagnostic": "EP11_fitted_H_group_stratified_population_optimizer_recovery",
+  "failed_gates": [
+    "all_scheduled_H_starts_avoid_iteration_cap",
+    "fresh_best_two_H_scores_differ_below_threshold"
+  ],
+  "fitted_H_population_optimizer_recovery_completed": false,
+  "fresh_exact_H_anchor": {
+    "amplitude": 1.25,
+    "analytic_parameter_boundary_diagnostics": {
+      "active_parameter_bound_count": 0,
+      "active_parameter_bound_count_by_block": {
+        "base_support": 0,
+        "base_value": 0,
+        "continuous_support": 0,
+        "continuous_value": 0,
+        "gate_beta": 0,
+        "group_support": 0,
+        "group_value": 0,
+        "log_sigma": 0
+      },
+      "active_parameter_bound_fraction": 0.0,
+      "hard_predictor_clipping": false,
+      "maximum_absolute_gate_predictor": 0.6820935441626061,
+      "maximum_absolute_support_predictor": 3.142128335843325,
+      "sigma": 0.42,
+      "sigma_at_numerical_bound": false
+    },
+    "cell_score_comparisons": 304,
+    "family": "H",
+    "maximum_absolute_score_error": 3.019806626980426e-14,
+    "numerical_boundaries_inactive": true,
+    "parameters_within_codec_bounds": true,
+    "pass": true,
+    "replicates": 2,
+    "required_maximum_absolute_score_error": 1e-10,
+    "stream": 5701,
+    "tolerance": 1e-10
+  },
+  "fresh_paired_verification": {
+    "H_candidates_scored": 2,
+    "candidate_selection": "fit_stream_training_objective_only",
+    "contrasts": {
+      "H_best_minus_C": {
+        "mcse": 0.00010439663026556803,
+        "mean": 0.12945859420641415,
+        "replicates": 512
+      },
+      "H_best_minus_H_second": {
+        "mcse": 0.0001043966302655675,
+        "mean": 0.12945859420641476,
+        "replicates": 512
+      },
+      "H_polished_minus_H_pre_polish": {
+        "mcse": 0.0,
+        "mean": 0.0,
+        "replicates": 512
+      },
+      "truth_minus_C": {
+        "mcse": 0.00034308262375751995,
+        "mean": 0.13091418074130962,
+        "replicates": 512
+      },
+      "truth_minus_H_best": {
+        "mcse": 0.0003284956886056213,
+        "mean": 0.0014555865348954665,
+        "replicates": 512
+      }
+    },
+    "fit_objective_selected_H_candidates": [
+      {
+        "rank": 1,
+        "sources": [
+          "polished",
+          "pre_polish_best"
+        ],
+        "training_negative_mean_log_density": 4.444571988688404
+      },
+      {
+        "rank": 2,
+        "sources": [
+          "original_second"
+        ],
+        "training_negative_mean_log_density": 4.573730736031306
+      }
+    ],
+    "fresh_scores_used_for_parameter_selection": false,
+    "group_integration": "exact_two_stratum_probability_weighting_per_metadata_row",
+    "maximum_monitored_contrast_MCSE": 0.00034308262375751995,
+    "paired_on_every_support_and_value_noise_draw": true,
+    "polishing_fresh_score_gain": {
+      "mcse": 0.0,
+      "mean_polished_minus_pre_polish": 0.0,
+      "positive_fresh_score_gain": 0.0,
+      "replicates": 512
+    },
+    "replicates": 512,
+    "status": "completed",
+    "stream": 5601,
+    "training_selected_H_candidates_scored": 2,
+    "truth_minus_H_one_sided_95_upper": 0.001996895201827855
+  },
+  "optimizer": {
+    "best_H_objective_no_worse_than_embedded_C": true,
+    "best_H_training_negative_mean_log_density": 4.444571988688404,
+    "embedded_C_training_negative_mean_log_density": 4.573730736031306,
+    "family": "H",
+    "joint_optimization_of_all_H_parameter_blocks": true,
+    "parameter_count": 3224,
+    "physical_KKT_converged_starts": 2,
+    "scheduled_start_sources": [
+      "embedded_fitted_C",
+      "truth_based_nonzero_signature",
+      "empirical_nonzero_signature"
+    ],
+    "scheduled_starts": 3,
+    "starts": [
+      {
+        "KKT_converged_training_rank": 2,
+        "at_iteration_cap": false,
+        "boundary_diagnostics": {
+          "active_parameter_bound_count": 0,
+          "active_parameter_bound_count_by_block": {
+            "base_support": 0,
+            "base_value": 0,
+            "continuous_support": 0,
+            "continuous_value": 0,
+            "gate_beta": 0,
+            "group_support": 0,
+            "group_value": 0,
+            "log_sigma": 0
+          },
+          "active_parameter_bound_fraction": 0.0,
+          "hard_predictor_clipping": false,
+          "maximum_absolute_gate_predictor": 0.0,
+          "maximum_absolute_support_predictor": 12.187203010523227,
+          "sigma": 0.4196361654157835,
+          "sigma_at_numerical_bound": false
+        },
+        "evaluations": 1,
+        "iterations": 0,
+        "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+        "optimizer_scale_range": [
+          0.2380915289699863,
+          4.68898480266262
+        ],
+        "optimizer_success": true,
+        "physical_KKT_converged": true,
+        "physical_projected_gradient_block_infinity_norms": {
+          "base_support": 4.1929169966383075e-08,
+          "base_value": 1.3864947115429068e-07,
+          "continuous_support": 1.0712851160065391e-07,
+          "continuous_value": 3.848471962659283e-07,
+          "gate_beta": 1.3799240040158673e-17,
+          "group_support": 1.370214564501781e-19,
+          "group_value": 1.5407661710656374e-19,
+          "log_sigma": 3.107340546654701e-08
+        },
+        "physical_projected_gradient_infinity_norm": 3.848471962659283e-07,
+        "scaled_projected_gradient_infinity_norm": 4.7528255999172806e-07,
+        "scheduled_start_index": 0,
+        "source": "embedded_fitted_C",
+        "training_negative_mean_log_density": 4.573730736031306
+      },
+      {
+        "KKT_converged_training_rank": 1,
+        "at_iteration_cap": false,
+        "boundary_diagnostics": {
+          "active_parameter_bound_count": 0,
+          "active_parameter_bound_count_by_block": {
+            "base_support": 0,
+            "base_value": 0,
+            "continuous_support": 0,
+            "continuous_value": 0,
+            "gate_beta": 0,
+            "group_support": 0,
+            "group_value": 0,
+            "log_sigma": 0
+          },
+          "active_parameter_bound_fraction": 0.0,
+          "hard_predictor_clipping": false,
+          "maximum_absolute_gate_predictor": 0.6819954842061018,
+          "maximum_absolute_support_predictor": 3.172574757091953,
+          "sigma": 0.4199392760083292,
+          "sigma_at_numerical_bound": false
+        },
+        "evaluations": 13,
+        "iterations": 11,
+        "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+        "optimizer_scale_range": [
+          0.2380915289699863,
+          3.3807512223533283
+        ],
+        "optimizer_success": true,
+        "physical_KKT_converged": true,
+        "physical_projected_gradient_block_infinity_norms": {
+          "base_support": 1.5116586024112292e-07,
+          "base_value": 3.6872607706955666e-07,
+          "continuous_support": 2.3350301599976188e-18,
+          "continuous_value": 2.010775408721594e-18,
+          "gate_beta": 9.319997913156141e-08,
+          "group_support": 1.9549107700540894e-07,
+          "group_value": 3.2526475509024144e-07,
+          "log_sigma": 2.2309158612555252e-07
+        },
+        "physical_projected_gradient_infinity_norm": 3.6872607706955666e-07,
+        "scaled_projected_gradient_infinity_norm": 4.798506675480019e-07,
+        "scheduled_start_index": 1,
+        "source": "truth_based_nonzero_signature",
+        "training_negative_mean_log_density": 4.444571988688404
+      },
+      {
+        "KKT_converged_training_rank": null,
+        "at_iteration_cap": true,
+        "boundary_diagnostics": {
+          "active_parameter_bound_count": 0,
+          "active_parameter_bound_count_by_block": {
+            "base_support": 0,
+            "base_value": 0,
+            "continuous_support": 0,
+            "continuous_value": 0,
+            "gate_beta": 0,
+            "group_support": 0,
+            "group_value": 0,
+            "log_sigma": 0
+          },
+          "active_parameter_bound_fraction": 0.0,
+          "hard_predictor_clipping": false,
+          "maximum_absolute_gate_predictor": 19.073613677420028,
+          "maximum_absolute_support_predictor": 7.719324077549582,
+          "sigma": 0.41944735490666407,
+          "sigma_at_numerical_bound": false
+        },
+        "evaluations": 1230,
+        "iterations": 1200,
+        "message": "STOP: TOTAL NO. of ITERATIONS REACHED LIMIT",
+        "optimizer_scale_range": [
+          0.2380915289699863,
+          4.015166605002538
+        ],
+        "optimizer_success": false,
+        "physical_KKT_converged": false,
+        "physical_projected_gradient_block_infinity_norms": {
+          "base_support": 7.109292253871514e-05,
+          "base_value": 7.961535428426881e-05,
+          "continuous_support": 0.00012475247871586393,
+          "continuous_value": 0.00011474194368527575,
+          "gate_beta": 3.409127973159901e-05,
+          "group_support": 9.518803595993288e-05,
+          "group_value": 7.203190792901981e-05,
+          "log_sigma": 6.100762982983788e-05
+        },
+        "physical_projected_gradient_infinity_norm": 0.00012475247871586393,
+        "scaled_projected_gradient_infinity_norm": 0.00039076830770799385,
+        "scheduled_start_index": 2,
+        "source": "empirical_nonzero_signature",
+        "training_negative_mean_log_density": 5.095714209033982
+      }
+    ]
+  },
+  "optimizer_contract": {
+    "C_coefficients_frozen_inside_H": false,
+    "chunk_replicates": 32,
+    "family": "H",
+    "fit_stream_training_objective_alone_selects_H": true,
+    "fixed_start_polish_maximum_iterations_frozen": 600,
+    "fresh_verification_selects_parameters": false,
+    "hard_group_labels_used_in_fitted_objective": false,
+    "initialization_prefix_replicates": 16,
+    "joint_analytic_gradient_L_BFGS_B": true,
+    "main_maximum_iterations_per_start_frozen": 1200,
+    "objective": "equal_unit_group_stratified_population_SAA_negative_mean_log_density",
+    "physical_projected_gradient_tolerance": 2e-05,
+    "point_continuous_latent_estimates_used_in_objective": false,
+    "preconditioner_prefix_replicates": 32,
+    "start_workers": 3
+  },
+  "outcome_bearing_search_authorized": false,
+  "polishing": {
+    "attempted": true,
+    "fresh_score_gain": {
+      "mcse": 0.0,
+      "mean_polished_minus_pre_polish": 0.0,
+      "positive_fresh_score_gain": 0.0,
+      "replicates": 512
+    },
+    "maximum_iterations_frozen": 600,
+    "optimizer": {
+      "at_iteration_cap": false,
+      "boundary_diagnostics": {
+        "active_parameter_bound_count": 0,
+        "active_parameter_bound_count_by_block": {
+          "base_support": 0,
+          "base_value": 0,
+          "continuous_support": 0,
+          "continuous_value": 0,
+          "gate_beta": 0,
+          "group_support": 0,
+          "group_value": 0,
+          "log_sigma": 0
+        },
+        "active_parameter_bound_fraction": 0.0,
+        "hard_predictor_clipping": false,
+        "maximum_absolute_gate_predictor": 0.6819954842061018,
+        "maximum_absolute_support_predictor": 3.172574757091953,
+        "sigma": 0.4199392760083292,
+        "sigma_at_numerical_bound": false
+      },
+      "evaluations": 1,
+      "iterations": 0,
+      "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+      "optimizer_scale_range": [
+        0.2380915289699863,
+        3.3931969016787846
+      ],
+      "optimizer_success": true,
+      "physical_KKT_converged": true,
+      "physical_projected_gradient_block_infinity_norms": {
+        "base_support": 1.5116586025310166e-07,
+        "base_value": 3.687260770362564e-07,
+        "continuous_support": 2.428787566912901e-18,
+        "continuous_value": 1.932793537161236e-18,
+        "gate_beta": 9.319997913213147e-08,
+        "group_support": 1.9549107698476844e-07,
+        "group_value": 3.2526475510205924e-07,
+        "log_sigma": 2.2309158613259984e-07
+      },
+      "physical_projected_gradient_infinity_norm": 3.687260770362564e-07,
+      "scaled_projected_gradient_infinity_norm": 4.797812902476735e-07,
+      "source": "fixed_start_polish",
+      "training_negative_mean_log_density": 4.444571988688404
+    },
+    "source": "fixed_start_from_pre_polish_best"
+  },
+  "remaining_before_Panel_A_completion": [
+    "revise_and_repeat_fitted_H_population_optimizer_recovery",
+    "complete_population_amplitude_calibration_to_the_0.100_nat_fixture",
+    "complete_fitted_zero_amplitude_C_and_H_population_recovery",
+    "apply_all_remaining_prespecified_Panel_A_acceptance_checks"
+  ],
+  "scope": "implemented_smoke_family_on_fixed_provisional_A8_metadata_support",
+  "status": "revise_population_H_optimizer_iteration_cap",
+  "streams": {
+    "H_anchor_and_verification_distinct_from_each_other_and_all_C_and_truth_template_streams": true,
+    "H_exact_anchor": 5701,
+    "H_verification": 5601,
+    "all_distinct": true,
+    "anchor": 5401,
+    "fit": 5101,
+    "terminal": 5303,
+    "truth_template": 5501,
+    "validation": 5202
+  },
+  "terminal_candidate_selection": {
+    "fresh_scores_used_for_selection": false,
+    "ranking": [
+      {
+        "at_iteration_cap": false,
+        "fit_objective_rank": 1,
+        "fresh_verification_selected": true,
+        "numerical_boundaries_inactive": true,
+        "physical_KKT_converged": true,
+        "sources": [
+          "polished",
+          "pre_polish_best"
+        ],
+        "training_negative_mean_log_density": 4.444571988688404
+      },
+      {
+        "at_iteration_cap": false,
+        "fit_objective_rank": 2,
+        "fresh_verification_selected": true,
+        "numerical_boundaries_inactive": true,
+        "physical_KKT_converged": true,
+        "sources": [
+          "original_second"
+        ],
+        "training_negative_mean_log_density": 4.573730736031306
+      }
+    ],
+    "rule": "deduplicate_polished_pre_polish_best_and_original_second_by_parameter_equivalence_then_rank_by_fit_stream_training_objective"
+  },
+  "terminal_population_calibration_pass": false,
+  "thresholds": {
+    "best_two_H_fresh_score_difference_nats_per_neuron": 0.002,
+    "embedded_C_training_objective_match_absolute_tolerance": 1e-10,
+    "fixed_start_polish_fresh_score_gain_MCSE_nats_per_neuron": 0.005,
+    "fixed_start_polish_fresh_score_gain_nats_per_neuron": 0.005,
+    "fresh_exact_H_anchor_maximum_absolute_error": 1e-10,
+    "maximum_monitored_verification_MCSE_nats_per_neuron": 0.005,
+    "truth_minus_H_one_sided_95_upper_nats_per_neuron": 0.01
+  },
+  "training_SAA_replicates": 8192,
+  "training_group_integration": "exact_two_stratum_probability_weighting_per_metadata_row",
+  "training_support_and_value_noise_integration": "same_nested_SAA_store_definition_as_validated_C",
+  "uses_real_projection_outcomes": false
+}

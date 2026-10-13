@@ -1,0 +1,2797 @@
+{
+  "archive": {
+    "bundled_model_weight_files": [],
+    "environment_files": [
+      "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/env.yaml",
+      "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/env.yaml"
+    ],
+    "file_count": 71,
+    "files": [
+      {
+        "compressed_bytes": 17,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/.gitignore",
+        "uncompressed_bytes": 17
+      },
+      {
+        "compressed_bytes": 630,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/LICENSE",
+        "uncompressed_bytes": 1069
+      },
+      {
+        "compressed_bytes": 150,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/README.md",
+        "uncompressed_bytes": 323
+      },
+      {
+        "compressed_bytes": 2068,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+        "uncompressed_bytes": 6904
+      },
+      {
+        "compressed_bytes": 2445,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+        "uncompressed_bytes": 7641
+      },
+      {
+        "compressed_bytes": 181,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/params/converter_params_VC.csv",
+        "uncompressed_bytes": 700
+      },
+      {
+        "compressed_bytes": 2453,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+        "uncompressed_bytes": 6987
+      },
+      {
+        "compressed_bytes": 3762,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+        "uncompressed_bytes": 12910
+      },
+      {
+        "compressed_bytes": 216,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/README.md",
+        "uncompressed_bytes": 451
+      },
+      {
+        "compressed_bytes": 210,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/datasets.py",
+        "uncompressed_bytes": 469
+      },
+      {
+        "compressed_bytes": 254,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+        "uncompressed_bytes": 622
+      },
+      {
+        "compressed_bytes": 2496,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+        "uncompressed_bytes": 10136
+      },
+      {
+        "compressed_bytes": 2416,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+        "uncompressed_bytes": 7345
+      },
+      {
+        "compressed_bytes": 98,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/README.md",
+        "uncompressed_bytes": 156
+      },
+      {
+        "compressed_bytes": 784,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+        "uncompressed_bytes": 2235
+      },
+      {
+        "compressed_bytes": 2220,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+        "uncompressed_bytes": 17557
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/fmri/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/pre-trained/converters/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/pre-trained/decoders/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/stimulus_feature/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/test_image/decoded_features/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/test_image/source/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 15,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/test_image/true_features/.gitignore",
+        "uncompressed_bytes": 15
+      },
+      {
+        "compressed_bytes": 397,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/env.yaml",
+        "uncompressed_bytes": 800
+      },
+      {
+        "compressed_bytes": 225,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/README.md",
+        "uncompressed_bytes": 590
+      },
+      {
+        "compressed_bytes": 1957,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+        "uncompressed_bytes": 6343
+      },
+      {
+        "compressed_bytes": 2248,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+        "uncompressed_bytes": 6618
+      },
+      {
+        "compressed_bytes": 1842,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+        "uncompressed_bytes": 5881
+      },
+      {
+        "compressed_bytes": 2158,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+        "uncompressed_bytes": 6399
+      },
+      {
+        "compressed_bytes": 3006,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/plot_figure.py",
+        "uncompressed_bytes": 11647
+      },
+      {
+        "compressed_bytes": 78686,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/conversion_accuracy_pattern_brain_loss.csv",
+        "uncompressed_bytes": 340743
+      },
+      {
+        "compressed_bytes": 80231,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/conversion_accuracy_pattern_content_loss.csv",
+        "uncompressed_bytes": 352182
+      },
+      {
+        "compressed_bytes": 8110471,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/conversion_accuracy_profile_brain_loss.csv",
+        "uncompressed_bytes": 36719259
+      },
+      {
+        "compressed_bytes": 8118021,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/conversion_accuracy_profile_content_loss.csv",
+        "uncompressed_bytes": 37915604
+      },
+      {
+        "compressed_bytes": 32756,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/pattern_nc_threshold_single_trial.csv",
+        "uncompressed_bytes": 82978
+      },
+      {
+        "compressed_bytes": 18871,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/pattern_noise_ceiling_single_trial.csv",
+        "uncompressed_bytes": 53222
+      },
+      {
+        "compressed_bytes": 3183840,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/profile_nc_threshold_single_trial.csv",
+        "uncompressed_bytes": 8407374
+      },
+      {
+        "compressed_bytes": 1575798,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/results/profile_noise_ceiling_single_trial.csv",
+        "uncompressed_bytes": 4706814
+      },
+      {
+        "compressed_bytes": 1596,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+        "uncompressed_bytes": 5124
+      },
+      {
+        "compressed_bytes": 2159,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/plot_figure.py",
+        "uncompressed_bytes": 7204
+      },
+      {
+        "compressed_bytes": 10772,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/results/decoding_accuracy_brain_loss.csv",
+        "uncompressed_bytes": 36688
+      },
+      {
+        "compressed_bytes": 10478,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/results/decoding_accuracy_content_loss.csv",
+        "uncompressed_bytes": 37383
+      },
+      {
+        "compressed_bytes": 2831,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/results/decoding_accuracy_within.csv",
+        "uncompressed_bytes": 8310
+      },
+      {
+        "compressed_bytes": 2473,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+        "uncompressed_bytes": 9349
+      },
+      {
+        "compressed_bytes": 1272,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+        "uncompressed_bytes": 4049
+      },
+      {
+        "compressed_bytes": 2549,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+        "uncompressed_bytes": 8420
+      },
+      {
+        "compressed_bytes": 1435,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/dnn_identification_brain_loss.csv",
+        "uncompressed_bytes": 11119
+      },
+      {
+        "compressed_bytes": 1441,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/dnn_identification_content_loss.csv",
+        "uncompressed_bytes": 11520
+      },
+      {
+        "compressed_bytes": 463,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/dnn_identification_within.csv",
+        "uncompressed_bytes": 2331
+      },
+      {
+        "compressed_bytes": 289,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/pixel_identification_brain_loss.csv",
+        "uncompressed_bytes": 1064
+      },
+      {
+        "compressed_bytes": 292,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/pixel_identification_content_loss.csv",
+        "uncompressed_bytes": 1103
+      },
+      {
+        "compressed_bytes": 146,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/results/pixel_identification_within.csv",
+        "uncompressed_bytes": 261
+      },
+      {
+        "compressed_bytes": 599,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+        "uncompressed_bytes": 1287
+      },
+      {
+        "compressed_bytes": 467,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+        "uncompressed_bytes": 1537
+      },
+      {
+        "compressed_bytes": 2285,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+        "uncompressed_bytes": 7867
+      },
+      {
+        "compressed_bytes": 2534,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+        "uncompressed_bytes": 8723
+      },
+      {
+        "compressed_bytes": 1797813,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/figure/NCC.png",
+        "uncompressed_bytes": 1861880
+      },
+      {
+        "compressed_bytes": 689,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/README.md",
+        "uncompressed_bytes": 1347
+      },
+      {
+        "compressed_bytes": 253,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/encoder/vgg19.yaml",
+        "uncompressed_bytes": 568
+      },
+      {
+        "compressed_bytes": 250,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/generator/relu7generator.yaml",
+        "uncompressed_bytes": 545
+      },
+      {
+        "compressed_bytes": 309,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+        "uncompressed_bytes": 567
+      },
+      {
+        "compressed_bytes": 5,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/.gitignore",
+        "uncompressed_bytes": 5
+      },
+      {
+        "compressed_bytes": 14,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/decoded_features/.gitignore",
+        "uncompressed_bytes": 14
+      },
+      {
+        "compressed_bytes": 902,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/download.py",
+        "uncompressed_bytes": 2156
+      },
+      {
+        "compressed_bytes": 14,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/feature_decoders/.gitignore",
+        "uncompressed_bytes": 14
+      },
+      {
+        "compressed_bytes": 14,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/features/.gitignore",
+        "uncompressed_bytes": 14
+      },
+      {
+        "compressed_bytes": 448,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/files.json",
+        "uncompressed_bytes": 1581
+      },
+      {
+        "compressed_bytes": 14,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/fmri/.gitignore",
+        "uncompressed_bytes": 14
+      },
+      {
+        "compressed_bytes": 14,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/data/models/.gitignore",
+        "uncompressed_bytes": 14
+      },
+      {
+        "compressed_bytes": 1788,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/env.yaml",
+        "uncompressed_bytes": 4682
+      },
+      {
+        "compressed_bytes": 4742,
+        "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+        "uncompressed_bytes": 16400
+      }
+    ],
+    "source_evidence": {
+      "activation": [
+        {
+          "line": 11,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+          "text": "nn.LeakyReLU(0.2),"
+        },
+        {
+          "line": 14,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+          "text": "nn.LeakyReLU(0.2),"
+        },
+        {
+          "line": 23,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "# Remove 'relu6' and 'relu7' layers from DNN dataframes"
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "df4_norelu = df4.drop(df4[(df4[\"Layer\"] == \"relu6\") | (df4[\"Layer\"] == \"relu7\")].index)"
+        },
+        {
+          "line": 25,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "df5_norelu = df5.drop(df5[(df5[\"Layer\"] == \"relu6\") | (df5[\"Layer\"] == \"relu7\")].index)"
+        },
+        {
+          "line": 26,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "df6_norelu = df6.drop(df6[(df6[\"Layer\"] == \"relu6\") | (df6[\"Layer\"] == \"relu7\")].index)"
+        },
+        {
+          "line": 28,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "return df1, df2, df3, df4_norelu, df5_norelu, df6_norelu"
+        },
+        {
+          "line": 101,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "def adjust_layer_positions(df1, df2_CI, df3_CI, df4_norelu, df5_CI, df6_CI):"
+        },
+        {
+          "line": 111,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "df4_norelu.loc[(df4_norelu[\"Layer\"] == layer), \"Layer\"] = 0.8 + a"
+        },
+        {
+          "line": 115,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "return df1, df2_CI, df3_CI, df4_norelu, df5_CI, df6_CI"
+        },
+        {
+          "line": 137,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "def plot_identification_accuracy(df1, df2_CI, df3_CI, df4_norelu, df5_CI, df6_CI):"
+        },
+        {
+          "line": 160,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "sns.lineplot(data=df4_norelu, x=\"Layer\", y=\"Identification accuracy\", ax=ax1, err_style=\"bars\", color='m',"
+        },
+        {
+          "line": 29,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/README.md",
+          "text": "$ python recon_icnn_image_gd.py config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml"
+        },
+        {
+          "line": 3,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/generator/relu7generator.yaml",
+          "text": "name: relu7generator"
+        },
+        {
+          "line": 4,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/generator/relu7generator.yaml",
+          "text": "input_layer: relu7"
+        },
+        {
+          "line": 5,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/generator/relu7generator.yaml",
+          "text": "parameters_file: ./data/models/bvlc_reference_caffenet_generator_ILSVRC2012_Training/generator_relu7.pt"
+        },
+        {
+          "line": 9,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/generator/relu7generator.yaml",
+          "text": "latent_upper_bound_file: ./data/models/bvlc_reference_caffenet_generator_ILSVRC2012_Training/relu7_act_range_3x.txt"
+        },
+        {
+          "line": 5,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+          "text": "- generator: relu7generator"
+        }
+      ],
+      "content_loss": [
+        {
+          "line": 101,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 103,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(model_store, 'y_norm.mat'))['y_norm']  # shape = (1, shape_features)"
+        },
+        {
+          "line": 105,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "# Normalize X"
+        },
+        {
+          "line": 106,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 111,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "converted_x = converted_x * y_norm + y_mean"
+        },
+        {
+          "line": 133,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 135,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(model_store, 'y_norm.mat'))['y_norm']  # shape = (1, shape_features)"
+        },
+        {
+          "line": 137,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 151,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "# Denormalize Y"
+        },
+        {
+          "line": 153,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "y_pred_tmp = y_pred_tmp * y_norm + y_mean"
+        },
+        {
+          "line": 155,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "y_pred_tmp = y_pred_tmp * y_norm[:, [i], :] + y_mean[:, [i], :]"
+        },
+        {
+          "line": 144,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "# Normalize X (source fMRI data)"
+        },
+        {
+          "line": 146,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "x_norm = np.std(x, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 147,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "x_normalized = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 149,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "# Normalize Y (target fMRI data)"
+        },
+        {
+          "line": 151,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "y_norm = np.std(y, axis=0, ddof=1)[np.newaxis, :]"
+        },
+        {
+          "line": 152,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "y_normalized = (y - y_mean) / y_norm"
+        },
+        {
+          "line": 164,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "model.fit(x_normalized, y_normalized, alpha=alpha, n_feat=0,"
+        },
+        {
+          "line": 167,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "b = model.b.flatten()  # b in fact has no effect as the data has been normalized, but it is kept for consistency."
+        },
+        {
+          "line": 180,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "print('Saving normalization parameters.')"
+        },
+        {
+          "line": 181,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "norm_param = {'x_mean': x_mean, 'y_mean': y_mean,"
+        },
+        {
+          "line": 182,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "'x_norm': x_norm, 'y_norm': y_norm}"
+        },
+        {
+          "line": 183,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "save_targets = [u'x_mean', u'y_mean', u'x_norm', u'y_norm']"
+        },
+        {
+          "line": 188,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "save_array(save_file, norm_param[sv], key=sv, dtype=np.float32, sparse=False)"
+        },
+        {
+          "line": 71,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "# Get normalization parameters for the source and target"
+        },
+        {
+          "line": 72,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "x_mean_src, x_norm_src, _, _, _, _ = fastl2lir_parameter(path_src.build_model_path('fc6'), chunk_axis=1)"
+        },
+        {
+          "line": 73,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "x_mean_trg, x_norm_trg, _, _, _, _ = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)"
+        },
+        {
+          "line": 75,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "# The output dimension matches the target's normalization parameters"
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "# Load the pretrained model's weights"
+        },
+        {
+          "line": 97,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "x_item = (x_averaged - x_mean_src) / x_norm_src"
+        },
+        {
+          "line": 103,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "y_pred = x_norm_trg * pred_B + x_mean_trg"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "from utils import test_fastl2lir_div, compute_layer_weights"
+        },
+        {
+          "line": 33,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "def normalize_samples(x, x_labels, path_src):"
+        },
+        {
+          "line": 35,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "normalize samples."
+        },
+        {
+          "line": 42,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Normalize the samples"
+        },
+        {
+          "line": 44,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "x_mean_src, x_norm_src, _, _, _, _ = fastl2lir_parameter(src_mean_std_dir, chunk_axis=1)"
+        },
+        {
+          "line": 45,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "x = (x - x_mean_src) / x_norm_src"
+        },
+        {
+          "line": 51,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "Process a specific DNN layer to extract features and normalize them."
+        },
+        {
+          "line": 57,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "_, _, y_mean_trg, y_norm_trg, _, _ = fastl2lir_parameter(dnn_mean_std_dir, chunk_axis=1)"
+        },
+        {
+          "line": 59,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Normalize layer features based on layer type (convolutional or fully connected)"
+        },
+        {
+          "line": 61,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "layer_features = (dnn[dnn_index] - y_mean_trg[:, current_indices[layer], :, :]) / y_norm_trg[:, current_indices[layer], :, :]"
+        },
+        {
+          "line": 63,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "layer_features = (dnn[dnn_index] - y_mean_trg) / y_norm_trg"
+        },
+        {
+          "line": 118,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Convolutional layers use random indices for selecting feature maps"
+        },
+        {
+          "line": 156,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Calculate weight for different layers"
+        },
+        {
+          "line": 157,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "layer_weights = compute_layer_weights(chunk_dnn_features, features_list)"
+        },
+        {
+          "line": 171,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "total_loss += layer_weights[layer] * loss"
+        },
+        {
+          "line": 193,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Process brain activity: normalize samples"
+        },
+        {
+          "line": 194,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "x, brain_labels = normalize_samples(x, x_labels, path_src)"
+        },
+        {
+          "line": 1,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/README.md",
+          "text": "This section provides scripts for the training and testing of content loss-based neural code converters."
+        },
+        {
+          "line": 3,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/README.md",
+          "text": "To train the neural code converters using content loss for subject pairs, execute:"
+        },
+        {
+          "line": 9,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/README.md",
+          "text": "To test the neural code converters using content loss for subject pairs, execute:"
+        },
+        {
+          "line": 10,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+          "text": "nn.InstanceNorm1d(1),"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/models.py",
+          "text": "nn.InstanceNorm1d(1),"
+        },
+        {
+          "line": 72,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "def predict_normalized(X, W, b):"
+        },
+        {
+          "line": 121,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 123,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(model_store, 'y_norm.mat'))['y_norm']  # shape = (1, shape_features)"
+        },
+        {
+          "line": 128,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "return x_mean, x_norm, y_mean, y_norm, W, b"
+        },
+        {
+          "line": 159,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "y_pred_tmp = predict_normalized(x, W_tmp, b_tmp)"
+        },
+        {
+          "line": 164,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "def compute_layer_weights(chunk_dnn_features, features_list):"
+        },
+        {
+          "line": 166,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "Compute weights for each layer based on the norm of the features."
+        },
+        {
+          "line": 170,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "- features_list: List of layers for which weights are computed."
+        },
+        {
+          "line": 174,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "- Dictionary of layer weights."
+        },
+        {
+          "line": 177,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "feat_norms = []"
+        },
+        {
+          "line": 179,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Compute norm for each layer's features"
+        },
+        {
+          "line": 184,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Compute the norm and append to the list"
+        },
+        {
+          "line": 185,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "feat_norms.append(np.linalg.norm(current_features))"
+        },
+        {
+          "line": 187,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "feat_norms = np.array(feat_norms, dtype='float32')"
+        },
+        {
+          "line": 189,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Compute weights using the inverse of squared norms"
+        },
+        {
+          "line": 190,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "weights = 1. / (feat_norms ** 2)"
+        },
+        {
+          "line": 191,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Normalize the weights"
+        },
+        {
+          "line": 192,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "weights /= weights.sum()"
+        },
+        {
+          "line": 194,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Map each layer to its corresponding weight"
+        },
+        {
+          "line": 195,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "layer_weights = dict(zip(features_list, weights))"
+        },
+        {
+          "line": 197,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "return layer_weights"
+        },
+        {
+          "line": 248,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 250,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(y_mean_std_store, 'y_norm.mat'))['y_norm']  # shape = (1, shape_features)"
+        },
+        {
+          "line": 252,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 266,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# Denormalize Y"
+        },
+        {
+          "line": 268,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "y_pred_tmp = y_pred_tmp * y_norm + y_mean"
+        },
+        {
+          "line": 270,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "y_pred_tmp = y_pred_tmp * y_norm[:, [i], :] + y_mean[:, [i], :]"
+        },
+        {
+          "line": 90,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "#### Content Loss-based Training"
+        },
+        {
+          "line": 92,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To train the neural code converters using content loss for subject pairs, navigate to the `NCC_content_loss` directory and run:"
+        },
+        {
+          "line": 120,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "- For content loss-based converters:"
+        },
+        {
+          "line": 146,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "- For content loss-based converters:"
+        },
+        {
+          "line": 150,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python fmri_pattern_corr_content_loss.py"
+        },
+        {
+          "line": 153,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python fmri_profile_corr_content_loss.py"
+        },
+        {
+          "line": 166,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To obtain the normalized correlations and plot the Figure 2E and 2F with the provided result, use the following command:"
+        },
+        {
+          "line": 3,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/README.md",
+          "text": "- For content loss-based converters:"
+        },
+        {
+          "line": 7,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/README.md",
+          "text": "python fmri_pattern_corr_content_loss.py"
+        },
+        {
+          "line": 10,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/README.md",
+          "text": "python fmri_profile_corr_content_loss.py"
+        },
+        {
+          "line": 23,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/README.md",
+          "text": "To obtain the normalized correlation and plot the Figure 2E and 2F, use the following command."
+        },
+        {
+          "line": 32,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "# Load mean and normalization parameters"
+        },
+        {
+          "line": 34,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']"
+        },
+        {
+          "line": 36,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(model_store, 'y_norm.mat'))['y_norm']"
+        },
+        {
+          "line": 38,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "# Normalize X"
+        },
+        {
+          "line": 39,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 44,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "return converted_x, y_mean, y_norm"
+        },
+        {
+          "line": 111,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "converted_x, y_mean, y_norm = test_ncconverter(nc_model_dir, x_test)"
+        },
+        {
+          "line": 113,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "y = (y_test - y_mean) / y_norm"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "from NCC_content_loss.models import Converter"
+        },
+        {
+          "line": 14,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "from NCC_content_loss.utils import PathBuilder, fastl2lir_parameter"
+        },
+        {
+          "line": 47,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "def normalize_data(x, mean, norm):"
+        },
+        {
+          "line": 49,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "Normalize the data using the provided mean and norm."
+        },
+        {
+          "line": 51,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "return (x - mean) / norm"
+        },
+        {
+          "line": 71,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "# model_path = os.path.join('../../NCC_content_loss/output', conversion, 'VC', 'model.pth')"
+        },
+        {
+          "line": 79,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "# Load and normalize the feature decoder parameters"
+        },
+        {
+          "line": 82,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "x_mean_src, x_norm_src = fastl2lir_parameter(path_src.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "x_mean_trg, x_norm_trg = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 85,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "x_item = normalize_data(x_test, x_mean_src, x_norm_src)"
+        },
+        {
+          "line": 91,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "y = normalize_data(y_test, x_mean_trg, x_norm_trg)"
+        },
+        {
+          "line": 122,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "'Method': 'content_loss',"
+        },
+        {
+          "line": 149,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "output_filename = 'conversion_accuracy_pattern_content_loss.csv'"
+        },
+        {
+          "line": 31,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']"
+        },
+        {
+          "line": 33,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+          "text": "y_norm = hdf5storage.loadmat(os.path.join(model_store, 'y_norm.mat'))['y_norm']"
+        },
+        {
+          "line": 35,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+          "text": "# Normalize X"
+        },
+        {
+          "line": 36,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+          "text": "x = (x - x_mean) / x_norm"
+        },
+        {
+          "line": 42,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_brain_loss.py",
+          "text": "converted_x = converted_x * y_norm + y_mean"
+        },
+        {
+          "line": 12,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "from NCC_content_loss.models import Converter"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "from NCC_content_loss.utils import PathBuilder, fastl2lir_parameter"
+        },
+        {
+          "line": 63,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "# model_path = os.path.join('../../NCC_content_loss/output', conversion, 'VC', 'model.pth')"
+        }
+      ],
+      "decoder": [
+        {
+          "line": 71,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "decoders_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 81,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "pred_dnn = test_fastl2lir_div(os.path.join(decoders_dir, network, feat, trg, roi, 'model'), x_test_averaged_pred)"
+        },
+        {
+          "line": 100,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_mean = hdf5storage.loadmat(os.path.join(model_store, 'x_mean.mat'))['x_mean']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 101,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 116,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "# W: shape = (n_voxels, shape_features)"
+        },
+        {
+          "line": 132,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_mean = hdf5storage.loadmat(os.path.join(model_store, 'x_mean.mat'))['x_mean']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 133,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 163,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_train.py",
+          "text": "# All voxels are used in training."
+        },
+        {
+          "line": 41,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "def convert_brain_activity(subject_src, subject_trg, roi, data_brain, rois_list, src_decoder_dir, trg_decoder_dir, vgg_network, opt):"
+        },
+        {
+          "line": 51,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "- src_decoder_dir: Source decoder directory."
+        },
+        {
+          "line": 52,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "- trg_decoder_dir: Target decoder directory."
+        },
+        {
+          "line": 68,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "path_src = PathBuilder(src_decoder_dir, vgg_network, subject_src, roi)"
+        },
+        {
+          "line": 69,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "path_trg = PathBuilder(trg_decoder_dir, vgg_network, subject_trg, roi)"
+        },
+        {
+          "line": 148,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "# Set VGG network and decoder paths"
+        },
+        {
+          "line": 150,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "src_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 151,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "trg_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 159,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "convert_brain_activity(src, trg, roi, data_brain, rois_list, src_decoder_dir, trg_decoder_dir, vgg_network, opt)"
+        },
+        {
+          "line": 271,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Define directories for decoders"
+        },
+        {
+          "line": 272,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "src_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 273,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "trg_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 312,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "converter_training(src, trg, data_brain, rois_list, roi, vgg_dir, features_list, src_network, trg_network, src_decoder_dir, trg_decoder_dir, chunks_index_dict, opt)"
+        },
+        {
+          "line": 104,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# W: shape = (n_voxels, shape_features)"
+        },
+        {
+          "line": 120,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_mean = hdf5storage.loadmat(os.path.join(model_store, 'x_mean.mat'))['x_mean']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 121,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 231,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "# W: shape = (n_voxels, shape_features)"
+        },
+        {
+          "line": 247,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_mean = hdf5storage.loadmat(os.path.join(model_store, 'x_mean.mat'))['x_mean']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 248,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/utils.py",
+          "text": "x_norm = hdf5storage.loadmat(os.path.join(model_store, 'x_norm.mat'))['x_norm']  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 77,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "### Download Pre-trained Decoders"
+        },
+        {
+          "line": 79,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To use this project, you'll need to download the required pre-trained decoders from [Figshare](https://figshare.com/articles/dataset/Inter-individual_and_inter-site_neural_code_conversion/26860954) with the following command:"
+        },
+        {
+          "line": 82,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py pre-trained-decoders"
+        },
+        {
+          "line": 85,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "If you prefer to train the decoders yourself (approximately 2 days per subject), detailed instructions and scripts are available in the `feature-decoding` directory."
+        },
+        {
+          "line": 7,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/README.md",
+          "text": "- `pre-trained-decoders`"
+        },
+        {
+          "line": 202,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"pre-trained-decoders\": {"
+        },
+        {
+          "line": 206,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip\","
+        },
+        {
+          "line": 212,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip\","
+        },
+        {
+          "line": 218,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip\","
+        },
+        {
+          "line": 224,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip\","
+        },
+        {
+          "line": 230,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip\","
+        },
+        {
+          "line": 236,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip\","
+        },
+        {
+          "line": 242,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip\","
+        },
+        {
+          "line": 248,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip\","
+        },
+        {
+          "line": 254,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip\","
+        },
+        {
+          "line": 260,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip\","
+        },
+        {
+          "line": 266,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip\","
+        },
+        {
+          "line": 272,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip\","
+        },
+        {
+          "line": 278,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip\","
+        },
+        {
+          "line": 284,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip\","
+        },
+        {
+          "line": 290,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip\","
+        },
+        {
+          "line": 296,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip\","
+        },
+        {
+          "line": 302,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip\","
+        },
+        {
+          "line": 308,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip\","
+        },
+        {
+          "line": 314,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip\","
+        },
+        {
+          "line": 63,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "# Exclude overlapping voxels if required"
+        },
+        {
+          "line": 65,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "used_voxels = []"
+        },
+        {
+          "line": 67,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "cleaned_voxels = [idx for idx in idxs[name] if idx not in used_voxels]"
+        },
+        {
+          "line": 68,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "used_voxels.extend(cleaned_voxels)"
+        },
+        {
+          "line": 69,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_brain_loss.py",
+          "text": "idxs[name] = cleaned_voxels"
+        },
+        {
+          "line": 79,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "# Load and normalize the feature decoder parameters"
+        },
+        {
+          "line": 147,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "pre_vgg_models_dir_root = '../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 77,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "# Load and normalize feature decoder parameters"
+        },
+        {
+          "line": 96,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "Calculate correlations for each voxel and store the results."
+        },
+        {
+          "line": 136,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "pre_vgg_models_dir_root = '../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "feature_decoder_dir=None,"
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "norm_param_dir = os.path.join(feature_decoder_dir, layer, trg, roi, 'model')"
+        },
+        {
+          "line": 127,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "feature_decoder_dir = os.path.join("
+        },
+        {
+          "line": 128,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits', network)"
+        },
+        {
+          "line": 140,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "feature_decoder_dir=feature_decoder_dir,"
+        },
+        {
+          "line": 11,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+          "text": "- To train the decoders\uff0cuse the following command:"
+        },
+        {
+          "line": 22,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "# The number of voxels used in feature decoding"
+        },
+        {
+          "line": 23,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "rois voxel num:"
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "VC:  500"
+        },
+        {
+          "line": 63,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "feature decoder dir:"
+        },
+        {
+          "line": 64,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits"
+        },
+        {
+          "line": 1,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "'''DNN Feature decoding - decoders test (prediction) script'''"
+        },
+        {
+          "line": 26,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "feature_decoders_dir,"
+        },
+        {
+          "line": 39,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "- feature_decoder_dir"
+        },
+        {
+          "line": 57,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "print('Decoders:        %s' % feature_decoders_dir)"
+        },
+        {
+          "line": 133,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "model_dir = os.path.join(feature_decoders_dir, feat, sbj, roi, 'model')"
+        },
+        {
+          "line": 137,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "x_mean = load_array(os.path.join(model_dir, 'x_mean.mat'), key='x_mean')  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 138,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "x_norm = load_array(os.path.join(model_dir, 'x_norm.mat'), key='x_norm')  # shape = (1, n_voxels)"
+        },
+        {
+          "line": 240,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_predict.py",
+          "text": "os.path.join(conf['feature decoder dir'], analysis_name, conf['network']),"
+        },
+        {
+          "line": 1,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "'''DNN Feature decoding - decoders training script'''"
+        },
+        {
+          "line": 28,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "output_dir='./feature_decoders',"
+        },
+        {
+          "line": 29,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "rois_list=None, num_voxel=None, label_key=None,"
+        },
+        {
+          "line": 33,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "'''Feature decoder training."
+        },
+        {
+          "line": 96,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "print('Num voxels: %d' % num_voxel[roi])"
+        },
+        {
+          "line": 173,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "'n_feat': num_voxel[roi],"
+        },
+        {
+          "line": 233,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "feature_decoders_dir = os.path.join(conf['feature decoder dir'], conf['analysis name'], conf['network'])"
+        },
+        {
+          "line": 235,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "feature_decoders_dir = os.path.join(conf['feature decoder dir'], conf['network'])"
+        },
+        {
+          "line": 252,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "output_dir=feature_decoders_dir,"
+        },
+        {
+          "line": 254,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/featdec_fastl2lir_train.py",
+          "text": "num_voxel=conf['rois voxel num'],"
+        },
+        {
+          "line": 15,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+          "text": "decoders:"
+        },
+        {
+          "line": 16,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/config/recon_icnn_vgg19_relu7generator_gd_200iter_decoded_ImageNet.yaml",
+          "text": "path: ../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits/caffe/VGG_ILSVRC_19_layers"
+        },
+        {
+          "line": 69,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "features_decoders_dir: Optional[Union[str, Path]] = None,"
+        },
+        {
+          "line": 92,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "features_decoders_dir: optional, str or Path"
+        },
+        {
+          "line": 93,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "Feature decoder directory. Required for decoded features."
+        },
+        {
+          "line": 299,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "fn = os.path.join(features_decoders_dir, layer, modified_name, roi, \"model/y_mean.mat\")"
+        },
+        {
+          "line": 412,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "features_decoders_dir = to_absolute_path(cfg.decoded_features.decoders.path)"
+        },
+        {
+          "line": 417,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "features_decoders_dir = None"
+        },
+        {
+          "line": 422,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/recon_icnn_image_gd.py",
+          "text": "features_decoders_dir=features_decoders_dir,"
+        }
+      ],
+      "external_dependency": [
+        {
+          "line": 71,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "decoders_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "# Load the pretrained model's weights"
+        },
+        {
+          "line": 86,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "converter_dir = os.path.join('../data/pre-trained/converters', conversion)"
+        },
+        {
+          "line": 150,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "src_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 151,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "trg_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 224,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "logger.log({f'Deeprecon_{conversion}_{roi}': total_loss})"
+        },
+        {
+          "line": 227,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "# Save the model checkpoint"
+        },
+        {
+          "line": 272,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "src_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 273,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "trg_decoder_dir = '../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 58,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "### Download Data"
+        },
+        {
+          "line": 60,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To use this project, you'll need to download and organize the required data:"
+        },
+        {
+          "line": 61,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "- Download the brain data from [Figshare](https://figshare.com/articles/dataset/Inter-individual_deep_image_reconstruction/17985578)."
+        },
+        {
+          "line": 62,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "- Download the DNN features of stimuli from [Figshare](https://figshare.com/articles/dataset/Inter-individual_and_inter-site_neural_code_conversion/26860954)"
+        },
+        {
+          "line": 64,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "Alternatively, you can use the following commands to download specific data (The data will be automatically extracted and organized into the designated directory):"
+        },
+        {
+          "line": 67,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "# To download the training fMRI data:"
+        },
+        {
+          "line": 68,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py fmri_training"
+        },
+        {
+          "line": 70,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "# Or to download the test fMRI data:"
+        },
+        {
+          "line": 71,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py fmri_test"
+        },
+        {
+          "line": 73,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "# download the DNN features of training images:"
+        },
+        {
+          "line": 74,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py stimulus_feature"
+        },
+        {
+          "line": 77,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "### Download Pre-trained Decoders"
+        },
+        {
+          "line": 79,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To use this project, you'll need to download the required pre-trained decoders from [Figshare](https://figshare.com/articles/dataset/Inter-individual_and_inter-site_neural_code_conversion/26860954) with the following command:"
+        },
+        {
+          "line": 82,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py pre-trained-decoders"
+        },
+        {
+          "line": 100,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "Training one subject pair usually takes about 15 hours due to the large computational requirements. You can also download the pre-trained converters from [Figshare](https://figshare.com/articles/dataset/Inter-individual_and_inter-site_neural_code_conversion/26860954) with the following command:"
+        },
+        {
+          "line": 103,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py pre-trained-converters"
+        },
+        {
+          "line": 172,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To calculate decoding accuracy for decoded features, first download the ground truth features of the stimulus images in the `data` directory using:"
+        },
+        {
+          "line": 174,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "python download.py test_image-true_features"
+        },
+        {
+          "line": 186,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To quantitatively evaluate the reconstructed images, please request and download the ground truth stimulus images using this [link](https://forms.gle/ujvA34948Xg49jdn9) due to licensing restrictions. Organize the downloaded images in the following directory structure: `data/test_image/source`."
+        },
+        {
+          "line": 6,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/README.md",
+          "text": "- `pre-trained-converters`"
+        },
+        {
+          "line": 7,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/README.md",
+          "text": "- `pre-trained-decoders`"
+        },
+        {
+          "line": 10,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "from bdpy.dataset.utils import download_file"
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "# Downloading"
+        },
+        {
+          "line": 27,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "print(f'Downloading {output} from {fl[\"url\"]}')"
+        },
+        {
+          "line": 28,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "download_file(fl['url'], output, progress_bar=True, md5sum=fl['md5sum'])"
+        },
+        {
+          "line": 35,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "print(f'Downloading {output_chunk} from {url}')"
+        },
+        {
+          "line": 36,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/download.py",
+          "text": "download_file(url, output_chunk, progress_bar=True, md5sum=md5)"
+        },
+        {
+          "line": 8,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32712197\"},"
+        },
+        {
+          "line": 12,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32712488\"},"
+        },
+        {
+          "line": 16,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32718017\"},"
+        },
+        {
+          "line": 20,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32718266\"},"
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32719550\"}"
+        },
+        {
+          "line": 33,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32712131\"},"
+        },
+        {
+          "line": 37,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32709608\"},"
+        },
+        {
+          "line": 41,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32712407\"},"
+        },
+        {
+          "line": 45,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32712506\"},"
+        },
+        {
+          "line": 49,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32717852\"},"
+        },
+        {
+          "line": 53,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32718050\"},"
+        },
+        {
+          "line": 57,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32718092\"},"
+        },
+        {
+          "line": 61,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32718284\"},"
+        },
+        {
+          "line": 65,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32719436\"},"
+        },
+        {
+          "line": 69,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\": \"https://figshare.com/ndownloader/files/32719568\"}"
+        },
+        {
+          "line": 77,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48996952\","
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48997816\","
+        },
+        {
+          "line": 89,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48996307\","
+        },
+        {
+          "line": 95,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48996568\","
+        },
+        {
+          "line": 101,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995260\","
+        },
+        {
+          "line": 107,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995383\","
+        },
+        {
+          "line": 113,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995614\","
+        },
+        {
+          "line": 119,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995659\","
+        },
+        {
+          "line": 125,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995797\","
+        },
+        {
+          "line": 131,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995848\","
+        },
+        {
+          "line": 137,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995887\","
+        },
+        {
+          "line": 143,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995911\","
+        },
+        {
+          "line": 149,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48994978\","
+        },
+        {
+          "line": 155,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995071\","
+        },
+        {
+          "line": 161,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995164\","
+        },
+        {
+          "line": 167,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995206\","
+        },
+        {
+          "line": 173,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995218\","
+        },
+        {
+          "line": 179,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995221\","
+        },
+        {
+          "line": 185,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48995224\","
+        },
+        {
+          "line": 191,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"pre-trained-converters\": {"
+        },
+        {
+          "line": 195,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-converters.zip\","
+        },
+        {
+          "line": 196,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48969991\","
+        },
+        {
+          "line": 202,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"pre-trained-decoders\": {"
+        },
+        {
+          "line": 206,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip\","
+        },
+        {
+          "line": 207,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    [\"https://ndownloader.figshare.com/files/48992341\", \"https://ndownloader.figshare.com/files/48992479\"],"
+        },
+        {
+          "line": 212,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip\","
+        },
+        {
+          "line": 213,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    [\"https://ndownloader.figshare.com/files/48985585\", \"https://ndownloader.figshare.com/files/48985993\"],"
+        },
+        {
+          "line": 218,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip\","
+        },
+        {
+          "line": 219,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48961249\","
+        },
+        {
+          "line": 224,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip\","
+        },
+        {
+          "line": 225,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48963853\","
+        },
+        {
+          "line": 230,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip\","
+        },
+        {
+          "line": 231,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48957658\","
+        },
+        {
+          "line": 236,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip\","
+        },
+        {
+          "line": 237,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48958615\","
+        },
+        {
+          "line": 242,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip\","
+        },
+        {
+          "line": 243,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48959299\","
+        },
+        {
+          "line": 248,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip\","
+        },
+        {
+          "line": 249,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48960073\","
+        },
+        {
+          "line": 254,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip\","
+        },
+        {
+          "line": 255,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935218\","
+        },
+        {
+          "line": 260,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip\","
+        },
+        {
+          "line": 261,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935257\","
+        },
+        {
+          "line": 266,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip\","
+        },
+        {
+          "line": 267,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935317\","
+        },
+        {
+          "line": 272,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip\","
+        },
+        {
+          "line": 273,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935659\","
+        },
+        {
+          "line": 278,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip\","
+        },
+        {
+          "line": 279,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48936121\","
+        },
+        {
+          "line": 284,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip\","
+        },
+        {
+          "line": 285,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48936253\","
+        },
+        {
+          "line": 290,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip\","
+        },
+        {
+          "line": 291,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48936373\","
+        },
+        {
+          "line": 296,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip\","
+        },
+        {
+          "line": 297,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48936496\","
+        },
+        {
+          "line": 302,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip\","
+        },
+        {
+          "line": 303,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935107\","
+        },
+        {
+          "line": 308,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip\","
+        },
+        {
+          "line": 309,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935194\","
+        },
+        {
+          "line": 314,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip\","
+        },
+        {
+          "line": 315,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48935200\","
+        },
+        {
+          "line": 326,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"url\":    \"https://ndownloader.figshare.com/files/48972361\","
+        },
+        {
+          "line": 72,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "model_path = os.path.join('../../data/pre-trained/converters', conversion, 'VC', 'model.pth')"
+        },
+        {
+          "line": 147,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "pre_vgg_models_dir_root = '../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 64,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "model_path = os.path.join('../../data/pre-trained/converters', conversion, 'VC', 'model.pth')"
+        },
+        {
+          "line": 136,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "pre_vgg_models_dir_root = '../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits'"
+        },
+        {
+          "line": 128,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'../../data/pre-trained/decoders/ImageNetTraining/deeprecon_pyfastl2lir_alpha100_vgg19_allunits', network)"
+        },
+        {
+          "line": 9,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+          "text": "Example config file: [deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml](config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml)"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+          "text": "python featdec_fastl2lir_train.py config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml"
+        }
+      ],
+      "reconstruction": [
+        {
+          "line": 72,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "features_list = ['conv1_1', 'conv1_2', 'conv2_1', 'conv2_2',"
+        },
+        {
+          "line": 73,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "'conv3_1', 'conv3_2', 'conv3_3', 'conv3_4',"
+        },
+        {
+          "line": 74,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "'conv4_1', 'conv4_2', 'conv4_3', 'conv4_4',"
+        },
+        {
+          "line": 75,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "'conv5_1', 'conv5_2', 'conv5_3', 'conv5_4',"
+        },
+        {
+          "line": 76,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_brain_loss/ncc_test.py",
+          "text": "'fc6', 'fc7', 'fc8'][::-1]"
+        },
+        {
+          "line": 72,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "x_mean_src, x_norm_src, _, _, _, _ = fastl2lir_parameter(path_src.build_model_path('fc6'), chunk_axis=1)"
+        },
+        {
+          "line": 73,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "x_mean_trg, x_norm_trg, _, _, _, _ = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)"
+        },
+        {
+          "line": 106,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "features_list = ['conv1_1', 'conv1_2', 'conv2_1', 'conv2_2',"
+        },
+        {
+          "line": 107,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "'conv3_1', 'conv3_2', 'conv3_3', 'conv3_4',"
+        },
+        {
+          "line": 108,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "'conv4_1', 'conv4_2', 'conv4_3', 'conv4_4',"
+        },
+        {
+          "line": 109,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "'conv5_1', 'conv5_2', 'conv5_3', 'conv5_4',"
+        },
+        {
+          "line": 110,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_test.py",
+          "text": "'fc6', 'fc7', 'fc8'][::-1]"
+        },
+        {
+          "line": 43,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "src_mean_std_dir = path_src.build_model_path('fc6')"
+        },
+        {
+          "line": 105,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv1_1': 64, 'conv1_2': 64,"
+        },
+        {
+          "line": 106,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv2_1': 128, 'conv2_2': 128,"
+        },
+        {
+          "line": 107,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv3_1': 256, 'conv3_2': 256, 'conv3_3': 256, 'conv3_4': 256,"
+        },
+        {
+          "line": 108,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv4_1': 512, 'conv4_2': 512, 'conv4_3': 512, 'conv4_4': 512,"
+        },
+        {
+          "line": 109,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv5_1': 512, 'conv5_2': 512, 'conv5_3': 512, 'conv5_4': 512,"
+        },
+        {
+          "line": 189,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "x_mean_trg, _, _, _, _, _ = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)"
+        },
+        {
+          "line": 281,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "features_list = ['conv1_1', 'conv1_2',"
+        },
+        {
+          "line": 282,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv2_1', 'conv2_2',"
+        },
+        {
+          "line": 283,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv3_1', 'conv3_2', 'conv3_3', 'conv3_4',"
+        },
+        {
+          "line": 284,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv4_1', 'conv4_2', 'conv4_3', 'conv4_4',"
+        },
+        {
+          "line": 285,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv5_1', 'conv5_2', 'conv5_3',"
+        },
+        {
+          "line": 286,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'conv5_4',"
+        },
+        {
+          "line": 287,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/NCC_content_loss/NCC_train.py",
+          "text": "'fc6', 'fc7', 'fc8'][::-1]"
+        },
+        {
+          "line": 61,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "- Download the brain data from [Figshare](https://figshare.com/articles/dataset/Inter-individual_deep_image_reconstruction/17985578)."
+        },
+        {
+          "line": 132,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "#### Image Reconstruction"
+        },
+        {
+          "line": 134,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To reconstruct images from the decoded features:"
+        },
+        {
+          "line": 136,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "1. Navigate to the `reconstruction` directory."
+        },
+        {
+          "line": 137,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "2. Follow the provided README and reconstruction demo for detailed instructions on setting up the environment and usage."
+        },
+        {
+          "line": 138,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "3. Modify the directory of the decoded features in the script as needed to reconstruct images."
+        },
+        {
+          "line": 186,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/README.md",
+          "text": "To quantitatively evaluate the reconstructed images, please request and download the ground truth stimulus images using this [link](https://forms.gle/ujvA34948Xg49jdn9) due to licensing restrictions. Organize the downloaded images in the following directory structure: `data/test_image/source`."
+        },
+        {
+          "line": 76,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv1_1.zip\","
+        },
+        {
+          "line": 82,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv1_2.zip\","
+        },
+        {
+          "line": 88,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv2_1.zip\","
+        },
+        {
+          "line": 94,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv2_2.zip\","
+        },
+        {
+          "line": 96,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"md5sum\": \"34b9b2fc8468a644ef0a6139db9b8eb8\","
+        },
+        {
+          "line": 100,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv3_1.zip\","
+        },
+        {
+          "line": 106,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv3_2.zip\","
+        },
+        {
+          "line": 112,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv3_3.zip\","
+        },
+        {
+          "line": 118,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv3_4.zip\","
+        },
+        {
+          "line": 124,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv4_1.zip\","
+        },
+        {
+          "line": 130,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv4_2.zip\","
+        },
+        {
+          "line": 136,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv4_3.zip\","
+        },
+        {
+          "line": 142,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv4_4.zip\","
+        },
+        {
+          "line": 148,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv5_1.zip\","
+        },
+        {
+          "line": 154,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv5_2.zip\","
+        },
+        {
+          "line": 160,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv5_3.zip\","
+        },
+        {
+          "line": 166,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-conv5_4.zip\","
+        },
+        {
+          "line": 172,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-fc6.zip\","
+        },
+        {
+          "line": 178,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-fc7.zip\","
+        },
+        {
+          "line": 184,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"stimulus_feature-VGG_ILSVRC_19_layers-fc8.zip\","
+        },
+        {
+          "line": 206,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_1.zip\","
+        },
+        {
+          "line": 212,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv1_2.zip\","
+        },
+        {
+          "line": 218,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_1.zip\","
+        },
+        {
+          "line": 224,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv2_2.zip\","
+        },
+        {
+          "line": 230,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_1.zip\","
+        },
+        {
+          "line": 236,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_2.zip\","
+        },
+        {
+          "line": 242,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_3.zip\","
+        },
+        {
+          "line": 248,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv3_4.zip\","
+        },
+        {
+          "line": 254,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_1.zip\","
+        },
+        {
+          "line": 260,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_2.zip\","
+        },
+        {
+          "line": 266,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_3.zip\","
+        },
+        {
+          "line": 272,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv4_4.zip\","
+        },
+        {
+          "line": 278,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_1.zip\","
+        },
+        {
+          "line": 284,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_2.zip\","
+        },
+        {
+          "line": 290,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_3.zip\","
+        },
+        {
+          "line": 296,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-conv5_4.zip\","
+        },
+        {
+          "line": 302,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc6.zip\","
+        },
+        {
+          "line": 308,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc7.zip\","
+        },
+        {
+          "line": 314,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/data/files.json",
+          "text": "\"name\":   \"pre-trained-decoders-ImageNetTraining-deeprecon_pyfastl2lir_alpha100_vgg19_allunits-caffe-VGG_ILSVRC_19_layers-fc8.zip\","
+        },
+        {
+          "line": 82,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "x_mean_src, x_norm_src = fastl2lir_parameter(path_src.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 83,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_pattern_corr_content_loss.py",
+          "text": "x_mean_trg, x_norm_trg = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 80,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "x_mean_src, x_norm_src = fastl2lir_parameter(path_src.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 81,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/conversion_accuracy/fmri_profile_corr_content_loss.py",
+          "text": "x_mean_trg, x_norm_trg = fastl2lir_parameter(path_trg.build_model_path('fc6'), chunk_axis=1)[:2]"
+        },
+        {
+          "line": 117,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'conv1_1', 'conv1_2', 'conv2_1', 'conv2_2',"
+        },
+        {
+          "line": 118,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'conv3_1', 'conv3_2', 'conv3_3', 'conv3_4',"
+        },
+        {
+          "line": 119,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'conv4_1', 'conv4_2', 'conv4_3', 'conv4_4',"
+        },
+        {
+          "line": 120,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'conv5_1', 'conv5_2', 'conv5_3', 'conv5_4',"
+        },
+        {
+          "line": 121,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/featdec_eval.py",
+          "text": "'fc6', 'fc7', 'fc8'][::-1]"
+        },
+        {
+          "line": 12,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/plot_figure.py",
+          "text": "layer_order = ['conv1_1', 'conv1_2', 'conv2_1', 'conv2_2', 'conv3_1', 'conv3_2',"
+        },
+        {
+          "line": 13,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/plot_figure.py",
+          "text": "'conv3_3', 'conv3_4', 'conv4_1', 'conv4_2', 'conv4_3', 'conv4_4',"
+        },
+        {
+          "line": 14,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/decoding_accuracy/plot_figure.py",
+          "text": "'conv5_1', 'conv5_2', 'conv5_3', 'conv5_4', 'fc6', 'fc7', 'fc8']"
+        },
+        {
+          "line": 107,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "layer_list = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']"
+        },
+        {
+          "line": 142,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/plot_figure.py",
+          "text": "layer = ['Pixel', 'conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']"
+        },
+        {
+          "line": 25,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "print(f'Reconstructed image dir: {recon_image_dir}')"
+        },
+        {
+          "line": 57,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "# Matching true and reconstructed images"
+        },
+        {
+          "line": 59,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "raise RuntimeError(f'The number of true ({len(true_image_files)}) and reconstructed ({len(recon_image_files)}) images mismatch')"
+        },
+        {
+          "line": 63,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "raise RuntimeError(f'Reconstructed image for {tf} not found')"
+        },
+        {
+          "line": 65,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "# Load reconstructed images"
+        },
+        {
+          "line": 118,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "'../../reconstruction/content_loss/reconstruction',"
+        },
+        {
+          "line": 124,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval.py",
+          "text": "'../../reconstruction/brain_loss/reconstruction',"
+        },
+        {
+          "line": 27,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+          "text": "'''Reconstruction evaluation with DNN features.'''"
+        },
+        {
+          "line": 32,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+          "text": "print(f'Reconstructed image dir: {recon_image_dir}')"
+        },
+        {
+          "line": 62,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+          "text": "# Evaluating reconstruction performances ################################"
+        },
+        {
+          "line": 244,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+          "text": "'../../reconstruction/content_loss/reconstruction',"
+        },
+        {
+          "line": 250,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/evaluation/identification_accuracy/recon_image_eval_dnn.py",
+          "text": "'../../reconstruction/brain_loss/reconstruction',"
+        },
+        {
+          "line": 3,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+          "text": "The scripts of deep neural network (DNN) feature decoding from fMRI brain activities is originally proposed by [Horikawa & Kamitani (2017)](https://www.nature.com/articles/ncomms15037) and employed in DNN-based image reconstruction methods of [Shen et al. (2019)](http://dx.doi.org/10.1371/journal.pcbi.1006633) as well as recent studies in Kamitani lab."
+        },
+        {
+          "line": 24,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/README.md",
+          "text": "- Shen, Horikawa, Majima, and Kamitani (2019) Deep image reconstruction from human brain activity. *PLOS Computational Biology*. https://doi.org/10.1371/journal.pcbi.1006633"
+        },
+        {
+          "line": 41,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv1_1"
+        },
+        {
+          "line": 42,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv1_2"
+        },
+        {
+          "line": 43,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv2_1"
+        },
+        {
+          "line": 44,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv2_2"
+        },
+        {
+          "line": 45,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv3_1"
+        },
+        {
+          "line": 46,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv3_2"
+        },
+        {
+          "line": 47,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv3_3"
+        },
+        {
+          "line": 48,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv3_4"
+        },
+        {
+          "line": 49,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv4_1"
+        },
+        {
+          "line": 50,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv4_2"
+        },
+        {
+          "line": 51,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv4_3"
+        },
+        {
+          "line": 52,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv4_4"
+        },
+        {
+          "line": 53,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv5_1"
+        },
+        {
+          "line": 54,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv5_2"
+        },
+        {
+          "line": 55,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv5_3"
+        },
+        {
+          "line": 56,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- conv5_4"
+        },
+        {
+          "line": 57,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- fc6"
+        },
+        {
+          "line": 58,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- fc7"
+        },
+        {
+          "line": 59,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/feature-decoding/config/deeprecon_pyfastl2lir_alpha100_vgg19_allunits.yaml",
+          "text": "- fc8"
+        },
+        {
+          "line": 1,
+          "path": "KamitaniLab-InterSiteNeuralCodeConversion-edbff02/reconstruction/README.md",
+          "text": "# Reconstruction with decoded DNN features"
+        }
+      ]
+    },
+    "uncompressed_bytes": 90745221,
+    "unsafe_member_names": []
+  },
+  "astra_analysis_id": "source_qualification",
+  "completed_at": "2026-09-29T22:48:33+00:00",
+  "errors": [],
+  "forbidden_payload_accessed": false,
+  "process_id": 33206,
+  "schema_version": "ep21.verified_public_source_inventory.v1",
+  "scope": "public_source_code_and_metadata_only",
+  "source_release": {
+    "archive_md5_matches": true,
+    "archive_reused_from_verified_scratch_cache": true,
+    "archive_size_matches": true,
+    "expected_archive_name": "KamitaniLab/InterSiteNeuralCodeConversion-V1.0.0.zip",
+    "expected_commit": "edbff02edd6a08d3c6c829af45a957fd14bdc460",
+    "identity_status": "verified",
+    "observed_archive_md5": "bb80dcc1a038737d6d8fc2c95b3e5586",
+    "observed_archive_size_bytes": 23110908,
+    "observed_commit": "edbff02edd6a08d3c6c829af45a957fd14bdc460",
+    "repository": "https://github.com/KamitaniLab/InterSiteNeuralCodeConversion",
+    "tag": "V1.0.0",
+    "tag_commit_matches": true,
+    "zenodo_doi": "10.5281/zenodo.14910040",
+    "zenodo_doi_matches": true,
+    "zenodo_record": 14910040,
+    "zenodo_record_matches": true
+  },
+  "started_at": "2026-09-29T22:48:32+00:00"
+}

@@ -1,0 +1,542 @@
+version: "0.0.14"
+id: episode10_single_cell_coprojection
+name: EP10 — v3 development experiment program
+description: >-
+  Non-authoritative program for the scientist-authorized positive-only,
+  unmapped-tolerant, development-only EP10 v3 analysis. Frozen contracts and
+  SEARCH_POLICY.yaml retain authority. Final and unassigned data are not inputs.
+  The scientist adopted closure of the original M2 objective on October 6 as
+  incomplete under computational and numerical limits. Qualified M1 evidence
+  is retained; recipes describe the preserved program, not a selected successor.
+tags: [brain-researcher, autoresearch, projection, development-only, positive-only]
+
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: search_policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: observation_contract_v1, type: data, source: outputs/stage0/projection_observation_contract.yaml}
+  - {id: observation_contract_v2, type: data, source: outputs/stage0/projection_observation_contract_v2.yaml}
+  - id: observation_contract_v3
+    type: data
+    source: outputs/stage0/projection_observation_contract_v3.yaml
+    description: Active v3 positive-only observation contract.
+  - {id: user_authorization, type: data, source: outputs/stage0/v3_user_authorization.yaml}
+  - {id: model_interface_contract, type: data, source: outputs/stage0/v3_model_interface_contract.yaml}
+  - {id: m0_contract, type: data, source: outputs/stage0/v3_m0_model_contract.yaml}
+  - {id: m0_solver_addendum, type: data, source: outputs/stage0/v3_m0_solver_addendum_v7.yaml}
+  - {id: m1_geometry_contract, type: data, source: outputs/stage0/v3_m1_geometry_contract.yaml}
+  - {id: m1_contract, type: data, source: outputs/stage0/v3_m1_model_contract.yaml}
+  - {id: m1_synthetic_design_addendum, type: data, source: outputs/stage0/v3_m1_synthetic_design_addendum_v1.yaml}
+  - {id: m1_synthetic_recovery_addendum, type: data, source: outputs/stage0/v3_m1_synthetic_recovery_addendum_v2.yaml}
+  - id: m1_solver_addendum
+    type: data
+    source: outputs/stage0/v3_m1_solver_addendum_v2.yaml
+    description: Current frozen and reviewed M1 numerical-method addendum.
+  - id: m1_numerical_execution_addendum
+    type: data
+    source: outputs/stage0/v3_m1_numerical_execution_addendum_v3.yaml
+    description: Frozen prospective AMD-7502 one-thread numerical execution profile.
+  - id: m1_refresh_resource_accounting
+    type: data
+    source: outputs/stage0/resource_accounting_20261002_m1_affected_refresh_relaunch.json
+    description: Historical preserved-budget reservation for the affected numerical refresh; current closeout accounting is recorded in the execution log.
+  - id: m1_production_resource_amendment
+    type: data
+    source: outputs/stage0/v3_m1_production_resource_amendment_v4.yaml
+    description: User-approved twelve-hour M1 production request with unchanged episode ceilings and scientific rules.
+  - id: m1_production_resource_accounting
+    type: data
+    source: outputs/stage0/resource_accounting_20261002_m1_clean_refit_launch.json
+    description: Historical allocated-core and wall-time reservation for the completed clean M1 refit; current closeout accounting is recorded in the execution log.
+  - {id: m2_contract, type: data, source: outputs/stage0/v3_m2_search_contract.yaml}
+  - {id: m2_numerical_addendum, type: data, source: outputs/stage0/v3_m2_numerical_falsifier_addendum_v1.yaml}
+  - id: m2_numerical_clarification
+    type: data
+    source: outputs/stage0/v3_m2_numerical_falsifier_clarification_v2.yaml
+    description: Prospective raw-named-sparse and numerical-degeneracy clarification for optional M2 families.
+  - {id: m2_frozen_cell_inventory, type: data, source: outputs/stage0/v3_m2_frozen_cell_inventory.tsv}
+  - {id: development_manifest, type: data, source: outputs/stage0/gao_mop_development_manifest.csv}
+  - id: development_swcs
+    type: data
+    source: $SCRATCH/br_autoresearch/episode10_single_cell_coprojection/gao_mop_development_v1/swc
+    description: Development-role Gao MOp SWCs only; final and unassigned trees are excluded.
+  - id: atlas_source_assets
+    type: data
+    source: $OAK/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload
+  - {id: target_vocabulary, type: data, source: outputs/stage0/allen_target_vocabulary.csv}
+
+outputs:
+  - {id: development_assessment_report, from: v3_search.development_assessment_report}
+
+analyses:
+  development_qualification:
+    name: Qualify and materialize active v3 development inputs
+    description: >-
+      Produces the target-blind 194-cell model interface and separately the
+      positive-only development target assets. Historical sibling-backed outputs
+      are ineligible.
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: search_policy, from: ../search_policy}
+      - {id: observation_contract_v1, from: ../observation_contract_v1}
+      - {id: observation_contract_v2, from: ../observation_contract_v2}
+      - {id: observation_contract_v3, from: ../observation_contract_v3}
+      - {id: user_authorization, from: ../user_authorization}
+      - {id: model_interface_contract, from: ../model_interface_contract}
+      - {id: development_manifest, from: ../development_manifest}
+      - {id: development_swcs, from: ../development_swcs}
+      - {id: atlas_source_assets, from: ../atlas_source_assets}
+      - {id: target_vocabulary, from: ../target_vocabulary}
+    outputs:
+      - id: model_interface
+        type: data
+        format: directory
+        description: Canonical target-blind Scratch root v3_model_interface_preflight_v1.
+        inputs: [goal, datasets, observation_contract_v1, observation_contract_v2, model_interface_contract, development_manifest, development_swcs, atlas_source_assets]
+        recipe:
+          command: sbatch outputs/stage0/tools/preflight_v3_model_interface.sbatch
+          resources: {cpus: 1, memory: 4Gi, time_limit: 30m}
+      - id: target_assets
+        type: data
+        format: directory
+        description: >-
+          Canonical EP10-local positive-only Scratch root
+          gao_mop_development_targets_v3_ep10_assets. This outcome-derived
+          artifact must not flow into target-free M1 qualification.
+        inputs: [goal, datasets, search_policy, observation_contract_v1, observation_contract_v2, observation_contract_v3, user_authorization, development_manifest, development_swcs, atlas_source_assets, target_vocabulary, model_interface]
+        recipe:
+          command: sbatch outputs/stage0/tools/construct_mop_positive_only_targets_v3_ep10_assets.sbatch
+          resources: {cpus: 1, memory: 8Gi, time_limit: 2h}
+      - id: qualification_report
+        type: report
+        format: json
+        description: >-
+          Durable report binding the exact 194-cell identity set, 12 conservative
+          groups, positive-only semantics, and eligible EP10-local artifacts.
+        inputs: [goal, datasets, search_policy, model_interface, target_assets]
+
+  v3_m0:
+    name: Fit the frozen development-only v3 M0 reference
+    description: >-
+      Exact fixed-K recorded-positive additive reference; not a biological
+      independence or absence model.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m0_contract, from: ../m0_contract}
+      - {id: m0_solver_addendum, from: ../m0_solver_addendum}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: target_assets, from: ../development_qualification.target_assets}
+    outputs:
+      - id: m0_result
+        type: data
+        format: directory
+        description: Canonical passed Scratch root v3_m0_fit_v7.
+        inputs: [search_policy, m0_contract, m0_solver_addendum, model_interface, target_assets]
+        recipe:
+          command: sbatch outputs/stage0/tools/fit_v3_m0_v7.sbatch
+          resources: {cpus: 1, memory: 8Gi, time_limit: 24h}
+
+  m1_geometry:
+    name: Materialize target-blind M1 atlas geometry
+    description: >-
+      Builds geometry for all candidates without observed target calls, realized
+      routes, SWCs, final, or unassigned outcomes.
+    inputs:
+      - {id: observation_contract_v1, from: ../observation_contract_v1}
+      - {id: m1_geometry_contract, from: ../m1_geometry_contract}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: atlas_source_assets, from: ../atlas_source_assets}
+      - {id: target_vocabulary, from: ../target_vocabulary}
+    outputs:
+      - id: geometry_assets
+        type: data
+        format: directory
+        description: Canonical target-blind Scratch root v3_m1_geometry_v1.
+        inputs: [observation_contract_v1, m1_geometry_contract, model_interface, atlas_source_assets, target_vocabulary]
+        recipe:
+          command: sbatch outputs/stage0/tools/materialize_v3_m1_geometry.sbatch
+          resources: {cpus: 1, memory: 4Gi, time_limit: 30m}
+
+  m1_target_free_qualification:
+    name: Qualify M1 without observed targets
+    description: >-
+      Runs all synthetic, deterministic, rank/condition, and real-shape
+      throughput gates. Target assets, real K, realized sets, M0 artifacts,
+      SWCs, final, and unassigned data are absent.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: m1_synthetic_design_addendum, from: ../m1_synthetic_design_addendum}
+      - {id: m1_synthetic_recovery_addendum, from: ../m1_synthetic_recovery_addendum}
+      - {id: m1_solver_addendum, from: ../m1_solver_addendum}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: geometry_assets, from: ../m1_geometry.geometry_assets}
+    outputs:
+      - id: target_free_report
+        type: report
+        format: json
+        description: >-
+          Complete target-free qualification and independent postflight,
+          including resource telemetry, access seals, and remaining-budget
+          reconciliation. A narrow solver diagnostic cannot produce this artifact.
+        inputs: [search_policy, m1_contract, m1_synthetic_design_addendum, m1_synthetic_recovery_addendum, m1_solver_addendum, model_interface, geometry_assets]
+        recipe:
+          command: sbatch outputs/stage0/tools/probe_v3_m1_target_free_v4.sbatch
+          resources: {cpus: 4, memory: 16Gi, time_limit: 8h}
+
+  m1_actual_k_gate:
+    name: Run the sealed actual-K-only M1 pre-fit gate
+    description: >-
+      First target-derived access after target-free qualification. It may read
+      only provider_neuron_id and physical K/K_i_obs. Realized positive-set
+      membership, candidate scores, associations, M0 artifacts, final, and
+      unassigned data remain sealed.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: target_free_report, from: ../m1_target_free_qualification.target_free_report}
+      - {id: target_assets, from: ../development_qualification.target_assets}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: geometry_assets, from: ../m1_geometry.geometry_assets}
+    outputs:
+      - id: actual_k_gate_report
+        type: report
+        format: json
+        description: >-
+          Passed actual-K rank/condition report for every frozen fold, with
+          realized-set access still false.
+        inputs: [search_policy, m1_contract, target_free_report, target_assets, model_interface, geometry_assets]
+        recipe:
+          command: sbatch outputs/stage0/tools/gate_v3_m1_actual_k_v1.sbatch
+          resources: {cpus: 4, memory: 8Gi, time_limit: 30m}
+
+  m1_single_thread_execution_qualification:
+    name: Qualify the frozen M1 one-thread numerical execution profile
+    description: >-
+      Replays the frozen deterministic 68-row warm-repeat and zero-start gate
+      on AMD 7502 with one effective OpenBLAS thread. It has no real-K,
+      realized-membership, M0, SWC, final, or unassigned input.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: m1_synthetic_design_addendum, from: ../m1_synthetic_design_addendum}
+      - {id: m1_synthetic_recovery_addendum, from: ../m1_synthetic_recovery_addendum}
+      - {id: m1_solver_addendum, from: ../m1_solver_addendum}
+      - {id: m1_numerical_execution_addendum, from: ../m1_numerical_execution_addendum}
+      - {id: target_free_report, from: ../m1_target_free_qualification.target_free_report}
+    outputs:
+      - id: single_thread_qualification_report
+        type: report
+        format: json
+        description: >-
+          Passed 36-fit, 12-comparison synthetic report with the same-process
+          numerical backend witness and all protected-data seals false.
+        inputs: [search_policy, m1_contract, m1_synthetic_design_addendum, m1_synthetic_recovery_addendum, m1_solver_addendum, m1_numerical_execution_addendum, target_free_report]
+        recipe:
+          command: sbatch outputs/stage0/tools/probe_v3_m1_synthetic_warm_zero_single_thread_v3.sbatch
+          resources: {cpus: 1, memory: 8Gi, time_limit: 30m}
+
+  m1_numerical_revalidation:
+    name: Refresh M1 numerical evidence affected by evaluator repair
+    description: >-
+      Reuses the passed one-thread warm-repeat/zero-start qualification and
+      unchanged geometry, design and uniform-moment rank evidence. Refreshes
+      only the frozen 544-row sampled and exact-population recovery fits and
+      194-row all-K8 numerical throughput. No target calls, actual K, M0,
+      final, unassigned or SWC outcomes enter this experiment. Scheduler
+      memory and current-resource postflight remain required after completion.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: m1_synthetic_design_addendum, from: ../m1_synthetic_design_addendum}
+      - {id: m1_synthetic_recovery_addendum, from: ../m1_synthetic_recovery_addendum}
+      - {id: m1_solver_addendum, from: ../m1_solver_addendum}
+      - {id: m1_numerical_execution_addendum, from: ../m1_numerical_execution_addendum}
+      - {id: prior_target_free_report, from: ../m1_target_free_qualification.target_free_report}
+      - {id: single_thread_qualification_report, from: ../m1_single_thread_execution_qualification.single_thread_qualification_report}
+      - {id: resource_accounting, from: ../m1_refresh_resource_accounting}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: geometry_assets, from: ../m1_geometry.geometry_assets}
+    outputs:
+      - id: affected_numerical_report
+        type: report
+        format: json
+        description: >-
+          Required affected recovery and throughput results, reused qualification
+          identity and conservative 157-path projection; does not itself authorize production.
+        inputs: [search_policy, m1_contract, m1_synthetic_design_addendum, m1_synthetic_recovery_addendum, m1_solver_addendum, m1_numerical_execution_addendum, prior_target_free_report, single_thread_qualification_report, resource_accounting, model_interface, geometry_assets]
+        recipe:
+          command: EP10_M1_REFRESH_RESOURCE_JSON={inputs.resource_accounting} sbatch outputs/stage0/tools/refresh_v3_m1_affected_numerics_v1.sbatch
+          resources: {cpus: 1, memory: 16Gi, time_limit: 8h}
+
+  v3_m1:
+    name: Fit the frozen development-only joint v3 M1 model
+    description: >-
+      Real M1 starts only after required numerical, access and resource gates. This experiment has no M0
+      input: M0 remains unavailable to design, tuning, initialization, and
+      fitting. It produces the complete M1-only outer-cross-fitted predictions,
+      calibration, telemetry, and full-development coefficient artifact.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: m1_synthetic_design_addendum, from: ../m1_synthetic_design_addendum}
+      - {id: m1_synthetic_recovery_addendum, from: ../m1_synthetic_recovery_addendum}
+      - {id: m1_solver_addendum, from: ../m1_solver_addendum}
+      - {id: m1_numerical_execution_addendum, from: ../m1_numerical_execution_addendum}
+      - {id: single_thread_qualification_report, from: ../m1_single_thread_execution_qualification.single_thread_qualification_report}
+      - {id: affected_numerical_report, from: ../m1_numerical_revalidation.affected_numerical_report}
+      - {id: resource_amendment, from: ../m1_production_resource_amendment}
+      - {id: resource_accounting, from: ../m1_production_resource_accounting}
+      - {id: actual_k_gate_report, from: ../m1_actual_k_gate.actual_k_gate_report}
+      - {id: target_assets, from: ../development_qualification.target_assets}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: geometry_assets, from: ../m1_geometry.geometry_assets}
+    outputs:
+      - id: m1_predictions
+        type: data
+        format: directory
+        description: >-
+          M1 outer-cross-fitted predictions and full-development fit produced
+          without opening M0.
+        inputs: [search_policy, m1_contract, m1_synthetic_design_addendum, m1_synthetic_recovery_addendum, m1_solver_addendum, m1_numerical_execution_addendum, single_thread_qualification_report, affected_numerical_report, resource_amendment, resource_accounting, actual_k_gate_report, target_assets, model_interface, geometry_assets]
+        recipe:
+          command: EP10_M1_PRODUCTION_RESOURCE_JSON={inputs.resource_accounting} sbatch outputs/stage0/tools/fit_v3_m1_real_single_thread_v3.sbatch
+          resources: {cpus: 1, memory: 16Gi, time_limit: 12h}
+
+  v3_m1_compare_m0:
+    name: Compute the frozen paired M1-minus-M0 development comparison
+    description: >-
+      Separate post-fit comparison. It may open the existing M0 outer-cross-
+      fitted predictions only after the complete M1-only prediction artifact
+      exists and passes its independent postflight. M0 never flows backward
+      into M1 design, tuning, initialization, transforms, or fitting.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: m1_contract, from: ../m1_contract}
+      - {id: m1_predictions, from: ../v3_m1.m1_predictions}
+      - {id: m0_result, from: ../v3_m0.m0_result}
+    outputs:
+      - id: m1_result
+        type: report
+        format: json
+        description: >-
+          Audited M1 result and paired M1-minus-M0 secondary score. M0 is opened
+          only by this post-fit experiment.
+        inputs: [m1_predictions, m0_result, m1_contract]
+        recipe:
+          command: sbatch outputs/stage0/tools/compare_v3_m1_m0_v1.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+
+  v3_search:
+    name: Run the frozen adaptive residual co-projection search and controls
+    description: >-
+      The October 6 adopted closeout ends this objective as incomplete under
+      computational and numerical limits, without a biological null or M1
+      sufficiency claim. No search or replacement is selected for execution.
+      Development-only M2 search, required falsifiers, 99 full-controller
+      M1-null replays, and integrated exploratory assessment. It grants no final
+      opening or biological promotion.
+    inputs:
+      - {id: search_policy, from: ../search_policy}
+      - {id: observation_contract_v3, from: ../observation_contract_v3}
+      - {id: m2_contract, from: ../m2_contract}
+      - {id: m2_numerical_addendum, from: ../m2_numerical_addendum}
+      - {id: m2_numerical_clarification, from: ../m2_numerical_clarification}
+      - {id: m2_frozen_cell_inventory, from: ../m2_frozen_cell_inventory}
+      - {id: target_assets, from: ../development_qualification.target_assets}
+      - {id: model_interface, from: ../development_qualification.model_interface}
+      - {id: geometry_assets, from: ../m1_geometry.geometry_assets}
+      - {id: m1_predictions, from: ../v3_m1.m1_predictions}
+      - {id: m1_result, from: ../v3_m1_compare_m0.m1_result}
+    outputs:
+      - {id: search_result, from: adaptive_model_search.search_result}
+      - {id: falsification_report, from: required_falsifiers.falsification_report}
+      - {id: full_search_null_report, from: full_search_null.full_search_null_report}
+      - {id: development_assessment_report, from: development_assessment.development_assessment_report}
+    analyses:
+      controller_conformance:
+        name: Qualify the frozen adaptive-search controller
+        description: >-
+          Target-free exact schedule, coverage, evidence-binding, retry,
+          stopping, and replay conformance. It cannot read real M2 outcomes,
+          actual K, M0 artifacts, SWCs, final, or unassigned data.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: m2_contract, from: ../m2_contract}
+          - {id: m2_numerical_addendum, from: ../m2_numerical_addendum}
+          - {id: m2_frozen_cell_inventory, from: ../m2_frozen_cell_inventory}
+        outputs:
+          - id: controller_conformance_report
+            type: report
+            format: json
+            description: Exact controller test, replay self-test, and independent adversarial audit result.
+            inputs: [search_policy, m2_contract, m2_numerical_addendum, m2_frozen_cell_inventory]
+
+      m2_core_qualification:
+        name: Qualify the frozen M2 core without real outcomes
+        description: >-
+          Comprehensive synthetic exact-enumeration, residualization, nesting,
+          derivative, proximal/KKT, deterministic-repeat, recovery, and saved-
+          report gates. Actual K, realized memberships, M0 artifacts, SWCs,
+          final, and unassigned data remain unavailable.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: m2_contract, from: ../m2_contract}
+          - {id: m2_numerical_addendum, from: ../m2_numerical_addendum}
+        outputs:
+          - id: m2_core_qualification_report
+            type: report
+            format: json
+            description: Complete frozen target-free M2 core qualification report.
+            inputs: [search_policy, m2_contract, m2_numerical_addendum]
+            recipe:
+              command: sbatch outputs/stage0/tools/qualify_v3_m2_core.sbatch
+              resources: {cpus: 1, memory: 8Gi, time_limit: 2h}
+
+      m2_actual_k_gate:
+        name: Run the sealed actual-K-only M2 rank gate
+        description: >-
+          First M2 target-derived access after both target-free qualifications.
+          It may read only cell identity, conservative group, segment-unmapped,
+          and physical K_i_obs, and must independently obtain stable rank 104
+          in every required fold before any realized positive set is opened.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: m2_contract, from: ../m2_contract}
+          - {id: m2_numerical_addendum, from: ../m2_numerical_addendum}
+          - {id: m2_frozen_cell_inventory, from: ../m2_frozen_cell_inventory}
+          - {id: controller_conformance_report, from: ../controller_conformance.controller_conformance_report}
+          - {id: m2_core_qualification_report, from: ../m2_core_qualification.m2_core_qualification_report}
+          - {id: target_assets, from: ../target_assets}
+          - {id: model_interface, from: ../model_interface}
+          - {id: geometry_assets, from: ../geometry_assets}
+        outputs:
+          - id: m2_actual_k_gate_report
+            type: report
+            format: json
+            description: Passed all-fold stable-rank-104 report with realized-set access still false.
+            inputs: [search_policy, m2_contract, m2_numerical_addendum, m2_frozen_cell_inventory, controller_conformance_report, m2_core_qualification_report, target_assets, model_interface, geometry_assets]
+            recipe:
+              command: >-
+                sbatch --output=$SCRATCH/br_autoresearch/episode10_single_cell_coprojection/v3_m2_actual_k_gate_%j.log outputs/stage0/tools/gate_v3_m2_actual_k_v1.sbatch
+              resources: {cpus: 1, memory: 8Gi, time_limit: 2h}
+
+      adaptive_model_search:
+        name: Adaptive M2 model search
+        description: >-
+          Frozen grouped-development controller for residual pair structure
+          among recorded positives, with exact normalization and no final data.
+          Execution requires current core, actual-K, M1-adequacy, optional,
+          scale and complete falsifier-timing reports plus the unchanged
+          combined resource ceiling. A target-free prefix timing lower bound
+          may diagnose that ceiling before completing an expensive timing
+          probe; an interruption supplies no trial or biological result.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: observation_contract_v3, from: ../observation_contract_v3}
+          - {id: m2_contract, from: ../m2_contract}
+          - {id: m2_numerical_addendum, from: ../m2_numerical_addendum}
+          - {id: m2_numerical_clarification, from: ../m2_numerical_clarification}
+          - {id: m2_frozen_cell_inventory, from: ../m2_frozen_cell_inventory}
+          - {id: controller_conformance_report, from: ../controller_conformance.controller_conformance_report}
+          - {id: m2_core_qualification_report, from: ../m2_core_qualification.m2_core_qualification_report}
+          - {id: m2_actual_k_gate_report, from: ../m2_actual_k_gate.m2_actual_k_gate_report}
+          - {id: target_assets, from: ../target_assets}
+          - {id: model_interface, from: ../model_interface}
+          - {id: geometry_assets, from: ../geometry_assets}
+          - {id: m1_predictions, from: ../m1_predictions}
+          - {id: m1_result, from: ../m1_result}
+        outputs:
+          - id: resource_lower_bound_diagnostic
+            type: report
+            format: directory
+            description: >-
+              Aggregate timing lower bound for the unchanged required
+              permutation M1 prefix on the frozen AMD7502/Zen/one-thread
+              backend. It can diagnose a resource failure, never replace
+              any of the six complete reports or authorize outcome access.
+            inputs: [search_policy, m2_contract, m2_numerical_addendum, m2_numerical_clarification]
+            recipe:
+              command: >-
+                python outputs/stage0/tools/diagnose_v3_m2_resource_lower_bound.py --output-root {output}
+              resources: {cpus: 1, memory: 8Gi, time_limit: 10m}
+          - id: triangular_solve_prefix_comparison
+            type: report
+            format: directory
+            description: >-
+              Target-free original-versus-repaired Cholesky factored-solve
+              benchmark on the same first synthetic permutation warm path.
+              It preserves the NumPy OpenBLAS backend, two refinement steps,
+              all numerical gates and scientific rules. Aggregate differences
+              and timing diagnose a concrete performance repair; this is not
+              a complete permutation unit, model qualification or access gate.
+            inputs: [search_policy, m2_contract, m2_numerical_addendum, m2_numerical_clarification]
+            recipe:
+              command: >-
+                python outputs/stage0/tools/benchmark_v3_m1_triangular_prefix.py --output-root {output}
+              resources: {cpus: 1, memory: 4Gi, time_limit: 15m}
+          - id: search_result
+            type: data
+            format: directory
+            description: Complete tried-model history and selected exploratory model.
+            inputs: [search_policy, observation_contract_v3, m2_contract, m2_numerical_addendum, m2_numerical_clarification, m2_frozen_cell_inventory, controller_conformance_report, m2_core_qualification_report, m2_actual_k_gate_report, target_assets, model_interface, geometry_assets, m1_predictions, m1_result]
+
+      required_falsifiers:
+        name: Required development falsifiers and refits
+        description: >-
+          Policy-required calibration, stability, permutation, label/geometry,
+          and refit checks without changing the selected rule.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: target_assets, from: ../target_assets}
+          - {id: model_interface, from: ../model_interface}
+          - {id: geometry_assets, from: ../geometry_assets}
+          - {id: m1_predictions, from: ../m1_predictions}
+          - {id: search_result, from: ../adaptive_model_search.search_result}
+        outputs:
+          - id: falsification_report
+            type: report
+            format: json
+            description: Required development falsification and refit report.
+            inputs: [search_policy, target_assets, model_interface, geometry_assets, m1_predictions, search_result]
+
+      full_search_null:
+        name: Full-controller M1 null calibration
+        description: >-
+          Runs 99 complete controller replays from empty search history under
+          fitted M1 while preserving groups, covariate and mapping-quality
+          strata, and every K_i_obs.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: target_assets, from: ../target_assets}
+          - {id: model_interface, from: ../model_interface}
+          - {id: geometry_assets, from: ../geometry_assets}
+          - {id: m1_predictions, from: ../m1_predictions}
+          - {id: m1_result, from: ../m1_result}
+        outputs:
+          - id: full_search_null_report
+            type: report
+            format: json
+            description: Full-search null report; interpretation is observation-pattern predictability only.
+            inputs: [search_policy, target_assets, model_interface, geometry_assets, m1_predictions, m1_result]
+
+      development_assessment:
+        name: Integrate the development-only exploratory evidence
+        description: >-
+          Assessment after required falsifiers and full-search null. It cannot
+          open final or unassigned data or assert biological presence, absence,
+          exclusivity, or promotion.
+        inputs:
+          - {id: search_policy, from: ../search_policy}
+          - {id: search_result, from: ../adaptive_model_search.search_result}
+          - {id: falsification_report, from: ../required_falsifiers.falsification_report}
+          - {id: full_search_null_report, from: ../full_search_null.full_search_null_report}
+        outputs:
+          - id: development_assessment_report
+            type: report
+            format: md
+            description: Integrated development-only assessment under the frozen policy and all required controls.
+            inputs: [search_policy, search_result, falsification_report, full_search_null_report]
+
+findings: {}

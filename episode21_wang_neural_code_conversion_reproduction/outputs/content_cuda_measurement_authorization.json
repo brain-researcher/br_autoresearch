@@ -1,0 +1,38 @@
+{
+  "schema_version": "ep21.content_cuda_measurement.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-11-0224-pacific--content_resource_measurement--separate-cuda-measurement-selected",
+  "operation": "measure_content_pair_cuda_four_updates",
+  "jobs": 1,
+  "partition": "gpu",
+  "source": "sub-03",
+  "target": "sub-01",
+  "updates": 4,
+  "block_units": 256,
+  "row_chunk_size": 512,
+  "backend": "sparse",
+  "device": "cuda:0",
+  "feature_read_mode": "bounded_column_stripe",
+  "feature_stripe_bytes": 67108864,
+  "automatic_retry": false,
+  "production_training": false,
+  "model_publication": false,
+  "amp": false,
+  "tf32": false,
+  "correction_report": "outputs/pipeline_conformance/converter_loss_correction_001/report.json",
+  "resources": {
+    "cpus": 2, "memory_gib": 16, "minutes": 120, "gpus": 1,
+    "deadline_seconds": 6300, "rss_limit_bytes": 16106127360,
+    "minimum_device_bytes": 23622320128, "gpu_memory_limit_bytes": 21474836480,
+    "durable_bytes": 33554432, "scratch_bytes": 268435456
+  },
+  "input_scope": {
+    "normalization_participants": ["sub-01", "sub-03", "sub-05", "sub-06", "sub-07"],
+    "source_training": "sub-03", "target_decoder": "sub-01", "source_features": "sub-03",
+    "target_response_matrix": false, "tau": false, "OOD": false
+  },
+  "purpose": "Measure four unchanged full empirical converter updates on one explicitly assigned CUDA device, after one bounded CPU-dense versus CUDA-sparse numerical fixture; canonical pair4 initialization,4712 source rows and all19 layers retained. No saved model, scientific score or partial training continuation.",
+  "accounting": "Standing scientist continuation and increased-compute instruction; separately reserve at most4 allocated CPU-hours plus2 GPU-hours once for the parent, including serialized companion checks and the separately admitted brain prefix diagnostic. Preserve the closed decoder account and all earlier measurement charges. No successor or automatic retry.",
+  "companions": "Changed EP21 collection, brain reporting, production admission and CUDA admission checks; one CUDA numerical fixture; changed EP19 final-refit scope checks; both ASTRA validations. Brain prefix empirical access requires its separate grant and never follows from this profile.",
+  "limitations": "Actual GPU memory must be at least22GiB within advertised24GiB-or-larger features.20GiB PyTorch allocator limit does not measure total physical GPU memory. GPU timing remains empirical and does not qualify all1024 production updates or a scientific finding. One numerical thread; no AMP or TF32."
+}

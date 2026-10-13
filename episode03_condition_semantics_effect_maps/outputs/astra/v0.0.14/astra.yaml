@@ -1,0 +1,155 @@
+version: "0.0.14"
+name: EP03 signed condition information beyond task family
+
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: search_policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: candidate_map_manifest, type: data, source: outputs/runs/source_handoff_qualification/20261003-group-map-metadata02/group_map_metadata_report.json}
+
+outputs:
+  - {id: source_report, from: source_handoff_qualification.source_report}
+  - {id: contributor_support, from: source_handoff_qualification.contributor_support}
+  - {id: first_route_contributor_support, from: source_handoff_qualification.first_route_contributor_support}
+  - {id: evaluator_report, from: grouped_evaluator_qualification.evaluator_report}
+  - {id: development_report, from: adaptive_development.development_report}
+  - {id: finalist_report, from: finalist_stress_test.finalist_report}
+  - {id: locked_pipeline, from: configuration_lock.locked_pipeline}
+  - {id: audit_report, from: prospective_audit.audit_report}
+
+analyses:
+  source_handoff_qualification:
+    name: Authenticate exposed source lineage and signed group-map eligibility
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: datasets, from: ../datasets}
+      - {id: search_policy, from: ../search_policy}
+      - {id: candidate_map_manifest, from: ../candidate_map_manifest}
+    outputs:
+      - id: source_report
+        type: report
+        format: json
+        inputs: [goal, datasets, search_policy]
+        decisions: [role_and_support]
+        recipe:
+          command: >-
+            python outputs/code/qualify_source_metadata.py
+            --source-root "$EP03_SPATIAL_SOURCE_ROOT"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+      - id: first_route_contributor_support
+        type: report
+        format: json
+        inputs: [candidate_map_manifest, datasets, search_policy]
+        decisions: [role_and_support]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 100s
+            python3.12 -u -B outputs/code/join_first_group_map_route.py
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 2m}
+      - id: contributor_support
+        type: report
+        format: json
+        inputs: [candidate_map_manifest, datasets, search_policy]
+        decisions: [role_and_support]
+        recipe:
+          command: >-
+            python3.12 outputs/code/qualify_group_map_contributors.py
+            --group-map-manifest outputs/runs/source_handoff_qualification/20261003-group-map-metadata02/group_map_metadata_report.json
+            --analysis-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+    decisions:
+      role_and_support:
+        label: Source lineage, independence and eligibility
+        default: exposed_development_requires_signed_map_handoff
+        options:
+          exposed_development_requires_signed_map_handoff:
+            label: Census preserved spatial metadata without maps; report unresolved independent groups and signed-map handoff explicitly; historical spatial lineage cannot substitute for eligible unthresholded group Z maps or fresh audit
+
+  grouped_evaluator_qualification:
+    name: Qualify grouped canonical prototype-residual evaluation before scoring
+    inputs:
+      - {id: source_report, from: ../source_handoff_qualification.source_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - id: evaluator_report
+        type: report
+        format: json
+        inputs: [source_report, search_policy]
+        decisions: [orientation, inference]
+    decisions:
+      orientation:
+        label: Shared canonical coordinates
+        default: complete_prediction_single_sign_restoration
+        options:
+          complete_prediction_single_sign_restoration:
+            label: Fit canonical Z and family prototypes with equal dataset-group weight inside training folds; restore polarity once to the complete baseline and residual sum; reversal is an implementation invariant
+      inference:
+        label: Pre-search inference specification
+        default: freeze_from_authenticated_support_before_scores
+        options:
+          freeze_from_authenticated_support_before_scores:
+            label: Preserve group-weighted relative MSE, all required falsifiers, meaningful improvement and independent-unit uncertainty; resolve family support, loss ratios and negative-control identity before target loading rather than inventing thresholds
+
+  adaptive_development:
+    name: Cover the registered grammar and conduct bounded adaptive search
+    inputs:
+      - {id: source_report, from: ../source_handoff_qualification.source_report}
+      - {id: evaluator_report, from: ../grouped_evaluator_qualification.evaluator_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - id: development_report
+        type: report
+        format: json
+        inputs: [source_report, evaluator_report, search_policy]
+        decisions: [search_fidelity]
+    decisions:
+      search_fidelity:
+        label: Registered branch coverage and adaptive evidence
+        default: full_grammar_and_required_falsifiers
+        options:
+          full_grammar_and_required_falsifiers:
+            label: Retain all registered lexical, ontology, frozen-encoder, map-basis and predictor families; 30–72 valid trials, at least eight coverage trials, two adaptive successor cycles and challenger decisions, and at least 40 percent post-coverage falsifiers within the original resource ceilings
+
+  finalist_stress_test:
+    name: Evaluate finalists on all eligible development groups and required nulls
+    inputs:
+      - {id: development_report, from: ../adaptive_development.development_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - id: finalist_report
+        type: report
+        format: json
+        inputs: [development_report, search_policy]
+
+  configuration_lock:
+    name: Freeze exactly one feasible pipeline and its inference contract
+    inputs:
+      - {id: finalist_report, from: ../finalist_stress_test.finalist_report}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - id: locked_pipeline
+        type: report
+        format: json
+        inputs: [finalist_report, search_policy]
+
+  prospective_audit:
+    name: Execute the locked comparison once on independent sealed groups
+    inputs:
+      - {id: locked_pipeline, from: ../configuration_lock.locked_pipeline}
+      - {id: search_policy, from: ../search_policy}
+    outputs:
+      - id: audit_report
+        type: report
+        format: json
+        inputs: [locked_pipeline, search_policy]
+        decisions: [freshness]
+    decisions:
+      freshness:
+        label: Prospective corpus eligibility
+        default: independently_sealed_lineage_disjoint_source_required
+        options:
+          independently_sealed_lineage_disjoint_source_required:
+            label: Require a separately acquired corpus with pre-outcome power and family support; never relabel any exposed development subset as audit; no candidate swap or post-audit adaptation

@@ -1,0 +1,72 @@
+{
+  "correctness": {
+    "decision": "pass",
+    "findings": []
+  },
+  "judgment": {
+    "decision": "sound",
+    "estimand_complete": true,
+    "method_defensible": true,
+    "issues": [
+      "Sound applies only to the declared development-only conditional recorded-positive-pattern estimand. The specification and reused aggregate records were read directly; design matrices, cell-level predictions, code, and original audit artifacts were not independently reverified in this advisory review.",
+      "The small heterogeneous M1-minus-M0 gain does not establish either that geometry is irrelevant or that M1 is inadequate: it is incremental to an already informative M0. Adequacy relative to uniform prediction does not certify that the finite M1 exhausts continuous source-space structure or observation-quality alternatives.",
+      "A future M2 gain with completed full-controller null calibration would support excess observation-pattern predictability relative to the fitted M1 generator. Omitted nonlinear source structure, latent populations, and correlated target recording remain competing explanations; fixed observed cardinality and feature residualization do not identify biological co-projection or causal mechanism.",
+      "Twelve conservative specimen groups are not twelve certified independent animals. Strong group heterogeneity limits generalization and cannot be converted into group-level uncertainty from the aggregate alone.",
+      "M2 results, all 99 full-controller nulls, and substantive M2 falsification results are absent. The planned within-target terminal endpoint is not activated and is not calibrated by the current target-pattern null.",
+      "BR's initial retrieval returned no usable relevant evidence. Focused BR retrieval identified Gao PMID 41253150 but supplied metadata rather than substantive synthesis. Root's verified public primary-source content supports the applicable literature statements; other retrieved papers are rejected for this decision. The Falasconi 16-module claim was not freshly verified and is not used as a premise."
+    ],
+    "reviewer_questions": [
+      "When the already-required M2, full-controller null, and falsifier results exist, do they support a consistent cross-group improvement beyond the finite M1 reference, or instead localize the improvement to measured quality, source-support, label, or group influences? This question requires those existing planned outputs, not a new experiment or access gate."
+    ],
+    "judgment_status": "ok",
+    "judge_transport_error": null,
+    "raw_response_text": null
+  },
+  "completeness": {
+    "decision": "incomplete",
+    "checklist": {
+      "focused_question_and_advisory_scope_explicit": true,
+      "operative_v3_estimand_and_legacy_endpoint_distinction_explicit": true,
+      "aggregate_effect_sizes_reused_with_evidence_origin_explicit": true,
+      "atlas_source_identity_declared_in_existing_ASTRA": true,
+      "fixed_observed_cardinality_and_equal_group_ordering_declared": true,
+      "full_controller_selection_calibration_and_99_nulls_specified": true,
+      "restricted_data_and_uncertified_animal_boundaries_preserved": true,
+      "source_relevance_and_assay_applicability_limits_recorded": true,
+      "independent_pipeline_correctness_verification_within_this_review": false,
+      "completed_M2_result_available": false,
+      "completed_99_full_controller_null_results_available": false,
+      "completed_substantive_M2_falsification_results_available": false,
+      "group_level_uncertainty_verified_within_this_review": false
+    },
+    "missing_caveats": [
+      "No M2 or complete null/falsification evidence exists to evaluate the prospective residual-pair result. This is pending scientific evidence under the existing contract, not an omitted reporting disclosure or a new prerequisite.",
+      "This focused review cannot certify whole-pipeline correctness, uncertainty, or scientific completion from aggregate records and a specification. Prior numerical/access audit findings are reused as recorded evidence, not represented as newly independent verification."
+    ]
+  },
+  "review_scope": "pipeline_run",
+  "overall_decision": "explore_more",
+  "claim_strength": null,
+  "report_action": "write_report",
+  "required_next_actions": [
+    "Preserve the existing frozen execution, resource, stopping, and data-access gates. This advisory verdict adds no gate, experiment, test, redesign, final-data opening, or execution authority.",
+    "If the already-authorized analysis can complete within its existing contract, assess its resulting M2 gain alongside the already-required full-controller null and falsifier outputs; otherwise retain the contract's incomplete-search outcome.",
+    "Report any supported result as conditional recorded-positive-pattern evidence beyond the particular fitted M1 reference, with conservative-group scope and competing source/observation explanations retained. Do not claim biological co-projection, causal mechanism, terminal organization, or independent animal replication.",
+    "Keep the planned terminal-profile follow-up unactivated until its separately authorized prospective freeze; do not reuse current target-pattern calibration as terminal-profile inference."
+  ],
+  "validation_status": {
+    "review_kind": "focused_native_advisory_scientific_review_under_BR_directive_ext_review_dir_2a3addc6254a",
+    "specification": "directly_read_GOAL_DATASETS_SEARCH_POLICY_and_existing_ASTRA",
+    "aggregate_results": "directly_read_existing_experiment_log; original numerical/access audits reused without rerun",
+    "initial_BR_retrieval": "rejected_as_unrelated; no_usable_evidence",
+    "focused_BR_retrieval": "Gao_pubmed_2f7444d43da1_PMID_41253150_relevant_metadata; five_other_documents_not_used",
+    "public_primary_content": "root_verified_Gao_abstract_Han_visual_cortex_and_Yuan_different_assay_content_reused",
+    "Falasconi_specific_module_claim": "unverified_in_this_review; not_used_as_a_premise",
+    "kg_rules": "no_matching_observed_violation_in_authorized_review_surface; hypothetical_overclaim_risks_not_treated_as_detected_violations",
+    "sealed_data": "not_read",
+    "formal_Society": "not_invoked",
+    "pipeline_completion": "not_certified; M2_99_nulls_and_substantive_M2_falsifiers_pending"
+  },
+  "line_directive": null,
+  "rationale": "The narrow exploratory specification is scientifically defensible, and no observed correctness violation was identified in the limited authorized review surface. The existing M1 aggregate cannot settle the competing-explanation question. Completeness is therefore incomplete and, under the directive's roll-up rule, overall_decision is explore_more. Here that label refers solely to obtaining and interpreting the already-required authorized evidence when execution gates and resources permit; it authorizes no additional work. The review supports the existing restricted continuation and claim boundary, while explicitly rejecting stronger mechanistic or biological interpretations. This is not a complete pipeline certificate, scientific acceptance, formal Society decision, or canonical promotion."
+}

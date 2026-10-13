@@ -1,0 +1,83 @@
+{
+  "record_role": "outcome_blind_provider_beta_eligibility_assessment",
+  "source_metadata_reused": "outputs/steward_provisioning/source_structural_manifest.json",
+  "session_role_support": {
+    "sub-01": {
+      "sessions": 30,
+      "sessions_with_ood_labels": 30,
+      "ood_rows": 1484
+    },
+    "sub-03": {
+      "sessions": 30,
+      "sessions_with_ood_labels": 30,
+      "ood_rows": 1483
+    },
+    "sub-05": {
+      "sessions": 30,
+      "sessions_with_ood_labels": 30,
+      "ood_rows": 1484
+    },
+    "sub-06": {
+      "sessions": 30,
+      "sessions_with_ood_labels": 30,
+      "ood_rows": 1484
+    },
+    "sub-07": {
+      "sessions": 30,
+      "sessions_with_ood_labels": 30,
+      "ood_rows": 1484
+    }
+  },
+  "all_main_sessions_have_ood_rows": true,
+  "provider_model_sidecar": "outputs/steward_provisioning/provider_processing_metadata/sub-01_ses-01_GLMsingle_model.json",
+  "model_sidecar_identity": "matches_frozen_provider_manifest_ETag",
+  "declared_model_stage": "TYPED",
+  "declared_beta_units": "percent_signal_change",
+  "declared_meanvol": "mean_BOLD_across_runs",
+  "model_sidecar_contains_actual_options": false,
+  "actual_normalization_timepoint_role_pool": "unverified",
+  "actual_HRF_denoise_ridge_fit_and_normalization_role_pool": "unverified",
+  "generic_GLMsingle_implication": "standard_algorithm_uses_supplied_time_series_and_trials_before_role_filtering",
+  "eligibility": "not_established_do_not_export_or_score",
+  "provider_preprocessing_QC_values_used_for_any_decision": false,
+  "beta_model_R2_or_OOD_values_read": false,
+  "source_links": [
+    "https://laion-fmri.hebartlab.com/glmsingle_betas.html",
+    "https://glmsingle.readthedocs.io/en/latest/wiki.html#i-noticed-that-glmsingle-involves-some-internal-cross-validation-is-this-a-problem-for-decoding-style-analyses-where-we-want-to-divide-the-data-into-a-training-set-and-a-test-set",
+    "https://raw.githubusercontent.com/cvnlab/GLMsingle/main/glmsingle/ols/glm_estimatemodel.py",
+    "https://raw.githubusercontent.com/cvnlab/GLMsingle/main/glmsingle/glmsingle.py"
+  ],
+  "generic_upstream_code_binding": "current_main_algorithm_evidence_not_actual_LAION_v1_2_options_provenance",
+  "next_required_fact": "actual_processing_wrapper_options_and_timepoint_trial_reference_pool_proving_tau_test_and_OOD_exclusion_or_eligible_role_separated_derivatives",
+  "provider_processing_summary": "outputs/steward_provisioning/provider_processing_metadata/sub-01_ses-01_GLMsingle_summary.json",
+  "processing_summary_identity": "matches_frozen_provider_manifest_ETag",
+  "actual_declared_version": "1.2",
+  "actual_GLMsingle_options": {
+    "wantlibrary": 1,
+    "wantglmdenoise": 1,
+    "wantfracridge": 1,
+    "wantfileoutputs": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "wantmemoryoutputs": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "actual_declared_run_count": 12,
+  "actual_declared_trial_count": 1044,
+  "processing_source_scope": "representative_sub01_ses01_summary_provider_TYPED_release_documentation",
+  "remaining_actual_run_facts": [
+    "exact_wrapper_revision",
+    "normalization_denominator_timepoint_pool",
+    "session_internal_normalization_trial_pool",
+    "role_exclusions_for_HRF_denoise_ridge_autoscaling"
+  ],
+  "incidental_public_provider_QC_text_returned": true,
+  "incidental_public_QC_handling": "no_values_used_for_protocol_or_dataset_choice_no_figures_or_maps_opened_reported_as_prior_public_exposure"
+}

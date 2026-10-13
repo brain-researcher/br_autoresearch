@@ -1,5 +1,7 @@
 # Study boundaries
 
+2026-10-02 — [Scope/novelty review (consolidated)](paper_plan.md): Documentation-only review. Participant roles, chronological support, trial exposure, recovery margins and execution authority are unchanged.
+
 EP16 is currently authorized only as a documented study design. The current
 files do not authorize opening held-out neural outcomes or running the full
 search.
@@ -22,3 +24,11 @@ search.
 
 No scientific acceptance, external review decision, or permission to use a
 held-out result is implied by this summary.
+
+## Component revision — 2026-09-30
+
+`component_details.md` clarifies the proposed methods without setting missing
+margins, choosing participants, or changing the operative policy. In particular,
+quality ordering, time exposure and recovery aggregation remain scientific
+choices. The added ASTRA worklist describes existing comparisons only; it is
+not execution authority or a new data-access permission.

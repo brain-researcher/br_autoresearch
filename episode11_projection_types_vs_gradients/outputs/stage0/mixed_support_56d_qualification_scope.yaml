@@ -1,0 +1,171 @@
+schema_version: ep11_mixed_support_56d_scope_v3
+status: crossfit_smoke_revise_group_recovery_and_precision_failed
+
+purpose: >-
+  Outcome-blind synthetic smoke testing of the fixed 56-coordinate projection
+  composition and its mixed support-face score, using the observed 206-cell,
+  36-brain/sample metadata layout and only a 12-development, 8-audit,
+  16-unassigned design.
+
+reads_real_projection_outcomes: false
+fixed_role_design:
+  development_brain_sample_units: 12
+  audit_brain_sample_units: 8
+  unassigned_brain_sample_units: 16
+  alternative_14_8_design_allowed: false
+  identities_emitted: false
+
+implemented_and_testable:
+  - exactly_56_fixed_target_laterality_coordinates
+  - structural_zero_active_sets_conditioned_on_nonempty_support
+  - ordered_Helmert_ILR_on_each_observed_simplex_face
+  - original_Hausdorff_measure_Jacobian
+  - identical_cells_outcome_measure_and_score_for_B_P_C_D_H
+  - B_is_adjustment_only_and_P_is_B_plus_a_development_fitted_position_block_without_refitting_B
+  - C_and_H_share_the_exact_same_development_fitted_connected_one_dimensional_continuous_backbone_and_quadrature
+  - D_is_B_plus_fixed_K2_groups_and_H_is_C_plus_the_same_fixed_K2_groups
+  - D_and_H_share_elementwise_identical_group_labels_signatures_weights_and_constant_development_only_gating
+  - D_H_group_labels_and_signatures_are_fit_conditional_on_the_frozen_C_training_backbone
+  - H_minus_C_adds_only_the_group_factor_and_H_minus_D_adds_only_the_P_C_position_continuous_backbone
+  - four_fold_whole_unit_development_crossfit_refits_the_full_subset_with_zero_train_validation_unit_overlap
+  - C_equal_unit_heldout_score_selects_one_noise_scale_then_the_identical_value_is_frozen_into_H
+  - C_and_H_receive_identical_sigma_grid_and_evaluation_budget_while_H_cannot_select_Cs_scale
+  - label_integrated_connected_C_projected_oracle_proxy_with_independent_fit_and_verification_draws
+  - fixed_effect_target_grid_at_0_0_5_1_1_5_and_2_times_the_provisional_0_05_nat_margin
+  - explicit_eight_audit_unit_precision_SD_diagnostic_without_weakening_the_margin
+  - zero_group_amplitude_H_score_equals_C_score_elementwise_in_the_executable_self_test
+  - no_audit_refit_reclustering_label_matching_or_prevalence_recalibration
+  - equal_brain_sample_unit_heldout_contrasts
+  - valid_continuous_and_unresolved_routes_independent_of_group_support_gates
+  - curved_horseshoe_nonuniform_depleted_middle_and_animal_confounded_nulls
+  - reusable_groups_without_and_with_continuous_within_group_variation
+  - spatially_interdigitated_reusable_groups
+
+not_qualified_by_this_implementation:
+  - provider_certification_that_each_brain_sample_unit_is_an_independent_animal
+  - a_locked_real_development_audit_role_assignment
+  - the_final_per_cell_pial_geodesic_and_streamline_depth_common_support_solver
+  - real_axon_completeness_and_truncation_eligibility
+  - marginalization_of_unknown_missing_censored_or_truncated_target_coordinates
+  - exact_conditional_nonempty_maximum_likelihood_for_support_parameters
+  - the_final_hierarchical_new_animal_random_effect_integral
+  - full_equal_animal_weighting_inside_coefficient_and_residual_PCA_fits
+  - production_hierarchical_new_animal_nuisance_and_noise_calibration
+  - smooth_position_dependent_group_gating_beyond_the_current_constant_gate
+  - population_optimal_registered_C_H_oracle_calibration_beyond_the_current_projected_proxy
+  - separate_likelihood_optimization_for_C_D_and_H_under_matched_capacity_folds_starts_and_budget_instead_of_freezing_C_and_D_coefficients_into_H
+  - separate_H_minus_D_continuum_effect_calibration
+  - absolute_P_C_continuous_adequacy_and_trajectory_recovery
+  - complete_position_standardized_responsibility_ESS_and_influence_reuse_gates
+  - the_full_registered_hyperparameter_and_K_search_grammar
+  - development_family_reference_selection_under_equal_adaptive_search_budgets
+  - calibrated_animal_level_intervals_for_the_final_evaluator
+  - the_99_complete_full_search_null_controllers
+  - deterministic_replay_and_global_compute_envelope
+
+decision_boundary: >-
+  Passing this tool is necessary evidence that the 56-coordinate mixed-support
+  score and a fixed B/P/C/D/H subset can exercise both comparison directions.
+  The subset cannot itself support either biological conclusion. It is not
+  sufficient to launch outcome-bearing search; every item above that is
+  required by SEARCH_POLICY.yaml remains a blocker.
+
+historical_pre_repair_execution:
+  applies_to_current_factorial_implementation: false
+  role: pre_repair_diagnostic_superseded_for_recovery_qualification
+  prior_280_replicate_result_status: superseded_for_current_implementation_by_factorization_repair
+  prior_report_retained_but_not_current: mixed_support_56d_qualification_report.md
+  prior_summary_retained_but_not_current: mixed_support_56d_qualification_summary.json
+  current_factorization_self_test: passed
+  current_unit_heldout_crossfit_self_test: passed
+  current_projected_oracle_zero_effect_self_test: passed
+  outcome_bearing_search_authorized: false
+
+current_crossfit_smoke_execution:
+  report: mixed_support_56d_crossfit_smoke_report.md
+  summary: mixed_support_56d_crossfit_smoke_summary.json
+  synthetic_comparisons: 400
+  replicates_per_condition: 20
+  subset_status: revise
+  numerical_validity_rate: 1.0
+  no_group_false_predictive_gain_rate: 0.0
+  strong_group_predictive_gain_rate: 0.0
+  strong_group_predictive_gain_and_subset_reuse_screen_rate: 0.0
+  overall_precision_halfwidth_below_0_05_rate: 0.0175
+  strong_group_mean_H_minus_C_nats_per_neuron: -0.017558703989587855
+  strong_group_mean_truth_label_accuracy_diagnostic: 0.5700955755494984
+  strong_group_mean_audit_unit_SD: 0.21721027397506018
+  strong_group_mean_one_sided_95_percent_halfwidth: 0.14549497643839118
+  required_audit_unit_SD_for_halfwidth_below_0_05: 0.07464528305107372
+  calibration_status: projected_oracle_proxy_independent_verification_too_imprecise
+  maximum_absolute_calibration_error_nats_per_neuron: 0.04756901798092239
+  maximum_calibration_MC_SE_nats_per_neuron: 0.034904073834322036
+  full_registered_qualification_completed: false
+  outcome_bearing_search_authorized: false
+
+current_design_sensitivity_execution:
+  report: mixed_support_design_sensitivity_report.md
+  summary: mixed_support_design_sensitivity_summary.json
+  analysis_class: synthetic_design_and_estimator_sensitivity_not_qualification
+  replicates_per_fixture_and_arm: 32
+  common_random_numbers_across_nested_arms: true
+  predates_full_layout_generator_standardization_repair: true
+  absolute_projected_proxy_effect_label_qualified: false
+  nested_arm_pairing_remains_common_random_number_diagnostic: true
+  D12_A8_strong_mean_H_minus_C_nats_per_neuron: -0.0366574306823766
+  D27_A8_strong_mean_H_minus_C_nats_per_neuron: -0.043360392541227366
+  D12_A8_strong_truth_training_label_only_H_minus_C: 0.038938238540002924
+  D27_A8_strong_truth_training_label_only_H_minus_C: 0.04414165879810608
+  D12_A23_strong_mean_halfwidth: 0.07590400934266447
+  D12_A23_strong_precision_rate: 0.21875
+  strong_oracle_H_minus_projected_C_range: [0.1033466469392068, 0.1169547328266364]
+  no_group_false_predictive_gain_rate: 0.0
+  interpretation: estimator_and_calibration_repair_precedes_more_role_count_or_outer_CV_work
+  outcome_bearing_search_authorized: false
+
+current_repaired_group_module_attribution:
+  report: mixed_support_group_module_ablation_report.md
+  summary: mixed_support_group_module_ablation_summary.json
+  analysis_class: synthetic_group_module_attribution_not_qualification
+  replicates_per_fixture: 256
+  exact_truth_gate_matches_oracle_cellwise: true
+  nominal_projected_proxy_target: 0.100
+  realized_projected_proxy_gap: 0.08803664342639445
+  projected_proxy_is_full_family_calibration: false
+  current_finite_D12_comparison_is_production_contract_comparison: false
+  current_finite_D12_strong_mean_H_minus_C: -0.03441727603816881
+  current_finite_D12_strong_detection_rate: 0.0
+  maximum_monitored_MC_SE: 0.010775898510106595
+  target_MC_SE: 0.005
+  component_level_interpretation_allowed: false
+  status: unresolved_MC_precision_at_256_replicate_cap
+  production_estimator_repair_still_required: true
+  uses_real_projection_outcomes: false
+  outcome_bearing_search_authorized: false
+
+current_nested_geometry_frontier:
+  joint_all_35_unit_designs_feasible: false
+  maximum_assigned_units_per_depth_convention: 33
+  count_pairs_on_both_separately_solved_frontiers: [D13_A20, D14_A19, D15_A18, D16_A17, D17_A16, D18_A15, D19_A14, D20_A13, D21_A12, D22_A11, D23_A10, D24_A9, D25_A8]
+  one_common_cross_convention_assignment_established: false
+  role_redesign_selected: false
+
+current_factorial_implementation:
+  self_test: pass
+  recovery_execution: crossfit_smoke_completed_revise_not_registered_qualification
+  exact_factorization:
+    P: B_plus_position
+    C: P_plus_connected_continuous_backbone
+    D: B_plus_fixed_groups
+    H: C_plus_the_same_fixed_groups_as_D
+  C_H_continuous_backbone_identical: true
+  D_H_group_signatures_weights_and_gate_identical: true
+  zero_group_H_score_equals_C_score_test: pass
+  group_signatures_fit_conditionally_on_C_then_shared_by_D_H: true
+  identified_overconstraint: C_and_group_coefficients_are_frozen_into_H_so_H_cannot_reallocate_signal_absorbed_by_the_smaller_family
+  production_repair: independently_optimize_each_nested_family_under_identical_capacity_folds_starts_and_optimizer_budget
+  development_crossfit_folds: 4
+  crossfit_train_validation_unit_overlap: 0
+  noise_selection: C_equal_unit_heldout_score_then_identical_value_frozen_into_H
+  effect_calibration: projected_oracle_proxy_only
+  outcome_bearing_search_authorized: false

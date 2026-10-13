@@ -1,11 +1,12 @@
-# Episode 13 inputs
+# EP13 inputs
 
-This formal episode uses no empirical imaging data.  `inputs/` is read-only.
+EP13 uses no empirical imaging data. This directory is a read-only
+documentation boundary.
 
-Prior evaluator outputs and labelled examples are declared as exposed
-development facts in `../DATASETS.md`; no legacy corpus is retained in this
-workspace and no current checker may depend on one.
+The mathematical input is the exact domain frozen in DATASETS.md: known A, P,
+c, and s; a latent X that ranges over all rational V x K matrices; column-major
+vectorization; and exact arithmetic for replayable certificates.
 
-Do not place credentials, participant data, or mutable external caches here.
-Bind the current machine-readable formal contract before outcome comparison
-and document its provenance in `../DATASETS.md`.
+Do not place participant data, historical evaluator code, expected labels,
+credentials, or mutable caches here. Durable proof and checker artifacts belong
+under outputs/.

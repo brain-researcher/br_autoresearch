@@ -6,6 +6,21 @@ scientific question; this file explains which measurements support it, how a
 valid target observation is constructed, and what must be settled before the
 experiment can launch.
 
+## Public online resources — checked October 6, 2026
+
+| Public resource | Available information and use for EP09 |
+| --- | --- |
+| [Original SEU-A1876 Zenodo release](https://zenodo.org/records/13944322) | The open v1 record lists `Full_morphometry.xlsx`, native `Full_morphology_RAW.zip`, registered `Full_morphology_CCFv3.zip`, separate dendritic/axonal arbor archives and published file sizes/MD5s. Its inventory describes 1,876 full reconstructions. This identifies the exact metadata/native-dendrite/CCF-axon source objects required by EP09 without reading their payloads. |
+| [Provider BrainTell genetic table](https://braintell.org/projects/fullmorpho/genetic_info.txt) | The row keyed `16124` contains `Gnb4-IRES2-CreERT2;Ai139-hyg_236174-16124`; other rows retain image/genetic-background strings for documented Cux2, Plxnd1 and Tlx3 lines. This is original-provider metadata for reconciling specimen keys, not an outcome-derived class label. |
+| [Primary TeraVR Methods, available through PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6677772/) | The Data preparation section identifies brain `236174` as `Gnb4-IRES2-CreERT2;Ai139`, independently corroborating the genotype. |
+| [Liu et al. Supplementary Data 1](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54745-6/MediaObjects/41467_2024_54745_MOESM3_ESM.xlsx), retained public workbook row 81 | Explicitly separates Animal ID `236174` from Image ID `16124`, with fMOST technique, the same Gnb4 genotype and `BIL meta (20231223)` provenance. The [bounded observation](outputs/runs/metadata_feasibility/attempt002/provider_alias236174_observation_job_46842156.json) authenticates the alias without reading neuron outcomes. |
+
+The public identity/genotype gap for `236174` is now resolved: its provider
+animal and image identifiers differ. The original exact-Image-ID join remains
+preserved, with this separate observation as correction evidence. This adds no
+authenticated L2/3–L5 IT eligibility, missing layers or matched-donor support;
+the current cohort-feasibility limits below remain unchanged.
+
 ## Primary source
 
 | Item | Role in EP09 |
@@ -32,8 +47,75 @@ These two uses of 1,736 must not be conflated. EP09 is therefore predominantly
 an adjudicative reanalysis of the Peng-2021 data lineage, not an independent
 biological replication.
 
-The data are not yet provisioned in an episode-local read-only location. Large
-archives and participant-level derived data remain outside Git.
+The official source archives are preserved read-only at
+`$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_zenodo_13944322/archives`.
+They remain mixed-role steward inputs, not an episode-visible candidate pack.
+Large archives and participant-level derived data remain outside Git.
+
+The October 3 steward metadata check recovered a non-axon provenance lead from
+[Liu et al. Supplementary Data 1](https://www.nature.com/articles/s41467-024-54745-6#Sec32):
+38 of 39 fMOST brain IDs join exactly to **38 distinct animal IDs** and transgenic
+metadata. The immediate shortage is authenticated IT-label support, not a
+finding that those 38 brains collapse into fewer animals. Brain 236174 remains
+unmatched in that preserved historical exact-Image-ID join; its identity and
+genotype are now authenticated separately below. Only cell identity, brain identity,
+soma region and cortical layer were decoded from the source workbook; its
+projection-class column and morphology/outcome values remained closed.
+The explicitly documented cortical L2/3/4/5 IT driver families in this join
+(six Cux2, five Plxnd1 and one Tlx3) span **at most 12 authenticated animals**
+before layer, donor and quality restrictions. The now-identified Gnb4 animal
+does not supply additional authenticated primary-population IT support. Thus
+this route cannot supply the required 20 development-plus-audit groups. Other
+driver lines cannot be relabelled IT from axonal projection classes.
+See the [actual metadata support](outputs/runs/metadata_feasibility/attempt002/genotype_support_summary.json)
+and [execution log](outputs/experiment_log.md). An additional authenticated,
+non-axon cell-label source or a separately approved scientific downgrade is
+needed for further primary-cohort execution. No roles have been assigned.
+
+**Authenticated correction, October 6 Pacific:** the metadata-only check in
+job 46842156 returned exactly one matching public-supplement row, row 81:
+Animal ID `236174`, Image ID `16124`, fMOST,
+`Gnb4-IRES2-CreERT2;Ai139`, provenance `BIL meta (20231223)`, and target
+description `Claustral and cortical Car3+ IT`, referencing Peng et al. 2021.
+Its provider source locator is
+[`mouseID_236174`](https://download.brainimagelibrary.org/7f/53/7f537a62e521a26a/mouseID_236174/).
+That animal ID does not already occur in the retained join. The 43-cell source
+group's original key `236174` is preserved; the mismatch arose because the
+original join searched Image ID alone. This resolves the earlier crosswalk
+question from original-provider metadata, without using any EP11 assignment
+or output. See the [direct observation](outputs/runs/metadata_feasibility/attempt002/provider_alias236174_observation_job_46842156.json)
+and [source note](outputs/paper_plan.md#october-6-public-source-lead--brain-236174-and-provider-key-16124).
+
+The historical join and genotype-summary JSON files are not overwritten.
+Any future integrated join must be a separate derived output preserving the
+original brain key and these explicit animal/image fields; no general alias
+fallback is adopted. This identity correction supplies neither cell-level
+release lineage nor the required primary cortical-layer/class or donor
+qualification. BrainTell's older 45-neuron gallery listing is not substituted
+for the retained 43-cell group. No eligibility or biological role is assigned.
+
+The retained per-animal source/layer counts further limit this route under
+the currently authenticated metadata: only animals 374712 and 382148 have
+driver-compatible exact source/layer strata with at least five recorded cells,
+necessary for four nonself donors. Their ten strata contain 72 recorded cells
+before finer non-axon class, calipers, quality and other qualification. The
+[complete 12-animal table](outputs/paper_plan.md#october-6-metadata-feasibility-and-unadopted-exploratory-route)
+is a direct reading of the existing permitted join, with no new workbook or
+payload access. Two is a bound for these recorded keys, not an impossibility
+claim after authentic metadata corrections or additional labels. Missing
+layers remain unknown rather than verified absence. Brain 236174's identity
+and genotype no longer require a provider answer; finer eligibility remains
+unestablished.
+
+The existing policy already permits stopping or downgrading to grouped
+development evidence when group support is inadequate. It does not activate
+the [proposed nine-animal exploratory route](outputs/paper_plan.md#october-6-metadata-feasibility-and-unadopted-exploratory-route),
+which the current metadata does not support.
+The current 12-development/8-audit requirement remains binding. No episode
+power analysis establishing 20 as a sufficient sample size was identified in
+the reviewed contract and feasibility records; the number is a design
+requirement, not demonstrated precision. Nine would likewise be a proposed
+feasibility floor, not a power guarantee.
 
 ## What one eligible neuron must contribute
 
