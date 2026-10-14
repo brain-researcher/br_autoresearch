@@ -1,5 +1,13 @@
 # Experiment log
 
+## 2026-10-14 00:48 Pacific — interindividual_converter_training — current runtime fits the selected jobs
+
+Slurm confirms all 16 assigned content workers running; two original workers remain pending at the GPU-per-user limit.
+Their public progress records show 265–719 of 1,024 updates, with no scientific readout opened.
+Linear elapsed/update projections span 21.17–40.06 h, within the existing 47 h application and 48 h allocation limits.
+These are runtime projections, not completion guarantees; no new job, checkpoint rewrite or parameter change is justified now.
+Preserve the queued complete-model decode, all 63 uncertainty batches and combined final report.
+
 ## 2026-10-13 19:17 Pacific — finding_a_feature_decoding — reporting program validated
 
 Step47377474.11 passed schema and semantic validation of the updated ASTRA program.
