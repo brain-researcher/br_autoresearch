@@ -1,5 +1,19 @@
 # EP18 outputs
 
+**October 13, 23:20 Pacific — 28/30 core fits complete; four remaining folds and reporting queued.**
+All original writers are terminal. Job 47743173 reuses their saved fits,
+continues only sub-27/sub-31, and skips completed sub-47. Its fixed reporter releases G/T with
+participant-level intervals, one figure and three summary lines only when all
+30 original people have complete records. The matched-control search remains
+unresolved and audit remains closed. See the [selection and release rule](experiment_log.md).
+
+**October 13, 22:16 Pacific — 24/30 core fits complete; matched-control search exhausted.**
+The remaining six core fits are running. The complete 30-person G/T estimate,
+participant-level intervals and figure remain the next result; audit stays closed.
+Control-search job 47692682 exhausted its selected 6.4 million proposals with no
+accepted member. This does not establish that matching is impossible and does
+not block the core estimate. See the [evidence and next action](experiment_log.md).
+
 **October13,19:30Pacific — all30 core fits remain covered within the site CPU cap.**
 Array47720344 replaces only the last two indices with8CPU workers sharing the
 former single worker's16CPU allocation. Original indices0–26 and first-person

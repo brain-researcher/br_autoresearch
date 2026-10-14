@@ -985,6 +985,8 @@ analyses:
   core_reference_calibration:
     name: Fit the registered complete core reference and calibrate G and T
     inputs:
+    - {id: checkpoint_batch, type: data, source: outputs/code/run_core_direct_checkpoint_batch001.sbatch}
+    - {id: cohort_reporter, type: data, source: outputs/code/report_core_direct.py}
     - {id: search_policy, from: ../search_policy}
     - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
     - {id: complete_image_feature_arrays, from: ../feature_preparation.complete_image_feature_arrays}
@@ -1081,7 +1083,7 @@ analyses:
     - id: complete_core_calibration
       type: report
       format: json
-      inputs: [complete_reference_cost, core_reference_code, core_reference_recipe, search_policy]
+      inputs: [complete_reference_cost, direct_complete_reference, core_reference_code, core_reference_recipe, search_policy, checkpoint_batch, cohort_reporter]
       description: >-
         Requires complete identical-reference records for all30 frozen people,
         each with all36 splits. Only then compute registered cohort G/T and
@@ -1090,6 +1092,12 @@ analyses:
         participant-level uncertainty and one figure only after complete30
         coverage. This does not satisfy the baseline search or open
         concept/false/audit scores; partial-cohort inference is prohibited.
+        Aggregate short checkpoint continuations in a single eight-CPU batch,
+        ordered after predecessor termination. Skip completed people by file
+        presence only; the reporter then validates all thirty full records.
+        Average each person's six outer folds before descriptive two-sided
+        95-percent t intervals with 29 degrees of freedom. Export PNG/PDF and
+        exactly three summary lines, disclosing same-account procedural separation.
   baseline_search:
     name: Fixed 19-44-trial label-baseline search with concept scores hidden
     inputs:

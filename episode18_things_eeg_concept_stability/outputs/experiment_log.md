@@ -1,5 +1,27 @@
 # Experiment log
 
+## 2026-10-13 23:14 Pacific — core_reference_calibration — remaining folds and complete-cohort report selected
+
+27/30 original participants are complete; sub-27 saved all 15 paired grids and 3/6 outer folds before its measured time stop.
+Select one 8 CPU / 32 GiB / 1 h batch for potential remaining sub-27, sub-31 and sub-47, retaining all completed fits.
+afterany dependencies on 47717611_13, _17 and _26 prevent overlapping writers; completed-person metadata skips redundant fitting.
+The batch runs the unchanged reporter only after its all-30 completion guard and original settings/model/fold checks pass.
+This is the coordinator's contingent release for G/T, descriptive 95% participant intervals, one figure and exactly three summary lines.
+Concept/false scores and audit remain closed; no partial cohort is released and the search/matching thresholds do not change.
+Selected wrapper: code/run_core_direct_checkpoint_batch001.sbatch; new report root is baseline_models/core_direct_checkpoint_batch_report001.
+Submitted as 47743173; final independent source review passed and execution files are frozen.
+At 23:20 all original writers were terminal: 28 complete people; sub-27 has three outer folds left and sub-31 one, with all paired grids saved.
+
+## 2026-10-13 22:16 Pacific — false_partition_preparation — selected finite search exhausted
+
+47692682 ended with exit 2 after 7h03m27s; its public search/report.json records exhausted_unavailable.
+The 64 starts used 6,400,000 legal proposals and yielded no accepted member; no candidate reached exact distribution checks.
+This is exhaustion of the selected search, not a crash or proof that the required matched bank cannot exist.
+The preserved checkpoint is terminal and the unchanged resume path rejects it; do not blindly resubmit.
+Evidence: runs/false_partition_preparation/bounded_continuation_operations/segment_47692682/search/report.json.
+All eight matching requirements remain. Prioritize the independently authorized complete-cohort G/T estimate;
+at 22:15 Pacific, 24 of 30 core jobs had completed and the remaining six were running, with audit closed.
+
 ## 2026-10-13 19:30 Pacific — core_reference_calibration — last two workers replaced
 
 Old27's batch isCANCELLED and externCOMPLETED; both old27/28 are absent from
