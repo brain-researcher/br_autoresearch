@@ -1,0 +1,2406 @@
+{
+  "baseline_directional_balanced_accuracy": [
+    0.75,
+    0.6666666666666666
+  ],
+  "baseline_id": "adaptive03",
+  "block_indices": [
+    0,
+    2,
+    3,
+    4,
+    5
+  ],
+  "claim_scope": "seven_whole_paired_session_omissions_one_influence_control_not_crossvalidation",
+  "classifier": {
+    "method": "cosine_prototype",
+    "penalty": null
+  },
+  "complete": true,
+  "control_id": "control11low5leaveout",
+  "joint_label_reference": null,
+  "leave_one_out": {
+    "complete": true,
+    "fit_attempts": 14,
+    "interpretation": "whole_session_influence_not_held_out_omitted_session_prediction",
+    "omissions": [
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.75,
+            "class_0_recall": 0.5,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.6068968858688452,
+                  0.0546106438092641,
+                  0.18074149708218099,
+                  -0.3275518963598353,
+                  0.6990966413372355
+                ],
+                [
+                  0.8812622784748249,
+                  -0.22392864142861657,
+                  -0.298301430581747,
+                  -0.0800250132824074,
+                  -0.27900719318205386
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140218.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.34014651550958497,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.1303112336701613,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.4373703438457257,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": -0.7337253094543188,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.796361853895832,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.9948112971942182,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 1.4382599669967937,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.016990679288213,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.75,
+            "class_0_recall": 0.5,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.14483844158008408,
+                  -0.13659745366918083,
+                  -0.7971071206081266,
+                  0.3112816619430539,
+                  0.47758447075416965
+                ],
+                [
+                  0.7994768015052316,
+                  0.09356640576103097,
+                  -0.06770615846109332,
+                  -0.4714368220176896,
+                  -0.3539002267874795
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161007.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.48235648847952645,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.18312464064389317,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.7147597789684075,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -1.11365020858819,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.75,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140217.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.75,
+            "class_0_recall": 0.5,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.150360626018163,
+                  -0.7112458824145574,
+                  -0.1431529316474582,
+                  0.03327677651414235,
+                  0.6707614115297104
+                ],
+                [
+                  0.8922988693309287,
+                  -0.1659268875829112,
+                  -0.22710333552047082,
+                  -0.24413522271793225,
+                  -0.25513342350961443
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.5893070771607648,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.2359188710499827,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.2490404451088395,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": -0.6734815376232901,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.1085143303122744,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.05734584021676925,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.9498614372887425,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.2738848873161972,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.75,
+            "class_0_recall": 0.5,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.14483844158008408,
+                  -0.13659745366918083,
+                  -0.7971071206081266,
+                  0.3112816619430539,
+                  0.47758447075416965
+                ],
+                [
+                  0.7994768015052316,
+                  0.09356640576103097,
+                  -0.06770615846109332,
+                  -0.4714368220176896,
+                  -0.3539002267874795
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161007.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.8437027650481332,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.0023107015674874165,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.7147597789684075,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -1.11365020858819,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.75,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140218.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.625,
+            "class_0_recall": 0.25,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.02121396837287887,
+                  -0.5433445116873951,
+                  0.5491223975683127,
+                  -0.44098685360838763,
+                  0.45642293610034884
+                ],
+                [
+                  0.8869012786578381,
+                  -0.15611770560759755,
+                  -0.30069309351548446,
+                  -0.15969121042090134,
+                  -0.27039926911385476
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140218.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.37982789909740466,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.2705612249250842,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 0.9355539234897162,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 0.01982808811512843,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.274833171421183,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.5289094144065217,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.7301499240870621,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.0617140856172098,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.5,
+            "class_0_recall": 0.0,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.14483844158008408,
+                  -0.13659745366918083,
+                  -0.7971071206081266,
+                  0.3112816619430539,
+                  0.47758447075416965
+                ],
+                [
+                  0.7994768015052316,
+                  0.09356640576103097,
+                  -0.06770615846109332,
+                  -0.4714368220176896,
+                  -0.3539002267874795
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161007.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.8437027650481332,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.0023107015674874165,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.48235648847952645,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.18312464064389317,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.5625,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140304.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.8333333333333333,
+            "class_0_recall": 0.6666666666666666,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.24765653552013872,
+                  -0.45003062339677075,
+                  0.16918862743047883,
+                  -0.26860087166683067,
+                  0.7970994031532614
+                ],
+                [
+                  0.8898038068790431,
+                  -0.18269912784689427,
+                  -0.2761776513215639,
+                  -0.16185816313210594,
+                  -0.2690688645784791
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140218.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 1.3904343309033251,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": -0.5771504957406385,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.5492307752326298,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.49167352129165814,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 1.1632373434801004,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.2800180167837465,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 1.0,
+            "class_0_recall": 1.0,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.10477941064827112,
+                  -0.43584903062429203,
+                  -0.4708513186341736,
+                  0.32434213879043294,
+                  0.687137621116304
+                ],
+                [
+                  0.8123293754419468,
+                  0.0013473637267062382,
+                  -0.010768097191221794,
+                  -0.3074541220342883,
+                  -0.4954545199431429
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161007.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 1.1527632277271194,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": -0.023962582332999804,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.865198155733762,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": -0.1926981105871315,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 1.0297561822734624,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -1.5294565584576802,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.9166666666666666,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20160929.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.6666666666666666,
+            "class_0_recall": 0.3333333333333333,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.24765653552013872,
+                  -0.45003062339677075,
+                  0.16918862743047883,
+                  -0.26860087166683067,
+                  0.7970994031532614
+                ],
+                [
+                  0.8898038068790431,
+                  -0.18269912784689427,
+                  -0.2761776513215639,
+                  -0.16185816313210594,
+                  -0.2690688645784791
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140218.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.4379572193791027,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.376599900481284,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.5492307752326298,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.49167352129165814,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 1.1632373434801004,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.2800180167837465,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.8333333333333333,
+            "class_0_recall": 0.6666666666666666,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.6452136122599599,
+                  -0.40431968324980533,
+                  -0.5729345481855957,
+                  0.030289868279601624,
+                  0.3017507508958397
+                ],
+                [
+                  0.8149290155041409,
+                  0.06577576232498315,
+                  -0.1366684751808783,
+                  -0.5063516297323677,
+                  -0.23768467291587794
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161007.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.30906592099110375,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": -0.4047812852804966,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.039568413638295996,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.38110088770825,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.17427067001289953,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -0.7028951433957181,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161007.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.75,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161005.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.8333333333333333,
+            "class_0_recall": 0.6666666666666666,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.24765653552013872,
+                  -0.45003062339677075,
+                  0.16918862743047883,
+                  -0.26860087166683067,
+                  0.7970994031532614
+                ],
+                [
+                  0.8898038068790431,
+                  -0.18269912784689427,
+                  -0.2761776513215639,
+                  -0.16185816313210594,
+                  -0.2690688645784791
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140218.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.4379572193791027,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.376599900481284,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.3904343309033251,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": -0.5771504957406385,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.1632373434801004,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161014.mat"
+              },
+              {
+                "margin": -1.2800180167837465,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161014.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.8333333333333333,
+            "class_0_recall": 0.6666666666666666,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.39105070963107247,
+                  0.1871363580830317,
+                  -0.6513249075347414,
+                  0.532781637098972,
+                  0.3224576219838103
+                ],
+                [
+                  0.7473054516681507,
+                  0.12660451221981806,
+                  0.0026134991823995976,
+                  -0.5820538355573301,
+                  -0.2944696275130382
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161014.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161014.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 1.3699009919674052,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.5092217951790473,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.9226724645952805,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": -0.037661339441056124,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 1.2294969117420325,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -0.9964151845774734,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161014.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.8333333333333333,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161007.mat",
+        "unavailable_reason": null
+      },
+      {
+        "complete": true,
+        "directions": [
+          {
+            "balanced_accuracy": 0.6666666666666666,
+            "class_0_recall": 0.3333333333333333,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  -0.24765653552013872,
+                  -0.45003062339677075,
+                  0.16918862743047883,
+                  -0.26860087166683067,
+                  0.7970994031532614
+                ],
+                [
+                  0.8898038068790431,
+                  -0.18269912784689427,
+                  -0.2761776513215639,
+                  -0.16185816313210594,
+                  -0.2690688645784791
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Mihili",
+              "source_labels": [
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140217.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140218.mat"
+                },
+                {
+                  "animal": "Mihili",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Mihili_CO_20140304.mat"
+                }
+              ],
+              "source_sessions": [
+                "Mihili_CO_20140217.mat",
+                "Mihili_CO_20140218.mat",
+                "Mihili_CO_20140304.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.4379572193791027,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.376599900481284,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20160929.mat"
+              },
+              {
+                "margin": 1.3904343309033251,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": -0.5771504957406385,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161005.mat"
+              },
+              {
+                "margin": 1.5492307752326298,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Chewie_CO_20161007.mat"
+              },
+              {
+                "margin": 0.49167352129165814,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Chewie_CO_20161007.mat"
+              }
+            ],
+            "source_animal": "Mihili",
+            "source_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "target_animal": "Chewie-L",
+            "target_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat"
+            ],
+            "tied_rows": 0
+          },
+          {
+            "balanced_accuracy": 0.6666666666666666,
+            "class_0_recall": 0.3333333333333333,
+            "class_1_recall": 1.0,
+            "fit": {
+              "blocks": [
+                {
+                  "bands": [
+                    [
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "name": "lmp"
+                },
+                {
+                  "bands": [
+                    [
+                      4.0,
+                      8.0
+                    ]
+                  ],
+                  "name": "power_4_8"
+                },
+                {
+                  "bands": [
+                    [
+                      8.0,
+                      12.0
+                    ]
+                  ],
+                  "name": "power_8_12"
+                },
+                {
+                  "bands": [
+                    [
+                      12.0,
+                      25.0
+                    ]
+                  ],
+                  "name": "power_12_25"
+                },
+                {
+                  "bands": [
+                    [
+                      25.0,
+                      50.0
+                    ]
+                  ],
+                  "name": "power_25_50"
+                }
+              ],
+              "coefficients": null,
+              "intercept": null,
+              "iterations": 0,
+              "maximum_absolute_gradient": null,
+              "objective": null,
+              "prototypes": [
+                [
+                  0.4210651562669375,
+                  0.24660877848617518,
+                  -0.8617069189969647,
+                  0.08081416486737662,
+                  0.11321881937647564
+                ],
+                [
+                  0.7730195393613932,
+                  0.1852311142116148,
+                  -0.12912077557984697,
+                  -0.4767335569505161,
+                  -0.3523963210426449
+                ]
+              ],
+              "recipe": {
+                "method": "cosine_prototype",
+                "penalty": null
+              },
+              "source_animal": "Chewie-L",
+              "source_labels": [
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20160929.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161005.mat"
+                },
+                {
+                  "animal": "Chewie-L",
+                  "m1_label": 1,
+                  "pmd_label": 0,
+                  "session_id": "Chewie_CO_20161007.mat"
+                }
+              ],
+              "source_sessions": [
+                "Chewie_CO_20160929.mat",
+                "Chewie_CO_20161005.mat",
+                "Chewie_CO_20161007.mat"
+              ]
+            },
+            "predictions": [
+              {
+                "margin": 0.4430945266719284,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.12130099083995446,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140217.mat"
+              },
+              {
+                "margin": 0.17829966610833226,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.2553038829564876,
+                "predicted_label": 1,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140218.mat"
+              },
+              {
+                "margin": 0.37792657927354106,
+                "predicted_label": 1,
+                "region": "M1",
+                "session_id": "Mihili_CO_20140304.mat"
+              },
+              {
+                "margin": -0.6215654491821061,
+                "predicted_label": 0,
+                "region": "PMd",
+                "session_id": "Mihili_CO_20140304.mat"
+              }
+            ],
+            "source_animal": "Chewie-L",
+            "source_sessions": [
+              "Chewie_CO_20160929.mat",
+              "Chewie_CO_20161005.mat",
+              "Chewie_CO_20161007.mat"
+            ],
+            "target_animal": "Mihili",
+            "target_sessions": [
+              "Mihili_CO_20140217.mat",
+              "Mihili_CO_20140218.mat",
+              "Mihili_CO_20140304.mat"
+            ],
+            "tied_rows": 0
+          }
+        ],
+        "equal_direction_mean_balanced_accuracy": 0.6666666666666666,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161014.mat",
+        "unavailable_reason": null
+      }
+    ],
+    "scientific_control_count": 1,
+    "unavailable_reason": null
+  },
+  "patience_reset_authorized": false,
+  "scientific_acceptance": null,
+  "search_stop_decision": null,
+  "signed_agreement_original": {
+    "blocks": [
+      {
+        "bands": [
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "name": "lmp"
+      },
+      {
+        "bands": [
+          [
+            4.0,
+            8.0
+          ]
+        ],
+        "name": "power_4_8"
+      },
+      {
+        "bands": [
+          [
+            8.0,
+            12.0
+          ]
+        ],
+        "name": "power_8_12"
+      },
+      {
+        "bands": [
+          [
+            12.0,
+            25.0
+          ]
+        ],
+        "name": "power_12_25"
+      },
+      {
+        "bands": [
+          [
+            25.0,
+            50.0
+          ]
+        ],
+        "name": "power_25_50"
+      }
+    ],
+    "centered_shape_cosine": 0.7106488852635405,
+    "centered_shape_unavailable_reason": null,
+    "chewie_raw_mean": [
+      0.010796590371758702,
+      0.005838706131006205,
+      0.003009158832792874,
+      -0.0066761749588197805,
+      -0.0043073538534532385
+    ],
+    "chewie_sessions": [
+      "Chewie_CO_20160929.mat",
+      "Chewie_CO_20161005.mat",
+      "Chewie_CO_20161007.mat",
+      "Chewie_CO_20161014.mat"
+    ],
+    "mihili_raw_mean": [
+      0.011045755540925056,
+      0.0005731821520678082,
+      -0.005151125760530821,
+      -0.0007036036329094072,
+      -0.007081851827718551
+    ],
+    "mihili_sessions": [
+      "Mihili_CO_20140217.mat",
+      "Mihili_CO_20140218.mat",
+      "Mihili_CO_20140304.mat"
+    ],
+    "omissions": [
+      {
+        "cosine": 0.5612350185339063,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140217.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.773443569622518,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140218.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.6251823724592395,
+        "omitted_animal": "Mihili",
+        "omitted_session": "Mihili_CO_20140304.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.5638661345310748,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20160929.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.6543043967165691,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161005.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.6063185442093318,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161007.mat",
+        "unavailable_reason": null
+      },
+      {
+        "cosine": 0.6389625930681446,
+        "omitted_animal": "Chewie-L",
+        "omitted_session": "Chewie_CO_20161014.mat",
+        "unavailable_reason": null
+      }
+    ],
+    "raw_all_positive": true,
+    "raw_available": true,
+    "raw_cosine": 0.6748881465418922,
+    "raw_unavailable_reason": null
+  },
+  "signed_agreement_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode06_lfp_regional_fingerprints/outputs/runs/residual_fingerprint_development/representation001/scores/adaptive03.json"
+}

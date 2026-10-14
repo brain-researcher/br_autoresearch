@@ -1,0 +1,280 @@
+{
+  "at_least_baseline_in_both_directions": false,
+  "baseline_directional_balanced_accuracy": [
+    0.75,
+    0.8333333333333333
+  ],
+  "claim_scope": "fixed_development_recording_support_metadata_control_only",
+  "directions": [
+    {
+      "balanced_accuracy": 0.625,
+      "class_0_recall": 1.0,
+      "class_1_recall": 0.25,
+      "coefficients": [
+        -0.3820544626138989,
+        0.0,
+        0.010966296995774909
+      ],
+      "intercept": -0.000789602940195124,
+      "iterations": 3,
+      "maximum_absolute_gradient": 1.4432899320127035e-15,
+      "objective": 0.6024071265232531,
+      "paired_session_accuracy": [
+        {
+          "accuracy": 0.5,
+          "session_id": "Chewie_CO_20160929"
+        },
+        {
+          "accuracy": 0.5,
+          "session_id": "Chewie_CO_20161005"
+        },
+        {
+          "accuracy": 0.5,
+          "session_id": "Chewie_CO_20161007"
+        },
+        {
+          "accuracy": 1.0,
+          "session_id": "Chewie_CO_20161014"
+        }
+      ],
+      "predictions": [
+        {
+          "animal": "Chewie-L",
+          "credit": 0.0,
+          "logit": -0.13560257309129994,
+          "predicted_label": 0,
+          "region": "M1",
+          "session_id": "Chewie_CO_20160929",
+          "true_label": 1
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 1.0,
+          "logit": -0.4883744031334967,
+          "predicted_label": 0,
+          "region": "PMd",
+          "session_id": "Chewie_CO_20160929",
+          "true_label": 0
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 0.0,
+          "logit": -0.2272178621690327,
+          "predicted_label": 0,
+          "region": "M1",
+          "session_id": "Chewie_CO_20161005",
+          "true_label": 1
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 1.0,
+          "logit": -0.8091599495039471,
+          "predicted_label": 0,
+          "region": "PMd",
+          "session_id": "Chewie_CO_20161005",
+          "true_label": 0
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 0.0,
+          "logit": -0.14856875764825048,
+          "predicted_label": 0,
+          "region": "M1",
+          "session_id": "Chewie_CO_20161007",
+          "true_label": 1
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 1.0,
+          "logit": -0.6970450735046636,
+          "predicted_label": 0,
+          "region": "PMd",
+          "session_id": "Chewie_CO_20161007",
+          "true_label": 0
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 1.0,
+          "logit": 0.06788286850185304,
+          "predicted_label": 1,
+          "region": "M1",
+          "session_id": "Chewie_CO_20161014",
+          "true_label": 1
+        },
+        {
+          "animal": "Chewie-L",
+          "credit": 1.0,
+          "logit": -0.5623508772173629,
+          "predicted_label": 0,
+          "region": "PMd",
+          "session_id": "Chewie_CO_20161014",
+          "true_label": 0
+        }
+      ],
+      "source_animal": "Mihili",
+      "source_constant_columns": [
+        false,
+        true,
+        false
+      ],
+      "source_mean": [
+        4.160148401126395,
+        4.574710978503383,
+        4.653126568794409
+      ],
+      "source_rows": 6,
+      "source_sd_ddof0": [
+        0.46292498287831,
+        0.0,
+        0.040678826256911264
+      ],
+      "source_sessions": [
+        "Mihili_CO_20140217",
+        "Mihili_CO_20140218",
+        "Mihili_CO_20140304"
+      ],
+      "target_animal": "Chewie-L",
+      "target_rows": 8,
+      "target_sessions": [
+        "Chewie_CO_20160929",
+        "Chewie_CO_20161005",
+        "Chewie_CO_20161007",
+        "Chewie_CO_20161014"
+      ],
+      "tied_rows": 0
+    },
+    {
+      "balanced_accuracy": 0.6666666666666666,
+      "class_0_recall": 0.3333333333333333,
+      "class_1_recall": 1.0,
+      "coefficients": [
+        -0.36465073190541136,
+        0.0,
+        0.02082650063728942
+      ],
+      "intercept": -0.0010918212957586985,
+      "iterations": 3,
+      "maximum_absolute_gradient": 2.609024107869118e-15,
+      "objective": 0.6107023041499344,
+      "paired_session_accuracy": [
+        {
+          "accuracy": 0.5,
+          "session_id": "Mihili_CO_20140217"
+        },
+        {
+          "accuracy": 1.0,
+          "session_id": "Mihili_CO_20140218"
+        },
+        {
+          "accuracy": 0.5,
+          "session_id": "Mihili_CO_20140304"
+        }
+      ],
+      "predictions": [
+        {
+          "animal": "Mihili",
+          "credit": 1.0,
+          "logit": 0.9033689190159864,
+          "predicted_label": 1,
+          "region": "M1",
+          "session_id": "Mihili_CO_20140217",
+          "true_label": 1
+        },
+        {
+          "animal": "Mihili",
+          "credit": 0.0,
+          "logit": 0.029123243795206723,
+          "predicted_label": 1,
+          "region": "PMd",
+          "session_id": "Mihili_CO_20140217",
+          "true_label": 0
+        },
+        {
+          "animal": "Mihili",
+          "credit": 1.0,
+          "logit": 1.053639506954155,
+          "predicted_label": 1,
+          "region": "M1",
+          "session_id": "Mihili_CO_20140218",
+          "true_label": 1
+        },
+        {
+          "animal": "Mihili",
+          "credit": 1.0,
+          "logit": -0.12309153841690645,
+          "predicted_label": 0,
+          "region": "PMd",
+          "session_id": "Mihili_CO_20140218",
+          "true_label": 0
+        },
+        {
+          "animal": "Mihili",
+          "credit": 1.0,
+          "logit": 1.024211557666656,
+          "predicted_label": 1,
+          "region": "M1",
+          "session_id": "Mihili_CO_20140304",
+          "true_label": 1
+        },
+        {
+          "animal": "Mihili",
+          "credit": 0.0,
+          "logit": 0.3484560510675913,
+          "predicted_label": 1,
+          "region": "PMd",
+          "session_id": "Mihili_CO_20140304",
+          "true_label": 0
+        }
+      ],
+      "source_animal": "Chewie-L",
+      "source_constant_columns": [
+        false,
+        true,
+        false
+      ],
+      "source_mean": [
+        4.692008523634588,
+        4.574710978503383,
+        4.893060696913149
+      ],
+      "source_rows": 8,
+      "source_sd_ddof0": [
+        0.3534107101577105,
+        0.0,
+        0.5949376892477897
+      ],
+      "source_sessions": [
+        "Chewie_CO_20160929",
+        "Chewie_CO_20161005",
+        "Chewie_CO_20161007",
+        "Chewie_CO_20161014"
+      ],
+      "target_animal": "Mihili",
+      "target_rows": 6,
+      "target_sessions": [
+        "Mihili_CO_20140217",
+        "Mihili_CO_20140218",
+        "Mihili_CO_20140304"
+      ],
+      "tied_rows": 0
+    }
+  ],
+  "equal_direction_mean_balanced_accuracy": 0.6458333333333333,
+  "exact_tie_credit": 0.5,
+  "feature_order": [
+    "native_units",
+    "training_finite_electrodes",
+    "training_trials"
+  ],
+  "kind": "EP06_recording_support_metadata_classifier",
+  "label_definition": {
+    "M1": 1,
+    "PMd": 0
+  },
+  "objective": "mean_logloss_plus_half_penalty_beta_squared_unpenalized_intercept",
+  "penalty": 1.0,
+  "scientific_acceptance": null,
+  "source_constant_rule": "zero_for_both_source_and_target",
+  "status": "complete",
+  "transform": "log1p_then_source_column_mean_sd_ddof0"
+}
