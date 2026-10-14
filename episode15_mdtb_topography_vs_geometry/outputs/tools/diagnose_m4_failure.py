@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Capture the first failed diagonal Task-A fit without changing its refusal.
+"""Capture the first failed canonical Task-A fit without changing its refusal.
 
 The unchanged complete observed-map panel runs with publication withheld. A
-failed canonical diagonal fit writes only its Task-A objective to a protected
+failed canonical fit writes only its Task-A objective to a protected
 cache and aggregate numerical diagnostics to the selected report. No result
 summary is opened, no fit is bypassed, and the original panel exit is retained.
 """
@@ -32,7 +32,7 @@ def main(argv=None):
     from paired_stretch_variants import M4CertificateUnverified, stretch_specifications
 
     original_fit = adapter._fit_with_certificate
-    diagonal_name = stretch_specifications()[0].name
+    canonical_names = {specification.name for specification in stretch_specifications()}
     captured, attempts = {}, 0
 
     def inspect(objective, specification, X, Y, B, O, settings, *, check):
@@ -41,10 +41,10 @@ def main(argv=None):
         try:
             return original_fit(objective, specification, X, Y, B, O, settings, check=check)
         except M4CertificateUnverified as error:
-            if specification.name == diagonal_name and not captured:
+            if specification.name in canonical_names and not captured:
                 check()
                 path = _save_cache(selected, (X, Y, B, O), settings, specification)
-                captured.update(status="canonical_diagonal_certificate_unresolved",
+                captured.update(status="canonical_certificate_unresolved", variant=specification.name,
                     numerical_fit_attempt=attempts, reason=str(error),
                     diagnostics=error.diagnostics,
                     private_Task_A_cache=str(path), nonuniqueness_established=False)
@@ -55,7 +55,7 @@ def main(argv=None):
         panel_exit = runner.main([*remaining, "--publication-mode", args.publication_mode])
     finally:
         adapter._fit_with_certificate = original_fit
-    report = dict(status="failed_Task_A_fit_diagnostic" if captured else "no_diagonal_failure_captured",
+    report = dict(status="failed_Task_A_fit_diagnostic" if captured else "no_canonical_failure_captured",
         original_panel_exit=panel_exit, job_id=os.environ["SLURM_JOB_ID"],
         numerical_fit_attempts=attempts, production_acceptance_changed=False,
         scientific_summaries_opened=False, scientific_summaries_published=False,

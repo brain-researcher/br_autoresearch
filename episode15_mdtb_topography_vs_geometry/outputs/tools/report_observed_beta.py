@@ -291,7 +291,7 @@ def main(argv=None):
              +"; fixed M1/M2/M3/M4 reference differences versus M0b (same order): "
              +", ".join(format(rows["ordinary/"+name+"-M0b"]["mean"], ".6g") for name in references)+".")
     line3 = ("Participant points describe variability; overlapping training and the fixed donor cycle preclude naive CIs. "
-             "Target Task-B availability informed support; the original audit stays closed, with no winner or reliable-signal claim.")
+             "Target Task-B availability informed support; the original audit stays closed under procedural same-account separation, not technical enforcement; no winner or reliable-signal claim.")
     # Resolve the required figure dependency before creating a fresh output.
     import matplotlib
     # Create no report directory until access, completeness and data checks pass.
@@ -307,7 +307,7 @@ def main(argv=None):
     with (output_dir / "observed_beta_report.json").open("x") as stream:
         json.dump(report, stream, indent=2, allow_nan=False)
         stream.write("\n")
-    (output_dir / "3lines.md").write_text(line1+"\n\n"+line2+"\n\n"+line3+"\n")
+    (output_dir / "3lines.md").write_text(line1+"\n"+line2+"\n"+line3+"\n")
     print(json.dumps({"status": "completed_released_descriptive_report", "output_dir": str(output_dir)}))
     return 0
 

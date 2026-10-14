@@ -182,6 +182,72 @@ class ProspectivePanelIntegrationTests(unittest.TestCase):
     def test_nonfinite_optimizer_trial_uses_qualified_global_fit_before_operator(self):
         self._assert_failed_optimizer_uses_global_fit_before_operator(proposed.M4OptimizerTrialNonfinite)
 
+    def test_local_solution_gap_uses_global_fit_before_actual_operator(self):
+        for index, specification in enumerate(original_stretch.stretch_specifications()):
+            with self.subTest(variant=specification.name):
+                fixture = self._callback_fixture(specification)
+                operator_failure = ValueError("actual operator fixture rejection")
+                fixture.base.operator_certificate.side_effect = operator_failure
+                selected = "fit_diagonal_global" if index == 0 else "fit_block_global"
+                gap_failure = original_stretch.M4OptimalityGapUnverified("local gap too large", {})
+                with ExitStack() as stack:
+                    curvature, global_fits, legacy_fit, predictions = self._callback_patches(
+                        stack, fixture, None)
+                    curvature.return_value = {"qualified_curvature_fixture": True}
+                    legacy_fit.return_value = fixture.numerical
+                    solution = stack.enter_context(patch.object(proposed, "_solution_certificate",
+                        side_effect=gap_failure))
+                    order = Mock()
+                    for name, operation in (("curvature", curvature), ("local_fit", legacy_fit),
+                            ("solution", solution), ("global_fit", global_fits[selected]),
+                            ("operator", fixture.base.operator_certificate)):
+                        order.attach_mock(operation, name)
+                    with self.assertRaises(ValueError) as raised:
+                        self._call_callback(fixture)
+                self.assertIs(raised.exception, operator_failure)
+                self.assertEqual([call[0] for call in order.mock_calls],
+                    ["curvature", "local_fit", "solution", "global_fit", "operator"])
+                global_fits[selected].assert_called_once_with(
+                    fixture.objective, specification, check=fixture.base.check)
+                for name, operation in global_fits.items():
+                    if name != selected:
+                        operation.assert_not_called()
+                for operation in predictions.values():
+                    operation.assert_not_called()
+
+    def test_other_solution_certificate_refusals_do_not_retry(self):
+        fixture = self._callback_fixture(original_stretch.stretch_specifications()[1])
+        for failure in (original_stretch.M4CertificateUnverified("tangent rank unresolved", {}),
+                        ValueError("paired C differs"), ArithmeticError("invalid objective")):
+            with self.subTest(refusal=str(failure)), ExitStack() as stack:
+                _, global_fits, legacy_fit, predictions = self._callback_patches(stack, fixture, None)
+                legacy_fit.return_value = fixture.numerical
+                stack.enter_context(patch.object(proposed, "_solution_certificate", side_effect=failure))
+                with self.assertRaises(type(failure)) as raised:
+                    self._call_callback(fixture)
+                self.assertIs(raised.exception, failure)
+                for operation in global_fits.values():
+                    operation.assert_not_called()
+                fixture.base.operator_certificate.assert_not_called()
+                for operation in predictions.values():
+                    operation.assert_not_called()
+
+    def test_real_solution_certificate_marks_only_valid_excess_gap_for_retry(self):
+        fixture = self._callback_fixture(original_stretch.stretch_specifications()[1])
+        fixture.objective.final_stretch_diagnostics = Mock()
+        fixture.objective.value_gradient = Mock(return_value=(1., np.ones(8)))
+        curvature = dict(hessian_lower_bound=1., objective_scale=1.)
+        with self.assertRaises(original_stretch.M4OptimalityGapUnverified) as raised:
+            original_stretch._solution_certificate(fixture.objective, fixture.specification,
+                fixture.numerical, curvature)
+        diagnostic = raised.exception.diagnostics
+        self.assertGreater(diagnostic["first_order_gap"], diagnostic["required_gap_upper_bound"])
+        fixture.objective.tangent_singular_values.return_value = np.r_[np.ones(7), 0.]
+        with self.assertRaises(original_stretch.M4CertificateUnverified) as raised:
+            original_stretch._solution_certificate(fixture.objective, fixture.specification,
+                fixture.numerical, curvature)
+        self.assertNotIsInstance(raised.exception, original_stretch.M4OptimalityGapUnverified)
+
     def test_other_arithmetic_failures_are_not_hidden_by_global_retry(self):
         fixture = self._callback_fixture(original_stretch.stretch_specifications()[1])
         failure = ArithmeticError("fixture invalid returned stretch")

@@ -1089,13 +1089,35 @@ analyses:
         Participant points are variability, not independent LOPO experiments or
         confidence intervals. Disclose the availability-conditioned 188-location
         support and procedural separation. No ranking, recovery, superiority or
-        original-audit completion is claimed.
+        original-audit completion is claimed. The complete released result is
+        outputs/figures/observed_beta_development001/observed_beta_report.json,
+        with observed_beta.png/PDF and 3lines.md in the same directory.
       recipe:
         command: >-
           python -B outputs/tools/report_observed_beta.py
           --run-dir {inputs.completed_panel} --output-dir {output}
           --release-completed-summary
         resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
+    findings:
+      complete_observed_map_prediction:
+        id: complete_observed_map_prediction
+        claim: >-
+          In the fixed twelve-participant, eighteen-condition, sixteen-variant
+          development evaluation on 188 availability-conditioned locations,
+          M0b mean observed beta MSE is 2.25668. Prespecified M1/M2/M3/M4
+          reference differences versus M0b are +0.0216565, -0.0149902,
+          -0.00830282 and -0.0108881. These descriptive differences do not
+          establish superiority, reliable-signal recovery or a mechanism.
+        created_at: '2026-10-14T16:15:00Z'
+        evidence:
+        - {id: complete_fixed_panel, artifact: descriptive_result}
+        derived: true
+        notes: >-
+          Target Task-B response values were excluded from that target's fit;
+          target availability informed support. Overlapping LOPO training and
+          the fixed donor cycle preclude naive independent-person intervals.
+          All controls are reported. Same-account separation is procedural;
+          the original audit remains closed and the original question unresolved.
   development_search:
     name: Full grouped M1-M4 development and native falsifiers
     description: >-

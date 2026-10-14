@@ -1,0 +1,3 @@
+Prespecified out-of-fold Task-B-value evaluation completed for all 12 development participants, 18 conditions, 16 variants and fixed controls on 188 availability-conditioned locations.
+Mean observed beta MSE: M0a=2.25954, M0b=2.25668; fixed M1/M2/M3/M4 reference differences versus M0b (same order): 0.0216565, -0.0149902, -0.00830282, -0.0108881.
+Participant points describe variability; overlapping training and the fixed donor cycle preclude naive CIs. Target Task-B availability informed support; the original audit stays closed under procedural same-account separation, not technical enforcement; no winner or reliable-signal claim.

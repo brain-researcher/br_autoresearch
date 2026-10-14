@@ -7,7 +7,7 @@ whole panel; resource admission and private publication remain unchanged.
 Reuse the original constructor and every existing panel helper. All four
 canonical families can use their qualified global certificates when the
 sufficient full-domain curvature bound refuses or the local optimizer fails
-to converge or evaluate a finite trial: the trace-zero diagonal profile or balanced vertex, or the eight
+to converge, evaluate a finite trial, or meet the fixed solution gap: the trace-zero diagonal profile or balanced vertex, or the eight
 independent scalar/disk block profiles. Actual operator checks still precede
 every prediction.
 The copied fit_development_point_panel body is unchanged; its _fixed_callbacks
@@ -30,7 +30,8 @@ from development_point_panel import (
     m2_alignment_points,
 )
 from paired_stretch_variants import (
-    MAX_ITERATIONS, M4CertificateUnverified, M4Prediction, NUMERICAL_ATOL, OPTIMIZER_FTOL,
+    MAX_ITERATIONS, M4CertificateUnverified, M4OptimalityGapUnverified, M4Prediction,
+    NUMERICAL_ATOL, OPTIMIZER_FTOL,
     PairedM4TaskAObjective, PairedStretchVariants, RANK_RTOL,
     _array, _center, _frozen, _solution_certificate,
     apply_m3, apply_m4, crossvalidated_geometries, fit_m4_task_a, stretch_specifications,
@@ -96,7 +97,15 @@ def _fit_with_certificate(objective, specification, X, Y, B, O, settings, *, che
             refusal=error, trigger=("local_optimizer_nonfinite_trial"
                 if isinstance(error, M4OptimizerTrialNonfinite) else "local_optimizer_unconverged"))
     check()
-    C, certificate = _solution_certificate(objective, specification, numerical, curvature)
+    try:
+        C, certificate = _solution_certificate(objective, specification, numerical, curvature)
+    except M4OptimalityGapUnverified as error:
+        # SLSQP success is not an optimality certificate. Retry only this
+        # diagnosed candidate-gap failure; feasibility, pairing, rank and
+        # arithmetic refusals keep their original behavior. The global solver
+        # starts afresh and must itself satisfy the unchanged gap/growth limits.
+        return _global_fit_with_certificate(objective, specification, check=check,
+            refusal=error, trigger="local_solution_gap_unresolved")
     return C, numerical, {**certificate,
         "numerical_certificate_method": "sufficient_full_domain_curvature"}
 

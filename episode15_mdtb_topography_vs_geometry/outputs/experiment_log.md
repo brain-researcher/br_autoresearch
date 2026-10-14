@@ -1,5 +1,48 @@
 # Experiment log
 
+## 2026-10-14 09:15 Pacific — observed_beta_report — next prespecified development result delivered
+
+Step 47377474.49 released the complete cost011 result and generated figures/observed_beta_development001/{observed_beta.png,observed_beta.pdf,3lines.md,observed_beta_report.json}.
+M0a/M0b mean observed MSE is 2.25954/2.25668; fixed M1/M2/M3/M4 differences versus M0b are +0.0216565/-0.0149902/-0.00830282/-0.0108881.
+All 12 participants, 18 conditions, 188 locations, 16 variants and controls are included; target numerical responses were excluded from that target's fit.
+Target availability informed support; participant dots are descriptive variability, not independent LOPO experiments or confidence intervals.
+No winner, reliable-signal/recovery fraction, mechanism or original-audit claim; procedural same-account separation is disclosed.
+Report checks and visual inspection passed; independent review confirms scope and contrasts. Its same-account disclosure correction is applied to all three-line summaries.
+Step .48 stopped at a missing viz module category before reading values; .49 loaded the documented category and completed.
+This delivers the goal's next prespecified out-of-fold evaluation; the original reliable-variation question remains unresolved and audit stays closed.
+Step 47377474.50 passed pinned ASTRA 0.0.14 schema and semantic validation for the result finding and affected references.
+
+## 2026-10-14 09:13 Pacific — observed_beta_development — complete panel accepted for descriptive release
+
+47751452 completed 0:0 in 27m48s; cost011 records completed_observed_beta_cost_panel with the entire original adopted panel.
+All 192 numerical fits completed; 12 participants, 18 Task-B conditions, 188 locations, 16 variants and all controls are retained.
+The private summary is complete; audit access is false and uncertainty calibration/formal class decisions remain false.
+Coordinator releases only this complete saved development summary under the previously adopted observed-beta route.
+Select report_observed_beta.py on the task-owned 1 CPU / 1 GiB / 10-minute companion to generate one figure and three lines.
+Use the existing report checks and full-panel admission guard; do not refit, choose a subset, open audit data or construct naive independent-person intervals.
+The report will disclose target-availability conditioning, overlapping LOPO training and procedural same-account separation.
+
+## 2026-10-14 00:38 Pacific — observed_beta_development — gap repair passed; full retry selected
+
+Step 47377474.43 passed all 16 affected optimizer/integration tests in 0.402 s (10.73 s process, 57,900 KiB peak RSS).
+Coordinator source review confirms only the typed valid-candidate gap failure can invoke this additional global fallback.
+The complete cost011 retry retains all 12 people, 18 conditions, 16 variants, 24 source fits, 48 calibration panels and every control.
+Select run_m4_certificate_cost011.sbatch with 1 CPU / 7 GiB / 24 h, reusing the frozen finite support and passed checks.
+Source files are frozen for execution; new diagnostic025 captures any later canonical Task-A failure without exposing Task-B summaries.
+The wrapper passed shell syntax in step 47377474.44; historical failures and consumption remain recorded.
+Next: submit once, then release the saved scientific result only after the entire panel completes.
+Submitted as 47751452 and confirmed RUNNING on sh03-06n10; no prior writer remains and all production imports are frozen.
+
+## 2026-10-14 00:32 Pacific — observed_beta_development — local solution gap repair selected
+
+47742568 and its writer steps are terminal; cost010 stopped after 1,858.50 s at numerical fit 170, with no released summary.
+The otherwise valid local candidate exceeded the unchanged optimality-gap bound; its non-diagonal family was outside the old diagnostic cache capture.
+Select a narrow typed gap refusal that retries the existing qualified same-family global solver from fresh coefficients.
+Rank, pairing, feasibility, actual-operator checks and all original gap/growth margins remain; unrelated failures still refuse.
+Capture any future failing canonical Task-A objective, preserving the original failure and closed Task-B summaries/audit.
+Run the 16 affected optimizer/integration checks inside the existing 1 CPU / 1 GiB companion, with a 120-second process limit.
+No reusable cost010 objective exists; passing checks and source review permit a fresh full cost011 panel with all people, models and controls.
+
 ## 2026-10-13 23:05 Pacific — observed_beta_development — repaired complete cost010 selected
 
 Step 47377474.39 passed all 13 scope/adapter checks in 1.315 s (process 29.81 s; peak RSS 52,760 KiB).

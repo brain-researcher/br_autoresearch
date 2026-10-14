@@ -3,7 +3,8 @@
 ## Standing-authority numerical repair — October 13, 2026
 
 For the observed-map route, any of the four canonical M4 fits whose sufficient
-full-domain curvature bound refuses or whose local optimizer fails to converge may instead certify a unique constrained
+full-domain curvature bound refuses, whose local optimizer fails to converge, or
+whose otherwise valid local solution misses the original optimality-gap bound may instead certify a unique constrained
 minimum using local profile growth and exclusion of every other region in the
 original domain. The trace-zero diagonal family uses its coupled profile, or a
 balanced vertex proved by strict scalar-dual minima and growth over every full interval.

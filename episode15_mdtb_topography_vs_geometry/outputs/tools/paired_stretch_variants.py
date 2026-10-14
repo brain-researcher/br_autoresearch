@@ -43,6 +43,10 @@ class M4CertificateUnverified(ValueError):
         self.diagnostics = diagnostics
 
 
+class M4OptimalityGapUnverified(M4CertificateUnverified):
+    """A feasible, identified local candidate misses the fixed gap bound."""
+
+
 @dataclass(frozen=True)
 class StretchSpecification:
     name: str
@@ -190,7 +194,7 @@ def _solution_certificate(objective, specification, numerical_fit, curvature):
               "exact_global_optimizer": False,
               "interval_arithmetic_proof": False}
     if not result["solution_within_frozen_gap"]:
-        raise M4CertificateUnverified("M4 constrained optimality gap exceeds the frozen bound", result)
+        raise M4OptimalityGapUnverified("M4 constrained optimality gap exceeds the frozen bound", result)
     return C, result
 
 
