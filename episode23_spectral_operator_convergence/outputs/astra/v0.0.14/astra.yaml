@@ -1,0 +1,123 @@
+version: "0.0.14"
+name: EP23 conditional spectral-operator account of representational convergence
+description: >-
+  Theory-level follow-up to EP22. Conditional propositions (P1–P5) on operator
+  eigenspaces, objectives, readouts and measurement, plus exploratory tests on
+  exposed LAION-fMRI development data. The primary test (A0) asks whether the
+  leading eigenspaces of an externally measured concept co-occurrence operator
+  predict model and individual-brain subspaces beyond taxonomy, frequency and
+  low-level visual similarity.
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: datasets, type: data, source: DATASETS.md}
+  - {id: policy, type: data, source: SEARCH_POLICY.yaml}
+  - {id: things_metadata, type: data, source: "$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/things_metadata_osf_jum2f_20260922/payload"}
+  - {id: development_embeddings, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-development_embeddings01}
+  - {id: annotation_downloads, type: data, source: "$SCRATCH/br_autoresearch/episode23_spectral_operator_convergence/feasibility/downloads"}
+outputs:
+  - id: a0_report
+    from: a0_operator_alignment.a0_report
+analyses:
+  operator_feasibility:
+    name: Outcome-blind feasibility of annotation-derived concept operators
+    description: >-
+      THINGS coverage, sparsity, spectral conditioning, taxonomy alignment and
+      cross-source agreement for Visual Genome, LVIS and COCO-caption operators,
+      against criteria fixed before results. No model or neural data.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: things_metadata, from: ../things_metadata}
+      - {id: development_embeddings, from: ../development_embeddings}
+      - {id: annotation_downloads, from: ../annotation_downloads}
+      - {id: feasibility_code, type: data, source: outputs/code/operator_feasibility.py}
+    outputs:
+      - id: feasibility_report
+        type: report
+        format: json
+        inputs: [policy, things_metadata, development_embeddings, annotation_downloads, feasibility_code]
+        description: Coverage, operator diagnostics, taxonomy overlap and cross-source overlap per source.
+        recipe:
+          command: RUN=20261013-check01 sbatch outputs/code/operator_feasibility.sbatch
+          resources: {cpus: 4, memory: 32Gi, time_limit: 1h}
+  a0_operator_alignment:
+    name: Measured co-occurrence eigenspaces versus model and brain subspaces
+    description: >-
+      Frozen A0. A Visual Genome shared-context PPMI kernel (primary) and a
+      COCO-caption kernel (secondary), over THINGS concepts via a WordNet 3.0
+      crosswalk, are compared at rank 8 with cross-repeat brain Grams (five
+      participants, three primary sectors; EVC descriptive) and with concept-level
+      CLIP, PEcore, SigLIP2 and DINOv2 kernels. Permutation, taxonomy-residual,
+      frequency-preserving, low-level-visual-residual and combined controls;
+      participants are the biological units; models and model–model are descriptive.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: feasibility, from: ../operator_feasibility.feasibility_report}
+      - {id: things_metadata, from: ../things_metadata}
+      - {id: development_embeddings, from: ../development_embeddings}
+      - {id: annotation_downloads, from: ../annotation_downloads}
+      - {id: low_level_features, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261005-low_level_full01}
+      - {id: ep04_metadata, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-metadata_folds04}
+      - {id: ep04_neural_handoffs, type: data, source: ../episode04_shared_scene_geometry/outputs/runs/source_readiness/20261003-development_neural_full01}
+      - {id: operator_code, type: data, source: outputs/code/a0_operators.py}
+      - {id: brain_code, type: data, source: outputs/code/a0_brain_patterns.py}
+      - {id: alignment_code, type: data, source: outputs/code/a0_alignment.py}
+    outputs:
+      - id: operators
+        type: data
+        format: npz
+        inputs: [policy, feasibility, things_metadata, development_embeddings, annotation_downloads, operator_code]
+        description: WordNet-crosswalked concept sets, counts, shared-context kernels and direct counts for vg and captions, with the audit report.
+        recipe:
+          command: RUN=20261013-attempt01 sbatch outputs/code/a0_operators.sbatch
+          resources: {cpus: 4, memory: 32Gi, time_limit: 1h}
+      - id: brain_patterns
+        type: data
+        format: npz
+        inputs: [policy, things_metadata, development_embeddings, ep04_metadata, ep04_neural_handoffs, brain_code]
+        description: Per-participant split-half and full-mean concept patterns per ROI (transient scratch), with JSON count reports.
+        recipe:
+          command: RUN=20261013-attempt01 sbatch outputs/code/a0_brain_patterns.sbatch
+          resources: {cpus: 2, memory: 16Gi, time_limit: 1h}
+      - id: task_reports
+        type: report
+        format: json
+        inputs: [operators, brain_patterns, development_embeddings, low_level_features, things_metadata, alignment_code]
+        description: Per-participant and pooled-model statistics, nulls, controls and sensitivities.
+        recipe:
+          command: RUN=20261013-attempt01 sbatch outputs/code/a0_alignment.sbatch
+          resources: {cpus: 4, memory: 16Gi, time_limit: 2h}
+      - id: a0_report
+        type: report
+        format: json
+        inputs: [task_reports, alignment_code]
+        description: Merged A0 report with participant summaries and exact sign tests.
+        recipe:
+          command: RUN=20261013-attempt01 sbatch outputs/code/a0_collect.sbatch
+          resources: {cpus: 1, memory: 4Gi, time_limit: 20m}
+  p1_p5_conditional_theory:
+    name: Conditional propositions on operators, objectives, readouts and pooling
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: literature, type: data, source: outputs/design/literature_verification.md}
+    outputs:
+      - {id: propositions, type: report, format: md, description: "Planned; proofs or counterexamples for P1–P5 under the GOAL proof rules."}
+  a1_metric_family:
+    name: Diagonal versus full PSD metrics in a matched training-PCA span
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_embeddings, from: ../development_embeddings}
+    outputs:
+      - {id: metric_report, type: report, format: json, description: "Planned; full-minus-diagonal and power-minus-native held-out RSA."}
+  a2_coarse_fine:
+    name: Coarse versus fine structure with THINGS category27 labels
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: things_metadata, from: ../things_metadata}
+    outputs:
+      - {id: scale_report, type: report, format: json, description: "Planned; A2a model–model and A2b reliability-relative model–brain overlaps."}
+  a3_pooling_simulation:
+    name: Synthetic topography-plus-pooling simulations
+    inputs:
+      - {id: goal, from: ../goal}
+    outputs:
+      - {id: simulation_report, type: report, format: json, description: "Planned; mode mixing and preferred spectral power under controlled pooling."}

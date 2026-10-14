@@ -1,0 +1,345 @@
+schema_version: ep23.search_policy.v1
+episode_id: ep23
+status: proposed_not_frozen
+designed_on: "2026-10-13"
+
+evidence_mode:
+  current_delivery: design_documents_only
+  execution_authorized_by_this_document: false
+  initial_stage: conditional_theory_and_exploratory_constraints
+  independent_confirmation_available: false
+  causal_operator_evidence_available: false
+  literature_status: verified_2026-10-13_components_have_close_precedents_combination_not_found  # outputs/design/literature_verification.md
+  hypotheses_formed_after_outcomes:
+    - scale_dependent_eigenvector_agreement  # EP22 post hoc hypothesis 2
+    - clip_space_stimulus_selection          # EP22 post hoc hypothesis 1
+
+dataset_roles:
+  laion_development:
+    role: exploratory
+    participants: [sub-01, sub-03, sub-05, sub-06, sub-07]
+    images_per_participant: 4712
+    strata_per_participant: {laion: 4246, thingsplus: 322, things: 144}
+    exposure: [EP04, EP22_D0_D3]
+    analyses: [A1, A2]
+    folds: frozen_EP04_five_image_disjoint_component_grouped_folds
+    primary_sectors: [laion-ventral, laion-lateral, laion-dorsal]
+    descriptive_sectors: [laion-EVC]
+    presentations_per_image: 4
+  laion_regular_shared:
+    role: excluded
+    images: 1121
+  laion_ood:
+    role: historical_motivation_only
+    images: 371
+    exposure: consumed_by_EP22_single_confirmation_2026-10-13
+    new_analysis_allowed: false
+  things_category27_manual:
+    role: semantic_labels_for_A2
+    asset: asset_ep18_things_metadata
+    contains_outcomes: false
+    rule: single_label_concepts_only
+  things_eeg1:
+    role: candidate_independent_confirmation
+    eligibility: blocked_pending_scientist_decision  # EP18 roles; audit closed
+  cneuromod_things_fmri:
+    role: candidate_independent_confirmation
+    eligibility: blocked_pending_scientist_decision  # EP17 roles; four participants
+  untouched_things_or_nsd_source:
+    role: candidate_independent_confirmation
+    eligibility: requires_acquisition_scope_and_gpu_embeddings
+  synthetic:
+    role: mathematical_illustration_and_counterexample_search
+    biological_evidence: false
+  visual_genome_v1_4_objects:
+    role: primary_cooccurrence_operator_source  # A0
+    license: CC_BY_4.0
+    location: transient_scratch_copy_pending_binding_as_input
+    feasibility: usable_2026-10-13  # S=615, S_p=166-181
+    mapping_required: wordnet_3_0_offset_crosswalk
+  coco_2017_captions:
+    role: secondary_operator_source_description_channel
+    license: CC_BY_4.0
+    feasibility: usable_after_matcher_cleaning  # S=880, S_p=234-257
+  lvis_v1:
+    role: robustness_operator_source_verified_pair_denominators
+    feasibility: fails_per_participant_coverage  # S_p=121-151
+  ade20k_full_index:
+    role: deferred_registration_and_restricted_unpickler_required
+  laion_raw_stimulus_images:
+    role: bound_2026-10-13_low_level_visual_operator_via_EP04_frozen_features  # asset_ep04_laion_raw_stimuli_dua
+    direct_pixel_reads_in_A0: false  # EP04 RGB block moments are reused read-only
+
+theory_rules:
+  - "No step may use properties known only for the conjectured result."
+  - "Lemma conditions are proven, or cited together with their conditions."
+  - "Simulations, SMT searches and symbolic checks on special cases can refute a claim but cannot prove it."
+  - "BR theory tools cover finite rational affine identifiability (y = M theta + b); most of this argument will not be machine-checked."
+  - "P5's factor nonidentifiability may be checked in log coordinates as a finite affine identifiability statement; other propositions are proved in text."
+  - "Separate exact propositions, assumption checks and empirical conjectures."
+  - "Entrywise PMI or log-ratio transformations do not automatically preserve eigenvectors."
+  - "Prove spectral ordering conditions before claiming a shared leading subspace."
+  - "Compare subspaces for degenerate modes; never interpret arbitrary rotations within them."
+  - "A small fine eigengap permits instability but does not imply fine disagreement."
+  - "Do not separate neural weighting from pooling without identifying information."
+  - "Do not identify a shared operator by fitting it to the representations it is meant to explain."
+
+analyses:
+  P1_to_P5:
+    role: conditional_theory
+    executor: text_only_drafting_with_orchestrator_review
+    outputs:
+      - operator_function_relations_with_ordering_conditions
+      - surrogate_objective_low_rank_factorization_proposition
+      - coarse_subspace_perturbation_bound_with_cited_constant
+      - stochastic_block_fine_perturbation_example
+      - limited_readout_invariance_proposition
+      - pooling_commutation_and_nonidentifiability_proposition
+    location: outputs/theory/
+
+  A0:
+    role: exploratory_primary
+    question: do_measured_cooccurrence_eigenspaces_predict_model_and_brain_subspaces
+    feasibility_run: outputs/runs/operator_feasibility/20261013-check01
+    operator:
+      primary_source: visual_genome_v1_4_objects
+      presence: binary_per_image_THINGS_concept
+      kernel: shared_context_PPMI_cosine_double_centered  # contexts = all VG synsets; own label excluded
+      robustness_variants: [direct_normalized_D-1/2AD-1/2, coco_captions_kernel]
+      concept_set: pooled_dev_concepts_with_at_least_10_images
+      normalization_scope: source_wide_counts_then_restrict_to_S_or_S_p_before_centering
+    targets:
+      brain: participant_concept_patterns_per_primary_sector_cross_repeat_gram
+      models: concept_level_embeddings_CLIP_PEcore_SigLIP2_DINOv2
+    statistic: principal_projector_overlap
+    rank: 8
+    sensitivity_ranks: [4, 16]
+    band_profile: [[1, 8], [9, 16], [17, 32]]
+    controls:
+      - concept_permutation_null_1000
+      - taxonomy_residual_alignment_within_category_permutation_null
+      - frequency_preserving_null_within_log_frequency_bins
+      - beyond_low_level_visual_similarity_operator  # EP04 RGB block-moment features
+    units: participants_for_brain_models_descriptive
+    design_status: frozen_2026-10-13_before_any_A0_model_or_neural_outcome  # scientist approved freeze and run
+    frozen_specification:
+      wordnet_crosswalk: nltk_wordnet_3_0_index_noun_name_decoding_with_THINGS_offset_column_fallback
+      caption_matcher: THINGS_Word_and_uniqueID_names_only_plus_plurals_ambiguous_dropped
+      lvis: excluded_from_A0_failed_per_participant_coverage
+      concept_sets: S_s_pooled_min10_images_intersected_with_concepts_present_in_all_three_primary_ROIs_per_participant
+      all_kernels: restricted_then_double_centered_top_q_algebraic_eigenvectors
+      brain_preprocessing: all_dev_trial_session_standardization_EP04_validity_rule_min_2_valid_presentations
+      brain_primary_gram: cross_repeat_split_half_interleaved_presentation_order
+      models: L2_normalized_rows_concept_means_linear_gram
+      visual_operator: EP04_rgb_block_moments_5_10_20_v1_concept_means_linear_gram_top16_residualized
+      taxonomy_control: intercept_plus_27_multi_hot_residualization_within_label_signature_permutations
+      frequency_control: within_10_log_count_bins
+      combined_control: taxonomy_plus_visual_span_residualization
+      n_perm: 1000
+      participant_summary: mean_over_three_primary_sectors_shared_permutations
+      group_inference: exact_one_sided_sign_test_over_5_participants_exploratory
+      sensitivities: [q4, q16, brain_full_mean_gram, vg_direct_operator, bands_1_8_9_16_17_32]
+      secondary_operator: coco_captions_same_statistics
+      models_and_model_model: descriptive
+  A1:
+    role: exploratory
+    question: is_weighting_along_native_axes_sufficient
+    source: laion_development
+    outer_folds: frozen_EP04_folds
+    inner_folds: 2
+    fit_pca_on: training_partition_only
+    primary_rank: 64
+    sensitivity_ranks: [32]
+    rank_selection_from_brain_outcomes: false
+    metric_families:
+      - rank_matched_native       # alpha = 1 in EP22's U_k D_k^alpha convention
+      - spectral_power            # one alpha per model, fold and participant
+      - nonnegative_diagonal
+      - full_positive_semidefinite
+    spectral_power_grid: {start: 0.0, stop: 4.0, step: 0.1}  # EP22 attempt02 grid
+    diagonal_full_comparison:
+      coordinates: same_training_PCA_span
+      target: same_training_brain_second_moment
+      objective: same_kernel_prediction_loss
+      normalization: unit_trace_predicted_and_target_training_kernels
+      regularization: shrinkage_toward_rank_matched_native_metric
+      dimensionless_regularization_grid: [0.0, 0.01, 0.1, 1.0, 10.0, 100.0]
+      selection: inner_training_folds_only
+      boundary_selection: report_and_flag
+    evaluation: EP22_native_RSA_convention_on_outer_fold
+    primary_contrast: full_minus_diagonal_RSA
+    secondary_contrast: power_minus_native_RSA
+    report:
+      - every_participant_effect
+      - equal_weight_primary_sector_summary
+      - each_model_family
+      - numerical_rank_and_selection_boundaries
+    interpretation: cross_axis_gain_shows_predictive_value_not_its_biological_cause
+    design_status: frozen_2026-10-13_before_any_A1_outcome
+    frozen_specification:
+      brain_inputs: EP04_fold_payload_mean_patterns_and_image_validity_primary_eligible  # as EP22 D2
+      features: L2_normalized_embeddings_centered_on_training_mean_PCA_scores_Z
+      target: training_correlation_matrix_of_row_zscored_patterns_scaled_to_unit_mean_diagonal
+      full_metric: closed_form_ridge_toward_native_W_ij=((Z'GZ)_ij+lam*c*delta_ij)/(d_i^2*d_j^2+lam)_then_PSD_clip
+      diagonal_metric: closed_form_w_i=max(0,((Z'GZ)_ii+lam*c)/(d_i^4+lam))
+      native_scale_c: n_train_over_sum_d_squared
+      lambda_scale: dimensionless_grid_times_mean_d_fourth
+      spectral_power: Phi=Z*D^(alpha-1)_alpha_grid_0_to_4_step_0.1
+      inner_selection: training_EP04_folds_split_into_two_interleaved_groups_mean_inner_RSA
+      evaluation_rsa: squared_euclidean_model_RDM_vs_neural_correlation_distance_spearman_fisher_z
+      reference: EP22_full_dimensional_native_cosine_RSA
+      aggregation: folds_then_primary_sectors_then_participants_equal_weight
+      group_inference: exact_one_sided_sign_test_exploratory
+
+  A2:
+    role: exploratory
+    labels: things_category27_manual_single_label
+    stimuli: THINGS_and_THINGSplus_development_images
+    views:
+      coarse: category_centroids_centered_across_categories
+      fine: images_after_within_category_centering
+    structure_metric: principal_projector_overlap_in_stimulus_space
+    rank_rule: "r = min(8, floor((C - 1) / 2)); require r >= 2; same r at both scales"
+    saturated_projector_comparisons: prohibited
+    null_permutations: 200
+    coarse_null: permute_category_correspondence
+    fine_null: permute_image_correspondence_within_category
+    geometry_companion: EP22_native_RSA_at_each_scale
+    A2a_model_model:
+      units: model_pairs_descriptive  # no measurement noise; not biological evidence
+      pooling: all_participants_images
+      min_images_per_category: 20     # 19 categories, rank 8
+    A2b_model_brain:
+      units: participants
+      min_images_per_category: 10     # 7 to 10 categories per participant, rank 3 to 4
+      brain_gram_estimate: cross_repeat_split_half  # unbiased under independent repeat noise
+      reliability: split_half_repeats_at_each_scale_and_rank
+      primary_contrast: reliability_relative_coarse_minus_fine_agreement
+      unreliable_scale: inconclusive_for_that_cell
+    threshold_origin: chosen_from_label_counts_before_any_EP23_outcome
+    category53_alternative: rejected_insufficient_categories
+    design_status: frozen_2026-10-13_before_any_A2_outcome  # formed after A0 results; A2 itself unseen
+    frozen_specification:
+      images: THINGS_stratum_dev_images_with_exactly_one_category27_label
+      brain_inputs: A0_attempt01_split_half_image_patterns  # same preprocessing as A0
+      coarse_kernel: category_centroid_gram_double_centered  # brain cross-repeat from half centroids
+      fine_kernel: within_category_centered_image_gram  # brain cross-repeat from centered halves
+      calibration: kappa=(omega-null_mean)/(1-null_mean)
+      reliability: brain_split_half_self_consistency_kappa_at_each_scale
+      reliability_relative: rho=kappa_model_brain/kappa_self_only_if_self_p_lt_0.05_else_unreliable
+      primary_participant_contrast: mean_over_primary_sectors_and_4_models_of_rho_coarse_minus_rho_fine
+      raw_kappa_reported: true
+      geometry_companion: within_category_pair_RSA_and_centroid_RSA_spearman_fisher_z
+      n_perm: 200
+      group_inference: exact_one_sided_sign_test_exploratory
+
+  A3:
+    role: exploratory_simulation
+    biological_claims: prohibited
+    construction: fixed_neural_spectrum_and_pooling_with_varied_topography
+    cases:
+      - identity_measurement
+      - mode_aligned_pooling
+      - mode_mixing_pooling
+    max_seeds: 20
+    fitting_to_EP22_alpha: prohibited
+    outputs:
+      - mode_mixing_magnitude
+      - preferred_spectral_power
+      - counterexample_to_a_universal_pooling_exponent
+    design_status: frozen_2026-10-13
+    frozen_specification:
+      stimuli: 300
+      cortical_sheet: 64x64_units
+      neural_modes: 64_orthonormal_stimulus_modes_amplitudes_k_power_minus_0.5
+      topographies: [dct_ordered_low_frequency_first, dct_shuffled, white_random, smooth_random]
+      pooling_sigma_grid_units: [0, 1, 2, 4]
+      voxel_downsampling: 4x4_blocks_except_identity
+      noise: [none, moderate_two_repeats_cross_gram]
+      model_representation: true_stimulus_modes_with_same_spectrum
+      alpha_grid: 0_to_4_step_0.1_max_spearman_rsa
+      mixing_magnitude: offdiagonal_energy_fraction_of_V'MM'V
+      seeds_per_condition: 20
+
+confirmation:
+  status: inactive_no_eligible_source
+  candidate_endpoint:
+    participant_summary: reliability_relative_coarse_minus_fine_model_brain_subspace_agreement
+    model_aggregation: equal_weight_mean_of_CLIP_PEcore_SigLIP2_DINOv2
+    prediction: positive
+    inference: exact_one_sided_participant_sign_test
+    alpha: 0.05
+    zero_contrasts: count_as_nonpositive
+    min_independent_participants: 5
+    nonrejection: does_not_establish_equivalence_or_absence
+  freeze_before_confirmation_access:
+    - source_cohort_and_existing_episode_roles
+    - calibration_and_confirmation_partitions_if_needed
+    - taxonomy_category_counts_and_rank
+    - null_calibration_and_reliability_normalization
+    - regions_or_sensor_time_summary
+    - exclusion_and_missing_data_rules
+    - model_inputs_and_representation_stages
+  prohibit:
+    - re_sealing_exposed_outcomes
+    - using_EP17_or_EP18_reserved_audit_material_without_scientist_decision
+    - choosing_source_after_comparing_outcomes
+    - substituting_a_successful_endpoint_after_failure
+    - interpreting_modality_difference_as_isolated_pooling_effect
+  no_eligible_source_action: finish_with_exploratory_and_theoretical_claims_only
+
+budgets:
+  scope: initial_stage_only
+  cpu_core_hours_max: 64
+  cpus_per_job_max: 8
+  memory_gib_per_job_max: 64
+  wall_hours_per_job_max: 4
+  max_concurrent_jobs: 1
+  gpu_hours_max: 0
+  new_embedding_extractions_max: 0
+  new_model_training_runs_max: 0
+  scratch_gib_max: 20
+  retained_outputs_gib_max: 2
+  compute_location: verified_Slurm_allocation
+  scheduler_poll_interval_seconds_min: 60
+  automatic_budget_increase: prohibited
+  deferred_extensions:
+    - independent_confirmation_execution
+    - intermediate_layer_extraction
+    - child_headcam_embedding_extraction
+    - egocentric_or_text_corpus_operator_acquisition
+    - matched_training_curation_intervention
+    - unpaired_brain_model_alignment_test
+
+adopted_scoping_decisions:
+  measured_concept_cooccurrence_operator_test: adopted_2026-10-13_as_A0  # feasibility and novelty checked
+
+stop:
+  - Stop an analysis if its data role or exposure status cannot be established.
+  - Stop at the resource ceiling and report unfinished components.
+  - Do not broaden rank, power, endpoint or model searches to rescue an outcome.
+  - If A2 fine structure is unreliable, record the limitation instead of interpreting it.
+  - If a proposition fails, report the counterexample and revise the conditional claim explicitly.
+  - If measurement remains unidentified, specify the missing measurement instead of assigning a cause.
+  - The initial stage is complete when P1 to P5 and A1 to A3 are resolved.
+  - Do not activate confirmation without a frozen eligible data contract.
+
+terminal_classes:
+  - conditional_theory_with_exploratory_constraints
+  - restricted_spectral_account_refuted
+  - unresolved_measurement_or_signal_identifiability
+  - incomplete_due_to_data_or_budget
+  - independent_structural_prediction_confirmed
+  - independent_structural_prediction_not_confirmed
+
+claim_limits:
+  - Exposed LAION results are exploratory for EP23.
+  - Biological inference uses participants as units.
+  - Sectors, images and model families are not independent biological replicates.
+  - Shared subspaces do not guarantee shared neighbourhoods or distances.
+  - Ordinary ridge is not generally invariant to spectral reweighting.
+  - A spectral power does not identify a neural timescale, successor parameter or pooling law.
+  - Simulations do not establish biology.
+  - Paired-stimulus comparisons do not establish unpaired alignment.
+  - Released-checkpoint comparisons do not isolate training curation.
+  - Similarity does not establish a learning mechanism.
