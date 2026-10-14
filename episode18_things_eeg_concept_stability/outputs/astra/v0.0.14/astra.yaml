@@ -1098,6 +1098,29 @@ analyses:
         Average each person's six outer folds before descriptive two-sided
         95-percent t intervals with 29 degrees of freedom. Export PNG/PDF and
         exactly three summary lines, disclosing same-account procedural separation.
+        Released evidence is in outputs/runs/baseline_models/core_direct_checkpoint_batch_report001/core_reference.complete.json,
+        its adjacent summary.md, and outputs/figures/core_direct_checkpoint_batch001/core_reference_G_T.png.
+    findings:
+      fixed_core_reference_underidentified:
+        id: fixed_core_reference_underidentified
+        claim: >-
+          Across all 30 original development participants, the fixed core image
+          gain is G=-0.00000757419 (descriptive 95-percent participant interval
+          -0.0000560446 to 0.0000408963), and target/response nuisance gain is
+          T=-0.000474771 (-0.000783169 to -0.000166373). The image gain is not
+          clearly positive and the added task nuisance worsens prediction in
+          this reference. The registered G<=0 rule is underidentified; this
+          does not establish absence of conceptual information in EEG.
+        created_at: '2026-10-14T07:31:36Z'
+        evidence:
+        - {id: complete_30_person_estimates, artifact: complete_core_calibration}
+        derived: true
+        notes: >-
+          Average six held-out folds per participant before t intervals with
+          29 degrees of freedom. These are descriptive development estimates,
+          not the confirmatory positive-control family. Evaluation separation
+          is procedural within one account. Concept/false scores and all
+          sixteen audit participants remain closed; full study is unresolved.
   baseline_search:
     name: Fixed 19-44-trial label-baseline search with concept scores hidden
     inputs:

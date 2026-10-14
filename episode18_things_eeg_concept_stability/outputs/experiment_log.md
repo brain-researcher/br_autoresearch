@@ -1,5 +1,18 @@
 # Experiment log
 
+## 2026-10-14 — core_reference_calibration — complete real-data estimate released
+
+47743173 completed 0:0 in 12m57s; the reporter accepted all 30 original people, 900 logical inner validations and 180 outer folds.
+G = −7.574192738e-6, descriptive 95% participant interval [−5.604464579e-5, 4.089626032e-5].
+T = −0.0004747710805, interval [−0.0007831690300, −0.0001663731310]; six folds are averaged within each person before t(df29) inference.
+Report: runs/baseline_models/core_direct_checkpoint_batch_report001/core_reference.complete.json and exactly three lines in summary.md.
+Figure: figures/core_direct_checkpoint_batch001/core_reference_G_T.png and PDF; both panels were visually inspected.
+G <= 0 invokes the existing underidentified reference rule; this fixed core does not support a concept claim or absence-of-signal inference.
+Same-account procedural separation is disclosed; concept/false scores and all 16 audit participants remain closed.
+BR pipeline_plan_review returned approve/low with no findings or KG rules; its generic checklist is advisory, not statistical validation.
+The focus goal's next EP18 estimate/uncertainty/figure/summary is delivered; preserve the broader unresolved study and advance other focus episodes.
+Step 47377474.45 passed pinned ASTRA 0.0.14 schema/reference validation for the new finding after reusing an available YAML parser.
+
 ## 2026-10-13 23:14 Pacific — core_reference_calibration — remaining folds and complete-cohort report selected
 
 27/30 original participants are complete; sub-27 saved all 15 paired grids and 3/6 outer folds before its measured time stop.

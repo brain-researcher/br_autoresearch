@@ -1,5 +1,20 @@
 # EP18 outputs
 
+**October 14 — complete 30-person real-EEG core result.**
+Image prediction gain is G = −0.000007574 (descriptive 95% participant interval
+−0.00005604 to 0.00004090); target/response nuisance gain is T = −0.0004748
+(−0.0007832 to −0.0001664). The fixed image reference shows no clear positive
+incremental prediction, and the added task nuisance worsens prediction here.
+The registered no-positive-reference rule leaves this calibration underidentified;
+it does not establish absence of conceptual information in EEG.
+All 30 people and 180 outer folds are complete; each person's six folds were
+averaged before participant-level intervals. Separation was procedural within one account.
+The requested next empirical result is available as [three lines](runs/baseline_models/core_direct_checkpoint_batch_report001/summary.md),
+[numeric results](runs/baseline_models/core_direct_checkpoint_batch_report001/core_reference.complete.json),
+and [one figure](figures/core_direct_checkpoint_batch001/core_reference_G_T.png) ([PDF](figures/core_direct_checkpoint_batch001/core_reference_G_T.pdf)).
+The broader concept question and matched-control comparison remain unresolved;
+concept/false scores and the 16-person audit remain closed. Earlier entries below are historical.
+
 **October 13, 23:20 Pacific — 28/30 core fits complete; four remaining folds and reporting queued.**
 All original writers are terminal. Job 47743173 reuses their saved fits,
 continues only sub-27/sub-31, and skips completed sub-47. Its fixed reporter releases G/T with
