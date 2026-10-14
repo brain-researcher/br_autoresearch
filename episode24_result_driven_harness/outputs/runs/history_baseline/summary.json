@@ -1,0 +1,207 @@
+{
+  "source": "/home/users/zijiao/.codex/sessions/2026/10/03/rollout-2026-10-03T10-24-58-01a102cc-2ffb-7120-bd17-e442a0a313e8.jsonl",
+  "snapshot_bytes": 636747571,
+  "first_timestamp": "2026-10-03T17:24:59.953Z",
+  "last_timestamp": "2026-10-13T23:33:05.435Z",
+  "physical_lines_seen": 160721,
+  "record_types": {
+    "session_meta": 1,
+    "event_msg": 66032,
+    "response_item": 66446,
+    "world_state": 436,
+    "turn_context": 664,
+    "token_usage_record": 19288,
+    "inter_agent_communication_metadata": 7666,
+    "compacted": 188
+  },
+  "event_types": {
+    "task_started": 479,
+    "item_completed": 42168,
+    "token_count": 22669,
+    "task_complete": 461,
+    "thread_settings_applied": 243,
+    "thread_goal_updated": 11,
+    "turn_aborted": 1
+  },
+  "unique_tool_calls": {
+    "exec": 10631,
+    "spawn_agent": 95,
+    "request_user_input_async": 38,
+    "send_message": 2490,
+    "list_agents": 184,
+    "followup_task": 1932,
+    "wait_agent": 306,
+    "sleep": 2699,
+    "interrupt_agent": 6,
+    "wait": 256
+  },
+  "argument_keyword_counts": {
+    "documentation_reference": 1633,
+    "scheduler_query": 1336,
+    "approval_reference": 842,
+    "scheduler_submit": 1268,
+    "validation_reference": 1867
+  },
+  "daily": {
+    "2026-10-03": {
+      "records": 11049,
+      "event:task_started": 2,
+      "message:user": 6,
+      "event:item_completed": 2824,
+      "message:assistant": 146,
+      "tool_calls": 1253,
+      "event:token_count": 1558,
+      "event:task_complete": 1,
+      "event:thread_settings_applied": 14
+    },
+    "2026-10-04": {
+      "records": 20333,
+      "event:item_completed": 5055,
+      "tool_calls": 2506,
+      "event:token_count": 2955,
+      "message:assistant": 428,
+      "event:thread_settings_applied": 24,
+      "event:task_started": 48,
+      "message:user": 54,
+      "event:task_complete": 46
+    },
+    "2026-10-05": {
+      "records": 26572,
+      "tool_calls": 2871,
+      "event:item_completed": 7441,
+      "event:token_count": 3564,
+      "message:assistant": 576,
+      "event:thread_settings_applied": 37,
+      "event:task_complete": 49,
+      "event:task_started": 52,
+      "message:user": 68,
+      "event:thread_goal_updated": 1
+    },
+    "2026-10-06": {
+      "records": 10147,
+      "event:item_completed": 2697,
+      "message:assistant": 274,
+      "tool_calls": 1168,
+      "event:token_count": 1416,
+      "event:task_complete": 51,
+      "event:task_started": 50,
+      "message:user": 56,
+      "event:thread_settings_applied": 28,
+      "event:thread_goal_updated": 2
+    },
+    "2026-10-07": {
+      "records": 15007,
+      "event:thread_settings_applied": 22,
+      "event:task_started": 43,
+      "message:user": 46,
+      "event:item_completed": 3999,
+      "message:assistant": 291,
+      "tool_calls": 1748,
+      "event:token_count": 2103,
+      "event:task_complete": 40,
+      "event:thread_goal_updated": 2
+    },
+    "2026-10-08": {
+      "records": 3073,
+      "event:item_completed": 816,
+      "tool_calls": 319,
+      "event:token_count": 417,
+      "message:assistant": 63,
+      "event:task_complete": 5,
+      "event:task_started": 5,
+      "message:user": 5,
+      "event:thread_settings_applied": 4
+    },
+    "2026-10-09": {
+      "records": 19357,
+      "event:thread_settings_applied": 22,
+      "event:task_started": 91,
+      "message:user": 99,
+      "event:item_completed": 4910,
+      "message:assistant": 415,
+      "tool_calls": 2279,
+      "event:token_count": 2763,
+      "event:task_complete": 89
+    },
+    "2026-10-10": {
+      "records": 5359,
+      "event:thread_settings_applied": 14,
+      "event:token_count": 751,
+      "event:item_completed": 1410,
+      "message:assistant": 101,
+      "tool_calls": 580,
+      "event:task_started": 19,
+      "message:user": 22,
+      "event:task_complete": 19
+    },
+    "2026-10-11": {
+      "records": 24120,
+      "event:thread_settings_applied": 33,
+      "event:thread_goal_updated": 1,
+      "event:task_started": 75,
+      "message:user": 80,
+      "event:item_completed": 6284,
+      "message:assistant": 416,
+      "tool_calls": 2830,
+      "event:token_count": 3434,
+      "event:task_complete": 72
+    },
+    "2026-10-12": {
+      "records": 13784,
+      "event:thread_settings_applied": 18,
+      "event:token_count": 2079,
+      "event:item_completed": 3469,
+      "tool_calls": 1784,
+      "message:assistant": 234,
+      "event:thread_goal_updated": 2,
+      "event:turn_aborted": 1,
+      "event:task_started": 60,
+      "message:user": 66,
+      "event:task_complete": 56
+    },
+    "2026-10-13": {
+      "records": 11920,
+      "event:item_completed": 3263,
+      "tool_calls": 1299,
+      "event:token_count": 1629,
+      "message:assistant": 255,
+      "event:thread_settings_applied": 27,
+      "event:task_complete": 33,
+      "event:task_started": 34,
+      "message:user": 40,
+      "event:thread_goal_updated": 3
+    }
+  },
+  "configurations": [
+    {
+      "approval_policy": "never",
+      "sandbox_policy": "danger-full-access",
+      "model": "gpt-6-astra",
+      "contexts": 664
+    }
+  ],
+  "last_reported_total_token_usage": {
+    "input_tokens": 2438205949,
+    "cached_input_tokens": 2392871808,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 7656715,
+    "reasoning_output_tokens": 3117658,
+    "total_tokens": 2445862664
+  },
+  "malformed_complete_line_numbers": [],
+  "omitted": {
+    "nonvisible_message": 110,
+    "response_item:reasoning": 17660,
+    "response_item:agent_message": 7666,
+    "duplicate_call_id": 2
+  },
+  "compute_job": "47703984",
+  "cautions": [
+    "Keyword counts are overlapping mentions, not executed commands or wasted-work judgments.",
+    "User-role messages do not by themselves establish human authorship.",
+    "Session duration does not establish continuous active or unattended execution.",
+    "Internal reasoning, system/developer instructions, general tool outputs and raw arguments are not exported.",
+    "Token usage is the final reported cumulative snapshot, not summed across events or priced."
+  ],
+  "retention_note": "Conversation exports removed on 2026-10-14. Historical numeric counts retained; the revised aggregate-only exporter was not rerun on this source."
+}
