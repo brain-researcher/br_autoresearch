@@ -1,0 +1,143 @@
+{
+ "c2b_confirmatory": false,
+ "c2b_retention_basis": {
+  "CLIP": {
+   "native_gap_mean": 0.03497329024398458,
+   "swapped_gap_mean": 0.051853086164623655,
+   "closure_mean": -0.482648209615977,
+   "participants_meeting_rule": 0,
+   "evaluable": false,
+   "passed": null
+  },
+  "SigLIP2": {
+   "native_gap_mean": 0.004683324641998721,
+   "swapped_gap_mean": 0.017799428215973422,
+   "closure_mean": -2.8005967078073604,
+   "participants_meeting_rule": 0,
+   "evaluable": false,
+   "passed": null
+  }
+ },
+ "lock": "ep22_ood_confirmation",
+ "write_once": true,
+ "written_utc": "2026-10-13T00:00:35.908673+00:00",
+ "status": "locked_pending_scientist_opening_approval",
+ "code_sha256": {
+  "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/code/ood_confirmation.py": "817145a77ddfbf01445f6e1016af1eb9a7bc3736c6ac5b90bbd695a31ca6305d",
+  "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode04_shared_scene_geometry/outputs/code/preprocess_development_neural.py": "854beb72aa2c014d21ad047e862dd6cac03b2d536afe6d2fe6899122d730c729",
+  "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode04_shared_scene_geometry/outputs/code/prepare_development_neural_pilot.py": "9a1486b868f9ad0263d5cbbf4192fb9b59150bc9946f1c025877b47287c10908",
+  "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode04_shared_scene_geometry/outputs/code/prepare_development_neural_participant.py": "7515211d02418013e827d0b453cf6bbd878406cafa1ba3a7e4c94d427d2150ea",
+  "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode04_shared_scene_geometry/outputs/code/inspect_array_metadata.py": "039e7bc603ab6a98757879f3e8a12db8f1c7611b1c8b25fcc2c43c58a1936cd1"
+ },
+ "settings": {
+  "participants": [
+   "sub-01",
+   "sub-03",
+   "sub-05",
+   "sub-06",
+   "sub-07"
+  ],
+  "primary_rois": [
+   "laion-ventral",
+   "laion-lateral",
+   "laion-dorsal"
+  ],
+  "descriptive_roi": "retinotopic-EVC",
+  "models": [
+   "DINOv2",
+   "CLIP",
+   "PEcore",
+   "SigLIP2"
+  ],
+  "reference": "DINOv2",
+  "confirmatory_categories": [
+   "cropped",
+   "relations",
+   "selfmade",
+   "unusual"
+  ],
+  "descriptive_categories": [
+   "illusion-natural",
+   "gabor",
+   "gaudy",
+   "illusion-classic",
+   "shape"
+  ],
+  "margin_fisher_z": 0.02,
+  "participant_rule_min": 4,
+  "permutations": 10000,
+  "permutation_seed": 20261012,
+  "null_quantile": 0.95,
+  "null_quantile_method": "higher",
+  "null_exceedance": "strictly_greater",
+  "standardization": "per session: mean and population SD over all development trials of that session (EP04 training_statistics with no held-out fold)",
+  "voxel_rule": "in fixed ROI mask, finite on every development presentation, positive SD in every session; >=3 voxels per ROI",
+  "repeat_rule": "image eligible with >=2 valid primary presentations (finite on all retained primary-sector voxels); EVC also needs >=2 valid EVC presentations",
+  "neural_distance": "correlation",
+  "native_model_distance": "cosine on float64 L2-normalized rows",
+  "spectral_geometry": "per participant x category on eligible images: SVD of column-centred L2 rows; squared Euclidean on U_a * s_b (rank order)",
+  "c3_transform": "per participant: PCA of all 4,712 development embeddings (L2 rows, centred), leading 256 axes; Phi=(X-mu) V diag(s^(alpha-1)), alpha = median of the participant's five D2 R1 alpha-hat values per model",
+  "rsa": "Spearman (average ranks) of upper triangles, Fisher z; equal weights over categories and primary sectors, then participants",
+  "c1": "CLIP-DINOv2 native gap: spectral if mean <= -margin and >=4/5 participants <= -margin; selection_only if mean > -margin and >=4/5 participants > -margin; else indeterminate. PEcore classified the same way (secondary). Leave-one-category-out means reported.",
+  "c2a": "Within-category: for CLIP and SigLIP2, E_val < 0 for the mean and >=4/5 participants (E_val = 0.5[(RSA(m|m)-RSA(m|ref)) + (RSA(ref|m)-RSA(ref|ref))], rows = eigenvectors|eigenvalues).",
+  "c2b": "All pairs among each participant's eligible confirmatory images: for CLIP and SigLIP2, evaluable if the mean native all-pairs gap <= -margin; pass if |all-pairs gap with DINOv2 eigenvalues on VLM eigenvectors| <= 0.5 |native all-pairs gap| for the mean and for >=4/5 participants (each with a negative native gap).",
+  "c2b_retention": "C2b is confirmatory only if the lock records that the pre-lock dev-test met the same C2b rule for both CLIP and SigLIP2; otherwise C2b is descriptive.",
+  "c2_pecore_secondary": "Within-category PEcore: E_val < 0 and E_vec > 0 for the mean and >=4/5 participants.",
+  "c3": "For each VLM: mean (C3 transform minus native) > 0 and >=4/5 participants > 0.",
+  "gate": "DINOv2 native confirmatory aggregate > 95th percentile ('higher') of 10,000 within-category whole-image permutations of the model RDM, each permutation shared across participants and sectors; failure makes the opening uninformative.",
+  "embeddings": "provider 2026-09-28 corrected HDF5 files in inputs/laion_ood_embeddings_corrected (ETags in download_record.json)"
+ },
+ "adopted_design_record": "outputs/experiment_log.md#2026-10-12-2255-utc--confirmation-design--scientist-adopted-the-restated-predictions-exposure-review-authorized",
+ "separation": "procedural, same account (adopted 2026-10-12)",
+ "inputs": {
+  "category_table": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/d0_outcome_blind_spectra/20261012-attempt01/results/ood_category_table.csv",
+  "category_table_sha256": "f40cd6aa5657c0f7e29308704b55f3b59bd3edb0023f9a6df9184c129a0933e2",
+  "corrected_embeddings_download_record": {
+   "downloaded_utc": "2026-10-12T20:28:58.090078+00:00",
+   "job_id": "47545539",
+   "files": {
+    "CLIP": {
+     "url": "https://laion-fmri.s3.us-west-2.amazonaws.com/stimuli/task-images_desc-CLIP_embeddings.h5",
+     "etag": "\"34d939c8f0cd36de9b1accfcb785a8fc-7\"",
+     "last_modified": "Mon, 28 Sep 2026 09:52:06 GMT",
+     "bytes": 53400756
+    },
+    "DINOv2": {
+     "url": "https://laion-fmri.s3.us-west-2.amazonaws.com/stimuli/task-images_desc-DINOv2_embeddings.h5",
+     "etag": "\"87d5c83ab51fe262f5964fecc374fa3d-7\"",
+     "last_modified": "Mon, 28 Sep 2026 09:52:06 GMT",
+     "bytes": 53394612
+    },
+    "PEcore": {
+     "url": "https://laion-fmri.s3.us-west-2.amazonaws.com/stimuli/task-images_desc-PEcore_embeddings.h5",
+     "etag": "\"8faac064e4f95f9208dd4d073bb06a9a-7\"",
+     "last_modified": "Mon, 28 Sep 2026 09:52:06 GMT",
+     "bytes": 53394612
+    },
+    "SigLIP2": {
+     "url": "https://laion-fmri.s3.us-west-2.amazonaws.com/stimuli/task-images_desc-SigLIP2_embeddings.h5",
+     "etag": "\"dabf71805f4ab2312b479964267d9861-8\"",
+     "last_modified": "Mon, 28 Sep 2026 09:52:06 GMT",
+     "bytes": 59817140
+    }
+   }
+  },
+  "c3_alpha_source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/d123_development/20261012-attempt02/cells"
+ },
+ "pre_lock_evidence": {
+  "exposure_review": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/ood_exposure_review/20261012-review01/exposure_review.json",
+  "exposure_review_sha256": "a737dd02f2e73935674508261dd107a4eba629c3cadcfd52164c26d0e021bc57",
+  "coverage_check": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/ood_evaluator_validation/20261012-attempt02/ood_coverage_check.json",
+  "dev_test_report": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/ood_evaluator_validation/20261012-attempt02/dev_test_report.json",
+  "synthetic_tests": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode22_geometry_gap_decomposition/outputs/runs/ood_evaluator_validation/20261012-attempt02/synthetic_tests.txt",
+  "checks": {
+   "exposure_review_pass": true,
+   "coverage_ok": true,
+   "synthetic_tests_all_pass": true,
+   "dev_reader_bitwise_identical": true,
+   "dev_test_code_matches_current": true,
+   "dev_test_settings_match_current": true
+  }
+ },
+ "opening_rule": "One run of ood_confirmation.py --mode confirm after the scientist's explicit approval is logged; no partial result is released; an exact software retry is allowed only if no score was produced."
+}

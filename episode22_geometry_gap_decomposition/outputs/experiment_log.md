@@ -3,6 +3,166 @@
 Newest entries first. Entries are keyed by ASTRA analysis ID
 ([program](astra/v0.0.14/astra.yaml)).
 
+## 2026-10-13 04:13 UTC — reporting — summary and confirmation figure complete
+
+**Codex output review.** Codex `gpt-6-astra` (`max`, read-only, no commands)
+returned two deliverables, which the orchestrator reviewed before applying.
+
+- **[summary.md](summary.md):** every number checked against the facts
+  extracted from the reports.
+- **[plot_ood_confirmation.py](code/plot_ood_confirmation.py):** key names
+  match the report schema; the panel computations are correct; the "all four"
+  group equals the C1 participant gap; the validated palette is used.
+
+Both were applied without edits.
+
+**Rendering.**
+[plot_ood_confirmation.sbatch](code/plot_ood_confirmation.sbatch) ran as job
+47608692 (`COMPLETED`, 16 s, 1 CPU, below 0.01 CPU-hours). It read only the
+read-only confirmation report. The orchestrator inspected the output,
+[ood_confirmation.png](figures/ood_confirmation/20261013-opening01/ood_confirmation.png)
+(with an SVG alongside):
+
+- **Panel A:** C2a E_val is below 0 for every participant, for CLIP and
+  SigLIP2; PEcore is secondary.
+- **Panel B:** C3 deltas are positive for every participant and VLM; DINOv2 is
+  shown in gray as "not a prediction".
+- **Panel C:** the CLIP − DINOv2 native gap by category, inside the ±0.02
+  margin band, with a deficit only on selfmade.
+
+## 2026-10-13 02:10 UTC — reporting — result summary and figure delegated to Codex (text-only)
+
+The scientist set up a split: Opus orchestrates, and Codex `gpt-6-astra` at
+`max` does the work. The Codex CLI default was set to `gpt-6-astra`/`ultra`
+at the scientist's request; the backup is
+`~/.codex/config.toml.before-astra-default-20261013`.
+
+On Sherlock, Codex runs with `-s read-only` and executes no commands. Its
+sandbox cannot start here, and disabling the sandbox or auto-approving
+escalations is not used.
+
+The prompt sends only verified summary numbers, extracted programmatically
+from the D0–D3 and confirmation reports, together with the report schema. No
+neural data or raw images are sent. Prompt and response are under
+`$SCRATCH/br_autoresearch/episode22_geometry_gap_decomposition/codex/taskA_summary_figure/`.
+
+Codex is asked for two deliverables:
+
+- `outputs/summary.md`;
+- `outputs/code/plot_ood_confirmation.py`.
+
+The orchestrator reviews both, renders the figure in Slurm, and checks it.
+
+## 2026-10-13 01:29 UTC — ood_confirmation — single opening complete; terminal class `confirmation_complete`
+
+**Run.** Job 47580993 ran on sh02-06n11 from 00:50:00 to 01:08:02 UTC and
+ended `COMPLETED 0:0`: 18 min 15 s, 1.83 allocated CPU-hours. EP22 now totals
+26.43 CPU-hours, with no GPU.
+
+- MaxRSS reached 33.55 GB, at the 32 GiB request. There was no OOM and no
+  error, and the report is complete. A future rerun would need more memory.
+- The report
+  [confirmation_report.json](runs/ood_confirmation/20261013-opening01/confirmation_report.json)
+  was written once and then made read-only. Its sha256 is
+  `93c60a0fca41cd33c483aa2460e91b33066053b063744811cbaa441143e2307e`.
+- The report records the lock sha256 `efb07381…` and the approval anchor.
+- The reader decoded only OOD rows; for example, sub-01 ses-01 decoded 36
+  volumes and discarded 1,008 as opaque bytes.
+- All 371 images were eligible in every participant: 1,484 presentations
+  each, and 1,483 for sub-03.
+
+**Locked outcomes.** The opening was procedurally sealed, with five
+participants.
+
+| Prediction | Result | Evidence |
+| --- | --- | --- |
+| Gate | **passed** (scored) | DINOv2 within-category RSA 0.187 (participants 0.171–0.196), threshold 0.033, null mean −0.000 |
+| C1, CLIP | **indeterminate** | mean gap −0.023, but only 2/5 participants ≤ −0.02 (−0.059, +0.005, −0.017, +0.003, −0.046). Leaving out selfmade gives −0.000 |
+| C1, PEcore (secondary) | **indeterminate** | mean −0.027; 3/5 participants ≤ −0.02 |
+| C2a, CLIP | **passed** | within-category E_val −0.020, negative in 5/5 |
+| C2a, SigLIP2 | **passed** | within-category E_val −0.023, negative in 5/5 |
+| C2b (descriptive by lock) | not evaluable | the all-pairs gap is positive: CLIP +0.074, SigLIP2 +0.021 |
+| PEcore secondary | **failed** | E_val −0.017 was negative in 5/5, but E_vec was −0.010, positive in only 1/5 |
+| C3 | **passed** for every VLM | development-fitted α raised OOD RSA in 5/5 participants: CLIP +0.022, PEcore +0.017, SigLIP2 +0.035 (DINOv2 +0.045, not a prediction) |
+
+**Descriptive results, outside the locked predictions.**
+
+- **CLIP − DINOv2 gap by category:**
+
+  | Category | Gap |
+  | --- | ---: |
+  | cropped | −0.005 |
+  | relations | +0.008 |
+  | selfmade | −0.090 |
+  | unusual | −0.004 |
+
+  The mean deficit comes from selfmade alone.
+- **Within-category decomposition:**
+
+  | Model | Gap | E_val | E_vec | Share of gap from the spectrum |
+  | --- | ---: | ---: | ---: | ---: |
+  | CLIP | −0.023 | −0.020 | −0.003 | about 89% |
+  | SigLIP2 | −0.051 | −0.023 | −0.029 | — |
+
+- **All-pairs over the confirmatory images:** every VLM beats DINOv2. The
+  advantage comes from the eigenvectors (E_vec +0.04 to +0.09), while E_val
+  stays negative (−0.006 to −0.020).
+- **Synthetic types:** DINOv2 leads on gabor, illusion-classic and
+  illusion-natural; the VLMs lead on shape and gaudy. In EVC, DINOv2 reaches
+  0.160 against 0.05–0.09 for the VLMs.
+- **The superseded original C2** would also have failed on OOD. CLIP's mean
+  closure was 0.99, but 0/5 participants met the per-participant rule;
+  SigLIP2 reached 0.53, with 2/5 participants.
+
+**Interpretation.**
+
+- **Confirmed** on the sealed OOD images:
+  - Every VLM's spectrum lowers its within-category RSA relative to DINOv2
+    (C2a).
+  - Brain geometry prefers spectra steeper than any model's native spectrum,
+    with α ≈ 1.6–2.3, and this transfers out of sample (C3).
+- **Not confirmed:**
+  - The spectral-versus-selection test for CLIP is indeterminate (C1).
+  - PEcore's eigenvector advantage seen in development does not hold within
+    OOD categories.
+- **Post hoc readings**, formed after this opening; these are hypotheses, not
+  confirmations:
+  - CLIP shows no deficit in three of the four photographic categories, which
+    is compatible with selection inflating its LAION deficit.
+  - Eigenvector agreement is scale-dependent. VLMs are better at
+    between-category structure and not better within categories. This is
+    consistent across D1, the dev-test and the OOD descriptives.
+
+**Claim boundary.**
+
+- The evidence comes from the same five participants as development.
+- The seal is procedural.
+- C2 was rewritten post hoc before the lock.
+- No population or causal claim is made.
+
+## 2026-10-13 00:32 UTC — ood_confirmation — scientist approved the single OOD opening
+
+**Approval.** The scientist explicitly approved the opening: "批准开启 OOD".
+This entry is the `--approval-record` for the single procedurally sealed run.
+
+**Pre-submission checks.**
+
+- The evaluator's sha256 prefix is `817145a77ddfbf01`, matching the lock.
+- No `runs/ood_confirmation/` directory exists, so there has been no prior
+  opening.
+
+**Run.** One job runs
+`ood_confirmation.py --mode confirm --workers 5`, writing to
+`runs/ood_confirmation/20261013-opening01/`.
+
+- Resources: 6 CPUs, 32 GiB, a 2-hour limit and no GPU.
+- OOD values are held only in memory.
+- The single report is created write-once.
+- Nothing is released until it completes.
+
+Submitted with `sbatch --wait` as job **47580993**
+([launcher](code/ood_confirmation.sbatch)).
+
 ## 2026-10-13 00:00 UTC — configuration_lock — revalidation passed; write-once lock written
 
 **Revalidation run.** Job 47575628 ran on sh03-01n50 and ended

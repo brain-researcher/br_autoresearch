@@ -1,5 +1,27 @@
 # EP22 outputs
 
+**2026-10-13 01:29 UTC — terminal: `confirmation_complete`.**
+
+The single, procedurally sealed OOD opening ran as job 47580993 and passed
+the gate. Report:
+[confirmation_report.json](runs/ood_confirmation/20261013-opening01/confirmation_report.json)
+(read-only). Results:
+
+- **C2a passed:** within-category E_val is below 0 for CLIP and SigLIP2 in
+  5/5 participants.
+- **C3 passed:** the development-fitted α ≈ 2 raises OOD RSA for every VLM in
+  5/5 participants.
+- **C1 is indeterminate:** the CLIP gap is −0.023, and only 2/5 participants
+  are beyond the margin. The deficit comes from selfmade alone.
+- **The PEcore secondary prediction failed.**
+- **C2b is descriptive:** over all pairs, the VLMs beat DINOv2 through their
+  eigenvectors.
+
+See the [result entry](experiment_log.md#2026-10-13-0129-utc--ood_confirmation--single-opening-complete-terminal-class-confirmation_complete).
+EP22 used 26.43 allocated CPU-hours and no GPU.
+
+The entries below are earlier states.
+
 **2026-10-12 22:05 UTC — D0–D3 complete; OOD still sealed.**
 
 - D0 and D1–D3 have run on development data.
