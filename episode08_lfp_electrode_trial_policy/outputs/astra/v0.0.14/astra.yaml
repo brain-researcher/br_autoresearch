@@ -11,13 +11,15 @@ description: >-
   grouping ablation reduced that loss without beating balance. A session-cross-
   fitted linear electrode ranker with three donor-label controls is adopted;
   donor supervision adds information/cost beyond matched target acquisition.
-  Additional named explanatory scoring remains inactive and held sessions closed.
+  A distinct development-only conditional electrode-value analysis is adopted;
+  next-direction and coupling scoring remain inactive and held sessions closed.
   One shared budget and held opening apply.
 inputs:
   - {id: goal, type: data, source: GOAL.md}
   - {id: data_contract, type: data, source: DATASETS.md}
   - {id: policy, type: data, source: SEARCH_POLICY.yaml}
   - {id: open_design, type: data, source: outputs/open_exploration_design.md}
+  - {id: information_value_design, type: data, source: outputs/information_value_design.md}
   - {id: development_recipe, type: data, source: outputs/development_comparison_proposal.md}
   - {id: selector_recipe, type: data, source: outputs/selector_comparison_proposal.md}
   - {id: direction_recipe, type: data, source: outputs/direction_confounding_proposal.md}
@@ -52,6 +54,7 @@ inputs:
   - {id: conditional_completed_pilot, type: data, source: outputs/runs/development_search/initializer_conditional_pilot_attempt001/initializer_conditional_gain.json}
 outputs:
   - {id: final_report, from: final_report.study_report}
+  - {id: exploratory_information_value, from: offline_information_value.offline_value_report}
 analyses:
   source_support:
     name: Establish source roles and scientific support
@@ -127,21 +130,62 @@ analyses:
             --output-dir $EP08_COST_PILOT_OUTPUT
           resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
   offline_information_value:
-    name: Development information-state and conditional-value exploration
+    name: Predict conditional electrode removal value beyond quality and marginal association
     description: >-
-      Explore models temporal summaries fitting amounts coverage and declared
-      training/calibration states without requiring a separate pilot or an
-      acquisition-policy win. Separate fitting from evaluation, cross-fit
-      transferred value labels by session and match decoder target and tuning
-      when comparing selection value. No sequential-efficiency claim follows
-      from access to the whole training pool. Endpoints and stopping decisions
-      need prospective specification; this node does not activate them.
+      Adopted October 13 development-only explanatory branch. Use the original
+      eight sessions, 96 fitting and 40 previously exposed evaluation trials,
+      all96 electrodes and all native population targets. The original 41-policy
+      comparison conclusion stays complete; four reserved sessions stay closed.
+      Fit predictors from balanced32/64 prefixes, freeze all96-trial full/drop
+      ridge decoders before evaluation, and compare donor-session quality/marginal
+      value regression with the same regression plus conditional CV gain.
+      Residualize the added score against baseline predictors on donors only,
+      without rescaling the residual, to preserve baseline ridge shrinkage.
+      Report every fixed context and session; no sequential-efficiency claim.
     inputs:
       - {id: policy, from: ../policy}
       - {id: open_design, from: ../open_design}
+      - {id: information_value_design, from: ../information_value_design}
       - {id: support_report, from: ../source_support.support_report}
+      - {id: trial_roles, from: ../source_support.development_trial_roles}
+      - id: implementation
+        type: data
+        source: outputs/tools/development_information_value.py
+      - id: value_methods
+        type: data
+        source: outputs/tools/electrode_information_value.py
+      - id: development_reader
+        type: data
+        source: outputs/tools/development_reader.py
     outputs:
-      - {id: offline_value_report, type: report, format: json, inputs: [policy, open_design, support_report]}
+      - id: offline_value_report
+        type: report
+        format: json
+        inputs: [policy, open_design, information_value_design, support_report, trial_roles, implementation, value_methods, development_reader]
+        decisions: [fixed_development_panel]
+        recipe:
+          command: >-
+            timeout --signal=TERM --kill-after=10s 1860s
+            python3.12 outputs/tools/development_information_value.py
+            --source-root $OAK/data/br_autoresearch_data/sensorimotor_lfp/dryad-xd2547dkt-v5-payload/source
+            --metadata-report outputs/runs/source_support/attempt002/metadata_support.json
+            --trial-roles outputs/runs/source_support/development_trial_roles_attempt001/development_trial_roles.json
+            --output-dir {output} --max-seconds 1800 --max-rss-gib 5
+          resources: {cpus: 1, memory: 6Gi, time_limit: 35m}
+    decisions:
+      fixed_development_panel:
+        label: Complete exploratory electrode-value panel after prior policy exposure
+        default: original_sessions_and_roles
+        options:
+          original_sessions_and_roles:
+            label: >-
+              Primary32-trial leave-session-out MSE reduction;64-trial and opposite-
+              animal sensitivities. Fixed alpha1 ridge, full96 and three independent
+              partitions into16-electrode contexts, equal animal/session/context-family
+              weights. No evaluation-fitted normalization or tuning. Retain negative values,
+              nonpositive effects and explicit undefined rank correlations. Finish the
+              complete panel or report incomplete; no selected subset, winner search,
+              electrode-level inference or opening of the four reserved sessions.
   simple_comparisons:
     name: Cost-matched random spatial reliability and fixed-trial comparisons
     description: >-

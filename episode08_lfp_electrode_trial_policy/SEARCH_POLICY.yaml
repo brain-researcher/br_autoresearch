@@ -1,8 +1,43 @@
 episode: EP08
 title: What makes electrode and calibration information valuable?
-# Descriptive state synchronized to the adopted October 4 08:08 UTC log entry;
-# no terminal rule, model allowance, access boundary or resource ceiling changes.
-status: development_only_no_initializer_robust_policy
+status: development_information_value_authorized_original_policy_complete
+original_policy_disposition: development_only_no_initializer_robust_policy
+
+electrode_information_value_20261013:
+  authority: explicit_scientist_approval_of_distinct_real_data_information_value_continuation
+  specification: outputs/information_value_design.md
+  analysis_id: offline_information_value
+  regime: exploratory_offline_development_only
+  original_policy_comparisons: 41
+  original_policy_search_reopened: false
+  previously_exposed_development_evaluation: true
+  held_sessions_opened: 0
+  participants: same_eight_development_sessions_four_per_animal
+  trial_roles: original_96_fitting_and_40_evaluation_no_redraw
+  predictor_prefix_trials: [32, 64]
+  primary_prefix_trials: 32
+  context_menu: full96_and_three_seeded_partitions_of_all96_into_six_groups_of16
+  context_seed_literal: ep08-information-value-context-v1|20261013|filename|seed
+  context_seeds: [0, 1, 2]
+  representation_and_target: original_three_band_ten_bin_mean_and_all_native_population_units
+  decoder: direction_residual_multioutput_ridge_fixed_alpha1_no_tuning
+  conditional_predictor: fourfold_whole_trial_CV_drop_minus_full_SSE_over_fitting_scaled_target_SST
+  comparison_predictors: [direction_repeatability, three_log_residual_RMS_values, constant_band_fraction, marginal_residual_correlation_squared, marginal_CV_gain, context_redundancy, log_context_size]
+  outcome: original40_evaluation_drop_minus_full_SSE_over_common96_training_scaled_target_SST
+  value_regression: donor_standardized_ridge1_unpenalized_intercept
+  added_feature: donor_weighted_OLS_residual_of_standardized_conditional_score_against_baseline_span_without_residual_rescaling
+  primary_transfer: leave_whole_session_out_before_all_fitting_statistics
+  sensitivity_transfer: opposite_animal_only
+  weights: equal_animals_then_sessions_half_full96_half_three_partitions_equal_electrodes
+  primary_endpoint: baseline_minus_augmented_removal_value_prediction_MSE_at32_prefix_trials
+  secondary: all_context_rank_correlations_and_fixed_prediction_session_omissions
+  uncertainty: descriptive_session_and_animal_results_no_electrode_level_pvalues
+  stop: complete_fixed_panel_or_explicit_technical_resource_incomplete_no_selected_subset
+  additional_valid_evaluations_on_completion: 1
+  shared_total_on_completion: 42
+  resources: {cpus: 1, memory_gib: 6, time_limit_minutes: 35, work_seconds: 1800, process_rss_gib: 5, gpu: 0}
+  historical_resource_consumption_and_shared_ceilings: preserved_no_reset
+  unselected: [next_direction_value, electrode_trial_coupling, new_acquisition_policy, reserved_sessions]
 
 open_exploration:
   scientist_approved: "2026-09-30"
@@ -20,7 +55,7 @@ open_exploration:
     sequential_acquisition: only metadata development-trained state and actually acquired observations
   zero_shot_selection_implies_zero_shot_decoding: false
   named_linear_proxies_mandatory: false
-  numerical_new_branch_endpoints_and_margins: not_specified_not_activated
+  numerical_new_branch_endpoints_and_margins: electrode_information_value_20261013_only_other_proposals_unactivated
   comparison_commitment: specify information target decoder fairness and actual exposure before scoring
   final_lock: all selected protocols and decisions before the single shared held-session opening
   allowance: search_budget shared across every branch and initializer; no additional resources
@@ -59,7 +94,7 @@ reference_scenario_scope:
 
 research_program_narrative:
   proposed_principle: conditional complementarity and reducible uncertainty
-  status: design_proposal_unactivated
+  status: electrode_value_branch_adopted_direction_and_coupling_proposals_unactivated
   specification: outputs/acquisition_principle_proposal.md
   intended_discriminator: >-
     At matched quality, allowed-data target-linked complementarity predicts later

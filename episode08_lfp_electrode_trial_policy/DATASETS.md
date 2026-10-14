@@ -1,5 +1,22 @@
 # EP08 data: information states and supported claims
 
+## Adopted information-value data use — October 13, 2026
+
+The [approved exploratory electrode-value design](outputs/information_value_design.md)
+reuses only the eight existing development sessions and the exact original
+96 fitting/40 evaluation trial identities. No source role is reassigned. Predictor
+states use the original balanced 32/64-trial fitting prefixes; removal decoders
+use all 96 fitting trials before the trusted evaluator reads the 40 evaluation
+trials. All 96 electrodes and all original population targets are retained.
+The new run records all-electrode exposure, source bytes and read counts.
+
+The original evaluation trials have already been exposed through 41 policy
+comparisons. Their computational exclusion from fitting does not make the new
+analyst-level hypothesis confirmatory. Four reserved sessions remain closed.
+No new acquisition, third animal, calibration trial, spatial support or neural
+representation is introduced. This scoped adoption supersedes the later
+description of explanatory scoring as entirely unfrozen.
+
 EP08 uses the Foundation LFP source derived from Dryad DOI
 `10.5061/dryad.xd2547dkt` (metadata version 7, file-bearing version 5). The
 source contains motor-cortex LFP features, population spiking, reach events,

@@ -1,5 +1,124 @@
 # Experiment log
 
+## 2026-10-13 13:59 Pacific — offline_information_value — complete, primary comparison negative
+
+Parent47687188 completed76seconds on1CPU: charge0.021111111CPUh once,
+release0.562222223CPUh from its reservation and retain every prior charge.
+All eight sessions and35,160 fixed fits finished; the scientific process took
+36.149seconds,22.299CPU-seconds and151,012KiB peakRSS. It read the original
+768 fitting and320 evaluation trials (30,094,080 logical neural bytes), with
+four reserved sessions closed. One complete offline evaluation is charged:
+42/112 including the41 historical policy comparisons, whose conclusion stays.
+
+The [complete report](runs/offline_information_value/attempt001/information_value.md)
+and [JSON](runs/offline_information_value/attempt001/information_value.json)
+retain all four fixed comparisons. Positive numbers below mean reduced MSE.
+
+| Prefix / transfer | Chewie | Mihili | Equal-animal mean |
+| --- | ---: | ---: | ---: |
+| 32 / leave-session, primary | -5.3116184e-9 | -1.9957054e-9 | -3.6536619e-9 |
+| 32 / opposite-animal | -4.0100248e-9 | +5.9855544e-9 | +9.8776480e-10 |
+| 64 / leave-session | +1.7701567e-8 | +1.9948101e-8 | +1.8824834e-8 |
+| 64 / opposite-animal | +2.0359297e-8 | +8.3103322e-8 | +5.1731310e-8 |
+
+Primary baseline MSEs are1.5699732e-5 and1.2972797e-5 respectively. Only0/4
+Chewie and1/4 Mihili primary sessions improve; every fixed-prediction session
+omission stays negative. Thus this selected32-trial score provides no observed
+incremental benefit under the fixed model. Both64-trial sensitivities have
+positive animal means, but cannot replace the primary or establish a meaningful
+acquisition gain. The analysis is exploratory on already exposed evaluation
+trials; two animals, reused sessions/contexts and signal-quality proxies limit
+interpretation. This is neither an equivalence result nor independent confirmation.
+
+All three focused checks passed in0.257seconds; EP08 ASTRA schema and semantic
+validation passed in this parent. Independent review found no numerical-source,
+reporting or figure blocker. [PNG](figures/offline_information_value/attempt001/information_value.png)
+and [PDF](figures/offline_information_value/attempt001/information_value.pdf)
+show all four comparisons and session variation. No adaptive successor,
+new policy search or reserved-session opening is selected. Small documentary
+validation companions are included in this parent charge, not billed again.
+
+## 2026-10-13 — offline_information_value — submitted as 47687188
+
+Slurm accepted the selected 1 CPU/6 GiB/35-minute substantive analysis.
+Root owns monitoring; no duplicate or automatic retry is selected. Scientific
+completion and focused-check results await job artifacts. Reserve 0.583333334 CPUh.
+
+## 2026-10-13 — offline_information_value — coordinator review and bounded launch selected
+
+Root reviewed donor-only residualization, unchanged baseline shrinkage, whole-session
+exclusion, matched removal denominators and complete reporting. Select fresh
+attempt001 using tools/run_information_value.sbatch: 1 CPU, 6 GiB, 35 minutes,
+1800-second scientific limit and 5-GiB RSS guard. Three focused checks precede
+execution. Retain all historical charges; reserve 0.583333334 CPUh once for this
+parent. A complete panel adds one offline evaluation (42/112), without reopening
+the original 41-comparison policy search. Four reserved sessions stay closed.
+Small changed ASTRA validations for EP06/08/17/20 accompany this substantive job;
+charge the whole parent to EP08 only. No numerical result is implied by selection.
+
+## 2026-10-13 20:44 UTC — offline_information_value — authorized exploratory branch implemented
+
+The scientist approved the next EP08 step as a distinct real-data information-
+value analysis: whether conditional complementarity predicts electrode-removal
+loss beyond recorded signal quality and marginal association. Adopted the
+complete [executable design](information_value_design.md) before new numerical
+access. GOAL, DATASETS, the single policy and existing ASTRA
+`offline_information_value` node now describe this branch. Preserve the original
+41-comparison terminal policy conclusion and all four closed reserved sessions.
+The development evaluation outcomes were already exposed during those comparisons;
+this hypothesis and its eventual results are exploratory, not fresh confirmation.
+
+The implementation uses only the existing eight-session reader and original
+96 fitting/40 evaluation roles. Primary predictors use32 fitting trials;64 is
+a fixed sensitivity. Full96 plus three outcome-independent partitions into
+six16-electrode contexts each give384 complete electrode/context rows per state.
+Fourfold conditional and marginal gains use fitting-only direction means and
+normalizers. Fixed alpha1 removal models use all96 fitting trials and are frozen
+before the evaluator opens40 trials. Leave-session-out and opposite-animal
+regressions compare the same quality/marginal/redundancy covariates with and
+without conditional gain, with equal animal/session/context-family weighting.
+The primary endpoint is32-trial leave-session-out MSE reduction. All signs,
+sessions, contexts, states and transfers are reported, without electrode-level
+inference, policy promotion or automatic follow-up. No direction-value or
+sensor–trial coupling analysis is activated.
+
+Consequential design review reused the existing paper/design evidence and BR
+retrieval dispositions (October4 05:42/06:44UTC supplied no relevant M1 evidence).
+A bounded `pipeline_plan_review` of the supplied three-step summary returned
+`findings=[]`, `risk_level=low`, with no KG rules consulted and enforcement none.
+Its first call lacked the tool's required steps list and returned a schema error;
+the corrected call completed. This generic advisory result is not evidence of
+scientific validity, formal Society acceptance or execution permission.
+
+New source files are `tools/electrode_information_value.py` and
+`tools/development_information_value.py`. Three focused checks cover exclusion of
+target-session/animal labels from value-regression fitting, and independent
+primal-versus-dual removal arithmetic with a common denominator, plus refusal of
+an apparent gain from duplicating a baseline predictor. Source review identified
+that adding a correlated feature to fixed ridge can alter baseline shrinkage;
+the adopted analysis therefore residualizes the conditional score against the
+baseline predictor span using donor-only weighted least squares, without target
+labels or residual rescaling. The baseline penalty is unchanged. These checks are prepared
+in `tools/test_electrode_information_value.py`, **unrun**. No synthetic pilot or
+new recovery campaign is selected. Changed ASTRA validation is also pending in
+root's coordinated compute allocation; unchanged checks remain reusable.
+
+The substantive command is in the design. Proposed ceiling:1CPU/6GiB/35minutes,
+one numerical worker,1800s internal/1860s outer work limit and5GiB RSS guard.
+There are35,160 small fixed ridge fits; the previous45,600 inner plus2,280 outer
+fits took288.7s, a rough several-minute basis because dimensions differ. This is
+not a measured cost guarantee. The complete panel charges one additional offline
+evaluation against the shared maximum (42 including the historical41), without
+restarting policy patience. Preserve prior CPU/wall charges and global ceilings;
+root records applicable clock/budget admission and exact job/step before launch.
+No resource reservation, scheduler call, source payload read, test or execution
+was performed by the implementation worker on login node sh04-ln04 (no SLURM_JOB_ID).
+
+Fresh intended output: `runs/offline_information_value/attempt001/`. It will retain
+operational accounting, complete machine-readable rows/comparisons, a readable
+summary and a saved-number figure when plotting is available. A resource or
+technical stop remains incomplete; no selected-session result is substituted.
+
 ## 2026-10-06 — completed development evidence propagated to episode summaries
 
 Reconciled GOAL, DATASETS, the paper plan and output navigation with the

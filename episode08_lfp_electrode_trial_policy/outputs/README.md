@@ -1,5 +1,31 @@
 # EP08 outputs
 
+**October 13 — eight-session information-value follow-up complete.**
+The primary32-trial comparison does not improve prediction in either animal;
+only0/4 Chewie and1/4 Mihili sessions improve. The prespecified64-trial analyses
+have small positive animal means, reported as exploratory sensitivities rather
+than a replacement result. All35,160 fits, three focused checks and ASTRA
+validation completed; cost0.021111111CPUh. The original41-comparison policy
+conclusion and all four closed reserved sessions remain intact.
+Read the [complete four-comparison result](runs/offline_information_value/attempt001/information_value.md),
+[figure](figures/offline_information_value/attempt001/information_value.png),
+and [interpretation/accounting](experiment_log.md). No automatic follow-up is selected.
+Earlier launch/preparation entries below are historical.
+
+**October 13 — information-value analysis submitted as 47687188.**
+The complete eight-session real-data panel and its three focused checks are
+selected in a bounded 1 CPU/6 GiB/35-minute job. See the [execution log](experiment_log.md).
+Earlier preparation entries below are historical.
+
+**October13,20:44UTC — distinct information-value continuation authorized and implemented.**
+The [adopted design](information_value_design.md) tests whether fitting-derived
+conditional gain predicts electrode-removal loss beyond quality and marginal
+association on the same eight development sessions. The runnable complete panel
+and three focused checks are prepared; compute execution and checks are unrun.
+The original41-comparison policy conclusion remains complete, the previously
+exposed evaluation trials support exploratory claims only, and all four reserved
+sessions stay closed. See the [implementation/resource handoff](experiment_log.md).
+
 [Public online resources, checked October 6](../DATASETS.md#public-online-resources--checked-october-6-2026): original session downloads, task/acquisition documentation and authors' analysis code, with compatibility limits.
 
 2026-10-04, 08:08 UTC: **development search stopped at 41 valid comparisons**.

@@ -1,5 +1,24 @@
 # What makes the next electrode or calibration trial useful?
 
+## Adopted development-only electrode-value continuation — October 13, 2026
+
+The scientist approved the distinct offline information-value analysis specified
+in [the executable design](outputs/information_value_design.md). On the same eight
+development sessions, ask whether fitting-only conditional cross-validated gain
+predicts subsequent electrode-removal loss beyond signal-quality proxies,
+marginal target association and redundancy. Preserve all original 96 fitting
+and 40 evaluation trials, all physical electrodes and population targets. The
+primary 32-trial predictor state, 64-trial sensitivity, fixed electrode contexts,
+decoder, session/animal transfer, endpoint and complete-panel stop are specified
+before this branch executes. No separate pilot or policy-search restart is needed.
+
+The earlier 41-comparison policy conclusion remains complete and unchanged.
+Previously exposed development evaluation outcomes cannot provide fresh
+confirmation for this new question; all results will be labelled exploratory.
+The four reserved sessions remain closed, and direction-value/coupling analyses
+remain unselected. The narrow electrode-value branch supersedes statements below
+that all named explanatory scoring is inactive; other proposals stay inactive.
+
 EP08 keeps its exploration open: **what makes electrode and calibration
 information valuable, and when can that value be predicted?** One candidate
 explanation is conditional complementarity and reducible uncertainty. At
