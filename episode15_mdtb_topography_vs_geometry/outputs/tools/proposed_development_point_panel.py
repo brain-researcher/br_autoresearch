@@ -4,10 +4,12 @@ The observed-map runner uses this qualified adapter under
 scientist_amendment_20261013_m4_certificate. Numerical refusal still stops the
 whole panel; resource admission and private publication remain unchanged.
 
-Reuse the original constructor and every existing panel helper. The canonical
-diagonal family can use a global profile/exclusion certificate when the
-sufficient full-domain curvature bound refuses. Other families retain their
-existing certificate. Actual operator checks still precede every prediction.
+Reuse the original constructor and every existing panel helper. All four
+canonical families can use their qualified global certificates when the
+sufficient full-domain curvature bound refuses or the local optimizer fails
+to converge or evaluate a finite trial: the trace-zero diagonal profile or balanced vertex, or the eight
+independent scalar/disk block profiles. Actual operator checks still precede
+every prediction.
 The copied fit_development_point_panel body is unchanged; its _fixed_callbacks
 binding wraps only predict_m4 after all original callbacks are constructed.
 Thus the same alternative certificate applies to all four M4 variants in
@@ -34,38 +36,65 @@ from paired_stretch_variants import (
     apply_m3, apply_m4, crossvalidated_geometries, fit_m4_task_a, stretch_specifications,
 )
 from diagonal_m4_global import fit_diagonal_global
+from block_m4_global import fit_block_global
+from fit_m4_task_a import M4OptimizerTrialNonfinite, M4OptimizerUnconverged
 from proposed_m4_certificate import proposed_curvature_certificate
+
+
+def _global_fit_with_certificate(objective, specification, *, check, refusal, trigger):
+    """Use a qualified same-model solver; unknown families retain their refusal."""
+    canonical = stretch_specifications()
+    if specification.name == canonical[0].name:
+        global_fit = fit_diagonal_global
+        method = "global_profile_and_full_domain_exclusion"
+    elif specification.name in {item.name for item in canonical[1:]}:
+        global_fit = fit_block_global
+        method = "independent_block_radial_global_exclusion"
+    else:
+        raise refusal
+    # Each global helper independently requires the exact canonical modes
+    # and domain. Local growth and exterior exclusion do not assert a
+    # full-domain Hessian bound for the legacy solution certificate.
+    check()
+    numerical, certificate = global_fit(objective, specification, check=check)
+    if certificate.get("certificate_kind") == "balanced_strict_scalar_dual_vertex":
+        method = "balanced_scalar_dual_vertex_full_domain_growth"
+    elif certificate.get("certificate_kind") == "balanced_constrained_vertex_with_global_exclusion":
+        method = "balanced_constrained_vertex_local_growth_and_global_exclusion"
+    check()
+    theta = _array(numerical["coefficients"], (specification.parameter_count,), "fitted coefficients")
+    C = objective.matrix(theta)
+    supplied = _array(numerical["C"], (16, 16), "fitted C")
+    if (np.max(np.abs(C-supplied)) > NUMERICAL_ATOL
+            or not np.array_equal(numerical["O"], objective.O)
+            or numerical["gain"] != objective.gain):
+        raise ValueError("the fitted C, reference O and common gain must remain paired")
+    certificate = {**certificate,
+        "weighted_task_a_squared_error": numerical["weighted_task_a_squared_error"],
+        "fitted_tangent_singular_values": _frozen(objective.tangent_singular_values(theta)),
+        "numerical_certificate_method": method, "global_solver_trigger": trigger}
+    return C, numerical, certificate
 
 
 def _fit_with_certificate(objective, specification, X, Y, B, O, settings, *, check):
     """Fit the same model and domain, retaining all numerical acceptance limits."""
     try:
         curvature = proposed_curvature_certificate(objective, specification, check=check)
-    except M4CertificateUnverified:
-        if specification.name != stretch_specifications()[0].name:
-            raise
-        # The global helper independently requires the exact canonical modes
-        # and domain. Neither its local growth bound nor its exterior exclusion
-        # is a full-domain Hessian bound for the legacy solution certificate.
-        check()
-        numerical, certificate = fit_diagonal_global(objective, specification, check=check)
-        check()
-        theta = _array(numerical["coefficients"], (specification.parameter_count,), "fitted coefficients")
-        C = objective.matrix(theta)
-        supplied = _array(numerical["C"], (16, 16), "fitted C")
-        if (np.max(np.abs(C-supplied)) > NUMERICAL_ATOL
-                or not np.array_equal(numerical["O"], objective.O)
-                or numerical["gain"] != objective.gain):
-            raise ValueError("the fitted C, reference O and common gain must remain paired")
-        certificate = {**certificate,
-            "weighted_task_a_squared_error": numerical["weighted_task_a_squared_error"],
-            "fitted_tangent_singular_values": _frozen(objective.tangent_singular_values(theta)),
-            "numerical_certificate_method": "global_profile_and_full_domain_exclusion"}
-        return C, numerical, certificate
+    except M4CertificateUnverified as error:
+        return _global_fit_with_certificate(objective, specification, check=check,
+            refusal=error, trigger="sufficient_curvature_unresolved")
     check()
-    numerical = fit_m4_task_a(X, Y, B, O, **settings,
-        spectral_norm_bound=specification.spectral_norm_bound,
-        optimizer_ftol=OPTIMIZER_FTOL, max_iterations=MAX_ITERATIONS)
+    try:
+        numerical = fit_m4_task_a(X, Y, B, O, **settings,
+            spectral_norm_bound=specification.spectral_norm_bound,
+            optimizer_ftol=OPTIMIZER_FTOL, max_iterations=MAX_ITERATIONS)
+    except M4OptimizerUnconverged as error:
+        # Curvature success does not ensure that SLSQP finds an acceptable
+        # candidate. A fresh qualified solver must still prove every retained
+        # gap/growth/rank condition; no unconverged local coefficients are used.
+        return _global_fit_with_certificate(objective, specification, check=check,
+            refusal=error, trigger=("local_optimizer_nonfinite_trial"
+                if isinstance(error, M4OptimizerTrialNonfinite) else "local_optimizer_unconverged"))
     check()
     C, certificate = _solution_certificate(objective, specification, numerical, curvature)
     return C, numerical, {**certificate,

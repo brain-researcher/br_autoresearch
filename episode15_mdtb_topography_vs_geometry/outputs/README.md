@@ -1,5 +1,40 @@
 # EP15 outputs
 
+**October 13, 23:07 Pacific — complete real-data retry submitted as 47742568.**
+The prior run reached fit attempt 153 before an optimizer trial became nonfinite.
+The narrowly scoped recovery passed all 13 focused checks and independent review;
+cost010 retains all 12 people, 18 conditions, 16 variants and controls. Scientific
+summaries remain withheld until the full panel completes. See the [evidence](experiment_log.md).
+
+**October 13, 22:29 Pacific — repaired real-data fit submitted as 47738861.**
+All nine diagonal checks passed. The saved objective that stopped cost008 now
+meets the original global growth and precision requirements. Fresh cost009
+retains the complete 12-person, 18-condition, 16-variant panel and all controls;
+scientific summaries remain withheld until full completion. [Evidence](experiment_log.md).
+
+**October 13, 22:20 Pacific — cost008 stopped at numerical fit 65.**
+The optimizer repair advanced the complete panel, but another diagonal fit
+needs a stronger numerical certificate for a candidate on the parameter bounds.
+Its Task-A-only objective was saved for a focused repair; no model or person is
+dropped and scientific summaries remain withheld. See the [evidence and next action](experiment_log.md).
+
+**October 13 Pacific — optimizer recovery passed; cost008 submitted as 47734809.**
+Only explicit local-optimizer nonconvergence invokes the qualified global solver.
+All eight adapter checks passed, including the unchanged refusal and operator
+requirements. The complete fixed scientific panel is retained. [Evidence](experiment_log.md).
+
+**October 13, 22:01 Pacific — cost007 reached 42 numerical fits before another refusal.**
+Job 47732835 is terminal. The boundary-vertex repair passed; the later failure
+arose in the original optimizer after its curvature check succeeded. A targeted
+repair is underway with all 12 people, 18 conditions, 16 variants and controls
+retained. Scientific summaries stay withheld. See the [evidence](experiment_log.md).
+
+**October 13, 21:34 Pacific — observed-map fit 47730200 stopped; diagnosis is active.**
+The full run exited 1 after 3 minutes 49 seconds, despite passing cached-family
+and integration checks. The public operational record reports incomplete fitting;
+the specific exception is under review. All scientific summaries remain private.
+The next action is a targeted repair based on the failure. [Evidence](experiment_log.md).
+
 **October 13 — cost004 advanced past the diagonal fit, then stopped at another M4 certificate.**
 Job47725564 is terminal; the next family's full-domain curvature cover reached
 its depth limit. The complete panel remains unresolved, with no published score.

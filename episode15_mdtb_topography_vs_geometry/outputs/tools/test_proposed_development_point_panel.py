@@ -40,72 +40,161 @@ class ProspectivePanelIntegrationTests(unittest.TestCase):
         stack.enter_context(patch.object(proposed, "PairedM4TaskAObjective", return_value=fixture.objective))
         curvature = stack.enter_context(patch.object(proposed, "proposed_curvature_certificate",
                                                      side_effect=curvature_failure))
-        global_fit = stack.enter_context(patch.object(proposed, "fit_diagonal_global",
+        global_fits = {name: stack.enter_context(patch.object(proposed, name,
             return_value=(fixture.numerical, dict(solution_within_frozen_gap=True,
                 unique_global_minimum_sufficient_profile=True,
                 full_domain_positive_curvature_asserted=False))))
+            for name in ("fit_diagonal_global", "fit_block_global")}
         legacy_fit = stack.enter_context(patch.object(proposed, "fit_m4_task_a"))
         predictions = {name: stack.enter_context(patch.object(proposed, name))
                        for name in ("apply_m4", "apply_m3", "crossvalidated_geometries", "M4Prediction")}
-        return curvature, global_fit, legacy_fit, predictions
+        return curvature, global_fits, legacy_fit, predictions
 
     def _call_callback(self, fixture):
         return fixture.wrapper(fixture.source, fixture.target, fixture.reference_fit, fixture.context)
 
     def test_global_fallback_operator_rejection_stops_before_prediction(self):
-        fixture = self._callback_fixture(original_stretch.stretch_specifications()[0])
-        curvature_failure = original_stretch.M4CertificateUnverified("curvature unresolved", {})
-        operator_failure = ValueError("actual operator fixture rejection")
-        fixture.base.operator_certificate.side_effect = operator_failure
+        for index, specification in enumerate(original_stretch.stretch_specifications()):
+            with self.subTest(variant=specification.name):
+                fixture = self._callback_fixture(specification)
+                curvature_failure = original_stretch.M4CertificateUnverified("curvature unresolved", {})
+                operator_failure = ValueError("actual operator fixture rejection")
+                fixture.base.operator_certificate.side_effect = operator_failure
+                selected = "fit_diagonal_global" if index == 0 else "fit_block_global"
+                with ExitStack() as stack:
+                    curvature, global_fits, legacy_fit, predictions = self._callback_patches(
+                        stack, fixture, curvature_failure)
+                    order = Mock()
+                    order.attach_mock(curvature, "curvature")
+                    order.attach_mock(global_fits[selected], "global_fit")
+                    order.attach_mock(fixture.base.operator_certificate, "operator")
+                    with self.assertRaises(ValueError) as raised:
+                        self._call_callback(fixture)
+                self.assertIs(raised.exception, operator_failure)
+                self.assertEqual([call[0] for call in order.mock_calls], ["curvature", "global_fit", "operator"])
+                global_fits[selected].assert_called_once_with(
+                    fixture.objective, fixture.specification, check=fixture.base.check)
+                for name, operation in global_fits.items():
+                    if name != selected:
+                        operation.assert_not_called()
+                fixture.base.operator_certificate.assert_called_once()
+                supplied = fixture.base.operator_certificate.call_args.args
+                np.testing.assert_array_equal(supplied[0], fixture.O)
+                np.testing.assert_array_equal(supplied[1], fixture.C)
+                self.assertIs(supplied[2], fixture.specification)
+                legacy_fit.assert_not_called()
+                for operation in predictions.values():
+                    operation.assert_not_called()
+
+    def test_unknown_family_cannot_use_any_global_fallback(self):
+        canonical = original_stretch.stretch_specifications()[1]
+        unknown = original_stretch.StretchSpecification("unknown_m4_family",
+            canonical.modes, canonical.spectral_norm_bound)
+        fixture = self._callback_fixture(unknown)
+        failure = original_stretch.M4CertificateUnverified("unknown-family curvature unresolved", {})
         with ExitStack() as stack:
-            curvature, global_fit, legacy_fit, predictions = self._callback_patches(
-                stack, fixture, curvature_failure)
-            order = Mock()
-            order.attach_mock(curvature, "curvature")
-            order.attach_mock(global_fit, "global_fit")
-            order.attach_mock(fixture.base.operator_certificate, "operator")
-            with self.assertRaises(ValueError) as raised:
+            _, global_fits, legacy_fit, predictions = self._callback_patches(stack, fixture, failure)
+            with self.assertRaises(original_stretch.M4CertificateUnverified) as raised:
                 self._call_callback(fixture)
-        self.assertIs(raised.exception, operator_failure)
-        self.assertEqual([call[0] for call in order.mock_calls], ["curvature", "global_fit", "operator"])
-        global_fit.assert_called_once_with(fixture.objective, fixture.specification, check=fixture.base.check)
-        fixture.base.operator_certificate.assert_called_once()
-        supplied = fixture.base.operator_certificate.call_args.args
-        np.testing.assert_array_equal(supplied[0], fixture.O)
-        np.testing.assert_array_equal(supplied[1], fixture.C)
-        self.assertIs(supplied[2], fixture.specification)
+        self.assertIs(raised.exception, failure)
+        for operation in global_fits.values():
+            operation.assert_not_called()
         legacy_fit.assert_not_called()
+        fixture.base.operator_certificate.assert_not_called()
         for operation in predictions.values():
             operation.assert_not_called()
 
-    def test_other_m4_families_cannot_use_diagonal_fallback(self):
-        for specification in original_stretch.stretch_specifications()[1:]:
+    def test_unresolved_global_fit_propagates_before_operator_or_prediction(self):
+        for index, specification in enumerate(original_stretch.stretch_specifications()):
             with self.subTest(variant=specification.name):
                 fixture = self._callback_fixture(specification)
-                failure = original_stretch.M4CertificateUnverified("other-family curvature unresolved", {})
+                curvature_failure = original_stretch.M4CertificateUnverified("curvature unresolved", {})
+                global_failure = original_stretch.M4CertificateUnverified("exterior remains unexcluded", {})
+                selected = "fit_diagonal_global" if index == 0 else "fit_block_global"
                 with ExitStack() as stack:
-                    _, global_fit, legacy_fit, predictions = self._callback_patches(stack, fixture, failure)
+                    _, global_fits, legacy_fit, predictions = self._callback_patches(
+                        stack, fixture, curvature_failure)
+                    global_fits[selected].side_effect = global_failure
                     with self.assertRaises(original_stretch.M4CertificateUnverified) as raised:
                         self._call_callback(fixture)
-                self.assertIs(raised.exception, failure)
-                global_fit.assert_not_called()
+                self.assertIs(raised.exception, global_failure)
+                global_fits[selected].assert_called_once()
+                for name, operation in global_fits.items():
+                    if name != selected:
+                        operation.assert_not_called()
                 legacy_fit.assert_not_called()
                 fixture.base.operator_certificate.assert_not_called()
                 for operation in predictions.values():
                     operation.assert_not_called()
 
-    def test_unresolved_global_fit_propagates_before_operator_or_prediction(self):
-        fixture = self._callback_fixture(original_stretch.stretch_specifications()[0])
-        curvature_failure = original_stretch.M4CertificateUnverified("curvature unresolved", {})
-        global_failure = original_stretch.M4CertificateUnverified("exterior remains unexcluded", {})
+    def test_global_fit_pairing_changes_refuse_before_operator_or_prediction(self):
+        for index in (0, 2):
+            for field in ("C", "O", "gain"):
+                with self.subTest(family=index, changed=field):
+                    fixture = self._callback_fixture(original_stretch.stretch_specifications()[index])
+                    if field == "gain":
+                        fixture.numerical[field] = 2.
+                    else:
+                        fixture.numerical[field] = fixture.numerical[field]+np.eye(16)
+                    failure = original_stretch.M4CertificateUnverified("curvature unresolved", {})
+                    with ExitStack() as stack:
+                        _, _, legacy_fit, predictions = self._callback_patches(stack, fixture, failure)
+                        with self.assertRaisesRegex(ValueError, "must remain paired"):
+                            self._call_callback(fixture)
+                    legacy_fit.assert_not_called()
+                    fixture.base.operator_certificate.assert_not_called()
+                    for operation in predictions.values():
+                        operation.assert_not_called()
+
+    def _assert_failed_optimizer_uses_global_fit_before_operator(self, failure_type):
+        for index, specification in enumerate(original_stretch.stretch_specifications()):
+            with self.subTest(variant=specification.name):
+                fixture = self._callback_fixture(specification)
+                operator_failure = ValueError("actual operator fixture rejection")
+                fixture.base.operator_certificate.side_effect = operator_failure
+                selected = "fit_diagonal_global" if index == 0 else "fit_block_global"
+                with ExitStack() as stack:
+                    curvature, global_fits, legacy_fit, predictions = self._callback_patches(
+                        stack, fixture, None)
+                    curvature.return_value = {"qualified_curvature_fixture": True}
+                    legacy_fit.side_effect = failure_type("fixture local optimizer failure")
+                    order = Mock()
+                    order.attach_mock(curvature, "curvature")
+                    order.attach_mock(legacy_fit, "local_fit")
+                    order.attach_mock(global_fits[selected], "global_fit")
+                    order.attach_mock(fixture.base.operator_certificate, "operator")
+                    with self.assertRaises(ValueError) as raised:
+                        self._call_callback(fixture)
+                self.assertIs(raised.exception, operator_failure)
+                self.assertEqual([call[0] for call in order.mock_calls],
+                                 ["curvature", "local_fit", "global_fit", "operator"])
+                global_fits[selected].assert_called_once_with(
+                    fixture.objective, specification, check=fixture.base.check)
+                for name, operation in global_fits.items():
+                    if name != selected:
+                        operation.assert_not_called()
+                for operation in predictions.values():
+                    operation.assert_not_called()
+
+    def test_unconverged_local_optimizer_uses_qualified_global_fit_before_operator(self):
+        self._assert_failed_optimizer_uses_global_fit_before_operator(proposed.M4OptimizerUnconverged)
+
+    def test_nonfinite_optimizer_trial_uses_qualified_global_fit_before_operator(self):
+        self._assert_failed_optimizer_uses_global_fit_before_operator(proposed.M4OptimizerTrialNonfinite)
+
+    def test_other_arithmetic_failures_are_not_hidden_by_global_retry(self):
+        fixture = self._callback_fixture(original_stretch.stretch_specifications()[1])
+        failure = ArithmeticError("fixture invalid returned stretch")
         with ExitStack() as stack:
-            _, global_fit, legacy_fit, predictions = self._callback_patches(stack, fixture, curvature_failure)
-            global_fit.side_effect = global_failure
-            with self.assertRaises(original_stretch.M4CertificateUnverified) as raised:
+            curvature, global_fits, legacy_fit, predictions = self._callback_patches(
+                stack, fixture, None)
+            curvature.return_value = {"qualified_curvature_fixture": True}
+            legacy_fit.side_effect = failure
+            with self.assertRaises(ArithmeticError) as raised:
                 self._call_callback(fixture)
-        self.assertIs(raised.exception, global_failure)
-        global_fit.assert_called_once()
-        legacy_fit.assert_not_called()
+        self.assertIs(raised.exception, failure)
+        for operation in global_fits.values():
+            operation.assert_not_called()
         fixture.base.operator_certificate.assert_not_called()
         for operation in predictions.values():
             operation.assert_not_called()

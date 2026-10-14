@@ -1,15 +1,133 @@
-"""One analytical action-changing case: a unique primal optimum with dual jump."""
+"""Action-changing analytical cases for coupled profiles and balanced vertices."""
 import math
 import unittest
 
 import numpy as np
 
-from diagonal_m4_global import _diagonal_first_order_gap, _exterior_slabs, _uniform_branches, moment_global_search, restricted_dual_bound
+from diagonal_m4_global import (
+    SearchBudget, SearchStop, _balanced_vertex_certificate, _constrained_vertex_certificate,
+    _diagonal_first_order_gap, _exterior_slabs, _local_balanced_vertex_region,
+    _uniform_branches, moment_global_search, restricted_dual_bound,
+)
 from paired_stretch_variants import CURVATURE_MARGIN, GAP_RTOL, M4CertificateUnverified, stretch_specifications
 from proposed_m4_certificate import _I
 
 
 class GlobalProfileTests(unittest.TestCase):
+    def test_constrained_vertex_with_scalar_dual_gap_has_complete_global_proof(self):
+        rho = math.log(1.25)
+        # The first concave scalar prefers +rho; its paired convex coordinate
+        # prefers -rho under the trace constraint. At that endpoint the pair
+        # has strict inward slope .00875. Yet no scalar-dual multiplier makes
+        # both endpoints global scalar minima: the first requires lambda below
+        # about .14066 and the second requires lambda >= .16. Other coordinates
+        # have strong endpoint preferences. Full exterior exclusion is needed.
+        p = np.r_[.01, 2., np.ones(14)]
+        d = np.r_[.08, 1.7, np.full(7, 1.4), np.zeros(7)]
+        vertex = np.r_[rho, -rho, np.full(7, rho), np.full(7, -rho)]
+        H = np.diagonal(stretch_specifications()[0].modes, axis1=1, axis2=2).T
+        exact = float(np.sum(p*np.exp(2*vertex)-2*d*np.exp(vertex)))
+        whole = restricted_dual_bound(p, d, np.full(16, -rho), np.full(16, rho), check=lambda: None)
+        self.assertLess(whole["lower_bound"], exact-1e-6)
+        result = moment_global_search(p, d, rho, H, check=lambda: None,
+                                      seconds=60., max_cells=1024)
+        self.assertEqual(result["certificate_kind"], "balanced_constrained_vertex_with_global_exclusion")
+        self.assertEqual(result["primal_free_coordinate_count"], 0)
+        self.assertTrue(result["unique_global_minimum_sufficient_constrained_vertex"])
+        self.assertFalse(result["unique_global_minimum_sufficient_dual"])
+        self.assertFalse(result["unique_global_minimum_sufficient_profile"])
+        self.assertTrue(result["all_other_regions_excluded"])
+        self.assertGreater(result["initial_exterior_slabs"], 0)
+        self.assertEqual(result["remaining_cells"], 0)
+        self.assertLessEqual(result["global_lower_bound"], exact+2e-12)
+        self.assertGreaterEqual(result["feasible_upper_bound"], exact-2e-12)
+        self.assertLessEqual(result["global_gap_upper_bound"], GAP_RTOL)
+        growth = result["global_coordinate_growth_lower_bound"]
+        self.assertGreater(growth, CURVATURE_MARGIN)
+        for interval, expected in zip(result["coordinate_intervals"], vertex):
+            self.assertEqual((interval.lo, interval.hi), (expected, expected))
+        for fraction in (.001, .1, 1., 2.):
+            point = (1-fraction)*vertex
+            difference = float(np.sum(p*np.exp(2*point)-2*d*np.exp(point)))-exact
+            self.assertGreaterEqual(difference+1e-12, growth*np.sum((point-vertex)**2)/2)
+
+    def test_local_strict_vertex_does_not_certify_tied_or_better_exterior(self):
+        rho, p = math.log(1.25), np.full(16, .01)
+        vertex = np.r_[np.full(8, -rho), np.full(8, rho)]
+        for d in (np.full(16, .08), np.r_[np.full(8, .081), np.full(8, .08)]):
+            with self.subTest(tied=bool(d[0] == d[-1])):
+                # Concavity makes every balanced vertex a strict local minimum;
+                # an equal or better opposite vertex still prevents the global
+                # uniqueness certificate. Exhausted exterior work must refuse.
+                local = _local_balanced_vertex_region(p, d, rho, vertex,
+                    SearchBudget(lambda: None, 15., 64))
+                self.assertGreater(local["full_growth"], CURVATURE_MARGIN)
+                own = float(np.sum(p*np.exp(2*vertex)-2*d*np.exp(vertex)))
+                other = float(np.sum(p*np.exp(-2*vertex)-2*d*np.exp(-vertex)))
+                self.assertLessEqual(other, own+1e-14)
+                with self.assertRaises(SearchStop):
+                    _constrained_vertex_certificate(p, d, rho, vertex,
+                        SearchBudget(lambda: None, 15., 32))
+
+    def test_balanced_vertex_is_certified_without_free_profile_coordinates(self):
+        rho = math.log(1.25)
+        p, d = np.full(16, .01), np.r_[np.full(8, .08), np.full(8, -.08)]
+        # The first eight scalars are strictly decreasing and concave on the
+        # full box; the other eight are strictly increasing. Their unique
+        # independent endpoint minima already have trace zero. No smooth
+        # conditional rest coordinate exists at this constrained optimizer.
+        self.assertLess(2*.01*math.exp(rho)-.08, 0)
+        vertex = np.r_[np.full(8, rho), np.full(8, -rho)]
+        H = np.diagonal(stretch_specifications()[0].modes, axis1=1, axis2=2).T
+        result = moment_global_search(p, d, rho, H, check=lambda: None,
+                                      seconds=30., max_cells=256)
+        self.assertEqual(result["certificate_kind"], "balanced_strict_scalar_dual_vertex")
+        self.assertEqual(result["primal_free_coordinate_count"], 0)
+        self.assertTrue(result["unique_global_minimum_sufficient_dual"])
+        self.assertFalse(result["unique_global_minimum_sufficient_profile"])
+        self.assertFalse(result["full_domain_positive_curvature_asserted"])
+        self.assertEqual(result["exact_balanced_endpoint_count"], 8)
+        for interval, expected in zip(result["coordinate_intervals"], vertex):
+            self.assertEqual((interval.lo, interval.hi), (expected, expected))
+        def value(point):
+            z = np.exp(point)
+            return float(np.sum(p*z*z-2*d*z))
+        exact = value(vertex)
+        self.assertLessEqual(result["global_lower_bound"], exact+2e-12)
+        self.assertGreaterEqual(result["feasible_upper_bound"], exact-2e-12)
+        self.assertLessEqual(result["global_gap_upper_bound"], GAP_RTOL)
+        growth = result["global_coordinate_growth_lower_bound"]
+        self.assertGreater(growth, CURVATURE_MARGIN)
+        for point in (np.zeros(16), -vertex, vertex/2):
+            self.assertGreaterEqual(value(point)-exact+1e-12,
+                                    .5*growth*float(np.sum((point-vertex)**2)))
+
+    def test_vertex_route_refuses_genuine_ties_and_unbalanced_endpoints(self):
+        rho, p, d = math.log(1.25), np.full(16, .01), np.full(16, .08)
+        # Every scalar is strictly concave. This multiplier gives equal values
+        # at its two distinct endpoint minima, so many balanced vertices tie.
+        lower = .01*math.exp(-2*rho)-.16*math.exp(-rho)
+        upper = .01*math.exp(2*rho)-.16*math.exp(rho)
+        tied_lambda = (lower-upper)/(2*rho)
+        with self.assertRaisesRegex(M4CertificateUnverified, "strict scalar global endpoint"):
+            _balanced_vertex_certificate(p, d, rho, {"lambda": tied_lambda},
+                SearchBudget(lambda: None, 15., 128))
+        # At lambda=0 all sixteen upper endpoints are strict minima, but that
+        # unconstrained optimizer is not trace zero and cannot be accepted.
+        with self.assertRaisesRegex(M4CertificateUnverified, "balanced trace-zero"):
+            _balanced_vertex_certificate(p, d, rho, {"lambda": 0.},
+                SearchBudget(lambda: None, 15., 128))
+
+    def test_vertex_route_does_not_waive_growth_margin_for_small_dual_gap(self):
+        rho = math.log(1.25)
+        p, d = np.full(16, .01e-12), np.r_[np.full(8, .08e-12), np.full(8, -.08e-12)]
+        # The balanced vertex is still uniquely optimal, but scaling all
+        # objective differences down makes the retained growth requirement
+        # impossible. A tiny primal/dual value gap must not bypass it.
+        with self.assertRaises(M4CertificateUnverified):
+            _balanced_vertex_certificate(p, d, rho, {"lambda": 0.},
+                SearchBudget(lambda: None, 15., 128))
+
     def test_linear_gap_bounds_stationary_and_known_nonstationary_cases(self):
         rho = math.log(1.25)
         p, c = np.ones(16), np.zeros(16)

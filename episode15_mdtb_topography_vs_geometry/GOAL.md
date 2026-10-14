@@ -2,13 +2,19 @@
 
 ## Standing-authority numerical repair — October 13, 2026
 
-For the observed-map route, a canonical diagonal M4 fit whose sufficient
-full-domain curvature bound refuses may instead certify a unique constrained
+For the observed-map route, any of the four canonical M4 fits whose sufficient
+full-domain curvature bound refuses or whose local optimizer fails to converge may instead certify a unique constrained
 minimum using local profile growth and exclusion of every other region in the
-original domain. This replaces a sufficient numerical proof method, not the
+original domain. The trace-zero diagonal family uses its coupled profile, or a
+balanced vertex proved by strict scalar-dual minima and growth over every full interval.
+An alternative balanced-vertex proof uses strict inward derivative separation
+on a local box and global lower bounds excluding its entire exterior;
+the other three retain every original scalar interval or shear disk and use
+exact angular minimization followed by blockwise radial exclusion and growth.
+This replaces a sufficient numerical proof method, not the
 model, objective, scientific estimand or claim. The original 1e-10 growth/gap
 margins, rank tolerance, paired parameters, physical bounds and actual operator
-locality checks remain. Other three M4 families retain their existing method.
+locality checks remain. The existing sufficient-curvature route is tried first.
 Unresolved certification still stops the whole panel. Neither exact floating-point
 global optimization nor a formal interval-arithmetic proof is claimed.
 This implements the root AGENTS.md numerical-repair authority; finite resources

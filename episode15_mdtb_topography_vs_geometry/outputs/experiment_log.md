@@ -1,5 +1,144 @@
 # Experiment log
 
+## 2026-10-13 23:05 Pacific — observed_beta_development — repaired complete cost010 selected
+
+Step 47377474.39 passed all 13 scope/adapter checks in 1.315 s (process 29.81 s; peak RSS 52,760 KiB).
+Evidence: operations009/nonfinite_optimizer_checks022.txt under runs/observed_beta_development.
+Select run_m4_certificate_cost010.sbatch: 1 CPU / 7 GiB / 24 h, retaining the complete scientific panel and frozen mask.
+Independent source review passed; Slurm accepted the complete retry as 47742568.
+Cost009 and all prior outputs are preserved; a future numerical failure is recorded as diagnostic023/cache023 when applicable.
+The repaired guard changes only local-solver recovery; global acceptance, actual-operator checks and scientific release remain unchanged.
+
+## 2026-10-13 23:03 Pacific — observed_beta_development — optimizer nonfinite trial repair selected
+
+Cost009/47738861 stopped 1:0 after 24m24s at fit attempt 153; public operational evidence locates a nonfinite SLSQP trial.
+This failure did not reach the global certificate, so no failed diagonal-objective cache was produced.
+Select the narrowly typed optimizer-trial exception and existing fully certified fallback; initial/final nonfinite values still refuse.
+Run the 13 focused scope/adapter methods in the task-owned 1 CPU / 1 GiB companion before an unchanged full-panel retry.
+All 12 participants, 18 conditions, 16 variants, controls and numerical thresholds remain; private scientific summaries stay closed.
+Evidence: runs/observed_beta_development/cost009/operational.json; no empirical result or scientific stop is claimed.
+
+## 2026-10-13 22:29 Pacific — observed_beta_development — constrained vertex qualifies; cost009 selected
+
+Step 47377474.38 passed all nine diagonal methods in 3.078 s, including genuine dual-gap and false-acceptance cases.
+The saved failed objective 019 now passes: normalized global gap 2.72e-15, global growth 1.218e-7,
+coefficient-distance bound 8.78e-17; 45 cells excluded the full exterior in 1.50 s.
+Evidence: global_diagnostic020.json and operations008/constrained_vertex_checks020.txt; actual operator checks remain in production.
+Selected fresh cost009 using run_m4_certificate_cost009.sbatch and submitted as 47738861, 1 CPU / 7 GiB / 24 h,
+retaining every participant, condition, variant, control and threshold, with scientific summaries withheld.
+Reuse the frozen support and passing checks; preserve failed cost008 and capture any new failed Task-A objective separately.
+
+## 2026-10-13 22:27 Pacific — observed_beta_development — constrained vertex checks selected
+
+The new local proof uses coupled trace-zero inward movements and derivative separation;
+complete exterior dual exclusion remains mandatory. Select the nine focused diagonal checks,
+then the saved failed Task-A objective 019 with the original 300-second / 4,096-cell bounds.
+Run in the existing task-owned 1 CPU / 1 GiB companion; no Task-B summary or audit access.
+Tie and better-exterior cases must still refuse. Only a qualified actual-objective result permits the full-panel retry.
+
+## 2026-10-13 22:20 Pacific — observed_beta_development — cost008 reached fit 65; local vertex proof needed
+
+47734809 failed 1:0 after 9m36s; cost008/operational.json records 562.97 s and 210,712 KiB peak RSS.
+The repaired optimizer route progressed to fit 65, whose diagonal optimum candidate has eight lower and eight upper bounds.
+The scalar-dual witness is insufficient and the conditional profile switches branches; nonuniqueness is not established.
+Evidence: failed_global_diagnostic019.json and its protected Task-A-only objective cache, without Task-B summary access.
+Select a coupled local-vertex growth certificate followed by exclusion of the rest of the original domain.
+Retain all original growth, gap, rank, actual-operator checks and the complete panel; qualify on the saved objective before retry.
+
+## 2026-10-13 Pacific — observed_beta_development — optimizer recovery passes; cost008 selected
+
+Step 47377474.35 passed all eight adapter methods (0.133 s; process 15.85 s).
+All four canonical nonconvergence cases reach the qualified global solver and actual operator;
+other arithmetic errors and unresolved global certificates still stop before prediction.
+Select fresh cost008, 1 CPU / 7 GiB / 24 h, reusing the complete fixed panel and support.
+Submitted as 47734809; keep its imported sources fixed until the job is terminal.
+Preserve previous attempts, scientific summary withholding and the closed audit.
+
+## 2026-10-13 Pacific — observed_beta_development — typed optimizer recovery selected
+
+The exact refusal was SLSQP success=False, after curvature qualification succeeded.
+A new narrow exception routes only this nonconvergence to the existing qualified
+same-model global solver; failed local coefficients are discarded. Unrelated arithmetic,
+rank, feasibility and operator failures retain their original stopping behavior.
+Select eight focused adapter checks on the existing 1 CPU / 1 GiB companion,
+then a complete-panel retry if they pass; no new dataset or outcome access is needed.
+
+## 2026-10-13 22:01 Pacific — observed_beta_development — later original optimizer refusal
+
+47732835 is terminal FAILED 1:0 after 7m44s; cost007 reached 42 numerical fits.
+The failure moved past the diagonal certificate to ArithmeticError in fit_m4_task_a.py:192,
+called after the sufficient curvature check passed; no diagonal cache was needed or written.
+Public operations record 445.35 s and 209,272 KiB peak RSS; scientific summaries stay withheld.
+Select a targeted review of that refusal and reuse the qualified global alternative where valid,
+retaining every original model, domain, rank/gap/operator margin and whole-panel requirement.
+
+## 2026-10-13 Pacific — observed_beta_development — real boundary case passes; full fit selected
+
+Step 47377474.33 passed all seven diagonal checks (0.495 s) and cached diagnostic017.
+The real failed Task-A objective now has gap/energy 4.94e-15, global growth 0.00511025,
+and coefficient-distance bound 1.47e-16; search took 0.016 s with every original margin.
+Select cost007, 1 CPU / 7 GiB / 24 h, retaining all people/conditions/models/controls.
+Submitted as 47732835; preserve earlier attempts and keep its imported sources fixed.
+Its diagnostic wrapper preserves the original refusal and saves only the first failed
+diagonal Task-A objective if needed; all complete scientific summaries stay withheld.
+Prior operator and integration checks remain in force; actual operator checks run during fitting.
+
+## 2026-10-13 Pacific — observed_beta_development — balanced-vertex proof selected for compute
+
+Independent review found no blocking defect in the fixed-multiplier scalar growth proof.
+It requires exactly 8 lower/8 upper endpoints, strict scalar minima across each full
+interval, unchanged growth and objective-gap margins, and actual returned-C checks.
+Select seven focused diagonal methods plus saved failed Task-A objective 016 in the
+existing 1 CPU / 1 GiB companion, bounded to 15 minutes with a 768 MiB process guard.
+Only a passing global certificate permits another full-panel fit; no outcome access changes.
+
+## 2026-10-13 Pacific — observed_beta_development — failed fit identified as a boundary vertex
+
+Step 47377474.31 captured fit 9 after 309.80 s, peak RSS 200,508 KiB; panel exit stays 1.
+diagnostic016 shows all 16 diagonal coordinates at bounds (8 lower, 8 upper),
+zero free coordinates and an initial scalar-dual gap of about 3e-15 normalized units.
+The existing conditional profile requires a free coordinate, so its repeated branch refusal
+does not establish nonuniqueness. Select a quantified global boundary-vertex certificate
+under unchanged gap/growth/rank/operator margins, then check the saved Task-A objective.
+Private summaries and audit remain closed; the full panel remains incomplete.
+
+## 2026-10-13 21:39 Pacific — observed_beta_development — failed Task-A objective capture selected
+
+Cost005 stopped in a later diagonal conditional profile after 20 attempts, not in the block solver.
+Its measured peak RSS was 209,780 KiB; select the existing spare 1 CPU / 1 GiB step,
+bounded to 15 minutes with a 768 MiB process guard, for diagnose_m4_failure.py.
+The unchanged full panel retains its refusal and withheld publication; capture only the
+first failing diagonal Task-A objective in private_failed_objective016 and aggregate diagnostics.
+Fresh output cost006_diagnostic preserves cost005; no partial scientific result is released.
+
+## 2026-10-13 21:34 Pacific — observed_beta_development — cost005 stopped; diagnosis selected
+
+Scheduler reports 47730200 FAILED 1:0 after 3 minutes 49 seconds.
+operations005/initial_47730200/exit.json reports complete_observed_beta_cost_panel exit 1,
+with 220 seconds measured by the wrapper; no complete scientific panel is released.
+Select a targeted review of the public failure logs before any repair or retry.
+The private summaries and original audit remain closed; retain the failed attempt.
+
+## 2026-10-13 21:24 Pacific — observed_beta_development — all remaining cached families pass; integration selected
+
+Step47377474.27 passed three targeted checks (0.741s) and cached diagnostic015.
+The three unchanged block families have global gap/energy2.44e-15,4.06e-15,4.66e-15;
+minimum block-normalized growth0.00873,0.00415,0.00112; all exterior intervals excluded.
+This reuses only the first Task-A cache; actual operator checks and the full cohort remain.
+Standing authority activates the canonical block fallback beside the passing diagonal fallback.
+Step47377474.29 passed all six affected integration checks (0.100s;16.12s process).
+Submitted fresh cost005 as47730200,1CPU/7GiB/24h, with all12people/18conditions/16variants,
+the frozen188 locations and every control. Complete summaries remain private; audit stays closed.
+
+## 2026-10-13 21:21 Pacific — observed_beta_development — tighter block bound selected
+
+Step47377474.23 passed origin/shear checks but the diagonal double-well exhausted4096cells;
+cached diagnostic015 did not run. The isolated midpoint Taylor lower bound now preserves
+term dependence; independent source review found no mathematical blocker.
+Select a fresh coordinated1CPU/1GiB/20-minute step: rerun three targeted tests, then
+all three unchanged families on the saved first-Task-A cache,300s/4096cells per family.
+Production remains unchanged until the cached proof passes; no Task-B result or audit opens.
+
 ## 2026-10-13 20:46 Pacific — observed_beta_development — isolated all-block proof selected
 
 New block_m4_global.py retains eight independent original intervals/disks. Exact angular

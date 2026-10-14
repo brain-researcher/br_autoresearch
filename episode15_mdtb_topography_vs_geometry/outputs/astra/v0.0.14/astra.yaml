@@ -948,8 +948,13 @@ analyses:
       on unresolved error assumptions. No recovery fractions, class decision,
       audit opening or scientific subset is authorized. The October13 adopted
       supplemental M4 certificate and standing-authority canonical-diagonal
-      global profile/exclusion alternative preserve original growth/gap/rank
-      margins and actual operator checks. An unresolved certificate stops the
+      and independent-block global profile/exclusion alternatives preserve original growth/gap/rank
+      margins and actual operator checks. A nonfinite objective or Frechet gradient
+      encountered specifically during legacy SLSQP trial evaluation rejects that
+      local solve and invokes the same-family qualified global solver from fresh
+      coefficients. Initial/final objective checks and unrelated arithmetic
+      failures still refuse; no nonfinite coefficients or partial panel are accepted.
+      An unresolved certificate stops the
       complete panel. Reuse the frozen188-location mask and unaffected checks.
     inputs:
     - {id: policy, from: ../search_policy}
@@ -965,6 +970,8 @@ analyses:
     - {id: adopted_panel_adapter, type: data, source: outputs/tools/proposed_development_point_panel.py}
     - {id: diagonal_global_search, type: data, source: outputs/tools/diagonal_m4_global.py}
     - {id: diagonal_global_diagnostic, type: data, source: outputs/tools/diagnose_m4_global.py}
+    - {id: block_global_search, type: data, source: outputs/tools/block_m4_global.py}
+    - {id: block_global_diagnostic, type: data, source: outputs/tools/diagnose_m4_blocks.py}
     outputs:
     - id: diagonal_identifiability_diagnostic
       type: report
@@ -978,10 +985,24 @@ analyses:
         alternative numerical certificate requires both local constrained
         growth and valid lower bounds excluding every remaining region of the
         complete parameter domain; a small objective gap alone does not prove
-        uniqueness. Publish aggregate numerical diagnostics only. No Task-B
+        uniqueness. A balanced vertex may instead be proved using strict scalar
+        dual minima with growth over every full scalar interval, or local
+        inward derivative separation with exclusion of the entire exterior,
+        retaining the original margins and reconstructed-parameter checks.
+        Publish aggregate numerical diagnostics only. No Task-B
         score, audit opening, production activation or reduced model panel is
         implied by a diagnostic pass. Log measured finite search limits under
         standing numerical and resource authority.
+    - id: block_identifiability_diagnostic
+      type: report
+      format: json
+      inputs: [policy, released_view, block_global_search, block_global_diagnostic]
+      description: >-
+        Reuse the saved first-Task-A objective for all three canonical block-local
+        M4 families. Retain every original interval or disk; certify local
+        radial/angular growth and exclude the full exterior domain. Report only
+        aggregate gaps and growth. Operator locality and the complete cohort are
+        exercised by the unchanged downstream panel, not inferred from this cache.
     - id: common_finite_support
       type: data
       format: directory
@@ -1030,7 +1051,7 @@ analyses:
     - id: private_observed_beta_panel
       type: data
       format: directory
-      inputs: [policy, released_view, panel_code, panel_cli, observed_loss, observed_loss_checks, common_finite_support, m4_certificate, adopted_panel_adapter, diagonal_global_search]
+      inputs: [policy, released_view, panel_code, panel_cli, observed_loss, observed_loss_checks, common_finite_support, m4_certificate, adopted_panel_adapter, diagonal_global_search, block_global_search]
       description: >-
         One bounded first complete-route cost execution, with all observed-loss
         contributions and assumption-conditional legacy summaries retained in

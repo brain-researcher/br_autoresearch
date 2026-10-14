@@ -13,6 +13,18 @@ from fit_m3_task_a import _tolerance
 from spatial_deformation_operators import _matrix, apply_m3, apply_m4
 
 
+class M4OptimizerUnconverged(ArithmeticError):
+    """The local optimizer stopped without convergence; no fit is accepted."""
+
+
+class M4ObjectiveNonfinite(ArithmeticError):
+    """The evaluated Task-A value or Frechet gradient is nonfinite."""
+
+
+class M4OptimizerTrialNonfinite(M4OptimizerUnconverged):
+    """A local optimizer trial failed the finite-objective guard."""
+
+
 def _positive(value, name):
     if isinstance(value, (bool, np.bool_)) or not np.isscalar(value) or not np.isrealobj(value):
         raise ValueError(f"{name} must be a positive finite real scalar")
@@ -122,7 +134,7 @@ class PairedM4TaskAObjective:
                              for mode in self.modes])
         value = float(np.sum(weighted_residual*residual)+self.complement_loss)
         if not np.isfinite(value) or not np.all(np.isfinite(gradient)):
-            raise ArithmeticError("nonfinite Task-A objective or Frechet gradient")
+            raise M4ObjectiveNonfinite("nonfinite Task-A objective or Frechet gradient")
         return value, gradient
 
     def tangent_singular_values(self, coefficients):
@@ -185,11 +197,18 @@ def fit_m4_task_a(source_task_a, target_task_a, B, O, *, global_gain,
         eigenvalues = np.linalg.eigvalsh(objective.matrix(theta))
         return np.concatenate((rho-eigenvalues, rho+eigenvalues))
 
-    result = minimize(objective.value_gradient, zero, jac=True, method="SLSQP",
-                      constraints={"type": "ineq", "fun": constraints},
-                      options={"ftol": ftol, "maxiter": iterations, "disp": False})
+    try:
+        result = minimize(objective.value_gradient, zero, jac=True, method="SLSQP",
+                          constraints={"type": "ineq", "fun": constraints},
+                          options={"ftol": ftol, "maxiter": iterations, "disp": False})
+    except M4ObjectiveNonfinite as error:
+        # SLSQP can evaluate an inadmissible trial far outside the spectral
+        # constraints. Reject that local solve; a downstream qualified global
+        # solver may start fresh. Initial/final objective checks remain outside
+        # this scope, and unrelated arithmetic/feasibility failures propagate.
+        raise M4OptimizerTrialNonfinite("M4 local optimizer produced a nonfinite trial") from error
     if not result.success:
-        raise ArithmeticError(f"M4 local optimizer did not converge: {result.message}")
+        raise M4OptimizerUnconverged(f"M4 local optimizer did not converge: {result.message}")
     theta = result.x.copy()
     C = objective.matrix(theta)
     stretch_diagnostics = objective.final_stretch_diagnostics(theta, rho)

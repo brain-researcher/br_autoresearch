@@ -64,7 +64,7 @@ def _attempt(objective, specification, args, check, operator=None):
     from diagonal_m4_global import fit_diagonal_global
     from paired_stretch_variants import M4CertificateUnverified
     result = dict(status="started_first_Task_A_global_search",
-                  fit_method="normalized_linear_primal_and_restricted_dual_profile",
+                  fit_method="normalized_linear_primal_and_global_profile_or_certified_balanced_vertex",
                   full_domain_positive_curvature_passed=False,
                   operator_locality_check_exercised=False)
     try:

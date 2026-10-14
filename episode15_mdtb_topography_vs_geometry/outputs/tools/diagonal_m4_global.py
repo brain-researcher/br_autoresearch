@@ -5,6 +5,12 @@ global lower bounds even when their minimizers jump. A surviving one-coordinate
 profile is accepted only with unique conditional rest minima, positive profile
 curvature or a strict one-sided boundary slope, quantitative full-coordinate
 growth, and global exclusion of EVERY region outside the profile interval.
+An all-bound candidate may instead use a fixed scalar-dual multiplier: strict
+global endpoint minima, exactly eight of each endpoint, and quantitative
+growth over every full scalar interval certify the balanced vertex directly.
+When that separable witness is insufficient, a balanced vertex can instead use
+strict inward derivative separation on a local box plus complete global
+exterior exclusion. Neither route infers optimality from an active primal fit.
 All arithmetic assurances match the qualified floating-point interval helpers;
 this is not a formal interval proof of input moments or libm.
 """
@@ -357,6 +363,184 @@ def _branch_coordinate(p, d, lower, upper, bound):
     return int(np.argmax(gaps if np.max(gaps) > 0 else upper-lower))
 
 
+def _balanced_vertex_certificate(p, d, rho, initial, budget):
+    """Certify an exact balanced vertex from full-domain scalar dual growth.
+
+    A small dual gap or nearly active primal fit is not a certificate. At one
+    fixed lambda, independently recertify every scalar global endpoint minimum
+    and its growth on the WHOLE interval. Eight +rho and eight -rho endpoints
+    have trace zero algebraically. The common linear term therefore cancels
+    when the scalar inequalities are summed on the unchanged feasible domain.
+    """
+    if len(p) != 16 or len(d) != 16:
+        raise ValueError("the canonical sixteen-coordinate box is required")
+    lam, optima = _i(initial["lambda"]), []
+    for pi, di in zip(p, d):
+        budget.tick()
+        rows = _candidates(float(pi), float(di), lam, -rho, rho)
+        chosen = min(rows, key=lambda row: row[2].hi)
+        if chosen[0] not in ("lower", "upper") or any(
+                chosen[2].hi >= row[2].lo for row in rows if row is not chosen):
+            _refuse("balanced vertex lacks a strict scalar global endpoint minimum")
+        optima.append(chosen)
+    kinds = tuple(row[0] for row in optima)
+    if kinds.count("lower") != 8 or kinds.count("upper") != 8:
+        _refuse("strict scalar endpoints do not form a balanced trace-zero vertex")
+    growths, cover_cells = [], []
+    for pi, di, optimum in zip(p, d, optima):
+        budget.cell()
+        # This one-sided Taylor bound already covers the entire scalar domain,
+        # even when its Hessian is negative. Subdivide only if it is too weak.
+        try:
+            growth = _local_growth(float(pi), float(di), lam, -rho, rho, optimum)
+        except M4CertificateUnverified:
+            growth = -math.inf
+        visited = 1
+        if growth <= CURVATURE_MARGIN:
+            growth, extra = _growth(float(pi), float(di), lam, rho, optimum,
+                CURVATURE_MARGIN, budget.cell, max(1, budget.max_cells-budget.cells))
+            visited += extra
+        if growth <= CURVATURE_MARGIN:
+            _refuse("balanced vertex growth does not exceed the retained margin")
+        growths.append(growth)
+        cover_cells.append(visited)
+    lower = sum((row[2] for row in optima), _i(0.)).lo
+    feasible = sum((_value(float(pi), float(di), _i(0.), row[1])
+                    for pi, di, row in zip(p, d, optima)), _i(0.)).hi
+    gap = (_i(feasible)-lower).hi
+    if gap > GAP_RTOL:
+        _refuse("balanced vertex objective gap exceeds the retained margin",
+                global_gap_upper_bound=gap)
+    budget.diagnostics.update(remaining_cells=0, profile_axis_rule="not_used_balanced_vertex",
+                              vertex_scalar_growth_cover_cells=sum(cover_cells))
+    return dict(coordinate_intervals=tuple(row[1] for row in optima),
+        global_lower_bound=lower, feasible_upper_bound=feasible,
+        global_gap_upper_bound=gap, global_coordinate_growth_lower_bound=min(growths),
+        certificate_kind="balanced_strict_scalar_dual_vertex",
+        profile_kind=None, scalar_dual_multiplier=lam.lo,
+        scalar_endpoint_kinds=kinds, scalar_growth_lower_bounds=tuple(growths),
+        scalar_growth_cover_cells=tuple(cover_cells), exact_balanced_endpoint_count=8,
+        all_other_regions_excluded=True, unique_global_minimum_sufficient_dual=True,
+        unique_global_minimum_sufficient_profile=False,
+        full_domain_positive_curvature_asserted=False)
+
+
+def _local_balanced_vertex_region(p, d, rho, vertex, budget):
+    """Prove constrained growth around an exact balanced endpoint anchor.
+
+    For any trace-zero movement from this vertex, inward increments at lower
+    endpoints and inward decrements at upper endpoints each sum to t. If every
+    lower-endpoint derivative exceeds every upper-endpoint derivative by gamma
+    throughout the box, the objective increase is at least gamma*t. With each
+    coordinate movement bounded by r, squared distance is at most 2*r*t.
+    Thus gamma/r is a coordinate growth constant, even with negative Hessians.
+    This proves nothing about the exterior; that region must still be excluded.
+    """
+    vertex = np.asarray(vertex, float)
+    at_lower, at_upper = vertex == -rho, vertex == rho
+    if (vertex.shape != (16,) or len(p) != 16 or len(d) != 16
+            or np.sum(at_lower) != 8 or np.sum(at_upper) != 8):
+        _refuse("local vertex anchor is not an exact balanced endpoint vector")
+    last_gap = -math.inf
+    for level in range(20):
+        budget.tick()
+        radius = 2*rho/(2**level)
+        lower = np.where(at_lower, -rho, max(-rho, rho-radius))
+        upper = np.where(at_upper, rho, min(rho, -rho+radius))
+        derivatives = [_derivative(float(pi), float(di), _I(float(lo), float(hi)))
+                       for pi, di, lo, hi in zip(p, d, lower, upper)]
+        lower_slope = min(row.lo for row, active in zip(derivatives, at_lower) if active)
+        upper_slope = max(row.hi for row, active in zip(derivatives, at_upper) if active)
+        separation = (_i(lower_slope)-upper_slope).lo
+        width = max((_i(float(hi))-_i(float(lo))).hi for lo, hi in zip(lower, upper))
+        growth = (_i(separation)/width).lo
+        last_gap = separation
+        if separation > 0 and growth > CURVATURE_MARGIN:
+            return dict(lower=lower, upper=upper, full_growth=growth,
+                        derivative_separation_lower_bound=separation,
+                        max_coordinate_movement=width, local_vertex_attempts=level+1)
+    _refuse("balanced vertex lacks retained local constrained growth",
+            last_derivative_separation_lower_bound=last_gap)
+
+
+def _exclude_exterior(p, d, rho, region, feasible_upper, local_lower, budget):
+    """Retain the same full-domain dual exclusion for profiles and vertices."""
+    n = len(p)
+    lower, upper = np.full(n, -rho), np.full(n, rho)
+    diameter_squared = (_square(2*_i(rho))*n).hi
+    threshold = (_i(feasible_upper)+CURVATURE_MARGIN*_i(diameter_squared)/2).hi
+    queue, serial, pruned_lower = [], 0, math.inf
+
+    def push(a, b):
+        nonlocal serial, pruned_lower
+        budget.cell()
+        # Sum-zero infeasibility is checked with outward arithmetic. No cell
+        # is removed merely because its width or apparent gap is small.
+        if sum((_i(float(x)) for x in a), _i(0.)).lo > 0 or sum(
+                (_i(float(x)) for x in b), _i(0.)).hi < 0:
+            return
+        bound = restricted_dual_bound(p, d, a, b, check=budget.tick)
+        if bound["lower_bound"] > threshold:
+            pruned_lower = min(pruned_lower, bound["lower_bound"])
+        else:
+            split = _branch_coordinate(p, d, a, b, bound)
+            heapq.heappush(queue, (bound["lower_bound"], serial, a, b, split))
+            serial += 1
+
+    slabs = tuple(_exterior_slabs(lower, upper, region["lower"], region["upper"]))
+    budget.diagnostics["initial_exterior_slabs"] = len(slabs)
+    split_counts = np.zeros(n, dtype=int)
+    for a, b in slabs:
+        push(a, b)
+    while queue:
+        budget.tick()
+        best, _, a, b, split = heapq.heappop(queue)
+        budget.diagnostics.update(best_remaining_global_gap=max(0., feasible_upper-min(best, local_lower)),
+                                  remaining_cells=len(queue)+1,
+                                  branched_coordinate_count=int(np.sum(split_counts > 0)))
+        mid = (a[split]+b[split])/2
+        if not a[split] < mid < b[split]:
+            _refuse("unexcluded region reached floating-point subdivision resolution", **budget.snapshot())
+        split_counts[split] += 1
+        left_upper, right_lower = b.copy(), a.copy()
+        left_upper[split], right_lower[split] = mid, mid
+        push(a, left_upper)
+        push(right_lower, b)
+    budget.diagnostics["remaining_cells"] = 0
+    budget.diagnostics["branched_coordinate_count"] = int(np.sum(split_counts > 0))
+    global_lower = min(local_lower, pruned_lower)
+    gap = (_i(feasible_upper)-global_lower).hi
+    outside_growth = (2*(_i(pruned_lower)-feasible_upper)/diameter_squared).lo if math.isfinite(pruned_lower) else math.inf
+    growth = min(region["full_growth"], outside_growth)
+    if gap > GAP_RTOL or growth <= CURVATURE_MARGIN:
+        _refuse("global objective gap or full-coordinate growth remains unverified",
+                **budget.snapshot(), global_gap_upper_bound=gap, full_coordinate_growth=growth)
+    return dict(global_lower_bound=global_lower, feasible_upper_bound=feasible_upper,
+                global_gap_upper_bound=gap, global_coordinate_growth_lower_bound=growth,
+                all_other_regions_excluded=True)
+
+
+def _constrained_vertex_certificate(p, d, rho, vertex, budget):
+    region = _local_balanced_vertex_region(p, d, rho, vertex, budget)
+    budget.diagnostics.update(profile_axis_rule="not_used_constrained_vertex",
+        local_vertex_scope="final_restricted_coordinate_box",
+        local_vertex_derivative_separation_lower_bound=region["derivative_separation_lower_bound"],
+        local_vertex_max_coordinate_movement=region["max_coordinate_movement"],
+        local_vertex_coordinate_growth_lower_bound=region["full_growth"],
+        local_vertex_attempts=region["local_vertex_attempts"])
+    coordinates = tuple(_i(float(ci)) for ci in vertex)
+    value = sum((_value(float(pi), float(di), _i(0.), ci)
+                 for pi, di, ci in zip(p, d, coordinates)), _i(0.))
+    exclusion = _exclude_exterior(p, d, rho, region, value.hi, value.lo, budget)
+    return dict(coordinate_intervals=coordinates, **exclusion,
+        certificate_kind="balanced_constrained_vertex_with_global_exclusion",
+        profile_kind=None, exact_balanced_endpoint_count=8,
+        unique_global_minimum_sufficient_dual=False,
+        unique_global_minimum_sufficient_profile=False,
+        unique_global_minimum_sufficient_constrained_vertex=True,
+        full_domain_positive_curvature_asserted=False)
+
+
 def moment_global_search(p, d, rho, H, *, check, seconds=300., max_cells=4096):
     """Return a complete numerical global certificate or an honest bounded stop."""
     p, d, H = np.asarray(p, float), np.asarray(d, float), np.asarray(H, float)
@@ -398,6 +582,27 @@ def moment_global_search(p, d, rho, H, *, check, seconds=300., max_cells=4096):
         profile_axis_changed_from_dual_ambiguity=bool(axis != dual_axis),
         profile_axis_primal_curvature=float(primal_curvature[axis]),
         profile_axis_rule="lowest_curvature_primal_free" if len(free) else "largest_dual_ambiguity")
+    if not len(free):
+        try:
+            vertex = _balanced_vertex_certificate(p, d, rho, initial, budget)
+            return {**vertex, "primal_iterations": iterations, **budget.snapshot()}
+        except SearchStop:
+            raise
+        except M4CertificateUnverified as error:
+            # An insufficient separable witness does not rule out a unique
+            # constrained vertex. Preserve its refusal, then prove that route
+            # independently, including every exterior region.
+            budget.diagnostics["vertex_certificate_failure"] = dict(
+                reason=str(error), diagnostics=error.diagnostics)
+        vertex = np.where(primal < 0, -rho, rho)
+        try:
+            certificate = _constrained_vertex_certificate(p, d, rho, vertex, budget)
+            return {**certificate, "primal_iterations": iterations, **budget.snapshot()}
+        except SearchStop:
+            raise
+        except M4CertificateUnverified as error:
+            budget.diagnostics["constrained_vertex_certificate_failure"] = dict(
+                reason=str(error), diagnostics=error.diagnostics)
     center = min(rho, max(-rho, float(primal[axis])))
     region, last_reason = None, "not_attempted"
     for level in range(20):
@@ -434,65 +639,16 @@ def moment_global_search(p, d, rho, H, *, check, seconds=300., max_cells=4096):
         local_box_max_width=float(np.max(region["upper"]-region["lower"])))
     point, profile_lower = _profile_optimum(p, d, rho, axis, region, budget.tick)
     feasible_upper = point["value"].hi
-    diameter_squared = (_square(2*_i(rho))*n).hi
-    threshold = (_i(feasible_upper)+CURVATURE_MARGIN*_i(diameter_squared)/2).hi
-    queue, serial, pruned_lower = [], 0, math.inf
-
-    def push(a, b):
-        nonlocal serial, pruned_lower
-        budget.cell()
-        # Sum-zero infeasibility is checked with outward arithmetic. No cell
-        # is removed merely because its width or apparent gap is small.
-        if sum((_i(float(x)) for x in a), _i(0.)).lo > 0 or sum(
-                (_i(float(x)) for x in b), _i(0.)).hi < 0:
-            return
-        bound = restricted_dual_bound(p, d, a, b, check=budget.tick)
-        if bound["lower_bound"] > threshold:
-            pruned_lower = min(pruned_lower, bound["lower_bound"])
-        else:
-            split = _branch_coordinate(p, d, a, b, bound)
-            heapq.heappush(queue, (bound["lower_bound"], serial, a, b, split))
-            serial += 1
-
-    slabs = tuple(_exterior_slabs(lower, upper, region["lower"], region["upper"]))
-    budget.diagnostics["initial_exterior_slabs"] = len(slabs)
-    split_counts = np.zeros(n, dtype=int)
-    for a, b in slabs:
-        push(a, b)
-    while queue:
-        budget.tick()
-        best, _, a, b, split = heapq.heappop(queue)
-        budget.diagnostics.update(best_remaining_global_gap=max(0., feasible_upper-min(best, profile_lower)),
-                                  remaining_cells=len(queue)+1,
-                                  branched_coordinate_count=int(np.sum(split_counts > 0)))
-        mid = (a[split]+b[split])/2
-        if not a[split] < mid < b[split]:
-            _refuse("unexcluded region reached floating-point subdivision resolution", **budget.snapshot())
-        split_counts[split] += 1
-        left_upper, right_lower = b.copy(), a.copy()
-        left_upper[split], right_lower[split] = mid, mid
-        push(a, left_upper)
-        push(right_lower, b)
-    budget.diagnostics["remaining_cells"] = 0
-    budget.diagnostics["branched_coordinate_count"] = int(np.sum(split_counts > 0))
-    global_lower = min(profile_lower, pruned_lower)
-    gap = (_i(feasible_upper)-global_lower).hi
-    outside_growth = (2*(_i(pruned_lower)-feasible_upper)/diameter_squared).lo if math.isfinite(pruned_lower) else math.inf
-    growth = min(region["full_growth"], outside_growth)
-    if gap > GAP_RTOL or growth <= CURVATURE_MARGIN:
-        _refuse("global objective gap or full-coordinate growth remains unverified",
-                **budget.snapshot(), global_gap_upper_bound=gap, full_coordinate_growth=growth)
+    exclusion = _exclude_exterior(p, d, rho, region, feasible_upper, profile_lower, budget)
     coordinates = []
     rest_rows = iter(point["rows"])
     for i in range(n):
         coordinates.append(_i(point["t"]) if i == axis else next(rest_rows)[1])
-    return {"coordinate_intervals": tuple(coordinates), "global_lower_bound": global_lower,
-            "feasible_upper_bound": feasible_upper, "global_gap_upper_bound": gap,
-            "global_coordinate_growth_lower_bound": growth,
+    return {"coordinate_intervals": tuple(coordinates), **exclusion,
             "profile_kind": region["kind"], "profile_curvature_lower_bound": region["profile_curvature"],
             "rest_growth_lower_bound": region["rest_growth"],
             "profile_full_coordinate_growth_lower_bound": region["full_growth"],
-            "all_other_regions_excluded": True, "unique_global_minimum_sufficient_profile": True,
+            "unique_global_minimum_sufficient_profile": True,
             "primal_iterations": iterations, **budget.snapshot()}
 
 
@@ -560,21 +716,34 @@ def fit_diagonal_global(objective, specification, *, check, seconds=300., max_ce
         _refuse("returned coefficient objective exceeds the original absolute global gap",
                 absolute_objective_gap_per_energy=absolute_gap)
     gram = _helmert_gram_lower(specification.modes)
-    distance = (_sqrt(_nonnegative(anchor_distance)/gram)
-                +_sqrt(_i(2*result["global_gap_upper_bound"])/(result["global_coordinate_growth_lower_bound"]*gram))).hi
+    distance = _sqrt(_nonnegative(anchor_distance)/gram)
+    exact_vertex = result.get("certificate_kind") in (
+        "balanced_strict_scalar_dual_vertex", "balanced_constrained_vertex_with_global_exclusion")
+    if not exact_vertex:
+        distance = distance+_sqrt(_i(2*result["global_gap_upper_bound"])
+                                 /(result["global_coordinate_growth_lower_bound"]*gram))
+    # A certified vertex is the exact constrained minimizer of the stored
+    # scalar problem. Only reconstruction distance is needed for that branch;
+    # an arithmetic value enclosure is not optimizer-location uncertainty.
+    distance = distance.hi
     zero_error = float(np.max(np.abs(objective.predict(objective.source, zero)
                      -objective.gain*apply_m3(objective.source, objective.B, objective.O))))
     if zero_error > NUMERICAL_ATOL:
         _refuse("global diagonal zero stretch fails the original M3 replay tolerance")
+    solver = {
+        "balanced_strict_scalar_dual_vertex": "normalized_linear_primal_and_balanced_scalar_dual_vertex",
+        "balanced_constrained_vertex_with_global_exclusion":
+            "normalized_linear_primal_and_constrained_vertex_global_exclusion",
+    }.get(result.get("certificate_kind"), "normalized_linear_primal_and_global_profile")
     numerical = dict(C=C, coefficients=theta, O=objective.O.copy(), gain=objective.gain,
         weighted_task_a_squared_error=loss, paired_zero_stretch_loss=initial_loss,
-        iterations=result["primal_iterations"], numerical_solver="normalized_linear_primal_and_global_profile",
+        iterations=result["primal_iterations"], numerical_solver=solver,
         numerical_solver_converged=True, local_optimizer_converged=False,
         zero_stretch_replay_max_abs=zero_error, locality_certified=False, **diagnostics)
     public = {key: value for key, value in result.items() if key != "coordinate_intervals"}
-    certificate = dict(**public, objective_scale=energy, first_order_gap_per_energy=stationary_gap/energy,
-        first_order_gap_method="outward_balanced_box_linear_oracle",
-        absolute_objective_gap_per_energy=absolute_gap, coefficient_distance_upper_bound=distance,
-        full_domain_positive_curvature_asserted=False, exact_global_optimizer=False,
-        interval_arithmetic_proof=False, solution_within_frozen_gap=True)
+    certificate = {**public, "objective_scale": energy, "first_order_gap_per_energy": stationary_gap/energy,
+        "first_order_gap_method": "outward_balanced_box_linear_oracle",
+        "absolute_objective_gap_per_energy": absolute_gap, "coefficient_distance_upper_bound": distance,
+        "full_domain_positive_curvature_asserted": False, "exact_global_optimizer": False,
+        "interval_arithmetic_proof": False, "solution_within_frozen_gap": True}
     return numerical, certificate

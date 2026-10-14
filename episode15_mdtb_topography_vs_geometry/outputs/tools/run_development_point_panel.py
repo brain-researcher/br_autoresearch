@@ -275,7 +275,10 @@ def execute(*, manifest_path, output_dir, deadline_epoch, rss_limit_kib, durable
         payload = _encoded(dict(analysis_scope=analysis_scope, observed_beta=observed,
             numerical_methods=dict(
                 m4_default="sufficient_full_domain_curvature_and_first_order_gap",
-                canonical_diagonal_on_curvature_refusal="global_profile_and_full_domain_exclusion",
+                local_optimizer_nonconvergence="same_qualified_global_solver_for_the_canonical_family",
+                local_optimizer_nonfinite_trial="same_qualified_global_solver_for_the_canonical_family",
+                canonical_diagonal_on_curvature_refusal="global_profile_exclusion_or_balanced_scalar_dual_vertex_or_constrained_vertex_with_global_exclusion",
+                canonical_block_families_on_curvature_refusal="independent_block_radial_global_exclusion",
                 original_model_domain_rank_gap_and_operator_limits_retained=True,
                 unresolved_certificate_stops_complete_panel=True,
                 exact_global_optimizer_or_interval_arithmetic_proof=False),
