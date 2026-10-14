@@ -4,6 +4,60 @@ This repository is the durable workspace for independent Brain Researcher
 episodes. Local files describe the work; the configured Brain Researcher MCP
 service owns canonical campaign state.
 
+## Current research goal — adopted 2026-10-13
+
+Produce new scientific results in br_autoresearch. Focus: EP15, EP18, EP20, EP21.
+For each, reach its next empirical result: a real-data estimate with uncertainty
+at the independent-unit level, or its prespecified held-out evaluation. Report it
+with one figure and a three-line summary. A blocker is not an end state: route
+around it under the standing authority below, or put one question in the daily
+batch and keep working. Send one daily update: new results, changes, batched
+questions. Done when each focus episode has its next result or a scientific
+reason it cannot have one.
+
+This replaces the earlier EP01–EP21 execution focus. Preserve completed results,
+active jobs and data boundaries. EP20's previously adopted simulation exception
+remains in force: label model-based results explicitly, without presenting them
+as real-data estimates. Engineering benchmarks alone are not scientific results.
+
+## Standing scientist authority
+
+The scientist pre-authorizes the following for every episode. Act, then add one
+dated log line; do not ask first.
+
+- Compute caps, per-attempt limits and wall clocks are soft. Raise them when a
+  measurement shows the need; wall clocks count consumed job time.
+- Engineering failures (crashes, timeouts, failing tests, lost sessions) never
+  end an episode. Diagnose, fix and retry.
+- Same-account procedural evaluation separation is the default; results
+  disclose it.
+- Engineering, numerical and data-quality changes that keep the estimand, data
+  roles and claims: implement and validate them directly.
+- Follow-ups within the episode question that keep its estimand, data roles and
+  held-out boundary: activate and log each one, so the size of the search stays
+  visible. There is no queue of unactivated proposals.
+
+Ask first only to change the question or primary estimand, data roles,
+held-out/test access, confirmatory thresholds or claims; to add a dataset or data
+agreement; or to contact anyone. Batch these into one message per day and keep
+other work moving while waiting.
+
+This authority overrides conflicting local episode and workflow provisions;
+site-enforced resource limits and Sherlock execution rules remain in force.
+Use finite measured Slurm requests and retain historical consumption.
+
+## Lightweight records
+
+- A log entry is at most 10 lines: what ran (job ID), what came out (numbers),
+  what is next. Report compute per episode once a day, not per job step.
+- Run a check only when its failure would change the next action. No receipts,
+  hashes, conformance suites or bitwise checks of reference code unless a result
+  depends on them.
+- New episodes get a one-page GOAL and a policy under about 100 lines: question,
+  data roles, primary analysis, what counts as a result, claim limits.
+- Existing long contracts stay. The standing authority above overrides their
+  compute, clock, failure-count and separation clauses.
+
 ## Choose the workflow
 
 | Requested work | Guidance |
@@ -14,11 +68,12 @@ service owns canonical campaign state.
 | Repository maintenance or ordinary document edits with no scientific-design change | Stay within the requested files and action; no research workflow needs to start. |
 
 Design and standalone execution are the everyday workflows. Use only the skill
-needed for the current action, not all three in sequence. A design discussion
-does not authorize compute; an analysis request does not authorize another
-experiment. A persistent Codex goal does not imply a canonical Brain Researcher
-Goal. Do not run Git mutations, including staging, committing, or pushing,
-unless the user explicitly requests them.
+needed for the current action, not all three in sequence. Execute follow-ups
+already delegated by the standing authority without reconfirmation; a new
+question, estimand or protected data-role change still needs the stated
+scientist decision. A persistent Codex goal does not imply a canonical Brain
+Researcher Goal. Do not run Git mutations, including staging, committing, or
+pushing, unless the user explicitly requests them.
 
 ## Workspace and data boundaries
 
@@ -44,13 +99,26 @@ unless the user explicitly requests them.
 
 ## Execution and scientific decisions
 
+For a continuation, name the next measured result and its remaining dependency
+in the existing log; carry already granted authority across resumes. A stale
+pending marker or blocked app goal is not an unanswered scientist decision.
+Scheduling approved work on ready inputs, reusing completed stages and repairing
+engineering defects within that authority do not need reconfirmation. Ask only
+for the specific consequential change not already delegated. Apply standing
+resource delegation before treating an older cap as an unanswered request;
+select finite, measured limits and preserve later explicit ceilings. A documented
+blocker is a truthful incomplete state, not delivery of the requested result;
+advance another ready authorized task when one exists. Do not reopen a valid
+scientific stop merely because compute remains.
+
 Advance the next authorized work. Check an explicit contract condition, a
 concrete access/validity risk, or an observed defect that changes the next
 action; reuse passing runner checks. There is no universal preflight,
 conformance, smoke, or qualification sequence. Do not add generic hashes,
 receipt chains, source copies, interpreter bindings, schemas, or provenance
-inventories. Retain mechanisms required by a frozen contract or a concrete
-integrity failure.
+inventories. Retain a check or integrity mechanism when a result depends on it
+or its failure would change the next action; an older checklist alone is not
+a reason to run it.
 
 Keep exploration as open as the scientific question and active policy allow.
 Do not import candidate caps, modeling choices, or an adaptive-search program
@@ -61,9 +129,11 @@ declared stages in episodes that adopt them.
 Preserve the requested scientific fidelity, biological-group independence,
 overlap/leakage controls, development/final separation, group support,
 source/atlas compatibility, and unknown versus verified absence. Frozen
-identity, timing, access, stopping, budget, and claim limits remain in force
-until an authorized amendment. A cleanup or mechanical repair is not such an
-amendment.
+scientific identity, data roles, held-out/test access, confirmatory thresholds
+and claim limits remain in force until an authorized amendment. The standing
+authority governs compute, clocks, engineering failures, procedural separation,
+numerical/data-quality repairs and eligible follow-ups; do not reimpose the
+older overridden clauses as approval gates.
 
 Make contract-preserving engineering choices directly. Report missing required
 data, authority, or consequential scientific choices early, with a recommendation.

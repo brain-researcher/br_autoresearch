@@ -123,7 +123,7 @@ flattening its subtrees.
 | --- | --- | --- | ---: | ---: |
 | `asset_ep03_neuroeffect_spatial_sources` | EP03 | `neuroeffect_spatial_sources_20260917T200750Z` | 44.29 GB | `2700` |
 | `asset_ep03_neuroeffect_promotion_control` | EP03 | `neuroeffect_spatial_promotion_control` | 8.9 KB | `2700` |
-| `asset_ep04_laion_mixed_role` | EP04, EP21, EP22 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
+| `asset_ep04_laion_mixed_role` | EP04, EP21, EP22, EP23 | `laion_fmri_mixed_role_20260922` | 177.15 GB | `2500` |
 | `asset_ep04_laion_raw_stimuli_dua` | EP04; EP21 inventory-only pending DUA | `laion_fmri_raw_stimuli_dua_20260922` | 3.42 GB | `0700` |
 | `asset_ep09_ep10_ep11_seu_a1876` | EP09–EP11 | `seu_a1876_zenodo_13944322` | 3.41 GB | `2500` |
 | `asset_ep10_seu_optional_bouton` | EP10 | `seu_a1876_optional_bouton_zenodo_13944322` | 1.42 GB | `2550` |
@@ -131,7 +131,7 @@ flattening its subtrees.
 | `asset_ep09_ccf_me` | EP09 | `ccf_me_zenodo_13801372_v2` | 0.74 GB | `2550` |
 | `asset_ep17_cneuromod_images` | EP17 | `cneuromod_images_fmri_pinned_f8f5162_20260922` | 0.92 GB | `2550` |
 | `asset_ep18_things_images` | EP18 | `things_images_osf_jum2f_snapshot_20260922` | 5.02 GB | `2550` |
-| `asset_ep18_things_metadata` | EP18 | `things_metadata_osf_jum2f_20260922` | 53.31 MB | `2700` |
+| `asset_ep18_things_metadata` | EP18; EP23 (concept labels only) | `things_metadata_osf_jum2f_20260922` | 53.31 MB | `2700` |
 | `asset_ep18_thingsplus_cc0` | EP18 | `thingsplus_cc0_osf_jum2f_20260922` | 1.18 GB | `2550` |
 | `asset_ep18_thingsplus_control` | EP18 | `thingsplus_cc0_control_20260922` | 9.9 KB | `2770` |
 | `asset_ep19_public_sources` | EP19 | `ep19_public_sources` | 23.93 GB | `2500` |
@@ -151,10 +151,24 @@ EP04 legacy Scratch tree remains EP04-only.
 
 EP22 binds the same LAION bytes. On 2026-10-12 the scientist reassigned the
 371-image OOD pool from EP04, which closed without an audit, to EP22 as its
-one-shot confirmation set. Its use still depends on the outcome-blind exposure
+one-shot confirmation set. The prerequisites were the outcome-blind exposure
 review and the corrected OOD embedding rows required by
 [EP22's DATASETS](episode22_geometry_gap_decomposition/DATASETS.md#sealed-confirmation-requirements).
-The OOD pool remains closed to EP21.
+EP22 opened the pool once on 2026-10-13 under its write-once lock, so it is now
+consumed. It cannot serve as sealed confirmation for any episode, and it
+remains closed to EP21.
+
+EP23 binds the same LAION bytes for exploratory reuse of the development role
+only. Its A0 analysis was frozen on 2026-10-13.
+
+- **Concept labels:** it reads concept-level THINGS labels from
+  `asset_ep18_things_metadata`, which hold no outcomes.
+- **Visual operator:** the scientist approved binding the raw stimuli for a
+  low-level visual operator. A0 reads only EP04's frozen derived RGB
+  block-moment features, not pixels from `asset_ep04_laion_raw_stimuli_dua`.
+- **Annotation files:** public Visual Genome, COCO caption and WordNet files
+  sit in EP23's transient scratch. They are not steward assets.
+- **Confirmation:** no EP23 confirmation source is bound.
 
 AJILE12 dominates this tree. Its existing `ACQUISITION_COMPLETE_UTC`,
 `VERIFIED_COUNT_BYTES`, and `ASSET_MANIFEST.json` records cover 55 assets and

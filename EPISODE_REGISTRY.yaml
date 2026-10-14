@@ -55,7 +55,7 @@ incomplete_draft_records:
 
 shared_evidence_groups:
   - group_id: laion_fmri_ep04_ep21
-    episode_ids: [ep04, ep21, ep22]
+    episode_ids: [ep04, ep21, ep22, ep23]
     required_shared_artifact: exposure_split_ledger
     evidence_independence: correlated_not_independent
   - group_id: lfp_ep05_ep08
@@ -209,4 +209,23 @@ episodes:
     recorded_on: "2026-10-12"
     follows_episode_ids: [ep04]
     foundation_adjacent: [F20-02]
+    independent_confirmation: false
+  - episode_id: ep23
+    path: episode23_spectral_operator_convergence
+    title: A conditional spectral-operator account of representational convergence
+    search_policy_ref: episode23_spectral_operator_convergence/SEARCH_POLICY.yaml
+    local_role: current_theory_episode
+    evidence_mode: conditional_theory_with_exploratory_constraints
+    design_status: proposed_not_frozen
+    recorded_on: "2026-10-13"
+    follows_episode_ids: [ep22]
+    foundation_adjacent: [F20-02]
+    independent_confirmation: false
+  - episode_id: ep24
+    path: episode24_result_driven_harness
+    title: Result-driven research harness
+    search_policy_ref: episode24_result_driven_harness/SEARCH_POLICY.yaml
+    local_role: current_fixed_diagnostic_episode
+    evidence_mode: operational_history_and_prospective_process_evaluation
+    recorded_on: "2026-10-13"
     independent_confirmation: false

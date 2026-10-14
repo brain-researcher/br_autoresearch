@@ -29,6 +29,8 @@
 /*/outputs/tmp/
 /*/outputs/subject_maps/
 /*/outputs/group_maps/
+# Bulk job outputs stay on OAK; records link to them by path.
+/*/outputs/runs/
 
 # Credentials and local Codex runtime state.  Keep the project MCP config.
 .env
@@ -47,6 +49,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 *.tmp
+# Partial writes from running or cancelled jobs.
+*.partial
 slurm-*.out
 slurm-*.err
 

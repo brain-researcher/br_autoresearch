@@ -74,6 +74,13 @@ unknown versus verified absence. Do not open closed outcomes to debug or plot.
   trade-off and propose a sufficient amendment; do not reset consumed budget,
   enlarge a sweep, silently waive the requirement or cancel unrelated work.
 
+When measured runtime makes the next result doubtful, project the remaining
+work before selecting another run. Distinguish a per-job scheduler limit from
+the cumulative episode cap. Use authorized chunking, checkpoints and ready
+inputs directly; if the total cannot fit, identify the concrete resource or
+scientific amendment. Reuse existing measurements rather than adding a
+mandatory benchmark. More compute does not waive a scientific stop.
+
 Preserve the requested fidelity, including an adapted replication with stated
 deviations. Do not demand perfect upstream provenance or silently substitute a
 different dataset. Changes to estimand, model family, eligibility, frozen
