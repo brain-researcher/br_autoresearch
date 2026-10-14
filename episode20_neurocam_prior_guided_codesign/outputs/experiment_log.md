@@ -1,5 +1,65 @@
 # Experiment log
 
+## 2026-10-14 09:17 Pacific — fast_forward_equivalence — offset reference and continuous checkpoint completed
+
+47689336 completed the full original offset frame and all three comparison windows; 47721841 completed its requested 100-frame chunk.
+The offset comparison passed states, hold means, work and allowed near-threshold code differences, including the clipping case.
+Original/offset-fast solver times were 38,585/1,038 s; reuse this reference if the later continuous implementation needs its own clipping comparison.
+The continuous checkpoint retains 100/4,000 frames through 0.4 s, at 197.67 s/frame; about 214 CPU-hours remain at that rate.
+Its first-frame comparisons pass, but its metadata does not assert clipping equivalence; the earlier offset PASS is not transferred to it.
+Evidence remains at fast_forward_stage1/solver/ref_frame_offsets_full002 and fast_forward_stage2/solver/continuous_100frames001 under outputs/runs/.
+Preserve both results; no unchanged engineering successor is needed for the active conditional S5 prediction route. Neither is a scientific result.
+
+## 2026-10-14 09:12 Pacific — conditional_s5_prediction — complete-record CRAM16 array submitted
+
+All 24 old 47742184 array tasks and batch/extern steps are terminal; original checkpoints and records are preserved.
+Submitted run_reference_s5_cram16_grid.sbatch as 47789534_12–35, with 24 concurrent 1 CPU / 2 GiB / 48-hour tasks.
+Each original R2/R3 point resumes its same record and targets all 4,000 frames; all twelve completed R1 records are reused.
+The 01:03 qualification/adoption entry supports the backend switch; no nearest fit or distant outcome was read for selection.
+Next: confirm checkpoint reconstruction and continuing frame commits, then require all 36 full records before scientific reporting.
+At 09:17 Pacific, eight tasks are RUNNING and sixteen await resources; sampled resumed workers commit frames at 26.6–29.9 s/frame.
+Step 47377474.50 passed pinned ASTRA 0.0.14 schema and semantic validation of the selected continuation and affected references.
+
+## 2026-10-14 01:03 Pacific — conditional_s5_prediction — full-frame CRAM16 passes; complete-record continuation adopted
+
+47751829 completed both R2/R3 4,800-interval comparisons; all original state/integral, acquisition and energy checks passed.
+Maximum state error was 2.88e-14 and integral tolerance ratio 0.00708; all 192 shifted-inverse cases per structure passed.
+Carried frames took 26.72/28.63 s versus prior Taylor 215.84/172.40 s, projecting about 30/32 h for 4,000 frames before overhead.
+Evidence: runs/reference_s5/cram16_frame_job_47751829/comparison.json; qualification covers frame0, frame1 cost and maximum-coupling inverses.
+Independent source reviews passed comparator and continuation; step 47377474.47 passed entrypoint/wrapper syntax.
+Under standing authority, select full-state CRAM16 continuation for all 24 original R2/R3 points, 1 CPU / 2 GiB / 48 h each.
+Stop only array 47742184, preserve committed records, confirm every old batch/extern terminal, then submit the prepared CRAM16 array.
+All 36 complete records remain required before family freeze and distant prediction; no scientific outcome or full-record accuracy is claimed here.
+
+## 2026-10-14 00:52 Pacific — conditional_s5_prediction — complete-record CRAM16 continuation prepared
+
+New entrypoint reference_s5_cram16_prediction.py and run_reference_s5_cram16_grid.sbatch preserve all original records and 4,000 frames.
+Only the process-local numerical family constructor changes; inherited physical reconstruction and original resume/estimator checks remain.
+CRAM metadata records eight shifts per completed interval and does not interpret the old Taylor product counter as its work.
+The original 24 R2/R3 point mapping is retained, with fresh operation directories and finite 1 CPU / 2 GiB / 48 h requests.
+Current writers continue while 47751829 completes full-frame qualification. Adoption requires passing accuracy, useful measured cost and terminal old writers.
+Source review is underway; no new record worker is submitted by this preparation and no scientific outcome is read.
+
+## 2026-10-14 00:43 Pacific — conditional_s5_prediction — full-frame CRAM16 comparison ready for submission
+
+Coordinator source review and step 47377474.46 syntax checks passed the isolated comparator and finite wrapper.
+Retain independent original/CRAM16 4,800-interval frames, exact acquisition outputs and original state/integral/energy bounds.
+The maximum-coupling matrix checks cover boundary/probe rows, all four slots and eight poles, followed by carried second-frame cost.
+Select run_reference_s5_cram16_comparison.sbatch: 1 CPU / 2 GiB / 1 h on SIE, internal 3,300-second / 1,536-MiB limits.
+Preserve all production writers and records; files used by this comparison are frozen until terminal.
+Next: use the full comparison and measured cost to decide whether this backend can continue the original complete records.
+Submitted as 47751829 and confirmed RUNNING on sh04-04n23; evidence goes to runs/reference_s5/cram16_frame_job_47751829/comparison.json.
+
+## 2026-10-14 00:32 Pacific — conditional_s5_prediction — CRAM16 prefix passes; full-frame comparison selected
+
+Step 47377474.42 passed 48 actual intervals for each R2/R3 structure in 45.44 s; peak RSS was 395,632 KiB.
+Maximum state discrepancy was 1.55e-15; the worst hold-integral tolerance ratio was 0.000612 under unchanged tolerances.
+Cold 24-interval candidate blocks took 0.483/0.466 s and carried blocks 0.309/0.290 s, versus original blocks of about 4–5 s.
+Evidence: runs/reference_s5/operations001/cram16_prefix001.json; this short prefix does not qualify full propagation.
+Select an isolated full 4,800-interval frame comparison for each structure, full acquisition/energy checks and carried-frame cost.
+One finite 1 CPU / 2 GiB / 1 h SIE job follows reviewed implementation; all 24 production writers continue unchanged.
+No record fitting or distant evaluation is opened; adoption requires complete original-tolerance agreement and useful full-frame cost.
+
 ## 2026-10-13 23:29 Pacific — conditional_s5_prediction — structured shifted solve passes; short action comparison selected
 
 Step 47377474.41 passed both full-state comparisons in 15.61 s, peak RSS 206,380 KiB; relative residuals were at most 9.09e-15.

@@ -28,6 +28,10 @@ analyses:
       - {id: structured_solver, type: data, source: outputs/tools/reference_s5_structured_solve.py}
       - {id: accelerated_driver, type: data, source: outputs/tools/reference_s5_fast_prediction.py}
       - {id: accelerated_grid_wrapper, type: data, source: outputs/tools/run_reference_s5_fast_grid.sbatch}
+      - {id: shifted_solver, type: data, source: outputs/tools/reference_s5_shifted_structured.py}
+      - {id: cram16_solver, type: data, source: outputs/tools/reference_s5_cram16_prototype.py}
+      - {id: cram16_driver, type: data, source: outputs/tools/reference_s5_cram16_prediction.py}
+      - {id: cram16_grid_wrapper, type: data, source: outputs/tools/run_reference_s5_cram16_grid.sbatch}
       - {id: operator_checks, type: data, source: outputs/tools/test_reference_s5.py}
       - {id: report_code, type: data, source: outputs/tools/reference_s5_report.py}
       - {id: report_checks, type: data, source: outputs/tools/test_reference_s5_report.py}
@@ -35,7 +39,7 @@ analyses:
       - id: calibration_records
         type: data
         format: directory
-        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, air_family_code, acquisition_code, prediction_driver, calibration_wrapper, grid_wrapper, structured_solver, accelerated_driver, accelerated_grid_wrapper, operator_checks]
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, air_family_code, acquisition_code, prediction_driver, calibration_wrapper, grid_wrapper, structured_solver, accelerated_driver, accelerated_grid_wrapper, shifted_solver, cram16_solver, cram16_driver, cram16_grid_wrapper, operator_checks]
         description: >-
           Freeze the dry-air operator and 3-by-12 structural parameter grid before
           fitting. Retain all 4000 frames, actual timestamps and restart state for
@@ -46,9 +50,13 @@ analyses:
           Use measured runtime to distribute original points with the grid wrapper;
           task index equals 12 times structural index plus point index. Maintain
           one writer per record and preserve checkpoints across bounded attempts.
-          For R2/R3 use the qualified exact structured capacitance inverse and
-          cached original SciPy Taylor setup. Full-frame comparisons retain all
-          states, charges, integrals, codes, timestamps and energy tolerances.
+          R2/R3 continuation uses full-augmentation CRAM16 with exact structured
+          shifted solves after original-tolerance comparisons of both full frames
+          and maximum-coupling inverses. Physical states, charges, hold integrals,
+          acquisition, codes, timestamps and energy bounds remain unchanged.
+          This short-window qualification is not a full-record accuracy claim.
+          Preserve earlier Taylor-computed checkpoints and original reconstruction;
+          count eight shifted solves per interval separately from Taylor products.
           Each accelerated point requests one CPU, 2 GiB and at most 48 hours;
           the complete 4000-frame target may require another checkpointed attempt.
       - id: frozen_compatible_family

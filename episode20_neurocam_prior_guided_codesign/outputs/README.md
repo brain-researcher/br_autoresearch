@@ -1,5 +1,22 @@
 # Outputs
 
+**October 14, 09:13 Pacific — qualified CRAM16 continuation submitted as 47789534.**
+Both full-frame comparisons passed all original numerical requirements.
+Measured carried-frame cost is 27–29 seconds, projecting about 30–32 hours
+per full record before overhead. All 24 R2/R3 points retain their checkpoints
+and 4,000-frame targets; the first two workers have resumed and committed frames.
+All 12 R1 records are complete. The entire 36-record family remains required
+before nearest-fit freeze and distant prediction. See the [evidence and continuation](experiment_log.md).
+Earlier status entries below are historical.
+
+**October 14 — full-frame acceleration comparison running as 47751829.**
+The isolated CRAM16 prefix retained original numerical tolerances and was faster
+on both R2/R3 circuits. The new job compares complete 4,800-interval frames,
+all acquisition outputs and energy, then measures a carried frame. All 24
+production grid jobs continue with the previously qualified solver; no backend
+switch or held-aside evaluation follows from the prefix alone.
+See the [evidence and selected full comparison](experiment_log.md).
+
 **October 13, 23:04 Pacific — all 24 R2/R3 points submitted with qualified acceleration.**
 Array 47742184 keeps all physical states and the full 4,000-frame records.
 Full-frame comparisons passed; observed carried-frame costs are 216/172 seconds.
