@@ -1,5 +1,432 @@
 # Experiment log
 
+## 2026-10-13 20:46 Pacific — observed_beta_development — isolated all-block proof selected
+
+New block_m4_global.py retains eight independent original intervals/disks. Exact angular
+minimization plus radial/local growth and full exterior exclusion replaces impossible convexity.
+Root reviewed the formulas, coefficient scaling, pairing and actual-C gaps; exact stored-moment
+origin equality was corrected before use. Three targeted analytical tests cover double wells,
+endpoints, shear interior/boundary minima and nonunique angular refusal.
+Next: run those checks and cached diagnostic015 for all three remaining families in the
+coordinated 1 CPU / 1 GiB / 20-minute step, each family limited to300s/4096cells.
+This is isolated numerical repair; production, operator checks and all scientific boundaries remain.
+
+## 2026-10-13 20:37 Pacific — observed_beta_report — complete-result reporter ready; withheld data remain closed
+
+New report_observed_beta.py preserves all16 variants and all fixed controls, with participant
+points/means and no naive confidence intervals or model selection. Explicit coordinator release
+and full-panel completion are required before any saved scientific value is opened.
+Step47377474.21 identified absent matplotlib in the fitting environment; step.22 passed the
+failure-before-read guard and actual imports using existing Sherlock Python3.12.1/NumPy1.26.3/
+SciPy1.12.0/Matplotlib3.8.3 modules. Both changed EP15/EP20 ASTRA programs validate.
+No installation, scientific release, result figure or new fitted data was produced.
+Next: finish the block-global numerical repair, then use this reporter on a completed panel.
+
+## 2026-10-13 20:33 Pacific — observed_beta_development — remaining families have negative-curvature witnesses
+
+Coordinated step47377474.20 completed cached diagnostic014 in1.685s.
+All three remaining canonical families fail full-domain curvature on the first Task-A inputs;
+feasible sampled curvature upper bounds/energy reach−0.09215 (local diagonal),−0.09730
+(shear) and−0.09704 (stress). Increasing cover depth cannot certify positive curvature there.
+Next: isolated block-global certificate preserving each full interval/disk, rank/gap/growth and
+operator limits. Shear's exact angular minimization reduces its disk search to a radial interval;
+all exterior radii and angular degeneracies must remain covered. No production activation yet.
+The complete-result reporter is prepared separately; no scientific summary or audit was opened.
+
+## 2026-10-13 20:29 Pacific — observed_beta_development — cost004 reached another family's unresolved curvature
+
+47725564 is terminal FAILED1:0 after202s; runner elapsed191.94s, mapping172.51s,
+full-panel stage14.69s. The canonical diagonal repair advanced, but another family's
+full-domain cover reached its depth cap (proposed_m4_certificate.py:284/389).
+No complete prediction summary was written. This is an unresolved numerical proof,
+not nonuniqueness or a scientific negative. Next: diagnose the remaining canonical
+families on the saved first-Task-A objective before any unchanged full-data retry.
+All people, models, controls and data boundaries remain; failed cost004 is preserved.
+
+## 2026-10-13 20:23 Pacific — observed_beta_development — full cost004 selected after passing integration
+
+The coordinated 47377474 compute step passed all five affected integration checks (0.066 s;
+15.22 s process elapsed, 56,440 KiB peak RSS), plus changed policy/syntax and ASTRA checks.
+Canonical fallback reaches the actual operator check; failed operator/global proofs stop prediction;
+other M4 families cannot use the fallback; full ordinary/falsifier orchestration remains.
+Submitted cost004 as job 47725564 with 1 CPU / 7 GiB / 24 h; all 12 people, 18 conditions,
+16 variants and controls retained, 188-location mask reused. No duplicate worker exists.
+Complete scientific summaries remain private pending coordinator release; audit stays closed.
+
+## 2026-10-13 20:21 Pacific — observed_beta_development — first real global certificate passed; integration selected
+
+Step 47377474.18 passed four affected numerical checks and cached diagnostic013 (13.43 s total).
+The original real Task-A objective has a sufficient unique-global-minimum certificate;
+normalized objective-gap upper bound is 4.2744e-15, growth lower bound 5.8218e-9, 25 cells excluded.
+Shared-multiplier interval dependence and outward exact box support fixed two numerical false refusals.
+Standing authority activates this canonical-diagonal fallback, retaining the original objective/domain,
+all rank/gap/growth margins and actual operator/locality checks; other M4 families are unchanged.
+Next: affected integration checks in the existing 1 CPU / 1 GiB companion, then fresh full cost004
+(1 CPU / 7 GiB / 24 h). Task-B summaries stay private until complete; audit remains closed.
+
+## 2026-10-13 20:05 Pacific — observed_beta_development — local proof plus full-domain exclusion selected
+
+47377474.15 passed the focused check; cached diagnostic010 took 3.09 s and retained a second jump.
+The selected free coordinate has curvature -0.000928, confirming that whole-domain scalar minima
+cannot supply the needed local profile. The isolated repair now restricts the local proof and
+covers every remaining part of the original box with exterior slabs and branch-and-bound.
+Author and coordinator reviewed actual bounds, coverage and unchanged gap/growth requirements.
+Next: diagnostic011 in the coordinated 1 CPU / 1 GiB step, with a 300 s / 4,096-cell measurement.
+Production and all scientific data boundaries remain unchanged.
+
+## 2026-10-13 19:56 Pacific — observed_beta_development — cached diagnosis locates split-coordinate issue
+
+Step 47377474.14 completed diagnostic009; the cached search took 1.002 s.
+The primal has seven coordinates at each bound and two free coordinates; trace error is 7.8e-16.
+The remaining-coordinate solution jumps by 0.2085 between an interior point and an endpoint.
+The same jump persists through 20 narrowed intervals, motivating a free-coordinate split.
+Next: check that numerical search repair against the cached objective, retaining all global
+exclusion/uniqueness/gap requirements; no Task-B score, audit access or production change occurred.
+
+## 2026-10-13 19:52 Pacific — observed_beta_development — real objective cached; conditional branch unresolved
+
+Step 47377474.13 completed diagnostic008 in 250.58 s, peak RSS 199,788 KiB.
+The primal optimizer converged in 30 iterations; the global certificate stopped after 1.007 s.
+Its conditional remaining-coordinate problem reports another branch switch; uniqueness remains unknown.
+The private first-Task-A cache is saved, so diagnosis no longer needs the expensive mapping stage.
+No production acceptance, Task-B score or audit access changed. Next: distinguish an actual
+conditional branch switch from an incorrect split-coordinate choice or numerical bracketing.
+
+## 2026-10-13 19:46 Pacific — observed_beta_development — global profile route under real-data check
+
+Step 47377474.13 uses the coordinated spare 1 CPU / 1 GiB, with a 15-minute limit.
+Independent review passed; the unique-primal/dual-jump analytical case passed in 0.842 s.
+Diagnostic008 now checks the same first Task-A objective with 300 s / 4,096 search cells.
+A private Task-A cache permits subsequent repairs without repeating the mapping stage.
+Production acceptance, all 16 variants, original thresholds and Task-B/audit boundaries remain.
+Next: inspect the numerical certificate and operator checks before any production integration.
+
+## 2026-10-13 19:22 Pacific — observed_beta_development — one scalar branch jump established
+
+Step47377474.12 completed diagnostic007 in167.23seconds, peakRSS204812KiB.
+Both bracket endpoints have strict minima; trace jumps from+0.351857 to−0.0944297
+through one endpoint-to-endpoint coordinate switch. This is a limitation of the
+single-dual-parameter witness, not evidence of nonunique constrained optima.
+No production result, Task-B score or audit access occurred. Next: assess a bounded
+partitioned primal/global certificate for the same objective and constraints.
+
+## 2026-10-13 19:19 Pacific — observed_beta_development — strict bracket repair under real-data check
+
+Step47377474.12 passed the changed branch-switch check in0.053seconds and runs
+diagnostic007 on the same first Task-A case. The reviewed repair preserves only
+strict scalar minima with certified endpoint trace signs; no threshold changed.
+The resulting aggregate signs/branch counts distinguish the next obstruction.
+Production remains unchanged; next: inspect dual_diagnostic007.json before integration.
+
+## 2026-10-13 19:15 Pacific — observed_beta_development — dual trace witness unresolved
+
+Step47377474.10 completed diagnostic006 in229.56seconds, peakRSS200088KiB.
+The direct route refused its scalar trace bracket at width1.73472e−18;
+this does not distinguish rounding from a branch switch or establish nonuniqueness.
+The old panel still refuses, with no Task-B score or audit access.
+Next: preserve only strictly certified bracket endpoints and distinguish the
+actual obstruction before considering production integration; thresholds stay fixed.
+
+## 2026-10-13 19:11 Pacific — observed_beta_development — direct same-objective solver running
+
+Step47377474.10 runs diagnostic006 with the reviewed scalar-dual fitter.
+It constructs the original diagonal fit from the unique-minimizer enclosure,
+then retains the original feasibility, rank, gap and zero-stretch checks.
+The unchanged four passing analytical checks are reused. Actual Task-A evidence
+will decide integration; final operator/locality checks remain required there.
+No Task-B score or audit access is enabled. Next: inspect dual_diagnostic006.json.
+
+## 2026-10-13 19:05 Pacific — observed_beta_development — original optimizer failure isolated
+
+Step47377474.9 passed all4 analytical dual/growth checks in0.227seconds.
+Real diagnostic005 stopped before the new certificate: original SLSQP reported
+"Positive directional derivative for linesearch". No dual success or nonuniqueness
+is inferred. Evidence: diagnostic005_checks.txt and dual_diagnostic005.json.
+Next: repair numerical optimization of the same diagonal objective/trace-zero box;
+retain original rank, gap, feasibility and locality thresholds. No Task-B score
+or audit access occurred, and production acceptance remains unchanged.
+
+## 2026-10-13 18:59 Pacific — observed_beta_development — direct global-uniqueness diagnosis selected
+
+Under standing numerical authority, independently reviewed diagonal_m4_dual.py
+proves global uniqueness by scalar dual minima and value growth, not global convexity.
+Select four analytical methods then first-refusal Task-A diagnostic005 in a
+1CPU/1GiB/10-minute attended companion step of47377474;768MiB RSS/540s work bound.
+Retain the exact model, optimizer, rank/locality/feasibility and1e−10-energy gap.
+The original panel still refuses; this diagnostic opens no Task-B score or audit.
+Next: use the real-data certificate result to choose the complete-panel repair.
+
+## 2026-10-13 18:45 Pacific — observed_beta_development — actual negative curvature diagnosed
+
+Step47377474.8 completed the diagnostic in266.25seconds, peakRSS200048KiB.
+Ten of16 coordinate bounds are nonpositive; an explicitly feasible trace-zero
+point has restricted Hessian eigenvalue/energy−0.0306489, versus~1e−11 margins.
+Thus global positive curvature actually fails; a tighter sufficient bound cannot
+fix it. This does not prove nonunique optima. Evidence: curvature_diagnostic004.json.
+No Task-B score or audit access occurred. Next: assess a global-optimum uniqueness
+certificate preserving the model/estimand and distinguish any scientific amendment.
+
+## 2026-10-13 18:40 Pacific — observed_beta_development — reuse available task allocation
+
+Interactive request47715903 ended without allocation: requested nodes busy;
+no diagnostic ran. Reuse47377474's coordinated spare1CPU/1GiB for10minutes.
+The earlier identical data mapping used204MiB; impose768MiB processRSS and
+540seconds for diagnostic004. Parent47377474 is verified RUNNING with2CPU/16GiB;
+its training worker retains1CPU and15GiB. Numerical inputs/acceptance stay fixed.
+Next: inspect the Task-A-only curvature diagnosis; no duplicate job is pending.
+
+## 2026-10-13 18:38 Pacific — observed_beta_development — Task-A curvature diagnostic selected
+
+Under standing numerical authority, run `tools/diagnose_m4_curvature.py` against
+the unchanged released panel and frozen188-location support in a fresh diagnostic004.
+Select one attended1CPU/7GiB/20-minute allocation; diagnostic deadline540seconds.
+Report scalar curvature minima and the restricted Helmert bound to distinguish
+a loose certificate from actual nonconvexity. Original acceptance remains unchanged;
+no Task-B scores or audit values are published. Job ID and result follow below.
+Next: use the measured diagnosis to select a faithful numerical repair.
+
+## 2026-10-13 13:42 Pacific — observed_beta_development — cost003 stopped at adopted supplemental certificate
+
+Job47685576 is terminalFAILED1:0; parent elapsed236seconds,1allocatedCPU,
+charge0.065555556CPUh once and release the unused24h reservation. Changed
+ASTRA schema/semantics and adopted-policy admission passed. Actual full-route
+process ran221.037293seconds,84.561042CPU-seconds,peakRSS208912KiB; the
+mapping stage completed and the panel stopped after11.660286seconds.
+
+`cost003/operational.json` identifies M4CertificateUnverified at the adopted
+`proposed_m4_certificate.py:381` call. Source maps that site to a nonpositive
+alternative diagonal-curvature lower bound after the original sufficient
+bound failed. It is neither memory/deadline exhaustion nor an optimizer
+convergence failure. No bound magnitude, target identity or private score was
+exposed by the operational report; do not infer proven nonuniqueness from
+failure of a sufficient numerical certificate.
+
+Apply the unchanged failed/unresolved-certificate stopping rule. No complete
+private summary or partial scientific result was published, and no audit
+values were read. Preserve cost003, cost002 and the frozen188-location mask.
+No unchanged retry, relaxed threshold, smaller panel or extra simulation is
+selected. The approved supplemental-certificate attempt is complete but did
+not establish numerical eligibility for the full descriptive panel.
+
+## 2026-10-13 — observed_beta_development — cost003 submitted as47685576
+
+Slurm accepted the selected complete real-data fit as47685576,1CPU/7GiB/24h.
+Reserve24CPUh once, retaining earlier charges and original search deadline.
+Submission alone establishes neither startup nor numerical success. Follow
+`runs/observed_beta_development/operations003/` and `cost003/operational.json`.
+No duplicate or automatic retry is selected; audit remains closed.
+
+## 2026-10-13 — observed_beta_development — supplemental certificate adopted; cost003 selected
+
+At 2026-10-13T20:36:10.978057+00:00, record the scientist's "OK agree with your next steps" as adoption
+of the previously described complete supplemental-certificate follow-up and
+real-data retry. Preserve the original failedcost002 and all numerical margins.
+The qualified adapter is now imported by the existing observed-map runner;
+only authority docstrings and that import changed, not its mathematics.
+Reuse all ten passing actual-runtime checks and the frozen188-location mask.
+
+Select `tools/run_m4_certificate_cost003.sbatch`: one1CPU/7GiB/24h allocation,
+one numerical thread,6GiB processRSS,32MiB durable output,256MiB scratch,
+noGPU/requeue/automatic retry. Reuse the exact released manifest and all12
+people/18 Task-B conditions/16variants/24source fits/48calibration panels.
+Output remains private `withheld_cost_measurement`; complete-route cost and
+numerical success must be reviewed before any scientific summary release.
+Original search anchor1791845107/deadline1792277107 and consumed charges remain;
+reserve at most24CPUh once under1200CPUh. Only changed ASTRA validation runs
+before the substantive panel. This selection precedes submission; no job or
+empirical success is yet claimed. Audit remains closed.
+
+## 2026-10-12 19:39 Pacific — observed_beta_development — complete candidate qualification passes in actual EP15 runtime
+
+Attended step47584692.1 ran02:38:26–02:38:36UTC onsh03-01n45 and exited0.
+All ten methods passed without skips: seven mathematical checks plus three
+complete-panel routing/refusal checks. Unittest time1.184seconds; total Python
+load/check time9.579483seconds; peakRSS66854912bytes (about63.8MiB). The runtime
+was the original EP15 encoding_model Python3.11.15. Evidence is
+`runs/observed_beta_development/certificate_qualification002/step_stdout.txt`
+and `step_stderr.txt`. No empirical data, fit or outcome was accessed.
+
+The requested1GiB was an observed processRSS limit, not a separately verified
+hard cgroup boundary. Parent47584692 retains one charge to EP18 including this
+ten-second overlap, in addition to its earlier six-second companion. The step
+has exited and no interactive test shell remains. Reuse all passing checks.
+The concrete [certificate proposal](proposed_m4_certificate_followup.md) is now
+ready for a scientific adoption decision; the production import and numerical
+stop remain unchanged. Real-data certification success remains unknown.
+
+At19:40Pacific, the scientist was asked once whether to adopt this qualified
+supplemental certificate and proceed within the existing1CPU/7GiB/24h ceiling.
+The question is pending. GOAL.md's adopted numerical-stop rule is the reason
+an explicit scientific amendment is needed; additional-compute authorization
+alone is not treated as changing it. No dependent execution occurs pending
+that answer. EP17's separate fixed-panel decision is also still pending.
+
+## 2026-10-12 19:38 Pacific — observed_beta_development — actual-runtime integration qualification selected
+
+The unused `tools/proposed_development_point_panel.py` and its three focused
+wiring checks passed independent source review. One copied exception type was
+restored to the original ArithmeticError before execution. Only the curvature
+call and its complete-panel callback binding differ; production is untouched.
+
+Select one attended step in existing parent47584692, confirmed RUNNING at
+02:37:23UTC onsh03-01n45 with13CPUs/96GiB and23:08:56Pacific end time.
+Request1CPU/1GiB, limit the step to180seconds and tests to160seconds, retain
+one numerical thread and check observed processRSS against1GiB. Its scientific
+worker remains one with90GiB RSS guard. No separate hard1GiB cgroup is claimed.
+Run the three new integration checks and the seven new mathematical checks
+with EP15's actual `$GROUP_HOME/zijiao/miniforge3/envs/encoding_model/bin/python`.
+The previous seven checks ran under EP18's Python: this repeat addresses that
+concrete environment gap, and does not repeat unchanged model/panel suites.
+
+Write only `runs/observed_beta_development/certificate_qualification002/` and
+distinct local scratch; no empirical input, fit or scientific release. Parent
+cost is charged once to EP18 with the additional overlap disclosed. No new
+batch job, extension or empirical adoption is selected. Reuse the original
+search anchor1791845107/deadline1792277107 and all prior charges.
+
+## 2026-10-12 19:27 Pacific — observed_beta_development — seven prospective-certificate numerical checks pass
+
+Attended step **47584692.0** ran onsh03-01n45 from02:26:43 to02:26:49UTC
+and exited0. All seven methods passed without skips in1.808seconds; total
+Python load/check time3.734687seconds, peakRSS57806848bytes. Evidence:
+`runs/observed_beta_development/certificate_qualification001/step_stdout.txt`
+and `step_stderr.txt`. This covers the independent high-precision Hessian
+reference, existing Frechet arithmetic, full-domain boundary handling,
+failure/cap rules, original-bound reuse and fixed coordinates/block margins.
+It is not an empirical certificate or a formal interval-arithmetic proof.
+
+The step requested1CPU/1GiB and checked the1GiB processRSS limit; its
+environment still reports the parent's96GiB allocation, so no separate hard
+1GiB OS memory boundary is claimed. Actual RSS was about55.1MiB. All numerical
+thread settings were1, no scientific payload was read, and the step has exited.
+Its six-second overlap is included once in EP18 parent47584692's accounting
+and will be disclosed in that parent's operational cost evidence.
+
+Reuse these passing methods. Only an isolated prospective integration adapter
+and its affected wiring check remain to make the scientific follow-up directly
+reviewable; neither integration nor empirical replay is active. The numerical
+stop and the need for explicit adoption of a changed certificate remain.
+
+## 2026-10-12 19:26 Pacific — observed_beta_development — bounded inactive-certificate checks selected
+
+Select one attended pure-math qualification step for the seven new methods
+in `tools/test_proposed_m4_certificate.py`, reusing task-owned EP18 parent
+47584692. Root's02:25:38UTC scheduler observation confirms that parent RUNNING
+onsh03-01n45 with13CPUs/96GiB and EndTime23:08:56Pacific. Its existing
+scientific process retains one worker and a90GiB RSS guard. The independent
+companion uses1CPU, requests1GiB, checks1GiB processRSS, has a180-second
+step limit and160-second test timeout, and uses one numerical thread. The
+combined worker/memory ceilings fit the existing allocation; there is no new
+parent, resource extension or additional allocatedCPUh reservation.
+
+Output belongs only to `runs/observed_beta_development/certificate_qualification001/`
+and temporary data to its distinct node-local directory. Reuse the existing
+qualified Python runtime; do not read EP18 payloads or change its running
+script. Root and independent source review found this companion compatible
+with both episode contracts. Record actual step identity, elapsed time and
+RSS; charge the parent once to EP18 and disclose overlap in EP18 cost evidence.
+No test has run yet. Passing would qualify only this prospective numerical
+implementation; no amendment, empirical replay or relaxed stop is adopted.
+
+## 2026-10-12 19:20 Pacific — observed_beta_development — inactive certificate candidate implemented and source-reviewed
+
+Prepared only two new, unused files: `tools/proposed_m4_certificate.py` and
+`tools/test_proposed_m4_certificate.py`. The existing model, optimizer,
+production callback, source data,188-location support and active numerical
+stop remain unchanged. The candidate has no reader, job submission or
+production hook; it does not authorize a retry.
+
+The alternative uses actual stored mode coordinates, all eight original
+positive block margins, complete interval/disk coverage and conservative
+Hessian variation. Already-passing original bounds short-circuit the new
+calculation. Fixed prospective caps are16383 cells/block,depth12 and30seconds
+per certificate call, with caller resource checks; unresolved coverage stops.
+Coordinator source review caught a negative-diagonal/Gram-lower scaling
+issue. The candidate now refuses a nonpositive diagonal bound before that
+scaling, and its test source covers that refusal. An independent mathematical
+and source review found no remaining concrete defect after the correction.
+
+Seven affected checks are written, including an independent70-digit matrix
+power derivative reference, original Frechet arithmetic, full-domain boundary
+and numerical-cap cases. **None has executed.** No empirical payload, fit,
+score or mathematical certificate on the actual participants was inspected.
+No new compute grant, scientific amendment or approval is inferred from source
+review. The [proposal](proposed_m4_certificate_followup.md) records these exact
+limits and the remaining qualification/adoption requirements. Qualify only the
+new methods inside a suitable coordinated compute allocation before presenting
+an executable scientific follow-up; retain the operative stop meanwhile.
+
+## 2026-10-12 18:49 Pacific — observed_beta_development — inactive M4 certificate alternative derived
+
+Prepared a source-only [model-specific certificate proposal](proposed_m4_certificate_followup.md).
+For the anisotropic diagonal model, the exact loss omits off-diagonal moments
+that the current general bound penalizes; exact scalar curvature minima can
+therefore supply an alternative without changing the fitted model. The local
+diagonal model also has an exact one-dimensional Hessian. For both local shear
+models, the coordinator and an independent worker derived a full-domain
+Hessian-variation bound from the third Frechet derivative of the exponential.
+The proposal retains every original per-block margin and does not use
+cross-block compensation. These derivations identify a possible next method;
+they neither diagnose the particular failed cell nor establish an empirical
+certificate pass.
+
+The source review preserves all twelve people, eighteen Task-B conditions,
+sixteen variants, controls, frozen188-location support, parameter domains,
+optimizer, gap/rank/locality checks and consumed resources. Only the changed
+bound, complete-domain coverage and its numerical evaluation would need
+affected qualification. Existing source/moment/optimizer evidence is reused;
+no universal interval-proof or new recovery program is imposed. Finite
+implementation/refinement limits and empirical resource admission remain
+unfinished. No code, test, data access, new run or operative amendment is
+selected. The adopted numerical stop remains in force.
+
+BR advisory request `ext_review_dir_2234faef6549`, issued01:45:39UTC, returned
+general BR-KG review criteria with no tailored checks. It explicitly did not
+read local artifacts or issue a mathematical/scientific verdict. Relevant
+criteria reinforce matching the method to the estimand, preserving the
+participant unit/spatial domain and reporting incomplete evidence. The
+analytical judgments above are the local source reviews, not BR approval;
+no formal review/campaign transition was requested or submitted.
+
+## 2026-10-12 17:06 Pacific — observed_beta_development — adopted numerical stop confirmed
+
+Independent source/algebra review found no implementation defect in the
+reported refusal. `_curvature_certificate` forms the eight fixed weighted
+two-mode blocks and takes the larger of the two preselected sufficient global
+Hessian lower bounds in each. The unchanged rule refuses whenever any bound
+is at most1e-10 times that block's source-plus-target energy. There is no
+208/188 factor in this rule; the rebuilt basis and paired rotation/gain enter
+through their existing formulas. This refusal precedes the affected M4
+optimizer and is not a convergence timeout or memory exhaustion.
+
+Apply the adopted finite-support contract's explicit
+`failed_numerical_certificate` stopping condition. **This complete descriptive
+route is stopped.** No additional diagnostic replay, unchanged refit, weaker
+bound, smaller model panel or new support search is selected. The report does
+not identify the failing cell/variant or margin; the only supported conclusion
+is uniqueness unverified by the retained sufficient bound, not proven
+nonuniqueness, model invalidity or a negative prediction result. Keep the
+completed188-location mask, failed cost002 and all original scientific limits.
+
+## 2026-10-12 17:04 Pacific — observed_beta_development — cost002 stopped at M4 numerical certificate
+
+The full188-location cost002 stopped at00:02:37.761291UTC with
+`paired_stretch_variants.M4CertificateUnverified`, from `_curvature_certificate`
+at source line165 via the calibration panel. The complete mapping succeeded;
+the point-panel phase lasted9.966852seconds, total106.697109seconds,
+peakRSS215132KiB. No point summaries were published, no complete private
+summary exists, and no audit values were read. This is a numerical
+qualification stop, not a completed scientific model result. Preserve the
+failed attempt and the completed common-support selection. Source diagnosis
+is selected without changing the numerical requirements, model panel or mask.
+Evidence: `runs/observed_beta_development/cost002/operational.json`.
+
+Slurm reports parent47576040 FAILED1:0,285seconds with one allocated CPU:
+**0.079166667 allocatedCPUh**, charged once to EP15 including all short checks,
+mask construction and EP21 companion. Release its unused reservation. Child
+durations are nested in that parent charge; no duplicate EP21 charge applies.
+
+
 ## 2026-10-12 17:01 Pacific — observed_beta_development — common188-location support complete
 
 The single adopted intersection completed all9024 selected maps at

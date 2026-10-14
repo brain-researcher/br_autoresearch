@@ -4,7 +4,10 @@
 the EP15 finite-support proposal". The machine-readable authority is
 `scientist_amendment_20261012_finite_support` in `SEARCH_POLICY.yaml`. The text
 below is kept unchanged as the adopted specification; its statements that it
-adopts nothing describe the draft as prepared. No mask has been built yet.
+adopts nothing describe the draft as prepared. The one9024-map intersection
+has now frozen188 original locations. The subsequent complete panel stopped
+under the unchanged M4 numerical-certificate requirement; see the
+[execution log](experiment_log.md). No further retry is selected.
 
 Prepared October 12, 2026. This is a concrete review proposal, not an adopted
 amendment, mask-construction grant, data release or permission to retry fitting.

@@ -1,5 +1,100 @@
 # EP15 outputs
 
+**October 13 — cost004 advanced past the diagonal fit, then stopped at another M4 certificate.**
+Job47725564 is terminal; the next family's full-domain curvature cover reached
+its depth limit. The complete panel remains unresolved, with no published score.
+Diagnosis will reuse the saved Task-A objective; [evidence and next action](experiment_log.md).
+Earlier unresolved and proposal entries below are historical.
+
+**October 13, 19:52 Pacific — primal fit converged; global certificate remains unresolved.**
+Diagnostic008 saved the first real Task-A objective for quick further diagnosis.
+The remaining obstruction is a conditional branch switch, not a completed
+prediction result or proof of nonuniqueness. See the [log](experiment_log.md).
+
+**October 13, 19:46 Pacific — reviewed global route is checking the first real Task-A case.**
+The targeted analytical check passed. Step 47377474.13 now tests the same model
+and constraints; this is numerical repair, with prediction results still pending.
+See the [log](experiment_log.md).
+
+**October13,19:22Pacific — real Task-A case has one scalar dual branch jump.**
+Diagnostic007 distinguishes a branch obstruction from ambiguous rounding.
+The constrained optimum's uniqueness remains unresolved; a direct global
+route is being assessed. No model result is claimed. See the [log](experiment_log.md).
+
+**October13,19:15Pacific — direct solver reaches an unresolved trace witness.**
+Diagnostic006 retained the original model and thresholds but could not certify
+the scalar trace bracket. The numerical repair now distinguishes rounding from
+branch switching; no completed model result is inferred. See the [log](experiment_log.md).
+
+**October13,19:05Pacific — dual checks pass; real case exposes an optimizer failure.**
+All4 analytical checks passed. On real Task A, original SLSQP stopped during
+line search before the new uniqueness certificate ran. Numerical repair of the
+same objective is underway; [evidence and next action](experiment_log.md).
+
+**October13,18:45Pacific — Task-A diagnostic finds actual negative curvature.**
+Step47377474.8 found a feasible negative-curvature point; this is more than a
+loose bound, but does not establish nonunique fits. A faithful global-optimum
+certificate is being assessed. [Evidence and next action](experiment_log.md).
+No prediction result or audit opening occurred; earlier final-stop entries are historical.
+
+**October13,13:42Pacific — cost003 stopped at the adopted supplemental certificate.**
+Real-data mapping completed; the alternative diagonal-curvature bound was
+nonpositive, so the complete panel stopped under its unchanged rule. This is
+unverified uniqueness, not a completed model result or compute shortage.
+No private summary/audit access; no unchanged retry selected.
+[Evidence](runs/observed_beta_development/cost003/operational.json) and
+[accounting/interpretation](experiment_log.md). Earlier running statuses are historical.
+
+**October13 — supplemental M4 certificate adopted; fresh complete cost003 submitted as47685576.**
+The scientist approved the described certificate/retry step. The qualified
+adapter retains all original numerical margins and uses the existing188-point
+support; ten passing checks are reused. All12participants/18conditions/16variants
+and controls remain. Submission and results are tracked in the
+[execution log](experiment_log.md); no empirical success or audit opening is claimed.
+Earlier pending-adoption entries below are historical.
+
+**October12,19:39Pacific — all10 candidate checks pass in the actual EP15 runtime.**
+Seven mathematical and three full-panel integration checks passed without skips
+on step47584692.1, in1.184seconds, peakRSS63.8MiB. The unused adapter and
+[concrete certificate proposal](proposed_m4_certificate_followup.md) are ready
+for the scientist's decision. The original numerical stop remains active;
+no empirical fit or certificate success is claimed. See the
+[execution evidence](runs/observed_beta_development/certificate_qualification002/step_stdout.txt)
+and [log](experiment_log.md). Earlier preparation entries are historical.
+
+**October12,19:27Pacific — seven prospective-certificate checks pass; still inactive.**
+All seven focused numerical methods passed in1.808seconds on compute step
+47584692.0, without empirical data or skipped checks. The
+[evidence and scope](experiment_log.md) preserve the original stop. An unused
+integration adapter is being prepared; no scientific amendment or participant
+fit is active, and successful certification of real data remains unknown.
+
+**October12,19:20Pacific — inactive certificate code prepared; tests unrun.**
+The [candidate and seven checks](proposed_m4_certificate_followup.md#completed-numerical-qualification-and-fixed-finite-limits)
+now implement the proposed complete-domain bounds with fixed finite limits.
+Independent source review found no remaining concrete defect after one
+negative-bound handling correction. No execution, adoption or empirical
+success is claimed; the numerical stop below remains operative. See the
+[source preparation record](experiment_log.md).
+
+**October12,18:49Pacific — tighter certificate proposal prepared, inactive.**
+The [source-derived M4 proposal](proposed_m4_certificate_followup.md) preserves
+all models, data support and numerical thresholds while identifying more
+specific global curvature bounds. Implementation and actual success remain
+unverified. The adopted stop below stays operative; no new run is selected.
+See the [derivation and advisory record](experiment_log.md#2026-10-12-1849-pacific--observed_beta_development--inactive-m4-certificate-alternative-derived).
+
+**October12,17:06Pacific — descriptive route stopped under the adopted numerical rule.**
+The completed9024-map intersection retains188/208 locations. Cost002 then
+stopped at its unchanged curvature-certificate requirement; no complete model
+result was published. Job47576040 closed FAILED, using0.079166667CPUh.
+Independent source review found no implementation defect: the retained
+sufficient curvature bound did not certify uniqueness. This does not prove
+nonuniqueness or a negative model result. The common mask and failed attempt
+are preserved; no additional validation program or retry is selected. See the
+[operational report](runs/observed_beta_development/cost002/operational.json)
+and [current log](experiment_log.md). Earlier running entries are historical.
+
 **October12,17:01Pacific — complete9024-map mask retains188 of208 locations.**
 All12 people and every required condition/run/regressor remain. The one
 [frozen common support](runs/observed_beta_development/finite_support001/operational.json)

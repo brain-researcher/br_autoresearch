@@ -1,5 +1,37 @@
 # Why do people have different cerebellar task maps?
 
+## Standing-authority numerical repair — October 13, 2026
+
+For the observed-map route, a canonical diagonal M4 fit whose sufficient
+full-domain curvature bound refuses may instead certify a unique constrained
+minimum using local profile growth and exclusion of every other region in the
+original domain. This replaces a sufficient numerical proof method, not the
+model, objective, scientific estimand or claim. The original 1e-10 growth/gap
+margins, rank tolerance, paired parameters, physical bounds and actual operator
+locality checks remain. Other three M4 families retain their existing method.
+Unresolved certification still stops the whole panel. Neither exact floating-point
+global optimization nor a formal interval-arithmetic proof is claimed.
+This implements the root AGENTS.md numerical-repair authority; finite resources
+and consumed-time accounting follow its standing rules. Historical attempts stay.
+
+## Adopted supplemental M4 certificate — October 13, 2026
+
+The scientist replied "OK agree with your next steps" after the coordinator
+explicitly recommended adopting the replacement numerical certificate and
+retrying the real-data fit. This adopts the complete
+[written certificate follow-up](outputs/proposed_m4_certificate_followup.md).
+The original sufficient bound is retained, with the qualified full-domain
+alternative used only when needed. Every original per-block positive-curvature,
+rank, gap, optimizer and locality requirement remains. A failed or unresolved
+certificate still stops the complete panel.
+
+This applies only to the observed-map descriptive development route on the
+single frozen188-location support, with all12 people,18 Task-B conditions,
+16 variants and all controls. Reuse the ten passing checks and released data.
+Keep the original search start/deadline and consumed charges; a fresh cost003
+may run within1CPU/7GiB/24h. Scientific summaries stay private until complete
+cost evidence is reviewed and release recorded. Audit stays closed.
+
 ## Adopted finite common development support — October 12, 2026
 
 At about 16:18 Pacific (23:18 UTC) the scientist replied "adopt the EP15

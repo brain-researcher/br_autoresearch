@@ -946,7 +946,11 @@ analyses:
       seven-domain and participant weights; score each control draw before its
       losses are averaged. Legacy cross-partition summaries remain conditional
       on unresolved error assumptions. No recovery fractions, class decision,
-      audit opening or scientific subset is authorized.
+      audit opening or scientific subset is authorized. The October13 adopted
+      supplemental M4 certificate and standing-authority canonical-diagonal
+      global profile/exclusion alternative preserve original growth/gap/rank
+      margins and actual operator checks. An unresolved certificate stops the
+      complete panel. Reuse the frozen188-location mask and unaffected checks.
     inputs:
     - {id: policy, from: ../search_policy}
     - {id: released_view, from: ../role_handoff_preparation.development_metadata_views}
@@ -957,7 +961,27 @@ analyses:
     - {id: mapping_quality_census, type: data, source: outputs/tools/diagnose_cost001_mapping_quality.py}
     - {id: finite_support_code, type: data, source: outputs/tools/build_finite_development_support.py}
     - {id: finite_support_axis, type: data, source: outputs/tools/finite_development_support.py}
+    - {id: m4_certificate, type: data, source: outputs/tools/proposed_m4_certificate.py}
+    - {id: adopted_panel_adapter, type: data, source: outputs/tools/proposed_development_point_panel.py}
+    - {id: diagonal_global_search, type: data, source: outputs/tools/diagonal_m4_global.py}
+    - {id: diagonal_global_diagnostic, type: data, source: outputs/tools/diagnose_m4_global.py}
     outputs:
+    - id: diagonal_identifiability_diagnostic
+      type: report
+      format: json
+      inputs: [policy, released_view, diagonal_global_search, diagonal_global_diagnostic]
+      description: >-
+        Diagnose the first canonical-diagonal Task-A fit whose sufficient
+        full-domain curvature condition fails. Reuse only the private cache of
+        that original Task-A objective. Retain the original objective, trace-zero
+        box, rank, locality, uniqueness and objective-gap requirements. An
+        alternative numerical certificate requires both local constrained
+        growth and valid lower bounds excluding every remaining region of the
+        complete parameter domain; a small objective gap alone does not prove
+        uniqueness. Publish aggregate numerical diagnostics only. No Task-B
+        score, audit opening, production activation or reduced model panel is
+        implied by a diagnostic pass. Log measured finite search limits under
+        standing numerical and resource authority.
     - id: common_finite_support
       type: data
       format: directory
@@ -1006,7 +1030,7 @@ analyses:
     - id: private_observed_beta_panel
       type: data
       format: directory
-      inputs: [policy, released_view, panel_code, panel_cli, observed_loss, observed_loss_checks, common_finite_support]
+      inputs: [policy, released_view, panel_code, panel_cli, observed_loss, observed_loss_checks, common_finite_support, m4_certificate, adopted_panel_adapter, diagonal_global_search]
       description: >-
         One bounded first complete-route cost execution, with all observed-loss
         contributions and assumption-conditional legacy summaries retained in
@@ -1025,6 +1049,32 @@ analyses:
           --analysis-scope conditional_observed_beta
           --publication-mode withheld_cost_measurement
         resources: {cpus: 1, memory: 7Gi, time_limit: 24h}
+  observed_beta_report:
+    name: Released complete descriptive Task-B prediction result
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: completed_panel, from: ../observed_beta_development.private_observed_beta_panel}
+    - {id: report_code, type: data, source: outputs/tools/report_observed_beta.py}
+    outputs:
+    - id: descriptive_result
+      type: report
+      format: directory
+      inputs: [policy, completed_panel, report_code]
+      description: >-
+        After the coordinator records release, require operational completion of
+        all twelve people, eighteen Task-B conditions, sixteen variants and every
+        fixed control before reading saved values. Produce one PNG/PDF figure,
+        all participant/model/control descriptive summaries and three lines.
+        Participant points are variability, not independent LOPO experiments or
+        confidence intervals. Disclose the availability-conditioned 188-location
+        support and procedural separation. No ranking, recovery, superiority or
+        original-audit completion is claimed.
+      recipe:
+        command: >-
+          python -B outputs/tools/report_observed_beta.py
+          --run-dir {inputs.completed_panel} --output-dir {output}
+          --release-completed-summary
+        resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
   development_search:
     name: Full grouped M1-M4 development and native falsifiers
     description: >-

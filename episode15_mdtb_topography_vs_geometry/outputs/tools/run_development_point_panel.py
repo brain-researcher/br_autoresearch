@@ -139,7 +139,7 @@ def run_released_development(manifest_path, *, check, stage, derived_support_pat
     """Return the existing full panel; callbacks carry operational stage only."""
     _compute()
     from development_handoff_reader import read_development_handoffs
-    from development_point_panel import fit_development_point_panel
+    from proposed_development_point_panel import fit_development_point_panel
 
     stage("released_metadata")
     inputs = load_released_inputs(manifest_path, check=check)
@@ -273,6 +273,12 @@ def execute(*, manifest_path, output_dir, deadline_epoch, rss_limit_kib, durable
             **({} if derived_support_path is None else {"support_size": mapping["support_locations"]}))
         stage("complete_point_persistence")
         payload = _encoded(dict(analysis_scope=analysis_scope, observed_beta=observed,
+            numerical_methods=dict(
+                m4_default="sufficient_full_domain_curvature_and_first_order_gap",
+                canonical_diagonal_on_curvature_refusal="global_profile_and_full_domain_exclusion",
+                original_model_domain_rank_gap_and_operator_limits_retained=True,
+                unresolved_certificate_stops_complete_panel=True,
+                exact_global_optimizer_or_interval_arithmetic_proof=False),
             spatial_estimand=dict(locations=mapping["support_locations"],
                 selection_path=None if derived_support_path is None else str(derived_support_path),
                 target_Task_B_availability_used=derived_support_path is not None,
