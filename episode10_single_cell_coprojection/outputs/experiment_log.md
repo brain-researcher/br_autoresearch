@@ -1,5 +1,50 @@
 # Experiment log
 
+## 2026-10-13 — v3_search — inactive child-side failure diagnostic prepared
+
+The full-goal audit preserves the adopted original-M2 incomplete closeout.
+A focused source review identified why the four old cap failures lack useful
+terminal state: the qualification worker lets exceptions cross ProcessPool
+without persisting their frame locals; only successful cases receive JSON.
+Current cap messages already include richer scalars, so repeating that edit
+would not repair the child-to-parent diagnostic loss or recover past values.
+
+Prepared a separate [proposal and helper](proposed/m2_failure_telemetry_20261013/README.md)
+that captures only allowlisted scalar failure state inside the child, writes a
+fresh diagnostic record and reraises the original exception. It does not alter
+an optimizer, successful return, scientific data role, threshold or stopping rule.
+Independent source review found one output-boundary defect: unrestricted exception
+text could include arrays. Root replaced it with exception classes/fixed reason
+codes and omitted free-form diagnostic-error text. No tests were run; the helper
+has no CLI, operational import, submission or activated scientific recipe.
+
+No algebra defect or demonstrated acceleration was established. The qualified
+M1's949 fits remain reusable. Original M2-minus-M1 scope is unchanged, and the
+≥1900 additionalCPUh lower bound still exceeds1064.288778CPUh remaining; this is
+not a complete-search upper bound. No empirical retry, synthetic expansion,
+budget reset, reactivation or outcome opening is selected by this preparation.
+
+## 2026-10-12 — v3_search — inactive original-M2 engineering handoff
+
+Two bounded, independent source reviews support the
+[inactive original-M2 reactivation proposal](proposed_original_m2_reactivation.md).
+All four preserved iteration-cap failures arise in the same pure low-rank
+solver; the hybrid rank-8 case fails in its prerequisite anchor before hybrid
+alternation begins. Neither review established an objective, gradient,
+projection, retraction, callback or stopping-rule defect. The old public
+exceptions lack the terminal gradients, relative objective change and accepted
+step needed to diagnose slow convergence. Reaching the cap does not establish
+divergence or identify which convergence predicate failed.
+
+The October 6 incomplete closeout remains operative. Standing willingness to
+increase compute is recorded; it does not establish a repaired solver or a
+finite full-search cost. Preserve 735.711222 allocated CPU-hours and 54.240833
+charged execution wall-hours, all original scope and closed outcomes. The
+proposal identifies the common engine and missing diagnostic evidence without
+selecting an optimizer change, new test, job, budget reset or successor. Only
+permitted source and public historical runtime exceptions were inspected; no
+scientific payload or canonical state was opened or changed.
+
 ## 2026-10-06 — v3_search — scientist-adopted local closeout
 
 The scientist replied to the outstanding-judgment recommendations:

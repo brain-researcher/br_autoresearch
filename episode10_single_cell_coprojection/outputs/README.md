@@ -1,5 +1,21 @@
 # Outputs
 
+**October 13 — inactive worker-failure diagnostic repair prepared.**
+The original M2 study remains closed incomplete. A concrete child-process
+telemetry defect explains why the old failures lack terminal gradients/steps;
+[a separate reviewed proposal](proposed/m2_failure_telemetry_20261013/README.md)
+preserves those scalars before exception transport. It is untested and unactivated,
+with no optimizer change or new job. No convergence repair or feasible full-search
+cost is established. See the [preparation record](experiment_log.md).
+
+**October 12 — inactive original-M2 reactivation proposal prepared.**
+The four recorded convergence failures share one low-rank solver, including
+the hybrid model's initializer. Independent source review found no definite
+algebra defect; missing terminal diagnostics prevent a firm diagnosis.
+See the [proposal](proposed_original_m2_reactivation.md) and
+[review record](experiment_log.md#2026-10-12--v3_search--inactive-original-m2-engineering-handoff).
+The adopted incomplete closeout remains in force; no new run is selected.
+
 [Public online resources, checked October 6](../DATASETS.md#public-online-resources--checked-october-6-2026): original Gao/SEU archive inventories and the source publication's alternate distribution interfaces.
 
 **October 6 adopted closeout:** the original M2 objective is **incomplete
