@@ -1,0 +1,51 @@
+topography       measure   noise       alpha*(sd)   RSAmax   RSA@1     mix     rho overlap
+dct_ordered      identity  none     1.005(0.051)   0.687   0.687   0.000      NA   1.000
+dct_ordered      identity  moderate 1.005(0.051)   0.684   0.684   0.000      NA   0.996
+dct_ordered      pool_0    none     1.010(0.045)   0.687   0.687   0.000  -0.999   1.000
+dct_ordered      pool_0    moderate 1.010(0.055)   0.648   0.648   0.000  -0.999   0.942
+dct_ordered      pool_1    none     1.025(0.044)   0.687   0.687   0.000  -0.999   1.000
+dct_ordered      pool_1    moderate 1.020(0.052)   0.650   0.649   0.000  -0.999   0.943
+dct_ordered      pool_2    none     1.055(0.051)   0.686   0.686   0.000  -0.999   1.000
+dct_ordered      pool_2    moderate 1.060(0.050)   0.652   0.652   0.000  -0.999   0.950
+dct_ordered      pool_4    none     1.175(0.064)   0.684   0.679   0.000  -0.999   1.000
+dct_ordered      pool_4    moderate 1.170(0.057)   0.658   0.653   0.000  -0.999   0.957
+dct_shuffled     identity  none     1.005(0.051)   0.687   0.687   0.000      NA   1.000
+dct_shuffled     identity  moderate 1.005(0.051)   0.684   0.684   0.000      NA   0.996
+dct_shuffled     pool_0    none     1.005(0.051)   0.686   0.686   0.000   0.038   1.000
+dct_shuffled     pool_0    moderate 1.005(0.051)   0.645   0.645   0.000   0.038   0.932
+dct_shuffled     pool_1    none     0.995(0.060)   0.684   0.684   0.000   0.038   0.950
+dct_shuffled     pool_1    moderate 0.995(0.060)   0.643   0.643   0.000   0.038   0.895
+dct_shuffled     pool_2    none     1.000(0.103)   0.674   0.673   0.000   0.037   0.887
+dct_shuffled     pool_2    moderate 1.000(0.103)   0.634   0.632   0.000   0.037   0.840
+dct_shuffled     pool_4    none     1.090(0.618)   0.588   0.572   0.000   0.037   0.637
+dct_shuffled     pool_4    moderate 1.090(0.603)   0.556   0.542   0.000   0.037   0.619
+white_random     identity  none     1.005(0.051)   0.687   0.687   0.000      NA   1.000
+white_random     identity  moderate 1.005(0.051)   0.684   0.684   0.000      NA   0.996
+white_random     pool_0    none     1.005(0.060)   0.666   0.666   0.186  -0.034   0.887
+white_random     pool_0    moderate 0.995(0.051)   0.629   0.628   0.186  -0.034   0.844
+white_random     pool_1    none     0.990(0.055)   0.663   0.662   0.207  -0.028   0.881
+white_random     pool_1    moderate 0.995(0.060)   0.626   0.626   0.207  -0.028   0.842
+white_random     pool_2    none     0.995(0.069)   0.645   0.645   0.319  -0.037   0.816
+white_random     pool_2    moderate 1.000(0.073)   0.611   0.610   0.319  -0.037   0.783
+white_random     pool_4    none     0.990(0.097)   0.578   0.576   0.582  -0.005   0.662
+white_random     pool_4    moderate 0.990(0.102)   0.551   0.549   0.582  -0.005   0.639
+smooth_random    identity  none     1.005(0.051)   0.687   0.687   0.000      NA   1.000
+smooth_random    identity  moderate 1.005(0.051)   0.684   0.684   0.000      NA   0.996
+smooth_random    pool_0    none     1.005(0.051)   0.686   0.686   0.009  -0.908   0.996
+smooth_random    pool_0    moderate 1.010(0.045)   0.646   0.646   0.009  -0.908   0.935
+smooth_random    pool_1    none     1.015(0.037)   0.685   0.685   0.027  -0.904   0.989
+smooth_random    pool_1    moderate 1.020(0.041)   0.646   0.646   0.027  -0.904   0.930
+smooth_random    pool_2    none     1.030(0.057)   0.678   0.677   0.108  -0.891   0.951
+smooth_random    pool_2    moderate 1.030(0.057)   0.641   0.641   0.108  -0.891   0.900
+smooth_random    pool_4    none     1.055(0.076)   0.638   0.637   0.420  -0.846   0.802
+smooth_random    pool_4    moderate 1.060(0.082)   0.610   0.609   0.420  -0.846   0.773
+alpha* mean range identity/none: 0.000
+alpha* mean range identity/moderate: 0.000
+alpha* mean range pool_0/none: 0.005
+alpha* mean range pool_0/moderate: 0.015
+alpha* mean range pool_1/none: 0.035
+alpha* mean range pool_1/moderate: 0.025
+alpha* mean range pool_2/none: 0.060
+alpha* mean range pool_2/moderate: 0.060
+alpha* mean range pool_4/none: 0.185
+alpha* mean range pool_4/moderate: 0.180

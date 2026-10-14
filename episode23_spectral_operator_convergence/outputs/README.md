@@ -1,5 +1,14 @@
 # EP23 outputs
 
+**October 14 — released A0–A3 results are available in Git.**
+The completed [A0 operator-alignment report](runs/a0_operator_alignment/20261013-attempt01/a0_report.json),
+[A1 rank-64 metric-family report](runs/a1_metric_family/20261014-attempt01/a1_report.json),
+[A2 coarse/fine report](runs/a2_coarse_fine/20261014-attempt01/a2_report.json), and
+[A3 pooling simulation report](runs/a3_pooling_simulation/20261014-attempt01/a3_report.json)
+each have an adjacent text summary. A3 remains explicitly simulation evidence.
+The newer rank-32 sensitivity continuation is recorded separately in the
+[experiment log](experiment_log.md). The dated A0-only status below is historical.
+
 **2026-10-13 09:50 UTC — A0 complete (exploratory). P1–P5 and A1–A3 have not
 been run; A4 is inactive.**
 
