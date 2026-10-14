@@ -1,5 +1,34 @@
 # Outputs
 
+**October 13, 13:12 Pacific — all 432 real-fMRI runs and full-cohort report complete.**
+All 108 participants, four runs and five specifications are retained on the
+approved 37,607-voxel common support. Exactly eight all-zero locations were
+excluded under the [approved rule](proposed_valid_common_support.md); original
+masks and attempts remain preserved. The 59 additional scans and four repaired
+runs are complete. See the [full report](runs/exploratory_fmri_specification_sensitivity/summary_valid_common_20261013_001/exploratory_fmri_summary.md)
+and [execution record](experiment_log.md).
+
+The estimated maps change substantially with the covariates, but both the
+adjusted maps and their changes show weak cross-half spatial agreement.
+Total-displacement cosine is 0.0188 for gain and 0.0207 for loss. Design-quality
+failures affect 103 participants; two nonestimable gain coefficients leave
+24/252 scalar summaries unavailable, with the full cohort retained.
+These results describe specification sensitivity and its uncertainty; they do
+not establish a stable neural or psychological mechanism. The [complete
+six-axis figure](figures/exploratory_fmri_axes_20261013_002/exploratory_fmri_cross_half_cosine.png)
+shows every predefined comparison. Cancelled simulations and team-map analyses
+remain closed.
+
+All EP01 allocations for this branch are closed. The complete branch consumed
+17.569444444 allocated CPU-hours, including failed attempts and checks; the
+original EP01 budget history is preserved separately in the execution log.
+
+**Real-choice prediction report complete:** the fixed opposite-half logistic
+model improves held-out log loss in 107/108 participants. Mean paired improvement
+is 0.329159 nats/responded trial (descriptive t95 interval 0.312378–0.345941).
+See the [full report](runs/exploratory_fmri_specification_sensitivity/choice_prediction_summary_20261013_001/exploratory_choice_summary.md).
+This documents the fMRI choice-control model; it does not identify a mechanism.
+
 [Public data, code and release-version links](../DATASETS.md#public-online-resources--checked-october-6-2026)
 are recorded directly in DATASETS, with their local-use limits.
 
@@ -40,7 +69,8 @@ All parents are terminal. The observed branch used **0.6758333333 allocated
 core-hours**, including failed setup, ten passing focused checks, ASTRA,
 summary, plot and the two shared EP04 diagnostics. See the
 [results, disclosed support contacts and accounting](experiment_log.md#2026-10-05-1918-utc--complete-observed-data-menu-and-report-allocations-closed).
-The logistic benchmark remains unimplemented and mechanism claims remain deferred.
+The later October 13 branch implements a fixed choice-only logistic benchmark;
+mechanism claims remain deferred.
 
 All88 remaining synthetic parents were cancelled under the scientist's
 real-data priority. Completed and partial outputs are preserved; no further

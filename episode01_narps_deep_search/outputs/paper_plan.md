@@ -1,8 +1,93 @@
 # EP01 paper plan: what do neural loss-aversion maps measure?
 
-The original mechanism/neural paper architecture remains prospective. The
-separately authorized observed-behavior branch now has the bounded results
-below; they do not satisfy the original mechanism or neural gates.
+## Adopted real-fMRI continuation — October13,2026
+
+The scientist requested continued real-data exploration. The new exploratory
+branch in GOAL.md tests the original fixed-pipeline gain/loss specification
+factorial with observed RT/categories and opposite-half ridge-logistic choice
+uncertainty, retaining108 participants,432 runs and all five arms. It asks how
+conditional associations move, without claiming recovered psychological
+mechanisms. This is selected after the completed behavioral results below.
+At recipe freeze, no neural effect had been inspected to choose the recipe;
+the completed neural results are now observed and reported below. The source,
+numerical choices, complete-cohort support, claim limits and initial real-data
+runtime pilot are fixed in SEARCH_POLICY.yaml:exploratory_real_fmri.
+
+This provides an empirical route into the neural estimand question while
+preserving the original mechanism-dependent paper architecture as conditional.
+The logistic uncertainty regressor is a predictive summary, not a validated
+decision process; the response block mixes choice, strength and finger action.
+Full-table behavior was previously exposed, and cross-run fitting does not
+make this new analysis independent confirmation. Team maps remain closed.
+
+The original mechanism-dependent paper architecture remains prospective. The
+separately authorized exploratory behavior and fMRI branches have the bounded
+results below; they do not satisfy the original mechanism or neural gates.
+
+### Completed real-fMRI evidence — October 13, 2026
+
+The [complete report](runs/exploratory_fmri_specification_sensitivity/summary_valid_common_20261013_001/exploratory_fmri_summary.md)
+and [all six fixed axes](runs/exploratory_fmri_specification_sensitivity/summary_valid_common_20261013_001/exploratory_fmri_summary.json)
+retain **108 participants, 432 runs and all five specifications**. All summaries
+use one approved common support of **37,607 voxels**, after eight of the original
+37,615 voxels were found to contain all-zero input series in at least one run.
+This support amendment followed observed input failures and scientist approval;
+it used only all-frame finiteness and positive run means across all 432 runs.
+The original-support full-cohort analysis remains unavailable. No participants
+or runs were removed, and the original frozen mask and results were preserved.
+
+The joint specification change, S00 − S11, has substantial magnitude relative
+to its constituent maps, but only slight spatial agreement between run halves:
+
+| All 108 participants | Gain | Positive loss |
+|---|---|---|
+| Mean cross-half displacement cosine [t95 CI] | 0.0188 [0.0046, 0.0330] | 0.0207 [0.0058, 0.0355] |
+| Mean symmetric relative displacement RMS [t95 CI] | 0.9434 [0.8953, 0.9915] | 0.8110 [0.7680, 0.8541] |
+| Mean S11 cross-half cosine [t95 CI] | 0.00947 [−0.00589, 0.02483] | 0.000527 [−0.01402, 0.01507] |
+
+The relative magnitude is calculated within each participant as the RMS of
+their four-run S00 − S11 map divided by the mean RMS of their S00 and S11 maps,
+then averaged equally across participants. It is not explained variance, a
+fraction of voxels changed, or a test of the original equivalence margins.
+Both the fully adjusted maps and their differences show weak within-session
+spatial agreement. ER displacement-cosine intervals include zero for both
+slopes; that does not establish an EI–ER difference. All intervals are saved
+participant t95 intervals without multiplicity correction, and run halves are
+repeated observations rather than independent replications.
+
+Design-quality failures affect **103 participants and 463 run/arm combinations**:
+309 in S11, 65 in S10, 88 in R11 and one in S01. The overlapping failure types
+are 362 relative-efficiency failures, 213 focal-VIF failures and two gain
+nonestimability failures. These counts describe contrast precision and design
+separability; they are not 463 failed or excluded runs. In particular,
+**sub-080 (ER), run 4, has a nonestimable gain contrast in S01 and R11**.
+Dependent decision-omission, response-omission, interaction and timing gain
+summaries are therefore unavailable in the all-participant and ER strata for
+half14, all4 and cross-half comparison; half23 remains available. The
+participant stays in the required denominator. Overall, 228 of 252 scalar
+summary panels and 92 of 108 group-map panels are available, with no
+complete-case replacement of unavailable panels.
+
+The reporting figures show every fixed axis and both slopes for all/EI/ER:
+[cross-half cosine](figures/exploratory_fmri_axes_20261013_002/exploratory_fmri_cross_half_cosine.png)
+([PDF](figures/exploratory_fmri_axes_20261013_002/exploratory_fmri_cross_half_cosine.pdf))
+and [four-run coefficient-map RMS](figures/exploratory_fmri_axes_20261013_002/exploratory_fmri_four_run_map_rms.png)
+([PDF](figures/exploratory_fmri_axes_20261013_002/exploratory_fmri_four_run_map_rms.pdf)).
+They copy saved participant means and intervals; they introduce no new fits
+or metrics. BOLD is percent-scaled and gain/loss use physical monetary units,
+but coefficient magnitudes depend on the fixed SPM impulse basis with
+oversampling 50. In particular, raw coefficient RMS is not literal peak evoked
+percent BOLD change per monetary unit. S11 is a full-model coefficient map;
+the other five axes are specification differences, not isolated neural processes.
+
+The supported finding is exploratory specification sensitivity with weak
+cross-half agreement. Frequent VIF and efficiency failures mean that the
+differences can include estimation noise and reduced precision. These results
+do not establish stable displacement templates, cognitive-component isolation,
+neural ordering, or the original specificity and timing claims. The behavior
+model's predictive success does not validate its regressor as a neural
+mechanism. Team maps remain closed, and no passing-participant subset is used
+to recover a stronger claim.
 
 ## Completed observed evidence — October 6, 2026
 
@@ -32,9 +117,11 @@ criterion. See the [comparison figure](figures/observed_model_contrasts.png).
 
 The scientist stopped simulation expansion; all 88 remaining synthetic parents
 were cancelled with saved outputs preserved. The selected observed branch and
-saved-score follow-up are complete. Recovery/interval calibration, logistic,
-urgency/nonlinear and ordinal benchmarks, additional splits, formal superiority
-decisions and neural work remain deferred. Full-table description exposed the
+saved-score follow-up are complete. At that October 6 closeout,
+recovery/interval calibration, logistic, urgency/nonlinear and ordinal benchmarks,
+additional splits, formal superiority decisions and neural work remained
+deferred; the separately authorized October 13 continuation is reported above.
+Full-table description exposed the
 held-out responses to the analyst, so the frozen results are exploratory
 within-session predictions rather than fresh confirmation. No new fit or
 scientific amendment is selected by this documentation update.

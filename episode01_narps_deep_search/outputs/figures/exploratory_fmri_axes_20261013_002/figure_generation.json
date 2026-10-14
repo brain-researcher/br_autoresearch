@@ -1,0 +1,1216 @@
+{
+  "status": "complete",
+  "source_summary": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode01_narps_deep_search/outputs/runs/exploratory_fmri_specification_sensitivity/summary_valid_common_20261013_001/exploratory_fmri_summary.json",
+  "created_utc": "2026-10-13T20:09:59.824055+00:00",
+  "figures": [
+    "exploratory_fmri_cross_half_cosine.png",
+    "exploratory_fmri_cross_half_cosine.pdf",
+    "exploratory_fmri_four_run_map_rms.png",
+    "exploratory_fmri_four_run_map_rms.pdf"
+  ],
+  "participant_counts": {
+    "all": 108,
+    "EI": 54,
+    "ER": 54
+  },
+  "fixed_axes": {
+    "S11": "S11: full-model coefficient\nAbsolute map",
+    "total_displacement": "Total specification difference\nS00 \u2212 S11",
+    "decision_omission": "Decision-covariate omission\n\u00bd[(S00 \u2212 S10) + (S01 \u2212 S11)]",
+    "response_omission": "Response-covariate omission\n\u00bd[(S00 \u2212 S01) + (S10 \u2212 S11)]",
+    "interaction": "Factorial interaction\nS00 \u2212 S10 \u2212 S01 + S11",
+    "response_deadline_timing": "Response/deadline timing difference\nR11 \u2212 S11"
+  },
+  "plotted_rows": [
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 9.524225724534798,
+      "participant_SE": 0.4990119536509586,
+      "t95_CI": [
+        8.523334496883642,
+        10.525116952185954
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.009283996393539147,
+      "participant_SE": 0.013444655870784805,
+      "t95_CI": [
+        -0.017682568277714347,
+        0.036250561064792644
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 14.428467556074482,
+      "participant_SE": 0.5884500400752571,
+      "t95_CI": [
+        13.248186244748895,
+        15.608748867400069
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.009658206102212978,
+      "participant_SE": 0.007850167333542593,
+      "t95_CI": [
+        -0.00608723558961523,
+        0.02540364779404119
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 11.976346640304639,
+      "participant_SE": 0.4512494186048555,
+      "t95_CI": [
+        11.081797297084693,
+        12.870895983524585
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.009471101247876064,
+      "participant_SE": 0.007747901930302957,
+      "t95_CI": [
+        -0.005888210692100543,
+        0.024830413187852673
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 14.20678875457392,
+      "participant_SE": 0.8984538359141154,
+      "t95_CI": [
+        12.404718571211205,
+        16.008858937936633
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.0006347888361136668,
+      "participant_SE": 0.008969638830919419,
+      "t95_CI": [
+        -0.01735602832845061,
+        0.01862560600067794
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 15.488097101560761,
+      "participant_SE": 0.9384231301747031,
+      "t95_CI": [
+        13.605858666299191,
+        17.37033553682233
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.00041950875599859074,
+      "participant_SE": 0.011704227228630647,
+      "t95_CI": [
+        -0.023056198136117687,
+        0.023895215648114865
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 14.847442928067338,
+      "participant_SE": 0.649504882117298,
+      "t95_CI": [
+        13.559875250944295,
+        16.13501060519038
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "S11",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.0005271487960561289,
+      "participant_SE": 0.007338453652117098,
+      "t95_CI": [
+        -0.014020479686319328,
+        0.015074777278431586
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 5.772563494520062,
+      "participant_SE": 0.532296741852232,
+      "t95_CI": [
+        4.704911436229199,
+        6.840215552810926
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.022913902019540383,
+      "participant_SE": 0.01046208493190445,
+      "t95_CI": [
+        0.0019296170646976168,
+        0.04389818697438315
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 6.091909990466225,
+      "participant_SE": 0.8314972561574483,
+      "t95_CI": [
+        4.424137698810627,
+        7.7596822821218225
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.027827384553984428,
+      "participant_SE": 0.010447345701575638,
+      "t95_CI": [
+        0.006872662751347743,
+        0.04878210635662111
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 6.113218687638321,
+      "participant_SE": 1.0133203906257922,
+      "t95_CI": [
+        4.0807553721667,
+        8.145682003109943
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.025637413759691568,
+      "participant_SE": 0.010919731257451597,
+      "t95_CI": [
+        0.0037352065201106746,
+        0.04753962099927246
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 6.102564339052274,
+      "participant_SE": 0.6523327650702643,
+      "t95_CI": [
+        4.809390713790617,
+        7.395737964313931
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "decision_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.026732399156838,
+      "participant_SE": 0.007521600925120437,
+      "t95_CI": [
+        0.011821702566177344,
+        0.04164309574749866
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 3.2709318737152677,
+      "participant_SE": 0.27102013242897843,
+      "t95_CI": [
+        2.727334328445326,
+        3.8145294189852095
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.0035677521721800944,
+      "participant_SE": 0.01143500896199847,
+      "t95_CI": [
+        -0.019367971259772278,
+        0.026503475604132465
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "interaction",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 3.7858136050876774,
+      "participant_SE": 0.4077691552366312,
+      "t95_CI": [
+        2.967932254957654,
+        4.6036949552177004
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.005585745907333173,
+      "participant_SE": 0.01703661723696271,
+      "t95_CI": [
+        -0.028585380889468156,
+        0.0397568727041345
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 3.9054628092882875,
+      "participant_SE": 0.3894465424808909,
+      "t95_CI": [
+        3.1243319663168503,
+        4.686593652259725
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.016711855152775772,
+      "participant_SE": 0.008927103345250206,
+      "t95_CI": [
+        -0.0011936466317485767,
+        0.03461735693730012
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 3.845638207187982,
+      "participant_SE": 0.28067180352496646,
+      "t95_CI": [
+        3.2892390914176537,
+        4.402037322958311
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "interaction",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.011148800530054475,
+      "participant_SE": 0.00958695782375529,
+      "t95_CI": [
+        -0.007856225229828763,
+        0.030153826289937714
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 8.720223451629577,
+      "participant_SE": 0.4510972708893076,
+      "t95_CI": [
+        7.815436907044528,
+        9.625009996214626
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": -0.006211723060113215,
+      "participant_SE": 0.008352673148815893,
+      "t95_CI": [
+        -0.022965063778549785,
+        0.010541617658323354
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 12.350653605175513,
+      "participant_SE": 0.8707122762638002,
+      "t95_CI": [
+        10.60422594398529,
+        14.097081266365736
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": -0.0019309356938688907,
+      "participant_SE": 0.008414282205942838,
+      "t95_CI": [
+        -0.01880784853191314,
+        0.014945977144175358
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 14.550366840880649,
+      "participant_SE": 0.9247139584476066,
+      "t95_CI": [
+        12.695625521909829,
+        16.40510815985147
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.016281757062658272,
+      "participant_SE": 0.00830431396481707,
+      "t95_CI": [
+        -0.0003745874161358194,
+        0.032938101541452366
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 13.450510223028077,
+      "participant_SE": 0.6409720463083973,
+      "t95_CI": [
+        12.17985789771259,
+        14.721162548343564
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_deadline_timing",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.00717541068439469,
+      "participant_SE": 0.005948857264214479,
+      "t95_CI": [
+        -0.004617505027419602,
+        0.018968326396208983
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 3.9810385921635576,
+      "participant_SE": 0.19313075821630482,
+      "t95_CI": [
+        3.5936673472985006,
+        4.368409837028614
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.006039803571059156,
+      "participant_SE": 0.01499145321371562,
+      "t95_CI": [
+        -0.024029243676346138,
+        0.036108850818464454
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 53,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 107,
+      "unavailable_participants": 1,
+      "mean": null,
+      "participant_SE": null,
+      "t95_CI": null,
+      "status": "unavailable_without_complete_case_filtering"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 6.509041609785152,
+      "participant_SE": 0.3806786923093254,
+      "t95_CI": [
+        5.74549684718288,
+        7.2725863723874244
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.006044115805696353,
+      "participant_SE": 0.013281237761896617,
+      "t95_CI": [
+        -0.02059467364809224,
+        0.032682905259484946
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 7.731677004212689,
+      "participant_SE": 0.3485526807295884,
+      "t95_CI": [
+        7.03256886068201,
+        8.430785147743368
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.017026031048769177,
+      "participant_SE": 0.01226491538811165,
+      "t95_CI": [
+        -0.0075742738738482675,
+        0.041626335971386624
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 7.12035930699892,
+      "participant_SE": 0.2635744257181343,
+      "t95_CI": [
+        6.597853748665567,
+        7.642864865332274
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "response_omission",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.011535073427232768,
+      "participant_SE": 0.009012382656987672,
+      "t95_CI": [
+        -0.006330924077164688,
+        0.029401070931630226
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 7.78352679348066,
+      "participant_SE": 0.4503777500548468,
+      "t95_CI": [
+        6.880183424927879,
+        8.686870162033442
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.023710130105121418,
+      "participant_SE": 0.009764034719563374,
+      "t95_CI": [
+        0.0041259565682125535,
+        0.04329430364203028
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 10.539523231246589,
+      "participant_SE": 0.6229020145521367,
+      "t95_CI": [
+        9.290140010083208,
+        11.78890645240997
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.013906639608692447,
+      "participant_SE": 0.01048522843948937,
+      "t95_CI": [
+        -0.00712406534380638,
+        0.034937344561191276
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 9.161525012363624,
+      "participant_SE": 0.40506519129641805,
+      "t95_CI": [
+        8.358530513321906,
+        9.964519511405342
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "gain",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.01880838485690693,
+      "participant_SE": 0.007145910160571073,
+      "t95_CI": [
+        0.004642451390197732,
+        0.03297431832361612
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 9.762033929909407,
+      "participant_SE": 0.7481130967487218,
+      "t95_CI": [
+        8.261509082060808,
+        11.262558777758006
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "EI",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.027821438209857118,
+      "participant_SE": 0.00995943810581359,
+      "t95_CI": [
+        0.007845335113505332,
+        0.047797541306208904
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 11.093732576471169,
+      "participant_SE": 0.9389942439536948,
+      "t95_CI": [
+        9.210348632034515,
+        12.977116520907822
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "ER",
+      "expected_participants": 54,
+      "available_participants": 54,
+      "unavailable_participants": 0,
+      "mean": 0.013485418054086831,
+      "participant_SE": 0.011210562438175352,
+      "t95_CI": [
+        -0.009000122661544305,
+        0.03597095876971797
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "all4",
+      "metric": "map_RMS",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 10.427883253190284,
+      "participant_SE": 0.600933971737201,
+      "t95_CI": [
+        9.236601741076482,
+        11.619164765304086
+      ],
+      "status": "complete"
+    },
+    {
+      "axis": "total_displacement",
+      "focal": "loss",
+      "panel": "half14_vs_half23",
+      "metric": "uncentered_spatial_cosine",
+      "stratum": "all",
+      "expected_participants": 108,
+      "available_participants": 108,
+      "unavailable_participants": 0,
+      "mean": 0.02065342813197197,
+      "participant_SE": 0.007494770129159225,
+      "t95_CI": [
+        0.005795920465031983,
+        0.03551093579891196
+      ],
+      "status": "complete"
+    }
+  ],
+  "spatial_support": {
+    "selection": "approved_valid_common_support",
+    "approved_support": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode01_narps_deep_search/outputs/runs/exploratory_fmri_specification_sensitivity/valid_common_support_20261013_001/support.json",
+    "rule": "all_timepoints_finite_and_positive_run_mean_for_every_432_run",
+    "original_group_mask": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode01_narps_deep_search/outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002/all_432_run_intersection_mask.nii.gz",
+    "original_voxels": 37615,
+    "retained_voxels": 37607,
+    "excluded_voxels": 8,
+    "amended_after_observed_input_failures": true,
+    "original_support_analysis": "unavailable",
+    "claim_scope": "Exploratory reanalysis on the explicitly amended numerical common support"
+  },
+  "failed_run_arm_combinations": 463,
+  "interpretation": "Reporting only: saved participant means and t95 intervals, all six fixed axes, two slopes, and all/EI/ER strata. No fits, map reads, recomputed metrics, resampling, corrected tests, mechanism claims or original equivalence decisions."
+}

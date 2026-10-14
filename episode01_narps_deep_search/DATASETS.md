@@ -2,6 +2,25 @@
 
 ## Current status
 
+On2026-10-13 the scientist authorized continued real-data exploration after
+the unfinished fMRI question was explained. The exploratory fMRI continuation
+in GOAL.md now opens the existing108-person/four-run fMRIPrep source, original
+events, run masks and confounds for the five-arm conditional-estimand analysis.
+It uses opposite-half regularized choice predictions rather than unvalidated
+mechanism parameters. The original mechanism and team-map analyses remain
+conditional; cancelled simulations remain cancelled. Earlier descriptions of
+the October5 branch's BOLD prohibition apply to that branch, not this new one.
+
+Later on October 13 the scientist explicitly approved the
+[numerically valid common-support amendment](outputs/proposed_valid_common_support.md).
+All 108 participants and all 432 runs remain required. The original common mask
+is preserved; one amended support retains only its positions with finite BOLD
+values at every acquired frame and a strictly positive run mean in every run.
+This numerical-validity rule follows observed zero-series failures and uses no
+effect estimates or anatomical-region selection. Complete the full 432-run
+validity inventory before freezing the amended support and recomputing group
+results. This approval does not itself establish completed fits or results.
+
 EP01 has qualified the original behavioral source. On 2026-10-05 the scientist
 stopped further simulation work and opened the bounded exploratory real-behavior
 branch in GOAL.md before recovery is complete. The earlier simulation results
@@ -66,7 +85,7 @@ EP01 uses each `*_events_ORIGINAL.tsv` as the behavioral source. The sibling
 `events.tsv` files are analysis-specific transformations and are not the event
 source for this study.
 
-The exploratory branch reuses the already-qualified normalized table at
+The October 5 exploratory behavior branch reuses the already-qualified normalized table at
 `outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz`.
 It does not repeat asset qualification or open BOLD. Its frozen two-way
 {1,4}/{2,3} fitting keeps individual and population estimation training-only.
@@ -81,6 +100,29 @@ EP01 claim requires the missing 109 raw payloads.
 The existing FitLins products are a benchmark only. They are not substituted
 for the runwise `S00/S10/S01/S11/R11` fits because those models define the
 scientific comparison.
+
+### Approved common spatial support
+
+The exploratory fMRI analysis preserves each participant's four-run mask and
+the original intersection of all 432 source masks. Under the approved October
+13 amendment, derive one separately named valid common mask from that original
+intersection: each retained position must have finite preprocessed BOLD at all
+acquired frames and a strictly positive run mean in every one of the 432 runs.
+Frames marked by nuisance spike regressors still enter this input-validity
+check. Record excluded grid positions and their participant/run causes; do not
+select voxels using fitted effects, significance, response relationships, map
+similarity, or region labels.
+
+Use that one final support for all participants, arms, run halves, group maps,
+spatial metrics and offer-sequence summaries. No participant/run is removed,
+and voxelwise participant counts cannot vary. Preserve original preparation,
+designs, fits and failures. Successful coefficients remain reusable because
+the unchanged percent-mean scaling, S00-derived AR(1) estimator and GLM are
+voxelwise; recompute all group summaries on the amended support. Unusable
+peripheral series remain explicit NaNs in participant products. An invalid
+series inside the newly frozen support still stops its run. Claims concern
+only the amended common support and must disclose the post-failure amendment;
+the original frozen-support full-cohort analysis remains unavailable.
 
 ### Required participant-level fields
 

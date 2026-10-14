@@ -1,5 +1,113 @@
 # What Do Neural Loss-Aversion Maps Measure?
 
+## Authorized exploratory real-fMRI continuation — 2026-10-13
+
+After discussing the unfinished real-fMRI question, the scientist explicitly
+requested continued exploration using real data. This adopts and opens a
+separate exploratory conditional-estimand sensitivity analysis. It does not
+resume cancelled simulations, declare behavioral recovery passed, or open
+team maps. The original mechanism-dependent architecture below remains
+conditional; its recovery requirements do not gate this descriptive branch.
+
+The question is: **within the same participant and preprocessing pipeline,
+how do gain/loss estimates change when observed decision duration, response
+categories and cross-run predicted choice uncertainty are included?** Retain
+all 108 participants and all four runs, with the original five S00/S10/S01/S11/
+R11 specifications and omission-positive contrasts. R11 is only a timing
+sensitivity. This is a reanalysis of exposed NARPS data, not fresh confirmation.
+
+Replace the unvalidated DDM entropy input for this branch only with a fixed
+ridge-logistic model of observed accept/reject among responded trials. For
+each participant, fit on runs {1,4} and predict {2,3}, then reverse. Its design
+is [1, gain/10, positive-loss/10]; minimize summed Bernoulli negative log
+likelihood plus .5*(.01*intercept^2 + gain_slope^2 + loss_slope^2). All
+coefficients have finite regularization, including for single-class training
+data. There is no model/penalty search. Predict all target-half offers,
+including misses; this probability is conditional on an observed response,
+not a generative deadline probability. Report responded-trial log loss against
+a training-only regularized intercept model, separately from joint choice/RT
+scores. Entropy is centered/scaled within run from predicted covariates only;
+a zero-variance column is explicitly absent, never grounds to drop a person.
+
+The common numerical choices frozen before BOLD access remain: existing fMRIPrep
+21.0.2 MNI152NLin2009cAsym 2-mm series; intersection of a participant's four
+run masks; no additional spatial smoothing; runwise percent-mean signal;
+canonical SPM HRF without derivatives, oversampling 50; frame times start at
+zero using the header TR; cosine high-pass period 128 seconds and intercept.
+The original intersection of all 432 source masks is preserved; group spatial
+comparisons use its numerically valid subset under the approved amendment below.
+Source metadata documents slice-timing correction was not applied; check each
+run's derivative JSON and matching TR. Volume-onset timing is an explicit
+modeling convention, not exact alignment of every acquired slice.
+Jointly fit 24 motion terms, white matter and CSF, nonsteady-state indicators
+and framewise-displacement >0.5-mm spike regressors. Only undefined first-row
+motion derivatives/FD become zero; other nonfinite confounds are unavailable.
+Estimate voxelwise AR(1), in fixed .01 bins, once from S00 residuals and reuse
+the same whitening for every arm. No sequential regressor orthogonalization.
+Gain/loss retain physical dollar units, with gain centered at25 in EI/12.5 in
+ER and positive loss at12.5. All offers/misses remain in every arm; the epoch
+ends at RT or four seconds, and category events occur only at actual responses.
+
+Before interpretation, record actual-design rank, focal estimability,
+condition number, VIF and relative efficiency. The existing30/5/50% design
+thresholds remain required for the original stable-displacement/timing claims;
+they are reported as diagnostics in this exploratory branch. A nonestimable
+focal coefficient is unavailable, not a pseudoinverse-derived effect. Exact
+absent/redundant nuisance columns may use an independent numerical basis with
+contrast transformation; neither trial support nor focal estimands change.
+Retain failed runs explicitly; never substitute a selectively complete cohort.
+
+Save runwise gain/loss beta and variance maps, then form matched-run beta
+differences before equal weighting of two runs per half. Report S11, S00-S11,
+the decision and response omission main effects, their interaction, and
+R11-S11 separately for gain/loss. Quantify cross-half spatial agreement and
+participant-paired uncertainty, including EI/ER and offer-template sensitivity.
+Difference uncertainty uses the observed paired participant differences, not
+the sum of independent-arm variances. Group maps/cosines retain all108 people
+on the one approved valid common mask; outside-mask values are never treated as zero data.
+Runs and voxels are repeated measurements; participant is the inferential
+unit. Maps are conditional associations and specification sensitivity, not
+pure valuation, starting bias, motor signals, causal mechanisms or neural timing.
+
+On October 13, 2026 the scientist explicitly approved the
+[written common-support amendment](outputs/proposed_valid_common_support.md)
+after input-only diagnosis found identically zero time series in the original
+common mask. Preserve that original mask and its unavailable full-cohort
+analysis. Define the amended mask once as the original common-mask positions
+whose preprocessed BOLD time series have finite values at every acquired frame
+and a strictly positive run mean in **every one of the 432 runs**. Include
+frames represented by spike regressors in this validity check. Record all
+excluded indices, their participant/run causes, and the final count; establish
+complete 432-run validity before fixing the new support and recomputing group
+results. No effect estimate, significance, response association, anatomical
+region, or map agreement enters this rule.
+
+Keep all 108 participants, all four runs, all five arms and the unchanged
+numerical pipeline. Preserve original prepared metadata, designs, successful
+fits and failed attempts; select the amended support through a separately
+named artifact. Successful voxel coefficients can be reused because run-mean
+scaling, the S00-derived AR(1) estimate and all five model fits are voxelwise.
+Complete previously stopped runs under the approved support, then recompute
+every group map, participant spatial metric, run-half comparison and
+offer-sequence sensitivity on that same support. Model nonestimability and
+missing participant/run results remain unavailable; the support amendment does
+not waive those requirements.
+
+Unusable time series outside the approved fixed common mask retain explicit
+unavailable values in participant products, with their indices reported. Any
+invalid series inside that fixed mask still stops its run; no subsequent
+silent support change is allowed. The resulting claims concern only this
+numerically valid common support, not the full participant brain masks. Report
+that the spatial-support amendment followed observed input-validity failures;
+it is not an untouched preregistered spatial analysis.
+
+The first sorted EI and ER participants, all four runs each, are an actual-data
+runtime pilot retained in the final108-person panel. Select2CPU/15GiB/2h,
+one numerical worker, then size remaining work from measured cost. Maximum
+new branch selection is500 allocated CPU-hours and32 concurrent CPUs, with
+explicit per-job limits, preserved prior charges and saved completed runs.
+No GPU, automatic renewal, simulation study or team-map opening is selected.
+
 ## Authorized real-behavior priority — 2026-10-05
 
 The scientist stopped the expanding simulation program and authorized a

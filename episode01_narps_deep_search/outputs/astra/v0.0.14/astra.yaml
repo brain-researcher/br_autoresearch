@@ -16,6 +16,12 @@ inputs:
     source: outputs/paper_plan.md
 
 outputs:
+  - id: exploratory_choice_report
+    from: exploratory_choice_score_report.choice_report
+  - id: exploratory_valid_common_support
+    from: exploratory_fmri_valid_common_support.support_report
+  - id: exploratory_fmri_report
+    from: exploratory_fmri_summary.cohort_report
   - id: exploratory_observed_model_contrasts
     from: exploratory_observed_model_contrasts.contrast_report
   - id: exploratory_behavior_descriptions
@@ -40,6 +46,251 @@ outputs:
     from: integrated_claim_audit.integrated_claim_report
 
 analyses:
+  exploratory_choice_score_report:
+    name: Summarize saved opposite-half logistic choice predictions for all participants
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - id: saved_choice_metadata
+        type: data
+        source: outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002/behavioral_covariates.json
+      - id: report_code
+        type: data
+        source: outputs/code/summarize_exploratory_choice.py
+    outputs:
+      - id: choice_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, saved_choice_metadata, report_code]
+        decisions: [saved_choice_scope]
+        recipe:
+          command: >-
+            python outputs/code/summarize_exploratory_choice.py
+            --output-dir {output} --max-seconds 120
+          resources: {cpus: 1, memory: 2Gi, time_limit: 3m}
+    decisions:
+      saved_choice_scope:
+        label: Describe existing conditional choice scores without refitting
+        default: complete_saved_choice_scores
+        options:
+          complete_saved_choice_scores:
+            label: >-
+              Use only the fixed prepared002 fit metadata for all 108 participants,
+              including 54 EI and 54 ER, and both original opposite-half directions.
+              Sum each participant's held-out negative log likelihood over responded
+              trials before dividing by that participant's responded-trial count;
+              summarize participants with equal weight. Compare the fixed ridge-logistic
+              choice model with its training-only penalized intercept reference.
+              Report exploratory choice prediction conditional on response, not a
+              joint choice-RT likelihood or evidence selecting a cognitive mechanism.
+  exploratory_fmri_specification_sensitivity:
+    name: Explore real-data gain and loss map sensitivity to observed decision and response controls
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - id: original_events
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz
+      - id: fmriprep
+        type: data
+        source: /oak/stanford/groups/russpold/data/OpenNeuro_analyses/openneuro_fitlins/fmriprep/ds001734
+      - id: design_code
+        type: data
+        source: outputs/code/exploratory_fmri_design.py
+      - id: runner_code
+        type: data
+        source: outputs/code/exploratory_fmri_runner.py
+    outputs:
+      - id: prepared_designs
+        type: report
+        format: json
+        inputs: [goal, search_policy, original_events, fmriprep, design_code, runner_code]
+        decisions: [real_data_scope]
+        recipe:
+          command: >-
+            python outputs/code/exploratory_fmri_runner.py prepare
+            --output-dir {output} --max-seconds 1800 --max-rss-gib 12
+          resources: {cpus: 2, memory: 15Gi, time_limit: 2h}
+      - id: runwise_maps
+        type: data
+        format: npz
+        inputs: [goal, search_policy, original_events, fmriprep, design_code, runner_code]
+        decisions: [real_data_scope]
+        recipe:
+          command: >-
+            python outputs/code/exploratory_fmri_runner.py fit
+            --prepared-dir PREPARED_DIRECTORY --output-dir {output}
+            --participant ASSIGNED_PARTICIPANT --max-seconds 3540 --max-rss-gib 12
+          resources: {cpus: 2, memory: 15Gi, time_limit: 1h}
+    decisions:
+      real_data_scope:
+        label: User-authorized exploratory real-fMRI continuation before mechanism recovery
+        default: complete_real_data_factorial
+        options:
+          complete_real_data_factorial:
+            label: >-
+              Retain all 108 participants, 432 runs and five original specification arms.
+              Use opposite-half fixed ridge-logistic conditional choice entropy, observed
+              RT and four response categories. Common preprocessing, actual timing,
+              mask, confounds and S00-derived AR1 whitening remain fixed across arms.
+              Compare matched runwise beta differences and participant-paired uncertainty;
+              keep original mechanisms, team maps and cancelled simulations closed.
+              The first sorted EI and ER people are retained runtime measurements before
+              measured-cost cohort dispatch, never a replacement scientific subset.
+  exploratory_fmri_valid_common_support:
+    name: Derive the approved numerical common voxel support across every original run
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: prepared_designs, from: ../exploratory_fmri_specification_sensitivity.prepared_designs}
+      - {id: runwise_maps, from: ../exploratory_fmri_specification_sensitivity.runwise_maps}
+      - id: support_code
+        type: data
+        source: outputs/code/exploratory_fmri_support.py
+      - id: runner_code
+        type: data
+        source: outputs/code/exploratory_fmri_runner.py
+      - id: collector_code
+        type: data
+        source: outputs/code/summarize_exploratory_fmri.py
+    outputs:
+      - id: support_report
+        type: report
+        format: json
+        inputs: [goal, search_policy, prepared_designs, runwise_maps, support_code, runner_code, collector_code]
+        decisions: [numerical_common_support]
+        recipe:
+          command: >-
+            python outputs/code/exploratory_fmri_support.py build
+            --prepared-dir outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pilot_20261013_47670430/models02
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/cohort_20261013_001/models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_0_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_1_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_2_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_3_models
+            --output-dir {output} --max-seconds 3540 --max-rss-gib 12
+          resources: {cpus: 2, memory: 15Gi, time_limit: 1h}
+    decisions:
+      numerical_common_support:
+        label: Scientist-approved common support after observed input validity failures
+        default: finite_and_positive_mean_in_every_run
+        options:
+          finite_and_positive_mean_in_every_run:
+            label: >-
+              Intersect the original common brain mask with voxels whose full acquired
+              BOLD series is finite and whose run mean is positive in every one of the
+              432 original runs. Successful original-support completions certify all
+              their original common voxels; scan every original common voxel and frame
+              of each run with the diagnosed numerical-support failure. Refuse unknown
+              runs or any other unresolved failure. Retain all 108 participants, all
+              432 runs and all five arms on one shared mask, without effect, response,
+              design, or fit-quality selection. Preserve the original preparation and
+              failed attempts. The support.json report links valid_common_mask.nii.gz
+              and is instantiated at valid_common_support_20261013_001 for this branch.
+  exploratory_fmri_valid_support_repair:
+    name: Complete only the previously stopped runs on the approved common support
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: prepared_designs, from: ../exploratory_fmri_specification_sensitivity.prepared_designs}
+      - {id: support_report, from: ../exploratory_fmri_valid_common_support.support_report}
+      - id: support_code
+        type: data
+        source: outputs/code/exploratory_fmri_support.py
+      - id: runner_code
+        type: data
+        source: outputs/code/exploratory_fmri_runner.py
+      - id: design_code
+        type: data
+        source: outputs/code/exploratory_fmri_design.py
+    outputs:
+      - id: repaired_runwise_maps
+        type: data
+        format: npz
+        inputs: [goal, search_policy, prepared_designs, support_report, support_code, runner_code, design_code]
+        decisions: [repair_scope]
+        recipe:
+          command: >-
+            python outputs/code/exploratory_fmri_support.py repair
+            --prepared-dir outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002
+            --approved-support outputs/runs/exploratory_fmri_specification_sensitivity/valid_common_support_20261013_001/support.json
+            --output-dir {output} --max-seconds 3540 --max-rss-gib 12
+          resources: {cpus: 2, memory: 15Gi, time_limit: 1h}
+    decisions:
+      repair_scope:
+        label: Finish the exact failed-run menu while retaining all completed fits
+        default: approved_support_failed_runs
+        options:
+          approved_support_failed_runs:
+            label: >-
+              Run the unchanged S00, S10, S01, S11 and R11 pipeline only for the exact
+              failed_runs keys in the complete approved support report. Preserve
+              preprocessing, prepared designs, confounds, timing and within-run
+              S00-derived AR1 whitening shared across all five arms. Write fresh
+              repaired outputs at valid_common_repair_20261013_001 and retain every
+              original completion for coordinate restriction during aggregation.
+  exploratory_fmri_summary:
+    name: Summarize complete paired participant specification effects on fixed spatial support
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: search_policy, from: ../search_policy}
+      - {id: prepared_designs, from: ../exploratory_fmri_specification_sensitivity.prepared_designs}
+      - {id: runwise_maps, from: ../exploratory_fmri_specification_sensitivity.runwise_maps}
+      - {id: support_report, from: ../exploratory_fmri_valid_common_support.support_report}
+      - {id: repaired_runwise_maps, from: ../exploratory_fmri_valid_support_repair.repaired_runwise_maps}
+      - id: collector_code
+        type: data
+        source: outputs/code/summarize_exploratory_fmri.py
+      - id: axes_plot_code
+        type: data
+        source: outputs/code/plot_exploratory_fmri_axes.py
+      - id: offer_membership
+        type: data
+        source: outputs/runs/public_asset_qualification/20261003-schedule01/offer_sequence_membership.tsv
+    outputs:
+      - id: cohort_report
+        type: report
+        format: json
+        description: >-
+          Complete-cohort maps, participant metrics, availability and design-quality
+          disclosures on the approved common support. Reporting companion
+          plot_exploratory_fmri_axes.py consumes this saved JSON to display all six
+          axes, both slopes and all/EI/ER mean intervals without recomputing metrics.
+          Coefficient RMS depends on the fixed SPM impulse normalization and is
+          not peak evoked BOLD amplitude. The report links the complete figures.
+        inputs: [goal, search_policy, prepared_designs, runwise_maps, support_report, repaired_runwise_maps, collector_code, axes_plot_code, offer_membership]
+        decisions: [complete_common_support_summary]
+        recipe:
+          command: >-
+            python outputs/code/summarize_exploratory_fmri.py
+            --prepared-dir outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002
+            --approved-support outputs/runs/exploratory_fmri_specification_sensitivity/valid_common_support_20261013_001/support.json
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pilot_20261013_47670430/models02
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/cohort_20261013_001/models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_0_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_1_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_2_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/pack_3_models
+            --run-root outputs/runs/exploratory_fmri_specification_sensitivity/valid_common_repair_20261013_001
+            --output-dir {output}
+            --max-seconds 1740 --max-rss-gib 12
+          resources: {cpus: 2, memory: 15Gi, time_limit: 30m}
+    decisions:
+      complete_common_support_summary:
+        label: Recompute every paired summary on the one approved common mask
+        default: all_participants_runs_and_arms
+        options:
+          all_participants_runs_and_arms:
+            label: >-
+              Require exactly 108 participants and 432 completed runs across all five
+              original arms. Join original and repaired map coordinates to the approved
+              common mask and recompute every metric on that support, without treating
+              outside-mask voxels as zero. Preserve participant-paired inference and
+              explicit unavailable coefficients. Report exploratory effects only on
+              this numerically valid common support and preserve the unavailable
+              original-support analysis. Write the new summary at
+              summary_valid_common_20261013_001; keep earlier summaries unchanged.
   exploratory_observed_model_contrasts:
     name: Describe all paired differences among six completed observed-data models
     inputs:

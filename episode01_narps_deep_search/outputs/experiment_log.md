@@ -1,5 +1,394 @@
 # Experiment log
 
+## 2026-10-13 13:12 Pacific — exploratory_fmri_summary — complete observed-data report; attended allocation closed
+
+Full-cohort collection completed with exit 0 in **79.095 seconds**, retaining
+all 108 participants, 432 runs and five arms on the approved 37,607-voxel
+support. [Report](runs/exploratory_fmri_specification_sensitivity/summary_valid_common_20261013_001/exploratory_fmri_summary.md)
+and JSON retain all six fixed axes, paired half comparisons, EI/ER strata,
+participant uncertainty and offer-sequence sensitivities. No complete-case
+cohort was substituted. There are 228/252 available scalar summaries and
+92/108 available mean/SE map panels. Sub-080 ER run4 has nonestimable gain
+coefficients in S01 and R11; dependent all/ER gain summaries remain unavailable
+for half14, all4 and cross-half comparison, while half23 remains available.
+
+Mean total-displacement cross-half cosine is **0.018808** for gain (t95 interval
+0.004642–0.032974) and **0.020653** for loss (0.005796–0.035511). Mean symmetric
+relative displacement RMS is **0.9434/0.8110**. These are substantial coefficient
+changes with only slight cross-half alignment, not explained variance or a
+fraction of changed voxels. Fully adjusted S11 maps also have weak agreement:
+gain 0.009471 [−0.005888, 0.024830], loss 0.000527 [−0.014020, 0.015075].
+ER displacement intervals include zero; no EI–ER difference is inferred.
+
+Design gates fail in 463 run/arm combinations across 103 participants. Failure
+types overlap: 362 relative-efficiency failures, 213 VIF failures and two gain
+nonestimability failures. They indicate precision/separability limits, not
+463 failed scans. The supported interpretation is exploratory specification
+sensitivity including potentially substantial estimation noise; no stable
+neural template, component isolation or psychological mechanism is established.
+Independent interpretation review passed and the paper plan records the result.
+
+Reporting code copied all six axes, both slopes and all/EI/ER saved means and
+intervals into [complete figures](figures/exploratory_fmri_axes_20261013_002/).
+An initial plotting command lacked matplotlib after the science runtime cleared
+module PYTHONPATH; restoring the already installed plotting module fixed it.
+No environment installation or score recomputation occurred. Plot version002
+clarifies that coefficient RMS depends on the fixed SPM impulse basis, not peak
+evoked BOLD amplitude; version001 and failed execution log remain preserved.
+Visual inspection passed. Final ASTRA schema/semantic validation passed in
+`continuation_20261013_47679500/astra_final_reporting_validation.json`.
+
+Attended **47679500 is closed, COMPLETED 0:0**. Parent accounting: 2 CPUs ×
+2248 seconds = **1.248888889 CPUh**, charged once including diagnosis, checks,
+saved-choice reporting, support construction, four fits, summary, figures,
+review waits and the shared EP18 shell-syntax check. Release 0.751111111 CPUh
+from its two-hour reservation. Step MaxRSS is 10,400,724 KiB. This new real-fMRI
+branch totals **17.569444444 allocated CPUh**; earlier EP01 history is separate
+and preserved. No EP01 allocation or follow-on job remains active for this
+selected analysis. Original mechanism gates and team maps remain closed;
+cancelled simulations were not restarted.
+
+## 2026-10-13 13:04 Pacific — exploratory_fmri_valid_support_repair / exploratory_fmri_summary — all 432 fits complete; full summary running
+
+The four affected runs completed with exit 0 in 121.554 seconds, using the
+approved 37,607-voxel support. Individual elapsed times were 38.240, 13.274,
+33.663 and 33.245 seconds. Evidence: `valid_common_repair_20261013_001/repair.json`
+and `continuation_20261013_47679500/approved_support_fits.log`.
+There are now 432 complete runs for all 108 participants, combining 428
+preserved original results with these four new results. No successful run
+was refit. Full-cohort collection is running in the same attended allocation
+with a 1,200-second bound and all six original contrast axes.
+
+## 2026-10-13 13:01 Pacific — exploratory_fmri_valid_common_support — complete 432-run support; failed-run fits started
+
+All four tasks of array 47680145 completed 0:0, retaining all 59 selected runs
+without additional common-mask failures. Parent elapsed seconds are
+530/1051/905/926, each with two CPUs: charge **1.895555556 CPUh once** and
+release 4.104444444 CPUh from the six-hour reservation. Branch actual cost is
+now **16.320555556 CPUh**, excluding the still-open attended 47679500.
+
+Support construction completed 0 in 41.699 seconds in that attended allocation.
+It verified all 432 runs: 428 successful original-mask completions and four
+full input scans of the failed runs. The final common support contains
+**37,607 voxels**, excluding exactly eight all-zero locations from the original
+37,615. No new exclusion or participant/run removal occurred. Evidence:
+[support report](runs/exploratory_fmri_specification_sensitivity/valid_common_support_20261013_001/support.json).
+
+The exact four failed runs are now fitting in the fresh
+`valid_common_repair_20261013_001` root with the approved support, unchanged
+five-arm pipeline, and a 900-second command bound. All completed coefficients
+and original attempts remain preserved; full summary follows successful repair.
+
+## 2026-10-13 12:57 Pacific — exploratory_fmri_valid_common_support / exploratory_fmri_valid_support_repair / exploratory_fmri_summary — implementation ready
+
+The explicit approved-support implementation and independent source review are
+complete. The focused support fixture passed, then the collector's prior
+incomplete-cohort interface was preserved following review. Final support and
+collector fixtures both passed in 1.220 seconds in attended 47679500. The
+pinned ASTRA schema and semantic validator also passed for the updated program.
+Evidence: `continuation_20261013_47679500/valid_support_final_check.txt` and
+`astra_valid_support_validation.json`.
+
+The next selected work reuses this suitable 2-CPU/15-GiB allocation: after all
+59 dispatched scans finish, build the one support in
+`valid_common_support_20261013_001`, fit only the exact failed-run menu in
+`valid_common_repair_20261013_001`, then collect originals plus repairs in
+`summary_valid_common_20261013_001`. Each command is bounded by the allocation's
+remaining time, with no automatic retry or additional allocation reserved.
+Completed original fits certify original-mask input validity; only diagnosed
+failed runs require another full input-only scan. No cohort estimate is made
+before every one of the 432 runs is accounted for.
+
+## 2026-10-13 12:47 Pacific — exploratory_fmri_specification_sensitivity — valid common support adopted
+
+The scientist explicitly approved the written common-valid-voxels amendment.
+Keep all 108 participants, 432 runs, five arms and six specification contrasts;
+define one fixed support by finite BOLD at every acquired frame and positive
+run mean in every run, within the preserved original common mask. This is an
+input-validity amendment after observed failures, not selection by effects.
+The original mask, prepared metadata and failed/completed attempts remain
+preserved. The original frozen-support analysis remains unavailable.
+
+Select explicit support construction after the 59 pending scans finish,
+reuse successful per-voxel fits, finish only failed runs in a fresh root, and
+recompute all full-cohort summaries on the approved support. The final support
+count remains unknown until the complete run inventory is available. Code
+changes and a focused support/reuse check are being prepared within attended
+47679500; no second approval is required for this exact adopted plan.
+
+## 2026-10-13 12:47 Pacific — exploratory_choice_score_report — saved real-choice report complete
+
+The selected reporting-only command completed with exit 0 in attended
+47679500, consuming the fixed prepared_20261013_002 behavioral metadata.
+No model was refit and no BOLD was read. All 108 participants and both
+opposite-half predictions are retained, with correctly pooled responded-trial
+denominators and equal participant weighting. Across 27,454 responded trials
+(194 misses excluded), mean intercept/model log loss is 0.617660/0.288500
+nats per responded trial. Paired improvement is 0.329159, participant SE
+0.008465, descriptive t95 interval [0.312378, 0.345941]; 107/108 improve.
+EI improves by 0.301562 and ER by 0.356757. This documents the predictive
+control used by the fMRI branch, not a mechanism, novelty or fresh confirmation.
+Choice-only scores cannot be compared numerically with earlier joint RT scores.
+
+Evidence: [report](runs/exploratory_fmri_specification_sensitivity/choice_prediction_summary_20261013_001/exploratory_choice_summary.md),
+participant CSV and JSON alongside it; execution evidence is
+`continuation_20261013_47679500/choice_report.log` and `choice_report_exit.txt`.
+Optional figure was unavailable because the science environment has no
+matplotlib; numerical reporting succeeded. No package installation selected.
+All parent cost will be charged once when 47679500 closes.
+
+The optional figure was subsequently rendered from the saved CSV/JSON in the
+same compute allocation using the existing `py-matplotlib/3.8.3_py312` module.
+The report module's scientific imports were made lazy so its unchanged plotting
+function can consume saved numbers without the fitting runtime. PNG/PDF and
+`figure_generation.json` now sit alongside the report; the original report JSON
+preserves its initial optional-figure-unavailable record. No scores or intervals
+were recomputed. Visual inspection confirms all 108 paired values and the
+all/EI/ER mean intervals are shown with appropriate labels.
+
+## 2026-10-13 12:40 Pacific — exploratory_fmri_specification_sensitivity — pending scans submitted; support decision requested
+
+Slurm accepted **47680145_[0-3%4]** for exactly the59 unattempted runs in
+`pending_20261013_001/`. The four existing common-mask failures are preserved
+and are not retried. No previously complete run is duplicated.
+
+The inactive `proposed_valid_common_support.md` now gives the concrete
+all432-run numerical-validity intersection proposal. Root requested the
+scientist's decision because GOAL explicitly prohibits removal from the
+original common mask. Eight identically zero positions are currently
+verified; final support cannot be declared before the remaining runs are
+checked. This proposal is not adopted by submission of the independent
+pending scans. All108 people/four runs/five arms remain required.
+
+## 2026-10-13 12:40 Pacific — exploratory_fmri_specification_sensitivity — four-source diagnosis complete; 59 unattempted scans selected
+
+Attended47679500 verifies sh04-18n31,2CPU/15GiB. Complete source-time-series
+diagnosis of the four failed runs finds only identically zero series: counts
+1/5/1/1 respectively for sub-021r2/sub-037r2/sub-054r4/sub-096r1. Their union
+contains eight distinct positions inside the frozen37,615-voxel mask. No
+nonfinite or negative-mean series, scaling offset or indexing defect was found.
+No mask changed and no fit was performed by this diagnosis. Evidence:
+`runs/exploratory_fmri_specification_sensitivity/continuation_20261013_47679500/four_run_input_diagnosis.json`.
+
+Compute inventory confirms369 completed runs, four failed and59 unattempted.
+Select the59 unattempted runs in four disjoint15/15/15/14-run packs, each
+2CPU/15GiB/45min (6CPUh maximum total). The separate continuation driver
+calls the unchanged scientific runner, preserves original completed/failed
+directories and never retries a prior partial. A new occurrence of this
+specific common-mask input failure is recorded unavailable while remaining
+selected runs continue; other exceptions still stop. It does not establish
+a reduced-cohort result. The focused execution-menu/reuse/failure-isolation
+fixture passed in0.005seconds on compute; independent source review passed.
+The original four failures and full-cohort support remain unresolved.
+Selection: `runs/exploratory_fmri_specification_sensitivity/pending_20261013_001/selection.json`.
+
+## 2026-10-13 12:32 Pacific — exploratory_fmri_specification_sensitivity — array terminal; four common-support failures diagnosed from logs
+
+Authoritative sacct: twelve of16 packs COMPLETED0:0; tasks0,1,11,12
+FAILED1:0. All four hit the unchanged nonfinite/nonpositive-mean BOLD guard
+inside the frozen group mask: sub-021 run2, sub-096 run1, sub-054 run4,
+sub-037 run2. Source review finds no indexing/scaling defect; logs do not
+distinguish zero, negative or nonfinite source data. Summary47672616 was
+CANCELLED before allocation because its required array failed.
+
+All16 array parents total49,200 allocated CPU-seconds =13.666666667CPUh;
+charge once and release18.333333333CPUh from the32CPUh reserve. Cancelled
+summary charge0, releasing1CPUh. Including the completed pilot, this branch
+has consumed14.425CPUh. Preserve every complete run and partial failure.
+
+Select an attended2CPU/15GiB/1h allocation (2CPUh maximum) for bounded
+input-only diagnosis of these four exact source runs, completion inventory,
+and pending-run continuation preparation. No common-mask or participant
+change is adopted. The current full-cohort estimands remain unavailable
+until the required data validity and complete run support are resolved.
+
+## 2026-10-13 11:17 Pacific — exploratory_fmri_specification_sensitivity — all16 packs running
+
+At18:17:32UTC, squeue confirms every task47672607_0 through_15 RUNNING
+on sh03-06n05/06/07/08, two CPUs each,32 total. Summary47672616 remains
+pending its array dependency. The pilot allocation is closed. No full-cohort
+scientific finding is inferred from scheduler state.
+
+## 2026-10-13 11:16 Pacific — exploratory_fmri_specification_sensitivity — full cohort and dependent summary submitted
+
+Slurm accepted array **47672607_[0-15%16]** for the remaining106 people,
+with afterok:47670430 so the attended pilot finishes before any new batch.
+Accepted summary **47672616**, afterok:47672607, consumes all424 new runs
+plus the eight retained pilot runs. Both wrappers are finite and do not
+retry automatically. Submit working directory is this episode.
+
+Attended47670430 closed and sacct reports COMPLETED0:0,1365seconds with2CPUs:
+charge **0.758333333CPUh once**, including preparation, checks, failed attempts,
+diagnosis, successful pilot and dispatch preparation. Release3.241666667CPUh
+from its4CPUh reserve. The independently reported step MaxRSS is9,461,708KiB.
+The new array/summary reserve33CPUh; current actual plus reservation is
+33.758333333CPUh out of this branch's500CPUh limit. Earlier EP01 charges
+remain separately preserved.
+
+## 2026-10-13 11:14 Pacific — exploratory_fmri_specification_sensitivity — complete retained pilot; full-cohort array selected
+
+The repaired pilot completed all eight real BOLD runs in272.484seconds,
+exit0, retaining sub-001/sub-002 and all five specifications. Run times range
+32.33–36.60seconds. The frozen common support has37,615 voxels, all required;
+peripheral unusable series are recorded separately. Complete measurements
+and the new conditional-choice predictive means are in
+`runs/exploratory_fmri_specification_sensitivity/pilot_20261013_47670430/pilot_measurements.json`.
+The fixed choice model's mean responded-trial log loss is0.288500 versus
+0.617660 for its intercept reference across108 people. This is exposed-data
+opposite-half prediction, separate from joint RT/choice scores and not a
+psychological-mechanism result.
+
+Select exactly106 remaining participants/424 runs in16 disjoint packs of
+six or seven people. At the slowest observed pilot run, the largest pack
+predicts1024.9seconds; each job requests2CPU/15GiB/1h with a3540-second fit cap.
+Close attended47670430 before submitting array0-15%16, keeping this branch at
+most32 simultaneous CPUs. No pilot fit is duplicated. The array reserves
+32CPUh; the complete-cohort afterok summary requests2CPU/15GiB/30min (1CPUh).
+Including the original4CPUh pilot reservation, selected maxima total37CPUh
+within the500CPUh branch bound. No automatic retry or renewal is selected.
+Selection and participant packs are recorded in `cohort_20261013_001/`.
+
+`exploratory_fmri_summary` consumes the complete array plus retained pilot,
+requires all108 people/432 runs and reports all six gain/loss axes with
+participant-paired uncertainty. It must be submitted with afterok on the
+entire array. Source review and the focused collector fixture passed.
+
+## 2026-10-13 11:10 Pacific — exploratory_fmri_specification_sensitivity — repaired real BOLD fits completing
+
+The final focused peripheral-data test passed in0.002seconds on compute.
+The same selected sub-001/sub-002 eight-run pilot restarted in `models02`;
+its first two runs completed in36.60 and33.28seconds. The failed first root
+remains preserved. Independent review confirms the collector selects the
+unchanged common mask before finite-coefficient checks, so unavailable
+peripheral values neither change group support nor participant counts.
+
+The new independently runnable `exploratory_fmri_summary` ASTRA analysis
+consumes prepared designs and completed maps and requires all108/432 runs.
+Schema and semantic validation pass. Earlier validation invocations lacked
+the existing user-site YAML dependency after the science runtime's
+PYTHONNOUSERSITE isolation; allowing that dependency only for the ASTRA command
+resolved it without installs or changes to the scientific runtime. The
+collector and finite dependency wrapper are ready; dispatch is selected only
+after the retained eight-run pilot supplies measured runtime.
+
+## 2026-10-13 11:06 Pacific — exploratory_fmri_specification_sensitivity — two empty peripheral voxels diagnosed
+
+The first actual BOLD attempt stopped after11.18seconds because two voxels
+inside sub-001's participant mask have identically zero time series. Compute
+diagnosis found zero nonfinite series; both empty voxels lie outside the
+already frozen37,615-voxel group intersection. All group-mask voxels in this
+run have valid positive means. Source float32 scaling is identity; source
+review found no loading/order error. Preserve the failed models/sub-001_run-1.partial.
+
+Select a focused implementation repair: retain the original participant-mask
+array ordering and mark unusable peripheral coefficients/variances/AR1 as
+explicitly unavailable. The frozen group support must remain fully valid in
+every run; any invalid group voxel still stops the fit. This changes neither
+participant eligibility nor group support and introduces no zero-filled or
+voxel-varying scientific cohort. Record unavailable peripheral indices, test
+this concrete boundary once on compute, then retry the same two-person pilot
+in a fresh output root. The collector fixture already passed in0.331seconds.
+All costs remain inside the existing4CPUh pilot reservation.
+
+## 2026-10-13 11:05 Pacific — exploratory_fmri_specification_sensitivity — all real designs complete; retained BOLD pilot selected
+
+Preparation03 completed all108 participants and432 runs in241.608seconds,
+exit0, in attended47670430. The outcome-blind first sorted EI/ER participants
+are sub-001 and sub-002. Select their eight actual BOLD fits now, all five
+specifications per run, retaining these outputs for the complete cohort.
+The same2CPU/15GiB allocation and4CPUh maximum reservation cover this step;
+fit deadline is bounded by its remaining allocation. No participant or
+specification selection uses BOLD results. The complete-cohort collector's
+single focused boundary/arithmetic fixture runs in this allocation before
+collection is selected; it does not gate the independent BOLD pilot.
+Prepared designs: `runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002/`.
+Pilot outputs: `runs/exploratory_fmri_specification_sensitivity/pilot_20261013_47670430/models/`.
+
+## 2026-10-13 10:59 Pacific — exploratory_fmri_specification_sensitivity — logistic repair passed and complete preparation progressing
+
+The single affected leakage/single-class/premature-termination check passed
+in0.011seconds inside47670430. The fixed objective now uses up to25 exact
+Hessian Newton polishing steps after L-BFGS, with bounded backtracking and
+unchanged1e-6 final gradient acceptance. Independent source review passed.
+The same model and penalties remain; no scientific selection was added.
+Fresh preparation started17:58:41UTC in prepared_20261013_002 and has passed
+the behavioral fitting stage and begun publishing participant designs.
+The failed prepared_20261013_001 is preserved. Passing checks, changed ASTRA
+schema/semantic validation and pack shell syntax are recorded in the pilot
+operations directory; no broad retesting is selected.
+
+## 2026-10-13 10:56 Pacific — exploratory_fmri_specification_sensitivity — real behavioral preparation exposes optimizer stop
+
+prepare02 stopped before BOLD or completed design preparation. The fixed
+ridge-logistic objective's L-BFGS-B iteration terminated on relative objective
+change with max gradient1.6409182199694783e-6, exceeding the implementation's
+1e-6 numerical criterion. This is an optimizer termination defect, not a failed
+behavioral hypothesis. Preserve the failed preparation directory and log.
+Select a bounded analytic-Hessian Newton polish for the same strictly convex
+objective and unchanged regularization/convergence requirement, then rerun
+only the affected behavioral helper check in47670430 before fresh preparation.
+No participant, penalty, scientific model or data role changes.
+
+## 2026-10-13 10:55 Pacific — exploratory_fmri_specification_sensitivity — compute checks passed; preparation running
+
+Attended47670430.0 verified sh03-17n14,2CPU/15360MiB. Existing encoding_model
+runtime imports Python3.11.15, NumPy1.26.4, SciPy1.15.3, Pandas2.2.3,
+NiBabel5.3.2 and Nilearn0.11.1. All five focused checks passed in0.149seconds:
+cross-half leakage/single-class behavior, misses and timing, factorial design
+and estimability, shared-AR/chunk equivalence, and NIfTI/confound handling.
+The first preparation CLI stopped at argument parsing because root used the
+wrong RSS option name; no data processing occurred. Preserve prepare.log and
+exit2, correct only the invocation to --max-rss-gib, and start prepare02.log
+in the same allocation. This prepares all432 actual designs/masks and the
+fixed opposite-half logistic covariates before the selected two-person BOLD fit.
+Evidence: `runs/exploratory_fmri_specification_sensitivity/pilot_20261013_47670430/`.
+
+## 2026-10-13 10:53 Pacific — exploratory_fmri_specification_sensitivity — attended pilot allocation requested
+
+Requested47670430 with2CPU/15GiB/2h in dev. An attempted addition of the
+discovered russpold/normal alternatives was rejected because the allocation
+was already no longer pending; no partition change or duplicate occurred.
+The selected pilot
+reserve remains4CPUh. Two numerical helper checks and three design checks
+will precede preparation/real fitting inside the attended allocation.
+
+Metadata resolves the sample-time convention before BOLD values: sub001's
+four fMRIPrep reports say slice timing was not applied; its derivative JSON
+has SliceTimingCorrected=false and TR1s, and the producer config ignores
+slicetiming. Each run's JSON is checked during preparation. Keep volume-onset
+frame times and disclose uncorrected slice acquisition; no half-TR shift is
+introduced. The fixed common group mask and paired uncertainty are retained.
+
+## 2026-10-13 — exploratory_fmri_specification_sensitivity — prospective review
+
+Independent review found the exploratory comparison coherent and required a
+fixed all432-mask group intersection, paired difference uncertainty and an
+evidence-based sample-time reference. The first two are recorded in the
+operative branch; source metadata review resolves timing before BOLD fitting.
+BR pipeline_plan_review returned approve/low risk/no findings on the seven-step
+plan after the first request was corrected to its required steps schema.
+It consulted no KG rules and returned only a generic checklist, so this is
+limited advisory feedback, not scientific validation or execution evidence.
+
+## 2026-10-13 — exploratory_fmri_specification_sensitivity — real-data continuation adopted
+
+The scientist explicitly requested continued real-data exploration after the
+unfinished fMRI question was explained. Adopted the separate exploratory
+108-person/432-run five-arm specification-sensitivity branch now recorded in
+GOAL.md and SEARCH_POLICY.yaml. Its opposite-half fixed ridge-logistic entropy
+replaces unvalidated DDM entropy for this branch only. Original mechanism/team
+gates and cancelled simulation work are preserved; no new mechanism claim.
+
+Two source workers implement the behavioral/design helper and runwise fMRI
+runner; a third reviews the scientific specification. No neural values were
+opened for selecting the recipe. Record the first actual BOLD access with the
+compute attempt below. Select an attended2CPU/15GiB/2h actual-data pilot on the
+first sorted EI and ER participants, all four runs, after focused numerical
+checks in the same allocation. Reserve4CPUh from the new500CPUh bound; retain
+all pilot outputs for the complete cohort and all previous consumed charges.
+Remaining participants will be dispatched from measured cost. No synthetic
+study, GPU, ecological map access, automatic retry or supervisor is selected.
+
 ## 2026-10-06 Pacific — completed observed evidence reconciled into episode documents
 
 At the scientist's request, incorporated the already completed observed

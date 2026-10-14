@@ -1,8 +1,98 @@
-policy_version: 7
-policy_id: ep01_narps_cognitive_estimands_v7_real_behavior_priority
+policy_version: 9
+policy_id: ep01_narps_cognitive_estimands_v9_approved_valid_common_support
 episode_id: ep01
-evidence_mode: exploratory_real_behavior_now_with_original_mechanism_and_neural_gates_deferred
+evidence_mode: exploratory_real_behavior_and_conditional_fmri_with_original_mechanism_gates_deferred
 scientific_focus: cognitive_estimand_ambiguity_in_neural_loss_aversion_maps
+
+exploratory_real_fmri:
+  authorized_date: 2026-10-13
+  authority: explicit_scientist_request_to_continue_real_data_after_discussion_of_unfinished_real_fmri_analysis
+  analysis_id: exploratory_fmri_specification_sensitivity
+  scope: all108_participants_all432_runs_original_five_arm_factorial_and_timing_sensitivity
+  behavioral_recovery_prerequisite: none_for_this_exploratory_association_branch
+  original_mechanism_and_team_claims: remain_closed_under_original_requirements
+  cancelled_simulations: remain_cancelled
+  behavioral_source: outputs/runs/public_asset_qualification/20261003-attempt01/original_events.csv.gz
+  offer_template_source: outputs/runs/public_asset_qualification/20261003-schedule01/offer_sequence_membership.tsv
+  conditional_choice_model:
+    family: per_participant_ridge_logistic_on_responded_trials
+    covariates: [intercept, gain_divided_by_10, positive_loss_divided_by_10]
+    summed_NLL_penalty_precisions: [0.01, 1.0, 1.0]
+    primary_halves: [[1, 4], [2, 3]]
+    fitting: opposite_run_half_only_both_directions
+    hyperparameter_search: false
+    output: probability_accept_conditional_on_response_not_deadline_model
+    misses: excluded_from_binary_fit_retained_as_misses_in_all_fmri_arms
+    entropy: predicted_covariate_center_and_SD_within_target_run
+    zero_entropy_SD: explicit_absent_column_no_participant_exclusion
+    benchmark: same_training_only_penalized_intercept_responded_choice_log_loss
+  fmri:
+    arms: [S00, S10, S01, S11, R11]
+    source: existing_fmriprep21_0_2_MNI152NLin2009cAsym_res2
+    mask: intersection_of_same_participant_four_run_masks
+    original_group_spatial_support: preserved_intersection_of_all432_run_masks_original_full_cohort_analysis_unavailable
+    group_spatial_support: one_approved_numeric_validity_subset_of_original_common_mask_shared_by_all108_and_all432_runs
+    common_support_amendment:
+      adopted_date: 2026-10-13
+      authority: explicit_scientist_approval_of_written_common_valid_voxels_plan
+      decision_record: outputs/proposed_valid_common_support.md
+      validity_input: original_preprocessed_BOLD_before_percent_mean_scaling_or_fitting
+      retained_voxel_rule: all_acquired_values_finite_and_run_mean_strictly_positive_in_every_one_of_432_runs
+      spike_regressor_frames: included_in_validity_check
+      construction: original_common_mask_intersect_all432_run_validity_indicators
+      complete_432_run_validity_inventory_before_support_freeze: true
+      excluded_positions: record_grid_indices_participant_run_causes_and_final_count
+      forbidden_selection_inputs: [effect_estimates, significance, response_associations, anatomical_regions, map_agreement, model_preference]
+      preserve: [original_common_mask, original_preparation, original_designs, successful_fits, failed_attempts, original_unavailability_record]
+      amended_support: separately_named_artifact_explicitly_selected_by_runner_and_collector
+      successful_fit_reuse: unchanged_per_voxel_signal_scaling_S00_AR1_and_model_coefficients
+      previously_stopped_runs: complete_with_unchanged_five_arm_pipeline_on_approved_support
+      group_recomputation: all_group_maps_participant_spatial_metrics_half_comparisons_and_offer_sequence_summaries_on_one_final_support
+      full_cohort_and_model_estimability_requirements: unchanged
+      disclosure: post_input_failure_spatial_support_amendment_not_untouched_preregistered_analysis
+      subsequent_silent_support_changes: prohibited
+    invalid_peripheral_BOLD: retain_NaN_and_indices_outside_approved_fixed_common_mask_any_invalid_inside_stops_run
+    spatial_smoothing_mm: 0
+    signal_units: runwise_percent_mean_signal
+    hrf: canonical_spm_without_derivatives
+    hrf_oversampling: 50
+    frame_times: zero_origin_header_TR_in_seconds
+    slice_timing: require_derivative_JSON_SliceTimingCorrected_false_TR_matches_header_disclose_uncorrected_slices
+    highpass_period_seconds: 128
+    intercept: true
+    confounds: [motion24, white_matter, csf, nonsteady_state_indicators, FD_above_0_5mm_spikes]
+    confound_missingness: only_undefined_first_derivative_and_FD_row_zero_other_nonfinite_refuse
+    whitening: voxel_AR1_fixed_0_01_bins_estimated_from_S00_once_reused_all_arms
+    serial_orthogonalization: false
+    physical_gain_centers: {EI: 25.0, ER: 12.5}
+    physical_positive_loss_center: 12.5
+    decision_epoch: observed_RT_or_four_seconds_for_misses
+    response_categories: observed_choice_strength_finger_mixture
+    focal_nonestimability: unavailable_no_pseudoinverse_effect
+    redundant_nuisance: independent_basis_with_exact_contrast_transformation
+    quality: report_original_condition30_VIF5_efficiency50pct_limits_without_selective_cohort_filtering
+    timing_claim: diagnostic_R11_only_when_original_design_limits_pass
+  summaries:
+    contrasts: [S11, S00_minus_S11, decision_omission_main_effect, response_omission_main_effect, interaction, R11_minus_S11]
+    focal_variables: [gain, positive_loss]
+    difference_construction: matched_run_beta_before_equal_two_run_half_aggregation
+    difference_uncertainty: paired_participant_differences_preserving_shared_data_covariance
+    biological_unit: participant
+    split_agreement: within_experiment_not_independent_confirmation
+    strata: [EI, ER]
+    schedule_sensitivity: original_offer_sequence_groups
+    incomplete_run: explicit_unavailable_no_replacement_or_silent_cohort_filter
+    claims: exploratory_conditional_association_and_specification_sensitivity_only
+  compute:
+    pilot_people: first_sorted_EI_and_first_sorted_ER_all_four_runs_each
+    pilot_resources: {cpus: 2, memory_gib: 15, hours: 2, numerical_workers: 1}
+    pilot_reused_in_full_cohort: true
+    remaining_dispatch: after_measured_actual_pilot_cost
+    max_new_allocated_CPU_hours: 500
+    max_concurrent_CPUs: 32
+    GPUs: 0
+    prior_charges: preserved_not_reset
+    automatic_renewal: false
 
 saved_score_followup:
   adopted_date: 2026-10-06
