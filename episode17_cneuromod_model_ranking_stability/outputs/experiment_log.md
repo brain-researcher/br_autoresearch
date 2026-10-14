@@ -1,5 +1,293 @@
 # Experiment log
 
+## 2026-10-13 — fixed_panel_adjudication — corrected ASTRA validation passed
+
+The figure-type correction passed schema and semantic validation in EP08
+parent47687188. Existing optional-format warnings are documentary and do not
+invalidate this schema version. Charge no additional EP17 CPUh; that parent is
+accounted once to EP08. Scientific artifacts and conclusions are unchanged.
+
+## 2026-10-13 13:52 Pacific — fixed_panel_adjudication — complete fixed-panel result published and visually reviewed
+
+The reporter completed with exit0 in parent **47686488**, on
+`sh02-06n02.int`, and published the [adjudication](runs/fixed_panel_adjudication/closeout001/adjudication.json),
+[all20 comparisons](runs/fixed_panel_adjudication/closeout001/all_twenty_comparisons.csv),
+[scientific report](runs/fixed_panel_adjudication/closeout001/development_result.md)
+and [PNG](figures/fixed_panel_development/complete_pair_intervals.png)/
+[PDF](figures/fixed_panel_development/complete_pair_intervals.pdf).
+Independent review compared the exact generated artifacts to the released
+source and visually inspected the PNG: all seven endpoints for each of four
+pairs, their bounds, both margin scales and all classifications are visible
+without clipping. The figure uses the complete F_raw_normalized family;
+the CSV uses F_raw for ordinary edges and the joint family for normalization,
+as registered. No interval is recomputed or selected from the plot.
+
+**Scientific disposition:** all20 primary atoms are valid and complete under
+the adopted fixed-panel amendment. P1(DINO−supervised), P2(SwAV−supervised) and
+P3(DINO−SwAV) each show practical equivalence across all seven eligible
+endpoints, with raw margin0.01 and normalized margin0.05. There are zero
+qualifying opposite-margin reversals. F1(supervised−random) is underidentified
+against the complete practical-decision rule and remains nonpromotable;
+its positive effects must not be described as equivalence or no training benefit.
+No primary candidate, further search, configuration freeze or audit is selected.
+This closes the adopted development panel without a supported promotable
+relation; it does not complete the former adaptive-search design.
+
+For the nominated D-stage reliable-support endpoint, complete-family raw-R²
+differences and bounds are P1−0.001603[−0.002920,−0.000287],
+P2−0.000541[−0.001130,+0.000048], and
+P3−0.001062[−0.002208,+0.000084]. Small differences distinguishable from zero
+can lie entirely inside practical-equivalence margins. These are conditional
+development results in four fixed participants, not new-participant inference
+or sealed-concept replication. All shared-pair, training-exposure, procedural
+separation and within-pair multiplicity limits in the report remain explicit.
+Eight inapplicable H-dependent beta forecasts do not invalidate their primary
+atoms; no unavailable forecast or uncomputed secondary result is called a pass.
+
+Root scheduler accounting reports parent47686488 **COMPLETED, exit0:0**,
+45 seconds on one allocated CPU. Its **0.0125 allocated CPU-hours are charged
+once to EP06**, including this separately scoped EP17 saved-result companion.
+EP17 receives no additional duplicate charge; its prior5.07+0.253055556CPUh
+and all earlier charges remain. The reporter performed no refit, resampling,
+new input acquisition or audit opening.
+
+The explicitly released cross-scope validation metadata
+`../../episode06_lfp_regional_fingerprints/outputs/runs/lmp_support_followup/job_47686488/episode17_cneuromod_model_ranking_stability_astra.txt`
+reported one schema error: the new plot output used `type: image` instead of
+ASTRA's `type: figure`. Correct that single documentation field; no scientific
+code or artifact changes. Root owns the affected validation rerun. Scientific
+reporting is complete independently of this documentary validation; no new
+scientific job is selected.
+
+## 2026-10-13 13:47 Pacific — fixed_panel_adjudication — complete released-panel and source review passed; reporting selected
+
+Independent EP17-scoped review read the exact summary released by the
+coordinator above, all four pair records/all20 edges, the adopted amendment,
+the reporter and the existing `uncertainty_core.relation_decision` convention.
+No other private artifact, checkpoint, calibration input, source response or
+audit path was opened. The strict opposite-margin crossing and inclusive
+equivalence bounds agree. All P1/P2/P3 complete-family intervals lie inside
+their practical margins; F1 remains underidentified and nonpromotable; all20
+registered edges lack qualifying reversals. There is no source-review blocker
+or scientific change to `report_saved_fixed_panel.py`.
+
+The missing H_BC/H_CD components arise from the frozen undefined calibration
+gain in sub-02/right. They make eight beta explanatory forecasts inapplicable,
+not their primary comparisons invalid. Four size-control forecasts are absent
+by design; eight support/normalization forecasts remain applicable but have
+not been tested on audit concepts. No false trial credit is supplied by these
+forecasts, separate scales, participants, ROIs or interval families. Twenty
+valid primary atoms complete only the newly adopted fixed panel, not the
+original adaptive search. No candidate or audit is selected.
+
+Select the reviewed reporter once as root's separately scoped≤120-second
+saved-result companion after substantive EP06 work. It writes the complete
+20-row CSV, JSON adjudication, development interpretation and all-endpoint
+PNG/PDF from existing intervals without refitting/resampling. ASTRA now declares
+`fixed_panel_adjudication` with the complete-panel and exact released-summary
+dependencies. The main episode report points to this development closeout;
+conditional audit stages remain preserved. GOAL/DATASETS and the living paper
+plan distinguish the current adoption from historical pending language.
+
+No tests, scheduler calls, imports or scientific computation ran on this
+login shell (`sh04-ln04`, no SLURM_JOB_ID). Root owns execution and measured
+resource accounting. Existing5.07+0.253055556CPUh and earlier charges remain;
+the companion will not be double charged against a shared parent. Generated
+output and visual review are still pending at this entry.
+
+## 2026-10-13 — initial_coverage — fixed-panel amendment adopted; saved development summary released for adjudication
+
+At 2026-10-13T20:39:22.761532+00:00, record the scientist's agreement with the explicitly
+recommended fixed20-comparison completion and revised execution deadline.
+Adopt the exact existing proposal before any private score inspection, with
+all statistical/forecast/validity gates unchanged. The original240hdeadline
+passed; the narrowly scoped24hcloseout ends 2026-10-14T20:39:22.761532+00:00. Existing scores
+were generated before the original deadline. No refit or new search is selected.
+
+The public panel001 report confirms4pairs/8bootstrap families and39960bytes,
+complete private publication with no reported numerical/resource failure.
+Coordinator now releases exactly
+`outputs/cache/private/development_endpoints/panel001/endpoint_panel.json`
+for complete development-result adjudication. No checkpoint, raw calibration,
+images, mixed source, or audit data is released. Review all20trial atoms and
+retain invalid/inapplicable/unfavorable dispositions; do not infer valid
+coverage or a primary relation merely from successful computation.
+This entry precedes the first coordinator inspection. Procedural same-account
+separation is disclosed and audit remains closed. Prior5.07+0.253055556CPUh
+and all earlier charges are retained; no allocation reserved by this entry.
+
+## 2026-10-12 18:40 Pacific — initial_coverage — complete private endpoint panel published
+
+The [public operational report](runs/development_endpoints/panel001/endpoint_report.json)
+records `completed_private_endpoint_panel` at 01:39:29.527564 UTC, with all
+four model pairs and eight bootstrap families completed. The selected panel
+retains all five directed edges per pair and 10,000 draws per family (80,000
+total). The 39,960-byte private summary was published completely and its partial
+file removed. Process elapsed time is 903.866719 seconds, process CPU time
+846.031209 seconds and peak process RSS 3,850,308 KiB (approximately 3.67 GiB).
+The batch status independently records `endpoint_panel_exit=0`, `exit=0`
+and finish at 01:39:30 UTC. No numerical or resource failure is reported.
+
+Coordinator scheduler accounting at 01:40 UTC confirms job **47578351**
+COMPLETED, exit 0:0, actual start 18:24:21 and end 18:39:32 Pacific, elapsed
+00:15:11 on one allocated CPU. Charge **0.253055556 allocated CPU-hours once**
+(CPUTimeRAW 911 seconds); release the unused portion of its two-CPU-hour
+reservation and retain all earlier charges. No retry or new allocation was
+selected.
+
+This is endpoint computation completion, not adjudicated valid-trial coverage
+or an accepted scientific finding. The public report retains
+`initial_coverage_complete=false`, `scientific_output_released=false` and
+`audit_access=false`. The coordinator inspected only public operational and
+batch records, not the private endpoint estimates, predictions or checkpoint.
+The already-presented fixed 20-trial proposal remains unadopted; no post-score
+design selection, search-completion claim or audit opening follows. Preserve
+the original episode deadline and the existing private summary for the next
+authorized review.
+
+## 2026-10-12 18:24 Pacific — initial_coverage — complete endpoint panel started
+
+The coordinator's 01:24:38 UTC scheduler observation confirms the existing
+dependent job **47578351** RUNNING on sh02-06n03, with exactly 1 CPU/7 GiB
+and two hours. Actual allocation start is 18:24:21 Pacific; the wrapper
+records its original deadline as epoch 1791861801, bounded by allocation end
+and the unchanged episode deadline. No additional job or retry was submitted.
+
+`runs/endpoint_panel001_job_47578351/status.txt` and its
+`completed_fit_binding.txt` confirm successful admission of the completed
+fit002 report and exact named checkpoint. The private endpoint computation is
+next in the running wrapper, with passed caller checks reused. The complete
+four-pair/five-edge panel and all 80,000 bootstrap evaluations remain selected.
+Audit access stays false; no private summary or scientific effect was inspected.
+
+## 2026-10-12 18:21 Pacific — prediction_qualification — complete fit002 checkpoint published
+
+The permitted [public fit report](runs/nested_prediction/fit002/fit_report.json)
+records `status=completed` at 2026-10-13 01:21:21.561935 UTC, with
+`checkpoint_published`, `checkpoint_publisher_returned` and
+`checkpoint_path_present` all true. All 352 PCA fits, 290,976 ridge fits and
+96 out-of-fold banks completed. The retained scope is four models, four layers
+per model, eight participant/ROI groups, three beta stages and all 2,423 images
+from the 480 development concepts. Four model workers each used one numerical
+thread. No numerical or resource failure is reported.
+
+The reported process duration is 4,349.235295 seconds (72.5 minutes), including
+input loading. Peak process RSS is 5,824,360 KiB (approximately 5.55 GiB); this
+does not establish aggregate allocation memory use. The
+[batch status](runs/nested_fit002_job_47577068/status.txt) separately records
+`full_fit_exit=0`, `exit=0` and `finished_utc=2026-10-13T01:21:29Z`.
+Coordinator accounting at 01:23 UTC independently confirms job 47577068
+COMPLETED, exit 0:0, actual start 17:05:31 Pacific and end 18:21:34 Pacific,
+elapsed 01:16:03 on four allocated CPUs. CPUTimeRAW is 18,252 seconds:
+charge **5.07 allocated CPU-hours once** to EP17, including its previously
+recorded EP21 discriminator companion. This is distinct from the fit-process
+duration and preserves all prior failed-attempt charges.
+
+The already-submitted endpoint job 47578351 remains the authorized next stage,
+subject to its existing completed-checkpoint admission. At 01:23 UTC it is
+PENDING with no remaining dependency reason and no allocated CPUs yet;
+the coordinator does not duplicate the queued task. The fit report records
+`endpoint_evaluation=false` and `audit_access=false`; no private checkpoint,
+prediction array or scientific score was opened to record this completion.
+The fixed 20-panel proposal remains inactive pending the separate scientist
+decision. Original search requirements, statistical gates, deadline and
+one-shot audit boundary are unchanged. No new job, retry or check is selected.
+
+## 2026-10-12 — initial_coverage — fixed-panel search proposal awaiting scientist decision
+
+Contract/source review found20 distinct registered trial atoms: P1/P2/P3/F1
+times five directed measurement edges. The current SEARCH_POLICY still requires
+32–72 valid trials, two adaptive cycles and two challenger decisions, but the
+frozen registry provides no additional successor menu. Splitting participants,
+ROIs, scales or repeats cannot supply missing trial credit. Fit002 and panel001
+remain useful and admitted; their completion alone cannot satisfy the current
+adaptive-search completion rule.
+
+The complete inactive `proposed_fixed_panel_search_followup.md` proposes all
+20 fixed comparisons, retains every original statistical/numerical/forecast/
+audit gate and deadline, and explicitly forgoes adaptive-search completeness.
+Root reviewed it against the operative policy and presented one scientist
+decision. The earlier individual-block variance approval does not adopt this
+separate change. No private score, fitted checkpoint or audit outcome was
+inspected to choose the proposal. No operative rule or active job was changed.
+
+
+## 2026-10-12 17:26 Pacific — prediction_qualification — complete PCA stage passed into internal fitting
+
+Public fit002 operational evidence reports all352 PCA fits complete at
+00:24:25.987317UTC, then first private inner-scoring attempt at00:24:51.579407UTC.
+The loaded scope retains all four models, four layers/model, eight participant
+ROI groups, three beta stages and2423 images from480 development concepts.
+Job47577068 remains RUNNING with four workers and one numerical thread each;
+no completed checkpoint, endpoint result or audit access is reported.
+The dependent complete endpoint job47578351 remains queued. Evidence:
+`runs/nested_prediction/fit002/fit_report.json`. No private score was inspected.
+
+## 2026-10-12 17:12 Pacific — initial_coverage — endpoint job47578351 submitted
+
+After root source review and a scheduler check showing livefit00247577068
+and no existing endpoint job, Slurm accepted the selected complete endpoint
+stage as**47578351**, with`afterok:47577068`. It requests1CPU/7GiB/2h and
+will independently verify the exact completed checkpoint report before any
+endpoint calculation. Reserve2CPUh once; no completion or result is inferred
+from acceptance. Fit002 remains running. Preserve the original deadline,
+private result boundary and no-retry rule. Changed ASTRA records the selected
+batch recipe; its optional documentary validation remains pending.
+
+## 2026-10-12 17:12 Pacific — initial_coverage — complete endpoint panel001 selected after fit002
+
+Fit002 started the actual complete prediction stage at00:08:52UTC after its
+independent EP21 companion finished. Select the complete private endpoint
+caller as freshpanel001, using the finishedfit002 checkpoint, full001 features,
+family001 and original derived operators. Root reviewed the new bounded
+`tools/run_complete_development_endpoint_panel001.sbatch`; the caller's two
+affected checks already passed in1.241seconds in47565811 and need no rerun.
+The adopted block-variance change does not alter this caller's preserved
+positive finite individual-block SST rule.
+
+Select one1CPU/7GiB/2h allocation afterok47577068, maximum2CPUh additional
+reservation, one numerical thread and6GiB observed processRSS. Preserve the
+original episode deadline1791916149 with timeout/kill/dispatch grace and bound
+the actual process by allocation start+2h−60seconds and end−60seconds.
+Admission requires the exact completed fit002 report and named≤4GiB checkpoint;
+neither mere job exit nor file presence substitutes for full fit completion.
+Retain64MiB metadata,256MiB features,512MiB responses and4GiB checkpoint caps;
+reuse32MiB operator cap (public operator report records2,455,772 outputbytes),
+with1MiB private scientific summary and128KiB public operational report caps.
+Expected arrays suggest3–4GiB residency, but full80,000 bootstrap evaluations
+are unmeasured:2h is a finite ceiling, not a promised completion time.
+
+All four pairs, five edges and eight original10,000-draw families remain.
+H-empty beta forecasts remain inapplicable, F1 remains nonpromotable, all
+results remain private pending coordinator review, and audit stays closed.
+No refit, altered numerical requirement, partial scientific panel, automatic
+retry or search-completion claim is selected. This entry precedes submission.
+
+## 2026-10-12 17:06 Pacific — prediction_qualification — fit002 parent running; four affected checks passed
+
+Slurm confirms47577068 RUNNING onsh02-06n03. Its actual shell records4CPU,
+31744MiB, four model workers and one numerical thread per worker. The existing
+pre-score records passed. All three new methods and the one affected audit
+method passed (four tests,1.440seconds, no skips), changed ASTRA passed, and
+the adopted-policy binding passed. Evidence:
+`runs/nested_fit002_job_47577068/status.txt` and `block_variance_checks.txt`.
+The selected EP21 companion precedes full fitting; no fit completion or
+checkpoint is inferred from this startup. The effective process deadline is
+1791878675, below both allocation end1791878735 and original episode deadline.
+
+## 2026-10-12 17:04 Pacific — prediction_qualification — fit002 submitted as47577068
+
+After independent review of the adopted-rule implementation and serial EP21
+companion, Slurm accepted `tools/run_complete_nested_fit002.sbatch` as
+**47577068**. The scheduler confirms the requested4CPU/31GiB/8h with no
+dependency or requeue; at verification it was PENDING. Reserve at most32CPUh
+once for EP17, including the short EP21 companion. The original deadline and
+all selected fit/checkpoint scopes remain. Mandatory pre-score checks, three
+new plus one affected test, and policy binding precede fitting; no passed
+check or actual fit is inferred from submission. Operational evidence will be
+`runs/nested_fit002_job_47577068/` and `runs/nested_prediction/fit002/fit_report.json`.
+No duplicate, automatic retry or scientific audit opening is selected.
+
 ## 2026-10-12 — prediction_qualification — EP21 attempt002 companion selected before fit002
 
 Before submission, add one direct serial EP21 discriminator child to the

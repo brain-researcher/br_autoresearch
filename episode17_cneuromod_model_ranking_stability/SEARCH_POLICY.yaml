@@ -679,3 +679,23 @@ terminal_outcomes:
   audit_underidentified: closed_no_candidate
   audit_pool_incommensurate: closed_no_candidate
   technical_failure: technical_failure
+
+fixed_panel_amendment_20261013:
+  status: adopted
+  adopted_at_utc: '2026-10-13T20:39:22.761532+00:00'
+  authority: scientist_OK_agree_with_your_next_steps_after_explicit_fixed_panel_and_deadline_recommendation
+  specification: outputs/proposed_fixed_panel_search_followup.md
+  required_trial_atoms: {P1: 5, P2: 5, P3: 5, F1: 5}
+  required_valid_trials: 20
+  replaces: [minimum_32_maximum_72_trials, two_adaptive_cycles, two_incumbent_challenges, adaptive_patience]
+  F1_promotable: false
+  review_complete_panel_before_selection: true
+  incomplete_or_invalid_trial: retained_not_replaced_and_not_counted
+  numerical_statistical_forecast_and_audit_gates: unchanged
+  adaptive_search_completeness_claim: prohibited
+  original_deadline_epoch: 1791916149
+  closeout_deadline_epoch: 1792010362
+  closeout_deadline_utc: '2026-10-14T20:39:22.761532+00:00'
+  closeout_scope: adjudicate_saved_fit002_panel001_report_and_prepare_warranted_freeze_only
+  refit_new_search_automatic_retry_or_audit_opening: false
+  resource_caps_and_consumed_charges: unchanged

@@ -1,8 +1,54 @@
 # EP17 paper plan: which visual-model advantages survive changes in the measured cortex?
 
-Status: claim-specific design amendment, 2026-10-02. No neural score, sealed-concept
-result, checkpoint qualification or execution lock is reported here. The
-existing three-pair/five-edge search and audit contract remains operative.
+Current scope: the October13 scientist-approved fixed20-panel completion and
+24-hour saved-result closeout supersede the original adaptive-search completion
+rule. All numerical/statistical/forecast gates and the closed audit remain.
+The earlier design rationale below is retained; its pre-score statements are
+historical rather than current execution status.
+
+## October13 complete saved-panel interpretation
+
+The [completed scientific report](runs/fixed_panel_adjudication/closeout001/development_result.md)
+and [all20-row comparison table](runs/fixed_panel_adjudication/closeout001/all_twenty_comparisons.csv)
+are now published. The [full figure](figures/fixed_panel_development/complete_pair_intervals.png)
+was visually reviewed; the [execution record](experiment_log.md#2026-10-13-1352-pacific--fixed_panel_adjudication--complete-fixed-panel-result-published-and-visually-reviewed)
+records successful reporting and shared-parent accounting. No refit or new
+inference was required to close the adopted panel.
+
+The explicitly released panel001 summary contains every P1/P2/P3/F1 comparison
+on all five edges. Independent source review of the reporter and stored panel
+agrees with the frozen uncertainty convention: opposite-margin crossings are
+strict; practical equivalence requires every bound to lie within its own margin.
+Use F_raw for ordinary edges and the joint F_raw_normalized family for the
+normalization edge and the complete seven-endpoint relation. The raw margin
+is0.01 R² and normalized margin0.05. Preserve every existing interval; do not
+calculate new uncertainty or search for a smaller family.
+
+P1(DINO−supervised), P2(SwAV−supervised) and P3(DINO−SwAV) each have
+complete-family practical equivalence. No registered edge crosses opposite
+practical margins. Several small signed effects exclude zero; this is
+compatible with practical equivalence and does not establish exact equality.
+The supervised−random F1 falsifier is underidentified against the practical
+decision boundaries, not equivalent and not a finding that training has no
+benefit. It remains nonpromotable. No primary candidate or audit opening follows.
+
+All20 primary atoms can be valid even though beta-edge explanatory forecasts
+are inapplicable: family001 omitted H_BC/H_CD because calibration gain was
+undefined in sub-02/right. That inapplicability does not change finite primary
+R² endpoints or their registered edge. The size-control edge has no adopted
+explanatory forecast. Applicable support/normalization forecasts are saved
+development quantities, not successful audit predictions. Correlation/CKA and
+sealed-concept confirmation remain unperformed and cannot rescue a relation.
+
+This supports a bounded development comparison of these named representations
+on four fixed people and anatomical bilateral fusiform. Eight within-pair
+10000-draw families do not provide experiment-wide selection correction;
+three pairs share models and are not independent replications. Training-image
+exposure is unknown, recipe differences are not causal interventions, and
+same-account separation is procedural. Publication of the full saved panel is
+the scientific closeout; a negative result needs no extra model search or
+manufactured trial count. Execution and generated-artifact evidence belong in
+the [log](experiment_log.md), with the original source summary kept immutable.
 
 ## The intended contribution
 

@@ -1,5 +1,23 @@
 # Which visual-model advantages survive changes in the measured cortex?
 
+## Adopted fixed-panel completion and closeout window — October 13, 2026
+
+Scientist replied "OK agree with your next steps" after the fixed20-panel adjudication and revised execution deadline were explicitly recommended.
+Adopt the complete [fixed-panel amendment](outputs/proposed_fixed_panel_search_followup.md):
+all15 P1/P2/P3 pair-by-edge comparisons plus all5 F1 falsifiers must be valid.
+This replaces the unreachable32–72-trial/adaptive-cycle completion rule only;
+it is not completion of that original adaptive search. Preserve all data,
+models, numerical/statistical/forecast gates and the single closed audit.
+
+The original execution deadline1791916149 passed before this approval and is
+retained in history. A bounded24-hour closeout window now ends at
+2026-10-14T20:39:22.761532+00:00 (epoch1792010362), solely to adjudicate/report
+the existing completed fit002/panel001 and prepare any warranted freeze.
+No refit, new model search, automatic retry or audit opening is selected by
+this closeout window. Existing6000CPUh/256GPUh/4TiB limits and all charges remain.
+Before first inspection, log the coordinator's release of the complete saved
+development endpoint summary. Adjudicate unfavorable and invalid cells too.
+
 **October12 adopted primary-score amendment.** The scientist approved the
 [uncertainty-block-only variance rule](outputs/proposed_score_specific_validity_followup.md):
 an individual uncertainty block's centered response variance no longer vetoes
@@ -9,7 +27,8 @@ Training/validation, calibration and whole-audit response-variance rules,
 secondary correlation/CKA validity and all bootstrap/family rules are unchanged.
 This permits a separately selected fresh complete fit; it opens no audit and
 establishes no performance result. Preserve fit001 and both diagnostics. The
-240-hour deadline remains October13 18:29:09UTC (epoch1791916149).
+original240-hour deadline was October13 18:29:09UTC (epoch1791916149);
+only the saved-result closeout at the top of this document supersedes it.
 
 Suppose model A predicts visual-cortex responses better than model B for the
 same images and people. If B wins after denoising the beta estimates, selecting
@@ -56,8 +75,10 @@ localized FFA, and repeat reliability is not selectivity or mechanistic truth.
 The [paper plan](outputs/paper_plan.md) names the checkpoint proposals, exact
 forecast, closest literature and failure cases. This is a pre-score paper
 focus, **not an execution lock or a reduction of the operative search**:
-three eligible pairs, all five initial edges, the 32–72-trial budget and the
-one-shot audit remain required. No model-ranking result is claimed.
+three eligible pairs and all five initial edges remain required, with the
+additional five F1 edges completing the adopted20-atom panel. The original
+32–72/adaptive-cycle completion rule is superseded only by the amendment above.
+The single audit remains conditional and closed; no audit result is claimed.
 
 ## What the literature already closes off
 

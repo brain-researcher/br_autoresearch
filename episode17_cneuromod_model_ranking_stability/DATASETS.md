@@ -1,5 +1,26 @@
 # EP17 data: CNeuroMod responses, concepts, and measurement roles
 
+## October13 released development summary for fixed-panel closeout
+
+After the scientist adopted the fixed20-atom completion and bounded24-hour
+saved-result closeout, the coordinator explicitly released only
+`outputs/cache/private/development_endpoints/panel001/endpoint_panel.json`
+for complete adjudication. This summary contains all P1/P2/P3/F1 pairs, all
+five edges, the stored eight within-pair interval families and forecast
+eligibility. Its release was logged before first inspection. It does not
+release another private path, fitted checkpoint, response array, raw
+calibration input, image or sealed audit record. No new fitting, bootstrap or
+audit opening is part of reporting this existing summary.
+
+The source summary's historical `initial_coverage_complete=false` and
+`valid_trial_adjudication=pending_coordinator_review` describe publication
+before the new review. Preserve that artifact; publish adjudication separately.
+Missing calibration gain components H_BC/H_CD make their explanatory forecasts
+inapplicable without invalidating otherwise-qualified primary beta comparisons.
+The four participants, both fusiform ROIs,480 development concepts,2423 images
+and24 concept blocks remain unchanged. Evaluation separation is procedural
+under the same account and must not be called enforced or blinded.
+
 The October12 [adopted block-variance amendment](outputs/proposed_score_specific_validity_followup.md)
 retains every original development image, column, participant, ROI, stage and
 uncertainty block. For primary R² only, a block need not have positive centered

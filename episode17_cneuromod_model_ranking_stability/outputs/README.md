@@ -1,13 +1,106 @@
 # EP17 outputs
 
-**October12 — narrow block-variance amendment adopted; fresh fit002 prepared.**
+**October13,13:52 Pacific — fixed-panel development complete: practical equivalence for all three trained-model pairs.**
+All20 registered comparisons are valid. P1/P2/P3 meet the fixed equivalence
+rule across all seven endpoints; no edge shows a qualifying reversal. F1 is
+underidentified and nonpromotable. No candidate or audit follows, and the
+original adaptive search is not claimed complete.
+
+Read the [complete result and limits](runs/fixed_panel_adjudication/closeout001/development_result.md),
+[all20 comparisons](runs/fixed_panel_adjudication/closeout001/all_twenty_comparisons.csv),
+or [review and once-only accounting](experiment_log.md#2026-10-13-1352-pacific--fixed_panel_adjudication--complete-fixed-panel-result-published-and-visually-reviewed).
+
+![EP17 complete fixed-panel development intervals](figures/fixed_panel_development/complete_pair_intervals.png)
+
+[Download the figure PDF](figures/fixed_panel_development/complete_pair_intervals.pdf).
+Earlier dated entries below are historical.
+
+**October13,13:47 Pacific — complete released-panel review passed; report/figure pending.**
+The saved panel supports practical equivalence for P1/P2/P3 within the fixed
+raw/normalized margins, with no qualifying reversal on any registered edge.
+F1 remains underidentified and nonpromotable. All20 primary atoms are valid;
+inapplicable H-dependent beta forecasts do not invalidate their primary
+comparisons. The reviewed saved-summary report will retain the full panel
+without refitting or new inference. No candidate or audit is selected.
+See the [review and reporting scope](experiment_log.md#2026-10-13-1347-pacific--fixed_panel_adjudication--complete-released-panel-and-source-review-passed-reporting-selected).
+
+**October13 — fixed20-comparison amendment adopted; saved results released for adjudication.**
+All fits/endpoints already exist. The scientist approved the described completion
+rule and a bounded closeout after the original deadline. Review uses the entire
+existing panel with unchanged scientific gates; audit stays closed.
+See the [current log](experiment_log.md). Earlier pending-decision entries are historical.
+
+**October 12, 18:40 Pacific — complete development endpoint computation finished.**
+Job **47578351** completed successfully: four model pairs, all five edges per
+pair and eight 10,000-draw bootstrap families. The complete private summary
+was published; no estimates have been inspected or released. The process took
+15.1 minutes and peaked at 3.67 GiB RSS; accounting charges 0.253055556 CPU-hours
+once. See the [completion record](experiment_log.md#2026-10-12-1840-pacific--initial_coverage--complete-private-endpoint-panel-published)
+and [public report](runs/development_endpoints/panel001/endpoint_report.json).
+Trial validity and scientific conclusions remain to be adjudicated. The
+fixed-panel proposal is still unadopted and the audit remains closed.
+Earlier running-state entries below are historical.
+
+**October 12, 18:24 Pacific — complete endpoint evaluation running.**
+Job **47578351** has started on sh02-06n03 with 1 CPU/7 GiB/two hours.
+It passed admission of the completed fit002 checkpoint and now runs the
+complete development panel. See the [execution record](experiment_log.md)
+and [public operational report](runs/development_endpoints/panel001/endpoint_report.json).
+No endpoint result or audit opening is claimed; the separate fixed-panel
+search proposal remains unadopted.
+
+**October 12, 18:21 Pacific — complete fit002 checkpoint published.**
+The [public fit report](runs/nested_prediction/fit002/fit_report.json) records
+completion of all 352 PCA fits, 290,976 ridge fits and 96 out-of-fold banks
+across the full four-model development panel. The process took 72.5 minutes;
+reported peak process RSS was 5,824,360 KiB (5.55 GiB), not an allocation-wide
+memory measurement. [Batch status](runs/nested_fit002_job_47577068/status.txt)
+records successful fit and wrapper exits. Scheduler accounting independently
+confirms COMPLETED 0:0 and 5.07 allocated CPU-hours, charged once. At 01:23 UTC,
+the already-submitted endpoint job 47578351 is pending after its prerequisite
+completed; no duplicate task is needed.
+No endpoint result or audit opening is reported. The separate fixed 20-panel
+proposal remains unadopted; complete fitting does not satisfy the current
+adaptive-search rule. Earlier entries below are historical.
+
+**October12 — fitting continues; a separate search-design decision is pending.**
+The frozen roster supplies20 distinct comparisons while the current adaptive
+policy requires at least32. The [inactive fixed-panel proposal](proposed_fixed_panel_search_followup.md)
+would complete all20 while preserving numerical/statistical and audit gates.
+It has been presented to the scientist; it is not adopted. Existing fit002
+and its dependent endpoint stage continue under their current admissions.
+
+
+**October12,17:26Pacific — all352 PCA fits complete; internal model fitting underway.**
+The [public operational report](runs/nested_prediction/fit002/fit_report.json)
+records entry into private inner scoring with all four models and eight
+participant/ROI groups. Job47577068 is running; endpoint47578351 remains
+dependent. No completed checkpoint, final model-ranking result or audit
+opening is yet reported. See the [execution log](experiment_log.md).
+
+**October12,17:12Pacific — full fit running; complete endpoint job47578351 queued.**
+Fit002 began actual full prediction at00:08:52UTC. Its complete private
+endpoint stage47578351 depends on successful47577068 and requests1CPU/7GiB/2h,
+preserving the original global deadline and passed checks. No complete fit,
+model-ranking result or audit opening is yet reported. See the
+[current execution record](experiment_log.md).
+
+**October12,17:06Pacific —47577068 running; all four affected checks passed.**
+Actual resources are4CPU/31GiB onsh02-06n03. The adopted narrow rule, pre-score
+records and changed ASTRA all pass. The serial EP21 companion precedes the
+complete four-worker fit; no checkpoint or scientific result is yet reported.
+See the [startup evidence](runs/nested_fit002_job_47577068/status.txt)
+and [current execution log](experiment_log.md). Earlier entries are historical.
+
+**October12,17:04Pacific — adopted amendment; fit002 submitted as47577068.**
 The scientist approved the [uncertainty-block-only primary-R² amendment](proposed_score_specific_validity_followup.md).
 Code retains finite inputs/moments and positive finite SST in every individual
 block, with training, validation, calibration, whole-audit variance, secondary
 statistics and bootstrap rules unchanged. A new complete fit002 is selected
-for4CPU/31GiB/up to8hours, subject to source review and the three new plus one
-affected checks and ASTRA inside that substantive allocation. No job or test
-completion is claimed yet. The original240-hour deadline remains
+for4CPU/31GiB/up to8hours. Independent source review passed; the three new plus
+one affected checks and ASTRA run inside that substantive allocation. Slurm
+accepted the exact requested resources; the job was PENDING at verification.
+No test or fit completion is claimed yet. The original240-hour deadline remains
 October13 18:29:09UTC. Prior fit001 and diagnoses are preserved; no checkpoint
 exists to resume. The scientific audit remains closed. See the
 [adoption and finite run selection](experiment_log.md#2026-10-12--prediction_qualification--scientist-adopts-narrow-block-rule-and-fresh-fit002-selected).

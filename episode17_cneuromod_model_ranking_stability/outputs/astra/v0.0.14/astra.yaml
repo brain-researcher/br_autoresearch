@@ -1,18 +1,17 @@
 version: "0.0.14"
 name: "EP17: reliable-voxel sampling and a controlled visual-model relation"
 description: >-
-  Planned scientific worklist for the existing three-pair, five-edge contract.
-  Concrete paper nominations are not a qualified registry or execution lock.
-  Design-metadata preparation, the bounded released-event metadata pilot and
-  the separately bounded retained-roster follow-up are executable before
-  completing source roles. Other stages remain
-  planned; no scientific finding is asserted.
+  Scientific program for the fixed three-promotion-pair plus F1 falsifier
+  panel on five measurement edges. The October13 amendment replaces adaptive
+  completion with all20 valid atoms and permits a bounded saved-result closeout.
+  The original adaptive search is not claimed complete. Historical preparation
+  stages and conditional audit remain preserved; reporting itself opens no audit.
 inputs:
   - {id: goal, type: data, source: GOAL.md}
   - {id: datasets, type: data, source: DATASETS.md}
   - {id: policy, type: data, source: SEARCH_POLICY.yaml}
 outputs:
-  - {id: episode_report, from: one_shot_audit.audit_report}
+  - {id: episode_report, from: fixed_panel_adjudication.development_result}
 analyses:
   source_metadata:
     name: Reconstruct presentation identity from provider design metadata
@@ -1395,6 +1394,7 @@ analyses:
       - {id: endpoint_family, from: ../prediction_qualification.qualified_endpoint_family}
       - {id: endpoint_panel_caller, type: data, source: outputs/tools/run_development_endpoint_panel.py}
       - {id: endpoint_panel_tests, type: data, source: outputs/tests/test_development_endpoint_panel.py}
+      - {id: endpoint_panel001_job, type: data, source: outputs/tools/run_complete_development_endpoint_panel001.sbatch}
     outputs:
       - id: endpoint_caller_checks
         type: report
@@ -1416,7 +1416,7 @@ analyses:
       - id: complete_development_endpoint_panel
         type: report
         format: json
-        inputs: [policy, prediction_bank, endpoint_family, endpoint_panel_caller, endpoint_caller_checks, operator_maps]
+        inputs: [policy, prediction_bank, endpoint_family, endpoint_panel_caller, endpoint_caller_checks, endpoint_panel001_job, operator_maps]
         description: >-
           Private complete four-pair, five-edge endpoint and forecast panel from
           the completed frozen prediction bank and the same development inputs.
@@ -1428,16 +1428,24 @@ analyses:
           valid-trial adjudication, adaptive-search completion or secondary
           CKA/correlation claim. Empirical execution and publication require
           coordinator admission within remaining resources.
+          Selected panel001 follows successful47577068 fit002 and reuses
+          full001/family001 and the passed caller checks. One CPU,7GiB,2hours,
+          6GiB observed RSS, original deadline1791916149 and unchanged private
+          publication boundary apply. Pending time never extends the clock.
+        recipe:
+          command: bash outputs/tools/run_complete_development_endpoint_panel001.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
       - id: coverage_report
         type: report
         inputs: [policy, role_views, operator_maps, registry, qualification_report, recovery_report]
   adaptive_search:
-    name: Complete bounded development search and falsification
+    name: Complete the adopted fixed development panel and falsification
     description: >-
-      Preserve 32-72 valid paired trials, two successor cycles and two incumbent
-      challenges; at least 40 percent post-coverage falsification and patience 12.
-      Development attribution and prospective audit forecasts stay distinct.
-      Existing 6000 CPU-hour/256 GPU-hour/240 wall-hour/4 TiB limits apply.
+      October13 amendment requires all20 valid P1/P2/P3/F1 pair-by-edge atoms.
+      The five F1 atoms remain nonpromotable. Original32-72/adaptive-cycle
+      completion is not claimed; all numerical/statistical/forecast gates stay.
+      Review saved fit002/panel001 during the separate bounded24-hour closeout.
+      Existing6000CPU-hour/256GPU-hour/4TiB limits and all charges remain.
     inputs:
       - {id: policy, from: ../policy}
       - {id: role_views, from: ../source_roles.role_views}
@@ -1448,6 +1456,46 @@ analyses:
       - id: search_report
         type: report
         inputs: [policy, role_views, operator_maps, registry, coverage_report]
+  fixed_panel_adjudication:
+    name: Adjudicate and display the complete released fixed development panel
+    description: >-
+      Read only the coordinator-released panel001 endpoint summary. Preserve
+      the stored within-pair simultaneous intervals and signed model order;
+      review all20 P1/P2/P3/F1 primary atoms separately from H-dependent beta
+      forecast inapplicability. No checkpoint, neural response, raw calibration,
+      pixel, refit, bootstrap rerun, new search or audit is consumed. Report
+      practical equivalence separately from underidentification and reversal.
+      The 24-hour closeout does not reset existing costs or open the audit.
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: completed_panel, from: ../initial_coverage.complete_development_endpoint_panel}
+      - {id: released_summary, type: data, source: outputs/cache/private/development_endpoints/panel001/endpoint_panel.json}
+      - {id: adopted_amendment, type: data, source: outputs/proposed_fixed_panel_search_followup.md}
+      - {id: report_runner, type: data, source: outputs/tools/report_saved_fixed_panel.py}
+    outputs:
+      - id: adjudication_report
+        type: report
+        format: json
+        description: outputs/runs/fixed_panel_adjudication/closeout001/adjudication.json
+        inputs: [policy, completed_panel, released_summary, adopted_amendment, report_runner]
+        recipe:
+          command: timeout --signal=TERM --kill-after=5s 120s python3.12 -B outputs/tools/report_saved_fixed_panel.py
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2m}
+      - id: all_twenty_comparisons
+        type: report
+        format: csv
+        description: outputs/runs/fixed_panel_adjudication/closeout001/all_twenty_comparisons.csv
+        inputs: [adjudication_report]
+      - id: development_result
+        type: report
+        format: markdown
+        description: outputs/runs/fixed_panel_adjudication/closeout001/development_result.md
+        inputs: [adjudication_report, all_twenty_comparisons]
+      - id: complete_pair_intervals
+        type: figure
+        format: png
+        description: outputs/figures/fixed_panel_development/complete_pair_intervals.png
+        inputs: [adjudication_report]
   final_relation_freeze:
     name: Freeze one primary relation and at most two disclosed secondary checks
     description: >-
