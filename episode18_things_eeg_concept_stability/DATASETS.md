@@ -1,5 +1,22 @@
 # EP18 data: THINGS-EEG1, images, and participant roles
 
+**October 13 standing-authority continuation.** The unchanged core image/task
+calibration resumes on the already released 30-person development inputs.
+Its complete-cohort G/T estimates precede concept/false-group comparison and
+do not require new data access. The existing audit and all qualification
+requirements for candidate-discriminating EEG scores remain closed/in force.
+Historical calendar and per-job limits below are superseded by the repository's
+standing compute authority, while all prior consumption remains recorded.
+
+**October 13 search-only continuation amendment.** The separately adopted
+[authority](outputs/config/bounded_generator_continuation_20261013_authority.json)
+permits one continuation of the existing sub-07 image/context search from its
+saved checkpoint, until at most October 14, 21:43:13 UTC. It reuses the same
+released inputs and complete cache; it opens no new dataset, EEG fitting,
+participant expansion or audit data. Original source/configuration/cache and
+checkpoint identities are preserved. The original study deadline remains in
+the historical record; only this bounded control search has a new window.
+
 EP18 uses THINGS-EEG1 to ask whether a true-concept basis predicts EEG for new
 exemplars better than a capacity-matched label basis built on the same image
 model. The scientific comparisons are defined in [GOAL.md](GOAL.md); this

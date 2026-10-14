@@ -50,6 +50,7 @@ from continuous_sequence_model import SequenceDesign, _PreparedTerm
 from continuous_tuning import (BasePenaltyPlan, BaselineChoice, MatchedIndices,
     TuningPreparation, TuningRecipe)
 from feature_extractors import require_compute
+from false_partition_search import RECIPE as FALSE_PARTITION_RECIPE
 from label_rbf import fit_label_rbf_basis
 from prepare_continuous_eeg import SequenceEventInputs, SequencePreparationRecipe
 from prepare_false_partition_inputs import (feature_binding, load_release,
@@ -83,6 +84,17 @@ RECIPE_FIELDS = {"recipe_id", "image_panel", "image_ranks", "label_ranks",
 def require(value, code):
     if not value:
         raise ValueError(code)  # Categorical only: no source values or outcome text.
+
+
+def _require_candidate_context_recipe(config):
+    """Bind candidate context to the adopted physical span and FIR support."""
+    require(config["recipe_id"] == FALSE_PARTITION_RECIPE
+            and config["recorded_span_recipe"] == asdict(SPAN)
+            and type(config["filter_left_support_samples"]) is int
+            and config["filter_left_support_samples"] == 128
+            and type(config["filter_right_support_samples"]) is int
+            and config["filter_right_support_samples"] == 0,
+            "candidate_context_differs_from_adopted_EEG_recipe")
 
 
 def readonly(value):
@@ -363,6 +375,7 @@ def bind_released_inputs(release, recipe, *, budget_check):
         state, meta, selected = (read_json(candidate / name, cap)
                                 for name in ("report.json", "candidate_bank.json", "settings.json"))
         config = selected["config"]
+        _require_candidate_context_recipe(config)
         config_id = hashlib.sha256((json.dumps(config, sort_keys=True, separators=(",", ":"), allow_nan=False)
                                   + "\n").encode()).hexdigest()
         require(state["status"] == "complete_image_context_candidate_bank" and state["primary_members"] == 8

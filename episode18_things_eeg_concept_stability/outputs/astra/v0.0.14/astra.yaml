@@ -11,6 +11,33 @@ tags:
 - plan
 - non-authoritative
 inputs:
+- id: scalar_checkpoint_code
+  type: data
+  source: outputs/code/core_reference_scalar_checkpoint.py
+- id: core_scalar_cost_code
+  type: data
+  source: outputs/code/production_core_scalar_cost.py
+- id: core_scalar_cost_batch
+  type: data
+  source: outputs/code/run_core_scalar_cost001.sbatch
+- id: paired_core_reference_code
+  type: data
+  source: outputs/code/core_reference_paired_inner.py
+- id: paired_core_reference_checks
+  type: data
+  source: outputs/code/test_core_reference_paired_inner.py
+- id: selected_design_cohort_code
+  type: data
+  source: outputs/code/production_selected_design_cohort.py
+- id: selected_design_cohort_checks
+  type: data
+  source: outputs/code/test_production_selected_design_cohort.py
+- id: participant_endpoint_inference_code
+  type: data
+  source: outputs/code/participant_endpoint_inference.py
+- id: participant_endpoint_inference_checks
+  type: data
+  source: outputs/code/test_participant_endpoint_inference.py
 - id: goal
   type: data
   description: Episode research goal contract.
@@ -173,6 +200,19 @@ inputs:
   type: data
   description: Qualified runtime, clean process environment and phase deadlines for separately submitted builder, worker arrays and assembler.
   source: outputs/code/run_full_image_features_001.sbatch
+- id: clip_complete_replacement_code
+  type: data
+  description: Complete original task5 in a fresh root, preserving failed partials and every original model/image check; assembly resolves exactly this one replacement.
+  source: outputs/code/recover_clip_task005_001.py
+- id: clip_complete_replacement_checks
+  type: data
+  source: outputs/code/test_recover_clip_task005_001.py
+- id: clip_complete_replacement_resources
+  type: data
+  source: outputs/config/image_task005_recovery_20261012_001.json
+- id: clip_complete_replacement_batch
+  type: data
+  source: outputs/code/run_clip_task005_recovery001.sbatch
 - id: training_transform_code
   type: data
   description: >-
@@ -181,6 +221,33 @@ inputs:
     training-nuisance covariance whitening. No held-out statistics, automatic
     shrinkage choice, data reader or access seal.
   source: outputs/code/training_transforms.py
+- id: core_reference_code
+  type: data
+  source: outputs/code/production_core_reference.py
+- id: core_direct_code
+  type: data
+  source: outputs/code/production_core_direct.py
+- id: core_direct_solver
+  type: data
+  source: outputs/code/core_reference_direct_ridge.py
+- id: core_direct_checks
+  type: data
+  source: outputs/code/test_core_reference_direct_ridge.py
+- id: core_direct_batch
+  type: data
+  source: outputs/code/run_core_direct001.sbatch
+- id: core_reference_checks
+  type: data
+  source: outputs/code/test_production_core_reference.py
+- id: core_reference_recipe
+  type: data
+  source: outputs/config/core_recipe_20261013_001.json
+- id: core_reference_release
+  type: data
+  source: outputs/config/core_release_20261013_001.json
+- id: core_reference_cost_batch
+  type: data
+  source: outputs/code/run_core_reference_cost001.sbatch
 - id: slot_capacity_code
   type: data
   description: >-
@@ -189,6 +256,53 @@ inputs:
     tolerance. Lists admissible pairs on the existing thirteen penalties;
     no penalty selection, RBF construction, data reader or capacity release.
   source: outputs/code/slot_capacity.py
+- id: streamed_slot_capacity_code
+  type: data
+  description: >-
+    Inactive exact one-slot row-streaming augmented QR/SVD backend preserving
+    full original spectra, all13 term-EDF values and full-joint leverages.
+    Operator/dense-oracle comparisons exercise full spectra and leverage.
+    No empirical reader, production connection or scientific recipe selection.
+  source: outputs/code/streamed_slot_capacity.py
+- id: streamed_slot_capacity_checks
+  type: data
+  description: Three focused existing-fixture/operator/dense-oracle comparisons; no empirical inputs.
+  source: outputs/code/test_streamed_slot_capacity.py
+- id: production_continuous_designs_code
+  type: data
+  description: >-
+    Inactive explicit-artifact binding and training-only complete15-model
+    callbacks with fixed candidate span/filter-context binding. No empirical
+    execution authority or full cohort/search controller.
+  source: outputs/code/production_continuous_designs.py
+- id: production_continuous_designs_checks
+  type: data
+  description: Two focused fixture-only callback checks; execution and repair history are in the experiment log.
+  source: outputs/code/test_production_continuous_designs.py
+- id: streamed_tuning_adapter_code
+  type: data
+  description: Inactive exact capacity/matching adapter preserving all ten slots, thirteen penalties and original six-fold selected-design diagnostics; no controller installation or scoring.
+  source: outputs/code/streamed_tuning_adapter.py
+- id: streamed_tuning_adapter_checks
+  type: data
+  description: Two focused dense-oracle/matcher/completeness and admission checks; no empirical data.
+  source: outputs/code/test_streamed_tuning_adapter.py
+- id: production_baseline_controller_code
+  type: data
+  description: >-
+    Inactive complete-cohort baseline-search connector. Independent source
+    review PASS; no actual search plan, numerical recipe, resource grant or
+    empirical invocation is selected. Only baseline EEG scores are computed;
+    the fixed core reference receives no ranked-trial credit.
+  source: outputs/code/production_baseline_controller.py
+- id: production_baseline_controller_checks
+  type: data
+  description: >-
+    Two focused existing-fixture composition and complete-cohort persistence
+    checks. Independent source review PASS; both methods passed in companion003.
+    No empirical
+    inputs, new recovery campaign or model-search activation.
+  source: outputs/code/test_production_baseline_controller.py
 - id: selected_design_diagnostics
   type: data
   description: Exact conditional-design singular spectrum and full joint weighted-smoother leverage for all eight frozen slots in all six folds; explicitly selected prospective metric definitions and unchanged tolerances.
@@ -207,6 +321,22 @@ inputs:
 - id: false_partition_search_checks
   type: data
   source: outputs/code/test_false_partition_search.py
+- id: false_partition_continuation_code
+  type: data
+  description: Separately authorized deadline adapter calling the unchanged producer with original configuration, cache and checkpoint identities.
+  source: outputs/proposed/false_partition_continuation/continue_search.py
+- id: false_partition_continuation_wrapper
+  type: data
+  description: One13CPU/96GiB/10h allocation, actual13..16CPUs, one numerical worker and no automatic successor.
+  source: outputs/proposed/false_partition_continuation/run_continuation.sbatch
+- id: false_partition_continuation_authority
+  type: data
+  description: Adopted search-only deadline1792014193, preserving original deadline1791927000 and all frozen search identities and resource limits.
+  source: outputs/config/bounded_generator_continuation_20261013_authority.json
+- id: false_partition_continuation_checkpoint
+  type: data
+  description: Exact explicitly selected resource-incomplete predecessor; preserve assignments, PCG64 state, counters and rolling moments without reset.
+  source: outputs/runs/false_partition_preparation/search_continuation_operations_20261013_001/segment_47679999/search/checkpoint.npz
 - id: false_partition_development_release
   type: data
   description: >-
@@ -426,6 +556,10 @@ analyses:
     - {id: full_image_assembly_code, from: ../full_image_assembly_code}
     - {id: full_image_resource_selection, from: ../full_image_resource_selection}
     - {id: full_image_job_wrapper, from: ../full_image_job_wrapper}
+    - {id: clip_complete_replacement_code, from: ../clip_complete_replacement_code}
+    - {id: clip_complete_replacement_checks, from: ../clip_complete_replacement_checks}
+    - {id: clip_complete_replacement_resources, from: ../clip_complete_replacement_resources}
+    - {id: clip_complete_replacement_batch, from: ../clip_complete_replacement_batch}
     - {id: training_transform_code, from: ../training_transform_code}
     - {id: label_rbf_code, from: ../label_rbf_code}
     - {id: label_geometry_preparation_code, from: ../label_geometry_preparation_code}
@@ -618,7 +752,11 @@ analyses:
         ends on failure without retries and retains its partial outputs.
         Workers receive only the public resource config, pixel packs, opaque
         IDs and qualified assets under procedural same-account separation.
-      inputs: [all_image_pixel_delivery, model_runtime_qualification, full_image_worker_code, full_image_resource_selection, full_image_job_wrapper]
+        The explicitly selected task5 replacement uses the separate reviewed
+        recovery caller with2CPU/15GiB/4h and one numerical thread, preserving
+        the original model and every assigned image. The original failed shard
+        remains historical; its partial rows are never accepted or reused.
+      inputs: [all_image_pixel_delivery, model_runtime_qualification, full_image_worker_code, full_image_resource_selection, full_image_job_wrapper, clip_complete_replacement_code, clip_complete_replacement_checks, clip_complete_replacement_resources, clip_complete_replacement_batch]
       recipe:
         command: bash outputs/code/run_full_image_features_001.sbatch worker
         resources: {cpus: 1, memory: 7Gi, time_limit: 4h}
@@ -632,9 +770,12 @@ analyses:
         freeze claimed. Whole selected chain reserves91CPUh, zeroGPU and8GiB
         durable run allowance plus256GiB temporary pixel cache. All phases stop
         by2026-10-13T21:30:00Z and retain prior attempts and completed work.
-      inputs: [complete_image_feature_shards, full_image_assembly_code, full_image_resource_selection, full_image_job_wrapper]
+        The explicit complete task5 replacement adds at most9CPUh including
+        its replacement assembler; no failed partial rows are reused. Original
+        26-task, six-family and all22448-image requirements remain intact.
+      inputs: [complete_image_feature_shards, full_image_assembly_code, full_image_resource_selection, full_image_job_wrapper, clip_complete_replacement_code, clip_complete_replacement_checks, clip_complete_replacement_resources, clip_complete_replacement_batch]
       recipe:
-        command: bash outputs/code/run_full_image_features_001.sbatch assembly
+        command: bash outputs/code/run_clip_task005_recovery001.sbatch assembly
         resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
     - id: frozen_feature_record
       type: report
@@ -654,6 +795,10 @@ analyses:
     - {id: input_builder, from: ../false_partition_input_builder}
     - {id: search_code, from: ../false_partition_search_code}
     - {id: search_checks, from: ../false_partition_search_checks}
+    - {id: continuation_code, from: ../false_partition_continuation_code}
+    - {id: continuation_wrapper, from: ../false_partition_continuation_wrapper}
+    - {id: continuation_authority, from: ../false_partition_continuation_authority}
+    - {id: continuation_checkpoint, from: ../false_partition_continuation_checkpoint}
     - {id: development_release, from: ../false_partition_development_release}
     - {id: production_selection, from: ../false_partition_production_selection}
     - {id: production_wrapper, from: ../false_partition_production_wrapper}
@@ -705,10 +850,24 @@ analyses:
       recipe:
         command: bash outputs/code/run_false_partition_cost_001.sbatch
         resources: {cpus: 13, memory: 96Gi, time_limit: 4h}
+    - id: image_context_cache_continuation
+      type: data
+      format: directory
+      inputs: [real_image_context_production_cost, search_code, search_policy]
+      description: >-
+        Separately selected prepare-only continuation of the same bound cache,
+        producer and configuration. Reuse committed pair blocks and completed
+        context folds; retain all36 pair caches and six context folds. One
+        worker,24GiB RSS guard,8GiB array admission,72GiB cache cap and original
+        absolute deadline1791927000. Fresh operational directory records only
+        counts and cost. No EEG, search, scientific release or automatic retry.
+      recipe:
+        command: bash outputs/code/run_false_partition_prepare_continue001.sh prepare
+        resources: {cpus: 4, memory: 28Gi, time_limit: 4h}
     - id: provisional_image_context_bank
       type: data
       format: npz
-      inputs: [search_policy, real_image_context_production_cost, input_builder, search_code, search_checks]
+      inputs: [search_policy, real_image_context_production_cost, input_builder, search_code, search_checks, image_context_cache_continuation, production_selection, continuation_code, continuation_wrapper, continuation_authority, continuation_checkpoint]
       description: >-
         Explicitly selected outcome-free search retains all eight members,
         64 starts and100000 legal proposals per start, every fold and feature
@@ -721,6 +880,24 @@ analyses:
         checkpoints and exhausted-search reports are not candidate banks.
         Completing that step does not claim complete participant coverage or
         establish full-scale selected-design feasibility.
+        The adopted continuation uses the exact selected checkpoint and a
+        separate search-only authority ending2026-10-14T21:43:13Z, preserving
+        original deadline1791927000 in the unchanged configuration. Request
+        13CPUs/96GiB/10hours with actual allocation at most16CPUs, one numerical
+        worker,80GiB array admission and90GiB RSS guard. Reserve130CPUh or
+        conservatively160CPUh with allocation rounding, retaining prior charges.
+        Stop by allocation start+9hours, allocation end-60seconds, or the new
+        absolute deadline-60seconds, whichever is earliest. Fresh segments are
+        under outputs/runs/false_partition_preparation/bounded_continuation_operations.
+        Exhausting64starts for any unaccepted member ends the frozen generator;
+        another resource stop remains incomplete. One accepted first member is
+        not a complete bank. No cache rebuild, EEG fit, score release, audit
+        opening, automatic successor or whole-study clock reset is selected.
+      recipe:
+        command: >-
+          sbatch outputs/proposed/false_partition_continuation/run_continuation.sbatch
+          "$OAK/users/zijiao/br_autoresearch/episode18_things_eeg_concept_stability/outputs/config/bounded_generator_continuation_20261013_authority.json"
+        resources: {cpus: 13, memory: 96Gi, time_limit: 10h}
     - id: selected_design_match_report
       type: report
       format: json
@@ -805,6 +982,114 @@ analyses:
       recipe:
         command: bash outputs/code/run_development_eeg_preprocessing_001.sbatch
         resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+  core_reference_calibration:
+    name: Fit the registered complete core reference and calibrate G and T
+    inputs:
+    - {id: search_policy, from: ../search_policy}
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: complete_image_feature_arrays, from: ../feature_preparation.complete_image_feature_arrays}
+    - {id: complete_development_eeg, from: ../development_eeg_preprocessing.complete_development_eeg}
+    - {id: core_reference_code, from: ../core_reference_code}
+    - {id: core_direct_code, from: ../core_direct_code}
+    - {id: core_direct_solver, from: ../core_direct_solver}
+    - {id: core_direct_checks, from: ../core_direct_checks}
+    - {id: core_direct_batch, from: ../core_direct_batch}
+    - {id: core_reference_checks, from: ../core_reference_checks}
+    - {id: core_reference_recipe, from: ../core_reference_recipe}
+    - {id: core_reference_release, from: ../core_reference_release}
+    - {id: core_reference_cost_batch, from: ../core_reference_cost_batch}
+    - {id: paired_core_reference_code, from: ../paired_core_reference_code}
+    - {id: paired_core_reference_checks, from: ../paired_core_reference_checks}
+    - {id: scalar_checkpoint_code, from: ../scalar_checkpoint_code}
+    - {id: core_scalar_cost_code, from: ../core_scalar_cost_code}
+    - {id: core_scalar_cost_batch, from: ../core_scalar_cost_batch}
+    outputs:
+    - id: direct_complete_reference
+      type: report
+      format: json
+      inputs: [core_reference_code, core_direct_code, core_direct_solver, core_direct_checks, core_direct_batch, core_reference_recipe, core_reference_release, search_policy]
+      description: >-
+        Standing-authority continuation of the identical core64/cosine12
+        reference. Stream the exact small core design to weighted Gram and
+        response cross-products, then solve all61 contrasts jointly for each
+        unchanged penalty. Preserve all30 inner validations using15 shared
+        training sets, six outer folds, training-only transformations, weights,
+        whitening and original selection order. Atomic complete-pair/outer
+        checkpoints survive finite job limits. Existing original completed
+        scalar solutions and augmented least-squares fixtures check the changed
+        numerical route. No rank cutoff, jitter, new penalty, categorical score
+        or audit access. First complete sub07 allocation measures cost for
+        identical all30 expansion; partial participant/cohort inference is barred.
+      recipe:
+        command: bash outputs/code/run_core_direct001.sbatch
+        resources: {cpus: 16, memory: 32Gi, time_limit: 4h}
+    - id: paired_core_reuse_equivalence
+      type: report
+      format: text
+      inputs: [core_reference_code, paired_core_reference_code, paired_core_reference_checks, search_policy]
+      description: >-
+        Two deterministic fixture checks compare every original inner loss
+        curve and outer choice/fit against exact reuse of the15 symmetric
+        inner training sets. The original30 inner and6 outer evaluations,
+        thirteen penalties,61 contrasts, separate validation denominators
+        and ordered mean/tie rule remain. The expected actual multivariate
+        fitting count falls from438 to228; it is not a measured speedup.
+        The original independent dense oracle replaces only iterative fits
+        in these checks. No empirical access, solver change, full-scale
+        cost admission, continuation or activation follows from a pass.
+    - id: complete_reference_cost
+      type: report
+      format: json
+      inputs: [search_policy, frozen_inputs_and_roles, complete_image_feature_arrays, complete_development_eeg, core_reference_code, core_reference_checks, core_reference_recipe, core_reference_release, core_reference_cost_batch]
+      description: >-
+        Initialize exact30-person development joins and all22448 image IDs,
+        then attempt the complete registered first-person sub-07 reference:
+        five core families, rank64, cosine12,61 sensor contrasts,30 inner and
+        six outer splits,438 multivariate fits with all13 image penalties.
+        Training-only scaling/PCA and nuisance-residual whitening; explicit
+        numeric conventions are frozen in the recipe before score access.
+        Two focused software methods precede actual work inside the same
+        2CPU15GiB2h allocation, one numerical thread,12GiB processRSS,
+        10GiB working arrays,2GiB fit output plus128MiB initialization output.
+        FourCPUh maximum and original global deadline1791927000. Operational
+        cost/progress is public; fitted records remain private. A resource
+        stop preserves partial work and does not publish a partial reference,
+        grant search credit or permit candidate comparisons. No automatic retry.
+      recipe:
+        command: bash outputs/code/run_core_reference_cost001.sbatch
+        resources: {cpus: 2, memory: 15Gi, time_limit: 2h}
+    - id: first_symmetric_grid_cost
+      type: report
+      format: json
+      inputs: [complete_reference_cost, core_reference_code, core_reference_recipe, scalar_checkpoint_code, core_scalar_cost_code, core_scalar_cost_batch, search_policy]
+      description: >-
+        Bounded measurement of the original sub07 inner(0,1)/(1,0) grid using
+        completed-scalar checkpoints and four independent fork workers with
+        one numerical thread each. Retain all13 penalties and61 contrasts,
+        original zero-start LSMR and training-only preparation. Both original
+        image-validation sides are scored privately only after all793 scalars
+        complete. Explicit future continuation must bind the original source
+        settings and identical prepared arrays before reusing coefficients.
+        Public records contain counts, timing and solver status only. No full
+        participant, partial-grid scientific result, search credit or audit
+        access. One4CPU15GiB2h allocation has12GiB parentRSS and aggregatePSS
+        limits,2GiB durable cap and original absolute deadline1791927000.
+        No automatic retry or cohort expansion follows from this cost step.
+      recipe:
+        command: bash outputs/code/run_core_scalar_cost001.sbatch
+        resources: {cpus: 4, memory: 15Gi, time_limit: 2h}
+    - id: complete_core_calibration
+      type: report
+      format: json
+      inputs: [complete_reference_cost, core_reference_code, core_reference_recipe, search_policy]
+      description: >-
+        Requires complete identical-reference records for all30 frozen people,
+        each with all36 splits. Only then compute registered cohort G/T and
+        margins. Under standing authority, measured finite resources may expand
+        the identical analysis to the remaining29 people. Report G/T with
+        participant-level uncertainty and one figure only after complete30
+        coverage. This does not satisfy the baseline search or open
+        concept/false/audit scores; partial-cohort inference is prohibited.
   baseline_search:
     name: Fixed 19-44-trial label-baseline search with concept scores hidden
     inputs:
@@ -826,8 +1111,87 @@ analyses:
     - {id: brainvision_reader_checks, from: ../brainvision_reader_checks}
     - {id: training_transform_code, from: ../training_transform_code}
     - {id: slot_capacity_code, from: ../slot_capacity_code}
+    - {id: streamed_slot_capacity_code, from: ../streamed_slot_capacity_code}
+    - {id: streamed_slot_capacity_checks, from: ../streamed_slot_capacity_checks}
+    - {id: production_continuous_designs_code, from: ../production_continuous_designs_code}
+    - {id: production_continuous_designs_checks, from: ../production_continuous_designs_checks}
+    - {id: streamed_tuning_adapter_code, from: ../streamed_tuning_adapter_code}
+    - {id: streamed_tuning_adapter_checks, from: ../streamed_tuning_adapter_checks}
+    - {id: production_baseline_controller_code, from: ../production_baseline_controller_code}
+    - {id: production_baseline_controller_checks, from: ../production_baseline_controller_checks}
     - {id: label_rbf_code, from: ../label_rbf_code}
     outputs:
+    - id: streamed_backend_and_callback_checks
+      type: report
+      format: text
+      inputs: [streamed_slot_capacity_code, streamed_slot_capacity_checks, production_continuous_designs_code, production_continuous_designs_checks]
+      description: >-
+        Original five fixture-only software checks, three streamed and two
+        callback methods, in the substantive EP21 pair004 parent. Outcomes
+        and the later callback repair are recorded in the experiment log.
+        One serial numerical thread shares
+        the actual3CPU16GiB6h parent and its allocation-start deadline, with
+        an external120second timeout plus5second grace; no separate Slurm
+        step or fixture-specific RSS cap. Parent allocation charged once to
+        EP21. No empirical EP18 inputs, model scores or audit data; failure
+        does not gate the independent EP21 fit and selects no automatic retry.
+        Operational evidence will be sibling EP21 pair004 ep18_checks.txt
+        and status.txt with ep18_checks_exit and ep18_checks_is_ep21_gate=false.
+        No separate1MiB log cap is asserted beyond the existing parent2GiB
+        per-file limit. Passing checks would not establish production wiring,
+        full-scale throughput, accepted false banks or scientific acceptance.
+    - id: streamed_integration_and_callback_repair_checks
+      type: report
+      format: text
+      inputs: [streamed_tuning_adapter_code, streamed_tuning_adapter_checks, production_continuous_designs_code, production_continuous_designs_checks]
+      description: >-
+        Two new integration methods and the repaired callback method passed
+        in attended step47579378.1,0.573seconds,88056KiB process peakRSS.
+        Evidence is outputs/runs/software_integration/companion002/checks.txt.
+        No new job or resource recipe is selected here. Reuse passing backend and
+        full-panel checks; no empirical inputs, scientific simulation campaign,
+        controller activation, full-scale feasibility or score is implied.
+    - id: inactive_baseline_controller_review
+      type: report
+      format: markdown
+      inputs: [search_policy, production_baseline_controller_code, production_continuous_designs_code, continuous_tuning_code, continuous_fold_code, continuous_model_code, training_transform_code, streamed_tuning_adapter_code, streamed_slot_capacity_code, slot_capacity_code, label_rbf_code]
+      description: >-
+        Independent source review PASS for the inactive real-artifact connector:
+        exact30-person development roster,30 inner plus6 outer splits per
+        person, all13 image/label penalties, streamed exact ten-slot capacity,
+        and only five baseline models fitted/scored. The fixed core64/cosine12
+        calibration fits three models and has zero ranked-trial credit.
+        Prospective semantics count each registered level at least three times,
+        retain original19-44 bounds and require ten postcoverage trials with
+        at least40% predefined one-factor challenges to earlier complete
+        candidates. Strict cohort matched-label-loss improvement, fixed-plan
+        ties and patience10 apply only with all original minima satisfied.
+        Expanded candidates alone are ranked; initial label-family requested
+        ranks64 preserve effective-rank rules. This interpretation first permits
+        stopping at22 trials. The current uniform-rank family has only36 distinct
+        recipes; exhaustion before stopping remains incomplete, never duplicate
+        padding. Exclusive outputs preserve interrupted work, and whole-cohort
+        aggregation refuses partial participants. Outer parameters and baseline
+        records persist; a fixed baseline remains precomparison pending with
+        scientific_release_authorized=false. No concept/false EEG score,
+        actual plan or numerical recipe, accepted-bank claim, full-scale cost
+        qualification, original-gate waiver, resource grant or launch follows.
+    - id: baseline_controller_checks
+      type: report
+      format: text
+      inputs: [production_baseline_controller_code, production_baseline_controller_checks, continuous_tuning_code, continuous_tuning_checks, continuous_fold_code, continuous_model_code, production_continuous_designs_code, production_continuous_designs_checks, training_transform_code, streamed_tuning_adapter_code, slot_capacity_code]
+      description: >-
+        Both independently source-reviewed methods passed in attended
+        step47579378.2,59.575seconds,291552KiB process peakRSS; evidence is
+        outputs/runs/software_integration/companion003/checks.txt. They
+        compare all36 baseline splits against the existing dense oracle, verify
+        baseline-only scoring and separate core calibration, then exercise
+        complete30-person ordering, search minima, strict ties/patience,
+        incomplete-plan handling and immutable partial-output refusal.
+        These use existing small fixtures and invented plan metadata only;
+        no empirical EEG, scientific simulation campaign or actual search plan.
+        The completed step used the coordinator-selected existing substantive
+        allocation; this record selects no new job or resources.
     - {id: fixed_baseline, type: report, format: json}
   development_scientific_release:
     name: One scientific release and complete development conjunction
@@ -838,7 +1202,26 @@ analyses:
     - {id: training_transform_code, from: ../training_transform_code}
     - {id: slot_capacity_code, from: ../slot_capacity_code}
     - {id: label_rbf_code, from: ../label_rbf_code}
+    - {id: selected_design_cohort_code, from: ../selected_design_cohort_code}
+    - {id: selected_design_cohort_checks, from: ../selected_design_cohort_checks}
+    - {id: participant_endpoint_inference_code, from: ../participant_endpoint_inference_code}
+    - {id: participant_endpoint_inference_checks, from: ../participant_endpoint_inference_checks}
     outputs:
+    - id: inactive_postfreeze_component_checks
+      type: report
+      format: text
+      inputs: [selected_design_cohort_code, selected_design_cohort_checks, participant_endpoint_inference_code, participant_endpoint_inference_checks, search_policy]
+      description: >-
+        Five focused software methods on deterministic fixtures: frozen
+        baseline and saved-penalty composition, all30 people/180 folds/1440
+        false-match completeness, registered participant t intervals and
+        strict classification boundaries. Actual attempts and evidence are
+        recorded in the experiment log and software_integration directory.
+        The selected-design connector computes no concept or false-model
+        predictions and grants no release; the inference component reads no
+        artifacts and only reports conditional numerical evidence. Passing
+        methods do not establish full-scale capacity affordability, complete
+        controls, reliability, recovery, precision or scientific release.
     - {id: development_vectors_and_controls, type: report, format: json}
   preaudit_precision:
     name: Fixed 16-person margin, error and control-power gate

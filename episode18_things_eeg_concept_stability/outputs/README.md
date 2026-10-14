@@ -1,5 +1,271 @@
 # EP18 outputs
 
+**October13,19:30Pacific — all30 core fits remain covered within the site CPU cap.**
+Array47720344 replaces only the last two indices with8CPU workers sharing the
+former single worker's16CPU allocation. Original indices0–26 and first-person
+job47716305 continue. All models/folds and completed checkpoints remain; reporting
+requires the complete30-person cohort. See the [log](experiment_log.md).
+
+**October13,19:05Pacific — all30 development participants have submitted core fits.**
+First-person job47716305 passed numerical checks and one complete paired grid;
+array47717611 covers the other29, with all29 eligible to run as resources allow. Every person
+keeps all30 inner validations and6 outer folds. No cohort estimate is published yet.
+See the [measurement, checks and submissions](experiment_log.md).
+
+**October13,18:42Pacific — unchanged core EEG calibration submitted as47716305.**
+The16CPU/32GiB/4h job checks the joint direct solver, compares saved original
+solutions and fits the complete first participant. All30 people remain required
+before reporting cohort estimates. [Execution record](experiment_log.md).
+
+**October 13 Pacific — unchanged real-data core continuation selected.**
+Standing scientist authority reopens the complete 30-person image/task
+calibration after its engineering time stop. A separate direct-ridge runner
+preserves all models, folds, penalties and data roles; the selected first
+sub-07 job is 16 CPUs/32 GiB/four hours. Submission and compute checks are
+pending. The control search remains independent; audit is closed.
+See the [current record](experiment_log.md), [runner](code/production_core_direct.py)
+and [finite job](code/run_core_direct001.sbatch). Earlier clock-based closures
+below are historical. No empirical result is claimed until complete-cohort inference.
+
+**October 13, 14:49 Pacific — continuation 47692682 is running.**
+Slurm confirms 13 CPUs/96 GiB on sh03-06n07, started at 14:47:30 Pacific.
+The adapter accepted the separate authority and original configuration; it
+uses the saved checkpoint and a cooperative stop at 23:47:30 Pacific tonight.
+No completed control bank or EEG result is claimed. See the [execution record](experiment_log.md)
+and [current segment](runs/false_partition_preparation/bounded_continuation_operations/segment_47692682/).
+
+**October 13, 14:46 Pacific — adopted continuation submitted as 47692682.**
+One 13-CPU/96-GiB/ten-hour job will resume the preserved sub-07 control search.
+The separate search window ends October 14 at 14:43:13 Pacific. No completed
+bank or EEG result is inferred from submission. See the [job and accounting](experiment_log.md)
+and [adopted plan](proposed_bounded_generator_continuation.md).
+
+**October 13, 14:43 Pacific — one bounded search continuation adopted and selected.**
+The scientist approved one 13-CPU/96-GiB/ten-hour continuation from the saved
+checkpoint, within a new search-only window ending October 14 at 14:43:13
+Pacific. Original search criteria, state and charges are preserved. EEG fitting
+and the full study clock remain closed. See the [adopted plan](proposed_bounded_generator_continuation.md),
+[authority](config/bounded_generator_continuation_20261013_authority.json) and
+[selection record](experiment_log.md). Earlier inactive statuses are historical.
+
+**October 13, 14:40 Pacific — proposed continuation implemented and software-tested, still inactive.**
+The adapter and finite wrapper preserve the frozen producer/configuration and
+require a separately adopted execution deadline. Three lifecycle checks and
+shell syntax passed on compute; no scientific payload or generator was run.
+See the [reviewable proposal](proposed_bounded_generator_continuation.md),
+[test evidence](runs/software_integration/proposed_continuation001/) and
+[execution record](experiment_log.md). The original closeout remains in force.
+
+**October 13, 14:30 Pacific — original execution window ended incomplete.**
+The 21:30 UTC deadline has passed. The saved control search and 29/793 core
+scalar fits remain incomplete; no final EEG comparison or held-out evaluation
+was reached. This is a resource-limited closeout, with checkpoints preserved.
+The separate continuation proposal below remains unadopted.
+See the [deadline disposition](experiment_log.md).
+
+**October 13 — bounded continuation proposal prepared; no new run selected.**
+The [unadopted proposal](proposed_bounded_generator_continuation.md) describes
+one ten-hour continuation from the preserved checkpoint. The first member's
+remaining search budget would take about 7.5 hours at the observed rate;
+completion is not guaranteed. It requires a separate search-only deadline
+amendment and does not authorize EEG fitting or extend the full study clock.
+See the [preparation record](experiment_log.md).
+
+**October 13,14:02 Pacific — control search stopped at its time limit, checkpoint saved.**
+Job47679999 preserved1,164,556 cumulative legal proposals, but no complete
+matched-control bank is accepted. The cooperative stop returned its expected75
+code and durable checkpoint. Charge12.815833333CPUh once; no automatic retry or
+counter reset is selected. The EEG core remains incomplete at29/793 scalarfits;
+there is no concept-specific EEG result or audit opening. The original21:30UTC
+absolute end remains. See the [terminal evidence and accounting](experiment_log.md).
+Earlier running statuses below are historical.
+
+**October 13, 13:04 Pacific — saved-checkpoint control search running.**
+The first segment preserved478,972 legal proposals before its time limit;
+no complete matched-control group was accepted. Job **47679999**, running on
+sh03-06n07 with 13 CPUs and 96 GiB, resumes
+that exact state for up to one hour, retaining all search limits and the
+original21:30UTC end. See the [checkpoint, accounting and continuation](experiment_log.md).
+No cache rebuilding or counter reset is performed. Earlier submitted/running
+states below are historical.
+
+**October13,11:18Pacific — first matched-control search submitted as47672861.**
+The new13CPU/96GiB/1h segment reuses the complete real-image/context cache;
+it does not repeat preparation. The original eight-group menu, matching
+requirements and21:30UTC absolute end remain. See the
+[selected resources and submission](experiment_log.md) and
+[public operations](runs/false_partition_preparation/search_operations_20261013_001/).
+The EEG core remains incomplete; this search alone cannot establish a
+concept-specific EEG effect or open the held-out audit.
+
+**October13,10:38Pacific — false-group cache complete; core fit stopped at its time limit.**
+Job47619998 completed all36 pair caches and6 context folds; false-partition
+search has not started. Job47622384 preserved29 of793 scalar fits before
+the planned deadline, with no complete parameter grid or validation score.
+See the [terminal evidence, once-only accounting and next action](experiment_log.md).
+The next steps are the ready search and a measured core-compute decision;
+full-model affordability remains unresolved. Earlier running states below
+are historical, and these observations establish no scientific result.
+
+**October12,23:48Pacific — resumable real-EEG core cost submitted as47622384.**
+The scalar checkpoint and integration checks now pass, including interrupted
+recovery and the actual compute node's memory interface. This4CPU/15GiB/2h
+attempt retains completed fits across stops and measures the original first
+13-by61 parameter grid before both validation sides. See the
+[passing continuation check](runs/software_integration/scalar_driver002/checks_stderr.txt),
+[public operations](runs/baseline_models/core_scalar_operations_20261013_001/)
+and [selection/accounting record](experiment_log.md). The false-group cache
+continuation47619998 is independently running. Full-cohort fitting and the
+scientific concept comparison remain incomplete; earlier statuses are historical.
+
+**October12,23:13Pacific — saved preparation continuation submitted as47619998.**
+Compute-side metadata confirms all36 pair caches and3of6 context folds are
+complete. A prepare-only continuation is submitted for the remaining work:
+4CPU/28GiB/4h, preserving the cache and original deadline. See the
+[selection and next job ID](experiment_log.md). Core fitting still needs
+finer checkpointing and cost measurement; full scientific comparison is incomplete.
+
+**October12,23:07Pacific — both cost attempts reached stage limits.**
+The core fit completed no whole validation grid; finer checkpointing and cost
+measurement are needed before cohort expansion. False-group preparation can
+continue saved work after its deliberate3h cutoff; search never started.
+See [terminal evidence and accounting](experiment_log.md). Earlier running
+statuses below are historical. No scientific result is established.
+
+**October12,20:34Pacific — exact reuse of repeated training fits qualified on fixtures.**
+The inactive [paired-inner fitter](code/core_reference_paired_inner.py) preserves
+all30 inner and6 outer evaluations while reducing actual fitting calls from438
+to228. Both focused methods pass, including exact agreement with the original
+full fixture and separation of the two validation sides; independent source
+review and changed ASTRA validation also pass. See the
+[checks](runs/software_integration/paired_core_reuse001/checks_stderr.txt) and
+[execution record](experiment_log.md). Real-data speedup remains unmeasured;
+running code is unchanged and the helper does not provide checkpoint resumption.
+
+**October12,20:21Pacific — complete-cohort and statistical components checked.**
+Five focused methods passed in3.602seconds on the existing compute allocation;
+the changed ASTRA program also validates. The new, inactive components enforce
+all30 people/180 folds/1440 false matches and compute the registered
+participant-level intervals and classification inequalities. See the
+[check evidence](runs/software_integration/postfreeze_components001/checks_stderr.txt)
+and [execution log](experiment_log.md). They do not yet provide the full control
+pipeline, affordable full-model execution, an empirical result or scientific release.
+The real-data reference and false-group preparation jobs continue.
+
+**October12 — full-model capacity bottleneck clarified.**
+The exact matching formulas and streamed baseline connection are implemented.
+Full FIR factorizations and complete spectral/leverage diagnostics still lack
+a demonstrated affordable backend; selected quantiles alone cannot satisfy
+the adopted comparisons. The [source assessment and explicit cost assumptions](experiment_log.md)
+preserve every scientific requirement. Current real-data core and false-bank
+work continues; completing core calibration alone does not complete the full
+concept comparison.
+
+**October12,19:48Pacific — remaining29-person execution source prepared, inactive.**
+The [fixed28-array plus final-person plan](proposed_core_reference_remaining001.md)
+reuses the complete original30-person input binding and one final writer.
+Source review is complete; no execution, new reservation or submission is
+selected until first-person cost evidence supports resources. The current
+reference and false-group jobs remain running with no completed cost result.
+See the [preparation and live observations](experiment_log.md).
+
+**October12,19:10Pacific — both reference fitting and control preparation running.**
+Core-reference47591674 is fitting the first participant after all30 input
+bindings completed. False-partition47584692 now runs onsh03-01n45; all30
+participants' inputs and the full six-family image bank passed admission,
+and sub07 cache preparation has started. No complete participant fit or
+control search result is published yet. See the [current evidence](experiment_log.md).
+
+**October12,19:07Pacific — all30 input bindings complete; first-person fit dispatched.**
+The first reference job47584937 stopped before empirical access because a
+test expected the wrong exception for a missing30th participant. Production
+code correctly refused the incomplete cohort. Only that test expectation
+changed; new job **47591674** is running with2CPU/15GiB/2h. Both selected
+methods pass in19.083seconds. Initialization reports all30 participants and
+five image families bound; the complete sub07 reference cost fit has started.
+No completed-person fitting report or predictive result is yet available.
+See the [diagnosis, passing evidence and current stage](experiment_log.md).
+False-group cost47584692 remains queued; completed image assembly is preserved.
+
+**October12,18:52Pacific — complete six-family image assembly published.**
+All22,448 images occur exactly once in every family, as recorded in the
+[complete assembly report](runs/feature_preparation/image_features_full_20261012_001/assembled/report.json).
+Assembler47584687 completed successfully; the once-only charge is0.024444444CPUh.
+The real-EEG core-reference and false-group cost jobs47584937/47584692 now
+have satisfied dependencies and await scheduling. See the
+[completion and accounting](experiment_log.md#2026-10-12-1852-pacific--feature_preparation--complete-six-family-image-assembly-published).
+No EEG prediction result or scientific release is yet established.
+
+**October12,18:42Pacific — complete CLIP replacement published.**
+Job **47584681** completed all11,224 images and exited successfully in37m21s;
+charge1.245 allocated CPU-hours once. The
+[completion record](runs/feature_preparation/image_features_full_20261012_recovery001/recovery_complete.json)
+preserves the original shard, model and full image range. See the
+[execution log](experiment_log.md#2026-10-12-1842-pacific--feature_preparation--complete-clip-replacement-published).
+The eight BLIP tasks were still running at the latest check. Existing
+assembly47584687 and subsequent cost jobs47584692/47584937 retain their
+dependencies. Full feature assembly and EEG prediction results remain pending.
+Earlier dated running-state entries below are historical.
+
+**October12,18:05Pacific — CLIP replacement running; real EEG reference queued.**
+Worker47584681 has passed both recovery checks and is encoding the original
+complete shard onsh03-06n11. Changed ASTRA validates. The independently
+reviewed real-data reference job47584937 is queued after assembly47584687:
+2CPU/15GiB/2h, complete30-person input binding, then the full first-person
+36-split reference attempt. Its two focused checks are still unrun. See the
+[selected numerical recipe, limits and execution evidence](experiment_log.md).
+There is no new EEG prediction result or completed image assembly yet.
+
+**October12,18:03Pacific — complete CLIP replacement submitted.**
+The original task5 stopped at its two-hour deadline after7,638/11,224
+encodings; its partial output remains unused. Worker47584681 repeats the
+complete original shard with2CPU/15GiB/4h. New assembler47584687 requires
+that worker and all original BLIP tasks; false-cost47584692 follows the
+assembler. Their old predecessors were canceled before starting when the
+dependency failed. All26 tasks, six families and22,448 images remain required.
+See the [diagnosis, resources and submission record](experiment_log.md).
+The new chain is pending, with focused checks to run inside the worker.
+Earlier dated states below are historical; no EEG prediction result is claimed.
+
+**October12,17:43Pacific — complete-cohort controller checks passed.**
+Both focused methods pass in59.575seconds, with all36 split and30-person
+requirements checked on existing fixtures. Changed EP18/EP21 ASTRA documents
+also validate. [Evidence](runs/software_integration/companion003/checks.txt)
+and [log](experiment_log.md) retain the distinction between software readiness
+and unresolved full-scale compute/recipe/scientific-release requirements.
+No actual baseline search has started.
+
+
+**October12,17:39Pacific — the three affected integration checks passed.**
+The repaired callback and two adapter checks pass in0.573seconds, using88MB
+process memory and no empirical inputs. Earlier backend/full-panel passes are
+reused. The [evidence](runs/software_integration/companion002/checks.txt) checks
+software behavior; full-scale cost and a complete qualified controller remain
+unresolved. Real-data preparation continues. See the [execution log](experiment_log.md).
+
+
+**October12,17:27Pacific — streamed algorithm checks passed; integration remains inactive.**
+All three streamed-backend checks and the full-panel callback check passed.
+The remaining callback fixture's roundoff failure is repaired, along with a
+reviewed candidate-context binding omission. Its recheck and two new adapter
+checks remain unrun. The [inactive adapter](code/streamed_tuning_adapter.py)
+preserves existing matching/diagnostics, but complete cohort controller wiring
+and full-scale throughput remain unresolved. See the [execution and repair record](experiment_log.md).
+
+**October12 — exact streamed capacity source reviewed; five software checks pending.**
+The inactive [streamed backend](code/streamed_slot_capacity.py) passed independent
+source review. It emits rows from the existing sequence operators and preserves
+the full singular spectrum, all13 added-term EDF values and selected full-joint
+leverages. The [production callbacks](code/production_continuous_designs.py)
+are also prepared, with implementation/self-review only. Three backend and two
+callback checks are selected as an independent serial companion in EP21's
+first adapted-comparator job47579378, pair004; no check result is recorded
+yet. The parent allocation is charged once to EP21. These fixture-only checks
+read no empirical EP18 inputs or scores and do not gate the independent EP21
+fit. A connected full-trial controller and full-scale throughput remain
+unresolved; the new backend has not replaced the active dense tuning path.
+See the [selected scope and limits](experiment_log.md#2026-10-12--baseline_models--inactive-streamed-backend-reviewed-five-software-checks-selected).
+
 **October12,16:55Pacific — all30 participants' real EEG preprocessing complete.**
 The [production report](runs/eeg_preprocessing/development_20261012_001/operational.json)
 confirms all2160 intervals complete,9.56GB durable output,646.08seconds

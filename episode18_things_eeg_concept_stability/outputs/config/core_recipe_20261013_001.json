@@ -1,0 +1,26 @@
+{
+  "recipe_id": "ep18_core_reference_20261013_001",
+  "image_panel": "core_image",
+  "image_rank": 64,
+  "temporal_basis": "raised_cosine_12",
+  "nuisance_recipe": "local_legendre_0_to_3_position_0_to_2_E3_final_offset_target_coarse_response_v1",
+  "intercept_penalty": 0,
+  "nuisance_penalty": 0.000001,
+  "fit_weight_scale": "mean_sequences",
+  "fit_weight_multiplier": 1,
+  "normalization": "ratio_of_equal_sequence_means",
+  "covariance_centered": true,
+  "covariance_denominator": "sum_weights",
+  "covariance_target": "trace_over_61_identity",
+  "shrinkage_strength": 0.1,
+  "baseline_tie_break": "minimum_mean_loss_then_larger_lambda_then_index",
+  "solver": {
+    "atol": 1e-8,
+    "btol": 1e-8,
+    "conlim": 1000000000000,
+    "maxiter": 10000
+  },
+  "metadata_byte_cap": 16777216,
+  "npz_byte_cap": 268435456,
+  "working_array_byte_cap": 10737418240
+}

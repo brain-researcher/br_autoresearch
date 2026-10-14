@@ -1,5 +1,1559 @@
 # Experiment log
 
+## 2026-10-13 19:30 Pacific — core_reference_calibration — last two workers replaced
+
+Old27's batch isCANCELLED and externCOMPLETED; both old27/28 are absent from
+squeue, and neither sub-48 nor sub-49 has a complete result. No old writer remains.
+Slurm accepted47720344_27–28, two8CPU/32GiB/6h workers using the same checkpoints.
+Only the unsubmitted report wrapper changes toafterany:47716305:47717611:47720344;
+its all30-complete guard governs publication. Next: monitor the complete cohort.
+
+## 2026-10-13 19:28 Pacific — core_reference_calibration — rebalance last two people within site cap
+
+At511 allocated CPUs, the site's512-CPU limit left the final16-CPU worker waiting.
+Cancel only newly started47717611_27 and still-pending_28; preserve every file.
+Replace their combined active16-CPU request with two8CPU/32GiB/6h workers,
+retaining original indices27–28, all fits/grids/folds and completed checkpoints.
+The first person's four paired grids took2337.50seconds with16CPUs;6h permits
+slower8-thread work with checkpoint continuation. Verify old writers stopped first.
+Next: submit the reviewed balanced wrapper and replace obsolete report dependencies.
+
+## 2026-10-13 19:17 Pacific — core_reference_calibration — complete-cohort reporting ready
+
+Step47377474.11 imported the reporter and headless plotting successfully with
+NumPy1.26.3/SciPy1.12.0/Matplotlib3.8.3; the updated ASTRA program also validates.
+The reviewed reporter requires all30 complete records before reading losses,
+then publishes G/T with participant-level95% intervals, one figure and three lines.
+No report job is submitted: use a task-owned companion allocation once both
+47716305 and47717611 finish. At19:17,20people run; sub-07 has3/15 inner pairs.
+Next: preserve checkpoints and complete all30; audit/concept/false scores stay closed.
+
+## 2026-10-13 19:05 Pacific — core_reference_calibration — full participant concurrency enabled
+
+Measured paired-grid cost projects roughly3h/person: the initial6-worker throttle
+would require about15h for the cohort. Under standing resource authority and the
+scientist's parallel-compute instruction, raise47717611's throttle to29 ready people.
+Each task remains16CPU/32GiB/4h; total analyses and per-person compute are unchanged.
+The scheduler retains all site limits/fair sharing. Peak EP18 request becomes
+493CPUs including the16CPU first person and13CPU control search; consumed usage
+is reported in the daily episode total. No duplicate, new data or added search.
+
+## 2026-10-13 18:58 Pacific — core_reference_calibration — remaining29 array submitted
+
+Slurm accepted47717611_0–28, at most6 concurrent16CPU/32GiB/4h workers.
+The fixed metadata map excludes separately running sub-07/47716305 and assigns
+each of the other29 people exactly once. Checks already passed in47716305 are reused.
+Next: monitor completed pairs/folds, resume saved work after engineering failures,
+and release participant-level G/T estimates only after all30 complete.
+
+## 2026-10-13 18:57 Pacific — core_reference_calibration — remaining29 participants selected
+
+Job47716305 passed both numerical methods in16.784seconds and all29 original
+scalar comparisons; every new weighted objective improved (largest relative change−2.27484e−6).
+Its first full paired13-penalty grid completed before612.51seconds; the second is underway.
+Select29 original remaining participants, one16CPU/32GiB/4h child each, at most6
+concurrent. About15 such pair grids plus6 outer fits project roughly3h/person;
+4h provides measured headroom, with complete-pair/fold checkpoints retained.
+No sub-07 duplicate or scientific release: all30 participant completions remain required.
+
+## 2026-10-13 18:42 Pacific — core_reference_calibration — direct solver submitted
+
+Slurm accepted47716305:16CPU/32GiB/4h, two changed numerical checks followed
+by the unchanged complete sub-07 core panel and comparison with29 saved scalars.
+All30 assigned participants remain required for cohort inference. The new job
+preserves original folds, penalties, masks, whitening and data roles.
+Next: inspect solver checks and measured first-pair cost before parallel expansion.
+Control search47692682 remains running; no EEG result or audit opening is claimed.
+
+## 2026-10-13 Pacific — core_reference_calibration — unchanged real-data continuation selected
+Standing authority reopens the original 30-person core calibration after its engineering time stop; no new dataset, estimand, audit access or threshold.
+Job 47622384 retained 29/793 first-grid scalars in 7,124 s; its 2.48-GB peak excludes memory as the bottleneck.
+Select one 16-CPU/32-GiB/4-h sub-07 job using bounded exact design rows, one weighted Gram per training split and joint 61-response ridge solves.
+All 13 penalties, 30 inner validations, six outer folds, image PCA, nuisance terms, sample masks, whitening and tuning rules remain.
+Two changed-backend checks and comparison to the 29 existing original scalars precede/qualify this numerical route; no result is claimed yet.
+Complete inner pairs and outer fits checkpoint; submission/monitoring belongs to the coordinator. Existing control search 47692682 remains untouched.
+Next: complete all30 core references, then report G/T with participant uncertainty, one figure and three lines; concept-specific claims remain gated.
+
+## 2026-10-13 14:49 Pacific — false_partition_preparation — continuation running on thirteen CPUs
+
+The 21:49:39 UTC scheduler observation confirms job 47692682 RUNNING on
+sh03-06n07, actual 13 CPUs/96 GiB, start 14:47:30 Pacific and ten-hour limit.
+The compute wrapper independently records that allocation. Its search/settings.json
+confirms authority admission and unchanged original configuration/source binding,
+with predecessor 47679999 and cooperative deadline 1791960450 (October 13,
+23:47:30 Pacific). The earlier pending snapshot was stale relative to the
+compute-start record; no duplicate or restart was needed.
+
+Now that actual allocation is known, retain 130 CPUh outstanding and release
+30 CPUh of the initial conservative reservation. Consumed plus reserved is
+267.231481481 CPUh, or 272.240092592 using the preserved conservative shared-
+parent bound. Charge actual parent CPU-seconds once at termination. There is
+no terminal search report, completed control bank or EEG result yet. Root
+continues to own this chain; the adopted one-job/no-successor limit remains.
+
+## 2026-10-13 14:47 Pacific — false_partition_preparation — adopted ASTRA program validated
+
+Attended step 47377474.3 on sh02-15n09 passed schema and semantic validation
+of the changed ASTRA program and exited zero. Evidence:
+runs/software_integration/continuation_astra001. It used the selected one CPU
+and 1-GiB process limit; cost remains in the EP21 parent once. No scientific
+payload or prior passing test was repeated. This validates the program links,
+not checkpoint admission or scientific success of the new job.
+
+## 2026-10-13 14:46 Pacific — false_partition_preparation — adopted continuation submitted as 47692682
+
+Slurm accepted the single selected continuation as job 47692682. The request
+is 13 CPUs/96 GiB/ten hours on russpold,normal, with no requeue or dependency.
+Keep the 160 CPUh conservative reservation until actual terminal accounting.
+The new writer is bounded_continuation_operations/segment_47692682/search;
+submission does not establish checkpoint admission, progress or bank completion.
+
+The existing ASTRA false_partition_preparation analysis now links the adopted
+authority, exact checkpoint and reviewed adapter/template recipe. Select one
+attended one-CPU/1-GiB/three-minute companion step within task-owned EP21
+parent 47377474 solely to validate these changed ASTRA objects. No software
+tests or scientific inputs are repeated. Charge that existing parent once;
+ASTRA validation does not gate or imply scientific success.
+
+## 2026-10-13 14:43 Pacific — false_partition_preparation — scientist adopts single search-only continuation
+
+The scientist answered "Adopt the bounded continuation (Recommended)" to:
+"EP18: adopt the reviewed search-only continuation—one job with 13 CPUs,
+96 GiB and a 10-hour maximum, within a new 24-hour window from adoption? It
+preserves the checkpoint and all matching criteria, aims to resolve the
+existing control-group search, and does not restart EEG fitting or the full
+study clock. The implementation and software checks are complete."
+
+Record adoption at 2026-10-13T21:43:13Z and the new search-only absolute end
+2026-10-14T21:43:13Z (1792014193). Preserve the original 1791927000 deadline,
+closed incomplete EEG/core route, frozen producer/configuration/cache identities,
+all controls, generator limits and saved RNG/counters. The adopted authority is
+outputs/config/bounded_generator_continuation_20261013_authority.json. It names
+only job 47679999's checkpoint and the previously reviewed adapter/template.
+
+Select ONE submission of that template: 13 CPUs, 96 GiB, ten hours, no GPU,
+one worker, no requeue/retry/successor. Its cooperative limit is the earliest
+of actual start plus nine hours, allocation end minus sixty seconds and the
+new absolute end minus sixty seconds. Reuse the three passing lifecycle tests,
+shell syntax and independent source reviews; do not repeat scientific preparation.
+Fresh output: runs/false_partition_preparation/bounded_continuation_operations.
+
+Reserve a conservative 160 CPUh for actual allocation up to sixteen CPUs
+(130 CPUh at thirteen). Retain consumed 137.231481481 CPUh and conservative
+142.240092592 shared-parent bound, giving at most 302.240092592 consumed-plus-
+reserved CPUh under the unchanged 12,000 CPUh cap. Replace the reservation
+with actual allocated parent CPU-seconds at termination; no prior cost resets.
+Root's 21:43:51 UTC scheduler snapshot shows no EP18 job, preventing duplication.
+Refreshed sh_part/sh_node_feat confirm normal/russpold support the selected
+ten-hour CPU/memory request. Root owns submission and monitoring.
+
+## 2026-10-13 14:40 Pacific — false_partition_preparation — inactive adapter checks passed
+
+The separately reviewed adapter, finite job template and fixture checks are
+implemented under outputs/proposed/false_partition_continuation. Original
+scientific source/configuration and all saved payloads remain unchanged. No
+adopted authority file, new deadline or scientific submission exists.
+
+Attended step 47377474.2 ran on verified compute host sh02-15n09 with one CPU,
+one numerical thread, a 1-GiB process address-space limit and a combined
+120-second timeout. All three lifecycle methods passed in 0.056 seconds;
+wrapper shell syntax passed. Evidence: runs/software_integration/proposed_continuation001.
+Only temporary stand-ins were used. The tests do not validate the real checkpoint
+payload or qualify any control group. The step and test shell exited zero after
+the separately scoped EP20 cache check. Parent accounting remains in EP21 once,
+without a new EP18 charge or extension of the closed original study.
+
+## 2026-10-13 — false_partition_preparation — inactive adapter implementation and focused software check selected
+
+Prepare the proposed deadline-only continuation under
+outputs/proposed/false_partition_continuation, without editing the frozen
+producer, configuration, cache, checkpoint or active scientific contract.
+No adopted execution-authority file or scientific submission is created.
+The focused software checks will exercise deadline admission, unchanged
+configuration/state handoff and terminal reporting using temporary stand-ins;
+they will not load scientific payloads or execute the generator.
+
+After source review, the coordinator selects one attended CPU-only test step
+inside task-owned EP21 parent 47377474: one CPU, 1 GiB, three minutes, with a
+120-second test timeout, one thread and node-local temporary files. The parent
+was verified RUNNING with 2 CPUs/16 GiB at 21:31 UTC; its main numerical worker
+uses one thread with a 15-GiB RSS guard. Combined limits fit the existing parent.
+All cost is included in that parent's terminal charge once, with no new EP18
+scientific reservation or extension of its expired execution window.
+
+## 2026-10-13 14:30 Pacific — false_partition_preparation / baseline_models — original window ended resource-incomplete
+
+Coordinator UTC time 21:30:10 is beyond the unchanged absolute deadline
+1791927000 (21:30 UTC). The scheduler observation shows no EP18 job, consistent
+with the already recorded terminal 47679999 resource stop. No new execution
+was submitted. The original route ends incomplete: no accepted full false bank,
+zero exact-distribution checks and only 29 of 793 retained core scalar fits.
+It has not reached the scientific EEG comparison or held-out audit. This is
+neither an EEG null nor exhaustion of the registered generator's proposal budget.
+
+Preserve all caches, checkpoints, counters, prior charges (137.231481481 CPUh;
+142.240092592 conservative shared-parent bound) and the original deadline.
+The separately written ten-hour search-only continuation proposal remains
+unadopted. Independent source review confirms a possible adapter can preserve
+the original producer/configuration identities and resume state, provided it
+also retains the original compute/resource/output/reporting checks. No adapter,
+new deadline or full-study clock reset is activated by this closeout.
+
+## 2026-10-13 — false_partition_preparation — inactive bounded continuation proposal
+
+Prepared [a prospective search-only continuation](proposed_bounded_generator_continuation.md)
+from the two existing public operational reports and unchanged source. The
+latest segment advanced 685,584 legal proposals in 3,537.8 seconds. At that
+observed rate, the current first member's remaining 5,235,444-proposal budget
+would take about 7.5 hours. This is an estimate, not a runtime guarantee or
+evidence that matching will succeed. Zero exact-distribution checks have run;
+accepted annealing swaps do not establish accepted controls.
+
+The proposal specifies one 13-CPU/96-GiB/ten-hour job, one numerical worker,
+unchanged matching criteria and saved counters/RNG, with a separate prospective
+execution deadline. Preserve prior charges and every saved artifact. The
+original configuration and producer hash are bound to the cache/checkpoint;
+their old deadline cannot simply be edited without invalidating those bindings.
+A transparently authorized continuation adapter remains to be implemented if
+the proposal is adopted. No active contract, scientific code, deadline, data
+access, ASTRA recipe or job was changed. No whole-cohort expansion is proposed:
+the unchanged maximum proposal count extrapolates beyond the existing full
+study CPU budget, and exact-check and complete EEG-fit costs remain unmeasured.
+
+## 2026-10-13 14:02 Pacific — false_partition_preparation — continuation reached its bounded time stop
+
+Parent47679999 is terminal FAILED75:0,3549seconds at13CPUs. Its wrapper
+correctly classifies search_resource_incomplete_checkpoint_if_written; this is
+a cooperative resource stop, not a crashed optimizer or exhausted search design.
+The producer finished21:01:22UTC with resource_incomplete/time_or_signal,
+checkpoint_available=true, member0/start11/swaps64,556. It preserved1,164,556
+cumulative legal proposals,1,151,838 accepted proposals andzero exact-distribution
+checks. No full false bank is qualified and no EEG was read by this job.
+Peak producer RSS74,025,005,056bytes stayed below the guard.
+
+Evidence: runs/false_partition_preparation/search_continuation_operations_20261013_001/
+segment_47679999/exit.json and search/report.json. The complete saved cache and
+checkpoint are retained; no proposal/start/RNG state is reset. The timeout-tail
+repair worked: the producer returned75 and its report, rather than external124.
+
+Charge12.815833333 allocatedCPUh once, release3.184166667 from the conservative
+16CPUh continuation reservation. Recorded episode charges now137.231481481CPUh;
+the conservative shared-parent bound is142.240092592CPUh, of12,000. The original
+absolute episode end21:30UTC remains unchanged. No automatic successor is selected.
+The control bank and793-fit core remain incomplete (29 retained scalarfits);
+these engineering/search outcomes establish no concept-specific EEG effect,
+scientific underidentification from exhausted generation, or audit readiness.
+
+## 2026-10-13 13:04 Pacific — false_partition_preparation — checkpoint continuation running
+
+Scheduler confirms 47679999 RUNNING on sh03-06n07 with 13 CPUs. The wrapper
+confirms that compute hostname, 96 GiB, one numerical worker and predecessor
+47672861. Its recorded start is epoch 1791921734 and cooperative deadline
+1791925274, within the original episode deadline. Public search/error logs
+had no reported error at this observation. No new complete control bank or
+EEG result is inferred from execution state. Costs remain reserved until the
+parent becomes terminal.
+
+## 2026-10-13 13:00 Pacific — false_partition_preparation — broaden pending partition eligibility
+
+Scheduler still reported 47679999 pending with no dependency and no assigned
+start time. Root updated that same pending job to `russpold,normal`, using
+the discovered eligible group partition as well as normal. Slurm accepted the
+update. No duplicate, cancellation, priority change, new reservation or search
+change was made; the 13-CPU/96-GiB/1-hour request and original absolute search
+deadline remain. The submitted wrapper's normal-only directive records its
+original submission; this execution entry records the subsequent job update.
+
+## 2026-10-13 — false_partition_preparation — preserving search continuation submitted
+
+Root reviewed and Slurm accepted **47679999**, the selected13CPU/96GiB/1h
+continuation of47672861's exact checkpoint. Shell syntax passed in the
+already attended EP01 allocation47679500; its negligible shared cost is
+included only in that parent's charge. Existing producer/search checks are
+reused. No starts, RNG state or proposal counters reset. Public operations:
+`runs/false_partition_preparation/search_continuation_operations_20261013_001/`.
+The unchanged original absolute end remains21:30UTC today.
+
+## 2026-10-13 19:37 UTC — false_partition_preparation — checkpointed search stop and selected continuation, not submitted
+
+The public producer report for search47672861 finished at19:33:39.114840UTC
+with `resource_incomplete`, reason `time_or_signal`, and
+`checkpoint_available=true`. Its complete422,073-byte checkpoint has no pending
+write. Saved state is member0/start4/swaps78,972, with478,972 total legal
+proposals,474,098 accepted proposals and zero exact-distribution checks.
+The first bank member remains unaccepted; no candidate bank or scientific
+result is claimed. Producer peakRSS was73,719,922,688bytes, below90GiB.
+Evidence: `runs/false_partition_preparation/search_operations_20261013_001/initial_47672861/search/report.json`
+and its preserved `checkpoint.npz`; no checkpoint arrays were inspected for
+this source/public-report review.
+
+The wrapper's cooperative deadline was19:33:32UTC, while its external timeout
+started termination five seconds later. The producer still finished its
+resource-stop checkpoint/report seven seconds after that deadline. Thus the
+wrapper's exit124 and `search_failed_requires_diagnosis` label coexist with
+an explicitly recorded resumable resource stop. This is the identified
+timeout-tail issue, not an unexamined optimizer failure or a failed matching
+criterion. The current producer's existing restore routine requires the
+resource-incomplete report, exact original configuration, complete checkpoint
+and preserved counters/RNG/assignments before resuming.
+
+Root's authoritative terminal observation is FAILED124:0,3549seconds at13CPUs,
+stepMaxRSS83,869,852KiB. Charge12.815833333allocatedCPUh once and release
+3.184166667CPUh from the16CPUh reservation. Retain every prior cost: documented
+episode charges are now124.415648148CPUh; the earlier conservative shared-parent
+admission bound becomes129.424259259CPUh. No scheduler call or second parent
+charge was made by the source-review worker.
+
+Under root's explicit continuation selection, prepare
+`code/run_false_partition_search_continue001.sbatch`, not submitted here:
+normal13CPU/96GiB/one hour, at most16CPUh with the previously allowed scheduler
+rounding, one numerical worker/all threads1. Reuse the unchanged producer,
+complete cache, sub-07 source, all six families/folds, original seed and
+8×64×100,000 generator limits. Supply `--resume` only with the exact preserved
+47672861 checkpoint. No new starts, completed proposals or acceptance attempts
+are reset; no cache preparation, EEG read, new test, simulation or automatic
+successor follows. Existing passing search/checkpoint checks remain applicable.
+
+Fresh public operations:
+`runs/false_partition_preparation/search_continuation_operations_20261013_001/`.
+The cooperative deadline remains minimum(actualStart+3540,actualEnd−60,
+1791926940). Repair only the external cleanup allowance to40seconds plus
+five seconds kill grace, wholly inside the already reserved60second tail.
+The original October13 21:30UTC episode end and one-hour allocation cap remain.
+The selected16CPUh continuation reservation brings the conservative episode
+bound to145.424259259CPUh of12,000CPUh. Completion remains uncertain; a further
+resource stop is incomplete search, not underidentification from exhausted
+generation. Root reviews the wrapper and owns its single submission.
+
+## 2026-10-13 — false_partition_preparation — search-only job submitted
+
+Slurm accepted **47672861**, the selected13CPU/96GiB/1h search segment.
+Public operations are
+`runs/false_partition_preparation/search_operations_20261013_001/`.
+The completed cache is reused; queue acceptance does not establish execution
+or a candidate bank. The current real-data request needs no further user
+decision for this selected step.
+
+## 2026-10-13 — false_partition_preparation — first search-only segment selected
+
+Under the scientist's standing instruction to continue available real-data
+work, root reviewed and selected the concrete search-only wrapper below.
+The fixed model runtime clears PYTHONPATH/PYTHONHOME after module loading,
+matching the previously qualified runtime. No scientific code changed and
+the existing passing search/checkpoint checks are reused. Select one normal
+job,13CPU/96GiB/1h, retaining the maximum16CPUh rounding-safe reservation
+and unchanged October13 21:30UTC absolute end. Its only predecessor is the
+already completed cache continuation47619998; no image or cache rebuilding,
+EEG comparison, additional test, automatic retry or successor is selected.
+Root creates the public operations directory and submits once from EP18.
+The conservative admission bound including this reservation is
+132.608425926CPUh of12000CPUh; historical costs are retained once.
+
+## 2026-10-13 18:16 UTC — false_partition_preparation — search-only segment proposed, not submitted
+
+Coordinator-requested source/readiness review confirms that the unchanged
+`code/false_partition_search.py search` is the next existing real-feature
+work. Public continuation47619998 evidence reports all36 pair caches and6
+context folds complete, a complete manifest, unchanged configuration/producer
+and no pending metadata write. The search has never started. Reuse the two
+passing search/update/checkpoint methods recorded on October12; no new test,
+cache preparation, EEG read, private core checkpoint inspection or simulation
+is selected by this proposal.
+
+Prepared `code/run_false_partition_search001.sbatch` for coordinator review
+and one possible submission from this episode directory. It requests the
+previously discovered normal partition,13CPU/96GiB/one hour, allowing only
+the already-documented scheduler rounding through16CPUs. Exactly one worker
+and all numerical threads1 run. The additional CPUs satisfy the observed
+memory/core scheduling ratio: the earlier12CPU/96GiB request was normalized
+to13. The unchanged855-channel estimate is76,700,852,096 array bytes; retain
+80GiB array admission,90GiB softRSS,96GiB allocation and64MiB segment storage.
+This is the previously selected at-most-one-hour search segment, with no
+completion-time guarantee or expanded search grammar.
+
+The code reuses the complete cache and fixed
+`config/false_partition_sub07_20261012_001.json`: sub-07, all22,248 main images,
+all six families/folds, seed20261012,8 members,64 starts/member and100,000
+legal swaps/start. No `--resume` is supplied because no search state exists.
+Its fresh public operations root is
+`runs/false_partition_preparation/search_operations_20261013_001/`, with a
+job-specific segment and original producer-owned report/checkpoint outputs.
+The wrapper uses minimum(actualStart+3540,actualEnd−60,1791926940) as its
+cooperative deadline, then at most10seconds for timeout/kill grace. The
+scientist's absolute end remains1791927000, October13 21:30UTC. It refuses a
+late start; no automatic successor, requeue or retry is installed.
+
+Budget reconciliation from the existing log: original false preparation
+39.158888889CPUh plus continuation6.491111111CPUh equals45.65CPUh. Their
+52+16CPUh reservations are closed, with22.35CPUh released, not reset costs.
+Documented EP18 charges sum111.599814815CPUh: prior0.6900925926;
+original image chain51.863611111 (already includes its builder);
+replacement image/assembly1.269444444; EEG preparation0.201666666667;
+false preparation45.65; failed initial core0.017777778; original core
+3.970555556; scalar core7.936666667. Retaining the earlier conservative
+18,031 shared-parent CPU-seconds adds5.008611111CPUh to this admission bound,
+giving116.608425926CPUh and at least11,883.391574074CPUh headroom under12,000.
+A proposed rounding-safe16CPUh search reservation raises that conservative
+bound to132.608425926CPUh; no reservation is activated until coordinator
+selection/submission. Earlier shared charges remain once-only, and this
+conservative bound is not a second debit.
+
+Search exit75 means resource-incomplete; preserve any actually written
+checkpoint. Exit2 means the frozen generator budget was exhausted. Exit0
+establishes only an image/context candidate bank: exact selected-design
+spectrum, leverage and conditional term-EDF qualification remain mandatory.
+It opens no EEG candidate comparison or audit. No scientific command, scheduler call,
+test or submission was executed during this source-only preparation.
+
+## 2026-10-13 10:38 Pacific — false_partition_preparation / core_reference_calibration — complete cache and retained incomplete fits
+
+The17:37:04UTC scheduler observation establishes both parents terminal after
+the interrupted monitoring interval. Cache continuation47619998 completed0:0
+at00:55:36Pacific after5842s at4CPUs: charge6.491111111allocatedCPUh once,
+including its four attended companion steps, and release9.508888889CPUh from
+the16CPUh reservation. Its public progress_after.json verifies all36 pair
+caches and all6 context folds, a complete-cache manifest and unchanged
+configuration/producer. Search was not launched; this completes preparation,
+not the required eight accepted false partitions or a scientific result.
+
+Real-EEG scalar attempt47622384 endedFAILED1:0 at01:48:31Pacific after7143s
+at4CPUs: charge7.936666667allocatedCPUh once and release0.063333333CPUh from
+the8CPUh reservation. Public operational.json diagnoses the planned deadline
+TimeoutError, with29 completed/saved scalar fits out of793, zero complete
+penalties and zero validation sides. Peak aggregatePSS was2478474240bytes;
+this is a time/cost limit, not a memory failure or scientific negative result.
+The29 original checkpoints remain private and preserved. No participant
+completion, score, audit opening, blind retry or cohort expansion is inferred.
+
+Evidence: `runs/false_partition_preparation/prepare_continuation_operations_20261013_001/segment_47619998/`
+and `runs/baseline_models/core_scalar_operations_20261013_001/initial_47622384/`.
+The next authorized work is the now-ready false-partition search and an
+evidence-based core compute choice before the unchanged21:30UTC deadline.
+Neither is launched by this observation entry.
+
+## 2026-10-12 23:48 Pacific — core_reference_calibration — real-data scalar cost submitted
+
+Slurm accepted **47622384** at23:48:20Pacific, the selected4CPU/15GiB/2h
+request with8CPUh maximum reservation. At23:48:53 it is PENDING with no
+dependency. Submission does not establish execution or completion.
+The selected helper, driver and wrapper are frozen for this attempt; public
+operations are `runs/baseline_models/core_scalar_operations_20261013_001/`.
+Existing false-group cache continuation47619998 remains independent. No other
+fit, scientific comparison, participant expansion or automatic retry is launched.
+
+## 2026-10-12 23:48 Pacific — core_reference_calibration — recovery caller passed; bounded real-data cost selected
+
+The diagnostic step47619998.2 expired at23:42:39 before the corrected check.
+No login-node testing followed. A fresh attended2CPU/2GiB/3minute step
+47619998.3 verified sh04-04n24 and ran only the affected continuation method:
+1 passed, no failures/errors/skips,1.475s test time,4.061358074s total Python,
+108347392bytes peak parentRSS. It exercises the actual old-kernel smaps
+fallback plus bounded-read refusal and original793-fit checkpoint recovery.
+Evidence: `runs/software_integration/scalar_driver002/`. The shell exited0.
+Reuse the unaffected first caller method and ASTRA PASS fromscalar_driver001
+and both revised scalar-adapter methods fromscalar_cleanup001; preserve the
+earlier failing evidence. Batch shell syntax passed. Independent source review
+found no actionable fallback defect. All companions charge parent47619998 once.
+
+Select the first original symmetric inner grid on real development sub07:
+all13 penalties by61 image contrasts, followed only after completion by both
+original validation sides. `code/run_core_scalar_cost001.sbatch` requests
+russpold4CPU/15GiB/2h, four scalar workers with one BLAS thread each,
+12GiB parentRSS and aggregatePSS guards,2GiB durable output. Reserve8CPUh
+within the unchanged12000CPUh allowance. The original allocation-start+7140,
+EndTime-minus60 and episode absolute1791927000 limits remain operative.
+
+Reuse the original complete30-person input binding. New private checkpoints:
+`outputs/cache/private/core_scalar_cost_20261013_001`; fresh public operations:
+`runs/baseline_models/core_scalar_operations_20261013_001/`. This first invocation
+has no resume flag, automatic successor or audit access. Saved complete scalars
+can support a separately selected continuation if necessary. This measures
+actual core-fitting cost and preserves partial progress; it is not completion
+of a participant, a concept comparison, or a scientific result. Remaining29
+participants and full-model capacity work remain unadmitted pending cost evidence.
+
+## 2026-10-12 23:42 Pacific — core_reference_calibration — missing rollup interface diagnosed
+
+The fixture-only diagnostic in47619998.2 identifies FileNotFoundError for
+the live owner's `/proc/PID/smaps_rollup`, before image fitting. A bounded
+own-process observation confirms detailed `smaps` exists (25666bytes,
+47PSS entries) while rollup is unavailable. This is an unsupported kernel
+interface assumption in our code, not an observed cluster outage.
+
+Repair only the memory reader: prefer rollup, otherwise sum PSS entries from
+the owned process's detailed smaps under a16MiB read limit. Preserve the same
+12GiB aggregatePSS cap and refusal when neither measurement is available.
+Select the single failed caller method after the source fix in the same
+attended step; reuse the unaffected first caller method fromscalar_driver001,
+both scalar methods fromscalar_cleanup001 and the ASTRA PASS. Evidence for
+the diagnosis and affected rerun is scalar_driver002. No empirical launch yet.
+
+## 2026-10-12 23:40 Pacific — core_reference_calibration — caller continuation check needs diagnosis
+
+Step47619998.1 ran the selected checks06:37:17–06:37:24UTC and closed1.
+Both revised scalar-adapter methods passed (0.238s tests), and the first
+caller method passed. The caller continuation fixture failed: expected the
+deliberate TimeoutError after3 saved scalars, but received ValueError earlier.
+No empirical payload was involved. ASTRA schema/semantic validation and
+batch shell syntax passed. Preserve all evidence under scalar_driver001 and
+scalar_cleanup001; reuse the unaffected passing methods.
+
+Source review cannot establish the exception cause. Select one bounded
+diagnostic invocation of that single failed method, exposing its exception
+trace only on the existing tiny fixture, in another attended2CPU/2GiB/3min
+companion of47619998. No empirical job or unexamined retry is selected.
+
+## 2026-10-12 23:36 Pacific — core_reference_calibration — worker lifetime fix expands affected check selection
+
+Before tests ran, review found that an early-finished worker could exit while
+the driver still included its PID in shared-memory measurement. Retain idle
+workers until the complete fit's existing cleanup/reap step. This changes
+worker lifetime, so select both scalar-adapter methods plus both caller methods
+in the already-open47619998.1 companion, replacing the narrower one-method
+cleanup selection. Numerical solver/settings remain unchanged.
+
+## 2026-10-12 23:35 Pacific — core_reference_calibration — complete-grid caller checks selected
+
+The separate caller now preserves all13x61 first-pair image fits and both
+original validation sides, with private coefficients/scores and public cost
+counts. Explicit future continuation checks initial settings before EEG access
+and fingerprints actual prepared training arrays/PCA/whitening before coefficient
+reuse. It reserves13 bounded checkpoint files, one atomic temporary and prior
+orphans against retained storage; parentRSS and aggregate parent/workerPSS are
+guarded separately. No empirical run is selected by implementation alone.
+
+Review fixed two concrete issues: Slurm's actual EndTime can exceed nominal
+StartTime+2h by seconds, so the computation uses the already-fixed deadline
+minimum; child cleanup must confirm every worker dead before another penalty.
+The prepared batch wrapper was independently reviewed with no remaining defect.
+
+Select the two caller methods plus only the affected scalar cleanup/refusal
+method in one attended2CPU/2GiB/3minute companion of47619998,160s bounded
+commands and one BLAS thread. Reuse the unchanged interruption/equality PASS.
+Node-local fixtures; no empirical payload. Validate the changed ASTRA document
+and batch shell syntax in the same step. Evidence:
+`runs/software_integration/scalar_driver001/` and `scalar_cleanup001/`.
+Parent1worker/24GiB plus companion2CPU/2GiB remain within4CPU/28GiB. Parent
+accounting is once-only. No new batch or automatic successor yet.
+
+## 2026-10-12 23:26 Pacific — core_reference_calibration — completed-scalar recovery checks passed
+
+Both new methods passed in attended47619998.0 onsh04-04n24, with zero
+errors/failures/skips. Recorded test invocation06:24:45–06:24:46UTC; tests
+0.239s, totalPython1.361808463s, parent peakRSS52465664bytes and child high-water
+44048384bytes. Evidence: `runs/software_integration/scalar_checkpoint001/`.
+The shell exited0; charge its parent once. Interrupted/resumed two-worker
+LSMR produced bitwise-identical coefficients, stop codes and iteration counts
+to original serial fitting on the selected fixture. This establishes software
+recovery behavior, not real-data speed or full-grid affordability.
+
+The real-data caller remains inactive while its complete-grid/resume integration
+is implemented and reviewed. It must bind regenerated prepared arrays before
+reusing saved coefficients and account for shared parent/worker memory using
+aggregate proportional resident memory. No new fitting job is submitted here.
+
+The cache continuation47619998 is confirmed RUNNING onsh04-04n24; its initial
+metadata reuses all36 pair caches and3 context folds. The changed ASTRA schema
+and semantic validation passed inside that job. Original preparation continues.
+
+## 2026-10-12 23:24 Pacific — core_reference_calibration — completed-scalar recovery checks selected
+
+Inactive `code/core_reference_scalar_checkpoint.py` now calls the unchanged
+zero-start scalar LSMR solver and saves each completed contrast in an atomic,
+bounded private archive per penalty. It supports up to four fork workers
+sharing prepared state; original order and all61 contrasts are required before
+returning a fit. No partial-grid score, new solver or empirical invocation is
+selected. Root source review found no blocking issue; independent review continues.
+
+Select exactly two new methods in an attended2CPU/2GiB/3minute companion of
+running47619998, with160s timeout and one BLAS thread per worker. Tiny8x8
+fixtures compare interrupted/resumed2-worker execution bitwise against the
+original61-column serial solve, and test mismatched/corrupt records plus
+worker failure refusal. No empirical payload or scientific simulation study.
+Main preparation uses one worker and24GiB RSS guard, keeping combined limits
+within4CPU/28GiB. Node-local fixtures and32MiB evidence files; public evidence
+will be `runs/software_integration/scalar_checkpoint001/`. Charge the parent
+once, disclose the companion interval, and close its shell after the checks.
+
+## 2026-10-12 23:13 Pacific — false_partition_preparation — continuation submitted
+
+Slurm accepted47619998 with the selected4CPU/28GiB/4h request and16CPUh
+maximum reservation. Public operations are
+`runs/false_partition_preparation/prepare_continuation_operations_20261013_001/`.
+At06:13:51UTC it is PENDING. This continues original cache preparation only; submission establishes neither
+completion nor a scientific result. No second continuation or search is launched.
+
+## 2026-10-12 23:13 Pacific — false_partition_preparation — resume three remaining context folds
+
+Attended metadata-only step47377474.1 onsh02-15n09 exited0. The unchanged
+configuration/cache binding passes; all36 pair caches and3of6 context folds
+are complete, no partial pair or pending metadata commit exists, and the
+complete-cache manifest is absent. No arrays, EEG or scientific scores were
+opened. Shell syntax also passed in compute. Independent source review found
+no blocking defect in the prepare-only continuation.
+
+Select `code/run_false_partition_prepare_continue001.sh prepare` in one
+russpold,4CPU/28GiB/4h allocation, one numerical worker,24GiB RSS guard and
+unchanged8GiB array admission. Reserve16CPUh within the original12000CPUh
+budget; the4CPU request fits the observed8GiB/core site ceiling and128-core
+episode cap. Preparation alone maps approximately11.1GiB of pair files plus
+small buffers; the previous96GiB request included the separate search.
+Four hours is a bounded continuation, not a completion prediction.
+
+Retain original36 completed pairs and3 complete contexts; restart only the
+unfinished context fold. Preserve original producer/config,72GiB cache cap,
+all data/scientific requirements and absolute deadline1791927000. No search,
+EEG fit, audit access, new simulation or automatic retry is selected. Fresh
+operations: `runs/false_partition_preparation/prepare_continuation_operations_20261013_001/`.
+The changed ASTRA recipe will validate once inside this substantive job;
+metadata/schema tooling is non-gating. Actual submitted ID follows below.
+
+## 2026-10-12 23:10 Pacific — false_partition_preparation — bounded continuation diagnosis selected
+
+Select one metadata-only invocation of the prepared continuation wrapper's
+`inspect` mode in an attended1CPU/1GiB/2minute CPU-only step of task-owned
+EP21 parent47377474. It reads bounded original configuration/settings/progress
+JSON and returns only completed-cache counts and operational resource facts;
+no arrays, EEG, assignments or scores are read. Module setup plus a25s child
+timeout is bounded by the step. Main training uses one numerical worker and
+a15GiB RSS cap, preserving its2CPU/16GiB allocation with this companion.
+Charge only the EP21 parent once. No new batch job or empirical continuation
+is selected until the progress observation supports it.
+
+## 2026-10-12 23:07 Pacific — core_reference_calibration / false_partition_preparation — stage limits reached
+
+Scheduler and public operations confirm both parents are terminal.
+Core47591674 ended FAILED124:0 after7147seconds at2CPUs: charge3.970555556
+allocatedCPUh once and release0.029444444CPUh from its4CPUh reservation.
+Its termination record reports zero completed inner/outer splits, stopping
+in the first13-penalty image grid. Scalar fits were not separately saved;
+the prepared whole-split continuation cannot recover this partial grid.
+Evidence: `runs/baseline_models/core_reference_operations_20261013_001/initial_47591674/`.
+
+False-preparation47584692 ended FAILED75:0 after10844seconds at13CPUs:
+charge39.158888889 allocatedCPUh once, including all recorded companions,
+and release12.841111111CPUh from its52CPUh reservation. Its public prepare
+report records time_or_signal at10794.505seconds and peakRSS4294221824bytes.
+The wrapper limited preparation to10800seconds; search never started.
+Unchanged preparation code supports completed-pair and128-row continuation;
+incomplete context folds restart. Do not replay the fresh-initial wrapper.
+Evidence: `runs/false_partition_preparation/false_partition_operations_20261012_001/initial_47584692/`.
+
+Next work is a separately selected prepare-only continuation and finer scalar
+checkpointing/cost measurement. Neither stop is a negative scientific result.
+No new empirical job is selected here; original clock and scope remain.
+
+## 2026-10-12 20:34 Pacific — core_reference_calibration — exact reuse checks and independent review passed
+
+Both new methods passed in attended step47584692.3 onsh03-01n45, with
+zero failures/errors/skips. The step ran03:33:26–03:34:16UTC, exited0 and
+closed its shell. Test runtime41.070seconds; total Python44.811127seconds;
+peakRSS114708480bytes. The changed ASTRA program also passed schema and
+semantic validation. Evidence:
+`runs/software_integration/paired_core_reuse001/{checks.txt,checks_stderr.txt,status.txt,astra.json}`.
+
+The full fixture comparison found array-exact equality for all30 original
+inner loss curves, all6 outer choices/coefficients/penalties and the complete
+participant result. Actual oracle-fit calls were438 for the original and228
+for paired reuse; changing only one validation side left the shared training
+fits and the opposite validation scores unchanged. Independent source review
+also found no concrete defect and checked the actual training-preparation
+implementation, separate denominators, sorted reduction order and bounded
+training-state lifetime. These are focused software-equivalence evidence,
+not measured real-data speedup, a new full-scale cost result or activation.
+
+The original47591674 run, current remaining-person wrapper and all scientific
+settings remain unchanged. Retain this qualified helper for a separately
+selected future invocation after actual first-person cost/termination evidence.
+It provides no checkpoint continuation by itself. Parent47584692 is charged
+once; disclose this additional50second interval as well as the earlier6,10
+and13second companions in its wall-time observations.
+
+## 2026-10-12 20:33 Pacific — core_reference_calibration — exact paired-training implementation and two checks selected
+
+New `code/core_reference_paired_inner.py` is an inactive alternative to the
+original `fit_person` API. Root inspected its complete source and two methods:
+one training cache is shared by each symmetric pair, both validation sides
+keep separate designs/targets/nuisance denominators, and all original sorted
+inner reductions and six outer fits remain. Only small paired loss records
+survive each training set. No existing producer, recipe or running caller changed.
+
+Select the two new methods once in an attended1CPU/1GiB/180second companion
+of the same running parent47584692, with160second timeout and5second grace,
+one numerical thread, original qualified Python, node-local fixtures,
+32MiB per-output limit and1GiB post-run peakRSS acceptance limit. The first
+method compares all30 inner curves and all6 outer choices/coefficients against
+the original full fixture; it also checks438 versus228 actual fitting calls.
+The second changes only one validation side and checks that shared fits and
+the other side's errors do not change. It uses the existing independent dense
+oracle for the unchanged iterative solver; no real-data throughput or full
+iterative convergence is inferred. Together the tests require694 small oracle
+fits, each at most100 columns/192 rows/61 targets. Runtime is unmeasured but
+expected within the bounded step, with fixture arrays well below1GiB.
+
+Evidence: `runs/software_integration/paired_core_reuse001/`. The changed ASTRA
+document may validate once as an optional command in the same step. No new
+batch job, scientific simulation, empirical read, resource grant or production
+activation is selected. Parent accounting remains once-only, with this added
+companion interval disclosed; original full-scale cost work continues unchanged.
+
+## 2026-10-12 20:27 Pacific — core_reference_calibration — checkpoint and duplicate-training behavior established from source
+
+Bounded source inspection explains the empty public participant streams:
+`production_core_reference.main` prints its operational JSON only after
+`run_participant` returns. Progress is held in memory until its termination
+record; empty stdout alone is not a stalled-process diagnosis. Completed
+inner grids save paired JSON/NPZ records immediately, and completed outer
+folds retain their transforms, fits and results. The current CLI nevertheless
+refuses an existing participant directory and does not read these checkpoints.
+A later continuation would need a separate reviewed implementation; do not
+invoke the current CLI as a resume or count an orphan NPZ as completion.
+No private record, coefficient, loss curve or score was opened in this review.
+
+One exact computational reuse is supported by the original split function:
+inner(i,j) and inner(j,i) have identical ordered eight-block training sets,
+weights, training-only feature transforms, nuisance fit and whitening. Their
+held-out pairs and nuisance denominators remain separate. A worker is preparing
+an inactive alternative that computes each of15 unordered training pairs once,
+scores both original validation pairs, restores the original increasing-index
+averaging order and retains all30 inner plus6 outer logical evaluations.
+It preserves all13 penalties,61 contrasts, original LSMR settings and every
+model. The expected actual multivariate-fit call count is228 rather than438;
+this is source arithmetic, not measured speedup or qualified equivalence.
+
+Only new, unused source/test files are being written. Current running code,
+partial artifacts, scientific recipe and2h first-person deadline are unchanged.
+No continuation, new resource reservation, replacement cost attempt or
+remaining-person launch is selected by this implementation preparation.
+
+## 2026-10-12 20:21 Pacific — development_scientific_release — five component checks passed
+
+Attended step47584692.2 verified sh03-01n45 and its own allocation, ran
+03:21:02–03:21:15UTC and exited0. All five selected methods passed with
+zero skips, errors or failures in3.602seconds. Total Python time was
+7.391920seconds and process peakRSS97083392bytes. The changed ASTRA document
+passed its schema and semantic validator. Evidence is
+`runs/software_integration/postfreeze_components001/{checks.txt,checks_stderr.txt,status.txt,astra.json}`.
+The attended shell exited; no test process or supervisor remains.
+
+This qualifies the new component behavior on its focused fixtures, including
+the original complete-cohort artifact composition and independent t-quantile
+formula comparison. It is not an empirical result or production activation.
+All full-scale capacity, repeated-image, negative-lag/shift, recovery,
+reliability, precision, influence and release requirements remain. The
+scientific worker was unchanged; include this13second concurrent interval
+in the parent's cost disclosure and charge that parent only once.
+
+Independent source review subsequently returned no concrete findings for the
+cohort connector and its two methods: original producer/serializer bindings,
+all30-by-six coverage,1440 comparisons, exact saved matches, exclusive
+publication and release boundaries agree. The reviewer inspected no empirical
+payloads and did not rerun the passing checks. This closes the earlier pending
+source-review item without another execution.
+
+## 2026-10-12 20:20 Pacific — development_scientific_release — five focused component checks selected
+
+The two new inactive components are frozen for their first focused execution:
+`production_selected_design_cohort.py` binds the original frozen baseline and
+saved penalties, computes six outer design checks per person and requires
+all30 people/180 folds/1440 false matches; `participant_endpoint_inference.py`
+computes the registered participant-level intervals and conditional numerical
+classification evidence. Root reviewed the concrete artifact and serializer
+connections; a separate worker reviewed the inference source without a finding.
+Independent cohort source review is still pending and does not delay these
+bounded software checks. Active scientific callers remain unchanged.
+
+Select exactly two cohort and three inference methods in one attended step
+inside running parent47584692 onsh03-01n45. Request1CPU/1GiB/180seconds;
+use its qualified EP18 Python3.12 environment, one numerical thread,160second
+test timeout, node-local temporary fixtures,32MiB per-output cap and a1GiB
+post-run peakRSS acceptance limit. The parent remains13CPU/96GiB with one
+scientific worker/90GiB RSS guard, so this companion fits the existing
+allocation. No new parent, extension, simulation campaign or empirical input
+access is selected. Reuse all prior passing checks. The changed ASTRA document
+may be validated once as a separate optional command inside the same step.
+
+Evidence belongs in `runs/software_integration/postfreeze_components001/`.
+Charge parent47584692 once to EP18 and disclose this additional short overlap
+alongside its earlier6second and10second EP15 companions. No full-scale
+capacity qualification, accepted bank, model comparison or scientific release
+is established by passing these checks. Actual result and step ID follow.
+
+## 2026-10-12 — development_scientific_release — missing components scoped; numerical inference convention fixed before outcomes
+
+Source review confirms that `run_tuned_participant(phase='fixed_panel')`
+immediately fits/scores compared models and cannot enforce the required
+all30-by-six precomparison ordering. Existing source also lacks the complete
+repeated-image odd/even template pipeline, negative-lag and37/73/109 shifts,
+cohort influence/sensitivity aggregation, recovery/precision evaluator and
+one-shot release writer. The prepared EEG cache excludes the2400 repeated
+events per participant, so that control requires its own faithful data path.
+No complete control/release connection is claimed from calling fixed_panel.
+
+Two workers are preparing separate unused components: a complete selected-design
+cohort stage using the existing frozen baseline and outer choices, and an
+array-only participant inference stage. The former must retain all30-by-six
+streamed design checks while never exposing concept/false scores. The latter
+must retain all9 primary,3 positive and4 negative endpoints with the fixed
+30-development/16-audit roles. Neither grants scientific release or replaces
+missing controls; active callers and running jobs remain unchanged.
+
+For the declared simultaneous upper-and-lower negative-control family at
+total alpha.05, select the standard joint two-tailed Bonferroni calculation:
+t(1-.05/8, n-1), covering both tails of all four endpoints. Primary positive
+bounds use t(1-.05/9), primary two-sided classification t(1-.05/18), positive
+controls t(1-.05/3), and the single linear-label diagnostic t(.95). All use
+participant sample-SD/sqrt(n); zero SD gives point bounds under the same
+formula, without epsilon or exclusions. Margins are derived only from frozen
+G/T by the four original formulas/floors, not independent fitted thresholds.
+This records the mechanical numerical convention before outcomes, with no
+new normalization, model choice, gate waiver or scientist decision inferred.
+
+No source check or empirical execution is selected by this preparation entry.
+The unfinished full-scale exact-capacity cost and every original control,
+reliability, recovery, precision and scientific-release condition remain.
+
+## 2026-10-12 — baseline_models — direct GPU SVD documentation narrows a prospective backend requirement
+
+NVIDIA's pinned [CUDA12.4.1 cuSOLVER reference](https://docs.nvidia.com/cuda/archive/12.4.1/cusolver/index.html#cusolverdnxgesvd)
+documents float64 full SVD and overwriting the input with right singular
+vectors via jobvt='O', plus explicit host/device workspace queries. One
+74160-square float64 buffer is43997644800bytes (about40.98GiB); overwrite
+could avoid a second such buffer. This arithmetic is not total device demand
+or evidence that QR, projection and SVD together fit an allocated GPU.
+
+The [official release history](https://docs.nvidia.com/cuda/archive/12.4.1/cuda-toolkit-release-notes/index.html)
+places the fix for gesvd-family incorrect results above dimension18918 with
+singular vectors in CUDA12.2 Update2. Any prospective large-vector backend
+must establish that its actual cuSOLVER build includes that fix; an unrelated
+small-matrix pass would not address the documented size-specific issue.
+No installed library was inspected, environment changed, GPU algorithm
+implemented, or compute selected here. Workspace, complete-factor numerical
+behavior and actual full-model throughput remain unresolved.
+
+## 2026-10-12 — baseline_models — full-capacity bottleneck localized to computational backend
+
+Fresh source assessment clarifies that exact matching algebra is already
+implemented. `code/streamed_slot_capacity.py` retains every slot direction
+and all13 ridge penalties, with added-term EDF distinct from incremental EDF.
+`production_baseline_controller.py` already calls this streamed implementation;
+`streamed_tuning_adapter.py` provides outer rematching and all-eight
+spectrum/leverage comparisons. The complete cohort precomparison/control/release
+caller remains unconnected. No empirical data or private result was read in
+this assessment, and no implementation or scientific recipe changed.
+
+Streaming resolves the simultaneous-design memory problem, but the current
+full FIR slot still has q=1854*40=74160 columns and requires dense square-root
+factorization plus full-direction row projections. An explicitly conditional
+classical QR work proxy is f(n,q)=2*n*q^2-(2/3)*q^3. Taking400000 inner and
+500000 outer training rows, and optimistically reusing15 distinct inner plus6
+outer training sets, three FIR recipes over30 people and9 categorical slots
+give3*30*9*[15*f(400000,74160)+6*f(500000,74160)] =
+7.556059603086336e19 operations. This assumes reuse not implemented by the
+current30-inner-split caller and excludes penalty rows, the tenth nonlinear
+label slot, base QR, SVD, leverage, fitting and other branches. Completing
+that proxy within12000CPUh would require about1.75e12 operations/second per
+allocated core. These are dimension-conditioned arithmetic, not observed
+row counts, actual DTPQRT runtime, or an impossibility bound for other exact
+algorithms/GPU execution. They do not admit a full current-backend launch.
+
+The scientific contract does not mandate QR/SVD or publication of every
+singular value. Equivalent exact functionals are allowed. However, the adopted
+`selected_design_diagnostics.py` uses spectral mean, sample-SD normalization
+and full empirical Wasserstein-1 in addition to the five relative quantiles.
+Computing only selected eigenvalues would omit required evidence. Exact
+shifted solves/selected inversion could obtain EDF and joint leverage, but
+would not by themselves finish the required spectral comparison.
+
+Categorical event-overlap accumulation can form the sparse part of
+T=Za'WZa-C'C without generic dense row projection. The shared-base correction
+is generally dense and potentially high rank; actual timing/masks do not
+justify independent lag blocks. A normal-Gram eigensolver is not scientifically
+prohibited, but faithful treatment of cancellation and small eigenvalues,
+without clipping or discarding directions, remains unresolved. No concrete
+cheaper complete replacement is ready to implement or launch. This is a
+current-backend computational blocker, not missing matching inequalities or
+new information requested from the scientist.
+
+Continue the selected real-data core-reference and false-bank jobs. Completing
+the core calibration would enable its original baseline/margin role; full
+concept comparisons still require a resource-qualified complete exact backend,
+cohort precomparison, controls and the original scientific release conditions.
+No additional simulation campaign, full-size cost job or model reduction is
+selected by this source assessment.
+
+## 2026-10-12 19:48 Pacific — core_reference_calibration — unused remaining-person wrapper prepared
+
+Prepared `code/run_core_reference_remaining001.sh` and the
+[remaining-person plan](proposed_core_reference_remaining001.md). The source
+uses one fixed28-person array, followed after successful completion by a
+substantive sub49 fit plus the sole all30 finalizer in the same parent. It
+reuses the original initialized root, source CLI, full36 splits/438 fits per
+person, all30 participants,2CPU/15GiB per parent, one numerical thread,
+12GiB observed-RSS guard and2GiB per-person durable limit. Finalization has
+one additional1MiB record allowance and retains private scientific outputs.
+No reinitialization, repeated tests, automatic retries or tiny standalone
+finalization job is proposed.
+
+Root source review checked the existing CLI's completion fields, error paths
+and finalizer against the unused wrapper. No concrete defect was found; shell
+syntax/execution has not been checked on compute. This preparation selects no
+job, walltime, concurrency or new reservation. Complete public sub07 cost and
+its successful original checks are required before scaling. Coordinator must
+then select measured-cost-supported walltime/concurrency and reserve
+29*2*selected_walltime CPU-seconds, within the12000CPUh ledger and128-core
+ceiling. The existing global deadline1791927000 and prior charges remain.
+
+A separate worker completed independent source review at19:54Pacific and
+found no concrete field, cap, participant mapping or invocation mismatch.
+The separate1MiB final write allowance is compatible with the existing
+128MiB input-record limit; termination grace remains within the global clock.
+This adds source evidence only: no shell execution, payload read, resource
+selection or submission occurred. Complete sub07 cost remains the next
+execution-admission dependency.
+
+At02:48:04UTC, core47591674 remained RUNNING48:54 and false47584692
+RUNNING39:15; neither has an exit record. No complete participant fit or
+control-search result is inferred. The unused wrapper does not change either
+running process or authorize scientific release.
+
+## 2026-10-12 19:39 Pacific — false_partition_preparation — second EP15 companion completed in ten seconds
+
+Attended step47584692.1 ran02:38:26–02:38:36UTC, exiting0. All ten selected
+EP15 candidate checks passed under its actual encoding_model runtime in
+1.184seconds, total Python9.579483seconds, peakRSS66854912bytes. No EP18
+payload or source was touched; the step has exited. Account parent47584692
+once, including this ten-second and the earlier six-second overlap. Disclose
+both in its operational timing; do not present this as an uncontended cost.
+
+## 2026-10-12 19:38 Pacific — false_partition_preparation — second bounded EP15 companion selected
+
+Root selects one additional attended1CPU/1GiB/180-second step in running
+parent47584692 for three new EP15 integration checks and seven new certificate
+checks under EP15's actual existing Python environment. The latter specifically
+closes the different-runtime gap from47584692.0. One numerical thread and
+observed1GiB processRSS cap fit beside the unchanged single scientific worker
+and90GiB main RSS guard within13CPU/96GiB. No new parent or extension is created.
+EP18 payloads and source remain untouched; all companion output belongs to
+EP15 certificate_qualification002. Charge parent once, and disclose this
+additional overlap in cost evidence rather than claiming uncontended timing.
+
+## 2026-10-12 19:27 Pacific — false_partition_preparation — EP15 companion completed in six seconds
+
+Independent attended step47584692.0 ran02:26:43–02:26:49UTC onsh03-01n45
+and exited0. Seven inactive EP15 numerical methods passed in1.808seconds;
+total Python3.734687seconds and peakRSS57806848bytes. The scientific EP18
+worker was unchanged. Parent47584692 must be charged once including this
+six-second overlap; its wall-clock cost evidence includes concurrent checks
+and is not an uncontended benchmark. The step has exited; no companion
+process or interactive shell remains. EP15 retains the evidence and its stop.
+
+## 2026-10-12 19:26 Pacific — false_partition_preparation — bounded EP15 companion selected inside existing allocation
+
+One attended independent EP15 numerical-check step is selected inside actual
+parent47584692:1CPU/1GiB requested, observed1GiB processRSS limit,180seconds
+maximum, one numerical thread, no EP18 payload access. The parent is confirmed
+RUNNING13CPU/96GiB; its scientific worker remains one with the original90GiB
+RSS guard, caps and deadline. No new job, parent extension or successor is
+created. The two workers' resource ceilings fit the original allocation.
+
+The companion writes only EP15 operational output/local scratch and qualifies
+an inactive source proposal; it changes no EP18 source, data or scientific
+scope. Charge the whole parent once to EP18. Its wall-clock cost observation
+will include this short concurrent step and must be reported with that overlap,
+not presented as an uncontended timing measurement. Actual completion follows
+in the EP15 log; no PASS is inferred from this selection.
+
+## 2026-10-12 19:10 Pacific — false_partition_preparation — complete inputs admitted; first-person cache preparation started
+
+Root scheduler observation confirms47584692 RUNNING onsh03-01n45. At
+02:09:48UTC its public operations under
+`runs/false_partition_preparation/false_partition_operations_20261012_001/initial_47584692/`
+show `input_admission.json`: assembly_complete=true,22448 images,sixfamilies,
+30 development participants,sub07 selected first,855 context channels,
+search_array_admission_bytes76700852096,EEG_read=false and
+scientific_subset_selected=false. `input_preparation.txt` reports
+`false_partition_inputs_complete`,30 participants and22248 main images.
+
+The sequential wrapper has created both cache-preparation streams, presently
+empty, with no search or exit record yet. This establishes successful complete
+input preparation and dispatched cache preparation, not a completed cache or
+false-partition search. The existing13CPU/96GiB/4h request, single numerical
+worker, fixed full search and global deadline remain. Core-reference47591674
+continues its first-person fit with no public completion/error record yet.
+
+## 2026-10-12 19:07 Pacific — core_reference_calibration — all30 input bindings complete; first-person fit dispatched
+
+The public `initial_47591674/initialize_stdout.txt` under
+`runs/baseline_models/core_reference_operations_20261013_001/` reports
+`core_reference_initialized`, participant_count30 and image_families5.
+The wrapper then created the participant stdout/stderr streams and entered
+the complete sub07 reference cost attempt. No completed-person report or
+error is yet published. Scheduler observation at02:06UTC confirms47591674
+RUNNING; false-group cost47584692 remains pending. This establishes complete
+input binding and dispatched fitting, not438 completed fits, predictive
+performance or a scientific result. All original scope and resource caps remain.
+
+## 2026-10-12 19:00 Pacific — core_reference_calibration — corrected checks pass; complete input binding started
+
+The01:59:21UTC scheduler observation confirms manual retry **47591674**
+RUNNING onsh04-04n24. Its exact two selected methods now both pass in
+19.083seconds, including the corrected missing-participant refusal and the
+previously unreached complete-cohort/duplicate-publication assertions. Evidence:
+`runs/baseline_models/core_reference_operations_20261013_001/initial_47591674/core_reference_checks.txt`.
+No production code or numerical criterion changed to obtain this pass.
+
+The same substantive wrapper has entered all30 core-input initialization;
+its initialization streams exist without a completion or failure report yet.
+The empirical participant fit follows only successful complete binding.
+Keep2CPU/15GiB, one numerical thread, the original fixed30-person scope and
+global deadline. No initialization success, fitted EEG result, complete-person
+checkpoint or scientific release is inferred from these startup observations.
+
+## 2026-10-12 18:58 Pacific — core_reference_calibration — manual retry submitted as47591674
+
+Slurm accepted the selected existing wrapper as **47591674**, using
+`--partition=russpold,normal` and the unchanged2CPU/15GiB/2h request.
+Its public operations will be
+`runs/baseline_models/core_reference_operations_20261013_001/initial_47591674/`.
+The distinct prior47584937 record remains preserved. Submission establishes
+neither changed-check PASS nor empirical startup. No further retry is selected.
+
+## 2026-10-12 18:58 Pacific — core_reference_calibration — fixture error diagnosed; manual execution retry selected
+
+Job47584937 stopped at `core_reference_checks`, before all30 input
+initialization or empirical EEG loading. One of the two methods passed; the
+other reached its missing30th-participant case after its36-split/438-fit
+fixture calculations and expected `FileNotFoundError`. The production metadata
+reader correctly refuses the missing file first with
+`ValueError("bounded_metadata_file_required")`. This is a fixture expectation
+error, not a weakened cohort requirement or observed empirical failure.
+Evidence: `runs/baseline_models/core_reference_operations_20261013_001/initial_47584937/`
+`core_reference_checks.txt` and `exit.json` (two methods,18.928seconds,
+oneerror; wrapperexit1).
+
+Independent worker diagnosis and coordinator source review agree. Only the
+test assertion now expects the exact categorical ValueError. All36 splits,
+438 fixture fits, refusal to publish on29 people, complete30-person finalization
+and duplicate-publication preservation remain checked. Production code,
+recipe, release, selected participant and numerical/scientific rules are
+unchanged. No check has yet passed after this assertion edit.
+
+Terminal accounting confirms FAILED1:0, start18:55:14/end18:55:46Pacific,
+32seconds at2CPUs, CPUTimeRAW64seconds. Charge **0.017777778CPUh once** and
+release its3.982222222CPUh unused reservation. This preserves the failed job
+and all other historical charges.
+
+Select one manual execution retry of the existing substantive wrapper after
+that concrete diagnosis: same2CPU/15GiB/2h,4CPUh maximum reservation, one
+numeric thread,12GiB RSS guard, existing completed assembly dependency and
+unchanged global deadline1791926990. Its existing two-method check stage runs
+before all30 input binding and the complete sub07 core-reference cost attempt.
+No separate qualification job, broader test suite or automatic retry is added.
+The original scientific output root was never initialized by the failed
+check stage; the wrapper still requires that root to be absent before writing,
+and the new job receives a distinct job-ID operations directory. No failed
+record or partial result is overwritten. The independent false-group cost
+job47584692 remains queued and unchanged. This selection precedes submission.
+
+## 2026-10-12 18:52 Pacific — feature_preparation — complete six-family image assembly published
+
+The public
+[assembly report](runs/feature_preparation/image_features_full_20261012_001/assembled/report.json)
+records `all_image_features_completed` and
+`all_images_each_family_exactly_once=true`: all22,448 images for low-level851,
+supervised ResNet50, DINO ResNet50, CLIP image, BLIP-caption/CLIP-text and
+DINOv2 families. Their dimensions remain851/2048/2048/512/512/1536 and
+source-task counts2/1/1/2/16/4. Artifact bytes before the final report are
+691,479,654; assembly process time is76.105072seconds. No feature values or
+EEG outcomes were opened by the coordinator.
+
+The wrapper records stagecompleted/exit0. Scheduler accounting at01:52UTC
+independently confirms assembler **47584687** COMPLETED0:0, start18:50:05,
+end18:51:33Pacific, elapsed88seconds at one allocatedCPU. Charge
+**0.024444444 allocated CPU-hours once** toEP18 and release the remaining
+0.975555556CPUh of this assembler's reservation. The separate9CPUh recovery
+chain has now consumed1.269444444CPUh including its already-charged worker;
+the total unused7.730555556CPUh is released without resetting any original
+failed-attempt charge.
+
+At01:52UTC the already-submitted false-group cost47584692 and complete
+core-reference cost47584937 are pending with their dependencies satisfied.
+Their selected recipes, limits, first-person scope and no-retry rules remain
+unchanged. This assembly completes image extraction; it does not establish
+false-bank acceptance, qualified complete modeling, EEG prediction results or
+scientific release. No new job or additional check is selected.
+
+## 2026-10-12 18:50 Pacific — feature_preparation — all image shards complete; assembly starting
+
+At01:49:51UTC the permitted public reports and wrapper exits confirm the last
+four BLIP tasks10/11/12/14 as `complete_image_shard`, each with1,403 images
+and exit0. The same evidence had confirmed8/9/13/15 at01:47:05UTC. Coordinator
+accounting at01:50UTC confirms all16 original BLIP tasks6–21 COMPLETED0:0.
+Together with the nine successful original fast tasks and the separately
+completed full task-5 replacement, all26 required shards are available for
+the already-selected complete assembler. No failed partial rows are reused.
+
+Assembly **47584687** is CONFIGURING onsh02-06n03 in the01:50:08UTC scheduler
+observation, not yet reported complete. Its original scope still verifies all
+six families and22,448 images before publishing the shared feature assembly.
+False-group cost47584692 and real-EEG core-reference cost47584937 remain
+queued behind its successful completion. No duplicate job or new scope is
+selected; no EEG model result follows from image preparation.
+
+Terminal array accounting is now charged once toEP18 from allocation-level
+CPUTimeRAW, including every unsuccessful attempt:
+
+| Original array | Terminal tasks | Allocated CPU-seconds | Allocated CPU-hours |
+| --- | ---: | ---: | ---: |
+| 47551335, indices0–5 and22–25 | 10 (9complete, task5failed137:0) | 35,669 | 9.908055556 |
+| 47551337, indices6–21 | 16complete | 145,387 | 40.385277778 |
+
+The failed original task5 accounts for7,148 of the first row's seconds and
+is not removed or charged again. These two new array charges total
+50.293333333CPUh. The original builder's already-recorded1.570277778CPUh
+remains charged once, giving51.863611111CPUh actually consumed by the original
+91CPUh chain; its never-started canceled assembler consumed zero. Release
+the39.136388889CPUh unused remainder of that original reservation. The
+separate CLIP recovery's previously charged1.245CPUh and its pending1CPUh
+assembly reservation remain distinct, as do all other historical charges and
+already-selected downstream cost reservations. Child process timings do not
+add another physical allocation charge.
+
+## 2026-10-12 18:42 Pacific — feature_preparation — complete CLIP replacement published
+
+Recovery worker **47584681** completed the entire original task-5 shard.
+The public `image_features_full_20261012_recovery001/recovery_complete.json`
+records `complete_replacement_task`, job47584681 and all11,224 images. Its
+`tasks/task_00005/report.json` independently records11,224 inferences,
+`complete_image_shard`, original range[11224,22448), CLIP ViT-B/32 image
+features, dimension512, float32 and batch1. Durable feature bytes are22,986,880
+and detail bytes796,904. The original failed task and unused partial rows
+remain preserved; no partial output was substituted.
+
+The worker's public operations `execution.txt` and `exit.json` record complete
+encoding and exit0. Coordinator accounting at01:42UTC confirms COMPLETED0:0,
+actual start18:03:57 and end18:41:18Pacific, elapsed00:37:21 on2CPUs,
+CPUTimeRAW4482seconds. Charge **1.245 allocated CPU-hours once** toEP18,
+including its independent EP21 companion and attended software-check steps;
+do not charge those again toEP21. Release only the unused worker reservation
+(6.755CPUh of8); the already-queued assembler's1CPUh reservation remains.
+The final encoding progress record reports2194.434268seconds and1,394,960KiB
+process peakRSS, distinct from the whole allocation's elapsed time.
+
+All eight original BLIP tasks were still running in the01:39UTC scheduler
+observation. Assembly47584687 continues to require the complete BLIP array;
+false-group cost47584692 and core-reference cost47584937 remain dependent on
+assembly. Their existing dependency chain needs no duplicate submission.
+Complete six-family image assembly, EEG prediction and scientific release
+are not established by this shard completion. Only public operational and
+completion metadata were inspected; no feature values or EEG outcomes opened.
+
+## 2026-10-12 18:05 Pacific — core_reference_calibration — first complete reference attempt submitted
+
+Recipe, exact eight-field release, connector, two tests and batch wrapper
+pass independent source review. Job47584937 requests2CPU/15GiB/2h after
+complete assembler47584687. The selected4CPUh includes all30 input binding,
+the two mandatory core methods and the complete sub-07 fitting attempt.
+No core method or empirical fit has executed yet. Source/configs are frozen;
+original retry, scope, private-output and scientific-release boundaries remain.
+The optional duplicate ASTRA invocation was removed before submission:
+the18:04:14 program already passed in recovery47584681 at18:04:24, including
+the new core_reference_calibration analysis. No numerical source changed.
+
+## 2026-10-12 18:05 Pacific — feature_preparation — recovery executing after focused checks
+
+Worker47584681 is running onsh03-06n11 with actual2CPU/15GiB. Both recovery
+methods pass in0.162seconds; expected duplicate-assembly refusal in the fixture
+is not an empirical failure. EP21's eight independent methods pass in7.850seconds.
+Both changed ASTRA programs pass schema and semantic validation. Evidence:
+image_recovery_operations_20261012_001/worker_47584681/{recovery_checks.txt,astra_status.txt}
+and EP21 software_integration/amended_readout_companion001/{checks.txt,status.txt}.
+The parent is charged once toEP18. Actual CLIP execution has passed96 encoded
+images at the observation, with approximately860260KiB process peakRSS; this
+progress is not durable completion. Actual start1791853437, deadline1791867777.
+Assembler47584687 and false-cost47584692 remain dependency-pending.
+
+## 2026-10-12 — core_reference_calibration — complete real-data reference cost stage selected
+
+Select the independently reviewed core-only connector and explicit
+core_recipe_20261013_001.json / core_release_20261013_001.json. The registered
+calibration is core64/raised_cosine12, all five original feature families,
+61 sensor contrasts and all36 nested splits. This implements policy450–466
+G/T calibration before concept comparisons, under the scoped prerequisite
+interpretation already recorded below. Before any EEG value read, initialize
+the exact30-person role/event/image binding and require the complete image
+assembly plus qualified provenance. False-bank acceptance, original recovery,
+precision and scientific-release requirements remain closed for comparisons.
+
+Prospective numerical choices use existing model primitives: local Legendre
+degrees0–3, event-position0–2, recorded E3/final-offset/target/coarse-response
+nuisance terms; intercept penalty0 and other nuisance penalty1e-6. Each
+sequence has equal fitting weight, each retained sample within it equal weight;
+total fitting weight is1. All13 image ridge values10^-6 through10^6 remain,
+with exact minimum mean loss, then larger ridge, then fixed-index ties.
+Scaling and PCA are training-only float64; existing effective-rank rules apply.
+Training-nuisance residual covariance is centered with sum-weight denominator,
+fixed0.10 shrinkage toward trace(S)/61 times identity, without eigenvalue
+clipping. Normalize as the ratio of equal-sequence mean errors; require a
+strictly positive nuisance denominator. LSMR atol=btol=1e-8, conlim=1e12,
+maxiter=10000; nonconvergence fails. No EEG score informed these choices.
+
+Select one2CPU/15GiB/2h allocation for the first frozen participant sub-07,
+after assembly47584687. One numerical thread,12GiB processRSS and10GiB
+explicit working-array limit preserve the current matrix-free implementation.
+The full-outer explicit-array estimate is approximately8.28GiB at586832rows,
+before native/Python workspace; dense full-outer design would exceed14GiB.
+The first-person stage attempts all438 multivariate fits, with no reduced
+penalty/fold/image menu and no completion-time prediction. Its actual runtime
+will guide later resource selection. Maximum4CPUh includes two focused core
+software methods, complete30-person input initialization and real-data fitting.
+The global deadline1791927000 is unchanged, with actual allocation-start/end
+limits. Save up to2GiB fitted output plus128MiB initialization records privately
+at cache/private/core_reference_20261013_001; preserve partial work on a stop,
+with no automatic continuation or partial-cohort G/T estimate. Completion of
+this cost stage would give zero search credit and no scientific release.
+
+## 2026-10-12 18:03 Pacific — feature_preparation — replacement dependency chain submitted
+
+Independent source review passes for the recovery caller, two checks and
+batch wrapper. Submitted worker47584681 (2CPU/15GiB/4h), assembler47584687
+(1CPU/7GiB/1h, afterok47584681 and surviving BLIP array47551337), and the
+never-started original false-cost stage47584692 (13CPU/96GiB/4h,
+afterok47584687). The last command changes only the old batch dependency.
+At18:03 all three are pending with the exact requested resource limits;
+there is no duplicate live old assembly or false-cost job. The two recovery
+checks and eight independent EP21 methods are still unexecuted. Original
+BLIP tasks8–15 remain running; remaining completed tasks are preserved.
+Changed EP18/EP21 ASTRA validation is a bounded optional companion, separate
+from scientific admission. Current sources/configs are frozen for execution.
+
+## 2026-10-12 18:00 Pacific — feature_preparation — complete CLIP replacement selected
+
+The second attended diagnostic47579378.4 exits0 in0.846seconds and42,984KiB
+peakRSS. Its33 NPY headers around the first unwritten row are all square;
+the largest is38,642,763 decoded bytes. This does not support an extreme
+aspect-ratio explanation. The known cause of termination is the selected
+two-hour deadline; variation in per-image runtime remains unexplained.
+The observed7,638/11,224 completed encodings supports approximately2.9hours
+at the observed aggregate rate, without claiming that rate is guaranteed.
+Both diagnostic records remain under feature_preparation/image_task005_diagnostic00{1,2}.
+
+Select a separately bounded complete task5 replacement under the user's
+standing continuation/compute authorization:2CPU/15GiB/4h, one numerical
+thread,12GiB processRSS, unchanged model and all11,224 original images.
+The second CPU admits the selected memory; no extra model worker is created.
+Fresh root image_features_full_20261012_recovery001 preserves the failed
+task and reuses zero partial rows. New grant image_task005_recovery_20261012_001.json
+reserves8CPUh for this worker and1CPUh for the1CPU/7GiB/1h replacement
+assembler. Original91CPUh grant, consumed work and global deadline1791927000
+remain unchanged. Exactly two focused recovery methods gate this worker.
+An independent eight-method EP21 readout companion runs serially first,
+bounded180seconds plus5seconds termination grace; its failure does not gate
+EP18 and the parent is charged once toEP18. No held-out readout is authorized.
+
+Scheduler accounting confirms old assembler47551339 and false-cost47571099
+were CANCELLED before start at17:48:49, after the upstream failure;
+47571099 explicitly records DependencyNeverSatisfied. Both consumed zero
+CPU time. Replace the impossible assembly chain after reviewed recovery is
+ready, depending on the complete new CLIP worker and surviving BLIP array.
+All26 task reports and every original image/family remain required. Reissue
+the never-started original false-cost job with only its dependency overridden;
+its source, scientific recipe,52CPUh reservation and original deadline stay
+unchanged. This is not a second concurrent cost job or a reset of spent compute.
+Submission IDs and focused compute-check outcomes follow below.
+
+## 2026-10-12 17:51 Pacific — feature_preparation — partial CLIP progress localized
+
+Attended read-only diagnostic47579378.3 exits0:7,638 leading rows are finite,
+nonzero and approximately unit norm;3,586 rows remain zero, with no nonfinite
+rows. No partial row is accepted or reused. The first32 pixel headers show a
+515x515 first raster and maximum39,923,712 decoded bytes; this does not test
+later rasters. Evidence: image_task005_diagnostic001/report.json,1.890seconds,
+63,744KiB process peakRSS. This establishes substantial progress before the
+deadline, not a complete shard. Select a second same-sized attended header-only
+diagnostic around the inferred first zero row (absolute image index18862,
+16 neighbors on each side), to check for an extreme aspect ratio or raster.
+No new inference, resubmission, pixel-value read or partial reuse is selected.
+
+
+## 2026-10-12 — feature_preparation — CLIP task005 deadline failure diagnosed; read-only localization selected
+
+Scheduler confirms task47551335_5 (actual47567238) FAILED137:0 after1:59:08
+onsh04-04n24. Its wrapper records elapsed7141seconds and absolute deadline
+1791852283, with the timeout command forcibly killed. No complete shard or
+handled failure report exists. The23MB feature file is preallocated, so its
+size is not evidence of completed inference; the detail log is buffered. MaxRSS
+near7GiB does not by itself establish OOM or a site fault, especially because
+a successful DINOv2 task has the same accounting peak. The deadline kill is
+established; the underlying slowdown remains unresolved. All partials and
+original source/config are preserved. No resubmission is selected.
+
+Select one attended read-only diagnostic inside the existing EP21parent47579378:
+1CPU/512MiB/2minutes,60-second process timeout plus5-second grace. It counts
+zero/nonzero/nonfinite/approximately-unit-norm rows from task005's partial
+feature file in small chunks and reads only the NPY headers of its first32
+assigned images. No pixel values, captions, EEG, model inference, identity
+crosswalk, feature replacement or partial reuse occurs. Operational output:
+`runs/feature_preparation/image_task005_diagnostic001`. First32 headers can
+identify an early oversized raster but cannot rule out a later offender.
+The substantive parent remains charged once toEP21; independent fit source,
+memory/thread limits and remaining image workers are unchanged. The failed
+task currently prevents the original all-shard assembly dependency succeeding.
+
+
+## 2026-10-12 — baseline_models — separate real-data core calibration route identified
+
+Read-only contract/source review identifies a useful prerequisite route:
+the registered core64/raised_cosine12 G/T calibration (policy450–466) can be
+separated from false banks, labels/RBF, DINOv2 and full FIR added-slot capacity.
+The exact join, frozen participant roles, feature provenance/recipe and
+partition algorithm/seed requirements still apply before EEG use. Accepted-bank,
+recovery and precision gates are expressly before candidate comparison or
+candidate-discriminating score release (policy561–573; DATASETS199–213).
+GOAL's broader next-step wording must not be treated as blanket launch
+admission. This is a scoped prerequisite-calibration interpretation; candidate
+comparison and scientific-release gates remain closed. No launch is selected.
+
+Minimal future work is a core-only explicit release for the same30 people,
+EEG cache and exact event/image/time joins; a training-only five-family image
+PCA builder with unchanged nuisance/reduced-task/image designs; and a separate
+core entrypoint reusing the tested nested tuning without a candidate-search
+plan or unused label/false payloads. Retain image transforms, whitening and
+coefficients for reuse in the eventual complete search. Under the prospective
+nuisance recipe, rank64/cosine12 gives at most3840 image columns plus88 nuisance
+columns (3928 total),64 reduced-task columns and61 targets. All36 splits require
+438 joint fits/person with no ten-slot EDF factorization. Throughput remains
+unmeasured; a fixed first-person cost stage followed by all30 unchanged people
+would need explicit release, numerical recipe and finite resource selection.
+
+Current public metadata show complete low-level/supervisedResNet/DINOResNet
+features, but CLIP image1/2 and BLIP caption2/16 coverage; assembled/report.json
+is absent. The existing task00005 and00008–00021 outputs are still needed for
+complete core coverage. Their active jobs are not duplicated or replaced.
+The30-person EEG cache is complete. No empirical payload was read, model fitted,
+margin selected from outcomes, search trial credited or new execution started
+for this feasibility review.
+
+
+## 2026-10-12 17:43 Pacific — baseline_search — complete-cohort connector checks pass
+
+Attended step47579378.2 completed at00:43:40UTC, exit0. Both selected methods
+pass in59.575seconds with291,552KiB process peakRSS: full36-split baseline/core
+composition and complete30-person ordering/persistence/stopping. No empirical
+inputs or scientific scores were read. The changed EP18 and EP21 ASTRA
+programs both pass schema and semantic validation. Evidence is
+`runs/software_integration/companion003/{status.txt,checks.txt,ep18_astra_validation.json,ep21_astra_validation.json}`.
+The step has exited; parent allocation remains charged once toEP21. No actual
+search plan, numerical recipe, full-scale resource admission or scientific
+release is established. Reuse these passes without rerunning unchanged code.
+
+
+## 2026-10-12 — baseline_search — inactive complete-cohort connector reviewed
+
+Independent source review passed for `code/production_baseline_controller.py`
+and its two focused composition/persistence methods. Select just those two
+methods plus optional changed EP18/EP21 ASTRA document validation in a fresh
+attended step under liveparent47579378, verified at17:41Pacific. The selected
+`code/run_integration_checks_companion003.sh` uses1CPU/512MiB/up to4minutes;
+tests are capped at120seconds plus5seconds grace, each documentary check at
+20seconds plus5seconds grace. New output is `runs/software_integration/companion003`.
+No empirical inputs, search plan or model scores are used. Existing passing
+algorithm/adapter methods are reused. Parent CPUh are charged once toEP21;
+its independent fit source, clock and limits remain unchanged. These checks
+do not resolve the full-scale resource or scientific-release requirements.
+
+
+## 2026-10-12 — baseline_search — prospective controller semantics and cost boundary
+
+Select these outcome-blind implementation interpretations of the existing
+development_search policy: every registered factor level receives at least
+three valid trials; strict improvement in the complete30-person matched-label
+loss, exact ties by fixed plan order; prespecified one-factor challenges to an
+earlier completed baseline count as falsifiers regardless of their outcome;
+ten consecutive valid nonimprovements stop only when every original minimum
+and the40% postcoverage falsifier fraction are satisfied. Original19–44 bounds
+remain. This level-coverage interpretation implies at least12 coverage and
+ten postcoverage trials, hence an earliest22; it is not a replacement bound.
+Rank only expanded-panel candidates. Keep the registered core64/cosine12
+margin reference separate and nonranked. Initial label-family requested
+ranks64 retain the original effective-rank rules. A36-recipe uniform-rank plan
+exhausted before stopping is incomplete, never padded with duplicate trials.
+Invalid/partial attempts consume resources without valid-trial/coverage credit.
+These are explicit analyst choices where policy wording leaves implementation
+open, not claims that every interpretation is uniquely prescribed. No actual
+plan, numerical solver/covariance recipe or empirical execution is selected.
+
+BR request_scientific_review returned directive ext_review_dir_e14efbd4ffeb:
+generic review criteria, including nesting, participant independence and
+analytic flexibility. It did not provide a tailored scientific verdict or
+launch approval. Peer source review applies the concrete data/selection
+boundaries; the BR response does not establish numerical or scientific validity.
+
+The inactive production_baseline_controller retains36 full nested splits per
+person/trial, all30 participants, baseline-only losses and fitted outer
+parameters. It does not exploit unqualified split reuse. The earliest22-trial
+route would require237,600 added-slot factorizations plus594,000 multi-target
+ridge fits, before the separate reference and postfreeze controls. A full FIR
+slot at p<=20,804, q=74,160, n<=586,832 has an approximately154.76GiB backend
+array bound without leverage retention, excluding caller arrays/native buffers.
+Memory admission alone is insufficient. Dimension-conditioned dense CPU work
+estimates are incompatible with a credible full-run timing claim under the
+current12,000CPUh allowance; they are not hardware measurements or an
+impossibility result for every exact algorithm. No full-size cost job is
+selected, and this source is not a qualified or completed scientific pipeline.
+Input preprocessing continues independently. Full throughput, all30 false banks,
+selected-design qualification, original gates and scientific release remain open.
+
+
+## 2026-10-12 17:39 Pacific — baseline_models — affected integration checks pass
+
+Fresh attended step47579378.1 completed onsh03-06n05 at00:39:34UTC with
+exit0. The repaired callback method and both new tuning-adapter methods pass:
+3methods,0.573seconds,88,056KiB process peakRSS, no empirical inputs or scores.
+Evidence: `runs/software_integration/companion002/status.txt` and `checks.txt`.
+Together with the earlier three backend and full-panel callback passes, the
+changed software interfaces are checked. Full-scale throughput, actual recipe
+selection and complete controller qualification remain unresolved. The parent
+is charged once toEP21; the attended step has exited, with no service/retry.
+
+
+## 2026-10-12 17:40 Pacific — baseline_models — test-step setup failure repaired
+
+Attended step47579378.0 exited1 before imports or tests: its fresh leaf
+`runs/software_integration/companion001` had no existing parent directory.
+This is a script setup defect, not a filesystem incident. The original script
+and terminal failure remain preserved; no test PASS or empirical read occurred.
+Select fresh `code/run_integration_checks_companion002.sh`, adding only parent
+directory creation and a new companion002 destination. The leaf still requires
+exclusive fresh creation. All three selected methods and the same attended
+1CPU/512MiB/3-minute limits remain unchanged. Root verified parent47579378
+still RUNNING at17:39Pacific; no scientific source or fitting job is changed.
+
+
+## 2026-10-12 17:37 Pacific — baseline_models — affected integration checks selected in a task-owned step
+
+Root verified liveEP21parent47579378 onsh03-06n05 with3CPU/16GiB and more
+than five hours remaining. Select one attended `srun --exact` step with
+1CPU/512MiB/3minutes for only the repaired callback method and two new adapter
+methods, under `code/run_integration_checks_companion001.sh`. Its external
+timeout is120seconds plus5seconds grace, inside the unchanged parent clock.
+The independent one-thread fit retains its15GiB processRSS guard; the512MiB
+step plus512MiB remaining headroom fit within the16GiB parent. Two numerical
+threads total remain below three allocated CPUs. No oversubscription option
+or separate job/reservation is selected; the parent is charged once toEP21.
+Step admission failure does not retry or affect fitting.
+
+Both repaired source and new adapter tests passed independent source review.
+The step uses existing small fixtures, no empirical inputs or scores, and
+preserves the earlier failed output. Its fresh operational destination is
+`runs/software_integration/companion001/`; no passing result is yet claimed.
+
+## 2026-10-12 17:27 Pacific — baseline_models — exact integration adapter and narrow callback repair prepared
+
+`code/streamed_tuning_adapter.py` is implemented but not connected to the
+existing controller. It preserves the original ten slots/thirteen penalties,
+capacity matcher and six-fold/eight-bank diagnostic assembly. Selected outer
+checks retain one true and104 false leverage vectors to avoid repeating
+factorizations; their420MB at500000 rows and the explicit comparison reserve
+remain inside array admission. Square factors, caller caches and unmeasured
+O(nq^2+q^3) work still require full-scale admission. Independent source review
+passed; two new integration methods have not executed.
+
+The production binder now requires the fixed false-search recipe, identical
+adopted span and integer128-past/0-future filter context before candidate
+values. The failed existing test method now includes that binding check and
+uses8*width*float64-epsilon for raised-cosine partition-of-unity roundoff;
+the temporal basis and every scientific tolerance are unchanged. Exactly
+this repaired method and the two new integration methods require subsequent
+compute; reuse the three passing backend and passing full-panel methods.
+No new test job or empirical execution is selected here. ASTRA references the
+inactive adapter and pending affected checks; documentary validation remains
+pending. The cohort driver must separately complete all30×6 selected-design
+qualification before true/false score exposure, retain fits, and implement the
+original19–44-trial search/freeze/controls. Existing fixed_panel call order
+cannot itself supply that precomparison separation.
+
+## 2026-10-12 17:24 Pacific — baseline_models — streamed checks passed; callback fixture failure diagnosed
+
+The five-method companion completed in1.893seconds insideEP21parent47579378.
+All three streamed-backend methods and the production full-panel/shared-base
+method passed. The remaining callback method stopped at a partition-of-unity
+assertion: maximum raised-cosine sum error2.22044605e-15 versus the fixture's
+2e-15 tolerance. The unexecuted assertions later in that method are not passed.
+No empirical data or scores were read. This is a fixture roundoff issue to
+diagnose, not an observed scientific/numerical contract failure.
+
+Independent callback review also found one real prospective binding omission:
+a completed false-bank configuration was checked against its own hash but
+not against the adopted EEG span and causal128-past/0-future filter context.
+Select the narrow binding repair before any empirical use, plus a justified
+fixture roundoff bound; preserve the failed output. Both callback files can
+now be edited because their companion has finished. Source remains inactive;
+only changed methods will need rechecking alongside the new integration
+adapter. No additional empirical job, retry or bank regeneration is selected.
+Evidence is the previously linked sibling `ep18_checks.txt` and `status.txt`;
+the actual allocation is charged once toEP21. EP21's own ten checks passed and
+its independent fitting proceeds.
+
+## 2026-10-12 17:20 Pacific — baseline_models — software companion parent submitted
+
+EP21's first adapted-comparator parent was accepted as47579378, array index4.
+It contains the selected five serial EP18 fixture checks under the scope below.
+No execution or PASS is inferred from submission; the full parent is charged
+once toEP21. Production callbacks and streamed capacity remain inactive.
+
+## 2026-10-12 — baseline_models — inactive streamed backend reviewed; five software checks selected
+
+New `code/streamed_slot_capacity.py` emits bounded row blocks from the existing
+physical-sequence operators, factors the weighted augmented base and one added
+slot with triangular QR/complete float64 SVD, and returns the existing
+thirteen-point capacity curves plus explicitly requested joint leverage
+vectors. It preserves every slot singular direction, the original rectangular
+spectrum length, the caller's existing base rank cutoff and penalties, primary
+added-term EDF, separately labeled incremental EDF and full-joint leverage.
+There is no Gram clipping, shortened FIR, rank approximation, reduced panel,
+new scientific recipe or empirical reader. The existing dense fitter/tuning
+sources and active feature/false-partition jobs are unchanged.
+
+Independent source review found no concrete row-emission, algebra, rectangular
+spectrum, LAPACK-interface or explicit-array-bound defect. The three focused
+methods in `code/test_streamed_slot_capacity.py` compare existing operator and
+dense mathematical fixtures, including all13 penalties, rank-deficient base,
+zero-weight rows, wider-than-root spectra and admission/overflow refusal.
+This is a source-review result, not evidence that those methods have executed.
+`code/production_continuous_designs.py` and its two focused methods remain
+inactive implementation/self-review work; an independent callback review is
+not claimed. They supply artifact binding and training-only complete15-model
+callbacks, not the whole cohort/search controller or a selected numeric recipe.
+
+Select exactly these five affected software checks as one independent serial
+companion inside the forthcoming substantive EP21 adapted-comparator pair004
+parent. No job ID or runtime result exists at this record. The actual parent
+requests3CPU/16GiB/6h; the companion uses one numerical thread and an external
+120-second timeout plus5-second termination grace, shortened when necessary
+to remain inside the same allocation-start deadline. There is no separate
+Slurm step or fixture-specific RSS limit: the actual16GiB parent hard boundary
+applies. The full parent allocation is charged once to EP21, with no additional
+EP18 reservation. No empirical EP18 images, EEG, candidate partitions, model
+scores or audit data are read by these checks. Companion failure is recorded
+and does not prevent the independent EP21 fit. No automatic retry is selected.
+
+The planned operational evidence is in the sibling EP21 episode only:
+[ep18_checks.txt](../../episode21_wang_neural_code_conversion_reproduction/outputs/runs/brain_constant_training/pair004_sub03_to_sub01_001/ep18_checks.txt)
+and that directory's `status.txt`, with `ep18_checks_exit` and
+`ep18_checks_is_ep21_gate=false`. These are operational references, not
+scientific cross-episode inputs. Small check logs are expected; no separate
+1MiB log cap is enforced beyond the parent's existing2GiB per-file limit.
+
+The backend avoids retaining dense sample-by-slot arrays but still requires
+square factors and approximately O(nq^2+q^3) work per slot. Caller-owned
+operators/EEG and native BLAS buffers remain outside its explicit array
+allowance and require actual process admission. Complete production wiring,
+cohort persistence, accepted false banks, baseline selection/freeze and
+full-scale throughput remain unresolved. Neither source review nor fixture
+checks establish a runnable complete protocol within the unchanged deadline.
+
 ## 2026-10-12 — baseline_models — prospective callback source prepared; full-scale backend remains unresolved
 
 `code/production_continuous_designs.py` and its two focused methods in

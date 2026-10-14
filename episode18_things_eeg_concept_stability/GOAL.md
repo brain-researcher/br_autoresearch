@@ -1,5 +1,33 @@
 # Do different pictures of the same concept share an EEG pattern?
 
+## Standing-authority continuation — October 13, 2026
+
+The repository's adopted standing scientist authority reopens the unchanged
+development core-reference calibration after its engineering time stop.
+It may proceed independently of the EEG-blind control search, because it fits
+only the prespecified image and nuisance models used to estimate G and T.
+Complete all 30 assigned development participants and six outer folds per
+person before reporting these estimates with participant-level uncertainty.
+Numerical implementation and finite job limits may be repaired directly;
+the scientific question, margins, participant roles, candidate-comparison
+requirements and closed audit remain unchanged. The search-only amendment
+below is retained as history of that particular continuation, not a renewed
+prohibition on the separately authorized core analysis.
+
+## Adopted search-only continuation — October 13, 2026
+
+The scientist adopted the reviewed bounded continuation at 21:43:13 UTC.
+One job may resume the existing sub-07 matched-control generator from job
+47679999's saved checkpoint, with 13 requested CPUs, 96 GiB and a ten-hour
+allocation ceiling. Its separate execution window ends October 14 at 21:43:13
+UTC; the cooperative work bound is nine hours and remains inside that window.
+The original October 13, 21:30 UTC deadline and incomplete study disposition
+are preserved. This amendment neither restarts the full 336-hour clock nor
+opens EEG fitting, new participants or the held-out audit. All saved search
+state, eight required controls, starts, criteria and prior resource charges
+remain unchanged. See the [adopted plan](outputs/proposed_bounded_generator_continuation.md)
+and [decision record](outputs/experiment_log.md).
+
 Imagine seeing twelve very different pictures of a dog. Ten pictures are used
 to estimate the response shared by the concept, and two new dog pictures are
 held out. Can that shared response improve prediction of the held-out EEG

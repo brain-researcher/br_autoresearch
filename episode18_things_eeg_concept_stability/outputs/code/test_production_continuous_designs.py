@@ -3,7 +3,7 @@
 Reuse the qualified sequence bridge fixture. No empirical artifacts, model
 search, recovery simulation or EEG inference is run by these checks.
 """
-from dataclasses import replace
+from dataclasses import asdict, replace
 from types import MappingProxyType, SimpleNamespace
 import unittest
 
@@ -14,7 +14,8 @@ from continuous_sequence_model import JointSequenceDesign
 from continuous_tuning import _verify_base
 from prepare_continuous_eeg import prepare_participant_sequences
 from production_continuous_designs import (BASELINE_TIE, CAPACITY_TIE, NUISANCE_RECIPE,
-    TemporalBasis, TrainingDesignBuilder, _kernels, make_tuning_recipe, validate_recipe)
+    FALSE_PARTITION_RECIPE, SPAN, TemporalBasis, TrainingDesignBuilder, _kernels,
+    _require_candidate_context_recipe, make_tuning_recipe, validate_recipe)
 from slot_capacity import RIDGE_GRID
 from test_prepare_continuous_eeg import fixture, raw_reader
 from training_transforms import CORE_IMAGE, LABEL
@@ -98,6 +99,16 @@ class ProductionDesignTests(unittest.TestCase):
             builder(replace(view, sample_times_seconds=view.sample_times_seconds + .001))
 
     def test_explicit_recipe_basis_edges_training_covariance_and_deterministic_ties(self):
+        context = dict(recipe_id=FALSE_PARTITION_RECIPE, recorded_span_recipe=asdict(SPAN),
+                       filter_left_support_samples=128, filter_right_support_samples=0)
+        _require_candidate_context_recipe(context)
+        changes = (dict(recorded_span_recipe=dict(asdict(SPAN), post_last_inclusive_samples=799)),
+                   dict(filter_left_support_samples=127), dict(filter_right_support_samples=1),
+                   dict(recipe_id="unselected_context_recipe"), dict(filter_left_support_samples=True),
+                   dict(filter_right_support_samples=False))
+        for change in changes:
+            with self.subTest(context_change=tuple(change)), self.assertRaises(ValueError):
+                _require_candidate_context_recipe(dict(context, **change))
         selected = recipe()
         incomplete = dict(selected)
         incomplete.pop("shared_feature_penalty")
@@ -111,7 +122,12 @@ class ProductionDesignTests(unittest.TestCase):
         for width in (8, 12, 16):
             basis = TemporalBasis(f"raised_cosine_{width}")
             values = basis(np.arange(801) / 1000.)
-            np.testing.assert_allclose(values.sum(axis=1), 1., rtol=0., atol=2e-15)
+            # Subtracting represented centers and dividing by their spacing
+            # amplifies floating-point coordinate error by O(width). Adjacent
+            # raised cosines sum to one analytically; retain the actual basis
+            # values and allow coordinate/cosine/addition roundoff only.
+            np.testing.assert_allclose(values.sum(axis=1), 1., rtol=0.,
+                                       atol=8*width*np.finfo(np.float64).eps)
             self.assertEqual(values[0, 0], 1.)
             self.assertEqual(values[-1, -1], 1.)
         tuning = make_tuning_recipe(selected)
