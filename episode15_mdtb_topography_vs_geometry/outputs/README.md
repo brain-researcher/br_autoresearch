@@ -8,11 +8,11 @@ differences are +0.0216565, -0.0149902, -0.00830282 and -0.0108881.
 These are descriptive out-of-fold predictions, conditional on target availability;
 overlapping training precludes naive participant confidence intervals. No winner,
 recovery or mechanism claim is made, and the original participant audit stays closed.
-[Figure, local Oak copy](figures/observed_beta_development001/observed_beta.png) ·
+[Figure](figures/observed_beta_development001/observed_beta.png) ·
 [Three-line summary](figures/observed_beta_development001/3lines.md) ·
-[Complete report, local Oak copy](figures/observed_beta_development001/observed_beta_report.json).
-The aggregate three-line summary is tracked in Git. Participant-level JSON and
-the figure's individual points remain on Oak under the DATASETS.md data rule.
+[Complete report](figures/observed_beta_development001/observed_beta_report.json).
+The scientist's October 14 publication instruction includes the figures and
+complete released numeric report in Git, along with the three-line summary.
 Earlier status entries below are historical.
 
 **October 14 — complete real-data retry submitted as 47751452.**

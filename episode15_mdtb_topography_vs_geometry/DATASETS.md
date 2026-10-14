@@ -104,8 +104,11 @@ Task-B maps.
 
 License statements differ across the Zenodo record, bundled metadata, and a
 provider page. Until the owners reconcile them, retain attribution and use the
-data noncommercially. Do not commit participant maps or derived participant
-data to this repository.
+data noncommercially. Raw participant maps remain outside Git. The scientist's
+October 14, 2026 publication instruction authorizes released figures and compact
+derived result reports, including deidentified participant scores and dataset
+labels, in this repository. This does not open the sealed audit or change source
+data agreements.
 
 ## What the release contains
 
