@@ -1,0 +1,1382 @@
+{
+  "adaptive_search_complete": false,
+  "audit_access": false,
+  "bootstrap": {
+    "draws": 10000,
+    "family_scope": "within_registered_pair_not_experiment_wide_across_search",
+    "numerical_families": [
+      "F_raw",
+      "F_raw_normalized"
+    ],
+    "order_statistic_one_based": 9501,
+    "seed": 1729
+  },
+  "candidate_selection": false,
+  "complete_endpoint_panel": true,
+  "endpoint_family": {
+    "calibration_inapplicability": {
+      "ceiling_empty_groups": [],
+      "gain_reasons": [
+        {
+          "component": "H_BC",
+          "group": [
+            "sub-02",
+            "right"
+          ],
+          "reason": "undefined_calibration_gain"
+        },
+        {
+          "component": "H_CD",
+          "group": [
+            "sub-02",
+            "right"
+          ],
+          "reason": "undefined_calibration_gain"
+        }
+      ]
+    },
+    "component_ids": [
+      "B_Aall_raw",
+      "C_Aall_raw",
+      "D_Aall_raw",
+      "D_AN_raw",
+      "D_RN_raw",
+      "D_VNC_raw",
+      "D_VNC_normalized"
+    ],
+    "directed_edges": [
+      [
+        "B_Aall_raw",
+        "C_Aall_raw"
+      ],
+      [
+        "C_Aall_raw",
+        "D_Aall_raw"
+      ],
+      [
+        "D_Aall_raw",
+        "D_AN_raw"
+      ],
+      [
+        "D_AN_raw",
+        "D_RN_raw"
+      ],
+      [
+        "D_VNC_raw",
+        "D_VNC_normalized"
+      ]
+    ],
+    "group_widths": {
+      "sub-01_left": 1169,
+      "sub-01_right": 1120,
+      "sub-02_left": 1103,
+      "sub-02_right": 942,
+      "sub-03_left": 1174,
+      "sub-03_right": 1182,
+      "sub-06_left": 1032,
+      "sub-06_right": 836
+    },
+    "h_component_ids": [],
+    "primary_endpoint_ids": [
+      "B_Aall_raw",
+      "C_Aall_raw",
+      "D_Aall_raw",
+      "D_AN_raw",
+      "D_RN_raw",
+      "D_VNC_raw",
+      "D_VNC_normalized"
+    ],
+    "score_scales": [
+      "raw_R2",
+      "raw_R2",
+      "raw_R2",
+      "raw_R2",
+      "raw_R2",
+      "raw_R2",
+      "ceiling_normalized_R2"
+    ]
+  },
+  "exposure_limits": {
+    "EP17_EP18": "correlated_design_exposed_not_independent_replication",
+    "causal_training_recipe_claim": false,
+    "new_participant_population_claim": false,
+    "target_image_training_exposure": "unknown_not_clean"
+  },
+  "frozen_block_order": [
+    "block01",
+    "block02",
+    "block03",
+    "block04",
+    "block05",
+    "block06",
+    "block07",
+    "block08",
+    "block09",
+    "block10",
+    "block11",
+    "block12",
+    "block13",
+    "block14",
+    "block15",
+    "block16",
+    "block17",
+    "block18",
+    "block19",
+    "block20",
+    "block21",
+    "block22",
+    "block23",
+    "block24"
+  ],
+  "initial_coverage_complete": false,
+  "pairs": {
+    "F1": {
+      "edges": {
+        "A_N_to_R_N": {
+          "after": "D_RN_raw",
+          "before": "D_AN_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": 0.013359175122039164
+        },
+        "A_all_to_A_N": {
+          "after": "D_AN_raw",
+          "before": "D_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "required_size_control",
+          "signed_endpoint_change": -5.672744090695278e-05
+        },
+        "B_to_C": {
+          "after": "C_Aall_raw",
+          "before": "B_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": 9.064789150911665e-05
+        },
+        "C_to_D": {
+          "after": "D_Aall_raw",
+          "before": "C_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": 0.005133078281150641
+        },
+        "raw_to_ceiling_normalized": {
+          "after": "D_VNC_normalized",
+          "before": "D_VNC_raw",
+          "interval_family": "F_raw_normalized",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": 0.056471409730936034
+        }
+      },
+      "forecasts": {
+        "A_N_to_R_N": {
+          "absolute_error_limit": 0.02,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            0.008984337629515374,
+            0.005208234389005065,
+            0.030040043679374566,
+            0.009204084790261642
+          ],
+          "target": "aggregate_edge_change",
+          "value": 0.013359175122039163
+        },
+        "A_all_to_A_N": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "size_control_has_no_adopted_explanatory_forecast",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "B_to_C": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "C_to_D": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "raw_to_ceiling_normalized": {
+          "absolute_error_limit": 0.05,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            0.05706523299070293,
+            0.033967221506729456,
+            0.08322009304541153,
+            0.05163309138090027
+          ],
+          "target": "aggregate_edge_change",
+          "value": 0.05647140973093605
+        }
+      },
+      "interval_families": {
+        "F_raw": {
+          "classification_scope": "raw_only",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "critical_value": 1.9737954146648535,
+          "estimate": [
+            0.004740014000015251,
+            0.004830661891524367,
+            0.009963740172675008,
+            0.009907012731768056,
+            0.02326618785380722,
+            0.009963740172675008
+          ],
+          "lower": [
+            0.0015633129357609304,
+            0.0016748061519106048,
+            0.004757045598163574,
+            0.004757883338570949,
+            0.00841446843547533,
+            0.004757045598163574
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "relation_decision": "underidentified",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2"
+          ],
+          "standard_error": [
+            0.0016094378579725893,
+            0.001598876821866374,
+            0.002637909955523694,
+            0.0026087452402312012,
+            0.007524447218788215,
+            0.002637909955523694
+          ],
+          "upper": [
+            0.00791671506426957,
+            0.00798651763113813,
+            0.015170434747186443,
+            0.015056142124965161,
+            0.03811790727213911,
+            0.015170434747186443
+          ]
+        },
+        "F_raw_normalized": {
+          "classification_scope": "complete_eligible_primary_family",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "critical_value": 2.037191950321666,
+          "estimate": [
+            0.004740014000015251,
+            0.004830661891524367,
+            0.009963740172675008,
+            0.009907012731768056,
+            0.02326618785380722,
+            0.009963740172675008,
+            0.06643514990361105
+          ],
+          "lower": [
+            0.0014612801512105473,
+            0.0015734429004623024,
+            0.004589811245608756,
+            0.004592497927929092,
+            0.007937444549071622,
+            0.004589811245608756,
+            0.04269921798031554
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.05
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "relation_decision": "underidentified",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "ceiling_normalized_R2"
+          ],
+          "standard_error": [
+            0.0016094378579725893,
+            0.001598876821866374,
+            0.002637909955523694,
+            0.0026087452402312012,
+            0.007524447218788215,
+            0.002637909955523694,
+            0.011651298700423238
+          ],
+          "upper": [
+            0.008018747848819955,
+            0.008087880882586433,
+            0.015337669099741262,
+            0.015221527535607019,
+            0.03859493115854282,
+            0.015337669099741262,
+            0.09017108182690656
+          ]
+        }
+      },
+      "model_order": [
+        "SUP_R50_V1",
+        "RANDOM_R50_S17"
+      ],
+      "participant_effects": [
+        [
+          0.0036501739460599344,
+          0.003994557359127069,
+          0.008514758908177437,
+          0.008528854994012245,
+          0.01751319262352762,
+          0.008514758908177437,
+          0.06557999189888036
+        ],
+        [
+          0.0012431882803555566,
+          0.001215249988826281,
+          0.004710494019265045,
+          0.004654261072287851,
+          0.009862495461292916,
+          0.004710494019265045,
+          0.0386777155259945
+        ],
+        [
+          0.009892026330343107,
+          0.009892026253430365,
+          0.01860567503995821,
+          0.018432093456965802,
+          0.04847213713634037,
+          0.01860567503995821,
+          0.10182576808536974
+        ],
+        [
+          0.004174667443302404,
+          0.0042208139647137545,
+          0.008024032723299344,
+          0.008012841403806328,
+          0.01721692619406797,
+          0.008024032723299344,
+          0.05965712410419961
+        ]
+      ],
+      "participant_ids": [
+        "sub-01",
+        "sub-02",
+        "sub-03",
+        "sub-06"
+      ],
+      "promotion_eligible": false
+    },
+    "P1": {
+      "edges": {
+        "A_N_to_R_N": {
+          "after": "D_RN_raw",
+          "before": "D_AN_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0009744333600769836
+        },
+        "A_all_to_A_N": {
+          "after": "D_AN_raw",
+          "before": "D_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "required_size_control",
+          "signed_endpoint_change": 6.111011927846131e-06
+        },
+        "B_to_C": {
+          "after": "C_Aall_raw",
+          "before": "B_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -3.75832754247557e-05
+        },
+        "C_to_D": {
+          "after": "D_Aall_raw",
+          "before": "C_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.00030570083650140396
+        },
+        "raw_to_ceiling_normalized": {
+          "after": "D_VNC_normalized",
+          "before": "D_VNC_raw",
+          "interval_family": "F_raw_normalized",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0034031372244457112
+        }
+      },
+      "forecasts": {
+        "A_N_to_R_N": {
+          "absolute_error_limit": 0.02,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.0005960110394633668,
+            -0.00036882053028583657,
+            -0.002280104554477593,
+            -0.0006527973160811378
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.0009744333600769836
+        },
+        "A_all_to_A_N": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "size_control_has_no_adopted_explanatory_forecast",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "B_to_C": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "C_to_D": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "raw_to_ceiling_normalized": {
+          "absolute_error_limit": 0.05,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.004219323405749714,
+            -0.0030764555856660145,
+            -0.003956560397757022,
+            -0.0023602095086100953
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.0034031372244457112
+        }
+      },
+      "interval_families": {
+        "F_raw": {
+          "classification_scope": "raw_only",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "critical_value": 2.16615762955578,
+          "estimate": [
+            -0.00029153127873974346,
+            -0.00032911455416449915,
+            -0.0006348153906659031,
+            -0.000628704378738057,
+            -0.0016031377388150405,
+            -0.0006348153906659031
+          ],
+          "lower": [
+            -0.0005266328827901282,
+            -0.0005457943287374561,
+            -0.0010066225308714223,
+            -0.0009960973545116855,
+            -0.002835845449491522,
+            -0.0010066225308714223
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2"
+          ],
+          "standard_error": [
+            0.00010853393162278669,
+            0.0001000295507660687,
+            0.00017164362146708905,
+            0.00016960583604849234,
+            0.0005690757190783371,
+            0.00017164362146708905
+          ],
+          "upper": [
+            -5.642967468935873e-05,
+            -0.00011243477959154222,
+            -0.0002630082504603839,
+            -0.00026131140296442855,
+            -0.0003704300281385589,
+            -0.0002630082504603839
+          ]
+        },
+        "F_raw_normalized": {
+          "classification_scope": "complete_eligible_primary_family",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "critical_value": 2.313275999108513,
+          "estimate": [
+            -0.00029153127873974346,
+            -0.00032911455416449915,
+            -0.0006348153906659031,
+            -0.000628704378738057,
+            -0.0016031377388150405,
+            -0.0006348153906659031,
+            -0.0040379526151116145
+          ],
+          "lower": [
+            -0.0005426002178516203,
+            -0.0005605105131532525,
+            -0.001031874460605787,
+            -0.0010210494885777677,
+            -0.002919566941434376,
+            -0.001031874460605787,
+            -0.005955749011726539
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.05
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "ceiling_normalized_R2"
+          ],
+          "standard_error": [
+            0.00010853393162278669,
+            0.0001000295507660687,
+            0.00017164362146708905,
+            0.00016960583604849234,
+            0.0005690757190783371,
+            0.00017164362146708905,
+            0.0008290391623628147
+          ],
+          "upper": [
+            -4.046233962786658e-05,
+            -9.771859517574587e-05,
+            -0.0002377563207260193,
+            -0.00023635926889834625,
+            -0.0002867085361957049,
+            -0.0002377563207260193,
+            -0.00212015621849669
+          ]
+        }
+      },
+      "model_order": [
+        "DINO_R50",
+        "SUP_R50_V1"
+      ],
+      "participant_effects": [
+        [
+          -0.00026056078811480016,
+          -0.0003099235214383632,
+          -0.0006017534713455772,
+          -0.000596872756936456,
+          -0.0011928837963998229,
+          -0.0006017534713455772,
+          -0.004821076877095291
+        ],
+        [
+          -0.00014969797392477572,
+          -0.0001559047468721847,
+          -0.00041380869543589343,
+          -0.00041152303671774246,
+          -0.000780343567003579,
+          -0.00041380869543589343,
+          -0.0034902642811019077
+        ],
+        [
+          -0.0005815755149855806,
+          -0.0005815755288459177,
+          -0.001105028150611924,
+          -0.0010878457267540392,
+          -0.0033679502812316324,
+          -0.001105028150611924,
+          -0.005061588548368946
+        ],
+        [
+          -0.00017429083793381737,
+          -0.000269054419501531,
+          -0.0004186712452702177,
+          -0.00041857599454399005,
+          -0.0010713733106251279,
+          -0.0004186712452702177,
+          -0.002778880753880313
+        ]
+      ],
+      "participant_ids": [
+        "sub-01",
+        "sub-02",
+        "sub-03",
+        "sub-06"
+      ],
+      "promotion_eligible": true
+    },
+    "P2": {
+      "edges": {
+        "A_N_to_R_N": {
+          "after": "D_RN_raw",
+          "before": "D_AN_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0003193012243378838
+        },
+        "A_all_to_A_N": {
+          "after": "D_AN_raw",
+          "before": "D_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "required_size_control",
+          "signed_endpoint_change": -6.46514611921307e-07
+        },
+        "B_to_C": {
+          "after": "C_Aall_raw",
+          "before": "B_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -1.9603790452506518e-05
+        },
+        "C_to_D": {
+          "after": "D_Aall_raw",
+          "before": "C_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -3.595296882752508e-05
+        },
+        "raw_to_ceiling_normalized": {
+          "after": "D_VNC_normalized",
+          "before": "D_VNC_raw",
+          "interval_family": "F_raw_normalized",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.001251978163598496
+        }
+      },
+      "forecasts": {
+        "A_N_to_R_N": {
+          "absolute_error_limit": 0.02,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.00033935690111972096,
+            -0.00016534475499871616,
+            -0.00040114813536294225,
+            -0.00037135510587015615
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.0003193012243378839
+        },
+        "A_all_to_A_N": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "size_control_has_no_adopted_explanatory_forecast",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "B_to_C": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "C_to_D": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "raw_to_ceiling_normalized": {
+          "absolute_error_limit": 0.05,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.003272497378554054,
+            -0.0013515682968793315,
+            0.00017553622999495522,
+            -0.0005593832089555536
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.001251978163598496
+        }
+      },
+      "interval_families": {
+        "F_raw": {
+          "classification_scope": "raw_only",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "critical_value": 2.370226511143128,
+          "estimate": [
+            -0.0001658459217624038,
+            -0.00018544971221491033,
+            -0.0002214026810424354,
+            -0.00022204919565435672,
+            -0.0005413504199922405,
+            -0.0002214026810424354
+          ],
+          "lower": [
+            -0.0003382383833338872,
+            -0.000350624247990635,
+            -0.0005024442710209047,
+            -0.0005062919071065827,
+            -0.0011212114964714106,
+            -0.0005024442710209047
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2"
+          ],
+          "standard_error": [
+            7.27324839043931e-05,
+            6.968723664138884e-05,
+            0.00011857161695610552,
+            0.00011992217204386073,
+            0.0002446437392177809,
+            0.00011857161695610552
+          ],
+          "upper": [
+            6.546539809079558e-06,
+            -2.027517643918571e-05,
+            5.963890893603393e-05,
+            6.219351579786928e-05,
+            3.851065648692955e-05,
+            5.963890893603393e-05
+          ]
+        },
+        "F_raw_normalized": {
+          "classification_scope": "complete_eligible_primary_family",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "critical_value": 2.4076900341723197,
+          "estimate": [
+            -0.0001658459217624038,
+            -0.00018544971221491033,
+            -0.0002214026810424354,
+            -0.00022204919565435672,
+            -0.0005413504199922405,
+            -0.0002214026810424354,
+            -0.0014733808446409315
+          ],
+          "lower": [
+            -0.00034096319841960974,
+            -0.00035323497738539035,
+            -0.0005068863815233483,
+            -0.0005107846141606585,
+            -0.0011303767128295434,
+            -0.0005068863815233483,
+            -0.003865319936570408
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.05
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "ceiling_normalized_R2"
+          ],
+          "standard_error": [
+            7.27324839043931e-05,
+            6.968723664138884e-05,
+            0.00011857161695610552,
+            0.00011992217204386073,
+            0.0002446437392177809,
+            0.00011857161695610552,
+            0.0009934580689294344
+          ],
+          "upper": [
+            9.27135489480209e-06,
+            -1.766444704443031e-05,
+            6.40810194384775e-05,
+            6.668622285194514e-05,
+            4.7675872845062456e-05,
+            6.40810194384775e-05,
+            0.0009185582472885452
+          ]
+        }
+      },
+      "model_order": [
+        "SWAV_R50_800",
+        "SUP_R50_V1"
+      ],
+      "participant_effects": [
+        [
+          -0.0002598316490070695,
+          -0.0002852300638333988,
+          -0.0004398136368777253,
+          -0.00044510861357840065,
+          -0.0007844655146981216,
+          -0.0004398136368777253,
+          -0.0037123110154317794
+        ],
+        [
+          -9.416331810388598e-05,
+          -0.00010812590354276777,
+          -0.00018903510235974857,
+          -0.00019329295351047546,
+          -0.0003586377085091916,
+          -0.00018903510235974857,
+          -0.0015406033992390801
+        ],
+        [
+          -0.0001254686815530027,
+          -0.00012546868618161858,
+          -9.977215356709632e-05,
+          -9.210609007060416e-05,
+          -0.0004932542254335464,
+          -9.977215356709632e-05,
+          7.576407642785892e-05
+        ],
+        [
+          -0.000183920038385657,
+          -0.00022297419530185615,
+          -0.00015698983136517143,
+          -0.00015768912545794658,
+          -0.0005290442313281027,
+          -0.00015698983136517143,
+          -0.000716373040320725
+        ]
+      ],
+      "participant_ids": [
+        "sub-01",
+        "sub-02",
+        "sub-03",
+        "sub-06"
+      ],
+      "promotion_eligible": true
+    },
+    "P3": {
+      "edges": {
+        "A_N_to_R_N": {
+          "after": "D_RN_raw",
+          "before": "D_AN_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0006551321357390998
+        },
+        "A_all_to_A_N": {
+          "after": "D_AN_raw",
+          "before": "D_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "required_size_control",
+          "signed_endpoint_change": 6.757526539767438e-06
+        },
+        "B_to_C": {
+          "after": "C_Aall_raw",
+          "before": "B_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -1.797948497224918e-05
+        },
+        "C_to_D": {
+          "after": "D_Aall_raw",
+          "before": "C_Aall_raw",
+          "interval_family": "F_raw",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0002697478676738788
+        },
+        "raw_to_ceiling_normalized": {
+          "after": "D_VNC_normalized",
+          "before": "D_VNC_raw",
+          "interval_family": "F_raw_normalized",
+          "opposite_margin_crossing": false,
+          "role": "registered_measurement_edge",
+          "signed_endpoint_change": -0.0021511590608472154
+        }
+      },
+      "forecasts": {
+        "A_N_to_R_N": {
+          "absolute_error_limit": 0.02,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.0002566541383436458,
+            -0.0002034757752871204,
+            -0.0018789564191146512,
+            -0.00028144221021098167
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.0006551321357390998
+        },
+        "A_all_to_A_N": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "size_control_has_no_adopted_explanatory_forecast",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "B_to_C": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "C_to_D": {
+          "absolute_error_limit": null,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "calibration_beta_gain_inapplicable",
+          "eligible": false,
+          "participant_forecasts": null,
+          "target": null,
+          "value": null
+        },
+        "raw_to_ceiling_normalized": {
+          "absolute_error_limit": 0.05,
+          "crossfit_absolute_errors": null,
+          "crossfit_observed": null,
+          "crossfit_predicted": null,
+          "eligibility_reason": "frozen_operator_applicable",
+          "eligible": true,
+          "participant_forecasts": [
+            -0.0009468260271956594,
+            -0.001724887288786683,
+            -0.004132096627751978,
+            -0.0018008262996545418
+          ],
+          "target": "aggregate_edge_change",
+          "value": -0.002151159060847216
+        }
+      },
+      "interval_families": {
+        "F_raw": {
+          "classification_scope": "raw_only",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "critical_value": 1.9941644703222559,
+          "estimate": [
+            -0.00012568535697733967,
+            -0.00014366484194958885,
+            -0.00041341270962346767,
+            -0.00040665518308370023,
+            -0.0010617873188228,
+            -0.00041341270962346767
+          ],
+          "lower": [
+            -0.0003339733284638326,
+            -0.0003391839822279578,
+            -0.0007829073219924893,
+            -0.0007750919820993901,
+            -0.002160648079594368,
+            -0.0007829073219924893
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2"
+          ],
+          "standard_error": [
+            0.0001044487426119039,
+            9.804564427264776e-05,
+            0.00018528793279990165,
+            0.00018475747838198655,
+            0.0005510381802128852,
+            0.00018528793279990165
+          ],
+          "upper": [
+            8.260261450915329e-05,
+            5.1854298328780105e-05,
+            -4.391809725444603e-05,
+            -3.821838406801038e-05,
+            3.7073441948768044e-05,
+            -4.391809725444603e-05
+          ]
+        },
+        "F_raw_normalized": {
+          "classification_scope": "complete_eligible_primary_family",
+          "component_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "critical_value": 2.0792828479692766,
+          "estimate": [
+            -0.00012568535697733967,
+            -0.00014366484194958885,
+            -0.00041341270962346767,
+            -0.00040665518308370023,
+            -0.0010617873188228,
+            -0.00041341270962346767,
+            -0.002564571770470683
+          ],
+          "lower": [
+            -0.00034286383598222913,
+            -0.00034752946840380247,
+            -0.0007986787302299871,
+            -0.0007908182389174193,
+            -0.0022075515555156555,
+            -0.0007986787302299871,
+            -0.004425763619759802
+          ],
+          "margins": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.05
+          ],
+          "primary_endpoint_ids": [
+            "B_Aall_raw",
+            "C_Aall_raw",
+            "D_Aall_raw",
+            "D_AN_raw",
+            "D_RN_raw",
+            "D_VNC_raw",
+            "D_VNC_normalized"
+          ],
+          "relation_decision": "practical_equivalence",
+          "score_scales": [
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "raw_R2",
+            "ceiling_normalized_R2"
+          ],
+          "standard_error": [
+            0.0001044487426119039,
+            9.804564427264776e-05,
+            0.00018528793279990165,
+            0.00018475747838198655,
+            0.0005510381802128852,
+            0.00018528793279990165,
+            0.0008951123946926431
+          ],
+          "upper": [
+            9.14931220275498e-05,
+            6.019978450462479e-05,
+            -2.8146689016948204e-05,
+            -2.2492127249981156e-05,
+            8.39769178700555e-05,
+            -2.8146689016948204e-05,
+            -0.0007033799211815649
+          ]
+        }
+      },
+      "model_order": [
+        "DINO_R50",
+        "SWAV_R50_800"
+      ],
+      "participant_effects": [
+        [
+          -7.291391077306459e-07,
+          -2.4693457604964493e-05,
+          -0.00016193983446785183,
+          -0.00015176414335805544,
+          -0.00040841828170170126,
+          -0.00016193983446785183,
+          -0.0011087658616635112
+        ],
+        [
+          -5.553465582088974e-05,
+          -4.777884332941692e-05,
+          -0.00022477359307614486,
+          -0.00021823008320726703,
+          -0.0004217058584943874,
+          -0.00022477359307614486,
+          -0.0019496608818628277
+        ],
+        [
+          -0.0004561068334325779,
+          -0.0004561068426642991,
+          -0.0010052559970448278,
+          -0.000995739636683435,
+          -0.002874696055798086,
+          -0.0010052559970448278,
+          -0.005137352624796806
+        ],
+        [
+          9.62920045183964e-06,
+          -4.608022419967486e-05,
+          -0.0002616814139050462,
+          -0.00026088686908604347,
+          -0.0005423290792970251,
+          -0.0002616814139050462,
+          -0.002062507713559588
+        ]
+      ],
+      "participant_ids": [
+        "sub-01",
+        "sub-02",
+        "sub-03",
+        "sub-06"
+      ],
+      "promotion_eligible": true
+    }
+  },
+  "phase": "development",
+  "scope": {
+    "ROIs": 2,
+    "beta_stages": 3,
+    "concept_blocks": 24,
+    "concepts": 480,
+    "edges_per_pair": 5,
+    "fixed_pairs": 4,
+    "images": 2423,
+    "participants": 4,
+    "promotion_pairs": 3
+  },
+  "secondary_correlation_or_CKA_computed": false,
+  "separation": "procedural_same_account_not_technically_enforced_or_blinded",
+  "stage": "complete_development_endpoint_panel",
+  "valid_trial_adjudication": "pending_coordinator_review"
+}
