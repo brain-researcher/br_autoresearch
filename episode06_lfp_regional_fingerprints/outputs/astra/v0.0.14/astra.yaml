@@ -328,6 +328,50 @@ analyses:
           Distinguish unperformed component and reserved analyses from measured
           negative evidence; no unsupported final procedure is opened.
         inputs: [initial_results, first_followups, support_controls, magnitude_results, robustness_results, policy]
+  lmp_support_followup:
+    name: Test exposed M1 LMP predictivity under fixed recording-support controls
+    inputs:
+      - {id: policy, from: ../policy}
+      - {id: development_views, from: ../source_session_support.development_views}
+      - {id: original_predictions, type: data, source: outputs/runs/residual_fingerprint_development/starting001/starting_09.pickle}
+      - {id: original_closeout, from: ../development_search_conclusion.development_conclusion}
+      - {id: specification, type: data, source: outputs/paper_plan.md}
+      - {id: runner, type: data, source: outputs/tools/run_lmp_support_followup.py}
+      - {id: checks, type: data, source: outputs/tests/test_lmp_support_followup.py}
+      - {id: launcher, type: data, source: outputs/tools/lmp_support_followup.sh}
+      - {id: plotter, type: data, source: outputs/tools/plot_lmp_support_followup.py}
+    outputs:
+      - id: exploratory_support_report
+        type: report
+        format: json
+        description: >-
+          Separate scientist-approved exposed-development question after the
+          original30-comparison negative stop. Seven M1 dates retain all trials.
+          Reuse original all-unit LMP predictions; compare globally count-matched
+          same-electrode/disjoint-electrode unit populations, high-frequency
+          prediction, training-only HF projection of LMP, elapsed-time prediction,
+          199 fixed whole-trial mismatches and training-half mapping stability.
+          Three subset draws are averaged within date; dates within animal and
+          animals equally. All unavailable cells remain explicit. No calibration
+          or reserved values, p-values, candidate promotion or original-result rescue.
+        inputs: [policy, development_views, original_predictions, original_closeout, specification, runner, checks, launcher, plotter]
+        recipe:
+          command: bash outputs/tools/lmp_support_followup.sh attempt001
+          resources: {cpus: 1, memory: 7Gi, time_limit: 30m}
+  lmp_support_visualization:
+    name: Display the completed exploratory LMP support controls
+    inputs:
+      - {id: support_report, from: ../lmp_support_followup.exploratory_support_report}
+      - {id: plotter, type: data, source: outputs/tools/plot_lmp_support_followup.py}
+    outputs:
+      - id: exploratory_support_figure
+        type: figure
+        format: png
+        description: >-
+          outputs/figures/lmp_support_followup/attempt001/lmp_support.png
+          displays all seven dates and all methods, with unavailable cells visible.
+          Figure rendering is included in the single launcher after report completion.
+        inputs: [support_report, plotter]
   frequency_rule_consequence:
     name: Compare correct-domain, pooled and swapped source frequency rules
     inputs:

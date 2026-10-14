@@ -1,5 +1,154 @@
 # Experiment log
 
+## 2026-10-13 — lmp_support_followup — complete; small prediction survives HF projection, support and stability remain limiting
+
+The fixed real-data panel completed at **20:47:48 UTC**, preserving all seven
+dates and all **49 target-population cells** (one all-unit target plus three
+same-electrode and three disjoint-electrode draws per date). All nine
+support/method summaries and all mapping-stability cells are available; no
+date, negative score or unavailable result was silently dropped. Globally
+matched populations contain only **four units**, limited by Mihili February18's
+four same-electrode units. Its three same-electrode draws therefore repeat the
+same population and are not independent observations. The complete
+[report](runs/lmp_support_followup/attempt001/report.json),
+[support plan](runs/lmp_support_followup/attempt001/support_plan.json), and
+[saved-data figure](figures/lmp_support_followup/attempt001/lmp_support.png)
+retain every date, draw, method and the 199 fixed mismatch scores.
+
+Scores are `1−SSE/residual energy`, with training-defined target coordinates and
+no evaluation recentering. Draws average within date, dates within animal, then
+the two animals equally. The following are the saved equal-animal means:
+
+| Target support | Predictor | Residual score | Actual minus mismatch mean | Actual minus timing |
+|---|---|---:|---:|---:|
+| All units | LMP | 0.011677 | 0.017645 | 0.012304 |
+| All units | 100–400 Hz | 0.010010 | 0.031402 | 0.010637 |
+| All units | LMP after HF projection | 0.010814 | 0.014918 | 0.011441 |
+| Four units on LFP electrodes | LMP | 0.001109 | 0.004087 | 0.000873 |
+| Four units on LFP electrodes | 100–400 Hz | 0.014965 | 0.029323 | 0.014729 |
+| Four units on LFP electrodes | LMP after HF projection | 0.000016 | 0.002269 | −0.000220 |
+| Four disjoint-electrode units | LMP | 0.000981 | 0.004850 | 0.001140 |
+| Four disjoint-electrode units | 100–400 Hz | 0.003016 | 0.009291 | 0.003175 |
+| Four disjoint-electrode units | LMP after HF projection | −0.000144 | 0.002256 | 0.000015 |
+
+All-unit LMP scores, gains over timing, and gains over mismatch means are
+positive on every date. Animal-specific scores are **Mihili0.012266** and
+**Chewie-L0.011088**; corresponding mismatch gains are **0.023796/0.011494**.
+Every saved date-omission equal-animal LMP summary stays positive (score
+0.009391–0.013745; mismatch gain0.015717–0.019365). The HF-projected all-unit
+LMP score remains positive on all seven dates and averages0.010814, but falls
+below timing on Mihili March4. HF prediction itself is competitive and varies
+by animal/date; no uniquely low-frequency explanation follows.
+
+Count matching reduces LMP recovery to roughly0.1percent in both electrode
+pools. After HF projection both matched-support means are near zero, including
+negative disjoint recovery. This establishes sensitivity to recorded-population
+support, not the cause of the reduction: unit subsets change target axes,
+residual energy and firing support. Similar small same/disjoint means do not
+show spatial invariance, because physical distances are unknown. Strong HF
+prediction in the same-electrode pool is a contamination alternative worth
+retaining, not proof of spike leakage; projection can also remove neural signal.
+
+Conditional training-half mapping stability is uneven. All-unit prediction
+correlations in date order are **0.945,0.332,0.601** (Mihili) and
+**−0.119,0.351,0.227,0.501** (Chewie-L). One half's evaluation score is negative
+on Mihili February18 and March4. The shared full-training target axes/template
+make these mapping-stability descriptions, not independent measurement
+reliability estimates or noise ceilings. Trial mismatches are a fixed
+conditional reference; no p-value, confidence interval, selection adjustment,
+or new-animal replication is claimed.
+
+The original **30-comparison no-supported-candidate result remains closed**.
+This distinct exploratory panel establishes small, pairing-sensitive all-unit
+M1 LMP predictivity that survives the declared HF projection, with support
+sensitivity and unstable mappings. It does not establish a pure regional
+effect, absence of contamination, or a candidate for promotion. Calibration
+and four reserved dates remain closed. The fixed panel is complete; no
+outcome-adaptive successor is selected.
+
+Four focused checks passed in **0.207s**
+([log](runs/lmp_support_followup/attempt001_launch/checks.txt)); the scientific
+runner and plotter exited0, and the PNG was independently visually reviewed.
+ASTRA validation identified only the visualization's invalid `type: image`.
+Corrected exactly that field to `type: figure`; the coordinator's validation
+rerun **passed** in the already active EP20 D3 allocation47685616, saved at
+`runs/lmp_support_followup/job_47686488/astra_corrected_47685616.txt`.
+There is no additional EP06 charge. This metadata correction
+does not change scientific outputs and does not warrant refitting.
+
+Coordinator scheduler evidence: parent **47686488 COMPLETED**,45 elapsed
+seconds,**1 allocated CPU**. Charge **45/3600=0.0125 allocated CPU-hours**
+once to EP06, including its separately scoped EP17 saved-result companion and
+changed ASTRA checks. Release the0.583333334CPU-hour reservation; retain all
+prior charges, and do not charge the EP17 companion or batch/extern again.
+No scheduler action, test or scientific code ran in this closeout on the
+verified login shell `sh04-ln04` (no SLURM_JOB_ID).
+
+## 2026-10-13 — lmp_support_followup — submitted as47686488
+
+Slurm accepted1CPU/7GiB/35minutes for attempt001 and the separate EP17 saved-
+result companion. Submission is not a completed analysis. Reserve0.583333334
+CPUh once to EP06; root owns monitoring. Original search/final boundaries stay.
+
+## 2026-10-13 — lmp_support_followup — coordinator source review and parent selection
+
+Root reviewed the training-only mappings, native unit matching, subset target
+axes/templates, all-date reporting, whole-trial mismatch and fixed evaluation
+opening. No concrete source blocker found. Select the fresh attempt001 via
+`tools/run_lmp_followup_companion.sbatch`,1CPU/7GiB/35minutes. The substantive
+EP06 envelope stays1500seconds with5GiB RSS; four affected checks precede it.
+The additional five parent minutes accommodate a separately authorized EP17
+saved-summary/figure companion (at most120seconds) and changed ASTRA checks.
+No EP17 output enters EP06. Charge the whole parent once to EP06 and disclose
+the overlap; reserve0.583333334CPUh while retaining all historical consumption.
+No synthetic expansion or reserved-date opening. Selection precedes submission.
+
+## 2026-10-13 13:44 Pacific — lmp_support_followup — adopted and implemented; compute pending
+
+The scientist approved the proposed exploratory real-data next steps, including
+the question whether M1 LMP residual predictivity survives recording-support,
+reliability and contamination controls. Root assigned EP06 implementation and
+retains scheduler/test ownership. This is separate from the completed
+30-comparison no-candidate search; the four reserved dates remain closed.
+
+The [fixed specification](paper_plan.md#october-13-exploratory-lmp-support-analysis)
+and GOAL/DATASETS/policy now adopt the distinct seven-date exposed-development
+analysis. It preserves original roles, windows and electrodes; reuses original
+all-unit LMP predictions; globally count matches units on versus disjoint from
+the LFP electrodes; tests HF prediction and training-only HF projection of
+LMP; measures conditional training-half mapping stability; and evaluates
+199 fixed whole-trial prediction mismatches. Both animal means, all seven dates,
+every subset draw, omissions, negative effects and unavailable cells remain
+explicit. No calibration/reserved values, new source, sibling outcome, adaptive
+successor or primary-result rescue is authorized by this panel.
+
+The design reuses prior BR advisory directive `ext_review_dir_a1728d9b52b7`,
+documented at October 11 01:09 below, for matching support, complete negative
+controls and bounded interpretation. Its generic criteria did not inspect
+this new source or issue a new scientific verdict. Subset populations change
+target axes/energy; disjoint IDs lack verified spatial distances; HF projection
+can remove true neural covariance; mapping stability is not target measurement
+reliability. Those limits changed the reported estimands and preclude an
+artifact-free or confirmed biological interpretation.
+
+Implementation: [runner](tools/run_lmp_support_followup.py),
+[four focused checks](tests/test_lmp_support_followup.py),
+[compute wrapper](tools/lmp_support_followup.sh), and
+[saved-report plotter](tools/plot_lmp_support_followup.py). ASTRA declares stable
+`lmp_support_followup` and the existing original-result dependency. Prepared
+command: `bash outputs/tools/lmp_support_followup.sh attempt001` in EP06 inside
+the coordinator's compute allocation. Request one CPU/7 GiB/30 minutes;
+scientific process cap1500 seconds/RSS5 GiB, threads1, no GPU, expected new
+artifacts below1 GiB. Additional allocated bound0.5 CPU-hours; original costs
+are not reset. Runtime is not measured yet.
+
+Source and documentation work only on sh04-ln04, no SLURM_JOB_ID. No test,
+neural array, score, scheduler call or submission was executed here. Root
+source review and the focused checks in compute precede this real panel.
+Existing passing numerical/reader checks are reused. No new simulation sweep.
+
+Earlier dated entries retain the original completed search and its history.
+
 ## 2026-10-11 01:20 Pacific — residual_fingerprint_development — stopped at thirty valid comparisons; no supported candidate
 
 The four final robustness controls completed at **08:17:39 UTC**, all

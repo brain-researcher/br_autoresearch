@@ -1,5 +1,103 @@
 # EP06 component plan: what does a recording-domain frequency rule recover?
 
+## October 13 exploratory LMP support analysis
+
+The scientist approved this proposed real-data next step on October 13:
+does M1 LMP residual predictivity survive recording-support, reliability and
+contamination controls? It is separate from the original 30-comparison search,
+which remains closed with no supported candidate. The observed lead motivating
+it was positive M1 LMP residual prediction beyond a linear timing baseline and
+one mismatch on all seven dates, alongside classifier sensitivity to unit
+support and date omissions. These dates and the choice of LMP/CCA are exposed
+after multiple models and bands. No internal split is fresh confirmation.
+
+**Estimand and support.** On every one of the seven fixed M1 development dates,
+retain the existing training/evaluation whole trials, native ten-bin movement
+window, and 15 training-selected LFP electrodes. The target is
+`(evaluation spikes - training direction/bin mean) @ training spike PCA2`.
+Score `1 - SSE / sum(target²)`, without evaluation recentering, clipping or
+an epsilon. Within each target, all methods use identical rows, axes and
+denominator. No calibration or reserved neural outcomes enter the analysis.
+
+**Recording support.** Reuse the original `starting_09` all-unit M1 context
+and actual saved LMP predictions. From training metadata partition native units
+by whether their electrode is one of the 15 selected LFP electrodes. Let `m`
+be the minimum pool size across both pools and all seven dates. If `m<2`, the
+entire matched-support comparison is unavailable; retain the all-unit branch
+and report the missing comparison without dropping dates. Otherwise draw three
+fixed size-`m` subsets without replacement per pool/date, sort retained unit
+positions, and show every draw. PCG64 seeds are `[6006301, session_index,
+pool_index, draw_index]`, with existing session order, on-electrode pool first,
+and all indices zero based. Identical subsets when a pool is exhausted remain
+visible and do not add independent observations. Each subset refits its
+training-only spike PCA2/template. Changing a population changes its axes,
+energy and firing support; differences cannot identify artifact as the cause.
+Disjoint electrode IDs are not a verified physical-distance manipulation.
+
+**Fixed predictors and contamination proxies.** For every target compare:
+
+1. The unchanged LMP electrode-PCA2/rank-one CCA recipe, with covariance
+   regularization and prediction penalty both 0.01. Original all-unit LMP is
+   reused; only new target subsets are fitted.
+2. Concatenated 100–200 and 200–400 Hz features from the same 15 electrodes,
+   training-standardized and reduced to PCA2 before the same CCA recipe.
+3. LMP after removing its training-only ridge prediction from those 30 HF
+   features, using standardized HF, an unpenalized intercept and mean-row
+   squared loss with penalty 0.01. Apply the frozen projection to evaluation
+   features; fit the same LMP PCA2/CCA recipe to the remaining training features.
+4. The existing direction-centered elapsed-time ridge baseline in each target's
+   own axes/template. Record LMP minus timing and the within-target change after
+   HF projection and versus the HF predictor.
+
+Projection is regularized, not exact orthogonalization; removing HF-predictable
+LMP can remove genuine neural covariance. These comparisons cannot establish
+that remaining prediction is contamination-free or uniquely low-frequency.
+Prepared data contain no raw voltage or waveform-quality measures; no new
+filtering, spike subtraction, spatial-distance inference or quality threshold
+is invented. Negative or unavailable comparisons remain results.
+
+**Mapping stability and trial pairing.** Split training whole trials by
+alternating source order within each direction. Independently fit feature
+standardization/PCA/CCA in each half, keeping the target axes/template from
+the common full training set. Report correlation of the two frozen prediction
+arrays on evaluation features and both evaluation scores. This is conditional
+mapping stability, not independent target measurement reliability, corrected
+reliability or a noise ceiling. Require at least two training trials per
+direction in each half and full feature rank2; no rank fallback or omission.
+
+For each date, freeze 199 prediction mismatches using PCG64
+`[6006302, session_index]`: independently permute trial order within each
+direction then rotate by a random nonzero offset. Apply the same full-trial
+maps to every method/subset; all native bins remain together. These random-cycle
+derangements are not a uniform permutation test. Record all reference scores,
+their mean and actual-minus-mean, with no p-value, bootstrap confidence interval
+or selection correction claimed. This strengthens the former single mismatch
+diagnostic but cannot remove the prior selection of LMP.
+
+**Publication, aggregation and stopping.** Save all seven dates' predictions
+before constructing the evaluation-outcome reader. Unexpected defects abort
+with a preserved partial attempt; recognized rank/zero-energy insufficiency
+is explicit unavailability, never replacement or silent support reduction.
+Average the three subset draws within a date, dates equally within animal,
+then the two animals equally. Show all dates, both animal means and each of
+seven date-omission summaries. A missing required cell makes the corresponding
+full-panel summary unavailable rather than changing its population.
+
+This is one fixed descriptive panel, not adaptive search or another reserved
+test. Stop after this panel, an unexpected failure, or the resource cap;
+there is no automatic successor or primary rescue. Additional resources are
+at most one CPU/7 GiB/30 minutes (0.5 allocated CPU-hours), including focused
+implementation checks and a saved-report figure; scientific process cap is
+1500 seconds and 5 GiB RSS. New artifacts are expected below 1 GiB. This is a
+prospective bound, not a measured runtime; preserve original consumed resources.
+No new synthetic scientific sweep is required. Root owns Slurm execution.
+
+Reuse BR advisory directive `ext_review_dir_a1728d9b52b7` and its documented
+correctness/completeness/judgment criteria: match actual target/support,
+retain failed controls, distinguish prediction from mechanism and same-corpus
+exploration from independent replication. The BR server did not inspect this
+new source or return a verdict; the directive is not scientific acceptance.
+
 Status: integrated manuscript role, 2026-09-30, with the adopted October 10
 amendment below. EP06 is a component of EP07's history-and-population-components
 paper. No supported final result, reserved-session test or third-animal test is claimed;

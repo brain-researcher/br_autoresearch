@@ -1,5 +1,40 @@
 # Outputs
 
+**October13 — exploratory LMP support panel complete, all seven dates retained.**
+All-unit M1 LMP recovers a small residual fraction: equal-animal score
+**0.01168**, staying **0.01081** after training-only HF projection. Actual
+pairing beats the199 mismatch mean on every all-unit LMP date. Matching both
+electrode pools to only four units reduces LMP scores to **0.00111/0.00098**;
+their HF-projected means are near zero. Training-half mappings vary markedly,
+including a negative prediction correlation on one date. These controls show
+support sensitivity; they cannot identify contamination or a pure regional effect.
+
+Read the [complete interpretation, nine-method table and accounting](experiment_log.md#2026-10-13--lmp_support_followup--complete-small-prediction-survives-hf-projection-support-and-stability-remain-limiting)
+or [full report](runs/lmp_support_followup/attempt001/report.json).
+The original30-comparison negative result and four closed reserved dates remain.
+Four checks, scientific/plot execution and corrected ASTRA validation passed.
+Parent47686488 completed45seconds,
+charged **0.0125CPUh once to EP06**, including the separate EP17 companion.
+No further analysis is selected. Earlier submission notes below are historical.
+
+![Seven-date LMP support and whole-trial mismatch controls](figures/lmp_support_followup/attempt001/lmp_support.png)
+[Download PDF](figures/lmp_support_followup/attempt001/lmp_support.pdf).
+
+**October13 — new real-data LMP follow-up submitted as47686488.**
+The fixed seven-date support/pairing/HF-control analysis is selected, with
+reserved dates closed. See the [execution log](experiment_log.md).
+No scientific result is claimed from submission.
+
+**October13,13:44 Pacific — separate M1 LMP support analysis adopted; ready for compute.**
+The scientist approved the exploratory follow-up after the original negative
+search. The [fixed analysis](paper_plan.md#october-13-exploratory-lmp-support-analysis)
+tests count-matched same/disjoint-electrode unit populations, high-frequency
+proxies, conditional training-half mapping stability and199 whole-trial
+mismatches across all seven exposed dates. Original all-unit predictions are
+reused; calibration and four reserved dates stay closed. No result is available
+yet. [Implementation, resource bound and command](experiment_log.md#2026-10-13-1344-pacific--lmp_support_followup--adopted-and-implemented-compute-pending).
+The original 30-comparison conclusion below remains intact.
+
 **October11,01:20 Pacific — development stopped at30 valid comparisons.**
 Ten valid comparisons after the minimum produced no control-qualified
 improvement, satisfying the prespecified stopping rule. The result is

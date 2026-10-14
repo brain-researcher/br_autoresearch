@@ -1,5 +1,38 @@
 # EP06 data plan
 
+## Adopted October 13 LMP support analysis
+
+The scientist approved the distinct exploratory M1 LMP support question after
+the completed original 30-comparison negative search. Use only the existing
+seven-session `development001/development_views.h5` export under
+`$SCRATCH/br_autoresearch/episode06_lfp_regional_fingerprints/` and the completed
+episode-local `starting001` CCA fits. Preserve its original whole-trial
+training/evaluation roles, all ten native bins at 150–450 ms after movement,
+15 training-selected LFP electrodes and original source identities. The
+coordinator-recorded EP07 opening prerequisite was already satisfied before
+this export. No new sibling artifact is an input.
+
+New fits/readouts concern M1 training and evaluation arrays only. Metadata
+validation still checks the complete paired export, and the serialized
+original CCA stream contains both already exposed regions; only its M1 fit
+and prediction enter this analysis. No calibration neural values, reserved
+dates or source MATLAB files are read. The same-account reader boundary is
+procedural, not operating-system isolation.
+
+Unit pools come only from the preserved physical unit guide. Units recorded
+on the fixed 15 LFP electrodes and units on other electrodes are globally
+count matched before neural values. Disjoint IDs do not establish physical
+distance: electrode geometry, raw voltage, waveform quality and genuine
+spike-contamination removal are unavailable in these prepared inputs. The
+100–200/200–400 Hz features are released processed predictors, not raw spikes.
+Training-half mapping stability is conditional on common full-training target
+axes/template; it is not independent target measurement reliability. Every
+subset and all seven dates remain reported, including unavailable support.
+
+All seven dates are already exposed after band/model comparisons. This new
+analysis cannot confirm a post-selection hypothesis or promote a candidate
+from the stopped search. It does not open the four reserved dates below.
+
 ## Manuscript role and cross-episode access order
 
 EP06 is the recording-domain component of EP07's proposed history-and-

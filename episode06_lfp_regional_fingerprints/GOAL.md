@@ -1,5 +1,27 @@
 # Which population components benefit from a recording-domain LFP rule?
 
+## Adopted October 13 exploratory LMP question
+
+The scientist approved the proposed next step: **does M1 LMP residual
+predictivity survive recording-support, reliability and contamination
+controls?** This is a distinct exposed-development analysis after the original
+30-comparison search ended without a supported candidate. That result remains
+closed. The seven development dates were seen after multiple bands and models;
+neither new internal resampling nor these controls creates fresh confirmation.
+The four reserved dates and calibration outcomes remain closed.
+
+Use the fixed LMP CCA recipe, training/evaluation roles and movement window.
+Compare all-unit prediction with globally count-matched unit populations on
+the selected LFP electrodes and on disjoint electrodes, plus high-frequency
+prediction and LMP after a training-only high-frequency projection. Quantify
+training-half mapping stability in shared full-training population axes and
+compare actual trial pairing with 199 fixed whole-trial mismatch predictions.
+Preserve every date, negative score and unavailable cell. This asks about
+conditional prediction and recording sensitivity, not a pure regional effect,
+absence of spike leakage, or latent measurement reliability. The complete
+[fixed specification](outputs/paper_plan.md#october-13-exploratory-lmp-support-analysis)
+defines estimands, controls, aggregation and the one-run resource stop.
+
 M1 and PMd were recorded at the same time while each animal performed the same
 reaching task. In each region we have two views of local activity: LFP features
 and spikes from nearby neurons. EP06 asks whether the relationship between those
@@ -57,8 +79,9 @@ This dataset cannot separate cortical region from its implanted array. A third
 animal can test whether the rule repeats again, but a design that breaks the
 region–array link would be needed to claim a pure cortical-area effect.
 
-No real EP06 analysis, reserved-session test, or third-animal test has run under
-this plan.
+The original development analysis is complete with no supported candidate;
+its [closeout](outputs/runs/residual_fingerprint_development/development_closeout.md)
+preserves all 30 comparisons. No reserved-session or third-animal test ran.
 
 The pre-analysis amendment of 2026-10-02 clarifies nomination: a measurable
 region-inconsistent rival is not an unscoreable rival. The amendment below

@@ -1,9 +1,80 @@
 episode: EP06
 title: Which population components benefit from a recording-domain LFP rule?
-status: planned; no real-data analysis has run
+status: original_development_search_closed_no_supported_candidate_separate_exploratory_followup_adopted
 question: which_population_component_does_the_m1_pmd_lfp_fingerprint_recover_and_when_does_it_transfer_across_days
 paper_plan: outputs/paper_plan.md
 component_details: outputs/component_details.md
+
+lmp_support_followup_20261013:
+  authority: scientist_approved_proposed_exploratory_real_data_next_steps_on_2026_10_13
+  analysis_id: lmp_support_followup
+  specification: outputs/paper_plan.md#october-13-exploratory-lmp-support-analysis
+  question: does_M1_LMP_residual_predictivity_survive_recording_support_mapping_stability_and_contamination_proxy_controls
+  evidence: exposed_development_after_original_30_comparison_search
+  original_search_remains_closed: true
+  original_result: no_supported_candidate_under_design
+  allowed_arrays: existing_seven_development_dates_M1_training_and_evaluation_only
+  calibration_values_opened: false
+  reserved_sessions_opened: false
+  new_source_or_sibling_inputs: false
+  roles_window_electrodes: unchanged_from_completed_development_export
+  reuse: original_starting09_all_unit_M1_LMP_predictions_population_axes_and_template
+  population_support:
+    pools: [units_on_selected_15_LFP_electrodes, units_on_disjoint_electrode_IDs]
+    unit_count: global_minimum_pool_size_across_both_pools_and_all_seven_dates
+    minimum: 2
+    insufficient: all_matched_support_unavailable_no_date_drop_or_rank_fallback
+    subset_draws: 3
+    rng: PCG64_SeedSequence_6006301_session_index_pool_index_draw_index
+    sampling: without_replacement_then_original_unit_order
+    repeated_identical_subsets: retain_and_disclose_not_independent_replications
+    native_counts: unchanged_no_unit_quality_filter
+  methods:
+    lmp: original_PCA2_CCA1_regularization_and_prediction_penalty_0p01
+    high_frequency: concatenate_15_electrodes_times_100_200_and_200_400_Hz_then_PCA2_CCA1
+    lmp_after_hf_projection: training_only_standardized_HF_ridge_0p01_projection_removed_from_LMP_then_same_PCA2_CCA1
+    timing: same_training_only_direction_centered_elapsed_time_ridge_0p01_in_each_target_population
+    matched_target_axes: training_only_unresidualized_spike_PCA2_and_direction_bin_template_per_subset
+    effect: 1_minus_SSE_over_training_template_residual_energy_no_clipping_or_recentering
+    shared_support_within_target: all_evaluation_trials_bins_population_axes_and_denominator
+  mapping_stability:
+    halves: alternating_source_ordered_training_trials_within_each_direction
+    target: common_full_training_population_axes_and_template
+    fit: electrode_standardization_PCA2_and_CCA1_separately_in_each_half
+    report: evaluation_feature_prediction_correlation_and_each_half_evaluation_score
+    claim: conditional_mapping_stability_not_measurement_reliability_or_noise_ceiling
+  pairing_reference:
+    draws: 199
+    rng: PCG64_SeedSequence_6006302_session_index
+    operation: random_cycle_whole_trial_derangement_within_direction_of_fixed_predictions
+    scope: descriptive_conditional_reference_not_uniform_permutation_pvalue
+    report: every_draw_mean_and_actual_minus_mean
+  aggregation:
+    order: equal_subset_draws_within_date_then_equal_dates_within_animal_then_equal_two_animals
+    report_all_dates_and_all_seven_omissions: true
+    incomplete: preserve_all_rows_full_panel_summary_unavailable_no_subset_renormalization
+    p_values_confidence_intervals_noise_correction: none
+  decision: descriptive_effects_and_boundaries_only_no_promotion_or_primary_rescue
+  stopping:
+    one_fixed_panel: true
+    outcome_adaptive_successors: false
+    unexpected_failure: preserve_partial_attempt_diagnose_before_any_retry
+    complete_or_resource_cap: stop_report_complete_negative_or_unavailable_cells
+    synthetic_sweep_required: false
+  resources:
+    cpus: 1
+    allocation_memory_gib: 7
+    allocation_minutes_max: 35
+    process_seconds_max: 1500
+    process_rss_gib_max: 5
+    additional_allocated_cpu_hours_max: 0.583333334
+    new_artifacts_gib_bound: 1
+    original_consumption_reset: false
+  limitations:
+    - target_unit_changes_alter_axes_energy_and_firing_support_not_causal_artifact_diagnosis
+    - disjoint_electrode_IDs_do_not_establish_spatial_distance
+    - HF_projection_can_remove_genuine_neural_covariance_and_does_not_prove_contamination_absent
+    - selected_LMP_evidence_is_not_fresh_confirmation_or_new_animal_replication
 
 design_amendment_20261002:
   stage: prospective_unstarted_no_neural_or_reserved_outcomes_opened
