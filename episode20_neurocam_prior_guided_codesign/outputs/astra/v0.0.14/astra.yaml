@@ -20,11 +20,41 @@ analyses:
       - {id: dataset_contract, from: ../dataset_contract}
       - {id: search_policy, from: ../search_policy}
       - {id: adopted_conditional_route, type: data, source: outputs/proposed_conditional_reference_prediction.md}
+      - {id: air_family_code, type: data, source: outputs/tools/reference_s5_family.py}
+      - {id: acquisition_code, type: data, source: outputs/tools/reference_s5_operator.py}
+      - {id: prediction_driver, type: data, source: outputs/tools/reference_s5_prediction.py}
+      - {id: calibration_wrapper, type: data, source: outputs/tools/run_reference_s5_calibration.sbatch}
+      - {id: grid_wrapper, type: data, source: outputs/tools/run_reference_s5_grid.sbatch}
+      - {id: structured_solver, type: data, source: outputs/tools/reference_s5_structured_solve.py}
+      - {id: accelerated_driver, type: data, source: outputs/tools/reference_s5_fast_prediction.py}
+      - {id: accelerated_grid_wrapper, type: data, source: outputs/tools/run_reference_s5_fast_grid.sbatch}
+      - {id: operator_checks, type: data, source: outputs/tools/test_reference_s5.py}
+      - {id: report_code, type: data, source: outputs/tools/reference_s5_report.py}
+      - {id: report_checks, type: data, source: outputs/tools/test_reference_s5_report.py}
     outputs:
+      - id: calibration_records
+        type: data
+        format: directory
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, air_family_code, acquisition_code, prediction_driver, calibration_wrapper, grid_wrapper, structured_solver, accelerated_driver, accelerated_grid_wrapper, operator_checks]
+        description: >-
+          Freeze the dry-air operator and 3-by-12 structural parameter grid before
+          fitting. Retain all 4000 frames, actual timestamps and restart state for
+          each record. Equivalent contact-law names share one physical air record.
+          The initial R1 point measures full-record cost under a finite two-hour
+          request; partial checkpoints provide no calibration estimate. Complete
+          all 36 effective records before freezing the explored compatible family.
+          Use measured runtime to distribute original points with the grid wrapper;
+          task index equals 12 times structural index plus point index. Maintain
+          one writer per record and preserve checkpoints across bounded attempts.
+          For R2/R3 use the qualified exact structured capacitance inverse and
+          cached original SciPy Taylor setup. Full-frame comparisons retain all
+          states, charges, integrals, codes, timestamps and energy tolerances.
+          Each accelerated point requests one CPU, 2 GiB and at most 48 hours;
+          the complete 4000-frame target may require another checkpointed attempt.
       - id: frozen_compatible_family
         type: report
         format: json
-        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route]
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, calibration_records]
         description: >-
           Prespecify the full dry-air metal-probe, scan and acquisition operator,
           all six named templates, shared parameter domain and every direct or
@@ -35,16 +65,33 @@ analyses:
           independent-final data. This partial family is not full reference acceptance.
       - id: conditional_distant_report
         type: report
-        format: json
-        inputs: [dataset_contract, search_policy, adopted_conditional_route, frozen_compatible_family]
+        format: directory
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, frozen_compatible_family, report_code, report_checks]
         description: >-
-          Predict assigned second/far-neighbour coupling from the frozen family,
-          retaining every model and per-pad prediction. Report explored parameter
-          envelopes rather than device confidence intervals or an identified set
-          unless the complete domain was bounded. Include one distance-versus-
-          coupling figure, nearest calibration residuals and a three-line summary.
+          Require the complete nearest-only freeze of all 36 full-record structural
+          parameter points before reporting. For each compatible point, retain all
+          per-pad predictions and plot the maximum in every Manhattan-distance
+          shell alongside both source/gate directional curves and all 36 nearest
+          calibration residuals. The shell curve includes off-axis pads entering
+          the held-aside maximum. Save one figure in PNG/PDF, prediction.json,
+          per_pad_amplitudes.npz and an exact three-line summary.md. If no sampled
+          point is compatible, save a calibration-only figure, JSON and summary
+          without opening response records or distant evidence; this finite-grid
+          outcome does not reject the continuous parameter domain or hardware.
+          Report explored parameter envelopes, not device confidence intervals or
+          an identified set. Disclose equivalent contact labels, previously known
+          public summaries and same-account procedural separation. Run on compute
+          using the existing Python 3.12.1, NumPy 1.26.3, SciPy 1.12.0, h5py 3.10.0
+          and matplotlib 3.8.3 modules, with one numerical thread and a fresh output
+          directory under outputs/figures/.
           No candidate score, primary R-squared claim, full reference acceptance
           or hardware validation is established by this conditional result.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_report.py
+            --freeze {inputs.frozen_compatible_family} --output-dir {output}
+            --paper-far-db -45 --check-max-db -42
+          resources: {cpus: 1, memory: 1Gi, time_limit: 10m}
   fast_forward_equivalence:
     name: Preserve the original full-dimensional forward model under the faster solver
     inputs:

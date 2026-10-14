@@ -1,5 +1,33 @@
 # Outputs
 
+**October 13, 23:04 Pacific — all 24 R2/R3 points submitted with qualified acceleration.**
+Array 47742184 keeps all physical states and the full 4,000-frame records.
+Full-frame comparisons passed; observed carried-frame costs are 216/172 seconds.
+Each worker requests 1 CPU / 2 GiB / 48 hours and preserves checkpoints for
+continuation. All 12 R1 records are complete; distant prediction remains pending
+the complete 36-record family. See the [evidence and selection](experiment_log.md).
+
+**October 13, 22:15 Pacific — all 12 R1 records complete; full-state R2/R3 continue.**
+Every completed R1 record retains all 4,000 frames. R2/R3 take approximately
+514/427 seconds per frame; a qualified setup cache helps on short comparisons,
+and an exact structured solve is being evaluated before expanding those points.
+The full 36-record family remains required before distant prediction.
+No conditional prediction result is claimed yet. See the [measurements](experiment_log.md).
+
+**October 13 Pacific — measured S5 speed supports a 13-task parallel wave.**
+Array 47731922 covers the other 11 R1 points and one R2/R3 point each, with
+1 CPU / 7 GiB / 2 hours per task. Original job 47730897 retains R1 point 01.
+All records keep 4,000 frames; the complete 36-record family precedes distant
+prediction. The [log](experiment_log.md) records the measurement and binding checks.
+
+**October 13, 21:34 Pacific — conditional S5 calibration retry submitted as 47730897.**
+The first job, 47729953, failed before simulation because old Bash rejected an
+empty argument array. Both repaired argument cases and all three reporting tests
+pass. The 1 CPU / 7 GiB / 2-hour retry reuses the declared family and targets the
+full 4,000-frame R1 point 01 record; partial progress is not a fit.
+The complete36-record explored family must be frozen before distant prediction.
+See the [selection and evidence](experiment_log.md).
+
 **October 13 — conditional S5 prediction adopted; implementation underway.**
 The scientist adopted the [complete conditional plan](proposed_conditional_reference_prediction.md).
 It fits assigned nearest coupling, freezes the family, then predicts assigned

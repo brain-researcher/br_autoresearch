@@ -40,9 +40,10 @@ s5_phase=prefit_family_freeze
 if [[ ! -e "$s5_manifest" ]]; then
  python3.12 -B reference_s5_prediction.py prepare --output "$s5_manifest" > "$s5_run/prepare.txt" 2>&1
 fi
-s5_resume=()
 if [[ -e "$s5_record/frame_checkpoint.npz" ]]; then
- s5_resume=(--resume)
+ set -- --resume
+else
+ set --
 fi
 s5_left=$((s5_deadline-$(date +%s)))
 (( s5_left > 60 ))
@@ -53,5 +54,5 @@ s5_phase=full_record_nearest_only_calibration_point
  --manifest "$s5_manifest" --structure R1 --point 1 \
  --record-dir "$s5_record" --run-dir "$s5_run/record_operation" \
  --stop-after-frame 4000 --deadline-seconds "$s5_left" --memory-mib 6656 \
- "${s5_resume[@]}" > "$s5_run/record_stdout.txt" 2>&1
+ "$@" > "$s5_run/record_stdout.txt" 2>&1
 s5_phase=bounded_calibration_complete_or_checkpointed_no_prediction

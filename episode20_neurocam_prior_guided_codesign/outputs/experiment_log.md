@@ -1,5 +1,171 @@
 # Experiment log
 
+## 2026-10-13 23:29 Pacific — conditional_s5_prediction — structured shifted solve passes; short action comparison selected
+
+Step 47377474.41 passed both full-state comparisons in 15.61 s, peak RSS 206,380 KiB; relative residuals were at most 9.09e-15.
+Warm R2/R3 solves cost 0.510/0.506 ms, with 359/285 kB retained numeric storage; cold setup cost 2.58/1.64 ms.
+Evidence: runs/reference_s5/operations001/shifted_structured_cost001.json; this one-pole check does not qualify exponential propagation.
+Select an isolated eight-pole CRAM16 action and short actual-interval comparison preserving all states, forcing and 24 hold integrals.
+Run the independent-operator cold/carried 16-action comparison in the existing 1 CPU / 1 GiB companion with a 120-second process bound.
+Only original-tolerance agreement and useful measured speed can justify a later full-frame comparison; production continues unchanged.
+
+## 2026-10-13 23:26 Pacific — conditional_s5_prediction — exact structured shifted-inverse prototype selected
+
+Source algebra replaces expensive sparse shifted factors with full-state DCT and small Schur solves, including the driven-pad constraint.
+Select one 120-second / 1 CPU / 1 GiB companion comparison on the same original R2/R3 point01 aperture and published pole.
+Measure cold/warm 1/3-RHS costs, actual sparse residuals and solution differences; this does not qualify a rational exponential action.
+All production imports and records stay fixed. New isolated drivers are reference_s5_shifted_structured.py and its comparator.
+Proceed further only if measured costs offer useful improvement and the original sparse-system comparison passes.
+
+## 2026-10-13 23:17 Pacific — conditional_s5_prediction — sparse shifted factors do not offer a speedup
+
+Step 47377474.40 measured both full matrices in 15.05 s, peak RSS 211,192 KiB; complex backward residuals were at most 2.21e-16.
+One sparse factor cost 56.7/51.2 ms and one solve 1.814/1.857 ms for R2/R3.
+Even warm 24-shift solves project 43.5/44.6 ms per interval, above measured Taylor work; nominal factor caches project 140/127 GB.
+Do not implement this sparse-LU rational route. Evidence: runs/reference_s5/operations001/shifted_solve_cost001.json.
+Production continues unchanged; source-only assessment may determine whether exact structured shifts remove those costs.
+At 23:15, fresh R2 point00 had two committed frames and resumed point01 had ten, confirming preserved-record continuation.
+
+## 2026-10-13 23:15 Pacific — conditional_s5_prediction — one shifted-solve cost measurement selected
+
+The qualified 24-point production wave continues; measured full-record cost remains about 8–10 days per point.
+Select one isolated 90-second / 1 CPU / 1 GiB companion measurement of a published complex shift on full R2/R3 matrices.
+Measure factor/solve time, storage and residuals only to decide whether rational-action work could reduce this cost.
+No exponential approximation, production replacement, trajectory, fit or held-aside access is selected by this measurement.
+Live source files and records stay unchanged; driver is tools/measure_reference_s5_shifted_solve.py.
+
+## 2026-10-13 23:04 Pacific — conditional_s5_prediction — complete R2/R3 grid submitted
+
+Both old point-01 writers and their batch/extern steps were terminal at 23:01 Pacific; no duplicate writer remains.
+Slurm accepted array 47742184_12–35, at most 24 concurrent 1 CPU / 2 GiB / 48-hour workers.
+The original record paths/checkpoints and full 4,000-frame target are retained for every point.
+All twelve R1 records are already complete; distant evaluation still requires all 36 full records and the nearest-only freeze.
+Next: check accelerated fresh/resume startup, then continue saved frames at finite job boundaries.
+
+## 2026-10-13 23:01 Pacific — conditional_s5_prediction — qualified full-grid acceleration selected
+
+47738100 completed 0:0 in 30m23s; both independent full-frame comparisons pass all original tolerances.
+Carried R2/R3 frames took 215.84/172.40 s; worst comparison RSS was 588.4 MiB, with bounded caches and frame-wise HDF output.
+Select all 24 original R2/R3 points, each 1 CPU / 2 GiB / 48 h on SIE, with a 1,536-MiB application guard.
+Seven-day submissions were rejected before job creation (normal wall limit; listed high_p invalid for this request); select normal QOS's observed 48-hour limit.
+Measured costs project about 10/8 days per full record: these are checkpointed attempts requiring continuation, not promised single-job completions.
+Cancel only old point-01 writers 47731922_13 and _25, preserve committed frames, and verify terminal state before resuming them.
+All 36 full 4,000-frame records, six named models, original operators/tolerances and nearest-only access remain required.
+Evidence: runs/reference_s5/structured_frame_job_47738100/comparison.json; next freeze follows full-grid completion only.
+
+## 2026-10-13 22:24 Pacific — conditional_s5_prediction — full-frame comparison selected
+
+Selected run_reference_s5_structured_comparison.sbatch and submitted as 47738100: 1 CPU / 1 GiB / 1 h on SIE.
+Both original R2/R3 frames use independent charge operators; every interval, full readout and boundary energy is compared.
+The driver also checks the full-size maximum-coupling inverse and measures a carried second fast frame.
+The 3,480-second computation bound follows measured original frame costs of 514/427 s and prefix speedups.
+Original production jobs and checkpoints remain untouched; no record writer, calibration or distant estimate is opened.
+Keep comparison and acceleration sources fixed until the job is terminal; use the evidence to select full-grid continuation.
+
+## 2026-10-13 22:21 Pacific — conditional_s5_prediction — structured solve passes; full-frame comparison prepared
+
+Step 47377474.37 passed all three inverse/propagation checks and both full-size prefix comparisons.
+At 24 intervals, original/warm R2 took 5.08/1.57 s; R3 took 4.47/1.17 s, within original tolerances.
+Evidence: runs/reference_s5/operations001/structured_sparse_checks001.txt and structured_sparse_prefix001.json.
+The prefix reused original charge increments; an independent full-frame operator must exercise changed charge solves.
+Prepare a comparison retaining all 64 rows, carried states, hold integrals and complete readout, plus next-frame cost.
+The isolated acceleration entrypoint preserves original manifest, checkpoint/writer and nearest-only boundary;
+production selection awaits that full-frame evidence. No distant data are opened.
+
+## 2026-10-13 22:18 Pacific — conditional_s5_prediction — exact structured solve comparison selected
+
+Select three focused structured-inverse checks and the full-size original/cold/warm 24-interval comparison.
+Use the existing task-owned 1 CPU / 1 GiB companion, with 120 s tests and 180 s comparison bounds.
+The replacement diagonalizes the original capacitance blocks and applies the exact driven-pad constraint;
+it retains every state, physical edge, acquisition interval and original error tolerance.
+Only a passing comparison with useful measured improvement permits a full-frame comparison or integration.
+No live source, record, fit, held-aside value or scientific stopping rule is changed.
+
+## 2026-10-13 22:15 Pacific — conditional_s5_prediction — all R1 records complete; cache comparison passes
+
+47730897 and all eleven R1 tasks in 47731922 completed successfully; all twelve full records are retained.
+Step 47377474.36 passed three cache checks and the unchanged full-size 24-interval comparisons.
+Original versus warm times were R2 5.25/2.86 s and R3 4.24/2.05 s, with zero observed state/integral differences.
+Evidence: operations001/cached_sparse_checks001.txt and cached_sparse_prefix001.json under runs/reference_s5.
+This prefix result does not establish full-record speed; R2/R3 workers remain live with saved frames.
+Their full-state capacitance matrix permits a separate exact structured solve; implement and compare it
+before expanding the remaining points. All 36 records, full states, timing, tolerances and data roles stay fixed.
+
+## 2026-10-13 Pacific — conditional_s5_prediction — isolated scalar-plan comparisons selected
+
+Independent source review passed the new entry-bounded scalar-plan cache and focused tests.
+It retains exact duration/marker/circuit keys, original SciPy 1.12 Taylor arithmetic and
+tolerance, per-interval product limits, all state/hold-integral outputs and rail checks.
+Select three focused checks followed by original/cold/warm full-size eight-action comparisons
+for R2/R3 on the existing 1 CPU / 1 GiB companion, with a 180-second comparison bound.
+Only a passing comparison and measured improvement permit an integrated retry; live files stay fixed.
+
+## 2026-10-13 Pacific — conditional_s5_prediction — repeated sparse exponential work measured
+
+Step 47377474.34 completed both original full-array eight-action probes in 26.37 s,
+peak RSS 206,336 KiB. R2/R3 sparse propagation took 5.50/4.59 s for 24 intervals;
+forward/adjoint products accounted for 4.87/4.00 s, while warm matrix lookup was negligible.
+The second mux cycle cost nearly the first, identifying repeated exponential work.
+Select an isolated cache of equivalent norm/scaling setup with exact circuit/duration keys,
+retaining the original propagation arithmetic, tolerances, apertures, states and observables.
+Require comparisons with unchanged propagation before integration; live files stay fixed.
+
+## 2026-10-13 21:55 Pacific — conditional_s5_prediction — first R1 record complete; full-state cost observed
+
+47730897 completed 0:0 in 16m59s; the R1 point 01 record retains all 4,000 frames.
+No distant evaluation was run. Remaining R1 points continue in array 47731922.
+Its R2/R3 point 01 workers completed their first frames in 519.33/433.31 s.
+That cost motivates a bounded timing probe before expanding their remaining grid points.
+Select an isolated 180-second, 1 CPU / 1 GiB timing driver using the unchanged full-array
+operator and first eight actions, with original states/charges/apertures and aggregate timings only.
+Live source files remain frozen; no model, grid point, record length or scientific boundary is reduced.
+
+## 2026-10-13 Pacific — conditional_s5_prediction — measured R1 cost selects parallel grid wave
+
+47730897 was live at 21:39 Pacific, with 729/4000 frames after 206 s;
+recent frame times 0.17–0.25 s project roughly 15–20 minutes for a full R1 record.
+Select array tasks 0,2–11,13,25: the other 11 R1 points and R2/R3 point 01,
+each 1 CPU / 7 GiB / 2 h, at most 13 concurrent, retaining all original 36 grid points.
+Step 47377474.32 passed all 36 task mappings, invalid-index refusals and fresh/resume arguments.
+Submitted as 47731922; task 1 remains owned by 47730897, with no distant access or partial fit.
+Use measured R2/R3 progress before expanding their remaining original points.
+
+## 2026-10-13 21:34 Pacific — conditional_s5_prediction — repaired wrapper retry
+
+Step 47377474.30 passed both fresh/resume argument cases and all 3 reporting tests.
+Reporting tests took 5.025 s; process 7.73 s, peak RSS 137,856 KiB.
+Submitted 47730897 with the same 1 CPU / 7 GiB / 2-hour R1 point 01 measurement.
+The existing prefit family is reused; the failed 47729953 directory is preserved.
+Worker physics/acquisition sources remain fixed; no fit or distant result exists yet.
+Next: use full-record completion or measured checkpoint cost to select continuation.
+
+## 2026-10-13 21:26 Pacific — conditional_s5_prediction — initial wrapper failure repaired
+
+47729953 is terminalFAILED1:0 after15s; operator checks passed and the prefit family was written.
+The record worker never started: old Bash with nounset rejects expansion of an empty array.
+Use empty positional arguments or exactly --resume instead; physics and measurement code stay fixed.
+Select the two shell argument cases and focused reporting checks in the companion allocation,
+then retry the same1CPU/7GiB/2h R1 point01 record using the existing prefit family.
+No calibration estimate or held-aside outcome was produced; preserve the failed job directory.
+
+## 2026-10-13 21:23 Pacific — conditional_s5_prediction — first full-record calibration point selected
+
+Step47377474.28 passed all five new operator/acquisition/restart checks in0.531s;
+process elapsed3.06s, peakRSS70,204KiB. Select run_reference_s5_calibration.sbatch:
+1CPU/7GiB/2h, R1 point01 of the predeclared36-effective-record grid, full4000frames,
+nearest anchors only. A prefix is a checkpoint/cost measurement and cannot yield a fit.
+Submitted as47729953. The complete frozen family is required before distant evaluation.
+Keep all five new S5 source files fixed during this job. Reporting work uses a separate helper.
+
+## 2026-10-13 21:21 Pacific — conditional_s5_prediction — new air operator checks selected
+
+The five new S5 files are checkpointed as unvalidated work. Independent source review
+found the prescribed Dirichlet forcing, fixed projection, aperture timing and full-record
+nearest-to-frozen-distant boundary intact. Select the five focused checks in the existing
+coordinated1CPU/1GiB allocation before the adopted1CPU/7GiB/2h nearest-only measurement.
+No fit or held-aside value has been read; live continuous/offset sources remain frozen.
+All-pad distant plotting and an empty sampled-compatible family need explicit reporting.
+
 ## 2026-10-13 20:29 Pacific — conditional_s5_prediction — scientist adopted conditional route
 
 Scientist reply: “采用条件化预测方案（推荐）”; the complete written proposal is now adopted.
