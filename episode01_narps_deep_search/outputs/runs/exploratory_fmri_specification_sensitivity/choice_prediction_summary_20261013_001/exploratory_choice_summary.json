@@ -1,0 +1,200 @@
+{
+  "analysis_id": "exploratory_choice_score_report",
+  "status": "complete",
+  "source": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode01_narps_deep_search/outputs/runs/exploratory_fmri_specification_sensitivity/prepared_20261013_002/behavioral_covariates.json",
+  "source_component": "metadata only",
+  "participants": 108,
+  "task_versions": {
+    "EI": 54,
+    "ER": 54
+  },
+  "original_trials": 27648,
+  "fitting_performed": false,
+  "BOLD_access": false,
+  "directions_per_participant": 2,
+  "method": "fixed_per_participant_opposite_half_ridge_logistic",
+  "features": [
+    "intercept",
+    "gain/10",
+    "positive_loss/10"
+  ],
+  "penalty_diagonal": [
+    0.01,
+    1.0,
+    1.0
+  ],
+  "half_pairs": [
+    {
+      "train": [
+        1,
+        4
+      ],
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "train": [
+        2,
+        3
+      ],
+      "score": [
+        1,
+        4
+      ]
+    }
+  ],
+  "denominator": "Sum both held-out half NLLs and divide by that participant's total responded trials; then give participants equal weight.",
+  "positive_improvement": "Intercept-reference log loss minus logistic-model log loss; positive means the logistic model has lower loss.",
+  "summaries": {
+    "all": {
+      "participants": 108,
+      "responded_trials": 27454,
+      "misses_excluded": 194,
+      "improved_participants": 107,
+      "tied_participants": 0,
+      "worse_participants": 1,
+      "proportion_improved": 0.9907407407407407,
+      "intercept_log_loss": {
+        "expected_participants": 108,
+        "available_participants": 108,
+        "unavailable_participants": 0,
+        "mean": 0.6176596365935005,
+        "participant_SE": 0.009743464371034056,
+        "t95_CI": [
+          0.5983443548569765,
+          0.6369749183300246
+        ],
+        "status": "complete"
+      },
+      "model_log_loss": {
+        "expected_participants": 108,
+        "available_participants": 108,
+        "unavailable_participants": 0,
+        "mean": 0.2885002825565492,
+        "participant_SE": 0.008289858284131498,
+        "t95_CI": [
+          0.2720666053534104,
+          0.304933959759688
+        ],
+        "status": "complete"
+      },
+      "log_loss_improvement": {
+        "expected_participants": 108,
+        "available_participants": 108,
+        "unavailable_participants": 0,
+        "mean": 0.32915935403695146,
+        "participant_SE": 0.00846533432049097,
+        "t95_CI": [
+          0.3123778160574785,
+          0.3459408920164244
+        ],
+        "status": "complete"
+      }
+    },
+    "EI": {
+      "participants": 54,
+      "responded_trials": 13731,
+      "misses_excluded": 93,
+      "improved_participants": 53,
+      "tied_participants": 0,
+      "worse_participants": 1,
+      "proportion_improved": 0.9814814814814815,
+      "intercept_log_loss": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.583058803156177,
+        "participant_SE": 0.015494705184769034,
+        "t95_CI": [
+          0.5519803602831954,
+          0.6141372460291585
+        ],
+        "status": "complete"
+      },
+      "model_log_loss": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.2814966116840564,
+        "participant_SE": 0.015144633694651148,
+        "t95_CI": [
+          0.25112032330045375,
+          0.311872900067659
+        ],
+        "status": "complete"
+      },
+      "log_loss_improvement": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.3015621914721207,
+        "participant_SE": 0.012840822901192853,
+        "t95_CI": [
+          0.2758067623614672,
+          0.32731762058277425
+        ],
+        "status": "complete"
+      }
+    },
+    "ER": {
+      "participants": 54,
+      "responded_trials": 13723,
+      "misses_excluded": 101,
+      "improved_participants": 54,
+      "tied_participants": 0,
+      "worse_participants": 0,
+      "proportion_improved": 1.0,
+      "intercept_log_loss": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.6522604700308242,
+        "participant_SE": 0.009902471111138646,
+        "t95_CI": [
+          0.632398628255907,
+          0.6721223118057414
+        ],
+        "status": "complete"
+      },
+      "model_log_loss": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.29550395342904207,
+        "participant_SE": 0.006802157664780846,
+        "t95_CI": [
+          0.28186055293338713,
+          0.309147353924697
+        ],
+        "status": "complete"
+      },
+      "log_loss_improvement": {
+        "expected_participants": 54,
+        "available_participants": 54,
+        "unavailable_participants": 0,
+        "mean": 0.3567565166017824,
+        "participant_SE": 0.009783929664617125,
+        "t95_CI": [
+          0.3371324388585049,
+          0.37638059434505994
+        ],
+        "status": "complete"
+      }
+    }
+  },
+  "participant_scores": "participant_choice_scores.csv",
+  "interpretation": [
+    "Exploratory within-session choice prediction using already completed fixed opposite-half fits; exposed behavior is not fresh confirmation.",
+    "Scores concern acceptance conditional on a response. Misses and RT are not modeled or scored; these nats per responded trial must not be compared numerically with the earlier joint choice/RT/deadline score.",
+    "Participants are the sampling units. Intervals are uncorrected Student t95 intervals for equal-participant means; improvement uncertainty preserves the within-participant pairing.",
+    "Counts with lower loss are descriptive, not psychological-mechanism identification, an established superiority gate, or a novelty claim.",
+    "EI/ER are descriptive between-participant strata with different offer ranges, not independent replications or causal task-version effects."
+  ],
+  "created_utc": "2026-10-13T19:44:57.028953+00:00",
+  "figure": {
+    "status": "unavailable",
+    "reason": "No module named 'matplotlib'"
+  }
+}
