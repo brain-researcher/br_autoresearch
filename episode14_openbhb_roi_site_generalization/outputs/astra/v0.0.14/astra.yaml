@@ -29,6 +29,8 @@ inputs:
     source: trusted_evaluator_mount_after_candidate_lock_and_freshness_review
 
 outputs:
+  - id: provider_compression_report
+    from: provider_group_compression.compression_report
   - id: data_check_report
     from: prepared_bundle_check.data_check_report
   - id: development_report
@@ -51,6 +53,28 @@ outputs:
     from: covariance_protected_projection.protection_report
 
 analyses:
+  provider_group_compression:
+    name: Compare provider-group compression with generic and shuffled compression
+    description: >-
+      October13 adopted exploratory comparison on exposed Desikan development
+      only. Evaluate all 31 fixed arms over all three official overlapping
+      views: anatomical or measurement-family block PCA at three dimensions
+      each, three matched shuffled groupings, dimension-matched global PCA
+      and raw ridge. Fit scaling and transforms within nested training roles;
+      tune identical seven-alpha grids and retain every dimension and control.
+      Report paired equal-domain MAE, participant and age-range tradeoffs and
+      descriptive uncertainty. No promotion or public-validation access.
+    inputs:
+      - {id: specification, type: data, source: outputs/representation_research_design.md}
+      - {id: development_bundle, from: ../development_bundle}
+    outputs:
+      - id: compression_report
+        type: report
+        format: json
+        inputs: [specification, development_bundle]
+        recipe:
+          command: python3 outputs/tools/run_provider_compression.py --out outputs/runs/provider_group_compression/attempt001 --workers 3 --max-seconds 3300
+          resources: {cpus: 4, memory: 16Gi, time_limit: 60m}
   bilateral_regularization:
     name: Compare anatomical bilateral shrinkage with matched generic pairing
     description: >-

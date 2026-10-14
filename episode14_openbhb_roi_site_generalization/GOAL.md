@@ -9,6 +9,19 @@ additional anatomical benefit is established, and public validation remains
 closed. The broader question below remains open; completed scope does not
 authorize an automatic successor.
 
+## October 13 adopted provider-group compression follow-up
+
+The scientist explicitly approved the proposed next comparison: provider-defined
+anatomical and measurement-family compression versus dimension-matched global
+PCA and three fixed shuffled-group controls. This separate exploratory branch
+uses the existing exposed development participants and all three official views.
+Its [prospective recipe](outputs/representation_research_design.md#october-13-adopted-provider-group-compression)
+fixes 31 arms, training-only fits and tuning, paired domain-level uncertainty,
+and one 4CPU/16GiB/60-minute execution allowance. Every dimension/control is
+reported; no development winner is promoted. All 757 public-validation rows,
+including features, remain outside this branch. The original negative result
+and completed follow-ups retain their conclusions.
+
 ## The question in plain language
 
 The same FreeSurfer measurements can be represented as individual ROIs,
@@ -89,7 +102,8 @@ The October 6 continued-work request adopts the bounded exposed-development
 [bilateral regularization comparison](outputs/representation_research_design.md#october-6-adopted-bounded-bilateral-comparison).
 Its explicit candidate ranges, matched controls and4CPU/16GiB/60-minute cap are
 separate from the original closed reference. Public validation and candidate
-promotion remain closed; no other proposed representation branch is activated.
+promotion remain closed. The October 13 amendment above separately activates
+provider-group compression; other proposed branches remain unactivated.
 
 The existing executable contract remains the frozen R0--R3 reference below:
 Desikan, the common ridge procedure, external domain-macro MAE, the +0.01 linear-site
@@ -97,9 +111,10 @@ guardrail, the -2% age margin, all controls, and the existing holdout rules are
 unchanged. It can select one candidate and support only its original narrow
 predictive claim; it does not exhaust the revised scientific question.
 
-This revision authorizes writing the open representation design, not launching
-it. Its candidate ranges, resource allowance, selection and confirmation scope
-must be amended prospectively before execution. The current exclusions apply
+The original September design revision authorized writing the open design.
+The dated October amendments authorize only their specified executions. Other
+candidate ranges, resources, selection and confirmation scope require a
+prospective amendment before execution. The current exclusions apply
 to the fixed reference, not to what may be considered during design. No new
 analysis, holdout endpoint or ASTRA experiment is activated by this text.
 
@@ -134,8 +149,9 @@ are exposed development material. The 757 public-validation feature rows are
 available without targets, but their age, `siteXacq`, and role labels remain
 outside the candidate workspace.
 
-No current experiment has started. No public-validation outcome has been
-opened. A public label is not automatically a fresh audit label: the 757 rows
+The original reference and adopted diagnostic/bilateral experiments have
+completed. No authorized public-validation evaluation has occurred. A public
+label is not automatically a fresh audit label: the 757 rows
 can be treated as a one-shot procedural holdout only if a dated exposure review
 establishes that no designer, controller, accessible cache, or prior artifact
 has seen a row-level join, candidate-discriminating score, or partial outcome.

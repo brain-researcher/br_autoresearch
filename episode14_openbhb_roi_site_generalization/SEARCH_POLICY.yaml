@@ -2,6 +2,47 @@ policy_id: ep14_openbhb_fixed_representation_comparison
 episode_id: ep14
 evidence_mode: fixed_preregistered_representation_comparison
 
+provider_group_compression_amendment:
+  adopted_date: 2026-10-13
+  authority: scientist_explicitly_approved_proposed_provider_group_compression_followup_and_execution
+  analysis_id: provider_group_compression
+  specification: outputs/representation_research_design.md
+  scope: separate_exploratory_exposed_development_only_comparison
+  atlas: desikan
+  participants: 3227
+  numeric_columns: 476
+  views: all_three_unchanged_overlapping_RAMP_views
+  anatomical_groups: 34_bilateral_ROIs_each_with_two_hemispheres_times_seven_channels
+  anatomical_components_per_group: [1, 2, 4]
+  measurement_groups: seven_provider_channels_each_with_68_ROI_hemisphere_locations
+  measurement_components_per_group: [2, 4, 8]
+  provider_metadata: [reference/desikan_labels.txt, reference/freesurfer_channels.txt, feature_names_desikan.json]
+  shuffled_group_seeds: [14021, 14022, 14023]
+  anatomical_shuffle: independently_permute_ROIs_within_each_hemisphere_and_channel
+  measurement_shuffle: independently_permute_channels_within_each_ROI_and_hemisphere
+  transform: fit_raw_column_standardization_then_block_or_global_PCA_no_whitening_or_post_PCA_scaling
+  controls: [raw_ridge, global_PCA_at_each_identical_output_dimension, all_three_size_and_strata_matched_block_shuffles]
+  global_PCA_dimensions: [14, 28, 34, 56, 68, 136]
+  arms: 31
+  alpha_grid: [0.1, 1, 10, 100, 1000, 10000, 100000]
+  tuning: each_fixed_arm_inner_leave_one_siteXacq_out_mean_domain_MAE
+  tie_break: larger_alpha
+  dimension_or_sham_selection: false
+  primary_estimand: external_domain_macro_MAE_provider_minus_dimension_matched_global_PCA_and_each_sham
+  reporting: all_arms_views_domains_age_quartiles_worst_domain_participant_MAE_site_probe_ranks_and_retained_training_variance
+  repeated_participant_rule: average_appearance_losses_before_domain_aggregation
+  uncertainty: shared_paired_10000_domain_then_participant_resamples_descriptive_uncorrected
+  covariance_fitting_capacity_matched_to_global_PCA: false
+  same_block_size_shams_control_grouping_capacity: true
+  rank_failure: stop_preserve_partial_no_silent_dimension_or_participant_reduction
+  original_fixed_comparison_disposition: development_no_candidate_unchanged
+  candidate_promotion: false
+  public_validation_feature_or_label_access: false
+  automatic_retry_or_successor: false
+  resources: {jobs: 1, cpus: 4, memory_GiB: 16, minutes: 60, worker_max_seconds: 3300, process_timeout_seconds: 3450, max_parallel_workers: 3, BLAS_threads_each: 1}
+  stopping: complete_all_31_arms_all_three_views_or_preserve_incomplete_on_error_or_deadline
+  accounting: actual_parent_allocated_CPU_seconds_once_retain_all_prior_charges
+
 bilateral_regularization_amendment:
   adopted_date: 2026-10-06
   authority: scientist_explicitly_requested_further_work_on_current_episodes_while_source_dependencies_wait
@@ -29,7 +70,7 @@ bilateral_regularization_amendment:
 research_program:
   reader_question: which_neuroanatomical_representations_and_shallow_predictors_make_age_prediction_transfer
   design_note: outputs/representation_research_design.md
-  status: open_representation_search_design_not_executable_amendment
+  status: specified_dated_branches_adopted_other_representation_proposals_not_activated
   site_role: generalization_environment_and_supporting_diagnostic_not_removal_objective
   starting_hypotheses_not_search_limits:
     - bilateral_shared_and_asymmetric_components_benefit_from_different_regularization

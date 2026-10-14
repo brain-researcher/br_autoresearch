@@ -1,5 +1,90 @@
 # EP14 — finding an age representation that transfers
 
+## October 13 adopted provider-group compression
+
+The scientist approved the described anatomical/measurement-family compression
+follow-up and its real-data execution. Earlier exposed-development results
+motivated this distinct exploratory comparison; neither the original negative
+result nor its promotion/validation boundary changes. Use only all 3,227 exposed
+participants, Desikan's 476 features and all three unchanged official views.
+All 757 public-validation rows, including features, stay closed to this branch.
+
+Provider metadata exists: `reference/desikan_labels.txt` declares 34 bilateral
+ROIs and `reference/freesurfer_channels.txt` declares seven exact measurement
+families. Verify their complete 68-by-seven cross-product against the feature
+headers. Do not infer lobes, connectivity, or physical cortical scales.
+
+| Compression family | Provider blocks | Components per block | Output dimensions |
+|---|---|---|---|
+| Anatomical | 34 bilateral ROIs, each with 14 hemisphere/channel features | 1, 2, 4 | 34, 68, 136 |
+| Measurement | Seven full provider channels, each with 68 ROI/hemisphere locations | 2, 4, 8 | 14, 28, 56 |
+
+Within each inner or outer training role, standardize the original columns,
+fit PCA independently inside each block, and concatenate the retained scores.
+Use unwhitened scores without post-PCA scaling. Apply the fitted transform to
+the corresponding evaluation role using features only. Constant raw columns
+remain zero; fail explicitly if a required block/global or combined component
+rank cannot attain the declared dimension. Never silently reduce rank or rows.
+
+At each listed dimension compare provider blocks with global PCA of exactly
+that output dimension and three fixed shuffled block assignments (seeds 14021,
+14022, 14023). Anatomical shams independently permute ROI identities inside each
+hemisphere/channel stratum, retaining one feature from every hemisphere/channel
+in each block. Measurement shams independently permute channels at each of the
+68 anatomical locations, retaining one feature from every location in each
+block. Channel mixing happens after raw standardization. All assignments use
+metadata and fixed randomness only. Retain each sham individually. Together
+with raw ridge there are 31 arms: 24 grouped, six global PCA, and one raw.
+
+Each fixed arm receives the same ridge alpha grid
+{0.1,1,10,100,1000,10000,100000}. Choose alpha only by inner leave-one-siteXacq-out
+mean-domain MAE; exact ties prefer larger alpha. Refitting scaling/PCA inside
+each inner fold prevents evaluation leakage. Refit the chosen arm on the outer
+training role. Dimensions and sham seeds are never selected using outer data;
+all 31 arms and three views must be reported. The fixed balanced linear site
+probe is supporting description, not an additional optimization target.
+
+The primary estimands are paired provider-minus-global-PCA and provider-minus-
+each-sham differences in external equal-domain age MAE at each fixed dimension.
+Negative favors provider grouping. Raw comparisons contextualize compression.
+Average repeated appearance losses within participant before domain averaging.
+Use the existing 10,000 domain-then-participant resampling rule, sharing draws
+across all arms; report two-sided percentile intervals as descriptive and
+uncorrected. Overlapping views and refitted models are not independent cohorts;
+these intervals do not account for all training-set or development-selection
+uncertainty. Report every domain, leave-one-domain-out contrast, participant
+MAE, worst-domain MAE, age quartiles, per-view results and the fixed site probe.
+Report selected alpha, effective rank, and retained training variance.
+
+Equal output dimensions match the final ridge dimension, not the number of
+learned covariance parameters: global and block PCA have different flexibility.
+Same-size block shams control that distinction when testing provider grouping.
+A raw-ridge improvement alone does not demonstrate anatomical specificity;
+agreement against both generic and shuffled alternatives supports only a
+predictive grouping effect on these exposed views. No mechanism, causal scanner
+effect, novel discovery, independent confirmation or candidate promotion follows.
+
+Execution is bounded to one 4CPU/16GiB/60-minute allocation, at most three
+workers with one BLAS thread each, cooperative worker limit 3300 seconds and
+3450-second external timeout with 15-second termination grace. Checks and plot
+run in that allocation, with the coordinator preserving a closing reserve.
+Complete all 31 arms in all three views or retain an explicitly incomplete
+attempt. No automatic retry, grid/seed growth, successor, or holdout access.
+Charge actual parent CPU time once, retaining prior charges. Prior bilateral
+five-arm/three-view execution took 221.21 seconds; the new cost is unmeasured,
+so use actual first-fold times inside this substantive run to assess its cap.
+
+A bounded local BR-KG hypothesis check returned `insufficient_evidence`
+(18 seconds), with generic brain-age/functional-connectivity matches from
+separate evidence chains. It did not establish benefit or novelty for this
+grouping comparison. The existing primary-source context below remains the
+literature basis; the specified matched controls adjudicate this question.
+
+Implementation: [runner](tools/run_provider_compression.py),
+[three focused arithmetic checks](tools/test_provider_compression.py),
+[saved-result plot](tools/plot_provider_compression.py), and
+[bounded compute entrypoint](tools/run_provider_compression.sbatch).
+
 ## October 6 adopted bounded bilateral comparison
 
 This selected comparison is **complete**, as recorded in the

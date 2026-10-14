@@ -1,5 +1,16 @@
 # Paper plan — what makes an anatomical age representation transfer?
 
+## October 13 follow-up adopted before its outcomes
+
+The approved [provider-group compression comparison](representation_research_design.md#october-13-adopted-provider-group-compression)
+tests whether provider ROI/measurement organization improves unseen-domain age
+prediction beyond matched output-dimension global PCA and three same-size block
+shuffles. All 31 arms/all three development views are retained, with nested
+training-only transforms/tuning and descriptive paired domain uncertainty.
+This is new exploratory development evidence when run; it neither reverses the
+completed negative reference nor opens public validation. Equal dimension does
+not equate global/block covariance fitting capacity, so block shams are essential.
+
 ## Completed empirical evidence — reconciled October 6
 
 The original R0–R3 reference and the separately adopted diagnostic and

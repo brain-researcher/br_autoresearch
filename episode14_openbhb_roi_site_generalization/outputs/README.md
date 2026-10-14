@@ -1,5 +1,31 @@
 # EP14 outputs
 
+**Complete, October 13: all 31 provider-group compression arms and all three
+development views finished.** Anatomical grouping has lower aggregate
+equal-domain MAE than each of its three shuffled controls at every fixed
+dimension, but does not beat dimension-matched global PCA or raw ridge.
+Measurement-family compression at 56 dimensions gives MAE **5.5442 years**
+versus global PCA's **5.6289** (difference **−0.0847**, descriptive 95% interval
+**[−0.3223, 0.1694]**); participant, worst-domain and oldest-quartile errors
+are higher. Its 14- and 28-dimensional versions also have higher equal-domain
+MAE than global PCA. No provider arm improves the raw-ridge aggregate endpoint
+(5.4685 years), and no additional anatomical advantage is established.
+
+The [complete report](runs/provider_group_compression/attempt001/provider_compression_report.md)
+retains every dimension, all three shams and all 30 provider-minus-control
+contrasts; [JSON details](runs/provider_group_compression/attempt001/provider_compression_report.json)
+include per-view/domain, age, site-probe and representation diagnostics.
+See the [figure](figures/provider_group_compression/attempt001/provider_compression.png)
+([PDF](figures/provider_group_compression/attempt001/provider_compression.pdf)),
+[prospective recipe](representation_research_design.md#october-13-adopted-provider-group-compression)
+and [completion record](experiment_log.md#2026-10-13--provider_group_compression--completed).
+Intervals are descriptive and uncorrected; overlapping views and previously
+exposed participants provide exploratory evidence. All 757 public-validation
+rows remain closed, with no dimension selection or candidate promotion.
+Job **47686487** completed in **178 seconds on 4 CPUs**, charged once at
+**0.197777778 allocated CPU-hours**. Three focused tests and ASTRA passed;
+saved-result figures rendered and received independent visual review.
+
 [Public online resources, checked October 6](../DATASETS.md#public-online-resources--checked-october-6-2026): original OpenBHB preprocessing/representation documentation and the pinned RAMP data/starting-kit interface.
 
 October 6 documentation reconciliation: the

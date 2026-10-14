@@ -1,5 +1,128 @@
 # Experiment log
 
+## 2026-10-13 — provider_group_compression — completed
+
+Coordinator-confirmed parent **47686487** completed in **178 seconds on 4 CPUs**.
+Charge **0.197777778 allocated CPU-hours** once (4 × 178 / 3600), release
+**3.802222222 CPU-hours** from the 4-hour reserve, and retain all historical
+charges. The worker ran on `sh02-01n30.int` with the matching Slurm ID. The
+[saved status](runs/provider_group_compression/attempt001/run_status.json)
+records all three views complete, no holdout access and 149.574729 seconds for
+the analysis. All **31 arms × 3 views** finished; the fixed stopping rule is
+satisfied, with no successor, dimension selection or candidate promotion.
+
+The [full table](runs/provider_group_compression/attempt001/provider_compression_report.md)
+and [numerical report](runs/provider_group_compression/attempt001/provider_compression_report.json)
+retain all 3,227 exposed development participants, all views, all six fixed
+dimensions, raw ridge, six global-PCA controls and all 24 grouped arms. The
+following covers each provider arm and every primary comparator. Differences
+are equal-domain MAE in years, provider minus control; negative favors provider.
+Raw ridge's aggregate MAE is 5.4685 years.
+
+| Provider grouping | Dimension | MAE | Minus raw | Minus global PCA (descriptive 95% interval) | Minus sham 14021 | Minus sham 14022 | Minus sham 14023 |
+|---|---:|---:|---:|---|---:|---:|---:|
+| Bilateral ROI | 34 | 6.3032 | +0.8347 | +0.6619 [0.0992, 1.2714] | −0.5326 | −0.0817 | −0.7696 |
+| Bilateral ROI | 68 | 5.7607 | +0.2922 | +0.1638 [−0.2612, 0.5830] | −0.7801 | −0.3973 | −0.4040 |
+| Bilateral ROI | 136 | 5.5099 | +0.0413 | +0.0306 [−0.2002, 0.2797] | −0.3947 | −0.2044 | −0.2484 |
+| Measurement family | 14 | 6.8770 | +1.4085 | +1.0668 [0.3311, 1.8555] | +0.4855 | +0.3916 | +0.3168 |
+| Measurement family | 28 | 5.9312 | +0.4626 | +0.2940 [−0.1689, 0.7992] | −0.3428 | −0.3723 | −0.1745 |
+| Measurement family | 56 | 5.5442 | +0.0756 | −0.0847 [−0.3223, 0.1694] | −0.2634 | −0.3603 | −0.1671 |
+
+Anatomical grouping has lower aggregate error than every corresponding sham,
+but higher error than generic PCA and raw ridge. The most compressed anatomical
+arm loses to PCA by 0.6619 years. Measurement-family grouping is worse than all
+shams at 14 dimensions and better than all shams at 28 and 56; only the 56D
+version has a negative aggregate contrast against global PCA, with an interval
+including zero. At 56D, its participant/worst-domain/oldest-quartile errors
+are **7.8802 / 12.9914 / 19.1583 years**, versus **7.7184 / 12.1846 / 18.0992**
+for global PCA. Thus the small favorable equal-domain point estimate does not
+extend to these supporting endpoints. No provider arm beats raw ridge on the
+aggregate endpoint, and this branch does not establish an additional
+anatomical advantage. Site-probe accuracy remains a supporting diagnostic,
+not a criterion for selecting an age representation.
+
+All 30 paired provider-minus-reference intervals remain in the full report.
+They use the same 10,000 domain-then-participant resamples and are descriptive,
+uncorrected for the multiple comparisons. Participant appearance losses are
+averaged before domain aggregation; the overlapping RAMP views do not supply
+independent cohorts. Global and block PCA differ in covariance fitting capacity;
+same-size shuffled blocks address grouping specificity. Earlier exposed
+development outcomes motivated this branch, so no independent confirmation or
+biological mechanism is claimed. The original `development_no_candidate`
+disposition and all **757 closed public-validation rows**, including features,
+remain unchanged.
+
+Validation and independent review: the saved
+[job stderr](runs/provider_group_compression/logs/compression-47686487.err)
+records all **three focused checks passing in 1.692 seconds** (training-only
+scaling/PCA, provider/control partitions and shared paired resampling).
+[ASTRA schema and semantic validation passed](runs/provider_group_compression/logs/astra-47686487.txt).
+The [job stdout](runs/provider_group_compression/logs/compression-47686487.out)
+records all outer arms and completed saved-result plotting. The
+[PNG](figures/provider_group_compression/attempt001/provider_compression.png)
+and [PDF](figures/provider_group_compression/attempt001/provider_compression.pdf)
+show all fixed dimensions, each sham, global PCA and raw ridge; independent
+visual review found the plotted directions and intervals consistent with the
+report. Nonfatal scikit-learn `multi_class` deprecation warnings are retained;
+no convergence or runtime failure is reported. This review changed only README
+and this log; no source, follow-up analysis, test or scheduler action ran on the
+verified login shell.
+
+## 2026-10-13 — provider_group_compression — submitted as47686487
+
+Slurm accepted the selected4CPU/16GiB/60minute complete compression comparison
+as47686487. Reserve4CPUh once, preserving historical charges. Actual startup,
+affected checks and empirical completion are not inferred from submission.
+Root owns monitoring; no duplicate/automatic successor and no validation access.
+
+## 2026-10-13 — provider_group_compression — coordinator source review and submission selection
+
+Root reviewed provider/header matching, group-size/stratum controls, fit-only
+scaling/PCA, all31arms, inner domain tuning and paired participant/domain
+aggregation. No concrete source blocker found. Select the prepared one
+4CPU/16GiB/60minute substantive job,3workers and1numerical thread each,
+with3affected checks and saved-result figures. Reserve at most4CPUh once,
+retain prior charges and closed public validation. Explicit no-requeue and
+changed ASTRA validation added; no model/math changes. Job ID follows.
+
+## 2026-10-13 — `provider_group_compression`: selected before execution
+
+The scientist explicitly approved the proposed EP14 anatomical/measurement-family
+compression comparison and continuation on real data. Adopted the exact recipe
+in `representation_research_design.md` and synchronized GOAL, DATASETS, policy
+and ASTRA. Preserve `development_no_candidate` and closed public validation.
+Only existing exposed Desikan rows are input; no payload was analyzed on login.
+
+Bounded metadata inspection verified the 68 provider anatomical labels and
+seven full measurement-family names. The new code checks their 476-column
+cross-product and constructs 34 bilateral-ROI or seven measurement blocks.
+All 31 arms, three official views, seven alphas, matched dimensions and three
+fixed shams are specified prospectively. No outer-data dimension/sham selection.
+
+BR advisory: `kg_verify_hypothesis` asked whether anatomical FreeSurfer grouping
+improves cross-site brain-age prediction beyond PCA, local KG only, bounded
+25 seconds (reported 18 seconds). It returned `insufficient_evidence` and
+separate-chain/general-topic limitations. This supplies no empirical support
+or novelty claim; existing primary literature and the matched controls govern.
+
+Files prepared: `tools/run_provider_compression.py`, three focused checks in
+`tools/test_provider_compression.py`, saved-result plotting and the bounded
+`tools/run_provider_compression.sbatch`. Root owns submission, compute checks,
+monitoring and cost accounting. No test, model fit or scheduler action occurred
+on the verified login shell `sh04-ln04` (no SLURM_JOB_ID).
+
+Selected attempt: `runs/provider_group_compression/attempt001`; figures:
+`figures/provider_group_compression/attempt001`. Reserve at most one
+4CPU/16GiB/60-minute allocation (4 allocated CPU-hours), three one-thread
+workers, worker deadline 3300 seconds/external timeout 3450 seconds. Actual
+new cost is unknown; prior five-arm/three-view bilateral work took 221.21 seconds.
+No automatic retry or extension; retain incomplete output on failure/deadline.
+The coordinator creates only the scheduler log directory before submission:
+`mkdir -p outputs/runs/provider_group_compression/logs`, then submits
+`sbatch outputs/tools/run_provider_compression.sbatch` from the episode root.
+Focused checks and ASTRA validation run on compute; ASTRA tooling is not an
+execution gate. This entry records selection, not a job or empirical result.
+
 ## 2026-10-06 — public resource documentation and incidental web preview
 
 Added the original OpenBHB dataset-methods page and pinned RAMP README directly

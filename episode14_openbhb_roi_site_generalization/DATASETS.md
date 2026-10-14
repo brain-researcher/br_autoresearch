@@ -12,6 +12,26 @@ from the prospective design below. The original no-candidate decision and all
 757 closed public-validation outcomes are preserved; no new source or role
 assignment is needed to read these already released result summaries.
 
+## October 13 adopted compression data scope
+
+The separately approved `provider_group_compression` analysis uses only
+`inputs/openbhb/exposed/`: all 3,227 development participants, 476 Desikan
+columns, and the three unchanged official RAMP views. Metadata inspection
+verified 68 exact labels in `reference/desikan_labels.txt` (34 bilateral ROIs)
+and seven full channel names in `reference/freesurfer_channels.txt`. Their
+cross-product must match `feature_names_desikan.json` exactly before fitting.
+These define 34 anatomical blocks of 14 features and seven measurement blocks
+of 68 features. No provider lobe/connectivity hierarchy is assumed or inferred
+from covariance. Shuffled controls preserve the declared block sizes and
+feature strata; see the [recipe](outputs/representation_research_design.md#october-13-adopted-provider-group-compression).
+
+This comparison accesses no public-validation features or labels, no Destrieux
+payload, and no excluded demographic, global-volume or QC predictors. Repeated
+participant appearances are averaged at the loss level before domain scoring;
+the overlapping development views are not independent cohorts. Earlier observed
+development outcomes motivated this follow-up, so these data cannot supply
+fresh confirmation of its hypothesis.
+
 ## September 30 representation refocusing — design only
 
 The main question returns to transferable age representations built from the
