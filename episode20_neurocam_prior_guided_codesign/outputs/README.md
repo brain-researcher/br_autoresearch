@@ -1,5 +1,218 @@
 # Outputs
 
+**October 13 — conditional S5 prediction adopted; implementation underway.**
+The scientist adopted the [complete conditional plan](proposed_conditional_reference_prediction.md).
+It fits assigned nearest coupling, freezes the family, then predicts assigned
+distant coupling under disclosed air-probe/acquisition assumptions. No calibration
+or scientific result is claimed yet. [Work and remaining dependencies](experiment_log.md).
+
+**October 13, 19:56 Pacific — restart comparison passed; retained chunk 47721841 is running.**
+The resumed frame matches the uninterrupted calculation within all original
+tolerances. Scientific reference fitting remains a separate dependency; the
+B2 engineering record does not establish reconstruction performance.
+See the [log](experiment_log.md).
+
+**October 13, 19:46 Pacific — persistent 100-frame chunk queued as 47721841.**
+The 1 CPU / 7 GiB / 12-hour job depends on successful restart seam 47721051.
+It preserves progress toward the 4,000-frame record. This is still engineering
+execution preceding the scientific evaluation. See the [log](experiment_log.md).
+
+**October13,19:27Pacific — ten continuous frames completed and first-frame comparisons pass.**
+47716323 advanced.04physicalseconds in40.2minutes with4.36GiB peak memory.
+Restart wiring will let finite jobs accumulate the full4000-frame record.
+These are engineering results; scientific scoring and the original offset
+comparison remain outstanding. See the [log](experiment_log.md).
+
+**October13,18:43Pacific — ten-frame continuous measurement submitted as47716323.**
+OneCPU/7GiB/1h advances the qualified solver beyond one frame. The unchanged
+physics is preserved; this is an engineering precursor to the scientific
+evaluation. See the [selection and submission](experiment_log.md).
+
+**October13,18:38Pacific — continuous_frame005 passed all original comparisons.**
+Job47704613 completed:253.507seconds per frame versus287.151, with about4.2GiB
+peak memory. These remain engineering measurements. The next step is measured
+continuous execution toward the scientific evaluation; original offset reference
+47689336 remains running. See the [evidence and next action](experiment_log.md).
+
+**October 13, 16:41 Pacific — faster audit response submitted as 47704613.**
+Both independent energy checks pass; the isolated contraction is 6–13 times
+faster, with near-roundoff arithmetic differences. One CPU/7 GiB/one-hour job
+will measure the complete frame and verify original tolerances before profiling
+remaining costs. See the [checks, selection and submission](experiment_log.md).
+
+**October 13, 16:32 Pacific — comparison and function profile completed.**
+Job 47703019 completed successfully. The cached frame passes all original
+comparisons but remains slow; the profile locates major costs in energy auditing
+and array contractions. A focused source review is selecting the next change.
+See the [measured costs and actual accounting](experiment_log.md).
+
+**October 13, 16:22 Pacific — cached frame passes; profile continues.**
+Every original numerical comparison passes and all reported audit arithmetic is
+unchanged. The frame took 287 seconds versus 292 previously, a small single-run
+difference. Job 47703019 now profiles the remaining costs. See the
+[measurement and limits](experiment_log.md).
+
+**October 13, 16:16 Pacific — repaired checks pass; comparison is running.**
+Job 47703019 passed both affected test methods and ASTRA validation. The full
+standard frame and conditional function profile are underway; numerical and
+performance results remain pending. See the [execution record](experiment_log.md).
+
+**October 13, 16:15 Pacific — repaired comparison and profile submitted as 47703019.**
+The test now collects temporary Python garbage before checking object destruction;
+production code is unchanged. The one-CPU/7-GiB job will check numerical agreement
+and cache speed, then profile remaining costs if that comparison passes.
+See the [diagnosis, selection and submission](experiment_log.md).
+
+**October 13, 16:13 Pacific — cache comparison stopped at a software check.**
+Job 47702825 passed the energy oracle but failed the cache eviction/lifetime
+check before any frame simulation. The retained reference is being diagnosed;
+the prior qualified solver and running original offset reference are unaffected.
+See the [failure and accounting](experiment_log.md).
+
+**October 13, 16:12 Pacific — bounded audit-cache comparison submitted as 47702825.**
+The reviewed cache keeps exact numerical inputs and the existing memory limit.
+One CPU/7 GiB/one-hour job will measure reuse, speed and agreement with the
+original standard-frame reference. Results are pending; the complete offset
+reference remains running. See the [selection and submission](experiment_log.md).
+
+**October 13, 16:00 Pacific — audit optimization passes; frame is about 39% faster.**
+Job 47700242 completed successfully. All original reference comparisons pass;
+frame time fell from 481 to 292 seconds, with peak memory about 4.2 GiB.
+Longer-run feasibility remains unproven and the full offset reference is still
+running. See the [numerical, timing and accounting evidence](experiment_log.md).
+
+**October 13, 15:53 Pacific — optimized audit job running; independent check passes.**
+Job 47700242 passed the changed two-tone energy oracle and ASTRA validation.
+The complete standard-frame numerical and performance comparison is underway
+on one CPU with 7 GiB. See the [execution record](experiment_log.md).
+
+**October 13, 15:50 Pacific — audit optimization submitted as 47700242.**
+One CPU/7 GiB/one-hour job will check the reviewed audit optimization against an
+independent energy oracle and the full standard-frame reference. The preceding
+continuous frame passes; runtime remains the issue. See the [selection and job](experiment_log.md).
+
+**October 13, 15:48 Pacific — continuous first frame passes; memory reduced.**
+Job 47698310 completed successfully. All original numerical comparisons pass;
+peak program memory is about 4.2 GiB. The frame still costs 481 seconds, including
+329 seconds of energy auditing. A narrow audit optimization is being prepared;
+no longer speed run is selected. See the [result, cost and next action](experiment_log.md).
+
+**October 13, 15:43 Pacific — repaired standard/offset job completed successfully.**
+The complete standard frame passes all comparisons. The offset frame completed
+237 clipping events and passes both available short-window comparisons; its
+full-frame reference is still running. Continuous integration 47698310 remains
+active. See the [evidence and actual accounting](experiment_log.md).
+
+**October 13, 15:38 Pacific — continuous integration running; nine checks passed.**
+Job 47698310 is running with the selected resources. All focused software
+checks and changed ASTRA validation passed; the complete first-frame numerical
+comparison is still pending. See the [execution record](experiment_log.md).
+
+**October 13, 15:35 Pacific — continuous first-frame integration submitted as 47698310.**
+The reviewed driver will run nine focused checks and one complete standard
+frame against the original reference. Its 3-CPU/16-GiB/one-hour reservation
+fits the current Stage 1 budget. This is an integration check; longer speed
+runs remain gated. See the [selection and submission](experiment_log.md).
+
+**October 13, 15:32 Pacific — repaired complete standard frame passes.**
+All three reference windows pass the original state, readout, pixel and work
+tolerances. The frame took 586 seconds. Job 47696768 proceeds to the offset
+case; the complete offset reference is still running. Continuous-driver
+integration is being prepared. See the [result and remaining gate](experiment_log.md).
+
+**October 13, 15:26 Pacific — repaired solver passes both short windows.**
+Job47696768 passed its five focused checks and both5us/dwell reference comparisons,
+with zero state-tolerance violations. The complete standard frame is running;
+its result is still pending. See the [evidence and next gate](experiment_log.md).
+Earlier submission states below are historical.
+
+**October 13, 15:19 Pacific — repaired-forcing job47696768 submitted.**
+One3CPU/16GiB/one-hour job will check the complex-input fix and first5us/dwell
+comparisons before attempting another full frame. It is pending; no repaired
+numerical result is available yet. See the [job and accounting](experiment_log.md).
+
+**October 13, 15:17 Pacific — dwell-frame comparison failed; complex-forcing repair selected.**
+The frame completed in591seconds but disagreed with the reference. Two agents
+identified discarded imaginary input components, also visible in the run's
+warnings. The narrow repair will face the first5us/dwell comparisons before
+another full frame. The offset run was not started; original reference47689336
+continues. See the [failure, diagnosis and bounded retry](experiment_log.md).
+
+**October 13, 15:04 Pacific — dwell-window job47694453 running; focused checks passed.**
+All eight accounting/comparator checks and changed ASTRA validation passed on
+compute. The standard frame is advancing; no complete-frame agreement or
+speed result is available yet. See the [execution record](experiment_log.md) and
+[run evidence](runs/fast_forward_stage1/solver/dwell_windows001/).
+
+**October 13, 15:02 Pacific — complete dwell-window comparison submitted as47694453.**
+The reviewed charge-accounting repair and independent energy audit are ready
+for compute. One3CPU/16GiB/two-hour job will run focused checks and the complete
+standard frame, then the offset frame if the measured cost fits. Submission
+does not establish correctness or speed. Original reference47689336 continues;
+both reservations fit the existing Stage1 budget. See the [selection and job](experiment_log.md).
+
+**October 13, 14:40 Pacific — dwell-path cache repair passed its focused regression.**
+The unqualified faster path now keeps integration weights separate for circuit
+blocks with different eigenvalues. The two-block oracle/reuse check passed on
+compute. Complete window-work comparison and energy reporting still need
+integration before this path qualifies. The original reference job 47689336
+continues unchanged. See the [repair and test record](experiment_log.md).
+
+**October 13, 14:23 Pacific — unchanged original reference running as 47689336.**
+Slurm and the compute-shell record confirm one CPU and 3 GiB on sh04-04n24;
+the job started at 14:20 Pacific and ASTRA validation passed. The original
+offset reference is still in progress, with no completed-frame result yet.
+See the [execution record](experiment_log.md) and
+[run directory](runs/fast_forward_stage1/solver/ref_frame_offsets_full002/).
+
+**October 13,14:19 Pacific — unchanged original reference queued as47689336 (historical).**
+The checkpoint restart failed additional exact diagnostic checks. Both failed
+attempts are preserved. The selected full original reference has a measured
+~10.94h projection and1CPU/3GiB/14h ceiling, within the current Stage1 budget.
+It will compare all three offset windows with the completed fast frame; the
+original algorithm and scientific tolerances are unchanged. No reference or
+full-frame equivalence completion is claimed yet. See the [selection, failures
+and accounting](experiment_log.md). Earlier restart/queue states are historical.
+
+**October 13 — repaired checkpoint continuation submitted as47687972.**
+The fast offset frame is complete; its5us/dwell comparisons pass, while full-frame
+comparison awaits the reference. New1CPU/3GiB/8h continuation records and permits
+only up to8rounding units in separately reported energies; all other overlap
+fields remain exact and scientific tolerances stay unchanged. Standard-frame
+comparisons already pass. See the [diagnosis, checks and resource record](experiment_log.md).
+Earlier stopped/running statuses below are historical.
+
+**October 13,13:57 Pacific — saved-checkpoint replay stopped for diagnosis.**
+Job47687335 preserved its state but failed an exact energy comparison in the
+first overlap interval. Its preceding voltage/hold/work fields matched. Root is
+measuring the discrepancy before retrying; standard-frame equivalence passes
+and fast offset job47685616 continues. See the [failure and accounting](experiment_log.md).
+Earlier launch states below are historical.
+
+**October 13 — standard-frame equivalence passes; offset reference resumed as 47687335.**
+Both saved fast modes pass all required standard-frame windows. The new1CPU/3GiB/8h
+job resumes savedaction775, verifies overlap exactly and finishes the unchanged
+offset reference before its full-frame comparison. Fast offset job47685616 is
+already active. No full-record or scientific-candidate result is claimed.
+See the [execution and resource record](experiment_log.md).
+Earlier submission entries below are historical.
+
+**October13 — solver comparison/offset job47685616 submitted.**
+Planner/readout equivalence and both D2frame computations completed. The
+standard reference is complete; the offset reference timed out halfway. The
+new bounded job compares saved frames and runs the unchanged fast offset
+fixture. No Stage2 scaling or production simulation is admitted.
+See the [current log](experiment_log.md) and
+[solver record](runs/fast_forward_stage1/solver/RECORD.md).
+Earlier running statuses below are historical.
+
+**October 12, 21:46 Pacific — relaunch adopted; forward-simulator redesign in progress.**
+The scientist directed a relaunch: failures are engineering limits, the 336-hour
+clock restarts (ends October 26, 21:46 Pacific), and only formal-run failures
+count (6 of 12). No full-size run happens until a measured, validated faster
+formulation fits its limit. See the [failure review and plan](experiment_log.md);
+the October 9 status below is superseded.
+
 **October 9, 19:10 Pacific — termination diagnosis needs scheduler-side evidence.**
 Additional accounting fields supply no cause for job 47155950's signal 9.
 Source review found no corresponding early deadline or intentional kill path;

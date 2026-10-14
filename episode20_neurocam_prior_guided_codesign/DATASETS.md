@@ -15,6 +15,13 @@ implementing selected model equations with explicit caller-supplied parameters.
 No source has yet been qualified as an EP20 scientific input, and no candidate
 has been scored. Source acquisition does not establish scientific readiness.
 
+**October 13 conditional S5 route:** the scientist adopted the
+[written prediction plan](outputs/proposed_conditional_reference_prediction.md).
+Article use is authorized for this work. The partial route chooses an explicit
+dry-air/probe/scan interpretation before fitting the assigned nearest anchors;
+assigned distant observations remain out of fitting. These are prospective
+assumptions, not recovered historical wiring or complete reference qualification.
+
 ## Public online resources — checked October 6, 2026
 
 These primary sources supply usable documentation now. They narrow the
@@ -44,7 +51,9 @@ setting to each noise anchor. Those fields remain unresolved.
 
 The final article carries a 2025 Science China Press copyright notice reserving
 rights, including text/data mining; no open reuse license was observed there.
-This records documentary terms without resolving source-use permission.
+This records documentary terms; the scientist has authorized article use in
+this episode. No additional reuse license is asserted, and source-use approval
+is not an outstanding scientist decision.
 
 The next calibration dependency is the original transfer/noise/crosstalk
 observation recipe or source-supported bounds, as required by the

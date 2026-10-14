@@ -1,5 +1,978 @@
 # Experiment log
 
+## 2026-10-13 20:29 Pacific — conditional_s5_prediction — scientist adopted conditional route
+
+Scientist reply: “采用条件化预测方案（推荐）”; the complete written proposal is now adopted.
+Select its dry-air probe/scan interpretation before nearest-only fitting; freeze the
+compatible family before assigned distant prediction. Keep all six names, full16s/64×64,
+original tolerances and final boundary; disclose contact-law equivalence and conditional envelopes.
+No fit/result exists yet. New operator/family/prediction modules are under parallel implementation;
+live 47721841 and 47689336 imports remain frozen. Initial calibration-only measurement is
+1 CPU / 7 GiB / 2 h, increased only from measurement under standing authority.
+Next: finish shared air-circuit specification and validate affected physics/acquisition before fitting.
+
+## 2026-10-13 19:56 Pacific — fast_forward_scaling — restart seam passed; retained chunk running
+
+47721051 completed 0:0 in 929 s; peak RSS 4,628,720 KiB. The three-frame test passed.
+All 69,848 final states pass (maximum scaled error 3.08e-9); hold/aperture means pass.
+All 26,000 conversion codes are identical; 4,096 pixels have zero difference.
+47721841 is now running on sh04-04n22, retaining the first 100 of 4,000 record rows.
+This remains an uncalibrated B2 engineering case, with no reconstruction result claimed.
+Next: retain this bounded progress while resolving the separate reference-fit observation operator.
+
+## 2026-10-13 19:46 Pacific — fast_forward_scaling — persistent 100-frame chunk queued
+
+Slurm accepted 47721841 with afterok:47721051, 1 CPU / 7 GiB / 12 hours.
+Independent source review passed; the wrapper also requires passing seam and ten-frame evidence.
+The measured 2,412.44 s ten-frame run supports this finite request under standing authority.
+It retains all 4,000 record rows and checkpoints at frame 100 for later chronological continuation.
+Original comparison tolerances remain; offset equivalence and scientific scoring are outstanding.
+Next: inspect seam outcome, then the persistent record's progress; no automatic successor is submitted.
+
+## 2026-10-13 19:37 Pacific — fast_forward_scaling — restart seam submitted
+
+Slurm accepted47721051:1CPU/7GiB/30minutes for two uninterrupted frames followed
+by a fresh process restoring frame1 and repeating frame2, with original tolerances.
+Reviewed wiring preserves all states/charges/ten energies and4000-row capacity;
+the accepted checkpoint is durable before any newer HDF rows are invalidated.
+Sources stay frozen. Next: inspect restart_seam001, then begin a persistent
+100-frame chunk toward the unchanged4000-frame record if the seam passes.
+
+## 2026-10-13 19:27 Pacific — fast_forward_scaling — ten continuous frames complete
+
+Job47716323COMPLETED0:0; the solver advanced10frames/.04physicalseconds in2412.44s,
+with final-frame221.06s and peakRSS4576104KiB. First-frame comparison passes all
+three original physical windows, including states/readout/work; no tolerance changed.
+This establishes continuous engineering execution, not a scored scientific result.
+Sources are released for restart wiring. Next: the three-frame seam comparison,
+then a persistent4000-frame record; original offset reference47689336 still runs.
+
+## 2026-10-13 19:21 Pacific — fast_forward_scaling — frame restart implementation selected
+
+While47716323 continues its unscored prefix, implement the unused checkpoint
+helper and one two-frame/restarted-second-frame comparison; live imports stay frozen.
+Use canonical output bindings and preserve all69848states, ten energy fields,
+absolute time and exactly-once boundary charges. No historical file is rewritten.
+Step47377474.11 validated the changed ASTRA program; no scientific result is implied.
+Next: wire the driver after the prefix closes, then run the three-frame comparison.
+
+## 2026-10-13 18:43 Pacific — fast_forward_scaling — ten continuous frames submitted
+
+Slurm accepted47716323:1CPU/7GiB/1h for continuous_10frames001, with the
+qualified driver frozen. All69848states and original frame schedule remain.
+The unscored prefix measures warm timing and memory while offset reference
+47689336 continues; clipping equivalence remains required before production claims.
+Next: use measured continuous costs to set finite full-record chunks and add
+faithful frame-boundary restart for the site's seven-day maximum.
+
+## 2026-10-13 18:41 Pacific — fast_forward_scaling — ten-frame continuity selected
+
+Select `run_continuous_prefix10.sbatch` with the qualified frame005 solver and unchanged B2/2001 inputs.
+Measured 253.507 s/frame projects 43m34s including setup; request 1 CPU, 7 GiB and one hour, with one numerical thread.
+Retain the 1-GiB cache and 6656-MiB RSS guard; measured peak is 4.22 GiB. Standing authority replaces the former blanket half-request headroom rule.
+Run ten continuous frames and compare frame 1 with the original standard reference; preserve all ten energy columns and timing/memory diagnostics.
+This unscored engineering prefix may proceed while original offset reference47689336 finishes; clipping equivalence remains required before production scientific claims.
+No automatic successor or further optimization is selected. Root owns submission/results; next engineering work is faithful frame-boundary restart for the seven-day site limit.
+
+## 2026-10-13 18:38 Pacific — fast_forward_equivalence — continuous_frame005 completed
+
+Job47704613 completed0:0; all three original physical-window comparisons pass.
+Whole frame253.507seconds versus287.151; audit101.442seconds versus131.236.
+Reported input work, heat and residuals match the preceding implementation at
+all three windows; peak programRSS4422780KiB. Evidence: solver/continuous_frame005.
+These are engineering measurements, not scientific outcomes or full-record validation.
+Next: assess continuous warm stages/full-record execution under standing resource
+authority while original offset reference47689336 finishes; avoid needless tuning.
+
+## 2026-10-13 16:41 Pacific — fast_forward_equivalence — unit-response integration submitted as 47704613
+
+Slurm accepted 47704613 with the selected 1 CPU, 7 GiB and one-hour limit.
+Retain its 1 CPUh reservation and fresh continuous_frame005 writer. Full-frame
+numerical equivalence, practical speed and updated profile remain pending.
+
+The 23:43:26 UTC scheduler/compute record confirms RUNNING on sh04-04n23 with
+exactly one CPU and 7 GiB. Changed ASTRA schema/semantic validation passes in
+continuous_frame005/astra.txt; the complete-frame numerical result is pending.
+
+## 2026-10-13 16:41 Pacific — fast_forward_equivalence — unit-response checks pass; full integration/profile selected
+
+Step 47377474.7 completed successfully on sh02-15n09 and its shell exited.
+Both independent energy methods pass in 0.034 seconds. The four isolated
+kernel timings show median speed ratios 12.54/10.74 for 64 members and
+13.31/6.31 for 4096 members (16/32 nodes respectively); maximum arithmetic
+difference is 7.105427358e-15. These timings establish only the local kernel
+benefit on that CPU, not the complete solver or production speed. Evidence:
+solver/audit_response002/{status.txt,checks.txt,benchmark.json}.
+
+Select one continuous_frame005 job: 1 CPU, 7 GiB, one-hour maximum, one thread,
+no GPU/requeue/successor, same 54-minute work deadline and memory/cache bounds.
+Reuse the just-passed focused checks. Run changed ASTRA validation, the complete
+standard frame and original-reference comparison, descriptive audit comparison
+with continuous_frame004, then a separate function profile after equivalence
+passes. The profile will measure whether the changed kernel shifts the observed
+audit bottleneck and records its new hook separately. Instrumented timings
+remain separate from the unprofiled speed result. No new acceptance margin,
+reduced physical fidelity, offset-reference bypass or Stage 2 admission applies.
+
+Reserve 1 CPUh. With 20.716666667 CPUh consumed and the existing 14 CPUh
+original-reference reservation, Stage 1 consumed plus reserved becomes
+35.716666667/40 (solver 34.795555556/38, planner 0.921111111/2). Six formal
+failures remain unchanged. Root owns submission and records; candidate source
+is frozen. A stale NodeWeights module description was corrected to reflect its
+existing use by the continuous driver; that wording change affects no arithmetic.
+
+## 2026-10-13 16:39 Pacific — fast_forward_equivalence — reviewed unit-response change selected for focused compute
+
+Independent source review passes the default-preserving unit-response hook and
+continuous batched-matrix implementation. The added oracle uses physical-
+coordinate augmented matrix exponentials and quadrature, with two distinct
+members, two modes, unequal nonzero quadratic forcing, two tones and off-block
+heat at both 16/32 orders. It retains nonzero energy imbalance and the prior
+independent two-tone/cache-hit check. No full-frame result exists for this change.
+
+Select both focused methods and a small old/new contraction timing comparison
+in a single attended companion step of already-owned 47377474: one CPU, 1 GiB,
+three minutes maximum, no GPU. Use fresh solver/audit_response001 evidence.
+The timing compares 64/4096 members, 17 modes, the existing JMAX+1 coefficients
+and both quadrature node counts with identical fixed inputs and five alternating
+measurements; report arithmetic differences and medians, not a scientific
+acceptance threshold or full-frame speed claim. Accounting remains within the
+EP21 parent charged once; no batch submission or Stage 1 reservation is added.
+
+Step 47377474.6 exited before either test imported: the coordinator unset
+PYTHONPATH after loading the NumPy module, removing its package path. This is
+a command-order error, not a solver result or a site failure. Preserve
+audit_response001/{status.txt,checks.txt}; no benchmark ran. Select a retry in
+fresh audit_response002 with PYTHONPATH/PYTHONHOME cleared before module load,
+matching the already successful batch wrapper. Same companion bounds apply;
+no source change, new batch job, formal failure or additional parent charge.
+## 2026-10-13 16:32 Pacific — fast_forward_equivalence — comparison/profile complete; contraction costs identified
+
+Parent 47703019 is COMPLETED 0:0 after 893 seconds on one CPU. Charge
+0.248055556 CPUh once and release 0.751944444 CPUh of its reservation. Stage 1
+consumed is 20.716666667 CPUh; the sole remaining 14 CPUh offset-reference
+reservation gives 34.716666667/40 combined (solver 33.795555556/38, planner
+0.921111111/2). Six formal failures are unchanged. Slurm batch peak is
+4,605,612 KiB. The unprofiled standard result above remains the speed evidence.
+
+The separate profile completed with 432,267,151 calls in 500.488 profiled seconds.
+Frame work accounts for 296.593 seconds: upstream energy audit 130.324,
+downstream_exact_piece 54.348, homogeneous_works 33.042, particular_works
+22.069, and begin_dwell 32.593 (cumulative timings can overlap). Generic
+c_einsum accounts for 93.584 self seconds across the whole process. Profiled
+setup is 204.464 seconds, dominated by frozen-noise construction and hashing;
+its instrumentation overhead must not replace the unprofiled timing or be
+treated as a repeated frame cost. Evidence: continuous_frame004/
+{terminal.json,function_profile.txt,function_profile.pstats,profile/solver_report.json}.
+
+Two read-only reviews are checking the audit and work contractions for a narrow
+arithmetic-preserving change. The earlier possible whole-scope cache clearing
+is not established as a dominant cost by this top-function report; no change
+is selected for it. Further numerical execution requires a specific reviewed
+repair and a new reservation. The unchanged original offset reference remains
+live and required before Stage 2; no longer scaling run is selected.
+
+Select one bounded profile-metadata extraction in the already task-owned EP21
+allocation 47377474: one CPU, 1 GiB, three-minute maximum, no GPU and no new
+batch job. Its live two-CPU/16-GiB allocation has the previously coordinated
+one-CPU companion slot; parent accounting remains charged once to EP21.
+The step will only read this saved pstats metadata and report contraction
+callers and cache-clear counts; it does not rerun simulation or open EP21 data.
+
+The extraction completed successfully on sh02-15n09 in Slurm step 47377474.5;
+the shell exited. Saved function_profile_callers.txt attributes 86.625 seconds
+of einsum calls to upstream_energy_audit versus 17.781 to downstream. No generic
+scope clear/popitem call occurred, so the suspected cache-clearing change is
+not warranted by this run. Select only the upstream unit-response contraction
+for implementation: a default-preserving hook and a continuous-only batched
+matrix product, keeping phi0-times-coupling before summation. Add independent
+nonzero polynomial/multimode/member coverage at both quadrature orders; the
+previous oracle has zero polynomial coupling and cannot cover this new branch.
+No speed gain is claimed until focused compute checks and measurement pass.
+
+## 2026-10-13 16:22 Pacific — fast_forward_equivalence — cached frame passes; limited observed speed change
+
+The unprofiled continuous_frame004 standard frame is complete and qualified
+against all three original-reference windows, with no missing/invalid window
+or physical-comparison failure. All twelve reported audit arithmetic differences
+from continuous_frame002 are exactly zero. Frame wall time is 287.150545 seconds
+versus 291.877061 previously; total driver time is 369.280403 seconds and peak
+RSS is 4,427,896 KiB. Audit time is 131.236055 seconds, propagation 155.406114.
+There were 6,880 audit-cache hits and 1,424 misses; total shared-cache evictions
+increased to 16,937. The roughly 1.6-percent wall-time difference is a single
+comparison on different nodes, not evidence of a reliable large speed gain.
+Evidence: continuous_frame004/{equivalence.json,audit_comparison.json,
+standard/solver_report.json}. All numerical limits and energy fields are retained.
+
+Parent 47703019 remains RUNNING at 23:22 UTC and proceeds to the already
+selected function profile. Retain its reservation until terminal accounting.
+The new timing does not make the longer scaling/full-record reservations fit;
+the profile will inform the next engineering action. No Stage 2 is selected.
+
+## 2026-10-13 16:16 Pacific — fast_forward_equivalence — repaired checks pass; standard frame running
+
+The 23:16:27 UTC observation confirms 47703019 RUNNING on sh04-04n23 with
+1 CPU and 7 GiB. Both affected test methods pass in 0.031 seconds, including
+post-collection lifetime assertions and the independent energy oracle. Changed
+ASTRA schema and semantic validation pass. Evidence is under
+continuous_frame004/{checks.txt,astra.txt}. The complete unprofiled frame and
+conditional function profile remain pending; retain the current reservation.
+
+## 2026-10-13 16:15 Pacific — fast_forward_equivalence — repaired comparison/profile submitted as 47703019
+
+Slurm accepted 47703019 with 1 CPU, 7 GiB and one-hour limit. Retain the
+selected 1 CPUh reservation and continuous_frame004 writer. The repaired
+checks, standard-frame comparison and subsequent function profile are pending.
+
+## 2026-10-13 16:15 Pacific — fast_forward_equivalence — test-lifetime repair and combined comparison/profile selected
+
+Two independent source reviews identify the failed test's assumption: the
+recursive array_storage visitor creates temporary unreachable closure garbage
+retaining its owner dictionary until cyclic collection. Eviction removes the
+live cache entries and owners correctly; NodeWeights does not retain rates.
+The test alone now calls gc.collect after eviction and before weak-reference
+destruction is asserted. Strong retention before eviction, zero audit entries
+and the unchanged shared-byte bounds remain asserted. Production code is
+unchanged by this repair; no production garbage collection was introduced.
+
+Select one fresh continuous_frame004 job using the repaired test and existing
+two-method/original-reference comparison. Add a separate function-profiled
+standard frame only after the unprofiled comparison passes: the prior result
+still spends 151.5 seconds propagating and 139.8 seconds auditing, so function
+costs are needed to target further arithmetic-preserving optimization. Keep
+profiled timing separate from the unprofiled performance result. Aggregate
+these tasks in one substantive allocation (roughly twelve minutes from the
+previous complete-run time, before unknown cache gains/instrumentation cost).
+
+Read-only resource planning from continuous_frame002's 291.877061 s/frame plus
+78.766654 s overhead shows that Stage 2's 1000-frame, three-times-projection
+reservation would be about 10.14 days, beyond the discovered seven-day limit.
+The corresponding frame target is about 201.52 seconds; Stage 3's 4000-frame,
+twice-projection reservation needs about 75.58 seconds per frame. Even removing
+the audit alone leaves the previous propagation cost too high. These are
+single-frame planning extrapolations, not measured scaling results or new
+scientific thresholds. Recompute from actual predecessor timing at each stage;
+the function profile is intended to locate the required remaining acceleration.
+
+The request remains 1 CPU, 7 GiB, one-hour maximum, 54-minute internal deadline,
+1 GiB cache, 6.5 GiB RSS guard, no GPU/requeue/successor. Reserve 1 CPUh; with
+20.468611111 consumed and the unchanged 14 CPUh original-reference reservation,
+combined Stage 1 is 35.468611111/40 (solver 34.5475/38, planner 0.921111111/2).
+This is development integration/profile work, with no Stage 2 admission or new
+scientific acceptance rule. Root owns submission; all candidate sources are frozen.
+
+## 2026-10-13 16:13 Pacific — fast_forward_equivalence — cache lifetime test stops integration before simulation
+
+Job 47702825 stopped in focused_checks, FAILED 1:0 after 14 seconds on one CPU.
+The independent energy oracle passed, but the new eviction/lifetime test found
+the weakly referenced rate array still alive after eviction. No full frame or
+ASTRA validation ran. Preserve continuous_frame003/{checks.txt,terminal.json}.
+Diagnose the retained reference before retrying; numerical speed and correctness
+of the integrated cache candidate are still unmeasured.
+
+Charge 0.003888889 CPUh once and release 0.996111111 CPUh of this reservation.
+Consumed Stage 1 is 20.468611111 CPUh; with the unchanged 14 CPUh reference
+reservation, combined is 34.468611111/40 (solver 33.5475/38, planner
+0.921111111/2). This failed development test adds no formal failure; six remain.
+
+## 2026-10-13 16:12 Pacific — fast_forward_equivalence — audit-cache integration submitted as 47702825
+
+Slurm accepted job 47702825 with the selected 1 CPU, 7 GiB and one-hour limit.
+Keep its 1 CPUh reservation and fresh continuous_frame003 writer. Focused
+checks, numerical agreement and performance remain pending. No scaling run
+or automatic successor is selected.
+
+## 2026-10-13 16:12 Pacific — fast_forward_equivalence — bounded audit-cache comparison selected
+
+Select one continuous_frame003 integration through the existing wrapper: 1 CPU,
+7 GiB, one-hour maximum, one thread, no GPU/requeue/successor. The reviewed
+continuous-only audit cache shares the existing 1 GiB limit and retains its
+rate arrays; keys preserve exact duration, basis identity and quadrature nodes.
+Default multirate behavior, physical arithmetic and tolerances remain unchanged.
+The two affected test methods check exact-key distinctions/lifetime/eviction
+and the independent two-tone energy oracle on both cache misses and hits.
+Changed ASTRA validation, the complete standard frame, original-reference
+comparison and descriptive comparison with continuous_frame002 share this
+allocation. Unchanged passing checks are reused. Actual cache reuse and speed
+are unmeasured; the purpose is to determine whether reuse reduces the remaining
+140-second audit cost without changing results or increasing the memory limit.
+
+Reserve 1 CPUh in addition to the existing 14 CPUh offset-reference reservation.
+With 20.464722222 CPUh consumed, Stage 1 consumed plus reserved is
+35.464722222/40 CPUh (solver 34.543611111/38, planner 0.921111111/2).
+The six formal failures remain unchanged. Source and test review passed; tests
+and integration for this candidate remain pending. The unchanged offset
+reference 47689336 is still running, and full equivalence remains required
+before Stage 2. Root owns this submission and scheduler monitoring.
+
+## 2026-10-13 16:00 Pacific — fast_forward_equivalence — optimized audit preserves agreement and reduces frame cost
+
+Job 47700242 is COMPLETED 0:0 after 382 seconds on one CPU. Charge
+0.106111111 CPUh once and release 0.893888889 CPUh of its reservation.
+All three original-reference windows pass every required physical comparison;
+qualified=true, no missing/invalid window and no state/hold/code/pixel tolerance
+violation. Complete finite energy audits remain available. The prior and new
+audit work/heat/residual values are identical at dwell and frame; at 5us the
+input-work difference is 1.577721810e-30 J and the relative-residual difference
+is -1.928234813e-16. No acceptance margin was added.
+
+Frame wall time fell from 481.139761 to 291.877061 seconds (about 39 percent).
+Upstream audit fell from 328.716701 to 139.838609 seconds; propagation remained
+151.523535 seconds. Total driver time is 370.643714 seconds and peak RSS
+4,441,956 KiB. Evidence: runs/fast_forward_stage1/solver/continuous_frame002/
+{terminal.json,equivalence.json,audit_comparison.json,standard/solver_report.json}.
+The direct one-frame projection is still 1,167,587 seconds for a complete
+16-second record; warm-frame scaling and production feasibility remain unproven.
+The unchanged full offset reference is still required before Stage 2.
+
+Stage 1 consumed is 20.464722222 CPUh. The sole remaining 14 CPUh reference
+reservation gives 34.464722222/40 combined (solver 33.543611111/38, planner
+0.921111111/2). Six formal failures remain unchanged. A read-only source
+assessment is examining reuse of repeatedly constructed audit weights within
+the existing bounded cache; no further measurement is selected in this entry.
+
+## 2026-10-13 15:53 Pacific — fast_forward_equivalence — optimized audit running; independent oracle passes
+
+The 22:53:49 UTC scheduler observation and compute-shell record confirm
+47700242 RUNNING on sh04-04n22 with exactly 1 CPU and 7 GiB. The changed
+independent two-tone audit method passed all four implementation/order subcases
+in 0.010 seconds; changed ASTRA schema/semantic validation also passed. Evidence:
+runs/fast_forward_stage1/solver/continuous_frame002/{status.txt,checks.txt,astra.txt}.
+The full standard frame and arithmetic/performance comparisons are still running.
+Keep its existing reservation; no larger run is admitted by these software checks.
+
+## 2026-10-13 15:50 Pacific — fast_forward_equivalence — optimized audit frame submitted as 47700242
+
+Slurm accepted job 47700242 with 1 CPU, 7 GiB and a one-hour limit. Keep the
+selected 1 CPUh reservation and fresh continuous_frame002 writer. Its oracle,
+numerical comparison and speed result are pending; submission establishes none
+of them. The original reference and all unrelated live jobs remain untouched.
+
+## 2026-10-13 15:50 Pacific — fast_forward_equivalence — optimized audit comparison selected
+
+Independent source review passes the narrow shared audit hook, continuous
+override and strengthened two-tone oracle. The default multirate audit retains
+PieceWeights and original contractions; the continuous path uses the previously
+verified NodeWeights and optimize=True for two unit-tone contractions. Those
+contractions may change summation order. The physical propagation, independent
+Norton equations, cross terms, conductance edges, exact time and 16/32-point
+quadrature are unchanged. The oracle compares both implementations/orders with
+independent SciPy integration and deliberately nonzero energy balance.
+
+Select ONE fresh continuous_frame002 job via the revised existing integration
+wrapper: 1 CPU, 7 GiB, one-hour maximum, one thread, no GPU/requeue/successor.
+The previous 4.2-GiB program / 4.3-GiB Slurm peak supports this request; retain
+a 6.5-GiB internal peak-RSS guard and 1-GiB cache. One changed oracle method
+(four subcases), changed ASTRA validation, the complete standard frame and its
+original-reference comparison share the allocation. Unaffected checks are reused.
+The wrapper also records the audit arithmetic differences from continuous_frame001
+and both measured timing/RSS reports, without inventing a scientific margin.
+The same 54-minute work deadline is preserved. This remains Stage 1 development;
+the original complete offset reference is pending and no longer run is admitted.
+
+Consumed Stage 1 is 20.358611111 CPUh. The existing 14 CPUh original reference
+plus this 1 CPUh reservation gives 35.358611111/40 combined (solver 34.4375/38,
+planner 0.921111111/2). Prior charges and six formal failures remain. The
+22:50 UTC scheduler observation shows no duplicate continuous integration job;
+reference 47689336 and EP18 continuation 47692682 are still RUNNING. Root owns
+submission and monitoring; source files are frozen for the new attempt.
+
+## 2026-10-13 15:48 Pacific — fast_forward_equivalence — continuous first frame passes; audit dominates cost
+
+Job 47698310 is COMPLETED 0:0 after 575 seconds on 3 CPUs. Charge 0.479166667
+CPUh once and release 2.520833333 CPUh of its reservation. The continuous
+driver's first 4-ms frame passes all three original-reference windows, every
+physical-work field, all states/holds and the existing code/pixel criteria;
+qualified=true, with no missing/invalid window or tolerance violation. Frame
+state maximum error is 7.115332453e-9 V, scaled 0.704507. Eleven code differences
+remain allowed by the original threshold rule. Evidence:
+runs/fast_forward_stage1/solver/continuous_frame001/{terminal.json,equivalence.json,
+standard/solver_report.json}. Nine focused methods and changed ASTRA validation
+passed earlier in this same allocation.
+
+Measured frame wall time is 481.139761 seconds, with 151.830659 seconds in
+propagation and 328.716701 seconds in independent upstream energy auditing.
+Total driver time including setup/final writing is 561.037564 seconds. Program
+peak RSS is 4,409,844 KiB (Slurm batch peak 4,479,720 KiB), and the shared weight
+cache remains within 1 GiB. All ten energy columns are retained. The direct
+one-frame extrapolation is 1,924,638.94 seconds for 16 seconds of physics; this
+is not an amortized Stage 2 measurement and does not establish feasibility.
+
+Independent source review identifies two avoidable audit costs: unused moment
+construction in PieceWeights despite only node responses being consumed, and
+generic unit-tone einsum contractions. Prepare a narrow continuous-path hook
+to the already tested NodeWeights plus optimized tone contractions, preserving
+the default audit and all physical equations/quadrature nodes. The changed
+audit will face the existing independent quadrature oracle and another bounded
+integration comparison before any longer run. No scientific gate is waived.
+
+Stage 1 consumed is 20.358611111 CPUh; only the 14 CPUh original-reference
+reservation remains, giving 34.358611111/40 combined (solver 33.4375/38,
+planner 0.921111111/2). Six formal failures are unchanged. Source inspection
+confirms the running original reference does not import the files selected for
+this audit optimization; its source and numerical behavior remain untouched.
+
+## 2026-10-13 15:43 Pacific — fast_forward_equivalence — repaired offset frame complete; parent successful
+
+Parent 47696768 is COMPLETED 0:0 after 1,239 seconds on 3 CPUs. Charge
+1.0325 CPUh once and release 1.9675 CPUh of its reservation. Its offset frame
+completed all 6,400 intervals in 589.914341 seconds, including 237 clipping
+events; peak program RSS was 14,397,548 KiB. Both available original-reference
+windows pass physical state, hold, code, pixel and work comparisons with finite
+independent energy audits. Maximum state errors are 6.948994235e-9 V at 5us and
+8.806042735e-9 V at one dwell, with zero violations. The full frame is correctly
+missing from the reference, so qualified=false; invalid_windows is empty and
+available_window_failure=false. No complete offset equivalence is claimed.
+
+Evidence: runs/fast_forward_stage1/solver/dwell_windows002/
+{terminal.json,offset/solver_report.json,offset/partial_equivalence.json}.
+The full unchanged offset reference 47689336 and continuous integration
+47698310 remain the selected live work. Consumed Stage 1 is now 19.879444444
+CPUh. Outstanding 14 CPUh reference and 3 CPUh integration reservations give
+36.879444444/40 combined (solver 35.958333333/38, planner 0.921111111/2).
+The six formal failures are unchanged. Full offset comparison is the next
+reference-dependent action; no additional frame or successor is selected here.
+
+## 2026-10-13 15:38 Pacific — fast_forward_equivalence — continuous integration running; focused checks pass
+
+The 22:38 UTC scheduler and compute-shell evidence confirm job 47698310
+RUNNING on sh04-04n22 with 3 CPUs and 16 GiB. Its nine focused methods passed
+in 0.026 seconds, and changed ASTRA schema/semantic validation passed. Evidence:
+runs/fast_forward_stage1/solver/continuous_frame001/{status.txt,checks.txt,astra.txt}.
+The substantive first-frame integration is running; there is no numerical
+comparison or runtime qualification yet. Keep its selected reservation.
+
+## 2026-10-13 15:35 Pacific — fast_forward_equivalence — continuous integration submitted as 47698310
+
+Slurm accepted job 47698310 with the selected 3 CPUs, 16 GiB and one-hour limit.
+Retain its 3 CPUh reservation. This submission does not establish test success,
+execution start or frame equivalence. The new source files are frozen for this
+attempt; no automatic scaling or successor is authorized by the wrapper.
+
+## 2026-10-13 15:35 Pacific — fast_forward_equivalence — continuous first-frame integration selected
+
+Select one new 3-CPU/16-GiB/one-hour job using
+outputs/tools/run_continuous_frame_equivalence.sbatch. The independently
+reviewed new continuous driver/kernel retain all original circuit states,
+absolute input phase, O1 planning, O2 readout and ten physical-energy fields.
+Actual binary64 durations key a shared bounded cache; array backing storage is
+counted once. State persists across frames, while only one frame's working
+buffers and the first-frame comparison checkpoints are retained. The tested
+NodeWeights helper supplies endpoint/node responses on the new coarse/fine
+paths; the independent energy audit remains unchanged. Existing solver and
+reference files were not edited. Nine new focused methods cover exact duration,
+cache retention, seam behavior, energy ownership and allocation reporting.
+
+The substantive job runs those methods, validates the changed ASTRA program,
+then measures exactly one complete standard frame and applies the existing
+comparator at 5us, one dwell and one frame. Reuse the already passing helper,
+planner/readout and accounting tests. Source review is not numerical
+qualification. Record total elapsed, whole-frame cost including orchestration,
+component timings, RSS and finite energy evidence. No Stage 2 or successor is
+selected. A source-level predecessor check requires the repaired standard
+frame's observed qualified=true result. Output is the fresh continuous_frame001;
+wrapper logs stay outside its initially empty standard driver directory.
+
+One numerical worker uses all thread variables set to one; three allocated
+CPUs support the 16-GiB memory request and all allocated CPU-seconds will be
+charged. The work deadline is start plus 54 minutes, bounded by allocation end
+minus one minute; the driver uses a 15-GiB peak-RSS guard. Preserve consumed
+18.846944444 CPUh and outstanding 14 CPUh original reference plus 3 CPUh repaired
+dwell job. This additional 3 CPUh reservation gives 38.846944444/40 CPUh combined
+Stage 1 (solver 37.925833333/38, planner 0.921111111/2). Six formal failures stay
+unchanged. The 22:34:52 UTC scheduler snapshot has no duplicate continuous job;
+sh_part/sh_node_feat confirm the selected partitions, limits and CPU feature.
+Root owns submission and monitoring.
+
+## 2026-10-13 15:32 Pacific — fast_forward_equivalence — repaired complete standard frame passes
+
+Job 47696768 completed the standard 4-ms frame, all 6,400 intervals and 64
+dwells in 586.448320 seconds. The unchanged-margin comparator passes all three
+windows with no missing/invalid window and qualified=true. At the frame endpoint,
+all 69,848 states pass: maximum absolute error 7.115332453e-9 V, maximum scaled
+error 0.704507, zero violations. All 153,600 hold means pass. Of 26,000 codes,
+11 differ within the original admitted threshold rule and none violate it;
+all 4,096 pixels pass the original one-third-LSB limit. Every physical-work
+field passes. The finite independent energy audit has relative residual
+-2.126897173e-10 (descriptive; no new acceptance threshold).
+
+Evidence: runs/fast_forward_stage1/solver/dwell_windows002/standard/
+{solver_report.json,equivalence.json}. Peak RSS was 14,397,668 KiB; upstream
+audit took 330.279677 seconds of the 562.041017-second propagation phase.
+The existing wrapper proceeds to the offset case within its original shared
+deadline. Original offset reference 47689336 still runs; its complete-frame
+comparison remains unavailable. No Stage 2 admission is inferred.
+
+The new continuous driver and kernel are under independent source review.
+Its prepared single-frame integration wrapper and ASTRA output describe only
+Stage 1 work; no integration job has yet been selected or submitted.
+
+## 2026-10-13 15:26 Pacific — fast_forward_equivalence — repaired short windows pass
+
+Job47696768 passed all five complex-forcing tests in0.002seconds and changed
+ASTRA schema/semantic validation. Its first-dwell run passes both available
+reference windows, including all69,848 states, hold means, conversions and
+physical work. Maximum state errors are6.948990489e-9V at5us and6.929600986e-9V
+atone dwell, with zero tolerance violations; maximum scaled errors are0.675366
+and0.675544 respectively. Independent energy audits are finite. The comparator
+correctly leaves qualified=false because this prefix intentionally lacks the
+frame; invalid_windows is empty and available_window_failure=false. Evidence:
+runs/fast_forward_stage1/solver/dwell_windows002/{checks.txt,astra.txt,
+prefix/equivalence.json}.
+
+The bounded wrapper advanced to the complete standard frame. At22:26UTC it is
+RUNNING on sh04-04n22 and has completed25of64 dwells. No complete-frame pass or
+Stage2 admission is claimed. Original offset reference47689336 and EP18
+continuation47692682 remain RUNNING. Reservations and failure count are unchanged.
+
+## 2026-10-13 15:19 Pacific — fast_forward_equivalence — repaired-forcing job47696768 submitted
+
+Slurm accepted job47696768 with3CPUs/16GiB/one hour; the22:19:10 UTC snapshot
+is PENDING. Keep the selected3CPUh reservation and fresh dwell_windows002
+writer. Its five new dtype/coordinate-transform methods and short-window
+comparison are not yet executed; no repair success is inferred from submission.
+Original reference47689336 and EP18's adopted continuation47692682 remain
+RUNNING. No duplicate or automatic retry/successor is selected.
+
+## 2026-10-13 15:17 Pacific — fast_forward_equivalence — wrong complex forcing diagnosed; narrow retry selected
+
+Parent47694453 is terminal FAILED2:0 after616seconds on3CPUs: charge
+0.513333333CPUh once and release5.486666667CPUh of its reservation. The standard
+frame completed6400intervals in591.215843seconds (upstream audit330.488984seconds,
+program RSS14,397,476KiB), but all three physical comparisons failed. State
+maximum absolute errors were1.095081e−5V at5us,2.939549e−5V atone dwell and
+2.393595e−4V atframe; frame holds/codes/pixels/work also failed. Finite energy
+audits had small residuals but could not establish reference agreement. The
+wrapper stopped before the offset run and no Stage2 was selected. Evidence:
+dwell_windows001/terminal.json and standard/{solver_report.json,equivalence.json}.
+
+Two independent source reviews found the concrete cause, corroborated by the
+run's initial ComplexWarning lines: ParticularSolutions passes complex phasors
+to UpstreamModel.currents_to_relative, which allocated real-valued pad/contact
+forcing and discarded all imaginary components there. The independent audit
+uses those same truncated inputs, explaining its misleadingly small residual.
+The narrow fix preserves complex dtype for phasors while retaining the previous
+float64 allocation and arithmetic for real inputs. No other homogeneous/state
+mapping defect or complex truncation was found in the reviewed path. Qualified
+real-input behavior, original reference and physical tolerances are unchanged.
+
+Select ONE fresh dwell_windows002 job:3CPUs/16GiB/one hour, one numerical worker,
+no GPU/requeue/retry. The revised existing wrapper runs five focused forcing
+tests and changed ASTRA validation, then only the first dwell (270-second
+internal cap). The5us/dwell reference comparisons must both pass with finite
+audit evidence before the complete standard frame can start. A passing standard
+frame and sufficient shared54-minute work budget admit the full offset frame;
+its available prefixes are compared without claiming the missing reference
+frame. The inactive NodeWeights optimization remains unused to isolate this fix.
+The measured591-second standard cost supports this bounded hour; offset cost
+may differ and retains the existing measured-cost admission rule.
+
+Stage1 consumed is18.846944444CPUh. Existing original-reference reservation14CPUh
+plus this3CPUh selection gives35.846944444/40; solver34.925833333/38 and planner
+0.921111111/2. Historical charges and six formal failures remain; this Stage1
+development failure does not increment the formal count. No stopped scientific
+route or closed data is reopened. Root owns submission and monitoring.
+
+## 2026-10-13 15:12 Pacific — fast_forward_equivalence — inactive node-weight helper passed
+
+Attended step47377474.4 on sh02-15n09 passed all four new NodeWeights methods
+in0.295seconds and exited zero. Endpoint/node arrays and forced responses match
+PieceWeights exactly across the selected zero, small, stiff and restricted
+interval cases; the zero-mode antiderivative also passes. Evidence:
+runs/fast_forward_stage1/solver/node_weights001/{status.txt,checks.txt}.
+The1CPU/1GiB software step opened no episode payload and its shell has exited.
+Cost stays in the existing parent once. This helper remains inactive and has
+no measured full-frame speedup; job47694453 continues with its original source.
+
+## 2026-10-13 — fast_forward_equivalence — inactive node-weight helper check selected
+
+Source inspection found that the dwell audit repeatedly constructs full
+PieceWeights even though it uses only endpoint/node responses, causing unused
+moment integrations. The new fast_solver_node_weights.NodeWeights preserves
+the original phi_table formulas and operation order while omitting moments.
+It is inactive: no source used by job47694453 imports it or has been changed.
+Select its four focused equivalence/antiderivative methods in a single attended
+EP21 parent47377474 companion: one CPU,1GiB process limit, three minutes maximum,
+one numerical thread and no GPU or scientific payload. Evidence will be in
+node_weights001 under the existing Stage1 solver directory. Charge the task-owned
+parent once; no new EP20 reservation or formal run is selected. Speedup remains
+unmeasured, and adoption into the driver awaits the current frame evidence.
+
+The parallel continuous-driver review also found duration-sensitive keys must
+include actual binary64 interval lengths, and output/caches must be bounded.
+The next implementation will reuse qualified O1/O2 plan/readout interfaces,
+preserve continuous state and absolute phase, and keep all ten original energy
+columns. Stage2 remains conditional on complete Stage1 evidence; no new residual
+threshold or scientific scope change is selected.
+
+## 2026-10-13 15:04 Pacific — fast_forward_equivalence — eight focused checks passed; frame running
+
+Job47694453 is RUNNING on sh04-04n22 with actual3CPUs/16GiB. Its eight
+focused accounting/comparator methods passed in0.055seconds, and changed ASTRA
+schema/semantic validation passed. Evidence: dwell_windows001/{checks.txt,astra.txt,
+status.txt}. The standard-frame progress stream has reached three of64 dwells
+in64.800seconds, with maximum4 waveform-relaxation sweeps and no clip events.
+This is initial execution evidence, not completed-frame accuracy or an amortized
+speed estimate. Keep the existing6CPUh reservation until terminal accounting.
+The original reference47689336 remains running and unchanged.
+
+## 2026-10-13 15:02 Pacific — fast_forward_equivalence — dwell-window job47694453 submitted
+
+Slurm accepted the single selected3CPU/16GiB/2h development job47694453.
+At22:02:24 UTC it is PENDING; original reference47689336 remains RUNNING.
+The wrapper fixes the work deadline at StartTime+6480seconds (bounded by
+EndTime−60), avoiding previously observed scheduler timestamp rounding, and
+writes terminal metadata on ordinary exits and TERM/INT. Eight focused methods
+cover independent energy/cross terms, boundary ownership, comparator physical
+margins, complete support/work, finite audit evidence and CLI entry. They are
+selected inside the substantive job and have not yet run. No old passing cache
+check is repeated. The existing6CPUh reservation is unchanged; root monitors.
+
+## 2026-10-13 — fast_forward_equivalence — complete dwell-window accounting selected
+
+The unqualified dwell driver now separates boundary impulses in [0,end) from
+integrated segments ending in (0,end]. This fixes a concrete error: the first
+dwell's energy total previously included the next dwell's source-charge impulse,
+while its checkpoint preceded that impulse. Physical propagation is unchanged.
+The new upstream audit independently integrates external Norton forcing work
+and conductance heat, including particular/homogeneous cross terms and off-block
+conductance. It reports16/32-point quadrature differences and uses the existing
+downstream16-point audit. Endpoint energy forms the residual afterward; no new
+residual tolerance or forced energy closure is introduced. Unavailable interval
+diagnostics are explicit, and failure paths preserve timing/completion metadata.
+
+A separate comparator consumes complete named window_work, retaining all69848
+states, hold means, eight work fields and original ADC/pixel margins. It separates
+missing windows, invalid inputs, failed physical tolerances and unavailable audit
+evidence. The original comparator and reference job47689336 are unchanged. Two
+implementation agents and an independent source/math reviewer found no remaining
+source blocker; numerical checks and full-frame equivalence remain unmeasured.
+
+Select ONE Stage1 development job through run_fastpath_window_equivalence.sbatch:
+3CPUs/16GiB/2hours, one numerical worker, no GPU/requeue/retry. Fresh writer:
+runs/fast_forward_stage1/solver/dwell_windows001. Run the focused accounting and
+comparator checks, changed ASTRA validation, then the complete standard frame.
+Only if all three standard windows pass with finite audit evidence and twice the
+measured frame cost fits the shared90%deadline, run the complete offset frame.
+Compare its5us/dwell prefixes against the preserved partial original reference;
+the absent offset reference frame must remain unqualified. No Stage2 follows.
+Added audit work is separately timed; completion of both frames is not assumed.
+
+Resource discovery sh_part/sh_node_feat confirms russpold/normal, CPU_GEN:SIE,
+8GB/core limits and sufficient maximum walltime. Three allocated CPUs accommodate
+16GiB; numerical threads remain1. Reallocate the unchanged40CPUh Stage1 envelope
+from32solver/8planner to38solver/2planner, using completed planner work's unused
+share. Consumed18.333611111CPUh plus existing14CPUh original-reference reservation
+plus this6CPUh reservation equals38.333611111/40; solver37.4125/38 and planner
+0.921111111/2. Historical consumption and six formal failures remain preserved;
+this development check is not a formal failure-counted stage. Root owns submission
+and scheduler monitoring. Submission ID and actual evidence follow separately.
+
+## 2026-10-13 14:40 Pacific — fast_forward_equivalence — modal-cache regression passed
+
+Attended compute step 47377474.2 on sh02-15n09 passed the single focused
+ActiveBlockCacheTests method in 0.006 seconds. Both different modal blocks
+match the existing dense-exponential oracle, and subsequent visits reuse the
+correct cached weights. Evidence: runs/fast_forward_stage1/solver/cache_regression001.
+The combined EP18/EP20 software step used one thread with a 1-GiB address-space
+limit and exited zero; its cost is included once in the existing EP21 parent.
+No new EP20 reservation, formal run failure or scientific qualification is
+inferred. Original reference job 47689336 and its comparator are unchanged;
+window-work comparison, truthful diagnostics and energy integration still
+precede any dwell-path qualification or multi-frame scaling.
+
+## 2026-10-13 — fast_forward_equivalence — unqualified dwell-path cache defect repaired
+
+Source review found that MultirateSolver.a_fine cached modal weights by time
+grid alone, although the weights also depend on the active block's eigenvalues.
+Different circuit blocks could reuse the wrong weights. The isolated repair
+adds active-block identity to this cache key. The qualified piecewise solver,
+original reference, running job 47689336 and shared comparator are unchanged.
+
+Select one focused regression against the existing dense-exponential oracle:
+advance two different modal blocks on the same grid, then revisit each to
+verify correct reuse. Root will run ActiveBlockCacheTests in the already
+selected attended EP21 parent 47377474 software companion, with one CPU,
+1 GiB and three minutes shared with the EP18 fixture checks. Numerical threads
+remain one. Charge the parent once; no additional EP20 reservation or formal
+run failure is incurred by this development test.
+
+The dwell path remains unqualified: its complete physical work is stored as
+window totals while the current comparator reads only interval work, several
+diagnostic arrays are placeholders, and its energy audit is unavailable.
+No comparison code used by the active reference job is changed. A future
+comparison must use complete window work, preserve all physical tolerances,
+and report unavailable diagnostics explicitly. Stage2 also still needs a
+continuous multi-frame driver; the 1/10/100/1000 ladder is not yet runnable.
+
+## 2026-10-13 14:23 Pacific — fast_forward_equivalence — original reference started
+
+The coordinator's 21:23:36 UTC scheduler observation confirms job 47689336
+RUNNING since 14:20:04 Pacific on sh04-04n24, with exactly one allocated CPU,
+3 GiB and a 14-hour limit. The run's status.txt independently records the
+compute hostname, job ID, allocated CPU and memory. Its astra.txt records
+successful schema and semantic validation. The original reference writer is
+active in runs/fast_forward_stage1/solver/ref_frame_offsets_full002; no terminal
+reference report or equivalence result is available yet. Retain the existing
+14 CPU-hour reservation until terminal accounting. No new job or follow-up
+stage is selected.
+
+## 2026-10-13 14:19 Pacific — fast_forward_equivalence — original reference47689336 queued
+
+Slurm accepted the single selected original-reference job47689336; the14:19
+snapshot is PENDING with1CPU/3GiB/14h requested, no dependency, no requeue and
+CPU_GEN:SIE. No duplicate or restarted numerical criteria are selected. Reserve
+14CPUh within the documented32.333611111/40 combined Stage1 bound. The new
+writer is ref_frame_offsets_full002; old partial and restart outputs remain.
+Submission is not reference or equivalence completion. Root owns monitoring.
+
+## 2026-10-13 — fast_forward_equivalence — unchanged original full-reference run selected
+
+Resume002/47687972 FAILED2:0 after58seconds at1CPU. Charge0.016111111CPUh once;
+release7.983888889CPUh from its8CPUh reservation. Focused roundoff checks and ASTRA
+passed. At interval3100 physical energies differ by1–2ULP (max2.58494e-26J),
+while all recorded voltages/hold/source/work/timing/refinement/operator counts
+match exactly. Partition diagnostic differs1.35751e-11 and kernel energy residual
+2.58494e-26J, so the preserved exact diagnostic checks correctly stop the replay.
+This is a failed engineering restart, not a failed fast/reference scientific margin.
+
+Independent source reviews found no omitted persistent state, but also found
+that latest-checkpoint restoration lacks a later saved full-state witness and
+that the two kernel diagnostics participate in acceptance. A stricter witnessed
+restart with narrow diagnostic allowances was considered but is NOT selected.
+The restart driver/prototype attempts remain preserved and unqualified; there
+is no tolerance expansion or another restart attempt.
+
+Instead select ONE complete run of the unchanged original fast_solver_reference.py
+into fresh ref_frame_offsets_full002, followed by existing full-frame comparison
+against the completed dev_d3/step3_offsetsolve. Preserve1600actions/6400splits,
+all69848states, original source/noise/offset fixture and standard Radau controls.
+Both premature bitwise stops and the original reference timeout remain visible.
+This deliberately recomputes the original prefix to obtain a continuous reference
+without relying on an unqualified restart. Existing numerical tests are reused.
+
+Cost basis: original19440seconds for3160splits projects39372seconds=10.94hours
+for6400;1CPU/3GiB/14hours gives12.6hours internal propagation allowance, about
+1.66hours above projection. Runtime variation remains possible. The existing
+original-R3 time limit is the diagnosed reason it lacked a full frame. This new
+wrapper rejects more than1 allocatedCPU, caps BLAS at1 and verifies all three
+comparison windows rather than relying on comparator exit0. No automatic retry
+or Stage2 scaling follows. This replaces prior short engineering time estimates,
+not any scientific threshold, data role or global execution deadline.
+
+Consumed Stage1 now18.333611111CPUh (solver17.4125 plus planner0.921111111).
+Reserve14CPUh for this single parent:32.333611111/40 combined, solver31.4125/32.
+All earlier reservations are released/accounted, all historical episode costs and
+formal failure counts remain. Independent source/resource review confirmed the
+original CLI, original offset max_refinements12 and complete comparison support.
+
+## 2026-10-13 — fast_forward_equivalence — diagnosed continuation submitted as47687972
+
+Slurm accepted fresh ref_frame_offsets_resume002 through the reviewed continuation
+wrapper, requested1CPU/3GiB/8hours. Reserve8CPUh (totalStage1 consumed+reserved
+26.3175CPUh). The wrapper runs focused identity/eight-versus-nine-ULP/zero-reference
+checks and changed ASTRA validation before the substantive reference continuation.
+It will record every overlap energy triple and exact status; all other fields and
+encountered full-state checkpoints remain exact. Completing60 overlap comparisons
+is required before new intervals beyond the saved frontier are admitted. Final
+full-frame offset comparison runs only if the reference completes; no successor,
+production simulation or scientific-candidate claim follows automatically.
+Root reviewed the numerical bound and absence of a broad absolute tolerance.
+Submission is not evidence that the overlap or frame comparison has passed.
+
+## 2026-10-13 14:01 Pacific — fast_forward_equivalence — fast offset frame complete
+
+D3 parent47685616 COMPLETED1117seconds on3CPUs; charge0.930833333CPUh once,
+release2.069166667CPUh from its reservation. All metadata/documentary/diagnostic
+steps share this charge. Both standard modes pass all three comparison windows.
+The offset mode completed all6400intervals/1600actions/4ms in1101.107seconds
+(1037.977 solver seconds,7,994,320KiB RSS). Its5us anddwell comparisons pass;
+the frame comparison is unavailable until the offset reference completes.
+A comparator exit0 alone does not qualify a missing window.
+
+The separate bounded overlap diagnostic was terminated when this parent completed;
+it produced no terminal report and no discrepancy measurement. Its shell exited,
+with no login fallback or separate cost. Source review independently confirms
+that the reported physical energies are nonnegative quadratic sums calculated
+after integration, without feeding trajectory or refinement decisions; no missing
+dynamical state was found. The next selected continuation will measure their ULP
+differences, accepting at most8ULP for these three reported scalars alone, with
+zero-reference exactness and no absolute floor. Every other saved overlap field,
+including work and numerical diagnostics, remains exact. Scientific state/work/
+code/pixel margins are unchanged, and any larger mismatch still stops the run.
+
+Consumed Stage1 is now18.317500000CPUh: solver17.396388889 plus planner0.921111111,
+including the failed36-second restart. Select fresh resume002, same1CPU/3GiB/8h
+ceiling and unchanged775→1600 reference. With8CPUh reserved, total26.3175 under40,
+solver25.396388889 under32. Preserve all historical files and formal-run counts.
+This is a measured conditional rounding check before continuation, not permission
+to accept an unknown-size energy discrepancy or change the scientific model.
+
+## 2026-10-13 13:57 Pacific — fast_forward_equivalence — continuation stopped on overlap mismatch
+
+Job47687335 FAILED2:0 after36seconds on1CPU; charge0.010000000CPUh once and
+release7.99CPUh of its reservation. Restoring action775 succeeded, but replaying
+interval3100 produced an exact-comparison mismatch in physical energy. Earlier
+compared voltage/hold/work fields matched exactly. This does not yet establish
+the size or cause of the difference. Preserve ref_frame_offsets_resume001 and
+the original reference; no continuation past the failed overlap was accepted.
+Diagnose the mismatch quantitatively in the existing D3 allocation before any
+fresh reference continuation. Do not weaken the scientific equivalence margins.
+The fast offset solver47685616 remains separate and active. Revised Stage1
+consumed17.386666667CPUh plus its3CPUh reservation remains under40CPUh.
+
+The updated ASTRA program passed schema/semantic validation in an attended
+one-CPU step within47685616 (astra_continuation.txt); no duplicate parent charge.
+
+## 2026-10-13 — fast_forward_equivalence — submitted as 47687335
+
+Slurm accepted checkpoint continuation47687335, requested1CPU/3GiB/8hours.
+It preserves the old partial reference and writes ref_frame_offsets_resume001.
+The original full offset frame and exact-overlap checks remain required.
+Reserve8CPUh pending actual allocation; no duplicate or automatic retry.
+
+## 2026-10-13 — fast_forward_equivalence — checkpoint continuation selected
+
+Both saved standard-frame modes pass all three required windows, including full
+states, hold means, work, conversion codes and pixels. These are numerical
+reference comparisons, not discovery or a measured full-record throughput result.
+The offset fast solve remains active in 47685616, actually allocated 3 CPUs;
+correct its reservation from 2 to 3 CPUh. No independent step charge is added.
+
+Select new reference continuation from action775/time0.0019375 to all1600 actions,
+with exact replay of the 60 saved overlap intervals. Root reviewed complete state
+restoration after noise binding and unchanged schedule/controls. Source outputs
+are preserved. A finite final comparison requires all 5us/dwell/frame windows to
+pass; no automatic scaling follows. Select 1 CPU/3 GiB/8 hours, one thread, 90%
+internal deadline, based on about5.6 hours remaining from the measured prior cost.
+This replaces the earlier prospective two-hour engineering estimate for this
+single continuation, without changing any scientific condition or global ceiling.
+
+Reallocate internal Stage1 shares from solver25/planner15 to solver32/planner8
+CPUh; combined40 is unchanged. Previously consumed solver16.455555556 plus
+planner0.921111111 =17.376666667 CPUh. Reserve3 for activeD3 and8 for this run:
+combined28.376666667 CPUh, solver27.455555556 CPUh, within both allocations.
+All pre-Stage1 consumption remains. Slurm actual CPUs govern final admission and
+once-only cost. No formal-run failure count reset, Stage2 or production selected.
+The original reference timeout is diagnosed as its time limit; this continuation
+reuses its checkpoint rather than repeating completed work.
+
+The attended metadata check within D3 initially failed NumPy import because
+PYTHONPATH was unset after module loading; the corrected ordering passed and
+confirmed checkpoint775. Both short steps exited and share the D3 parent charge.
+
+## 2026-10-13 — model_specification — saved Stage1 completion and continuation selected
+
+The planner/readout job47619615 completed its tests, full16-second planning
+preflight and equivalence (all exit0); this is no electrical/full-record
+scientific result. SolverD2 completed all six stages, including both full-frame
+modes. The standard reference completed; the offset reference timed out at
+3160/6400intervals. Preserve all outputs and compare them before new scaling.
+The exact D3 selection, per-job accounting and2CPUh reservation are in
+`runs/fast_forward_stage1/solver/RECORD.md`. Stage1 consumed17.376666667CPUh
+under40, plus the pre-existing episode charges; no count is reset. The new
+selection combines saved-frame adjudication with the required offset solver
+fixture. No Stage2/3 or production simulation is selected.
+
+## 2026-10-12 22:13 Pacific — model_specification — fast forward formulation adopted; Stage 1 started
+
+The scientist was asked to approve three points: Route C of the
+[fast forward formulation](proposed_fast_forward_formulation.md), with Route B
+as fallback and a 2026-10-18 checkpoint; template-level validation in place of
+per-window replay digests; and per-record rather than per-interval energy
+output. The reply was "没事 算力的限制不是限制。。。可以继续加" ("no problem,
+compute limits are not a limit... we can keep adding"). This is recorded as
+approval of all three points and as authority to raise compute caps to the
+measured need once Stage 2 projects it (`fast_forward_route` and
+`compute_authority` in SEARCH_POLICY.yaml; GOAL.md point 4).
+
+Stage 1 is equivalence of new code against the unmodified reference
+implementation. Under the adopted plan these are development tests: their
+failures are not counted, and no formal Stage 2 or Stage 3 run is selected by
+this entry. Work is split into two parallel scopes with separate writable
+paths:
+
+- **Solver path (critical): O4, O6 and O7.** The aim is for O7 to pass Stage 1
+  equivalence on the 5-µs case, one dwell and one frame by 2026-10-18.
+  Records go to `runs/fast_forward_stage1/solver/RECORD.md`.
+- **Planner and readout: O1 and O2.** The target is byte-equal planner records
+  and readout codes against the legacy code. Records go to
+  `runs/fast_forward_stage1/planner_readout/RECORD.md`.
+
+Each scope adds only new modules, tests and `sbatch` scripts, and records every
+selection and job ID in its RECORD.md before submission. The reference modules,
+contract files and this log stay unchanged; this log will summarize both
+records at milestones. Jobs use `sbatch` with explicit time, CPU and memory
+limits, preferably on the russpold partition. There are no `srun --pty`
+sessions and no polling loops. Each job records its host and job ID and writes
+a terminal JSON on every exit path. Stage 1 compute is capped at 40 CPU-hours
+combined, with no GPU.
+
+## 2026-10-12 21:46 Pacific — model_specification — failure review, scientist amendment and relaunch plan
+
+Scientist decisions, October 12. The scientist (zijiao) wrote "其实是工程限制
+跟真正的scientific限制没有关系 我们是不是要继续" ("these are really engineering
+limits, unrelated to a real scientific limit; should we continue?"), then
+"检查一下各种失败的原因 重新launch" ("check the causes of the various failures
+and relaunch"). Asked how to treat the 336-hour clock and the failure count,
+the scientist chose "从今天重新起算 336 小时" ("restart the 336 hours from
+today") and "只算正式运行，不算开发测试" ("count only formal runs, not
+development tests"). GOAL.md and `scientist_amendment_20261012` in
+SEARCH_POLICY.yaml record the resulting amendment.
+
+Failure review. The nine documented failed EP20 processes all date from
+October 9, and none is a scientific result. They fall into three classes:
+
+- **Development tests that caught defects, all repaired (3; not counted under
+  the new rule).**
+  1. Test process 47121114: 85 of 88 passed, with two CPE-array
+     partition-agreement errors and a 1.13e-8 V aperture discrepancy against
+     the 3e-9 V tolerance.
+  2. A 101-method suite: one time-varying clipping fixture exhausted its
+     refinements.
+  3. The solver suite in parent 47144602: the GMRES baseline exhausted eight
+     partition refinements on the 35 ms fixture.
+- **Full-size formal runs too slow for their limits (4; counted).** All four
+  share one cause, the current full-size representation.
+  1. Run 47121394 proved the constant-hold method needs at least 1,347,979,725
+     holds against a 40M cap, and was cancelled.
+  2. Three whole-plan preflights each reached the 6,000-second limit without
+     any electrical advance: cubic-repair attempt003, preflight attempt001 and
+     hash-repaired attempt002 (parent 47144602).
+- **Interactive-session failures of formal runs (2; counted).**
+  1. One attempt failed to retain its report through the interactive signal
+     path.
+  2. In 47155950 the attended `srun --pty` session was lost, and Slurm
+     cancelled the step with signal 9 after 58 seconds. No code defect was
+     found.
+
+The EP17 permissions child that stopped shared parent 47085635 is not an EP20
+failure; EP20's 84 worlds completed in that parent. The new ledger is therefore
+6 counted failures of 12; a thirteenth counted failure ends the study.
+
+The 336-hour wall clock restarts at 2026-10-13T04:46Z and ends
+2026-10-27T04:46Z. The prior continuous count from September 30 (about 317
+hours) is preserved for disclosure. Consumption is unchanged: 5.90 owned
+CPU-hours, or 10.20 under the conservative shared-parent bound, of 4,000.
+
+Run method. Formal runs and tests are submitted with `sbatch` under explicit
+time and memory limits; attended `srun --pty` sessions are no longer used. Two
+of the six counted failures came from interactive sessions. The unsent SRCC
+draft about 47155950 remains optional.
+
+Relaunch plan. No full-size run is attempted until a measurement shows it fits.
+
+1. Design, in progress: a read-only reformulation proposal at
+   `outputs/proposed_fast_forward_formulation.md`, unadopted until reviewed.
+2. Small-scale equivalence of the new formulation against the existing
+   reference implementation. These are development tests and are not counted.
+3. Speed measurements at increasing sizes. These are formal runs and are
+   counted, so each is sized from the previous measurement to fit its limit.
+4. Full-size runs only after step 3 shows that a 16-second record fits.
+
+This entry submits no job and changes no physics, parameter, schedule,
+condition, threshold or data role.
+
 ## 2026-10-09 19:10 Pacific — attempt003 termination evidence and support handoff
 
 Read-only accounting and source inspection narrow the termination question

@@ -13,6 +13,210 @@ outputs:
   - id: final_report
     from: scientific_report.final_report
 analyses:
+  conditional_s5_prediction:
+    name: Conditional air-probe nearest-fit and distant-coupling prediction
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_conditional_route, type: data, source: outputs/proposed_conditional_reference_prediction.md}
+    outputs:
+      - id: frozen_compatible_family
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route]
+        description: >-
+          Prespecify the full dry-air metal-probe, scan and acquisition operator,
+          all six named templates, shared parameter domain and every direct or
+          mediated distant path. Fit only assigned nearest source/gate anchors
+          using complete 16-second records. Freeze all numerically explored
+          compatible parameters before the assigned distant comparison. Retain
+          E-area/E-sublinear equivalence in air, original tolerances and closed
+          independent-final data. This partial family is not full reference acceptance.
+      - id: conditional_distant_report
+        type: report
+        format: json
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, frozen_compatible_family]
+        description: >-
+          Predict assigned second/far-neighbour coupling from the frozen family,
+          retaining every model and per-pad prediction. Report explored parameter
+          envelopes rather than device confidence intervals or an identified set
+          unless the complete domain was bounded. Include one distance-versus-
+          coupling figure, nearest calibration residuals and a three-line summary.
+          No candidate score, primary R-squared claim, full reference acceptance
+          or hardware validation is established by this conditional result.
+  fast_forward_equivalence:
+    name: Preserve the original full-dimensional forward model under the faster solver
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_formulation, type: data, source: outputs/proposed_fast_forward_formulation.md}
+      - {id: original_reference_driver, type: data, source: outputs/tools/fast_solver_reference.py}
+      - {id: reference_wrapper, type: data, source: outputs/tools/run_offset_reference_complete.sbatch}
+      - {id: selected_offsets, type: data, source: outputs/runs/fast_forward_stage1/solver/offsets_fixture.json}
+      - {id: original_partial_reference, type: data, source: outputs/runs/fast_forward_stage1/solver/ref_frame_offsets}
+      - {id: selected_fast_offset, type: data, source: outputs/runs/fast_forward_stage1/solver/dev_d3/step3_offsetsolve}
+      - {id: dwell_driver, type: data, source: outputs/tools/fast_solver_fastpath.py}
+      - {id: dwell_multirate_solver, type: data, source: outputs/tools/fast_solver_multirate.py}
+      - {id: modal_engine, type: data, source: outputs/tools/fast_solver_engine.py}
+      - {id: complex_forcing_regression, type: data, source: outputs/tools/test_fast_solver_complex_forcing.py}
+      - {id: dwell_comparator, type: data, source: outputs/tools/fast_solver_fastpath_compare.py}
+      - {id: dwell_wrapper, type: data, source: outputs/tools/run_fastpath_window_equivalence.sbatch}
+      - {id: standard_reference, type: data, source: outputs/runs/fast_forward_stage1/solver/ref_frame_standard}
+      - {id: continuous_driver, type: data, source: outputs/tools/fast_solver_continuous.py}
+      - {id: continuous_kernel, type: data, source: outputs/tools/fast_solver_continuous_kernel.py}
+      - {id: node_weights, type: data, source: outputs/tools/fast_solver_node_weights.py}
+      - {id: continuous_tests, type: data, source: outputs/tools/test_fast_solver_continuous.py}
+      - {id: independent_audit_test, type: data, source: outputs/tools/test_fast_solver_fastpath_accounting.py}
+      - {id: continuous_wrapper, type: data, source: outputs/tools/run_continuous_frame_equivalence.sbatch}
+    outputs:
+      - id: offset_reference_and_equivalence
+        type: report
+        format: json
+        description: >-
+          Run the unchanged original full 1600-action, 6400-split offset reference
+          with original physics, noise, schedule, states and solver controls. A
+          measured 10.94-hour projection supports a 14-hour one-CPU allocation,
+          with 90-percent internal deadline. Preserve previous partial and failed
+          restart attempts; no restart-specific numerical allowances are used.
+          Compare all three windows with the saved complete fast offset frame,
+          retaining original state, work, code and pixel tolerances. Every window
+          must be present and passing; no automatic Stage 2 scaling follows.
+        inputs: [goal, dataset_contract, search_policy, adopted_formulation,
+                 original_reference_driver, reference_wrapper, selected_offsets,
+                 original_partial_reference, selected_fast_offset]
+        recipe:
+          command: sbatch outputs/tools/run_offset_reference_complete.sbatch
+          resources: {cpus: 1, memory: 3Gi, time_limit: 14h}
+      - id: dwell_window_equivalence
+        type: report
+        format: json
+        description: >-
+          Measure the unqualified dwell solver on the complete standard frame,
+          using the unchanged original reference and physical acceptance margins.
+          A focused complex-forcing transform regression and passing 5-us/dwell
+          reference comparisons precede the complete frame. Reuse the passed
+          accounting and comparator checks. Complete
+          per-window physical work replaces partial interval rows; report independent
+          Norton energy integrals, quadrature agreement and coarse/fine mismatch.
+          If the standard comparison passes and twice its measured cost fits the
+          shared 90-percent deadline, run the complete offset frame and compare
+          available original reference prefixes. A missing reference frame remains
+          explicitly unqualified. No automatic scaling or successor follows.
+          Three allocated CPUs support the 16-GiB memory request, with one numerical
+          worker; the three CPU-hour reservation stays inside the combined 40 CPU-hour
+          Stage 1 envelope with an internal 38 solver / 2 planner allocation.
+        inputs: [goal, dataset_contract, search_policy, adopted_formulation,
+                 dwell_driver, dwell_multirate_solver, modal_engine, complex_forcing_regression,
+                 dwell_comparator, dwell_wrapper,
+                 standard_reference, original_partial_reference, selected_offsets]
+        recipe:
+          command: sbatch outputs/tools/run_fastpath_window_equivalence.sbatch
+          resources: {cpus: 3, memory: 16Gi, time_limit: 1h}
+      - id: continuous_frame_equivalence
+        type: report
+        format: json
+        description: >-
+          Integrate the original B2/2001 case, qualified template planner and
+          complete readout writer with the continuous-state solver. Use exact
+          binary64 interval durations and bounded weight caches. Reuse the
+          endpoint/node-weight, seam and cache identity/duration/node/lifetime
+          checks. Reuse the passed independent two-tone oracle and the new
+          physical-coordinate matrix-exponential/quadrature oracle with distinct
+          nonzero polynomial forcing across members and modes at both orders.
+          The continuous unit response uses mode-batched matrix multiplication
+          after the unchanged force products; the default keeps its original
+          einsum. The optimized audit omits unused
+          moments, uses matrix multiplication for tone contractions and reuses
+          exact node weights within the unchanged shared 1-GiB cache. Record
+          audit-specific hit/miss counts and total cache evictions. Preserve both
+          quadrature orders and every energy term.
+          After the preceding continuous integration passes, run one standard
+          frame and compare its 5-us, dwell and frame checkpoints, all states,
+          holds, codes, pixels and work against the unchanged original reference.
+          Preserve all ten energy columns and report independent energy audits,
+          total wall time and component timings. This is Stage 1 integration,
+          with one CPU and 7 GiB supported by the measured 4.2-GiB peak. Compare
+          audit arithmetic with the preserved preceding frame as descriptive
+          evidence without a new acceptance margin. After the unprofiled comparison
+          passes, collect a separate one-frame function profile to locate the
+          remaining propagation and audit costs; instrumented times are diagnostic
+          and do not replace the unprofiled performance measurement.
+          The one-CPU-hour reservation
+          must fit the existing combined Stage 1 envelope. No longer speed
+          measurement or successor is automatic.
+        inputs: [goal, dataset_contract, search_policy, adopted_formulation,
+                 continuous_driver, continuous_kernel, node_weights, continuous_tests, independent_audit_test,
+                 continuous_wrapper, dwell_comparator, standard_reference]
+        recipe:
+          command: sbatch outputs/tools/run_continuous_frame_equivalence.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+  fast_forward_scaling:
+    name: Measure faithful continuous prefixes before the full conditional record
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_formulation, type: data, source: outputs/proposed_fast_forward_formulation.md}
+      - {id: qualified_standard, type: data, source: outputs/runs/fast_forward_stage1/solver/continuous_frame005/equivalence.json}
+      - {id: standard_reference, type: data, source: outputs/runs/fast_forward_stage1/solver/ref_frame_standard}
+      - {id: continuous_driver, type: data, source: outputs/tools/fast_solver_continuous.py}
+      - {id: continuous_kernel, type: data, source: outputs/tools/fast_solver_continuous_kernel.py}
+      - {id: prefix_wrapper, type: data, source: outputs/tools/run_continuous_prefix10.sbatch}
+      - {id: frame_checkpoint, type: data, source: outputs/tools/fast_solver_frame_checkpoint.py}
+      - {id: restart_seam, type: data, source: outputs/runs/fast_forward_stage1/solver/restart_seam001/seam/seam_comparison.json}
+      - {id: qualified_prefix, type: data, source: outputs/runs/fast_forward_stage2/solver/continuous_10frames001/equivalence.json}
+      - {id: chunk_wrapper, type: data, source: outputs/tools/run_continuous_chunk100.sbatch}
+      - {id: comparator, type: data, source: outputs/tools/fast_solver_fastpath_compare.py}
+    outputs:
+      - id: continuous_prefix_report
+        type: report
+        format: json
+        description: >-
+          Run the next ten-frame B2/2001 engineering continuity prefix with the
+          original saved field/noise, complete physical state, exact absolute
+          timing, readout and all ten work/energy columns. Reuse the qualified
+          single-frame evidence and compare the prefix's first frame with the
+          unchanged original standard reference. Record setup and whole-frame
+          costs, audit costs, peak RSS, sweeps and descriptive energy residuals.
+          Use one numerical thread, a shared 1-GiB weight cache and a 6656-MiB
+          RSS guard within the measured one-CPU 7-GiB allocation. Standing
+          resource authority replaces the old blanket half-request RSS margin
+          and runtime multipliers with finite measured requests; physical
+          tolerances and closed-test access remain unchanged. The pending
+          offset-reference comparison is independent of this unscored prefix
+          and remains required before production scientific claims. Longer
+          100/1000-frame prefixes and the complete 4000-frame record require
+          their measured finite job selections; no automatic successor runs.
+        inputs: [goal, dataset_contract, search_policy, adopted_formulation,
+                 qualified_standard, standard_reference, continuous_driver,
+                 continuous_kernel, prefix_wrapper, comparator]
+        recipe:
+          command: sbatch outputs/tools/run_continuous_prefix10.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+      - id: persistent_hundred_frame_report
+        type: report
+        format: json
+        description: >-
+          After the original-tolerance three-frame restart comparison and the
+          ten-frame prefix pass, accumulate the first 100 frames of a persistent
+          4000-frame record. Preserve all physical states, absolute timing,
+          readout, ten energy columns and exactly-once boundary charges. Commit
+          the HDF record before publishing each durable restart checkpoint.
+          Keep the record incomplete at frame 100 and retain it for later
+          chronological chunks. The measured ten-frame cost supports a finite
+          one-CPU 7-GiB 12-hour request. Compare the retained first frame with
+          the unchanged original reference. This is engineering execution;
+          offset-reference equivalence remains required before clipping or
+          scientific claims. No successor or agent restart is automatic.
+        inputs: [goal, dataset_contract, search_policy, adopted_formulation,
+                 standard_reference, continuous_driver, continuous_kernel,
+                 frame_checkpoint, restart_seam, qualified_prefix, chunk_wrapper,
+                 comparator]
+        recipe:
+          command: sbatch --dependency=afterok:47721051 outputs/tools/run_continuous_chunk100.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 12h}
   model_specification:
     name: Source roles, finite pad-scan catalogue, field-electronics interfaces and resource rules
     inputs:

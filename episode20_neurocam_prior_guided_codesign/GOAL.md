@@ -1,5 +1,60 @@
 # When should a constrained NeuroCam redesign recover cortical voltage fields better?
 
+## Adopted conditional S5 prediction — October 13, 2026
+
+The scientist explicitly adopted the complete
+[conditional reference prediction](outputs/proposed_conditional_reference_prediction.md).
+Fit the assigned nearest-neighbour observations under its prospectively chosen
+dry-air probe/acquisition operator, freeze the compatible parameter family, then
+predict the assigned distant response. Retain all six named templates and full
+16-second records. Report the assumed operator, equivalent contact-law pairs,
+numerically explored parameter envelopes and absence of independent-device
+uncertainty. This partial conditional prediction does not qualify the whole
+NeuroCam reference, score candidates, open independent-final data or resolve
+the primary robust-ranking question. The full proposal defines this route;
+all original calibration/check roles and tolerances remain.
+
+## Scientist amendment — October 12, 2026: relaunch with a feasible forward simulator
+
+On October 12 the scientist judged EP20's stop to be an engineering limit, not
+a scientific one, and directed a relaunch after a review of every failure. The
+exact decisions are quoted in the
+[experiment log](outputs/experiment_log.md). Three changes apply from
+2026-10-13T04:46Z:
+
+1. **Forward-simulator reformulation.** The current full-size forward chain
+   cannot finish a 16-second record within a 6,000-second attempt; it is about
+   1,600 times too slow. Its numerical representation may be replaced by a
+   faster formulation. The replacement must keep the same physical model,
+   parameters, schedules, noise and outputs, and must reproduce the existing
+   reference implementation on small arrays and short windows within stated
+   tolerances before any full-size use. The question, conditions, comparisons,
+   thresholds, data roles and the closed independent final test are unchanged.
+   Shorter records, fewer pads, coarser timing or a different schedule are
+   design changes that need a separate amendment.
+2. **Wall clock.** The 336-hour wall-clock limit restarts at
+   2026-10-13T04:46Z and ends 2026-10-27T04:46Z. The earlier continuous count
+   from September 30 (about 317 hours) is preserved. All other limits and all
+   consumption are unchanged.
+3. **Failure counting.** Only failures of formal runs count toward the 12
+   repairable engineering failures: executions of the forward model, preflight,
+   cost measurements or scientific stages. Failing development tests of new or
+   repaired code do not count. Under this rule the history is 6 counted
+   failures of the 9 documented failed processes; the thirteenth counted
+   failure still ends the study as a technical failure.
+
+4. **Route and compute (adopted 22:13 Pacific).** The
+   [fast forward formulation](outputs/proposed_fast_forward_formulation.md)
+   is built as Route C: template-level planning, vectorized readout, exact
+   downstream and inputs, then a multirate exact upstream. Route B is the
+   fallback if the new upstream has not passed equivalence by October 18.
+   Per-interval work rows are not required outputs; per-window and per-record
+   energy totals are kept. The scientist stated that compute is not a binding
+   limit. The 4,000 CPU-hour and 960 GPU-hour caps are raised to the measured
+   need, plus a recorded margin, once speed measurements project it.
+
+Every result must disclose these changes.
+
 NeuroCam uses a 64 × 64 multiplexed electrode array to observe voltage on the
 cortical surface. Its architecture creates a basic trade-off. Reading more
 pixels expands spatial coverage, while revisiting fewer rows or source groups

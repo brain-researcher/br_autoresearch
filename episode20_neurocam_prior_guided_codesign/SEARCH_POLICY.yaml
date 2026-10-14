@@ -2,6 +2,22 @@ version: 2
 episode: EP20
 question: When should a constrained NeuroCam redesign recover cortical voltage fields better?
 
+scientist_amendment_20261013_conditional_s5_prediction:
+  status: adopted
+  authority: scientist_reply_adopt_conditional_prediction_proposal
+  specification: outputs/proposed_conditional_reference_prediction.md
+  scope: partial_conditional_S5_air_probe_prediction
+  calibration: assigned_nearest_source_and_gate_neighbour_anchors_only
+  prediction_after_parameter_freeze: assigned_second_neighbour_and_farther_summary
+  templates: all_E_area_and_E_sublinear_cross_R1_R2_R3
+  contact_law_equivalence_in_air: explicitly_disclosed
+  record_seconds: 16
+  geometry: unchanged_64x64
+  uncertainty: numerically_explored_compatible_parameter_envelope_not_device_CI
+  full_reference_acceptance_candidate_scoring_and_final_access: not_authorized_by_this_amendment
+  initial_calibration_only_measurement: {cpus: 1, memory_GiB: 7, wall_hours: 2}
+  measured_resource_extension: root_AGENTS_standing_authority
+
 documentary_reference:
   final_article_doi: 10.1016/j.scib.2025.11.030
   preprint_doi: 10.1101/2024.08.18.608446
@@ -20,7 +36,7 @@ reference_check:
   candidate_results_may_change_the_split_or_tolerances: false
   anchor_role_assignment:
     specification: DATASETS.md
-    state: design_roles_selected_measurement_context_and_source_use_unresolved
+    state: design_roles_selected_required_measurement_context_unresolved
     fixed_inputs: [architecture, channel_counts, dwell, nominal_rates]
     calibration:
       - Fig2a_PBS_array_gain
@@ -612,11 +628,51 @@ development_requirements:
     - lower_scan_latency
     - earliest_preassigned_design_name
 
+scientist_amendment_20261012:
+  status: adopted
+  adopted_at_utc: '2026-10-13T04:46:00Z'
+  authority: scientist_zijiao_directed_relaunch_after_failure_review_see_outputs_experiment_log_md_2026_10_12_2146
+  forward_simulator_reformulation:
+    permitted: true
+    must_keep: [physical_model, parameters, schedules, noise, outputs, conditions, comparisons, thresholds, data_roles, independent_final_test]
+    admission: reproduce_existing_reference_implementation_on_small_arrays_and_short_windows_within_stated_tolerances_before_full_size_use
+    design_changes_needing_a_separate_amendment: [shorter_records, fewer_pads, coarser_timing, different_schedule]
+  wall_clock:
+    total_wall_hours_maximum: 336
+    restarted_at_utc: '2026-10-13T04:46:00Z'
+    ends_at_utc: '2026-10-27T04:46:00Z'
+    prior_continuous_count_from_2026_09_30_preserved_and_disclosed: true
+  engineering_failure_counting:
+    counted: failures_of_formal_runs_forward_model_preflight_cost_measurement_or_scientific_stage_executions
+    not_counted: failing_development_tests_of_new_or_repaired_code
+    documented_failed_processes_before_amendment: 9
+    counted_under_this_rule: 6
+    maximum: 12
+    stop: thirteenth_counted_failure_ends_the_study_as_a_technical_failure
+  fast_forward_route:
+    adopted_at_utc: '2026-10-13T05:13:00Z'
+    specification: outputs/proposed_fast_forward_formulation.md
+    route: C_O1_O2_O4_O6_then_O7
+    fallback: B_O3_O5_optionally_GPU_batched
+    checkpoint: if_O7_has_not_passed_stage_1_equivalence_by_2026_10_18_move_to_route_B_or_seek_a_design_amendment
+    validation_change: template_level_validation_with_spot_checks_replaces_per_window_replay_digests
+    new_numerical_controls: [waveform_relaxation_sweep_cap_and_0.1_nV_tolerance, modal_residual_check, event_location_tolerance, per_window_energy_residual]
+    per_interval_work_rows_required: false
+    per_window_and_record_energy_totals_retained: true
+  compute_authority: >-
+    The scientist stated that compute is not a binding limit and may be
+    increased. The CPU and GPU caps stay at 4,000 CPU-hours and 960 GPU-hours
+    until a Stage 2 speed measurement projects the study-level need; they are
+    then raised to that projection plus a recorded margin, citing the
+    measurement.
+  unchanged: [question, conditions, selection_requirements, other_stopping_rules, other_resource_limits, consumption, independent_final_test]
+  disclosure_required_in_every_result: true
+
 resources:
-  repairable_engineering_failures_maximum: 12
+  repairable_engineering_failures_maximum: 12  # formal-run failures only since scientist_amendment_20261012
   cpu_core_hours_maximum: 4000
   gpu_hours_maximum: 960
-  total_wall_hours_maximum: 336
+  total_wall_hours_maximum: 336  # clock restarted 2026-10-13T04:46Z under scientist_amendment_20261012
   parallel_GPUs_maximum: 8
   parallel_CPU_cores_maximum: 128
   total_memory_GB_maximum: 512
