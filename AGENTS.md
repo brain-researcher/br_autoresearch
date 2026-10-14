@@ -153,6 +153,17 @@ Keep raw session logs and verbatim conversation exports outside this repository.
 Record decisions as concise English summaries with source references, preserving
 their scope and authority; do not paste user/assistant messages into artifacts.
 
+### Released results belong in Git — scientist instruction, October 14, 2026
+
+Track released scientific figures, tables, summaries and compact numeric reports
+for every episode, including deidentified participant-level scores and source
+dataset participant labels. Do not exclude these merely because they are derived
+data. This instruction supersedes internal episode rules against committing
+derived result data; source-data agreements and unopened evaluation boundaries
+still apply. Keep raw input payloads, model checkpoints, caches and transient
+runtime files on Oak. When a released report sits under an ignored run directory,
+stage its reviewed exact path explicitly; do not add the whole run tree.
+
 | Record | Purpose |
 | --- | --- |
 | `GOAL.md`, `DATASETS.md`, search policy | Scientific question, data roles, and operative contract; not live job status |

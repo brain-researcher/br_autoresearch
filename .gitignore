@@ -29,7 +29,9 @@
 /*/outputs/tmp/
 /*/outputs/subject_maps/
 /*/outputs/group_maps/
-# Bulk job outputs stay on OAK; records link to them by path.
+# Bulk job outputs stay on OAK. Released figures and compact scientific reports
+# belong in Git; explicitly add reviewed result files from runs/ with git add -f.
+# Never force-add an entire run tree, private evaluation store or raw input set.
 /*/outputs/runs/
 
 # Credentials and local Codex runtime state.  Keep the project MCP config.
