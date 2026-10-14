@@ -1,0 +1,38 @@
+version: "0.0.14"
+name: Result-driven research harness
+inputs:
+  - {id: goal, type: data, source: GOAL.md}
+  - {id: data_contract, type: data, source: DATASETS.md}
+outputs:
+  - id: result
+    from: prospective_validation.result
+analyses:
+  history_baseline:
+    name: Analyze the complete recorded session prefix
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: data_contract, from: ../data_contract}
+    outputs:
+      - id: baseline
+        type: report
+        format: md
+        inputs: [goal, data_contract]
+  harness_change:
+    name: Apply the smallest evidence-supported execution change
+    inputs:
+      - {id: baseline, from: ../history_baseline.baseline}
+    outputs:
+      - id: change_record
+        type: report
+        format: md
+        inputs: [baseline]
+  prospective_validation:
+    name: Observe changed behavior and the next actual authorized result
+    inputs:
+      - {id: change_record, from: ../harness_change.change_record}
+      - {id: data_contract, from: ../data_contract}
+    outputs:
+      - id: result
+        type: report
+        format: md
+        inputs: [change_record, data_contract]
