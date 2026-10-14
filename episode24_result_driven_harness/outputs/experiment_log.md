@@ -1,5 +1,15 @@
 # EP24 execution log
 
+## 2026-10-14 — repository conversation cleanup
+
+- User requested removal of accidental conversation material and English translations of Chinese prose; attended Slurm job 47790082 handles inspection and verification.
+- Removed six ignored JSONL exports (12,594,053 bytes) and objective bodies from the derived counts; original private source and historical numeric counts are preserved.
+- Exporter now writes aggregate summary.json only; retired the body-based refinement script and removed report links to deleted exports.
+- Focused fixture checks passed for body/argument/objective/runtime exclusion, category counts, deduplication and unchanged source; historical source was not reparsed.
+- README conversation wording was replaced with repository guidance; Chinese authorization records were translated with scientific scope and references preserved.
+- Added targeted Git ignore patterns and a concise artifact rule; no scientific run was performed.
+- User subsequently authorized commit and push with message `clean up submissions`; unrelated working changes remain outside this cleanup.
+
 ## 2026-10-13 — history_baseline — attended compute closed
 
 - Job 47703984 completed with exit 0:0; allocation elapsed 11m49s on 1 CPU (0.196944 CPUh), reported process CPU 8.743s, step peak RSS 1,325,308 KiB.

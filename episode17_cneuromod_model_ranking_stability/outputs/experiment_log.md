@@ -311,7 +311,8 @@ policy adoption, resources, paths and full-panel scope remain unchanged.
 
 ## 2026-10-12 — prediction_qualification — scientist adopts narrow block rule and fresh fit002 selected
 
-The scientist answered question`call6o13giUJ`, "采用仅针对小块方差的修订（推荐）".
+The scientist approved the amendment limited to small-block variance in reply
+to question `call6o13giUJ`.
 Adopt exactly the [narrow proposal](proposed_score_specific_validity_followup.md):
 remove the individual uncertainty-block centered-response-variance veto only
 for primary R². Preserve finite inputs and computed moments, strictly positive

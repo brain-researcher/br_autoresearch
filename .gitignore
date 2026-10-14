@@ -41,6 +41,13 @@
 /.codex/*
 !/.codex/config.toml
 
+# Conversation exports belong outside the repository, including outside runs/.
+rollout-*.jsonl
+visible_messages.jsonl
+user_requests.jsonl
+explicit_questions.jsonl
+goal_continuations.jsonl
+
 # Transient Sherlock and Python state.
 /scratch/
 /tmp/

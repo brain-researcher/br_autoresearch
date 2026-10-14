@@ -4,6 +4,10 @@ October 13, 2026: the complete 636,747,571-byte session prefix has been parsed
 on compute, and a focused harness instruction change is applied. Prospective
 behavior and real-result validation remain open; EP24 is not complete.
 
+October 14: conversation exports were removed. Only aggregate history counts
+and analyst-written case summaries are retained; source-line references point
+to the original private session outside this repository.
+
 Read [GOAL.md](../GOAL.md), [DATASETS.md](../DATASETS.md), and
 [SEARCH_POLICY.yaml](../SEARCH_POLICY.yaml) for the question, source boundary,
 authority and acceptance criteria.

@@ -3,8 +3,8 @@
 **Adoption, 2026-10-12 22:13 Pacific.** The scientist was asked to approve
 Route C (with Route B as fallback and a 2026-10-18 checkpoint), template-level
 validation in place of per-window replay digests, and per-record rather than
-per-interval energy output. The reply was "没事 算力的限制不是限制。。。可以继续加"
-("no problem, compute limits are not a limit... we can keep adding"). That reply
+per-interval energy output. The scientist replied that compute limits could
+be raised as needed. That reply
 is recorded as approval of the recommended plan and as authority to raise
 compute caps; see `scientist_amendment_20261012.fast_forward_route` in
 SEARCH_POLICY.yaml. The text below is kept as the adopted specification; its

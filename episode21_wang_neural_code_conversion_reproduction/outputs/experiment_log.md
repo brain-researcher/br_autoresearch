@@ -8569,8 +8569,8 @@ termination. Root owns scheduler monitoring. No second prefix job is selected.
 
 ## 2026-10-05 23:51 UTC — laion_decoder_training — bounded real-data prefix approved and selected
 
-The scientist explicitly replied`agree to use 1 CPU、7 GiB、最多 2 小时的真实数据拟合`
-to the concrete reviewed1216-unit proposal. The new
+The scientist explicitly approved real-data fitting with 1 CPU, 7 GiB and at most
+2 hours, as specified in the reviewed 1216-unit proposal. The new
 [authorization](decoder_training_prefix_authorization.json) activates that
 exact sub01 subject-unique stage only, including all4712 training images,
 19layers,64 fixed units per layer,2GBnew durable and10GBtransient caps.

@@ -29,11 +29,15 @@ claims, and inferred behavioral classifications. Missing events or ambiguous
 ownership remain unknown. Thread age does not establish active or unattended
 agent time.
 
-Only derived, redacted process metadata, relevant user requests and user-visible
-assistant messages belong under `outputs/`. Preserve their source line and
-timestamp. Do not export internal reasoning, system/developer instructions,
-credentials, scientific payloads, or bulk tool-output bodies. Do not forward the raw record
-to an external service. Exact counts must state their event definitions and
+Only aggregate process counts, content-free source locators, and concise
+analyst-written English case summaries belong under `outputs/`. Source line
+numbers and timestamps may locate evidence in the original private record.
+Do not export conversation bodies, goal objectives, question text, raw tool
+arguments, free-text runtime fields, internal reasoning, system/developer
+instructions, credentials, scientific payloads, or tool-output bodies. Redacting
+secrets does not make a conversation export suitable for the repository.
+Do not forward the raw record to an external service.
+Exact counts must state their event definitions and
 coverage; causal explanations and redundancy judgments require explicit
 interpretive labels and case evidence.
 

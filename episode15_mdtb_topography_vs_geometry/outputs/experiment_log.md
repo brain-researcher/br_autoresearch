@@ -875,7 +875,7 @@ all historical costs remain preserved and no clock is reset by the amendment.
 
 ## 2026-10-12 15:29 Pacific — scientist adopts conditional observed-map development route
 
-The scientist explicitly selected “采用观测脑图预测方案（推荐）” in reply to
+The scientist explicitly selected prediction from observed brain maps in reply to
 the concrete proposal. Adopt the narrow descriptive route in
 `proposed_observed_beta_followup.md`: preserve all twelve development people,
 eighteen Task-B conditions, sixteen variants, fixed partitions and every

@@ -18,10 +18,10 @@ source:
   raw_export: prohibited
   external_disclosure: prohibited
 outputs:
-  permitted: Small derived redacted process metadata, case summaries, patches and result references.
+  permitted: Aggregate process counts, content-free source locators, analyst-written English case summaries, patches and result references.
   location: outputs/
   records: Use experiment_log.md, README.md and the existing ASTRA program convention.
-  avoid: New audit bureaucracy, raw transcripts, credentials and scientific payload copies.
+  avoid: New audit bureaucracy, conversation bodies, goal objectives, question text, raw arguments, free-text runtime fields, credentials and scientific payload copies.
 analysis:
   historical_cases: [EP01, EP04, EP08, EP14]
   prospective_candidates: [EP15, EP18, EP20, EP21]

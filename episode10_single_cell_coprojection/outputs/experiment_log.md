@@ -3051,7 +3051,7 @@ and route-specific held-out predictions. No data or outcome was opened.
 ## 2026-10-01 — User-authorized wall-time reset and same-episode continuation
 
 - `[v3_search.adaptive_model_search]` At `2026-10-01T22:10:05Z`, recorded the user's
-  explicit instruction: “OK 没关系 reset the wall time！” This authorizes a
+  explicit authorization to reset the wall time. This authorizes a
   fresh 144-hour strict-wall window at the existing ceiling. The prior
   129.83266667 wall-hours remain historical consumption; CPU is not reset:
   302.02566667/1800 allocated core-hours used, 1497.97433333 remaining.

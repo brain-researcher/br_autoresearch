@@ -1,7 +1,7 @@
 # Uncertainty-block variance amendment — ADOPTED October12
 
-The scientist approved this exact narrow option through the recorded question
-`call6o13giUJ`: "采用仅针对小块方差的修订（推荐）". GOAL.md,
+The scientist approved this exact amendment limited to small-block variance
+through the recorded question `call6o13giUJ`. GOAL.md,
 SEARCH_POLICY.yaml and the operative qualification specification now record
 the same rule. This decision is not an audit release or a performance result.
 A fresh complete fit requires the coordinator's finite resource selection and

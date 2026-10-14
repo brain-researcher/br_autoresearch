@@ -762,9 +762,8 @@ To propose a new episode for campaign inclusion, submit its contract for
 review through a pull request when that Git work is requested. Proposal review
 is separate from starting already-authorized standalone work.
 
-If you have another dataset you want to explore, tell me what it is and what
-question you want to ask. If its access rules allow it, I can help put it on
-Sherlock.
+New dataset proposals should state the research question, access terms, and
+intended storage on Sherlock.
 
 ## Repository record
 

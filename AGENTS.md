@@ -149,6 +149,10 @@ novelty, study design and concept-figure guidance lives in `design-episode`.
 
 ## Records and artifacts
 
+Keep raw session logs and verbatim conversation exports outside this repository.
+Record decisions as concise English summaries with source references, preserving
+their scope and authority; do not paste user/assistant messages into artifacts.
+
 | Record | Purpose |
 | --- | --- |
 | `GOAL.md`, `DATASETS.md`, search policy | Scientific question, data roles, and operative contract; not live job status |

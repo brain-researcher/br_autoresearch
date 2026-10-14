@@ -405,8 +405,8 @@ stage 4 (collect plus ASTRA validation) are submitted.
 
 ## 2026-10-13 06:40 UTC — a0_operator_alignment — design frozen before any A0 outcome; implementation delegated
 
-**Authorization.** The scientist replied "好，跑完了告诉我" to the three
-recommendations:
+**Authorization.** The scientist approved the three recommendations and requested
+notification when the run finishes:
 
 1. bind the raw stimulus images for a low-level visual operator;
 2. freeze A0 and run it within 64 CPU-hours and zero GPU;

@@ -1,6 +1,6 @@
 # Adopted conditional reference prediction — October 13, 2026
 
-The scientist explicitly adopted this proposal with “采用条件化预测方案（推荐）”.
+The scientist explicitly adopted the conditional prediction proposal.
 The conditional route below is active; implementation remains necessary before
 calibration. The existing live 4,000-frame engineering record remains unscored.
 

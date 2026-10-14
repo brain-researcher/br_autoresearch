@@ -16,8 +16,10 @@ node-local storage. [Exact summary](runs/history_baseline/summary.json).
 Every record was structurally processed. Interpretation concerns permitted
 operational events and selected user-facing messages, not a semantic reading
 of hidden reasoning or every tool-output body. Those bodies and system
-instructions were not exported. Goal packets were classified separately and
-only their user-provided objective retained.
+instructions were not exported. Goal packets were classified separately.
+On October 14, derived conversation and objective exports were removed from
+the project. Aggregate counts and source-line references below remain; the
+original private source is unchanged. The exporter now emits aggregates only.
 
 ## Observed counts
 
@@ -34,7 +36,7 @@ Tool counts use unique call IDs; two duplicate calls were excluded. Nested
 tools inside `exec` are not separately counted. Keyword references to checks,
 documentation, scheduler commands or permission are overlapping mentions and
 must not be presented as executed actions or waste. Token snapshots are not
-converted to prices or billed usage. [Continuation definitions and objective](runs/history_baseline/continuation_counts.json).
+converted to prices or billed usage. [Continuation counts and definitions](runs/history_baseline/continuation_counts.json).
 
 ## What the history actually supports
 
@@ -64,11 +66,10 @@ converted to prices or billed usage. [Continuation definitions and objective](ru
    unattended login-node execution. This analysis changes no host configuration
    and starts no supervisor or automatic renewal.
 
-Case evidence: [user requests](runs/history_baseline/user_requests.jsonl),
-[explicit questions](runs/history_baseline/explicit_questions.jsonl), and
-[selected user-visible messages](runs/history_baseline/visible_messages.jsonl).
-Each record retains its original source line and timestamp. Historical cases
-informed the patch and cannot count as unseen prospective validation.
+Case evidence is located by the source line numbers above in the original
+private record identified in [DATASETS.md](../DATASETS.md); no conversation
+copies are retained in this project. Historical cases informed the patch and
+cannot count as unseen prospective validation.
 
 ## Applied change and what remains unproven
 

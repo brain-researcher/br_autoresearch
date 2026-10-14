@@ -168,7 +168,7 @@ All-pad distant plotting and an empty sampled-compatible family need explicit re
 
 ## 2026-10-13 20:29 Pacific — conditional_s5_prediction — scientist adopted conditional route
 
-Scientist reply: “采用条件化预测方案（推荐）”; the complete written proposal is now adopted.
+The scientist selected the conditional prediction approach; the complete written proposal is now adopted.
 Select its dry-air probe/scan interpretation before nearest-only fitting; freeze the
 compatible family before assigned distant prediction. Keep all six names, full16s/64×64,
 original tolerances and final boundary; disclose contact-law equivalence and conditional envelopes.
@@ -1046,8 +1046,8 @@ The scientist was asked to approve three points: Route C of the
 [fast forward formulation](proposed_fast_forward_formulation.md), with Route B
 as fallback and a 2026-10-18 checkpoint; template-level validation in place of
 per-window replay digests; and per-record rather than per-interval energy
-output. The reply was "没事 算力的限制不是限制。。。可以继续加" ("no problem,
-compute limits are not a limit... we can keep adding"). This is recorded as
+output. The scientist replied that compute limits could be raised as needed.
+This is recorded as
 approval of all three points and as authority to raise compute caps to the
 measured need once Stage 2 projects it (`fast_forward_route` and
 `compute_authority` in SEARCH_POLICY.yaml; GOAL.md point 4).
@@ -1076,14 +1076,12 @@ combined, with no GPU.
 
 ## 2026-10-12 21:46 Pacific — model_specification — failure review, scientist amendment and relaunch plan
 
-Scientist decisions, October 12. The scientist (zijiao) wrote "其实是工程限制
-跟真正的scientific限制没有关系 我们是不是要继续" ("these are really engineering
-limits, unrelated to a real scientific limit; should we continue?"), then
-"检查一下各种失败的原因 重新launch" ("check the causes of the various failures
-and relaunch"). Asked how to treat the 336-hour clock and the failure count,
-the scientist chose "从今天重新起算 336 小时" ("restart the 336 hours from
-today") and "只算正式运行，不算开发测试" ("count only formal runs, not
-development tests"). GOAL.md and `scientist_amendment_20261012` in
+Scientist decisions, October 12. The scientist (zijiao) distinguished engineering
+limits from scientific limits, asked whether work should continue, then requested
+review of the failure causes and a relaunch. Asked how to treat the 336-hour
+clock and the failure count, the scientist chose to restart the 336-hour window
+from that day and count only formal runs, excluding development tests.
+GOAL.md and `scientist_amendment_20261012` in
 SEARCH_POLICY.yaml record the resulting amendment.
 
 Failure review. The nine documented failed EP20 processes all date from
