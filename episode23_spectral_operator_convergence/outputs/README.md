@@ -1,5 +1,18 @@
 # EP23 outputs
 
+**2026-10-14 18:35 UTC — stage 2 complete: P1–P5 checks, A1 (with rank-32
+sensitivity), A2 and A3. Exploratory, exposed development data; A3 is synthetic.**
+
+![EP23 stage 2](figures/stage2/20261014-attempt01/ep23_stage2.png)
+
+- **A1:** a full learned metric on the models' top PCs about doubles held-out RSA over per-axis reweighting (Fisher z 0.41 vs 0.21; native 0.15); full − diagonal is positive in 5/5 participants for every model (sign p = 0.031), and rank 32 agrees (+0.16 vs +0.19).
+- **A2:** model–brain overlap is higher at category scale than within categories (5/5, p = 0.031), but it tracks the brain's own split-half reliability; the frozen reliability-relative primary is not supported (1/4, p = 0.94).
+- **A3 (synthetic):** pooling steepens the preferred power only for frequency-ordered topographies, and only to α* ≈ 1.18, below the α̂ ≈ 1.5–2.0 that A1 selects on real data. The P1–P5 refutation checks passed 17/17.
+
+[Figure](figures/stage2/20261014-attempt01/ep23_stage2.png) ·
+[A1 rank-32 report](runs/a1_metric_family/20261014-rank32-attempt01/a1_report.json) ·
+[propositions](theory/propositions.md) · [result entries](experiment_log.md)
+
 **October 14 — released A0–A3 results are available in Git.**
 The completed [A0 operator-alignment report](runs/a0_operator_alignment/20261013-attempt01/a0_report.json),
 [A1 rank-64 metric-family report](runs/a1_metric_family/20261014-attempt01/a1_report.json),
@@ -72,7 +85,8 @@ independent source with ≥5 participants.
 | [SEARCH_POLICY.yaml](../SEARCH_POLICY.yaml) | Frozen A0 specification, budget, stop rules and terminal classes |
 | [astra/v0.0.14/astra.yaml](astra/v0.0.14/astra.yaml) | Experiment program; validated 2026-10-13 |
 | [design/](design/) | Literature verification and the operator novelty and source audits |
-| [code/](code/) | Feasibility, A0 operator, brain-pattern, alignment and plot scripts, with sbatch files |
+| [theory/propositions.md](theory/propositions.md) | P1–P5 conditional propositions, proofs, counterexamples and limits |
+| [code/](code/) | Feasibility, A0 operator, brain-pattern, alignment, theory-check, A1–A3 and plot scripts, with sbatch files |
 | [experiment_log.md](experiment_log.md) | Design record, Codex delegations, the freeze, audits, jobs and results |
 
 Superseded but kept: `runs/a0_operator_alignment/20261013-attempt01/operators/`

@@ -1,0 +1,130 @@
+{
+  "seed": 2305,
+  "trials": 100,
+  "numpy_version": "1.26.3",
+  "passed": true,
+  "checks": {
+    "YWS_sine": {
+      "instances": 100,
+      "max_ratio": 0.308977479453831,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 100
+    },
+    "YWS_alignment": {
+      "instances": 100,
+      "max_ratio": 0.22751323177456578,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 100
+    },
+    "mixed_gap": {
+      "instances": 200,
+      "max_ratio": 0.6915723952741228,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 200
+    },
+    "Weyl_gap": {
+      "instances": 200,
+      "max_ratio": 0.6599499494161681,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 200
+    },
+    "two_learners": {
+      "instances": 100,
+      "max_ratio": 0.2887865825168906,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 100
+    },
+    "P1_functions": {
+      "instances": 100,
+      "max_ratio": 5.994319033128877e-07,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 100
+    },
+    "P2_PSD_optimum": {
+      "instances": 100,
+      "max_ratio": 0.9977076296104327,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 100
+    },
+    "P2_loss_formula": {
+      "instances": 100,
+      "max_ratio": 6.456026911112822e-07,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 100
+    },
+    "block_invariance": {
+      "instances": 200,
+      "max_ratio": 1.0918932659150549e-06,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 200
+    },
+    "distance_bound": {
+      "instances": 100,
+      "max_ratio": 0.9145068436186635,
+      "passed": true,
+      "kind": "inequality",
+      "evaluations": 100
+    },
+    "knn_margin": {
+      "instances": 100,
+      "max_ratio": 0.0,
+      "passed": true,
+      "kind": "zero_residual",
+      "evaluations": 100
+    },
+    "OLS_invariance": {
+      "instances": 100,
+      "max_ratio": 6.664301842659476e-06,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 100
+    },
+    "ridge_transformed_penalty": {
+      "instances": 100,
+      "max_ratio": 1.6361343947625536e-06,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 100
+    },
+    "P5_identity": {
+      "instances": 100,
+      "max_ratio": 2.421870817453653e-07,
+      "passed": true,
+      "kind": "identity",
+      "evaluations": 100
+    },
+    "Haar_expected_overlap": {
+      "instances": 5000,
+      "max_ratio": 0.09193800241901698,
+      "passed": true,
+      "kind": "Monte_Carlo_mean",
+      "evaluations": 10
+    },
+    "ridge_noninvariance": {
+      "instances": 1,
+      "max_ratio": 2.775557561562891e-08,
+      "passed": true,
+      "kind": "counterexample_residual",
+      "evaluations": 1
+    },
+    "blur_mixing": {
+      "instances": 1,
+      "max_ratio": 2.2204460492503128e-07,
+      "passed": true,
+      "kind": "counterexample_residual",
+      "evaluations": 1
+    }
+  },
+  "haar_nominal_family_error": 1e-06,
+  "interpretation": "Finite numerical refutation attempts; passing is not proof.",
+  "identity_tolerance": 2e-09
+}

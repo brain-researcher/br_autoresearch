@@ -1,0 +1,472 @@
+{
+  "aggregation": "equal folds within sector, equal primary sectors, then equal models",
+  "analysis_id": "ep23_a1_metric_family_v1",
+  "evc_evaluable_cells": 25,
+  "group": {
+    "CLIP": {
+      "full_minus_diagonal": {
+        "k_positive": 5,
+        "mean_delta_z": 0.19488113599046322,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      },
+      "power_minus_native": {
+        "k_positive": 5,
+        "mean_delta_z": 0.0031739128158367763,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      }
+    },
+    "DINOv2": {
+      "full_minus_diagonal": {
+        "k_positive": 5,
+        "mean_delta_z": 0.11915889988559622,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      },
+      "power_minus_native": {
+        "k_positive": 5,
+        "mean_delta_z": 0.0325470295419543,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      }
+    },
+    "PEcore": {
+      "full_minus_diagonal": {
+        "k_positive": 5,
+        "mean_delta_z": 0.1660627302028887,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      },
+      "power_minus_native": {
+        "k_positive": 5,
+        "mean_delta_z": 0.01529309907177763,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      }
+    },
+    "SigLIP2": {
+      "full_minus_diagonal": {
+        "k_positive": 5,
+        "mean_delta_z": 0.16767607342608898,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      },
+      "power_minus_native": {
+        "k_positive": 5,
+        "mean_delta_z": 0.007553903318245028,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      }
+    },
+    "mean_over_models": {
+      "full_minus_diagonal": {
+        "k_positive": 5,
+        "mean_delta_z": 0.16194470987625928,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      },
+      "power_minus_native": {
+        "k_positive": 5,
+        "mean_delta_z": 0.014641986186953435,
+        "n_participants": 5,
+        "n_zero": 0,
+        "sign_p_one_sided": 0.03125
+      }
+    }
+  },
+  "independent_unit": "participant",
+  "n_cells": 25,
+  "participant_contrasts": {
+    "sub-01": {
+      "CLIP": {
+        "full_minus_diagonal": 0.16721352323485417,
+        "power_minus_native": 0.0020199654013159513
+      },
+      "DINOv2": {
+        "full_minus_diagonal": 0.11460642488328056,
+        "power_minus_native": 0.025391059822522016
+      },
+      "PEcore": {
+        "full_minus_diagonal": 0.13310779022928945,
+        "power_minus_native": 0.01242721621366838
+      },
+      "SigLIP2": {
+        "full_minus_diagonal": 0.15483620810580417,
+        "power_minus_native": 0.0001749474278103097
+      },
+      "mean_over_models": {
+        "full_minus_diagonal": 0.14244098661330706,
+        "power_minus_native": 0.010003297216329164
+      }
+    },
+    "sub-03": {
+      "CLIP": {
+        "full_minus_diagonal": 0.23024026794812966,
+        "power_minus_native": 0.0028096075517414034
+      },
+      "DINOv2": {
+        "full_minus_diagonal": 0.13937413168248325,
+        "power_minus_native": 0.03535726723220201
+      },
+      "PEcore": {
+        "full_minus_diagonal": 0.19942551460291658,
+        "power_minus_native": 0.014364770002015371
+      },
+      "SigLIP2": {
+        "full_minus_diagonal": 0.19314504153883053,
+        "power_minus_native": 0.007825107793906083
+      },
+      "mean_over_models": {
+        "full_minus_diagonal": 0.19054623894309,
+        "power_minus_native": 0.015089188144966218
+      }
+    },
+    "sub-05": {
+      "CLIP": {
+        "full_minus_diagonal": 0.19592410052469886,
+        "power_minus_native": 0.003018323995646962
+      },
+      "DINOv2": {
+        "full_minus_diagonal": 0.12067884409520264,
+        "power_minus_native": 0.03213132208608425
+      },
+      "PEcore": {
+        "full_minus_diagonal": 0.16732799130020395,
+        "power_minus_native": 0.017079025113340304
+      },
+      "SigLIP2": {
+        "full_minus_diagonal": 0.17629798915425177,
+        "power_minus_native": 0.010942030906479142
+      },
+      "mean_over_models": {
+        "full_minus_diagonal": 0.16505723126858932,
+        "power_minus_native": 0.015792675525387666
+      }
+    },
+    "sub-06": {
+      "CLIP": {
+        "full_minus_diagonal": 0.17250531543430417,
+        "power_minus_native": 0.004243439766142841
+      },
+      "DINOv2": {
+        "full_minus_diagonal": 0.1025642744151411,
+        "power_minus_native": 0.03500579598427362
+      },
+      "PEcore": {
+        "full_minus_diagonal": 0.1475182065730171,
+        "power_minus_native": 0.014417522952367182
+      },
+      "SigLIP2": {
+        "full_minus_diagonal": 0.144748111179749,
+        "power_minus_native": 0.0072609029411381245
+      },
+      "mean_over_models": {
+        "full_minus_diagonal": 0.14183397690055283,
+        "power_minus_native": 0.015231915410980441
+      }
+    },
+    "sub-07": {
+      "CLIP": {
+        "full_minus_diagonal": 0.20852247281032918,
+        "power_minus_native": 0.003778227364336723
+      },
+      "DINOv2": {
+        "full_minus_diagonal": 0.11857082435187365,
+        "power_minus_native": 0.03484970258468959
+      },
+      "PEcore": {
+        "full_minus_diagonal": 0.18293414830901653,
+        "power_minus_native": 0.01817696107749691
+      },
+      "SigLIP2": {
+        "full_minus_diagonal": 0.1693530171518094,
+        "power_minus_native": 0.01156652752189148
+      },
+      "mean_over_models": {
+        "full_minus_diagonal": 0.1698451156557572,
+        "power_minus_native": 0.017092854637103676
+      }
+    }
+  },
+  "primary_contrast": "full_minus_diagonal",
+  "secondary_contrast": "power_minus_native",
+  "selected_distributions": {
+    "evc": {
+      "CLIP": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "0.9": 3,
+            "1": 9,
+            "1.1": 13
+          }
+        }
+      },
+      "DINOv2": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "0.8": 2,
+            "0.9": 13,
+            "1": 5,
+            "1.2": 5
+          }
+        }
+      },
+      "PEcore": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "1.3": 1,
+            "1.4": 7,
+            "1.5": 3,
+            "1.6": 1,
+            "1.7": 4,
+            "1.8": 2,
+            "1.9": 5,
+            "2": 2
+          }
+        }
+      },
+      "SigLIP2": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "0.8": 1,
+            "0.9": 4,
+            "1": 2,
+            "1.1": 3,
+            "1.2": 12,
+            "1.3": 3
+          }
+        }
+      }
+    },
+    "primary": {
+      "CLIP": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "1.3": 14,
+            "1.4": 11
+          }
+        }
+      },
+      "DINOv2": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "1.8": 2,
+            "1.9": 8,
+            "2": 10,
+            "2.1": 5
+          }
+        }
+      },
+      "PEcore": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "1.8": 4,
+            "1.9": 4,
+            "2": 8,
+            "2.1": 6,
+            "2.2": 3
+          }
+        }
+      },
+      "SigLIP2": {
+        "diagonal": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "full": {
+          "boundary_count": 25,
+          "counts": {
+            "0": 25
+          }
+        },
+        "power": {
+          "boundary_count": 0,
+          "counts": {
+            "1": 1,
+            "1.1": 4,
+            "1.5": 2,
+            "1.6": 9,
+            "1.7": 8,
+            "1.8": 1
+          }
+        }
+      }
+    }
+  },
+  "selection_distribution_unit": "participant-fold-model; descriptive counts only",
+  "settings": {
+    "alphas": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6,
+      1.7,
+      1.8,
+      1.9,
+      2.0,
+      2.1,
+      2.2,
+      2.3,
+      2.4,
+      2.5,
+      2.6,
+      2.7,
+      2.8,
+      2.9,
+      3.0,
+      3.1,
+      3.2,
+      3.3,
+      3.4,
+      3.5,
+      3.6,
+      3.7,
+      3.8,
+      3.9,
+      4.0
+    ],
+    "full_fit": "symmetric closed form followed by Euclidean PSD projection",
+    "lambda0_grid": [
+      0.0,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "models": [
+      "DINOv2",
+      "CLIP",
+      "PEcore",
+      "SigLIP2"
+    ],
+    "numerical_rank_rtol": 1e-10,
+    "rank": 32,
+    "rois": [
+      "laion-ventral",
+      "laion-lateral",
+      "laion-dorsal",
+      "retinotopic-EVC"
+    ],
+    "selection": "mean Fisher z over directions, then primary ROIs; EVC separately",
+    "target": "row population-z-scored correlation Gram, trace normalized to n"
+  },
+  "sign_test": "one-sided exact Binomial(n, 0.5); zeros count as nonpositive",
+  "source_directory": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode23_spectral_operator_convergence/outputs/runs/a1_metric_family/20261014-rank32-attempt01/cells"
+}

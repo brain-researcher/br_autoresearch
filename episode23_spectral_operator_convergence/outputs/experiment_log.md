@@ -4,6 +4,20 @@ Newest entries first. Only operator feasibility checks, which use no model or
 neural data, have been executed. An ASTRA program will be authored when
 execution is scoped.
 
+## 2026-10-14 18:35 UTC — stage 2 — figure and summary
+
+- Rendered [ep23_stage2.png](figures/stage2/20261014-attempt01/ep23_stage2.png) and .svg from the collected reports and A1 cells with [plot_stage2.py](code/plot_stage2.py), job 47802967; the first render (47802179) had legend collisions and was replaced.
+- Three-line summary added to [README.md](README.md). Stage 2 (P1–P5, A1–A3) is complete; compute for all stage-2 jobs, 47703623 to 47802967: 18.6 allocated CPU-hours, no GPU.
+- A4: its frozen endpoint is A2's reliability-relative coarse − fine contrast, which development did not support (1/4, p = 0.94), and A0's beyond-taxonomy condition for acquiring a source was not met. Whether to close A4 or re-target it is a scientist decision.
+
+## 2026-10-14 18:20 UTC — a1 — rank-32 sensitivity complete
+
+- Ran: array 47793391 (5 tasks, 32–40 min, ≤3.3 GB each) and collect 47793396, all `COMPLETED`; [a1_report.json](runs/a1_metric_family/20261014-rank32-attempt01/a1_report.json).
+- Full − diagonal Δz: +0.16 mean over models (DINOv2 0.12 to CLIP 0.19; rank 64: +0.19), 0.14–0.19 per participant; 5/5 for every model; sign p = 0.031.
+- Mean held-out RSA z, primary ROIs: reference 0.11, native 0.16, power 0.18, diagonal 0.21, full 0.38 (rank 64: 0.41). EVC full 0.11 (rank 64: 0.13).
+- Power − native: +0.015 (0.003–0.033), 5/5, p = 0.031. Selected α: CLIP 1.3–1.4, DINOv2 1.8–2.1, PEcore 1.8–2.2, SigLIP2 1.0–1.8. λ0 = 0 again in 100/100 cells.
+- Reading: the A1 result does not depend on rank 64. Next: stage figure and three-line summary.
+
 ## 2026-10-14 17:10 UTC — a1 — rank-32 sensitivity launched
 
 - Submitted RUN=20261014-rank32-attempt01 with RANK=32: array 47793391 (5 tasks, one participant each running its 5 folds in sequence, so each job lasts over 10 min) and collect 47793396 (`afterok`).
