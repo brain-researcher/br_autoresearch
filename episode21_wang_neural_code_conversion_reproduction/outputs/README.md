@@ -1,5 +1,143 @@
 # Outputs
 
+**October 13 — result figure and three-line summary prepared.**
+The [combined finalizer and reporting wrapper](converter_training/finding_a_amended_result.sbatch)
+will run the unchanged scientific finalizer, then the
+[JSON-only renderer](converter_training/tools/render_finding_a_result.py) in
+the same allocation. It will write one figure, a three-line summary and a
+disclosure caption under `figures/finding_a_amended_full001/` after all model,
+decode and uncertainty dependencies succeed. All five source effects, all
+19 layers and the full directed matrix remain visible; missing estimates stay
+missing. Results remain pending. See the [execution record](experiment_log.md)
+for the actual dependency binding and the [ASTRA program](astra/v0.0.14/astra.yaml)
+for artifact definitions. Earlier queue observations below are historical.
+
+**October 13, 16:43 Pacific — sixteen content jobs running, two at the GPU limit.**
+Pairs 015 and 016 have started. The remaining two wait on the scheduler's
+GPU-per-user limit; the oldest and a newer run show continued training progress.
+Two content models and all twenty amended brain models are complete. Decode
+and uncertainty analysis still require every model. See the [execution record](experiment_log.md).
+
+**October 13, 15:53 Pacific — fourteen content jobs running, four waiting for GPUs.**
+Pair 013 has started. Two original content models and all twenty amended brain
+models are complete; decode and uncertainty analysis remain queued behind all
+required models. See the [execution record](experiment_log.md).
+Earlier queue snapshots below are historical.
+
+**October 13, 14:57 Pacific — thirteen content-model jobs running, five waiting for GPUs.**
+Pairs011,012,014 and018 have started. Two content models and all20 amended
+brain models are complete; full decoding and uncertainty analysis remain
+queued behind all required models. See the [execution record](experiment_log.md).
+Earlier queue snapshots below are historical.
+
+**October 13, 14:40 Pacific — nine original content-model jobs running, nine waiting for GPUs.**
+Pair 010 has now also started. Earlier starts, pairs 003 and 009, show successful
+admission and completed training updates. Two content models and all 20 amended brain
+models are complete. Full decode, all 63 uncertainty batches and finalization
+remain queued behind their exact model prerequisites. No final prediction result
+is available. See the [live-job and progress evidence](experiment_log.md).
+Earlier queue snapshots below are historical.
+
+**October12,23:10Pacific — seventeen queued jobs now admit L40S GPUs.**
+All20 amended brain models and two original content models are complete;
+content pair000 is running and17 content jobs are queued. The actual L40S
+measurement and both production-admission checks passed. All17 jobs were
+released with V100/H100/L40S eligibility, preserving training and resources.
+Full readout still requires all20 content models. See [current evidence and
+accounting](experiment_log.md). Earlier queue snapshots below are historical;
+no final prediction result is complete.
+
+**October12,19:09Pacific — fresh L40S hardware/cost measurement submitted.**
+Job **47592902** has a2CPU/16GiB/1GPU/2h ceiling and retains the complete
+original data/model dimensions for four disposable updates. Two focused
+checks precede empirical access; no result is yet claimed. The
+[selected grant](content_cuda_l40s_measurement_authorization.json) and
+[execution log](experiment_log.md) preserve previous attempts and all18
+pending production jobs. Production hardware permission remains unchanged.
+
+**October12,19:21Pacific — all20 amended brain models complete.**
+Every original ordered pair completed all51 fits and published a fresh
+model; all20 jobs are COMPLETED0:0. Together they consumed99.374166667CPUh.
+Two original content fits are complete and eighteen await GPU scheduling.
+The full readout retains every model dependency. See the
+[completion and accounting](experiment_log.md#2026-10-12-1921-pacific--interindividual_converter_training--complete20-model-amended-brain-panel-published).
+No decoded result or scientific finding is complete.
+
+**October 12, 18:21 Pacific — complete amended evaluation queued behind all models.**
+Decode **47586225**, draw array **47586235_[0–62%4]** and finalizer
+**47586258** are released and PENDING/Dependency. The separate
+[activated grant](amended_full_readout_authorization.json) and
+[exact dependencies](runs/finding_a_feature_decoding/amended_full001/dependency_bindings.json)
+require all 20 fresh brain models and all 20 original content models, all
+855 decoded slots and the unchanged 1,000 image/1,000 dyadic draws. The old
+never-started chain was canceled with zero CPU use; its history is preserved.
+See the [selection, actual pair mapping and release](experiment_log.md).
+
+At the latest model snapshot, 20 brain fits were running, two content fits
+were complete and 18 content fits were pending. All pending content jobs now
+admit the qualified V100 or H100. Five affected hardware checks passed;
+the readout reuses eight previously passed methods. The changed ASTRA program
+also passed validation. No evaluation or positive scientific result is complete.
+Comparability remains not evaluable without its prelocked margin.
+
+**Earlier entries below are historical and are superseded by this entry where
+they describe holds, unrun checks or inactive readout authority.**
+
+**October12,18:05Pacific — all eight adapted-readout software checks passed.**
+The complete model binding, distributed evaluation and publication methods
+pass in7.850seconds, with no skips or empirical inputs. [Evidence](runs/software_integration/amended_readout_companion001/checks.txt)
+and [execution record](experiment_log.md) identify the shared EP18 allocation;
+changed ASTRA validates. This prepares the full evaluation while model
+training continues; no readout grant or scientific result is released.
+
+**October 12 — second original content pair complete; adapted readout checks selected.**
+Original sub03→sub05 completed all 1,024 updates and published its model;
+job 47375558 is confirmed COMPLETED 0:0. Two original content pairs are now
+complete and 18 remain pending. At the coordinator's October 13 00:59 UTC
+snapshot, all 20 fresh adapted brain-pair jobs were running.
+
+The separate complete adapted-readout caller and its two tests passed source
+review. All eight affected methods remain **unrun**; a bounded software-only
+companion is selected inside the forthcoming EP18 recovery parent. No new
+readout grant or activation is selected, and original full readout 47382805
+remains held. See the [current execution log](experiment_log.md). Earlier
+entries below retain their historical observations.
+
+**October12,17:41Pacific — all20 adapted pair jobs are RUNNING.**
+The complete20-pair panel is executing as47579378_4 and47579684 indices0–3,
+5–19. No adapted model completion or score is yet claimed. Original content
+sub03→sub05 has reached1018/1024 updates. Full readout47382805 remains held.
+The separate complete adapted readout implementation passed source review;
+its six changed-interface checks and execution admission remain pending.
+See the [current execution log](experiment_log.md). Earlier entries are historical.
+
+
+**October12,17:24Pacific — all20 adapted pair jobs submitted; first running.**
+All ten affected checks passed in0.325seconds and ASTRA passed. Firstpair004
+is running as47579378_4; the other19 were accepted as array47579684, each
+3CPU/16GiB/6h. These are fresh fits under the adopted constant-coordinate rule;
+original models remain separate. No amended model or score is complete yet,
+and full readout47382805 stays held. See the [complete-panel submission](experiment_log.md#2026-10-12-1724-pacific--interindividual_converter_training--complete-adapted-panel-submitted).
+
+**October12,17:20Pacific — first adapted pair submitted as47579378.**
+The [separate training grant](brain_constant_panel_authorization.json) now
+selects fresh fits for all20 directed pairs. Sub03→sub01 runs first with ten
+affected checks; the remaining19 await observed check PASS. Each parent uses
+3CPU/16GiB/6h. Original models remain separate and full readout47382805 stays
+held. See the [submission and selection](experiment_log.md#2026-10-12-1720-pacific--interindividual_converter_training--first-adapted-pair-submitted).
+
+**October12,17:09Pacific — exact-constant guard passed; separate comparator implementation underway.**
+The [categorical result](runs/brain_constant_discriminator/attempt002/report.json)
+finds one invalid first-fold sub01 scale, satisfying the adopted exact-constant
+and exact-mean rule. No fit, score or test-data access occurred. Independent
+implementation/review now proceeds; every subsequent fold must still satisfy
+its own guard. Original models remain intact and full readout47382805 stays held.
+
+**October12,17:04Pacific — discriminator attempt002 parent47577068 submitted.**
+The separately owned EP17 parent requests4CPU/31GiB/8h and was PENDING at
+verification. The unchanged categorical check runs serially before EP17's
+four-worker fitting. No guard success or readout release is yet claimed.
+
 **October12 — discriminator import failure diagnosed; manual attempt002 selected.**
 Attempt001 stopped after0.477seconds at NumPy import, before data access.
 The parent wrapper had unset the package path after loading the NumPy module.

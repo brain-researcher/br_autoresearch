@@ -21,6 +21,7 @@ import sys
 import time
 
 import run_content_cuda_pair as core
+from content_cuda_l40s_hardware import load_amendment as _l40s_hardware_amendment
 
 
 BASE = Path(__file__).resolve().parents[3]
@@ -78,6 +79,39 @@ STAGES = {"roster-005": CudaRosterStage("roster-005", "sub-05", 5, 10891),
           "roster-007": CudaRosterStage("roster-007", "sub-07", 7, 12057)}
 
 
+HARDWARE_AMENDMENT_RELATIVE = "outputs/content_cuda_roster_hardware_amendment.json"
+HARDWARE_AMENDMENT_FIXED = {
+    "schema_version": "ep21.content_cuda_roster_hardware.v1",
+    "authorized": True,
+    "operation": "extend_pending_roster_content_hardware_only",
+    "selected_at": "2026-10-12 18:11 Pacific (before first execution)",
+    "pending_stage_jobs": {"roster-006": "47382243", "roster-007": "47382244"},
+    "allowed_device_names": ["Tesla V100-SXM2-32GB", "NVIDIA H100 80GB HBM3"],
+    "scheduler_constraint": "(GPU_SKU:V100_SXM2&GPU_MEM:32GB)|(GPU_SKU:H100_SXM5&GPU_MEM:80GB)",
+    "original_grants_resources_science_unchanged": True,
+    "selected_before_first_execution": True,
+    "automatic_retry": False,
+}
+
+
+def _hardware_amendment(stage):
+    # The completed roster-005 route never reads or applies this new record.
+    if stage.name not in HARDWARE_AMENDMENT_FIXED["pending_stage_jobs"]:
+        return None
+    path = BASE / HARDWARE_AMENDMENT_RELATIVE
+    if not os.path.lexists(path):
+        return None
+    value = json.loads(_read_text(path))
+    _require(isinstance(value, dict)
+             and value.keys() == HARDWARE_AMENDMENT_FIXED.keys() | {"approval_source"},
+             "complete_roster_hardware_amendment_required")
+    for key, expected in HARDWARE_AMENDMENT_FIXED.items():
+        _require(_same(value[key], expected), "roster_hardware_amendment_scope_changed")
+    _require(isinstance(value["approval_source"], str) and bool(value["approval_source"].strip()),
+             "separate_roster_hardware_selection_required")
+    return value
+
+
 def _stage(name):
     _require(isinstance(name, str) and name in STAGES, "fixed_CUDA_roster_stage_required")
     return STAGES[name]
@@ -103,8 +137,13 @@ def _profile(stage):
         _require(_same(value.get(key), expected), "CUDA_roster_scope_changed")
     _require(_same(value.get("input_scope"), _input_scope(stage)), "CUDA_roster_roles_changed")
     _require(_same(value.get("resources"), RESOURCES), "fixed_CUDA_roster_resources_required")
-    return {**_fixed(stage), "authorized": True, "approval_source": value["approval_source"],
-            "input_scope": _input_scope(stage), "resources": dict(RESOURCES)}
+    profile = {**_fixed(stage), "authorized": True, "approval_source": value["approval_source"],
+               "input_scope": _input_scope(stage), "resources": dict(RESOURCES)}
+    amendment = _hardware_amendment(stage)
+    amendment = _l40s_hardware_amendment(BASE, stage.name) or amendment
+    if amendment is not None:
+        profile["hardware_eligibility_amendment"] = amendment
+    return profile
 
 
 def _allocation(stage, profile):
@@ -179,11 +218,17 @@ class CudaRosterBudget(core.ContentCudaPairBudget):
 def admit(stage_name):
     stage = _stage(stage_name)
     profile = _profile(stage)
-    context = CudaRosterContext(stage, profile, _allocation(stage, profile), _scratch(stage))
+    allocation = _allocation(stage, profile)
+    amendment = profile.get("hardware_eligibility_amendment")
+    if amendment is not None:
+        _require(allocation["job_id"] == amendment["pending_stage_jobs"][stage.name],
+                 "selected_pending_roster_job_required")
+    context = CudaRosterContext(stage, profile, allocation, _scratch(stage))
     budget = CudaRosterBudget(context)
     budget.check_storage()
     _initialize_cuda(budget)
-    _require(budget.device_info["name"] == FIXED["device_name"], "measured_V100_SXM2_32GB_device_required")
+    allowed = amendment["allowed_device_names"] if amendment is not None else [FIXED["device_name"]]
+    _require(budget.device_info["name"] in allowed, "qualified_roster_CUDA_device_required")
     return context, budget
 
 
@@ -260,10 +305,13 @@ def run_once(stage_name):
     progress_path = run / "progress.jsonl"
     for path in (final, final.with_name(final.name + ".partial"), run / "report.json", progress_path):
         _require(not os.path.lexists(path), "existing_attempt_output_no_retry")
-    _publish(run / "claim.json", {"operation": OPERATION, "stage": stage.name, "source": SOURCE,
+    claim = {"operation": OPERATION, "stage": stage.name, "source": SOURCE,
         "target": stage.target, "pair_index": stage.pair_index, "allocation": context.allocation,
         "resources": budget.resources, "admitted_device": budget.device_info,
-        "approval_source": context.profile["approval_source"], "automatic_retry": False}, budget)
+        "approval_source": context.profile["approval_source"], "automatic_retry": False}
+    if "hardware_eligibility_amendment" in context.profile:
+        claim["hardware_eligibility_amendment"] = context.profile["hardware_eligibility_amendment"]
+    _publish(run / "claim.json", claim, budget)
     phase, interrupted = "load_operations", False
     started_wall, started_cpu = time.monotonic(), time.process_time()
     report = {"kind": "ep21_content_cuda_roster_operational_report", "stage": stage.name,

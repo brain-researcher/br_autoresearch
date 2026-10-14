@@ -1,5 +1,890 @@
 # Experiment log
 
+## 2026-10-13 19:17 Pacific — finding_a_feature_decoding — reporting program validated
+
+Step47377474.11 passed schema and semantic validation of the updated ASTRA program.
+Combined finalizer47716676 remains pending behind the unchanged full draw array.
+Next: complete training/decode/draws, then produce the held-out result and figure.
+
+## 2026-10-13 18:46 Pacific — finding_a_feature_decoding — combined finalizer bound and released
+
+Cancelled only pending47586258; replacement47716676 was submitted held and its
+actual ID bound in dependency_bindings.json before release. Its afterok dependency
+remains the entire47586235 draw array; original finalizer/scientific code is unchanged.
+The same1CPU/7GiB/2h stage now includes the requested figure and three-line summary.
+No held-out values were accessed during preparation. Next: training, decode and
+all63 draws must complete before finalization and reporting can run.
+
+## 2026-10-13 18:46 Pacific — finding_a_feature_decoding — finalization plus requested figure selected
+
+Scheduler confirms47586258 remains pending after all63 draw tasks47586235;
+no dependent successor exists. Replace only this pending finalizer with the
+combined wrapper, retaining1CPU/7GiB/2h and unchanged finalization in a child shell.
+Then render one figure and three-line summary from its successful final JSON.
+Bind the new actual ID before release; preserve decode/draw jobs and every
+scientific/data-role rule. A plotting failure retains completed scientific results.
+
+## 2026-10-13 16:43 Pacific — interindividual_converter_training — sixteen content jobs running
+
+The 23:43:26 UTC scheduler observation shows pairs 015/016 (47382255/47382256)
+now running. Sixteen original content-model jobs are RUNNING; pairs 017/019
+(47382257/47382259) remain PENDING with QOSMaxGRESPerUser. The two completed
+original content models and all twenty amended brain models are preserved.
+Decode 47586225, draw array 47586235 and finalizer 47586258 retain their exact
+dependencies. No duplicate or additional model job is selected; the remaining
+queue reflects a scheduler GPU-per-user limit, not missing scientific authority.
+
+A bounded operational check at 23:43:01 UTC confirms pair000 advanced from
+493 to 511/1024 updates (last write 23:41:50 UTC), and pair013 from 10 to
+35/1024 (last write 23:41:20 UTC). Both admission/check records remain successful;
+their stderr files contain unchanged startup warnings and no terminal entry
+or new error. Only designated operational records were read, not model or
+held-out payloads. These observations support continued execution, not a
+scientific result or guaranteed completion forecast.
+
+Attended CPU-only companion steps 47377474.5–.7 have exited. They used the
+coordinated one-CPU/1-GiB/three-minute slot for EP20 saved-profile metadata and
+focused numerical code checks/timing. Step .6 failed at import after an
+incorrect environment-clear order; .7 corrected that command and passed both
+methods. Evidence and selections stay in EP20's existing log/run directories.
+Charge the running parent once; no EP21 training, grant or dependency changed.
+
+## 2026-10-13 15:53 Pacific — interindividual_converter_training — fourteen content jobs running
+
+The 22:53:49 UTC scheduler observation shows pair 013 job 47382253 RUNNING,
+bringing original content-model execution to fourteen running and four pending
+for Resources. The two completed original content models and all twenty
+completed amended brain models remain preserved. Decode 47586225, all 63
+draw tasks under 47586235 and finalizer 47586258 still wait on their exact
+dependencies. This is a scheduler transition only; no held-out score or
+scientific result has been opened, no reservation changed and no duplicate job
+submitted. Existing live jobs need no intervention at this observation.
+
+A bounded operational check at 23:00:19 UTC found recent designated progress
+for the newly started pair013 (10/1024 updates, last write 22:59:38 UTC) and
+oldest pair000 (493/1024 updates, last write 22:59:45 UTC). Their admission,
+production-check and remaining-admission exit codes are zero. Public stderr
+tails contain only locale/module warnings. Evidence is progress.jsonl and
+status.txt under runs/content_pair_training/{sub06_to_sub03_cuda001,
+sub01_to_sub03_cuda001}; no model or held-out payload was read. Empty training
+stdout is not a stall because these designated progress streams are active.
+
+## 2026-10-13 15:12 Pacific — interindividual_converter_training — EP20 helper companion passed
+
+Attended step47377474.4 on sh02-15n09 passed four EP20 node-weight methods in
+0.295seconds, then exited zero. It retained the selected1CPU/1GiB process
+limit and opened no scientific payload. Evidence stays in EP20's Stage1 solver/
+node_weights001 directory. Charge the existing parent only once; training and
+dependencies remain unchanged, and no companion shell remains active.
+
+## 2026-10-13 — interindividual_converter_training — inactive EP20 weight-helper companion selected
+
+Scheduler inspection at22:11:45 UTC reconfirms parent47377474 RUNNING with
+2CPUs/16GiB and endOctober14,20:39:27 Pacific. Select one attended CPU-only
+step for four small EP20 node-weight equivalence methods:1CPU,1GiB address-space
+limit, three-minute allocation and120-second test timeout, one numerical thread.
+The main worker's one thread/15GiB guard and this companion retain the parent
+envelope; include all cost in the parent once. No scientific payload, training
+change, dependency change or GPU work is selected. Evidence remains in EP20.
+
+## 2026-10-13 14:57 Pacific — interindividual_converter_training — thirteen content jobs running
+
+The coordinator's 21:57:07 UTC scheduler observation confirms thirteen original
+content-model jobs running and five pending for Resources. Pairs011,012,014
+and018 have started since the previous nine-running snapshot. The two completed
+content models and all20 completed amended brain models remain preserved.
+Decode47586225, draw47586235 and finalizer47586258 remain pending on their
+original dependencies. No additional reservation, duplicate job, data access
+or scientific result is inferred from these scheduler starts.
+
+## 2026-10-13 14:47 Pacific — interindividual_converter_training — EP18 program companion passed
+
+Attended step 47377474.3 on sh02-15n09 passed the changed EP18 ASTRA schema
+and semantic validation, then exited zero. The selected one-CPU/1-GiB step
+opened no scientific payload. Its evidence stays in EP18's software_integration/
+continuation_astra001 directory; retain the single parent terminal charge.
+
+## 2026-10-13 — interindividual_converter_training — changed EP18 program validation companion selected
+
+Select one additional attended one-CPU/1-GiB/three-minute CPU-only step within
+parent 47377474 to validate the changed EP18 ASTRA program after its scientist-
+adopted continuation. It repeats no scientific test or payload read. The main
+worker plus companion retain the verified two-CPU/16-GiB envelope; all cost
+stays within this parent once. No training, grant or dependency change.
+
+## 2026-10-13 14:40 Pacific — interindividual_converter_training — companion passed; nine content jobs running
+
+The attended CPU-only step 47377474.2 ran on sh02-15n09 and exited zero.
+EP18's three lifecycle checks and shell syntax, and EP20's one modal-cache
+regression passed under the selected one-thread/1-GiB bounds. Their evidence
+stays in each episode. Include this step only in the parent terminal charge.
+No scientific payload, model fit or EP21 result was read by the companion.
+
+The 21:39:51 UTC scheduler observation also confirms pair010/job47382250
+RUNNING, bringing original content training to nine running and nine pending
+for Resources. Model prerequisites, outstanding reservations and downstream
+decode/draw/finalize dependencies are unchanged. No duplicate was submitted.
+
+## 2026-10-13 — interindividual_converter_training — bounded independent software companion selected
+
+Select one attended CPU-only step within live task-owned parent 47377474 for
+EP18's inactive continuation adapter software checks. Limit it to one CPU,
+1 GiB and three minutes, with one thread and a 120-second test timeout.
+Temporary stand-ins remain node-local; no scientific payload or generator is
+opened or run. The main worker's one thread and 15-GiB RSS guard plus this
+step remain within the verified 2-CPU/16-GiB parent. Charge the parent once at
+termination; no extra reservation, training change or new scientific job.
+EP18 owns its source/test artifacts and test report.
+
+The same finite step also includes EP20's one focused modal-cache regression
+against its existing dense-exponential oracle. This is a separately scoped
+development-code check, not an EP21 scientific input or a new simulation run.
+The combined test timeout remains 120 seconds with the same one-CPU/1-GiB
+limits and single parent charge; each episode keeps its own test evidence.
+
+## 2026-10-13 14:30 Pacific — interindividual_converter_training — eighth content job started
+
+The 21:30:10 UTC coordinator scheduler observation adds RUNNING job 47382248
+(pair008, elapsed 5:34) to the seven parents below. Eight content jobs now run;
+ten remain PENDING/Resources. Decode, draw and finalization remain pending their
+unchanged model dependencies. No new submission, grant or reservation was made;
+the current running-parent costs remain reserved until terminal accounting.
+
+## 2026-10-13 14:23 Pacific — interindividual_converter_training — seven content models running
+
+The coordinator's 21:23:36 UTC scheduler observation confirms two further
+starts: 47382247 (pair003, sub01 to sub07) and 47382249 (pair009, sub05 to sub03).
+Together with the five parents recorded below, seven are RUNNING and eleven
+remain PENDING/Resources. The two new public status streams show successful
+admission and reuse of passing production checks. Their progress streams have
+completed 2 and 4 of 1024 updates at the bounded inspection. These counts are
+operational progress, not final models or evaluation scores.
+
+All model dimensions, grants, actual-start deadlines, outstanding reservations
+and decode/draw/finalize dependencies are unchanged. No duplicate submission,
+additional resource commitment or scientific data opening occurred.
+
+## 2026-10-13 — interindividual_converter_training — five content models running
+
+Coordinator scheduler observation at21:09UTC confirms five original content
+parents RUNNING:47377474(pair000),47382243(pair006),47382244(pair007),
+47382245(pair001),47382246(pair002). Thirteen remaining content jobs retain
+PENDING/Resources. No duplicate, cancellation, extra reservation or scientific
+change is selected. Existing hardware amendments and actual-start clocks apply.
+
+The five permitted public operational streams independently show successful
+admission/check reuse and completed updates447,16,16,2,3 respectively (of1024
+each) at the bounded inspection. These are progress counts, not published models
+or held-out scores. The oldest parent remains within its169200-second clock.
+Two original content models and all20 amended brain models remain complete.
+Decode47586225,63-task draw array47586235 and finalizer47586258 retain their
+original all-model dependencies; no evaluation data were opened in this check.
+Current live parent costs remain reserved until authoritative terminal accounting.
+
+## 2026-10-12 23:10 Pacific — interindividual_converter_training — seventeen jobs released with L40S eligibility
+
+Hold, Features update and release commands each completed0. The06:10UTC
+scheduler observation verifies all17 original mapped jobs are PENDING with
+V10032GB OR H10080GB OR L40S48GB eligibility and no user hold. Separate
+selection is `content_cuda_l40s_production_hardware_amendment.json`.
+Running47377474 retains its original V100/H100 request. No duplicate jobs,
+changed training, extra reservations or modified evaluation dependencies.
+Queued status is not a start guarantee. Two content models and all20 amended
+brain models remain complete; one content model is running.
+
+A second attended1CPU/1GiB/2min CPU-only step47377474.1 was selected solely
+for EP18's bounded cache-progress metadata projection. Its accounting remains
+inside this EP21 parent once, with no separate EP18 charge. This is operational
+diagnosis, not a scientific input to EP21 or any change to its training.
+
+## 2026-10-12 23:08 Pacific — interindividual_converter_training — focused L40S production checks passed; activate pending jobs
+
+Attended step47377474.0 onsh02-15n09 passed both selected methods with zero
+failures/errors/skips (0.371s tests,0.779060427s totalPython,25530368bytes
+peakRSS). Evidence: `runs/software_integration/l40s_production001/`.
+The shell exited0. Its use remains included in parent47377474 accounting;
+no separate charge or new batch job. Actual-device equivalence is reused.
+
+The06:08UTC snapshot confirms all17 mapped jobs47382243–47382259 remain
+PENDING. Select their temporary hold, separately recorded production-hardware
+amendment, Features update adding L40S48GB, then release. Existing job IDs,
+training, resources, original deadlines and downstream dependencies remain.
+This is a finite engineering selection under standing user compute authority,
+with no extra reservation and no change to running47377474.
+
+## 2026-10-12 23:07 Pacific — content_resource_measurement — L40S complete; production extension selected for qualification
+
+47592902 completed0:0 in577seconds at2CPUs/oneGPU. Charge0.320555556CPUh
+and0.160277778GPUh once; release3.679444444CPUh and1.839722222GPUh from its
+4CPUh/2GPUh reservation. Public evidence: `runs/content_resource_measurement/cuda_l40s001/`.
+Two affected checks passed on the actual NVIDIA L40S, including CUDA-versus-CPU
+arithmetic; ASTRA passed. Four update times were130.057241,135.338218,
+134.532891 and116.119281seconds; preparation24.827781seconds. Host peakRSS
+6098223104bytes and GPU reserved5748293632bytes fit existing limits.
+No trained model or scientific finding was published by this measurement.
+
+The mean projects36.70h for1024updates; the slowest projects38.50h including
+input preparation, below the unchanged47h process clock/48h allocation.
+Publication and runtime variability remain unmeasured. Under standing user
+compute authority select broader hardware eligibility for only17 pending
+jobs47382243–47382259, preserving grants, IDs, training, resources and readout
+dependencies. Running47377474 and two completed models are excluded. No
+extra production reservation is added to their existing1632CPUh/816GPUh maximum.
+
+Root and independent source review found no defect. Before activation select
+the two focused mocked admission/refusal methods in an attended1CPU/1GiB/3min
+CPU-only companion of task-owned47377474, with160s timeout, one numerical
+thread, node-local fixtures and no scientific payload. Main training has one
+numerical worker and15GiB RSS cap; combined limits remain2CPU/16GiB. Evidence:
+`runs/software_integration/l40s_production001/`. Reuse actual-device PASS.
+After focused PASS, briefly hold still-pending mapped jobs during separate
+grant/Features activation, then release; no automatic retry or duplicate job.
+
+## 2026-10-12 19:21 Pacific — interindividual_converter_training — complete20-model amended brain panel published
+
+The last public report, `runs/brain_constant_training/pair007_sub03_to_sub07_001/report.json`,
+now records `complete_brain_constant_pair`,51 completed fits and
+model_published=true. Its process elapsed6827.579237seconds and peakRSS
+9054916608bytes. Combined with the19 reports already inspected, all20
+original ordered pairs have fresh completed constant-rule artifacts, each
+with50 cross-validation fits and final refit. No original brain artifact was
+substituted, no private CV/model value was inspected, and this completion
+does not establish held-out prediction or cross-method comparability.
+
+Coordinator accounting confirms actual47579922/array47579684_7 COMPLETED0:0,
+6837elapsedseconds at3CPUs,CPUTimeRAW20511seconds. Charge **5.6975CPUh once**
+and release12.3025CPUh unused from its18CPUh ceiling. The complete20-parent
+panel consumed **99.374166667 allocatedCPUh**, including all previously
+charged93.676666667CPUh and embedded companions. No further brain-training
+reservation remains; total unused from the360CPUh panel ceiling is
+260.625833333CPUh. Historical failed/original models retain their own records
+and charges; no duplicate charge applies.
+
+At02:20:58UTC all18 outstanding original content jobs and the fresh L40S
+measurement47592902 are still PENDING. Two original content models are
+complete. Full decode47586225,63-draw array47586235 and finalizer47586258
+remain PENDING/Dependency. Every original model prerequisite, all224 test
+images/19layers/45streams, uncertainty draws, access and claim limits remain.
+No scoring, additional training job or hardware amendment is selected by this
+milestone. The next execution change depends on the queued GPU work.
+
+## 2026-10-12 19:18 Pacific — interindividual_converter_training — nineteen amended brain models complete
+
+The exact public report paths now confirm19 fresh models, each with51
+completed fits, `complete_brain_constant_pair` and model_published=true.
+Only007 sub03→sub07 remains unfinished; its actual parent47579922 is
+RUNNING at02:18:17UTC, with no complete report. No private CV/model or
+held-out score was read. All20 models remain required by the full readout.
+
+Terminal accounting confirms ten additional parents COMPLETED0:0:
+
+| Pair / actual job | Allocated CPU-seconds |
+| --- | ---: |
+| 000 /47579916 | 18945 |
+| 001 /47579917 | 18273 |
+| 003 /47579919 | 18591 |
+| 004 /47579378 | 19569 |
+| 005 /47579920 | 19170 |
+| 006 /47579921 | 19062 |
+| 015 /47579930 | 18690 |
+| 016 /47579931 | 18951 |
+| 017 /47579932 | 19506 |
+| 019 /47579684 | 18390 |
+
+Charge **52.540833333CPUh once** for these ten parents, including any
+already-selected serialized companions within the first004 parent; no
+cross-episode duplicate charge applies. Release127.459166667CPUh unused
+from these ten18CPUh reservations. The19 completed parents have consumed
+**93.676666667CPUh in total**, including the previously charged41.135833333CPUh.
+Only007's18CPUh ceiling remains reserved for amended brain training.
+
+Two original content models remain complete and18 await GPU scheduling.
+L40S measurement47592902 is also PENDING at02:18:17UTC. No queued model
+identity, hardware permission, scientific scope or readout dependency changed.
+Completed training establishes neither predictive benefit nor final evaluation.
+
+## 2026-10-12 19:09 Pacific — content_resource_measurement — fresh L40S measurement submitted
+
+Slurm accepted **47592902** with the selected2CPU/16GiB/1L40S/2h request.
+Public output is `runs/content_resource_measurement/cuda_l40s001/`.
+Submission is not numerical PASS or a completed resource measurement.
+All18 pending production jobs retain their existing V100/H100 permission;
+no production hardware amendment or additional training job was created.
+
+## 2026-10-12 — content_resource_measurement — fresh L40S cached measurement selected
+
+Standing scientist instructions to increase compute and finish the original
+episodes authorize this finite engineering selection. At02:02:30UTC,
+sh04-01n12 had one unallocated L40S, four unallocated CPUs and86016MiB
+unallocated host memory. This is an opportunity, not a guaranteed start.
+`sh_part` confirms gpu's two-day maximum; `sh_node_feat` confirms
+`GPU_SKU:L40S` and `GPU_MEM:48GB`. Existing18 content jobs remain unchanged.
+
+Activate `content_cuda_l40s_measurement_authorization.json` for exactly one
+fresh `l40s-001` attempt, with public output at
+`runs/content_resource_measurement/cuda_l40s001/`. Select2CPU/16GiB/1GPU/2h,
+one numerical thread, at most4 allocatedCPUh plus2GPUh charged once, with
+the shared actualStart+6300/End−60 clock,15GiB hostRSS,20GiB Torch allocator,
+32MiB durable/256MiB local and1GiB channel/4GiB retained-cache limits.
+Preserve the full canonical pair4/all4712rows/19layers/12897→12294 axes,
+sparse256-unit/512-row implementation, original schedule and float32 without
+TF32/AMP. Only four disposable operational updates are selected.
+
+The existing measurement router admits only consumed fixed stage names.
+A thin new adapter supplies this fresh stage, context resolver and exact
+NVIDIA L40S check while reusing the original allocation/budget, cached binder
+and measurement implementation. No shared production source or old grant
+changed. Coordinator and independent source review found no concrete blocker.
+Exactly one new admission/refusal method and the existing CUDA-versus-CPU
+arithmetic method must pass without skips on the actual L40S before inputs.
+No tests have run yet. Changed ASTRA validation is bundled but non-gating.
+
+This does not select L40S for production, alter queued job identities,
+publish a fitted model, open target responses/tau/OOD, infer full1024-update
+stability or scientific benefit, or authorize any retry/resume/successor.
+Historical attempts and charges remain. Submission follows this selection.
+
+## 2026-10-12 19:08 Pacific — interindividual_converter_training — nine amended brain models complete
+
+The exact20-path public-report inspection now confirms nine complete fresh
+models, each with51 completed fits and model publication. Newly complete are
+002(sub01→sub06),012(sub06→sub01),013(sub06→sub03),014(sub06→sub05) and
+018(sub07→sub05), in addition to008–011 recorded previously. Reports use
+`runs/brain_constant_training/pairNNN_subSS_to_subTT_001/report.json`.
+The other11 reports are absent and the latest scheduler snapshot shows those
+11 parents RUNNING. No private model, CV score or held-out result was read.
+
+Coordinator terminal accounting confirms the five new parents COMPLETED0:0:
+
+| Pair / actual job | Array identity | Allocated CPU-seconds |
+| --- | --- | ---: |
+| 002 /47579918 | 47579684_2 | 17256 |
+| 012 /47579927 | 47579684_12 | 16713 |
+| 013 /47579928 | 47579684_13 | 17313 |
+| 014 /47579929 | 47579684_14 | 16836 |
+| 018 /47579933 | 47579684_18 | 17541 |
+
+Charge the new **23.794166667CPUh once** and release66.205833333CPUh unused
+from these five18CPUh reservations. All nine completed parents together have
+consumed41.135833333CPUh, including the previously charged17.341666667CPUh.
+The remaining11 parents retain198CPUh maximum reservation. Preserve all
+other historical charges and every full-readout dependency. Completion of
+training is not evidence of predictive benefit or complete final evaluation.
+
+## 2026-10-12 19:00 Pacific — interindividual_converter_training — four amended brain models complete
+
+Public reports now also confirm pair009 sub05→sub03 and pair011 sub05→sub07,
+each `complete_brain_constant_pair`, `model_published=true` and51 completed
+fits. Their reports are
+`runs/brain_constant_training/pair009_sub05_to_sub03_001/report.json` and
+`pair011_sub05_to_sub07_001/report.json`. No private model or CV score was read.
+Together with008/010, four complete fresh brain models are published; the
+other16 public reports were absent in the bounded check, with no failure
+reported. These four source-sub05 completions do not establish any held-out
+decoding effect or the completion of the remaining source participants.
+
+Coordinator accounting at01:59UTC independently confirms both new parents
+COMPLETED0:0: actual47579924/array47579684_9 used15,789 CPU-seconds
+(01:27:43 at3CPUs, **4.385833333CPUh**); actual47579926/array47579684_11 used
+16,530 CPU-seconds (01:31:50 at3CPUs, **4.591666667CPUh**). Charge the new
+8.9775CPUh once and release27.0225CPUh unused from their two18CPUh ceilings.
+All four recorded amended parents have consumed17.341666667CPUh in total;
+the first two charges are included, not added again. Retain the other16
+parents'288CPUh maximum reservation and every historical charge. The complete
+readout dependencies and all model/data/claim requirements remain unchanged.
+
+## 2026-10-12 18:54 Pacific — interindividual_converter_training — first two amended brain models complete
+
+The bounded20-path public-report check found complete publications for
+pair008 sub05→sub01 and pair010 sub05→sub06. Both report
+`complete_brain_constant_pair`, `model_published=true` and51 completed fits
+(all50 CV fits and final refit). Pair008's process elapsed4990.910841seconds
+and peakRSS7,313,969,152bytes; pair010 elapsed5024.227834seconds and
+peakRSS7,227,944,960bytes. These are complete fresh model artifacts, including
+one complete sub01-target fit under the adopted constant-coordinate rule.
+They do not establish other pairs' eligibility or a decoding result.
+
+Coordinator accounting confirms both parents COMPLETED0:0:
+
+| Pair / actual job | Array identity | Elapsed / CPUs | CPUTimeRAW | Charge once |
+| --- | --- | --- | ---: | ---: |
+| 008 /47579923 | 47579684_8 | 01:23:22 /3 | 15,006seconds | 4.168333333CPUh |
+| 010 /47579925 | 47579684_10 | 01:23:55 /3 | 15,105seconds | 4.195833333CPUh |
+
+Charge8.364166667allocatedCPUh once toEP21 and release only the unused
+27.635833333CPUh from these two18CPUh reservations. The other18 parents'
+324CPUh maximum reservation and all historical charges remain. Any later
+whole-array reconciliation must include these two charges without adding them
+again. Reports are under `runs/brain_constant_training/` at
+`pair008_sub05_to_sub01_001/report.json` and
+`pair010_sub05_to_sub06_001/report.json`; no private models or CV scores were
+opened to record completion.
+
+The latest scheduler snapshot confirms the other18 brain jobs still running;
+their public completion reports were absent. Eighteen original content jobs
+remain pending, alongside the two already-complete original content fits.
+The released complete amended readout still requires every selected model;
+no dependency, scope, source or scientific-access rule was changed.
+
+## 2026-10-12 18:27 Pacific — interindividual_converter_training — no immediately usable third GPU family
+
+Bounded hardware discovery examined public gpu-partition node features and
+current allocations to decide whether another hardware family could reduce
+the existing content-job queue. Only V100-SXM2-32GB and H10080GB are qualified
+in this episode. The discovered V100-PCIe32GB, V100S-PCIe32GB, RTX3090-24GB
+and L40S-48GB types are not implicitly qualified by memory size.
+
+At 01:27:27 UTC every examined L40S, RTX3090 and V100-PCIe node had all four
+GPUs allocated. One V100S node had an unallocated GPU but only 3,218 MiB of
+unallocated host memory (250 GiB configured, 252,782 MiB allocated), below
+the existing 16 GiB request; the other examined V100S node was fully assigned.
+MIXED node state alone does not establish a usable free GPU allocation.
+No immediately usable additional family was evidenced by this snapshot.
+
+The existing single CUDA-versus-CPU arithmetic fixture and a fresh bounded
+four-update cached resource measurement would be the applicable new-device
+route if a useful family were selected; existing consumed measurement attempts
+cannot be rerun. No such measurement, grant, new qualification program or
+additional GPU job is selected now. Preserve all 18 existing content jobs and
+their qualified hardware eligibility. This observation is not a prediction of
+future availability or a change to the scientific model/data/claim rules.
+
+## 2026-10-12 18:21 Pacific — finding_a_feature_decoding — amended dependency chain released
+
+The new scoped grant is activated and the exact 40-model/three-phase bindings
+are recorded below. Original jobs 47382805/47382807/47382808 were canceled;
+accounting confirms CANCELLED, exit 0:0 and zero total CPUTimeRAW. Their files,
+original grants and historical records remain intact. This replaces their
+unconsumed reservation rather than adding a second full evaluation.
+
+Release succeeded for decode 47586225, draw array 47586235_[0–62%4] and
+finalizer 47586258. The coordinator's 01:20 UTC scheduler observation confirms
+all three are PENDING/Dependency, with no user hold and exactly the selected
+resource/time limits. All 18 outstanding content GPU fits remain eligible
+for the two qualified hardware types. Twenty fresh brain fits were RUNNING
+at the preceding 01:16 UTC snapshot. No model completion, decoded collection,
+interval or scientific effect is inferred from submission or dependency state.
+
+GOAL, DATASETS, SEARCH_POLICY and the ASTRA program now describe only this
+complete amended replacement as the operative full-readout route; old phase
+recipes retain historical descriptions without executable recipes. Changed
+ASTRA schema and semantic validation both passed in attended step 47584681.1
+on sh03-06n11, requested 1 CPU/2 GiB/two minutes and externally bounded to
+90 seconds. Evidence is alongside the five hardware checks in
+`runs/software_integration/roster_hardware_companion001/astra_validation.json`
+and `astra_status.txt`. This is nonblocking tooling validation; no empirical
+input was read and the existing EP18 parent is charged once. Both attended
+steps exited; no interactive test shell or polling process remains.
+
+The next scientific action is execution of the complete decode only after
+every model succeeds, followed by the full closed draw array and finalizer.
+A failed dependency stops this chain; no automatic retry or partial-panel
+substitution is authorized. Original claim, exposure and stopping rules remain.
+
+## 2026-10-12 — finding_a_feature_decoding — complete amended readout selected
+
+The scientist adopted the exact-constant/exact-mean comparator conditionally;
+the discriminator passed and all 20 fresh brain fits are running. Standing
+instructions to finish, resume and increase compute now select a separate
+complete Finding A evaluation under
+`outputs/amended_full_readout_authorization.json`. This regenerated scoped
+lock inherits the original participant, image-role, native-axis, decoder,
+feature, metric, bootstrap, biological-unit and claim rules. It uses all 20
+fresh amended brain artifacts, all 20 original content artifacts and five
+within-source streams: all 855 slots, all 224 test images and all 19 layers.
+No original brain artifact, partial panel or available-case reweighting is
+admitted. Comparability remains not evaluable without its prospectively fixed
+margin; B/C, OOD, external-site and EP04 work remain closed.
+
+Retain the original finite phase requests: one 3 CPU/16 GiB/72-hour decode,
+63 draw tasks each 3 CPU/16 GiB/24 hours with four concurrent, and one
+1 CPU/7 GiB/2-hour finalizer. The maximum is 4,754 allocated CPU-hours, no
+GPU, with one numerical thread per task and actual-start deadlines covering
+all children. The full numerical payload is 766,442,929,704 bytes
+(713.8056 GiB), within the 768 GiB collection and 776 GiB aggregate limits.
+Final publication uses a hard link; phase, compact-batch and local-scratch
+caps remain in the grant. Runtime and shared-I/O contention remain unmeasured;
+these ceilings are not a completion forecast. No retry or resume is selected.
+
+Independent review passed the adapted caller, four new phase wrappers and
+corrected grant. Reuse the eight affected methods actually passed in parent
+47584681; do not rerun them or claim they execute in decode. The four wrappers
+passed shell syntax checking in step 47584681.0. Changed ASTRA validation is
+nonblocking. The prior canceled first readout processed tau-test responses,
+truth and predictions, without a completed collection/final report or reported
+final-score exposure. Preserve documented source/file-identity limitations;
+contrary evidence invokes the original after-score new-episode rule.
+
+At 01:16 UTC, scheduler accounting confirms the two completed content parents
+47370327/47375558 are COMPLETED 0:0; the remaining 38 distinct actual parents
+are active. All 20 brain array children are bound by actual job identity.
+The original chain 47382805/47382807/47382808 remains never started with
+unknown StartTime and zero CPUTimeRAW. Select held submissions for the new
+decode, full draw array and finalizer, write their exact dependency bindings,
+activate only this new grant, cancel that old zero-CPU chain while preserving
+its files, then release the replacement. No duplicate running evaluation or
+reset of consumed training/partial-run history is permitted.
+
+The two amended roster hardware jobs were also verified without user holds
+and with the exact selected V10032/H10080 constraint; all 18 outstanding
+content jobs are pending, not running. Actual submission IDs and release
+verification follow this selection; it is not a completed scientific result.
+
+Held submissions returned decode **47586225**, draw array **47586235_[0–62%4]**
+and finalizer **47586258**. At 01:18 UTC their scheduler resources, holds,
+38 active model dependencies, decode-to-draw dependency and whole-array
+finalizer dependency match the selected requests. The dependency binding is
+`runs/finding_a_feature_decoding/amended_full001/dependency_bindings.json`.
+Completed model reports independently confirm 1,024 updates, successful final
+publication and exact job identities 47370327 (03→01) and 47375558 (03→05).
+The complete pair mapping below is operational metadata, not model results.
+
+| Pair | Source→target | Fresh brain job | Original content job |
+| --- | --- | --- | --- |
+| 000 | 01→03 | 47579916 | 47377474 |
+| 001 | 01→05 | 47579917 | 47382245 |
+| 002 | 01→06 | 47579918 | 47382246 |
+| 003 | 01→07 | 47579919 | 47382247 |
+| 004 | 03→01 | 47579378 | 47370327 (completed) |
+| 005 | 03→05 | 47579920 | 47375558 (completed) |
+| 006 | 03→06 | 47579921 | 47382243 |
+| 007 | 03→07 | 47579922 | 47382244 |
+| 008 | 05→01 | 47579923 | 47382248 |
+| 009 | 05→03 | 47579924 | 47382249 |
+| 010 | 05→06 | 47579925 | 47382250 |
+| 011 | 05→07 | 47579926 | 47382251 |
+| 012 | 06→01 | 47579927 | 47382252 |
+| 013 | 06→03 | 47579928 | 47382253 |
+| 014 | 06→05 | 47579929 | 47382254 |
+| 015 | 06→07 | 47579930 | 47382255 |
+| 016 | 07→01 | 47579931 | 47382256 |
+| 017 | 07→03 | 47579932 | 47382257 |
+| 018 | 07→05 | 47579933 | 47382258 |
+| 019 | 07→06 | 47579684 | 47382259 |
+
+Brain jobs 47579378 and 47579684 are also their respective array-head job
+identities (tasks 4 and 19). Slurm expands their afterok references to the
+whole selected arrays; every other selected child is also explicitly bound.
+No completed parent is passed back to the scheduler as a purged dependency.
+
+## 2026-10-12 18:16 Pacific — interindividual_converter_training — roster hardware checks passed; release selected
+
+All five selected admission methods passed with no skips in1.087seconds
+inside attended step47584681.0 onsh03-06n11. The requested step was1CPU/2GiB
+and four minutes, bounded by the existing EP18 recovery parent and an outer
+180-second timeout. Both status and checks are in
+`runs/software_integration/roster_hardware_companion001/`. The step exited0;
+charge its existing parent once toEP18. Four new amended readout shell wrappers
+also passed syntax checking there; no scientific payload or GPU was accessed.
+
+Independent source review and these affected checks select the scheduler
+Features expansion on existing held jobs47382243/47382244 to exactly
+`(GPU_SKU:V100_SXM2&GPU_MEM:32GB)|(GPU_SKU:H100_SXM5&GPU_MEM:80GB)`,
+then release of those two holds. This introduces no new jobs or reservation.
+All original training settings and the completed roster005 remain preserved.
+
+## 2026-10-12 18:11 Pacific — interindividual_converter_training — remaining two roster hardware changes selected
+
+Fresh scheduler records confirm roster006/007 jobs47382243/47382244 are
+PENDING, with no allocated node/TRES or start, and retain their original
+V10032-only Features expression. The displayed future StartTime is a scheduler
+estimate, not execution. Select a pending-only expansion to the same already
+qualified exact V100-SXM2-32GB or NVIDIA H10080GB HBM3 devices used by the
+sixteen remaining-pair jobs. Preserve these two job IDs, original grants,
+2CPU/16GiB/oneGPU/48h limits, actual-start clocks, float32/noAMP/noTF32
+implementation and all4712 images/19 layers/1024 updates. No new reservation,
+GPU qualification, scientific change or model retry is selected.
+
+Temporarily hold only these two pending jobs before the scoped admission
+change. A separate hardware amendment must bind exactly roster006/007 and
+their existing IDs; absent amendment preserves original V100 admission and
+completed roster005 remains unchanged. After source review, run only affected
+admission methods inside a bounded attended1CPU/2GiB/4-minute step of existing
+EP18 recovery47584681, sharing its original allocation deadline. CLIP uses
+one thread and12GiB process guard within2CPU/15GiB; combined workers remain
+within the parent. Charge the parent once toEP18. Scheduler expansion/release
+follows observed PASS; no duplicate GPU jobs or held-out access is selected.
+
+## 2026-10-12 18:05 Pacific — finding_a_feature_decoding — all eight adapted-readout methods passed
+
+The single selected companion completes all8 methods with no skips in7.850seconds
+inside EP18 worker47584681 onsh03-06n11 (actual2CPU/15GiB parent, one numerical
+thread, no GPU). Its checks and status are in
+software_integration/amended_readout_companion001. Changed EP21 ASTRA also
+passes schema/semantic validation in the same parent; evidence remains under
+EP18 image_recovery_operations_20261012_001/worker_47584681.
+Charge the parent once toEP18, without an additional EP21 reservation.
+These are software fixture checks only. No scientific grant or readout job is
+activated; all40 required models and a separately bounded full readout remain
+necessary. The original held readout and historical exposure record remain.
+
+## 2026-10-12 — interindividual_converter_training — second original content pair completed
+
+The bounded, whitelisted operational read of
+`runs/content_pair_training/sub03_to_sub05_cuda001/report.json` records
+`status=complete_content_pair`, `model_published=true`, `completed_updates=1024`
+and `elapsed_wall_seconds=117762.04659366305`. It binds allocation 47375558 on
+sh02-15n09 and publication at
+`runs/content_pair_training/sub03_to_sub05_cuda001/final_content_pair.pt`.
+No model payload, feature value, training loss or held-out result was inspected.
+
+Coordinator accounting independently confirms COMPLETED 0:0, elapsed
+1-08:45:48 on 2 CPUs, CPUTimeRAW 235896 seconds. Charge **65.5266667 allocated
+CPU-hours once**, including this parent's previously recorded serialized
+steps; preserve all other historical charges. The process wall time is
+distinct from the full allocation elapsed time. The first and second original
+content models are complete; 18 original content jobs remain pending. The
+coordinator's latest October 13 00:59 UTC snapshot reports all 20 fresh adapted
+brain-pair jobs running. This update performs no independent scheduler poll
+and claims no adapted completion or held-out scientific result.
+
+## 2026-10-12 — finding_a_feature_decoding — inactive full caller reviewed; eight software methods selected
+
+New `converter_training/tools/run_amended_full_readout.py` and
+`converter_training/tests/test_amended_full_readout_admission.py` passed
+independent source review. The caller requires a separately activated future
+grant, explicit finite resources and 40 distinct actual model-job identities;
+it retains the complete 45-stream/855-slot adapted panel, all 63 draw batches,
+the existing resource/publication boundaries, and no automatic retry. It
+creates no grant or scheduler binding and does not activate any readout.
+
+The two new admission/composition methods join the three bridge/binder and
+three distributed-publication methods: **eight methods remain unrun**.
+Select exactly those eight software checks as an independent serial companion
+inside the forthcoming EP18 CLIP-recovery 2-CPU/15-GiB substantive parent.
+Use one numerical thread, at most 180 seconds of test execution plus a
+5-second TERM grace, further bounded by that parent's actual absolute deadline.
+No separate job reservation is created; the parent remains charged once to
+EP18. Failure or noncompletion of this software companion does not imply an
+empirical readout attempt or change the independently admitted EP18 worker.
+
+ASTRA now references the inactive caller and its tests and the complete
+eight-method checking recipe. These documentary changes remain unvalidated
+until the coordinator's actual allocation checks them. No amended readout
+resource grant, new dependency chain, held-out access or execution release is
+selected. Original full readout 47382805 remains held. All required model
+artifacts and future explicit admission still precede complete adapted readout.
+
+## 2026-10-12 17:43 Pacific — finding_a_feature_decoding — revised ASTRA document validated
+
+Changed EP21 ASTRA passes schema and semantic validation inside attended
+step47579378.2. The independent EP18 controller checks also pass and the
+step exits0; its records stay in EP18's software_integration/companion003.
+The parent remains charged once toEP21. This is documentary validation;
+the six adapted-readout interface methods remain unexecuted and held-out
+readout remains unreleased. Active model training is unchanged.
+
+
+## 2026-10-12 — interindividual_converter_training — second bounded independent companion selected
+
+The previous EP18 attended step has exited successfully. Under the same
+verified liveparent47579378, select one new1CPU/512MiB/4-minute attended step
+for EP18's two newly reviewed controller methods and optional changed EP18/
+EP21 ASTRA validation. Scope and finite timeouts are recorded in EP18. No
+Torch readout fixture, empirical reader, fit amendment or readout release is
+included. Total allowed numerical threads remain2 of3, with the same512MiB
+parent memory headroom. Charge the parent once toEP21; no new job reservation.
+
+
+## 2026-10-12 — finding_a_feature_decoding — inactive full adapted readout composed
+
+New `converter_training/tools/amended_distributed_readout.py` and
+`amended_readout_publication.py` connect the complete45-stream/855-slot
+adapted model interface to the original63-batch uncertainty and sole-writer
+publication lifecycle. Explicit amended model policy is bound in the HDF
+before truth reads and in phase results/final manifests/reports; genuine
+fitted artifact IDs remain intact. Original model/readout modules are unchanged.
+Independent source review passed for both modules and three new test methods.
+Together with the earlier three bridge/binder methods, six methods remain
+unexecuted. ASTRA references the inactive additions; documentary validation
+remains pending. No new scoring grant, resource caller, paths, dependency chain
+or held-readout release is selected. All40 required model jobs must finish
+before any future complete readout; current training continues independently.
+
+
+## 2026-10-12 17:40 Pacific — interindividual_converter_training — all twenty fits running
+
+Scheduler observation at17:39Pacific confirms all20 adapted pairs RUNNING:
+47579378_4 plus47579684 indices0–3,5–19. No completed adapted model is yet
+claimed. Original content-p005 also remains RUNNING and47382805 remains held.
+The independent EP18 attended step exited before tests because its output
+parent directory was absent. Its narrow setup repair and fresh bounded step
+are recorded in EP18; fit source/resources/grant remain unchanged and the
+parent allocation remains charged once toEP21.
+
+
+## 2026-10-12 17:37 Pacific — interindividual_converter_training — bounded independent test-step reuse selected
+
+The first adapted fit47579378 remains RUNNING onsh03-06n05 under3CPU/16GiB.
+Root selects an attended independent EP18 software-only step in this same
+task-owned allocation:1CPU/512MiB/3minutes, one numerical thread,120-second
+test timeout plus5-second grace. The original fit is one-threaded with15GiB
+processRSS guard, so aggregate thread/memory allowances fit the existing
+parent with512MiB headroom. No fit source, input, normalization, deadline,
+scientific grant or step of the fitting process changes. No additional
+allocatedCPUh reservation is created; charge the parent once. The separate
+EP18 selection/evidence stays in its own experiment log and software directory.
+No automatic retry, detached process or readout release is selected.
+
+## 2026-10-12 17:26 Pacific — finding_a_feature_decoding — inactive adapted model interfaces prepared
+
+Separate `converter_training/tools/amended_brain_readout.py` and
+`amended_full_models.py` are implemented and independently source-reviewed.
+The bridge restores full-native target physical units using the adopted
+effective scales, then uses the unchanged4712-image decoder normalization.
+It preserves224 test identities,897/4712 role disjointness and native-axis
+identity. The complete-panel binder requires all20 fresh amended brain
+artifacts plus20 original content and five within-source streams, returns an
+explicit amended model-policy label, and refuses missing/invalid models with
+no original-brain or available-case fallback. Original modules remain intact.
+
+Exactly three changed-interface methods reuse existing invented fixtures;
+they have not executed. No empirical/model payload was read, no distributed
+evaluation was connected, no new readout resources or authorization selected,
+and47382805 remains held. Future composition must propagate the explicit
+policy label and preserve all855 slots and original uncertainty/claim rules.
+ASTRA now references these inactive files; the new documentary additions have
+not been revalidated. Passing training checks do not validate these interfaces.
+
+## 2026-10-12 17:24 Pacific — interindividual_converter_training — complete adapted panel submitted
+
+Slurm accepted remaining indices0–3,5–19 as array47579684 with19 maximum
+concurrent tasks. Together with runningpair004 parent47579378, all20 fresh
+adapted pairs are submitted under the same reviewed grant and source.
+Admission for each remaining task independently checks its actual allocation,
+the completed guard and the observed shared ten-method PASS. Submission is not
+completion, and the per-fold numerical guard may still stop individual pairs.
+No held-out evaluation is released.
+
+## 2026-10-12 17:24 Pacific — interindividual_converter_training — ten checks passed; remaining nineteen selected for submission
+
+The first parent47579378_4 is RUNNING onsh03-06n05. Actual allocation binding
+passed; all ten prescribed methods passed in0.325seconds, with no skips, and
+changed ASTRA passed. The independent EP18 companion returned1 and is being
+diagnosed separately; its failure does not invalidate EP21. The first adapted
+empirical fit has been invoked. No model or evaluation result is yet claimed.
+
+Root observed exactly one shared `constant_checks_exit=0` record and selects
+submission of indices0–3,5–19 (maximum19 concurrent) using the same frozen
+batch/source/grant. This fulfills the previously selected complete20-pair
+training panel without waiting forpair004 completion. Reuse the passing ten
+methods; no additional fit, retry, score access or readout release is selected.
+Evidence: `runs/brain_constant_training/pair004_sub03_to_sub01_001/status.txt`,
+`constant_checks.txt` and `astra_validation.json`.
+
+## 2026-10-12 17:20 Pacific — interindividual_converter_training — first adapted pair submitted
+
+Slurm accepted the first adapted parent as47579378, array index4 only
+(sub03→sub01), under the recorded3CPU/16GiB/6h request. The batch, core,
+artifact and runner sources are now frozen for execution. Ten affected EP21
+methods precede empirical input binding; the other19 submissions require an
+observed shared PASS. Five independent EP18 methods are serial companions as
+selected below. No executed check, fit completion, score or readout release
+is inferred from acceptance. Evidence directory:
+`runs/brain_constant_training/pair004_sub03_to_sub01_001/`.
+
+## 2026-10-12 — interindividual_converter_training — complete adapted brain panel selected
+
+The completed first-fold guard activates the scientist's conditional
+normalization amendment. Root and independent review found no remaining
+numerical/artifact defect in the isolated new core, artifact and runner.
+Two concrete runner issues were fixed: scheduler EndTime slack cannot defeat
+the stricter actual-start deadline, and new guard failures retain only their
+allowlisted reason/role/fold diagnostics. Original modules stay unchanged.
+
+Select the [separate regenerated adapted-training lock](brain_constant_panel_authorization.json)
+and twenty fresh adapted pair fits; retain all original results without
+relabeling or reuse. Each complete897-image/full-native-axis pair preserves
+all50 CV fits/final refit, solver/arithmetic/alpha/tie/denominator rules and
+independent training-only fold/final transforms. Every original failure other
+than the exact adopted constant case remains fatal to that pair. Artifacts
+store both axes' rawSD/effectiveScale/replacement masks at every fold/final;
+the original validator continues rejecting these distinct adapted models.
+
+Admit one3CPU/16GiB/6h parent per pair, one numerical thread,21000seconds from
+actual start bounded by EndTime−60,15GiB processRSS,2GiB durable attempt,
+256MiB local scratch and768MiB final model. Twenty parents reserve at most
+360 additional CPUh, charged by actual allocations with preserved history.
+The original complete sub03→sub05 run measured6560.478581 fitting seconds,
+8.63GB processRSS; the new trace adds about2MiB and no wider original axis.
+This is finite headroom, not a completion guarantee. Current OAK quota68percent;
+use the established episode output layout and node-local transient storage.
+
+First submit only canonicalpair004, sub03→sub01, with all seven new
+numerical/artifact and three new runner methods inside that substantive parent
+before empirical binding. Exact expected count10, no skipped checks,120seconds
+maximum; changed ASTRA is recorded separately, not a scientific gate. Reuse
+all passing original input/solver/fold evidence. After observing shared PASS,
+root may submit the other19 independent pairs without waiting forpair004's
+fit. Workers neither submit successors nor poll Slurm. No automatic retry,
+partial model, held-out score, decoder access or release of47382805 follows.
+This selection precedes submission and claims no test or fit completion.
+
+Before submission, root also selects five independent EP18 engineering checks
+(three streamed-capacity and two production-design methods) serially in the
+first pair004 parent, after EP21's own ten checks. They read no empirical data,
+have a120-second timeout plus5-second termination grace inside the unchanged
+parent clock, one numerical thread and the actual3CPU/16GiB allocation.
+`pair004_sub03_to_sub01_001/ep18_checks.txt` and `status.txt` retain the outcome;
+EP18 failure does not gate EP21 fitting. Charge the parent once toEP21, with no
+separate allocation or claim of an independent memory boundary. The streamed
+backend passed independent source review; production callbacks had owner
+review at selection, with an independent review following separately. These
+fixture checks are not a simulation campaign or evidence of full-scale EP18
+model feasibility.
+
+## 2026-10-12 17:09 Pacific — interindividual_converter_training — exact-constant guard passed
+
+The selectedattempt002 completed in179.832276seconds inEP17parent47577068,
+with601,714,688bytes peakprocessRSS. The full first-fold sub01 target axis
+contains exactly one invalid scale: finite zeroSD, exactly constant fitting
+values and originalfloat32 mean exactly equal to the first value. Nonfinite
+means/SDs, negativeSDs, varying-zeroSD columns and inexact-mean constants all
+have countzero. The registered guard is satisfied. Evidence:
+`runs/brain_constant_discriminator/attempt002/report.json`.
+
+This is first-fold numerical eligibility only: no fit, normalization, model,
+score or tau-test access occurred; all-fold/full-panel eligibility remains
+unproven. The whole parent is charged once toEP17. The conditional scientist
+decision now admits isolated adapted implementation, retaining original code,
+models and not-evaluable dispositions. Three agents/root are implementing and
+reviewing separate normalization, artifact and single-pair execution modules.
+Select fresh adapted fits for all20pairs rather than relabeling the12 original
+models; numerical guard checks remain independent in every fold and final fit.
+Separate finite resource admission and affected checks still precede any fit.
+Full readout47382805 remains held; no evaluation release follows this result.
+
+## 2026-10-12 17:06 Pacific — interindividual_converter_training — conditional implementation handoff reviewed
+
+A read-only source review identifies the next implementation only if
+attempt002 reports a completed, satisfied guard. Keep original fitting,
+normalization and artifact validators untouched. Separate proposed modules
+`brain_loss_constant.py`, `final_brain_constant_artifact.py` and
+`run_brain_constant_pair.py` would reuse the original folds, empirical binder,
+primal products/solver, prediction promotion and alpha selector. A distinct
+result/artifact type must retain raw SD, effective scales and replacement
+masks for every fold and final fit; neither original nor amended validators
+may silently admit the other model kind. The existing12 original models
+cannot simply be relabeled as amended models.
+
+Only affected checks are needed: exact numerical guards (including varying
+underflow, nonfinite, exact-mean mismatch and tiny positive SD); unchanged
+five-fold/full-axis fitting; positive-only equivalence; typed artifact and
+publication rejection; admission; and inverse transformation into physical
+target units before decoder normalization. Reuse passing original evidence.
+This handoff performed no implementation, test, data access, fit admission or
+readout release. The discriminator grant remains separate from fitting, and
+47382805 remains held. No new simulation campaign is selected.
+
+## 2026-10-12 17:04 Pacific — interindividual_converter_training — attempt002 parent submitted
+
+The selected EP17 parent was accepted as47577068, requesting exactly4CPU,
+31GiB and8hours. Its fixed serial companion is the source-reviewed attempt002;
+the parent was PENDING at verification. EP17 owns the full allocation charge.
+No execution, guard success, amended normalization or full-readout release is
+inferred. The scientific algorithm and original attempt001 remain unchanged.
+Evidence will be `runs/brain_constant_discriminator/attempt002/report.json`.
+
 ## 2026-10-12 — interindividual_converter_training — discriminator import failure diagnosed and manual attempt002 selected
 
 Coordinator observed preserved`runs/brain_constant_discriminator/attempt001/report.json`

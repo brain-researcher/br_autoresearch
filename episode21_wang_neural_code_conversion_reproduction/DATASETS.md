@@ -1,5 +1,66 @@
 # Dataset contract — Episode 21
 
+The [fresh L40S measurement](outputs/content_cuda_l40s_measurement_authorization.json)
+reuses the original cached-measurement input scope: all4712 sub03 source
+training response rows and feature targets, sub01's fixed decoder and the
+five owners' frozen normalization metadata. It keeps all19 layers and full
+12897→12294 eligible axes. Target neural responses, tau, OOD, images and
+scientific scoring remain closed to this new attempt. Only operational
+timing, resource and completion metadata may be published; no fitted model
+or production prefix is retained. This does not amend existing production
+hardware permissions or any other stage's data roles.
+
+The separate [complete amended readout](outputs/amended_full_readout_authorization.json)
+prospectively opens only the fresh `amended_full001` route after exact40-model
+completion and coordinator activation/binding. The original held chain must be
+canceled before this replacement is released. No original brain artifacts or
+partial readout outputs become inputs to the new route; the fixed original
+content models and decoders remain the required inputs listed below.
+
+Decode may read the five fixed participants' tau-test responses/finite flags,
+averaging every authenticated repetition for all224 images; common tau-test
+feature truth/flags; all five frozen decoder and normalization inputs; all20
+exact original content models; and all20 fresh, separately typed constant-rule
+brain models. It authenticates897 tau-train image IDs as metadata only, with
+no tau-train or subject-unique response values. Full native axes remain fixed;
+physical target predictions pass through the unchanged decoder normalization
+and eligible-axis join. An amended tau transform cannot alter decoder support.
+
+All45 streams and855 layer slots must be decoded across all19 layers; a
+missing or invalid model stops this complete route without partial-panel
+fallback. Draw workers read only the published amended decoded stage and
+common tau-test truth. The finalizer reads the completed stage and all63
+closed draw artifacts, without truth-value/model/neural/decoder reads. HDF,
+manifest and reports carry `exact_constant_brain_comparator_all20_fresh_fits`;
+publication retains the same inode, file caps, single final writer and no
+retry/resume rule. Reuse the prior eight-method PASS from job47584681; do not
+rerun those methods or describe them as current decode checks. ASTRA is a
+tooling record, not a scientific gate. The grant fixes768GiB collection,
+776GiB aggregate,64MiB per-phase records,32MiB batches and4GiB local scratch.
+
+The existing support,1000 image/1000 dyadic draws, biological units,
+missingness and undefined-correlation rules are unchanged. Comparability
+remains not evaluable; no new margin, B/C, OOD, external data, regular pixels,
+training, outcome selection or EP04 role is opened. Earlier tau-test processing
+by the canceled first readout remains disclosed; absence of a final report
+does not mean that test data were unread. Contrary prior score/outcome exposure
+requires the original new-episode disposition.
+
+The separately selected [adapted-training panel](outputs/brain_constant_panel_authorization.json)
+opens each original ordered pair's authenticated897 tau-train response rows,
+finite flags and full native axes through the unchanged empirical binder.
+Native widths remain01=12295,03=12897,05=10891,06=12023,07=12057. All20 pairs
+receive fresh separately typed artifacts; no original model is relabeled.
+Only the adopted exact-constant/exact-mean zero-SD normalization exception
+changes, independently in each fitting fold and final refit. Positive finite
+SDs and original float32 arithmetic, averaging, folds, solver and alpha grid
+remain. The complete first-fold categorical guard passed; all-fold eligibility
+is unproven. Affected checks run before any new empirical input binding.
+This grant opens no tau-test, OOD, subject-unique responses, image pixels,
+feature/decoder payloads or scoring. All earlier narrower records below
+retain their original scope and history; this training grant cannot release
+either full readout chain.
+
 The October12 [conditional comparator decision](outputs/proposed_brain_normalization_followup.md)
 now has a separate [discriminator-only lock](outputs/protocol_lock_brain_constant_discriminator_2026-10-12.json).
 It permits the existing original sub03/sub01 tau-train binder, all897 images
@@ -20,8 +81,8 @@ EP17 fit002 with4CPU/31GiB; the companion runs serially with one numerical
 thread and retains the300s/6.5GiB observed processRSS/1MiB bounds. The original
 1CPU/7GiB lock and failed output remain preserved; no new data role is opened.
 
-The separate [full original Finding A readout](outputs/finding_a_full_readout_authorization.json)
-admits five fixed owners' tau-test responses averaged separately over every
+The superseded historical [full original Finding A readout](outputs/finding_a_full_readout_authorization.json)
+admitted five fixed owners' tau-test responses averaged separately over every
 authenticated repetition for all224 images, common tau-test feature truth and
 finite flags, all five frozen decoder/normalization inputs,20 exact original
 content models and12 original non-sub01 brain models. It may authenticate
@@ -72,6 +133,14 @@ Eligible native axes remain12897→10891/12023/12057 with all19 layers and all
 Only final model publication is opened; target neural response matrices,
 tau/OOD, images, evaluation and every broader role stay outside these grants.
 The fixed first-readout scope is independent and unchanged.
+
+The separate [roster hardware exception](outputs/content_cuda_roster_hardware_amendment.json)
+permits exact pending jobs47382243/47382244 only to use the previously qualified
+Tesla V100-SXM2-32GB or NVIDIA H100 80GB HBM3. The two changed and three existing
+admission methods passed in1.087seconds in compute step47584681.0 before the
+coordinator expanded the features and released these jobs. It excludes completed roster005
+and changes no training image, model, axis, precision, resource grant or data
+role. It neither releases tau-test scoring nor establishes any new model result.
 
 The separate [first original Finding A readout](outputs/finding_a_first_readout_authorization.json)
 admits only sub-03 tau-test responses, averaged separately across every

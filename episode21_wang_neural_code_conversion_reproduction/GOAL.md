@@ -1,5 +1,82 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
+The separate [fresh L40S measurement](outputs/content_cuda_l40s_measurement_authorization.json)
+selects one bounded hardware/cost attempt under the standing instruction to
+increase compute. It retains canonical pair4, all4712 training images,
+19layers, full12897→12294 eligible axes and four disposable cached updates.
+Its new attempt does not reopen consumed measurement grants or authorize
+production on L40S. Reuse existing arithmetic and integration implementations;
+run only the new admission check and existing CUDA-versus-CPU numerical method
+on the actual L40S before empirical access. The grant fixes2CPU/16GiB/1GPU/2h,
+the shared6300-second clock and original storage/memory caps. No model,
+scientific score, retry or automatic successor is selected by this measurement.
+
+The separate [complete amended Finding A selection](outputs/amended_full_readout_authorization.json)
+prospectively authorizes only `amended_full001`, conditional on all20 fresh
+constant-rule brain models and all20 original content models completing under
+their exact bindings. The regenerated scoped lock inherits the original
+scientific contract and the scientist's adopted comparator rule. Standing
+finish/resume/increase-compute instructions support this finite execution
+selection; they do not make incomplete models or missing support usable.
+The coordinator must bind40 distinct actual model-job identities, including
+individual array children, and activate the new grant before release. The
+original held readout chain is superseded and must be canceled before that
+release; its sources, artifacts and consumed costs remain historical records.
+
+This readout retains all224 tau-test images,19 layers,45 fitted streams and
+855 decoded slots:20 fresh brain,20 original content and5 within-source
+streams. No original brain model is relabeled or substituted. Preserve1000
+synchronized image draws in all63 batches,1000 dyadic draws, exact support,
+undefined-correlation rules, source-participant weights and incoming summaries.
+Complete support permits the registered absolute and directional Finding A
+analysis; it does not establish a positive result. Comparability remains
+not evaluable because its outcome-independent margin is absent. B/C,
+external-site, OOD and EP04-use restrictions remain unchanged.
+
+Select one3CPU/16GiB/72h decode,63 separate3CPU/16GiB/24h draw tasks with
+at most4 concurrent, and one1CPU/7GiB/2h finalizer, all with one numerical
+thread and no GPU:4754 allocatedCPUh maximum. Work deadlines are actual
+StartTime plus255600/84600/6900seconds, each bounded by EndTime−60.
+Keep15GiB decode/draw RSS,6.5GiB finalizer RSS,768GiB collection,776GiB
+aggregate by unique inode,64MiB operational output per phase,32MiB per draw
+batch and4GiB local scratch. These are ceilings, not a completion forecast.
+Decode precedes the whole63-task array; the sole finalizer requires all63
+successful closed results. No retry, resume or automatic successor follows.
+
+Reuse the eight methods passed without skips in7.850seconds in job47584681
+from `outputs/runs/software_integration/amended_readout_companion001`.
+The new decode records the prior evidence source/job/date and actual0/8
+results without claiming current test execution. Unchanged checks are not
+rerun; ASTRA validation is recorded but is not a scientific execution gate.
+Prior first-readout tau-test processing occurred, although no final collection,
+completion report or final-score exposure was reported. Preserve that
+disclosure and its stated source/file-identity limits; contrary earlier
+score/outcome-exposure evidence invokes the original new-episode rule.
+
+The narrower training and historical readout records below retain their
+original scopes; only the separate complete amended selection above grants
+the new conditional scoring route.
+
+The October12 discriminator completed with exactly one invalid first-fold
+sub01 scale, satisfying the scientist's exact-constant/exact-mean guard.
+The separately [regenerated adapted-training lock](outputs/brain_constant_panel_authorization.json)
+now selects fresh adapted fits for all20 original ordered pairs, each with
+897 tau-train images,50 CV fits and final refit. Every source/target fold and
+final transform independently applies the same narrow rule; first-fold success
+does not establish all-fold eligibility. Original12 models, validators and
+not-evaluable dispositions remain. Distinct artifacts retain raw SDs, effective
+scales and replacement masks/counts for both axes at all five folds and final.
+
+Each one-threaded3CPU/16GiB/6h parent is bounded by21000seconds from actual
+Slurm start and EndTime−60,15GiB processRSS,2GiB attempt output,256MiB scratch
+and768MiB final artifact. All20 reserve at most360 additional allocatedCPUh;
+historical charges are preserved. Ten affected methods precede empirical
+inputs in pair004; other19 are submitted only after observed shared PASS.
+This training-only execution does not open held-out scoring, reuse original
+artifacts, weaken a numerical rule or release held readout47382805. No amended
+fit or check completion is inferred from selection. The earlier
+discriminator-only scopes below remain historical, separately limited grants.
+
 On October12 the scientist **conditionally adopted** the
 [constant-coordinate comparator](outputs/proposed_brain_normalization_followup.md).
 The separate [regenerated discriminator-only lock](outputs/protocol_lock_brain_constant_discriminator_2026-10-12.json)
@@ -29,8 +106,17 @@ remain. It changes no source03 roster job or scientific implementation and
 does not release held-out evaluation. Separate changed admission checks precede
 the coordinator's scheduler update and release of those temporarily held jobs.
 
-The separate [full original Finding A grant](outputs/finding_a_full_readout_authorization.json)
-selects the fixed five-owner readout after all32 original eligible model parents
+The separate [two-roster hardware amendment](outputs/content_cuda_roster_hardware_amendment.json)
+applies only to pending roster006/job47382243 and roster007/job47382244,
+allowing the same exact qualified V100/H100 device names. Completed roster005
+is excluded. Original per-stage grants, resources, precision and scientific
+roles remain fixed. The two changed and three existing admission methods
+passed in1.087seconds in compute step47584681.0. The coordinator then expanded
+the exact hardware features and released those same two jobs. This exception
+creates no new job or scoring authority and establishes no model result.
+
+The historical [full original Finding A grant](outputs/finding_a_full_readout_authorization.json)
+selected the fixed five-owner readout after all32 original eligible model parents
 succeed:20 content models and12 original non-sub01 brain models. All224 test
 images,19 layers and855 slots remain, with703 decoded and152 explicitly
 unavailable. Preserve the original1000 synchronized image draws,1000 dyadic
@@ -39,7 +125,7 @@ Finding A and comparability remain not evaluable under the original missing-
 pair/margin rules; within/content estimates retain their own support rules.
 This original execution does not adopt the separate normalization follow-up.
 
-The grant selects one3CPU/16GiB/72h decode task,63 separate3CPU/16GiB/24h
+That superseded grant selected one3CPU/16GiB/72h decode task,63 separate3CPU/16GiB/24h
 draw tasks with at most4 concurrent, and one1CPU/7GiB/2h finalizer:4754
 additional allocatedCPUh maximum, noGPU, one numerical thread/task. Its
 absolute clocks,768GiB collection,776GiB aggregate by unique inode and phase

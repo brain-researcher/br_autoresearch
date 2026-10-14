@@ -1,0 +1,151 @@
+{
+  "schema_version": "ep21.amended_full_readout.v1",
+  "authorized": true,
+  "approval_source": "outputs/experiment_log.md#2026-10-12--finding_a_feature_decoding--complete-amended-readout-selected",
+  "proposal_source": "outputs/proposed_brain_normalization_followup.md",
+  "partition": "russpold",
+  "phases": [
+    "decode",
+    "draw",
+    "finalize"
+  ],
+  "operations": {
+    "decode": "run_amended_finding_a_decoded_point",
+    "draw": "run_amended_finding_a_draw_batch",
+    "finalize": "finalize_amended_finding_a_readout"
+  },
+  "jobs": 65,
+  "draw_tasks": 63,
+  "maximum_concurrent_draw_tasks": 4,
+  "numeric_threads": 1,
+  "test_images": 224,
+  "layers": 19,
+  "total_slots": 855,
+  "decoded_slots": 855,
+  "unavailable_slots": 0,
+  "image_bootstrap_draws": 1000,
+  "dyadic_bootstrap_draws": 1000,
+  "draw_batch_size": 16,
+  "model_policy": "exact_constant_brain_comparator_all20_fresh_fits",
+  "production_training": false,
+  "model_publication": false,
+  "decoded_feature_publication": true,
+  "scientific_scoring": true,
+  "automatic_retry": false,
+  "resumable": false,
+  "resources": {
+    "decode": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 3,
+      "memory_gib": 16,
+      "minutes": 4320,
+      "deadline_seconds": 255600,
+      "rss_limit_bytes": 16106127360
+    },
+    "draw": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 3,
+      "memory_gib": 16,
+      "minutes": 1440,
+      "deadline_seconds": 84600,
+      "rss_limit_bytes": 16106127360
+    },
+    "finalize": {
+      "gpus": 0,
+      "collection_bytes": 824633720832,
+      "aggregate_bytes": 833223655424,
+      "durable_bytes": 67108864,
+      "scratch_bytes": 4294967296,
+      "batch_bytes": 33554432,
+      "cpus": 1,
+      "memory_gib": 7,
+      "minutes": 120,
+      "deadline_seconds": 6900,
+      "rss_limit_bytes": 6979321856
+    }
+  },
+  "input_scope": {
+    "decode": {
+      "tau_test_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "common_true_features": "tau_test",
+      "decoder_payload_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "normalization_participants": [
+        "sub-01",
+        "sub-03",
+        "sub-05",
+        "sub-06",
+        "sub-07"
+      ],
+      "original_content_models": 20,
+      "tau_train_image_ID_metadata": true,
+      "training_response_matrices": false,
+      "tau_train_response_values": false,
+      "regular_images": false,
+      "OOD": false,
+      "fresh_constant_rule_brain_models": 20,
+      "original_brain_artifact_reuse": false
+    },
+    "draw": {
+      "published_decoded_point": true,
+      "common_true_features": "tau_test",
+      "models": false,
+      "neural_values": false,
+      "decoder_coefficients": false,
+      "OOD": false
+    },
+    "finalize": {
+      "published_decoded_point": true,
+      "all_63_draw_batches": true,
+      "models": false,
+      "neural_values": false,
+      "decoder_coefficients": false,
+      "true_feature_values": false,
+      "OOD": false
+    }
+  },
+  "purpose": "One separately selected complete amended Finding A readout: all855 decoded slots, zero unavailable, all45 streams, all224 images and19 layers, original1000 image and1000 dyadic draws, and incoming summaries. Only the scientist-adopted exact-constant/exact-mean brain comparator changes; no outcome-based model selection.",
+  "activation_requirements": "Finite execution and data-role selection is separately recorded in approval_source, GOAL, DATASETS and SEARCH_POLICY. Independent source review passed. Bind all40 distinct actual model job identities before releasing held submissions. Reuse exactly the eight passed affected methods from parent47584681, preserving their original execution identity; no new execution is claimed. ASTRA validation is nonblocking. Cancel the old never-started held chain before releasing this replacement. Submission is not scientific completion.",
+  "dependency_policy": "Forty distinct actual model jobs: all20 fresh adapted brain artifacts and all20 original content artifacts must complete. Coordinator verifies completed model reports and scheduler terminal states, binds completed IDs separately, and uses afterok for every still-active actual model job. Missing/unavailable/failed models cannot enter a partial panel. Decode success precedes all63 draws; finalizer requires the entire successful closed draw array. No retry or resume.",
+  "resource_basis": "All45 streams/855 slots require766442929704 numerical bytes (713.805603GiB) plus HDF metadata, below the768GiB collection ceiling. Retain776GiB aggregate by unique inode and sole-finalizer hard link. Work is approximately45/37 of the original source estimate; runtime and shared-I/O contention remain unmeasured. Four simultaneous draw workers preserve the original finite request; no completion forecast.",
+  "accounting": "New conditional chain reserves216CPUh decode +4536CPUh all63 draws +2CPUh finalizer =4754CPUh maximum, noGPU. Each task owns one actual-StartTime deadline including all children. Preserve all training/failed/partial history. The old held65-job chain must be canceled before releasing this replacement; it has consumed no CPU time, which will be verified once.",
+  "file_policy": "Isolated empirical children set768GiB soft RLIMIT_FSIZE and default SIGXFSZ before scientific imports. Native file-cap failure is fatal and preserves incomplete artifacts. Aggregate amended_full001 storage counts each(st_dev,st_ino) once, including the shared stage/final HDF inode; phase operational64MiB, compact batch32MiB and local scratch4GiB caps are separate. No second full collection copy is created.",
+  "interpretation": "Complete fixed-support absolute and directional FindingA inference uses the explicitly adapted brain comparator. Comparability remains not_evaluable because its outcome-independent margin is absent. Missing invalid models cannot be omitted or reweighted. All224 test images,19layers,20pairs,1000 synchronized image and1000 dyadic draws, and biological-unit/support rules remain. No OOD, B/C, EP04 selection, retraining, normalization tuning or scientific successor.",
+  "sherlock_storage_note": "Use established OAK durable paths and allocation-local L_SCRATCH_JOB. October12 sh_quota recordedOAK68percent and local capacity is checked inside allocation; do not infer future capacity from a quota alone.",
+  "selection_basis": "Scientist conditionally adopted the exact-constant comparator and the discriminator passed; standing finish/resume/parallelize/increase-compute authority supports this separately recorded finite complete readout. Independent source reviews and eight affected methods passed. Exact40 actual model identities and the three held replacement phases are bound in amended_full001/dependency_bindings.json. The old never-started original chain was canceled before replacement release; historical evidence and costs remain.",
+  "state": "separately_regenerated_amended_full_readout_lock",
+  "inherited_lock": "outputs/protocol_lock.yaml",
+  "inherited_bindings": "Original participant/image-role/native-axis/decoder/feature/metrics/bootstrap/denominator/biological-unit/claim rules remain by reference; only the scientist-adopted exact-constant brain-comparator normalization changes.",
+  "adopted_training_lock": "outputs/brain_constant_panel_authorization.json",
+  "prior_evaluation_exposure": "Canceled first readout47373800 processed tau-test responses/truth/predictions. No completed collection/final report or final-score exposure was reported. Preserve the source/file-identity limits in outputs/proposed_brain_normalization_followup.md; contrary evidence of earlier score/outcome exposure invokes the original new-episode rule.",
+  "checks_reused": {
+    "path": "outputs/runs/software_integration/amended_readout_companion001/status.txt",
+    "job_id": "47584681",
+    "methods": 8,
+    "exit": 0,
+    "current_decode_rerun": false
+  },
+  "selected_on": "2026-10-12 Pacific",
+  "dependency_bindings": "outputs/runs/finding_a_feature_decoding/amended_full001/dependency_bindings.json"
+}

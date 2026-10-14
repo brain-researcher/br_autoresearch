@@ -839,6 +839,10 @@ analyses:
       - {id: cuda_cache_batch, type: data, source: outputs/converter_training/content_cuda_cache_measurement.sbatch}
       - {id: cuda_cache_repair_authorization, type: data, source: outputs/content_cuda_cache_repair_authorization.json}
       - {id: cuda_cache_repair_batch, type: data, source: outputs/converter_training/content_cuda_cache_repair.sbatch}
+      - {id: cuda_l40s_authorization, type: data, source: outputs/content_cuda_l40s_measurement_authorization.json}
+      - {id: cuda_l40s_batch, type: data, source: outputs/converter_training/content_cuda_l40s_measurement.sbatch}
+      - {id: cuda_l40s_admission, type: data, source: outputs/converter_training/tools/run_content_cuda_l40s_measurement.py}
+      - {id: cuda_l40s_admission_check, type: data, source: outputs/converter_training/tests/test_content_cuda_l40s_admission.py}
       - {id: channel_cache, type: data, source: outputs/converter_training/tools/content_channel_cache.py}
       - {id: channel_cache_checks, type: data, source: outputs/converter_training/tests/test_content_channel_cache.py}
       - {id: provider_checks, type: data, source: outputs/converter_training/tests/test_decoder_interface.py}
@@ -959,6 +963,30 @@ analyses:
           command: bash outputs/converter_training/content_cuda_cache_repair.sbatch
           resources: {cpus: 2, gpus: 1, memory: 16Gi, time_limit: 2h}
 
+      - id: l40s_cached_resource_report
+        type: report
+        format: json
+        description: >-
+          One fresh L40S-only attempt retains the original cached four-update
+          measurement, canonical pair4, all4712rows/19layers and full12897-to12294
+          eligible axes. A new fresh-stage admission method and the existing
+          CUDA-versus-CPU arithmetic method run before empirical access, without
+          repeating unchanged checks. The2CPU/16GiB/1GPU/two-hour parent shares
+          StartTime+6300 bounded by EndTime-minus60 across children; keep15GiB
+          hostRSS,20GiB Torch allocator,32MiB durable,256MiB local,1GiB channel
+          and4GiB retained-cache limits. Report only operational timing/memory
+          and completion. Four updates cannot establish full-fit stability,
+          authorize production, publish a model or establish scientific benefit.
+          Prior attempts and production device permissions remain unchanged;
+          no retry, resume or automatic successor follows.
+        inputs: [cuda_l40s_authorization, cuda_l40s_batch, cuda_l40s_admission,
+                 cuda_l40s_admission_check, cuda_numerical_check, cuda_measurement,
+                 cuda_admission, channel_cache, input_binder, feature_reader,
+                 complete_decoders, corrected_loss]
+        recipe:
+          command: bash outputs/converter_training/content_cuda_l40s_measurement.sbatch
+          resources: {cpus: 2, gpus: 1, memory: 16Gi, time_limit: 2h}
+
   interindividual_converter_training:
     name: Fit all qualified directed LAION converters
     description: >-
@@ -983,6 +1011,14 @@ analyses:
       - {id: empirical_brain_checks, type: data, source: outputs/converter_training/tests/test_empirical_brain_inputs.py}
       - {id: constant_discriminator_lock, type: data, source: outputs/protocol_lock_brain_constant_discriminator_2026-10-12.json}
       - {id: constant_discriminator_code, type: data, source: outputs/converter_training/tools/run_brain_constant_discriminator.py}
+      - {id: constant_discriminator_attempt002_lock, type: data, source: outputs/protocol_lock_brain_constant_discriminator_attempt002_2026-10-12.json}
+      - {id: constant_panel_lock, type: data, source: outputs/brain_constant_panel_authorization.json}
+      - {id: constant_brain_code, type: data, source: outputs/converter_training/tools/brain_loss_constant.py}
+      - {id: constant_brain_artifact_code, type: data, source: outputs/converter_training/tools/final_brain_constant_artifact.py}
+      - {id: constant_brain_checks, type: data, source: outputs/converter_training/tests/test_brain_constant_comparator.py}
+      - {id: constant_brain_runner, type: data, source: outputs/converter_training/tools/run_brain_constant_pair.py}
+      - {id: constant_brain_runner_checks, type: data, source: outputs/converter_training/tests/test_brain_constant_runner.py}
+      - {id: constant_brain_batch, type: data, source: outputs/converter_training/brain_constant_panel.sbatch}
       - {id: brain_pair_driver_code, type: data, source: outputs/converter_training/tools/brain_pair_driver.py}
       - {id: brain_pair_driver_checks, type: data, source: outputs/converter_training/tests/test_brain_pair_driver.py}
       - {id: first_brain_pair_proposal, type: data, source: outputs/brain_pair_proposal.json}
@@ -1094,6 +1130,8 @@ analyses:
       - {id: cuda_roster_006_batch, type: data, source: outputs/converter_training/content_cuda_roster_006.sbatch}
       - {id: cuda_roster_007_grant, type: data, source: outputs/content_cuda_roster_007_authorization.json}
       - {id: cuda_roster_007_batch, type: data, source: outputs/converter_training/content_cuda_roster_007.sbatch}
+      - {id: cuda_roster_hardware_amendment, type: data, source: outputs/content_cuda_roster_hardware_amendment.json}
+      - {id: cuda_roster_hardware_tests, type: data, source: outputs/converter_training/tests/test_content_cuda_roster_hardware.py}
       - {id: final_content_artifact_code, type: data, source: outputs/converter_training/tools/final_content_artifact.py}
       - {id: final_content_artifact_tests, type: data, source: outputs/converter_training/tests/test_final_content_artifact.py}
       - {id: content_pair_driver_code, type: data, source: outputs/converter_training/tools/content_pair_driver.py}
@@ -1310,7 +1348,10 @@ analyses:
           1024updates and full12897-to-12023 eligible axes. Canonical shared
           seed/channel order, sparse256/row512 float32 cached CUDA, original
           Adam/LR and exclusive final-only publication remain. Separate2CPU16Gi
-          one measured V100-SXM2-32GB48h parent reserves96CPUh plus48GPUh once;
+          one qualified V100-SXM2-32GB or NVIDIA H10080GB HBM3 48h parent
+          reserves96CPUh plus48GPUh once. The pending-only hardware amendment
+          binds job47382243; two new and three original admission methods
+          passed in1.087seconds in step47584681.0 before coordinator release.
           all serial children share absolute StartTime+169200seconds bounded
           by EndTime minus60. HostRSS15Gi, GPUallocator20Gi, channel1Gi,
           retained4Gi, final1Gi, run2Gi and local1Gi caps apply. Same-source
@@ -1325,6 +1366,7 @@ analyses:
           Whole three-method FindingA remains not evaluable and the separate
           first readout stays38decoded slots. Preserve all original panel slots.
         inputs: [cuda_roster_006_grant, cuda_roster_006_batch,
+                 cuda_roster_hardware_amendment, cuda_roster_hardware_tests,
                  cuda_roster_cpuqualified_common_batch,
                  content_launcher_cpu_qualification_script,
                  cuda_roster_entrypoint, cuda_roster_composition,
@@ -1343,7 +1385,10 @@ analyses:
           1024updates and full12897-to-12057 eligible axes. Canonical shared
           seed/channel order, sparse256/row512 float32 cached CUDA, original
           Adam/LR and exclusive final-only publication remain. Separate2CPU16Gi
-          one measured V100-SXM2-32GB48h parent reserves96CPUh plus48GPUh once;
+          one qualified V100-SXM2-32GB or NVIDIA H10080GB HBM3 48h parent
+          reserves96CPUh plus48GPUh once. The pending-only hardware amendment
+          binds job47382244 and reuses the five methods passed in1.087seconds
+          in step47584681.0. Completed roster005 remains outside this amendment.
           all serial children share absolute StartTime+169200seconds bounded
           by EndTime minus60. HostRSS15Gi, GPUallocator20Gi, channel1Gi,
           retained4Gi, final1Gi, run2Gi and local1Gi caps apply. Same-source
@@ -1358,6 +1403,7 @@ analyses:
           Whole three-method FindingA remains not evaluable and the separate
           first readout stays38decoded slots. Preserve all original panel slots.
         inputs: [cuda_roster_007_grant, cuda_roster_007_batch,
+                 cuda_roster_hardware_amendment, cuda_roster_hardware_tests,
                  cuda_roster_cpuqualified_common_batch,
                  content_launcher_cpu_qualification_script,
                  cuda_roster_entrypoint, cuda_roster_composition,
@@ -1427,7 +1473,7 @@ analyses:
       - id: brain_constant_discriminator_report
         type: report
         format: json
-        inputs: [constant_discriminator_lock, constant_discriminator_code, empirical_brain_binder, protocol_lock]
+        inputs: [constant_discriminator_lock, constant_discriminator_attempt002_lock, constant_discriminator_code, empirical_brain_binder, protocol_lock]
         description: >-
           Scientist-adopted conditional adaptation, discriminator only. Preserve
           original lock, validator and not-evaluable findings. Count original
@@ -1437,13 +1483,37 @@ analyses:
           amended normalization implementation. No fitting, tau-test access or
           readout release follows. Prior tau-test processing occurred; no final
           score exposure is reported under the documented source/file evidence.
-          Execute serially within EP15's substantive parent, charged once there.
+          Preserve the first import failure in EP15. Selected attempt002 runs
+          serially in EP17fit002's actual4CPU31GiB parent with one numerical
+          thread,300s/6.5GiB processRSS/1MiB output; charge once to EP17.
         recipe:
           command: >-
             timeout --signal=TERM --kill-after=10s 310s python -B
             outputs/converter_training/tools/run_brain_constant_discriminator.py
+            --attempt attempt002
             --parent-job-id "$SLURM_JOB_ID" --parent-end-epoch "$SLURM_JOB_END_TIME"
-          resources: {cpus: 1, memory: 7Gi, time_limit: 320s}
+          resources: {cpus: 4, memory: 31Gi, time_limit: 320s}
+      - id: adapted_constant_brain_panel
+        type: data
+        format: pt
+        inputs: [constant_panel_lock, brain_constant_discriminator_report, constant_brain_code, constant_brain_artifact_code, constant_brain_checks, constant_brain_runner, constant_brain_runner_checks, constant_brain_batch, empirical_brain_binder, protocol_lock]
+        description: >-
+          A separate regenerated training lock selects20 fresh adapted brain
+          pairs,897 tau-train images,50 CV fits plus final refit per pair, full
+          native axes and unchanged original solver/alpha/MSE rules. Only exact
+          constant/exact-mean finite zero SD receives effective scale one in each
+          independent fitting fold/final refit. Preserve raw SDs, effective
+          scales and replacement masks for both axes/all folds in a distinct
+          artifact; original validators and12 original models stay unchanged.
+          Seven new numerical/artifact and three runner checks run once inside
+          pair004 before inputs. Root submits other19 only after observed PASS.
+          Each3CPU16GiB6h parent uses one numerical thread,21000s from actual
+          start bounded by allocation end,15GiB RSS,2GiB run,256MiB scratch and
+          768MiB final artifact. Maximum360CPUh extra, charged by actual parents;
+          no automatic retry, held-out scoring or release of47382805.
+        recipe:
+          command: bash outputs/converter_training/brain_constant_panel.sbatch
+          resources: {cpus: 3, memory: 16Gi, time_limit: 6h}
       - id: brain_first_fold_diagnostic_report
         type: report
         format: json
@@ -2425,6 +2495,31 @@ analyses:
       - {id: full_empirical_input_tests, type: data, source: outputs/converter_training/tests/test_finding_a_full_empirical_inputs.py}
       - {id: full_model_preparation_code, type: data, source: outputs/converter_training/tools/finding_a_full_models.py}
       - {id: full_model_preparation_tests, type: data, source: outputs/converter_training/tests/test_finding_a_full_models.py}
+      - {id: amended_brain_prediction_code, type: data, source: outputs/converter_training/tools/amended_brain_readout.py}
+      - {id: amended_full_model_preparation_code, type: data, source: outputs/converter_training/tools/amended_full_models.py}
+      - {id: amended_readout_interface_tests, type: data, source: outputs/converter_training/tests/test_amended_brain_readout.py}
+      - {id: amended_distributed_readout_code, type: data, source: outputs/converter_training/tools/amended_distributed_readout.py}
+      - {id: amended_readout_publication_code, type: data, source: outputs/converter_training/tools/amended_readout_publication.py}
+      - {id: amended_distributed_readout_tests, type: data, source: outputs/converter_training/tests/test_amended_distributed_readout.py}
+      - {id: amended_full_readout_entrypoint, type: data, source: outputs/converter_training/tools/run_amended_full_readout.py}
+      - {id: amended_full_readout_admission_tests, type: data, source: outputs/converter_training/tests/test_amended_full_readout_admission.py}
+      - {id: amended_readout_checks_companion, type: data, source: outputs/converter_training/tools/run_amended_readout_checks_companion001.sh}
+      - {id: amended_readout_checks_status, type: data, source: outputs/runs/software_integration/amended_readout_companion001/status.txt}
+      - {id: amended_readout_checks_execution, type: data, source: outputs/runs/software_integration/amended_readout_companion001/checks.txt}
+      - {id: amended_full_readout_grant, type: data, source: outputs/amended_full_readout_authorization.json}
+      - {id: amended_full_readout_common_batch, type: data, source: outputs/converter_training/finding_a_amended_full_common.sh}
+      - {id: amended_full_readout_decode_batch, type: data, source: outputs/converter_training/finding_a_amended_full_decode.sbatch}
+      - {id: amended_full_readout_draw_batch, type: data, source: outputs/converter_training/finding_a_amended_full_draw.sbatch}
+      - {id: amended_full_readout_finalize_batch, type: data, source: outputs/converter_training/finding_a_amended_full_finalize.sbatch}
+      - {id: amended_full_final_report_batch, type: data, source: outputs/converter_training/finding_a_amended_result.sbatch}
+      - {id: amended_result_renderer, type: data, source: outputs/converter_training/tools/render_finding_a_result.py}
+      - {id: amended_published_finding_a_report, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/finding_a_collection.finding_a_report.json}
+      - {id: amended_full_readout_dependency_bindings, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/dependency_bindings.json}
+      - {id: amended_decoded_point_collection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.h5}
+      - {id: amended_decoded_point_metadata, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.decoded_point.json}
+      - {id: amended_draw_artifacts, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_batches}
+      - {id: amended_brain_training_lock, type: data, source: outputs/brain_constant_panel_authorization.json}
+      - {id: amended_brain_artifact_code, type: data, source: outputs/converter_training/tools/final_brain_constant_artifact.py}
       - {id: grouped_collection_code, type: data, source: outputs/converter_training/tools/finding_a_grouped_collection.py}
       - {id: grouped_collection_tests, type: data, source: outputs/converter_training/tests/test_finding_a_grouped_collection.py}
       - {id: full_readout_code, type: data, source: outputs/converter_training/tools/finding_a_full_readout.py}
@@ -2473,6 +2568,219 @@ analyses:
       - id: protocol_lock
         from: ../pipeline_conformance.protocol_lock
     outputs:
+      - id: amended_readout_interface_checks
+        type: report
+        format: text
+        description: >-
+          Three changed-interface methods passed in the complete eight-method
+          companion; reuse its prior status and execution evidence. The
+          amended bridge retains all224 image identities,897 tau-train and4712
+          decoder-training disjointness, complete native axes, full physical
+          target restoration and unchanged decoder normalization/eligibility.
+          The separate complete-panel binder requires all20 fresh constant-rule
+          brain artifacts plus20 original content models and5 within-source
+          streams, with explicit exact_constant_brain_comparator_all20_fresh_fits
+          policy, sequential model release and no missing-model fallback.
+          The complete eight-method software-only companion is specified by
+          amended_full_readout_admission_checks. No rerun is selected. Empirical
+          access remains conditional on the separate complete amended grant,
+          forty model completions and actual coordinator job binding. Original
+          artifacts, missingness and scientific claim rules are retained.
+        inputs: [amended_brain_prediction_code, amended_full_model_preparation_code,
+                 amended_readout_interface_tests, prediction_bridge_code,
+                 prediction_bridge_tests, full_model_preparation_code,
+                 full_model_preparation_tests, protocol_lock]
+      - id: amended_distributed_readout_checks
+        type: report
+        format: text
+        description: >-
+          Three passed changed-interface methods over
+          the existing invented composition and one-fc8 persistence fixtures.
+          The separately admitted adapted composition requires all45 genuine fitted streams
+          and855 decoded slots, retains all224 images and19 layers, and reuses
+          the unchanged63-batch join,1000 synchronized image draws,1000 dyadic
+          draws, undefined-support rules, incoming summaries and margin limits.
+          It validates the explicit amended policy in the bound HDF before each
+          draw opens truth and labels every phase return plus the final HDF,
+          manifest and report. Genuine fitted-object IDs, same-inode sole-writer
+          publication, aggregate byte caps, permanent finalization marker and
+          report-last failure behavior remain. Independent source review found
+          no concrete defect. These three methods, the three bridge methods
+          and two caller methods passed together in7.850seconds without skips
+          in job47584681. Reuse that evidence; no rerun is selected. The
+          complete amended grant controls empirical access, and the original
+          held chain must be canceled before replacement release.
+        inputs: [amended_distributed_readout_code, amended_readout_publication_code,
+                 amended_distributed_readout_tests, amended_full_model_preparation_code,
+                 distributed_readout_code, distributed_readout_tests,
+                 staged_collection_code, staged_collection_tests,
+                 result_collection_code, result_collection_tests,
+                 draw_artifact_code, draw_batch_code, secondary_summary_code, protocol_lock]
+      - id: amended_full_readout_admission_checks
+        type: report
+        format: text
+        description: >-
+          Eight focused methods reuse existing invented fixtures: three for
+          the adapted physical-unit bridge and complete model binder, three
+          for distributed composition and immutable publication, and two for
+          the new stdlib-first caller's explicit admission and phase dispatch.
+          Independent source review and all eight methods passed without skips
+          in7.850seconds in job47584681 onsh03-06n11. The two-CPU/15GiB
+          EP18 recovery parent is charged once; this creates no EP21 test charge.
+          The separately admitted caller requires an activated finite resource
+          grant, forty distinct actual model-job identities, exact855-slot
+          coverage and the original63-batch completion/publication rules.
+          It supplies no implicit resources, empirical grant or automatic retry.
+          Reuse the fixed status.txt/checks.txt evidence. Decode copies only
+          its verified0/8 lines and separately records the prior source/job/date;
+          current_tests_executed remains false. This report selects no rerun,
+          new parent or scientific access. ASTRA validation is a tooling record,
+          not a scientific gate. New access requires the complete amended grant.
+        inputs: [amended_readout_checks_companion, amended_full_readout_entrypoint, amended_full_readout_admission_tests,
+                 amended_brain_prediction_code, amended_full_model_preparation_code,
+                 amended_readout_interface_tests, amended_distributed_readout_code,
+                 amended_readout_publication_code, amended_distributed_readout_tests,
+                 full_readout_entrypoint, full_readout_admission_tests,
+                 prediction_bridge_tests, full_model_preparation_tests, protocol_lock,
+                 amended_readout_checks_status, amended_readout_checks_execution]
+      - id: amended_full_decode_execution_report
+        type: report
+        format: json
+        description: >-
+          Prospective complete amended_full001 decode only after activated
+          regenerated scoped grant, all40 exact model completions and actual
+          dependency bindings. All20 fresh constant-rule brain artifacts,
+          twenty original content models and five within-source streams produce
+          all855 slots on224 tau-test images/all19 layers. No original brain
+          relabeling, unavailable-model fallback or partial panel is admitted.
+          Existing five-owner response/feature/decoder roles and897 tau-train
+          ID-only authentication remain. Reuse the eight-method PASS once;
+          ASTRA is recorded without scientific gating. Original held chain
+          must be canceled before replacement release; historical data and
+          charges remain. Decode requests3CPU16Gi72h, one thread/noGPU,
+          min(StartTime+255600,EndTime-60),15Gi RSS,768Gi collection,
+          776Gi aggregate by unique inode,64Mi operational output and4Gi scratch.
+          Exact numeric collection estimate is713.805603Gi before overhead;
+          completion time is unmeasured. The phase report is
+          outputs/runs/finding_a_feature_decoding/amended_full001/decode/report.json.
+          Decoded-point publication alone is not complete scientific inference.
+        inputs: [amended_full_readout_grant, amended_full_readout_dependency_bindings,
+                 amended_full_readout_entrypoint, amended_full_readout_decode_batch,
+                 amended_full_readout_common_batch, amended_readout_checks_status,
+                 amended_readout_checks_execution, amended_brain_training_lock,
+                 amended_brain_artifact_code, amended_brain_prediction_code,
+                 amended_full_model_preparation_code, amended_distributed_readout_code,
+                 amended_readout_publication_code, full_empirical_input_code,
+                 laion_decoder_manifest, interindividual_converter_manifest, protocol_lock]
+        recipe:
+          command: bash outputs/converter_training/finding_a_amended_full_decode.sbatch
+          resources: {cpus: 3, memory: 16Gi, time_limit: 72h}
+      - id: amended_full_draw_execution_reports
+        type: report
+        format: json
+        description: >-
+          All63 distinct Slurm draw elements0-62, at most4 concurrent, afterok
+          complete closed amended decode. Preserve1000 synchronized image draws
+          in batches of16 with8 in the final batch; all855 decoded slots,
+          exact model policy and genuine fitted IDs remain mandatory. Each
+          worker reads only published decoded data and tau-test truth and closes
+          both before compact publication. No neural/model/decoder reopening.
+          Each requests3CPU16Gi24h, one thread/noGPU,15Gi RSS and
+          min(StartTime+84600,EndTime-60),64Mi operational output,32Mi batch,
+          4Gi local scratch; shared768Gi collection/776Gi aggregate remain.
+          All tasks reserve4536CPUh within the4754CPUh complete-chain cap.
+          Reports are amended_full001/draws/batch_NNN/report.json and compact
+          results amended_full001/draw_batches/draw_batch_NNN.json. A completed
+          batch is not a complete interval or finding. No retry or resume.
+        inputs: [amended_full_readout_grant, amended_full_readout_dependency_bindings,
+                 amended_full_readout_entrypoint, amended_full_readout_draw_batch,
+                 amended_full_readout_common_batch, amended_decoded_point_collection,
+                 amended_decoded_point_metadata, amended_distributed_readout_code,
+                 amended_readout_publication_code, draw_batch_code, draw_artifact_code,
+                 batched_inference_code, laion_feature_manifest, protocol_lock]
+        recipe:
+          command: bash outputs/converter_training/finding_a_amended_full_draw.sbatch
+          resources: {cpus: 3, memory: 16Gi, time_limit: 24h}
+      - id: amended_full_finalize_execution_report
+        type: report
+        format: json
+        description: >-
+          Sole finalizer afterok the complete63-task array and every successful
+          closed result. Reuse all1000 image draws, original incoming summaries
+          and1000 dyadic draws; no truth values, neural/model/decoder reads.
+          Same-inode publication preserves the original staged collection,
+          permanent finalization claim, all method records and report-last
+          behavior without a second large copy. Output under amended_full001
+          comprises finding_a_collection.h5 and its decoded-feature manifest
+          and finding_a_report, all carrying the explicit adapted policy.
+          Request1CPU7Gi2h, one thread/noGPU,6.5Gi RSS,
+          min(StartTime+6900,EndTime-60),768Gi collection/776Gi unique-inode
+          aggregate,64Mi operational output and4Gi scratch. Whole-chain ceiling
+          is4754 allocatedCPUh once. Full support enables registered absolute
+          and directional inference without guaranteeing positive effects;
+          comparability remains not_evaluable for the missing prelocked margin.
+          Preserve fixed participants, weights, undefined/support rules and
+          prior test-processing disclosure. Contrary prior outcome exposure
+          invokes the original new-episode rule. No B/C, OOD, EP04-use, external
+          execution, training, outcome selection, retry or automatic successor.
+          The combined finalization/reporting wrapper invokes the unchanged
+          original finalizer in a child shell, preserving its exit traps,
+          admission and report-last publication. After successful return, a
+          separate JSON-only renderer reads the completed operational and
+          scientific reports. Reporting uses at most 240 seconds and ends
+          before Slurm EndTime minus 30 seconds within the same 1 CPU/7 GiB/2h parent.
+          A rendering failure preserves scientific completion and never
+          requests another finalization or opens scientific payloads.
+        inputs: [amended_full_readout_grant, amended_full_readout_dependency_bindings,
+                 amended_full_readout_entrypoint, amended_full_readout_finalize_batch,
+                 amended_full_final_report_batch, amended_result_renderer,
+                 amended_full_readout_common_batch, amended_decoded_point_collection,
+                 amended_decoded_point_metadata, amended_draw_artifacts,
+                 amended_distributed_readout_code, amended_readout_publication_code,
+                 draw_batch_code, draw_artifact_code, primary_inference_code,
+                 secondary_summary_code, protocol_lock]
+        recipe:
+          command: bash outputs/converter_training/finding_a_amended_result.sbatch
+          resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
+      - id: amended_finding_a_result_figure
+        type: report
+        format: png
+        description: >-
+          One figure, also saved as SVG, under
+          outputs/figures/finding_a_amended_full001/finding_a_result.png.
+          For pattern and profile correlation, show all five source-level
+          content-minus-amended-brain effects, the equally weighted primary
+          mean, conditional synchronized-image intervals and the secondary
+          dyadic interval; all 19 layer absolute curves for three methods;
+          and the complete 5-by-5 directed contrast matrix with blank diagonal.
+          Read only the two completed JSON reports after finalizer success;
+          never open HDF, neural, model, truth or closed partial outputs.
+          Existing paired-support contrasts and all uncertainty estimates
+          are displayed without recomputation, new resampling or selection.
+          Null estimates and unavailable intervals remain visibly unavailable.
+          The combined finalizer recipe produces this figure in its existing
+          allocation; no separate short render job or extra scientific stage.
+        inputs: [amended_result_renderer, amended_full_final_report_batch,
+                 amended_published_finding_a_report, primary_inference_code,
+                 secondary_summary_code, protocol_lock]
+      - id: amended_finding_a_three_line_summary
+        type: report
+        format: text
+        description: >-
+          outputs/figures/finding_a_amended_full001/summary.txt contains exactly
+          three lines: the fixed cross-layer/source pattern and profile
+          content-minus-amended-brain estimates; existing 95 percent image and
+          secondary dyadic intervals; and the fixed-person/adapted inference
+          limits. Companion caption.txt records definitions, equal weighting,
+          pointwise conditional intervals, dependent dyads, undefined support,
+          missing comparability margin, same-account procedural separation,
+          earlier tau-test processing and correlation with EP04. No population,
+          equivalence, fresh blind confirmation, B/C, OOD or external-site
+          claim is introduced. Actual scientific report and finalizer identity
+          are linked in the caption. No positive finding is implied by this
+          reporting specification or successful rendering.
+        inputs: [amended_result_renderer, amended_full_final_report_batch,
+                 amended_published_finding_a_report, protocol_lock]
       - id: prediction_bridge_checks
         type: report
         format: text
@@ -2838,7 +3146,8 @@ analyses:
         type: report
         format: text
         description: >-
-          Three focused stdlib fixtures check the phase-restricted full-readout
+          Historical qualification of the superseded original route; no rerun
+          is selected for amended_full001. Three focused stdlib fixtures check the phase-restricted full-readout
           runner: inactive-profile refusal before scientific access, exact
           decode/draw/finalize roles and options, all26 prerequisite methods
           plus ASTRA, authentic actual-allocation identity and absolute clocks,
@@ -2851,8 +3160,9 @@ analyses:
           Selected resources and empirical roles require the exact activated
           profile and observed prerequisite success; fixtures confer no
           throughput or finding.
-          Run once with the23 component methods in a substantive decode parent,
-          before payload, not in a separate test job. Later phases reuse PASS.
+          The original plan ran these with23 component methods in its decode
+          parent. The new amended route instead reuses its eight observed PASS
+          methods and records ASTRA without making it a scientific gate.
         inputs: [full_readout_entrypoint, full_readout_admission_tests,
                  full_readout_resource_proposal, full_readout_decode_batch,
                  full_readout_draw_batch, full_readout_finalize_batch,
@@ -2871,7 +3181,9 @@ analyses:
         type: report
         format: json
         description: >-
-          Selected original full-readout decode phase, conditional on all32
+          Historical superseded original full-readout decode phase. This
+          recipe is no longer selected; the coordinator cancels its held chain
+          before releasing amended_full001. Its original scope required all32
           exact original model artifacts, the26 existing focused methods and
           ASTRA passing in this parent before empirical access. Bind all224
           common tau-test images and all19 layers; retain703 decoded and152
@@ -2900,14 +3212,13 @@ analyses:
                  distributed_readout_code, staged_collection_code,
                  draw_artifact_code, protocol_lock, laion_decoder_manifest,
                  interindividual_converter_manifest]
-        recipe:
-          command: bash outputs/converter_training/finding_a_full_decode.sbatch
-          resources: {cpus: 3, memory: 16Gi, time_limit: 72h}
       - id: full_draw_execution_reports
         type: report
         format: json
         description: >-
-          Selected63-task Slurm array0-62 with at most4 concurrent tasks,
+          Historical superseded63-task Slurm array0-62, no longer selected.
+          The coordinator cancels its held chain before amended_full001 release.
+          Its original scope used at most4 concurrent tasks,
           afterok the successful decode parent. Each task reuses its exact
           prerequisite receipts and opens only the admitted decoded-point
           collection and common tau-test truth; no neural values, models or
@@ -2931,14 +3242,13 @@ analyses:
                  staged_collection_code, draw_batch_code, draw_artifact_code,
                  batched_inference_code, empirical_input_code,
                  laion_feature_manifest, protocol_lock]
-        recipe:
-          command: bash outputs/converter_training/finding_a_full_draw.sbatch
-          resources: {cpus: 3, memory: 16Gi, time_limit: 24h}
       - id: full_finalize_execution_report
         type: report
         format: json
         description: >-
-          Selected finalizer afterok the entire draw array and after all63
+          Historical superseded finalizer, no longer selected. The coordinator
+          cancels its held chain before amended_full001 release. Its original
+          scope required afterok the entire draw array and all63
           successful closed task reports prove reader closure. Reuse all1000
           original image draws, unchanged incoming summaries and1000 dyadic
           draws; read the saved point and compact batches without truth values,
@@ -2966,9 +3276,6 @@ analyses:
                  distributed_readout_code, staged_collection_code,
                  draw_batch_code, draw_artifact_code, primary_inference_code,
                  secondary_summary_code, result_collection_code, protocol_lock]
-        recipe:
-          command: bash outputs/converter_training/finding_a_full_finalize.sbatch
-          resources: {cpus: 1, memory: 7Gi, time_limit: 2h}
       - id: first_readout_binding_checks
         type: report
         format: text
@@ -3049,7 +3356,21 @@ analyses:
           including isolated caller execution, a finite process file-size limit
           and default SIGXFSZ handling for native I/O. A fatal cap breach is an
           incomplete resource failure, never a completed scientific collection.
-          The separately admitted first empirical composition uses only the original
+          The separate complete amended_full001 route requires all40 distinct
+          actual model jobs:20 fresh constant-rule brain fits and20 original
+          content fits, plus5 within-source streams. It retains all224 images,
+          all19 layers and855 decoded slots, with no original-brain fallback or
+          relabeling. Reuse the eight observed PASS methods; ASTRA is recorded
+          without becoming a scientific gate. Complete all63 image-draw batches
+          and1000 dyadic draws before sole-writer final publication under the
+          explicit exact_constant_brain_comparator_all20_fresh_fits policy.
+          Support, undefined values, weights and incoming summaries remain
+          unchanged. Comparability is not evaluable without its independent
+          margin. Absolute and directional dispositions remain conditional on
+          actual eligible results; no positive result is implied by activation.
+          Earlier tau-test processing and the original after-score new-episode
+          rule remain disclosed. B/C, OOD, external-site and EP04 roles stay closed.
+          The historical first empirical composition used only the original
           completed sub03-to-sub01 content model and sub03 within-source
           baseline: all224 images and all19 layers, with38 decoded slots and
           all817 unavailable slots explicitly retained. It preserves the
@@ -3060,7 +3381,7 @@ analyses:
           quantitative finding or comparability. The first-readout grant and
           dependent batch select finite resources; eleven checks and ASTRA,
           actual compute admission and a complete original model are mandatory.
-          The separately selected full001 readout preserves all855 slots with
+          The superseded historical full001 readout specified all855 slots with
           703 decoded and152 unavailable, all224 images/all19 layers and the
           original1000 image/1000 dyadic draws. Its phase-restricted runner
           requires all32 original available models and26 checks plus ASTRA
@@ -3089,6 +3410,13 @@ analyses:
           - distributed_readout_code
           - staged_collection_code
           - draw_artifact_code
+          - amended_full_readout_grant
+          - amended_full_readout_dependency_bindings
+          - amended_full_readout_entrypoint
+          - amended_distributed_readout_code
+          - amended_readout_publication_code
+          - amended_readout_checks_status
+          - amended_readout_checks_execution
       - id: decoded_feature_manifest
         type: data
         format: json
@@ -3098,12 +3426,22 @@ analyses:
           A standalone JSON manifest references the HDF5 decoded values,
           explicit storage axes, F/C coordinates, owner normalization and
           all855 decoded or unavailable layer slots. Missing slots are retained.
-          The separately admitted first readout loads source03 and target01 decoder
+          The complete amended_full001 manifest carries the explicit
+          exact_constant_brain_comparator_all20_fresh_fits policy and all45
+          genuine fitted-stream identities. It requires all20 fresh brain and
+          all20 original content models, retains all224 images/19layers/855
+          decoded slots and every native physical target coordinate before
+          unchanged decoder normalization and eligible-axis selection.
+          The final manifest, report and HDF policy agree; all63 closed draw
+          batches precede sole-writer same-inode publication. No original brain
+          artifact fallback, missing-support rescue or new image optimization
+          is admitted. Phase reports alone are not completed inference.
+          The historical first readout loaded source03 and target01 decoder
           coefficients only; the other owners supply normalization metadata
           for the full roster, never subject-unique response arrays. Its
           independent common truth reader retains at most one bounded channel
           or fully connected bank and verifies exact C-unit and finite flags.
-          The separately selected full001 collection retains all five native
+          The superseded historical full001 collection specified all five native
           owners and the same exact image/unit/mask bindings, with703 decoded
           and152 original unavailable slots. Final publication shares the
           staged HDF inode and preserves its history; phase reports alone do
@@ -3126,6 +3464,12 @@ analyses:
           - grouped_collection_code
           - staged_collection_code
           - distributed_readout_code
+          - amended_full_readout_grant
+          - amended_full_readout_dependency_bindings
+          - amended_full_model_preparation_code
+          - amended_brain_prediction_code
+          - amended_distributed_readout_code
+          - amended_readout_publication_code
 
   finding_b_natural_reconstruction:
     name: Reconstruct LAION natural images from decoded features

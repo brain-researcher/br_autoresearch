@@ -21,6 +21,7 @@ import sys
 import time
 
 import run_content_cuda_pair as core
+from content_cuda_l40s_hardware import load_amendment as _l40s_hardware_amendment
 
 
 BASE = Path(__file__).resolve().parents[3]
@@ -161,6 +162,7 @@ def _profile(stage):
     profile = {**_fixed(stage), "authorized": True, "approval_source": value["approval_source"],
                "input_scope": _input_scope(stage), "resources": dict(RESOURCES)}
     amendment = _hardware_amendment()
+    amendment = _l40s_hardware_amendment(BASE, stage.name) or amendment
     if amendment is not None:
         profile["hardware_eligibility_amendment"] = amendment
     return profile

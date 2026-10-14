@@ -4,8 +4,11 @@ The scientist adopted this exact rule **conditionally** on October12 at16:16
 Pacific: "yes, adopt the sub-01 fix conditionally"; see the
 [decision](experiment_log.md#2026-10-12-1616-pacific--interindividual_converter_training--scientist-adopts-the-constant-coordinate-comparator-conditionally).
 The [separate regenerated discriminator-only lock](protocol_lock_brain_constant_discriminator_2026-10-12.json)
-inherits the original bindings and admits the bounded check below. No result
-yet establishes that its guard holds. This is not a fit/readout grant,
+inherits the original bindings and admits the bounded check below. Attempt002
+now establishes the first-fold guard (one exact constant with exact mean).
+The separate [adapted-training lock](brain_constant_panel_authorization.json)
+selects all20 fresh fits after affected checks; every later fold retains its
+own guard and held-out readout remains closed. This proposal itself is not a fit/readout grant,
 replacement result or new numbered episode. The original code, lock,
 models, attempts, source-inferred failures and running jobs remain unchanged.
 The question stays whether the fixed content-loss converter outperforms the
