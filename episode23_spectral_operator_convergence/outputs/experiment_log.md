@@ -4,6 +4,12 @@ Newest entries first. Only operator feasibility checks, which use no model or
 neural data, have been executed. An ASTRA program will be authored when
 execution is scoped.
 
+## 2026-10-14 17:10 UTC — a1 — rank-32 sensitivity launched
+
+- Submitted RUN=20261014-rank32-attempt01 with RANK=32: array 47793391 (5 tasks, one participant each running its 5 folds in sequence, so each job lasts over 10 min) and collect 47793396 (`afterok`).
+- New launcher [a1_metric_family_grouped.sbatch](code/a1_metric_family_grouped.sbatch), sized from the rank-64 cells (≤10.3 min, ≤1.5 GB each); analysis code and settings otherwise unchanged.
+- Next: compare both contrasts with rank 64, then the stage figure and three-line summary.
+
 ## 2026-10-14 03:15 UTC — a1 — rank-64 complete
 
 - Ran: A1 array 47703628 (25 participant × fold cells, rank 64) and collect 47703629, all `COMPLETED`; [a1_report.json](runs/a1_metric_family/20261014-attempt01/a1_report.json).
