@@ -181,6 +181,11 @@ otherwise-authorized computation.
 Record execution facts once in the log and link to their evidence. Resolve
 conflicting summaries from the relevant permitted runner/scheduler observations
 or artifacts. Refresh navigation at material transitions, not on every resume.
+When a released result or adopted decision changes a root `README.md` episode
+row, update that row in the same task and link the evidence. Reconcile identity
+or evidence-role changes in `EPISODE_REGISTRY.yaml`; keep live job details in
+the episode log. Distinguish a completed analysis from its unresolved scientific
+question. A successful Git push does not establish that these summaries agree.
 Preserve `memory.md`, `governance.md`, `society.md`, `loop.md`,
 `landscape.md`, and `verification.md`; do not copy live status into all six or
 create them unless their workflow or contract requires them. Canonical

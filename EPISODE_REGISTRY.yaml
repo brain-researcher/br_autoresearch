@@ -1,6 +1,6 @@
 schema_version: autoresearch.episode_registry.v3
 registry_schema_ref: EPISODE_REGISTRY.schema.json
-observed_on: "2026-09-28"
+observed_on: "2026-10-15"
 contract_mode: direct_single_current_version
 
 numbering_policy:
@@ -42,16 +42,7 @@ historical_prior_records:
 
 reserved_episode_ids: []
 
-incomplete_draft_records:
-  - proposed_episode_id: ep18
-    path: episode18_things_eeg_concept_stability
-    status: incomplete_local_draft
-    counts_as_portfolio_episode: false
-    present_contracts: [GOAL.md, DATASETS.md, SEARCH_POLICY.yaml]
-    missing_contracts:
-      - inputs/README.md
-      - outputs/README.md
-      - seven_workspace_projections
+incomplete_draft_records: []
 
 shared_evidence_groups:
   - group_id: laion_fmri_ep04_ep21
@@ -67,10 +58,11 @@ shared_evidence_groups:
     required_shared_artifact: exposure_split_ledger
     evidence_independence: correlated_not_independent
   - group_id: things_ep17_prospective_ep18
-    episode_ids: [ep17]
-    prospective_episode_ids: [ep18]
+    # Retain the group ID for existing references; EP18 is now an executed study.
+    episode_ids: [ep17, ep18]
     required_shared_artifact: exposure_split_ledger
-    evidence_independence: correlated_unless_concept_roles_or_complete_designs_are_frozen
+    evidence_independence: correlated_and_design_exposed
+    evidence_ref: episode18_things_eeg_concept_stability/outputs/config/ep17_ep18_exposure_record.json
 
 episodes:
   - episode_id: ep01
@@ -180,6 +172,13 @@ episodes:
     search_policy_ref: episode17_cneuromod_model_ranking_stability/SEARCH_POLICY.yaml
     local_role: current_adaptive_episode
     foundation_primary: F20-05
+  - episode_id: ep18
+    path: episode18_things_eeg_concept_stability
+    title: Do different pictures of the same concept share an EEG pattern?
+    search_policy_ref: episode18_things_eeg_concept_stability/SEARCH_POLICY.yaml
+    local_role: current_adaptive_episode
+    evidence_mode: development_then_one_shot_participant_replication
+    independent_confirmation: false
   - episode_id: ep19
     path: episode19_causal_motor_forecasting_benchmark
     title: Causal prospective movement-onset forecasting benchmark
@@ -216,7 +215,8 @@ episodes:
     search_policy_ref: episode23_spectral_operator_convergence/SEARCH_POLICY.yaml
     local_role: current_theory_episode
     evidence_mode: conditional_theory_with_exploratory_constraints
-    design_status: proposed_not_frozen
+    design_status: initial_analyses_adopted_independent_confirmation_unactivated
+    design_evidence_ref: episode23_spectral_operator_convergence/outputs/experiment_log.md
     recorded_on: "2026-10-13"
     follows_episode_ids: [ep22]
     foundation_adjacent: [F20-02]

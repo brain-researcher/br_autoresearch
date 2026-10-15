@@ -1,11 +1,11 @@
 # Brain Researcher Autoresearch
 
-**EP24 — harness improvement, October 13:** [Result-driven research harness](episode24_result_driven_harness/GOAL.md)
-uses the original session's recorded action history to select a small execution
-change and evaluate it on actual authorized result-producing work. See its
-[current evidence](episode24_result_driven_harness/outputs/README.md).
-Creating this episode does not validate a harness improvement or change the
-scientific contracts and job ownership of the existing episodes.
+**Current evidence — October 15, 2026 Pacific:** the
+[EP01–EP24 result table](#current-episode-navigation) links completed results,
+active work and unresolved scientific questions. EP15 and EP18 have delivered
+the next results requested by the [current goal](AGENTS.md); EP20 and EP21
+remain in computation. Analysis completion, scientific novelty and independent
+replication are reported separately.
 
 Browse the [EP01-EP21 figure gallery](FIGURES.md) for current study schematics
 and links to each episode's scientific goal. Scope, prior work, and claim limits
@@ -48,8 +48,8 @@ well-supported reason to stop. It does not mean a smaller `p`-value.
 
 ## Online resources in the episode notes — October 6, 2026
 
-Primary-source web lookups now cover every episode. Each linked `DATASETS.md`
-section records concrete available information, its use for that episode, and
+The October 6 primary-source lookups cover EP01–EP21. Each linked `DATASETS.md`
+section records the information available at that review, its use, and
 what the source cannot establish. These are documentation and source-discovery
 additions; acquired versions and scientific data roles remain as recorded.
 
@@ -77,96 +77,83 @@ additions; acquired versions and scientific data roles remain as recorded.
 | [EP20](episode20_neurocam_prior_guided_codesign/DATASETS.md#public-online-resources--checked-october-6-2026) | NeuroCam DAQ/processing methods, manufacturer manuals and fixed DANDI release metadata. |
 | [EP21](episode21_wang_neural_code_conversion_reproduction/DATASETS.md#public-online-resources--checked-october-6-2026) | Pinned reproduction code/pretrained manifest and THINGS, NSD and LAION access documentation. |
 
-## Which skill to use
+## Current research evidence
 
-### Active execution coordination — 2026-10-03
+### Active execution coordination
 
-The scientist instructed the coordinator to resume possible work and finish
-the existing questions across EP01–EP21. Resume the operative contracts;
-unactivated narrative follow-ups remain separate. One coordinator owns Slurm
-submissions, scheduler checks and shared compute sessions; each worker owns
-one explicit episode scope at a time. Keep actual attempts, job IDs, consumed
-resources and evidence in each episode's `outputs/experiment_log.md`.
+The October 13 scientist goal in [AGENTS.md](AGENTS.md) focuses on EP15,
+EP18, EP20 and EP21. EP15 and EP18 have delivered their requested next result;
+their broader mechanism questions remain unresolved. EP20 retains its adopted
+simulation exception. Other completed results and valid scientific stops are
+preserved.
 
-The user additionally requested multi-agent monitoring and job/process
-babysitting. Episode workers prepare code and independent scientific reviews
-in separate writable scopes; the coordinator checks scheduler and resource state, owns compute
-sessions, and acts on diagnosed failures. No duplicate pending jobs, background
-supervisors or automatic allocation renewals are created. Detailed evidence
-and actual job/attempt records remain in the linked episode logs.
+One coordinator owns Slurm submissions, scheduler checks and shared compute
+sessions; episode workers have explicit scopes. Existing dependencies carry
+approved work forward. Standing authority already covers measured compute
+extensions, engineering repairs and disclosed same-account procedural
+separation. These are not recurring approval questions.
 
-### Current episode navigation — October 6, 2026 Pacific
+### Current episode navigation
 
-The table summarizes the recorded episode evidence, not a live scheduler check.
-The October 6 document revision incorporates the scientist's accepted
-judgments: EP02 article/task semantics as primary, EP15 exploratory development
-analysis, original-comparison closeouts for EP10/11/12/16, EP20's explicit
-simulation exception, and EP21's bounded parallel decoder continuation.
-The episode contracts define each amendment's exact scope; optional proposals
-outside those decisions remain unadopted.
+**Evidence reconciled October 15, 2026 Pacific.** Rows describe the actual
+analysis and its claim limits, using the linked episode records and released
+results. Completion of an analysis is not completion of its original scientific
+question, proof of novelty, or independent replication. EP20/21 job states below
+were checked at 13:17 Pacific; this table is not a live scheduler monitor.
 
-The October 6 public-source follow-up is incorporated into the existing
-handoffs and logs for EP02, EP03, EP06, EP07, EP09, EP11 and EP16–EP20.
-Each linked episode distinguishes
-verified online documentation from unresolved acquisition/execution evidence;
-these additions do not adopt draft scientific amendments or new jobs.
-
-The broader October 6 reconciliation also covers EP01–EP21's existing
-results, data preparation and accepted decisions. Episode DATASETS, plans and
-current navigation now connect to that evidence; stale claims that completed
-work or adopted choices are still pending have been corrected. Already
-complete accounts are retained, and descriptive policy fields are synchronized
-only where their established provenance is explicit. Historical attempts and
-unadopted proposals retain their original status.
-
-| Episode | Recorded result or actual obstacle | Next action / judgment |
+| Episode | Result or current evidence | Remaining scope / next action |
 | --- | --- | --- |
-| [EP01](episode01_narps_deep_search/outputs/README.md) | Observed behavior and twelve held-out fit directions complete for 108 people / 27,648 trials; saved-score contrasts complete. Mechanisms remain unidentified. | Preserve exploratory results. Old simulation requests are superseded by the October 5 stop. |
-| [EP02](episode02_dopamine_learning_rate_causality/outputs/README.md) | Authenticated article/task semantics are adopted as primary; the pinned code is report-only sensitivity. A generic training-only grouped-binomial optimizer is implemented and reviewed; all six checks and updated ASTRA validation passed in 46845646. Exact time axis, trigger/codebook and assignment facts remain unresolved. | Complete the observation recipe and population-predictive integration. Retain the targeted provider request. No scientific observation family, penalty or missing empirical fact was invented by the optimizer. |
-| [EP03](episode03_condition_semantics_effect_maps/outputs/README.md) | Public BART model/details provide 13 contrast definitions and 16 configured subjects; actual historical fitted contributors remain unknown and only 5/13 canonical orientations are resolved. | Use the public methods sources to narrow the producer request to actual fitted-input records and remaining event/ontology ambiguity. Configured subjects do not establish fitted N. |
-| [EP04](episode04_shared_scene_geometry/outputs/README.md) | All 23,560 development images have finite low-level controls; the 400-comparison panel, sensitivities and null panel are complete. Closed with no candidate. | Data/source notes now reflect complete development coverage. No pending raw-image-control approval or automatic successor. |
-| [EP05](episode05_sensorimotor_lfp/outputs/README.md) | Original 45-comparison search and selected calibration/decomposition follow-ups complete; practical margins still fail. | Preserve results and stop; old pending requests are not current work. |
-| [EP06](episode06_lfp_regional_fingerprints/outputs/README.md) | All 12 sessions' metadata ready; the public Dryad/code review does not resolve EP07's shared count defect or the role/exposure conflict. | Corrected counts first. Joint session-drop fallback requires sample-size review and dated-role preservation. |
-| [EP07](episode07_lfp_session_transfer/outputs/README.md) | Mihili March 6 has invalid native counts in both regions/all 217 trials. The inspected public Dryad release has no visible correction notice; analysis transformations do not authenticate an inverse repair. | Retain the targeted corrected-export request. Dropping that day also changes EP07's new-day rules; no such amendment was adopted by adding sources. |
-| [EP08](episode08_lfp_electrode_trial_policy/outputs/README.md) | The 41-comparison real-data search across eight development sessions is terminal without a robust initializer policy. The +0.003353 Q average has session/initializer reversals. | Preserve the bounded result and all four closed held-out sessions; the original reference design is not unfinished mandatory work. |
-| [EP09](episode09_local_global_projection/outputs/README.md) | Current metadata bounds remain two animals / 72 cells in ten sufficiently large recorded strata, not qualified eligibility. Job 46842156 authenticated the provider alias: Animal ID 236174 = Image ID 16124, genotype Gnb4-IRES2-CreERT2;Ai139. The historical join remains preserved. | Identity/genotype no longer needs a provider answer. Obtain authentic layer/non-axon-class and matched-donor support; the alias adds no qualified IT animal. Neither the original 12+8 nor proposed nine-animal route is supported. |
-| [EP10](episode10_single_cell_coprojection/outputs/README.md) | Real-data M1's 949 fits passed postflight across 194 cells / 12 conservative groups, with +0.0026378637 bits/cell exploratory gain. The over-budget M2 branch is closed as `incomplete_search`. | Preserve exploratory M1 and the measured compute limitation. The accepted closeout establishes no negative M2 finding. |
-| [EP11](episode11_projection_types_vs_gradients/outputs/README.md) | The original cross-animal comparison is closed as incomplete: qualification, identity/completeness and support remain unresolved after the execution window. | Preserve completed evidence. The optional ≤48 CPU-hour exploratory design remains a draft; no recovery successor or new budget is activated. |
-| [EP12](episode12_malecns_type_sufficiency/outputs/README.md) | Observed tables and figure complete for 816 types / 84,735 neurons, including 126 zero-mass neurons. Original T/U/M comparisons are closed as incomplete. | Preserve the one-specimen descriptive result and closed final/incoming scope. The separate decoder proposal remains unadopted. |
-| [EP13](episode13_bold_target_identifiability/outputs/README.md) | Theoretical result, proof package, 12 exact fixtures, seven rejection cases and independently authored replay are complete. | Source/plan notes now link the completed mathematical evidence. No empirical replacement needed. |
-| [EP14](episode14_openbhb_roi_site_generalization/outputs/README.md) | Original no-candidate result and selected real-MRI follow-ups complete; no overall improvement established. | Preserve results and closed holdout; no automatic successor. |
-| [EP15](episode15_mdtb_topography_vs_geometry/outputs/README.md) | All 24 participants / 36 containers / 36,576 members are materialized; roles, support, metrics and M3 fitting checks are established. Exploratory analysis of the existing 12 development participants is adopted, with τ_remaining=.20 and τ_increment=.05. The paired M4 fitter is implemented; review corrected a scaling defect, then all seven checks and updated ASTRA validation passed in 46845646. | Deploy the enforced development reader and finish the fixed model recipe. Local optimization does not certify uniqueness or locality. Formal class selection, uncertainty qualification and audit remain deferred; the other five margins are not silently adopted. |
-| [EP16](episode16_braingate_cross_session_failure_modes/outputs/README.md) | Structural inventory covers 729 sessions / 328,548 trials / 5,150 blocks. Only T11/T9 conditionally qualify; the original three-held-out-participant claim is closed as `support_or_uncertainty_prevents_an_answer`. | Preserve the inventory and completed arithmetic. An optional T11/T9 case study remains unadopted; general field documentation does not establish missing session facts or expand support. |
-| [EP17](episode17_cneuromod_model_ranking_stability/outputs/README.md) | The 720-concept universe, 480/120/120 roles, N=256/q=32 structural rule, numerical conventions and margins are adopted; exact EP18 overlap is recorded. The provider README identifies password_images.txt; private delivery and reader separation remain unresolved. | Policy fields and current methods now reflect the October 4 decisions. Prepare the documented private delivery route under existing accepted terms; no repeated margin ratification is needed. |
-| [EP18](episode18_things_eeg_concept_stability/outputs/README.md) | Metadata retain all 1,133,808 events and the fixed 30/16 participant assignment; EP17 overlap is resolved as correlated exposure. Exact stable runtime, all five public model assets and all 1,854 name features are complete. The sequence-local joint ridge/ablation core is implemented; all ten checks and updated ASTRA validation passed in 46845646. | Preserve completed preparation. Enforced image/EEG separation, remaining image features and the empirical runner are unfinished. The attended shell is closed and the stopped namespace route remains stopped. No evaluation result or overall feature freeze is claimed. |
-| [EP19](episode19_causal_motor_forecasting_benchmark/outputs/README.md) | The 12-person S1 support panel is complete: seven pass conditionally, five remain unresolved. All 16 classical/non-neural backend checks passed. Public event/sensor conventions are documented; upstream stream origin, physical scaling and full clock bound remain unresolved. | Obtain authentic exporter/origin and calibration evidence. Neither direct StartTime copying nor 2 ms window indexing justifies a 2 s correction. Preserve the 300–600 ms horizon and separate scientific-gain judgment. |
-| [EP20](episode20_neurocam_prior_guided_codesign/outputs/README.md) | The scientist explicitly allows simulated co-design. Seven R1, six loading/noise and eight dense coupled-circuit checks have passed. The sparse implementation retains all 4,096 pads plus 64 source states; all five checks and updated ASTRA validation passed in 46845646. DAQ/calibration context and Rat5 mapping remain unresolved. | Advance the remaining contact/CPE/noise model with supported parameters. Simulation approval does not supply missing acquisition facts, qualify the reference, or establish measured candidate performance. |
-| [EP21](episode21_wang_neural_code_conversion_reproduction/outputs/README.md) | All 24,681 regular-image feature rows / 19 layers and 151,861 regular neural repetitions are provisioned. The serial job was gracefully checkpoint-stopped, retaining 716,160 total units. Full continuation is adopted: 500 allocated CPU-hours including job 46801996, up to eight 1 CPU / 7 GiB workers, zero GPUs and 500 GB new durable output. All four new participant states completed in job 46833971 (3,479 CPU-seconds); all required storage checks and changed document validations passed. At October 6, 21:08 Pacific, all eight workers remain running: 46839670_0–6 and corrected task 46840840_7. The replacement passed all 27 repair/accounting checks; the batch targets 8,015,424 additional units and logs report 3,600,064 newly fitted units across all eight workers, pending terminal validation. A 15-second pre-admission scheduler-ID failure is preserved. | Monitor the eight-worker batch and reconcile exact terminal results before the next finite batch. Actual spend plus all current full reservations totals 69.7456 of the 500 CPU-hour cap. The [adopted continuation](episode21_wang_neural_code_conversion_reproduction/outputs/decoder_training_proposal.md) covers decoder training only; scoring, converters, reconstruction, tau and OOD remain closed. |
-| [EP22](episode22_geometry_gap_decomposition/outputs/README.md) | Terminal: `confirmation_complete` (2026-10-13). This is a diagnostic of EP04, which found that native-RSA gaps are spectral; VLM eigenvectors match DINOv2 at coarse scale. The single procedurally sealed OOD opening passed the gate. C2a passed: VLM spectra penalize within-category RSA, 5/5 for CLIP and SigLIP2. C3 passed: development-fitted steepening (α ≈ 2) transfers, 5/5 for every VLM. C1 (spectrum vs. selection) is indeterminate, with a CLIP deficit only on selfmade. The PEcore secondary prediction failed. Total compute was 26.43 CPU-hours. | Report the result. A theory episode could build on the confirmed spectral findings and on the post hoc observation that eigenvector agreement depends on scale. |
-| [EP23](episode23_spectral_operator_convergence/outputs/README.md) | A0 complete (exploratory, 2026-10-13). A Visual Genome co-occurrence operator predicts each participant's leading high-level visual brain subspace in 5/5 participants (ω 0.067–0.095 vs null ≈0.04; sign p = 0.031). The result is robust to frequency and low-level pixel controls, but not established beyond the 27-category taxonomy (3/5 positive, sign p = 0.50; captions operator 5/5 positive, 3/5 significant). Brain alignment is confined to the leading 8 modes. Models align beyond taxonomy, including DINOv2 (descriptive). About 2.55 CPU-hours, no GPU. | Remaining initial-stage work: P1–P5 and A1–A3. A4 (independent confirmation, ≥5 participants) needs a scientist decision on its source. |
+| [EP01](episode01_narps_deep_search/outputs/README.md) | Real behavior and fMRI analyses complete for 108 people, 432 runs and five fMRI specifications on 37,607 common-valid voxels. Fixed choice prediction improves log loss in 107/108 people; fMRI displacement repeatability is weak. | Conditional prediction and specification sensitivity are established; psychological/neural mechanisms are not. Cancelled simulations and team-map analyses remain closed. |
+| [EP02](episode02_dopamine_learning_rate_causality/outputs/README.md) | Reader and observation-model components are implemented; no empirical fit result. | Authentic trial/session/lick-state definitions, 701-sample timing and trigger/cap semantics, raw margins and the mechanism comparison remain unresolved. Procedural separation is already adopted. |
+| [EP03](episode03_condition_semantics_effect_maps/outputs/README.md) | Metadata qualification covers 13 BART maps and support for 16 configured people; canonical direction is resolved for 5/13. No scientific map evaluation. | Actual fitted contributors, group eligibility/independence and remaining contrast directions still need evidence. Configured N is not fitted N. |
+| [EP04](episode04_shared_scene_geometry/outputs/README.md) | Complete five-person development panel; no model meets the +0.02 native-RSA gain and participant/influence conditions. Valid negative result, closed with no candidate. | No candidate audit follows. Its previously unopened OOD images were reassigned to EP22 by the scientist; the EP22 evaluation is separate from EP04's negative result. |
+| [EP05](episode05_sensorimotor_lfp/outputs/README.md) | Original 45-comparison search and selected calibration/decomposition follow-ups complete. Blend gain 0.002679 R² and identity gain 0.004559 remain below their 0.01/0.005 margins. | No practical-margin-qualified candidate; future-session confirmation remains closed. Old extension requests are not pending decisions. |
+| [EP06](episode06_lfp_regional_fingerprints/outputs/README.md) | The adopted 11-session route produced a complete 30-comparison negative development search and a seven-date LMP support follow-up. All-unit M1 score 0.01168 falls to 0.00111 with four-unit matching. | Recording-support dependence and unstable mappings prevent a pure regional interpretation. Four reserved dates remain closed; the EP07 shared-data freeze is no longer an execution blocker. |
+| [EP07](episode07_lfp_session_transfer/outputs/README.md) | Primary evaluation complete on all five test days. History-minus-today gain: M1 +0.0173 R², PMd +0.0078; neither passes its full support rule. | M1 fails cross-day stability; PMd fails the 0.01 margin. The 11-session, 15-pair and control amendments are already adopted and executed; corrected March 6 counts are not required for this completed amended result. |
+| [EP08](episode08_lfp_electrode_trial_policy/outputs/README.md) | Original 41-comparison search and eight-session information-value follow-up complete. The primary 32-trial added-value comparison improves 0/4 Chewie and 1/4 Mihili sessions. | No robust initializer policy or primary incremental information-value benefit. Positive 64-trial sensitivities do not replace the primary result; four reserved sessions stay closed. |
+| [EP09](episode09_local_global_projection/outputs/README.md) | Metadata feasibility only: 12 documented cortical IT-driver animals, but only two potentially donor-supported animals / 72 cells before finer restrictions. Identity alias 236174/16124 is resolved. | Authentic layer/class/quality and donor support remain inadequate for the original 12-development/8-audit design. No predictive result or audit opening. |
+| [EP10](episode10_single_cell_coprojection/outputs/README.md) | Real-data M1 comparison complete: +0.002637864 bits/cell across 194 cells / 12 conservative groups. | Original M2 is closed incomplete; prepared diagnostics have not reactivated it. M1's result is not evidence against M2. Final/unassigned outcomes stay closed. |
+| [EP11](episode11_projection_types_vs_gradients/outputs/README.md) | No empirical adjudication. Preparation identified 206 prospective cells / 36 brain/sample proxies; animal independence, eligibility and model qualification remain unresolved. | Preserve the incomplete closeout. A usable independent-animal support basis and qualified analysis are needed for a substantive continuation; an expired clock alone is not a new approval gate. |
+| [EP12](episode12_malecns_type_sufficiency/outputs/README.md) | Empirical outgoing-profile description and figure complete for 816 types / 84,735 neurons in one male fly, including 126 zero-mass neurons. | Original T/U/M comparison remains closed incomplete. The descriptive result does not establish subtype or bilateral-reproducibility claims; incoming profiles and 204 final focal types stay closed. |
+| [EP13](episode13_bold_target_identifiability/outputs/README.md) | Complete classical linear-estimability reference: constructive proof, exact replay, 12 valid fixtures and seven input rejections. | Useful mathematical component, not a new theorem or empirical BOLD discovery. No additional computation is needed under this question. |
+| [EP14](episode14_openbhb_roi_site_generalization/outputs/README.md) | Real-MRI comparisons complete, including 31 compression arms over three overlapping views. At 56 dimensions, group compression minus PCA MAE is −0.0847 years, descriptive interval [−0.3223, 0.1694]. | No additional advantage over matched PCA/raw ridge is established. Development was exposed; no candidate promoted, and all 757 public-validation rows stay closed. |
+| [EP15](episode15_mdtb_topography_vs_geometry/outputs/README.md) | **Observed-map prediction result complete:** 12 people, 18 Task-B conditions, 188 common-valid locations, 16 variants and fixed controls. M0b MSE 2.256684; fixed M2 difference −0.0149902. [Three lines](episode15_mdtb_topography_vs_geometry/outputs/figures/observed_beta_development001/3lines.md) · [figure](episode15_mdtb_topography_vs_geometry/outputs/figures/observed_beta_development001/observed_beta.png). | Availability-conditioned descriptive out-of-fold evaluation; overlapping training and donor dependencies preclude naive participant CIs. No winner, reliable-signal or mechanism claim; original participant audit remains closed. |
+| [EP16](episode16_braingate_cross_session_failure_modes/outputs/README.md) | Structural support assessment complete for 729 sessions / nine participants. Only T11/T9 conditionally pass; neither is fully qualified. No neural result. | The original four-development/three-held-out-participant comparison is unsupported. Preserve its support-limited closeout; new authentic session metadata or a prospectively adopted redesign would be needed. |
+| [EP17](episode17_cneuromod_model_ranking_stability/outputs/README.md) | Fixed-panel development evaluation complete: all 20 comparisons valid; P1/P2/P3 meet practical-equivalence criteria across seven endpoints within four fixed participants / 480 development concepts. | F1 remains underidentified/nonpromotable; no qualifying reversal or candidate. This is not population equivalence or completion of the original adaptive search. Audit stays closed. |
+| [EP18](episode18_things_eeg_concept_stability/outputs/README.md) | **30-person real-EEG core result complete:** 180 outer folds; G = −7.574×10⁻⁶, descriptive participant 95% interval [−5.604×10⁻⁵, 4.090×10⁻⁵]. [Three lines](episode18_things_eeg_concept_stability/outputs/runs/baseline_models/core_direct_checkpoint_batch_report001/summary.md) · [figure](episode18_things_eeg_concept_stability/outputs/figures/core_direct_checkpoint_batch001/core_reference_G_T.png). | No clear positive image-reference increment; calibration remains underidentified. Full concept/false-group comparison is unresolved; no accepted matched-control bank. Concept/false scores and the 16-person audit remain closed. |
+| [EP19](episode19_causal_motor_forecasting_benchmark/outputs/README.md) | Twelve-person WAY S1 peripheral-support inventory complete: seven meet the conditional support rule, five unresolved. No empirical EEG forecasting result. | Source timing/calibration/run bindings, qualified causal input/label construction, scientific margins and empirical fitting remain. Procedural separation is already allowed. |
+| [EP20](episode20_neurocam_prior_guided_codesign/outputs/README.md) | Adopted conditional S5 simulation is in production: 12 R1 records complete at 4,000 frames; 24 R2/R3 jobs running in array 47789534 at the dated snapshot. No conditional prediction result yet. | Complete all 36 records, freeze the nearest-neighbor-compatible family, then evaluate reserved distant coupling. Conditional model envelopes are not real-hardware validation or device confidence intervals. Missing DAQ details do not block this explicitly conditional route. |
+| [EP21](episode21_wang_neural_code_conversion_reproduction/outputs/README.md) | All 20 amended brain models complete; accounting confirms 18/20 content jobs completed successfully and p017/p019 running at the dated snapshot. No decoded scientific endpoint yet. | The existing decode → uncertainty → report dependency chain is queued: 47586225, 47586235 and 47716676. Finish the fixed evaluation; training completion is not reproduction success. |
+| [EP22](episode22_geometry_gap_decomposition/outputs/summary.md) | OOD evaluation complete: revised spectral-penalty and transform-transfer predictions pass; C1 is indeterminate and PEcore's secondary prediction fails. All results concern the same five participants. | Original ≥50% gap-closure prediction failed. Transfer combines PCA truncation and spectral reweighting; DINOv2 also improves. No isolated exponent-effect, universal gap-closure or independent-replication claim. |
+| [EP23](episode23_spectral_operator_convergence/outputs/README.md) | Exploratory A0–A3 and theory checks complete. Full-minus-diagonal metric gain +0.19237 z, rank-32 +0.16194; A2 reliability-relative primary unsupported (1/4, p=.9375). A3 is explicitly synthetic. | Primary beyond-taxonomy brain prediction remains unestablished (3/5, p=.50). Independent A4 is inactive; mechanism and novelty priority remain unestablished. Reused participants and rank sensitivity are not replications. |
+| [EP24](episode24_result_driven_harness/outputs/README.md) | Operational baseline and focused instruction change delivered; aggregate baseline covers 160,721 records. | Prospective process/result validation remains unrecorded. More documents, completed jobs, or an existing result alone do not demonstrate a causal harness improvement. |
 
-### Remaining source and design dependencies
+### Remaining source and scientific decisions
 
-- **Evaluation separation (EP02/15/17/18):** a separate agent or same-account
-  file permissions do not enforce separation. A correctly restricted runtime
-  or an independent human steward may enforce it. Procedural separation is a
-  weaker, explicit alternative requiring revised access/claim rules; it is not
-  silently substituted for an existing enforced boundary.
-- **Bounded validation:** fixed-seed known-answer and leakage checks can be
-  part of real-data work. Proposed real-data permutations require justified
-  exchangeability and a finite compute cost. Recovery, power, qualification
-  sweeps and refit-null expansions remain outside the October 5 priority unless
-  separately selected. A handful of checks cannot establish uncertainty coverage.
-- **Provider requests:** prioritize EP07 corrected counts, EP03 fitted-input
-  provenance and EP02 field/trigger/assignment definitions. The episode
-  handoffs contain drafts for the user to send; agents do not contact providers.
+- **Already answered:** the EP06/07 11-session amendment, EP07 model-pair and
+  control interpretation, EP01 common-valid voxels, EP15 observed-map/common-
+  support route, EP17 score-specific validity rule, EP20 conditional simulation,
+  and standing compute/engineering/procedural-separation authority. Do not
+  reopen these as pending approvals.
+- **Authentic source facts still matter:** EP02 timing/trigger and trial
+  definitions; EP03 fitted contributors and contrast directions; EP09/11
+  independent-animal eligibility; EP16 session/controller support; and EP19
+  timing/calibration. Public general documentation does not supply missing
+  record-specific facts. Agents do not contact providers without authorization.
+- **Scientific changes remain distinct:** changing questions, estimands, data
+  roles, held-out access or claims still requires the scientist's decision.
+  For example, EP23 A4's unsupported development premise is not resolved by
+  simply acquiring a new source. A clock extension cannot repair that premise.
+- **Evidence boundaries remain:** existing limited or negative results are
+  preserved. EP15's original mechanism question and EP18's full concept
+  comparison remain open despite delivery of their requested next results.
+  Shared datasets are recorded as correlated evidence, not independent
+  confirmation.
 
-Remaining consequential choices include evaluation separation, the EP06/07
-fallback and EP19 meaningful gain; EP15's formal inference is deferred under
-its accepted exploratory route. Closeouts for EP10/11/12/16, EP20 simulation
-permission and EP21's aggregate compute/storage envelope are answered.
-BR advisory review is not a canonical BR-harness launch or acceptance;
-execution evidence remains in the episode logs.
+The [registry](EPISODE_REGISTRY.yaml) records all 24 current episode identities,
+including EP18 as an executed study. Historical prior NARPS runs remain separate.
+BR advisory work is not canonical BR-harness launch or acceptance; scientific
+evidence and execution details remain in each episode's linked records.
 
 ### Historical execution snapshots
 
