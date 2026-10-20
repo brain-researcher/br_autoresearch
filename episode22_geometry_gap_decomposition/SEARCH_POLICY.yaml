@@ -2,10 +2,21 @@ schema_version: ep22.search_policy.v1
 policy_id: ep22_geometry_gap_decomposition_v1
 episode_id: ep22
 recorded_on: "2026-10-12"
-status: proposed_not_frozen
+status: confirmation_complete
 evidence_mode: fixed_diagnostic_with_sealed_confirmation
 adaptive_search_protocol_applies: false
 follows_episode: ep04
+
+current_evidence:
+  reconciled_on: "2026-10-15"
+  completion_record: outputs/experiment_log.md#2026-10-13-0129-utc--ood_confirmation--single-opening-complete-terminal-class-confirmation_complete
+  result_summary: outputs/summary.md
+  confirmation_lock: outputs/ood_confirmation_lock.json
+  consumed_ood_openings: 1
+  remaining_ood_openings: 0
+  completion_does_not_mean_all_predictions_passed: true
+  independent_participant_replication: false
+  this_reconciliation_authorizes_new_outcome_access: false
 
 scientist_decisions:
   - on: "2026-10-12"
@@ -19,13 +30,19 @@ scientist_decisions:
     decision: authorize_D1_D2_D3_on_development_after_D0
   - on: "2026-10-12"
     decision: adopt_restated_C1_extended_C2_kept_C3_and_min20_category_rule_and_authorize_ood_exposure_review
+  - on: "2026-10-12"
+    decision: adopt_post_development_pre_lock_C2a_and_conditional_C2b_revision
+    record: outputs/experiment_log.md#2026-10-12-2348-utc--confirmation-design--c2-rewritten-post-hoc-before-the-lock
+  - on: "2026-10-13"
+    decision: approve_the_single_now_consumed_ood_opening
+    record: outputs/experiment_log.md#2026-10-13-0032-utc--ood_confirmation--scientist-approved-the-single-ood-opening
 
 authorization:
   d0_outcome_blind_spectra_authorized: true
   development_compute_authorized: true  # D1-D3, development responses only
   ood_exposure_review_authorized: true
   configuration_lock: outputs/ood_confirmation_lock.json  # written 2026-10-13T00:00:35Z, sha256 efb07381e6c2ed90e14f68337d0fe4c7f311234b09d82822af9f1efe3488b6e1; confirmation design frozen
-  # Additionally requires the exposure review, coverage check and lock.
+  # The single approved opening is complete; no new opening is authorized.
   ood_opening_authorized: false
   raw_image_access_authorized: false
 

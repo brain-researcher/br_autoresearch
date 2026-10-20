@@ -2,9 +2,23 @@
 
 ## Status and decisions
 
+**Current status, reconciled October 15, 2026: `confirmation_complete`.**
+D0–D3 and the single OOD evaluation are complete. The
+[write-once lock](outputs/ood_confirmation_lock.json) preceded the
+[recorded October 13 opening approval](outputs/experiment_log.md#2026-10-13-0032-utc--ood_confirmation--scientist-approved-the-single-ood-opening)
+and [completed run](outputs/experiment_log.md#2026-10-13-0129-utc--ood_confirmation--single-opening-complete-terminal-class-confirmation_complete).
+This status means the evaluation finished, not that every prediction passed:
+the [result summary](outputs/summary.md) retains the failed original C2,
+the adopted revised C2a, descriptive C2b, indeterminate C1 and failed PEcore
+secondary prediction. The same five participants contributed development and
+OOD evidence; this is not independent participant replication. The OOD pool
+has been consumed, and this reconciliation authorizes no new opening.
+
+### Initial design decisions and their subsequent adoption
+
 EP22 is a standalone diagnostic follow-up to the closed
 [EP04](../episode04_shared_scene_geometry/GOAL.md). The design was drafted on
-2026-10-12, and the scientist made two explicit decisions that day:
+2026-10-12, with the following initial scientist decisions:
 
 1. Run this diagnostic before any theory-level episode, such as one on
    co-occurrence operators or human-curated training data.
@@ -15,13 +29,11 @@ EP22 is a standalone diagnostic follow-up to the closed
 3. Later the same day, the scientist adopted the default procedural OOD
    separation and authorized D0.
 
-Everything else in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml), including C1–C3,
-is proposed, not frozen.
-
-- D1–D3 start only when the scientist asks for them.
-- Opening the OOD responses also requires three things described below: the
-  completed outcome-blind exposure review, the binding of the corrected OOD
-  embeddings, and the write-once configuration lock.
+At that initial stage, the remaining design was proposed. Subsequent recorded
+decisions adopted D1–D3, C1–C3 and the pre-lock C2 revision; the completed
+exposure review, corrected embeddings and write-once lock supported the single
+approved OOD opening. The scientific specifications below preserve that design
+and its history; they are not an outstanding request to rerun it.
 
 EP22 does not adopt the adaptive-search protocol.
 

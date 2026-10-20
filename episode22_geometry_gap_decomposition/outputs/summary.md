@@ -46,9 +46,9 @@ The original within-category swap closure ≥50% prediction became C2a (within-c
 | C2a: SigLIP2 spectral penalty | Passed | Mean E_val -0.023; negative in every participant |
 | C2b: all-pairs closure | Descriptive; not evaluable | Native gaps are positive: CLIP 0.074, SigLIP2 0.021 |
 | PEcore secondary criterion | Failed | Mean E_val -0.017; mean E_vec -0.010 |
-| C3: CLIP α transfer | Passed | Mean corrected-minus-native RSA 0.022 |
-| C3: PEcore α transfer | Passed | Mean corrected-minus-native RSA 0.017 |
-| C3: SigLIP2 α transfer | Passed | Mean corrected-minus-native RSA 0.035 |
+| C3: CLIP combined-transform transfer | Passed | Mean transformed-minus-native RSA 0.022 |
+| C3: PEcore combined-transform transfer | Passed | Mean transformed-minus-native RSA 0.017 |
+| C3: SigLIP2 combined-transform transfer | Passed | Mean transformed-minus-native RSA 0.035 |
 
 The superseded original C2 also failed on OOD: its participant rule held in 0/5 for CLIP and 2/5 for SigLIP2.
 DINOv2 also improved under C3, with mean change 0.045; this was not a locked prediction.
@@ -57,9 +57,11 @@ DINOv2 also improved under C3, with mean change 0.045; this was not a locked pre
 ## 5. What is and is not established
 
 Within this evaluated set, the revised spectral-penalty predictions passed for CLIP and SigLIP2.
-C3 supports transfer of a development-fitted spectral exponent α using a development PCA basis; all three VLM predictions passed.
+C3 supports transfer of the combined development-fitted transform; all three VLM predictions passed.
+The [implementation](code/ood_confirmation.py) projects onto the leading 256 development PCA axes and applies spectral weights using the development-fitted exponent α.
+Its comparator is the full native representation, so the reported improvement does not separate PCA truncation from reweighting or isolate the exponent's contribution.
 C1 remains indeterminate, and neither the failed PEcore secondary criterion nor unevaluable C2b establishes its intended claim.
-DINOv2's C3 improvement indicates that useful spectral correction extends beyond VLMs.
+DINOv2 also improves under this combined transform; the observed benefit is therefore not specific to VLMs.
 These findings establish neither population effects nor causal effects of training objectives, and do not establish a universal VLM native-geometry deficit.
 
 ## 6. Post hoc hypotheses

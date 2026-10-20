@@ -3,6 +3,20 @@
 Newest entries first. Entries are keyed by ASTRA analysis ID
 ([program](astra/v0.0.14/astra.yaml)).
 
+## 2026-10-15 Pacific — reporting — reconcile completed EP22 contract status
+
+GOAL.md and SEARCH_POLICY.yaml now identify the completed adopted C1–C3 route, using the original write-once lock, October 13 opening approval and job47580993 completion records.
+The original proposed phase and revised/failed C2 history remain explicit; completion does not imply every prediction passed or independent participant replication.
+The single OOD opening is consumed, with zero remaining; ood_opening_authorized remains false and no new access or execution is authorized.
+Documentation only: no test, job or raw outcome access; use the existing released summary for results.
+
+## 2026-10-15 Pacific — reporting — clarify the combined C3 transform
+
+Documentation-only inspection of code/ood_confirmation.py confirms leading-256 development PCA truncation followed by spectral reweighting, compared with the full native representation.
+Updated summary.md C3 labels and interpretation: the +0.022/+0.017/+0.035 VLM gains support combined-transform transfer, without isolating the exponent's contribution; DINOv2's +0.045 remains descriptive.
+All numerical results, failed/indeterminate conclusions, original scientific rules and consumed OOD boundary are unchanged; no job, test or new outcome access occurred.
+Any future comparison separating truncation and reweighting on these exposed data must be identified as post hoc.
+
 ## 2026-10-13 04:13 UTC — reporting — summary and confirmation figure complete
 
 **Codex output review.** Codex `gpt-6-astra` (`max`, read-only, no commands)
