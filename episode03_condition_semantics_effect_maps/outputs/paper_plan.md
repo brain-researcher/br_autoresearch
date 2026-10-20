@@ -8,6 +8,37 @@ the current Goal and policy specify canonical orientation for both the family
 comparator and semantic residual, before any current-contract map computation. The loss,
 model families, budgets, evidence roles, and audit decision are unchanged.
 
+## October 16 source-fact resolution
+
+Under the scientist's October 16 rule, the unsent [October 6 producer
+request](#october-6-source-resolution-and-retention-recommendation) is now an
+optional confirmation, not a gate. The run's own records resolve the BART spec
+and the FitLins `0.11.0.post0.dev94` build, and job 48169324 resolves the
+`_demean` construction from the events. Fitted N=16 is a stated assumption whose
+df/recompute check waits for permitted target loading. Canonical directions are
+resolved for 9 of 13. The "51 groups" are NeuroEffect's 51 candidate accessions.
+The [DATASETS fact table](../DATASETS.md#source-facts-resolved-2026-10-16) gives
+the evidence. The `technical_failure` contingency below no longer applies to
+missing BART contributors.
+
+**Next analysis step (done October 16; see the [orientation proposal](orientation_freeze_proposal.md)).** Apply the same execution-record route to the other
+candidate routes: 49 accessions with FitLins outputs, 103 routes and 628
+Dataset-level Z filenames. For each route, record:
+
+- the runtime FitLins build;
+- the spec embedded in its report;
+- whether its subject outputs were regenerated with the Dataset maps;
+- any producer edits to its events.
+
+Then freeze the corpus-wide methods-only taxonomy and orientation table, which
+needs rules for event versus implicit baseline, category order and duration
+regressors, together with the negative-control contrast. Only then may the
+first target load run: the df/recompute lineage check, BART first, followed by
+the family-prototype baseline. The only staged record of the 51 IDs is
+`subject_partitions.json` on purgeable Scratch. The census report already
+preserves its key content, and the still-unadopted retention proposal below
+could add the file itself.
+
 ## October 6 public methods sources
 
 The October 6 online review retrieved the producer repository's public

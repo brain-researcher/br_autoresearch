@@ -1,0 +1,165 @@
+{
+  "analysis_id": "grouped_evaluator_qualification",
+  "selected_date": "2026-10-18",
+  "authority": "AGENTS.md standing methods/source-fact authority; no scientific threshold adopted",
+  "inputs": {
+    "routes": "outputs/runs/source_handoff_qualification/20261016-orientation-proposal/route_manifest.tsv",
+    "orientation": "outputs/runs/source_handoff_qualification/20261016-orientation-proposal/orientation_by_map.tsv",
+    "roles": "outputs/runs/source_handoff_qualification/20261016-orientation-proposal/condition_roles.json",
+    "models": "outputs/runs/source_handoff_qualification/20261016-route-census-48185964/embedded_models.json",
+    "methods_preparation": "outputs/runs/grouped_evaluator_qualification/methods001/preparation.json",
+    "dataset_maps": "outputs/runs/source_handoff_qualification/20261016-route-census-48185964/dataset_maps.json",
+    "route_provenance": "outputs/runs/source_handoff_qualification/20261016-route-census-48185964/route_provenance.json"
+  },
+  "reference_mask": {
+    "selected_date": "2026-10-18",
+    "template": "MNI152NLin2009cAsym",
+    "resolution": "02",
+    "home_relative_path": ".cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz",
+    "metadata": ".cache/templateflow/tpl-MNI152NLin2009cAsym/template_description.json",
+    "license": ".cache/templateflow/tpl-MNI152NLin2009cAsym/LICENSE",
+    "shape": [97, 115, 97],
+    "affine": [[2, 0, 0, -96.5], [0, 2, 0, -132.5], [0, 0, 2, -78.5], [0, 0, 0, 1]],
+    "basis": "Existing TemplateFlow anatomical brain mask; common MNI152NLin2009cAsym res-2 source configuration and template metadata. Never derive support from source map values.",
+    "observed_encoding": "Compute step 47586225.8: uint8 labels 0 (846195 voxels) and 255 (235840 voxels); float32 slope 0.003921568859368563, intercept 0; scaled levels 0 and 1.0000000591389835. Evidence: outputs/runs/grouped_evaluator_qualification/mask_text001/reference_diagnosis.json.",
+    "support_normalization": "Require finite exactly two raw and scaled levels, scaled background exactly zero and foreground within one float32 epsilon of one. Map that exact discrete foreground to bool; do not threshold a multilevel/probabilistic mask.",
+    "compatibility": "Reference binary/grid verification and separate header-only check of all 628 exact dataset_maps paths selected. No resampling or target-array access authorized."
+  },
+  "signed_text": {
+    "selected_date": "2026-10-18",
+    "allowlist": "Frozen factor names, level labels, declared category/control/order values, regressor kind/direction and explicitly redacted parametric-quantity phrases; exact model weights times adopted polarity.",
+    "excluded_predictor_fields": ["route", "accession", "session", "contrast", "regressor_name", "paper_title", "dataset_name", "raw_methods_json", "notes", "evidence_codes", "sample_size", "source_paths", "commits"],
+    "meaning_limits": "Only adopted structured meanings; no inference for opaque codes or undocumented signed quantities. Missing descriptions remain unresolved, not exclusions or invented semantics.",
+    "weight_matching": "Within each exact map, use the producer census's lowercase-alphanumeric contrast-name normalization and full ordered definition match to frozen rounded TSV; retain unique exact source numeric strings without rounding or renormalizing. Embedded route models supply regressor transformations. Ambiguity stays unresolved; no fuzzy cross-map matching.",
+    "role_compression": "Distinct raw conditions can share the same adopted factor description. Preserve all weighted terms and disclose this limitation; these strings do not establish full semantic coverage."
+  },
+  "lineage": {
+    "default": "one_accession_per_group_assumed_not_authenticated",
+    "basis": "DATASETS.md source-facts table: Independence unit, adopted 2026-10-16",
+    "cross_accession_nonoverlap": "assumed; generic subject labels and shared software/commits are not overlap evidence",
+    "merge_edges": [],
+    "required_merge_evidence": "documented shared participants, first-level inputs or derivative lineage; record source and both accessions",
+    "role": "historically_exposed_development_only",
+    "legacy_partition_status": "retain as provenance; not an EP03 eligibility filter"
+  },
+  "taxonomy": {
+    "basis": "Paradigm/task instructions and the adopted condition-role dictionary, without maps or scores. Family labels are coarse task contexts, not claims about neural mechanism.",
+    "sensitivity": "Report family support and leave-one-family-out diagnostics. Any later methods-driven family revision is logged before scoring affected outcomes; never choose taxonomy by gain.",
+    "families": {
+      "value_and_reward": {
+        "rationale": "Explicit reward/risk, outcome, incentive or choice paradigms; task contexts retain different condition-level computations for the residual model.",
+        "routes": ["ds000001/task-balloonanalogrisktask", "ds000005/task-mixedgamblestask", "ds000009/task-balloonanalogrisktask", "ds000009/task-discounting", "ds001734/task-MGT", "ds001734/task-MGTM2equalIndifference", "ds001734/task-MGTM2equalRange", "ds001734/task-MGTM3equalIndifference", "ds001734/task-MGTM3equalRange", "ds002006/task-FoodChoice", "ds003858/task-MIDmb4", "ds003858/task-MIDmb8", "ds003858/task-MIDsingle", "ds004920/task-doors", "ds004920/task-mid", "ds004920/task-socialdoors", "ds005012/task-mid"],
+        "role_template": "_mid_template",
+        "assumption": "Monetary outcome/choice is the coarse context even when social or motor factors coexist. MID variants use the adopted common template. No-map routes are retained."
+      },
+      "feedback_classification_learning": {
+        "rationale": "Classification/weather-prediction with deterministic or probabilistic feedback; includes reversal of the learned assignment.",
+        "routes": ["ds000002/task-deterministicclassification", "ds000002/task-mixedeventrelatedprobe", "ds000002/task-probabilisticclassification", "ds000052/task-reversalweatherprediction", "ds000052/task-weatherprediction"],
+        "assumption": "The two ds000002 classification routes inherit the paradigm-level feedback context of the documented probe route; they remain the same accession group."
+      },
+      "response_control": {
+        "rationale": "Stopping, interference or instructed response suppression rather than passive sensory viewing.",
+        "routes": ["ds000008/task-conditionalstopsignal", "ds000008/task-stopsignal", "ds000009/task-stopsignal", "ds000102/task-flanker", "ds000120/task-antisaccadetaskwithfixedorder"],
+        "assumption": "Stopping, flanker and antisaccade are pooled as a broad response-control context; shared orientation rules remain unchanged."
+      },
+      "emotion_regulation": {
+        "rationale": "Instructions to alter emotional responses relative to attend/observe controls, including instructed neurofeedback variants.",
+        "routes": ["ds000009/task-emotionalregulation", "ds000108/task-Emotionregulation", "ds003831/task-modulate1", "ds003831/task-modulate2", "ds004141/task-auditoryfeedback", "ds004141/task-nofeedback", "ds004141/task-visualfeedback", "ds004144/task-epr"],
+        "assumption": "Feedback modalities are variants of the regulation context; physiological efficacy is not assumed."
+      },
+      "language": {
+        "rationale": "Word/verb production or comprehension, lexical or sentence meaning, including pragmatic language contrasts.",
+        "routes": ["ds000051/task-abstractconcretejudgment", "ds000114/task-covertverbgeneration", "ds000114/task-overtverbgeneration", "ds000114/task-overtwordrepetition", "ds003481/task-cmp", "ds003481/task-pc", "ds003481/task-sar", "ds003481/task-verbs", "ds003545/task-compL1", "ds003545/task-compLn", "ds003545/task-prodL1", "ds003545/task-prodLn"],
+        "assumption": "Primary instruction is language despite social/pragmatic content. ds003545 remains screened out by the adopted timing hold."
+      },
+      "visual_perception": {
+        "rationale": "Viewing or perceptually judging visual stimuli, including face/object identity, familiarity and expression.",
+        "routes": ["ds000105/task-objectviewing", "ds000117/task-facerecognition", "ds000157/task-passiveimageviewing", "ds000255/task-viewFigure", "ds000255/task-viewRandom", "ds001297/task-faceidentityoddball", "ds001357/task-familiarity", "ds001357/task-viewing", "ds001715/task-dts", "ds002006/task-ColorDots", "ds003481/task-ec", "ds003481/task-sae", "ds004141/task-faceexplocalizer", "ds004656/task-FoodStimHiLo"],
+        "assumption": "Identity/expression and food viewing are pooled by visual task context; memory, emotion and value distinctions remain in condition descriptions."
+      },
+      "social_judgment": {
+        "rationale": "Explicit judgments about belief, moral/social attributes or intentional agents.",
+        "routes": ["ds000109/task-theoryofmindwithmanualresponse", "ds000212/task-dis", "ds000212/task-fb", "ds000213/task-socialcomparison", "ds002294/task-roletrait", "ds003345/task-PenaltyKik"],
+        "assumption": "Strategic human-versus-computer interaction shares this coarse context; no common neural mechanism is asserted."
+      },
+      "working_memory": {
+        "rationale": "N-back maintenance/updating with target and lure conditions.",
+        "routes": ["ds000115/task-letter0backtask", "ds000115/task-letter1backtask", "ds000115/task-letter2backtask", "ds000148/task-figure2backwith1backlures"],
+        "assumption": "0-back is retained in its n-back paradigm family, not treated as a separate independent task."
+      },
+      "prospective_memory": {
+        "rationale": "Face/scene prospective-memory targets embedded in an ongoing lexical-decision task, as recorded in both adopted role dictionaries.",
+        "routes": ["ds001229/task-em", "ds001229/task-wm"],
+        "assumption": "The em/wm filename alone does not recode these identical documented condition roles as episodic/working-memory families. Single-accession support is reported explicitly."
+      },
+      "episodic_memory": {
+        "rationale": "Study, repeated encoding and later old/new retrieval of items.",
+        "routes": ["ds002006/task-Memory", "ds003789/task-encoding", "ds003789/task-retrieval"],
+        "assumption": "Encoding and retrieval share a coarse memory context; their contrasts remain separate observations within each accession."
+      },
+      "motor_execution": {
+        "rationale": "Instructed motor acts, sequences or goal-directed movements.",
+        "routes": ["ds000114/task-fingerfootlips", "ds000170/task-TrainedHandTrainedSequence", "ds000170/task-TrainedHandUntrainedSequence", "ds000170/task-UntrainedHandTrainedSequence", "ds000170/task-UntrainedHandUntrainedSequence", "ds003441/task-1Norm", "ds003441/task-2Swallow", "ds003441/task-3HandA", "ds003441/task-4HandB", "ds003441/task-5Eyes", "ds003441/task-6DeepBreathing", "ds004056/task-GDMotor", "ds004556/task-feedback"],
+        "assumption": "Motor execution/feedback is a broad context. Unknown GDMotor go/no-go orientations and N=2 maps remain screened independently."
+      },
+      "affective_induction": {
+        "rationale": "External emotional images and cued-recall imagery with documented valence and arousal factors.",
+        "routes": ["ds003831/task-identify1", "ds003831/task-identify2"],
+        "assumption": "Image viewing and internally recalled affect share the induction context; the methods do not say that identify is a passive face-identification task."
+      },
+      "auditory_perception": {
+        "rationale": "Music and non-music auditory stimulation relative to control conditions.",
+        "routes": ["ds000171/task-music", "ds000171/task-nonmusic"],
+        "assumption": "Single-accession support cannot establish cross-dataset transfer."
+      },
+      "somatosensory_perception": {
+        "rationale": "Texture/vibration stimulus comparison under the adopted P/I reading.",
+        "routes": ["ds002872/task-illusion"],
+        "assumption": "Adopted producer reading retained; prescribed sign sensitivity remains required."
+      },
+      "gustatory_perception": {
+        "rationale": "Flavour/conditioned nutrient stimuli with their documented load factor.",
+        "routes": ["ds000229/task-flavor"],
+        "assumption": "Gustatory task context; no reward or satiety mechanism claim."
+      },
+      "visuospatial_judgment": {
+        "rationale": "Line-bisection spatial judgment and control conditions.",
+        "routes": ["ds000114/task-linebisection"],
+        "assumption": "Retain as a distinct paradigm rather than merging it to create cross-group support."
+      },
+      "arithmetic": {
+        "rationale": "Arithmetic main/control instruction as represented in the route and role dictionary.",
+        "routes": ["ds002422/task-arithm"],
+        "assumption": "No promotion to language or working memory solely to improve family support."
+      },
+      "neurofeedback_task": {
+        "rationale": "Task-NF/rest blocks and associated motor-imagery pre/post routes; the role dictionary supplies no more specific task instruction.",
+        "routes": ["ds002338/task-1dNF", "ds002338/task-2dNF", "ds002338/task-MIpre", "ds002338/task-MIpost"],
+        "assumption": "Coarse neurofeedback context only; no motor-imagery mechanism inferred from a task filename."
+      }
+    },
+    "unresolved_routes": {
+      "ds004604/task-gas": "No condition-role entry; gas task instructions need methods evidence.",
+      "ds005267/task-eye": "CND codes and task instructions are unresolved; eye filename alone is insufficient."
+    }
+  },
+  "normalization": {
+    "target": "source-sign-authenticated unthresholded group Z; float64 within a prospectively fixed common space and mask",
+    "operation": "subtract each map's masked spatial mean then divide by its masked Euclidean norm; apply adopted s afterward",
+    "mask": "Prospectively bind reference_mask above; no zero-based mask inference, target-dependent voxel removal, interpolation or imputation. Full target header compatibility remains pending.",
+    "nonfinite_or_constant": "fail the affected evaluation; do not drop rows or modify support after scoring",
+    "predictions": "do not renormalize prototypes or predictions; restore s to the complete canonical prototype plus residual",
+    "group_weights": "uniform contrasts within group, then uniform groups; canonical family prototype averages within group before between groups",
+    "loss_ratio": "compute group-level model and prototype MSE on identical rows, then 1 - model/prototype; no denominator epsilon, clipping, ratio of pooled losses or per-map ratio averaging"
+  },
+  "decisions_not_adopted": {
+    "minimum_meaningful_relative_gain": null,
+    "minimum_fraction_groups_improved": null,
+    "negative_control_pass_threshold": null,
+    "inferential_error_level_and_multiplicity": null,
+    "reliability_and_precision_requirement": null,
+    "patience_noise_tolerance": null
+  },
+  "baseline_target_access": false,
+  "scientific_scoring": false
+}

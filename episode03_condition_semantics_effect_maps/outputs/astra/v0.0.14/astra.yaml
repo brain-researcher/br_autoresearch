@@ -11,7 +11,14 @@ outputs:
   - {id: source_report, from: source_handoff_qualification.source_report}
   - {id: contributor_support, from: source_handoff_qualification.contributor_support}
   - {id: first_route_contributor_support, from: source_handoff_qualification.first_route_contributor_support}
+  - {id: source_fact_resolution, from: source_handoff_qualification.source_fact_resolution}
+  - {id: route_census, from: source_handoff_qualification.route_census}
+  - {id: orientation_proposal, from: source_handoff_qualification.orientation_proposal}
+  - {id: fitted_n_lineage, from: source_handoff_qualification.fitted_n_lineage}
   - {id: evaluator_report, from: grouped_evaluator_qualification.evaluator_report}
+  - {id: methods_preparation, from: grouped_evaluator_qualification.methods_preparation}
+  - {id: mask_and_signed_text, from: grouped_evaluator_qualification.mask_and_signed_text}
+  - {id: common_grid_headers, from: grouped_evaluator_qualification.common_grid_headers}
   - {id: development_report, from: adaptive_development.development_report}
   - {id: finalist_report, from: finalist_stress_test.finalist_report}
   - {id: locked_pipeline, from: configuration_lock.locked_pipeline}
@@ -60,6 +67,63 @@ analyses:
             --analysis-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses"
             --output-dir {output}
           resources: {cpus: 1, memory: 1Gi, time_limit: 5m}
+      - id: source_fact_resolution
+        type: report
+        format: json
+        inputs: [candidate_map_manifest, datasets, search_policy]
+        decisions: [role_and_support, source_facts]
+        recipe:
+          command: >-
+            python3 -I -B outputs/code/check_bart_event_construction.py
+            --used-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/input/ds000001"
+            --source-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses/ds000001/sourcedata/raw"
+            --output {output}/bart_event_construction.json
+            && python3 -I -B outputs/code/reconstruct_neuroeffect_candidates.py
+            --partitions "$SCRATCH/neuroeffect-full51-spatial-build/20260917T201500Z.2230efb/release-stage-v1/subject_partitions.json"
+            --release-metadata "$SCRATCH/neuroeffect-full51-spatial-build/20260917T201500Z.2230efb/release-stage-v1/release_metadata.json"
+            --design-receipt "$SCRATCH/neuroeffect-full51-spatial-build/20260917T201500Z.2230efb/release-stage-v1/inputs/design_sidecars.runtime.json"
+            --metadata-census outputs/runs/source_handoff_qualification/20261003-metadata01/source_metadata_report.json
+            --analysis-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses"
+            --output {output}/neuroeffect_candidate_provenance.json
+          resources: {cpus: 1, memory: 4Gi, time_limit: 20m}
+      - id: route_census
+        type: report
+        format: json
+        inputs: [candidate_map_manifest, datasets, search_policy]
+        decisions: [role_and_support, source_facts]
+        recipe:
+          command: >-
+            python3 -I -B outputs/code/census_route_provenance.py
+            --candidates outputs/runs/source_handoff_qualification/20261016-source-facts-48169324/neuroeffect_candidate_provenance.json
+            --analysis-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses"
+            --input-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/input"
+            --output-dir {output}
+          resources: {cpus: 1, memory: 8Gi, time_limit: 60m}
+      - id: orientation_proposal
+        type: report
+        format: json
+        inputs: [goal, datasets, search_policy]
+        decisions: [source_facts, orientation_freeze]
+        recipe:
+          command: >-
+            python3 -I -B outputs/code/build_route_manifest.py
+            --census-dir outputs/runs/source_handoff_qualification/20261016-route-census-48185964
+            --roles outputs/runs/source_handoff_qualification/20261016-orientation-proposal/condition_roles.json
+            --edits outputs/runs/source_handoff_qualification/20261016-orientation-proposal/event_edit_review.json
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 15m}
+      - id: fitted_n_lineage
+        type: report
+        format: json
+        inputs: [candidate_map_manifest, datasets, search_policy]
+        decisions: [source_facts, orientation_freeze]
+        recipe:
+          command: >-
+            python3 -I -B outputs/code/check_group_df_recompute.py
+            --census-maps outputs/runs/source_handoff_qualification/20261016-route-census-48185964/dataset_maps.json
+            --analysis-root "$OAK/data/OpenNeuro_analyses/openneuro_fitlins/analyses"
+            --output {output}/fitted_n_lineage.json
+          resources: {cpus: 1, memory: 8Gi, time_limit: 3h}
     decisions:
       role_and_support:
         label: Source lineage, independence and eligibility
@@ -67,19 +131,82 @@ analyses:
         options:
           exposed_development_requires_signed_map_handoff:
             label: Census preserved spatial metadata without maps; report unresolved independent groups and signed-map handoff explicitly; historical spatial lineage cannot substitute for eligible unthresholded group Z maps or fresh audit
+      source_facts:
+        label: Missing source facts under the October 16 rule
+        default: recovered_or_stated_assumption
+        options:
+          recovered_or_stated_assumption:
+            label: Recover the executed spec, build and event construction from execution records, code and events; adopt BART N=16 and one group per accession as stated assumptions before outcome access, with the target-load df/recompute and duplicate-lineage checks pending
+      orientation_freeze:
+        label: Corpus-wide methods-only orientation and negative-control identity
+        default: frozen_20261016
+        options:
+          frozen_20261016:
+            label: "Frozen R1–R7 with precedence, the one-sided-factor rule, condition_roles.json and P/I readings; exclude null, duplicate, never-convolved and N=2 maps, hold ds003545 pending onset timing, and adopt within-run trial split with replicate-order fallback and its route-selection rule (outputs/orientation_freeze_proposal.md)."
 
   grouped_evaluator_qualification:
     name: Qualify grouped canonical prototype-residual evaluation before scoring
     inputs:
       - {id: source_report, from: ../source_handoff_qualification.source_report}
       - {id: search_policy, from: ../search_policy}
+      - {id: methods_specification, type: data, source: outputs/config/methods_preparation.json}
+      - {id: route_metadata, type: data, source: outputs/runs/source_handoff_qualification/20261016-orientation-proposal/route_manifest.tsv}
+      - {id: orientation_metadata, type: data, source: outputs/runs/source_handoff_qualification/20261016-orientation-proposal/orientation_by_map.tsv}
+      - {id: condition_roles, type: data, source: outputs/runs/source_handoff_qualification/20261016-orientation-proposal/condition_roles.json}
+      - {id: prepared_group_metadata, type: data, source: outputs/runs/grouped_evaluator_qualification/methods001/preparation.json}
+      - {id: executed_models, type: data, source: outputs/runs/source_handoff_qualification/20261016-route-census-48185964/embedded_models.json}
+      - {id: exact_map_metadata, type: data, source: outputs/runs/source_handoff_qualification/20261016-route-census-48185964/dataset_maps.json}
+      - {id: source_root_metadata, type: data, source: outputs/runs/source_handoff_qualification/20261016-route-census-48185964/route_provenance.json}
+      - {id: anatomical_reference, type: data, source: "$HOME/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz"}
     outputs:
+      - id: methods_preparation
+        type: report
+        format: json
+        inputs: [methods_specification, route_metadata, orientation_metadata, condition_roles, search_policy]
+        decisions: [methods]
+        recipe:
+          command: >-
+            python3.12 -B outputs/code/prepare_grouped_methods.py
+            --output {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 5m}
+      - id: mask_and_signed_text
+        type: report
+        format: json
+        inputs: [methods_specification, orientation_metadata, condition_roles, prepared_group_metadata, executed_models, exact_map_metadata, source_root_metadata, anatomical_reference]
+        decisions: [methods, anatomical_support_and_text]
+        recipe:
+          command: >-
+            python3.12 -B outputs/code/prepare_mask_and_signed_text.py
+            --output-dir {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 5m}
+      - id: common_grid_headers
+        type: report
+        format: json
+        inputs: [methods_specification, prepared_group_metadata, exact_map_metadata, source_root_metadata]
+        decisions: [anatomical_support_and_text]
+        recipe:
+          command: >-
+            python3.12 -B outputs/code/prepare_mask_and_signed_text.py
+            --headers-only --output-dir {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 10m}
       - id: evaluator_report
         type: report
         format: json
         inputs: [source_report, search_policy]
         decisions: [orientation, inference]
     decisions:
+      anatomical_support_and_text:
+        label: Prospective anatomical support and methods-only signed text
+        default: fixed_template_mask_and_structured_roles
+        options:
+          fixed_template_mask_and_structured_roles:
+            label: "Use the existing MNI152NLin2009cAsym res02 anatomical brain mask, exact executed contrast coefficients and adopted structured roles; IDs remain provenance. Preserve all 628 identities/exclusions. Check only enumerated target headers separately, report mismatches, and keep baseline/scoring false. No raw titles/methods prose, target-dependent mask, resampling or invented opaque semantics."
+      methods:
+        label: Methods-only family context and conditional lineage grouping
+        default: prospective_taxonomy_and_accession_lineage_assumption
+        options:
+          prospective_taxonomy_and_accession_lineage_assumption:
+            label: "Use the selected route dictionary and exact frozen metadata; pool accession tasks/sessions, merge evidenced overlaps, retain unverified cross-accession independence as an assumption, and leave scientific thresholds unadopted. Metadata preparation does not authorize baseline target access."
       orientation:
         label: Shared canonical coordinates
         default: complete_prediction_single_sign_restoration

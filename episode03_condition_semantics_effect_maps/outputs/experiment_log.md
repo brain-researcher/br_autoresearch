@@ -1,5 +1,177 @@
 # Experiment log
 
+## 2026-10-18 18:22 PDT — grouped_evaluator_qualification — mask_text002 complete; all 628 headers compatible
+
+Step **47586225.9** passed the affected scaling regression (0.75 s, 40,620 KiB), built [mask_text002](runs/grouped_evaluator_qualification/mask_text002/preparation.json) (0.82 s, 71,928 KiB), and passed changed ASTRA validation (3.75 s, 73,488 KiB); the attended shell exited successfully.
+The anatomical mask preserves **235,840 foreground voxels**. Step 47586225.8's independent [headers001](runs/grouped_evaluator_qualification/headers001/headers.json) confirms **628/628** compatible headers; no target voxel array was read.
+Structured text is available for **574/628** maps. Among the **500** maps without current metadata exclusions, **477** have structured text (325 distinct descriptions), and **23** retain unresolved meanings without being silently excluded.
+All identities, exclusions and roles remain; the failed mask_text001 and its encoding diagnosis are preserved. The six input checks and eight earlier evaluator checks pass, with only the affected mask test repeated after repair.
+Next: resolve the 23 condition meanings from permitted methods metadata, then finish source eligibility and predictor composition; inference thresholds remain unadopted and baseline/scientific access stays false.
+
+## 2026-10-18 18:20 PDT — grouped_evaluator_qualification — reference encoding diagnosed; mask_text002 selected
+
+Step **47586225.8** found exact uint8 labels 0/255; float32 slope `0.003921568859368563` maps foreground to `1.0000000591389835`, so the exact-one check rejected legitimate encoding roundoff.
+[Reference diagnosis](runs/grouped_evaluator_qualification/mask_text001/reference_diagnosis.json) confirms 235,840 foreground locations, finite two-level support and the selected grid.
+The independent [header check](runs/grouped_evaluator_qualification/headers001/headers.json) passed **628/628** exact maps (34.73 s, 54,172 KiB); no target voxel arrays were read.
+Implemented and independently reviewed a two-level scaling repair preserving exact support, with no probability threshold; 0/0.5 and multilevel references remain invalid.
+Selected the single affected mask test, corrected `mask_text002` build and changed ASTRA validation in the same bounded attended step; the other passing checks and headers are reused.
+The first regression invocation never ran: the coordinator replaced the module-provided `PYTHONPATH`, hiding NumPy. Step 47586225.8 exited 1; selected a new 1-CPU/512-MiB/5-minute companion using direct test-script invocation with the existing module path preserved.
+
+## 2026-10-18 18:17 PDT — grouped_evaluator_qualification — mask_text001 reference check stopped; diagnosis selected
+
+Step **47586225.7** passed all six focused tests (0.82 s, 40,152 KiB) but the real reference build stopped at `reference mask is not finite binary support` (0.77 s, 70,832 KiB).
+The failed `mask_text001` attempt is preserved; no target array, scientific score or threshold was opened/changed. Header and ASTRA phases had not run when the attended step exited 1.
+Selected a new bounded companion step in task-owned 47586225: 1 CPU/512 MiB/15 minutes, inspecting only the selected reference's datatype, scaling and value counts and finishing the independent 628-header check.
+Diagnose before changing the reader or support rule; preserve the original anatomical support and continue a corrected build only if justified by those observations.
+
+## 2026-10-18 18:16 PDT — grouped_evaluator_qualification — mask_text001 and headers001 execution selected
+
+Selected six focused checks, the reference-mask/signed-text build, exact 628-map header-only compatibility and changed ASTRA validation after independent source review.
+Use a coordinator-owned attended companion step in substantive allocation 47586225: 1 CPU, 512 MiB, 15-minute step; header I/O has a separate 10-minute command limit.
+The active EP21 worker remains one numerical thread with a 15 GiB process RSS limit; combined work stays within the existing 3 CPUs/16 GiB, with EP03 outputs only and no EP21 payload access.
+Preserve all map identities/exclusions and exact coefficient/polarity bindings; read only the selected anatomical reference array and enumerated target headers, with baseline/scientific access false.
+Next: record actual step, text/support counts, compatibility outcomes and resource measurements; diagnose failures without adopting inference thresholds or pruning data.
+
+## 2026-10-18 18:14 PDT — grouped_evaluator_qualification — anatomical mask and signed-text preparation selected
+
+Selected the existing TemplateFlow MNI152NLin2009cAsym res02 brain mask and exact structured-role text under standing methods authority; full scientific comparison remains family prototype versus prototype plus signed semantics.
+Prepared `code/prepare_mask_and_signed_text.py`, six focused checks and separate reference/text and 628-map header-only phases; all original identities, exclusions, orientations and data roles are retained.
+Exact paths and model coefficients reuse the existing route census; raw titles/methods prose and source IDs are excluded from predictors, and unresolved meanings stay explicit.
+No new code/test/job has run in this preparation; no target array or scientific score has been opened. The earlier eight checks and methods001 execution remain valid.
+Coordinator estimate: 1 CPU/512 MiB; <1 minute reference/text and up to 10 minutes for header I/O, measured in task-owned compute before scaling.
+Next: independent source review, focused compute checks and the two new attempts; diagnose any source/text mismatch without changing eligibility, while retaining the unadopted inference decision packet.
+
+## 2026-10-18 18:03 PDT — grouped_evaluator_qualification — methods001 verified and built
+
+Task-owned companion step **47586225.6** ran on `sh04-04n23.int` and exited successfully; no baseline maps or scientific scores were accessed.
+All **8 focused tests passed**; [tests](runs/grouped_evaluator_qualification/methods001/tests.txt) took 1.19 s and 39,872 KiB peak RSS; the metadata build took 0.23 s and 17,824 KiB.
+[Preparation](runs/grouped_evaluator_qualification/methods001/preparation.json) accounts for **103 routes, 49 source accessions and 628 maps**; 500 have no current metadata exclusion, and 38 accession groups support some outer comparison.
+Those are provisional metadata counts, not authenticated independent groups or final map eligibility; baseline-target and scientific-scoring flags remain false.
+Changed ASTRA schema/semantic validation passed (3.93 s, 73,340 KiB); no substantive scientific threshold was adopted.
+Next: bind common anatomical space/mask and remaining source/text inputs; retain the unadopted inference decision packet before scientific baseline access.
+
+## 2026-10-18 18:02 PDT — grouped_evaluator_qualification — coordinated methods001 verification selected
+
+Selected the eight focused tests, 628-row metadata-only build and changed ASTRA validation; no target arrays, scientific scoring or threshold adoption.
+Use an attended companion step in task-owned substantive allocation 47586225: 1 CPU, 512 MiB, 5 minutes; its existing EP21 worker remains limited to one numerical thread and 15 GiB process RSS within the allocation's 3 CPUs/16 GiB.
+The coordinator owns this step; outputs stay in EP03's `outputs/runs/grouped_evaluator_qualification/methods001/`, with no reads or writes to EP21 result payloads.
+Independent source review found no implementation defect; its positive-sensitivity wording clarification is incorporated in the unadopted specification.
+Next: record actual step, test/build outcome and measured resources, then use the metadata support to prepare the remaining common-space/text inputs.
+
+## 2026-10-18 17:55 PDT — grouped_evaluator_qualification — methods preparation selected
+
+Selected under standing authority: the registered family-prototype versus prototype-plus-signed-semantics comparison, with equal independent-group weighting and every required control retained.
+Prepared [methods/configuration](grouped_evaluator_specification.md), the metadata-only taxonomy/grouped-fold builder and exact normalization/prototype/loss primitives; no existing evaluator was found to reuse.
+The frozen orientation/screens/control identity and October 17 fitted-N history are preserved; accession independence remains an explicit assumption, with evidence-based overlap merging and no new audit role.
+Eight focused fixtures and the actual 628-row metadata build are unrun; no job submitted, target image opened, model fitted or scientific score read in this preparation.
+The linked specification contains one concrete, unadopted inference/threshold packet; taxonomy and ordinary engineering choices do not require a new generic approval.
+Next: coordinator-owned compute verification and metadata build, fixed common-space/mask and remaining source qualification, then the registered comparison only when the actual threshold/access prerequisites are satisfied.
+
+## 2026-10-17 06:07 PDT — ds003545 compL1 contributors identified (job 48245679); fitted N resolved for all 628 maps
+
+Job **48245679** (52 s) ran the leave-k-out search. In all 6 ds003545 compL1 maps, removing **sub-13 and sub-14** reproduces the Dataset effect (max relative Δ ≈ 5e-16) and t (r = 1.0000000000), out of 231 pairs per map. These maps were fitted on N=20, while 22 subject maps exist. The flag "conditions absent in 8/88 designs" matches 2 subjects × 2 sessions × 2 runs, but that link is not verified.
+Fitted N is now resolved for all 628 maps: 622 confirmed as assumed, and 6 corrected to N=20 under the pre-registered rule. Downstream sample-size terms must use these values. The census JSON keeps its original counts; the corrections are in the 48245679 report.
+Selected: ASTRA validation, job **48245776** (prebuilt validator, 1 CPU, 2 GB, 10 min), with `fitted_n_lineage` registered. Next scientific step: the family-taxonomy and inference-specification freezes, which come before the family-prototype baseline.
+ASTRA validated in job **48245776**. EP03 compute on October 17: 10,045 core-seconds (2.8 core-hours) across five jobs; the lineage checks were allocated 2 CPUs.
+
+## 2026-10-17 06:02 PDT — corpus N lineage: 622/628 confirmed (job 48221634); ds003545 compL1 diagnosis selected
+
+Job **48221634** (81 min) applied the pre-registered rule to all 628 maps, and 622 are confirmed: the best df is n−1 with zero t→z error, the Dataset effect equals the mean of the n inputs within 1.2e-15, t correlates at r ≥ 0.9999999999999997, and the inputs match the census subjects. Confirmed N ranges from 2 to 108, so the census N assumption is resolved for these maps.
+The 6 ds003545 compL1 maps (both sessions) are not confirmed. Their t→z conversion fits df = 19 exactly, so FitLins used 20 inputs, yet 22 subject maps exist and all were written by the same commit. Dropping any single subject does not match (the closest is sub-14).
+Selected: a leave-k-out search with k = n−1−df = 2 (231 pairs per map), added to `code/check_group_df_recompute.py`. It reruns on ds003545/task-compL1 only in job **48245679** (1 CPU, 8 GB, 30 min). An exact pair match corrects N to 20 and identifies the dropped contributors. Otherwise the maps are excluded; they are already held out of the primary set for timing.
+
+## 2026-10-17 00:25 PDT — BART N=16 confirmed (job 48221009); corpus lineage check selected
+
+Job **48221009** (83 s) confirmed all 13 BART maps under the pre-registered rule:
+- the best df is 15, with median |z_pred−z| = 0 (df 16 is off by 4e-3 to 1.2e-2);
+- the Dataset effect equals the mean of the 16 subject effect maps (max relative Δ ≤ 1e-15);
+- the recomputed t is identical (r = 1.0000000, max |Δt| ≤ 9e-15);
+- the inputs are sub-01…16.
+The BART N=16 assumption is resolved. ASTRA validated in job **48221008**.
+The gate is passed. Selected job **48221634**: the same check on all routes (`run_fitted_n_lineage.sbatch corpus`, 1 CPU, 8 GB, 3 h, default 20,000 df voxels), reading only Dataset t/z/effect/variance images and the feeding nodes' effect images.
+
+## 2026-10-17 00:21 PDT — BART fitted-N lineage check selected (first target load)
+
+Decision rule, fixed before the run, applied per Dataset map with census input count n (the thresholds are constants in the script):
+1. The best integer df fitted to paired t/z voxels (1<|t|<7) equals n−1, with median |z_pred−z| ≤ 1e-3 at n−1.
+2. The Dataset effect equals the mean of the n inputs within the nonzero-t mask: max |Δ| ≤ 1e-4 × max |effect|.
+3. The recomputed t (sd with ddof=1) correlates ≥ 0.9999 with the Dataset t, with median |Δt| ≤ 1e-3.
+4. The inputs found equal the census subjects.
+A map that fails gets a leave-one-out scan for a dropped contributor; N is then corrected, or the map excluded if contributors stay unknown. All routes run only if BART's 13 maps are confirmed or every failure is explained.
+Selected job **48221009**: `code/run_fitted_n_lineage.sbatch bart ds000001/task-balloonanalogrisktask` (1 CPU, 8 GB, 30 min). It reads only the Dataset t/z/effect/variance images and the 208 subject effect images.
+
+## 2026-10-17 00:21 PDT — orientation frozen; N lineage check next
+
+On the scientist's instruction (2026-10-16, Pacific), all four proposal items were frozen as written: rules R1–R7 with their precedence and the role dictionary, the P/I readings, the eligibility screens, and the negative-control identity (trial split, with replicate order as fallback) and its route-selection rule.
+Frozen references: the [proposal](orientation_freeze_proposal.md), the build-48189996 artifacts (now read-only) and `code/build_route_manifest.py`. SEARCH_POLICY, DATASETS and the ASTRA decision record the freeze. 21 maps remain unresolved.
+Codex (gpt-6-astra, max, text-only) drafted these records and `code/check_group_df_recompute.py`. I reviewed both before applying them and made three fixes: corrected the review attribution, made report writing NaN-safe, and added the subject-match criterion. A parallel Codex start hit the shared login-node thread limit and was rerun alone.
+The family taxonomy, the negative-control pass threshold and normalisation remain separate freezes before the family-prototype baseline. Selected: ASTRA validation with the prebuilt validator, job **48221008** (1 CPU, 2 GB, 10 min).
+
+## 2026-10-16 18:37 PDT — proposal critique; amended rebuild selected
+
+ASTRA validation passed in job **48189598**, with the census and proposal outputs registered. A read-only Codex critique of the proposal (text only, no data; review kept on Scratch) prompted these amendments, all before any outcome:
+- R2 is stated in both directions, with an added check that reversed weights give −s.
+- ds004056 go/no-go is unresolved because its roles are undocumented.
+- self/friend and old/new recognition responses become category conventions.
+- A lower-level decision is marked assumed when a higher factor is defined on one side only.
+- R1 and R6 are described as coordinate conventions; their signs are unchanged.
+- The trial-split negative control is preferred to replicate-order.
+Selected: rerun of the build (same job file, 1 CPU, 2 GB, 15 min). The onset check repeats unchanged.
+Job **48189996** finished. Orientation now stands at 208 resolved (all 9 frozen reproduced), 51 assumed, 345 proposed, 21 unresolved and 3 ineligible; included accessions: 106/33/163/19/1. All 628 maps pass the reversal check. Its outputs replace those of job 48188582 in the same directory; the earlier counts survive only in the 18:32 entry. The [proposal](orientation_freeze_proposal.md) is rewritten to match. Compute today for this task: 1,738 core-seconds (0.48 core-hours) across six jobs; the two census jobs were allocated 2 CPUs each. Next: freeze the rules, then the BART df/recompute load.
+
+## 2026-10-16 18:32 PDT — route manifest and orientation proposal; job 48188582
+
+Job **48188582** wrote the [route manifest](runs/source_handoff_qualification/20261016-orientation-proposal/route_manifest.tsv) and the [per-map orientation](runs/source_handoff_qualification/20261016-orientation-proposal/orientation_by_map.tsv) for 103 routes and 628 maps.
+- Builds: resolved for all 96 routes with maps; 49 were read from the later in-git copy of the annexed `dataset_description.json`.
+- Specs: resolved in 95 routes. ds000009 BART is assumed because its report predates its maps.
+- N: assumed for all 628 maps; df check pending. 57 maps have N=2.
+- Events: 26 accessions resolved, 2 assumed (ds000009, ds002872), 21 unedited.
+- Orientation under the proposed R1–R7: 210 resolved, reproducing all 9 frozen BART decisions; 58 assumed, 339 proposed-rule, 18 unresolved, 3 ineligible. Included accessions: 108/40/157/16/1 of 322.
+- ds003545 onset check inconclusive.
+The rules and the replicate-order negative control are in the [proposal](orientation_freeze_proposal.md). Selected: ASTRA validation (1 CPU, 2 GB, 10 min) after adding `route_census`, `orientation_proposal` and `orientation_freeze`. Next: freeze the rules, then the BART df/recompute load.
+
+## 2026-10-16 18:24 PDT — rerun 48185964 complete; manifest build selected
+
+Rerun **48185964** (280 s) covered all 103 routes and 628 maps with no errors. Builds: dev16 on 58 routes, dev42 on 37, dev94 on 1, all nilearn `5:run:iso`. Embedded spec vs local: 86 exact, 2 pybids defaults, 2 input filter, 6 changed contrasts. Every map's input effect maps were rewritten by its own commit, one per subject. 7,578 design headers were read.
+Definitions were checked against the run-level designs. Two kinds of defect surfaced: ds000009 discounting's pm regressors and ds004556's `rating` were never convolved, and five names do not match their definitions. ds000009's event edits came from code committed only after its run.
+Job **48188518**: the onset check ran, but the builder failed while writing its summary (tuple JSON keys); fixed and resubmitted with the same inputs. Selected job: 1 CPU, 2 GB, 15 min. `code/build_route_manifest.py` applies the hand-authored `condition_roles.json` and `event_edit_review.json` to EP03 records only. `code/check_dummy_onsets.py` reads ds003545 events and BOLD JSON to test onsets against the 4 trimmed volumes. Output: `runs/source_handoff_qualification/20261016-orientation-proposal/`.
+
+## 2026-10-16 18:00 PDT — census 48184490 complete; corrected rerun selected
+
+Job **48184490** (1 CPU, 548 s) covered 103 routes and 628 Dataset Z maps with no errors. It reproduces BART: `d723670` rewrote 13/13 Dataset maps and 208/208 subject effect maps; the build is dev94; the spec equals `4dc69d7`; the only edit is n/a→0. Corpus-wide, the commit that wrote each Dataset map also wrote every one of its input effect maps, and each subject contributes one input.
+Three defects need a rerun:
+- 49 routes' `dataset_description.json` was still annexed at their map commit, so no version was read;
+- ds003441 has two map commits;
+- ds003858's basic-details key is `MID`.
+Selected rerun: same shape, plus an unannex fallback, per-commit report models, spec-difference classes, prefix task keys, function history and run-level design-matrix headers (column names only). Output: `20261016-route-census-<job>/`. The first run is kept.
+
+## 2026-10-16 17:45 PDT — per-route execution-record census selected
+
+This extends the BART treatment to all 103 routes of the 49 NeuroEffect accessions with FitLins analyses (628 Dataset Z filenames). For each route, `code/census_route_provenance.py` reads the following, using git log/show only:
+- the `analyses/<ds>` git history;
+- `dataset_description.json` and the FitLins report as committed with each Dataset Z map;
+- the history of the producer spec and of `modify_events.py`;
+- events TSVs where the producer's input copy survives, plus the task sidecars.
+It opens no image, header, PNG, group report or score. Its validity check: it must reproduce the BART facts (`d723670` rewrote 208/208 subject effect maps; dev94; spec match).
+Selected job: 1 CPU, 8 GB, 60 min. Output goes to `runs/source_handoff_qualification/20261016-route-census-<job>/`.
+
+## 2026-10-16 17:24 PDT — ASTRA program updated and validated
+
+`source_handoff_qualification` gains the `source_fact_resolution` output and a `source_facts` decision. Schema and semantic validation passed in job **48182822**, using astra-spec 0.0.14 via the prebuilt `brain-researcher-astra` venv ([record](astra/v0.0.14/validation_20261016_job48182822.json)). Two earlier attempts did not validate. Job 48181001, via uvx, was cancelled after 11 min while it was still compiling `pyoxigraph`. Job 48182658 failed because the libpython module was not loaded. Today's EP03 compute totals 729 core-seconds (0.20 core-hours).
+
+## 2026-10-16 17:06 PDT — source facts resolved; job 48169324
+
+Job **48169324** (1 CPU; submitted 15:28:53 PDT, ran 15:30:40–15:30:52, 0.18 GB) read events TSVs, metadata and filenames only. In all 48 runs the producer's only edit was n/a→0. `pumps_demean` and `control_pumps_demean` rise +1 per pump within a balloon: 3,070/3,070 reward steps; 1,984 control steps, the rest resets. Reward pumps are centered within each balloon.
+`cash_demean` and `explode_demean` equal the pump count minus the run mean over that outcome (slope 1, residual <2e-15 in 48 and 47 runs). Under the 15:28 rule, `pumpspara`, `controlpara`, `cashpara` and `explodepara` take `s=+1`, so 9/13 directions are now resolved. The remaining four need ontology rules, not more source facts.
+Also resolved: the spec and FitLins dev94 build that ran. N=16 is assumed, with its check pending. The "51" are NeuroEffect candidate accessions (31 included / 20 excluded), and 628 Dataset Z filenames exist, not 577; see the [fact table](../DATASETS.md#source-facts-resolved-2026-10-16). One `git status` call created and removed a lock in the shared `input/ds000001/.git`; no content changed.
+Next: resolve the other candidate routes the same way, then freeze the corpus orientation table and the negative-control identity before the first target load.
+
+## 2026-10-16 15:28 PDT — source-fact rules fixed before the events check
+
+These were fixed before any map access, and none occurs here. **Assumed:** each of the 13 BART Dataset maps has N=16, contributors sub-01–16; the evidence is in [DATASETS](../DATASETS.md#source-facts-resolved-2026-10-16). The numerical check (df from the t/z maps, recompute from the 16 subject maps) loads target maps, so it waits for the pre-load freezes: the GOAL orientation rule and the SEARCH_POLICY negative-control `identity_freeze`.
+**Rule for the `*_demean` columns:** the +1 coefficient is "higher minus lower pump count", `s=+1`, if the source events rise by +1 per pump within a balloon (≥95% of steps) or, for cash/explode, equal the pump count minus a constant (|slope−1| and residual ≤0.01). A −1 relation gives `s=−1`; any other relation stays unresolved.
+Selected job: 1 CPU, 4 GB, 20 min. It runs `code/check_bart_event_construction.py` plus a filename-only census of the 51 NeuroEffect candidates (`code/reconstruct_neuroeffect_candidates.py`), with output in `runs/source_handoff_qualification/20261016-source-facts-<job>/`.
+
 ## 2026-10-06 Pacific — public model and event-definition sources added
 
 At the scientist's request, incorporated the preceding bounded online review

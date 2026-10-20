@@ -1,5 +1,57 @@
 # Outputs
 
+**October 18, 18:22 Pacific — anatomical mask, signed text and header preparation completed.**
+The [prospective specification](grouped_evaluator_specification.md#selected-anatomical-reference-and-signed-text-preparation--october-18)
+now binds the existing MNI152NLin2009cAsym res02 anatomical brain mask and implements
+canonical text from adopted structured roles and exact executed contrast weights.
+All 628 identities and existing metadata exclusions are preserved. All **628
+headers match** the selected grid, and the anatomical mask contains **235,840
+foreground voxels**. A diagnosed header-scaling roundoff was repaired without
+changing support; the original failed attempt is preserved.
+The [completed text/reference build](runs/grouped_evaluator_qualification/mask_text002/preparation.json)
+describes 574/628 maps. Among the 500 maps passing current metadata screens,
+477 have structured text and 23 retain unresolved meanings. These remain input
+preparation results, not scientific predictions or final eligibility.
+Six focused checks passed, with the affected mask check repeated after repair;
+ASTRA validation passed. [Execution record](experiment_log.md#2026-10-18-1822-pdt--grouped_evaluator_qualification--mask_text002-complete-all-628-headers-compatible).
+The inference package remains unadopted and baseline/scientific-scoring access false.
+
+**October 18, 18:03 Pacific — methods-only comparison preparation verified.**
+The [concrete evaluator specification and one pending decision packet](grouped_evaluator_specification.md)
+now accompany an explicit methods-only taxonomy, conditional accession-lineage
+fold builder and exact normalization/prototype/group-weighted-score functions.
+All **eight focused checks passed** in step **47586225.6**, and the
+[metadata build](runs/grouped_evaluator_qualification/methods001/preparation.json)
+accounts for 628 maps across 103 routes and 49 source accessions. Of these, 500
+pass current metadata screens; 38 accession groups support some outer comparison.
+These counts do not authenticate independence or final map eligibility.
+No baseline target access or scientific model score is released.
+The previously adopted orientation/screens/control identity
+and completed fitted-N checks are reused; the remaining new scientific decision
+is the explicit inference/threshold package. Source eligibility, unresolved text
+meanings and predictor implementation remain unfinished.
+[Execution record](experiment_log.md#2026-10-18-1803-pdt--grouped_evaluator_qualification--methods001-verified-and-built).
+
+**October 18 navigation correction:** orientation adoption and the limited numerical lineage access are reflected below; the existing scientific rules and remaining freezes are unchanged.
+
+**October 16–17, Pacific: route census, orientation freeze and fitted-N lineage.** The BART treatment now covers all 103 candidate routes (628 maps):
+- Builds: dev16, dev42 or dev94, all resolved.
+- Executed specs: resolved in 95 routes.
+- Fitted N: resolved for all 628 maps on October 17. 622 were confirmed exactly; ds003545 compL1 (6 maps) was fitted on N=20, without sub-13 and sub-14.
+- Event edits: 26 accessions resolved, 2 assumed.
+
+The methods-only rules orient 208 maps as resolved, reproducing all 9 frozen BART decisions; 51 are assumed, 345 use rules adopted on October 16, 21 are unresolved and 3 are ineligible. The rules, eligibility screens and negative-control identity (trial split; replicate-order fallback) were [frozen](orientation_freeze_proposal.md) on 2026-10-16. See the [route manifest](runs/source_handoff_qualification/20261016-orientation-proposal/route_manifest.tsv), the [DATASETS summary](../DATASETS.md#route-census-and-orientation-proposal-2026-10-16) and the [log](experiment_log.md#2026-10-16-1832-pdt--route-manifest-and-orientation-proposal-job-48188582). The orientation build used no map values. The subsequently authorized numerical fitted-N lineage checks confirmed N for every map ([log](experiment_log.md#2026-10-17-0607-pdt--ds003545-compl1-contributors-identified-job-48245679-fitted-n-resolved-for-all-628-maps)). Next: freeze the family taxonomy/group lineage, negative-control pass threshold and normalization details before baseline target access; complete the evaluator and redacted text inputs. No scientific model comparison has run.
+
+**October 16, Pacific — source facts resolved without contacting the producer.**
+Job **48169324** (12 s, one CPU) and the producer's own execution records
+resolve three things: the BART spec that ran, the FitLins `0.11.0.post0.dev94`
+build, and how the `_demean` columns were built. Canonical orientation is now
+9/13. Fitted N=16 is a stated assumption whose numerical check waits for
+permitted target loading. The "51 groups" are 51 NeuroEffect candidate
+accessions (31 included). See the [fact table](../DATASETS.md#source-facts-resolved-2026-10-16)
+and the [log](experiment_log.md#2026-10-16-1706-pdt--source-facts-resolved-job-48169324).
+No map values were read. Next: resolve the other candidate routes the same way.
+
 [Public model, event-metadata and FitLins links](../DATASETS.md#public-online-resources--checked-october-6-2026)
 are now included directly in DATASETS with their source-binding limits.
 

@@ -21,6 +21,43 @@ design_amendment_20261002:
   prototype_diagnostics: oriented_family_support_loss_and_residual_reliability
   zero_or_canceled_prototype_as_silent_replacement: prohibited
   unchanged: model_families_primary_loss_budgets_thresholds_roles_and_audit_rule
+  orientation_freeze_20261016:
+    status: frozen_by_scientist_instruction
+    proposal: outputs/orientation_freeze_proposal.md
+    manifest_directory: outputs/runs/source_handoff_qualification/20261016-orientation-proposal
+    manifest_artifacts: [condition_roles.json, event_edit_review.json, orientation_by_map.tsv, route_manifest.tsv, manifest_summary.json]
+    rule_engine: outputs/code/build_route_manifest.py
+    build_job: 48189996
+    rules: {r1: event_vs_implicit_baseline, r2: task_minus_control, r3: higher_minus_lower, r4: valence, r5: declared_category_order, r6: response_time_duration_regressor, r7: parametric_regressor}
+    comparison_precedence: [task_minus_control, higher_minus_lower, valence, declared_category_order]
+    comparison_resolution: "First clean level decides; clean factors must agree; mixed factors block lower levels."
+    one_sided_factors: "Skip; mark assumed if above the deciding level."
+    role_dictionary_and_p_i_readings: adopted_as_written
+    screens:
+      exclude: {null_maps: 1, duplicate_maps: 2, never_convolved_regressor_maps: 4, n_eq_2_maps: 57}
+      primary_holdout: {ds003545_maps: 40, until: onset_timing_settled}
+      overlap_counts: to_be_counted_by_build
+    status_counts: {total: 628, resolved: 208, assumed: 51, adopted_rules: 345, unresolved: 21, ineligible: 3}
+    count_details: {resolved_previously_frozen_bart: 9, adopted_rules_without_assumed_roles: 323, adopted_rules_assumed: 22}
+    included_counts: {accessions: 31, maps: 322, resolved: 106, assumed: 33, adopted_rules: 163, unresolved: 19, ineligible: 1}
+    amendment_rule: explicit_scientist_amendment_recorded_before_affected_outcomes_are_used
+    permitted_target_access: fitted_n_lineage_check_bart_then_all_routes_subject_to_bart_gate
+    baseline_target_access_requires: [family_taxonomy_freeze, negative_control_pass_threshold_freeze, normalisation_freeze]
+
+methods_preparation_20261018:
+  authority: root_standing_methods_and_source_fact_authority
+  specification: outputs/grouped_evaluator_specification.md
+  configuration: outputs/config/methods_preparation.json
+  taxonomy: methods_only_route_dictionary_selected_before_baseline_scores
+  grouping: accession_based_nonoverlap_assumption_with_evidence_based_connected_component_merges
+  weighting: uniform_contrasts_within_group_then_equal_groups
+  normalization: fixed_common_mask_spatial_mean_center_then_unit_l2_no_prediction_renormalization
+  reference_mask: existing_TemplateFlow_MNI152NLin2009cAsym_res02_brain_mask_bound_before_target_access
+  signed_text: explicit_structured_role_allowlist_and_exact_executed_weights_no_raw_methods_prose
+  header_compatibility: separate_header_only_phase_on_exact_628_census_paths_no_glob_or_resampling
+  access: methods_and_reference_mask_preparation_plus_source_headers_no_baseline_target_arrays_or_scientific_scoring
+  remaining_scientific_decision: proposed_inference_package_not_adopted
+  preserves: adopted_orientation_screens_negative_control_identity_data_roles_all_required_falsifiers_and_audit
 
 # Narrative annotation only: operative grammar, objective, required falsifiers,
 # promotion, budgets and audit rules are unchanged by the 2026-09-30 rewrite.
@@ -161,6 +198,28 @@ falsifier_contracts:
     implementation: rerun_complete_procedure_after_exchanging_only_the_prespecified_negative_control_condition_labels_within_family
     distinct_from: within_family_signed_text_permutation_full_procedure
     pass_rule: complete_procedure_must_not_show_positive_gain_under_the_pre_search_frozen_negative_control_rule
+    frozen_identity_20261016:
+      status: frozen_by_scientist_instruction
+      proposal: outputs/orientation_freeze_proposal.md
+      identity: within_run_trial_split
+      condition_selection: task_side_condition_of_route_first_r2_contrast_else_event_of_first_r1_contrast
+      route_selection: trial_split_where_refit_possible_else_replicate_order_where_supported
+      split: consecutive_onset_pairs_balanced_a_b_within_each_run
+      seed_hash: sha256
+      seed_string: "ep03-negctl|accession|subject|run|pair"
+      assignment: seed_selects_one_pair_member_for_a_and_the_other_for_b
+      refit: executed_run_level_model_with_a_and_b_separate_all_else_unchanged
+      propagation: a_minus_b_through_same_subject_and_dataset_nodes
+      normalisation: same_as_targets_details_still_to_freeze
+      exchange_unit: trial_assignment
+      label_exchange: redraw_split_never_negate_finished_map
+      folds: grouped_by_accession_keep_source_maps_and_trial_splits_together
+      evaluation: complete_procedure_within_each_frozen_task_family
+      fallback: {identity: replicate_order, inputs: effect_maps_written_by_map_commits, contrast: paired_difference_first_two_runs_or_sessions_with_seeded_per_subject_order}
+      fallback_limitation: "Exchangeable only over random assignments; practice or session effects enter as random-sign noise."
+      pass_requirement: no_positive_group_weighted_gain_over_family_prototype_under_pre_search_frozen_rule
+      threshold_still_to_freeze: true
+      scope: noise_fitting_not_leakage_on_real_task_signal
 
 promotion:
   incumbent_is_terminal: false

@@ -1,0 +1,3125 @@
+{
+ "schema": "ep03_condition_roles_proposal/v1",
+ "created": "2026-10-16",
+ "status": "proposed for the pre-load orientation freeze; not frozen",
+ "inputs_read": "condition definitions in the executed FitLins models, producer event-edit code, task sidecars, dataset READMEs and titles; no map, header, PNG, group report or score",
+ "evidence_codes": {
+  "S": "documented in a sidecar, dataset README or the episode's methods record",
+  "L": "explicit condition label in the dataset as fitted (after producer edits)",
+  "P": "producer relabelling not documented by the dataset (assumed)",
+  "I": "interpretation of coded or ambiguous labels (assumed)"
+ },
+ "construction_codes": {
+  "E": "construction verified from the events actually used",
+  "X": "construction set by a transformation in the executed model",
+  "C": "construction from producer code (assumed)",
+  "O": "original dataset column taken as the named quantity (assumed)",
+  "U": "undocumented sign of a signed quantity"
+ },
+ "defaults": {
+  "trial_type.*": "indicator (event) regressor",
+  "rt_reg.*": "duration regressor when the executed model assigns response time to its duration",
+  "other": "parametric (amplitude) regressor; direction must be given here or it stays unresolved"
+ },
+ "routes": {
+  "ds000001/task-balloonanalogrisktask": {
+   "factors": {
+    "balloon": {
+     "type": "control",
+     "levels": {
+      "reward": "task",
+      "control": "control"
+     },
+     "evidence": "S",
+     "note": "Schonberg et al. 2012: control balloons carry no reward or risk (October 5 record)"
+    },
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "cash": 1,
+      "explode": -1
+     },
+     "evidence": "S",
+     "note": "Schonberg et al. 2012: cashing out banks the balloon's money; an explosion loses it"
+    },
+    "event": {
+     "type": "category",
+     "levels": {
+      "pump": "pump",
+      "outcome": "balloon outcome"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.pumps": {
+     "balloon": "reward",
+     "event": "pump"
+    },
+    "trial_type.control": {
+     "balloon": "control",
+     "event": "pump"
+    },
+    "trial_type.cash": {
+     "balloon": "reward",
+     "event": "outcome",
+     "outcome": "cash"
+    },
+    "trial_type.explode": {
+     "balloon": "reward",
+     "event": "outcome",
+     "outcome": "explode"
+    },
+    "pumps_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "E",
+     "_quantity": "pump ordinal within balloon, centred (job 48169324)",
+     "balloon": "reward"
+    },
+    "control_pumps_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "E",
+     "_quantity": "control pump ordinal, centred (job 48169324)",
+     "balloon": "control"
+    },
+    "cash_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "E",
+     "_quantity": "pumps on the cashed balloon minus run mean",
+     "outcome": "cash"
+    },
+    "explode_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "E",
+     "_quantity": "pumps on the exploded balloon minus run mean",
+     "outcome": "explode"
+    }
+   }
+  },
+  "ds000002/task-mixedeventrelatedprobe": {
+   "factors": {
+    "feedback_uncertainty": {
+     "type": "ordinal",
+     "levels": {
+      "deterministic": 0,
+      "probabilistic": 1
+     },
+     "evidence": "L",
+     "note": "probabilistic feedback carries more outcome uncertainty than deterministic feedback"
+    }
+   },
+   "conditions": {
+    "trial_type.classification-deterministic": {
+     "feedback_uncertainty": "deterministic"
+    },
+    "trial_type.classification-probabilistic": {
+     "feedback_uncertainty": "probabilistic"
+    }
+   }
+  },
+  "ds000005/task-mixedgamblestask": {
+   "factors": {
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "gain": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "parametric gain": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "potential gain amount (centred, original column)",
+     "valence": "gain"
+    },
+    "parametric loss": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "potential loss magnitude (centred, original column)",
+     "valence": "loss"
+    },
+    "distance from indifference": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "distance of the gamble from the participant's indifference point"
+    }
+   }
+  },
+  "ds000008/task-conditionalstopsignal": {
+   "factors": {
+    "trial": {
+     "type": "control",
+     "levels": {
+      "stop": "task",
+      "go": "control"
+     },
+     "evidence": "L",
+     "note": "go trials are the control for stop trials"
+    },
+    "signal": {
+     "type": "control",
+     "levels": {
+      "critical": "task",
+      "noncritical": "control"
+     },
+     "evidence": "L",
+     "note": "noncritical stop signals do not require stopping and control for the critical ones"
+    },
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "successful": 1,
+      "failed": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.successfulstopcritical": {
+     "trial": "stop",
+     "signal": "critical",
+     "outcome": "successful"
+    },
+    "trial_type.failedstopcritical": {
+     "trial": "stop",
+     "signal": "critical",
+     "outcome": "failed"
+    },
+    "trial_type.gocritical": {
+     "trial": "go",
+     "signal": "critical"
+    },
+    "trial_type.failedstopnoncritical": {
+     "trial": "stop",
+     "signal": "noncritical",
+     "outcome": "failed"
+    }
+   }
+  },
+  "ds000008/task-stopsignal": {
+   "factors": {
+    "trial": {
+     "type": "control",
+     "levels": {
+      "stop": "task",
+      "go": "control"
+     },
+     "evidence": "L"
+    },
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "successful": 1,
+      "failed": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.successfulstop": {
+     "trial": "stop",
+     "outcome": "successful"
+    },
+    "trial_type.failedstop": {
+     "trial": "stop",
+     "outcome": "failed"
+    },
+    "trial_type.go": {
+     "trial": "go"
+    }
+   }
+  },
+  "ds000009/task-balloonanalogrisktask": {
+   "factors": {
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "cashout": 1,
+      "explode": -1
+     },
+     "evidence": "L"
+    },
+    "event": {
+     "type": "category",
+     "levels": {
+      "pump": "pump",
+      "cashout": "cash out",
+      "explode": "explosion"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.pumps": {
+     "event": "pump"
+    },
+    "trial_type.cashout": {
+     "event": "cashout",
+     "outcome": "cashout"
+    },
+    "trial_type.explode": {
+     "event": "explode",
+     "outcome": "explode"
+    },
+    "demeaned_pumps": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "pump ordinal within trial minus trial mean (producer code first committed 2025-08-07; columns present in the fitted designs)",
+     "event": "pump"
+    },
+    "demeaned_cashout": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "terminal pumps + 1 minus the cash-out mean (producer code)",
+     "outcome": "cashout"
+    },
+    "demeaned_explode": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "terminal pumps + 1 minus the explosion mean (producer code)",
+     "outcome": "explode"
+    }
+   }
+  },
+  "ds000009/task-discounting": {
+   "factors": {
+    "difficulty": {
+     "type": "ordinal",
+     "levels": {
+      "easy": 0,
+      "hard": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.hard_par": {
+     "difficulty": "hard"
+    },
+    "trial_type.easy_par": {
+     "difficulty": "easy"
+    },
+    "demeaned_timedelay": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "delay in days, centred (producer code)"
+    },
+    "demeaned_rlglater": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "delayed/immediate amount ratio, centred (producer code)"
+    },
+    "demeaned_smsooner": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "immediate amount, centred (producer code)"
+    }
+   }
+  },
+  "ds000009/task-emotionalregulation": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "negative": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    },
+    "instruction": {
+     "type": "control",
+     "levels": {
+      "suppress": "task",
+      "attend": "control"
+     },
+     "evidence": "L",
+     "note": "attend (look) is the control for regulation"
+    }
+   },
+   "conditions": {
+    "trial_type.att_neut": {
+     "stimulus": "neutral",
+     "instruction": "attend"
+    },
+    "trial_type.att_neg": {
+     "stimulus": "negative",
+     "instruction": "attend"
+    },
+    "trial_type.suppr_neg": {
+     "stimulus": "negative",
+     "instruction": "suppress"
+    }
+   }
+  },
+  "ds000009/task-stopsignal": {
+   "factors": {
+    "trial": {
+     "type": "control",
+     "levels": {
+      "stop": "task",
+      "go": "control"
+     },
+     "evidence": "L"
+    },
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "successful": 1,
+      "unsuccessful": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.successfulstop": {
+     "trial": "stop",
+     "outcome": "successful"
+    },
+    "trial_type.unsuccessfulstop": {
+     "trial": "stop",
+     "outcome": "unsuccessful"
+    },
+    "trial_type.successfulgo": {
+     "trial": "go",
+     "outcome": "successful"
+    }
+   }
+  },
+  "ds000051/task-abstractconcretejudgment": {
+   "factors": {
+    "switch": {
+     "type": "control",
+     "levels": {
+      "switch": "task",
+      "same": "control"
+     },
+     "evidence": "L",
+     "note": "first and second language tokens differ (switch) or match"
+    },
+    "presented": {
+     "type": "category",
+     "levels": {
+      "English": "english",
+      "Spanish": "spanish"
+     },
+     "evidence": "L"
+    },
+    "concreteness": {
+     "type": "category",
+     "levels": {
+      "Abstract": "abstract",
+      "Concrete": "concrete"
+     },
+     "evidence": "L"
+    },
+    "exposure": {
+     "type": "ordinal",
+     "levels": {
+      "Novel": 0,
+      "Repeat": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Spanish-English-Abstract-Novel": {
+     "switch": "switch",
+     "presented": "Spanish",
+     "concreteness": "Abstract",
+     "exposure": "Novel"
+    },
+    "trial_type.Spanish-English-Abstract-Repeat": {
+     "switch": "switch",
+     "presented": "Spanish",
+     "concreteness": "Abstract",
+     "exposure": "Repeat"
+    },
+    "trial_type.Spanish-Spanish-Abstract-Novel": {
+     "switch": "same",
+     "presented": "Spanish",
+     "concreteness": "Abstract",
+     "exposure": "Novel"
+    },
+    "trial_type.Spanish-Spanish-Abstract-Repeat": {
+     "switch": "same",
+     "presented": "Spanish",
+     "concreteness": "Abstract",
+     "exposure": "Repeat"
+    },
+    "trial_type.English-English-Abstract-Novel": {
+     "switch": "same",
+     "presented": "English",
+     "concreteness": "Abstract",
+     "exposure": "Novel"
+    },
+    "trial_type.English-English-Abstract-Repeat": {
+     "switch": "same",
+     "presented": "English",
+     "concreteness": "Abstract",
+     "exposure": "Repeat"
+    },
+    "trial_type.English-Spanish-Abstract-Novel": {
+     "switch": "switch",
+     "presented": "English",
+     "concreteness": "Abstract",
+     "exposure": "Novel"
+    },
+    "trial_type.English-Spanish-Abstract-Repeat": {
+     "switch": "switch",
+     "presented": "English",
+     "concreteness": "Abstract",
+     "exposure": "Repeat"
+    },
+    "trial_type.Spanish-English-Concrete-Novel": {
+     "switch": "switch",
+     "presented": "Spanish",
+     "concreteness": "Concrete",
+     "exposure": "Novel"
+    },
+    "trial_type.Spanish-English-Concrete-Repeat": {
+     "switch": "switch",
+     "presented": "Spanish",
+     "concreteness": "Concrete",
+     "exposure": "Repeat"
+    },
+    "trial_type.Spanish-Spanish-Concrete-Novel": {
+     "switch": "same",
+     "presented": "Spanish",
+     "concreteness": "Concrete",
+     "exposure": "Novel"
+    },
+    "trial_type.Spanish-Spanish-Concrete-Repeat": {
+     "switch": "same",
+     "presented": "Spanish",
+     "concreteness": "Concrete",
+     "exposure": "Repeat"
+    },
+    "trial_type.English-English-Concrete-Novel": {
+     "switch": "same",
+     "presented": "English",
+     "concreteness": "Concrete",
+     "exposure": "Novel"
+    },
+    "trial_type.English-English-Concrete-Repeat": {
+     "switch": "same",
+     "presented": "English",
+     "concreteness": "Concrete",
+     "exposure": "Repeat"
+    },
+    "trial_type.English-Spanish-Concrete-Novel": {
+     "switch": "switch",
+     "presented": "English",
+     "concreteness": "Concrete",
+     "exposure": "Novel"
+    },
+    "trial_type.English-Spanish-Concrete-Repeat": {
+     "switch": "switch",
+     "presented": "English",
+     "concreteness": "Concrete",
+     "exposure": "Repeat"
+    }
+   }
+  },
+  "ds000052/task-reversalweatherprediction": {
+   "factors": {
+    "feedback": {
+     "type": "valence",
+     "levels": {
+      "positive": 1,
+      "negative": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.positive": {
+     "feedback": "positive"
+    },
+    "trial_type.negative": {
+     "feedback": "negative"
+    }
+   }
+  },
+  "ds000052/task-weatherprediction": {
+   "factors": {
+    "feedback": {
+     "type": "valence",
+     "levels": {
+      "positive": 1,
+      "negative": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.positive": {
+     "feedback": "positive"
+    },
+    "trial_type.negative": {
+     "feedback": "negative"
+    }
+   }
+  },
+  "ds000102/task-flanker": {
+   "factors": {
+    "conflict": {
+     "type": "ordinal",
+     "levels": {
+      "congruent": 0,
+      "incongruent": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.incongruent_correct": {
+     "conflict": "incongruent"
+    },
+    "trial_type.congruent_correct": {
+     "conflict": "congruent"
+    }
+   }
+  },
+  "ds000105/task-objectviewing": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "intact": "task",
+      "scrambled": "control"
+     },
+     "evidence": "L"
+    },
+    "category": {
+     "type": "category",
+     "levels": {
+      "bottle": "bottle",
+      "cat": "cat",
+      "chair": "chair",
+      "face": "face",
+      "house": "house",
+      "scissors": "scissors",
+      "shoe": "shoe"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.scrambledpix": {
+     "stimulus": "scrambled"
+    },
+    "trial_type.bottle": {
+     "stimulus": "intact",
+     "category": "bottle"
+    },
+    "trial_type.cat": {
+     "stimulus": "intact",
+     "category": "cat"
+    },
+    "trial_type.chair": {
+     "stimulus": "intact",
+     "category": "chair"
+    },
+    "trial_type.face": {
+     "stimulus": "intact",
+     "category": "face"
+    },
+    "trial_type.house": {
+     "stimulus": "intact",
+     "category": "house"
+    },
+    "trial_type.scissors": {
+     "stimulus": "intact",
+     "category": "scissors"
+    },
+    "trial_type.shoe": {
+     "stimulus": "intact",
+     "category": "shoe"
+    }
+   }
+  },
+  "ds000108/task-Emotionregulation": {
+   "factors": {
+    "instruction": {
+     "type": "control",
+     "levels": {
+      "Reapp": "task",
+      "Look": "control"
+     },
+     "evidence": "L"
+    },
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "Neg": "task",
+      "Neutral": "control"
+     },
+     "evidence": "L"
+    },
+    "phase": {
+     "type": "category",
+     "levels": {
+      "Ant": "anticipation",
+      "Stim": "stimulus",
+      "Rating": "rating"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Look_Neg_Stim": {
+     "instruction": "Look",
+     "stimulus": "Neg",
+     "phase": "Stim"
+    },
+    "trial_type.Look_Neutral_Stim": {
+     "instruction": "Look",
+     "stimulus": "Neutral",
+     "phase": "Stim"
+    },
+    "trial_type.Reapp_Neg_Stim": {
+     "instruction": "Reapp",
+     "stimulus": "Neg",
+     "phase": "Stim"
+    }
+   }
+  },
+  "ds000109/task-theoryofmindwithmanualresponse": {
+   "factors": {
+    "content": {
+     "type": "control",
+     "levels": {
+      "belief": "task",
+      "photo": "control"
+     },
+     "evidence": "L",
+     "note": "false-photograph stories are the standard control for false-belief stories"
+    },
+    "phase": {
+     "type": "category",
+     "levels": {
+      "story": "story",
+      "question": "question"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.falsebeliefstory": {
+     "content": "belief",
+     "phase": "story"
+    },
+    "trial_type.falsephotostory": {
+     "content": "photo",
+     "phase": "story"
+    },
+    "trial_type.falsebeliefquestion": {
+     "content": "belief",
+     "phase": "question"
+    },
+    "trial_type.falsephotoquestion": {
+     "content": "photo",
+     "phase": "question"
+    }
+   }
+  },
+  "ds000114/task-fingerfootlips": {
+   "factors": {
+    "effector": {
+     "type": "category",
+     "levels": {
+      "Finger": "finger",
+      "Foot": "foot",
+      "Lips": "lips"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Finger": {
+     "effector": "Finger"
+    },
+    "trial_type.Foot": {
+     "effector": "Foot"
+    },
+    "trial_type.Lips": {
+     "effector": "Lips"
+    }
+   }
+  },
+  "ds000114/task-linebisection": {
+   "factors": {
+    "task": {
+     "type": "control",
+     "levels": {
+      "Task": "task",
+      "Control": "control"
+     },
+     "evidence": "L"
+    },
+    "accuracy": {
+     "type": "valence",
+     "levels": {
+      "Correct": 1,
+      "Incorrect": -1
+     },
+     "evidence": "L"
+    },
+    "response": {
+     "type": "control",
+     "levels": {
+      "Response": "task",
+      "No_Response": "control"
+     },
+     "evidence": "I",
+     "note": "trials without a response treated as the absence of the response process"
+    }
+   },
+   "conditions": {
+    "trial_type.Correct_Task": {
+     "task": "Task",
+     "accuracy": "Correct",
+     "response": "Response"
+    },
+    "trial_type.Incorrect_Task": {
+     "task": "Task",
+     "accuracy": "Incorrect",
+     "response": "Response"
+    },
+    "trial_type.Response_Control": {
+     "task": "Control",
+     "response": "Response"
+    },
+    "trial_type.No_Response_Task": {
+     "task": "Task",
+     "response": "No_Response"
+    },
+    "trial_type.No_Response_Control": {
+     "task": "Control",
+     "response": "No_Response"
+    }
+   }
+  },
+  "ds000117/task-facerecognition": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "face": "task",
+      "scrambled": "control"
+     },
+     "evidence": "S",
+     "note": "README trigger table: famous, unfamiliar and scrambled faces"
+    },
+    "familiarity": {
+     "type": "ordinal",
+     "levels": {
+      "unfamiliar": 0,
+      "famous": 1
+     },
+     "evidence": "S"
+    },
+    "exposure": {
+     "type": "ordinal",
+     "levels": {
+      "initial": 0,
+      "immediate": 1,
+      "delayed": 1
+     },
+     "evidence": "S",
+     "note": "README: initial, immediate repeat, delayed repeat; ordered by prior presentations"
+    }
+   },
+   "conditions": {
+    "trial_type.famous_initial": {
+     "stimulus": "face",
+     "familiarity": "famous",
+     "exposure": "initial"
+    },
+    "trial_type.famous_immediate": {
+     "stimulus": "face",
+     "familiarity": "famous",
+     "exposure": "immediate"
+    },
+    "trial_type.famous_delayed": {
+     "stimulus": "face",
+     "familiarity": "famous",
+     "exposure": "delayed"
+    },
+    "trial_type.unfamiliar_initial": {
+     "stimulus": "face",
+     "familiarity": "unfamiliar",
+     "exposure": "initial"
+    },
+    "trial_type.unfamiliar_immediate": {
+     "stimulus": "face",
+     "familiarity": "unfamiliar",
+     "exposure": "immediate"
+    },
+    "trial_type.unfamiliar_delayed": {
+     "stimulus": "face",
+     "familiarity": "unfamiliar",
+     "exposure": "delayed"
+    },
+    "trial_type.scrambled_initial": {
+     "stimulus": "scrambled",
+     "exposure": "initial"
+    },
+    "trial_type.scrambled_immediate": {
+     "stimulus": "scrambled",
+     "exposure": "immediate"
+    },
+    "trial_type.scrambled_delayed": {
+     "stimulus": "scrambled",
+     "exposure": "delayed"
+    }
+   }
+  },
+  "ds000120/task-antisaccadetaskwithfixedorder": {
+   "factors": {
+    "incentive": {
+     "type": "control",
+     "levels": {
+      "reward": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    },
+    "saccade": {
+     "type": "control",
+     "levels": {
+      "anti": "task",
+      "vgs": "control"
+     },
+     "evidence": "L",
+     "note": "visually guided saccades are the control for antisaccades"
+    },
+    "phase": {
+     "type": "category",
+     "levels": {
+      "cue": "cue",
+      "prep": "preparation",
+      "resp": "response"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.neutral_cue": {
+     "incentive": "neutral",
+     "saccade": "anti",
+     "phase": "cue"
+    },
+    "trial_type.neutral_prep": {
+     "incentive": "neutral",
+     "saccade": "anti",
+     "phase": "prep"
+    },
+    "trial_type.neutral_resp": {
+     "incentive": "neutral",
+     "saccade": "anti",
+     "phase": "resp"
+    },
+    "trial_type.reward_cue": {
+     "incentive": "reward",
+     "saccade": "anti",
+     "phase": "cue"
+    },
+    "trial_type.reward_prep": {
+     "incentive": "reward",
+     "saccade": "anti",
+     "phase": "prep"
+    },
+    "trial_type.reward_resp": {
+     "incentive": "reward",
+     "saccade": "anti",
+     "phase": "resp"
+    },
+    "trial_type.vgs_prep": {
+     "saccade": "vgs",
+     "phase": "prep"
+    },
+    "trial_type.vgs_resp": {
+     "saccade": "vgs",
+     "phase": "resp"
+    }
+   }
+  },
+  "ds000148/task-figure2backwith1backlures": {
+   "factors": {
+    "item": {
+     "type": "category",
+     "levels": {
+      "target": "target",
+      "lure": "lure",
+      "distractor": "distractor"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.targethit": {
+     "item": "target"
+    },
+    "trial_type.lurecorrectrejection": {
+     "item": "lure"
+    },
+    "trial_type.distractorcorrectrejection": {
+     "item": "distractor"
+    }
+   }
+  },
+  "ds000157/task-passiveimageviewing": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "food": "task",
+      "nonfood": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.food": {
+     "stimulus": "food"
+    },
+    "trial_type.nonfood": {
+     "stimulus": "nonfood"
+    }
+   }
+  },
+  "ds000170/task-TrainedHandTrainedSequence": {
+   "factors": {
+    "block": {
+     "type": "ordinal",
+     "levels": {
+      "Perf_1": 1,
+      "Perf_2": 2
+     },
+     "evidence": "I",
+     "note": "assumed: later minus earlier performance block"
+    }
+   },
+   "conditions": {
+    "trial_type.Perf_1": {
+     "block": "Perf_1"
+    },
+    "trial_type.Perf_2": {
+     "block": "Perf_2"
+    }
+   }
+  },
+  "ds000170/task-TrainedHandUntrainedSequence": {
+   "factors": {
+    "block": {
+     "type": "ordinal",
+     "levels": {
+      "Perf_1": 1,
+      "Perf_2": 2
+     },
+     "evidence": "I",
+     "note": "assumed: later minus earlier performance block"
+    }
+   },
+   "conditions": {
+    "trial_type.Perf_1": {
+     "block": "Perf_1"
+    },
+    "trial_type.Perf_2": {
+     "block": "Perf_2"
+    }
+   }
+  },
+  "ds000170/task-UntrainedHandTrainedSequence": {
+   "factors": {
+    "block": {
+     "type": "ordinal",
+     "levels": {
+      "Perf_1": 1,
+      "Perf_2": 2
+     },
+     "evidence": "I",
+     "note": "assumed: later minus earlier performance block"
+    }
+   },
+   "conditions": {
+    "trial_type.Perf_1": {
+     "block": "Perf_1"
+    },
+    "trial_type.Perf_2": {
+     "block": "Perf_2"
+    }
+   }
+  },
+  "ds000170/task-UntrainedHandUntrainedSequence": {
+   "factors": {
+    "block": {
+     "type": "ordinal",
+     "levels": {
+      "Perf_1": 1,
+      "Perf_2": 2
+     },
+     "evidence": "I",
+     "note": "assumed: later minus earlier performance block"
+    }
+   },
+   "conditions": {
+    "trial_type.Perf_1": {
+     "block": "Perf_1"
+    },
+    "trial_type.Perf_2": {
+     "block": "Perf_2"
+    }
+   }
+  },
+  "ds000171/task-music": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "music": "task",
+      "tones": "control"
+     },
+     "evidence": "L"
+    },
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "positive": 1,
+      "negative": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.positive_music": {
+     "stimulus": "music",
+     "valence": "positive"
+    },
+    "trial_type.negative_music": {
+     "stimulus": "music",
+     "valence": "negative"
+    },
+    "trial_type.tones": {
+     "stimulus": "tones"
+    }
+   }
+  },
+  "ds000171/task-nonmusic": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "sound": "task",
+      "tones": "control"
+     },
+     "evidence": "L"
+    },
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "positive": 1,
+      "negative": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.positive_nonmusic": {
+     "stimulus": "sound",
+     "valence": "positive"
+    },
+    "trial_type.negative_nonmusic": {
+     "stimulus": "sound",
+     "valence": "negative"
+    },
+    "trial_type.tones": {
+     "stimulus": "tones"
+    }
+   }
+  },
+  "ds000212/task-dis": {
+   "factors": {
+    "moral": {
+     "type": "control",
+     "levels": {
+      "violation": "task",
+      "neutral": "control"
+     },
+     "evidence": "I",
+     "note": "codes decoded against the dataset title: a_pha physical harm accidental ... j_ni neutral intentional"
+    },
+    "intent": {
+     "type": "control",
+     "levels": {
+      "intentional": "task",
+      "accidental": "control"
+     },
+     "evidence": "I"
+    },
+    "domain": {
+     "type": "category",
+     "levels": {
+      "harm": "harm",
+      "purity": "purity"
+     },
+     "evidence": "I"
+    },
+    "harm_type": {
+     "type": "category",
+     "levels": {
+      "physical": "physical harm",
+      "psychological": "psychological harm"
+     },
+     "evidence": "I"
+    },
+    "purity_type": {
+     "type": "category",
+     "levels": {
+      "incest": "incest",
+      "pathogen": "pathogen"
+     },
+     "evidence": "I"
+    }
+   },
+   "conditions": {
+    "trial_type.a_pha": {
+     "moral": "violation",
+     "intent": "accidental",
+     "domain": "harm",
+     "harm_type": "physical"
+    },
+    "trial_type.b_psa": {
+     "moral": "violation",
+     "intent": "accidental",
+     "domain": "harm",
+     "harm_type": "psychological"
+    },
+    "trial_type.c_ia": {
+     "moral": "violation",
+     "intent": "accidental",
+     "domain": "purity",
+     "purity_type": "incest"
+    },
+    "trial_type.d_pa": {
+     "moral": "violation",
+     "intent": "accidental",
+     "domain": "purity",
+     "purity_type": "pathogen"
+    },
+    "trial_type.e_na": {
+     "moral": "neutral",
+     "intent": "accidental"
+    },
+    "trial_type.f_phi": {
+     "moral": "violation",
+     "intent": "intentional",
+     "domain": "harm",
+     "harm_type": "physical"
+    },
+    "trial_type.g_psi": {
+     "moral": "violation",
+     "intent": "intentional",
+     "domain": "harm",
+     "harm_type": "psychological"
+    },
+    "trial_type.h_ii": {
+     "moral": "violation",
+     "intent": "intentional",
+     "domain": "purity",
+     "purity_type": "incest"
+    },
+    "trial_type.i_pi": {
+     "moral": "violation",
+     "intent": "intentional",
+     "domain": "purity",
+     "purity_type": "pathogen"
+    },
+    "trial_type.j_ni": {
+     "moral": "neutral",
+     "intent": "intentional"
+    }
+   }
+  },
+  "ds000212/task-fb": {
+   "factors": {
+    "content": {
+     "type": "control",
+     "levels": {
+      "belief": "task",
+      "photo": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.belief": {
+     "content": "belief"
+    },
+    "trial_type.photo": {
+     "content": "photo"
+    }
+   }
+  },
+  "ds000213/task-socialcomparison": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "body": "task",
+      "scramble": "control"
+     },
+     "evidence": "L"
+    },
+    "body_size": {
+     "type": "ordinal",
+     "levels": {
+      "thin": 0,
+      "fat": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.fat_image": {
+     "stimulus": "body",
+     "body_size": "fat"
+    },
+    "trial_type.thin_image": {
+     "stimulus": "body",
+     "body_size": "thin"
+    },
+    "trial_type.scramble_image": {
+     "stimulus": "scramble"
+    }
+   }
+  },
+  "ds000229/task-flavor": {
+   "factors": {
+    "taste": {
+     "type": "control",
+     "levels": {
+      "flavour": "task",
+      "rinse": "control",
+      "tasteless": "control"
+     },
+     "evidence": "L"
+    },
+    "load": {
+     "type": "ordinal",
+     "levels": {
+      "zero": 0,
+      "thirtyseven": 37.5,
+      "seventyfive": 75,
+      "onetwelve": 112.5,
+      "onefifty": 150
+     },
+     "evidence": "L",
+     "note": "conditioned-stimulus labels encode an ordered nutrient load; only the order is used"
+    },
+    "control_kind": {
+     "type": "category",
+     "levels": {
+      "rinse": "rinse",
+      "tasteless": "tasteless"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.zero": {
+     "taste": "flavour",
+     "load": "zero"
+    },
+    "trial_type.thirtyseven": {
+     "taste": "flavour",
+     "load": "thirtyseven"
+    },
+    "trial_type.seventyfive": {
+     "taste": "flavour",
+     "load": "seventyfive"
+    },
+    "trial_type.onetwelve": {
+     "taste": "flavour",
+     "load": "onetwelve"
+    },
+    "trial_type.onefifty": {
+     "taste": "flavour",
+     "load": "onefifty"
+    },
+    "trial_type.rinse": {
+     "taste": "rinse",
+     "control_kind": "rinse"
+    },
+    "trial_type.tless": {
+     "taste": "tasteless",
+     "control_kind": "tasteless"
+    }
+   }
+  },
+  "ds001229/task-em": {
+   "factors": {
+    "trial": {
+     "type": "control",
+     "levels": {
+      "real": "task",
+      "catch": "control"
+     },
+     "evidence": "I",
+     "note": "catch trials assumed to be the control for real trials"
+    },
+    "pm": {
+     "type": "control",
+     "levels": {
+      "pm": "task",
+      "ongoing": "control"
+     },
+     "evidence": "I",
+     "note": "face/scene prospective-memory trials versus the ongoing lexical-decision task"
+    },
+    "stimulus": {
+     "type": "category",
+     "levels": {
+      "face": "face",
+      "scene": "scene",
+      "lexdec": "lexical decision"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.face_real": {
+     "trial": "real",
+     "pm": "pm",
+     "stimulus": "face"
+    },
+    "trial_type.face_catch": {
+     "trial": "catch",
+     "pm": "pm",
+     "stimulus": "face"
+    },
+    "trial_type.scene_real": {
+     "trial": "real",
+     "pm": "pm",
+     "stimulus": "scene"
+    },
+    "trial_type.scene_catch": {
+     "trial": "catch",
+     "pm": "pm",
+     "stimulus": "scene"
+    },
+    "trial_type.lexdec_real": {
+     "trial": "real",
+     "pm": "ongoing",
+     "stimulus": "lexdec"
+    },
+    "trial_type.lexdec_catch": {
+     "trial": "catch",
+     "pm": "ongoing",
+     "stimulus": "lexdec"
+    }
+   }
+  },
+  "ds001229/task-wm": {
+   "factors": {
+    "trial": {
+     "type": "control",
+     "levels": {
+      "real": "task",
+      "catch": "control"
+     },
+     "evidence": "I",
+     "note": "catch trials assumed to be the control for real trials"
+    },
+    "pm": {
+     "type": "control",
+     "levels": {
+      "pm": "task",
+      "ongoing": "control"
+     },
+     "evidence": "I"
+    },
+    "stimulus": {
+     "type": "category",
+     "levels": {
+      "face": "face",
+      "scene": "scene",
+      "lexdec": "lexical decision"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.face_real": {
+     "trial": "real",
+     "pm": "pm",
+     "stimulus": "face"
+    },
+    "trial_type.face_catch": {
+     "trial": "catch",
+     "pm": "pm",
+     "stimulus": "face"
+    },
+    "trial_type.scene_real": {
+     "trial": "real",
+     "pm": "pm",
+     "stimulus": "scene"
+    },
+    "trial_type.scene_catch": {
+     "trial": "catch",
+     "pm": "pm",
+     "stimulus": "scene"
+    },
+    "trial_type.lexdec_real": {
+     "trial": "real",
+     "pm": "ongoing",
+     "stimulus": "lexdec"
+    },
+    "trial_type.lexdec_catch": {
+     "trial": "catch",
+     "pm": "ongoing",
+     "stimulus": "lexdec"
+    }
+   }
+  },
+  "ds001297/task-faceidentityoddball": {
+   "factors": {
+    "familiarity": {
+     "type": "ordinal",
+     "levels": {
+      "control": 0,
+      "friend": 1,
+      "self": 1
+     },
+     "evidence": "I",
+     "note": "dataset title 'Personally familiar faces'; control identities assumed unfamiliar; oddball role unknown"
+    },
+    "identity": {
+     "type": "category",
+     "levels": {
+      "self": "self",
+      "friend": "friend"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.self": {
+     "familiarity": "self",
+     "identity": "self"
+    },
+    "trial_type.friend": {
+     "familiarity": "friend",
+     "identity": "friend"
+    },
+    "trial_type.control": {
+     "familiarity": "control"
+    },
+    "trial_type.oddball": {}
+   }
+  },
+  "ds001357/task-familiarity": {
+   "factors": {
+    "familiarity": {
+     "type": "ordinal",
+     "levels": {
+      "unfamiliar": 0,
+      "familiar": 1
+     },
+     "evidence": "L"
+    },
+    "conflict": {
+     "type": "ordinal",
+     "levels": {
+      "congruent": 0,
+      "incongruent": 1
+     },
+     "evidence": "L",
+     "note": "name-face priming; incongruent primes mismatch the face"
+    }
+   },
+   "conditions": {
+    "trial_type.congruent": {
+     "familiarity": "familiar",
+     "conflict": "congruent"
+    },
+    "trial_type.incongruent": {
+     "familiarity": "familiar",
+     "conflict": "incongruent"
+    },
+    "trial_type.unfamiliar": {
+     "familiarity": "unfamiliar"
+    }
+   }
+  },
+  "ds001357/task-viewing": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "face": "task",
+      "fourier": "control"
+     },
+     "evidence": "L"
+    },
+    "familiarity": {
+     "type": "ordinal",
+     "levels": {
+      "unfamiliar": 0,
+      "familiar": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.familiarfaces": {
+     "stimulus": "face",
+     "familiarity": "familiar"
+    },
+    "trial_type.unfamiliarfaces": {
+     "stimulus": "face",
+     "familiarity": "unfamiliar"
+    },
+    "trial_type.fourier": {
+     "stimulus": "fourier"
+    }
+   }
+  },
+  "ds001715/task-dts": {
+   "factors": {
+    "feature": {
+     "type": "category",
+     "levels": {
+      "color": "color",
+      "motion": "motion"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "signedcolor_abs": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "absolute colour coherence (producer abs of the signed column)",
+     "feature": "color"
+    },
+    "signedmotion_abs": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "absolute motion coherence",
+     "feature": "motion"
+    },
+    "signedcolor_cohright": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "colour coherence signed toward the rightward response (lateral pole declared by the column name)",
+     "feature": "color"
+    },
+    "signedmotion_cohright": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "motion coherence signed toward the rightward response",
+     "feature": "motion"
+    }
+   }
+  },
+  "ds001734/task-MGT": {
+   "factors": {
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "gain": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "gain_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "X",
+     "_quantity": "potential gain, Demean transformation in the executed model",
+     "valence": "gain"
+    },
+    "loss_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "X",
+     "_quantity": "potential loss magnitude, Demean transformation in the executed model",
+     "valence": "loss"
+    }
+   }
+  },
+  "ds002006/task-ColorDots": {
+   "conditions": {
+    "COHERENCE": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "stimulus coherence (original column)"
+    }
+   }
+  },
+  "ds002006/task-FoodChoice": {
+   "conditions": {
+    "DELTAVALUE": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "U",
+     "_quantity": "signed value difference; which option is subtracted is undocumented"
+    }
+   }
+  },
+  "ds002006/task-Memory": {
+   "factors": {
+    "item": {
+     "type": "ordinal",
+     "levels": {
+      "new": 0,
+      "old": 1
+     },
+     "evidence": "L",
+     "note": "studied (old) items carry more prior exposure"
+    },
+    "accuracy": {
+     "type": "valence",
+     "levels": {
+      "correct": 1,
+      "error": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.hit": {
+     "item": "old",
+     "accuracy": "correct"
+    },
+    "trial_type.correctrejection": {
+     "item": "new",
+     "accuracy": "correct"
+    },
+    "trial_type.falsealarm": {
+     "item": "new",
+     "accuracy": "error"
+    },
+    "liking_demean": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "X",
+     "_quantity": "liking rating, Scale(demean) in the executed model"
+    }
+   }
+  },
+  "ds002294/task-roletrait": {
+   "factors": {
+    "target": {
+     "type": "category",
+     "levels": {
+      "self": "self",
+      "friend": "friend"
+     },
+     "evidence": "L",
+     "note": "no documented asymmetry between self and friend judgements; category convention"
+    },
+    "judgement": {
+     "type": "category",
+     "levels": {
+      "Trait": "trait",
+      "Role": "role",
+      "Group": "group"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.selfTraitBlock": {
+     "target": "self",
+     "judgement": "Trait"
+    },
+    "trial_type.friendTraitBlock": {
+     "target": "friend",
+     "judgement": "Trait"
+    },
+    "trial_type.selfRoleBlock": {
+     "target": "self",
+     "judgement": "Role"
+    },
+    "trial_type.friendRoleBlock": {
+     "target": "friend",
+     "judgement": "Role"
+    },
+    "trial_type.selfGroupBlock": {
+     "target": "self",
+     "judgement": "Group"
+    },
+    "trial_type.friendGroupBlock": {
+     "target": "friend",
+     "judgement": "Group"
+    }
+   }
+  },
+  "ds002338/task-1dNF": {
+   "factors": {
+    "block": {
+     "type": "control",
+     "levels": {
+      "task": "task",
+      "rest": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Task-NF": {
+     "block": "task"
+    },
+    "trial_type.Rest": {
+     "block": "rest"
+    }
+   }
+  },
+  "ds002338/task-2dNF": {
+   "factors": {
+    "block": {
+     "type": "control",
+     "levels": {
+      "task": "task",
+      "rest": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Task-NF": {
+     "block": "task"
+    },
+    "trial_type.Rest": {
+     "block": "rest"
+    }
+   }
+  },
+  "ds002422/task-arithm": {
+   "factors": {
+    "condition": {
+     "type": "control",
+     "levels": {
+      "main": "task",
+      "control": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.main_condition": {
+     "condition": "main"
+    },
+    "trial_type.control_condition": {
+     "condition": "control"
+    }
+   }
+  },
+  "ds002872/task-illusion": {
+   "factors": {
+    "intensity": {
+     "type": "ordinal",
+     "levels": {
+      "low": 0,
+      "hi": 1
+     },
+     "evidence": "P",
+     "note": "producer mapped T1->t_low, T2->t_hi, P1->p_hi, P2->p_low; not documented by the dataset"
+    },
+    "modality": {
+     "type": "category",
+     "levels": {
+      "t": "texture",
+      "p": "vibration"
+     },
+     "evidence": "P",
+     "note": "producer contrast names read T as texture and P as vibration"
+    }
+   },
+   "conditions": {
+    "trial_type.t_hi": {
+     "intensity": "hi",
+     "modality": "t"
+    },
+    "trial_type.t_low": {
+     "intensity": "low",
+     "modality": "t"
+    },
+    "trial_type.p_hi": {
+     "intensity": "hi",
+     "modality": "p"
+    },
+    "trial_type.p_low": {
+     "intensity": "low",
+     "modality": "p"
+    }
+   }
+  },
+  "ds003345/task-PenaltyKik": {
+   "factors": {
+    "opponent": {
+     "type": "control",
+     "levels": {
+      "human": "task",
+      "cpu": "control"
+     },
+     "evidence": "L",
+     "note": "computer opponent is the non-social control"
+    },
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "win": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    },
+    "phase": {
+     "type": "category",
+     "levels": {
+      "screen": "opponent screen",
+      "play": "game play",
+      "outcome": "outcome"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.human_game_play": {
+     "opponent": "human",
+     "phase": "play"
+    },
+    "trial_type.cpu_game_play": {
+     "opponent": "cpu",
+     "phase": "play"
+    },
+    "trial_type.human_outcome_win": {
+     "opponent": "human",
+     "phase": "outcome",
+     "outcome": "win"
+    },
+    "trial_type.cpu_outcome_win": {
+     "opponent": "cpu",
+     "phase": "outcome",
+     "outcome": "win"
+    },
+    "trial_type.human_outcome_loss": {
+     "opponent": "human",
+     "phase": "outcome",
+     "outcome": "loss"
+    },
+    "trial_type.cpu_outcome_loss": {
+     "opponent": "cpu",
+     "phase": "outcome",
+     "outcome": "loss"
+    },
+    "trial_type.human_opponent_screen": {
+     "opponent": "human",
+     "phase": "screen"
+    },
+    "trial_type.cpu_opponent_screen": {
+     "opponent": "cpu",
+     "phase": "screen"
+    }
+   }
+  },
+  "ds003441/task-1Norm": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    }
+   }
+  },
+  "ds003441/task-2Swallow": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand",
+      "Swallow": "swallow"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    },
+    "trial_type.Swallow": {
+     "movement": "Swallow"
+    }
+   }
+  },
+  "ds003441/task-3HandA": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand",
+      "TouchingShoulder": "touching shoulder",
+      "ChangeHandPosition": "change hand position"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    },
+    "trial_type.TouchingShoulder": {
+     "movement": "TouchingShoulder"
+    },
+    "trial_type.ChangeHandPosition": {
+     "movement": "ChangeHandPosition"
+    }
+   }
+  },
+  "ds003441/task-4HandB": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand",
+      "TouchingShoulder": "touching shoulder",
+      "ChangeHandPosition": "change hand position"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    },
+    "trial_type.TouchingShoulder": {
+     "movement": "TouchingShoulder"
+    },
+    "trial_type.ChangeHandPosition": {
+     "movement": "ChangeHandPosition"
+    }
+   }
+  },
+  "ds003441/task-5Eyes": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand",
+      "EyeMovement": "eye movement",
+      "EyesCenter": "eyes center",
+      "EyesLeft": "eyes left",
+      "EyesRight": "eyes right"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    },
+    "trial_type.EyeMovement": {
+     "movement": "EyeMovement"
+    },
+    "trial_type.EyesCenter": {
+     "movement": "EyesCenter"
+    },
+    "trial_type.EyesLeft": {
+     "movement": "EyesLeft"
+    },
+    "trial_type.EyesRight": {
+     "movement": "EyesRight"
+    }
+   }
+  },
+  "ds003441/task-6DeepBreathing": {
+   "factors": {
+    "movement": {
+     "type": "category",
+     "levels": {
+      "Face": "face",
+      "Hand": "hand"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Face": {
+     "movement": "Face"
+    },
+    "trial_type.Hand": {
+     "movement": "Hand"
+    }
+   }
+  },
+  "ds003481/task-cmp": {
+   "factors": {
+    "literalness": {
+     "type": "control",
+     "levels": {
+      "nonliteral": "task",
+      "literal": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Metafora": {
+     "literalness": "nonliteral"
+    },
+    "trial_type.Absurdo": {
+     "literalness": "nonliteral"
+    },
+    "trial_type.Literal": {
+     "literalness": "literal"
+    }
+   }
+  },
+  "ds003481/task-ec": {
+   "factors": {
+    "face": {
+     "type": "control",
+     "levels": {
+      "face": "task",
+      "noface": "control"
+     },
+     "evidence": "L",
+     "note": "Sin_Rostro = without a face"
+    },
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "happy": 1,
+      "sad": -1,
+      "angry": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Alegría": {
+     "face": "face",
+     "valence": "happy"
+    },
+    "trial_type.Tristeza": {
+     "face": "face",
+     "valence": "sad"
+    },
+    "trial_type.Enojo": {
+     "face": "face",
+     "valence": "angry"
+    },
+    "trial_type.Sin_Rostro": {
+     "face": "noface"
+    }
+   }
+  },
+  "ds003481/task-sae": {
+   "factors": {
+    "face": {
+     "type": "control",
+     "levels": {
+      "face": "task",
+      "noface": "control"
+     },
+     "evidence": "L"
+    },
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "happy": 1,
+      "sad": -1,
+      "angry": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Alegría": {
+     "face": "face",
+     "valence": "happy"
+    },
+    "trial_type.Tristeza": {
+     "face": "face",
+     "valence": "sad"
+    },
+    "trial_type.Enojo": {
+     "face": "face",
+     "valence": "angry"
+    },
+    "trial_type.SinRostro": {
+     "face": "noface"
+    }
+   }
+  },
+  "ds003481/task-pc": {
+   "factors": {
+    "literalness": {
+     "type": "control",
+     "levels": {
+      "proverb": "task",
+      "literal": "control"
+     },
+     "evidence": "L"
+    },
+    "familiarity": {
+     "type": "ordinal",
+     "levels": {
+      "novel": 0,
+      "familiar": 1
+     },
+     "evidence": "L"
+    },
+    "item": {
+     "type": "category",
+     "levels": {
+      "Familiar": "familiar proverb",
+      "Novedoso": "novel proverb",
+      "Literal": "literal sentence",
+      "Pregunta": "question"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Familiar": {
+     "literalness": "proverb",
+     "familiarity": "familiar",
+     "item": "Familiar"
+    },
+    "trial_type.Novedoso": {
+     "literalness": "proverb",
+     "familiarity": "novel",
+     "item": "Novedoso"
+    },
+    "trial_type.Literal": {
+     "literalness": "literal",
+     "item": "Literal"
+    },
+    "trial_type.Pregunta": {
+     "item": "Pregunta"
+    }
+   }
+  },
+  "ds003481/task-sar": {
+   "factors": {
+    "sentence": {
+     "type": "control",
+     "levels": {
+      "speech_act": "task",
+      "control": "control"
+     },
+     "evidence": "I",
+     "note": "'ah' read as the speech-act condition from the producer contrast names"
+    },
+    "answer": {
+     "type": "category",
+     "levels": {
+      "yes": "yes",
+      "no": "no"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.ah": {
+     "sentence": "speech_act"
+    },
+    "trial_type.controlyes": {
+     "sentence": "control",
+     "answer": "yes"
+    },
+    "trial_type.controlno": {
+     "sentence": "control",
+     "answer": "no"
+    }
+   }
+  },
+  "ds003481/task-verbs": {
+   "factors": {
+    "lexicality": {
+     "type": "ordinal",
+     "levels": {
+      "symbol": 0,
+      "pseudo": 1,
+      "verb": 2
+     },
+     "evidence": "L",
+     "note": "symbol strings < pseudowords < real verbs"
+    },
+    "verb_class": {
+     "type": "category",
+     "levels": {
+      "mental": "mental verb",
+      "motor": "motor verb"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.mental": {
+     "lexicality": "verb",
+     "verb_class": "mental"
+    },
+    "trial_type.motor": {
+     "lexicality": "verb",
+     "verb_class": "motor"
+    },
+    "trial_type.pseudo": {
+     "lexicality": "pseudo"
+    },
+    "trial_type.symbol": {
+     "lexicality": "symbol"
+    }
+   }
+  },
+  "ds003545/task-compL1": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "word": "task",
+      "fixation": "control"
+     },
+     "evidence": "S",
+     "note": "sidecar: 1 printed word, 2 spoken word, 3 rest fixation"
+    },
+    "modality": {
+     "type": "category",
+     "levels": {
+      "printed": "printed word",
+      "spoken": "spoken word"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.printed_word_cor": {
+     "stimulus": "word",
+     "modality": "printed"
+    },
+    "trial_type.spoken_word_cor": {
+     "stimulus": "word",
+     "modality": "spoken"
+    },
+    "trial_type.fixation": {
+     "stimulus": "fixation"
+    }
+   }
+  },
+  "ds003545/task-compLn": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "word": "task",
+      "fixation": "control"
+     },
+     "evidence": "S"
+    },
+    "modality": {
+     "type": "category",
+     "levels": {
+      "printed": "printed word",
+      "spoken": "spoken word"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.printed_word_cor": {
+     "stimulus": "word",
+     "modality": "printed"
+    },
+    "trial_type.spoken_word_cor": {
+     "stimulus": "word",
+     "modality": "spoken"
+    },
+    "trial_type.fixation": {
+     "stimulus": "fixation"
+    }
+   }
+  },
+  "ds003545/task-prodL1": {
+   "factors": {
+    "rest": {
+     "type": "control",
+     "levels": {
+      "task": "task",
+      "fixation": "control"
+     },
+     "evidence": "S",
+     "note": "sidecar: 1 rest, 3 semantic task, 4 control task, 5 irrelevant (modelled and discarded)"
+    },
+    "task": {
+     "type": "control",
+     "levels": {
+      "semantic": "task",
+      "control": "control"
+     },
+     "evidence": "S"
+    },
+    "condition": {
+     "type": "category",
+     "levels": {
+      "semantic": "semantic task",
+      "control": "control task",
+      "irrelevant": "irrelevant condition"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.semantic_cond": {
+     "rest": "task",
+     "task": "semantic",
+     "condition": "semantic"
+    },
+    "trial_type.control_cond": {
+     "rest": "task",
+     "task": "control",
+     "condition": "control"
+    },
+    "trial_type.irrelevant_cond": {
+     "rest": "task",
+     "condition": "irrelevant"
+    },
+    "trial_type.fixation": {
+     "rest": "fixation"
+    }
+   }
+  },
+  "ds003545/task-prodLn": {
+   "factors": {
+    "rest": {
+     "type": "control",
+     "levels": {
+      "task": "task",
+      "fixation": "control"
+     },
+     "evidence": "S"
+    },
+    "task": {
+     "type": "control",
+     "levels": {
+      "semantic": "task",
+      "control": "control"
+     },
+     "evidence": "S"
+    },
+    "condition": {
+     "type": "category",
+     "levels": {
+      "semantic": "semantic task",
+      "control": "control task",
+      "irrelevant": "irrelevant condition"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.semantic_cond": {
+     "rest": "task",
+     "task": "semantic",
+     "condition": "semantic"
+    },
+    "trial_type.control_cond": {
+     "rest": "task",
+     "task": "control",
+     "condition": "control"
+    },
+    "trial_type.irrelevant_cond": {
+     "rest": "task",
+     "condition": "irrelevant"
+    },
+    "trial_type.fixation": {
+     "rest": "fixation"
+    }
+   }
+  },
+  "ds003789/task-encoding": {
+   "factors": {
+    "exposure": {
+     "type": "ordinal",
+     "levels": {
+      "1": 1,
+      "2": 2,
+      "3": 3
+     },
+     "evidence": "S",
+     "note": "README: each list studied three times (T1-T3); producer mapped rep1-3 to word_list1-3"
+    }
+   },
+   "conditions": {
+    "trial_type.word_list1": {
+     "exposure": "1"
+    },
+    "trial_type.word_list2": {
+     "exposure": "2"
+    },
+    "trial_type.word_list3": {
+     "exposure": "3"
+    }
+   }
+  },
+  "ds003789/task-retrieval": {
+   "factors": {
+    "item": {
+     "type": "ordinal",
+     "levels": {
+      "target": 1,
+      "lure": 0,
+      "foil": 0
+     },
+     "evidence": "L",
+     "note": "studied targets carry prior exposure; lures and foils do not"
+    },
+    "response": {
+     "type": "category",
+     "levels": {
+      "old": "old response",
+      "new": "new response"
+     },
+     "evidence": "L",
+     "note": "recognition response is a judgement, not an exposure count"
+    },
+    "item_kind": {
+     "type": "category",
+     "levels": {
+      "target": "target",
+      "lure": "lure",
+      "foil": "foil"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.target_old": {
+     "item": "target",
+     "response": "old",
+     "item_kind": "target"
+    },
+    "trial_type.lure_old": {
+     "item": "lure",
+     "response": "old",
+     "item_kind": "lure"
+    },
+    "trial_type.foil_new": {
+     "item": "foil",
+     "response": "new",
+     "item_kind": "foil"
+    },
+    "trial_type.lure_new": {
+     "item": "lure",
+     "response": "new",
+     "item_kind": "lure"
+    }
+   }
+  },
+  "ds003831/task-identify1": {
+   "factors": {
+    "trial": {
+     "type": "category",
+     "levels": {
+      "ex_stim": "extrinsic image",
+      "in_stim": "cued-recall image",
+      "in_prep": "recall preparation cue",
+      "in_feel": "recall cue"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.ex_stim": {
+     "trial": "ex_stim"
+    },
+    "trial_type.in_stim": {
+     "trial": "in_stim"
+    },
+    "trial_type.in_prep": {
+     "trial": "in_prep"
+    },
+    "trial_type.in_feel": {
+     "trial": "in_feel"
+    },
+    "exstim_valcent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative valence (1-9) centred within extrinsic images",
+     "trial": "ex_stim"
+    },
+    "instim_valcent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative valence centred within cued-recall images",
+     "trial": "in_stim"
+    },
+    "exstim_arouscent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative arousal centred within extrinsic images",
+     "trial": "ex_stim"
+    },
+    "instim_arouscent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative arousal centred within cued-recall images",
+     "trial": "in_stim"
+    }
+   }
+  },
+  "ds003831/task-identify2": {
+   "factors": {
+    "trial": {
+     "type": "category",
+     "levels": {
+      "ex_stim": "extrinsic image",
+      "in_stim": "cued-recall image",
+      "in_prep": "recall preparation cue",
+      "in_feel": "recall cue"
+     },
+     "evidence": "S"
+    }
+   },
+   "conditions": {
+    "trial_type.ex_stim": {
+     "trial": "ex_stim"
+    },
+    "trial_type.in_stim": {
+     "trial": "in_stim"
+    },
+    "trial_type.in_prep": {
+     "trial": "in_prep"
+    },
+    "trial_type.in_feel": {
+     "trial": "in_feel"
+    },
+    "exstim_valcent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative valence centred within extrinsic images",
+     "trial": "ex_stim"
+    },
+    "instim_valcent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative valence centred within cued-recall images",
+     "trial": "in_stim"
+    },
+    "exstim_arouscent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative arousal centred within extrinsic images",
+     "trial": "ex_stim"
+    },
+    "instim_arouscent": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "normative arousal centred within cued-recall images",
+     "trial": "in_stim"
+    }
+   }
+  },
+  "ds003831/task-modulate1": {
+   "factors": {
+    "rest": {
+     "type": "control",
+     "levels": {
+      "regulation": "task",
+      "rest": "control"
+     },
+     "evidence": "S",
+     "note": "sidecar: rest = fixation cross"
+    },
+    "goal": {
+     "type": "valence",
+     "levels": {
+      "pos": 1,
+      "neg": -1
+     },
+     "evidence": "S",
+     "note": "sidecar: positive or negative valence/arousal goal"
+    }
+   },
+   "conditions": {
+    "trial_type.fb_v_pos": {
+     "rest": "regulation",
+     "goal": "pos"
+    },
+    "trial_type.fb_v_neg": {
+     "rest": "regulation",
+     "goal": "neg"
+    },
+    "trial_type.fb_a_pos": {
+     "rest": "regulation",
+     "goal": "pos"
+    },
+    "trial_type.fb_a_neg": {
+     "rest": "regulation",
+     "goal": "neg"
+    },
+    "trial_type.feel": {
+     "rest": "regulation"
+    },
+    "trial_type.rest": {
+     "rest": "rest"
+    },
+    "reg_error": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "C",
+     "_quantity": "distance of the feedback marker from the origin (producer sqrt(v^2+a^2))"
+    }
+   }
+  },
+  "ds004056/task-GDMotor": {
+   "factors": {
+    "instruction": {
+     "type": "control",
+     "levels": {
+      "VG": "task",
+      "VM": "task",
+      "CON": "control"
+     },
+     "evidence": "L"
+    },
+    "instruction_kind": {
+     "type": "category",
+     "levels": {
+      "VG": "VG",
+      "VM": "VM"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.DOOR-VG-go": {
+     "instruction_kind": "VG"
+    },
+    "trial_type.DOOR-VG-no-go": {
+     "instruction_kind": "VG"
+    },
+    "trial_type.DOOR-VM-go": {
+     "instruction_kind": "VM"
+    },
+    "trial_type.DOOR-VM-no-go": {
+     "instruction_kind": "VM"
+    },
+    "trial_type.Inst_VG": {
+     "instruction": "VG",
+     "instruction_kind": "VG"
+    },
+    "trial_type.Inst_VM": {
+     "instruction": "VM",
+     "instruction_kind": "VM"
+    },
+    "trial_type.Inst_CON": {
+     "instruction": "CON"
+    }
+   },
+   "note": "go vs no-go roles are not documented for this goal-directed motor task; left unresolved (critique 2026-10-16)"
+  },
+  "ds004141/task-auditoryfeedback": {
+   "factors": {
+    "condition": {
+     "type": "control",
+     "levels": {
+      "emotional": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Happy": {
+     "condition": "emotional"
+    },
+    "trial_type.Sad": {
+     "condition": "emotional"
+    },
+    "trial_type.Alternate": {
+     "condition": "emotional"
+    },
+    "trial_type.Neutral": {
+     "condition": "neutral"
+    }
+   }
+  },
+  "ds004141/task-faceexplocalizer": {
+   "factors": {
+    "condition": {
+     "type": "control",
+     "levels": {
+      "emotional": "task",
+      "control": "control"
+     },
+     "evidence": "L",
+     "note": "neutral faces and the movement condition are the controls"
+    }
+   },
+   "conditions": {
+    "trial_type.Happy": {
+     "condition": "emotional"
+    },
+    "trial_type.Sad": {
+     "condition": "emotional"
+    },
+    "trial_type.Alternate": {
+     "condition": "emotional"
+    },
+    "trial_type.Neutral": {
+     "condition": "control"
+    },
+    "trial_type.Movement": {
+     "condition": "control"
+    }
+   }
+  },
+  "ds004141/task-nofeedback": {
+   "factors": {
+    "condition": {
+     "type": "control",
+     "levels": {
+      "emotional": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Happy": {
+     "condition": "emotional"
+    },
+    "trial_type.Sad": {
+     "condition": "emotional"
+    },
+    "trial_type.Alternate": {
+     "condition": "emotional"
+    },
+    "trial_type.Neutral": {
+     "condition": "neutral"
+    }
+   }
+  },
+  "ds004141/task-visualfeedback": {
+   "factors": {
+    "condition": {
+     "type": "control",
+     "levels": {
+      "emotional": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Happy": {
+     "condition": "emotional"
+    },
+    "trial_type.Sad": {
+     "condition": "emotional"
+    },
+    "trial_type.Alternate": {
+     "condition": "emotional"
+    },
+    "trial_type.Neutral": {
+     "condition": "neutral"
+    }
+   }
+  },
+  "ds004144/task-epr": {
+   "factors": {
+    "regulation": {
+     "type": "control",
+     "levels": {
+      "regulate": "task",
+      "observe": "control"
+     },
+     "evidence": "L",
+     "note": "OBSERVAR (observe) is the control for REDUCIR, SUPRIMIR and INCREMENTAR"
+    },
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "emotional": "task",
+      "neutral": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.Negativo_OBSERVAR": {
+     "regulation": "observe",
+     "stimulus": "emotional"
+    },
+    "trial_type.Neutral_OBSERVAR": {
+     "regulation": "observe",
+     "stimulus": "neutral"
+    },
+    "trial_type.Happy_OBSERVAR": {
+     "regulation": "observe",
+     "stimulus": "emotional"
+    },
+    "trial_type.Negativo_REDUCIR": {
+     "regulation": "regulate",
+     "stimulus": "emotional"
+    },
+    "trial_type.Happy_INCREMENTAR": {
+     "regulation": "regulate",
+     "stimulus": "emotional"
+    },
+    "trial_type.Negativo_SUPRIMIR": {
+     "regulation": "regulate",
+     "stimulus": "emotional"
+    },
+    "trial_type.Happy_SUPRIMIR": {
+     "regulation": "regulate",
+     "stimulus": "emotional"
+    }
+   }
+  },
+  "ds004556/task-feedback": {
+   "factors": {
+    "agency": {
+     "type": "control",
+     "levels": {
+      "control": "task",
+      "watch": "control"
+     },
+     "evidence": "L"
+    },
+    "motion": {
+     "type": "control",
+     "levels": {
+      "moving": "task",
+      "static": "control"
+     },
+     "evidence": "L"
+    },
+    "rest": {
+     "type": "control",
+     "levels": {
+      "active": "task",
+      "fixation": "control"
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.control_moving_bars": {
+     "agency": "control",
+     "motion": "moving",
+     "rest": "active"
+    },
+    "trial_type.watch_static_bars": {
+     "agency": "watch",
+     "motion": "static",
+     "rest": "active"
+    },
+    "trial_type.watch_moving_bars": {
+     "agency": "watch",
+     "motion": "moving",
+     "rest": "active"
+    },
+    "trial_type.instruction": {
+     "rest": "active"
+    },
+    "trial_type.rating": {
+     "rest": "active"
+    },
+    "trial_type.fixation_cross": {
+     "rest": "fixation"
+    },
+    "rating": {
+     "_kind": "pm",
+     "_dir": 1,
+     "_constr": "O",
+     "_quantity": "rating value (original column, n/a set to 0)"
+    }
+   }
+  },
+  "ds004656/task-FoodStimHiLo": {
+   "factors": {
+    "stimulus": {
+     "type": "control",
+     "levels": {
+      "food": "task",
+      "cont": "control"
+     },
+     "evidence": "L"
+    },
+    "calorie": {
+     "type": "ordinal",
+     "levels": {
+      "low": 0,
+      "hi": 1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.hi": {
+     "stimulus": "food",
+     "calorie": "hi"
+    },
+    "trial_type.low": {
+     "stimulus": "food",
+     "calorie": "low"
+    },
+    "trial_type.cont": {
+     "stimulus": "cont"
+    }
+   }
+  },
+  "ds004920/task-doors": {
+   "factors": {
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "win": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.win": {
+     "outcome": "win"
+    },
+    "trial_type.loss": {
+     "outcome": "loss"
+    }
+   }
+  },
+  "ds004920/task-socialdoors": {
+   "factors": {
+    "outcome": {
+     "type": "valence",
+     "levels": {
+      "win": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    }
+   },
+   "conditions": {
+    "trial_type.win": {
+     "outcome": "win"
+    },
+    "trial_type.loss": {
+     "outcome": "loss"
+    }
+   }
+  },
+  "_mid_template": {
+   "note": "applied by the builder to ds003858 MIDmb4/MIDmb8/MIDsingle, ds004920/task-mid and ds005012/task-mid; labels parsed from the fitted trial types",
+   "factors": {
+    "incentive": {
+     "type": "control",
+     "levels": {
+      "incentive": "task",
+      "neutral": "control"
+     },
+     "evidence": "L",
+     "note": "neutral (no-money) cues are the control"
+    },
+    "valence": {
+     "type": "valence",
+     "levels": {
+      "win": 1,
+      "loss": -1
+     },
+     "evidence": "L"
+    },
+    "magnitude": {
+     "type": "ordinal",
+     "levels": {
+      "small": 1,
+      "large": 2
+     },
+     "evidence": "L"
+    },
+    "accuracy": {
+     "type": "valence",
+     "levels": {
+      "hit": 1,
+      "miss": -1
+     },
+     "evidence": "L"
+    },
+    "phase": {
+     "type": "category",
+     "levels": {
+      "cue": "cue",
+      "fix": "anticipation",
+      "fb": "feedback",
+      "probe": "probe"
+     },
+     "evidence": "L"
+    }
+   }
+  }
+ },
+ "amended": "2026-10-16 after a read-only critique: ds004056 go/no-go unresolved; self/friend and recognition responses as category conventions; BART outcome coding documented"
+}

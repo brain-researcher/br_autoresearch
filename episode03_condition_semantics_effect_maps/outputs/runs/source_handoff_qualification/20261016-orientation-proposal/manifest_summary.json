@@ -1,0 +1,80 @@
+{
+ "analysis_id": "source_handoff_qualification",
+ "check": "route_manifest_and_orientation_proposal",
+ "job_id": "48189996",
+ "hostname": "sh03-06n07.int",
+ "inputs": {
+  "census_dir": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode03_condition_semantics_effect_maps/outputs/runs/source_handoff_qualification/20261016-route-census-48185964",
+  "roles": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode03_condition_semantics_effect_maps/outputs/runs/source_handoff_qualification/20261016-orientation-proposal/condition_roles.json",
+  "edits": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode03_condition_semantics_effect_maps/outputs/runs/source_handoff_qualification/20261016-orientation-proposal/event_edit_review.json"
+ },
+ "routes": 103,
+ "routes_with_maps": 96,
+ "dataset_z_maps": 628,
+ "status_counts": {
+  "proposed_rule": 323,
+  "resolved_frozen": 9,
+  "resolved_goal_rule": 199,
+  "assumed_goal_rule": 51,
+  "proposed_rule_assumed_roles": 22,
+  "unresolved": 21,
+  "ineligible": 3
+ },
+ "rule_counts": {
+  "R2_task_minus_control s=1": 189,
+  "R1_event_minus_baseline s=1": 175,
+  "R5_category_order s=-1": 64,
+  "R4_valence s=1": 43,
+  "R5_category_order s=1": 42,
+  "R7_parametric s=1": 30,
+  "R3_higher_minus_lower s=1": 27,
+  "R6_duration s=1": 17,
+  "R3_higher_minus_lower s=-1": 10,
+  "R4_valence s=-1": 4,
+  "R2_task_minus_control s=-1": 3,
+  "R7_parametric s=": 1
+ },
+ "class_counts": {
+  "E_event_vs_implicit_baseline": 175,
+  "P_parametric": 32,
+  "C_comparison": 403,
+  "D_duration_regressor": 17,
+  "null": 1
+ },
+ "by_partition": {
+  "included": {
+   "proposed_rule": 155,
+   "resolved_frozen": 9,
+   "resolved_goal_rule": 97,
+   "assumed_goal_rule": 33,
+   "proposed_rule_assumed_roles": 8,
+   "unresolved": 19,
+   "ineligible": 1
+  },
+  "excluded": {
+   "assumed_goal_rule": 18,
+   "proposed_rule_assumed_roles": 14,
+   "proposed_rule": 168,
+   "resolved_goal_rule": 102,
+   "unresolved": 2,
+   "ineligible": 2
+  }
+ },
+ "flag_counts": {
+  "conditions_absent_in_11_of_66_designs": 6,
+  "higher_precedence_factor_one_sided": 12,
+  "regressor_not_convolved": 4,
+  "name_definition_mismatch": 5,
+  "n_inputs_2": 57,
+  "duplicate_definition": 2,
+  "conditions_absent_in_6_of_112_designs": 1,
+  "conditions_absent_in_8_of_88_designs": 6,
+  "conditions_absent_in_4_of_96_designs": 5,
+  "conditions_absent_in_2_of_51_designs": 1,
+  "conditions_absent_in_1_of_51_designs": 1
+ },
+ "frozen_bart_agreement": 9,
+ "reversal_inconsistent": 0,
+ "maps_or_scores_opened": false,
+ "elapsed_seconds": 0.08
+}
