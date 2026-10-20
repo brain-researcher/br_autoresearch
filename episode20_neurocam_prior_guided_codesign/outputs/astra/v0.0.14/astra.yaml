@@ -1,5 +1,5 @@
-# Design worklist for existing EP20 comparisons; outputs are planned artifacts.
-# The source documentary lookup is executable; no fitted models or findings are asserted.
+# EP20 experiment program; declared outputs include planned and released artifacts.
+# The conditional S5 finding does not establish full reference or hardware acceptance.
 version: "0.0.14"
 name: EP20 coupled field-measurement-reconstruction design
 inputs:
@@ -35,6 +35,7 @@ analyses:
       - {id: operator_checks, type: data, source: outputs/tools/test_reference_s5.py}
       - {id: report_code, type: data, source: outputs/tools/reference_s5_report.py}
       - {id: report_checks, type: data, source: outputs/tools/test_reference_s5_report.py}
+      - {id: result_handoff, type: data, source: outputs/tools/run_reference_s5_result.sh}
     outputs:
       - id: calibration_records
         type: data
@@ -74,7 +75,7 @@ analyses:
       - id: conditional_distant_report
         type: report
         format: directory
-        inputs: [dataset_contract, search_policy, adopted_conditional_route, frozen_compatible_family, report_code, report_checks]
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, frozen_compatible_family, report_code, report_checks, result_handoff]
         description: >-
           Require the complete nearest-only freeze of all 36 full-record structural
           parameter points before reporting. For each compatible point, retain all
@@ -92,6 +93,10 @@ analyses:
           using the existing Python 3.12.1, NumPy 1.26.3, SciPy 1.12.0, h5py 3.10.0
           and matplotlib 3.8.3 modules, with one numerical thread and a fresh output
           directory under outputs/figures/.
+          The result handoff runs the existing complete-grid freeze before this
+          report in one bounded attended compute step after all writers finish.
+          Reuse a suitable substantive allocation for this short operation;
+          scheduler success alone cannot establish complete simulation records.
           No candidate score, primary R-squared claim, full reference acceptance
           or hardware validation is established by this conditional result.
         recipe:
@@ -99,7 +104,448 @@ analyses:
             python3.12 -B outputs/tools/reference_s5_report.py
             --freeze {inputs.frozen_compatible_family} --output-dir {output}
             --paper-far-db -45 --check-max-db -42
-          resources: {cpus: 1, memory: 1Gi, time_limit: 10m}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+  conditional_s5_refinement:
+    name: Nearest-only interior refinement with complete-history conditional prediction
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_conditional_route, type: data, source: outputs/proposed_conditional_reference_prediction.md}
+      - {id: initial_frozen_family, from: ../conditional_s5_prediction.frozen_compatible_family}
+      - {id: air_family_code, type: data, source: outputs/tools/reference_s5_family.py}
+      - {id: acquisition_code, type: data, source: outputs/tools/reference_s5_operator.py}
+      - {id: original_prediction_driver, type: data, source: outputs/tools/reference_s5_prediction.py}
+      - {id: cram16_solver, type: data, source: outputs/tools/reference_s5_cram16_prototype.py}
+      - {id: refinement_driver, type: data, source: outputs/tools/reference_s5_refinement.py}
+      - {id: refinement_wrapper, type: data, source: outputs/tools/run_reference_s5_refinement.sbatch}
+      - {id: original_report_code, type: data, source: outputs/tools/reference_s5_report.py}
+      - {id: refinement_report_code, type: data, source: outputs/tools/reference_s5_refinement_report.py}
+      - {id: refinement_report_checks, type: data, source: outputs/tools/test_reference_s5_refinement_report.py}
+    outputs:
+      - id: interior_manifest
+        type: data
+        format: json
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, initial_frozen_family, air_family_code, acquisition_code, refinement_driver]
+        description: >-
+          Fix round interior001 before its records run. Use the common 3-by-3
+          log-quartile grid at fractions 0.25, 0.5 and 0.75 between
+          sqrt(1e-9 times 20e-6) and 20e-6 siemens of source load, and between
+          0.2e-12 and 30e-12 farads of adjacent-source capacitance. The nine
+          parameter pairs apply identically to R1, R2 and R3, yielding 27 physical
+          records and retaining both equivalent E-area/E-sublinear names. This
+          nearest-only follow-up preserves the original family, parameter domain,
+          acquisition operator, codes, tolerances, six named templates, data roles
+          and distant boundary. Prepare the manifest in an attended compute
+          companion step, not a standalone short batch job.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement.py prepare
+            --output outputs/runs/reference_s5/refinement_interior001/manifest.json
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: r1_refinement_records
+        type: data
+        format: directory
+        inputs: [interior_manifest, air_family_code, acquisition_code, original_prediction_driver, refinement_driver, refinement_wrapper]
+        description: >-
+          Complete all nine R1 parameter records using the original full-state
+          solver, 4000 frames and the complete 16-second acquisition. Store each
+          unchanged-operator record below outputs/runs/reference_s5/refinement_interior001/records/R1/.
+          Preserve checkpoints and original initial-round records; no partial
+          prefix supplies a calibration estimate. Run one numerical thread per
+          task, with no GPU. The resource request is per array task.
+        recipe:
+          command: sbatch --array=0-8%9 --time=01:00:00 outputs/tools/run_reference_s5_refinement.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1h}
+      - id: r2_r3_refinement_records
+        type: data
+        format: directory
+        inputs: [interior_manifest, air_family_code, acquisition_code, original_prediction_driver, cram16_solver, refinement_driver, refinement_wrapper]
+        description: >-
+          Complete all eighteen R2/R3 records with the qualified full-state CRAM16
+          continuation, preserving every physical state, charge, hold integral,
+          timestamp, original numerical tolerance and all 4000 frames. Store each
+          record below outputs/runs/reference_s5/refinement_interior001/records/R2/
+          or R3/. Retain checkpoint continuation with one writer per record and
+          one numerical thread per task. The resource request is per array task;
+          a bounded attempt does not redefine the complete-record target.
+        recipe:
+          command: sbatch --array=9-26%18 --time=2-00:00:00 outputs/tools/run_reference_s5_refinement.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 48h}
+      - id: complete_history_nearest_freeze
+        type: report
+        format: json
+        inputs: [initial_frozen_family, interior_manifest, r1_refinement_records, r2_r3_refinement_records, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Validate all 36 original and 27 refinement full records against their
+          actual respective manifests before freezing all compatible points from
+          the complete 63-record history. Preserve each row's round, structure,
+          point, parameters and original record path without remapping historical
+          records. Missing, duplicate, incomplete or mismatched records fail before
+          any distant comparison. Keep the original source/gate anchors and
+          three-dB margins, source-above-gate condition and both contact labels.
+          Run this short freeze and the following report together in a bounded
+          attended companion step on a suitable substantive compute allocation.
+          This records the earlier 63-record workflow; execution is superseded
+          by conditional_s5_r2_centering's required complete 69-record freeze.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py freeze
+            --initial-freeze {inputs.initial_frozen_family}
+            --manifest outputs/runs/reference_s5/refinement_interior001/manifest.json
+            --records-root outputs/runs/reference_s5/refinement_interior001/records
+            --output {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: conditional_refinement_report
+        type: report
+        format: directory
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, complete_history_nearest_freeze, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Use the entire frozen compatible union across both rounds, without
+          selecting a subset. Save prediction.json with all 63 calibration rows,
+          one figure in PNG/PDF and an exact three-line summary.md in a fresh
+          output directory. If the union is nonempty, retain all per-pad
+          predictions and the unchanged directional and Manhattan-shell curves
+          and assigned distant comparison. If it is empty, produce calibration
+          artifacts without opening response records or distant evidence. Show
+          calibration residuals near the fixed tolerance band with explicit
+          out-of-range markers, retaining numerical-floor residues without
+          interpreting them as precise physical attenuation. The finite explored
+          grid and its conditional envelopes are not a continuous-domain proof,
+          device confidence interval, hardware validation or primary R-squared
+          result. Disclose equivalent dry-air contact names, known public
+          summaries and same-account procedural separation. Use one numerical
+          thread in the attended companion step shared with the preceding freeze;
+          never overwrite earlier result directories.
+          This records the earlier 63-record workflow; execution is superseded
+          by conditional_s5_r2_centering's complete 69-record report.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py report
+            --freeze {inputs.complete_history_nearest_freeze} --output-dir {output}
+            --paper-far-db -45 --check-max-db -42
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+  conditional_s5_centering:
+    name: Nearest-only calibration centering with the complete 66-record history
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_conditional_route, type: data, source: outputs/proposed_conditional_reference_prediction.md}
+      - {id: initial_frozen_family, from: ../conditional_s5_prediction.frozen_compatible_family}
+      - {id: interior_manifest, from: ../conditional_s5_refinement.interior_manifest}
+      - {id: r1_refinement_records, from: ../conditional_s5_refinement.r1_refinement_records}
+      - {id: r2_r3_refinement_records, from: ../conditional_s5_refinement.r2_r3_refinement_records}
+      - {id: air_family_code, type: data, source: outputs/tools/reference_s5_family.py}
+      - {id: acquisition_code, type: data, source: outputs/tools/reference_s5_operator.py}
+      - {id: original_prediction_driver, type: data, source: outputs/tools/reference_s5_prediction.py}
+      - {id: cram16_solver, type: data, source: outputs/tools/reference_s5_cram16_prototype.py}
+      - {id: refinement_driver, type: data, source: outputs/tools/reference_s5_refinement.py}
+      - {id: centering_driver, type: data, source: outputs/tools/reference_s5_centering.py}
+      - {id: centering_wrapper, type: data, source: outputs/tools/run_reference_s5_centering.sbatch}
+      - {id: original_report_code, type: data, source: outputs/tools/reference_s5_report.py}
+      - {id: refinement_report_code, type: data, source: outputs/tools/reference_s5_refinement_report.py}
+      - {id: refinement_report_checks, type: data, source: outputs/tools/test_reference_s5_refinement_report.py}
+    outputs:
+      - id: centering_manifest
+        type: data
+        format: json
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, initial_frozen_family, interior_manifest, r1_refinement_records, air_family_code, acquisition_code, centering_driver]
+        description: >-
+          Fix round center001 before its three full records run. Adaptively select
+          one common parameter pair using only completed R1 nearest-gate results
+          from interior001 points 07 and 08. Keep source load at
+          5.799642800220423e-6 siemens. Interpolate log capacitance between
+          2.449489742783178e-12 and 8.572321289096399e-12 farads, using the
+          measured nearest-gate values -43.063724903477095 and
+          -34.25245747209081 dB to target the unchanged -37.2-dB anchor.
+          The interpolation fraction is (-37.2 - gate_lo) / (gate_hi - gate_lo);
+          capacitance is C_lo times (C_hi / C_lo) raised to that fraction.
+          Interpolated expectations are not measured results. Apply exactly this
+          pair to R1, R2 and R3 while retaining both equivalent contact-law names.
+          Preserve the original parameter domain, operator, all numerical and
+          scientific tolerances, and distant boundary. All original and interior
+          records remain in the final 66-record history; this triplet does not
+          replace the previously compatible boundary point or select a subset.
+          Prepare in an attended compute companion step, not a separate short job.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_centering.py prepare
+            --output outputs/runs/reference_s5/refinement_center001/manifest.json
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: r1_centering_record
+        type: data
+        format: directory
+        inputs: [centering_manifest, air_family_code, acquisition_code, original_prediction_driver, refinement_driver, centering_driver, centering_wrapper]
+        description: >-
+          Complete the single R1 centering record with the original full-state
+          solver, all 4000 frames and the unchanged 16-second acquisition. Store
+          it below outputs/runs/reference_s5/refinement_center001/records/R1/.
+          Preserve checkpoints and all earlier records. A partial prefix cannot
+          supply a calibration estimate. Run one numerical thread without a GPU.
+          Use the actual scheduler end time after the one-hour submission override.
+        recipe:
+          command: sbatch --array=0 --time=01:00:00 outputs/tools/run_reference_s5_centering.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1h}
+      - id: r2_r3_centering_records
+        type: data
+        format: directory
+        inputs: [centering_manifest, air_family_code, acquisition_code, original_prediction_driver, cram16_solver, refinement_driver, centering_driver, centering_wrapper]
+        description: >-
+          Complete the single R2 and single R3 centering records with the
+          qualified full-state CRAM16 continuation. Retain all 4000 frames,
+          physical states, charges, hold integrals, timestamps and original
+          numerical tolerances. Store each record below
+          outputs/runs/reference_s5/refinement_center001/records/R2/ or R3/.
+          Use one writer and one numerical thread per record with checkpoint
+          continuation. Resources apply per array task. A bounded attempt does
+          not redefine the full-record target or authorize an automatic successor.
+        recipe:
+          command: sbatch --array=1-2%2 --time=2-00:00:00 outputs/tools/run_reference_s5_centering.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 48h}
+      - id: complete_history_nearest_freeze
+        type: report
+        format: json
+        inputs: [initial_frozen_family, interior_manifest, r1_refinement_records, r2_r3_refinement_records, centering_manifest, r1_centering_record, r2_r3_centering_records, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Require every full record from initial001 (36), interior001 (27) and
+          center001 (3), and bind each to its own manifest, structure, point,
+          parameters and original record path. Freeze every compatible point
+          across all 66 records before any distant comparison. Missing,
+          duplicate, incomplete or mismatched records fail before distant access.
+          Keep the original source/gate anchors, three-dB margins,
+          source-above-gate condition and both equivalent contact labels.
+          The historical 63-record analysis remains documented but is not the
+          final freeze for this enlarged search. Perform this short freeze and
+          the report together in one attended companion compute step after all
+          writers finish; scheduler completion alone is insufficient.
+          This preserves the historical 66-record freeze specification; active
+          execution is superseded by conditional_s5_r2_centering's complete
+          69-record freeze, which retains every record from this analysis.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py freeze
+            --initial-freeze {inputs.initial_frozen_family}
+            --manifest outputs/runs/reference_s5/refinement_interior001/manifest.json
+            --records-root outputs/runs/reference_s5/refinement_interior001/records
+            --centering-manifest outputs/runs/reference_s5/refinement_center001/manifest.json
+            --centering-records-root outputs/runs/reference_s5/refinement_center001/records
+            --output {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: conditional_centering_report
+        type: report
+        format: directory
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, complete_history_nearest_freeze, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Report the entire compatible union from all three rounds, retaining
+          the boundary point and any new compatible point without subset
+          selection. Save prediction.json containing all 66 calibration rows,
+          one figure in PNG/PDF and an exact three-line summary.md in a fresh
+          output directory. Disclose that center001 was chosen adaptively using
+          only R1 nearest-gate calibration from interior001. For a nonempty
+          union, retain all 4096 per-pad predictions for every compatible point,
+          both equivalent contact names, directional and Manhattan-shell curves,
+          and the unchanged assigned distant comparison. For an empty union,
+          produce calibration-only artifacts before opening response records or
+          distant evidence. The finite explored parameter envelope is not a
+          continuous-domain proof, device confidence interval, hardware
+          validation, full reference acceptance or primary R-squared result.
+          Disclose the assumed dry-air operator, known public summaries and
+          same-account procedural separation. Use one numerical thread in the
+          companion step shared with the freeze and preserve previous reports.
+          This preserves the historical 66-record report specification; active
+          execution is superseded by conditional_s5_r2_centering's complete
+          69-record report without changing earlier records or interpretations.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py report
+            --freeze {inputs.complete_history_nearest_freeze} --output-dir {output}
+            --paper-far-db -45 --check-max-db -42
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+  conditional_s5_r2_centering:
+    name: Final nearest-only R2 centering with the complete 69-record prediction
+    inputs:
+      - {id: goal, from: ../goal}
+      - {id: dataset_contract, from: ../dataset_contract}
+      - {id: search_policy, from: ../search_policy}
+      - {id: adopted_conditional_route, type: data, source: outputs/proposed_conditional_reference_prediction.md}
+      - {id: initial_frozen_family, from: ../conditional_s5_prediction.frozen_compatible_family}
+      - {id: interior_manifest, from: ../conditional_s5_refinement.interior_manifest}
+      - {id: r1_refinement_records, from: ../conditional_s5_refinement.r1_refinement_records}
+      - {id: r2_r3_refinement_records, from: ../conditional_s5_refinement.r2_r3_refinement_records}
+      - {id: centering_manifest, from: ../conditional_s5_centering.centering_manifest}
+      - {id: r1_centering_record, from: ../conditional_s5_centering.r1_centering_record}
+      - {id: r2_r3_centering_records, from: ../conditional_s5_centering.r2_r3_centering_records}
+      - {id: air_family_code, type: data, source: outputs/tools/reference_s5_family.py}
+      - {id: acquisition_code, type: data, source: outputs/tools/reference_s5_operator.py}
+      - {id: original_prediction_driver, type: data, source: outputs/tools/reference_s5_prediction.py}
+      - {id: cram16_solver, type: data, source: outputs/tools/reference_s5_cram16_prototype.py}
+      - {id: refinement_driver, type: data, source: outputs/tools/reference_s5_refinement.py}
+      - {id: r2_centering_driver, type: data, source: outputs/tools/reference_s5_r2_centering.py}
+      - {id: r2_centering_wrapper, type: data, source: outputs/tools/run_reference_s5_r2_centering.sbatch}
+      - {id: original_report_code, type: data, source: outputs/tools/reference_s5_report.py}
+      - {id: refinement_report_code, type: data, source: outputs/tools/reference_s5_refinement_report.py}
+      - {id: refinement_report_checks, type: data, source: outputs/tools/test_reference_s5_refinement_report.py}
+    outputs:
+      - id: r2_centering_manifest
+        type: data
+        format: json
+        inputs: [goal, dataset_contract, search_policy, adopted_conditional_route, initial_frozen_family, interior_manifest, r2_r3_refinement_records, centering_manifest, air_family_code, acquisition_code, r2_centering_driver]
+        description: >-
+          Select final round center002 before its three full records run, using
+          only the completed nearest summaries of R2 interior001 points 04 and
+          05. Both measured source responses meet their unchanged tolerance;
+          their gate responses bracket the target. This tests the specific
+          alternative that a coarse capacitance grid omitted an R2-compatible
+          fit, rather than establishing structural incompatibility. Fix source
+          load at 1.6817928305074292e-6 siemens and interpolate log capacitance
+          between 2.449489742783178e-12 and 8.572321289096399e-12 farads using
+          gate_lo=-41.03157761714907 and gate_hi=-28.96425485911152 dB.
+          Set t=(-37.2-gate_lo)/(gate_hi-gate_lo) and
+          C=C_lo*(C_hi/C_lo)^t. The interpolation is an adaptive input selection,
+          not a measured response, monotonicity proof or guaranteed joint fit.
+          Apply exactly the same pair to R1, R2 and R3 and retain both equivalent
+          contact labels, the original domain, operator and all tolerances.
+          Retain all 66 prior records, giving 69 required complete records.
+          This is the final triplet before the conditional distant evaluation:
+          no automatic additional refinement follows a calibration miss, and
+          every structure need not become compatible. Prepare this manifest
+          with focused checks inside the substantive attended R1 allocation.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_r2_centering.py prepare
+            --output outputs/runs/reference_s5/refinement_center002/manifest.json
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: r1_r2_centering_record
+        type: data
+        format: directory
+        inputs: [r2_centering_manifest, air_family_code, acquisition_code, original_prediction_driver, refinement_driver, r2_centering_driver, r2_centering_wrapper]
+        description: >-
+          Complete R1 at the single R2-guided parameter pair with the original
+          solver, all 4000 frames and the full 16-second acquisition. Preserve
+          checkpoints and all prior records under separate center002 paths.
+          Execute in one substantive attended allocation alongside manifest
+          preparation and the focused admission/report checks, with one CPU,
+          2 GiB, one numerical worker and a one-hour wall limit. Bound the driver
+          by the actual remaining allocation time with shutdown margin; the
+          recipe's 3300 seconds is an upper bound, not permission to overrun.
+          A partial prefix supplies no calibration estimate; engineering repair
+          preserves the complete-record target and does not add parameter points.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_r2_centering.py run
+            --manifest outputs/runs/reference_s5/refinement_center002/manifest.json
+            --structure R1 --point 0
+            --record-dir outputs/runs/reference_s5/refinement_center002/records/R1/point_00
+            --run-dir {output} --deadline-seconds 3300 --memory-mib 1536
+          resources: {cpus: 1, memory: 2Gi, time_limit: 1h}
+      - id: r2_r3_r2_centering_records
+        type: data
+        format: directory
+        inputs: [r2_centering_manifest, air_family_code, acquisition_code, original_prediction_driver, cram16_solver, refinement_driver, r2_centering_driver, r2_centering_wrapper]
+        description: >-
+          Complete one R2 and one R3 record at the same selected pair using the
+          qualified full-state CRAM16 continuation. Retain every physical state,
+          charge, hold integral, timestamp, original numerical tolerance and all
+          4000 frames. Store separate records under
+          outputs/runs/reference_s5/refinement_center002/records/R2/ and R3/.
+          Use one writer and numerical worker per record, with checkpoint
+          continuation and no GPU. Measured approximately 29-32-hour full-record
+          costs justify finite 48-hour requests of one CPU and 2 GiB per task.
+          Use actual scheduler end times; neither a bounded attempt nor a
+          checkpoint authorizes automatic successor jobs or more search points.
+        recipe:
+          command: sbatch --array=1-2%2 --time=2-00:00:00 outputs/tools/run_reference_s5_r2_centering.sbatch
+          resources: {cpus: 1, memory: 2Gi, time_limit: 48h}
+      - id: complete_history_nearest_freeze
+        type: report
+        format: json
+        inputs: [initial_frozen_family, interior_manifest, r1_refinement_records, r2_r3_refinement_records, centering_manifest, r1_centering_record, r2_r3_centering_records, r2_centering_manifest, r1_r2_centering_record, r2_r3_r2_centering_records, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Require initial001 (36), interior001 (27), center001 (3) and center002
+          (3): every one of the 69 full records before the active freeze. Bind
+          every row to its original manifest, structure, point, parameters and
+          record path. Retain every compatible historical or new point without
+          replacement or subset selection; both contact labels remain. Enforce
+          the original nearest anchors, three-dB margins and source-above-gate
+          rule. Missing, duplicate, incomplete or mismatched records fail before
+          distant access. The older 63- and 66-record workflows are historical
+          and cannot open the active prediction. After all writers finish,
+          freeze and report together in a bounded attended compute companion
+          step on a suitable substantive allocation. Complete the final
+          conditional evaluation whether or not center002 yields an R2 fit.
+          Released freeze: outputs/runs/reference_s5/result_all69_job_47586225_step_4/nearest_only_freeze.json.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py freeze
+            --initial-freeze {inputs.initial_frozen_family}
+            --manifest outputs/runs/reference_s5/refinement_interior001/manifest.json
+            --records-root outputs/runs/reference_s5/refinement_interior001/records
+            --centering-manifest outputs/runs/reference_s5/refinement_center001/manifest.json
+            --centering-records-root outputs/runs/reference_s5/refinement_center001/records
+            --r2-centering-manifest outputs/runs/reference_s5/refinement_center002/manifest.json
+            --r2-centering-records-root outputs/runs/reference_s5/refinement_center002/records
+            --output {output}
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+      - id: conditional_r2_centering_report
+        type: report
+        format: directory
+        inputs: [dataset_contract, search_policy, adopted_conditional_route, complete_history_nearest_freeze, original_report_code, refinement_report_code, refinement_report_checks]
+        description: >-
+          Evaluate whether models matched to the same nearest observations also
+          satisfy the assigned distant ceiling, or whether that observation
+          rejects some or all explored conditional models. Use the entire
+          compatible union frozen from all 69 complete records. Save all
+          calibration rows and predictions in prediction.json, one figure in
+          PNG/PDF and an exact three-line summary.md in a fresh output directory.
+          For a nonempty union retain all 4096 per-pad predictions for every
+          compatible point, both equivalent contact names, source/gate
+          directional curves and Manhattan-shell curves. Keep the assigned
+          approximately -45-dB paper summary and -42-dB ceiling unchanged.
+          For an empty union publish calibration-only artifacts without opening
+          distant evidence. Disclose adaptive nearest-only selection from R1 for
+          center001 and R2 for center002, all 69 attempted structural records,
+          the assumed operator, known public summaries and same-account
+          procedural separation. An unsuccessful center002 interpolation does
+          not reject the R2 continuous domain. The explored envelope is not an
+          identified set, independent-device confidence interval, full reference
+          acceptance, hardware validation or primary R-squared result. No
+          additional refinement is selected from the distant outcome. Use one
+          numerical thread in the companion step shared with the freeze and
+          preserve all earlier reports and their historical interpretation.
+          Released evidence: outputs/figures/conditional_s5_all69_job_47586225_step_4/prediction.json,
+          summary.md and conditional_s5_refinement_prediction.png in that directory.
+        recipe:
+          command: >-
+            python3.12 -B outputs/tools/reference_s5_refinement_report.py report
+            --freeze {inputs.complete_history_nearest_freeze} --output-dir {output}
+            --paper-far-db -45 --check-max-db -42
+          resources: {cpus: 1, memory: 512Mi, time_limit: 15m}
+    findings:
+      conditional_s5_distant_mismatch:
+        id: conditional_s5_distant_mismatch
+        claim: >-
+          Among all 69 full 16-second conditional dry-air records, two R1
+          points and one R2 point satisfy nearest calibration and were frozen
+          before the distant comparison. Their distant maxima are
+          -13.618632364989203, -13.44278755333339 and -4.984048006965357 dB;
+          none of the three satisfies the fixed -42-dB ceiling. The joint
+          assumed operator/circuit and explored compatible points fail the
+          assigned distant check; this does not isolate a single assumption
+          or exclude the continuous parameter domain or physical hardware.
+        created_at: '2026-10-18T14:20:11Z'
+        evidence:
+          - {id: complete_nearest_only_freeze, artifact: complete_history_nearest_freeze}
+          - {id: all69_conditional_prediction, artifact: conditional_r2_centering_report}
+        derived: true
+        notes: >-
+          E_area and E_sublinear give equivalent dry-air predictions, not
+          independent evidence. The finite explored envelope is not an
+          independent-device confidence interval. Previously known public
+          summaries and same-account procedural separation preclude blind
+          validation claims. This completes the adopted conditional next-result
+          scope; no further calibration is selected. Full reference acceptance
+          and the original hardware-ranking question remain unresolved.
   fast_forward_equivalence:
     name: Preserve the original full-dimensional forward model under the faster solver
     inputs:

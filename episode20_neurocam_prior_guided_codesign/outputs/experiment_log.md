@@ -1,5 +1,234 @@
 # Experiment log
 
+## 2026-10-18 07:16 Pacific — conditional_s5_r2_centering — conditional distant result complete
+
+Attended step47586225.4 on sh04-04n23 completed with exit0 at14:16:51UTC; all69 full records passed the complete-history freeze before any distant evaluation. The step has exited.
+The entire nearest-compatible union contains R1 interior001 point08, R1 center001 point00 and R2 center002 point00; both equivalent contact names are retained for each.
+Their distant maxima are−13.6186323650,−13.4427875533 and−4.9840480070dB:0/3 satisfy the unchanged−42dB ceiling. The joint assumed operator/circuit and these explored compatible points fail the held-aside check; no individual assumption is isolated.
+Artifacts: runs/reference_s5/result_all69_job_47586225_step_4/{nearest_only_freeze.json,terminal.json}; figures/conditional_s5_all69_job_47586225_step_4/{prediction.json,summary.md,conditional_s5_refinement_prediction.png,conditional_s5_refinement_prediction.pdf,per_pad_amplitudes.npz}.
+Independent review confirmed all69 records, the complete compatible union, fixed thresholds and exact three-line interpretation; the coordinator inspected the figure. This fulfills the adopted conditional next-result scope, not full-reference acceptance or the original hardware-ranking question.
+The ASTRA finding binds these released outputs; pinned0.0.14 schema and semantic validation passed in attended step47586225.5. Evidence: runs/reference_s5/result_all69_job_47586225_step_4/astra_finding_validation.json; the step exited0.
+The range is finite parameter sensitivity, not device uncertainty; public-summary exposure and same-account procedural separation are disclosed. Conditional operator error and inadequate circuit assumptions remain alternatives; this check does not distinguish them or exclude the continuous parameter domain.
+No further calibration or automatic successor is selected. Preserve the completed conditional result and all original data boundaries; focus execution continues in EP21 while the EP15 audit decision remains pending.
+
+## 2026-10-18 07:16 Pacific — conditional_s5_r2_centering — all69 complete; final prediction selected
+
+Last task48216582_2 completed at14:10:18UTC with exit0, all4,000 frames/16seconds and zero clipping; sacct confirms COMPLETED0:0. All69 selected records are now complete.
+Center002 R3 source+6.2735342973dB and gate−26.2736560062dB both fail nearest calibration; the complete explored union retains two R1 points and one R2 point.
+Evidence: runs/reference_s5/refinement_center002/operations_array_48216582/task_02_job_48216582/{terminal.json,record_operation/run_report.json}; independently reviewed nearest-only output.
+Select tested tools/run_reference_s5_refinement_result.sh in an attended1CPU/512MiB/15minute step within task-owned47586225 (3CPU/16GiB, one numerical worker and15GiB process guard); original report measured5.71seconds/105452KiB. No standalone short job or new simulation.
+Persist the complete69-record nearest-only freeze before distant evaluation; retain every compatible point and both equivalent contact labels, fixed−42dB ceiling, one figure and three summary lines. Distant values remain unopened before this execution.
+No additional calibration follows the distant result; report only the finite conditional envelope, without independent-device uncertainty or hardware validation.
+
+## 2026-10-18 05:06 Pacific — reference_s5 — center002 R2 compatible, 68/69 records
+
+Task48216582_1/job48216584 completed at12:06:21UTC with exit0, all4,000 frames/16seconds and zero clipping.
+Nearest source−13.7495161593dB and gate−37.2109455274dB pass the unchanged ±3dB tolerances around−12.6/−37.2dB and source-above-gate ordering. This adds one R2 point to the two prior compatible R1 points.
+Evidence: runs/reference_s5/refinement_center002/operations_array_48216582/task_01_job_48216584/{terminal.json,record_operation/run_report.json}; independently reviewed nearest-only output.
+Only task48216582_2 (center002 R3) remains; coordinator12:07UTC observed it running at3,757/4,000 frames. Complete all69, freeze every compatible historical/new point, then run the reserved distant prediction; no further calibration expansion is selected.
+Distant outcomes remain unopened. This is conditional calibration evidence, not the held-aside prediction, continuous-domain coverage or hardware validation.
+
+## 2026-10-17 02:36 Pacific — reference_s5 — center001 complete, 67/69 records
+
+Task48050955_2/job48050955 completed at09:36:37UTC with exit0, all4,000 frames/16seconds and zero clipping; all center001 records are now complete.
+Nearest source+3.6256125472dB and gate−30.8494198684dB both fail the unchanged ±3dB tolerances around−12.6/−37.2dB; no compatible point is added. The two prior compatible R1 points remain.
+Evidence: runs/reference_s5/refinement_center001/operations_array_48050955/task_02_job_48050955/{terminal.json,record_operation/run_report.json}; independently reviewed nearest-only output.
+Two existing writers remain:48216582_1–2 (center002 R2/R3), confirmed running at09:44UTC. Complete all69, freeze every compatible historical/new point, then run the reserved distant prediction; no further calibration search or replacement job is selected.
+Distant outcomes remain unopened. This is completion/calibration evidence, not the conditional held-out result or hardware validation.
+
+## 2026-10-17 01:18 Pacific — reference_s5 — interior complete, 66/69 records
+
+Task48037544_18/job48037852 completed at08:18:07UTC with exit0, all4,000 frames/16seconds and zero clipping; all27 interior records are now complete.
+Nearest source+8.1164919997dB fails its unchanged tolerance; gate−36.1016724172dB passes. This R3 point adds no compatible model; the two prior compatible R1 points remain.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/task_18_job_48037852/{terminal.json,record_operation/run_report.json}.
+Three existing writers remain:48050955_2 and48216582_1–2. After all69 complete, freeze every compatible historical/new point and run the reserved distant prediction; no additional calibration search or replacement job is selected.
+Distant outcomes remain unopened. This is completion/calibration evidence, not the conditional held-out result or hardware validation.
+
+## 2026-10-17 01:00 Pacific — conditional_s5_prediction — interpretation fixed before distant access
+
+The final report will retain the complete compatible union, show the actual range of distant maxima and explicitly label E_area/E_sublinear as identical dry-air predictions, not independent evidence.
+All pass: the explored set is consistent with the one-sided−42dB ceiling, without establishing agreement with−45dB or identifying a mechanism. Mixed: nearest calibration leaves that distant criterion unresolved within the explored set. None pass: the joint assumed operator/circuit and explored compatible points fail this check; no individual assumption or continuous domain is excluded.
+Keep all69 records, existing scoring/masks/tolerances and the frozen-to-distant boundary. The figure keeps both directional curves, all-pad maxima and calibration residuals; exactly three summary lines retain conditional/no-device-CI/no-hardware claims.
+This is prospective reporting clarification under standing authority, not another analysis or calibration round; no distant response has been inspected.
+Independent source review and the focused interpretation test passed in coordinated step47586225.2 (1test,0.001s); evidence: runs/reference_s5/interpretation_fixture_47586225_2.txt. No distant outcome was accessed.
+
+## 2026-10-17 00:59 Pacific — reference_s5_refinement — R3 point08 complete
+
+Task48037544_26 is actual job48037544, not48037860; terminal completion07:58:17UTC and run_report confirm exit0, all4,000frames/16seconds and zero clipping.
+Nearest source=+3.8899976810dB and gate=−27.2149061595dB both fail unchanged calibration tolerances; no compatible point is added.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/task_26_job_48037544/{terminal.json,record_operation/run_report.json}; nearest-only access.
+Total65/69 complete; coordinator07:59UTC confirms four existing workers remain. Finish all69 before the compatible-union freeze and distant prediction; no relaunch or calibration expansion.
+
+## 2026-10-17 00:53 Pacific — reference_s5_refinement — two more records complete
+
+Interior task48037544_19/job48037853 (R3 point01) finished07:50:13UTC; source=+8.3826744620dB, gate=−25.8250013134dB, both outside calibration tolerance.
+Center001 task48050955_1/job48050958 (R2 point00) finished07:48:32UTC; source=−35.1095650808dB fails, gate=−38.4414633316dB passes the unchanged tolerances.
+Both terminal/run reports confirm exit0, all4,000 frames/16seconds, zero clipping and nearest-only access; neither adds a compatible point.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/task_19_job_48037853/ and runs/reference_s5/refinement_center001/operations_array_48050955/task_01_job_48050958/, each terminal.json and record_operation/run_report.json.
+Total64/69 complete; coordinator07:53UTC confirms five existing workers remain. Complete all69 before freezing every compatible point and opening distant predictions; no new expansion or replacement job.
+
+## 2026-10-17 00:50 Pacific — reference_s5_refinement — two further R3 records complete
+
+Tasks48037544_20/job48037854 and_25/job48037859 completed at07:39:04/07:43:28UTC; terminal exit0 and run_report confirm all4000frames/16s, zero clipping, nearest-only access.
+R3 points02/07 give nearest source+9.0379090650/+3.3245068567dB andgate−16.6758211009/−38.1473378946dB; bothfail the unchangedsource tolerance.
+Total62/69 complete, sevenexistingwritersremain; no compatiblepoint added, calibration expansion, replacementjob or distant-outcome access.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/task_{20_job_48037854,25_job_48037859}/{terminal.json,record_operation/run_report.json}; keepall69 beforethe frozencompatible-union prediction.
+
+## 2026-10-17 00:37 Pacific — conditional_s5_refinement — three R3 completions
+
+Task48037544_21/job48037855 (R3 point03) finished07:20:31UTC; nearest source=+5.8047752478dB, gate=−40.0705348162dB.
+Task48037544_23/job48037857 (R3 point05) finished07:34:07UTC; nearest source=+6.8776592528dB, gate=−19.6867412104dB.
+Task48037544_24/job48037858 (R3 point06) finished07:32:05UTC; nearest source=+3.1547219474dB, gate=−49.0223873182dB.
+Each terminal/run report confirms exit0,4,000 frames/16seconds, zero clipping and nearest-only access; all three fail the unchanged nearest-source tolerance.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/{task_21_job_48037855,task_23_job_48037857,task_24_job_48037858}/{terminal.json,record_operation/run_report.json}.
+The history is60/69 complete; nine existing records remain. No relaunch or new expansion; complete all69, freeze every compatible point, then evaluate distant predictions.
+
+## 2026-10-17 00:17 Pacific — conditional_s5_refinement — R3 point04 complete
+
+Task48037544_22/job48037856 finished2026-10-17T07:17:10Z with exit0, all4,000 frames/16seconds and zero clipping; nearest source=+6.0945472567dB, gate=−29.5130946609dB.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037544/task_22_job_48037856/terminal.json and record_operation/run_report.json; nearest-only access.
+The complete history is57/69 records; twelve existing R2/R3 workers continue. This completed task needs no relaunch.
+Next: complete all69 before the compatible-set freeze and distant evaluation; no new calibration expansion.
+
+## 2026-10-16 23:48 Pacific — conditional_s5_r2_centering — full R1 record complete
+
+Attended job48216058 completed0:0 in18m30s and its shell exited. The center002 R1 report confirms4,000 frames and16seconds.
+Nearest source=−3.8236253699dB and gate=−34.9974145733dB; source fails the unchanged calibration tolerance, so this point does not join the two previously compatible R1 points.
+Evidence: runs/reference_s5/refinement_center002/operations_job_48216058/record_operation/run_report.json. The complete history is56/69 records at this observation; thirteen existing R2/R3 writers continue.
+Next: complete the selected history and freeze every compatible point before distant evaluation. No additional refinement follows this final triplet.
+
+## 2026-10-16 23:33 Pacific — conditional_s5_r2_centering — checks passed and final triplet launched
+
+Attended job48216058 on sh04-14n32 passed 14 focused runner/report tests, wrapper syntax and ASTRA schema/semantic validation; independent source review found no material integration defect.
+Prepared center002/manifest.json with the selected R2 nearest-only interpolation; no distant response was used.
+Started the full R1 record in that 1CPU/2GiB/1h allocation and submitted array48216582_1–2 for full R2/R3 records at 1CPU/2GiB/48h each; the existing eleven writers remain untouched.
+Evidence: runs/reference_s5/refinement_center002/operations_job_48216058/checks.txt and astra_validation.json; R1 writes record_operation/run_report.json and array workers use their own operation directories.
+Next: finish all69 records, retain every compatible historical/new point, then report the distant conditional prediction with its figure and three-line summary. No automatic calibration successor.
+
+## 2026-10-16 23:27 Pacific — conditional_s5_r2_centering — final targeted calibration triplet activated
+
+All nine interior R2 parents48037544_9–17 completed0:0 with4,000 frames and zero clipping;55/66 existing records are complete and eleven remain running.
+R2 points04/05 share G=1.6817928305074292e-6S: source−14.2871994212/−12.0197823620dB both pass, while gate−41.0315776171/−28.9642548591dB brackets−37.2. No sampled R2 point passes both; the bracket suggests a grid gap, not proven feasibility or structural rejection.
+Activate one final center002 pair under standing authority: retain G and interpolate log(C) between2.449489742783178e-12/8.572321289096399e-12F to the gate target, using only those nearest reports. The interpolation is a selection heuristic, not a measured response.
+Run the same pair for R1/R2/R3 with both contact names, unchanged physics/operator/domain/tolerances and full16-second records; retain all66 prior records, making69 required before distant access.
+Independent source/result review supports this bounded correction; the bracketing measurements suggest but do not establish a compatible intermediate response.
+Select one attended1CPU/2GiB/1h allocation for focused admission/report checks plus the substantive R1 record; after passing, submit the two R2/R3 workers at1CPU/2GiB/48h each, measured at roughly29–32h per record.
+Stop calibration after this triplet regardless of whether R2 becomes compatible; repair engineering failures as needed, freeze every compatible point across all69, and report distant agreement/rejection without another automatic refinement or continuous-domain/hardware claim.
+
+## 2026-10-16 12:16 Pacific — conditional_s5_refinement / conditional_s5_centering — existing wave advances
+
+All18 interior48037544_9–26 and two centering48050955_1–2 workers remain RUNNING; their public frame counts advanced to2,294–2,580 and2,239/2,106 of4,000 respectively.
+Carried frames take approximately25–28seconds; the finite48-hour requests remain adequate at this observation. No restart or added refinement is selected.
+The history remains46/66 complete, with two compatible completed R1 points; every compatible point stays in the combined result and distant evaluation remains unopened.
+Daily allocation through12:16:11Pacific:245.394CPUh for these20 parents since local midnight; pending/new reporting has consumed zero today. Earlier usage is preserved separately.
+Clarified navigation to the active66-record reporter; the old36-record wrapper remains historical. No scientific code or thresholds changed.
+Next: complete all66 records, use reference_s5_refinement_report.py for the combined freeze and conditional prediction, then publish its figure and three-line summary.
+
+## 2026-10-15 20:02 Pacific — conditional_s5_centering — complete R1 centering record meets both nearest tolerances
+
+Job48050950_0 completed0:0 in18m06s; its terminal and run report confirm all4,000 frames,16seconds, zero clipped raw samples and nearest-only access.
+Measured nearest source=−11.8166130093dB and gate=−37.4447077025dB; both meet the unchanged±3dB anchors with source above gate, at the preselected G=5.799642800220423e-6S and C=5.637831499612023e-12F.
+Evidence: runs/reference_s5/refinement_center001/operations_array_48050950/task_00_job_48050950/record_operation/run_report.json. This is a measured conditional simulation, not the interpolation's expected value or a hardware result.
+Two completed R1 points now meet calibration: interior001/point08 and center001/point00. Retain both; no point is replaced and no further refinement is selected.
+The complete history is46/66 records; all20 remaining R2/R3 records are running. Their full records and the all66 compatible-set freeze still precede distant evaluation.
+Next: complete the existing wave and report every compatible prediction with the adopted figure and three-line summary; no distant outcome has been opened.
+
+## 2026-10-15 19:40 Pacific — conditional_s5_centering — focused checks passed; triplet submitted
+
+Attended compute step47382257.3 passed wrapper syntax, nine centering/combined-history tests and one additional active-report admission test; ASTRA schema/semantic validation passed and the shell exited0.
+Independent review identified that the legacy63-record CLI could omit the adopted centering round; the active freeze now requires both centering inputs and active reporting rejects63 records before distant access.
+Historical63-record low-level support remains for prior-work inspection; the active route requires all66 and every compatible point, including interior R1 point08.
+Prepared center001/manifest.json exclusively with G=5.799642800220423e-6S and C=5.637831499612023e-12F. No physical simulation or distant comparison ran during these focused checks.
+Submitted48050950_0 for R1 at1CPU/2GiB/1h and48050955_1–2 for R2/R3 at1CPU/2GiB/48h each; all three are initially pending. Existing18 interior and two EP21 jobs remain running.
+At19:45 Pacific all three centering jobs are running and committing frames: R1=285, R2=2, R3=2; carried R2/R3 frames take about26–28seconds, consistent with their finite48-hour requests.
+Next: preserve all historical records and complete the66-record history before any distant evaluation.
+
+## 2026-10-15 Pacific — conditional_s5_centering — three nearest-only centering records activated
+
+The completed interior R1 point08 meets both nearest tolerances, but its gate value is only0.0524574721dB inside the boundary; point07 brackets the gate target at the same source load.
+Under standing authority, activate center001: fix G=5.799642800220423e-6S and interpolate log(C) between points07/08 to the nearest-gate target−37.2dB, using only their completed nearest summaries.
+Use this one parameter pair for all R1/R2/R3, retaining both equivalent contact labels, the original operator/domain/tolerances and full4,000-frame records. Interpolated responses are expectations, not measured results.
+Preserve all36 original and27 interior records; the complete66-record history and every compatible point are required before the distant comparison. No distant outcome informed this selection.
+Select focused admission/report-boundary tests and changed ASTRA validation in one attended1CPU/512MiB/5-minute companion of live focus-task parent47382257; reuse qualified physical solvers.
+After passing, submit one R1 record at1CPU/2GiB/1h and two R2/R3 records at1CPU/2GiB/48h each, with separate center001 paths and checkpoint preservation.
+All18 interior R2/R3 jobs continue. Next: complete this bounded triplet and the existing wave, freeze the entire history, then report the conditional distant prediction without a hardware-validation or continuous-domain claim.
+
+## 2026-10-15 19:18 Pacific — conditional_s5_refinement — one completed R1 interior point meets calibration
+
+Inspected existing nearest_calibration fields in all nine completed48037541 operation reports; no new scientific computation or distant response access was needed.
+Only point08 meets both unchanged nearest tolerances: source−11.3715415124dB and gate−34.2524574721dB, with source above gate and zero clipped raw samples.
+Its selected parameters are G=5.79964280022e-6S and C=8.57232128910e-12F; errors against the anchors are+1.2284584876/+2.9475425279dB, leaving only0.0524574721dB at the gate acceptance boundary.
+Evidence: runs/reference_s5/refinement_interior001/operations_array_48037541/task_08_job_48037541/record_operation/run_report.json confirms all4,000 frames and16seconds.
+This is interim R1 calibration, not a combined freeze, distant prediction, robust fit or hardware validation; retain both equivalent contact labels and all structures.
+The full history remains45/63 complete with18 R2/R3 jobs running. No extra refinement is selected now; complete the declared family and retain every compatible point for its frozen prediction.
+
+## 2026-10-15 18:34 Pacific — conditional_s5_refinement — R3 interpretation remains conditional
+
+A bounded source/equation review found shared buffer/filter memory to be a plausible explanation for the initial R3 nearest-source ratios, not a proven structural obstruction.
+The rough capacitance/drive scale is115microseconds versus62.5microseconds per row, but it is not the actual switched-system time constant or a bound on fitted amplitudes.
+Domain-wide source exclusion would require max(norm(beta30),norm(beta32))/norm(beta31)>10^(-9.6/20) for every admissible parameter pair; quantized actual-aperture full-record projections prevent inferring that inequality from a single decay constant.
+No new outcome was opened or computation run. Retain finite-grid claim limits, all three structures and the current wave; a continuous-domain impossibility result is not established.
+
+## 2026-10-15 18:24 Pacific — conditional_s5_refinement — all nine interior R1 records complete
+
+All nine48037541 tasks are COMPLETED0:0; each terminal confirms complete_record with the4,000-frame target, with the last writer closing at18:23:52Pacific.
+Together with the original36 records,45/63 required records are complete; all18 R2/R3 tasks in48037544 remain RUNNING.
+No partial compatible-family freeze or distant comparison has been performed; retain every original and interior record for the combined result.
+Next: complete the18 full-state records, then execute the prepared complete-history nearest freeze and conditional report.
+
+## 2026-10-15 17:59 Pacific — conditional_s5_refinement — checks passed; 27 full-record jobs submitted
+
+Attended step47382257.2 passed wrapper syntax and all six focused runner/combined-report tests; the selected interior001 manifest was created exclusively.
+Independent source review passed the unchanged full-record operation, all63-record union, retained historical bindings and empty-family distant-access boundary.
+Changed ASTRA schema/semantic validation passed in the same compute step; Slurm emitted its5-minute limit notice during closeout, and the PTY then exited0 with no continuing shell.
+Submitted48037541_0–8 for nine R1 records at1CPU/2GiB/1h each and48037544_9–26 for eighteen R2/R3 records at1CPU/2GiB/48h each.
+The two arrays share the selected manifest but write distinct structure/point records; no original record or current EP21 job is replaced.
+At18:09 Pacific, all27 workers are running; the nine R1 records have795–2,155 committed frames. All18 R2/R3 workers passed startup and committed full frames; observed carried-frame times are about25–30s.
+Next: complete the records, preserve checkpoints on bounded stops, then freeze all36original+27new records before any conditional distant prediction.
+No complete refined calibration, distant result or hardware-validity claim is available from submission alone.
+
+## 2026-10-15 Pacific — conditional_s5_refinement — selected wave implemented; admission checks selected
+
+New refinement driver and wrapper preserve the original full-record operation, fixed science and separate interior001 paths; no original source file is changed.
+Select one bounded1CPU/512MiB/5-minute companion in live parent47382257 for wrapper syntax, three new admission methods and exclusive manifest preparation.
+No prior physics tests or simulations are repeated in this step. Independent source review accompanies the focused checks.
+After passing, submit tasks0–8 as one1CPU/2GiB/1-hour R1 array and tasks9–26 as one1CPU/2GiB/48-hour R2/R3 array, up to27 workers total.
+The new combined freeze/report implementation remains separate; all63 complete records are required before any reserved distant evaluation.
+
+## 2026-10-15 17:55 Pacific — conditional_s5_prediction / conditional_s5_refinement — empty initial grid; interior refinement activated
+
+Step47382257.1 validated all36 complete records and released prediction.json, summary.md and conditional_s5_prediction.{png,pdf} under figures/conditional_s5_job_47382257_step_1/; exit0, peakRSS105,452KiB.
+Zero sampled points meet both nearest-anchor tolerances; distant evidence remains unopened, so the requested prediction milestone is still incomplete.
+The initial G grid leaves a141-fold gap across the R1/R2 source-response transition, and C jumps150-fold across gate-response transitions; R3 source ratios are positive at every sampled point.
+Under standing authority, activate interior001: the common3x3 log-quartile grid inside G=[sqrt(1e-9*20e-6),20e-6]S and C=[.2e-12,30e-12]F, for all R1/R2/R3 and both equivalent contact labels.
+These27 new full4,000-frame records preserve the operator, physical domain and tolerances; preserve all36 prior records and freeze every compatible point from the complete63-record history before distant evaluation.
+Two local source/result reviews support nearest-only refinement; BR directive ext_review_dir_9d68f9e0bdf5 supplied advisory criteria, not an artifact review or formal acceptance.
+Select parallel1CPU/2GiB/48-hour bounded workers using the unchanged R1 solver and qualified R2/R3 CRAM16; measured R1 records take17–19min, R2/R3 about30–32h.
+Daily compute: completed array47789534 used382.720 allocatedCPU-hours on October15 Pacific,734.289 across its full lifetime; report companion belongs to the existing EP21 allocation, charged once.
+Next: implement and check only new manifest/complete-history boundaries, launch the27-record wave, and retain the initial calibration result as a finite-grid limitation rather than domain rejection.
+
+## 2026-10-15 17:50 Pacific — conditional_s5_prediction — full-record family ready for freeze and report
+
+All24 tasks in47789534 are COMPLETED0:0; each terminal report confirms complete_record and the4,000-frame target.
+Together with the twelve completed R1 records, the entire36-record family is ready; the final R3 writer closed at17:48Pacific.
+Select the reviewed result handoff in one attended1CPU/512MiB/15-minute step of live focus-task parent47382257.
+The unchanged freeze validates every complete record before publishing the nearest-only compatible family; only then may the reporter evaluate distant coupling.
+Preserve all six template names and all compatible points, with calibration-only reporting if none are compatible; no candidate or independent-final access is opened.
+The parent retains2CPUs/16GiB and one numerical training worker; charge its allocation once to EP21 and keep the companion below512MiB.
+Next: inspect the numerical report, figure and three-line summary, then decide whether this is the requested conditional endpoint or needs further calibration work.
+
+## 2026-10-15 14:22 Pacific — conditional_s5_prediction — complete-grid result handoff prepared
+
+Two more array records, tasks12/13 (47789594/47789595), have complete_record and 4,000-frame terminal reports; at least14/36 are complete.
+Prepared run_reference_s5_result.sh: validate all36 full16-second records, write nearest-only freeze, then invoke the unchanged reporter.
+The result retains every compatible point, all4096 pads and six template names; an empty sampled family produces calibration-only evidence.
+Source review passed sequencing and fresh output handling; no distant outcome has been read and no reporting job is queued.
+Use an attended1CPU/512MiB/15-minute step in a suitable substantive allocation rather than a separate short job; no padding or extra audit is needed.
+Select a bounded companion in current focus-task parent47382257 for wrapper syntax and changed ASTRA validation only, before result execution.
+Its training uses one numerical worker with a15GiB RSS limit in2CPUs/16GiB; the companion leaves total numerical workers at2 and512MiB headroom.
+Charge the existing parent once to EP21. After all36 writers finish, recheck suitable capacity and execute the prepared handoff; results remain pending.
+Step47382257.0 passed wrapper syntax and pinned ASTRA schema/semantic validation, then exited0; no simulation, fit or outcome was opened.
+
 ## 2026-10-14 09:17 Pacific — fast_forward_equivalence — offset reference and continuous checkpoint completed
 
 47689336 completed the full original offset frame and all three comparison windows; 47721841 completed its requested 100-frame chunk.
