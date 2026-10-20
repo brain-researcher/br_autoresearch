@@ -1,0 +1,3 @@
+All 30 original development participants, averaging both directions per person: original R -4.51547619e-05 [-0.000162630814, 7.23212903e-05]; alternative R -0.000442048651 [-0.0012212119, 0.000337114601].
+Paired alternative minus original -0.000396893889 [-0.00114786614, 0.000354078359]; one descriptive two-sided 95% Bonferroni participant-t family of 3 endpoints (df29), using 16 frozen-choice refits and 44 reused directions.
+This is exploratory selector sensitivity, not a corrected primary result: original R/G/T and thresholds remain unchanged; no concept/false/audit release, equivalence or signal-absence claim follows.

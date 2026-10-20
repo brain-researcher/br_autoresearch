@@ -1121,6 +1121,422 @@ analyses:
           not the confirmatory positive-control family. Evaluation separation
           is procedural within one account. Concept/false scores and all
           sixteen audit participants remain closed; full study is unresolved.
+  repeated_image_signal_recovery:
+    name: Test cross-sequence recovery of repeated image-specific EEG
+    description: >-
+      The prescribed development-only positive control distinguishes a pipeline
+      with recoverable repeated image responses from unresolved signal recovery.
+      A positive result does not establish conceptual coding or rescue the main
+      image reference. Fix these interpretations before repeated EEG outcomes.
+    inputs:
+    - {id: search_policy, from: ../search_policy}
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: core_calibration, from: ../core_reference_calibration.complete_core_calibration}
+    - {id: configuration, type: data, source: outputs/config/repeated_image_control001.json}
+    - {id: repeated_reader, type: data, source: outputs/code/repeated_image_sequences.py}
+    - {id: repeated_model, type: data, source: outputs/code/repeated_image_control.py}
+    - {id: repeated_driver, type: data, source: outputs/code/run_repeated_image_control.py}
+    - {id: repeated_wrapper, type: data, source: outputs/code/run_repeated_image_control001.sbatch}
+    - {id: repeated_cohort_wrapper, type: data, source: outputs/code/run_repeated_image_cohort001.sbatch}
+    - {id: repeated_reporter, type: data, source: outputs/code/report_repeated_image_control.py}
+    outputs:
+    - id: participant_repeated_predictions
+      type: data
+      format: json
+      inputs: [configuration, frozen_inputs_and_roles, repeated_reader, repeated_model, repeated_driver, repeated_wrapper, repeated_cohort_wrapper, search_policy]
+      description: >-
+        Complete both chronological odd-to-even and even-to-odd directions for
+        each of the original thirty development people, preserving all two
+        hundred identities and twelve repetitions. Bind repeated events to
+        authentic E3/E1 intervals before voltage reads. Use the original causal
+        FIR, 250-Hz recording grid, sensor projection, nuisance design, cosine12
+        basis and solver tolerances. Tune the original thirteen ridge penalties
+        using leave-one-training-physical-sequence-out validation, refitting
+        nuisance whitening on each training split. Preserve complete splits on
+        bounded resource stops. After the first-person cost measurement, bundle
+        the remaining twenty-nine people into four one-thread groups in one
+        four-CPU/eight-GiB parent; report only after all thirty are complete.
+        The repeated data cannot select candidates,
+        enter primary concept scores or rescue the main-session result.
+      recipe:
+        command: bash outputs/code/run_repeated_image_cohort001.sbatch
+        resources: {cpus: 4, memory: 8Gi, time_limit: 45m}
+    - id: repeated_control_report
+      type: report
+      format: json
+      inputs: [participant_repeated_predictions, core_calibration, frozen_inputs_and_roles, repeated_reporter, search_policy]
+      description: >-
+        Require every original participant and both directions before release.
+        Average directions within person; combine with the existing paired G/T
+        estimates under the registered three-control Bonferroni one-sided
+        participant-t family and leave-one-person checks. Thresholds remain
+        image0.002, task0.001 and repeated0. Report descriptive participant
+        intervals separately, one G/T/repeated figure and exactly three lines.
+        Repeated-control success is not success at the image margin or success
+        of the whole positive-control family. Same-account separation disclosed;
+        concept/false scores and all sixteen audit participants remain closed.
+        Complete released report: outputs/runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json;
+        its adjacent summary.md and outputs/figures/repeated_image_control001/repeated_image_G_T_R.png
+        report all thirty people and both directions per person.
+    findings:
+      repeated_image_positive_control_failed:
+        id: repeated_image_positive_control_failed
+        claim: >-
+          Across all 30 original development participants, repeated-image gain
+          is R=-0.00004515476192792911, with descriptive 95-percent participant
+          interval [-0.0001397136715891727, 0.00004940414773331446]. The registered
+          simultaneous one-sided lower bound is -0.00014845651366025996, below
+          the required zero; the leave-one-person positivity rule also fails.
+          The required positive-control family does not pass. The current
+          registered comparison is classified underidentified, mapped by its
+          policy to closed_no_candidate. This is a scientific stop for this
+          route, not absence of image or conceptual information or a claim that
+          no other analysis of these data could succeed.
+        created_at: '2026-10-17T07:12:22Z'
+        evidence:
+        - {id: complete_30_person_repeated_control, artifact: repeated_control_report}
+        derived: true
+        notes: >-
+          Average odd-to-even and even-to-odd gains within each person before
+          participant inference with 29 degrees of freedom. The three-control
+          family uses alpha=.05/3. Registered lower bounds for G, T and R are
+          -0.000060526185584, -0.00081168326074 and -0.00014845651366,
+          respectively, versus required margins 0.002, 0.001 and zero; all fail.
+          SEARCH_POLICY.yaml maps no_positive_reference_gain to underidentified,
+          requires these controls before candidate comparison, and maps
+          underidentified to closed_no_candidate. Completed diagnostic and
+          selector-sensitivity work neither rescued the original controls nor
+          established a concrete implementation defect. No further primary
+          execution is needed for this failed necessary-condition stop; a new
+          primary route requires an explicit scientific decision.
+          Same-account separation is procedural; concept/false scores and the
+          sixteen audit participants remain closed. The route disposition is
+          summarized in [three lines](outputs/figures/repeated_image_control001/scientific_stop_3lines.md),
+          alongside the existing [G/T/R figure](outputs/figures/repeated_image_control001/repeated_image_G_T_R.png).
+          No concept discovery, equivalence, signal absence or universal data
+          impossibility follows from this classification.
+  repeated_signal_diagnostic:
+    name: Diagnose failed repeated-image prediction without changing its target
+    description: >-
+      Exploratory follow-up after the complete thirty-person repeated control
+      failed. Distinguish slow-component domination of continuous prediction
+      error from unresolved image-specific response recovery. It cannot rescue
+      the original control or establish absence of EEG or conceptual information.
+    inputs:
+    - {id: search_policy, from: ../search_policy}
+    - {id: original_control, from: ../repeated_image_signal_recovery.repeated_control_report}
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: configuration, type: data, source: outputs/config/repeated_signal_diagnostic001.json}
+    - {id: diagnostic_model, type: data, source: outputs/code/repeated_signal_diagnostic.py}
+    - {id: signal_structure, type: data, source: outputs/code/repeated_signal_structure.py}
+    - {id: driver, type: data, source: outputs/code/run_repeated_signal_diagnostic.py}
+    - {id: reporter, type: data, source: outputs/code/report_repeated_signal_diagnostic.py}
+    - {id: wrapper, type: data, source: outputs/code/run_repeated_signal_diagnostic001.sbatch}
+    outputs:
+    - id: complete_person_diagnostics
+      type: data
+      format: json
+      inputs: [configuration, original_control, frozen_inputs_and_roles, diagnostic_model, signal_structure, driver, wrapper, search_policy]
+      description: >-
+        Retain all thirty people, twelve sequences and two hundred repeated
+        identities. Refit only the two saved outer penalties without inner
+        retuning and require original losses to reproduce. Project each fixed
+        whitened error onto degree-zero-through-three temporal polynomials and
+        its orthogonal complement; preserve the original total nuisance-error
+        denominator so gain components add back to R. Separately measure
+        sequence DC, centered variance and fixed-band power, and odd/even
+        image-template crosscovariance and cosine in forty twenty-ms bins over
+        actual zero-to-eight-hundred-ms lags. Center across images separately
+        per sequence, lag and sensor; compare with one fixed identity shift of
+        thirty-seven. This is not prestimulus baseline correction, a new filter,
+        the original negative-control family or a replacement prediction target.
+        Missing template variance remains unavailable without deleting people.
+      recipe:
+        command: bash outputs/code/run_repeated_signal_diagnostic001.sbatch
+        resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+    - id: complete_diagnostic_report
+      type: report
+      format: json
+      inputs: [complete_person_diagnostics, original_control, frozen_inputs_and_roles, reporter, search_policy]
+      description: >-
+        All thirty completed people precede inference, one figure and exactly
+        three summary lines. Average directions within each participant and
+        use descriptive participant-t intervals with twenty-nine degrees of
+        freedom, not a new confirmatory pass rule. Show original R, polynomial
+        nuisance-error fraction and matched-minus-shift template cosine, with
+        complete component and signal-energy numbers. Disclose selection after
+        failed R, same-account separation and unchanged primary controls and
+        closed concept/false/audit scores. Unavailable full-cohort metrics remain
+        unavailable; neither an inconclusive diagnosis nor zero covariance
+        establishes absence of biological signal.
+        Released report and three lines are in outputs/runs/repeated_signal_diagnostic/report001/;
+        the figure is outputs/figures/repeated_signal_diagnostic001/repeated_signal_diagnostic.png.
+    findings:
+      slow_error_concentration_without_resolved_template_recovery:
+        id: slow_error_concentration_without_resolved_template_recovery
+        claim: >-
+          Across all thirty original development participants, degree-zero-
+          through-three temporal components account for mean 0.817154515082364
+          of nuisance residual energy, with descriptive 95-percent participant
+          interval [0.783012357912043, 0.851296672252685]. Matched-minus-cyclic37
+          odd/even image-template cosine is 0.0168101287375490, with interval
+          [-0.00538738654004549, 0.0390076440151435]. This documents slow-error
+          concentration but leaves image-aligned recovery inconclusive.
+        created_at: '2026-10-17T07:34:41Z'
+        evidence:
+        - {id: complete_30_person_failure_diagnosis, artifact: complete_diagnostic_report}
+        derived: true
+        notes: >-
+          Polynomial gain contribution 4.127900340771682e-7 and complementary
+          contribution -4.556755196199427e-5 reconstruct the original
+          R=-4.515476192792911e-5 using its unchanged denominator. Slow-error
+          domination alone does not establish why gain failed. Directions
+          average within people before descriptive t intervals with 29 degrees
+          of freedom. Fixed-shift similarity may reflect temporal position or
+          neighboring responses. This post hoc diagnostic changes no primary
+          preprocessing, control threshold, candidate use or data role; it
+          cannot rescue the main comparison or establish signal absence.
+          Concept/false scores and all sixteen audit participants remain closed.
+  repeated_signal_detrend:
+    name: Test fixed slow-component removal against post- and pre-event alignment
+    description: >-
+      Prospective diagnostic after the complete thirty-person decomposition
+      found concentrated slow residual energy but inconclusive image-template
+      alignment. Assess whether fixed slow-component removal increases
+      post-event alignment beyond pre-event alignment. This can narrow a
+      measurement explanation but does not establish biological causation or
+      rescue the registered continuous prediction control.
+    inputs:
+    - {id: search_policy, from: ../search_policy}
+    - {id: original_diagnostic, from: ../repeated_signal_diagnostic.complete_diagnostic_report}
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: configuration, type: data, source: outputs/config/repeated_signal_detrend001.json}
+    - {id: diagnostic_model, type: data, source: outputs/code/repeated_signal_detrend.py}
+    - {id: driver, type: data, source: outputs/code/run_repeated_signal_detrend.py}
+    - {id: reporter, type: data, source: outputs/code/report_repeated_signal_detrend.py}
+    - {id: wrapper, type: data, source: outputs/code/run_repeated_signal_detrend001.sbatch}
+    outputs:
+    - id: complete_person_detrend_diagnostics
+      type: data
+      format: json
+      inputs: [configuration, original_diagnostic, frozen_inputs_and_roles, diagnostic_model, driver, wrapper, search_policy]
+      description: >-
+        Retain all thirty development people, twelve repeated sequences and two
+        hundred identities. Remove the fixed degree-zero-through-three temporal
+        least-squares component separately within each retained sequence only
+        for these diagnostic templates. Keep the original sensor contrasts,
+        sampling, events and retained samples. Compute raw and adjusted odd/even
+        image templates in forty twenty-ms bins for zero-to-eight-hundred-ms
+        and minus-eight-hundred-to-zero-ms windows. Center across images within
+        sequence, lag and sensor; use matched identity versus the same cyclic
+        shift of thirty-seven for both windows. No cutoff, polynomial degree,
+        channel, peak or feature search. No change to primary G/T/R, continuous
+        estimand, threshold, candidate selection, concept/false scores or audit.
+        Save complete participants in outputs/runs/repeated_signal_detrend/detrend001.
+      recipe:
+        command: bash outputs/code/run_repeated_signal_detrend001.sbatch
+        resources: {cpus: 1, memory: 7Gi, time_limit: 1h}
+    - id: complete_detrend_report
+      type: report
+      format: json
+      inputs: [complete_person_detrend_diagnostics, original_diagnostic, frozen_inputs_and_roles, reporter, search_policy]
+      description: >-
+        Require all thirty people before descriptive participant-t intervals
+        with twenty-nine degrees of freedom, one figure and exactly three
+        summary lines. Report raw and adjusted matched-minus-shift37 alignment,
+        paired adjusted-minus-raw changes, and positive-minus-negative lag
+        contrasts. These are exploratory diagnostic estimates, not another
+        confirmatory family or pass rule; windows and directions are not
+        independent participants. A remaining or pre-event alignment pattern
+        does not establish absence or image-specific biological causation.
+        Disclose selection after the earlier diagnostic and procedural
+        same-account separation; retain all original control failures and
+        closed concept/false/audit boundaries. Publish in
+        outputs/runs/repeated_signal_detrend/report001 and
+        outputs/figures/repeated_signal_detrend001.
+    findings:
+      fixed_detrending_does_not_resolve_post_event_alignment:
+        id: fixed_detrending_does_not_resolve_post_event_alignment
+        claim: >-
+          Across all thirty original development participants, adjusted
+          post-event matched-minus-cyclic37 cosine is 0.00454881118928132,
+          with descriptive 95-percent participant interval
+          [-0.0130628812267994, 0.0221605036053620]. The paired raw-to-adjusted
+          change is -0.0122613175482677, with interval
+          [-0.0392443849770297, 0.0147217498804943]; this fixed slow-component
+          removal does not clearly establish improved post-event alignment.
+        created_at: '2026-10-17T07:41:53Z'
+        evidence:
+        - {id: complete_30_person_paired_drift_diagnosis, artifact: complete_detrend_report}
+        derived: true
+        notes: >-
+          Adjusted pre-event matched-minus-shift37 cosine is 0.0229474273272648
+          [0.00685908227230547, 0.0390357723822242], while pre-event matched
+          cosine alone is 0.00355617945851954
+          [-0.00482643378526047, 0.0119387927022996] and shifted cosine is
+          -0.0193912478687453 [-0.0309613498184595, -0.00782114591903109].
+          The shifted comparison therefore remains a plausible source of
+          apparent pre-event alignment. Paired post-minus-pre alignment is
+          -0.0183986161379835 [-0.0438289950311183, 0.00703176275515133].
+          All intervals are descriptive participant-t with 29 degrees of
+          freedom, not simultaneous confirmation or a new pass rule.
+          Whole-sequence projection uses future samples and is not
+          out-of-sample prediction; temporal-order, neighboring-response and
+          fixed-shift alternatives remain unresolved. Original R and its
+          failed control are unchanged, with no primary rescue, biological
+          mechanism or concept-signal absence established. Concept/false
+          scores and audit remain closed under same-account procedural separation.
+  repeated_signal_lag_curves:
+    name: Complete fixed adjusted lag curves to diagnose temporal dilution
+    description: >-
+      Selected before lag-outcome inspection after inconclusive pooled adjusted
+      alignment and consistent source-image indices. Use only the already saved
+      degree-zero-through-three adjusted repeated-image numeric records; no EEG
+      amplitude access, refit, new preprocessing or raw-versus-adjusted selection.
+    inputs:
+    - {id: adjusted_people, from: ../repeated_signal_detrend.complete_person_detrend_diagnostics}
+    - {id: reporter, type: data, source: outputs/code/report_repeated_signal_lags.py}
+    - {id: search_policy, from: ../search_policy}
+    outputs:
+    - id: complete_lag_report
+      type: report
+      format: json
+      inputs: [adjusted_people, reporter, search_policy]
+      description: >-
+        All thirty people and forty fixed twenty-ms bins each for post-event
+        matched cosine, pre-event matched cosine and their within-person
+        eight-hundred-ms-translated differences. One simultaneous two-sided
+        ninety-five-percent Bonferroni participant-t family contains all one
+        hundred twenty endpoints, with twenty-nine degrees of freedom. An
+        undefined person value makes that entire endpoint unavailable without
+        changing the family or dropping people. Show every curve in one figure
+        and exactly three summary lines; select no peak, window or channel.
+        Jointly positive post and paired bounds support localized structure
+        descriptively; uncertainty does not establish absence. Acquisition lags
+        retain the fixed causal filter's sixty-four-ms delay. Original R/G/T,
+        thresholds and closed concept/false/audit roles remain unchanged.
+    findings:
+      fixed_adjusted_lags_do_not_establish_localized_recovery:
+        id: fixed_adjusted_lags_do_not_establish_localized_recovery
+        claim: >-
+          All thirty development participants contribute to every one of the
+          one hundred twenty fixed endpoints. None of the forty post-event,
+          forty pre-event or forty within-person translated contrasts excludes
+          zero under the simultaneous two-sided ninety-five-percent Bonferroni
+          participant-t family. No bin has jointly positive post and paired
+          lower bounds; localized repeated-image recovery is not established.
+        created_at: '2026-10-17T07:58:00Z'
+        evidence:
+        - {id: complete_30_person_fixed_lag_diagnostic, artifact: complete_lag_report}
+        derived: true
+        notes: >-
+          Completed in step47586225.1 using only already released adjusted
+          numeric arrays. All endpoints are valid; the critical value is
+          3.9850203953943124 with twenty-nine degrees of freedom. Report and
+          three-line summary are under
+          outputs/runs/repeated_signal_lags_job_47586225_step_1/report;
+          all curves are under
+          outputs/figures/repeated_signal_lags_job_47586225_step_1.
+          Temporal dilution remains unresolved, not excluded; these intervals
+          establish neither signal absence nor equivalence. No peak, window,
+          channel or person was selected. Acquisition lags retain the causal
+          filter's sixty-four-ms delay and are not corrected neural latency.
+          Original R/G/T, failed controls, primary preprocessing and closed
+          concept/false/audit roles remain unchanged. No new diagnostic is
+          activated; a primary preprocessing or estimand change needs a
+          scientist decision.
+  repeated_selector_sensitivity:
+    name: One frozen inner-aggregation sensitivity of repeated-image prediction
+    description: >-
+      Exploratory follow-up after the original control and diagnostic outcomes.
+      Compare the original mean of six normalized inner losses with the ratio
+      of their summed identity and nuisance losses, retaining all thirteen
+      penalties and the exact larger-penalty tie rule. This changes weights
+      across fold-specific training whiteners; it is not a demonstrated bug
+      correction or the single outer-fit risk metric. Original R/G/T and their
+      failed controls remain unchanged; no primary rescue or protected release.
+    inputs:
+    - {id: original_predictions, from: ../repeated_image_signal_recovery.participant_repeated_predictions}
+    - {id: original_control, from: ../repeated_image_signal_recovery.repeated_control_report}
+    - {id: frozen_inputs_and_roles, from: ../input_role_preparation.frozen_inputs_and_roles}
+    - {id: numerical_recipe, from: ../core_reference_recipe}
+    - {id: search_policy, from: ../search_policy}
+    - {id: selector, type: data, source: outputs/code/report_repeated_selector_sensitivity.py}
+    - {id: refit_helper, type: data, source: outputs/code/repeated_selector_refit.py}
+    - {id: refit_driver, type: data, source: outputs/code/run_repeated_selector_refit.py}
+    - {id: reporter, type: data, source: outputs/code/report_repeated_selector_refit.py}
+    - {id: wrapper, type: data, source: outputs/code/run_repeated_selector_refit_companion.sh}
+    outputs:
+    - id: frozen_selection_vector
+      type: data
+      format: json
+      inputs: [original_predictions, frozen_inputs_and_roles, numerical_recipe, selector, search_policy]
+      description: >-
+        Completed step 47586225.2 reads only all 360 saved inner checkpoints,
+        without outer losses or EEG, and freezes all 60 original and alternative
+        selections together. Sixteen directions change in fourteen of thirty
+        people. Full vector and curves are preserved in
+        outputs/runs/repeated_selector_job_47586225_step_2/report/repeated_selector_sensitivity.complete.json.
+        Measured 4.70 seconds and 38380 KiB; selection metadata is not an EEG result.
+    - id: complete_changed_person_refits
+      type: data
+      format: json
+      inputs: [frozen_selection_vector, original_predictions, frozen_inputs_and_roles, numerical_recipe, refit_helper, refit_driver, wrapper, search_policy]
+      description: >-
+        Completed in coordinator-owned step 47586225.3, exit zero: sixteen
+        changed directions fitted at their frozen alternative penalties, with
+        no inner refit or further selection. Original reader bindings, nuisance
+        errors and training whitening reproduced. Preprocessing, identity
+        design, weighting and six-sequence score remained unchanged. Complete
+        people are stored under outputs/runs/repeated_selector_refit/pooled001;
+        all forty-four unchanged direction outcomes are reused. Refit runtime
+        was 166.48 seconds with peak RSS 499352 KiB.
+      recipe:
+        command: bash outputs/code/run_repeated_selector_refit_companion.sh
+        resources: {cpus: 1, memory: 768Mi, time_limit: 15m}
+    - id: complete_selector_sensitivity_report
+      type: report
+      format: json
+      inputs: [complete_changed_person_refits, frozen_selection_vector, original_predictions, original_control, reporter, search_policy]
+      description: >-
+        Complete for all thirty people and all sixty directions: sixteen refits
+        and forty-four reused original outcomes. Both directions average within
+        each person; original R, alternative R and their same-person difference
+        are reported
+        in one descriptive simultaneous two-sided 95-percent Bonferroni participant-t
+        family of three endpoints with 29 degrees of freedom. One figure and exactly
+        three lines are saved in outputs/runs/repeated_selector_refit/report001
+        and outputs/figures/repeated_selector_refit001. Positive paired bounds can
+        support improvement under this one selector; unresolved bounds imply
+        neither equivalence nor signal absence. The interval family does not cover
+        the earlier adaptive diagnostic history. Same-account separation remains
+        procedural; no original threshold, primary preprocessing, concept/false
+        score or audit boundary changes. Report runtime was 5.14 seconds with
+        peak RSS 117744 KiB; the coordinator inspected the complete figure.
+    findings:
+      pooled_inner_selector_does_not_establish_improved_recovery:
+        id: pooled_inner_selector_does_not_establish_improved_recovery
+        claim: >-
+          Across all thirty original development participants, original mean
+          R is -0.0000451547619 and the alternative mean is -0.000442048651.
+          Their paired alternative-minus-original difference is -0.000396893889,
+          with simultaneous descriptive 95-percent interval
+          [-0.00114786614, 0.000354078359]. All three intervals cross zero;
+          improved prediction under this one selector is not established.
+        created_at: '2026-10-17T08:14:17Z'
+        evidence:
+        - {id: complete_30_person_selector_sensitivity, artifact: complete_selector_sensitivity_report}
+        derived: true
+        notes: >-
+          One two-sided Bonferroni participant-t family covers original R,
+          alternative R and their same-person difference, with 29 degrees of
+          freedom. The entire sixty-direction selection vector preceded the
+          sixteen changed-direction fits; forty-four outcomes were reused.
+          This outcome-informed development sensitivity does not establish
+          equivalence, signal absence or a uniquely correct aggregation rule.
+          Original R/G/T and their failed controls remain unchanged, with no
+          primary rescue or concept/false/audit release. No further selector
+          search is activated; the original recovery problem remains unresolved.
   baseline_search:
     name: Fixed 19-44-trial label-baseline search with concept scores hidden
     inputs:

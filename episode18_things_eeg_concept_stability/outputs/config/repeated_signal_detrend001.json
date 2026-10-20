@@ -1,0 +1,17 @@
+{
+  "analysis_id": "repeated_signal_detrend",
+  "data_release": "outputs/config/development_eeg_release_20261012_001.json",
+  "original_report": "outputs/runs/repeated_signal_diagnostic/report001/repeated_signal_diagnostic.complete.json",
+  "run_root": "outputs/runs/repeated_signal_detrend/detrend001",
+  "data_role": "development_repeated_signal_diagnosis_only",
+  "primary_or_candidate_use": false,
+  "audit_access": false,
+  "polynomial_degree": 3,
+  "template_bin_width_ms": 20,
+  "positive_horizon_ms": [0, 800],
+  "negative_horizon_ms": [-800, 0],
+  "diagnostic_identity_shift": 37,
+  "purpose": "Diagnose whether fixed slow components mask repeated image alignment, and whether adjusted post-event alignment exceeds its pre-event counterpart. Preserve all original R/G/T estimates, thresholds and protected roles.",
+  "selection_history": "One fixed degree-three follow-up selected after the completed all30 diagnostic: mean nuisance polynomial error fraction 0.8171545150823637; raw matched-minus-shift37 cosine 0.01681012873754902 with interval crossing zero. Degree, windows and cyclic shift are fixed before this follow-up's outcomes; no cutoff, degree, channel, lag-peak or participant search.",
+  "interpretation": "Positive adjusted alignment and a positive paired raw-to-adjusted change would weaken inability to recover repeated image structure; positive adjusted post-minus-pre alignment would weaken a slow/order explanation. Whole-sequence noncausal projection and overlapping image responses still limit causation. Uncertain or negative estimates do not establish signal absence or clear the original failed controls."
+}

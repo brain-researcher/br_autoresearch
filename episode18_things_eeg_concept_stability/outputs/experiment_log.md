@@ -1,5 +1,176 @@
 # Experiment log
 
+## 2026-10-17 01:20 Pacific — registered_comparison — scientific stop underidentified/closed_no_candidate
+
+Reviewed the complete30-person original control report: simultaneous one-sided95% lower bounds G=−0.0000605261856,T=−0.000811683261,R=−0.000148456514 all fail frozen thresholds0.002/0.001/0; the original means and uncertainty remain unchanged.
+SEARCH_POLICY.yaml meaningful_margins.no_positive_reference_gain specifies underidentified; qualification requires positive controls, and terminal_outcomes.underidentified specifies closed_no_candidate. GOAL.md states that positive-control failure leaves the biological comparison unidentified.
+Independent contract review confirms that this failed necessary condition ends the current registered concept comparison without further primary fitting or audit access; this is not an engineering/resource stop or a conclusion that all analyses are impossible.
+Bounded source review found no actionable reader/time-coordinate/filter-support/design/whitening/scoring defect. The retained64ms causal delay and no-high-pass target are explicit scientific choices, not diagnosed causes; no new pipeline or diagnostic is selected.
+Evidence: runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json; existing figures/repeated_image_control001/repeated_image_G_T_R.png; new scientific_stop_3lines.md beside that figure. Completed selector sensitivity remains exploratory and cannot rescue the control family.
+This satisfies the root goal's scientific-reason branch for this frozen procedure, without a positive discovery, absence/equivalence or universal impossibility claim. Concept/false scores and16audit people remain unopened under procedural same-account separation.
+Next: preserve this scientific stop and continue EP15/EP20/EP21; a new primary scientific route would need an explicit amendment retaining all prior exposure. No new job, test, policy threshold or data-role change occurred.
+
+## 2026-10-17 01:14 Pacific — repeated_selector_sensitivity — complete all30 comparison, no established improvement
+
+Step47586225.3 completed exit0: sixteen frozen alternative directions refitted in14 people, all44 unchanged directions reused; complete inference retains all30 people and averages both directions within each person.
+Original R=−0.0000451547619; alternative R=−0.000442048651 [−0.0012212119,0.000337114601]; paired change=−0.000396893889 [−0.00114786614,0.000354078359], one descriptive two-sided95% Bonferroni participant-t family of3(df29). All3 intervals cross0.
+Original nuisance losses and training whitening reproduced before fitting; no inner retuning, selector extension, original-score rewrite, concept/false score or audit access occurred.
+Evidence: runs/repeated_selector_refit/report001/{repeated_selector_refit.complete.json,3lines.md}; figures/repeated_selector_refit001/repeated_selector_refit.{png,pdf}. Coordinator inspected the figure.
+Refit166.48s/499352KiB and report5.14s/117744KiB, within the existing1CPU/768MiB companion; no new allocation was submitted. The wrapper's missing required operations argument was repaired before launch.
+This exploratory sensitivity does not establish improvement or positive recovery and cannot prove equivalence, harm or absence; its interval family does not cover the prior adaptive diagnostic history. Original R/G/T and failed controls remain unchanged.
+Next: stop this selector branch; no further tuning search is activated. A substantive primary readout/preprocessing amendment belongs in the daily scientific decision batch; continue other focus episodes meanwhile.
+
+## 2026-10-17 01:06 Pacific — repeated_selector_sensitivity — frozen changed-direction refit activated
+
+Step47586225.2 completed the saved-inner comparison in4.70s, peakRSS38380KiB: 16 of60 directions change across14 of30 people; all60 original/alternative selections are frozen in runs/repeated_selector_job_47586225_step_2/report/repeated_selector_sensitivity.complete.json.
+Activate one separate exploratory refit of those16 directions only, using the frozen alternative penalties and unchanged original reader, support, nuisance, identity model, training-only whitener and scoring; do not rerun inner selection or fit unchanged directions.
+Reproduce each affected direction's original nuisance losses and whitening before fitting its alternative identity penalty. Fresh per-person checkpoints preserve original files; the complete30-person report reuses all44 unchanged direction outcomes.
+The result tests sensitivity to this one aggregation choice after the original failed control; it cannot replace original R/G/T, clear a primary gate, establish absence or open concept/false/audit data. Report original/alternative/paired participant estimates with one figure and three lines.
+Coordinator owns a bounded1CPU/768MiB companion with600MiB RSS guard; no submission or computation here. Helpers: code/repeated_selector_refit.py and code/run_repeated_selector_refit.py; no further selector or feature search activated.
+
+## 2026-10-17 01:03 Pacific — repeated_selector_sensitivity — one saved-inner aggregation comparison activated
+
+Under standing authority, test whether the original mean of six nuisance-normalized inner losses selects different penalties from their pooled identity/nuisance loss ratio; activation precedes inspection of those saved losses.
+Use all 30 original people, both chronological directions, all six original inner folds and all 13 fixed penalties; retain the exact larger-penalty tie rule and freeze all 60 original/alternative choices before any new outer fit.
+Read only the 360 completed inner checkpoints in runs/repeated_image_signal_recovery/control001; do not read outer losses, EEG or closed concept/false/audit outcomes. No changed choices means no EEG refit is needed.
+The pooled objective weights the old ratios by their nuisance losses; each inner fold retains its own training-derived whitener, so this is an exploratory aggregation sensitivity, not a demonstrated objective bug or common-whitener risk estimate.
+If choices change, only those directions become eligible for a separately coordinated refit; preserve original R/G/T reports, preprocessing, margins and data roles, with no primary rescue or automatic audit release.
+Implementation: code/report_repeated_selector_sensitivity.py; coordinator will run one bounded companion step and retain the full selection vector in a fresh output directory. No computation or job submission here.
+
+## 2026-10-17 00:58 Pacific — repeated_signal_lag_curves — all120 endpoints complete and inconclusive
+
+Step47586225.1 completed exit0 in4.93s, peakRSS116960KiB; all30 people and all120 endpoints are valid. Coordinator inspected the complete-curves figure; no raw EEG or closed outcomes were read.
+The fixed simultaneous two-sided95% participant-t Bonferroni family uses df29 and critical value3.9850203953943124. Positive lower bounds: post0/40, pre0/40, paired0/40, jointly positive post/paired0/40; every interval crosses zero.
+Evidence: runs/repeated_signal_lags_job_47586225_step_1/report/{summary.md,repeated_signal_lags.complete.json}; figures/repeated_signal_lags_job_47586225_step_1/repeated_signal_lags.{png,pdf}.
+Localized recovery is not established; temporal dilution remains unresolved, not excluded, and signal absence is not inferred. All fixed acquisition-lag bins retain the64ms causal-filter delay; no post hoc peak/window/channel/person selection.
+Original preprocessing, R/G/T, margins, concept/false scores and audit boundaries are unchanged. Next: identify a defensible sensitivity route within the unchanged question; primary preprocessing/estimand changes require a scientist decision. No new diagnostic activated.
+
+## 2026-10-17 00:55 Pacific — repeated_signal_lag_curves — saved-curve diagnosis activated
+
+Under standing authority, test whether a time-localized repeatable response is diluted by the existing full-window aggregation; activation precedes inspection of any saved lag outcomes.
+Use only the fixed degree-0–3 adjusted source records already included in the completed all30 report, runs/repeated_signal_detrend/detrend001/<person>/complete.json: every fixed 20-ms bin in 0–800ms and −800–0ms, plus the same-person positive-minus-negative contrast at each of the 40 paired bin positions; no raw-versus-adjusted choice.
+One family contains all 120 endpoints, with simultaneous two-sided 95% Bonferroni participant-t intervals (n30, df29); no peak, window, channel, image or participant selection.
+A positive matched response and positive paired contrast under joint coverage would weaken unresolved time-localized recovery; failure to establish these remains inconclusive, not signal absence. The pre/post pairing compares bins separated by800ms, not a causal baseline.
+Prepare one complete-curves figure, compact numeric report and exactly three summary lines in fresh output paths; use saved numeric arrays only, with no EEG reads, refit, preprocessing change or new primary pass rule.
+Original R/G/T, margins, concept/false scores and audit boundaries remain unchanged. Coordinator owns any aggregated compute step; no new job submitted here.
+
+## 2026-10-17 00:53 Pacific — repeated_identity_metadata — all30 within-person mappings consistent
+
+Step47586225.0 completed the full 30-person metadata diagnosis with all_participants_pass=true; each person has 12 sequences×200 images and a stable source-index/image bijection, with exact 0–199 coverage per sequence.
+All three focused tests passed, including an altered-label case that retains existing filename/timing joins. Driver95.0416s, process1m37.16s, peakRSS112660KiB; exit0, no EEG amplitudes read.
+Evidence: runs/repeated_identity_metadata/job_47586225_step_0/diagnosis/repeated_identity_metadata.complete.json and summary.md; resource/test records remain in the parent directory.
+This weakens within-person source-label permutation as a cause of failed recovery; it does not establish absolute display timing, identical index numbering across people or EEG signal recovery.
+Original preprocessing, R/G/T, thresholds and all closed data roles remain unchanged. Next: source-only review of the remaining signal-recovery explanation before selecting a new diagnostic; no new job here.
+
+## 2026-10-17 00:49 Pacific — repeated_identity_metadata — finite companion selected
+
+Select one attended 1CPU/512MiB/10min step in task-owned EP21 parent47586225, whose decoder remains one numerical thread with15GiB RSS guard in3CPU/16GiB; combined numerical workers2≤3 and guarded processRSS15.5GiB<16GiB.
+Bundle the EP15 repaired writer fixtures and three metadata fixtures, then check all30 original EP18 people using only event/codebook/marker metadata; no EEG amplitudes or EP21 HDF contents.
+The metadata driver has a384MiB RSS guard and five-minute deadline; preserve all failures and the original primary pipeline. This reuses an already substantive allocation without another short job or padding.
+Coordinator owns step47586225.0, verified onsh04-04n23 withoneCPU/one numerical thread;13 repaired EP15 fixtures andthree EP18 fixtures passed, while the all30 metadata diagnosis continues. No audit access or new scientific score is selected.
+
+## 2026-10-17 00:48 Pacific — repeated_identity_metadata — source-index diagnosis selected
+
+Under standing authority, select one metadata-only check for a source-label permutation after weak repeated-image recovery; no new job is submitted.
+The authentic local codebook `/oak/stanford/groups/russpold/data/br_autoresearch_data/things_eeg1/openneuro-ds003825-v1.2.0/source/task-rsvp_events.json` defines teststimnumber as the validation-image index 0–199.
+For all 30 development people, reuse the original E3/E1 binding and require one stable teststimnumber↔image_key(stim) bijection across all 12 sequences, with exact 0–199 coverage per sequence; presentation numbering remains descriptive.
+New code/repeated_identity_metadata.py and three focused fixture checks are prepared, not executed; the altered-label fixture preserves existing joins and counts but must fail the separate index correspondence.
+A mismatch would identify a metadata explanation to resolve before refitting; agreement would weaken that explanation without establishing display timing or EEG recovery. No raw EEG, audit/concept/false score, filtering, primary R or threshold change.
+Next: bundle the checker and its focused tests into the coordinator's next suitable substantive allocation; preserve all participant failures explicitly and publish the complete 30-person metadata diagnosis.
+
+## 2026-10-17 00:44 Pacific — repeated_signal_detrend — fixed-comparator interpretation
+
+Source-only review of code/repeated_signal_structure.py; no new job or EEG access, interpreting completed job48223571.
+Across-image centering and shift-invariant cosine norms give sum(cyclic cosines)=0, so mean199 mismatches=−matched/199 and matched-minus-that-mean=(200/199)×matched, separately per person/window.
+Released adjusted matched cosine=0.000219077 [−0.0146914,0.0151295] and pre-event matched=0.00355618 [−0.00482643,0.0119388]; a negative shift37 comparator can explain the positive pre-event contrast without establishing identity recovery.
+Updated README interpretation only; figures, numeric reports and original failed R/control thresholds are unchanged. The cause of the negative comparator and image recoverability remain unresolved; no absence or mechanism claim.
+Next: carry this algebraic caveat into any future prospective pipeline choice; no additional EEG run is needed to establish it, and no new analysis launch is selected.
+
+## 2026-10-17 00:41 Pacific — repeated_signal_detrend — complete paired diagnostic released
+
+Job48223571 completed2m33s exit0:0 with all30 reports (coordinator accounting07:43:11UTC); whole-batch MaxRSS3169868KiB, driver2m7.25s/RSS226776KiB. Eight focused tests and preceding ASTRA validation passed; the coordinator inspected the figure.
+Adjusted post-event matched-minus-shift37 cosine=0.00454881118928132, descriptive95% participant interval[-0.0130628812267994,0.0221605036053620]; paired raw-to-adjusted change=−0.0122613175482677[-0.0392443849770297,0.0147217498804943], so improved alignment is not established.
+Pre-event contrast=0.0229474273272648[0.00685908227230547,0.0390357723822242]; matched cosine alone=0.00355617945851954[−0.00482643378526047,0.0119387927022996], while shifted cosine=−0.0193912478687453[−0.0309613498184595,−0.00782114591903109]. The fixed shifted comparison remains a plausible source of the contrast.
+Paired post-minus-pre contrast=−0.0183986161379835[−0.0438289950311183,0.00703176275515133]. All intervals are descriptive participant-t(df29); no windows, channels, images or people were selected after outcomes.
+Evidence: runs/repeated_signal_detrend/report001/repeated_signal_detrend.complete.json and summary.md; figures/repeated_signal_detrend001/repeated_signal_detrend.{png,pdf}.
+Whole-sequence projection is not out-of-sample prediction; original R/control failures remain unchanged, with no rescue, mechanism or concept-absence claim. Concept/false/audit remain closed under same-account procedural separation.
+Next: diagnose temporal-order/fixed-shift alternatives before changing the pipeline; no new analysis launch selected. The new ASTRA finding awaits changed-file validation in coordinated compute.
+
+## 2026-10-17 00:34 Pacific — repeated_signal_detrend — fixed diagnostic follow-up activated
+
+After the complete polynomial-energy/template result, test whether removing the fixed slow component reveals post-event alignment beyond its pre-event counterpart; this is prospective diagnosis after prior exploratory outcomes.
+Keep all 30 original people, 12 repeated sequences and 200 images; subtract degree-0–3 least-squares components within each retained sequence only for diagnostic templates, retaining the same sensors, sampling and events.
+Use fixed 0–800 ms and −800–0 ms windows, each 40 bins of 20 ms, with matched identities versus cyclic shift37; report raw/adjusted changes and post-minus-pre contrasts with descriptive participant intervals only.
+No cutoff, degree, channel, peak or feature search; no primary R/G/T, continuous estimand, threshold, candidate use, concept/false score or audit access change. A remaining or pre-event pattern does not establish absence or biological causation.
+Submitted job48223571 via run_repeated_signal_detrend001.sbatch at 1 CPU/7 GiB/1 h, expected 10–20 minutes; bundle three fixture-only EP15 modules, EP20 syntax and focused EP18 checks. Source integration review passed; checks and all30 results await actual execution.
+Artifacts: config/repeated_signal_detrend001.json; code/repeated_signal_detrend.py, run_repeated_signal_detrend.py and report_repeated_signal_detrend.py; runs/repeated_signal_detrend/{detrend001,report001}, figures/repeated_signal_detrend001. BR plan review approve/low, no findings/KG rules: advisory, not statistical validation.
+
+## 2026-10-17 00:34 Pacific — repeated_signal_diagnostic — complete all30 diagnosis released
+
+Job48220727 completed all 30 original people, Slurm9m36s exit0:0; driver9m6.7s/RSS512196KiB, whole allocation MaxRSS3203484KiB. Eleven focused checks and ASTRA validation passed; coordinator inspected the new figure and repaired original R-axis labels.
+Mean nuisance polynomial energy fraction=0.817154515082364, descriptive 95% participant interval [0.783012357912043,0.851296672252685]; this is residual error concentration, not proof of the failure's cause.
+Matched-minus-cyclic37 odd/even template cosine=0.0168101287375490, interval [-0.00538738654004549,0.0390076440151435]; image-aligned recovery remains inconclusive under this diagnostic.
+Polynomial contribution +4.127900340771682e-7 plus complementary contribution -4.556755196199427e-5 reconstruct unchanged R=-4.515476192792911e-5; all inference uses n30 people, not directions/sequences.
+Report/three lines: runs/repeated_signal_diagnostic/report001/; figure: figures/repeated_signal_diagnostic001/repeated_signal_diagnostic.png and PDF. No primary rescue, concept absence claim, new dataset or audit opening.
+Next: the fixed raw-versus-detrended post/pre-event diagnostic above; preserve this exploratory result and all original positive-control failures. Newly added ASTRA finding/next analysis await validation in that substantive allocation.
+
+## 2026-10-17 00:16 Pacific — repeated_signal_diagnostic — complete-cohort failure diagnosis activated
+
+After the complete R=-4.51548e-5 result, source review found no clock/unit/solver mismatch; shared nuisance drift coefficients and no high-pass/detrending make sequence offsets/slow variation a concrete alternative to unrecoverable image structure.
+Before diagnostic outcomes, retain all 30 people, 12 sequences and 200 identities; refit only each saved outer penalty and require its original losses to reproduce. No inner retuning or changed primary R/G/T/margins.
+Orthogonally decompose fixed whitened prediction errors into degree-0–3 temporal components and their complement, using the original total nuisance denominator so gain components add back to R.
+Separately measure DC/centered/fixed-band energy and odd/even image-template crosscovariance/cosine in 20-ms acquisition-lag bins over 0–800 ms; center across images within sequence/lag/sensor, with a fixed cyclic identity shift of 37 as a diagnostic alignment comparison.
+Recoverable aligned structure or slow-component domination would narrow the failure explanation; failure remains unresolved recovery, never signal absence. These exploratory diagnostics neither replace the continuous estimand nor clear the original positive/negative controls.
+Select one 1 CPU/7 GiB/1 h allocation bundling all 30 people, focused correctness checks, the prior figure's tick-format repair, changed ASTRA validation and one complete-cohort diagnostic report; expected work is roughly 10–20 minutes, to be measured.
+Per-person complete records permit bounded continuation; no participant subset, new dataset, feature sweep or audit/concept/false score access. Registered R and its report remain unchanged.
+Source reviews passed; submitted job 48220727 with the selected 1 CPU/7 GiB/1 h limits. Focused numerical checks and all30 diagnostic outcomes remain pending; EP15's separately proposed audit remains unapproved.
+
+## 2026-10-17 00:12 Pacific — repeated_image_signal_recovery — complete 30-person control fails
+
+Jobs 48217491 (1 CPU, 2m45s) and 48217947 (4 CPUs, 19m43s, exit 0:0) completed the unchanged control; total allocated compute for these two jobs is 1.360278 CPUh.
+All 30 original development people completed both directions; average directions within person before inference. R = -4.515476192792911e-5, descriptive 95% participant interval [-0.0001397136715891727, 0.00004940414773331446].
+The simultaneous one-sided lower bound is -0.00014845651366025996, below the required 0; R also fails the every-leave-one-person-mean-positive rule. The repeated-image positive control does not pass.
+Released G/T estimates and thresholds are unchanged; the full three-control family fails. This is a calibration diagnostic, not a concept discovery, absence-of-signal inference or focus-goal completion.
+Complete report and three lines: runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json and summary.md; figure: figures/repeated_image_control001/repeated_image_G_T_R.png and PDF.
+The coordinator visually inspected the figure: R-axis tick labels overlap; retain the released figure and repair formatting in the next substantive compute allocation. The new ASTRA finding awaits changed-file validation there.
+Next: diagnose timing and signal recovery before expanding features; no new science job selected here. Concept/false scores and the 16-person audit stay closed under same-account procedural separation.
+
+## 2026-10-16 23:48 Pacific — repeated_image_signal_recovery — first person complete; full cohort running
+
+Job 48217491 passed all 16 focused tests and ASTRA validation; authentic repeated metadata confirms 12 E3 sequences × 200 identities, all 2,400 events, before voltage access.
+Sub-07 completed both directions with all original inner penalties in 133.9 s of driver work (145.1 s process walltime), peak RSS 493,964 KiB and exit 0. Partial-person scientific values were not inspected.
+Measured cost supports one 4 CPU/8 GiB/45 min cohort job: four one-thread worker groups handle 7/8 of the remaining 29 people each, retaining completed checkpoints and the unchanged recipe.
+Each worker has a 1.75 GiB soft RSS guard, below the 8 GiB parent collectively; no extra first-person fit or repeated qualification. The same substantive job reports only after all 30 people complete.
+Submitted cohort job 48217947 via run_repeated_image_cohort001.sbatch; observed RUNNING on sh03-06n12 at 2026-10-17 06:51 UTC (October 16, 23:51 Pacific), with 4 CPU/8 GiB/45 min.
+Next: complete all 30 people, then release the independent-participant estimates, one figure and exactly three lines; main/concept/false/audit roles and all thresholds remain unchanged. No cohort result is yet claimed.
+
+## 2026-10-16 23:43 Pacific — repeated_image_signal_recovery — first complete participant submitted
+
+Submitted48217491 at1CPU/7GiB/2h using run_repeated_image_control001.sbatch; no duplicate worker or main-model refit.
+The first allocation runs16 focused adapter/model/report tests and changed ASTRA validation, binds metadata before EEG access, then completes sub-07 with the frozen repeated-control recipe.
+Independent source review checked reader/driver/model/report interfaces and normalization. Numerical checks and authentic repeated-sequence metadata remain pending until job output confirms them.
+Operation records: runs/repeated_image_signal_recovery/; complete participant/checkpoint records: control001/sub-07/. All30 people remain required before cohort inference and release.
+Next: inspect first measured fit cost and any concrete failure, then scale the unchanged remaining29 participants within finite measured resources.
+
+## 2026-10-16 23:39 Pacific — repeated_image_signal_recovery — prescribed real-data control activated
+
+Activate the existing odd/even repeated-image identity-template control for all30 development people under standing authority, preserving200 images×12 repetitions and the closed concept/false/audit boundaries.
+Before repeated EEG outcomes: positive cross-sequence identity prediction weakens inability to recover reproducible image-specific EEG and points toward main-reference/readout sensitivity; failure leaves recovery unresolved, never establishes concept absence.
+Use authentic E3 physical sequences and recorded E1 onsets, original129-tap causal FIR/250Hz grid/62-to-61 sensor projection, raised_cosine_12 basis and nuisance recipe, training-only residual whitening and the existing13-value ridge grid.
+Human odd/even means chronological physical-sequence ordinal; each direction tunes by leave-one-training-sequence-out, then refits and scores the opposite parity. Average both gains within each person before participant inference.
+The repeated-control threshold stays greater than0 with the registered three-control Bonferroni one-sided participant-t family and leave-one-person checks. It does not replace the image threshold0.002, task threshold0.001, or rescue the main result.
+Implement a separate repeated reader/model rather than changing the main72-sequence admission; first verify permitted event metadata before voltage access. Preserve completed directional checkpoints.
+Select one1CPU/7GiB/2h job for focused correctness checks, metadata binding and a complete first participant; measure cost before submitting the remaining29. Publish the figure and three lines only with all30 complete.
+BR pipeline-plan review returned approve/low with no findings or consulted KG rules; its generic checklist is advisory. Source review caught and fixed a floating-point800ms endpoint discrepancy by reusing the original acquisition-tick kernels.
+
+## 2026-10-16 23:34 Pacific — core_reference_calibration — current goal classification and missing positive control
+
+The October14 estimate/figure milestone remains complete, but its calibration does not meet the explanation-separating result definition adopted October16; corrected current navigation without rewriting historical execution.
+The released report records image_gain_positive=false and reference_underidentified=true. No same-pipeline positive-reference pass or absence-of-concept conclusion follows.
+The prescribed repeated-image odd/even identity-template control remains unimplemented; the main EEG cache excludes all2,400 repeated events per person (see October12 component review).
+Next: implement this existing development-only signal-recovery/reliability control using the original data roles and thresholds; assess the raw-event/cache route before execution. Its greater-than-zero criterion is not the image-gain margin and cannot rescue the primary result.
+No new job or outcome access in this documentation/source-review step; concept/false scores and the16-person audit remain closed.
+
 ## 2026-10-14 — core_reference_calibration — complete real-data estimate released
 
 47743173 completed 0:0 in 12m57s; the reporter accepted all 30 original people, 900 logical inner validations and 180 outer folds.

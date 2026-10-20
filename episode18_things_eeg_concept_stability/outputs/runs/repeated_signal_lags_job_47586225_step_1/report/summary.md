@@ -1,0 +1,3 @@
+All30 development participants: fixed degree-0–3 adjusted matched-image cosines,40 post bins,40 pre bins and40 within-person800ms-translated contrasts; one simultaneous two-sided95% Bonferroni participant-t family (120 endpoints,df29).
+Lower bounds above zero: post 0/40, pre 0/40, paired 0/40; joint positive post and paired 0/40; unavailable endpoints 0/120, with no participant dropping.
+All fixed acquisition-lag curves retain the causal filter's64ms delay; no peak/window selection. This descriptive saved-array diagnostic does not change original R/G/T, clear their controls, establish signal absence or identify a causal mechanism; no raw EEG or closed concept/false/audit outcomes were opened.

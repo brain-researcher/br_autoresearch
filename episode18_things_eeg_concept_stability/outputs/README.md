@@ -1,6 +1,184 @@
 # EP18 outputs
 
-**October 14 — complete 30-person real-EEG core result.**
+**October 17, 01:20 Pacific — current registered concept comparison closes underidentified.**
+The complete 30-person G/T/R control report has simultaneous one-sided 95%
+lower bounds −0.0000605262, −0.000811683 and −0.000148457, below the frozen
+0.002, 0.001 and 0 thresholds. This fails a necessary condition for the
+biological comparison. The existing policy explicitly maps
+`no_positive_reference_gain` to `underidentified`, and `underidentified` to
+`closed_no_candidate`; its qualification and positive-control requirements
+remain in force. See [the policy](../SEARCH_POLICY.yaml) and the controls
+section of [GOAL.md](../GOAL.md).
+The [three-line scientific stop](figures/repeated_image_control001/scientific_stop_3lines.md),
+[existing G/T/R figure](figures/repeated_image_control001/repeated_image_G_T_R.png)
+and [complete control report](runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json)
+provide the empirical evidence and participant-level uncertainty.
+This supplies the focus goal's scientific-reason branch for the current frozen
+procedure. It is not a positive concept finding, an absence/equivalence result,
+or a proof that every analysis of these data must fail. The repeated-image
+diagnostics, including the selector sensitivity below, do not change the
+original controls. Source inspection established no actionable reader,
+time-grid, identity-design, whitening or scoring defect.
+**No further execution is required for this registered route.** Concept/false
+scores and the 16-person audit remain closed. A different primary target,
+preprocessing or readout would require a separately specified scientific
+amendment, preserving the exposure history; no such amendment is adopted here.
+Earlier next-action statements below are historical.
+
+**October 17, 01:14 Pacific — frozen selector sensitivity complete; improvement is not established.**
+All 30 original people are retained: 16 changed directions were refitted at
+their prospectively frozen penalties, and 44 original directions were reused.
+Alternative R is −0.000442049, with simultaneous descriptive 95% interval
+[−0.00122121, 0.000337115]. Its paired change from original R is −0.000396894
+[−0.00114787, 0.000354078]. All three intervals in this report include zero.
+See the [three lines](runs/repeated_selector_refit/report001/3lines.md),
+[complete numeric report](runs/repeated_selector_refit/report001/repeated_selector_refit.complete.json),
+and [participant figure](figures/repeated_selector_refit001/repeated_selector_refit.png)
+([PDF](figures/repeated_selector_refit001/repeated_selector_refit.pdf)).
+The single three-endpoint Bonferroni family describes this exploratory comparison;
+it does not correct the preceding adaptive diagnostic history. The original
+mean-of-fold-ratios selector was not a coding defect. Pooling the inner errors
+has not established better prediction or positive repeated-image recovery here;
+the interval does not prove equivalence, harm, or signal absence.
+The unchanged nuisance losses and training whitening reproduced before each
+alternative fit. Step47586225.3 completed successfully, and the coordinator
+inspected the figure. Original R/G/T, their failed controls and all protected
+evaluation boundaries remain unchanged.
+No further selector search is activated. The current-route scientific stop is
+recorded above; these diagnostics cannot authorize concept/false scores or the
+16-person audit. Earlier snapshots below are historical.
+
+**October 17, 00:58 Pacific — complete fixed lag curves do not establish localized recovery.**
+All 30 people contribute to every endpoint. None of the 40 post-event,
+40 pre-event or 40 paired post-minus-pre intervals excludes zero under the
+single simultaneous two-sided 95% Bonferroni participant-t family; no bin has
+jointly positive post and paired lower bounds. Temporal dilution remains
+unresolved, not excluded; this is not evidence of absent EEG information.
+See the [three lines](runs/repeated_signal_lags_job_47586225_step_1/report/summary.md),
+[complete numeric report](runs/repeated_signal_lags_job_47586225_step_1/report/repeated_signal_lags.complete.json),
+and [all fixed curves](figures/repeated_signal_lags_job_47586225_step_1/repeated_signal_lags.png)
+([PDF](figures/repeated_signal_lags_job_47586225_step_1/repeated_signal_lags.pdf)).
+Step47586225.1 completed in 4.93 s with 116,960 KiB peak RSS and exit0; the
+coordinator inspected the figure. Only already released numeric records were
+read. Acquisition lags retain the causal filter's 64-ms delay; these are not
+corrected neural latencies. No peak, window, channel or person was selected.
+Original R/G/T and their failed controls remain unchanged. The subsequent
+frozen selector sensitivity is complete above; this dated lag snapshot is
+historical. Changing the primary preprocessing or estimand requires a scientist decision.
+
+**October 17, 00:53 Pacific — all 30 repeated-image metadata checks pass.**
+In step47586225.0, every person's source `teststimnumber` identifies the same
+image throughout all 12 recorded E3 sequences; every sequence contains indices
+0–199 exactly once. This weakens a within-person source-label permutation as
+an explanation for failed recovery. It does not verify absolute display timing,
+establish image-specific EEG recovery, or assert identical index numbering
+between people. The checker read no EEG amplitudes and changed no primary score.
+See the [compact summary](runs/repeated_identity_metadata/job_47586225_step_0/diagnosis/summary.md)
+and [complete metadata report](runs/repeated_identity_metadata/job_47586225_step_0/diagnosis/repeated_identity_metadata.complete.json).
+All three focused tests passed. The check took 95.04 s internally, 1m37.16s
+process walltime and 112,660 KiB peak RSS, inside the existing task allocation.
+Next: review the remaining signal-recovery explanation before selecting another
+EEG diagnostic; no new launch or preprocessing change is selected here.
+
+**October 17, 00:41 Pacific — all 30 fixed detrending diagnostics complete in job48223571.**
+Removing degree-0–3 sequence components did not clearly improve post-event
+alignment: the paired raw-to-adjusted change is −0.0122613, with descriptive
+95% participant interval [−0.0392444, 0.0147217]. Adjusted post-event
+matched-minus-cyclic37 cosine is 0.00454881 [−0.0130629, 0.0221605].
+The pre-event contrast is 0.0229474 [0.00685908, 0.0390358], while its matched
+cosine alone is 0.00355618 [−0.00482643, 0.0119388]; the negative shifted
+similarity contributes to that contrast. Post-minus-pre alignment is
+−0.0183986 [−0.0438290, 0.00703176]. All intervals are descriptive, with 30 people.
+See the [three lines](runs/repeated_signal_detrend/report001/summary.md),
+[complete numeric report](runs/repeated_signal_detrend/report001/repeated_signal_detrend.complete.json),
+and [four-panel diagnostic figure](figures/repeated_signal_detrend001/repeated_signal_detrend.png)
+([PDF](figures/repeated_signal_detrend001/repeated_signal_detrend.pdf)).
+Eight focused tests and the preceding ASTRA validation passed; the coordinator
+inspected the figure. The job completed in 2m33s with exit0:0; driver work took
+2m7.25s, with peak RSS226,776KiB.
+Whole-sequence projection is not out-of-sample prediction. Original R and its
+failed controls remain unchanged; no mechanism or concept-absence claim follows.
+**October 17 source interpretation — the fixed shift is not an average mismatch.**
+In [the template source](code/repeated_signal_structure.py), each sequence is
+centered across all 200 images at every lag and sensor before averaging the six
+sequences per half. If `c_k` is the cosine after cyclic image shift `k`, all shifts
+have the same denominator and `sum(c_k, k=0..199) = 0`, up to roundoff. Thus the
+mean of all 199 mismatches is `-c_0/199`, and matched-minus-mean-mismatch is exactly
+`(200/199)*c_0`. This identity holds separately for both windows and each person.
+Actual matched cosine remains near zero: adjusted post-event 0.000219077
+[−0.0146914, 0.0151295], pre-event 0.00355618 [−0.00482643, 0.0119388]. The positive
+pre-event matched-minus-shift37 contrast can therefore reflect that particular
+negative comparator; it does not establish pre-event identity recovery. The
+algebra does not identify why shift37 is negative or establish signal absence.
+**Next: preserve this comparator caveat before selecting any pipeline change.**
+No new analysis launch is selected. Concept/false scores and all 16 audit people
+remain closed under same-account procedural separation. Earlier snapshots below are historical.
+
+**October 17, 00:34 Pacific — all 30 failure diagnostics complete in 48220727.**
+Degree-0–3 temporal components account for 81.7155% of nuisance residual energy
+(descriptive 95% participant interval 78.3012–85.1297%). Matched-minus-cyclic37
+odd/even template cosine is 0.0168101 [−0.00538739, 0.0390076], which does not
+clearly establish image-aligned recovery. Polynomial and complementary gain
+contributions are +0.000000412790 and −0.0000455676; they reconstruct unchanged
+R = −0.0000451548. Slow-error concentration alone does not explain the failed gain.
+See the [three lines](runs/repeated_signal_diagnostic/report001/summary.md),
+[complete numeric report](runs/repeated_signal_diagnostic/report001/repeated_signal_diagnostic.complete.json),
+and [diagnostic figure](figures/repeated_signal_diagnostic001/repeated_signal_diagnostic.png)
+([PDF](figures/repeated_signal_diagnostic001/repeated_signal_diagnostic.pdf)).
+All 11 focused checks and ASTRA validation passed; the coordinator inspected the
+figure and confirmed the earlier R-axis label repair. Driver time was 9m6.7s.
+These exploratory descriptions neither rescue the control nor establish signal absence.
+
+**Earlier selected follow-up — fixed detrending/pre-event comparison, now complete above.**
+For the same 30 people, 12 sequences and 200 identities, remove only the fixed
+degree-0–3 sequence component for diagnostic templates, then compare the complete
+0–800 ms and −800–0 ms windows using the same fixed identity shift. Report paired
+raw-to-adjusted and post-minus-pre changes with descriptive participant intervals.
+There is no cutoff, degree, channel, peak or feature search. The continuous
+primary R/G/T, candidate selection, thresholds and data roles stay unchanged;
+concept/false scores and all 16 audit participants remain closed. The selected
+allocation is 1 CPU, 7 GiB and one hour; see the [prospective record](experiment_log.md).
+Earlier job snapshots below are historical.
+
+**October 17, 00:12 Pacific — all 30 repeated-image controls complete; positive control fails.**
+The prescribed odd/even directions are complete for every original development
+participant. Repeated-image gain is R = −0.0000451547619279, with descriptive
+95% participant interval [−0.000139713671589, 0.0000494041477333]. Its simultaneous
+one-sided lower bound is −0.000148456513660, below the required zero; the
+leave-one-person requirement also fails. G/T estimates and thresholds are unchanged.
+This is a failed calibration control, not evidence that EEG lacks image or concept
+information. It does not rescue the main reference or complete the focus goal.
+See the [three lines](runs/repeated_image_signal_recovery/report001/summary.md),
+[complete numeric report](runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json)
+and [G/T/R figure](figures/repeated_image_control001/repeated_image_G_T_R.png)
+([PDF](figures/repeated_image_control001/repeated_image_G_T_R.pdf)).
+The R-axis labels were repaired and visually checked in 48220727; ASTRA validation passed there.
+The fixed detrending comparison is complete above; temporal-order/fixed-shift
+alternatives remain unresolved. Concept/false scores and all 16 audit participants remain closed.
+Jobs 48217491 and 48217947 are complete; earlier running entries below are historical.
+
+**October 16, 23:51 Pacific — first repeated-image participant complete; full cohort running.**
+Job48217491 passed all 16 focused tests and completed both directions for sub-07.
+Authentic metadata confirms 12 E3 sequences × 200 identities; the first complete
+fit took 133.9 seconds of driver work. Cohort job48217947 is running on
+sh03-06n12 with 4 CPUs, 8 GiB and a 45-minute limit, using four one-thread
+workers for the remaining 29 people and preserving the completed first fit.
+Only after all 30 complete will the same job report participant uncertainty,
+one figure and three lines. No cohort result is available yet; this control
+cannot rescue the main-reference margins or open concept/false/audit comparisons.
+See the [measured cost, submission and next action](experiment_log.md).
+
+**October 16, 23:43 Pacific — prescribed real-data repeated-image control submitted.**
+Job48217491 (1 CPU, 7 GiB, two hours) runs the focused reader/model/report checks,
+verifies repeated-session metadata, then fits the first complete development
+participant. The control retains all 200 identities and 12 repetitions, with
+chronological odd/even sequence evaluation and training-only tuning/whitening.
+All 30 original people are required before participant inference, one figure and
+three lines. Positive repeated prediction would weaken inability to recover
+reproducible image-specific EEG; it cannot rescue the main reference or establish
+conceptual coding. See the [prospective interpretation and execution](experiment_log.md).
+
+**October 16 interpretation of the October 14 result — complete 30-person real-EEG calibration.**
 Image prediction gain is G = −0.000007574 (descriptive 95% participant interval
 −0.00005604 to 0.00004090); target/response nuisance gain is T = −0.0004748
 (−0.0007832 to −0.0001664). The fixed image reference shows no clear positive
@@ -9,9 +187,11 @@ The registered no-positive-reference rule leaves this calibration underidentifie
 it does not establish absence of conceptual information in EEG.
 All 30 people and 180 outer folds are complete; each person's six folds were
 averaged before participant-level intervals. Separation was procedural within one account.
-The requested next empirical result is available as [three lines](runs/baseline_models/core_direct_checkpoint_batch_report001/summary.md),
+The completed calibration is available as [three lines](runs/baseline_models/core_direct_checkpoint_batch_report001/summary.md),
 [numeric results](runs/baseline_models/core_direct_checkpoint_batch_report001/core_reference.complete.json),
 and [one figure](figures/core_direct_checkpoint_batch001/core_reference_G_T.png) ([PDF](figures/core_direct_checkpoint_batch001/core_reference_G_T.pdf)).
+This delivered the earlier estimate/figure milestone. Under the October 16 goal
+amendment, calibration alone does not count as an explanation-separating result.
 The broader concept question and matched-control comparison remain unresolved;
 concept/false scores and the 16-person audit remain closed. Earlier entries below are historical.
 

@@ -1,0 +1,17 @@
+{
+  "analysis_id": "repeated_signal_diagnostic",
+  "data_release": "outputs/config/development_eeg_release_20261012_001.json",
+  "core_recipe": "outputs/config/core_recipe_20261013_001.json",
+  "completed_control_root": "outputs/runs/repeated_image_signal_recovery/control001",
+  "completed_control_report": "outputs/runs/repeated_image_signal_recovery/report001/repeated_image_control.complete.json",
+  "run_root": "outputs/runs/repeated_signal_diagnostic/diagnostic001",
+  "data_role": "development_repeated_signal_diagnosis_only",
+  "primary_or_candidate_use": false,
+  "audit_access": false,
+  "purpose": "Distinguish slow-component domination of the failed continuous control from unresolved image-specific response recovery. Preserve all original predictions, scores, margins and protected roles.",
+  "selection_history": "Exploratory follow-up selected after the complete 30-person repeated control failed; not independent confirmation.",
+  "polynomial_error_projection_degree": 3,
+  "template_bin_width_ms": 20,
+  "template_horizon_ms": [0, 800],
+  "diagnostic_identity_shift": 37
+}

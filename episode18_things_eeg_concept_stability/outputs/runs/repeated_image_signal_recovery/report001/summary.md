@@ -1,0 +1,3 @@
+Across the original 30 development participants, G=-7.57419e-06 (descriptive 95% CI -5.60446e-05 to 4.08963e-05); T=-0.000474771 (descriptive 95% CI -0.000783169 to -0.000166373); R=-4.51548e-05 (descriptive 95% CI -0.000139714 to 4.94041e-05).
+Both repeated-image directions are averaged within each person; simultaneous one-sided t bounds use alpha=.05/3, thresholds G>.002/T>.001/R>0 and every leave-one-person mean>0; R control does not pass.
+G/T keep the control family failed; repeated-image recovery cannot rescue the main concept comparison or establish concept-signal absence; audit/concept/false scores remain closed under same-account procedural separation.

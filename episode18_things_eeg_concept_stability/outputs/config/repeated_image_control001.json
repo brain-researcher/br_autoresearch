@@ -1,0 +1,17 @@
+{
+  "analysis_id": "repeated_image_signal_recovery",
+  "data_release": "outputs/config/development_eeg_release_20261012_001.json",
+  "core_recipe": "outputs/config/core_recipe_20261013_001.json",
+  "run_root": "outputs/runs/repeated_image_signal_recovery/control001",
+  "data_role": "development_repeated_signal_recovery_only",
+  "primary_or_candidate_use": false,
+  "audit_access": false,
+  "interpretation": {
+    "positive": "Weakens inability to recover reproducible image-specific EEG through this pipeline; main image-reference/readout sensitivity remains a possible explanation for its weak gain.",
+    "not_positive": "Repeated-response recovery remains unresolved; this does not establish absence of concept information.",
+    "primary_rescue": false,
+    "repeated_control_lower_bound_threshold": 0.0,
+    "familywise_alpha": 0.05,
+    "positive_control_family_size": 3
+  }
+}

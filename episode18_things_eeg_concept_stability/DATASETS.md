@@ -39,6 +39,17 @@ images, EEG or secrets were downloaded in this check.
 
 ## What is available
 
+**October 17 method cross-check.** The original paper's technical-validation
+methods (page 4 of the [author-hosted paper](https://tijl.github.io/tijl-grootswagers-pdf/Grootswagers_et_al_-_2022_-_Human_EEG_recordings_for_1,854_concepts_presented_.pdf))
+used 0.1-Hz high-pass and 100-Hz low-pass Hamming-windowed FIR filtering,
+average referencing and 250-Hz sampling, followed by stimulus epochs from
+−100 to 1,000 ms. EP18's frozen continuous recipe instead has no high-pass or
+detrending and uses a causal 129-tap low-pass with an unchanged acquisition
+clock. Consequently, the paper's decoding validation is not positive-control
+validation of this same continuous-prediction pipeline. This source check
+changes no preprocessing, data role, score or threshold; the complete-cohort
+signal/error diagnostic is recorded in `outputs/experiment_log.md`.
+
 | Resource | Current state | EP18 use |
 | --- | --- | --- |
 | THINGS-EEG1 `ds003825`, release `v1.2.0` | Acquired and preserved read-only | Raw continuous EEG, events, markers, and participant metadata |

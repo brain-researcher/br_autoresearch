@@ -1,0 +1,3 @@
+Across all 30 original development participants, G/T/R means are -0.00000757419/-0.000474771/-0.0000451548; simultaneous one-sided 95% participant-t lower bounds are -0.0000605262/-0.000811683/-0.000148457, below their frozen 0.002/0.001/0 thresholds.
+All three necessary positive controls fail: the current registered concept comparison is underidentified and closes with no candidate under the existing policy; the completed exploratory diagnostics do not repair that failed necessary condition.
+This is a scientific stopping reason for the frozen procedure, not a concept-absence result or impossibility for other analyses; concept/false scores and all 16 audit participants remain unopened, with same-account procedural separation disclosed.
