@@ -1,5 +1,39 @@
 # At what biological resolution does dendrite–projectome coupling live?
 
+## Current feasibility, October 16
+
+The missing source facts have been recovered from papers, supplements, code
+and permitted data, without provider contact. Claims based on them are
+conditional on the stated assumptions; see the
+[attempt003 register](outputs/runs/metadata_feasibility/attempt003/README.md).
+
+- **IT provenance:** the label is the transgenic line, documented by provider
+  metadata and published line characterizations.
+- **Finer class:** no non-axon class finer than the line exists.
+- **Lineage:** 1,736 refined Peng 2021 cells and 140 new cells from 19
+  brains are identified per cell.
+- **Layers:**
+  - 74 blank layers were recovered from Peng 2021 curated layers;
+  - layers for the 59 new cortical Cux2 cells cannot be recovered at the
+    pre-set reliability.
+
+Under every layer and IT rule tested, at most **3 of the 12 IT-driver
+animals** have a within-animal donor pool of at least 5 cells. Only 5–6
+animals have even 5 eligible cells in total.
+
+The registered 12-development/8-audit design, and the unadopted nine-animal
+route, are therefore infeasible on SEU-A1876. This is a data limitation, and
+the headline matched-donor primary is unavailable on this source.
+
+The scientist chose to look for a new dataset (October 16). The
+[proposed source](DATASETS.md#proposed-primary-source-cebsit-whole-cortex-projectome--unadopted)
+is the CEBSIT whole-cortex projectome (Gao et al., *Neuron* 2025). It has
+57 core IT-line animals with within-animal pools of at least 5 cells, and no
+overlap with the Peng 2021 lineage. If adopted, the question and primary
+estimand stay the same; the source, the dendrite coordinate frame and the
+layer rule change. Until the scientist approves it, roles, thresholds and
+access are unchanged, and no fit is selected.
+
 ## Current feasibility and proposed route, October 6
 
 The preserved October 3 non-axon metadata join matches 38 brains to 38 distinct animals,

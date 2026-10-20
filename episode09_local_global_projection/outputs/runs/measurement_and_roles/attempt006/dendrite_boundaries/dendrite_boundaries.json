@@ -1,0 +1,571 @@
+{
+  "artifact": "EP09 development-dendrite explanatory boundaries",
+  "boundaries": {
+    "R_cap_um": 600,
+    "branch_order_boundaries": {
+      "b1": 3,
+      "b2": 5
+    },
+    "radial_edges_um": [
+      50,
+      100,
+      150
+    ]
+  },
+  "boundary_hash_definition": {
+    "algorithm": "SHA-256",
+    "scope": "The exact boundaries object",
+    "serialization": "UTF-8 JSON; sort_keys=True; separators=(',', ':'); ensure_ascii=True; allow_nan=False; no trailing newline"
+  },
+  "boundary_sha256": "ac6879b094f05958f1ba3c0c011b6bb1abd55c0d57a7d7c5a7e9e7e8a3b8f267",
+  "cells_excluded": 0,
+  "cells_used": 1114,
+  "descriptive": {
+    "animal_balanced_mean_dendritic_length_um": 6505.005362468654,
+    "branch_order_ranges": [
+      {
+        "lower_order": 1,
+        "upper_order": 3,
+        "weighted_length_fraction": 0.3338034611021489
+      },
+      {
+        "lower_order": 4,
+        "upper_order": 5,
+        "weighted_length_fraction": 0.37868356052340435
+      },
+      {
+        "lower_order": 6,
+        "upper_order": null,
+        "weighted_length_fraction": 0.2875129783744467
+      }
+    ],
+    "radial_profiles": {
+      "100": {
+        "grid_um": [
+          0,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600
+        ],
+        "nominal_spacing_um": 100,
+        "overflow": {
+          "lower_um": 600,
+          "upper_um": null,
+          "weighted_length_fraction": 0.00044999811081458674
+        },
+        "weighted_length_fractions": [
+          0.5584257879432557,
+          0.33242543561817306,
+          0.09508590618003343,
+          0.011291744385956703,
+          0.0016758630569438937,
+          0.0006452647048226234
+        ]
+      },
+      "25": {
+        "grid_um": [
+          0,
+          25,
+          50,
+          75,
+          100,
+          125,
+          150,
+          175,
+          200,
+          225,
+          250,
+          275,
+          300,
+          325,
+          350,
+          375,
+          400,
+          425,
+          450,
+          475,
+          500,
+          525,
+          550,
+          575,
+          600
+        ],
+        "nominal_spacing_um": 25,
+        "overflow": {
+          "lower_um": 600,
+          "upper_um": null,
+          "weighted_length_fraction": 0.00044999811081458674
+        },
+        "weighted_length_fractions": [
+          0.048220972073299444,
+          0.13440208114139182,
+          0.1873068097417034,
+          0.18849592498686102,
+          0.14157878815651403,
+          0.08669980084250961,
+          0.057561744890737176,
+          0.04658510172841224,
+          0.03806248044667493,
+          0.027937020246128208,
+          0.018290579880379743,
+          0.010795825606850551,
+          0.00578335378332151,
+          0.002988081116901742,
+          0.0015840607768314863,
+          0.0009362487089019655,
+          0.0006228281516996725,
+          0.0004284101206825097,
+          0.00033464413864303655,
+          0.0002899806459186749,
+          0.00020037514419080082,
+          0.00014517129135716011,
+          0.0001535581263762964,
+          0.0001461601428983661
+        ]
+      },
+      "50": {
+        "grid_um": [
+          0,
+          50,
+          100,
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450,
+          500,
+          550,
+          600
+        ],
+        "nominal_spacing_um": 50,
+        "overflow": {
+          "lower_um": 600,
+          "upper_um": null,
+          "weighted_length_fraction": 0.00044999811081458674
+        },
+        "weighted_length_fractions": [
+          0.18262305321469127,
+          0.3758027347285644,
+          0.22827858899902365,
+          0.10414684661914941,
+          0.06599950069280314,
+          0.029086405487230294,
+          0.008771434900223252,
+          0.002520309485733452,
+          0.0010512382723821823,
+          0.0006246247845617114,
+          0.00034554643554796094,
+          0.0002997182692746625
+        ]
+      }
+    },
+    "radial_shells": [
+      {
+        "lower_um": 0,
+        "upper_um": 50,
+        "weighted_length_fraction": 0.18262305321469127
+      },
+      {
+        "lower_um": 50,
+        "upper_um": 100,
+        "weighted_length_fraction": 0.3758027347285644
+      },
+      {
+        "lower_um": 100,
+        "upper_um": 150,
+        "weighted_length_fraction": 0.22827858899902365
+      },
+      {
+        "lower_um": 150,
+        "upper_um": null,
+        "weighted_length_fraction": 0.21329562305772065
+      }
+    ]
+  },
+  "excluded_cells": [],
+  "frozen_conventions": {
+    "axon_blind_parser": "Stream each selected member; extract type first; immediately discard type-0/2 rows without splitting or parsing other fields and without counting them. Retain only candidate id/type/parent and raw xyz tokens. Parse coordinates only for soma and BFS-reached dendrites. Unreachable marker coordinates remain unparsed.",
+    "boundaries": {
+      "R_cap": "25 * ceil(Q_0.99(cell maximum radius)/25); no epsilon",
+      "branch_orders": "b1=max(1,Q1); b2=max(b1+1,Q2); ranges 1..b1, b1+1..b2, >b2; retain empty ranges",
+      "radial_monotonicity": "e1>=25; e2>=e1+25; e3>=e2+25",
+      "radial_rounding": "25 * floor(Q/25 + 0.5), ties upward",
+      "radial_shells": "[0,e1), [e1,e2), [e2,e3), [e3,infinity)"
+    },
+    "branch_order": {
+      "multifurcations": "Retain as recorded; imbalance summaries use all unordered child-subtree pairs. This boundary tool does not estimate imbalance statistics.",
+      "rule": "Edges out of soma have order 1; out of a reached node with at least two reached children increment incoming order by 1; with one child preserve incoming order, regardless of type.",
+      "stem_order": 1
+    },
+    "compartment": "All soma-reachable type-3/type-4 dendritic trees, pooled; reachable type-10/11/12 markers inherit compartment; no missing apical/basal annotations are inferred.",
+    "contract": "EP09 measurement contract v1.2",
+    "coordinate_system": {
+      "absolute_coordinates_in_outputs": false,
+      "input_axes": [
+        "AP",
+        "DV",
+        "ML"
+      ],
+      "origin": "Registered soma position subtracted before geometry",
+      "units": "micrometres"
+    },
+    "geometry": {
+      "edges": "Every reached parent-to-child edge, including soma-to-stem",
+      "length": "Original Euclidean polyline arc length",
+      "maximum_radius": "Maximum soma distance over reached nodes",
+      "zero_length_edges": "Retained in topology; omitted from all length-weighted measures"
+    },
+    "manifest": {
+      "animal_identifier": "brain column",
+      "expected_development_animals": 27,
+      "expected_development_cells": 1114,
+      "ignored_role": "audit",
+      "manifest_hash": "SHA-256 of complete raw manifest bytes",
+      "member_mapping": "Split cell at final underscore: data_v3/B/S.swc",
+      "selected_role": "development"
+    },
+    "numeric_reproducibility": "Float64; one numerical thread per process; aggregate cells in development manifest order; fixed CDF chunk size",
+    "quantiles": {
+      "branch_order_probabilities": [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "cell_maximum_radius_probability": 0.99,
+      "discrete": "Smallest value whose CDF >= q - 1e-12",
+      "discrete_cdf_tolerance": 1e-12,
+      "radial": "Analytic sphere/segment intersection fraction from quadratic roots; generalized-inverse CDF quantile by bisection",
+      "radial_bracket_width_um": 1e-09,
+      "radial_probabilities": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reported_radial_quantile": "Upper bisection bracket endpoint"
+    },
+    "radial_profiles": {
+      "coarse_grid_endpoint": "Append R_cap when needed, making the last interval shorter",
+      "intervals": "[lower,upper); explicit overflow [R_cap,infinity)",
+      "quantity": "Pooled animal-balanced dendritic arc-length fraction",
+      "spacings_um": [
+        25,
+        50,
+        100
+      ]
+    },
+    "stage": "A; development dendrites before axon-field access",
+    "validity": {
+      "acyclic": "Typed-dendrite ancestry in the candidate graph and no repeated node during dendritic BFS; marker-only components are ignored",
+      "coordinates": "Finite soma and reached-node coordinates/geometry",
+      "length": "Strictly positive finite total dendritic length",
+      "missing_valid_animal": "Fatal; never renormalize away a development animal",
+      "soma": "Exactly one candidate soma, with parent -1",
+      "stems": "At least one soma child of type 3/4",
+      "unavailable_qc": "Null in JSON and blank in CSV",
+      "unique_ids": "All retained candidate IDs; ignored 0/2 IDs unread",
+      "unreachable_type_3_4": "Any such node invalidates the cell"
+    },
+    "weighting": {
+      "animal": "1/27",
+      "cell": "1/N_valid within each animal",
+      "location": "edge length / cell total length, uniformly along edge",
+      "per_animal_mean_length": "Equal valid-cell weighted mean"
+    }
+  },
+  "measurement_contract": "EP09 v1.2",
+  "per_animal": [
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221043",
+      "development_cells": 35,
+      "excluded_cells": 0,
+      "valid_cells": 35,
+      "weighted_mean_dendritic_length_um": 5849.073463180081
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221242",
+      "development_cells": 32,
+      "excluded_cells": 0,
+      "valid_cells": 32,
+      "weighted_mean_dendritic_length_um": 7276.465684204141
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221364",
+      "development_cells": 88,
+      "excluded_cells": 0,
+      "valid_cells": 88,
+      "weighted_mean_dendritic_length_um": 5963.8207455703205
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221510",
+      "development_cells": 23,
+      "excluded_cells": 0,
+      "valid_cells": 23,
+      "weighted_mean_dendritic_length_um": 8350.967982179045
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221518",
+      "development_cells": 54,
+      "excluded_cells": 0,
+      "valid_cells": 54,
+      "weighted_mean_dendritic_length_um": 5980.3842702783995
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221519",
+      "development_cells": 50,
+      "excluded_cells": 0,
+      "valid_cells": 50,
+      "weighted_mean_dendritic_length_um": 6207.842929175971
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221520",
+      "development_cells": 62,
+      "excluded_cells": 0,
+      "valid_cells": 62,
+      "weighted_mean_dendritic_length_um": 6832.865928298936
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221521",
+      "development_cells": 36,
+      "excluded_cells": 0,
+      "valid_cells": 36,
+      "weighted_mean_dendritic_length_um": 6079.65711616898
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221529",
+      "development_cells": 22,
+      "excluded_cells": 0,
+      "valid_cells": 22,
+      "weighted_mean_dendritic_length_um": 7472.243375356719
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221530",
+      "development_cells": 46,
+      "excluded_cells": 0,
+      "valid_cells": 46,
+      "weighted_mean_dendritic_length_um": 6849.323828234946
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221585",
+      "development_cells": 41,
+      "excluded_cells": 0,
+      "valid_cells": 41,
+      "weighted_mean_dendritic_length_um": 7261.590866437695
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221588",
+      "development_cells": 56,
+      "excluded_cells": 0,
+      "valid_cells": 56,
+      "weighted_mean_dendritic_length_um": 6541.166506565843
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221645",
+      "development_cells": 82,
+      "excluded_cells": 0,
+      "valid_cells": 82,
+      "weighted_mean_dendritic_length_um": 6311.85842650714
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221701",
+      "development_cells": 18,
+      "excluded_cells": 0,
+      "valid_cells": 18,
+      "weighted_mean_dendritic_length_um": 5741.499513482077
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221713",
+      "development_cells": 15,
+      "excluded_cells": 0,
+      "valid_cells": 15,
+      "weighted_mean_dendritic_length_um": 6098.846945861358
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221731",
+      "development_cells": 42,
+      "excluded_cells": 0,
+      "valid_cells": 42,
+      "weighted_mean_dendritic_length_um": 7918.912546312399
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221732",
+      "development_cells": 43,
+      "excluded_cells": 0,
+      "valid_cells": 43,
+      "weighted_mean_dendritic_length_um": 5734.646910198465
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221733",
+      "development_cells": 32,
+      "excluded_cells": 0,
+      "valid_cells": 32,
+      "weighted_mean_dendritic_length_um": 6117.5459964656175
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "221757",
+      "development_cells": 38,
+      "excluded_cells": 0,
+      "valid_cells": 38,
+      "weighted_mean_dendritic_length_um": 5578.2873189317515
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230072",
+      "development_cells": 17,
+      "excluded_cells": 0,
+      "valid_cells": 17,
+      "weighted_mean_dendritic_length_um": 6487.174552252301
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230105",
+      "development_cells": 21,
+      "excluded_cells": 0,
+      "valid_cells": 21,
+      "weighted_mean_dendritic_length_um": 6592.995730156259
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230106",
+      "development_cells": 24,
+      "excluded_cells": 0,
+      "valid_cells": 24,
+      "weighted_mean_dendritic_length_um": 6669.0423601199145
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230107",
+      "development_cells": 23,
+      "excluded_cells": 0,
+      "valid_cells": 23,
+      "weighted_mean_dendritic_length_um": 5193.364412092981
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230108",
+      "development_cells": 24,
+      "excluded_cells": 0,
+      "valid_cells": 24,
+      "weighted_mean_dendritic_length_um": 7816.5258661558555
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "230109",
+      "development_cells": 24,
+      "excluded_cells": 0,
+      "valid_cells": 24,
+      "weighted_mean_dendritic_length_um": 7061.656662843453
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "233668",
+      "development_cells": 80,
+      "excluded_cells": 0,
+      "valid_cells": 80,
+      "weighted_mean_dendritic_length_um": 5867.14524297681
+    },
+    {
+      "animal_weight": 0.037037037037037035,
+      "brain": "233795",
+      "development_cells": 86,
+      "excluded_cells": 0,
+      "valid_cells": 86,
+      "weighted_mean_dendritic_length_um": 5780.239606646195
+    }
+  ],
+  "provenance": {
+    "SLURM_JOB_ID": "48311776",
+    "artifact_prepared_utc": "2026-10-18T04:27:30.525880Z",
+    "cpu_budget": 8,
+    "hostname": "sh04-04n21.int",
+    "manifest": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/runs/measurement_and_roles/attempt002/ep09_cell_manifest.csv",
+      "sha256": "955502e4729f524ceba5f105ee686b51d9f5b7b2aa51a91e4025d39d58a85d85"
+    },
+    "qc_csv": {
+      "filename": "development_dendrite_qc.csv",
+      "sha256": "498159c6bb08593b14dde1130ab4fa5c733e7500ff04b09e3c64d44456231dc0"
+    },
+    "run_started_utc": "2026-10-18T04:27:14.791254Z",
+    "script": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/tools/ep09_dendrite_boundaries.py",
+      "sha256": "58c661e1275e0f321bc2475a418406605b67f2062c135feaecebc84903e4fa1f"
+    },
+    "thread_environment": {
+      "BLIS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OMP_THREAD_LIMIT": "1",
+      "OPENBLAS_DEFAULT_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "versions": {
+      "numpy": "1.26.4",
+      "python": "3.11.15",
+      "scipy": "1.15.3"
+    },
+    "workers": 8,
+    "zip": {
+      "member_count": 19004,
+      "member_count_includes_directory_entries": true,
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/cebsit_whole_cortex_zenodo_16909126/archives/data_v3.zip",
+      "payload_selection": "Development manifest members only",
+      "size_bytes": 13605777073,
+      "whole_archive_content_hash_computed": false
+    }
+  },
+  "schema_version": 1,
+  "stage": "A",
+  "unrounded_quantiles": {
+    "branch_order": {
+      "0.3333333333333333": 3,
+      "0.6666666666666666": 5
+    },
+    "cell_maximum_radius_um": {
+      "0.99": 575.3568009505058
+    },
+    "radial_bisection_brackets_um": {
+      "0.25": [
+        59.44426838319286,
+        59.444268383963305
+      ],
+      "0.5": [
+        91.83576877141559,
+        91.83576877218601
+      ],
+      "0.75": [
+        137.83714282331343,
+        137.83714282408386
+      ]
+    },
+    "radial_distance_um": {
+      "0.25": 59.444268383963305,
+      "0.5": 91.83576877218601,
+      "0.75": 137.83714282408386
+    }
+  }
+}

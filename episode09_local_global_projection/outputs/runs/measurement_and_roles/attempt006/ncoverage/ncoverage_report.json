@@ -1,0 +1,3464 @@
+{
+  "allowed_candidates": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "analytic_check_summary": {
+    "allowed_ratio_interval_inclusive": [
+      0.97,
+      1.03
+    ],
+    "checked_scenario_count": 648,
+    "flagged_scenario_count": 0,
+    "flagged_scenarios": [],
+    "maximum_ratio": 1.0228017647088445,
+    "minimum_ratio": 0.9767150208953418,
+    "passes": true
+  },
+  "completed_run_exit_codes": {
+    "0": "feasible and analytic guard passed",
+    "2": "primary coverage/precision infeasible",
+    "3": "analytic implementation-error guard failed"
+  },
+  "contract_version": "1.2",
+  "coverage_precision_feasible_by_thresholds": true,
+  "development_animals": [
+    {
+      "brain": "221043",
+      "cell_count": 35,
+      "numeric_brain_id": 221043,
+      "pools": [
+        {
+          "pool_key": "221043|Wfs1|MOp|L2/3",
+          "pool_size": 16
+        },
+        {
+          "pool_key": "221043|Wfs1|SSp-bfd|L2/3",
+          "pool_size": 16
+        },
+        {
+          "pool_key": "221043|Wfs1|SSp-m|L2/3",
+          "pool_size": 3
+        }
+      ]
+    },
+    {
+      "brain": "221242",
+      "cell_count": 32,
+      "numeric_brain_id": 221242,
+      "pools": [
+        {
+          "pool_key": "221242|Wfs1|AIp|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221242|Wfs1|AUDpo|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221242|Wfs1|AUDp|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221242|Wfs1|ECT|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221242|Wfs1|GU|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221242|Wfs1|MOp|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221242|Wfs1|PERI|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221242|Wfs1|SSs|L2/3",
+          "pool_size": 16
+        },
+        {
+          "pool_key": "221242|Wfs1|VISC|L2/3",
+          "pool_size": 2
+        }
+      ]
+    },
+    {
+      "brain": "221364",
+      "cell_count": 88,
+      "numeric_brain_id": 221364,
+      "pools": [
+        {
+          "pool_key": "221364|Wfs1|AId|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221364|Wfs1|AIv|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221364|Wfs1|VISam|L2/3",
+          "pool_size": 10
+        },
+        {
+          "pool_key": "221364|Wfs1|VISa|L2/3",
+          "pool_size": 58
+        },
+        {
+          "pool_key": "221364|Wfs1|VISpm|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221364|Wfs1|VISp|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221364|Wfs1|VISrl|L2/3",
+          "pool_size": 1
+        }
+      ]
+    },
+    {
+      "brain": "221510",
+      "cell_count": 23,
+      "numeric_brain_id": 221510,
+      "pools": [
+        {
+          "pool_key": "221510|Wfs1|FRP|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221510|Wfs1|MOp|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221510|Wfs1|MOs|L2/3",
+          "pool_size": 16
+        },
+        {
+          "pool_key": "221510|Wfs1|ORBl|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221510|Wfs1|ORBvl|L2/3",
+          "pool_size": 2
+        }
+      ]
+    },
+    {
+      "brain": "221518",
+      "cell_count": 54,
+      "numeric_brain_id": 221518,
+      "pools": [
+        {
+          "pool_key": "221518|Wfs1|AUDd|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221518|Wfs1|AUDp|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221518|Wfs1|MOp|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221518|Wfs1|SSp-bfd|L2/3",
+          "pool_size": 15
+        },
+        {
+          "pool_key": "221518|Wfs1|SSp-m|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221518|Wfs1|SSp-n|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221518|Wfs1|SSp-ul|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221518|Wfs1|SSp-un|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221518|Wfs1|SSs|L2/3",
+          "pool_size": 8
+        }
+      ]
+    },
+    {
+      "brain": "221519",
+      "cell_count": 50,
+      "numeric_brain_id": 221519,
+      "pools": [
+        {
+          "pool_key": "221519|Wfs1|AUDd|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221519|Wfs1|AUDp|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221519|Wfs1|ECT|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221519|Wfs1|SSp-bfd|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221519|Wfs1|SSp-ul|L2/3",
+          "pool_size": 15
+        },
+        {
+          "pool_key": "221519|Wfs1|SSs|L2/3",
+          "pool_size": 11
+        },
+        {
+          "pool_key": "221519|Wfs1|TEa|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221519|Wfs1|VISli|L2/3",
+          "pool_size": 5
+        }
+      ]
+    },
+    {
+      "brain": "221520",
+      "cell_count": 62,
+      "numeric_brain_id": 221520,
+      "pools": [
+        {
+          "pool_key": "221520|Cux2|MOp|L2/3",
+          "pool_size": 22
+        },
+        {
+          "pool_key": "221520|Cux2|MOs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-bfd|L2/3",
+          "pool_size": 7
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-ll|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-m|L2/3",
+          "pool_size": 12
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-m|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-ul|L2/3",
+          "pool_size": 13
+        },
+        {
+          "pool_key": "221520|Cux2|SSp-un|L2/3",
+          "pool_size": 5
+        }
+      ]
+    },
+    {
+      "brain": "221521",
+      "cell_count": 36,
+      "numeric_brain_id": 221521,
+      "pools": [
+        {
+          "pool_key": "221521|Cux2|AUDd|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221521|Cux2|AUDd|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221521|Cux2|AUDp|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221521|Cux2|AUDv|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221521|Cux2|SSp-m|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221521|Cux2|SSp-n|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221521|Cux2|SSs|L2/3",
+          "pool_size": 12
+        }
+      ]
+    },
+    {
+      "brain": "221529",
+      "cell_count": 22,
+      "numeric_brain_id": 221529,
+      "pools": [
+        {
+          "pool_key": "221529|Wfs1|AUDd|L2/3",
+          "pool_size": 6
+        },
+        {
+          "pool_key": "221529|Wfs1|AUDp|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221529|Wfs1|AUDv|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221529|Wfs1|ECT|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221529|Wfs1|PERI|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221529|Wfs1|SSs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221529|Wfs1|TEa|L2/3",
+          "pool_size": 3
+        }
+      ]
+    },
+    {
+      "brain": "221530",
+      "cell_count": 46,
+      "numeric_brain_id": 221530,
+      "pools": [
+        {
+          "pool_key": "221530|Wfs1|AUDd|L2/3",
+          "pool_size": 11
+        },
+        {
+          "pool_key": "221530|Wfs1|AUDp|L2/3",
+          "pool_size": 21
+        },
+        {
+          "pool_key": "221530|Wfs1|AUDv|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221530|Wfs1|ECT|L2/3",
+          "pool_size": 6
+        },
+        {
+          "pool_key": "221530|Wfs1|PERI|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221530|Wfs1|RSPv|L2/3",
+          "pool_size": 2
+        }
+      ]
+    },
+    {
+      "brain": "221585",
+      "cell_count": 41,
+      "numeric_brain_id": 221585,
+      "pools": [
+        {
+          "pool_key": "221585|Cux2|ACAd|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221585|Cux2|ACAv|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221585|Cux2|AIp|L2/3",
+          "pool_size": 7
+        },
+        {
+          "pool_key": "221585|Cux2|ECT|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221585|Cux2|PERI|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221585|Cux2|PL|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221585|Cux2|SSs|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221585|Cux2|SSs|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221585|Cux2|TEa|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221585|Cux2|VISC|L2/3",
+          "pool_size": 11
+        }
+      ]
+    },
+    {
+      "brain": "221588",
+      "cell_count": 56,
+      "numeric_brain_id": 221588,
+      "pools": [
+        {
+          "pool_key": "221588|Cux2|MOp|L2/3",
+          "pool_size": 11
+        },
+        {
+          "pool_key": "221588|Cux2|MOs|L2/3",
+          "pool_size": 45
+        }
+      ]
+    },
+    {
+      "brain": "221645",
+      "cell_count": 82,
+      "numeric_brain_id": 221645,
+      "pools": [
+        {
+          "pool_key": "221645|Wfs1|AId|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221645|Wfs1|AUDp|L2/3",
+          "pool_size": 6
+        },
+        {
+          "pool_key": "221645|Wfs1|AUDv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221645|Wfs1|ECT|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221645|Wfs1|GU|L2/3",
+          "pool_size": 6
+        },
+        {
+          "pool_key": "221645|Wfs1|MOp|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221645|Wfs1|PERI|L2/3",
+          "pool_size": 9
+        },
+        {
+          "pool_key": "221645|Wfs1|SSp-ll|L2/3",
+          "pool_size": 22
+        },
+        {
+          "pool_key": "221645|Wfs1|SSp-m|L2/3",
+          "pool_size": 10
+        },
+        {
+          "pool_key": "221645|Wfs1|SSs|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221645|Wfs1|TEa|L2/3",
+          "pool_size": 15
+        }
+      ]
+    },
+    {
+      "brain": "221701",
+      "cell_count": 18,
+      "numeric_brain_id": 221701,
+      "pools": [
+        {
+          "pool_key": "221701|Wfs1|VISl|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221701|Wfs1|VISpm|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221701|Wfs1|VISp|L2/3",
+          "pool_size": 12
+        }
+      ]
+    },
+    {
+      "brain": "221713",
+      "cell_count": 15,
+      "numeric_brain_id": 221713,
+      "pools": [
+        {
+          "pool_key": "221713|Cux2|MOp|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221713|Cux2|SSp-bfd|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221713|Cux2|SSp-m|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221713|Cux2|SSp-m|L4",
+          "pool_size": 1
+        }
+      ]
+    },
+    {
+      "brain": "221731",
+      "cell_count": 42,
+      "numeric_brain_id": 221731,
+      "pools": [
+        {
+          "pool_key": "221731|Cux2|AId|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221731|Cux2|AIp|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|AUDd|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221731|Cux2|AUDd|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|AUDv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|MOp|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221731|Cux2|MOs|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "221731|Cux2|ORBl|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221731|Cux2|ORBvl|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|PERI|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|SSp-m|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221731|Cux2|SSs|L2/3",
+          "pool_size": 11
+        },
+        {
+          "pool_key": "221731|Cux2|SSs|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221731|Cux2|VISC|L2/3",
+          "pool_size": 5
+        }
+      ]
+    },
+    {
+      "brain": "221732",
+      "cell_count": 43,
+      "numeric_brain_id": 221732,
+      "pools": [
+        {
+          "pool_key": "221732|Cux2|ACAd|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221732|Cux2|ACAv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221732|Cux2|AIp|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221732|Cux2|AUDd|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221732|Cux2|AUDp|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221732|Cux2|AUDv|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221732|Cux2|ECT|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221732|Cux2|PERI|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221732|Cux2|RSPd|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221732|Cux2|RSPv|L2/3",
+          "pool_size": 13
+        },
+        {
+          "pool_key": "221732|Cux2|SSs|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221732|Cux2|TEa|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221732|Cux2|VISC|L2/3",
+          "pool_size": 3
+        }
+      ]
+    },
+    {
+      "brain": "221733",
+      "cell_count": 32,
+      "numeric_brain_id": 221733,
+      "pools": [
+        {
+          "pool_key": "221733|Cux2|AIp|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221733|Cux2|ECT|L2/3",
+          "pool_size": 6
+        },
+        {
+          "pool_key": "221733|Cux2|MOs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221733|Cux2|PERI|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "221733|Cux2|RSPd|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221733|Cux2|RSPv|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221733|Cux2|SSs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221733|Cux2|TEa|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221733|Cux2|VISC|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221733|Cux2|VISC|L4",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221733|Cux2|VISpor|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221733|Cux2|VISp|L2/3",
+          "pool_size": 1
+        }
+      ]
+    },
+    {
+      "brain": "221757",
+      "cell_count": 38,
+      "numeric_brain_id": 221757,
+      "pools": [
+        {
+          "pool_key": "221757|Wfs1|AId|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "221757|Wfs1|AIv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221757|Wfs1|AUDpo|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "221757|Wfs1|GU|L2/3",
+          "pool_size": 9
+        },
+        {
+          "pool_key": "221757|Wfs1|SSp-m|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "221757|Wfs1|SSs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "221757|Wfs1|TEa|L2/3",
+          "pool_size": 14
+        }
+      ]
+    },
+    {
+      "brain": "230072",
+      "cell_count": 17,
+      "numeric_brain_id": 230072,
+      "pools": [
+        {
+          "pool_key": "230072|Cux2|AId|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230072|Cux2|AIv|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230072|Cux2|ORBl|L2/3",
+          "pool_size": 7
+        },
+        {
+          "pool_key": "230072|Cux2|ORBvl|L2/3",
+          "pool_size": 6
+        }
+      ]
+    },
+    {
+      "brain": "230105",
+      "cell_count": 21,
+      "numeric_brain_id": 230105,
+      "pools": [
+        {
+          "pool_key": "230105|Wfs1|AIp|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230105|Wfs1|MOp|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "230105|Wfs1|RSPd|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "230105|Wfs1|SSp-n|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230105|Wfs1|SSs|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "230105|Wfs1|TEa|L2/3",
+          "pool_size": 3
+        }
+      ]
+    },
+    {
+      "brain": "230106",
+      "cell_count": 24,
+      "numeric_brain_id": 230106,
+      "pools": [
+        {
+          "pool_key": "230106|Wfs1|ACAd|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230106|Wfs1|AUDd|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230106|Wfs1|AUDpo|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "230106|Wfs1|AUDv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230106|Wfs1|MOs|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230106|Wfs1|SSs|L2/3",
+          "pool_size": 13
+        }
+      ]
+    },
+    {
+      "brain": "230107",
+      "cell_count": 23,
+      "numeric_brain_id": 230107,
+      "pools": [
+        {
+          "pool_key": "230107|Wfs1|ACAd|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230107|Wfs1|ORBm|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "230107|Wfs1|PL|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "230107|Wfs1|RSPv|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "230107|Wfs1|SSs|L2/3",
+          "pool_size": 3
+        }
+      ]
+    },
+    {
+      "brain": "230108",
+      "cell_count": 24,
+      "numeric_brain_id": 230108,
+      "pools": [
+        {
+          "pool_key": "230108|Wfs1|AId|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230108|Wfs1|AIv|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "230108|Wfs1|MOp|L2/3",
+          "pool_size": 13
+        },
+        {
+          "pool_key": "230108|Wfs1|RSPv|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230108|Wfs1|TEa|L2/3",
+          "pool_size": 3
+        },
+        {
+          "pool_key": "230108|Wfs1|VISli|L2/3",
+          "pool_size": 2
+        }
+      ]
+    },
+    {
+      "brain": "230109",
+      "cell_count": 24,
+      "numeric_brain_id": 230109,
+      "pools": [
+        {
+          "pool_key": "230109|Wfs1|AIp|L2/3",
+          "pool_size": 10
+        },
+        {
+          "pool_key": "230109|Wfs1|SSp-n|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "230109|Wfs1|SSs|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230109|Wfs1|TEa|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230109|Wfs1|VISC|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "230109|Wfs1|VISli|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "230109|Wfs1|VISrl|L2/3",
+          "pool_size": 1
+        }
+      ]
+    },
+    {
+      "brain": "233668",
+      "cell_count": 80,
+      "numeric_brain_id": 233668,
+      "pools": [
+        {
+          "pool_key": "233668|Wfs1|RSPagl|L2/3",
+          "pool_size": 8
+        },
+        {
+          "pool_key": "233668|Wfs1|RSPd|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "233668|Wfs1|VISl|L2/3",
+          "pool_size": 11
+        },
+        {
+          "pool_key": "233668|Wfs1|VISpl|L2/3",
+          "pool_size": 28
+        },
+        {
+          "pool_key": "233668|Wfs1|VISpor|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "233668|Wfs1|VISp|L2/3",
+          "pool_size": 24
+        }
+      ]
+    },
+    {
+      "brain": "233795",
+      "cell_count": 86,
+      "numeric_brain_id": 233795,
+      "pools": [
+        {
+          "pool_key": "233795|Wfs1|AUDpo|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "233795|Wfs1|SSp-bfd|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "233795|Wfs1|TEa|L2/3",
+          "pool_size": 2
+        },
+        {
+          "pool_key": "233795|Wfs1|VISal|L2/3",
+          "pool_size": 4
+        },
+        {
+          "pool_key": "233795|Wfs1|VISa|L2/3",
+          "pool_size": 7
+        },
+        {
+          "pool_key": "233795|Wfs1|VISli|L2/3",
+          "pool_size": 5
+        },
+        {
+          "pool_key": "233795|Wfs1|VISl|L2/3",
+          "pool_size": 14
+        },
+        {
+          "pool_key": "233795|Wfs1|VISpl|L2/3",
+          "pool_size": 1
+        },
+        {
+          "pool_key": "233795|Wfs1|VISpor|L2/3",
+          "pool_size": 9
+        },
+        {
+          "pool_key": "233795|Wfs1|VISp|L2/3",
+          "pool_size": 34
+        },
+        {
+          "pool_key": "233795|Wfs1|VISrl|L2/3",
+          "pool_size": 7
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "cpu_limits": {
+      "SLURM_CPUS_ON_NODE": 8,
+      "SLURM_CPUS_PER_TASK": 8,
+      "process_cpu_affinity_count": 8
+    },
+    "executor_map_chunksize": 1,
+    "multiprocessing_start_method": "spawn",
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "workers_requested": 8,
+    "workers_used": 8
+  },
+  "frozen_settings": {
+    "absolute_error_quantile": 0.95,
+    "analytic_check": {
+      "applies_when": "s == 0",
+      "cell_target_mean_variance": "(p*(1-p) + 8*c)/9",
+      "endpoint_covariances": {
+        "rho=0": "0",
+        "rho=1": "p*(1-p)"
+      },
+      "error_sd": "2*abs(q_first-q_second)*sqrt(population_mean_variance)",
+      "finite_population_correction": false,
+      "phi2_method": "Phi2(z,z;rho) = ndtr(z) - 2*owens_t(z,sqrt((1-rho)/(1+rho)))",
+      "population_mean_variance": "cell_target_mean_variance/(n*27)",
+      "ratio_interval_inclusive": [
+        0.97,
+        1.03
+      ]
+    },
+    "animal_order": "ascending numeric brain ID",
+    "arithmetic": "float64 for numerical simulation and reductions",
+    "bit_generator": "PCG64",
+    "cell_order": "manifest order within each animal",
+    "chunk_size": 1000,
+    "chunks_per_task": 10,
+    "conditional_expectation": "Replace each outcome by its sampled cell's realized p_gk in the squared-loss difference",
+    "contrast": "Brier(first) - Brier(second)",
+    "development_animal_count": 27,
+    "endpoint_draws": "All five calls occur even at s=0 or rho in {0,1}.",
+    "error_definition": "simulated contrast - conditional expectation",
+    "family_metadata": "Preserved verbatim in per_n[].V_n; informational only",
+    "heterogeneity_sd_grid": [
+      0.0,
+      1.0
+    ],
+    "master_seed": 9009,
+    "maximum_95th_percentile_absolute_error": 0.1,
+    "maximum_error_standard_deviation": 0.05,
+    "ordered_prediction_pairs": [
+      [
+        0.2,
+        0.8
+      ],
+      [
+        0.8,
+        0.2
+      ],
+      [
+        0.35,
+        0.65
+      ],
+      [
+        0.65,
+        0.35
+      ],
+      [
+        0.45,
+        0.55
+      ],
+      [
+        0.55,
+        0.45
+      ]
+    ],
+    "outcome_rule": "sqrt(rho)*Z_i + sqrt(1-rho)*Z_it < ndtri(p_gk)",
+    "pool_order": "sorted pool_key within each animal",
+    "precision_thresholds_are_inclusive": true,
+    "prevalence_grid": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "probability_model": "expit(logit(p) + a_g + b_gk)",
+    "quantile_method": "np.quantile default linear",
+    "replicates_per_scenario": 10000,
+    "rng_call_order_per_chunk_per_animal": [
+      "random((1000,N_g), dtype=float64)",
+      "standard_normal((1000,), dtype=float64) * s",
+      "standard_normal((1000,K_g), dtype=float64) * s",
+      "standard_normal((1000,n), dtype=float64)",
+      "standard_normal((1000,n,9), dtype=float64)"
+    ],
+    "sampling": "rng.random((1000,N_g), dtype=float64); stable argsort along cells; take first n, in increasing-key order; ties retain manifest order; same selected IDs for all nine targets",
+    "scenario_order": [
+      "n ascending",
+      "prevalence",
+      "heterogeneity_sd",
+      "target_dependence",
+      "ordered_prediction_pair"
+    ],
+    "scenarios_per_n": 108,
+    "sd_ddof": 1,
+    "seed_assignment": "SeedSequence(9009).spawn(total_tasks); task k uses child k; indices are zero-based",
+    "selection": "Smallest allowed n with sided_target_count > 0 and all 108 scenarios passing both precision thresholds",
+    "synthetic_families": 3,
+    "synthetic_targets": 9,
+    "target_dependence_grid": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "targets_per_family": 3,
+    "virtual_family_target_indices": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        6,
+        7,
+        8
+      ]
+    ],
+    "weighting": "equal mean over cells, then 9 targets, then 27 animals",
+    "worst_scenario_tie_break": "first in frozen scenario order"
+  },
+  "hashing": {
+    "complete_report_file_sha256_location": "console output",
+    "ncoverage_scenarios_csv_sha256": "dba9868f8e3010f63dbd00196e48b09fad51c900edab9f785e7f6d008e2699c8",
+    "report_payload_definition": "Entire report excluding top-level report_payload_sha256; json.dumps(sort_keys=True, ensure_ascii=True, separators=(',', ':'), allow_nan=False); UTF-8 without trailing newline",
+    "selected_n_coverage_sha256": "06e9d52c1720fca412803e3b07c4b228ff113e303f4c7ab94665319d832bbfb7",
+    "selected_value_encoding": "UTF-8 canonical JSON scalar followed by one LF; null denotes no selected value"
+  },
+  "implementation_version": "ep09-ncoverage-1.0.0",
+  "manifest_validation": {
+    "animals": 43,
+    "audit_animals": 16,
+    "audit_cells": 589,
+    "cells": 1703,
+    "development_animals": 27,
+    "development_cells": 1114,
+    "expected_n_max": 14,
+    "n_max": 14,
+    "n_max_matches_expected": true
+  },
+  "per_n": [
+    {
+      "V_n": {
+        "n": 3,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 71
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 23
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 27
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 32
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 114
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 689,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 71
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 23
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 27
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 32
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 114
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 4,
+      "n": 3,
+      "passes": false,
+      "scenario_count": 108,
+      "simulation_passes": false,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 3,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 48
+        },
+        "value": 0.0667618132134315
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 3,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 48
+        },
+        "value": 0.125925925925926
+      }
+    },
+    {
+      "V_n": {
+        "n": 4,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 68
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 114
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 682,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 68
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 114
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 2,
+      "n": 4,
+      "passes": false,
+      "scenario_count": 108,
+      "simulation_passes": false,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 4,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 156
+        },
+        "value": 0.05868307761829588
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 4,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 156
+        },
+        "value": 0.11111111111111117
+      }
+    },
+    {
+      "V_n": {
+        "n": 5,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 59
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 671,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 59
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 2,
+      "n": 5,
+      "passes": false,
+      "scenario_count": 108,
+      "simulation_passes": false,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 5,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 264
+        },
+        "value": 0.05169690329473302
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 5,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 264
+        },
+        "value": 0.10222222222222221
+      }
+    },
+    {
+      "V_n": {
+        "n": 6,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 666,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 31
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 6,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 6,
+          "prevalence": 0.5,
+          "q_first": 0.8,
+          "q_second": 0.2,
+          "scenario_index": 49,
+          "target_dependence": 1.0,
+          "task_index": 373
+        },
+        "value": 0.047370273967327035
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 6,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 372
+        },
+        "value": 0.08888888888888895
+      }
+    },
+    {
+      "V_n": {
+        "n": 7,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 44
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 23
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 30
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 649,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 44
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 23
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 30
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 7,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 7,
+          "prevalence": 0.5,
+          "q_first": 0.8,
+          "q_second": 0.2,
+          "scenario_index": 49,
+          "target_dependence": 1.0,
+          "task_index": 481
+        },
+        "value": 0.04356101542895011
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 7,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 480
+        },
+        "value": 0.08571428571428576
+      }
+    },
+    {
+      "V_n": {
+        "n": 8,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 44
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 642,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 44
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 22
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 25
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 8,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 8,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 588
+        },
+        "value": 0.04135109352529893
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 8,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 588
+        },
+        "value": 0.0833333333333333
+      }
+    },
+    {
+      "V_n": {
+        "n": 9,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 43
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 21
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 638,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 43
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 20
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 21
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 9,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 9,
+          "prevalence": 0.5,
+          "q_first": 0.8,
+          "q_second": 0.2,
+          "scenario_index": 49,
+          "target_dependence": 1.0,
+          "task_index": 697
+        },
+        "value": 0.03846266165829999
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 9,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 696
+        },
+        "value": 0.07654320987654319
+      }
+    },
+    {
+      "V_n": {
+        "n": 10,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 43
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 635,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 43
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 112
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 10,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 10,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 804
+        },
+        "value": 0.036979239430848555
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 10,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 804
+        },
+        "value": 0.07111111111111117
+      }
+    },
+    {
+      "V_n": {
+        "n": 11,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 37
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 110
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 626,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 37
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 19
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 96
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 110
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 11,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 11,
+          "prevalence": 0.5,
+          "q_first": 0.8,
+          "q_second": 0.2,
+          "scenario_index": 49,
+          "target_dependence": 1.0,
+          "task_index": 913
+        },
+        "value": 0.035088385591687754
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 11,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 912
+        },
+        "value": 0.06666666666666671
+      }
+    },
+    {
+      "V_n": {
+        "n": 12,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 37
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 109
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 621,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 37
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 100
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 109
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 40
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 12,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 12,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 1020
+        },
+        "value": 0.033423883082532836
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 12,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 1020
+        },
+        "value": 0.06666666666666665
+      }
+    },
+    {
+      "V_n": {
+        "n": 13,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 34
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 15
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 99
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 108
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 39
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 612,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 34
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 15
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 99
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 108
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 39
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 13,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 13,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 1128
+        },
+        "value": 0.03211696053226295
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 13,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 1128
+        },
+        "value": 0.06324786324786325
+      }
+    },
+    {
+      "V_n": {
+        "n": 14,
+        "passes_secondary_family_gate": true,
+        "per_division_sided_counts": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 33
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 13
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 99
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 102
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 39
+          }
+        ],
+        "primary_count_gate_passes": true,
+        "sided_target_count": 603,
+        "strict_all_12_have_3": true,
+        "supported_division_count": 12,
+        "supported_divisions": [
+          {
+            "acronym": "Isocortex",
+            "division_node_id": 315,
+            "name": "Isocortex",
+            "sided_target_count": 33
+          },
+          {
+            "acronym": "OLF",
+            "division_node_id": 698,
+            "name": "Olfactory areas",
+            "sided_target_count": 18
+          },
+          {
+            "acronym": "HPF",
+            "division_node_id": 1089,
+            "name": "Hippocampal formation",
+            "sided_target_count": 13
+          },
+          {
+            "acronym": "CTXsp",
+            "division_node_id": 703,
+            "name": "Cortical subplate",
+            "sided_target_count": 17
+          },
+          {
+            "acronym": "STR",
+            "division_node_id": 477,
+            "name": "Striatum",
+            "sided_target_count": 24
+          },
+          {
+            "acronym": "PAL",
+            "division_node_id": 803,
+            "name": "Pallidum",
+            "sided_target_count": 16
+          },
+          {
+            "acronym": "TH",
+            "division_node_id": 549,
+            "name": "Thalamus",
+            "sided_target_count": 99
+          },
+          {
+            "acronym": "HY",
+            "division_node_id": 1097,
+            "name": "Hypothalamus",
+            "sided_target_count": 94
+          },
+          {
+            "acronym": "MB",
+            "division_node_id": 313,
+            "name": "Midbrain",
+            "sided_target_count": 102
+          },
+          {
+            "acronym": "P",
+            "division_node_id": 771,
+            "name": "Pons",
+            "sided_target_count": 56
+          },
+          {
+            "acronym": "MY",
+            "division_node_id": 354,
+            "name": "Medulla",
+            "sided_target_count": 92
+          },
+          {
+            "acronym": "CB",
+            "division_node_id": 512,
+            "name": "Cerebellum",
+            "sided_target_count": 39
+          }
+        ]
+      },
+      "failing_scenario_count": 0,
+      "n": 14,
+      "passes": true,
+      "scenario_count": 108,
+      "simulation_passes": true,
+      "worst_error_sd": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 14,
+          "prevalence": 0.5,
+          "q_first": 0.8,
+          "q_second": 0.2,
+          "scenario_index": 49,
+          "target_dependence": 1.0,
+          "task_index": 1237
+        },
+        "value": 0.030802447240794624
+      },
+      "worst_p95_absolute_error": {
+        "scenario": {
+          "heterogeneity_sd": 0.0,
+          "n": 14,
+          "prevalence": 0.5,
+          "q_first": 0.2,
+          "q_second": 0.8,
+          "scenario_index": 48,
+          "target_dependence": 1.0,
+          "task_index": 1236
+        },
+        "value": 0.060317460317460304
+      }
+    }
+  ],
+  "provenance": {
+    "SLURM_JOB_ID": "48311775",
+    "cell_manifest": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/runs/measurement_and_roles/attempt002/ep09_cell_manifest.csv",
+      "sha256": "955502e4729f524ceba5f105ee686b51d9f5b7b2aa51a91e4025d39d58a85d85"
+    },
+    "hostname": "sh04-04n21.int",
+    "numpy_version": "1.26.4",
+    "precheck_summary": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/runs/measurement_and_roles/attempt005/precheck_v1_2/precheck_summary.json",
+      "sha256": "7692c247e9b21858e29c18002ce8060707aec38ecba2c83e4fc2fb20e140b1d8"
+    },
+    "python_executable": "/home/groups/russpold/zijiao/miniforge3/envs/encoding_model/bin/python",
+    "python_version": "3.11.15 | packaged by conda-forge | (main, Jun 11 2026, 03:34:02) [GCC 14.3.0]",
+    "scipy_version": "1.15.3",
+    "script": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/tools/ep09_ncoverage_simulation.py",
+      "sha256": "f94353732f151035745cb227a08c23a887facfb8bfd03fef516e45e006038d94"
+    },
+    "simulation_completed_at_utc": "2026-10-18T04:29:57.082822Z",
+    "started_at_utc": "2026-10-18T04:27:15.715458Z"
+  },
+  "purpose": "Bound finite-cell measurement noise in an animal-averaged paired Brier contrast; not a power calculation or an estimate of model benefit.",
+  "report_payload_sha256": "2848791ea7d83c2235d9a35e6097978b266ccdb5593c3810dc0bc23e6596be3f",
+  "selected_n_coverage": 6,
+  "selection_usable": true,
+  "status": "feasible",
+  "total_scenario_tasks": 1296
+}

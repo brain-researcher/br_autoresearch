@@ -37,6 +37,36 @@ analyses:
         type: report
         format: yaml
         inputs: [goal, datasets]
+      - id: source_fact_register
+        type: report
+        format: markdown
+        inputs: [goal, datasets]
+      - id: cell_nonaxon_ledger
+        type: data
+        format: csv
+        inputs: [datasets]
+      - id: donor_support_census
+        type: report
+        format: json
+        inputs: [goal, datasets]
+    findings:
+      headline_cohort_not_identifiable_on_seu_a1876:
+        id: headline_cohort_not_identifiable_on_seu_a1876
+        claim: >-
+          IT labels independent of outcome are line-based (Cux2, Plxnd1, Tlx3).
+          With them, at most 3 of the 12 IT-driver animals have a
+          within-animal source x layer x line pool of at least 5 cells: 2 with
+          recorded layers only, 3 after recovering 74 Peng 2021 curated
+          layers, and 3 under every sensitivity. The registered 20-group
+          (12 development + 8 audit) design is therefore infeasible on
+          SEU-A1876, and so is the unadopted 9-group route. This is a data
+          limitation. It is not evidence about dendrite-axon coupling. It
+          rests on the assumptions in attempt003 ASSUMPTIONS.md.
+        created_at: '2026-10-16T21:35:00Z'
+        evidence:
+        - {id: metadata_census, artifact: donor_support_census}
+        - {id: source_facts, artifact: source_fact_register}
+        derived: true
   measurement_and_roles:
     name: Define valid exact-target measurements and whole-group roles
     description: >-
@@ -54,6 +84,50 @@ analyses:
         type: report
         format: yaml
         inputs: [datasets, search_policy, feasibility_report]
+      - id: shared_exposure_ledger
+        type: data
+        format: csv
+        inputs: [datasets, feasibility_report]
+      - id: swc_type_code_resolution
+        type: report
+        format: json
+        inputs: [datasets]
+      - id: frozen_role_manifest
+        type: data
+        format: csv
+        inputs: [search_policy, shared_exposure_ledger]
+      - id: frozen_cell_manifest
+        type: data
+        format: csv
+        inputs: [frozen_role_manifest, feasibility_report]
+      - id: stage_a_feasibility_precheck
+        type: report
+        format: json
+        inputs: [measurement_and_role_contract, frozen_cell_manifest]
+      - id: n_coverage_simulation
+        type: report
+        format: json
+        inputs: [measurement_and_role_contract, frozen_cell_manifest, stage_a_feasibility_precheck]
+      - id: dendrite_feature_boundaries
+        type: report
+        format: json
+        inputs: [measurement_and_role_contract, frozen_cell_manifest]
+      - id: cortical_axis_field
+        type: data
+        format: npz
+        inputs: [measurement_and_role_contract, frozen_cell_manifest]
+      - id: donor_support_census
+        type: report
+        format: json
+        inputs: [frozen_cell_manifest, cortical_axis_field, stage_a_feasibility_precheck]
+      - id: stage_a_freeze_manifest
+        type: report
+        format: json
+        inputs: [stage_a_feasibility_precheck, n_coverage_simulation, dendrite_feature_boundaries, cortical_axis_field]
+      - id: companion_model_donor_contract
+        type: report
+        format: yaml
+        inputs: [search_policy, measurement_and_role_contract, donor_support_census, stage_a_freeze_manifest]
   grouped_development:
     name: Select matched M0 and M1 pipelines using grouped development only
     description: >-

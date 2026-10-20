@@ -1,0 +1,342 @@
+{
+ "provenance": {
+  "SLURM_JOB_ID": "48312584",
+  "hostname": "sh02-06n01.int",
+  "completed_utc": "2026-10-18T04:46:38.509808+00:00",
+  "soma_frames": "outputs/runs/measurement_and_roles/attempt006/laplace_v2/soma_cortical_frames.csv",
+  "relabeled_cells": "outputs/runs/measurement_and_roles/attempt006/recipient_support/relabeled_cells_qc.csv"
+ },
+ "rule": {
+  "depth_caliper": 0.1,
+  "min_donors": 4,
+  "width_quantile": 0.9,
+  "width_cap_um": 500,
+  "same_hemisphere": true
+ },
+ "width_unrounded_um": 987.028561339539,
+ "width_um": 500,
+ "supported_cells": {
+  "development": 610,
+  "audit": 241
+ },
+ "animals_with_zero_supported": [
+  "221427",
+  "221529",
+  "221713",
+  "221730",
+  "221731",
+  "221733",
+  "230010",
+  "230072",
+  "230105"
+ ],
+ "min_supported_per_animal": 0,
+ "per_animal": [
+  {
+   "brain": "221043",
+   "ep09_role": "development",
+   "eligible": 35,
+   "pool_ge5": 31,
+   "caliper_supported": 23
+  },
+  {
+   "brain": "221057",
+   "ep09_role": "audit",
+   "eligible": 96,
+   "pool_ge5": 95,
+   "caliper_supported": 64
+  },
+  {
+   "brain": "221242",
+   "ep09_role": "development",
+   "eligible": 32,
+   "pool_ge5": 16,
+   "caliper_supported": 15
+  },
+  {
+   "brain": "221243",
+   "ep09_role": "audit",
+   "eligible": 60,
+   "pool_ge5": 53,
+   "caliper_supported": 28
+  },
+  {
+   "brain": "221364",
+   "ep09_role": "development",
+   "eligible": 88,
+   "pool_ge5": 86,
+   "caliper_supported": 80
+  },
+  {
+   "brain": "221427",
+   "ep09_role": "audit",
+   "eligible": 14,
+   "pool_ge5": 7,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221449",
+   "ep09_role": "audit",
+   "eligible": 18,
+   "pool_ge5": 15,
+   "caliper_supported": 11
+  },
+  {
+   "brain": "221450",
+   "ep09_role": "audit",
+   "eligible": 18,
+   "pool_ge5": 11,
+   "caliper_supported": 5
+  },
+  {
+   "brain": "221509",
+   "ep09_role": "audit",
+   "eligible": 24,
+   "pool_ge5": 17,
+   "caliper_supported": 7
+  },
+  {
+   "brain": "221510",
+   "ep09_role": "development",
+   "eligible": 23,
+   "pool_ge5": 16,
+   "caliper_supported": 8
+  },
+  {
+   "brain": "221518",
+   "ep09_role": "development",
+   "eligible": 54,
+   "pool_ge5": 52,
+   "caliper_supported": 35
+  },
+  {
+   "brain": "221519",
+   "ep09_role": "development",
+   "eligible": 50,
+   "pool_ge5": 36,
+   "caliper_supported": 24
+  },
+  {
+   "brain": "221520",
+   "ep09_role": "development",
+   "eligible": 62,
+   "pool_ge5": 60,
+   "caliper_supported": 39
+  },
+  {
+   "brain": "221521",
+   "ep09_role": "development",
+   "eligible": 36,
+   "pool_ge5": 28,
+   "caliper_supported": 16
+  },
+  {
+   "brain": "221529",
+   "ep09_role": "development",
+   "eligible": 22,
+   "pool_ge5": 6,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221530",
+   "ep09_role": "development",
+   "eligible": 46,
+   "pool_ge5": 37,
+   "caliper_supported": 28
+  },
+  {
+   "brain": "221585",
+   "ep09_role": "development",
+   "eligible": 41,
+   "pool_ge5": 18,
+   "caliper_supported": 6
+  },
+  {
+   "brain": "221586",
+   "ep09_role": "audit",
+   "eligible": 42,
+   "pool_ge5": 27,
+   "caliper_supported": 20
+  },
+  {
+   "brain": "221588",
+   "ep09_role": "development",
+   "eligible": 56,
+   "pool_ge5": 56,
+   "caliper_supported": 55
+  },
+  {
+   "brain": "221622",
+   "ep09_role": "audit",
+   "eligible": 51,
+   "pool_ge5": 41,
+   "caliper_supported": 39
+  },
+  {
+   "brain": "221645",
+   "ep09_role": "development",
+   "eligible": 82,
+   "pool_ge5": 76,
+   "caliper_supported": 51
+  },
+  {
+   "brain": "221701",
+   "ep09_role": "development",
+   "eligible": 18,
+   "pool_ge5": 12,
+   "caliper_supported": 11
+  },
+  {
+   "brain": "221713",
+   "ep09_role": "development",
+   "eligible": 15,
+   "pool_ge5": 8,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221727",
+   "ep09_role": "audit",
+   "eligible": 27,
+   "pool_ge5": 11,
+   "caliper_supported": 5
+  },
+  {
+   "brain": "221729",
+   "ep09_role": "audit",
+   "eligible": 21,
+   "pool_ge5": 13,
+   "caliper_supported": 6
+  },
+  {
+   "brain": "221730",
+   "ep09_role": "audit",
+   "eligible": 49,
+   "pool_ge5": 21,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221731",
+   "ep09_role": "development",
+   "eligible": 42,
+   "pool_ge5": 22,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221732",
+   "ep09_role": "development",
+   "eligible": 43,
+   "pool_ge5": 13,
+   "caliper_supported": 10
+  },
+  {
+   "brain": "221733",
+   "ep09_role": "development",
+   "eligible": 32,
+   "pool_ge5": 13,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221756",
+   "ep09_role": "audit",
+   "eligible": 28,
+   "pool_ge5": 13,
+   "caliper_supported": 13
+  },
+  {
+   "brain": "221757",
+   "ep09_role": "development",
+   "eligible": 38,
+   "pool_ge5": 30,
+   "caliper_supported": 30
+  },
+  {
+   "brain": "230010",
+   "ep09_role": "audit",
+   "eligible": 32,
+   "pool_ge5": 6,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230066",
+   "ep09_role": "audit",
+   "eligible": 49,
+   "pool_ge5": 33,
+   "caliper_supported": 10
+  },
+  {
+   "brain": "230072",
+   "ep09_role": "development",
+   "eligible": 17,
+   "pool_ge5": 13,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230105",
+   "ep09_role": "development",
+   "eligible": 21,
+   "pool_ge5": 8,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230106",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 18,
+   "caliper_supported": 16
+  },
+  {
+   "brain": "230107",
+   "ep09_role": "development",
+   "eligible": 23,
+   "pool_ge5": 16,
+   "caliper_supported": 8
+  },
+  {
+   "brain": "230108",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 13,
+   "caliper_supported": 7
+  },
+  {
+   "brain": "230109",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 18,
+   "caliper_supported": 18
+  },
+  {
+   "brain": "231567",
+   "ep09_role": "audit",
+   "eligible": 39,
+   "pool_ge5": 26,
+   "caliper_supported": 18
+  },
+  {
+   "brain": "231568",
+   "ep09_role": "audit",
+   "eligible": 21,
+   "pool_ge5": 17,
+   "caliper_supported": 15
+  },
+  {
+   "brain": "233668",
+   "ep09_role": "development",
+   "eligible": 80,
+   "pool_ge5": 75,
+   "caliper_supported": 68
+  },
+  {
+   "brain": "233795",
+   "ep09_role": "development",
+   "eligible": 86,
+   "pool_ge5": 76,
+   "caliper_supported": 62
+  }
+ ],
+ "V6_sided_targets_all_cells": 666,
+ "V6_targets_meeting_floor_4_supported_A_pre_in_every_animal": 0,
+ "V6_telencephalic_targets": 170,
+ "V6_telencephalic_targets_meeting_floor": 0,
+ "axon_or_dendrite_geometry_read": false
+}

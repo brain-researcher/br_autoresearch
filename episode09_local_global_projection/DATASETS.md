@@ -6,6 +6,61 @@ scientific question; this file explains which measurements support it, how a
 valid target observation is constructed, and what must be settled before the
 experiment can launch.
 
+## Proposed primary source: CEBSIT whole-cortex projectome — unadopted
+
+**Status: approved October 16; qualification complete October 17.** The
+archive is verified, labelling is confirmed Cre-dependent, and 6,302 of 6,469
+IT-line cells pass dendrite QC
+([attempt005](outputs/runs/metadata_feasibility/attempt005/README.md)).
+PlexinD1, Tlx3 and Rorb failed the pre-set line-specificity rule. The
+remaining Cux2 core gives 17 animals with pools, below 20. Adding Wfs1 gives
+52; that needs the scientist's amendment.
+
+**Original proposal text (October 16, 2026) follows.** SEU-A1876 cannot supply the
+registered design: at most 3 of 12 IT-driver animals have donor pools. The
+scientist asked for a new dataset. Nothing below is adopted, and no file from
+this source has been downloaded. Evidence:
+[attempt004](outputs/runs/metadata_feasibility/attempt004/README.md).
+
+| Item | Proposed source |
+| --- | --- |
+| Release | Gao et al., *Neuron* 2025, [doi:10.1016/j.neuron.2025.10.019](https://doi.org/10.1016/j.neuron.2025.10.019). 18,621 SWC files mapped to CCFv3 on [Zenodo 16909126](https://zenodo.org/records/16909126): CC BY 4.0, one 13.6 GB archive. Catalog at the [CEBSIT portal](https://mouse.digital-brain.cn/projectome/whole-cortex). |
+| Labelling | Sparse `CSSP-YFP` AAV injected regionally into cortical source areas of Cre-line mice. Labelling is source-defined. Whether the vector depends on Cre is still to be confirmed from the STAR Methods. |
+| IT label | The driver line, independent of each cell's axon: Cux2-Cre (L2/3, L4), PlexinD1-2A-CreER (L2/3, L5), Tlx3-Cre_PL56 (L5), Rorb-IRES2-Cre-D (L4, L5). Wfs1 (L2/3) and Scnn1a (L4) would be a sensitivity only. |
+| Groups | One fMOST brain per mouse. IT-line brains have unique sample IDs. |
+| Support | Pools are animal × line × CCF area × layer. **57 core-IT animals** have a pool of ≥ 5 cells and 35 a pool of ≥ 10, against the 20 required. 2,796 eligible core-IT cells are flagged `Axon_and_dendrite`. |
+| Lineage | No brain shared with Peng 2021 or SEU-A1876, so this source is independent of the earlier lineage. |
+
+**Changes that would need approval:**
+
+1. Replace SEU-A1876 with this source as EP09's primary dataset.
+2. Make CCF-registered dendrites the primary representation, with soma-centred
+   rotation-invariant features. Native-space SWCs appear unreleased, so the
+   native-versus-CCF sensitivity would become unavailable.
+3. Define layer by registered soma position, with a depth caliper and an
+   interior-only sensitivity. No curated layer exists here.
+4. Choose a whole-animal development/audit split stratified by line. The
+   12/8 minimums are met with room to spare.
+5. Build a shared exposure ledger with EP10 and EP11, which also use Gao-lab
+   data, before any outcome is opened.
+6. Store the archive in the Oak steward area, outside this repository.
+
+**First steps after approval, before any outcome:**
+
+- verify the archive's MD5;
+- count dendrite completeness per cell from dendrite nodes only;
+- confirm the CSSP vector's Cre-dependence;
+- recheck novelty against the dataset's own paper;
+- build the ledger, then assign roles.
+
+**Claim limits:**
+
+- mice are male only;
+- cells cluster near the injection sites;
+- morphology is CCF-registered;
+- one lab and one pipeline, so held-out animals give internal grouped
+  reproducibility, not independent replication.
+
 ## Public online resources — checked October 6, 2026
 
 | Public resource | Available information and use for EP09 |
@@ -14,6 +69,70 @@ experiment can launch.
 | [Provider BrainTell genetic table](https://braintell.org/projects/fullmorpho/genetic_info.txt) | The row keyed `16124` contains `Gnb4-IRES2-CreERT2;Ai139-hyg_236174-16124`; other rows retain image/genetic-background strings for documented Cux2, Plxnd1 and Tlx3 lines. This is original-provider metadata for reconciling specimen keys, not an outcome-derived class label. |
 | [Primary TeraVR Methods, available through PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6677772/) | The Data preparation section identifies brain `236174` as `Gnb4-IRES2-CreERT2;Ai139`, independently corroborating the genotype. |
 | [Liu et al. Supplementary Data 1](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-54745-6/MediaObjects/41467_2024_54745_MOESM3_ESM.xlsx), retained public workbook row 81 | Explicitly separates Animal ID `236174` from Image ID `16124`, with fMOST technique, the same Gnb4 genotype and `BIL meta (20231223)` provenance. The [bounded observation](outputs/runs/metadata_feasibility/attempt002/provider_alias236174_observation_job_46842156.json) authenticates the alias without reading neuron outcomes. |
+
+## Source facts recovered on October 16, 2026 (no provider contact)
+
+Rules were fixed before use in
+[ASSUMPTIONS.md](outputs/runs/metadata_feasibility/attempt003/ASSUMPTIONS.md).
+The outcomes, with evidence and sensitivities, are in the
+[attempt003 register](outputs/runs/metadata_feasibility/attempt003/README.md).
+Additional public sources read:
+
+| Source | What it settles |
+| --- | --- |
+| [Liu et al. 2024 Methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC11599929/) | 140 neurons newly annotated from 19 fMOST brains, plus refined versions of 1,736 neurons released earlier (Peng 2021). Registration to the 25 µm CCFv3 with mBrainAligner. Regions auto-labelled from the deformation. Six structural reconstruction criteria. Axes x = AP, y = DV, z = ML. |
+| [Peng et al. 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8494643/), [Supplementary Table 2](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03941-1/MediaObjects/41586_2021_3941_MOESM4_ESM.xlsx) | Names of the 1,741 released cells, registered and manually corrected soma regions, and curated `Cortical_layer`. Ext. Data Fig. 7: layers confirmed by visual inspection, and L4-like cells called from dendrite and local-axon morphology. `Subclass_or_type`, `Notes` and the matrix were never decoded. |
+| [Peng 2021 Supplementary Table 1](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03941-1/MediaObjects/41586_2021_3941_MOESM3_ESM.xlsx) | Age, sex, tamoxifen schedule and targeted types per brain. Targeted types agree with Supplementary Data 1 for all 9 overlapping IT-driver brains. |
+| [Provider analysis code](https://github.com/SEU-ALLEN-codebase/full_spectrum_sources), commit `22491dd` | Reads cortical layers from a "manually curated" cell-type table. Only code and README files were read. The clone in EP09 scratch also contains projection, cell-type and morphology data, which stay closed. |
+
+**Lineage.** 1,736 SEU-A1876 cells are of Peng 2021 lineage: 1,727 match a
+name exactly, and 9 are Peng's `210254_*` cells renamed `15257_*` (animal
+210254 = image 15257). The 140 new cells come from exactly 19 brains.
+
+**`isManuallyChecked`.** The flag equals this split exactly: 1 marks the
+refined cells of Peng lineage, 0 marks the new cells. The two uses of 1,736
+noted below are therefore the same set of cells. The flag is a lineage
+covariate, not a per-cell quality score. No other per-cell quality or batch
+field is released.
+
+**Layers.** SEU-A1876 recorded layers are Peng 2021 curated layers (510/510
+agree).
+
+- 74 blank layers of Peng lineage were recovered from Peng 2021, assuming
+  each blank is an omission.
+- The 140 new cells have no curated layer anywhere. Coordinate-derived layers
+  agree with curated layers at κ 0.41, below the pre-set κ ≥ 0.60, so they
+  serve only as unvalidated sensitivities.
+
+**Donor support.** Pools are animal × source × layer × line with ≥ 5 cells.
+At most 3 of the 12 IT-driver animals qualify in any scenario: 374712,
+382148, and 380470 (the last via recovered layers). The registered 12/8
+design and the unadopted nine-animal route are therefore infeasible on this
+source.
+
+**RAW → CCF.** The exact per-brain mBrainAligner transform is not released
+for any IT-driver brain, so it is skipped. The transform would comprise RPM
+markers, an FFD grid and local landmark pairs. The searches covered:
+
+- Zenodo, and Zenodo-wide;
+- the Liu 2024 Google Drive mirror;
+- both papers' data statements;
+- the BIL catalog via its metadata API;
+- the mBrainAligner examples, which hold a demo for brain 18458 only.
+
+BIL folder contents could not be listed: BIL storage is offline for a
+data-centre move into the week of October 18.
+
+Native orientation is resolved without the field:
+
+- BIL image metadata gives the axes and voxel sizes (0.2–0.35 µm in x/y,
+  1 µm in z) for 15 brains.
+- In all 11 brains that also have a soma affine fit (median residual
+  132 µm), the two sources agree.
+- Raw z = AP in every brain. Raw x/y map to DV/ML in a brain-specific order,
+  and brain 18453 is mirror-reflected.
+
+### October 6 identity note (still valid)
 
 The public identity/genotype gap for `236174` is now resolved: its provider
 animal and image identifiers differ. The original exact-Image-ID join remains
@@ -43,9 +162,11 @@ identity, coordinate integrity, observability, and the frozen target rules.
 The number 1,736 also appears in a different and scientifically important
 lineage statement: Liu et al. 2024 report that 1,736 of the 1,876 morphologies
 are refinements of previously released neurons and 140 were newly annotated.
-These two uses of 1,736 must not be conflated. EP09 is therefore predominantly
-an adjudicative reanalysis of the Peng-2021 data lineage, not an independent
-biological replication.
+These two uses of 1,736 were once kept apart as possibly different sets. The
+October 16 cross-tabulation (above) shows they are the same cells:
+`isManuallyChecked` = 1 exactly for the refined cells of Peng lineage. EP09 is
+therefore predominantly an adjudicative reanalysis of the Peng-2021 data
+lineage, not an independent biological replication.
 
 The official source archives are preserved read-only at
 `$OAK/users/zijiao/br_autoresearch_data/steward_acquisition/seu_a1876_zenodo_13944322/archives`.
@@ -103,7 +224,9 @@ before finer non-axon class, calipers, quality and other qualification. The
 is a direct reading of the existing permitted join, with no new workbook or
 payload access. Two is a bound for these recorded keys, not an impossibility
 claim after authentic metadata corrections or additional labels. Missing
-layers remain unknown rather than verified absence. Brain 236174's identity
+layers remain unknown rather than verified absence. *(October 16 update:
+after the recoveries above, the bound is 3 animals and 85 cells under the
+primary rule, and at most 3 animals under any sensitivity.)* Brain 236174's identity
 and genotype no longer require a provider answer; finer eligibility remains
 unestablished.
 

@@ -1,0 +1,1432 @@
+version: "EP09-companion-model-donor-contract-v1.0-draft"
+status: "Proposed specification for orchestrator review and scientist approval."
+execution_status: "Not executable until required decisions, bindings, and blind artifacts are approved and hashed."
+execution_performed: false
+
+authority:
+  search_policy: "ep09_within_class_dendrite_projectome_coupling, including adopted amendments"
+  measurement_contract:
+    version: "EP09-measurement-contract-v1.2-adopted"
+    ref: "outputs/runs/measurement_and_roles/attempt005/measurement_contract_v1_2_adopted.yaml"
+    sha256: "b01b593e24cd88988cb8fac21bb8a4b7a59a237dc5fdf6a180ae01929a4369b3"
+  precedence: >
+    The adopted policy and measurement contract govern. This draft fills their
+    open specifications. It does not itself authorize an amendment. In particular,
+    the recipient-set decision below requires explicit scientist resolution before
+    development outcome access.
+  inherited_without_change:
+    - "Scientific question, outcome definitions, distal and arbor rules."
+    - "Frozen cohort membership, animal roles, staged access, and exposure ledger."
+    - "Exact-target construction, prevalence gates, and secondary-only family gate."
+    - "Equal animal and exact-target weights and the registered estimand formulas."
+    - "One audit opening after the shared EP09/10/11 lock."
+    - "Claims and limitations, interpreted under the adopted CEBSIT source amendment."
+    - "No L5 IT claim, causal claim, synaptic claim, or independent replication claim."
+
+freeze_sequence:
+  before_development_axon_or_outcome_access:
+    - "Obtain scientist decisions D01-D12 and record their exact accepted wording."
+    - "Bind existing manifests, atlas resources, coordinate conventions, and exposure ledger."
+    - "Complete and hash the pending stage-A artifacts without substituting estimated values."
+    - "Materialize the development donor graph, caliper width, plans, diagnostics, and qualification report."
+    - "Hash this resolved specification, feature definitions, seed registry, implementation, and dependency lock."
+    - "Complete the outcome-free workload qualification against the cumulative episode budget."
+  after_development_only_analysis_before_shared_lock:
+    - "Freeze selected pipelines, fitted transformations, models, calibrators, and nuisance models."
+    - "Freeze development-supported target inventory and predictions for every such target."
+    - "Freeze calibrated and independently validated critical values."
+    - "Submit derived scientific margins and their evidence to the scientist for approval."
+    - "Freeze explanatory entries, scales, template, sign set, and hierarchy models and shuffles."
+    - "Complete nested pseudo-audits and all required validity and recovery checks."
+    - "Record immutable prediction and analysis artifacts in the shared lock."
+  hash_rule: >
+    Hash exact UTF-8 file bytes with SHA-256. Record hashes for every referenced
+    artifact in a manifest. Do not insert a file's own digest into its hashed bytes.
+    Draft placeholders are not valid execution bindings.
+  correction_rule: >
+    Implementation corrections must preserve the frozen mathematics and receive a
+    versioned correction record. Scientific changes after exposure cannot be
+    represented as execution of the original blind specification.
+
+inputs:
+  source: "CEBSIT whole-cortex projectome, Gao et al. 2025, Zenodo 16909126"
+  coordinates: "Registered CCFv3 micrometres; native SWC coordinates unavailable."
+  biological_group: "One fMOST brain = one animal."
+  population:
+    Cux2-Cre: ["L2/3", "L4"]
+    Wfs1-Tg2-CreERT2: ["L2/3"]
+  roles:
+    development: {animals: 27, eligible_cells: 1114}
+    sealed_audit: {animals: 16, eligible_cells: 589}
+  required_bindings:
+    eligible_cell_manifest: null
+    animal_role_manifest: null
+    corrected_source_label_manifest: null
+    coordinate_disagreement_QC_record: null
+    atlas_annotation_and_graph: null
+    world_to_voxel_affine_and_midline: null
+    release_and_protocol_provenance: null
+    cross_episode_exposure_ledger: null
+    implementation_and_dependency_lock: null
+  stage_A_artifact_bindings:
+    feasibility_precheck: "Bind the existing passed soma/atlas-only report."
+    exact_target_and_family_manifests: "Bind the frozen anatomical and sided target inventories."
+    A_pre: "Bind the frozen all-eligible-cell anatomical support mask."
+    n_coverage: "Bind the completed prescribed simulation, selected integer, and report."
+    dendrite_explanatory_boundaries: "Bind actual e1, e2, e3, b1, b2, and R_cap."
+    cortical_depth_and_axis_fields: "Bind the Laplace solution, surfaces, solver settings, and frames."
+  stage_A_status:
+    anatomical_targets: 355
+    sided_targets: 710
+    V3_targets: 689
+    n_coverage: "Pending simulation; the analytic n=6 calculation is not a frozen result."
+    feature_boundaries: "Pending; no values are supplied by this draft."
+  source_labels:
+    general_rule: "Use the frozen registered-soma source area and layer."
+    disagreement_override: >
+      For the 24 catalog-versus-coordinate area disagreements, use the coordinate-
+      derived area and layer in both predictors and donor pools, as recorded in the
+      adopted QC manifest. Do not reconstruct this override from outcomes.
+    validation: >
+      Assert one source area, layer, line, and animal per cell; verify that the
+      corrected manifest is used consistently by all pool and predictor builders.
+
+recipient_sets:
+  proposed_option: B
+  authorization: "Requires decision D01; do not silently interpret this as already adopted."
+  eligible_training_cells: >
+    All frozen eligible development cells remain training observations wherever
+    their outcome is observable, including cells without donor support.
+  benchmark_recipients: "All eligible cells with the target outcome observable."
+  primary_recipients: >
+    Eligible cells with a valid primary dendritic representation, membership in
+    the qualified donor graph, and the target outcome observable.
+  additional_primary_support:
+    minimum_observable_supported_recipients_per_animal_per_target: 4
+    requirement: >
+      Every development animal for the development score, and every audit animal
+      for the audit score, must meet this minimum for every scored exact target.
+      Each supported recipient must separately have at least four eligible
+      non-self donors. Four observed recipients does not mean four donors.
+    failure: >
+      Primary unavailable without matching relaxation. Do not remove the target,
+      remove the animal, redefine the pool, or replace C with D.
+    scope_reporting: >
+      Report supported recipient counts and fractions by animal, exact target,
+      source area, layer, and line. The cell-coupling estimand concerns this
+      donor-supported population.
+  coverage_and_targets: >
+    Retain the adopted all-eligible-cell A_pre, n_coverage selection, N_g,t counts,
+    candidate vocabulary, and final-T rule. The additional primary-support gate
+    does not select or repair T and does not rerun the n_coverage simulation.
+  comparison_masks:
+    primary: "Correct M1 and all its swaps use exactly the same supported observable pairs."
+    benchmark: "M0, correct M1, and all 20 nuisance models use exactly the same all-eligible observable pairs."
+    explanatory: "E0, correct E1, and all E1 substitutions use the primary supported observable pairs."
+    supplementary_common_population_benchmark: >
+      Also report D and nuisance contrasts on the primary recipient set, without
+      substituting these supplementary estimates for the registered benchmark.
+  precision_limitation: >
+    The adopted n_coverage simulation certifies its registered all-eligible-cell
+    calculation. It is not presented as certification of the smaller primary
+    recipient set. Primary precision is additionally evaluated using its actual
+    development support and the registered margin-recovery simulations.
+
+estimands:
+  definitions:
+    B_gt: "B_gt(m) = mean_over_observable_recipient_cells_i((y_git-p_git_m)^2)"
+    B_g: "B_g(m) = equal_mean_over_exact_targets_t(B_gt(m))"
+    C_gj: "C_gj = B_g(M1_swap_j) - B_g(M1_correct)"
+    C_g: "C_g = mean_over_frozen_donor_plans_j(C_gj)"
+    Delta_cell: "Delta_cell = equal_group_mean(C_g)"
+    D_g: "D_g = B_g(M0) - B_g(M1_correct)"
+    Delta_morph: "Delta_morph = equal_group_mean(D_g)"
+    R_gj: "R_gj = B_g(N_j) - B_g(M1_correct)"
+  recipient_domain: "Use the explicitly declared domain for each contrast above."
+  invariants:
+    - "Score each donor-plan probability before averaging over plans."
+    - "Never score the average donor prediction as a replacement."
+    - "Keep recipient outcomes, observation masks, context, and missingness fixed."
+    - "Never use cells, targets, plans, or pseudo-audit repetitions as independent animals."
+
+donor_matching:
+  exact_pool:
+    fields: [animal_id, corrected_CCF_source_area, corrected_CCF_layer, genetic_line]
+    outcome_or_axon_inputs: prohibited
+  candidate_requirements:
+    - "Different cell ID from the recipient."
+    - "Valid dendritic topology and a positive total dendritic length."
+    - "Available frozen soma coordinates, unambiguous hemisphere, and valid atlas depth."
+    - "Public-release reconstruction flag Axon_and_dendrite."
+  calipers:
+    soma_position:
+      distance: "Euclidean distance in unreflected registered AP, DV, ML coordinates, in um."
+      same_hemisphere: true
+      width_derivation:
+        - >
+          Within each exact development pool, retain possible peers satisfying the
+          hemisphere and depth restrictions. For each cell with at least four
+          such peers, calculate distance to its fourth-nearest peer.
+        - >
+          Form the animal-balanced distribution of these distances: each animal
+          with qualifying cells has equal total weight, and its qualifying cells
+          have equal weight.
+        - "Take the weighted 90th percentile and round upward to a multiple of 25 um."
+        - "Set width to the smaller of that rounded value and 500 um."
+        - "Materialize the numeric width and hash it before development axon access."
+      no_qualifying_distribution: "Primary unavailable; no alternative width is selected."
+      audit_use: "Apply the development-frozen width without re-estimation."
+    cortical_depth:
+      variable: "Frozen Laplace depth, oriented from white matter 0 to pia 1."
+      maximum_absolute_difference: 0.10
+      missing_depth: "Cell unavailable as a primary recipient or donor; remains training data."
+    axon_independent_quality:
+      available_measure: "Only the constant release flag Axon_and_dendrite."
+      rule: "Require that flag for both cells; the equality check is non-discriminating."
+      limitation: >
+        No independent per-cell reconstruction or dendrite-quality score exists.
+        Do not invent a score from dendritic size, axonal geometry, node density,
+        tracing counts, or the sampled release-level QC protocol. Matching does
+        not establish equality of unmeasured reconstruction quality.
+    optional_dendrite_neighborhood_tightening: "Not used."
+  support_graph:
+    construction:
+      - "Create directed non-self edges satisfying all frozen calipers."
+      - "Remove all vertices with fewer than four candidate donors, simultaneously; repeat to stability."
+      - >
+        On each surviving pool graph, require a perfect bipartite matching from
+        recipients to donors. If none exists, mark that remaining pool unsupported.
+      - >
+        Remove edges that belong to no feasible perfect matching. Repeat the
+        degree pruning and matching checks until both vertex and edge sets stabilize.
+    minimum_donors_per_pool: 4
+    interpretation: "At least four feasible non-self donor choices for every retained recipient."
+    unsupported_cells: "Remain in model training and in the all-eligible benchmark."
+    failure_policy: "primary_unavailable_without_matching_relaxation"
+
+donor_plans:
+  mode: "Finite bank of genuine constrained derangements."
+  donor_plan_count: 512
+  plan_unit: >
+    One plan contains one bijection without fixed points on every qualified
+    exact-pool graph. Combining these pool bijections produces the animal's plan.
+    The same donor identity supplies every feature block within that plan.
+  weights: "Exactly 1/512 per plan."
+  generator:
+    - "Sort pool and cell IDs by UTF-8 byte order."
+    - "For each pool and plan, independently randomize recipient processing order."
+    - >
+      At each recipient, list unused allowed donors for which fixing that edge
+      leaves a perfect matching for the remaining recipients. Choose uniformly
+      from that feasible list using the registered pool-and-plan random stream.
+    - "Continue until the bijection is complete; assert every edge and no fixed point."
+    - "Sampling is with replacement across plans; repeated plans remain in the bank."
+  distribution_statement: >
+    Sequential feasible-completion sampling is not uniform over all constrained
+    derangements. The estimand is the equally weighted frozen 512-plan bank.
+    Do not claim uniform derangement sampling.
+  exhaustive_alternative: >
+    Exhaustive equal weighting of each recipient's eligible donors is a different
+    candidate specification. It equals the marginal limit of uniform derangements
+    for a complete non-self pool, but generally not for a caliper-constrained graph.
+    It is not substituted for this bank during analysis.
+  prediction_optimization: >
+    Evaluate each distinct recipient-donor pair once. Recover the exact plan-
+    averaged Brier score using its integer occurrence count divided by 512.
+    This compression changes neither probabilities nor estimands.
+  qualification_before_outcomes:
+    probe_count: 32
+    procedure: >
+      Use fixed-seed normalized linear probes of the permitted context and
+      residual features, passed through logistic links. Generate synthetic
+      outcomes from context-only and context-plus-probe probabilities. Evaluate
+      paired Brier contrasts using A_pre and the registered animal/target weights.
+      Include both orientations of each paired contrast.
+    bank_half_checks:
+      maximum_absolute_equal_animal_contrast_difference: 0.005
+      maximum_absolute_single_animal_contrast_difference: 0.02
+    independent_check_banks: 4
+    independent_bank_check: >
+      Generate four additional 512-plan banks using qualification-only seeds.
+      Each must satisfy the same contrast-difference limits relative to the
+      registered bank. They are discarded after qualification.
+    consequence: >
+      Failure blocks this specification before outcome access. Do not select the
+      most favorable bank, increase J silently, or qualify on actual outcomes.
+  audit_instantiation: >
+    The algorithm, count, seeds, calipers, and diagnostics are frozen before
+    development outcomes. Audit maps are materialized from audit dendrites only
+    at stage E. Their hashes are recorded before stage-F scoring.
+
+context_M0:
+  permitted_fields:
+    - "Corrected CCF source area and layer."
+    - "Genetic line."
+    - "Laboratory."
+    - "Soma coordinates and hemisphere."
+    - "Atlas cortical depth."
+    - "Age in days."
+    - "Injection date."
+    - "Injection-region set."
+  categorical_encoding:
+    source_area: "One-hot pinned CCF area ID."
+    layer: "One-hot L2/3 or L4."
+    genetic_line: "One-hot Cux2-Cre or Wfs1-Tg2-CreERT2."
+    laboratory: "Training-observed laboratory levels plus explicit missing and unseen levels."
+    injection_region_set: >
+      Multi-hot IDs from the pinned atlas graph, without ancestor expansion.
+      Use the recorded region set; validate name/ID agreement. An unresolved
+      name/ID conflict makes that set missing rather than guessed.
+    vocabulary: >
+      Atlas categories may use the outcome-independent pinned graph. Other
+      categorical levels are learned only from the relevant training animals.
+      Missing and unseen flags are always represented.
+  numeric_encoding:
+    coordinates:
+      - "AP/1000"
+      - "DV/1000"
+      - "abs(ML-atlas_midline)/1000"
+      - "Indicator of right soma hemisphere"
+      - "Squares of the three continuous coordinates"
+      - "Their three pairwise products"
+    depth: ["Laplace depth", "Laplace depth squared"]
+    age: "Recorded finite nonnegative age in days."
+    injection_date: "Days since 2000-01-01 divided by 365.25."
+  dates:
+    frozen_latest_valid_date: "2026-10-17"
+    parsing: "Strict documented Gregorian date parsing; no guessed year or date order."
+    impossible_2027_records: >
+      Set date missing and invalid_date=1. Retain the animal. Do not repair 2027
+      to another year, infer dates from outcomes, or create a future-year batch.
+    other_invalid_dates: "Apply the identical missing-plus-invalid rule."
+  batch_policy: >
+    Laboratory and the registered date terms provide the available permitted
+    acquisition context. No additional batch identifier is independently
+    documented within the adopted permitted-field list.
+  quality_policy: >
+    The constant reconstruction flag is checked for eligibility and recorded as
+    provenance. It supplies no varying numerical predictor or quality caliper.
+  imputation:
+    numeric: "Training-only animal-balanced median, with one missing indicator per field."
+    all_missing_numeric: "Fill zero after centering and retain the missing indicator."
+    categorical: "Explicit missing category; no modal imputation."
+    engineered_terms: "Construct from imputed base values and retain their base-field missing indicators."
+  excluded_metadata:
+    author: "Not in the adopted explicit permitted-field list; no addition without D03 approval."
+    injection_virus: "Not added as a new batch predictor under this draft."
+    ample_delivery_time: "Excluded because its semantics are undocumented."
+    injection_structure: "Excluded; no inferred equivalence to the registered injection-region set."
+    injection_coordinates: "Excluded; registered soma location is the spatial context."
+    injection_volume: "Excluded; not a registered quality or context field."
+    putative_labeled_cell_number: "Excluded; not an independently documented cell-quality measure."
+    tracing_cell_number: "Excluded; not an independently documented cell-quality measure."
+    project_id: "Excluded because constant."
+    gender: "Excluded because constant."
+    injection_tamoxifen: "Excluded because constant NA."
+    animal_id: "Split and weighting key only; never a predictor."
+    class: "Prohibited projection-derived field."
+    type_array: "Prohibited projection-derived field."
+    axonal_quantities_and_outcome_mask_summaries: "Prohibited predictors."
+
+dendritic_features:
+  compartment_and_coordinates: >
+    Follow the adopted compartment, marker, topology, and registered-coordinate
+    rules exactly. Combine types 3 and 4. Subtract soma position. Preserve original
+    polyline geometry and arc length through any topology simplification.
+  feature_order: >
+    Freeze a named column manifest ordered by block, feature name, radial boundary,
+    branch-order bin, and summary. No outcome-dependent feature additions or removal.
+  general_conventions:
+    branch: "Maximal path between soma, branch points, or terminals, retaining its original polyline."
+    branch_order: >
+      Stem order is one; each daughter leaving a branch point increments the
+      incoming order by one, including multifurcations.
+    weighting:
+      geometric_distributions: "Dendritic arc length, unless a branch or terminal distribution is explicitly named."
+      branch_distributions: "Equal original branches."
+      terminal_distributions: "Equal original terminals."
+    summaries: ["mean", "median", "90th_percentile", "maximum"]
+    quantiles: "Left-continuous inverse weighted empirical or continuous arc-length CDF."
+    empty_counts_or_length_bins: "Zero, with an empty-bin indicator."
+    undefined_ratios_or_angles: "Missing, with a feature-specific missing indicator."
+    prohibited: "No SWC-node-count weighting, diameter, axonal, spine, or inferred bouton features."
+  topology_branch_order:
+    features:
+      - "Stem, branch-point, terminal, and branch counts."
+      - "Maximum branch order."
+      - "Branch-count-weighted and length-weighted mean branch order."
+      - "Branch counts and fractions for orders 1 through b2, plus an order>b2 bin."
+      - "Dendritic lengths and length fractions in those same order bins."
+      - "Mean, median, 90th percentile, and maximum bifurcation imbalance."
+    imbalance: >
+      At each branch point, obtain terminal-descendant counts for every child
+      subtree. For every unordered child pair use abs(n_a-n_b)/(n_a+n_b).
+      Summarize all such pairs equally; do not invent binary branches.
+  radial_profiles:
+    radii: "25 um multiples through frozen R_cap; additional profiles at 50 and 100 um multiples."
+    shells: >
+      Half-open shells between consecutive grid radii, starting at zero, with an
+      explicit [R_cap,infinity) overflow shell. Repeat shell summaries for each
+      registered spacing.
+    features:
+      - "Sholl crossing count at every registered radius."
+      - "Length, branch-point count, and terminal count in every shell."
+      - "Shell length divided by total dendritic length."
+    crossing_convention: >
+      Split polylines at interior radial extrema and solve sphere intersections
+      geometrically. A connected intersection at an exactly-on-sphere vertex is
+      counted once only when its incident tree contains points strictly on both
+      sides of the sphere. Tangential touches and segments lying on the sphere
+      without a side change do not count. Separate geometric crossings count
+      separately. Validate this convention using subdivision-invariance fixtures.
+    event_boundary_rule: "A point exactly on a shell edge belongs to the outer shell."
+  length_extent_tortuosity_geometry:
+    features:
+      - "Total dendritic length."
+      - "All four registered summaries of original branch length."
+      - "All four summaries of root-to-tip path length."
+      - "All four arc-length-weighted summaries of soma-centred Euclidean radius."
+      - "Descending eigenvalues of the length-weighted spatial covariance about the dendritic length centroid."
+      - "Each covariance eigenvalue divided by their sum."
+      - "All four summaries of branch path length divided by endpoint distance."
+      - "All four summaries of root-to-tip path length divided by soma-to-tip distance."
+      - "All four summaries of parent-child angles."
+      - "All four summaries of unordered child-child angles."
+    angles: >
+      Use the last 25 um incoming parent chord and first 25 um outgoing child
+      chord, or the full branch when shorter. Parent-child angle is the turning
+      angle between incoming and outgoing directions. Child-child angles use
+      outward directions. Zero-length chords are missing.
+  persistent_homology:
+    filtrations: ["Soma-centred Euclidean distance", "Soma-to-point dendritic path distance"]
+    algorithm: >
+      Compute 0-dimensional superlevel persistence on the rooted dendritic tree,
+      including interior radial critical points. Use the elder rule. Resolve
+      equal births by stable original node ID, then segment ID and arc position.
+      Terminate the surviving component at zero. Omit exactly zero-lifetime bars.
+    features_per_filtration:
+      - "Positive-lifetime bar count."
+      - "Total, median, 90th-percentile, and maximum lifetime."
+      - "Entropy of normalized positive lifetimes; zero when no positive bars exist."
+      - "Total, median, 90th-percentile, and maximum lifetime divided by maximum filtration value."
+    empty_positive_bar_set: "Count, total, median, 90th percentile, maximum, and entropy are zero."
+    zero_maximum_filtration: "Normalized summaries are missing with indicators."
+  orientation_and_symmetry:
+    role: "Prespecified secondary extension only; never selected into primary M1."
+    frame: "Use the frozen Laplace radial/tangent frame and atlas-midline reflection."
+    features:
+      - "Length-weighted first and second moments of directed segment tangent dotted with the outward radial axis."
+      - "Length fractions at positive and negative soma-centred radial coordinates."
+      - "Signed and absolute length imbalance across each of the three soma-centred frame planes."
+      - "Length-weighted first and second moments of the two canonical tangent coordinates."
+      - "Tangent covariance eigenvalues and their normalized ratio."
+      - "Absolute difference between positive- and negative-side tangent second moments on each tangent axis."
+    zero_plane_points: "Split their length equally between the two sides."
+    missing_axis: "Entire secondary block missing; do not infer a replacement frame."
+  primary_blocks:
+    - topology_branch_order
+    - radial_profiles
+    - length_extent_tortuosity_geometry
+    - persistent_homology
+
+residualization:
+  purpose: "Outcome-free conditional location-and-scale standardization before coherent transfer."
+  fitted_scope: >
+    Refit using only the animals in the current fitting split, including inside
+    inner validation and calibration folds. Outer-held animals and audit animals
+    never fit these models. Stage-A feature boundaries and matching calipers remain
+    the explicitly frozen outcome-free artifacts.
+  feature_measurement_transform:
+    nonnegative_counts_lengths_orders_and_variances: >
+      Apply log1p(x/u), with u=1 in the feature's declared measurement unit.
+      For covariance eigenvalues the unit is um^2.
+    fractions_ratios_angles_entropy_and_signed_moments: "Identity."
+    purpose: "This fixed transform precedes the searched model representation."
+  context_design: "The complete M0 encoding, with training-only imputation and robust scaling."
+  robust_scale: >
+    Use 1.4826 times the animal-balanced MAD; if zero, use IQR/1.349; if still zero,
+    use one in transformed measurement units and record a constant-feature flag.
+  location_model:
+    family: "Ridge linear conditional mean, separately for each transformed feature."
+    loss: "Animal-balanced squared error on observed feature values."
+    penalty_grid: [0.001, 0.01, 0.1, 1.0, 10.0]
+    selection: >
+      Five deterministic grouped folds, reduced to the number of available
+      training animals when necessary. Select one penalty per dendritic block
+      using mean standardized feature error; ties select the larger penalty.
+    intercept: "Unpenalized."
+  scale_model:
+    construction:
+      - "Generate grouped out-of-fold location residuals e on fitting animals."
+      - "Let a be the training robust scale and f=max(0.05*a,1e-8)."
+      - "Fit ridge regression of log(e^2+f^2) on M0, with penalty 1.0 and unpenalized intercept."
+      - >
+        Estimate one multiplicative correction per feature from grouped out-of-fold
+        scale predictions so that the animal-balanced mean e^2/sigma^2 is one.
+      - "Refit the scale regression on all fitting animals."
+      - "Clip predicted sigma to [f,5*a], using f as the upper limit if 5*a<f."
+    unavailable_feature: >
+      If fewer than eight fitting animals contain an observed value, use a
+      training-only intercept location and scale. If no value is observed, use
+      location zero, scale one, and an all-missing indicator.
+  standardized_residual: "r_ik = (h(x_ik)-mu_k(M0_i))/sigma_k(M0_i)"
+  missing_feature_residual: "Set r_ik=0 internally and retain its missing flag."
+  correct_representation: >
+    Use the recipient's observed transformed features; fill its missing features
+    with its conditional location and append its own missing indicators.
+  donor_transfer: >
+    For every feature k, form h(x_star_ik)=mu_k(M0_i)+sigma_k(M0_i)*r_dk using
+    the same donor d for the entire primary vector. Then reapply the recipient's
+    missing mask: its missing features receive its conditional location and its
+    original missing indicators. Do not transfer donor missingness flags.
+  interpretation: >
+    The restored vector need not correspond to a realizable tree. Do not round
+    counts, project onto a tree manifold, or clip restored values to observed
+    feature ranges. Out-of-support transfer is handled by diagnostics.
+  unavailable_whole_tree: >
+    No donor use or primary recipient use. For the all-eligible training and
+    benchmark procedures, encode its dendritic blocks as wholly missing and use
+    the registered conditional fills and missing indicators; no invalid measured
+    dendritic values enter a model.
+
+donor_diagnostics:
+  timing: >
+    Development outcome-free qualification, every outer held-out prediction
+    application, and the frozen audit application at stage E. No diagnostic
+    threshold or graph is repaired using axonal outcomes.
+  weighting: >
+    Equal animal weights, equal recipient weights within animal, and the frozen
+    plan frequencies. Evaluate the full supported set and A_pre-defined target
+    subsets. Use the recipient's context and missingness for restored vectors.
+  deterministic_requirements:
+    - "All exact-pool, caliper, bijection, and no-fixed-point assertions pass."
+    - "Every supported recipient has at least four distinct feasible donors."
+    - "Every recipient receives at least four distinct donors in the 512-plan bank."
+    - "Maximum donor occurrence fraction for any recipient is at most 0.50."
+    - "Effective donor count 1/sum_d(w_id^2) is at least 3.0."
+  statistical_reference: >
+    Fit diagnostic projections and reference distributions only on fitting
+    development animals. Use up to ten training-PCA components per block and ten
+    for the concatenated residual vector; retain all available components if fewer.
+    Use covariance shrinkage 0.1 toward the identity.
+  thresholds:
+    balance:
+      maximum_absolute_standardized_mean_difference: 0.20
+      variables: "Continuous M0 terms, restored dendritic features, and diagnostic components."
+      categorical: "Exact-pool variables and hemisphere must have zero mismatch."
+    conditional_mean:
+      maximum_grouped_CV_R_squared_predicting_residual_from_context: 0.10
+      maximum_absolute_residual_numeric_context_Spearman_correlation: 0.20
+    covariance:
+      allowed_variance_ratio: [0.50, 2.00]
+      maximum_relative_Frobenius_covariance_difference: 0.25
+      denominator: "Frobenius norm of the shrinkage-stabilized correct-vector covariance."
+    heteroscedasticity:
+      strata: >
+        Training tertiles of predicted conditional scale, cortical depth, and
+        soma AP, separately. Use frozen training cut points.
+      allowed_swap_to_correct_variance_ratio: [0.50, 2.00]
+    multimodality:
+      detector: >
+        On each diagnostic component fit one- and two-component Gaussian mixtures
+        to training residuals. Declare a separated mixture when two-component
+        BIC improves by at least 10 and component means differ by at least two
+        pooled within-component SDs.
+      maximum_absolute_component_mass_change_after_transfer: 0.10
+      response: "Preserve modes; do not remove a mode or tighten donors after seeing failure."
+    missingness:
+      maximum_weighted_donor_missing_fraction_where_recipient_observed: 0.05
+      maximum_per_animal_fraction: 0.10
+      recipient_mask_change: 0
+    joint_support:
+      reference: >
+        Training cross-fitted squared Mahalanobis distances in the frozen
+        diagnostic component space; use their 99.5th percentile.
+      minimum_fraction_of_transfers_inside_reference: 0.95
+      minimum_per_animal_fraction_inside_reference: 0.90
+  small_strata:
+    statistical_stratum_minimum_cells: 30
+    statistical_stratum_minimum_animals: 4
+    rule: >
+      Apply stratified statistical diagnostics only when these counts are met;
+      otherwise report the stratum as statistically unqualified and use the
+      prespecified parent aggregate diagnostic. Deterministic matching and donor
+      support assertions still apply to every recipient and pool.
+    pooled_minimum: "At least 100 supported cells across at least eight development animals."
+    absent_pooled_reference: "Primary unavailable; absence is not a diagnostic pass."
+  failure: >
+    primary_unavailable_without_matching_relaxation. Do not discard offending
+    recipients, features, modes, or targets after a diagnostic failure to obtain
+    a passing primary result.
+
+modeling:
+  training_pairs: "All observable outcomes from all eligible fitting cells."
+  loss_weights: >
+    Normalize observed-cell loss within each training animal-target pair, then
+    weight training targets and animals equally. These are loss and score weights,
+    not predictors or data-dependent prediction-mixture weights.
+  objective_for_selection: >
+    Mean grouped-validation Brier score, first over observable cells, then equally
+    over the training-defined exact target set, then equally over validation
+    animals. No donor advantage, audit statistic, target-specific winner, or
+    nuisance-bank result selects a model.
+  representations:
+    scaling:
+      robust: "Training median centering and robust column scaling."
+      signed_log: "Signed log1p after division by training robust scale, followed by robust centering/scaling."
+      block_normalized: "Robust-scaled columns divided by sqrt(number of nonconstant columns in their block)."
+    projections:
+      PCA:
+        ranks: [4, 8, 16, 32, 64]
+        construction: "Animal-weighted training PCA separately within each registered input block."
+      PLS:
+        ranks: [2, 4, 8, 16]
+        construction: >
+          Mask-aware PLS2 separately within each input block. Compute feature-
+          outcome cross-covariances using only observed training entries, with
+          the registered loss weights; extract and deflate latent directions
+          iteratively. Never fill uncertain outcomes with zeros or predictions.
+    rank_rule: >
+      A requested rank is capped at the training numerical rank, number of
+      available columns, and, for PLS, available response rank. Record the
+      effective rank. Constant columns are retained in the manifest but excluded
+      from numerical decompositions.
+    input_blocks:
+      M0: ["Source/layer/line", "Spatial terms", "Laboratory/date/age", "Injection-region set"]
+      M1: "The same M0 blocks plus all four primary dendritic blocks."
+    missing_indicators: "Retain unprojected recipient missing indicators with their originating block."
+  learners:
+    elastic_net_logistic:
+      regularization: [0.001, 0.01, 0.1, 1.0, 10.0]
+      l1_fraction: [0.0, 0.5, 1.0]
+      structure: "One coefficient vector per exact target; shared selected hyperparameters."
+    group_sparse_logistic:
+      regularization: [0.001, 0.01, 0.1, 1.0, 10.0]
+      penalty: >
+        Sum of sqrt(block dimension) times each block's coefficient Frobenius
+        norm across targets, plus 0.01 times squared coefficient norm.
+    low_rank_multitarget_logistic:
+      ranks: [2, 4, 8, 16]
+      regularization: [0.001, 0.01, 0.1, 1.0, 10.0]
+      coefficient_matrix: "W=UV^T, with squared-factor ridge penalty."
+      starts: 3
+      selection_among_starts: "Lowest training penalized objective; deterministic seeded starts."
+    shallow_gradient_boosting:
+      loss: "Masked, weighted binary logistic loss."
+      per_target_models: true
+      maximum_depth: [1, 2, 3]
+      trees: [50, 100, 200]
+      learning_rate: [0.03, 0.10]
+      minimum_leaf_cells: [10, 20]
+      l2_regularization: [0.1, 1.0, 10.0]
+      row_and_column_subsampling: "None."
+      validation_early_stopping: "None beyond registered inner model selection."
+    additive_spline:
+      degree: 3
+      interior_knot_counts: [3, 5]
+      knots: "Equally spaced probability quantiles of training continuous columns."
+      regularization: [0.001, 0.01, 0.1, 1.0, 10.0]
+      penalty: "Squared second differences plus coefficient ridge 1e-6."
+      interactions: "Only the already registered M0 spatial products."
+  numerical_rules:
+    optimization_tolerance: 1.0e-7
+    maximum_iterations: 2000
+    intercept_ridge: 1.0e-6
+    finite_probability_interval: [0.000001, 0.999999]
+    unsupported_inner_training_state: >
+      If an otherwise eligible target has only one observed state in an inner
+      fitting split, use the training-only Jeffreys-smoothed intercept prediction
+      for that target. Do not use validation outcomes to repair the fit.
+    nonconvergence: "Invalid trial; no partially converged result enters selection."
+  calibration:
+    options: [none, shared_platt]
+    isotonic: prohibited
+    shared_platt:
+      form: "logit(p_cal)=a+b*logit(p_raw), with b constrained nonnegative."
+      coefficients: "One shared intercept and slope across all fitted exact targets."
+      minimum_training_groups: 8
+      state_support: >
+        Require at least four detected-state and four not-detected-state training
+        animals for every fitted target. If unavailable, the whole pipeline uses
+        none and records ineligibility; do not create target-specific calibration.
+      fitting_data: >
+        Grouped out-of-fold raw predictions generated within the current fitting
+        split. When evaluating an inner fold, calibration uses only its training
+        animals and an additional three-fold grouped prediction pass.
+      fitting_loss: "The registered animal/target/cell-weighted log loss."
+  ensembles:
+    maximum_members: 2
+    construction: >
+      Compare the best single candidate with the equal-weight probability average
+      of the two best distinct candidates for that arm. Use training-contained
+      grouped out-of-fold predictions. Select the pair only if its Brier score
+      improves by more than numerical tolerance 1e-12; otherwise select one.
+    weights: "Fixed 1/2 and 1/2; no target-specific, group-specific, or fitted mixture weights."
+    substitutions: "Apply the same donor vector to both members before averaging their probabilities."
+
+development_search:
+  outer_design: "27 leave-one-animal-out folds, plus one full-development selection/refit."
+  inner_design:
+    folds: 3
+    assignment: >
+      Sort training animals by a split-specific seeded hash and allocate cyclically
+      to three folds, balancing counts. No outcome stratification.
+    preprocessing: "Fit every learned transformation only within each inner fitting split."
+  trial_definition: >
+    One valid trial evaluates the same generated configuration opportunity for
+    M0 and M1 over all inner folds. Each arm selects its own winner from the same
+    opportunities. Neither arm receives extra trials because it has more inputs.
+  generator:
+    initial_coverage_trials: 20
+    initial_construction: >
+      Cross each of the five learners with four representation/calibration
+      settings: robust/PCA4/none; signed_log/PCA16/shared_platt;
+      block_normalized/PLS2/none; robust/PLS8/shared_platt.
+      Use regularization 0.1 where applicable, rank 4 for the low-rank learner,
+      l1_fraction 0.5, and boosting depth 2, 100 trees, rate 0.1, leaf size 10.
+      Use three spline knots.
+    subsequent_trials: >
+      Draw without replacement from the finite Cartesian grammar using the
+      registered search stream. No adaptive search based on held-out animals,
+      donor advantages, nuisance performance, or explanatory matrices.
+  stopping:
+    minimum_valid_trials: 40
+    policy_maximum_valid_trials: 96
+    proposed_execution_cap: 48
+    patience_valid_trials: 18
+    patience_improvement: 0.001
+    patience_rule: >
+      After 40 valid trials, stop if neither arm's incumbent inner Brier score has
+      improved by at least 0.001 during the preceding 18 valid trials. Otherwise
+      continue to the frozen execution cap. Improvement in either arm resets the
+      shared counter. This is not a scientific margin.
+    maximum_invalid_retries_per_search: 16
+    invalid_trial_rule: >
+      Replace an invalid trial with the next unused configuration in the seeded
+      sequence, recording the reason. Reaching the retry limit makes that search
+      incomplete; do not report its incumbent as a completed search.
+  falsification_fraction:
+    minimum_after_initial_coverage: 0.40
+    schedule: >
+      For trials 21 onward, the first two positions of each five-trial block
+      include a registered falsification evaluation, as do any extra positions
+      needed to keep the completed post-coverage fraction at least 0.40.
+    checks: >
+      Rotate deterministically among conditional synthetic nulls, planted
+      residual-signal recovery, donor-transfer probe stability, and feature/
+      missingness leakage fixtures. These checks use fixed synthetic generators,
+      never nuisance-specific adaptive tuning.
+    failure_rule: >
+      Implementation failures require diagnosis and correction of the frozen
+      procedure. Scientific validity failures are retained and can block
+      readiness; they do not authorize trying a new donor definition.
+  tie_breaks: >
+    Within 1e-12 choose fewer ensemble members, then fewer effective parameters,
+    then stronger regularization, then earlier trial index.
+
+nuisance_bank:
+  member_count: 20
+  construction:
+    - "Use the same conditional residualization as M1."
+    - >
+      For each animal, member, and primary dendritic block, independently draw a
+      uniform unrestricted derangement of all eligible cell IDs in that animal
+      by rejection of Fisher-Yates permutations containing any fixed point.
+    - "Move the complete residual row within that block, preserving its internal coordinates."
+    - "Restore recipient conditional location and scale and reapply recipient missingness."
+    - "Use separate streams across blocks, animals, and members."
+  whole_missing_dendrites: >
+    Their internal zero residuals can occur in the nuisance bank; their original
+    missing indicators never move. Missingness diagnostics must still pass.
+  fitting: >
+    Refit the selected M1 architecture, hyperparameters, representation, and
+    ensemble rule separately on each nuisance member. Refit its training-only
+    preprocessing and eligible calibration using identical splits. Perform no
+    nuisance-specific search or winner selection.
+  held_out_application: >
+    Construct each held-out animal's false blocks from that animal only, using
+    training-fitted residualization. Audit false blocks are created only at stage E.
+  diagnostics: >
+    Apply the donor diagnostic thresholds to each block's conditional means,
+    variances, heteroscedasticity, modes, missingness, and support. Do not require
+    preservation of cross-block covariance: its destruction is intentional.
+    Require finite probabilities and identical scoring pairs.
+  failure: "positive_benchmark_unavailable"
+
+target_and_outer_fold_handling:
+  development_training_eligibility: >
+    Recompute target support inside each outer training set using training
+    animals only: at least three positive and three negative animals and the
+    registered training coverage requirements. Held-out outcomes never determine
+    a target's training eligibility.
+  inner_target_sets: >
+    Use the parent outer-training-defined target inventory for all candidate
+    comparisons. Do not screen using an inner validation fold. Handle a
+    single-state inner fitting target by the registered intercept rule.
+  final_development_inventory: >
+    T_dev contains every candidate target satisfying development coverage in all
+    27 animals and at least four development positive and four development negative
+    animals. Fit and freeze audit prediction procedures for every member of T_dev.
+  assertions: >
+    For every member of T_dev, explicitly verify three-positive/three-negative
+    support in every outer training set. Failure halts scoring for diagnosis.
+  final_T:
+    timing: "Stage E, before stage-F label release."
+    rule: >
+      Apply the adopted final-T formula using the frozen development inventory
+      and audit observability counts only. No audit prevalence filter exists.
+    predictions: >
+      Predict every member of T_dev using immutable models before audit scoring.
+      Final-T filtering never causes refitting, recalibration, target substitution,
+      or changed prediction weights.
+    coverage_failure_after_finalization: >
+      Once T is finalized, a later failure is a technical failure; do not remove
+      a target or renormalize around it.
+  empty_T: "Primary infeasible under the registered specification."
+  inadequate_family_support: "Block secondary family analyses only."
+
+probability_and_calibration_gates:
+  evaluation: >
+    Apply to grouped development out-of-fold predictions before lock and to the
+    locked audit predictions at scoring. Audit results can fail a gate but cannot
+    update any predictor or calibrator.
+  numerical:
+    - "Every required probability is finite and in the registered probability interval."
+    - "Every required prediction pair exists; no model-specific row deletion."
+    - "Training and calibration convergence checks pass."
+  calibration_bins: >
+    Use ten equal-width probability bins. Merge adjacent bins from low to high
+    until each contains observations from at least four animals; merge a remaining
+    final short bin into its predecessor. Use registered animal/target/cell weights.
+  thresholds:
+    maximum_weighted_expected_calibration_error: 0.10
+    maximum_absolute_bin_error: 0.20
+  scope: >
+    Check M0, correct M1, and every nuisance member on their common benchmark
+    pairs. Check E0 and correct E1 separately for explanatory availability.
+    Report calibration slope and intercept diagnostically without imposing an
+    undefined slope test on constant predictors.
+  failure: "Unresolved probability/calibration validity; no audit recalibration."
+
+inference:
+  independent_unit: animal
+  audit_G: 16
+  confidence_level_one_sided: 0.95
+  standard_error: "Sample SD with ddof=1 divided by sqrt(G)."
+  intervals:
+    primary_lower: "C_bar-c_C_L*s_C/sqrt(G)"
+    primary_upper: "C_bar+c_C_U*s_C/sqrt(G)"
+    benchmark_lower: "D_bar-c_D_L*s_D/sqrt(G)"
+    benchmark_upper: "D_bar+c_D_U*s_D/sqrt(G)"
+  critical_value_minimum: "Student-t quantile 0.95 with G-1 degrees of freedom."
+  separate_tails: true
+  zero_variance: >
+    In simulation, a nonzero estimation error with zero SE is an infinite pivot
+    and can make calibration fail. In observed data, report the degenerate
+    interval and require the synthetic validity checks; never add cell-level df.
+  calibration_scenarios:
+    G_values:
+      audit: 16
+      pseudo_audit: 15
+      development_template: 27
+      pseudo_development_template: 12
+    centered_unit_variance_base_distributions:
+      normal: {mean: 0, variance: 1}
+      centered_gamma:
+        shapes: [0.5, 2.0]
+        signs: [-1, 1]
+      centered_lognormal:
+        log_sd: [0.5, 1.0]
+        signs: [-1, 1]
+      Student_t:
+        df: [3, 5, 8]
+        rescale_to_unit_variance: true
+      contaminated_normal:
+        contamination_probability: [0.05, 0.10]
+        contaminated_sd_multiplier: [5, 10]
+        rescale_to_unit_variance: true
+    precision_covariates: >
+      Sample development animal records with replacement, keeping total eligible
+      count n and outcome-free supported fraction s together. Use only records
+      with s>0. For pseudo-audits use their discovery animals only.
+    heteroscedasticity:
+      beta_gamma_pairs: [[0, 0], [-0.5, 0], [0, -0.5], [-0.5, -0.5], [0.5, 0.5]]
+      formula: >
+        sigma_g is proportional to (n_g/median(n))^beta times
+        (s_g/median(s))^gamma, normalized to mean sigma_g^2=1.
+    mean_precision_relationship:
+      lambda: [-0.5, 0.0, 0.5]
+      formula: >
+        Add lambda times the centered, unit-SD sum of log(n_g) and log(s_g);
+        center this mean vector over the simulated G animals. The known estimand
+        is the equal-group mean of the generating means.
+    crossing: "Cross every base distribution, variance pattern, and lambda value."
+    interpretation: >
+      These are standardized contrast-pivot stress distributions, not assertions
+      that unbounded draws are literal Brier differences. Bounded paired-Brier
+      behavior is separately checked by the cell-level recovery simulations.
+    replicates_per_scenario_calibration: 50000
+    replicates_per_scenario_validation: 50000
+  critical_value_algorithm:
+    lower_pivot: "(estimated_mean-true_mean)/estimated_SE"
+    upper_pivot: "(true_mean-estimated_mean)/estimated_SE"
+    calibration_tail_probability: 0.025
+    procedure: >
+      For each tail and scenario, use an order-statistic upper confidence bound
+      for the 97.5th pivot percentile, with exact binomial confidence 1-0.01/S,
+      where S is the number of calibrated scenario-tail combinations. Take the
+      maximum across scenarios and the required Student-t floor. Freeze separate
+      C-lower, C-upper, D-lower, and D-upper values even when they coincide.
+    validation: >
+      With disjoint seeds, count noncoverage using the frozen nominal 95% bounds.
+      Require the one-sided Clopper-Pearson upper bound on each noncoverage
+      probability, at confidence 1-0.01/S, to be at most 0.05.
+    failure: >
+      Unresolved before audit. Do not adjust a critical value after inspecting
+      validation failures and reuse those same validation simulations as a pass.
+  simultaneous_bounds:
+    nuisance: "One family of 20 lower bounds for R_j."
+    required_sign_entries: "One family containing every retained required sign entry."
+    hierarchy: "One family of 20 true-minus-shuffled lower bounds."
+    construction: >
+      Calibrate the maximum of the corresponding signed studentized pivots using
+      the same scenario families and 50,000 calibration and validation replicates
+      per scenario. Also include Gaussian-copula dependence with equicorrelations
+      0, 0.5, 0.9, and 1, the feasible lower equicorrelation -1/(m-1), and two
+      equal-sized independent blocks with within-block correlation 0.9.
+      Preserve the univariate Student-t floor. Validate familywise noncoverage.
+    singleton_families: "Use the corresponding univariate procedure."
+  explanatory_bounds:
+    E1_over_E0: "Separate calibrated lower bound on animal-level E0-minus-E1 Brier contrasts."
+    cosine: >
+      Calibrate animal-mean cosine bounds with the same independent-seed procedure,
+      adding centered bounded scenarios generated by tanh(a*Z), a in [0.25,1,2].
+      Determine generating means by deterministic numerical integration to
+      absolute error at most 1e-10, not by the validation samples.
+  influence:
+    primary:
+      - "Every leave-one-animal-out primary mean is strictly positive."
+      - "Maximum absolute change from the complete primary mean is <= delta_cell/2."
+    benchmark:
+      - "Every leave-one-animal-out benchmark mean is strictly positive."
+      - "Maximum absolute change from the complete benchmark mean is <= delta_morph/2."
+    failure: "No registered superiority conclusion; do not remove the influential animal."
+
+scientific_margins:
+  delta_cell: null
+  delta_morph: null
+  eta_matrix: null
+  rho_matrix: null
+  numeric_status: "Derived from development only and submitted for scientist approval before the shared lock."
+  prohibited:
+    - "Assigning a numeric scientific margin in this draft."
+    - "Choosing a margin to lie just below an observed effect or confidence bound."
+    - "Changing a margin after audit access."
+    - "Treating the search patience improvement or a diagnostic tolerance as a scientific margin."
+  science_utility_record:
+    required_before_margin_selection: >
+      The scientist records what constitutes a minimally meaningful improvement
+      in exact-target probability accuracy, separately for same-cell coupling
+      and the morphology benchmark, and which distortions of a scale-target
+      pattern count as scientifically unacceptable.
+    presentation: >
+      Present development baseline probabilities, equal-animal Brier resolution,
+      donor-support fractions, and the simulation precision curves. Separate
+      these from a table of observed primary and benchmark effects so margin
+      selection is not an optimization against the observed winning result.
+  delta_derivation:
+    procedure:
+      - >
+        Build cross-fitted development context probabilities and standardized,
+        within-pool-centered dendritic signal directions using training animals
+        only. Freeze the signal-direction generator before its recovery evaluation.
+      - >
+        Generate probability perturbation curves along those directions, retaining
+        the development context, pool structure, masks, and registered weighting.
+        Report the exact expected paired Brier change and probability-RMSE change
+        for each perturbation; expectations use generating probabilities, not
+        sampled binary outcomes.
+      - >
+        Locate the scientist's minimally meaningful probability-accuracy change
+        on each curve. Its corresponding equal-animal expected Brier contrast is
+        the proposed delta_cell or delta_morph. Solve by deterministic bisection
+        to absolute contrast tolerance 1e-8.
+      - >
+        Evaluate precision, equivalence sensitivity, superiority sensitivity,
+        nuisance gates, and influence at those proposed values using the recovery
+        procedure below. Report incompatibility rather than moving the science
+        requirement to obtain power.
+      - "Submit numeric proposals, curves, assumptions, and precision results for approval."
+  eta_derivation:
+    procedure:
+      - >
+        Use development-fitted generative models with zero scale-specific residual
+        signal to obtain the distribution of the standardized matrix RMS norm at
+        the registered held-out animal sizes and support scenarios.
+      - >
+        Separately generate the scientist-approved minimally meaningful scale
+        signals and calculate their expected standardized matrix norms.
+      - >
+        Propose the larger of the 95th percentile null norm and the norm implied
+        by the approved minimum scale signal. Submit the value and its operating
+        characteristics; if meaningful signals cannot clear this threshold,
+        explanation is unavailable.
+  rho_derivation:
+    procedure:
+      - >
+        Construct acceptable template perturbations by development-animal
+        resampling and measurement-noise simulation. Construct the predeclared
+        scientifically unacceptable perturbations by exact-target reassignment,
+        scale reassignment, and signed-entry changes at the severities recorded
+        in the scientist's science-utility record.
+      - >
+        Calculate the 5th percentile cosine of acceptable perturbations and the
+        95th percentile cosine of the closest unacceptable perturbation family.
+      - >
+        If the acceptable lower percentile exceeds the unacceptable upper
+        percentile, propose their midpoint as rho_matrix. Otherwise declare that
+        this procedure supplies no defensible similarity margin.
+      - "Submit the resulting numeric proposal and perturbation examples for scientist approval."
+  audit_T_handling: >
+    Derive margins using development only, including the prespecified target-mask
+    stress scenarios. Use the approved scalar margins unchanged after final T
+    is determined. Do not derive new margins from audit support or results.
+
+synthetic_recovery:
+  inputs: >
+    Development animals, permitted features, pools, donor graphs, development
+    observation masks, and training-only fitted probability generators. Audit
+    features and outcomes are excluded.
+  group_design: >
+    Simulate G=16 groups by resampling whole development animal records; preserve
+    their cell and pool structure. Include support-stress scenarios obtained by
+    deterministic thinning to the registered primary support floor and to
+    development support quartiles. No thinning changes actual experimental data.
+  outcome_generator:
+    baseline: "Cross-fitted calibrated M0 probabilities."
+    residual_signals:
+      - "One registered block at a time."
+      - "All primary blocks with equal normalized signal energy."
+      - "Sparse exact-target effects."
+      - "Dense exact-target effects."
+      - "Opposite signed effects in different exact targets."
+    dependence:
+      animal_logit_SD: [0.0, 0.5, 1.0]
+      pool_logit_SD: [0.0, 0.5, 1.0]
+      Gaussian_copula_target_correlation: [0.0, 0.5, 1.0]
+    null: "No residual signal conditional on M0."
+    signal_scaling: >
+      Calibrate amplitudes to known expected contrasts at zero, the proposed
+      scientific margin, and twice that margin. These are relative operating
+      points, not numeric scientific margins supplied by this draft.
+  replicates:
+    score_level_per_scenario: 50000
+    independent_validation_per_scenario: 50000
+    full_pipeline_refits_per_core_scenario: 100
+  criteria:
+    false_positive_probability: "Validated one-sided upper confidence bound <=0.05 under the null."
+    nonzero_signal_recovery_at_margin: "Lower confidence bound >0 with probability at least 0.80."
+    registered_superiority_at_twice_margin: "Lower confidence bound >the margin with probability at least 0.80."
+    equivalence_at_zero: "Registered 90% interval inside +/-delta_cell with probability at least 0.80."
+    joint_checks: >
+      Also report the complete primary/benchmark/nuisance/influence decision
+      probability. Failure of required margin recovery blocks candidate readiness.
+  boundary_clarification: >
+    Do not demand 80% probability of a lower bound exceeding delta when the true
+    effect equals delta; that is the superiority null boundary.
+  refit_limitations: >
+    Score-level simulations validate inference and measurement sensitivity.
+    Full-pipeline refits and nested pseudo-audits assess model-selection and
+    template behavior. Report these as different checks.
+
+explanatory_models:
+  E0: "M0 context only."
+  E1: "M0 context plus all twelve prespecified scale blocks."
+  family: "Ridge-regularized multitarget logistic regression."
+  regularization_grid: [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  selection: >
+    The same three-fold grouped Brier procedure and calibration opportunity for
+    E0 and E1, with one global penalty per model. No selection by template norm,
+    cosine, signs, or donor contrast.
+  scale_blocks:
+    construction: >
+      The twelve Cartesian intersections of four frozen radial shells and three
+      frozen branch-order ranges. Retain empty intersections.
+    radial_shells: ["[0,e1)", "[e1,e2)", "[e2,e3)", "[e3,infinity)"]
+    order_ranges: ["1..b1", "b1+1..b2", ">b2"]
+    features_per_block:
+      - "Dendritic length and fraction of total dendritic length."
+      - "Number of original branches intersecting the block with positive length."
+      - "Original branch-point and terminal counts."
+      - "Length-weighted mean branch order."
+      - "Mean, median, 90th percentile, and maximum radius."
+      - "Mean, median, 90th percentile, and maximum soma path distance."
+      - "Length-weighted covariance eigenvalues and normalized eigenvalue ratios."
+      - "All four summaries of incident parent-child and child-child angles at included branch points."
+    boundary_and_event_rules: >
+      Clip geometry exactly at radial boundaries. Assign an original branch
+      point or terminal by its radius and incoming branch order; exclude the
+      soma from event counts. Boundary points belong to the outer radial shell.
+      Clipped endpoints do not become biological terminals or branch points.
+    empty_blocks: >
+      Lengths and counts are zero with an empty indicator; undefined distributions
+      and ratios are missing with indicators. Never merge empty blocks.
+    residualization: "Apply the same conditional location-and-scale procedure to these explanatory features."
+  substitutions:
+    donor_source: "The exact primary 512-plan bank."
+    rule: >
+      Replace only scale block b with that plan's donor residual, restoring
+      recipient context and missingness. Other blocks remain correct. The donor
+      identity for a plan is coherent across all block-specific evaluations.
+    refitting: "No outcome-model or calibrator refit for substitutions."
+  matrix:
+    formula: "S_btg = mean_j[B_gt(E1_with_block_b_from_donor_j)-B_gt(E1_correct)]"
+    rows: "All twelve scale blocks in radial-major, then order-range order."
+    columns: "Every frozen exact target, sorted by anatomical ID then ipsilateral before contralateral."
+    family_pooling: prohibited
+    interpretation: "Predictive information, not causal importance."
+
+explanatory_template:
+  source: "Outer-LOAO development matrices; each animal's matrix comes from models excluding that animal."
+  robust_entry_scale:
+    initial: "1.4826*MAD_g(S_btg)."
+    floor: >
+      For each block, use max(1e-8,0.1*median of its positive entry MAD scales).
+      Replace smaller entry scales by this floor.
+    no_positive_scale_in_block: "Explanation unavailable; do not invent a scale."
+  signed_template: "tau_bt=equal_mean_g(S_btg)/a_bt; retain positive and negative entries."
+  standardized_animal_matrix: "X_btg=S_btg/a_bt."
+  norm: "Frobenius norm divided by sqrt(number of retained entries)."
+  similarity: "Ordinary cosine between vectorized X_g and the signed template."
+  required_sign_entries:
+    eligibility: >
+      At least 80% of development animals have the template's nonzero sign and
+      the development simultaneous lower bound on sign(tau_bt)*mean_g(S_btg)
+      exceeds zero.
+    selection: >
+      Rank eligible entries by absolute standardized template value, breaking
+      ties by frozen entry order; retain at most twelve.
+    empty_set: "Explanation unavailable."
+    interpretation: >
+      Sign selection does not remove other entries from the matrix, target set,
+      norm, or cosine.
+  final_T_projection:
+    rule: >
+      Freeze entries, scales, template values, and the sign-entry list over T_dev.
+      At stage E restrict their columns mechanically to final T. Recompute only
+      the norm and cosine denominators specified by this frozen formula.
+      Do not re-estimate scales, reselect signs, or replace lost sign entries.
+    no_remaining_required_sign_entry: "Explanation unavailable."
+  audit_success:
+    - "Primary success."
+    - "E1-over-E0 animal-level lower bound exceeds zero."
+    - "Development template and every audit animal matrix have norm exceeding eta_matrix."
+    - "Equal-animal cosine lower bound exceeds rho_matrix."
+    - "Every retained required sign entry passes its frozen simultaneous lower bound."
+    - "Explanatory donor, probability, and calibration diagnostics pass."
+  failure: "Explanation unavailable or not replicated; primary analysis remains separately interpretable."
+
+secondary_family_hierarchy_test:
+  run_gate: >
+    Run only if the adopted v1.2 final gate passes: at least three fixed major
+    divisions each contain at least three sided targets in final T. Score exactly
+    those supported divisions. Never broaden or redefine families.
+  bin_definitions:
+    prevalence:
+      quantity: "Equal-animal mean of observed detected fractions in development."
+      edges: [0.0, 0.1, 0.3, 0.7, 0.9, 1.0]
+    observation_rate:
+      quantity: "Equal-animal mean N_g,t divided by the animal's eligible-cell count."
+      edges: [0.0, 0.5, 0.8, 0.95, 1.0]
+    source_target_centroid_distance:
+      quantity: >
+        Equal-animal, equal-eligible-cell mean Euclidean distance between the
+        relevant sided source-area mask centroid and sided exact-target mask
+        centroid, over A_pre-positive cells; use pinned atlas masks.
+      units: mm
+      edges: [0.0, 3.0, 6.0, 9.0, infinity]
+    edge_convention: "Left-closed/right-open bins, with the final finite endpoint included."
+    joint_bin: "Cross the three bins; do not merge sparse bins after inspecting results."
+  shuffles:
+    count: 20
+    construction: >
+      Within each joint bin, uniformly permute true family labels across targets.
+      This preserves each family's size and its exact joint-bin composition.
+      Reject the identity and duplicate assignments.
+    proposal_limit: 100000
+    timing: "Generate and freeze on development-supported targets before the shared lock."
+    insufficient_distinct_valid_assignments: "hierarchy_summary_unresolved_without_relaxation"
+  hierarchy_models:
+    purpose: >
+      Make the hierarchy comparison sensitive to organization rather than an
+      algebraically invariant relabeling of unchanged exact-target scores.
+    E0_H_and_E1_H: >
+      Secondary ridge multitarget logistic versions of E0 and E1. Add a squared
+      coefficient-deviation penalty from each target to its assigned family's
+      mean coefficient, with multiplier equal to the model's already selected
+      ridge penalty. Keep the ordinary ridge penalty as well.
+    fitting: >
+      Fit true hierarchy and all twenty shuffled hierarchies on development
+      only, with the same fixed E0/E1 hyperparameters and calibration procedure.
+      No hierarchy-specific tuning. All responses remain exact-target responses.
+    aggregation: >
+      Within each supported family, equally average exact-target Brier increments;
+      then equally average supported families. Never OR target outcomes.
+    per_animal_statistic: >
+      For each shuffle j, true-hierarchy E1_H-over-E0_H increment minus shuffled-
+      hierarchy E1_H-over-E0_H increment.
+  final_T_compatibility:
+    rule: >
+      Restrict each already-frozen assignment to final-T targets belonging to
+      final family-supported divisions. It must still preserve family size and
+      joint-bin composition on that set. Require all twenty assignments to remain
+      valid and distinct there. No replacement shuffle or model refit is allowed.
+    failure: "Hierarchy summary unresolved; no effect on primary exact-target availability."
+  success: >
+    The true-hierarchy increment has a positive animal-level lower bound and all
+    twenty true-minus-shuffled contrasts have positive simultaneous lower bounds.
+    This supports only the registered secondary anatomical-family interpretation.
+
+nested_development_pseudo_audits:
+  repetitions: 3
+  discovery_animals: 12
+  pseudo_audit_animals: 15
+  rationale: >
+    A sixteen-animal pseudo-audit would leave eleven development animals, below
+    the policy minimum. Twelve/fifteen preserves the minimum development size.
+  assignment: >
+    Seed-permute the 27 development animal IDs once. For repetitions 0, 1, and 2,
+    take twelve cyclic consecutive animals starting at indices 0, 9, and 18 as
+    discovery animals; the remaining fifteen are the pseudo-audit.
+  independence_statement: "Overlapping development checks, not three independent replications."
+  repeat_inside_each_discovery_set:
+    - "Recompute development-derived matching width, residualization, and donor qualification."
+    - "Repeat twelve-fold outer LOAO and the full discovery search/refit."
+    - "Construct and diagnose all twenty nuisance members."
+    - "Fit E0/E1 and derive the signed template, robust scales, norm, and sign set."
+    - "Derive margins with the same predeclared science-utility rule using discovery data only."
+    - "Calibrate and validate the G=15 inference procedure with disjoint streams."
+    - "Freeze discovery target support and all pseudo-audit prediction procedures."
+    - "Run the complete primary, benchmark, explanatory, and eligible hierarchy decision."
+  inherited_blind_geometry: >
+    Keep the actually registered stage-A atlas vocabulary, n_coverage, and feature
+    boundaries. These were explicitly permitted outcome-blind development-wide
+    design artifacts. Do not represent the pseudo-audits as independent of them.
+  pseudo_audit_boundary: >
+    Do not use pseudo-audit outcomes in search, margins, template, scales, donor
+    diagnostics, or target prevalence eligibility. Apply only the frozen support
+    and scoring procedures when opening each pseudo-audit.
+  reporting: >
+    Report every repetition, including infeasibility and failed decisions.
+    Do not choose the most favorable split or modify the procedure from the
+    pseudo-audit results and call the same repetitions fresh validation.
+
+sensitivities:
+  fixed_arbor_rules: "Run exactly the five adopted measurement sensitivities."
+  fitting_rule: >
+    Refit the development-selected primary architecture and calibration procedure
+    under each sensitivity's labels, using the same folds, donors, and primary T.
+    No sensitivity-specific adaptive model search or substitution for the primary.
+  atlas_axis_extension: >
+    Fit the locked primary architecture with the prespecified secondary orientation
+    block added; use its own development-fitted preprocessing and block nuisance
+    permutation. This cannot replace primary rotation-invariant M1.
+  native_vs_CCF: "Unavailable because native SWCs were not released."
+  interior_only:
+    rule: >
+      Restrict the sensitivity's recipients to somata at least 100 um inside both
+      their pinned source-area mask and their pinned laminar mask. Keep primary
+      targets and donor rules; do not replace excluded cells.
+  registration_missingness_coverage_and_source_family:
+    rule: >
+      Report prespecified strata defined by the catalog disagreement record,
+      missing-feature presence, development observation-rate quartiles, and source
+      major division. Use training-derived cut points and do not select favorable
+      targets or promote subgroup results to the primary claim.
+  insufficient_support: "Report the sensitivity as not estimable; do not repair its score set."
+
+seed_registry:
+  generator: "PCG64 with implementation and version pinned in the dependency lock."
+  derivation: >
+    For each stream use the first 128 bits, interpreted as an unsigned big-endian
+    integer, of SHA-256 over canonical UTF-8 JSON containing the root seed,
+    purpose, role, fold IDs, repetition, animal ID, block, member, and replicate
+    identifiers. Sort unordered identifiers before serialization.
+  root_seeds:
+    measurement_n_coverage_unchanged: 9009
+    donor_plans: 1900901
+    donor_qualification_only: 1900902
+    nuisance_bank: 1900903
+    model_trial_generator: 1900904
+    grouped_split_assignment: 1900905
+    residualization_and_diagnostic_fits: 1900906
+    learner_initialization: 1900907
+    synthetic_falsification: 1900908
+    critical_value_calibration: 1900911
+    critical_value_validation: 1900912
+    recovery_calibration: 1900913
+    recovery_validation: 1900914
+    pseudo_audit_assignment: 1900921
+    template_and_margin_resampling: 1900922
+    hierarchy_shuffles: 1900931
+  separation:
+    - "Calibration and validation never share streams or simulated draws."
+    - "Qualification banks never replace the registered donor bank."
+    - "Every pseudo-audit has its own namespace."
+    - "Development and audit donor/nuisance instantiations use different role namespaces."
+    - "No seed is selected by observed scientific performance."
+
+compute_plan:
+  authorization: "Planning only; this draft launches nothing."
+  accounting: >
+    All ceilings are cumulative episode limits, not fresh allowances. Subtract
+    already consumed work from the shared resource ledger before qualification.
+  hard_ceilings:
+    cpu_core_hours: 1500
+    wall_clock_hours: 120
+    parallel_cores: 64
+    memory_GB: 512
+    scratch_GB: 1024
+    gpu_hours: 0
+  proposed_core_hour_envelopes:
+    blind_materialization_and_workload_qualification: 80
+    full_development_searches: 500
+    nested_pseudo_audits: 400
+    nuisance_explanation_hierarchy_and_sensitivity_fits: 250
+    inference_and_recovery_simulations: 150
+    locked_audit_extraction_prediction_and_scoring: 120
+  search_accounting:
+    main_searches: "27 outer searches plus one full-development search."
+    pseudo_searches: "3 repetitions times 12 outer searches plus one discovery refit search = 39."
+    total_paired_searches: 67
+    trials_per_search: "40 through the proposed frozen cap of 48."
+    basic_inner_arm_fits: >
+      67 searches * 3 inner folds * 2 arms * 40..48 trials =
+      16080..19296 basic fits, before calibration, refits, and falsification work.
+    additional_work: >
+      Explicitly include calibration folds, ensemble members, nuisance refits,
+      E0/E1 fits, hierarchy fits, sensitivities, donor predictions, and simulation
+      refits. Do not present the basic-fit count as the total workload.
+  qualification:
+    inputs: "Permitted development features and synthetic labels only."
+    target_dimension: "Use the full frozen candidate vocabulary as the conservative dimension."
+    procedure: >
+      Benchmark every learner family and the largest feature/rank settings on
+      synthetic labels in an authorized compute allocation. Measure elapsed time,
+      core-hours, peak memory, and scratch. Project the entire mandatory workload
+      with a factor-of-two time allowance and reserve the audit envelope.
+    pass: >
+      The complete minimum-valid-trial workload, all pseudo-audits, diagnostics,
+      simulations, and audit reserve fit every cumulative ceiling.
+    failure: >
+      Candidate not ready. Do not silently reduce trials below forty, omit a
+      pseudo-audit, reduce simulation replicates, or open audit outcomes.
+  implementation_efficiency:
+    - "Cache outcome-free geometry and training-split transformations with provenance keys."
+    - "Compress repeated donor predictions by recipient-donor multiplicity."
+    - "Stream simulation sufficient statistics instead of retaining all replicates."
+    - "Use at most eight eight-core workers, with BLAS/OpenMP threads included in the 64-core total."
+    - "Run tests, simulations, scientific code, and fits only in verified Slurm allocations."
+    - "Follow site scheduling and polling rules; leave unrelated jobs untouched."
+  overruns: "Stop with incomplete/unresolved status before exceeding a hard ceiling."
+
+decisions_for_scientist:
+  D01_recipient_population:
+    options:
+      A: >
+        Score both C and D on donor-supported recipients and recount coverage,
+        vocabulary support, and n on those recipients. This preserves one common
+        scoring population but requires an explicit blind amendment of stage-A
+        support construction. Before calipers, allowed n is at most six; with
+        n=6, one lost recipient in a six-recipient animal can eliminate every
+        target. Calipers can make the bound smaller.
+      B: >
+        Keep all eligible recipients for D, coverage, and T; use supported
+        observable recipients for C with the additional four-recipient-per-animal-
+        per-target gate. This preserves the existing stage-A support construction
+        and broad benchmark but gives C and D different populations. Scientist
+        approval must explicitly resolve the policy's cross-model common-recipient
+        wording; within every paired contrast the masks remain identical.
+      C: >
+        Keep the existing all-eligible coverage/T construction but score both C
+        and D on supported recipients with an additional score-support gate.
+        This preserves common scoring pairs, but the coverage count no longer
+        counts precisely the scored recipient population and requires an explicit
+        interpretation or amendment of the measurement contract.
+    recommendation: B
+    approval_requirement: >
+      Record the accepted population interpretation and the four-recipient support
+      floor before outcome access. If approval is absent, this draft cannot execute.
+  D02_donor_geometry:
+    options:
+      proposed: "Same hemisphere, depth difference <=0.10, and the prescribed fourth-neighbor spatial width capped at 500 um."
+      stricter: "A scientist-specified smaller spatial cap or depth caliper, frozen before outcomes."
+    recommendation: proposed
+    rationale: "Local physical matching with an explicit anatomical depth safeguard and no outcome-driven relaxation."
+  D03_batch_metadata:
+    options:
+      adopted_whitelist: "Use only the adopted permitted fields; exclude author, virus, and undocumented fields."
+      documented_extension: "Explicitly authorize and document author and/or virus as additional acquisition descriptors before access."
+    recommendation: adopted_whitelist
+    rationale: "Availability alone does not expand the adopted stage-A permitted-field list."
+  D04_donor_integration:
+    options:
+      finite_derangements: "The specified 512 genuine constrained derangements, with outcome-free stability qualification."
+      exhaustive_recipient_uniform: "Exact equal-weight averaging over eligible donor edges, explicitly allowing nonbijective recipient maps."
+    recommendation: finite_derangements
+    rationale: "Fixes a genuine bijective plan count and avoids a false uniform-derangement equivalence under calipers."
+  D05_diagnostic_operating_rules:
+    options:
+      proposed: "Adopt the complete numeric support, balance, covariance, missingness, overlap, and stability gates."
+      revised_before_access: "Scientist supplies another fully specified blind set; rerun qualification and rehash before access."
+    recommendation: proposed
+    rationale: "Failures must be declared against fixed rules, including the inability to measure individual reconstruction quality."
+  D06_model_and_residualization_specification:
+    options:
+      proposed: "Adopt the feature manifest rules, conditional ridge location/scale model, learner grammar, and calibration procedure above."
+      alternate_registered_specification: "Replace specified components before access and requalify the complete workload."
+    recommendation: proposed
+    rationale: "Makes transfer, missingness, model capacity, and training-fold boundaries explicit."
+  D07_search_scope_and_compute:
+    options:
+      proposed: "Forty to forty-eight valid paired trials in every repeated nested search, with the registered patience and falsification schedule."
+      expanded: "Up to ninety-six per search only if a revised blind workload qualification fits the same total ceilings."
+    recommendation: proposed
+    rationale: "Reserves resources for mandatory nuisance, explanation, pseudo-audit, inference, and audit work."
+  D08_inference_calibration:
+    options:
+      conservative: "Use the specified 97.5th-percentile calibration target and independent familywise Monte Carlo validation."
+      alternative_blind_calibration: "Approve another fully specified calibration accuracy rule before outcomes."
+    recommendation: conservative
+    rationale: "Provides simulation-validation headroom while retaining the required minimum Student-t critical value."
+  D09_scientific_margins:
+    options:
+      science_and_precision: "Approve the science-utility record, development-only derivation procedures, and later numeric proposals."
+      insufficient_science_or_precision: "Do not approve confirmatory readiness; retain development evidence only."
+    recommendation: science_and_precision
+    required_later_approval: [delta_cell, delta_morph, eta_matrix, rho_matrix]
+    rationale: "Scientific margins cannot be supplied as convenient constants or selected against audit results."
+  D10_explanatory_definition:
+    options:
+      proposed: "Twelve radial-shell by branch-order blocks, signed full-target template, robust entry scales, and at most twelve required sign entries."
+      alternative_blind_basis: "Specify another complete scale basis and sign rule before outcomes."
+    recommendation: proposed
+    rationale: "Uses both frozen anatomical scale systems and keeps every exact target in the decisive matrix."
+  D11_hierarchy_test:
+    options:
+      hierarchy_ridge: "Use the specified secondary hierarchy-regularized exact-target models and twenty bin-matched shuffles."
+      aggregation_only: "Use unchanged exact-target predictions, acknowledging that an increment statistic may be invariant or reflect only reweighting."
+    recommendation: hierarchy_ridge
+    rationale: "Creates an actual test of family organization while retaining exact-target responses and the secondary-only gate."
+  D12_pseudo_audits_and_unknown_final_T:
+    options:
+      proposed: >
+        Three twelve/fifteen pseudo-audits; immutable targetwise templates projected
+        to final T; hierarchy analysis unavailable if its twenty prelocked shuffles
+        cease to satisfy the final-set matching rules.
+      more_conservative: >
+        Require the entire development-supported target inventory to survive for
+        explanatory and hierarchy claims, while applying the adopted final-T rule
+        to the primary analysis.
+    recommendation: proposed
+    rationale: "Respects the minimum discovery-group count and prevents audit support from triggering refitting or new shuffles."

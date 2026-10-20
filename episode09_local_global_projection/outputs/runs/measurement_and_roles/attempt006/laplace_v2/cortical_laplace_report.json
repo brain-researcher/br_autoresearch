@@ -1,0 +1,4240 @@
+{
+  "schema": "ep09_cortical_laplace_report_v1",
+  "provenance": {
+    "SLURM_JOB_ID": "48312305",
+    "SLURM_STEP_ID": null,
+    "SLURMD_NODENAME": "sh02-01n31",
+    "hostname": "sh02-01n31.int",
+    "started_at_utc": "2026-10-18T04:41:03.480804Z",
+    "finished_computation_at_utc": "2026-10-18T04:43:30.776599Z",
+    "elapsed_seconds_before_report_write": 147.29577703867108,
+    "versions": {
+      "python": "3.11.15 | packaged by conda-forge | (main, Jun 11 2026, 03:34:02) [GCC 14.3.0]",
+      "numpy": "1.26.4",
+      "scipy": "1.15.3"
+    },
+    "python_isolated": true,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OMP_THREAD_LIMIT": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "OPENBLAS_DEFAULT_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "GOTO_NUM_THREADS": "1",
+      "NUMBA_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "MKL_DYNAMIC": "FALSE"
+    },
+    "inputs": {
+      "annotation": {
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/annotation_25_ccf_2017.nrrd",
+        "sha256": "c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42",
+        "size_bytes": 4035363,
+        "device": 3626059016,
+        "inode": 144123848743269620,
+        "mtime_ns": 1790095894000000000,
+        "ctime_ns": 1790095894000000000
+      },
+      "graph": {
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/allen_ccfv3_25um_2017_20260922/payload/structure_graph_1.json",
+        "sha256": "b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386",
+        "size_bytes": 637735,
+        "device": 3626059016,
+        "inode": 144123848743269630,
+        "mtime_ns": 1790095894000000000,
+        "ctime_ns": 1790095894000000000
+      },
+      "manifest": {
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/runs/measurement_and_roles/attempt002/ep09_cell_manifest.csv",
+        "sha256": "955502e4729f524ceba5f105ee686b51d9f5b7b2aa51a91e4025d39d58a85d85",
+        "size_bytes": 114683,
+        "device": 3626059016,
+        "inode": 144123882415069443,
+        "mtime_ns": 1792255440000000000,
+        "ctime_ns": 1792255440000000000
+      },
+      "loader": {
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/tools/derive_ccf_soma_layers.py",
+        "sha256": "32f7bc5629f6b6033bc220abeff7daccc42db970fd67f3ca950c06db8f921a83",
+        "size_bytes": 9074,
+        "device": 3626059016,
+        "inode": 144123908000326780,
+        "mtime_ns": 1792183464000000000,
+        "ctime_ns": 1792183464000000000
+      },
+      "script": {
+        "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode09_local_global_projection/outputs/tools/ep09_cortical_laplace_v2.py",
+        "sha256": "7799a09b4e6e1d688c852c65142e10ff0672d74ff972d60c911308a6de9d5991",
+        "size_bytes": 51590,
+        "device": 3626059016,
+        "inode": 144123908000327507,
+        "mtime_ns": 1792298349000000000,
+        "ctime_ns": 1792298349000000000
+      }
+    },
+    "zip": {
+      "path": "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch_data/steward_acquisition/cebsit_whole_cortex_zenodo_16909126/archives/data_v3.zip",
+      "size_bytes": 13605777073,
+      "member_count": 19004,
+      "soma_rows_read": 1703,
+      "soma_rows_sha256": "9da6242ebd1a578cbf94efe8f1af5633351de229107a716714615a1bb4f5e663",
+      "soma_rows_hash_encoding": "Manifest order; for each cell: uint64le byte length + UTF-8 cell, then uint64le byte length + raw first SWC data line, including its line terminator when present.",
+      "whole_zip_sha256": null
+    },
+    "manifest_cells": 1703,
+    "manifest_animals": 43,
+    "nrrd_header": {
+      "type": "unsigned int",
+      "dimension": "3",
+      "sizes": "528 320 456",
+      "encoding": "gzip",
+      "space": "left-posterior-superior",
+      "space directions": "(25,0,0) (0,25,0) (0,0,25)",
+      "space origin": "(0,0,0)"
+    }
+  },
+  "frozen_conventions": {
+    "contract": "EP09 measurement contract v1.2",
+    "atlas": {
+      "annotation": "annotation_25_ccf_2017.nrrd",
+      "graph": "structure_graph_1.json",
+      "graph_id": 1,
+      "shape": [
+        528,
+        320,
+        456
+      ],
+      "array_axes": [
+        "AP",
+        "DV",
+        "ML"
+      ],
+      "spacing_um": 25,
+      "voxel_extent_um": "[25*i, 25*i+25) on each axis",
+      "voxel_center_um": "(i+0.5)*25 on each axis",
+      "midline_ml_um": 5700,
+      "isocortex_id": 315,
+      "fibre_tract_id": 1009,
+      "ventricular_system_id": 73
+    },
+    "domain": "Descendant-or-self of Isocortex 315; six-connectivity.",
+    "laminar_classification": {
+      "rule": "Inside Isocortex: name contains 'layer', case-insensitively, or acronym equals parent acronym plus an accepted token. Read the token strictly as the suffix after the parent acronym; reject a laminar node with an unknown suffix.",
+      "tokens_in_display_order": [
+        "1",
+        "2",
+        "2/3",
+        "3",
+        "4",
+        "5",
+        "6",
+        "6a",
+        "6b"
+      ],
+      "aggregate_tokens": "2/3 and 6 overlap finer tokens; no strict median-order test."
+    },
+    "boundary_faces": {
+      "interior": "Domain neighbour: standard graph-Laplacian coupling.",
+      "pial": "v2 reviewer correction: source token 1 and a neighbour that is background, Isocortex across the midline, or any other non-fibre structure except another region's layer-1 node: Dirichlet phi=0. v1 used only background neighbours, leaving the medial and orbital pial surfaces no-flux.",
+      "white_matter": "Source token 6b and neighbour descendant-or-self of 1009: Dirichlet phi=1.",
+      "other": "Omitted, including every off-grid face: no flux.",
+      "ghost_discretization": "Boundary value is at neighbour centre. Each Dirichlet face adds 1 to diagonal and its prescribed value to RHS.",
+      "face_bit_order": [
+        "AP-",
+        "AP+",
+        "DV-",
+        "DV+",
+        "ML-",
+        "ML+"
+      ],
+      "l6a_fibre_faces": "Diagnostic only; never a Dirichlet boundary."
+    },
+    "components": "v2: six-connected components labelled separately on each side of the midline (no coupling across ML 5700 um). Solve each component only if it has both pial and white-matter faces. Other components retain NaN.",
+    "solver": {
+      "matrix": "scipy.sparse.csr_matrix",
+      "arithmetic": "float64",
+      "method": "scipy.sparse.linalg.cg",
+      "preconditioner": "Jacobi: inverse matrix diagonal",
+      "rtol": 1e-10,
+      "atol": 0.0,
+      "maxiter": 50000,
+      "x0": "zeros",
+      "final_residual": "||b-Ax||_2 / ||b||_2, explicitly recomputed",
+      "success": "CG info=0, finite solution/residual, final residual <= rtol.",
+      "clipping": false
+    },
+    "gradient": {
+      "arithmetic": "Unrounded float64 solution; evaluated on demand at soma voxels.",
+      "both_neighbours": "(phi_plus-phi_minus)/(2*25 um)",
+      "plus_only": "(phi_plus-phi_center)/(25 um)",
+      "minus_only": "(phi_center-phi_minus)/(25 um)",
+      "neither": "NaN",
+      "eligible_neighbours": "Finite, solved domain voxels only; no boundary ghosts.",
+      "radial": "-gradient / norm(gradient)",
+      "missing": "Any nonfinite component or norm < 1e-12 per um."
+    },
+    "sampling": {
+      "coordinate_parse": "fractions.Fraction of each decimal coordinate token",
+      "voxel": "floor(coordinate/25), independently on AP, DV, ML",
+      "interpolation": false,
+      "nearest_voxel_search": false,
+      "invalid_sample": "Depth and all frames missing if outside, unsolved or invalid gradient.",
+      "out_of_grid": "outside_isocortex; soma_voxel_label is blank.",
+      "depth_squared": "Derived downstream as CSV depth squared; preserves missingness."
+    },
+    "frame": {
+      "e_ap": [
+        1,
+        0,
+        0
+      ],
+      "e_ml": [
+        0,
+        0,
+        1
+      ],
+      "t1": "Normalize e_AP-(e_AP dot r)*r; use projected e_ML if norm < 1e-6.",
+      "t2": "r cross t1",
+      "hemisphere": "Exact soma ML <5700: left; >5700: right; equality: ambiguous.",
+      "right_canonical": "M=diag(1,1,-1); r_c=M*r, t1_c=M*t1, t2_c=r_c cross t1_c.",
+      "left_canonical": "Unchanged raw frame.",
+      "ambiguous_canonical": "Retain valid depth/raw frame; canonical frame blank; missing_reason=ambiguous_hemisphere."
+    },
+    "outputs": {
+      "npz": {
+        "flat_indices": "uint32, ascending C-order flat indices of solved voxels",
+        "phi": "float32, corresponding values; unsolved/outside voxels omitted",
+        "shape": "int32[3]",
+        "omission": "Reconstruct omitted voxels as NaN."
+      },
+      "csv_numeric_precision": "17 significant digits from float64 calculations",
+      "csv_missing": "Empty fields",
+      "quantiles": "numpy.quantile, method='linear', over solved float64 values",
+      "creation": "Exclusive creation; chmod 0444 after successful writes."
+    },
+    "input_access": {
+      "somata": "All manifest roles permitted; no role affects the field.",
+      "swc": "Skip initial blank/comment lines; parse only the first data row, requiring node=1, type=1, parent=-1. Never scan later data rows.",
+      "zip": "Central-directory metadata and first soma rows only. No whole-ZIP hash or full-member CRC verification."
+    }
+  },
+  "solver_settings": {
+    "matrix": "scipy.sparse.csr_matrix",
+    "arithmetic": "float64",
+    "method": "scipy.sparse.linalg.cg",
+    "preconditioner": "Jacobi: inverse matrix diagonal",
+    "rtol": 1e-10,
+    "atol": 0.0,
+    "maxiter": 50000,
+    "x0": "zeros",
+    "final_residual": "||b-Ax||_2 / ||b||_2, explicitly recomputed",
+    "success": "CG info=0, finite solution/residual, final residual <= rtol.",
+    "clipping": false
+  },
+  "diagnostics": {
+    "domain_voxels": 7891055,
+    "solved_voxels": 7890233,
+    "unsolved_voxels": 822,
+    "field_min": 1.834421925695083e-05,
+    "field_max": 0.9999994099180913,
+    "voxels_outside_closed_unit_interval": 0,
+    "expected_range": [
+      0.0,
+      1.0
+    ],
+    "unlaminated_domain_voxels": 0,
+    "per_laminar_token": {
+      "1": {
+        "domain_voxels": 1279094,
+        "solved_voxels": 1279093,
+        "p05": 0.0046454361334247055,
+        "median": 0.030308321356444665,
+        "p95": 0.09462166218663638
+      },
+      "2": {
+        "domain_voxels": 0,
+        "solved_voxels": 0,
+        "p05": null,
+        "median": null,
+        "p95": null
+      },
+      "2/3": {
+        "domain_voxels": 2062117,
+        "solved_voxels": 2062117,
+        "p05": 0.035748185694198055,
+        "median": 0.1410681154801654,
+        "p95": 0.29085792825599355
+      },
+      "3": {
+        "domain_voxels": 0,
+        "solved_voxels": 0,
+        "p05": null,
+        "median": null,
+        "p95": null
+      },
+      "4": {
+        "domain_voxels": 531175,
+        "solved_voxels": 531175,
+        "p05": 0.22303553053596226,
+        "median": 0.3322833452549616,
+        "p95": 0.4443436210165657
+      },
+      "5": {
+        "domain_voxels": 2330926,
+        "solved_voxels": 2330926,
+        "p05": 0.09726632699709674,
+        "median": 0.38541060443986697,
+        "p95": 0.6497166432067274
+      },
+      "6": {
+        "domain_voxels": 0,
+        "solved_voxels": 0,
+        "p05": null,
+        "median": null,
+        "p95": null
+      },
+      "6a": {
+        "domain_voxels": 1551276,
+        "solved_voxels": 1550484,
+        "p05": 0.3284538592607439,
+        "median": 0.7383490691864157,
+        "p95": 0.9284093725639182
+      },
+      "6b": {
+        "domain_voxels": 136467,
+        "solved_voxels": 136438,
+        "p05": 0.9298188837424323,
+        "median": 0.969778277004185,
+        "p95": 0.9882011595310405
+      }
+    },
+    "expected_laminar_pattern": "Increasing depth from layer 1 toward layer 6b.",
+    "pial_faces": 407899,
+    "white_matter_faces": 158837,
+    "l6a_voxels_with_fibre_tract_face": 7835,
+    "pial_face_categories_v2": {
+      "background": 350759,
+      "across_midline": 24772,
+      "other_structure": 32368,
+      "l1_to_noniso_l1_noflux": 2901,
+      "l1_to_fibre_noflux": 751
+    },
+    "surface_pinning": {
+      "domain_flat_indices_sha256": "b469deaa496605df48b3226052ecd1e26b36e4d491bd9354d62ae773012a3895",
+      "domain_flat_indices_encoding": "ascending uint32 little-endian",
+      "pial_face_bitmasks_sha256": "d77ee25d4ed30750ee362c14656b174c24e7e636d19075771a20920656de06bd",
+      "white_matter_face_bitmasks_sha256": "069165d8ea07abbfcb4da6ddd25153b0971d2170d071f73b5e662429957000e1",
+      "bitmask_encoding": "One uint8 per domain voxel in ascending flat-index order; bits 0..5 are AP-, AP+, DV-, DV+, ML-, ML+."
+    },
+    "components": {
+      "total": 350,
+      "solved_components": 2,
+      "unsolved_components": 348,
+      "solved_voxels": 7890233,
+      "unsolved_voxels": 822,
+      "details": [
+        {
+          "component": 1,
+          "voxels": 3943793,
+          "pial_faces": 203873,
+          "white_matter_faces": 79293,
+          "status": "solved",
+          "solver": {
+            "iterations": 601,
+            "cg_info": 0,
+            "relative_residual": 9.85623521840618e-11,
+            "rhs_norm": 417.6661346099298,
+            "nnz": 27278341,
+            "matrix_setup_seconds": 1.7488720160908997,
+            "solve_and_residual_seconds": 63.77999705309048
+          }
+        },
+        {
+          "component": 2,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 3,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 4,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 5,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 6,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 7,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 8,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 9,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 10,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 11,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 12,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 13,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 14,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 15,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 16,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 17,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 18,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 19,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 20,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 21,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 22,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 23,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 24,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 25,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 26,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 27,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 28,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 29,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 30,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 31,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 32,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 33,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 34,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 35,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 36,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 37,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 38,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 39,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 40,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 41,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 42,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 43,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 44,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 45,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 46,
+          "voxels": 14,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 47,
+          "voxels": 8,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 48,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 49,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 50,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 51,
+          "voxels": 5,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 52,
+          "voxels": 20,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 53,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 54,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 55,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 56,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 57,
+          "voxels": 14,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 58,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 59,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 60,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 61,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 62,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 63,
+          "voxels": 19,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 64,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 65,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 66,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 67,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 68,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 69,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 70,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 71,
+          "voxels": 20,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 72,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 73,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 74,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 75,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 76,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 77,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 78,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 79,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 80,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 81,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 82,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 83,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 84,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 85,
+          "voxels": 14,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 86,
+          "voxels": 5,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 87,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 88,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 89,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 90,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 91,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 92,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 93,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 94,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 95,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 96,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 97,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 98,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 99,
+          "voxels": 11,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 100,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 101,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 102,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 103,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 104,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 105,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 106,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 107,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 108,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 109,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 110,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 111,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 112,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 113,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 114,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 115,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 116,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 117,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 118,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 119,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 120,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 121,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 122,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 123,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 124,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 125,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 126,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 127,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 128,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 129,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 130,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 131,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 132,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 133,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 134,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 135,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 136,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 137,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 138,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 139,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 140,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 141,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 142,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 143,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 144,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 145,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 146,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 147,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 148,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 149,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 150,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 151,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 152,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 5,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 153,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 154,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 155,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 156,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 157,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 158,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 159,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 7,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 160,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 161,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 162,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 163,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 164,
+          "voxels": 3946440,
+          "pial_faces": 204023,
+          "white_matter_faces": 79465,
+          "status": "solved",
+          "solver": {
+            "iterations": 601,
+            "cg_info": 0,
+            "relative_residual": 9.869968258795569e-11,
+            "rhs_norm": 419.1646454556968,
+            "nnz": 27296974,
+            "matrix_setup_seconds": 1.7736457251012325,
+            "solve_and_residual_seconds": 63.70386551693082
+          }
+        },
+        {
+          "component": 165,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 166,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 167,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 168,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 169,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 170,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 171,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 172,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 173,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 174,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 175,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 176,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 177,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 178,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 179,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 180,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 181,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 182,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 183,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 184,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 185,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 186,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 187,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 188,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 189,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 190,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 191,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 192,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 193,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 194,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 195,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 196,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 197,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 198,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 199,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 200,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 201,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 202,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 203,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 204,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 205,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 206,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 207,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 208,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 209,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 210,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 211,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 212,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 213,
+          "voxels": 23,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 214,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 215,
+          "voxels": 13,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 216,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 217,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 218,
+          "voxels": 28,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 219,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 220,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 221,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 222,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 223,
+          "voxels": 19,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 224,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 225,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 226,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 227,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 228,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 229,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 230,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 231,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 232,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 233,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 234,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 235,
+          "voxels": 17,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 236,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 237,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 238,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 239,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 240,
+          "voxels": 6,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 241,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 242,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 243,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 244,
+          "voxels": 16,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 245,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 246,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 247,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 248,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 249,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 250,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 251,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 252,
+          "voxels": 11,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 253,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 254,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 255,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 256,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 257,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 258,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 259,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 260,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 261,
+          "voxels": 7,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 262,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 263,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 264,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 265,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 266,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 267,
+          "voxels": 11,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 268,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 269,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 270,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 271,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 272,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 273,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 274,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 275,
+          "voxels": 5,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 276,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 277,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 278,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 279,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 280,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 281,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 282,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 283,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 284,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 285,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 286,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 287,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 288,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 289,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 290,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 291,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 292,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 293,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 294,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 295,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 296,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 297,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 298,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 299,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 300,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 301,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 302,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 303,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 304,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 305,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 306,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 307,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 308,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 309,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 310,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 311,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 312,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 313,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 314,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 315,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 316,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 317,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 318,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 319,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 320,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 5,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 321,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 322,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 323,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 324,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 325,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 326,
+          "voxels": 3,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 327,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 328,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 329,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 330,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 331,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 332,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 333,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 334,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 335,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 336,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 337,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 338,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 339,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 340,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 341,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 342,
+          "voxels": 8,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 343,
+          "voxels": 4,
+          "pial_faces": 0,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face",
+            "no_white_matter_face"
+          ]
+        },
+        {
+          "component": 344,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 345,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 346,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 347,
+          "voxels": 2,
+          "pial_faces": 0,
+          "white_matter_faces": 5,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 348,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 349,
+          "voxels": 1,
+          "pial_faces": 0,
+          "white_matter_faces": 3,
+          "status": "unsolved",
+          "reasons": [
+            "no_pial_face"
+          ]
+        },
+        {
+          "component": 350,
+          "voxels": 1,
+          "pial_faces": 3,
+          "white_matter_faces": 0,
+          "status": "unsolved",
+          "reasons": [
+            "no_white_matter_face"
+          ]
+        }
+      ]
+    },
+    "somata": {
+      "by_role": {
+        "development": {
+          "total": 1114,
+          "missing_depth": 0,
+          "missing_radial_axis": 0,
+          "missing_canonical_frame": 0,
+          "missing_depth_or_any_frame": 0,
+          "missing_reasons": {}
+        },
+        "audit": {
+          "total": 589,
+          "missing_depth": 0,
+          "missing_radial_axis": 0,
+          "missing_canonical_frame": 0,
+          "missing_depth_or_any_frame": 0,
+          "missing_reasons": {}
+        }
+      },
+      "out_of_grid_somata": 0
+    },
+    "warnings": []
+  },
+  "outputs": {
+    "cortical_laplace_field.npz": {
+      "sha256": "66d9d6bc92d4c62af069d5bc12eed77f590b6b6dad59378449d9af24983dbd03",
+      "solved_phi_float64_sha256": "0574b217e182f7c6b72a82adf99d98ad5fab14c0d47a2ac56a4defa38a8763f8",
+      "float64_hash_encoding": "Unrounded float64 little-endian values, in ascending solved flat-index order; raw element bytes without header.",
+      "saved_phi_dtype": "float32",
+      "sampling_phi_dtype": "float64"
+    },
+    "soma_cortical_frames.csv": {
+      "sha256": "bc461a62cfd4fdcfecb960f314bffabb278344d5723df9de5914d1def342710a",
+      "rows": 1703,
+      "columns": [
+        "cell",
+        "brain",
+        "ep09_role",
+        "soma_voxel_label",
+        "hemisphere",
+        "depth",
+        "r_ap",
+        "r_dv",
+        "r_ml",
+        "t1_ap",
+        "t1_dv",
+        "t1_ml",
+        "t2_ap",
+        "t2_dv",
+        "t2_ml",
+        "r_c_ap",
+        "r_c_dv",
+        "r_c_ml",
+        "t1_c_ap",
+        "t1_c_dv",
+        "t1_c_ml",
+        "t2_c_ap",
+        "t2_c_dv",
+        "t2_c_ml",
+        "missing_reason"
+      ]
+    }
+  }
+}

@@ -1,5 +1,279 @@
 # Experiment log
 
+## 2026-10-18 — donor-population amendment preparation activated; no execution
+
+- Scoped document work: turn attempt006's supported-animal recommendation into one reviewable, unadopted amendment; no job, test, scientific code or data access.
+- Preserve CEBSIT, Cux2/Wfs1, the 27/16 roles, measurement v1.2 and all stage-A freezes; original companion draft remains historical and unadopted.
+- Define primary/benchmark sets, prospective support filtering, effective animal counts and pseudo-audits; explain the 1,000/500 µm locality tradeoff and narrower-population calibration limit.
+- Evidence: existing attempt006 census and stage-A manifest only. No new numeric result or threshold is selected.
+- Handoff: [proposed amendment](runs/measurement_and_roles/attempt006/companion/donor_population_amendment_proposed.md); scientist decision and remaining companion qualification precede any claimed adoption or readiness.
+
+## 2026-10-17 22:00 PDT — stage A frozen: n_coverage = 6; boundaries; cortical axis v2; companion draft needs decisions
+
+- **n_coverage = 6** (job 48311775). n = 3–5 fail only on the predicted binding scenario; at n = 6 the worst SD is 0.0474. The analytic guard passes on all 648 checks. V_6 = 666.
+- **Dendrite boundaries** (job 48311776, all 1,114 development cells): R_cap 600 µm; radial edges 50/100/150 µm; branch-order ranges 1–3, 4–5, > 5.
+- **Cortical axis:**
+  - v1 (job 48311786) left the medial and orbital pial surfaces no-flux, giving ACAv L2/3 a depth of 0.72;
+  - v2, a reviewer correction (job 48312305): the whole outer L1 surface is pial (except sheet continuation and fibre), and the hemispheres are split;
+  - result: ACAv 0.225, PL 0.135; lateral areas unchanged.
+- **Donor support:**
+  - recount (job 48311488): 853 development and 406 audit cells in exact pools of ≥ 5;
+  - caliper census (jobs 48312584, 48314384): the companion draft's every-animal floor leaves no V6 target, while an animal-level rule keeps 21–27 development and 13–16 audit animals.
+- **Freeze manifest:** `attempt006/stage_a_freeze_manifest.json` (SHA-256 `a12f4bf8…`). [Record](runs/measurement_and_roles/attempt006/README.md).
+- **Next:** the scientist rules on companion decisions D01–D12 and gives a stage-B go-ahead. No axon read.
+
+## 2026-10-17 17:45 PDT — R1–R5 confirmed; remaining stage-A outputs started
+
+- **Decision:** the scientist confirmed readings R1–R5 of contract v1.2 and asked for the remaining stage-A outputs, with n_coverage reported before stage B.
+- **Drafting:** Codex (gpt-6-astra, max effort) is drafting four pieces in parallel:
+  - the n_coverage simulation tool;
+  - the development-dendrite boundary tool;
+  - the cortical Laplace tool;
+  - the companion model/donor contract.
+- **Recipient-set issue found:**
+  - only 865 of 1,114 development cells (407 of 589 audit) sit in pools of ≥ 5, so a donor swap is possible only for them;
+  - per animal, as few as 6 cells are donor-supported;
+  - the contract's coverage counts and n range (3–14) use all eligible cells.
+  The companion contract carries this as a decision for the scientist.
+- **Recount:** `ep09_recipient_support.py` (job 48311488) recounts V_n over donor-supported cells after the contract's 24-cell coordinate relabel. Somata and atlas only.
+
+## 2026-10-17 17:10 PDT — contract v1.2 adopted; stage A precheck rerun PASSES (somata and atlas only)
+
+- **Contract:** v1.2 (read-only, SHA-256 `b01b593e…69b3`), recorded as `ep09_amend_2026_10_17_contract_v1_2`. Codex drafted it and the tool `ep09_feasibility_precheck_v1_2.py`; I reviewed both diffs. Codex raised no objection to R1–R5. [Record](runs/measurement_and_roles/attempt005/README.md).
+- **Job 48295447:**
+  - vocabulary of 355 anatomical / 710 sided targets, matching an independent atlas-only rebuild (job 48294937);
+  - 15 parent residues unassigned, 36.7 mm³ in total (PAG, ZI and PB lose their main bodies; a diffuse 2.7 mm³ striatal residue).
+- **Gates:**
+  - **V3 = 689**; all 12 divisions are supported (minimum PAL 18); the primary, secondary and strict readings all pass;
+  - **V_n** falls from 689 to 603 over n = 3–14, with all 12 divisions supported at every n;
+  - the 21 failing targets are all ipsilateral and fail in only 1–3 animals.
+- **Limit:** V3 survival is distance-driven, and the 498 non-telencephalic targets should fail stage C's detection rule.
+- **Next:** the scientist confirms R1–R5; then the n_coverage simulation, dendrite boundaries and the companion contract. No axon read.
+
+## 2026-10-17 16:53 PDT — scientist amends the vocabulary and families (contract v1.2); precheck rerun selected
+
+- **Amendment:**
+  - a parent with direct voxels hands its target role to its nonempty children, and its own voxels stay unassigned;
+  - families are the 12 Allen major divisions;
+  - a family-gate failure blocks only the secondary family analyses.
+- **Readings I add, reported with the result:**
+  - laminar pooling covers all cerebral-cortex areas (CTX 688), not just Isocortex;
+  - a division is supported when it holds ≥ 3 sided targets, and the secondary analyses need ≥ 3 supported divisions;
+  - the primary gates only require nonempty sets (V3, V_n, T).
+- **Plan:** Codex drafts contract v1.2 and `ep09_feasibility_precheck_v1_2.py`; I review, then rerun from somata and the atlas only into `measurement_and_roles/attempt005`.
+
+## 2026-10-17 14:05 PDT — stage A feasibility gate FAILS; amendment needed before any axon access
+
+- **Runs:**
+  - Job 48277641 failed at write time (missing `import json`; outputs rolled back).
+  - Job 48278105 used the original laminar test: 58/116 targets, V3 = 99, 1 family, FAIL.
+  - The corrected v2 run, after the laminar-name fix (ACAv6a/6b): **54/108 targets, V3 = 91, 1 family (grey), gate FAIL** ([record](runs/measurement_and_roles/attempt004/README.md)).
+- **Causes:**
+  - The family split is blocked because CB has only 2 sided targets.
+  - Subcortical targets collapse because parent nodes carry direct voxels (STR, TH, MB, P, MY, HY, PAL, CB, OLF, HPF, CTXsp).
+  - Coverage itself is adequate: 77 targets at n = 5.
+- **Somata only;** no axon or dendrite geometry read. Next: the scientist's amendment decision.
+
+## 2026-10-17 13:55 PDT — stage A precheck tool reviewed; run submitted (somata and atlas only)
+
+- **Tool:** `ep09_feasibility_precheck.py`, drafted by Codex (gpt-6-astra max) and reviewed by me. Checked:
+  - vocabulary partition recursion, antichain and disjointness;
+  - exact point-to-box distances against 1,200 µm, with a 1,222 µm search radius, outward bounds and a rational tie check;
+  - ipsilateral source exclusion over manifest and coordinate areas;
+  - the family split rule and gates;
+  - write-once read-only outputs.
+- **Edit:** a soma in a background voxel is no longer fatal (its coordinate area becomes None).
+- **Format check:** all 1,703 cohort SWCs have the soma as row 1 (7 fields, type 1, parent −1); soma rows only.
+- **Run:** `attempt004/precheck.sbatch` (1 CPU, 12 GB, 2 h). No axon or dendrite geometry is read.
+
+## 2026-10-17 11:00 PDT — contract v1.1 adopted with two tweaks; stage A feasibility precheck selected
+
+- **Adopted:** `measurement_contract_v1_1_adopted.yaml` (read-only; SHA-256 `9f5bb299…881e`), recorded as `ep09_amend_2026_10_17_measurement_contract` in `SEARCH_POLICY.yaml`. The two tweaks:
+  - nodes up to 100 µm outside the brain mask are tolerated;
+  - at least one axon root is required, with no disconnected axonal components.
+- **Stage A, first output:** the precheck from somata and the atlas only. It counts A_pre cells per animal for every sided target and applies the every-animal rule and the family gate.
+- **Plan:** Codex drafts the tool; I review it and self-test it; it runs in Slurm. The gate result goes to the scientist before any other stage-A output.
+
+## 2026-10-17 10:45 PDT — measurement contract v1.1 proposed (unadopted); awaiting the scientist
+
+- **v1.1:** Codex revision under amendments A1–A5, reviewed by me.
+  - Saved as [measurement_contract_v1_1_proposed.yaml](runs/measurement_and_roles/attempt003/README.md) (SHA-256 `0e30f7ae…`), with both Codex drafts and their rationale and change log.
+  - It is now executable without unavailable certificates: assumptions are explicit, there are five non-selectable sensitivities, and a feasibility gate from somata and the atlas comes first.
+- **My proposed tweaks:**
+  - Containment tolerance of 100 µm outside the brain mask.
+  - Require at least one axon root rather than exactly one (about 43 cells have 2 axonal soma children).
+  - The feasibility risk from the 1,200 µm rule combined with every-animal coverage.
+- **No axon or outcome has been read.**
+- **Next, on approval:** stage A, beginning with the feasibility precheck.
+
+## 2026-10-17 10:20 PDT — contract draft v1 reviewed: infeasible as written; Codex revising
+
+- **Draft v1** (Codex) is a thorough 716-line YAML: terminal-subtree arbor rule (>1,000 µm and ≥ 2 tips), 1,200 µm whole-target distal rule, 100 µm erosion/dilation envelopes, an anatomy-derived area-level vocabulary split by side, a deterministic ontology family cut, the `n_coverage` simulation, CCF dendrite blocks, and staged access.
+- **Review finding:** it requires per-cell QC certificates, image-coverage masks, local registration certificates and certified terminals. The release supplies none of these, so every pair would be uncertain and the contract is infeasible by construction.
+- **Amendments sent to Codex:**
+  - A1: cell-level observation from release inclusion plus the `Axon_and_dendrite` flag plus stage-B technical validity; a clipping sensitivity.
+  - A2: erosion/dilation envelopes plus the cohort soma check (98.6%) replace certificates; a 200 µm sensitivity.
+  - A3: terminals are the validated tree's tips.
+  - A4: an outcome-blind feasibility gate first. The distal rule combined with every-animal coverage may remove nearby cortical targets.
+  - A5: tool-enforced procedural separation, disclosed.
+
+## 2026-10-17 09:55 PDT — measurement contract: SWC convention verified; Codex drafting the contract
+
+- **Scientist:** have Codex draft the measurement contract, review it, and bring it back before any development outcome is opened.
+- **Convention check** (job 48255686; [json](runs/measurement_and_roles/attempt003/swc_soma_convention.json); soma rows only):
+  - SWC coordinates are µm, with axes (AP, DV, ML) matching the volume order.
+  - Agreement with the catalog: area 1,679/1,703; area and layer 1,630/1,703.
+- **Delegation:** `codex exec -m gpt-6-astra` at max effort, with web search, received the contract prompt: requirements, verified data facts, prior practice to cite. The prompt is in EP09 scratch `codex/`. Its output is reviewed before anything is recorded as a draft.
+
+## 2026-10-17 09:46 PDT — measurement_and_roles attempt002: roles frozen (16 audit / 27 development)
+
+- **Freeze:** job 48254820 at 16:44:00Z ([record](runs/measurement_and_roles/attempt002/README.md)).
+  - Audit: Cux2 3 + 2, Wfs1 3 + 8 (pools 5–9 + 10+) = 16 animals, 589 cells.
+  - Development: 27 animals, 1,114 cells.
+  - The two leftover slots, tie-broken by seed, went to the 5–9 strata.
+  - Manifests are write-once and read-only, with SHA-256 recorded.
+- **Ledger v2** (job 48254918) adds EP09 roles. `EPISODE_REGISTRY.yaml` `seu_a1876_ep09_ep11.evidence_ref` now points to it.
+- **Tool provenance:** Codex drafted the freeze tool (gpt-6-astra max). Claude reviewed it and self-tested allocation, determinism and write-once behaviour on synthetic strata.
+- **No outcome opened.**
+- **Next:** freeze the measurement contract (arbor and observability rules, target vocabulary, `n_coverage`, dendrite blocks). Then open development outcomes only.
+
+## 2026-10-17 01:05 PDT — role rule approved; measurement_and_roles attempt002 (role freeze) selected
+
+- **Decision (scientist):** 16 audit animals come from the 32 unclaimed brains, stratified by line (Cux2/Wfs1) × largest pool (5–9 vs ≥ 10). The other 27 usable animals are development, including the 10 EP10-shared and the 1 EP10-development brain. The manifest freezes before any outcome is opened.
+- **Fixed rule:**
+  - Seed 20261017.
+  - Largest-remainder proportional allocation of the 16 slots over the four unclaimed strata (5, 5, 5, 17), ties broken by the seed.
+  - Within each stratum, a seeded permutation of brains sorted by fMOST id.
+  - Write-once outputs, made read-only, with SHA-256 in the summary.
+- **Plan:** Codex drafts `freeze_ep09_roles.py`; Claude reviews and self-tests it; the freeze runs in Slurm.
+
+## 2026-10-17 00:55 PDT — measurement_and_roles attempt001 complete: ledger built; SWC type codes resolved
+
+- **Job 48222047** completed in 30 s ([record](runs/measurement_and_roles/attempt001/README.md)).
+- **Ledger,** for the 52 Cux2 + Wfs1 brains with donor pools ≥ 5:
+  - 32 unclaimed and 10 shared with EP10 unassigned units;
+  - 1 EP10 development brain (EP09 development only);
+  - excluded: 2 EP10 final and 7 EP11-reserved.
+  - EP09 can use 43 brains, 42 of them audit-eligible.
+- **Type codes** (3,516 files, pooled topology only): 0 and 2 are alternative axon codings, one per file, never joined to dendrite; 3 is dendrite; 4 (7 files) is apical; 10–12 are inline markers, assigned the compartment of their typed ancestor.
+- **No outcome has been opened.**
+- **Next:** the scientist approves a whole-animal role split. Roles come from identity, provenance and coverage only, and freeze before any outcome.
+
+## 2026-10-17 00:45 PDT — measurement_and_roles attempt001: shared ledger and SWC type-code job submitted
+
+- **Codex drafts reviewed** (gpt-6-astra max; prompt in EP09 scratch `codex/`):
+  - `build_gao_exposure_ledger.py`: one edit, to tolerate blank descriptive IDs.
+  - `resolve_swc_type_codes.py`: row parsing changed to split-based (only id, type and parent converted); duplicate and short rows are counted rather than fatal.
+  - Both passed synthetic self-tests: eligibility categories and pooled parent-type counts checked by hand.
+- **Ledger rules:**
+  - EP10 development brains: EP09 development only.
+  - EP10 final brains and EP11-reserved brains: excluded from EP09.
+  - EP10 unassigned brains: shared-eligible.
+  - Everything else: unclaimed.
+  - Inputs: the catalog, EP09 QC, and the EP10/EP11 stage0 role and inventory tables, read-only and hashed.
+- **Type codes:** pooled child-type × parent-type counts over Cux2/Wfs1/Scnn1a SWCs only. No coordinates and no per-cell values.
+- **Next:** read the job's results, then propose whole-animal roles.
+
+## 2026-10-17 00:25 PDT — IT definition amended to Cux2 + Wfs1 (L2/3, L4; 52 animals); ledger and type codes next
+
+- **Decision (scientist):**
+  - IT core = Cux2-Cre (L2/3, L4) + Wfs1-Tg2-CreERT2 (L2/3).
+  - PlexinD1, Tlx3 and Rorb stay out; Scnn1a remains sensitivity-only.
+  - The population narrows to L2/3–L4 IT; no L5 claim.
+  - Recorded as `ep09_amend_2026_10_17_it_line_set` in `SEARCH_POLICY.yaml`.
+- **Support:** 52 animals with within-animal pools ≥ 5 (38 with ≥ 10), 1,756 pooled cells ([recount](runs/metadata_feasibility/attempt005/pool_recount.json)).
+- **Other users of the same release (read-only from their stage0 records):**
+  - EP10 froze roles over 76 Gao MOp sample units (12 development, 8 final, 56 unassigned). Its M1 run opened outcomes for the 12 development groups; final and unassigned stay sealed.
+  - EP11 holds a 36-unit SSp-tr inventory with outcomes closed.
+- **Next (before roles):**
+  - Build the shared exposure ledger.
+  - Resolve SWC type codes 0 and 10–12 from pooled parent-type topology only.
+  - Both tools to be drafted by Codex, then reviewed and run in Slurm.
+
+## 2026-10-17 00:10 PDT — attempt005 complete: dendrites pass; the Cux2-only core gives 17 animals (below 20)
+
+- **Codex fix reviewed and applied** (minimal join change; synthetic self-test on the real layout passed). Dendrite QC (job 48218964, 1:18) found all 6,469 IT-line cells. 6,302 pass (soma, ≥ 2 stems, ≥ 500 µm of dendrite), including 99.7% of the cells flagged `Axon_and_dendrite`. [Results](runs/metadata_feasibility/attempt005/README.md).
+- **Recount** (job 48218966), animals with pools ≥ 5: Cux2 alone 17 (10 with ≥ 10); Cux2 + Wfs1 52 (38); with Scnn1a 54; all six lines 94 (post hoc, descriptive).
+- **Codex line review**, with Wfs1 citations spot-checked: Wfs1-Tg2-CreERT2 is an L2/3 excitatory line with an IT projection pattern (Zariwala 2011; Shrestha 2015).
+- **Open:** SWC type codes 0 and 10–12 are unidentified (needed before feature extraction), and the shared EP09/10/11 ledger is not yet built. No outcome has been opened.
+- **Next:** the scientist chooses the line set: keep Cux2 only (infeasible), promote Wfs1 (52 animals), or run a new prospective test to restore PlexinD1, Tlx3 and Rorb.
+
+## 2026-10-16 23:55 PDT — archive verified; dendrite QC failed on a join defect; Codex delegations launched
+
+- **Download:** job 48187737 completed in 1:22:49. MD5 `db2da0aa83e6967b40f6acbe3c991176`, 13,605,777,073 bytes. The archive is now read-only, with `SHA256SUMS` and `ACQUISITION_COMPLETE_UTC` written in the steward directory.
+- **Dendrite QC:** job 48188197 failed in 12 s with `IndexError`, because zero catalog cells matched. Archive members are `data_v3/<brain>/<cell>.swc`; catalog files are `<brain>_<cell>.swc` (job 48218037 listed member names only). The recount job 48188318 was cancelled with its dependency.
+- **Delegation:** at the scientist's instruction, `codex exec -m gpt-6-astra` at max effort (read-only, text only) received two prompts: the join fix, and a cited line-characterization review with scope options. Prompts and outputs are in EP09 scratch `codex/`. Both are to be reviewed before use.
+- **Not delegated:** no Codex prompt asks about the labelling vector, because the earlier search on it was blocked by a safety filter.
+
+## 2026-10-16 18:55 PDT — attempt005: Cre-dependence confirmed; three lines fail the pre-set specificity rule
+
+- **Download:** job 48187737 is running at about 2.5 MB/s (ETA about 19:50). Dendrite QC (job 48188197) and the pool recount are chained on it with `afterok`. The QC reader passed a synthetic two-cell self-test.
+- **Cre test** (steps of 48187737; [results](runs/metadata_feasibility/attempt005/README.md#results)): the Ntsr1 control has an L6 odds ratio of 32.4 against wild type. Cux2 5.7, Wfs1 4.3 and Scnn1a 19.8 pass. PlexinD1 1.5, Tlx3 2.4 and Rorb 2.0 fall below the pre-set odds ratio of 3 (each interval excludes 1).
+- **Consequence:** the approved core shrinks to Cux2, which had 17 animals with pools ≥ 5 before dendrite QC, below 20. Wfs1 passes but was approved only as a sensitivity line. Restoring PlexinD1, Tlx3 or Rorb would be a post hoc amendment.
+- **Next:** dendrite QC and the recount, then a scope question for the scientist on the line set.
+
+## 2026-10-16 18:30 PDT — CEBSIT proposal approved; metadata_feasibility attempt005 selected
+
+- **Decision (scientist, Oct 16):** approve the CEBSIT proposal. Acquire Zenodo 16909126 into the Oak steward area, then run dendrite-only checks and confirm Cre-dependence before any outcome is opened. Recorded as an approved amendment in `SEARCH_POLICY.yaml`.
+- **attempt005 plan:**
+  1. Slurm download job into `steward_acquisition/cebsit_whole_cortex_zenodo_16909126/`, checked against Zenodo's MD5.
+  2. Archive member names only, mapped to the catalog.
+  3. A dendrite-only SWC reader on IT-line cells: soma and dendrite nodes; axon lines are skipped unparsed.
+  4. Laminar specificity of somata by line, checked from the catalog.
+- **Boundary:** no axon geometry, target, projection class or prevalence is computed. Roles and the shared EP09/10/11 ledger come before any outcome.
+
+## 2026-10-16 18:10 PDT — attempt004: CEBSIT passes on group count; proposal written, unadopted
+
+- **Survey:** the delegated literature survey finished. Only the CEBSIT whole-cortex projectome passes (Gao et al., *Neuron* 2025; Zenodo 16909126, CC BY 4.0, 13.6 GB of SWC files in CCFv3). Sorensen 2026, MouseLight and the Gao prefrontal set fail on projection-defined or wild-type labels.
+- **My recount** (job 48185037, catalog only; `class` and `type_array` dropped unread): within-animal pools of ≥ 5 cells (line × CCF area × layer, `Axon_and_dendrite` cells) in Cux2 17, PlexinD1 23, Tlx3 12 and Rorb 5 animals. That is **57 core-IT animals** (35 with pools ≥ 10), against 20 needed. Wfs1 adds 35 as a sensitivity.
+- **Identity:** IT-line brains have unique sample IDs. The shared sample IDs are wild-type prefrontal lab numbers.
+- **Open before adoption:** dendrite completeness, the CSSP vector's Cre-dependence (one search was blocked by a safety filter and not retried), CCF-only coordinates, layers assigned by registration (592 cells register to L1), a ledger shared with EP10/EP11, and novelty against the dataset's own paper.
+- **Next:** the scientist approves or rejects the [proposal](../DATASETS.md#proposed-primary-source-cebsit-whole-cortex-projectome--unadopted). Nothing has been downloaded or adopted.
+
+## 2026-10-16 17:25 PDT — new-dataset route chosen; attempt004 BIL catalog survey (logged after the run)
+
+- **Decision:** the scientist chose "find a new dataset" for EP09, to come back as a design proposal. No SEU-A1876 outcome is opened.
+- **attempt004:** catalog-only survey through the BIL metadata API; no data files. Job 48169442 failed (the API answers 404 for an empty result); fixed; job 48169548 completed on the dev partition. Output: [bil_it_line_survey.json](runs/metadata_feasibility/attempt004/bil_it_line_survey.json).
+- **Catalog counts (animals with any BIL dataset tagged "cell morphology"):** Cux2 22 (10 not in SEU-A1876), Plxnd1 73 (64 new), Tlx3 5 (3 new), Rorb 3, Nr5a1 11, Scnn1a 10.
+- **Caveat:** most new-animal entries look like whole-brain image sets (dense Ai14 labelling, or fMOST stacks not yet reconstructed), not reconstructions. Only 1 new Cux2 and 4 new Plxnd1 animals have per-cell SWC entries.
+- **Literature survey:** the delegated survey stopped early on an API rate limit; none of its output is used.
+- **Next:** separate reconstructions from images among the new animals; finish the literature survey; draft the proposal.
+
+## 2026-10-16 15:30 PDT — RAW→CCF transform search: not released; skipped as instructed
+
+- **Instruction:** the scientist said to search hard for the transform data and skip if it does not exist.
+- **Searched:** Zenodo 13944322 and Zenodo-wide; the Liu 2024 Google Drive mirror (7 folders); both papers' data statements; the BIL catalog via its metadata API (all datasets for the 12 IT brains); the mBrainAligner repository.
+- **Result:** no RPM/FFD/landmark transform files for any IT brain. The only public example is the mBrainAligner demo for brain 18458 (non-IT).
+- **Gap:** BIL storage is offline for a data-centre move into the week of Oct 18, so folder contents were not listed.
+- **Orientation, resolved:** BIL image axes for 15 brains agree with the soma affine fit in all 11 overlaps. Raw z = AP; x/y order is per brain; 18453 is reflected. [Register, item 6](runs/metadata_feasibility/attempt003/README.md).
+- **Effect:** none on the census or the feasibility verdict. Light API calls only; no job.
+
+## 2026-10-16 14:35 PDT — attempt003 complete: at most 3 donor-supported animals
+
+- Job 48155880 (2 CPUs, 1:02, ≈2.1 CPU-h; released). [Register](runs/metadata_feasibility/attempt003/README.md) and [figure](figures/ep09_metadata_feasibility_attempt003.png).
+- **Lineage, resolved:** 1,736 Peng 2021 cells (1,727 exact names + 9 renamed 210254→15257) and 140 new cells from 19 brains.
+- **`isManuallyChecked`, resolved:** equals that split exactly; it marks lineage, not QC.
+- **Layers:** 74 blanks recovered from Peng 2021 curated layers, if the blank is an omission (post hoc D25 agreement 0.38). The 59 new Cux2 cortical cells in 18864 stay unknown.
+- **IT:** line-based provenance, resolved; no finer non-axon class exists. **RAW→CCF:** exact transform not released; affine residual median 132 µm.
+- **Census (animals with a ≥5-cell pool):** S0 2 (= Oct 6), P 3 (85 cells, 12 pools), S1 2, S2 3, S-IT 3. All below 9 and 20: the design is infeasible on SEU-A1876, a data limitation.
+- **Next:** scientist scope decision in the daily batch. Recommended: headline primary unavailable; close EP09 or authorize a new labelled dataset.
+
+## 2026-10-16 13:55 PDT — attempt003 Stage A: D25 calibration fails the fill condition
+
+- Allocation 48155880 on sh04-04n22: [schemas.json](runs/metadata_feasibility/attempt003/schemas.json) and [stageA_layer_calibration.json](runs/metadata_feasibility/attempt003/stageA_layer_calibration.json). Column K not decoded.
+- 1,876 cells: 511 recorded layers, 1,365 blank. Axis check: region agreement 0.649 (≥ 0.5, so no permutation search).
+- Agreement with recorded layers (22 animals): 0.575 (95% CI 0.479–0.638), κ 0.406 (0.182–0.487). Pre-set condition (≥ 0.80, κ ≥ 0.60) **fails**. IT-driver cells: 0.568, κ 0.341.
+- Main confusions: recorded L2/3 → L1 23/117; L5 → L6 57/260; L6 → L5 30/81.
+- **Consequence:** no D25 fill in the primary census; S1 and S2 stay unvalidated sensitivities.
+- **Next:** post hoc diagnostic: does D25 reproduce Peng 2021 registered regions? This separates an implementation defect from curation. The fill rule is unchanged.
+
+## 2026-10-16 13:45 PDT — metadata_feasibility attempt003 selected: source-fact recovery
+
+- **Authority:** the scientist's EP09 request and the 2026-10-16 `AGENTS.md` clause. No provider contact.
+- Rules for layer, IT, lineage, QC and census fixed first in [ASSUMPTIONS.md](runs/metadata_feasibility/attempt003/ASSUMPTIONS.md), before any new cell-row decoding.
+- **Sources:** Liu 2024 (PMC11599929), Peng 2021 (PMC8494643), provider code; Peng Supplementary Tables 1–2 downloaded to EP09 scratch.
+- **Next:** bounded Slurm allocation for headers, D25 calibration, lineage and census. Projection class, Peng `Subclass_or_type`, matrices and payloads stay closed.
+
 ## 2026-10-06 Pacific — metadata_feasibility: provider alias confirmed
 
 The selected bounded metadata check exited 0 in coordinator-owned job

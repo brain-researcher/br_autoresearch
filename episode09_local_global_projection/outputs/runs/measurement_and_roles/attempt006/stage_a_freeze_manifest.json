@@ -1,0 +1,154 @@
+{
+ "stage": "EP09 stage A (blind materialization), frozen before any axon geometry access",
+ "created_utc": "2026-10-18T05:24:04.233713+00:00",
+ "contract_rule": "measurement contract v1.2 freeze_policy.before_any_new_axon_geometry_access",
+ "atlas_binding": {
+  "annotation_25_ccf_2017_sha256": "c620cbcc562183e4dcd40250d440130501781f74b41de35b1c1bdabace290c42",
+  "structure_graph_1_sha256": "b5f0d024d1df09ee18aef15093f55240f4a70b3924ee9689add612dadff80386"
+ },
+ "frozen_values": {
+  "n_coverage": 6,
+  "R_cap_um": 600,
+  "radial_shell_edges_um": [
+   50,
+   100,
+   150
+  ],
+  "branch_order_boundaries": {
+   "b1": 3,
+   "b2": 5
+  },
+  "vocabulary": {
+   "anatomical_targets": 355,
+   "sided_targets": 710,
+   "V3": 689,
+   "V6": 666
+  }
+ },
+ "superseded_not_used": {
+  "outputs/runs/measurement_and_roles/attempt006/laplace/": "v1 field: medial and orbital pial surfaces were left no-flux (reviewer correction in v2)"
+ },
+ "files": {
+  "contract": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt005/measurement_contract_v1_2_adopted.yaml",
+    "sha256": "b01b593e24cd88988cb8fac21bb8a4b7a59a237dc5fdf6a180ae01929a4369b3",
+    "bytes": 53727
+   }
+  ],
+  "role_and_cell_manifests": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt002/ep09_role_manifest.csv",
+    "sha256": "ef3b65876b69bfa02bb8f8ad50af78acafa234198c2d7bc7dd286f48287a0f21",
+    "bytes": 5033
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt002/ep09_cell_manifest.csv",
+    "sha256": "955502e4729f524ceba5f105ee686b51d9f5b7b2aa51a91e4025d39d58a85d85",
+    "bytes": 114683
+   }
+  ],
+  "target_vocabulary_family_map_and_A_pre_counts": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt005/precheck_v1_2/precheck_summary.json",
+    "sha256": "7692c247e9b21858e29c18002ce8060707aec38ecba2c83e4fc2fb20e140b1d8",
+    "bytes": 477901
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt005/precheck_v1_2/precheck_counts.csv",
+    "sha256": "55b09c2e4e90453dfbdc86763d8b8a114584f662e09a73fb2109ff94774e9163",
+    "bytes": 123752
+   }
+  ],
+  "source_label_relabel_qc_and_recipient_support": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/recipient_support/recipient_support.json",
+    "sha256": "8c99a1ce37bb1eb931fe71b756b99ae60024929946b9106b250b4971bd572450",
+    "bytes": 12898
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/recipient_support/relabeled_cells_qc.csv",
+    "sha256": "07a4c63b898191fa6d0a46e2ffd16a7d5110712d2b3f8ff7d438703c2daf4fdb",
+    "bytes": 1509
+   }
+  ],
+  "n_coverage": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/ncoverage/ncoverage_report.json",
+    "sha256": "4cd4fea485177ddb0ca573dd1ca69070b949100a8505daac0bece7fa9686d684",
+    "bytes": 90025
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/ncoverage/ncoverage_scenarios.csv",
+    "sha256": "dba9868f8e3010f63dbd00196e48b09fad51c900edab9f785e7f6d008e2699c8",
+    "bytes": 292811
+   }
+  ],
+  "dendrite_boundaries": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/dendrite_boundaries/dendrite_boundaries.json",
+    "sha256": "375048f289fb26f6c9850d0617d4cc5e41425ca25b8e7d42ddff87611cf99359",
+    "bytes": 17590
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/dendrite_boundaries/development_dendrite_qc.csv",
+    "sha256": "498159c6bb08593b14dde1130ab4fa5c733e7500ff04b09e3c64d44456231dc0",
+    "bytes": 79011
+   }
+  ],
+  "cortical_axis_field_v2": [
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/laplace_v2/cortical_laplace_field.npz",
+    "sha256": "66d9d6bc92d4c62af069d5bc12eed77f590b6b6dad59378449d9af24983dbd03",
+    "bytes": 39386177
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/laplace_v2/cortical_laplace_report.json",
+    "sha256": "9500b012efaeb6ecc7be57a3a51997a1cd1c0de8d4e75358f0473e91c4f52448",
+    "bytes": 106764
+   },
+   {
+    "path": "outputs/runs/measurement_and_roles/attempt006/laplace_v2/soma_cortical_frames.csv",
+    "sha256": "bc461a62cfd4fdcfecb960f314bffabb278344d5723df9de5914d1def342710a",
+    "bytes": 702008
+   }
+  ],
+  "implementation": [
+   {
+    "path": "outputs/tools/ep09_feasibility_precheck_v1_2.py",
+    "sha256": "40be7dd96ef59693671b465d304edc8806815e13237c0243c3618a3d4e432f97",
+    "bytes": 46435
+   },
+   {
+    "path": "outputs/tools/ep09_recipient_support.py",
+    "sha256": "39816173f1dfb20ea2bc7b80857569f19b068216373a0e63011b594bc945d9f2",
+    "bytes": 7028
+   },
+   {
+    "path": "outputs/tools/ep09_ncoverage_simulation.py",
+    "sha256": "f94353732f151035745cb227a08c23a887facfb8bfd03fef516e45e006038d94",
+    "bytes": 35143
+   },
+   {
+    "path": "outputs/tools/ep09_dendrite_boundaries.py",
+    "sha256": "58c661e1275e0f321bc2475a418406605b67f2062c135feaecebc84903e4fa1f",
+    "bytes": 42790
+   },
+   {
+    "path": "outputs/tools/ep09_cortical_laplace_v2.py",
+    "sha256": "7799a09b4e6e1d688c852c65142e10ff0672d74ff972d60c911308a6de9d5991",
+    "bytes": 51590
+   },
+   {
+    "path": "outputs/tools/derive_ccf_soma_layers.py",
+    "sha256": "32f7bc5629f6b6033bc220abeff7daccc42db970fd67f3ca950c06db8f921a83",
+    "bytes": 9074
+   }
+  ]
+ },
+ "not_yet_frozen": [
+  "companion model/donor contract (draft v0.1 awaits scientist decisions D01-D12)",
+  "donor caliper width"
+ ],
+ "axon_geometry_accessed": false
+}

@@ -1,0 +1,710 @@
+{
+ "provenance": {
+  "SLURM_JOB_ID": "48314384",
+  "hostname": "sh02-01n37.int",
+  "completed_utc": "2026-10-18T05:21:56.954239+00:00",
+  "soma_frames": "outputs/runs/measurement_and_roles/attempt006/laplace_v2/soma_cortical_frames.csv",
+  "relabeled_cells": "outputs/runs/measurement_and_roles/attempt006/recipient_support/relabeled_cells_qc.csv"
+ },
+ "rule": {
+  "depth_caliper": 0.1,
+  "min_donors": 4,
+  "width_quantile": 0.9,
+  "width_cap_um": 500,
+  "same_hemisphere": true
+ },
+ "width_unrounded_um": 987.028561339539,
+ "width_um": 500,
+ "supported_cells": {
+  "development": 610,
+  "audit": 241
+ },
+ "animals_with_zero_supported": [
+  "221427",
+  "221529",
+  "221713",
+  "221730",
+  "221731",
+  "221733",
+  "230010",
+  "230072",
+  "230105"
+ ],
+ "min_supported_per_animal": 0,
+ "per_animal": [
+  {
+   "brain": "221043",
+   "ep09_role": "development",
+   "eligible": 35,
+   "pool_ge5": 31,
+   "caliper_supported": 23
+  },
+  {
+   "brain": "221057",
+   "ep09_role": "audit",
+   "eligible": 96,
+   "pool_ge5": 95,
+   "caliper_supported": 64
+  },
+  {
+   "brain": "221242",
+   "ep09_role": "development",
+   "eligible": 32,
+   "pool_ge5": 16,
+   "caliper_supported": 15
+  },
+  {
+   "brain": "221243",
+   "ep09_role": "audit",
+   "eligible": 60,
+   "pool_ge5": 53,
+   "caliper_supported": 28
+  },
+  {
+   "brain": "221364",
+   "ep09_role": "development",
+   "eligible": 88,
+   "pool_ge5": 86,
+   "caliper_supported": 80
+  },
+  {
+   "brain": "221427",
+   "ep09_role": "audit",
+   "eligible": 14,
+   "pool_ge5": 7,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221449",
+   "ep09_role": "audit",
+   "eligible": 18,
+   "pool_ge5": 15,
+   "caliper_supported": 11
+  },
+  {
+   "brain": "221450",
+   "ep09_role": "audit",
+   "eligible": 18,
+   "pool_ge5": 11,
+   "caliper_supported": 5
+  },
+  {
+   "brain": "221509",
+   "ep09_role": "audit",
+   "eligible": 24,
+   "pool_ge5": 17,
+   "caliper_supported": 7
+  },
+  {
+   "brain": "221510",
+   "ep09_role": "development",
+   "eligible": 23,
+   "pool_ge5": 16,
+   "caliper_supported": 8
+  },
+  {
+   "brain": "221518",
+   "ep09_role": "development",
+   "eligible": 54,
+   "pool_ge5": 52,
+   "caliper_supported": 35
+  },
+  {
+   "brain": "221519",
+   "ep09_role": "development",
+   "eligible": 50,
+   "pool_ge5": 36,
+   "caliper_supported": 24
+  },
+  {
+   "brain": "221520",
+   "ep09_role": "development",
+   "eligible": 62,
+   "pool_ge5": 60,
+   "caliper_supported": 39
+  },
+  {
+   "brain": "221521",
+   "ep09_role": "development",
+   "eligible": 36,
+   "pool_ge5": 28,
+   "caliper_supported": 16
+  },
+  {
+   "brain": "221529",
+   "ep09_role": "development",
+   "eligible": 22,
+   "pool_ge5": 6,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221530",
+   "ep09_role": "development",
+   "eligible": 46,
+   "pool_ge5": 37,
+   "caliper_supported": 28
+  },
+  {
+   "brain": "221585",
+   "ep09_role": "development",
+   "eligible": 41,
+   "pool_ge5": 18,
+   "caliper_supported": 6
+  },
+  {
+   "brain": "221586",
+   "ep09_role": "audit",
+   "eligible": 42,
+   "pool_ge5": 27,
+   "caliper_supported": 20
+  },
+  {
+   "brain": "221588",
+   "ep09_role": "development",
+   "eligible": 56,
+   "pool_ge5": 56,
+   "caliper_supported": 55
+  },
+  {
+   "brain": "221622",
+   "ep09_role": "audit",
+   "eligible": 51,
+   "pool_ge5": 41,
+   "caliper_supported": 39
+  },
+  {
+   "brain": "221645",
+   "ep09_role": "development",
+   "eligible": 82,
+   "pool_ge5": 76,
+   "caliper_supported": 51
+  },
+  {
+   "brain": "221701",
+   "ep09_role": "development",
+   "eligible": 18,
+   "pool_ge5": 12,
+   "caliper_supported": 11
+  },
+  {
+   "brain": "221713",
+   "ep09_role": "development",
+   "eligible": 15,
+   "pool_ge5": 8,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221727",
+   "ep09_role": "audit",
+   "eligible": 27,
+   "pool_ge5": 11,
+   "caliper_supported": 5
+  },
+  {
+   "brain": "221729",
+   "ep09_role": "audit",
+   "eligible": 21,
+   "pool_ge5": 13,
+   "caliper_supported": 6
+  },
+  {
+   "brain": "221730",
+   "ep09_role": "audit",
+   "eligible": 49,
+   "pool_ge5": 21,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221731",
+   "ep09_role": "development",
+   "eligible": 42,
+   "pool_ge5": 22,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221732",
+   "ep09_role": "development",
+   "eligible": 43,
+   "pool_ge5": 13,
+   "caliper_supported": 10
+  },
+  {
+   "brain": "221733",
+   "ep09_role": "development",
+   "eligible": 32,
+   "pool_ge5": 13,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "221756",
+   "ep09_role": "audit",
+   "eligible": 28,
+   "pool_ge5": 13,
+   "caliper_supported": 13
+  },
+  {
+   "brain": "221757",
+   "ep09_role": "development",
+   "eligible": 38,
+   "pool_ge5": 30,
+   "caliper_supported": 30
+  },
+  {
+   "brain": "230010",
+   "ep09_role": "audit",
+   "eligible": 32,
+   "pool_ge5": 6,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230066",
+   "ep09_role": "audit",
+   "eligible": 49,
+   "pool_ge5": 33,
+   "caliper_supported": 10
+  },
+  {
+   "brain": "230072",
+   "ep09_role": "development",
+   "eligible": 17,
+   "pool_ge5": 13,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230105",
+   "ep09_role": "development",
+   "eligible": 21,
+   "pool_ge5": 8,
+   "caliper_supported": 0
+  },
+  {
+   "brain": "230106",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 18,
+   "caliper_supported": 16
+  },
+  {
+   "brain": "230107",
+   "ep09_role": "development",
+   "eligible": 23,
+   "pool_ge5": 16,
+   "caliper_supported": 8
+  },
+  {
+   "brain": "230108",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 13,
+   "caliper_supported": 7
+  },
+  {
+   "brain": "230109",
+   "ep09_role": "development",
+   "eligible": 24,
+   "pool_ge5": 18,
+   "caliper_supported": 18
+  },
+  {
+   "brain": "231567",
+   "ep09_role": "audit",
+   "eligible": 39,
+   "pool_ge5": 26,
+   "caliper_supported": 18
+  },
+  {
+   "brain": "231568",
+   "ep09_role": "audit",
+   "eligible": 21,
+   "pool_ge5": 17,
+   "caliper_supported": 15
+  },
+  {
+   "brain": "233668",
+   "ep09_role": "development",
+   "eligible": 80,
+   "pool_ge5": 75,
+   "caliper_supported": 68
+  },
+  {
+   "brain": "233795",
+   "ep09_role": "development",
+   "eligible": 86,
+   "pool_ge5": 76,
+   "caliper_supported": 62
+  }
+ ],
+ "V6_sided_targets_all_cells": 666,
+ "V6_targets_meeting_floor_4_supported_A_pre_in_every_animal": 0,
+ "V6_telencephalic_targets": 170,
+ "V6_telencephalic_targets_meeting_floor": 0,
+ "variants": {
+  "V0_exact_pool_only": {
+   "calipers": {
+    "same_hemisphere": false,
+    "depth": null,
+    "distance_um": null
+   },
+   "supported_cells": {
+    "development": 853,
+    "audit": 406
+   },
+   "development_animals_with_ge4_supported": 27,
+   "audit_animals_with_ge4_supported": 16,
+   "animals_with_zero_supported": 0,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 127,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 31,
+    "221057": 95,
+    "221242": 16,
+    "221243": 53,
+    "221364": 86,
+    "221427": 7,
+    "221449": 15,
+    "221450": 11,
+    "221509": 17,
+    "221510": 16,
+    "221518": 52,
+    "221519": 36,
+    "221520": 60,
+    "221521": 28,
+    "221529": 6,
+    "221530": 37,
+    "221585": 18,
+    "221586": 27,
+    "221588": 56,
+    "221622": 41,
+    "221645": 76,
+    "221701": 12,
+    "221713": 8,
+    "221727": 11,
+    "221729": 13,
+    "221730": 21,
+    "221731": 22,
+    "221732": 13,
+    "221733": 13,
+    "221756": 13,
+    "221757": 30,
+    "230010": 6,
+    "230066": 33,
+    "230072": 13,
+    "230105": 8,
+    "230106": 18,
+    "230107": 16,
+    "230108": 13,
+    "230109": 18,
+    "231567": 26,
+    "231568": 17,
+    "233668": 75,
+    "233795": 76
+   }
+  },
+  "V1_same_hemisphere": {
+   "calipers": {
+    "same_hemisphere": true,
+    "depth": null,
+    "distance_um": null
+   },
+   "supported_cells": {
+    "development": 834,
+    "audit": 403
+   },
+   "development_animals_with_ge4_supported": 27,
+   "audit_animals_with_ge4_supported": 16,
+   "animals_with_zero_supported": 0,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 125,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 31,
+    "221057": 95,
+    "221242": 16,
+    "221243": 53,
+    "221364": 86,
+    "221427": 7,
+    "221449": 15,
+    "221450": 11,
+    "221509": 14,
+    "221510": 16,
+    "221518": 52,
+    "221519": 36,
+    "221520": 60,
+    "221521": 28,
+    "221529": 6,
+    "221530": 37,
+    "221585": 18,
+    "221586": 27,
+    "221588": 56,
+    "221622": 41,
+    "221645": 76,
+    "221701": 12,
+    "221713": 8,
+    "221727": 11,
+    "221729": 13,
+    "221730": 21,
+    "221731": 13,
+    "221732": 13,
+    "221733": 5,
+    "221756": 13,
+    "221757": 30,
+    "230010": 6,
+    "230066": 33,
+    "230072": 11,
+    "230105": 8,
+    "230106": 18,
+    "230107": 16,
+    "230108": 13,
+    "230109": 18,
+    "231567": 26,
+    "231568": 17,
+    "233668": 75,
+    "233795": 76
+   }
+  },
+  "V2_hemi_depth010": {
+   "calipers": {
+    "same_hemisphere": true,
+    "depth": 0.1,
+    "distance_um": null
+   },
+   "supported_cells": {
+    "development": 786,
+    "audit": 366
+   },
+   "development_animals_with_ge4_supported": 26,
+   "audit_animals_with_ge4_supported": 16,
+   "animals_with_zero_supported": 1,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 120,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 31,
+    "221057": 93,
+    "221242": 16,
+    "221243": 47,
+    "221364": 85,
+    "221427": 7,
+    "221449": 13,
+    "221450": 5,
+    "221509": 13,
+    "221510": 16,
+    "221518": 50,
+    "221519": 35,
+    "221520": 55,
+    "221521": 26,
+    "221529": 6,
+    "221530": 32,
+    "221585": 16,
+    "221586": 27,
+    "221588": 56,
+    "221622": 41,
+    "221645": 62,
+    "221701": 11,
+    "221713": 7,
+    "221727": 11,
+    "221729": 13,
+    "221730": 15,
+    "221731": 13,
+    "221732": 13,
+    "221733": 0,
+    "221756": 13,
+    "221757": 30,
+    "230010": 6,
+    "230066": 25,
+    "230072": 5,
+    "230105": 8,
+    "230106": 18,
+    "230107": 16,
+    "230108": 12,
+    "230109": 18,
+    "231567": 20,
+    "231568": 17,
+    "233668": 74,
+    "233795": 75
+   }
+  },
+  "V3_hemi_dist_uncapped_q90": {
+   "calipers": {
+    "same_hemisphere": true,
+    "depth": null,
+    "distance_um": 1000
+   },
+   "supported_cells": {
+    "development": 785,
+    "audit": 371
+   },
+   "development_animals_with_ge4_supported": 25,
+   "audit_animals_with_ge4_supported": 16,
+   "animals_with_zero_supported": 2,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 123,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 31,
+    "221057": 89,
+    "221242": 16,
+    "221243": 53,
+    "221364": 81,
+    "221427": 5,
+    "221449": 14,
+    "221450": 5,
+    "221509": 14,
+    "221510": 16,
+    "221518": 44,
+    "221519": 31,
+    "221520": 58,
+    "221521": 27,
+    "221529": 6,
+    "221530": 36,
+    "221585": 18,
+    "221586": 27,
+    "221588": 56,
+    "221622": 41,
+    "221645": 76,
+    "221701": 12,
+    "221713": 5,
+    "221727": 11,
+    "221729": 13,
+    "221730": 21,
+    "221731": 0,
+    "221732": 12,
+    "221733": 0,
+    "221756": 13,
+    "221757": 30,
+    "230010": 6,
+    "230066": 18,
+    "230072": 11,
+    "230105": 8,
+    "230106": 17,
+    "230107": 16,
+    "230108": 12,
+    "230109": 18,
+    "231567": 25,
+    "231568": 16,
+    "233668": 73,
+    "233795": 75
+   }
+  },
+  "V4_hemi_depth010_dist_uncapped_q90": {
+   "calipers": {
+    "same_hemisphere": true,
+    "depth": 0.1,
+    "distance_um": 1000
+   },
+   "supported_cells": {
+    "development": 733,
+    "audit": 345
+   },
+   "development_animals_with_ge4_supported": 24,
+   "audit_animals_with_ge4_supported": 16,
+   "animals_with_zero_supported": 3,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 119,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 31,
+    "221057": 87,
+    "221242": 16,
+    "221243": 47,
+    "221364": 80,
+    "221427": 5,
+    "221449": 12,
+    "221450": 5,
+    "221509": 13,
+    "221510": 16,
+    "221518": 39,
+    "221519": 30,
+    "221520": 52,
+    "221521": 24,
+    "221529": 6,
+    "221530": 31,
+    "221585": 16,
+    "221586": 27,
+    "221588": 56,
+    "221622": 41,
+    "221645": 62,
+    "221701": 11,
+    "221713": 0,
+    "221727": 11,
+    "221729": 13,
+    "221730": 14,
+    "221731": 0,
+    "221732": 12,
+    "221733": 0,
+    "221756": 13,
+    "221757": 30,
+    "230010": 6,
+    "230066": 16,
+    "230072": 5,
+    "230105": 8,
+    "230106": 17,
+    "230107": 16,
+    "230108": 12,
+    "230109": 18,
+    "231567": 19,
+    "231568": 16,
+    "233668": 73,
+    "233795": 72
+   }
+  },
+  "V5_draft_hemi_depth010_dist500": {
+   "calipers": {
+    "same_hemisphere": true,
+    "depth": 0.1,
+    "distance_um": 500
+   },
+   "supported_cells": {
+    "development": 610,
+    "audit": 241
+   },
+   "development_animals_with_ge4_supported": 21,
+   "audit_animals_with_ge4_supported": 13,
+   "animals_with_zero_supported": 9,
+   "V6_telencephalic_targets_with_ge4_supported_A_pre_in_every_C_eligible_animal": 121,
+   "V6_telencephalic_targets": 170,
+   "per_animal_supported": {
+    "221043": 23,
+    "221057": 64,
+    "221242": 15,
+    "221243": 28,
+    "221364": 80,
+    "221427": 0,
+    "221449": 11,
+    "221450": 5,
+    "221509": 7,
+    "221510": 8,
+    "221518": 35,
+    "221519": 24,
+    "221520": 39,
+    "221521": 16,
+    "221529": 0,
+    "221530": 28,
+    "221585": 6,
+    "221586": 20,
+    "221588": 55,
+    "221622": 39,
+    "221645": 51,
+    "221701": 11,
+    "221713": 0,
+    "221727": 5,
+    "221729": 6,
+    "221730": 0,
+    "221731": 0,
+    "221732": 10,
+    "221733": 0,
+    "221756": 13,
+    "221757": 30,
+    "230010": 0,
+    "230066": 10,
+    "230072": 0,
+    "230105": 0,
+    "230106": 16,
+    "230107": 8,
+    "230108": 7,
+    "230109": 18,
+    "231567": 18,
+    "231568": 15,
+    "233668": 68,
+    "233795": 62
+   }
+  }
+ },
+ "axon_or_dendrite_geometry_read": false
+}

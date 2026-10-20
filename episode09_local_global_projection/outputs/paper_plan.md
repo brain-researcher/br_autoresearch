@@ -1,5 +1,65 @@
 # EP09 paper plan
 
+## October 16 proposal: move the study to the CEBSIT whole-cortex projectome (unadopted)
+
+The question can be kept and asked on independent data. CEBSIT (Gao et al.,
+*Neuron* 2025) has genetically labelled IT cells with dendrites and axons in
+CCFv3. 57 animals have within-animal donor pools of at least 5 cells, and
+none of its brains comes from Peng 2021.
+
+This changes the paper's framing. It would test Peng 2021's observation that
+"selection appears random" on a dataset outside that lineage, rather than
+reanalysing the same neurons. Figure 2 would show the CEBSIT cohort's line,
+layer and pool support.
+
+Open points before adoption:
+
+- dendrite completeness;
+- whether the labelling vector depends on Cre;
+- a CCF-only dendrite frame;
+- layers assigned by registration;
+- a ledger shared with EP10 and EP11;
+- a novelty check against the dataset's own paper.
+
+Details are in [DATASETS](../DATASETS.md#proposed-primary-source-cebsit-whole-cortex-projectome--unadopted).
+
+## October 16 source-fact recovery and final metadata census
+
+The open source facts have been settled from the literature, supplements, code
+and permitted metadata, without provider contact. See the
+[attempt003 register](runs/metadata_feasibility/attempt003/README.md) and its
+[figure](figures/ep09_metadata_feasibility_attempt003.png).
+
+**What this changes for the paper's Figure 2 ("Is the primary cohort actually
+identifiable?")**
+
+- **IT provenance:** IT membership comes from the transgenic line. No finer
+  non-axon class exists.
+- **Lineage:** release lineage is known per cell (1,736 Peng 2021 / 140 new).
+  `isManuallyChecked` is that lineage flag.
+- **Layers:** curated layers come from Peng 2021, which also covers 74 blanks.
+  The 59 new cortical Cux2 cells have no reliable layer.
+- **Support:** only 3 animals (374712, 382148, 380470) have any within-animal
+  donor pool of ≥ 5 cells. All matched-donor pools together hold 85 cells.
+
+This settles the October 6 open point that authentic corrections could change
+support. They changed it from 2 animals to 3. No layer or IT rule tested
+exceeds 3, and only 5–6 animals have even 5 eligible cells.
+
+**Implications**
+
+- The headline primary is **unavailable on SEU-A1876** (decision table row
+  "Donor support or diagnostics fail before audit").
+- The nine-animal exploratory route remains unsupported.
+- Figure 2 would now report this support failure as the result.
+- Any continuation needs a scientist scope decision:
+  - close EP09; or
+  - authorize an independent dataset with ≥ 20 genetically labelled IT
+    animals.
+
+Cross-animal donors or pooled strata would change the estimand. They would
+still leave at most 12 animals, only 3 of them large.
+
 ## October 6 public-source lead — brain 236174 and provider key 16124
 
 The original [TeraVR Methods, Data preparation](https://www.nature.com/articles/s41467-019-11443-y)

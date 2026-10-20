@@ -503,3 +503,71 @@ launch_blockers:
   - delta_cell_delta_morph_matrix_margins_and_tail_critical_values_not_frozen
   - simulation_scenarios_and_disjoint_seed_sets_not_frozen
   - complete_workload_not_shown_to_fit_resource_ceiling
+
+amendments:
+  - id: ep09_amend_2026_10_16_cebsit_source
+    date: '2026-10-16'
+    authority: scientist approval of the attempt004 CEBSIT proposal (DATASETS.md, proposed primary source section)
+    status: approved_qualification_pending
+    effective_for_measurement_after:
+      - archive_md5_verified
+      - dendrite_completeness_counted_from_dendrite_nodes_only
+      - cre_dependent_line_specific_labelling_confirmed
+      - shared_ep09_ep10_ep11_exposure_ledger_built
+    changes:
+      primary_source:
+        from: SEU_A1876_Zenodo_13944322
+        to: CEBSIT_whole_cortex_Gao_2025_Neuron_Zenodo_16909126
+      IT_definition:
+        allowed_lineage: genetic_metadata_independent_of_axonal_targets
+        core_lines: {Cux2-Cre: [L2_3, L4], PlexinD1-2A-CreER: [L2_3, L5], Tlx3-Cre_PL56: [L5], Rorb-IRES2-Cre-D: [L4, L5]}
+        sensitivity_lines: {Wfs1-Tg2-CreERT2: [L2_3], Scnn1a-Tg3-Cre: [L4]}
+        catalog_class_and_type_array_fields: prohibited_because_projection_derived
+      dendrite_representation:
+        primary: CCFv3_registered_dendrite_with_soma_centred_rotation_invariant_features
+        native_vs_ccf_sensitivity: unavailable_native_swc_not_released
+      cortical_layer:
+        source: registered_soma_CCFv3_acronym
+        safeguards: [normalized_depth_caliper, interior_only_sensitivity]
+      biological_group: fMOST_brain_one_per_mouse_unique_sample_id
+      lineage: independent_of_Peng_2021_and_SEU_A1876
+    unchanged: [scientific_question, primary_estimand, matched_donor_rules, outcome_states, inference, margins_to_freeze, minimum_12_development_8_audit_groups, audit_once_rule]
+  - id: ep09_amend_2026_10_17_it_line_set
+    date: '2026-10-17'
+    authority: scientist decision after attempt005 qualification (line-set question)
+    status: approved
+    supersedes_in: ep09_amend_2026_10_16_cebsit_source.changes.IT_definition
+    changes:
+      IT_definition:
+        core_lines: {Cux2-Cre: [L2_3, L4], Wfs1-Tg2-CreERT2: [L2_3]}
+        excluded_lines: {PlexinD1-2A-CreER: failed_preset_line_specificity_rule, Tlx3-Cre_PL56: failed_preset_line_specificity_rule, Rorb-IRES2-Cre-D: failed_preset_line_specificity_rule}
+        sensitivity_lines: {Scnn1a-Tg3-Cre: [L4]}
+        literature: [Zariwala_2011_Front_Syst_Neurosci_4_162, Shrestha_2015_eLife_4_e08752]
+      primary_population_scope:
+        from: cortical_L2_3_L4_L5_IT
+        to: cortical_L2_3_L4_IT
+        claim_limit: no_L5_IT_claim
+      support_at_amendment: {animals_with_within_animal_pool_ge5: 52, animals_with_pool_ge10: 38, cells_in_pools: 1756, source: outputs/runs/metadata_feasibility/attempt005/pool_recount.json}
+    preconditions_before_roles: [shared_ep09_ep10_ep11_exposure_ledger_built, swc_type_codes_0_10_11_12_resolved]
+  - id: ep09_amend_2026_10_17_measurement_contract
+    date: '2026-10-17'
+    authority: scientist adopted measurement contract v1.1 with two reviewer tweaks
+    status: adopted
+    contract_ref: outputs/runs/measurement_and_roles/attempt003/measurement_contract_v1_1_adopted.yaml
+    contract_sha256: 9f5bb299881ed9ce45a83344142e9d3346d24de91ddf6cd782299a00c3b8881e
+    fills_policy_nulls: [outcome.primary_arbor_rule, outcome.primary_distal_rule, targets.outcome_blind_coverage.minimum_observable_cells_per_target_per_group]
+    n_coverage: derived_in_stage_A_by_contract_rule
+    first_stage_A_output: feasibility_precheck_soma_atlas_only_reported_to_scientist
+  - id: ep09_amend_2026_10_17_contract_v1_2
+    date: '2026-10-17'
+    authority: scientist amendment after the v1.1 stage-A gate failure (job 48278748)
+    status: adopted
+    supersedes_contract: outputs/runs/measurement_and_roles/attempt003/measurement_contract_v1_1_adopted.yaml
+    contract_ref: outputs/runs/measurement_and_roles/attempt005/measurement_contract_v1_2_adopted.yaml
+    contract_sha256: b01b593e24cd88988cb8fac21bb8a4b7a59a237dc5fdf6a180ae01929a4369b3
+    changes:
+      - parents with direct voxels hand the target role to their nonempty children; parent direct voxels are unassigned
+      - families are the 12 Allen major divisions (Isocortex, OLF, HPF, CTXsp, STR, PAL, TH, HY, MB, P, MY, CB)
+      - family-gate failure blocks only the secondary family analyses
+    readings_reported_to_scientist: contract adoption.orchestrator_readings_reported_to_scientist (R1-R5)
+    readings_confirmed_by_scientist: '2026-10-17'
