@@ -134,10 +134,22 @@ def _bindings(stage, allocation):
         selected["draw"] = draw
     if stage.phase == "finalize":
         final = value["finalize"]
-        _require(isinstance(final, dict) and set(final) == {"job_id", "afterok_job_id"}
-            and _job_id(final["job_id"]) and final["afterok_job_id"] == draw["array_job_id"]
-            and final["job_id"] not in parents + [decode["job_id"], draw["array_job_id"]],
-            "finalize_afterok_whole_array_binding_required")
+        _require(isinstance(final, dict) and _job_id(final.get("job_id")),
+            "actual_finalizer_binding_required")
+        if "afterany_job_id" in final:
+            retries = _retry_selections(stage, decode, draw)
+            arrays = [item["array_job_id"] for item in retries.values()]
+            _require(set(final) == {"job_id", "afterany_job_id", "afterok_job_ids"}
+                and final["afterany_job_id"] == draw["array_job_id"]
+                and final["afterok_job_ids"] == arrays
+                and final["job_id"] not in parents + [decode["job_id"], draw["array_job_id"]] + arrays,
+                "finalizer_requires_closed_original_and_successful_retries")
+            selected["draw_retries"] = retries
+        else:
+            _require(set(final) == {"job_id", "afterok_job_id"}
+                and final["afterok_job_id"] == draw["array_job_id"]
+                and final["job_id"] not in parents + [decode["job_id"], draw["array_job_id"]],
+                "finalize_afterok_whole_array_binding_required")
         selected["finalize"] = final
     if stage.phase == "draw":
         fields = dict(token.split("=", 1) for token in _text(stage.run_dir / "allocation.txt").split() if "=" in token)
@@ -152,6 +164,37 @@ def _bindings(stage, allocation):
     else:
         _require(all(not os.environ.get(key, "") for key in ("SLURM_ARRAY_JOB_ID", "SLURM_ARRAY_TASK_ID"))
             and allocation["job_id"] == selected[stage.phase]["job_id"], "actual_phase_job_binding_required")
+    return selected
+
+
+def _retry_selections(stage, decode, draw):
+    """Explicit finalizer-only replacement map; never choose a latest attempt."""
+    attempts = json.loads(_text(stage.root / "draw_retry_bindings.json"))["attempts"]
+    _require(isinstance(attempts, list) and attempts and len(set(attempts)) == len(attempts),
+        "explicit_distinct_draw_retry_attempts_required")
+    selected, indices, arrays = {}, set(), set()
+    for attempt in attempts:
+        _require(isinstance(attempt, str) and len(attempt) == 10
+            and attempt.startswith("attempt") and attempt[7:].isascii() and attempt[7:].isdigit(),
+            "fixed_retry_attempt_directory_required")
+        value = json.loads(_text(stage.root / "draw_retries" / attempt / "selection.json"))
+        batches = value.get("batch_indices")
+        array = value.get("array_job_id")
+        _require(value.get("authorized") is True and value.get("attempt") == attempt
+            and value.get("original_decode_job_id") == decode["job_id"]
+            and value.get("original_array_job_id") == draw["array_job_id"]
+            and _job_id(array) and array not in arrays | {decode["job_id"], draw["array_job_id"]}
+            and isinstance(batches, list) and batches
+            and all(type(i) is int and 0 <= i < 63 for i in batches)
+            and len(set(batches)) == len(batches) and not indices.intersection(batches),
+            "distinct_selected_replacements_for_original_batches_required")
+        failed = value.get("failed_original_children", {})
+        _require(set(failed) == {str(i) for i in batches}
+            and all(failed[str(i)].get("state") == "FAILED"
+                and failed[str(i)].get("exit_code") in ("124:0", "2:0") for i in batches),
+            "diagnosed_failed_original_batches_required")
+        selected[attempt] = value
+        indices.update(batches); arrays.add(array)
     return selected
 
 
@@ -177,19 +220,35 @@ def _completed(stage, binding):
             "draw_forbidden_after_finalization_claim")
         return
     jobs = set()
+    replacements = {index: (attempt, selection)
+        for attempt, selection in binding.get("draw_retries", {}).items()
+        for index in selection["batch_indices"]}
     for index in range(63):
         directory = stage.root / "draws" / f"batch_{index:03d}"
+        array = binding["draw"]["array_job_id"]
+        if index in replacements:
+            attempt, selection = replacements[index]
+            exit_code = selection["failed_original_children"][str(index)]["exit_code"].split(":")[0]
+            _require(_status(directory / "batch_status.txt", ("batch_exit", "status"))
+                == {"batch_exit": [exit_code], "status": ["closed"]},
+                "replacement_requires_preserved_failed_original")
+            directory = stage.root / "draw_retries" / attempt / f"batch_{index:03d}"
+            array = selection["array_job_id"]
         result = json.loads(_text(directory / "report.json"))
         job = result.get("allocation_identity", {}).get("job_id")
         _require(result.get("phase") == "draw" and type(result.get("batch_index")) is int
             and result["batch_index"] == index and result.get("status") == "complete_draw"
             and result.get("model_policy") == MODEL_POLICY and result.get("artifacts_published") is True
-            and result.get("readers_closed") is True and result.get("array_job_id") == binding["draw"]["array_job_id"]
+            and result.get("readers_closed") is True and result.get("array_job_id") == array
             and _job_id(job) and job not in jobs,
             "all_63_actual_successful_closed_amended_draw_children_required")
         jobs.add(job)
         _require(_status(directory / "batch_status.txt", ("phase_exit", "status"))
             == {"phase_exit": ["0"], "status": ["closed"]}, "all_63_closed_successful_draw_parents_required")
+        if index in replacements:
+            artifact = stage.root / "draw_batches" / f"draw_batch_{index:03d}.json"
+            _require(artifact.is_file() and result.get("published_paths") == [str(artifact)],
+                "replacement_report_must_name_canonical_draw_artifact")
 
 
 def _require_file_policy(stage):

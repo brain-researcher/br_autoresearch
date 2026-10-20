@@ -1,5 +1,174 @@
 # Experiment log
 
+## 2026-10-20 — finding_a_feature_decoding — validate isolated draw retries and complete-result join
+
+At19:47:30UTC, six original batches remain complete, three failed, sixteen running and38pending; no retry has been submitted. Preserve all current writers and the successful decode.
+The fresh adapter selects only000/001/062 with48h limits, original scientific options and canonical draw paths, plus distinct operational directories. The finalizer uses an explicit replacement map and still requires all63 successful closed batches, including matched canonical artifacts; no latest-attempt or failed-report fallback.
+Select four focused invented-metadata tests plus the affected original admission/composition tests and shell syntax checks in an attended1CPU/512MiB/10min companion of task-owned draw48505743, one numerical thread and120s command limit. No scientific inputs or scores are opened by these checks.
+After PASS, submit the three retries held, bind their actual ID, then release with afterany on original8–15 and original throttle13. Update the sole pending finalizer to afterany original array plus afterok retries, preserving its all63-result gate. Reserve432additional allocatedCPUh, with at most16 workers total after transition.
+Step48505743.1 passed all6 focused/affected methods in0.576s (1.27s process wall,25092KiB peakRSS) and both shell syntax checks, exit0; evidence runs/software_integration/draw_retry001/. The attended step exited. At19:55:52UTC the sole finalizer is still pending, the three canonical outputs/partials and retry directory are absent, and all8–15 dependency children remain live.
+Submitted and bound retry array48670343 for0/1/62; activated its selection and explicit finalizer replacement map. Scheduler updates returned0: original throttle13, retries released with afterany8–15, finalizer47716676 released with afterany47586235 plus afterok48670343. At19:59:58UTC the retry array and sole finalizer are PENDING(Dependency); no retry has run yet. The successful decode, six complete original batches and every running worker are preserved.
+At20:04:17UTC, individual scheduler records verify original ArrayTaskThrottle13, retry throttle3 and48h limit, all eight afterany child dependencies, and finalizer afterany47586235_* plus afterok48670343_*; both pending chains have Dependency rather than a user hold.
+
+## 2026-10-20 — finding_a_feature_decoding — repair array-master admission and retry only failed draws
+
+Batch062 captured123368bytes of allocation metadata for the entire array because its physical JobId equals47586235, the array master; its admission exited2 before empirical execution. Select the explicit array_task selector in the sourced common wrapper; preserve the failed record.
+Batches000/001 exited124 at their23.5h application limit; the previously validated direct truth reader is selected for their fresh full-batch retries. Retain the24h/3CPU/16GiB profile because live workers bind it, and all63 batches and original scientific calculations remain required.
+Select one bounded stdlib admission diagnostic and wrapper syntax check in an attended1CPU/512MiB/10min step of a task-owned draw parent; no scientific payloads, point estimates or draw values are read.
+After diagnosis and validation, manually requeue only confirmed failed original children000/001/062, retaining their IDs and the63-element binding. First preserve their failed operational directories under failed_attempts/20261020_initial/, require their canonical draw JSON and partials absent, then recreate only those three directories.
+The completed decode and batches002–007, live workers, pending children, captured grant and dependency bindings remain unchanged. Preserve historical runtime and retry reservation216allocatedCPUh; re-arm the existing finalizer dependency after the three children are pending. No automatic retry or partial-result fallback is introduced.
+Step48505743.0 reproduced the exact metadata_size_limit error on the63-record allocation file; its single-child record passes the same reader and identity checks, and wrapper bash syntax passes, exit0. Evidence: runs/software_integration/draw_allocation_selector001/diagnostic.txt. The attended shell exited; no scientific payload was read.
+Manual requeuehold changed no job: Slurm returned Invalid_job_id for000/001 and operation_disabled for062. No directory was moved. Supersede the same-ID plan with three separately bound48h/3CPU/16GiB retries,432allocatedCPUh maximum, retaining original decode and canonical batch paths; validate the isolated adapter before release. Reserve13 original plus3 retry workers and defer retries until original8–15 close.
+
+## 2026-10-20 — finding_a_feature_decoding — preserve completed batches and finish I/O repair
+
+At18:01UTC, Slurm records batches2–7 COMPLETED0:0 in23h26m; batches0–1 failed124 at23h29m and batch62 failed2 after11s. Six completed batches are retained;16 workers8–23 remain RUNNING and38 elements24–61 are pending. Finalizer47716676 still waits on the original array.
+The interrupted session did not activate the direct reader. Diagnose the three terminal failures from operational records; preserve the decoded stage, completed batches, all63 batch identities and all scientific requirements.
+Continue the already selected reader validation in a separate attended1CPU/4GiB/dev/20min allocation, with120s per test command and one numerical thread. Validate the isolated reader and production helper before atomically changing future draw imports, then check canonical draw/final-join wiring.
+No failed batch is resubmitted before its cause and fresh output bindings are established; currently running batches continue. The scientist separately requested per-episode commits and pushes of code, records and released results.
+Step48657668.0 passed all4 focused reader checks (0.084s test time,5.54s process wall,358532KiB), the production-helper fixture (value/flag parity;94.39x lower logical read count,6.25x local read speed ratio), and the canonical draw/final-join check (0.134s test,4.44s process,363292KiB); all exit0. Evidence: runs/software_integration/truth_direct001/. The attended shell exited.
+Published the helper/subclass, then atomically changed only the amended draw's import/constructor and corresponding test mock. Future imports use zero-sieve read-only HDF; existing readers, original TruthReader, live profile, scientific values and finalizer schema remain unchanged.
+
+## 2026-10-19 — finding_a_feature_decoding — integrate direct truth I/O for future draw imports
+
+The metadata and isolated fixture above establish a concrete contiguous-read amplification candidate with unchanged returned values. Under standing engineering authority, select a new zero-sieve read-only helper and draw-only TruthReader subclass; retain the original reader and all header, admission, indexing, bank-cap, finite-flag and closure checks.
+Source review finds no Python source digest/mtime binding or reload hook in the active admission chain. Loaded workers keep their current implementation; future draw imports may use the validated subclass without changing the captured JSON,63 identities, output schema, full-array dependency or finalizer.
+First validate the production helper on the same bounded fixture and the subclass's existing coordinate/header/bank/finite-flag check plus focused open-failure/revocation checks. Torch imports require a separate attended1CPU/4GiB/dev/20min allocation; run commands with one numerical thread and finite120s limits, then close it after integration.
+Only after those checks pass, atomically change the draw constructor/import and its focused wiring-test mock, then run that canonical draw/final-join check. Do not modify decode, original TruthReader, loaded workers, predictions, scientific inference, deadlines or pending task count; no full-job acceleration is claimed before observed batches.
+
+## 2026-10-19 — finding_a_feature_decoding — measure zero-sieve truth reads on one bounded fixture
+
+The measured contiguous layout makes small strided channel reads the selected I/O candidate; source spans shrink to784 feature bytes and25 packed-flag bytes per image in conv5. HDF documents zero sieve size as disabling this buffer: https://hdfgroup.github.io/hdf5/v1_14_4/group___f_a_p_l.html.
+Select one isolated metadata-shaped conv5 feature/flag fixture (approximately93MB node-local), with four separated channels and three alternating default65536B/zero-sieve comparisons; assert identical expected values and report elapsed time plus process rchar/syscr counters, not physical-I/O claims.
+Run tests/benchmark_truth_sieve.py once in an attended1CPU/512MiB/5min companion of a confirmed-live EP21 draw, with one numerical thread and90s limit. No empirical payload, live-module edit, grant change, outcome access or new scientific simulation is selected.
+Use the result to decide whether a narrowly scoped read-path repair is worthwhile; retain all224 images,19 layers,45 streams,63 batches and inference rules. A fixture gain alone is not a full-job speed forecast.
+Step48435246.4 expired at04:58:47UTC before environment/test commands arrived; no fixture output directory exists. At05:10:29UTC parent48435246 remains RUNNING21h07m. Select one replacement attended1CPU/512MiB/10min step that verifies its compute shell and runs setup plus the same90s fixture command together; no production batch was restarted.
+Step48435246.5 completed in1.04s,45284KiB,exit0; all value/packed-bit checks passed and the92,729,344B fixture was removed. For724,864 returned bytes, median rchar was68,433,427B/default versus724,984B/zero (94.39x), with median local read time0.011219s versus0.001928s (5.82x); evidence runs/software_integration/truth_sieve001/{report.json,resources.txt}. Select the zero-sieve read-only helper for narrow integration review; no full-job speedup or physical-I/O attribution is claimed.
+
+## 2026-10-19 — finding_a_feature_decoding — inspect truth storage layout after high read counters
+
+At04:36:29UTC October20, all16 draw workers remain RUNNING (oldest20h33m),47 wait at the array cap and finalizer47716676 remains dependent; no completed batch or failure is established.
+The04:05UTC accounting sample records approximately3.867TB read for seven original workers and1.255TB for the eighth; these counters do not establish physical storage traffic or completion fraction.
+Source review shows one truth channel is cached while each whole prediction stream is traversed: convolutional truth is reread across45 streams, whereas each fully connected truth layer remains cached. Actual truth HDF layout is not checked by the loader.
+Select a metadata-only inspection of the two admitted tau-test feature/finite-flag HDF files and their38 fixed dataset headers in an attended1CPU/512MiB/5min companion of confirmed-live task-owned draw48435246, with one numerical thread and60s command limit.
+Record shapes, dtype, chunks, compression, cache and sieve settings only; no dataset indexing, feature values, predictions or scientific scores. Use the observation to decide whether a specific I/O repair is warranted; preserve all active code, grants, workers,63 batches and scientific scope.
+Step48435246.3 completed in0.85s with40936KiB peakRSS,exit0; all38 datasets are contiguous and uncompressed, sec2 driver,65536B sieve. Evidence: runs/software_integration/truth_layout001/{metadata.json,resources.txt}; the attended shell exited. Chunk decompression is ruled out for these inputs; small contiguous hyperslabs remain a concrete amplification candidate.
+
+## 2026-10-19 — finding_a_feature_decoding — scheduler-only concurrency override to sixteen
+
+At20:53UTC the original eight draw workers remain RUNNING12h45–51m, with55 pending elements8–62 held; no draw completion is established by this scheduler check. This measured duration motivates the standing-authority effective concurrency cap16 (48CPUs/256GiB maximum).
+Source review confirms maximum_concurrent_draw_tasks is captured and checked unchanged, never compared with actual job concurrency or ArrayTaskThrottle. Keep the live authorization JSON at8 as historical execution identity; this logged override is the operative scheduler ceiling.
+This supersedes the earlier quiescent-boundary plan: no active profile, producer binding, application deadline, imported code, statistical rule or scientific access changes. Each task retains3CPU/16GiB/24h and one numerical thread.
+Select scontrol update on existing array47586235 to throttle16, then release only its55 explicitly named held elements8–62. Preserve all63 task identities and finalizer47716676's whole-array dependency; submit no duplicate or replacement job.
+All855 slots,1000 image draws,1000 dyadic draws and full-panel reporting remain required. Shared-I/O contention may limit speedup; this is a finite resource choice, not a completion forecast or scientific finding.
+Both scheduler commands returned exit0. At21:07:50UTC, Slurm confirms ArrayTaskThrottle=16, all55 elements8–62 released to PENDING(None), the original8 RUNNING, and finalizer47716676 still afterok:47586235_*; no held element or replacement job remains. Next: confirm additional starts, finish all63 closed batches, and publish the existing result/figure/three-line finalizer.
+At21:27:22UTC, all16 allowed array elements0–15 are RUNNING and47 elements16–62 wait at JobArrayTaskLimit; no user hold remains. The finalizer still awaits the complete array. The expansion is fully occupied; preserve cap16 pending measured batch completion and shared-I/O scaling evidence.
+Resource follow-up22:12:23–22:27:36UTC: the same8 original workers accumulated625–737CPU seconds in913wall seconds (0.685–0.807 CPU s/s; median0.733), with positive read-counter changes13.895–82.401GB and no terminal job. These counters establish ongoing work, not physical-Oak throughput, remaining time or a causal scaling comparison. Retain16; no32-worker expansion or further benchmark is selected before completed-batch timing or new failure evidence.
+
+## 2026-10-19T20:00:36+00:00 — finding_a_feature_decoding — isolate repeated-normalization cost before any optimization
+
+The first8 draw workers remain live at the19:56UTC check, about11h48–54m each; sampled CPU use at19:46UTC was9–10h. I/O counters do not determine completion fraction or deadline fit.
+Source review confirms one prediction-block traversal already feeds16 draws; a suspected truth-cache ordering problem was not established and is not selected for repair.
+The remaining concrete candidate is repeated identical float32 block normalization inside each draw. Select one isolated source-free fixture comparison against the current scorer: retain all draw rows, raw-profile arithmetic, centering, merge order, complete support and undefined-value rules.
+Prepare only tests/benchmark_normalization_reuse.py, outside active imported code. Run at most90s and448MiB RSS in one attended1CPU/512MiB/5min companion of a confirmed-live task-owned draw parent; no empirical inputs, provider scans or scientific results are involved.
+Compare complete returned fields on existing NaN/overflow/repeated-row fixtures and alternate seven timed repeats for widths64/113/256; report timing and memory only. Adopt no optimization without observed equivalence and useful measured benefit; any later integration is separate and preserves active workers and full63-batch scope.
+All running sources, grants, pending holds and finalizer dependencies remain unchanged. The already selected16-worker transition still waits for the old-profile workers to close.
+Step48435246.2 completed the isolated comparison in5.49s with52108KiB peakRSS,exit0; all14 equivalence/validation/cleanup checks passed. Median current/prototype speed ratios were1.04935,1.04026,1.04703 for widths64,113,256; evidence runs/software_integration/normalization_reuse001/{report.json,resources.txt}. The attended shell exited.
+Disposition: do not adopt this optimization in the current readout; the measured4–5percent local arithmetic gain does not establish full-panel/HDF benefit. No further benchmark or production edit is selected. At the subsequent scheduler check, all8 current batches remain RUNNING12h12–18m, with8–62 held and the finalizer dependent; preserve the selected concurrency transition.
+
+## 2026-10-19T19:18:00+00:00 — finding_a_feature_decoding — select sixteen draw workers at the next quiescent boundary
+
+All first-wave draw workers have consumed over11h without a completed batch at the19:12UTC observation; select16 concurrent remaining workers under standing compute authority, with48CPUs/256GiB maximum concurrent allocation and no completion forecast.
+Each retains3CPUs/16GiB/24h, one numerical thread, captured84600s application limit and all original storage bounds; all63 batches,1000 image/1000 dyadic draws,855 slots and scientific decisions remain unchanged.
+Before changing the captured profile, place only not-yet-started array elements47586235_8 through47586235_62 on user hold; every active worker continues. Installed Slurm25.11.8 documents space-separated job IDs and confirms hold does not suspend running work.
+Wait for all old-profile workers to close, including any that raced the hold. Only then set maximum_concurrent_draw_tasks=16, synchronize documentary resource clauses/template, set the existing array throttle16, and release only the held elements.
+Preserve array47586235, all task identities/range and finalizer47716676's whole-array dependency; no replacement array, duplicate task, data-role change or live grant edit. Completed artifacts remain reusable.
+Source review confirmed whole-profile equality is rechecked during every worker; current grant/throttle stay8 until the quiescent change. Shared-I/O scaling remains uncertain and subsequent batch timing will determine any further resource change.
+Applied user hold to explicit elements8–62 once; Slurm confirms47586235_[8-62] JobHeldUser while0–7 remain RUNNING (~11h) and47716676 remains Dependency. Current profile/throttle still8. Next: finish old-profile workers, then perform the documented16-worker change and release; no completed draw is claimed.
+
+## 2026-10-19 11:20 Pacific — finding_a_feature_decoding — decode complete; uncertainty running
+
+Job 47586225 completed at 01:01:54 Pacific in 67 h 34 min 19 s, exit 0:0. The closed successful batch status and operational report agree: complete_decode, artifacts_published=true, all 855 decoded slots, zero unavailable slots.
+Evidence: outputs/runs/finding_a_feature_decoding/amended_full001/decode/{batch_status.txt,report.json}; decoded_point.h5 and its point JSON are published. No quantitative endpoint was inspected in this operational check.
+At 11:20 Pacific, array 47586235 tasks 0–7 are RUNNING for 10 h 12–17 min; tasks 8–62 await the existing throttle of eight. Finalizer 47716676 awaits the whole array. No completed draw report or final scientific result is claimed.
+The draw profile retains 3 CPUs/16 GiB/24 h per task, one numerical thread and a captured 23.5 h application limit. Live workers must retain their admitted profile; changing the JSON now would invalidate their checks.
+Resource observation at 11:20:53 Pacific (18:20:53 UTC): workers have 7 h 56 min–8 h 49 min CPU time and about 1.5–1.9 GiB current RSS. Read counters are not completed-slot counts or a completion ETA; historical peaks do not establish spare memory.
+Daily allocation through about 11:20 Pacific is 248.23 CPU-hours and zero GPU-hours for this chain, counting each parent once: the decode's post-midnight portion plus the eight draws. Current draw reservation is 24 CPUs/128 GiB.
+Next: obtain the first complete draw timing, finish all 63 batches and the existing finalizer/figure/three-line summary. The inactive decode-retry code is not needed for this successful decode; no duplicate job, outcome-driven change or scientific-scope amendment is selected.
+
+## 2026-10-18 — finding_a_feature_decoding — future full retry integration
+
+Connected the tested lifecycle to a separate full retry caller, composition, shell wrapper and completed-report renderer under standing engineering authority. Preserve all 224 images, 19 layers, 45 streams, 855 slots, 63 uncertainty batches and original scientific rules.
+Source review confirms fresh attempt paths and bindings, the same 40 producer jobs, separate work/cleanup deadlines and no activation while the old decode is running. No retry profile, resource selection or replacement job exists; the current worker and its grants remain unchanged.
+Select five caller and five composition control tests, wrapper shell syntax and syntax parsing of the two renderer files in one attended 1 CPU/512 MiB/5 min companion step of job 47586225, with one numerical thread and a 60 s test timeout. Reuse the nine passing lifecycle checks; no Torch imports, empirical payloads or recovery tests.
+At 01:45 UTC October 19, parent 47586225 is RUNNING at 61 h 18 min, with 3 CPUs/16 GiB reserved and its 15 GiB worker RSS guard retained. The companion fits the existing allocation; record its actual step and outcome, then close the shell.
+These control fixtures cannot establish full scientific-runner integration or certify closure of the current partial. A future launch requires an actual diagnosed terminal failure, measured finite resources and fresh bindings; retain the running dependency chain.
+Step 47586225.11 on sh04-04n23 passed all 10 control tests in 0.189 s, plus wrapper shell syntax and both renderer syntax checks (process wall 1.53 s, peak RSS 24,872 KiB, exit 0). Evidence: outputs/runs/software_integration/amended_retry_integration001/{tests.txt,resources.txt}; the attended shell exited. No empirical data or scientific dependencies were loaded, and no retry was activated.
+
+## 2026-10-18 — finding_a_feature_decoding — future deadline lifecycle component tested
+
+Implemented the isolated amended_decode_lifecycle.py component under standing engineering authority: cooperative work stop before a reserved cleanup interval, observed native close and same-inode fsync, sticky failure, and a bounded closure record. Active imported modules, grants and scientific calculations are unchanged.
+Independent source review found no blocker. The class factory accepts the existing collection explicitly; fresh admission/root/dependencies, actual clocks and shared preparation/decode/point checks still require future-run integration. It does not qualify the current partial.
+Select only the focused tiny-h5py lifecycle tests in an attended1CPU/512MiB/5min companion step of the existing3CPU/16GiB job47586225, with one numerical thread and a60s test timeout; no Torch/scientific imports or empirical payloads. The main worker retains its15GiB RSS guard, and the parent reservation is counted once.
+At01:33:38UTC October19 the parent is RUNNING61h06m04s. No recovery or replacement decode is selected; record the companion's actual step, measured resource use and outcome after execution, then exit its shell.
+Step47586225.10 onsh04-04n23 passed all9 tiny-HDF lifecycle tests in0.294s (process wall1.30s, peakRSS48580KiB), exit0; its attended shell exited. Evidence: outputs/runs/software_integration/decode_lifecycle001/{tests.txt,resources.txt}. Constructor/deadline unwind, native close/fsync failures, failed record publication and TERM restoration were exercised; full scientific-runner integration and the separate recovery helper's five tests remain unexecuted.
+
+## 2026-10-18 — finding_a_feature_decoding — deadline recovery limitation resolved from source
+
+At01:28:26UTC October19, job47586225 is RUNNING61h00m52s; sstat reports current average RSS944072KiB and historical peak16776428KiB against the16GiB allocation, so spare memory for additional Torch/HDF tests is not established.
+The wrapper's outer timeout sends TERM approximately15seconds before the captured71h work deadline, then KILL after10seconds; the Python entrypoint has no TERM handler. This path cannot provide affirmative HDF close/fsync evidence for the inactive recovery helper.
+Even cooperative timeout cleanup is insufficiently reported: collection._abort records cleanup failures only in exception notes, which run_amended_full_readout.py omits. A terminal job and readable partial cannot retrospectively certify successful close/fsync.
+Preserve the live job and queued63-batch/finalizer chain. Do not select recovery from this partial without independent affirmative closure evidence; after an actual failure without that evidence, use fresh recomputation with a measured finite clock and cooperative cleanup reserved before the hard timeout.
+Any future continuation runtime must record actual close plus fsync success with sticky failure state and test the deadline/close-failure path in a suitable substantive allocation. Current five fixtures inject closure evidence and do not establish that behavior; no new code, test, job, grant mutation or held-out payload read occurred.
+
+## 2026-10-17 — finding_a_feature_decoding — recovery engineering activated
+
+The live decode47586225 remains healthy; source review confirms a separate full855-slot scoring pass follows uncompressed prediction writes, so file size alone cannot supply a completion ETA.
+Prepared a separate recovery implementation under standing engineering authority without changing running modules: after an actual terminal failure and affirmative successful HDF close/fsync evidence, validate and reuse only complete nine-stream owner/layer groups and their shared moments/coordinates; recompute incomplete groups and all point scores.
+Preserve224 images,19 layers,45 streams,855 slots, all model bindings, missingness rules and prior tau exposure. Prepublication model identity is procedural through the original claim and40 frozen producer jobs, not invented per-group content authentication.
+Preserve the original partial; any later recovery must bind actual failed state, clean close/fsync, absence of native-file failure/corruption, unchanged producer artifacts, finite compute and sufficient combined storage before submission. Generic failure plus a dead writer cannot establish clean closure; recovery of the current partial is not guaranteed.
+Five focused fixture tests are written but unrun: eager Torch imports cannot be justified within the coordinator's remaining512MiB companion safety budget beside the decoder's15GiB RSS guard. Defer them to the next suitable substantive allocation; no standalone tiny job, recovery job or new outcome access is selected.
+
+## 2026-10-16 12:16 Pacific — finding_a_feature_decoding — all models published; decode running
+
+Last content parents47382257/47382259 are COMPLETED0:0 in30h05m57s/24h18m20s; both operational reports confirm complete_content_pair, model_published=true and1,024 updates, with closed successful status.
+Together with prior completions, all20 amended brain and20 content models are published. Decode47586225 began05:27:35Pacific and is RUNNING; admission, reused eight checks and ASTRA passed.
+Metadata-only inspection shows decoded_point.h5.partial growing from85,147,545,840 to85,200,302,320bytes by12:15:54Pacific; no HDF outcomes were read and this does not establish a completion percentage.
+Uncertainty47586235 retains all63 tasks with live throttle8; final47716676 retains its whole-array dependency. No active grant, binding or scientific code changes are needed.
+Synchronized the remaining GOAL/policy concurrency text from4 to8; source inspection confirms these documentary files are not active runner bindings. The authorization JSON and active profile are unchanged.
+Daily allocation through12:16:11Pacific:37.589CPUh and8.579 trainingGPUh from the two training parents plus decode, counting parents once; pending phases consumed zero.
+Next: finish all855 decoded slots, run every uncertainty batch and publish the fixed evaluation, figure and three-line summary. No completed endpoint or reproduction success is claimed.
+
+## 2026-10-15 23:18 Pacific — finding_a_feature_decoding — increase pending draw concurrency to eight
+
+Source review confirms63 disjoint batch writers with read-only stage/truth access and unchanged draw slices; four concurrent tasks was a resource choice, not a statistical requirement.
+Under standing compute authority, select eight simultaneous draw tasks: each retains3CPUs/16GiB/24h and one numerical thread; maximum concurrent allocation becomes24CPUs/128GiB, with the same63 tasks and total allocation ceiling.
+At23:18 Pacific, decode47586225, draw47586235 and final47716676 are all PENDING/Dependency. Update the grant and scheduler throttle before any phase captures its immutable active profile.
+The unchanged runner admits selected concurrency1–63. Preserve every job identity/dependency, all855 slots,1,000 image draws,1,000 dyadic draws and the complete63-batch finalization requirement.
+The shared collection is713.8056GiB; eight does not duplicate it. Shared-I/O throughput remains unmeasured, so additional parallelism needs actual phase timing and must not mutate a profile while a reader is active.
+Retain the admitted russpold partition: a scheduler-only expansion to normal would fail existing runtime admission. No scientific code, input role or held-out access is changed.
+At23:20 Pacific, Slurm confirms ArrayTaskThrottle=8 and0–62%8 on47586235; all three phase jobs remain pending with their original dependencies. The grant, wrapper and current ASTRA description agree.
+Next: finish the two live content fits, execute the complete-model decode and measure draw throughput when it releases the existing array.
+
+## 2026-10-15 18:59 Pacific — interindividual_converter_training — progress continues; recovery behavior checked
+
+At18:56 Pacific,47382257/47382259 remain RUNNING with661/685 of1,024 updates; the existing decode/draw/report dependencies remain pending.
+P019's latest three updates take348–358s, but its latest15 average218s: extrapolated total about36.7h still fits the47h application bound, without guaranteeing completion.
+Source inspection confirms progress.jsonl contains counts/time only; the live fit has no saved weights/Adam/scheduler checkpoint and captures its deadline once in memory.
+Keep both jobs running. A scheduler extension alone cannot extend the live application's deadline, and the current progress record cannot resume a failed optimizer.
+If sustained timing or a terminal failure requires repair, preserve this attempt and use a fresh measured same-pair attempt with original initialization and refreshed dependency bindings under standing authority.
+Next: monitor a longer timing window; no restart, test-outcome access or resource change is warranted by these observations.
+At19:15 Pacific, both parents remain RUNNING at671/690 updates; P019's next five updates average191s, with the latest90s. The brief slow stretch does not justify intervention.
+
+## 2026-10-15 17:55 Pacific — interindividual_converter_training — final two content jobs remain healthy
+
+All20 amended brain models and18 content models are complete; live jobs47382257/47382259 retain the remaining p017/p019 models.
+Their public progress is623/667 of1,024 updates; no training error or resource intervention is indicated by current evidence.
+The complete-model decode47586225, draw array47586235 and combined finalizer47716676 retain their existing dependency chain.
+Short EP20 handoff steps47382257.0/.1 used one spare numerical worker with a512MiB companion limit; both exited0 and the parent remains charged once here.
+EP20 companion47382257.2 also passed its six focused checks, manifest preparation and changed ASTRA validation; its five-minute limit notice preceded PTY exit0, with no change to the training process.
+No EP21 test outcome was opened. Next: finish both original models, then run the already-bound complete evaluation and uncertainty analysis.
+
 ## 2026-10-14 00:48 Pacific — interindividual_converter_training — current runtime fits the selected jobs
 
 Slurm confirms all 16 assigned content workers running; two original workers remain pending at the GPU-per-user limit.

@@ -2515,6 +2515,10 @@ analyses:
       - {id: amended_result_renderer, type: data, source: outputs/converter_training/tools/render_finding_a_result.py}
       - {id: amended_published_finding_a_report, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/finding_a_collection.finding_a_report.json}
       - {id: amended_full_readout_dependency_bindings, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/dependency_bindings.json}
+      - {id: amended_draw_retry_entrypoint, type: data, source: outputs/converter_training/tools/run_amended_draw_retry.py}
+      - {id: amended_draw_retry_batch, type: data, source: outputs/converter_training/finding_a_draw_retry001.sbatch}
+      - {id: amended_draw_retry_selection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt001/selection.json}
+      - {id: amended_draw_retry_bindings, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retry_bindings.json}
       - {id: amended_decoded_point_collection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.h5}
       - {id: amended_decoded_point_metadata, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.decoded_point.json}
       - {id: amended_draw_artifacts, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_batches}
@@ -2679,8 +2683,16 @@ analyses:
         type: report
         format: json
         description: >-
-          All63 distinct Slurm draw elements0-62, at most4 concurrent, afterok
-          complete closed amended decode. Preserve1000 synchronized image draws
+          All63 distinct Slurm draw elements0-62, at most16 concurrent, afterok
+          complete closed amended decode. The October19 standing-authority
+          scheduler override supersedes earlier concurrency caps; retain8 in the
+          live grant as captured execution identity, not the effective limit.
+          October20 standing authority selects separately bound48h retries of
+          failed0/1/62, original13 plus retry3 after original8-15 close; preserve
+          completed batches and all63 scientific identities. The sole finalizer
+          uses the explicit replacement map, requires every effective closed
+          successful batch and retains the original artifact/scientific join.
+          No scientific or per-task resource binding changes. Preserve1000 synchronized image draws
           in batches of16 with8 in the final batch; all855 decoded slots,
           exact model policy and genuine fitted IDs remain mandatory. Each
           worker reads only published decoded data and tau-test truth and closes
@@ -2691,7 +2703,9 @@ analyses:
           All tasks reserve4536CPUh within the4754CPUh complete-chain cap.
           Reports are amended_full001/draws/batch_NNN/report.json and compact
           results amended_full001/draw_batches/draw_batch_NNN.json. A completed
-          batch is not a complete interval or finding. No retry or resume.
+          batch is not a complete interval or finding. Original attempts are
+          never overwritten; the separately bound October20 retries add at
+          most432CPUh and preserve historical consumption.
         inputs: [amended_full_readout_grant, amended_full_readout_dependency_bindings,
                  amended_full_readout_entrypoint, amended_full_readout_draw_batch,
                  amended_full_readout_common_batch, amended_decoded_point_collection,
@@ -2705,8 +2719,9 @@ analyses:
         type: report
         format: json
         description: >-
-          Sole finalizer afterok the complete63-task array and every successful
-          closed result. Reuse all1000 image draws, original incoming summaries
+          Sole finalizer after closure of the original array and successful
+          separately bound retries, requiring all63 effective successful
+          closed results. Reuse all1000 image draws, original incoming summaries
           and1000 dyadic draws; no truth values, neural/model/decoder reads.
           Same-inode publication preserves the original staged collection,
           permanent finalization claim, all method records and report-last
@@ -2716,7 +2731,8 @@ analyses:
           Request1CPU7Gi2h, one thread/noGPU,6.5Gi RSS,
           min(StartTime+6900,EndTime-60),768Gi collection/776Gi unique-inode
           aggregate,64Mi operational output and4Gi scratch. Whole-chain ceiling
-          is4754 allocatedCPUh once. Full support enables registered absolute
+          is4754 allocatedCPUh for original attempts, plus432CPUh maximum for
+          the October20 draw retries. Full support enables registered absolute
           and directional inference without guaranteeing positive effects;
           comparability remains not_evaluable for the missing prelocked margin.
           Preserve fixed participants, weights, undefined/support rules and

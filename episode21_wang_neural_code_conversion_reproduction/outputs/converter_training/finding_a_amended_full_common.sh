@@ -77,7 +77,11 @@ ulimit -c 0
 # collection soft cap and fatal SIGXFSZ behavior before scientific imports.
 ulimit -S -f 16384
 # Capture this actual element once; subsequent admission reads this record.
-TZ=UTC timeout --signal=TERM --kill-after=5s 15s scontrol show job -o "$SLURM_JOB_ID" \
+ep21_amended_job_selector=$SLURM_JOB_ID
+if [[ "$ep21_amended_phase" == draw ]]; then
+  ep21_amended_job_selector="${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}"
+fi
+TZ=UTC timeout --signal=TERM --kill-after=5s 15s scontrol show job -o "$ep21_amended_job_selector" \
   > "$ep21_amended_run/allocation.txt"
 ep21_amended_allocation=$(< "$ep21_amended_run/allocation.txt")
 [[ "$ep21_amended_allocation" =~ (^|[[:space:]])JobId=([0-9]+)($|[[:space:]]) \

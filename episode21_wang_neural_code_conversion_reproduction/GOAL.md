@@ -1,5 +1,14 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
+**October20 standing-authority execution repair.** The diagnosed failed draws
+0/1/62 receive separately bound3CPU/16GiB/48h attempts, retaining the original
+successful decode, batch indices, scientific inputs, calculations and canonical
+outputs. The original array and retries share a16-worker ceiling. All63 effective
+successful closed batches remain mandatory for the sole finalizer. Earlier
+no-retry and clock clauses below remain historical and are superseded for this
+scoped engineering repair; consumed resources are retained. See the
+[execution decision and evidence](outputs/experiment_log.md#2026-10-20--finding_a_feature_decoding--validate-isolated-draw-retries-and-complete-result-join).
+
 The separate [fresh L40S measurement](outputs/content_cuda_l40s_measurement_authorization.json)
 selects one bounded hardware/cost attempt under the standing instruction to
 increase compute. It retains canonical pair4, all4712 training images,
@@ -34,7 +43,7 @@ not evaluable because its outcome-independent margin is absent. B/C,
 external-site, OOD and EP04-use restrictions remain unchanged.
 
 Select one3CPU/16GiB/72h decode,63 separate3CPU/16GiB/24h draw tasks with
-at most4 concurrent, and one1CPU/7GiB/2h finalizer, all with one numerical
+at most16 concurrent, and one1CPU/7GiB/2h finalizer, all with one numerical
 thread and no GPU:4754 allocatedCPUh maximum. Work deadlines are actual
 StartTime plus255600/84600/6900seconds, each bounded by EndTime−60.
 Keep15GiB decode/draw RSS,6.5GiB finalizer RSS,768GiB collection,776GiB
@@ -42,6 +51,14 @@ aggregate by unique inode,64MiB operational output per phase,32MiB per draw
 batch and4GiB local scratch. These are ceilings, not a completion forecast.
 Decode precedes the whole63-task array; the sole finalizer requires all63
 successful closed results. No retry, resume or automatic successor follows.
+
+Sixteen concurrent draw tasks supersede the earlier effective limits of four
+and eight under the [October 19 standing-authority resource decision](outputs/experiment_log.md#2026-10-19--finding_a_feature_decoding--scheduler-only-concurrency-override-to-sixteen).
+The live authorization JSON retains its captured value of eight so running
+workers and the finalizer preserve their execution identity; that historical
+value is no longer the effective scheduler concurrency ceiling. No scientific
+binding or per-task resource changes. The number of tasks, draws, estimand
+and total allocation ceiling are unchanged; at most48CPUs/256GiB are concurrent.
 
 Reuse the eight methods passed without skips in7.850seconds in job47584681
 from `outputs/runs/software_integration/amended_readout_companion001`.

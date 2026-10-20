@@ -1,0 +1,595 @@
+{
+  "job": "48435246",
+  "step": "3",
+  "payload_values_read": false,
+  "files": {
+    "features.h5": {
+      "driver": "sec2",
+      "sieve_bytes": 65536,
+      "file_cache": [
+        0,
+        521,
+        1048576,
+        0.75
+      ],
+      "datasets": {
+        "conv1_1": {
+          "shape": [
+            224,
+            64,
+            224,
+            224
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv1_2": {
+          "shape": [
+            224,
+            64,
+            224,
+            224
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv2_1": {
+          "shape": [
+            224,
+            128,
+            112,
+            112
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv2_2": {
+          "shape": [
+            224,
+            128,
+            112,
+            112
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_1": {
+          "shape": [
+            224,
+            256,
+            56,
+            56
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_2": {
+          "shape": [
+            224,
+            256,
+            56,
+            56
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_3": {
+          "shape": [
+            224,
+            256,
+            56,
+            56
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_4": {
+          "shape": [
+            224,
+            256,
+            56,
+            56
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_1": {
+          "shape": [
+            224,
+            512,
+            28,
+            28
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_2": {
+          "shape": [
+            224,
+            512,
+            28,
+            28
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_3": {
+          "shape": [
+            224,
+            512,
+            28,
+            28
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_4": {
+          "shape": [
+            224,
+            512,
+            28,
+            28
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_1": {
+          "shape": [
+            224,
+            512,
+            14,
+            14
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_2": {
+          "shape": [
+            224,
+            512,
+            14,
+            14
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_3": {
+          "shape": [
+            224,
+            512,
+            14,
+            14
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_4": {
+          "shape": [
+            224,
+            512,
+            14,
+            14
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc6": {
+          "shape": [
+            224,
+            4096
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc7": {
+          "shape": [
+            224,
+            4096
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc8": {
+          "shape": [
+            224,
+            1000
+          ],
+          "dtype": "<f4",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        }
+      }
+    },
+    "finite_packed.h5": {
+      "driver": "sec2",
+      "sieve_bytes": 65536,
+      "file_cache": [
+        0,
+        521,
+        1048576,
+        0.75
+      ],
+      "datasets": {
+        "conv1_1": {
+          "shape": [
+            224,
+            401408
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv1_2": {
+          "shape": [
+            224,
+            401408
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv2_1": {
+          "shape": [
+            224,
+            200704
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv2_2": {
+          "shape": [
+            224,
+            200704
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_1": {
+          "shape": [
+            224,
+            100352
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_2": {
+          "shape": [
+            224,
+            100352
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_3": {
+          "shape": [
+            224,
+            100352
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv3_4": {
+          "shape": [
+            224,
+            100352
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_1": {
+          "shape": [
+            224,
+            50176
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_2": {
+          "shape": [
+            224,
+            50176
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_3": {
+          "shape": [
+            224,
+            50176
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv4_4": {
+          "shape": [
+            224,
+            50176
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_1": {
+          "shape": [
+            224,
+            12544
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_2": {
+          "shape": [
+            224,
+            12544
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_3": {
+          "shape": [
+            224,
+            12544
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "conv5_4": {
+          "shape": [
+            224,
+            12544
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc6": {
+          "shape": [
+            224,
+            512
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc7": {
+          "shape": [
+            224,
+            512
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        },
+        "fc8": {
+          "shape": [
+            224,
+            125
+          ],
+          "dtype": "|u1",
+          "chunks": null,
+          "compression": null,
+          "chunk_cache": [
+            521,
+            1048576,
+            0.75
+          ]
+        }
+      }
+    }
+  }
+}

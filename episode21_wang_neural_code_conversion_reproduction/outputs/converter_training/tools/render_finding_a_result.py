@@ -37,10 +37,10 @@ def read_json(path, limit):
     return json.loads(raw)
 
 
-def load_completed_report():
+def load_completed_report(run=RUN):
     # Operational completion is checked before scientific results are read.
-    phase = read_json(RUN / "finalize/report.json", 1024 * 1024)
-    scientific = RUN / "finding_a_collection.finding_a_report.json"
+    phase = read_json(run / "finalize/report.json", 1024 * 1024)
+    scientific = run / "finding_a_collection.finding_a_report.json"
     if not (phase.get("phase") == "finalize"
             and phase.get("status") == "complete_finalize"
             and phase.get("artifacts_published") is True
@@ -87,7 +87,7 @@ def summary_lines(report):
     ]
 
 
-def render(report, phase, scientific):
+def render(report, phase, scientific, *, figures=FIGURES):
     import numpy as np
     import matplotlib
     matplotlib.use("Agg")
@@ -210,13 +210,13 @@ def render(report, phase, scientific):
     )
     fig.text(.06, .035, short_caption, ha="left", va="bottom", fontsize=9, linespacing=1.5)
     fig.subplots_adjust(left=.105, right=.965, bottom=.22, top=.88, wspace=.43, hspace=.63)
-    FIGURES.mkdir(parents=True, exist_ok=True)
-    stem = FIGURES / "finding_a_result"
+    figures.mkdir(parents=True, exist_ok=True)
+    stem = figures / "finding_a_result"
     for extension in ("png", "svg"):
         fig.savefig(stem.with_suffix("." + extension), dpi=180, bbox_inches="tight")
     plt.close(fig)
     lines = summary_lines(report)
-    (FIGURES / "summary.txt").write_text("\n".join(lines) + "\n")
+    (figures / "summary.txt").write_text("\n".join(lines) + "\n")
     caption = short_caption + (
         "\n\nPattern correlation is across feature units per image; profile correlation is across images per feature unit. "
         "Contrasts use the already qualified paired-support result tables, not subtraction of unmatched absolute means. "
@@ -230,7 +230,7 @@ def render(report, phase, scientific):
         f"\nReport disposition: {report['quantitative_finding']}"
         "\nThis renderer reads completed JSON reports only and performs no new statistical analysis.\n"
     )
-    (FIGURES / "caption.txt").write_text(caption)
+    (figures / "caption.txt").write_text(caption)
     print(stem.with_suffix(".png"))
     print("\n".join(lines))
 

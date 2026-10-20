@@ -14,6 +14,7 @@ from pathlib import Path
 import amended_full_models as models
 import amended_readout_publication as publication
 import finding_a_distributed_readout as original
+from finding_a_direct_truth import DirectTruthReader
 
 
 MODEL_POLICY = models.MODEL_POLICY
@@ -146,7 +147,7 @@ def run_draw_batch(execution_context, *, require_admitted_context, budget,
             maximum_bytes=maximum_collection_bytes, require_admitted=check)
         stack.callback(reader.close)
         _full_stage(reader, check)
-        truth = inputs.TruthReader(inputs.PROV / "regular_vgg19_sealed/tau_test",
+        truth = DirectTruthReader(inputs.PROV / "regular_vgg19_sealed/tau_test",
             image_ids=reader.image_ids, feature_identity=reader.feature_identity, check=check)
         stack.callback(truth.close)
         def provider(**kwargs):

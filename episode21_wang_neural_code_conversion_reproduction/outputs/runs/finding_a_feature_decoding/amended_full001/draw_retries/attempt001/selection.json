@@ -1,0 +1,41 @@
+{
+  "authorized": true,
+  "attempt": "attempt001",
+  "batch_indices": [
+    0,
+    1,
+    62
+  ],
+  "array_job_id": "48670343",
+  "original_decode_job_id": "47586225",
+  "original_array_job_id": "47586235",
+  "approval_source": "Standing scientist authority; outputs/experiment_log.md October 20 isolated draw retries",
+  "failed_original_children": {
+    "0": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48435246"
+    },
+    "1": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48435247"
+    },
+    "62": {
+      "state": "FAILED",
+      "exit_code": "2:0",
+      "job_id": "47586235"
+    }
+  },
+  "resources_each": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 2880,
+    "deadline_seconds": 171000,
+    "numeric_threads": 1
+  },
+  "maximum_additional_allocated_CPU_hours": 432,
+  "scientific_scope": "Original batch indices, draw schedules, stage, truth and canonical artifacts unchanged; no decode or training",
+  "submission_dependency": "afterany:47586235_8:47586235_9:47586235_10:47586235_11:47586235_12:47586235_13:47586235_14:47586235_15",
+  "historical_consumption": "Preserved in original job accounting and failed operational directories"
+}

@@ -1,5 +1,105 @@
 # Outputs
 
+**October 20, 12:59 Pacific — failed draws resubmitted; complete-result dependency repaired.**
+Retry array48670343 selects only original batches0/1/62, with3CPU/16GiB/48h
+each, the same scientific calculations and fresh operational records. It is
+released and pending after original8–15 close. The original array throttle is
+13; retries add at most3, retaining the effective16-worker ceiling after the
+currently running workers finish. Successful decode and batches remain intact.
+Six focused/affected checks passed in compute step48505743.1. The sole
+finalizer47716676 now waits for original-array closure and successful retries,
+then requires all63 effective successful closed results; missing batches cannot
+be skipped. No complete scientific estimate is available yet.
+[Repair and submission](experiment_log.md#2026-10-20--finding_a_feature_decoding--validate-isolated-draw-retries-and-complete-result-join)
+· [Check evidence](runs/software_integration/draw_retry001/tests.txt).
+Earlier queue snapshots below are historical.
+
+**October 20, 11:01 Pacific — six uncertainty batches complete; three need repair.**
+Slurm records batches2–7 complete, batches0–1 timed out at their23.5h
+application boundary, and batch62 failed during startup. Sixteen batches8–23
+are running and38 batches24–61 are pending; the full63-batch result remains
+incomplete. Preserve the successful855-slot decode and completed batches.
+The new direct truth reader removes measured HDF read amplification for
+future imports while retaining the same values, support and inference.
+Its validation and failure-specific repair work are recorded in the
+[current log](experiment_log.md#2026-10-20--finding_a_feature_decoding--preserve-completed-batches-and-finish-io-repair).
+The original finalizer dependency needs reconciliation with successful
+replacement batches; no complete uncertainty estimate is claimed.
+The dated queue descriptions below are historical.
+
+**October 19, 14:27 Pacific — decode complete; sixteen draw tasks running.**
+Decode job 47586225 completed successfully after 67 h 34 min 19 s. Its
+[operational report](runs/finding_a_feature_decoding/amended_full001/decode/report.json)
+confirms all 855 slots, zero unavailable slots and published artifacts; its
+[closed batch status](runs/finding_a_feature_decoding/amended_full001/decode/batch_status.txt)
+records exit 0. The complete scientific evaluation remains pending.
+The existing uncertainty array 47586235 now has an effective concurrency cap
+of16 (48CPUs/256GiB maximum); all55 formerly held elements8–62 are released.
+At14:27 Pacific,16 tasks (elements0–15) were running and47 awaited array slots.
+Each retains3CPU/16GiB/24h and one numerical thread.
+The live authorization JSON remains at its captured value8 to preserve execution
+identity; the [standing-authority scheduler override](experiment_log.md#2026-10-19--finding_a_feature_decoding--scheduler-only-concurrency-override-to-sixteen)
+defines the effective cap16 and supersedes the earlier wait-for-quiescence plan.
+No running task was stopped or scientific rule changed. All63 batches remain
+required before finalizer47716676 produces the result, figure and three-line
+summary; its whole-array dependency is unchanged.
+The prepared decode contingency is inactive and unnecessary for this completed
+stage. Earlier running-decode and partial-file descriptions below are historical.
+
+**October 18 — future retry wiring tested; current evaluation continues.**
+The separate [retry caller](converter_training/tools/run_amended_readout_retry.py)
+now connects the [lifecycle component](converter_training/tools/amended_decode_lifecycle.py)
+to the complete decode, uncertainty and reporting stages while preserving the
+scientific scope. It reserves cleanup time and records observed HDF close plus
+fsync, retaining failures after later close calls.
+All nine tiny-HDF lifecycle tests passed in step 47586225.10
+([evidence](runs/software_integration/decode_lifecycle001/tests.txt)); ten caller
+and composition control tests and shell/renderer syntax checks passed in step
+47586225.11 ([evidence](runs/software_integration/amended_retry_integration001/tests.txt)).
+Full scientific-runner integration remains untested. This code cannot certify
+the current partial, and no retry profile, resource selection or replacement
+job exists. The live evaluation and its queued dependency chain are unchanged;
+see the [execution record](experiment_log.md#2026-10-18--finding_a_feature_decoding--future-full-retry-integration).
+
+**October 17 — contingency recovery source prepared; evaluation remains pending.**
+The [inactive recovery helper](converter_training/tools/amended_decode_recovery.py)
+preserves the complete evaluation and requires an actual failed attempt plus
+affirmative successful HDF close/fsync evidence before reusing validated groups.
+It does not guarantee recovery of the current partial or change the running job.
+[Five fixture tests](converter_training/tests/test_amended_decode_recovery.py)
+remain unrun: eager Torch imports exceed the confidence warranted by the available
+512 MiB companion budget. They await a suitable substantive allocation; see the
+[activation and limits](experiment_log.md#2026-10-17--finding_a_feature_decoding--recovery-engineering-activated).
+
+**October 16, 12:15 Pacific — all 40 models published; complete evaluation is running.**
+The last two content jobs,47382257/47382259, completed successfully and published
+their models after all1,024 updates. Their operational reports confirm publication:
+[p017](runs/content_pair_training/sub07_to_sub03_cuda001/report.json) and
+[p019](runs/content_pair_training/sub07_to_sub06_cuda001/report.json).
+Decode47586225 is running with successful admission; its partial collection
+is growing. File size is not a completion percentage or a scientific score.
+The existing63-batch uncertainty array47586235 (at most eight concurrent)
+and result job47716676 await their dependencies. See the [execution log](experiment_log.md).
+Earlier training/queue snapshots below are historical.
+
+**October 15, 23:18 Pacific — draw concurrency raised from four to eight.**
+The complete-model evaluation still requires all20 amended brain and20 content
+models, all855 decoded slots and all63 uncertainty batches. Independent batch
+writers permit eight concurrent draw jobs with the same3CPU/16GiB/24h limits
+and unchanged sampling. The existing decode47586225 → draw47586235 →
+report47716676 chain remains pending behind the last two content models.
+The grant is updated before phase startup; shared-I/O throughput will be
+measured during execution. See the [resource decision and scheduler evidence](experiment_log.md).
+Earlier resource selections and progress counts below are historical.
+
+**October 15, 17:55 Pacific — two content models remain; evaluation chain is ready.**
+All20 amended brain models and18/20 content models are complete. Jobs47382257
+and47382259 are running, with623/667 of1,024 training updates in their public
+progress records. Decode47586225, uncertainty array47586235 and the combined
+result/figure job47716676 remain queued behind their fixed dependencies.
+No decoded scientific endpoint is available yet. See the [execution record](experiment_log.md).
+Earlier status entries below are historical.
+
 **October 13 — result figure and three-line summary prepared.**
 The [combined finalizer and reporting wrapper](converter_training/finding_a_amended_result.sbatch)
 will run the unchanged scientific finalizer, then the

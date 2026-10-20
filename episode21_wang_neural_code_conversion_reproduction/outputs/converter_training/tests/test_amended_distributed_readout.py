@@ -164,7 +164,7 @@ class AmendedDistributedReadoutTests(unittest.TestCase):
                     return_value=reader, side_effect=opener_error))
                 if phase == "draw":
                     truth, batch = SimpleNamespace(close=mock.Mock()), object()
-                    truth_factory = stack.enter_context(mock.patch.object(pipeline.inputs, "TruthReader", return_value=truth))
+                    truth_factory = stack.enter_context(mock.patch.object(pipeline, "DirectTruthReader", return_value=truth))
 
                     def evaluate(provider, training, image_ids, *, batch_index, check):
                         self.assertEqual(batch_index, 62)

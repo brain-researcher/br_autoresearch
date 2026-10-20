@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=3
 #SBATCH --mem=16G
 #SBATCH --time=1-00:00:00
-#SBATCH --array=0-62%4
+#SBATCH --array=0-62%16
 #SBATCH --kill-on-invalid-dep=yes
 #SBATCH --no-requeue
 #SBATCH --output=outputs/runs/finding_a_feature_decoding/amended_full001/draws/slurm-%A_%a.out
