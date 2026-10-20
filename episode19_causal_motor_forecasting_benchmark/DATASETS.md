@@ -32,6 +32,20 @@ October 7 additions following the actual header extraction:
 
 See the [acquisition interpretation](outputs/source_timing_handoff.md#october-7-interpreting-the-observed-actichamp-acquisition-settings).
 
+**October 16: source facts resolved without provider contact.** Under the
+scientist's October 16 rule, the remaining clock, unit, polarity, run-binding
+and gap questions were settled from the two articles, the provider code and
+development data only. The full table is the
+[source-fact classification](outputs/source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below),
+with the figure [ep19_source_facts_20261016.png](outputs/figures/ep19_source_facts_20261016.png).
+
+| Public source | Fact used |
+| --- | --- |
+| [WAY article, Methods and Table 1](https://pmc.ncbi.nlm.nih.gov/articles/PMC4365902/) | Windows start 2 s before LED onset; forces in N; grip aperture in cm; automatic cue after ≥15 cm for 1–3 s; online EEG decimation. Its surface-code mapping is reversed relative to the data. |
+| [Self-paced article, Table 1 and Methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC12595029/) | Runs and trials per session; shared amplifier for EEG, TRIG and accelerometer; Brain Products 3D sensor. Its sub-03/ses-02 run count (6) is a count error. |
+| [Brain Products 3D acceleration sensor data](https://www.brainproducts.com/files/public/sensor-tutorial/Content/Topics/9.TechData/AccSensor.htm) | Typical 1.45 V/g ± 5%, ±2.5 g; confirmed against gravity in the data. |
+| Provider code (`DataOrganization.m`, `PlayStartEnd.m`, `WEEG_FindEvents.m`) | Zero-phase provider TRIG/accelerometer processing; 12-s/7-s cue schedule; LF = FX1+FX2 and cm/s thresholds. |
+
 ## Sources and roles
 
 | Source | Scientific role | Current state |
@@ -73,12 +87,28 @@ before analysis. Third-party filtered arrays, notebook caches, or previously
 normalized tensors cannot substitute for the continuous source.
 
 The [published importer/event-generator review](outputs/source_timing_handoff.md)
-now establishes direct copying of the stored window start to `StartTime`, a
+established direct copying of the stored window start to `StartTime`, a
 separate 2-ms first-sample convention, grip `-FZ`/load `+FX` signs and
-object/wrist sensor identities. It does not authenticate the raw-to-HS/WS
-trim/origin assignment or physical-unit conversion. The observed P1 two-second
-discrepancy remains a timing hypothesis, not a correction to apply; the full
-strictly-below-300-ms onset uncertainty bound is still required.
+object/wrist sensor identities.
+
+**October 16 resolution** ([classification](outputs/source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below)):
+
+- **Clock origin.** In every development window, WS rows equal HS rows from
+  sample `500·trial_start_time − 1000`. The stored `trial_start_time` is
+  therefore the HS time of LED onset, and the provider's `StartTime + τ`
+  conversion is 2 s late. EP19 takes cues from the HS `ParticipantLED`
+  channel (>0.5 = lit, all 84 development files) and needs no
+  `trial_start_time`.
+- **Units and codes.** Positions are in cm with +z up. Forces are in N, with a
+  −0.08 N rest offset. Weight codes 1/2/4 = 165/330/660 g; surface codes
+  1/2/3 = silk/suede/sandpaper. HS `env` switches to the upcoming lift's
+  condition at the LED rise.
+- **Timing bound.** With the detector-crossing term frozen on development
+  data on October 17 (pooled p95 67 ms), the pre-declared EEG-versus-label bound
+  is 247 ms (131 ms for EMG-departure onsets), below 300 ms. It is a
+  quantile-term budget, not a proven worst case, and it carries a pre-specified
+  horizon-shift sensitivity analysis
+  ([detector freeze](outputs/source_timing_handoff.md#october-1617-detector-freeze--measured-crossing-term-and-timing-bound)).
 
 ### Series roles
 
@@ -149,9 +179,14 @@ three-axis wrist accelerometry. Twenty-one participants were recorded at
 
 All 49 session headers contain the same first 31 EEG channels. The six sessions
 from `sub-13` and `sub-15` include extra numbered empty physical channels, not
-additional EEG signals. The archive contains 240 raw EEG runs, while the paper
-reports 238 valid runs; eligibility must therefore follow the event and
-valid-run information rather than filename count.
+additional EEG signals. The archive contains 240 raw EEG runs, while the paper's
+Table 1 lists 238. October 16: the one development mismatch (sub-03/ses-02) is a
+Table 1 count error, because the provider derivative contains all seven runs and
+Table 1's trial count includes them. The other mismatch is in a held-out session.
+Frozen rule: a raw run is eligible iff its session derivative holds a run block
+of exactly its frame count, checked by the evaluator at final evaluation.
+Stored BrainVision values × header resolution give µV, and 1 g = 1.4465×10⁶ µV
+(gravity fit, manufacturer 1.45 V/g).
 
 The development-view metadata also exposes nine embedded-reference discrepancies:
 three headers reference nonmatching original data/marker names, and six marker
@@ -164,9 +199,11 @@ documentary mapping; original embedded-reference verification remains separate,
 and any competing reference to another extant run remains unresolved. The exact
 participant/session/run list and mapping limits are in the
 [stream-layout handoff](outputs/source_timing_handoff.md#october-11-development-stream-dimensions-and-unresolved-file-references).
-The completed mapping pass leaves three such conflicts: sub-03/session02/
-runs0009,0010,0011 marker files each name the extant run0008 EEG. All155 runs
-remain represented, with152 accepted documentary file associations.
+The completed mapping pass left three such conflicts: sub-03/session02/
+runs0009,0010,0011 marker files each name the extant run0008 EEG. October 16:
+these are stale copy lines. The runs start sequentially without overlap, and the
+provider derivative binds each to its own EEG by unique frame count and identical
+samples. All 155 development associations are therefore accepted.
 This issue is separate from238-versus240 valid-run eligibility. Nominal stored
 sample counts and starting NewSegment timestamps do not certify continuous
 acquisition, physical sensor calibration or the full onset timing bound.
@@ -343,9 +380,30 @@ classical backends and the logistic-hazard fitting/interface are implemented
 on supplied fixtures, with no trained empirical forecast. Before signal
 scoring, the study still needs:
 
-- episode-specific development and held-out data views;
-- direct clock, channel, sampling, gap, and series-boundary checks;
-- executable/frozen onset and stillness rules from the selected component design;
+- episode-specific held-out data views (the development view exists);
+- clock, unit, polarity, run-binding and gap facts are resolved or assumed as of
+  October 16 ([classification](outputs/source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below));
+  what remains is the evaluator's frozen held-out checks;
+- Development onset/stillness rules, labels and exposure remain preserved from
+  the October 17 freeze (job 48219799; all 27 development people). Self-paced
+  primary 300–600-ms scoring remains blocked. Detector v2 / raw-onset v5
+  (job 48261284; 15 development people) is **UNDERIDENTIFIED for D2 and D1**:
+  8/15 people passed primary controls and cross-k classifications disagreed.
+  No candidate was frozen; D2/D1 labels and exposure remain unfrozen artifacts.
+  D2 k=5 p95 bounds [324,324] ms (+12=336) and D1 [360,360] (+12=372) are
+  descriptive calibration/diagnostic evidence, not validated timing bounds
+  or an EEG result. The strongest post hoc alternative is premature R from
+  low-amplitude activity/drift. Next: declare fixed-label continuity/amplitude/
+  drift diagnostics and positive-control precision checks at the same 288-ms
+  margin, retaining all people and gates; development-derived slopes supplement
+  the original controls. Changes to k or acceptance gates require the scientist.
+  k=8 has 0/15 control passes and provides no clearance. Held-out people cannot
+  enter onset tuning or normalization-state initialization. WAY development
+  non-neural baseline selection can proceed. The timing guarantee, minimum
+  meaningful primary EEG gain and other unset margins remain in the single
+  daily scientist batch; scored EEG remains uncleared. See the
+  [v5 result and figure](outputs/source_timing_handoff.md#result-job-48261284)
+  and [v4 reference](outputs/source_timing_handoff.md#result-job-48230171).
 - remaining reference/baseline implementations and raw-feature integration
   under the fixed recipes;
 - development validation and freezing of the selected four-parameter recipe;

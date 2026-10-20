@@ -55,6 +55,34 @@ analyses:
       - {id: cue_metadata_tests, type: data, source: ../../tests/test_way_cue_metadata.py}
       - {id: way_information_reader, type: data, source: ../../code/read_way_information_page01.sh}
       - {id: source_timing_handoff, type: data, source: ../../source_timing_handoff.md}
+      - {id: way_source_fact_code, type: data, source: ../../code/way_source_fact_checks.py}
+      - {id: self_paced_source_fact_code, type: data, source: ../../code/self_paced_source_fact_checks.py}
+      - {id: source_fact_summary_code, type: data, source: ../../code/summarize_source_facts.py}
+      - {id: source_fact_followup_code, type: data, source: ../../code/source_fact_followups.py}
+      - {id: source_fact_post_hoc_code, type: data, source: ../../code/summarize_post_hoc.py}
+      - {id: source_fact_plot_code, type: data, source: ../../code/plot_source_fact_checks.py}
+      - {id: source_fact_job_script, type: data, source: ../../code/run_source_fact_checks.sbatch}
+      - {id: detector_reader_code, type: data, source: ../../code/detector_readers.py}
+      - {id: detector_summary_code, type: data, source: ../../code/detector_summaries.py}
+      - {id: detector_noise_code, type: data, source: ../../code/inspect_detector_noise.py}
+      - {id: trig_tone_inspection_code, type: data, source: ../../code/inspect_trig_tones.py}
+      - {id: detector_freeze_code, type: data, source: ../../code/detector_freeze.py}
+      - {id: detector_freeze_driver, type: data, source: ../../code/run_detector_freeze.py}
+      - {id: detector_freeze_summary_code, type: data, source: ../../code/summarize_detector_freeze.py}
+      - {id: detector_freeze_plot_code, type: data, source: ../../code/plot_detector_freeze.py}
+      - {id: raw_onset_test_code, type: data, source: ../../code/self_paced_raw_onset_test.py}
+      - {id: raw_onset_plot_code, type: data, source: ../../code/plot_raw_onset_test.py}
+      - {id: raw_onset_job_script, type: data, source: ../../code/run_raw_onset_test.sbatch}
+      - {id: detector_v2_noise_code, type: data, source: ../../code/inspect_detector_v2_noise.py}
+      - {id: detector_v2_code, type: data, source: ../../code/detector_v2.py}
+      - {id: detector_v2_driver, type: data, source: ../../code/run_detector_v2.py}
+      - {id: raw_onset_v5_code, type: data, source: ../../code/self_paced_raw_onset_test_v5.py}
+      - {id: detector_v2_plot_code, type: data, source: ../../code/plot_detector_v2_acceptance.py}
+      - {id: detector_v2_job_script, type: data, source: ../../code/run_detector_v2_acceptance.sbatch}
+      - {id: premature_r_code, type: data, source: ../../code/premature_r_diagnostic.py}
+      - {id: control_precision_code, type: data, source: ../../code/control_precision_check.py}
+      - {id: v5_diagnostics_plot_code, type: data, source: ../../code/plot_v5_diagnostics.py}
+      - {id: v5_diagnostics_job_script, type: data, source: ../../code/run_v5_diagnostics.sbatch}
     outputs:
       - id: development_stream_layout
         type: report
@@ -318,6 +346,147 @@ analyses:
           Explicit development HS_P1_S1.mat modality/rate/shape inspection;
           nested arrays are deserialized but no signal values or scores emitted.
           Invoke the reader with the selected materialized development-view path.
+      - id: source_fact_checks
+        type: report
+        format: directory
+        inputs: [datasets, source_timing_handoff, source_fact_job_script, way_source_fact_code, self_paced_source_fact_code, source_fact_summary_code, source_fact_followup_code, source_fact_post_hoc_code, source_fact_plot_code]
+        description: >-
+          October 16 development-only source-fact checks under the scientist's
+          no-provider-contact rule: WAY P1-P12 series 1-7 (HS view plus WS S1-S7)
+          for WS-to-HS window binding, LED polarity, force/position units,
+          codebook, FASTRAK lag and stream structure; 155 self-paced development
+          runs plus the sub-03/ses-02 derivative for run binding, valid runs,
+          accelerometer gravity scale, cue intervals and unmarked gaps. Rules
+          W1-W9/S1-S5 are pre-declared in the handoff; follow-ups and the
+          series-type cue split are post hoc. No EEG model, AllLifts, WAY S8-S9
+          or held-out participant file. Calibration evidence, not a finding.
+        recipe:
+          command: >-
+            sbatch outputs/code/run_source_fact_checks.sbatch, then
+            summarize_source_facts.py, source_fact_followups.py, summarize_post_hoc.py
+            and plot_source_fact_checks.py on the job directory {output}
+          resources: {cpus: 8, memory: 24Gi, time_limit: 1h}
+      - id: detector_noise_inspection
+        type: report
+        format: directory
+        inputs: [datasets, source_timing_handoff, detector_reader_code, detector_summary_code, detector_noise_code, trig_tone_inspection_code]
+        description: >-
+          Noise-only description used to set the detector-rule constants before
+          any detector output: WAY P1-P12 S1-S7 pre-cue sensor summaries,
+          position spread/quantum and object/force rest values; self-paced
+          pre-start accelerometer departure, TRIG tone bursts and spectra. No
+          crossing, onset, label or provider annotation is computed.
+        recipe:
+          command: >-
+            python3 -P outputs/code/inspect_detector_noise.py --workers 8 --output {output}/noise_inspection.json;
+            python3 -P outputs/code/inspect_trig_tones.py --workers 8 --output {output}/trig_tones.json
+          resources: {cpus: 8, memory: 32Gi, time_limit: 30m}
+      - id: detector_freeze
+        type: report
+        format: directory
+        inputs: [component_design, source_timing_handoff, detector_reader_code, detector_summary_code, detector_freeze_code, detector_freeze_driver, detector_freeze_summary_code, detector_freeze_plot_code, completed_return_code, way_risk_stream_code, forecast_label_projection]
+        description: >-
+          Development onset/stillness detector freeze under component_details.md
+          section 1.2 (rules fixed from stationary noise before any detector
+          output): per-path quantile-scaled hysteresis thresholds (WAY per person
+          from S1-S7, self-paced global from 15 people), causal LED/TRIG cues with
+          tone-duration confirmation, WayRiskStream states and a generic replay
+          that must match it on every WAY series, 50-ms grid labels, armed and
+          at-risk exposure, eligible-stillness hours, unknown/censored counts,
+          the measured detector-crossing term of the timing bound, and HandStart
+          (S1-S7 rows) / AccStartIndex agreement diagnostics. No EEG, WAY S8-S9
+          or held-out person. Calibration evidence, not a scientific result.
+        recipe:
+          command: >-
+            python3 -P outputs/code/run_detector_freeze.py --workers 8 --output-dir {output};
+            python3 -P outputs/code/summarize_detector_freeze.py --run-dir {output};
+            python3 -P outputs/code/plot_detector_freeze.py --run-dir {output}
+            --output outputs/figures/ep19_detector_freeze_20261016.png
+          resources: {cpus: 8, memory: 48Gi, time_limit: 45m}
+      - id: self_paced_raw_onset_test
+        type: report
+        format: directory
+        inputs: [source_timing_handoff, detector_reader_code, detector_summary_code, detector_freeze_code, detector_freeze_driver, raw_onset_test_code, raw_onset_plot_code, raw_onset_job_script]
+        description: >-
+          Pre-declared, provider-blind timing-validity test of the frozen self-paced
+          labels (development only; post hoc revisions disclosed in the handoff).
+          Unsmoothed native departure from a [t-520, t-20) ms baseline,
+          person-specific noise thresholds (median + 3/5/8 MAD-SD from the frozen
+          still windows), the label-continuous bout onset R and lag L - R. Positive
+          controls use per-person noiselessly calibrated ramps on real 2.8-s still
+          backgrounds, with shams. Decision: FAIL / BELOW_EMPIRICAL_P95_ONLY /
+          UNDERIDENTIFIED. AccStartIndex is compared only after the decision file is
+          written. Labels and thresholds are unchanged; this is diagnostic
+          calibration evidence.
+        recipe:
+          command: >-
+            sbatch outputs/code/run_raw_onset_test.sbatch (runs self_paced_raw_onset_test.py
+            on the frozen detector-freeze directory, then plot_raw_onset_test.py)
+          resources: {cpus: 8, memory: 32Gi, time_limit: 1h}
+      - id: detector_v2_noise_inspection
+        type: report
+        format: directory
+        inputs: [datasets, source_timing_handoff, detector_reader_code, detector_summary_code, detector_freeze_code, detector_freeze_driver, raw_onset_test_code, detector_v2_noise_code]
+        description: >-
+          Noise-only inspection before the self-paced detector redesign (15 development
+          people; no event crossing, onset, label, provider value or EEG). Reproduces the
+          frozen 3,661 still windows, v1 LOW/HIGH, v4 theta references and 2,545 v4
+          backgrounds; compares the 20-ms departure X over full 1-s windows with its
+          support-complete final 480 ms; probes quantile/MAD threshold ladders, D1/D2
+          noise replays and plateau feasibility. Job 48257954: fit X q99.9 0.0851 g over
+          full windows versus 0.0279 g over the support-complete span.
+        recipe:
+          command: >-
+            python3 -P outputs/code/inspect_detector_v2_noise.py --workers 8
+            --output-dir {output} --allow-incidental-full-run-load
+          resources: {cpus: 8, memory: 32Gi, time_limit: 1h}
+      - id: detector_v2_acceptance
+        type: report
+        format: directory
+        inputs: [component_design, source_timing_handoff, detector_reader_code, detector_summary_code, detector_freeze_code, detector_freeze_driver, raw_onset_test_code, forecast_label_projection, detector_v2_noise_code, detector_v2_code, detector_v2_driver, raw_onset_v5_code, detector_v2_plot_code, detector_v2_job_script]
+        description: >-
+          Pre-declared self-paced detector v2 (component_details.md section 1.3) and
+          raw-onset test v5 (handoff rules 1-42), development only. Regressions reproduce
+          the v1 detector outputs and v4 estimates; global thresholds come from the
+          support-complete frozen fit windows under the v1 quantile rule and noise-only
+          guards; candidates D2 (LOW-crossing label) and D1 (v1 rules) receive labels,
+          exposure and v5 evaluation with detector-independent control labels, signed
+          lags and aligned shams; AccStartIndex is compared only after the decisions are
+          closed. Job 48261284: c=1, LOW/HIGH 0.027917/0.053088 g; 8/15 people passed
+          the k=5 controls, so D2 and D1 are UNDERIDENTIFIED and nothing is frozen
+          (D2 k=5 p95 bounds [324,324] ms, descriptive). Calibration/diagnostic
+          evidence; no EEG, held-out person or scoring clearance.
+        recipe:
+          command: >-
+            sbatch outputs/code/run_detector_v2_acceptance.sbatch (regressions, settings,
+            controls, labels, events/provider and the figure into detector_v2_job_<id>
+            and raw_onset_test_v5_job_<id>)
+          resources: {cpus: 8, memory: 32Gi, time_limit: 1h}
+      - id: v5_followup_diagnostics
+        type: report
+        format: directory
+        inputs: [component_design, source_timing_handoff, detector_reader_code, detector_summary_code, detector_freeze_code, detector_freeze_driver, raw_onset_test_code, detector_v2_code, raw_onset_v5_code, premature_r_code, control_precision_code, v5_diagnostics_plot_code, v5_diagnostics_job_script]
+        description: >-
+          Pre-declared post hoc follow-up to raw-onset test v5 (handoff section
+          "premature-R diagnostic and control-precision check", rules 1-25),
+          development only. PRD compares v5 tail (lag >= 288 ms) and reference
+          events within person on the fixed D2 labels and v5 k=5 onsets
+          (half-amplitude lead H against F=[L,L+100), sensor-frame continuity,
+          baseline drift, quiet anchor), gated by synthetic known positives. CPC
+          reruns the v5 controls on all 2,545 eligible backgrounds after an exact
+          first-32 regression and adds descriptive development-slope strata.
+          Provider values are read only after both decisions close. Job 48281685:
+          PRD O4 UNRESOLVED (dH 19 [6,82] ms; dC_E -0.149 [-0.292,-0.029]); linear
+          near sensitivity 0.893 [0.884,0.902] against the 0.90 gate.
+          Calibration/diagnostic evidence; no EEG, held-out person or scoring
+          clearance.
+        recipe:
+          command: >-
+            sbatch outputs/code/run_v5_diagnostics.sbatch (known positives, PRD
+            features, CPC strata and controls, post-lock provider and the figure
+            into premature_r_diagnostic_job_<id> and control_precision_job_<id>;
+            AVX-512 nodes for the exact regression)
+          resources: {cpus: 8, memory: 32Gi, time_limit: 1h}
   development_specification:
     name: Set required pre-score margins, finite model ranges, reference recipes and participant folds
     inputs:

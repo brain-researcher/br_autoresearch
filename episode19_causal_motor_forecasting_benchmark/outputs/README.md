@@ -1,5 +1,97 @@
 # Outputs
 
+**October 17 — v5 follow-up diagnostics (job 48281685): premature-R diagnostic O4 UNRESOLVED; control precision limits the linear near gate (calibration/diagnostic evidence, post hoc to v5).**
+[PRD run](runs/source_views_and_timing/premature_r_diagnostic_job_48281685/) · [CPC run](runs/source_views_and_timing/control_precision_job_48281685/) · [result](source_timing_handoff.md#result-job-48281685) · [figure](figures/ep19_v5_followup_diagnostics_20261017.png) · [rules](source_timing_handoff.md#october-17-premature-r-diagnostic-and-control-precision-check--pre-declared-before-execution).
+
+- **Summary — premature R:** pre-declared O4 UNRESOLVED in 14/15 people, with all known-positive checks passed. ΔH = 19 [6, 82] ms; ΔC_E = −0.149 [−0.292, −0.029]. No automatic detector or reference change follows.
+- **Summary — control precision:** linear near sensitivity is 0.893 [0.884, 0.902] with all 2,545 backgrounds (v5's 32: 0.888) against the 0.90 gate. CP1: 1 below, 15 across, 29 above. Timing error explains every near classification. Sub-02's v5 sham of 0.070 is retained (all backgrounds: 0.051 [0.026, 0.078]).
+- **Summary — status:** v5 D2/D1 stay UNDERIDENTIFIED and nothing is frozen. v1 labels are preserved and self-paced primary scoring stays blocked. No EEG or held-out person was used.
+
+**Post hoc:** most tail R→L intervals are intermittent and fall back after R. 54/289 tail events show a substantial departure ≥ 288 ms before the label (mostly sub-06/20/14).
+**Next:** pre-declare a fixed-label gap/H diagnostic. The daily batch gets three questions: estimator resolution versus gate logic, a continuity-revised acceptance reference (v6), and p95 versus worst case. WAY development non-neural baseline selection can proceed.
+
+**October 17 — self-paced detector v2 / raw-onset v5: UNDERIDENTIFIED (calibration/diagnostic evidence).**
+[Run](runs/source_views_and_timing/raw_onset_test_v5_job_48261284/) · [candidate detector outputs](runs/source_views_and_timing/detector_v2_job_48261284/) · [result](source_timing_handoff.md#result-job-48261284) · [figure](figures/ep19_detector_v2_acceptance_20261017.png).
+
+- **Summary — decision:** D2 and D1 UNDERIDENTIFIED: 8/15 development people passed k=5 controls, and cross-k classifications disagreed. No candidate frozen.
+- **Summary — timing:** D2 k=5 p95 bounds [324,324] ms (+12=336); D1 [360,360] (+12=372). Numeric FAIL classifications are descriptive; k=8's D2 total of 248 ms has 0/15 control passes.
+- **Summary — readiness:** Preserve v1 labels/exposure from job 48219799; keep self-paced primary 300–600-ms scoring blocked. No EEG result, held-out validation or worst-case certification.
+
+Job 48261284 completed in 83 s, exit 0; both regressions passed. The declared v5 rules were retained after the post hoc controls-only diagnostic. Both candidates passed noise-only admissibility at c=1, LOW/HIGH 0.027917/0.053088 g. D2 has 3,964 onsets and 2.153 h at risk versus v1's 4,189 and 2.612 h; the smaller lag tail is a descriptive cross-version comparison.
+
+**Strongest alternative (post hoc):** low-amplitude activity/drift makes R premature. Tail R−provider median −260 ms versus −15 elsewhere motivates investigation, but selection on L−R and shared accelerometry limit the evidence.
+
+**Next (post hoc):** prospectively declare fixed-label continuity/amplitude/drift diagnostics and control-precision checks at the same 288-ms margin. Retain all people and gates; development-derived slopes supplement the original controls. c=0.75 is a separate out-of-ladder engineering proposal, not a v5 result. Changing k or acceptance gates requires the scientist; any BELOW needs passed positive controls at the same margin.
+
+WAY development non-neural baseline selection can proceed. Exclude held-out tuning/normalization initialization. The single daily scientist batch retains the timing-guarantee decision, minimum meaningful primary EEG gain and other unset margins; scored EEG remains uncleared. [Previous v4 result](source_timing_handoff.md#result-job-48230171).
+
+**October 17 — self-paced raw-onset test: UNDERIDENTIFIED (calibration/diagnostic evidence).**
+[Run](runs/source_views_and_timing/raw_onset_test_job_48230171/) · [result](source_timing_handoff.md#result-job-48230171) · [figure](figures/ep19_raw_onset_lag_test_20261017.png).
+
+- Job 48230171: 47 s; 15 development people, 155 runs, 4,189 onsets; 3,661 stationary windows reproduced exactly.
+- Full-run v4 included post hoc smoke-informed revisions; exposed sub-02/sub-15/sub-22 remain included.
+- k=5 all-event p95 lag bounds: 696–696 ms (+12=708 ms). This challenges the 188-ms proxy; failed controls prevent a validated timing-failure verdict.
+- Controls: 0/15 people passed all requirements; 14/15 exceeded the sham ceiling; pooled k=5 sham alarms were 11.3%. No control-passing subset exists.
+- Post-lock agreement: R−provider median/p95 −16/60 ms at k=5; L−provider 228/564 ms. Shared accelerometry limits independence.
+- Keep self-paced labels out of primary 300–600-ms scoring; preserve the original frozen artifacts. No EEG forecasting result or worst-case certification.
+- Next (post hoc): predeclare a global detector redesign from all 15 development people and corrected acceptance controls—feasible targets, primary-bout-aligned shams, verified 1-kHz calibration; exclude held-out tuning and normalization initialization.
+- WAY development non-neural baseline selection can proceed.
+- One daily scientist batch: p95 versus GOAL's worst-case requirement, minimum meaningful primary EEG gain and other unset margins; scored EEG remains uncleared.
+
+**October 17, 00:18 Pacific — development detector freeze complete (calibration, not a scientific result).**
+Rules were fixed from development stationary noise before any detector output
+([§1.2](component_details.md#12-detector-freeze-rules-october-16-written-before-any-detector-output)).
+Final job 48219799: [summary](runs/source_views_and_timing/detector_freeze_job_48219799/detector_freeze_summary.json) ·
+[figure](figures/ep19_detector_freeze_20261016.png) ·
+[log](experiment_log.md#2026-10-17-0018-pacific--source_views_and_timing--development-detector-freeze-complete-calibration).
+The generic replay matched `WayRiskStream` on 84/84 WAY series.
+
+- **Labels and exposure for every development person:**
+  - WAY: 2,030 of 2,712 cues armed, all with onsets; 0.21 h at risk.
+  - Self-paced: 4,195 of 4,432 armed, 4,189 onsets; 2.61 h at risk.
+  - Primary-horizon (300–600 ms) positives / scorable decisions: 3,527 / 14,847 (WAY) and
+    24,005 / 187,972 (self-paced). WAY positives need reaction times > 300 ms, so slower people
+    dominate (P3: 3, P7: 846).
+- **Timing bound:** the pre-declared p95 term gives WAY 247 ms and self-paced 188 ms (< 300).
+  - Post hoc: this is not a worst-case proof. Self-paced labels follow AccStartIndex by median
+    228 ms (p95 564 ms; that alternative bound is 576 ms).
+  - [Details](source_timing_handoff.md#october-1617-detector-freeze--measured-crossing-term-and-timing-bound).
+- **Untouched:** no EEG, WAY S8–S9 or held-out person.
+
+**Next:**
+- Self-paced: pre-declare and run a provider-blind raw-onset lag test of the self-paced bound
+  (the strongest alternative).
+- WAY: development non-neural baseline selection can start.
+- Daily question: may a p95-term budget stand for GOAL's worst case?
+- Scored EEG still needs the scientist's minimum meaningful primary EEG gain.
+
+**October 16, 18:40 Pacific — source facts resolved or assumed; no provider contact.**
+All eleven open WAY and self-paced source items are classified in the
+[source-fact table](source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below).
+Checks were pre-declared and ran in job 48183086, with post hoc follow-ups
+(labelled as such). [Figure](figures/ep19_source_facts_20261016.png) ·
+[log entry](experiment_log.md#2026-10-16-1840-pacific--source_views_and_timing--all-eleven-open-source-facts-classified).
+
+- **Resolved:**
+  - WAY windows start at HS sample `500·trial_start_time − 1000`, so cues come
+    from the HS LED channel.
+  - Positions are in cm and forces in N; LED polarity holds in 84/84 files;
+    surface codes are 1 = silk … 3 = sandpaper.
+  - Self-paced sub-03/ses-02 bindings are a stale marker line; no development
+    run is invalid; 1 g = 1.4465×10⁶ µV.
+- **Assumed, with sensitivity plans:**
+  - WAY filter delays and drift, giving a worst-case bound of 220 ms < 300 ms;
+  - the actiCHamp filter and absolute TRIG latency;
+  - unmarked gaps (31 ambiguous cue cycles).
+- **Untouched:** no EEG model was fitted and no held-out file was opened.
+
+**Next analysis step:** freeze the causal WAY and self-paced onset/stillness
+detectors from development stationary noise, then produce labels,
+eligible-stillness exposure and the detector-crossing term of the timing bound.
+Provider HandStart/AccStartIndex serve only as agreement checks. The
+development non-neural baseline selection follows. Scored EEG comparisons still
+need the scientist's minimum meaningful primary EEG gain.
+
 **October 12, 11:21 Pacific — three final-refit companion checks and ASTRA passed.**
 All three selected `test_reference_final_refit` methods passed in 0.184 seconds,
 with ASTRA schema/semantic validation also passing, in the closed EP19

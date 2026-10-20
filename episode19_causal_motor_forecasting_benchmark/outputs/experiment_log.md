@@ -1,5 +1,218 @@
 # Experiment log
 
+## 2026-10-17 18:03 Pacific — source_views_and_timing — fixed-label gap/H diagnostic pre-declared
+
+Post hoc follow-up to job 48281685 (standing engineering authority), declared before any output: [rules](source_timing_handoff.md#october-17-fixed-label-gaph-diagnostic--pre-declared-before-execution). Codex gpt-6-astra (max, text only) drafted the design and code in one round; reviewed here.
+It tests the 48281685 mixture on the fixed D2 labels, v5 k=5 onsets and closed PRD features (15 development people). Each tail event is split after its last deep (median r ≤ θ3) internal non-qualifying run ≥ 80 ms; λ* = L − R* is diagnostic only. Classes: B (H ≥ 288), A (λ* < 288), C (λ* ≥ 288).
+Weakens (a), premature R joined across deep pauses: f_A CI upper < 0.5 or P95(λ*) CI lower ≥ 288. This needs KPG power: synthetic deep-pause-joined events must be classed A, CI lower > 0.8. Support also needs KPB/KPA specificity (continuous shapes split, CI upper < 0.2).
+Weakens (b), a person-concentrated minority with H ≥ 288: both T2 (within-tail clustering) and T3 (run-half reproducibility) non-significant, with σ=0.75 plasmode power ≥ 0.80 and a passed σ=0 null check. T2's outcome was largely anticipated from the counts already released.
+k, gates, acceptance and the reference estimator are unchanged; v5 stays UNDERIDENTIFIED; provider values are read only after the decision closes.
+Next: a health-only smoke (sub-02/15/22, scratch), then `sbatch outputs/code/run_gap_h_diagnostic.sbatch` (russpold, AVX-512, 8 CPU, 32 GB, 1 h).
+
+## 2026-10-17 14:41 Pacific — source_views_and_timing — premature-R diagnostic O4 (unresolved); control precision limits the linear near gate
+
+Job 48281685 (sh04-04n24, 110 s, exit 0) closed every stage. The exact first-32 regression passed for all 15 people. [Result](source_timing_handoff.md#result-job-48281685) · [figure](figures/ep19_v5_followup_diagnostics_20261017.png).
+PRD (pre-declared): O4 UNRESOLVED in 14/15 people (sub-04 KPA-uncovered). Every known-positive check passed (KPB ΔH 162 [142,182] ms; KPA ΔH 0, ΔC_E −0.75). ΔH = 19 [6,82] ms is neither ≥ 100 nor inside ±50. ΔC_E = −0.149 [−0.292,−0.029] falls between the continuity and discontinuity thresholds. No drift signature.
+CPC (pre-declared): linear near mean 0.893 [0.884,0.902] with all 2,545 backgrounds (v5's 32: 0.888). CP1 near: 1 below (sub-15 linear), 15 across, 29 above. Observed = timing-error-implied near fraction in all 45 gated cells. dev_linear_q50 near 0.866 (13 people); q10 strata uncovered (negative rise rates). Sub-02 sham 0.051 [0.026,0.078] (v5's 0.070 retained).
+Post hoc: tail R→L intervals are intermittent (occupancy 0.74 vs 0.96; internal quiet run median 88 ms) and fall after R (66% vs 32%). 54/289 tail events reach half the later amplitude ≥ 288 ms before L (sub-06/20/14). Provider post-lock: t½ − AccStartIndex is +32/+28 ms (tail/reference), against R −260/−16.
+Strongest surviving alternative (post hoc): a mixture of premature R (intermittent low-amplitude activity) in most tail events and a late label for substantial movement in some. Next: pre-declare a fixed-label gap/H diagnostic; estimator resolution versus gate logic, a v6 reference and p95 versus worst case go to the daily batch. Codex round 3 drafted the interpretation; reviewed here.
+
+## 2026-10-17 14:24 Pacific — source_views_and_timing — diagnostics smoke passed; full run submitted
+
+Smoke 48281137 (health-only, sub-02/15/22, sh04-04n24, 35 s, scratch): all four stages closed. The exact first-32 regression passed for all three people. Only engineering counts were written: KP0/KPB/KPA estimates supported in 28–32 of 32 backgrounds per person (sub-22: 4 unarmed backgrounds); every determinate real event was supported.
+Full run under the unchanged rules: job 48281685, `sbatch outputs/code/run_v5_diagnostics.sbatch` (russpold, AVX-512 nodes, 8 CPU, 32 GB, 1 h).
+
+## 2026-10-17 14:20 Pacific — source_views_and_timing — diagnostics smoke: CPU-dependent regression failure fixed
+
+Smoke 48280333 (health-only, sub-02/15/22, sh03-06n06, 28 s): both PRD stages closed; the CPC first-32 regression then stopped on `direction_y` (sub-02). No feature, synthetic or gate value was written.
+Cause (engineering): v5 ran on an AVX-512 node (sh04-04n23, CPU_GEN:SIE), while the smoke node is AVX2-only (RME); the BLAS dot behind the direction norm differs in the last bits. Check job 48280993 on an AVX-512 SKX node reproduced all 14,784 sub-02 first-32 rows exactly.
+Fix: `run_v5_diagnostics.sbatch` now requests `-C CPU_GEN:SKX|CPU_GEN:SIE`; the regression stays exact, and the rules are unchanged. Next: rerun the smoke.
+
+## 2026-10-17 14:12 Pacific — source_views_and_timing — premature-R diagnostic and control-precision check pre-declared
+
+Post hoc follow-up to job 48261284 (standing engineering authority), declared before any output: [rules](source_timing_handoff.md#october-17-premature-r-diagnostic-and-control-precision-check--pre-declared-before-execution). Codex gpt-6-astra (max, text only) drafted the design and code in 2 rounds; reviewed here (one fix: O3 also needs the KPA check).
+PRD, on the fixed D2 labels and v5 k=5 onsets (15 development people): within-person tail (lag ≥ 288 ms) vs reference events on H = L − t½ (t½: the departure first reaches half the amplitude of F = [L, L+100)), sensor-frame continuity C_E, pre-R drift and quiet-anchor behaviour.
+Weakens premature R (H_A): O1, ΔH ≥ 100 ms with CI > 0 and continuity not worse. Weakens a detector miss of substantial movement (H_B): O2/O3, ΔH CI inside ±50 ms plus discontinuity/drift (O2) or continuity (O3).
+Each statement needs its synthetic known-positive check (KPB: slow continuous onset; KPA: orthogonal drift, then the reach) on a decision set of ≥ 12 people.
+CPC: the six v5 families and gates unchanged on all 2,545 eligible backgrounds (the first 32 must reproduce v5 field by field), plus four descriptive development-slope strata. Sub-02's v5 sham/anchor failures are retained; k, gates and acceptance are unchanged.
+Provider AccStartIndex is read only after both decisions close. Next: a health-only smoke (sub-02/15/22, scratch), then `sbatch outputs/code/run_v5_diagnostics.sbatch` (russpold, 8 CPU, 32 GB, 1 h).
+
+## 2026-10-17 11:20 Pacific — source_views_and_timing — detector v2 / raw-onset v5: UNDERIDENTIFIED; no candidate frozen
+
+- **Summary — outcome:** Calibration/diagnostic evidence only (15 development people, no EEG). D2 and D1 are UNDERIDENTIFIED: 8/15 people passed the k=5 controls, and the classification disagreed across k.
+- **Summary — timing:** D2's k=5 p95 bounds are [324,324] ms (+12=336); D1's are [360,360] (+12=372); v1's were [696,696]. The numeric FAIL classifications are descriptive.
+- **Summary — status:** No candidate is frozen. The v1 labels/exposure (48219799) stay frozen and self-paced primary scoring stays blocked; unfrozen D2/D1 labels are in `runs/source_views_and_timing/detector_v2_job_48261284/`.
+- Job 48261284 (83 s, exit 0): both regressions PASS. c=1, LOW/HIGH 0.027917/0.053088 g; both candidates are noise-admissible. D2 has 3,964 onsets and 2.153 h at risk (v1: 4,189 and 2.612 h).
+- Post-lock: D2 L−AccStartIndex is 60/208 ms median/p95 (v1: 228/564). [Result](source_timing_handoff.md#result-job-48261284) · [figure](figures/ep19_detector_v2_acceptance_20261017.png) (rendered by job 48262428 with the revised plot script).
+- **Alternative (post hoc):** R is premature because low-amplitude activity or drift joins the reach. In the 291 tail events R−provider has median −260 ms, against −15 elsewhere; this is suggestive but conditioned on large L−R.
+- **Next (post hoc):** declare a fixed-label continuity/drift diagnostic and same-margin control-precision checks, keeping all people and gates. Changing k or the gates needs the scientist (daily batch).
+- Codex gpt-6-astra (max, text only; round 3) drafted these records; they were reviewed here.
+
+## 2026-10-17 10:52 Pacific — source_views_and_timing — v5 smoke and controls check; full run under v5 unchanged
+
+Smoke 48260443 (sub-02/15/22, health-only, 72 s, scratch): both regressions PASS (D1 with v1 thresholds reproduces 4,432 cues and
+every label array of 48219799; the v4-mode estimator reproduces every v4 estimate). Settings: c = 1, LOW 0.027917, HIGH 0.053088 g; D2 and D1 admissible.
+Event health only: 2/691 unresolved at k = 5, 0 following bouts. No lag values were read.
+Controls-only check 48260978 (all 15, scratch; synthetic, no events): 8/15 pass at k = 5. Fails:
+the linear τ5 = 64 ms near band (0.80–0.90) in 7 people; sub-02 shams 7.0% plus 2 unanchorable backgrounds; sub-03's fast band 0.93.
+So the all-person control gate will fail and v5 will return UNDERIDENTIFIED. v5 is not revised after this post hoc check;
+the full run stays as declared, for labels/exposure, the pre-declared outcome and descriptive lags. Submitting `sbatch outputs/code/run_detector_v2_acceptance.sbatch`.
+Job 48261201 failed in 10 s with no stage output: under `set -u`, bash 4.2 rejects empty-array expansion. The sbatch was fixed (engineering only) and resubmitted as job 48261284.
+
+## 2026-10-17 10:44 Pacific — source_views_and_timing — self-paced detector v2 and raw-onset test v5 pre-declared
+
+Post hoc follow-up to job 48230171 (standing engineering authority), written before any v2 output: [§1.3](component_details.md#13-self-paced-detector-v2-october-17-pre-declared-before-any-v2-output), [v5 rules](source_timing_handoff.md#october-17-self-paced-detector-v2-and-raw-onset-test-v5--pre-declared-before-execution). Codex gpt-6-astra (max, text only) drafted it in 2 rounds; reviewed here.
+Thresholds: the v1 quantile rule, applied to the support-complete final 480 ms of the frozen still windows (expected c = 1: LOW 0.0279, HIGH 0.0531 g). Guards: per-person crossings ≤ 5%, pooled entry/at-risk ≥ 0.90, each person at-risk ≥ 0.75.
+Candidates: D2 labels the LOW crossing whose run reaches a confirmed HIGH crossing (pending from LOW); D1 keeps the v1 rules. Order D2 → D1; freeze the first admissible `BELOW_EMPIRICAL_P95_ONLY`.
+v5 control labels are detector-independent: L = T_det,5 + target, on the 4-ms clock. Gated families: linear/quadratic (τ5 = 64 ms) and continuity-verified pulse+growth; slow and near-threshold families are descriptive. Near targets 288–316 ms, every 4 ms.
+Lags are signed (an anchored following bout ≤ L+60 ms counts); aligned shams sit at 4 positions per background. The v4 gates, k = 3/5/8, the >5% unresolved rule and the 12 ms are kept.
+Stage order: regressions → settings → controls closed → labels → decisions closed → provider. Control failure weakens identification; FAIL weakens the empirical timing argument; BELOW only weakens the large-lag alternative (no worst-case or EEG clearance).
+Next: smoke (sub-02/15/22, health-only), then the full `sbatch outputs/code/run_detector_v2_acceptance.sbatch` (8 CPU, 32 GB, 1 h).
+
+## 2026-10-17 10:17 Pacific — source_views_and_timing — noise inspection: v1 threshold scale was set by unscreened history
+
+Job 48257954 (sh03-06n05, 22 s, exit 0): [run](runs/source_views_and_timing/detector_v2_noise_job_48257954/pasteback.txt). Every frozen count was reproduced:
+3,661 windows (1,901/1,760), v1 LOW/HIGH, v4 θ3/5/8 and 2,545 backgrounds. Pooled fit X has q99.9 0.0851 g over full 1-s windows
+but 0.0279 g over the support-complete final 480 ms. 86% of windows with X > 0.03 g exceed it only in samples whose
+500-ms baseline lies before the screened window, and all 24 support-complete exceedances fail a 20-ms block screen.
+Under the v1 quantile rule on corrected support: c = 1 gives LOW/HIGH 0.0279/0.0531 g, with 0/1,901 fit and 0/1,760 validation windows crossing.
+Fit backgrounds then give pooled entry 0.965 and at-risk 0.963 (D1) / 0.955 (D2); sub-04 is lowest (0.84/0.79).
+With c = 0.5/0.75, false crossings run 0.72/0.13 per minute (v1 validation: 0.10). Next: Codex round 2 drafts the declarations and code.
+
+## 2026-10-17 10:11 Pacific — source_views_and_timing — noise-only inspection before the self-paced detector redesign
+
+Selected under standing engineering authority (post hoc follow-up to job 48230171). It is meant to set the redesign's
+threshold and availability rules from development still noise before any redesigned-detector output.
+Code: [`inspect_detector_v2_noise.py`](code/inspect_detector_v2_noise.py), drafted by Codex gpt-6-astra (max, text only), reviewed here.
+Scope: the 15 development people. Whole runs are loaded through `sp_load`, but computations use only pre-start still windows
+(the final 480 ms of support) and v4 background segments. It computes no event crossing, onset, label, provider value or EEG.
+Probes: quantile/MAD scales × c ∈ {0.5…4}, D1/D2 noise replays, and plateau feasibility. `srun -p russpold`, 8 CPU, 32 GB, 1 h.
+
+## 2026-10-17 01:31 Pacific — source_views_and_timing — self-paced raw-onset lag test result
+
+- Ran job 48230171: 47 s, 15 development people, 155 runs, 4,189 accepted onsets; 3,661 stationary windows reproduced exactly. Calibration/diagnostic evidence only.
+- Full-run v4 included post hoc rounds 3–4 after two smoke runs, including 48227088; exposed sub-02/sub-15/sub-22 remain included.
+- Outcome: UNDERIDENTIFIED; 0/15 people passed all primary controls. Pooled k=5 sham alarms: 11.3%; no control-passing participant subset.
+- k=5 p95 lag bounds: 696–696 ms (+12=708); 9 unresolved; 1,868/4,180 determinate totals ≥300 ms. k=3/8 bounds+12: 808/628 ms. The 188-ms proxy is challenged; timing failure is not validated.
+- Post hoc pooled k=5 controls: 9,001 determinate usable injections; 95.0% within ±20 ms; near/long classification 91.7%/99.9%. Conditional accuracy does not override failed controls.
+- Post-lock provider comparison: k=5 R−provider median/p95 −16/60 ms; L−provider 228/564 ms. Shared accelerometry limits independence.
+- Next (post hoc): predeclare a global detector redesign from all 15 development people and corrected acceptance controls—feasible targets, primary-bout-aligned shams, verified 1-kHz calibration; exclude held-out tuning/normalization initialization and retain original artifacts.
+- Keep self-paced primary scoring blocked; WAY development non-neural baseline selection can proceed. One daily scientist batch: p95 versus worst-case criterion, minimum meaningful primary EEG gain and other unset margins.
+
+## 2026-10-17 01:19 Pacific — source_views_and_timing — raw-onset test rules revised (v4); full run launched
+
+Post hoc revision (Codex gpt-6-astra, max) after smoke 48227088. Quiet = no qualifying 40-ms window; controls on 2.8-s
+pre-start backgrounds (final 1.9 s still); provider ticks rounded. Rules: [handoff](source_timing_handoff.md#october-17-self-paced-raw-onset-lag-test--pre-declared-before-execution).
+v4 smoke 48229838 (3 people, scratch, rule-forced UNDERIDENTIFIED): 153–224 eligible backgrounds/person; 0.6% censored (k = 5);
+determinate lag p95 612/520 ms (k = 5/8). Controls fail the gate: shams 9–31% (k = 5), and sub-15 1-kHz calibration leaves 14
+cells uncovered. Post-lock: R − AccStartIndex median −7.5 ms. Full run under v4 unchanged:
+`sbatch outputs/code/run_raw_onset_test.sbatch` (8 CPU, 32 GB, 1 h).
+
+## 2026-10-17 01:15 Pacific — source_views_and_timing — raw-onset smoke run exposes two design flaws
+
+Smoke job 48227088 (sub-02, sub-15, sub-22; scratch; 11 s) ran stages 1–3, then Stage 4 failed parsing float provider ticks
+(523376.00000000006). Engineering findings: (1) at most 3 still 4.5-s pre-tone control backgrounds per person (≥20 needed);
+(2) the "every sample ≤ θ for 200 ms" quiet anchor left 38% of onsets censored at k = 5 (θ 0.013–0.018 g).
+Either would make the full run UNDERIDENTIFIED regardless of the labels. Seen outcome (subset, rule-forced underidentified): determinate
+lags p95 692 ms (k = 5) and 520 ms (k = 8), 37% ≥ 288 ms. Next: Codex revises (post hoc, disclosed) with shorter backgrounds whose
+still part is ≥ 1.9 s, quiet defined as no qualifying 40-ms window, and rounded provider ticks. Then the full run; the three smoke
+people stay in it.
+
+## 2026-10-17 01:03 Pacific — source_views_and_timing — self-paced raw-onset lag test pre-declared
+
+Tests the alternative that self-paced labels lag sensor-detectable movement. Full rules: [handoff](source_timing_handoff.md#october-17-self-paced-raw-onset-lag-test--pre-declared-before-execution);
+Codex gpt-6-astra (max) drafted the design and code (3 rounds), reviewed here. Statistic: native |a − mean[t−520, t−20)|; threshold
+person median + 5·MAD-SD of frozen still windows (k = 3/8 sensitivity); onset R = start of the bout reaching the label (≥80%/40 ms,
+bouts split by ≥200 ms quiet, 200-ms quiet anchor); lag = L − R. Controls: per-person noiseless-calibrated linear/quadratic/pulse ramps
+on real 4.5-s still backgrounds plus shams, truth = detectable onset. Decision: controls fail, >5% unresolved, a p95 interval
+straddling 288 ms or k disagreement → UNDERIDENTIFIED; else p95 lower + 12 ≥ 300 → FAIL, upper + 12 < 300 → BELOW (not a worst-case
+proof). Provider columns are read only after the decision is written. Smoke (sub-02, sub-15, sub-22; scratch) first, then sbatch.
+
+## 2026-10-17 00:18 Pacific — source_views_and_timing — development detector freeze complete (calibration)
+
+Job 48219799 (102 s, exit 0; replay = `WayRiskStream` on 84/84 series): [run](runs/source_views_and_timing/detector_freeze_job_48219799/detector_freeze_summary.json).
+WAY 2,030/2,712 cues armed, all with onsets, 0.206 h at risk; self-paced 4,195/4,432 armed, 4,189 onsets,
+2.612 h. 300–600-ms positives/scorable decisions: 3,527/14,847 and 24,005/187,972. Crossing term p95 67 / 176 ms
+→ pre-declared bounds WAY 247 ms, self-paced 188 ms (< 300); p99 terms 283/280; max terms 352/612; per-event
+≥ 300 ms: 7/2,030 and 36/4,189. Post hoc (Codex review): the p95 gate does not prove GOAL's worst case. Strongest
+alternative: self-paced labels follow AccStartIndex by median 228 ms (p95 564; a third ≥ 288), i.e. a 576-ms bound.
+Next: pre-declare and run a provider-blind raw-onset lag test for self-paced labels; WAY non-neural baseline selection
+can start. Daily question: may a p95-term budget stand for "worst case"? Session compute 0.80 CPU-h (11 steps).
+
+## 2026-10-17 00:14 Pacific — source_views_and_timing — independent review fixes; freeze re-run selected
+
+First full run 48195622 (125 s, exit 0; replay = `WayRiskStream` on 84/84 series) is kept but superseded.
+A Codex gpt-6-astra (max) code review (text only) found 12 implementation defects and no rule change. P1:
+a tone could be confirmed before its bridging burst was seen (self-paced cues up to 100 ms early); a gap
+cut follow-up one sample early; a burst unresolved at a segment end did not limit follow-up; no guards for
+an unresolved fit or nonfinite TRIG. P2: 0.25-s confirmation was 248 ms at 250 Hz; float schedule edges;
+WAY crossing support short by ≤2 ms; starts in invalid segments missing from cue counts; derivative binding
+not one-to-one. P3: rejected-crossing count after the cutoff. All fixed; same rules re-run below.
+
+## 2026-10-16 19:25 Pacific — source_views_and_timing — full development detector freeze launched
+
+Smoke job 48195238 (WAY P2; self-paced sub-15, sub-22; scratch only, 2-person global thresholds, not
+frozen) ran in 76 s: the generic replay matched `WayRiskStream` on 7/7 series (0 state, onset or label
+mismatches); the sub-15 burst at 221.77 s was rejected (0.099 s) with adjacent tones classified; tone
+onsets sit 32 ms after provider TrialStartIndex (median). No rule changed. Full run: all 12 WAY and 15
+self-paced development people, `srun -p russpold`, 8 CPU, 48 GB, 45 min → job 48195622 (exit 0, 125 s;
+superseded by 48219799 after review fixes; kept in `runs/source_views_and_timing/detector_freeze_job_48195622/`).
+
+## 2026-10-16 19:15 Pacific — source_views_and_timing — detector rules fixed before any detector output
+
+Noise job 48191618 (and TRIG cue probes 48193388/48194320) showed heavy-tailed rest noise (0.1–3% of
+WAY ticks > median + 6 MAD-SD), 174–201/226 position-still WAY windows per person, and noisy-TRIG
+runs (sub-11/ses-01) where 20× tone detection fails. Rules, now frozen
+([§1.2](component_details.md#12-detector-freeze-rules-october-16-written-before-any-detector-output)):
+quantile scale σ_q = q99.9 − median of fit still noise; low/high = median + c·σ_q / + 2c·σ_q, with c the
+smallest of 1–4 where ≤ max(1, 1%) of fit windows confirm a crossing; WAY per person (S1–S7), self-paced
+global; TRIG 100-ms envelope > 4× causal reference, 0.25-s tone confirmation, schedule-based classes;
+crossing term = pooled p95 of the backward supra-low run plus 20-ms support. Not yet run on any labels.
+
+## 2026-10-16 18:50 Pacific — source_views_and_timing — noise-only inspection before the detector rules
+
+Selected to set the detector-rule constants from development noise only: WAY P1–P12 S1–S7 pre-cue
+windows [LED rise − 1 s, rise) (EMG/speed summaries, position spread and quantum, object/force rest
+values); self-paced 1 s before start tones, TRIG tone bursts and accelerometer axis variance. It
+computes no crossing, onset, label, HandStart or AccStartIndex. Code:
+[`inspect_detector_noise.py`](code/inspect_detector_noise.py) with readers
+[`detector_readers.py`](code/detector_readers.py) and [`detector_summaries.py`](code/detector_summaries.py).
+`srun -p russpold`, 8 CPU, 32 GB, 30 min → job 48191618, exit 0 in 29 s,
+[`detector_noise_job_48191618/`](runs/source_views_and_timing/detector_noise_job_48191618/noise_inspection.json).
+
+## 2026-10-16 18:40 Pacific — source_views_and_timing — all eleven open source facts classified
+
+Jobs 48183086 (COMPLETED 0:0, 59 s) plus post hoc 48184379/48184852. **Resolved:** WAY window start = HS
+sample `500·trial_start_time − 1000` in 2,712/2,712 windows (bit-identical kin/EEG/EMG); LED >0.5 = lit in
+84/84 files; positions cm (lift 6.24; weight-series cue 1–3 s after digits >15 cm in 96.1%, post hoc split);
+forces N (1.72/3.45/6.71 N for 165/330/660 g); surface codes 1/2/3 = silk/suede/sandpaper. Self-paced:
+sub-03/ses-02 `DataFile` is a stale copy line; no invalid development run (Table 1 count error); 1 g =
+1.4465×10⁶ µV. **Assumed with sensitivity plans:** WAY filter/drift bound 220 ms < 300 ms, actiCHamp
+filter, absolute TRIG latency, unmarked gaps (31 ambiguous cycles). Pre-declared misses are listed in the
+[classification](source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below).
+EP19 compute today 0.255 allocated CPU-h (15 short steps). Next: development detector/label freeze (see README).
+
+## 2026-10-16 17:50 Pacific — source_views_and_timing — three post hoc follow-ups selected after job 48183086
+
+Selected after reading the 48183086 results, so labelled post hoc: (1) WAY FASTRAK
+velocity spectra during reaches (update rate, possible interpolation look-ahead,
+prompted by lift-off lags of −24 ms at p10); (2) WAY env condition-code timing at
+the LED rise; (3) self-paced 60-Hz mains-phase continuity, because cue-playback
+jitter (p1–p99 −111/+200 ms) made the pre-declared ±60-ms interval rule
+insensitive and 49 short cycles (~−120 ms) were uncompensated. Code:
+[`source_fact_followups.py`](code/source_fact_followups.py). Same data scope; no new data roles.
+
+## 2026-10-16 15:45 Pacific — source_views_and_timing — source-fact checks selected (scientist decision of Oct 16)
+
+Selected under the October 16 rule that missing source facts are resolved from
+papers, code and permitted data, or adopted as stated assumptions; no provider
+contact. Fourteen checks (W1–W9 WAY, S1–S5 self-paced) and their decision rules
+are pre-declared in [the handoff](source_timing_handoff.md#october-16-pre-declared-source-fact-checks-written-before-the-data-were-read).
+Data: WAY P1–P12 series 1–7 (HS view + WS S1–S7), 155 self-paced development
+runs and the sub-03/ses-02 derivative. Closed: WAY S8–S9, `AllLifts`, the eight
+held-out people, EEG models. One-file smoke runs passed (48182660, 48182890);
+full run submitted as job 48183086 (russpold, 8 CPU, 24 GB, 1 h).
+
 ## 2026-10-12 11:21 Pacific — reference_panel — final-refit companion checks and ASTRA passed
 
 At 18:21:06 UTC, the retained

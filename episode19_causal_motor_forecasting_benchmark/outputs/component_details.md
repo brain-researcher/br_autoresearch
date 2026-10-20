@@ -51,6 +51,60 @@ resampling/filter response, sample discretization and crossing uncertainty.
 Record confirmation delay separately. Neither published synchronization nor
 the word "raw" verifies the full information-availability chain.
 
+**Source inputs fixed October 16 before any detector or EEG outcome**
+([evidence](source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below)):
+
+- **WAY cues and conditions.** Cues come from HS `ParticipantLED > 0.5` (lit).
+  Per-lift weight (grams) and surface (1 = silk, 2 = suede, 3 = sandpaper) come
+  from HS `env`, available from the LED rise. Position-derived baseline inputs
+  lag decision time by 40 ms.
+- **Self-paced sensors.** Values in µV are stored value × header resolution,
+  and 1 g = 1.4465×10⁶ µV. Use vector norms and departures, because axis signs
+  vary by session. A flat axis (sub-22/ses-01 runs 0006–0007) is missing, not
+  still. Cue availability needs causal TRIG detection with tone-duration
+  confirmation, because spurious bursts exist.
+- **Timing validity (calibration/diagnostic evidence; jobs 48219799, 48230171, 48261284 and 48281685).**
+  The historical detector-freeze crossing p95 terms were 67 ms WAY and 176 ms
+  self-paced, giving proxy budgets of 247 ms WAY (131 ms for EMG-departure
+  onsets) and 188 ms self-paced. The p99-term budgets were 283/280 ms and
+  max-term budgets 352/612 ms. These quantile-term sums do not prove a worst case.
+  Detector v2 / raw-onset v5 is **UNDERIDENTIFIED for D2 and D1**: only 8/15
+  development people passed all k=5 controls, and cross-k classifications
+  disagreed. No candidate was frozen. D2 k=5 p95 bounds are [324,324] ms
+  (+12=336); D1 bounds are [360,360] ms (+12=372), versus the v1 reference's
+  [696,696] ms (+12=708). These are descriptive comparisons across changed
+  event sets/exposure, not validated true-onset timing verdicts.
+  D2's k=8 total of 248 ms provides no clearance: 0/15 people passed k=8
+  controls. Its historical 19-ms crossing-plus-support p95 is mechanically
+  support-only and does not establish timing validity.
+  Post-lock D2 L−provider median/p95 was 60/208 ms and k=5 R−provider
+  −16/57 ms; shared accelerometry limits independence.
+  **Follow-up diagnostics (job 48281685; pre-declared, post hoc to v5):** the
+  fixed-label premature-R diagnostic is **O4 UNRESOLVED** in 14/15 people,
+  with all known-positive checks passed (ΔH 19 [6,82] ms; ΔC_E −0.149
+  [−0.292,−0.029]; no drift signature), so no automatic change follows. With
+  all 2,545 backgrounds, linear near sensitivity is 0.893 [0.884,0.902]
+  against the 0.90 gate (CP1: 1 below, 15 across, 29 above). Per-trace
+  onset-timing error explains every near classification: this is a limit of
+  the reference estimator that detector changes cannot alter. Sub-02's v5
+  sham failure is retained.
+  **Strongest alternative (post hoc):** a mixture. Intermittent low-amplitude
+  activity makes R premature in most tail events, while 54/289 tail events
+  show a substantial departure ≥ 288 ms before L (mostly sub-06/20/14).
+  **Next (post hoc):** declare a fixed-label gap/H diagnostic before any
+  anchored-baseline, slope-sensitive or c=0.75 detector. Estimator resolution
+  versus gate logic, a continuity-revised acceptance reference, k and the
+  gates need the scientist.
+  Preserve the original freeze, exclude held-out tuning/normalization
+  initialization and keep self-paced primary scoring blocked. WAY development
+  non-neural baseline selection can proceed. Planned +50/+100/+200-ms horizon
+  shifts and exclusion of 31 ambiguous cue cycles provide no timing clearance.
+  See the [follow-up result](source_timing_handoff.md#result-job-48281685),
+  [v5 result](source_timing_handoff.md#result-job-48261284) and
+  [v4 reference](source_timing_handoff.md#result-job-48230171).
+  The worst-case criterion, minimum meaningful primary EEG gain and other
+  unset margins remain in the single daily scientist question batch.
+
 ### 1.1 WAY completed-return predicate: parameterized development definition
 
 Specification clarification, 2026-10-05; no detector replay or threshold fit is
@@ -71,9 +125,12 @@ Use XYZ channels `P{axis}{sensor} - position {axis} sensor {sensor}` for sensors
 1–4 and each plate's `FX`, `FY`, `FZ` channels, named
 `F{AXIS}{plate} - force {axis} plate {plate}` for plates 1–2. These are the
 names already selected in the [peripheral reader](code/pilot_way_peripheral_onset.py).
-Position comparisons use metres and force comparisons newtons after explicit
-source-unit conversion; numerical HS units, force signs/offsets and conversion
-evidence remain required configuration, not values inferred from magnitudes.
+Position comparisons use metres and force comparisons newtons. As of
+October 16, HS positions are centimetres (the 0.15 m clearance is 15 HS units)
+and forces are newtons. Plates read −0.08 N at rest, so subtract the past
+no-contact baseline. These are data-verified source facts
+([classification](source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below)),
+not magnitude guesses.
 
 At a known start cue, the immediately preceding 500 ms must satisfy all of:
 
@@ -107,6 +164,158 @@ by GOAL's pre-score development/freeze rule and SEARCH_POLICY's
 `onset_and_risk`; no new approval gate, scientific margin, source subset or
 forecasting permission is introduced. No array-only implementation or new
 test is selected by this clarification.
+
+### 1.2 Detector freeze rules (October 16, written before any detector output)
+
+Fixed after a noise-only inspection (job 48191618: pre-cue sensor noise, TRIG
+bursts; no crossing, onset, label or provider annotation computed) and before
+any detector, label or agreement output. Code:
+[`detector_freeze.py`](code/detector_freeze.py),
+[`run_detector_freeze.py`](code/run_detector_freeze.py), readers
+[`detector_readers.py`](code/detector_readers.py), summaries
+[`detector_summaries.py`](code/detector_summaries.py).
+
+**Summaries (20 ms, past-only).** WAY: five EMG envelopes (residual from the
+strictly past 500-ms mean, RMS over the trailing 20 ms, EMG sample 8i for tick i)
+and index/thumb/wrist speed `|x(i) − x(i−10)|/0.02 s` in cm/s; a 20-ms
+displacement replaces the pilot's mean of 2-ms speeds, which accumulates
+quantization noise. Self-paced: `|mean(last 20 ms) − mean(preceding 500 ms)|` of
+the 3-axis vector in g; 1-kHz runs are first reduced causally to 250 Hz (mean of
+samples 4k..4k+3, available at 4k+3). An axis whose trailing 1-s SD is below
+1e-4 g is flat, hence missing.
+
+**Stationary noise windows.** WAY: [LED rise − 1 s, rise) in which P2–P4 stay
+within 0.5 cm of their window median and both digits stay ≥ 15 cm from the
+object (174–201 of 226 windows per person). Self-paced: 1 s before each start-tone
+onset in which the ten 100-ms means of the acceleration vector stay within
+0.02 g of the window mean. Fit = even cue index within a series/run, validation = odd.
+
+**Threshold scales.** Rest noise is heavy-tailed (0.1–3% of WAY ticks exceed
+median + 6 MAD-SD), so the MAD scale is replaced by a quantile scale per path:
+`σ_q = q99.9 − median` of the fit ticks; `low = median + c·σ_q`,
+`high = median + 2c·σ_q` (the 1:2 hysteresis of the 3σ/6σ recipe), with `c` the
+smallest of 1, 1.5, 2, 3, 4 for which at most max(1, 1%) of fit windows contain a
+confirmed crossing (≥ high, then ≥ low for the next 40 ms). WAY: per participant
+and path from S1–S7 (applied unchanged to S8–S9); self-paced: one global value
+from the 15 people (no held-out person contributes or is tuned). Validation
+windows report the any-path false-crossing rate and the 500-ms quiet-entry
+availability; they do not choose `c`.
+
+**Return references (WAY).** Object position and plate forces: fit-window median;
+tolerance per coordinate = 3 × q99 of |deviation| (floors 0.1 cm, 0.5 cm/s for
+the 20-ms object velocity, 0.02 N). Combined with the 15-cm clearance and the
+eight low thresholds in `evaluate_completed_return` over [rise − 500 ms, rise).
+
+**Cues.** WAY: LED > 0.5; start = rise, end = fall; `WayRiskStream` with 40-ms
+confirmation, 500-ms requalification and a 50-ms grid from series start.
+Self-paced TRIG: `|ΔTRIG|`, trailing 100-ms mean, reference = median of the last
+ten completed 1-s block medians; hot when above 4× reference; bursts merge across
+gaps < 100 ms; a burst is a tone once it has lasted 0.25 s (known then), else it
+is rejected when it ends (sub-15/ses-01/run-0001 at 221.77 s lasts 18 ms). Tone
+class from the schedule only: 12.0 ± 0.4 s after a start = end, 7.08 ± 0.4 s
+after an end = start, 19.08 ± 0.5 s = same class; with no classified
+predecessor, the interval to the previous tone decides; otherwise unclassified
+(a run's first tone is never armed). A start tone opens a cue at its
+confirmation; it arms only if the last classified tone was an end and the
+preceding 500 ms are valid and ≤ low. Any burst onset inside an open cue
+suspends decisions until resolved; a confirmed tone cuts the cue at its onset.
+
+**Labels and diagnostics.** Labels via `forecast_labels` on the 50-ms grid (WAY
+500-Hz ticks; self-paced 1-kHz ticks). The generic replay used for self-paced
+must reproduce `WayRiskStream` states, onsets and labels on every WAY series.
+Detector-crossing delay (diagnostic, backward-looking): from the start of the
+continuous supra-low run on any path that reaches the label crossing, plus the
+20-ms summary support (WAY 18 ms, self-paced 16 ms, 19 ms for 1-kHz runs). The
+timing term is its pooled p95 per source (as for the 110-ms position term);
+p99 and maximum are reported. If a source's bound reaches 300 ms, the freeze
+fails and the detector is redesigned. HandStart (S1–S7 rows) and
+`AccStartIndex` are agreement diagnostics only.
+
+**Frozen values (job 48219799).** All 8 WAY paths take the lowest step (c = 1)
+for all 12 people; per-person thresholds and return references are in
+[`detector_settings.json`](runs/source_views_and_timing/detector_freeze_job_48219799/detector_settings.json).
+Self-paced global thresholds: low 0.085 g, high 0.167 g (still-noise median
+0.003 g; 1,901 fit / 1,760 validation windows). Held-out-parity noise: WAY
+22/1,128 windows confirm a crossing (1.2/min), 83.5% quiet-entry availability;
+self-paced 3/1,760 (0.10/min), 100%. Confirmation delay is 40 ms in every
+onset. An independent code review (Codex gpt-6-astra) led to twelve
+implementation fixes before the final run (log, October 17 00:14) and to no
+rule change.
+
+### 1.3 Self-paced detector v2 (October 17, pre-declared before any v2 output)
+
+A disclosed post hoc follow-up to raw-onset test job 48230171, informed by the
+noise-only inspection job 48257954. It covers development self-paced
+accelerometer/TRIG only; held-out people, EEG and WAY are unchanged. The
+estimand stays the earliest accelerometer-detectable departure of the wrist
+from a past stationary baseline. Codex gpt-6-astra (max, text only) drafted
+the rules, which were reviewed here. Code:
+[`detector_v2.py`](code/detector_v2.py), [`run_detector_v2.py`](code/run_detector_v2.py),
+[`self_paced_raw_onset_test_v5.py`](code/self_paced_raw_onset_test_v5.py),
+[`run_detector_v2_acceptance.sbatch`](code/run_detector_v2_acceptance.sbatch).
+
+**Unchanged from §1.2.** Readers, the 20-ms summary X (vector norm of the
+latest 5 detector samples minus the preceding 125-sample mean), validity and
+flat-axis rules, causal 1-kHz reduction, TRIG tones and classes, the arming
+rule (preceding 500 ms valid and ≤ LOW), cuts, one reach per start cue,
+segments and resets, the 50-ms grid and `forecast_labels`.
+
+**Thresholds (shared by both candidates).** The v1 rule with corrected
+support. Window membership and fit/validation parity are the frozen ones, but
+both the scale and the window crossing test use only X[130:250] of each window:
+the 120 samples whose 520-ms support lies inside the screened window.
+σ_q = pooled fit q99.9 − median; LOW = m + c·σ_q, HIGH = m + 2c·σ_q. c is the
+smallest of {1, 1.5, 2, 3, 4} for which at most max(1, 1%) of fit windows hold
+a HIGH crossing that is confirmed or unresolved at the window end. Expected
+from job 48257954 (the run recomputes them): c = 1, LOW 0.027917 g,
+HIGH 0.053088 g (v1: 0.0851/0.1672 g).
+
+**Noise-only admissibility guards**, checked at the selected rung on fit windows
+and backgrounds (validation is reported only):
+- each person's fit-window crossings ≤ max(1, 5%) of that person's windows;
+- pooled fit-background fixed-entry and at-risk fractions ≥ 0.90 for the
+  candidate's state machine;
+- each person's fit-background at-risk fraction ≥ 0.75.
+
+A failing guard moves both candidates to the next rung (shared-rung
+assumption), and the history is recorded. Expected at c = 1: every guard passes
+(the lowest value is sub-04's D2 at-risk fraction, 0.79).
+
+**Candidates.**
+- **D2 (preferred).** While at risk, the first sample with X ≥ LOW opens a
+  candidate and suspends predictions from that sample. The candidate is
+  confirmed when X reaches HIGH within the same uninterrupted ≥ LOW run and then
+  stays ≥ LOW for 10 more samples (40 ms). The onset is labelled at the LOW
+  crossing, its known tick is the confirmation, and the cue is disarmed. A drop
+  below LOW rejects the candidate and requalification needs 125 samples ≤ LOW.
+  A crossing confirmed while requalifying is still the cue's onset (as in v1).
+  An unresolved candidate's unknown bound starts at its LOW crossing. There is
+  no new timeout.
+- **D1.** The v1 state machine (`detector_freeze.run_segment`), unchanged, with
+  the new thresholds: pending starts, and the label sits, at the first HIGH
+  crossing.
+
+With the same thresholds the two candidates confirm the same events; only the
+labelled timestamp and the pending exposure differ.
+
+**Selection.** Both candidates get labels, exposure and the same acceptance test,
+raw-onset test v5
+([rules](source_timing_handoff.md#october-17-self-paced-detector-v2-and-raw-onset-test-v5--pre-declared-before-execution)).
+The frozen self-paced detector v2 is the first candidate in the order D2 → D1
+that is admissible and receives `BELOW_EMPIRICAL_P95_ONLY`; the other one is
+descriptive. A control failure makes both UNDERIDENTIFIED. If neither passes,
+nothing is frozen and §1.2's labels remain, still blocked for primary scoring.
+
+**Outputs.** Settings go to `runs/source_views_and_timing/detector_v2_job_<id>/settings/`,
+labels and exposure to `…/detector_v2_job_<id>/{D2,D1}/`, and decisions and the
+selection to `…/raw_onset_test_v5_job_<id>/events/`.
+
+**Claim limits.** A pass is an empirical p95 statement, conditional on the
+estimator and synthetic-control assumptions. It is neither a worst-case
+certification nor EEG scoring clearance. For D2, the historical backward-LOW
+crossing term is mechanical.
+
+**Result (job 48261284; calibration/diagnostic evidence only).** Recalculation selected c=1, median 0.002745 g and σ_q 0.025171 g, giving LOW/HIGH 0.027917/0.053088 g. Fit/validation crossings were 0/1,901 and 0/1,760; pooled entry was 0.965, at-risk fractions D1/D2 were 0.963/0.955, and the minimum person-level fraction was 0.789. Both candidates were noise-admissible, but only 8/15 people passed primary controls and cross-k classifications disagreed: **D2 and D1 UNDERIDENTIFIED; neither frozen**. D2/D1 k=5 p95 bounds were [324,324]/[360,360] ms, giving 336/372 ms with the 12-ms fixed terms, descriptively. Candidate labels/exposure are in [D2](runs/source_views_and_timing/detector_v2_job_48261284/D2/) and [D1](runs/source_views_and_timing/detector_v2_job_48261284/D1/), with [label-stage artifacts](runs/source_views_and_timing/detector_v2_job_48261284/labels_stage/). The v1 freeze from job 48219799 remains preserved and self-paced primary scoring blocked. See the [result, figure and post hoc premature-R diagnostic proposal](source_timing_handoff.md#result-job-48261284).
 
 ## 2. Recent and older-slow EEG: an exact construction
 

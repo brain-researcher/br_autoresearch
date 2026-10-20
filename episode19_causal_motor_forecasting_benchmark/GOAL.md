@@ -125,8 +125,9 @@ crossing a data split are prohibited.
 The [component design](outputs/component_details.md) now specifies the earliest
 confirmed peripheral crossing, pending/armed states and one reach per known
 start cue. It also gives source-specific baseline inputs and a four-parameter
-calibration recipe. Starting detector/calibration choices still require
-development-only checks and a pre-score freeze; no timing bound is claimed met.
+calibration recipe. The onset/stillness detector was frozen on development data
+on October 17 (component design §1.2); the calibration recipe still needs its
+development freeze, and no worst-case timing bound is claimed met.
 
 ## The secondary question: does model order depend on the horizon?
 
@@ -434,10 +435,40 @@ source-specific timing and onset checks, separated development and held-out
 data views, validation/freezing of the selected component/calibration procedures,
 all numeric margins, the development false-alarm ceiling and warning rule,
 the complete executable five-family, four-condition factorial panel and
-mutation tests, and qualification of past-only information flow. The public
-timing conventions do not resolve the original export clock or physical units;
-[current data readiness](DATASETS.md#current-readiness) separates those gaps
-from the completed support and backend work.
+mutation tests, and qualification of past-only information flow.
+
+On October 16 the source facts were settled from the articles, the provider
+code and development data, without provider contact. The WAY clock origin,
+position (cm) and force (N) units, LED polarity and codebook were resolved; so
+were the self-paced run bindings, valid runs and accelerometer scale. Filter
+delays, drift, the actiCHamp filter and unmarked gaps are stated assumptions
+with pre-specified sensitivity analyses. See the
+[source-fact classification](outputs/source_timing_handoff.md#october-16-source-fact-classification-current-supersedes-the-open-items-below).
+
+On October 17 the development onset/stillness detector, labels and exposure
+were frozen for all 27 development people (job 48219799). These remain
+preserved. Detector v2 / raw-onset v5 (job 48261284; 15 development people)
+is **UNDERIDENTIFIED for D2 and D1**: only 8/15 people passed all primary
+controls and cross-k classifications disagreed; no candidate was frozen.
+D2 k=5 p95 bounds are [324,324] ms (+12=336), and D1 bounds are [360,360] ms
+(+12=372). These are descriptive calibration/diagnostic findings, not an
+EEG result or a validated true-onset timing verdict. The historical 247-ms
+WAY and 188-ms self-paced budgets remain quantile-term proxies, not
+worst-case proofs. Self-paced primary 300–600-ms scoring remains blocked.
+The strongest post hoc alternative is premature R caused by continuous
+low-amplitude activity/drift. The next engineering follow-up is a
+prospectively declared fixed-label continuity/amplitude/drift diagnostic
+and control-precision checks at the same 288-ms margin, retaining all
+people and existing gates. Development-derived slopes may supplement the
+controls; c=0.75 requires a separate out-of-ladder engineering declaration.
+Changing k or acceptance gates requires the scientist; k=8 currently has
+0/15 control passes, and any BELOW requires passed positive controls at
+the same margin. Held-out people cannot enter tuning or normalization
+initialization. WAY development non-neural baseline selection can proceed.
+The single daily scientist batch retains the timing-guarantee decision,
+minimum meaningful primary EEG gain and other unset margins. See the
+[v5 result and figure](outputs/source_timing_handoff.md#result-job-48261284)
+and [v4 reference](outputs/source_timing_handoff.md#result-job-48230171).
 
 Dataset details are in [DATASETS.md](DATASETS.md). Compact methods and budgets
 are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed paper story is in

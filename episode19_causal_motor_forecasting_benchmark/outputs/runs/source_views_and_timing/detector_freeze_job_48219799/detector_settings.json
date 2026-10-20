@@ -1,0 +1,3018 @@
+{
+ "rules": "outputs/component_details.md#12-detector-freeze-rules-october-16-written-before-any-detector-output",
+ "constants": {
+  "FIT_WINDOW_CROSSING_FRACTION": 0.01,
+  "QUANTILE": 99.9,
+  "REF_FLOORS": {
+   "position_cm": 0.1,
+   "motion_cm_s": 0.5,
+   "force_n": 0.02
+  },
+  "REF_TOLERANCE_MULTIPLIER": 3.0,
+  "RUNGS": [
+   1.0,
+   1.5,
+   2.0,
+   3.0,
+   4.0
+  ],
+  "SCHEDULE_S": {
+   "start_to_end": 12.0,
+   "end_to_start": 7.08,
+   "same": 19.08
+  },
+  "SCHEDULE_TOL_S": {
+   "start_to_end": 0.4,
+   "end_to_start": 0.4,
+   "same": 0.5
+  },
+  "SP_BLOCK_SAMPLES": 25,
+  "SP_CONFIRM": 10,
+  "SP_FLAT_SD_G": 0.0001,
+  "SP_GRID_TICKS": 50,
+  "SP_NOISE_SAMPLES": 250,
+  "SP_QUIET": 125,
+  "SP_STILL_BLOCK_G": 0.02,
+  "STATE_CODES": {
+   "unknown": 0,
+   "unarmed": 1,
+   "at_risk": 2,
+   "pending": 3
+  },
+  "TONE_CONFIRM_S": 0.25,
+  "TONE_ENVELOPE_S": 0.1,
+  "TONE_MERGE_S": 0.1,
+  "TONE_ON_RATIO": 4.0,
+  "TONE_REFERENCE_BLOCKS": 10,
+  "WAY_CLEARANCE_CM": 15.0,
+  "WAY_CONFIRM": 20,
+  "WAY_GRID": 25,
+  "WAY_NOISE_TICKS": 500,
+  "WAY_QUIET": 250,
+  "WAY_STILL_SPREAD_CM": 0.5
+ },
+ "way": [
+  {
+   "participant": "P1",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.005848333304470927,
+     "sigma_q": 0.005045364738246672,
+     "rung": 1.0,
+     "low": 0.010893698042717599,
+     "high": 0.01593906278096427,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005736409484103033,
+     "sigma_q": 0.007502894650046067,
+     "rung": 1.0,
+     "low": 0.0132393041341491,
+     "high": 0.020742198784195167,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007203037456977514,
+     "sigma_q": 0.02285952332374635,
+     "rung": 1.0,
+     "low": 0.030062560780723863,
+     "high": 0.05292208410447021,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.014498258488156446,
+     "sigma_q": 0.05850550152126728,
+     "rung": 1.0,
+     "low": 0.07300376000942373,
+     "high": 0.131509261530691,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007073929258892612,
+     "sigma_q": 0.012007915092480028,
+     "rung": 1.0,
+     "low": 0.01908184435137264,
+     "high": 0.031089759443852668,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4123105625617099,
+     "sigma_q": 2.3670868396526012,
+     "rung": 1.0,
+     "low": 2.779397402214311,
+     "high": 5.146484241866912,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4000000000001336,
+     "sigma_q": 1.3867728573197893,
+     "rung": 1.0,
+     "low": 1.7867728573199229,
+     "high": 3.173545714639712,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6499999999999062,
+     "sigma_q": 2.592311264967145,
+     "rung": 1.0,
+     "low": 3.2423112649670514,
+     "high": 5.8346225299341965,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.010893698042717599,
+    0.0132393041341491,
+    0.030062560780723863,
+    0.07300376000942373,
+    0.01908184435137264,
+    2.779397402214311,
+    1.7867728573199229,
+    3.2423112649670514
+   ],
+   "high": [
+    0.01593906278096427,
+    0.020742198784195167,
+    0.05292208410447021,
+    0.131509261530691,
+    0.031089759443852668,
+    5.146484241866912,
+    3.173545714639712,
+    5.8346225299341965
+   ],
+   "noise_windows": {
+    "fit": 96,
+    "validation": 96,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 20
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "3": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 26
+     },
+     "5": {
+      "rises": 28,
+      "still_windows": 27
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 25
+     }
+    }
+   },
+   "validation": {
+    "windows": 96,
+    "noise_minutes": 1.6,
+    "windows_with_any_path_crossing": 6,
+    "any_path_crossing_fraction": 0.0625,
+    "any_path_crossings_per_minute": 3.75,
+    "per_path_windows_with_crossing": [
+     2,
+     2,
+     0,
+     1,
+     0,
+     2,
+     2,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.7604166666666666
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.67,
+     1.291,
+     33.472
+    ],
+    "object_position_tolerance_cm": [
+     0.8099999999999881,
+     1.59516,
+     0.12600000000000477
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     1.1700000000000044,
+     1.2000000000004007
+    ],
+    "plate_force_n": [
+     [
+      0.0,
+      0.0,
+      0.004
+     ],
+     [
+      0.0,
+      0.001,
+      0.006
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.02,
+      0.02,
+      0.066
+     ],
+     [
+      0.02,
+      0.02,
+      0.07800000000000001
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P2",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.005815377979157044,
+     "sigma_q": 0.006721100509633295,
+     "rung": 1.0,
+     "low": 0.012536478488790338,
+     "high": 0.019257578998423633,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005509493341113159,
+     "sigma_q": 0.009832223633057122,
+     "rung": 1.0,
+     "low": 0.015341716974170281,
+     "high": 0.025173940607227403,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006826115445950279,
+     "sigma_q": 0.015581296245395533,
+     "rung": 1.0,
+     "low": 0.022407411691345813,
+     "high": 0.03798870793674135,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.00593794893874445,
+     "sigma_q": 0.0090926635003099,
+     "rung": 1.0,
+     "low": 0.01503061243905435,
+     "high": 0.024123275939364253,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005772935619198812,
+     "sigma_q": 0.00734001401534611,
+     "rung": 1.0,
+     "low": 0.013112949634544922,
+     "high": 0.020452963649891034,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.33541019662498117,
+     "sigma_q": 2.5792235304693745,
+     "rung": 1.0,
+     "low": 2.9146337270943556,
+     "high": 5.493857257563731,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3500000000000725,
+     "sigma_q": 1.5663793969903745,
+     "rung": 1.0,
+     "low": 1.916379396990447,
+     "high": 3.4827587939808216,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6500000000000019,
+     "sigma_q": 2.4403271849526567,
+     "rung": 1.0,
+     "low": 3.090327184952659,
+     "high": 5.5306543699053154,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.012536478488790338,
+    0.015341716974170281,
+    0.022407411691345813,
+    0.01503061243905435,
+    0.013112949634544922,
+    2.9146337270943556,
+    1.916379396990447,
+    3.090327184952659
+   ],
+   "high": [
+    0.019257578998423633,
+    0.025173940607227403,
+    0.03798870793674135,
+    0.024123275939364253,
+    0.020452963649891034,
+    5.493857257563731,
+    3.4827587939808216,
+    5.5306543699053154
+   ],
+   "noise_windows": {
+    "fit": 100,
+    "validation": 101,
+    "by_series": {
+     "1": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 22
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 27
+     },
+     "6": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 28
+     }
+    }
+   },
+   "validation": {
+    "windows": 101,
+    "noise_minutes": 1.6833333333333333,
+    "windows_with_any_path_crossing": 2,
+    "any_path_crossing_fraction": 0.019801980198019802,
+    "any_path_crossings_per_minute": 1.188118811881188,
+    "per_path_windows_with_crossing": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8217821782178217
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.85,
+     1.4545,
+     33.412
+    ],
+    "object_position_tolerance_cm": [
+     1.0500000000000043,
+     1.0116000000000005,
+     0.10800000000000409
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     1.949999999999985,
+     1.2000000000004007
+    ],
+    "plate_force_n": [
+     [
+      -0.039,
+      0.001,
+      0.004
+     ],
+     [
+      -0.039,
+      0.001,
+      0.001
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.126,
+      0.02,
+      0.09300000000000001
+     ],
+     [
+      0.123,
+      0.02,
+      0.081
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P3",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.0060268389900395465,
+     "sigma_q": 0.014730293534058747,
+     "rung": 1.0,
+     "low": 0.020757132524098294,
+     "high": 0.03548742605815704,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007393418768079977,
+     "sigma_q": 0.016470330487355803,
+     "rung": 1.0,
+     "low": 0.02386374925543578,
+     "high": 0.04033407974279159,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007504870326536921,
+     "sigma_q": 0.02570187959918086,
+     "rung": 1.0,
+     "low": 0.03320674992571778,
+     "high": 0.05890862952489864,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007338591191310864,
+     "sigma_q": 0.017095128433204546,
+     "rung": 1.0,
+     "low": 0.02443371962451541,
+     "high": 0.041528848057719954,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006826449618333185,
+     "sigma_q": 0.011990941412515041,
+     "rung": 1.0,
+     "low": 0.018817391030848226,
+     "high": 0.030808332443363267,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837954233,
+     "sigma_q": 2.2358008723929554,
+     "rung": 1.0,
+     "low": 2.626313356188379,
+     "high": 4.862114228581334,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4031128874150235,
+     "sigma_q": 1.9407626273887453,
+     "rung": 1.0,
+     "low": 2.3438755148037687,
+     "high": 4.284638142192514,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.7071067811867082,
+     "sigma_q": 3.0628433639785997,
+     "rung": 1.0,
+     "low": 3.769950145165308,
+     "high": 6.832793509143908,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.020757132524098294,
+    0.02386374925543578,
+    0.03320674992571778,
+    0.02443371962451541,
+    0.018817391030848226,
+    2.626313356188379,
+    2.3438755148037687,
+    3.769950145165308
+   ],
+   "high": [
+    0.03548742605815704,
+    0.04033407974279159,
+    0.05890862952489864,
+    0.041528848057719954,
+    0.030808332443363267,
+    4.862114228581334,
+    4.284638142192514,
+    6.832793509143908
+   ],
+   "noise_windows": {
+    "fit": 99,
+    "validation": 94,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 18
+     },
+     "2": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "4": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 27
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 24
+     }
+    }
+   },
+   "validation": {
+    "windows": 94,
+    "noise_minutes": 1.5666666666666667,
+    "windows_with_any_path_crossing": 1,
+    "any_path_crossing_fraction": 0.010638297872340425,
+    "any_path_crossings_per_minute": 0.6382978723404256,
+    "per_path_windows_with_crossing": [
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8723404255319149
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.68,
+     1.4648,
+     33.444
+    ],
+    "object_position_tolerance_cm": [
+     1.1700000000000017,
+     1.4628900000000002,
+     0.17099999999998516
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     2.729999999999999,
+     1.4999999999997016
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      -0.005
+     ],
+     [
+      -0.04,
+      0.001,
+      -0.001
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      5.35815000000003,
+      0.7380300000000061,
+      2.6851200000000244
+     ],
+     [
+      3.0242100000000427,
+      0.5610300000000061,
+      3.0690000000000004
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P4",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.006277208667944122,
+     "sigma_q": 0.01152571658310253,
+     "rung": 1.0,
+     "low": 0.017802925251046653,
+     "high": 0.029328641834149183,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.00550160816379875,
+     "sigma_q": 0.008504915555419743,
+     "rung": 1.0,
+     "low": 0.014006523719218494,
+     "high": 0.022511439274638237,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006499513711911157,
+     "sigma_q": 0.013957508045727231,
+     "rung": 1.0,
+     "low": 0.02045702175763839,
+     "high": 0.03441452980336562,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006526252700425534,
+     "sigma_q": 0.02375457766419843,
+     "rung": 1.0,
+     "low": 0.030280830364623965,
+     "high": 0.054035408028822396,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006308637453937329,
+     "sigma_q": 0.006493530628023988,
+     "rung": 1.0,
+     "low": 0.012802168081961317,
+     "high": 0.019295698709985307,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.40311288741493534,
+     "sigma_q": 2.7441152500191794,
+     "rung": 1.0,
+     "low": 3.147228137434115,
+     "high": 5.891343387453294,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.39999999999995595,
+     "sigma_q": 2.3572739947640384,
+     "rung": 1.0,
+     "low": 2.7572739947639944,
+     "high": 5.114547989528033,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6344288770221734,
+     "sigma_q": 2.373903284254473,
+     "rung": 1.0,
+     "low": 3.0083321612766465,
+     "high": 5.38223544553112,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.017802925251046653,
+    0.014006523719218494,
+    0.02045702175763839,
+    0.030280830364623965,
+    0.012802168081961317,
+    3.147228137434115,
+    2.7572739947639944,
+    3.0083321612766465
+   ],
+   "high": [
+    0.029328641834149183,
+    0.022511439274638237,
+    0.03441452980336562,
+    0.054035408028822396,
+    0.019295698709985307,
+    5.891343387453294,
+    5.114547989528033,
+    5.38223544553112
+   ],
+   "noise_windows": {
+    "fit": 86,
+    "validation": 91,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "2": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 20
+     },
+     "4": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 16
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 18
+     }
+    }
+   },
+   "validation": {
+    "windows": 91,
+    "noise_minutes": 1.5166666666666666,
+    "windows_with_any_path_crossing": 1,
+    "any_path_crossing_fraction": 0.01098901098901099,
+    "any_path_crossings_per_minute": 0.6593406593406593,
+    "per_path_windows_with_crossing": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8131868131868132
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.68,
+     1.5219,
+     33.537
+    ],
+    "object_position_tolerance_cm": [
+     1.470000000000006,
+     0.9806999999999999,
+     0.1
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     1.5599999999999947,
+     1.4999999999997016
+    ],
+    "plate_force_n": [
+     [
+      -0.039,
+      0.001,
+      -0.002
+     ],
+     [
+      -0.04,
+      0.001,
+      0.002
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.129,
+      0.02,
+      0.096
+     ],
+     [
+      0.12,
+      0.02,
+      0.08100000000000002
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P5",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.008121630074343706,
+     "sigma_q": 0.05559214136503984,
+     "rung": 1.0,
+     "low": 0.06371377143938355,
+     "high": 0.11930591280442339,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.00680117609271193,
+     "sigma_q": 0.01206962169749861,
+     "rung": 1.0,
+     "low": 0.01887079779021054,
+     "high": 0.03094041948770915,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006902068677916056,
+     "sigma_q": 0.014696280646544888,
+     "rung": 1.0,
+     "low": 0.021598349324460944,
+     "high": 0.03629462997100583,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.010046864513919427,
+     "sigma_q": 0.0258517037990796,
+     "rung": 1.0,
+     "low": 0.03589856831299903,
+     "high": 0.06175027211207863,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005907251284291055,
+     "sigma_q": 0.007244484009195728,
+     "rung": 1.0,
+     "low": 0.013151735293486783,
+     "high": 0.02039621930268251,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.39999999999995595,
+     "sigma_q": 2.1944699734097037,
+     "rung": 1.0,
+     "low": 2.5944699734096597,
+     "high": 4.788939946819363,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4000000000001336,
+     "sigma_q": 1.8530349164902642,
+     "rung": 1.0,
+     "low": 2.2530349164903978,
+     "high": 4.106069832980662,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.626498204307055,
+     "sigma_q": 2.497805944842681,
+     "rung": 1.0,
+     "low": 3.124304149149736,
+     "high": 5.622110093992417,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.06371377143938355,
+    0.01887079779021054,
+    0.021598349324460944,
+    0.03589856831299903,
+    0.013151735293486783,
+    2.5944699734096597,
+    2.2530349164903978,
+    3.124304149149736
+   ],
+   "high": [
+    0.11930591280442339,
+    0.03094041948770915,
+    0.03629462997100583,
+    0.06175027211207863,
+    0.02039621930268251,
+    4.788939946819363,
+    4.106069832980662,
+    5.622110093992417
+   ],
+   "noise_windows": {
+    "fit": 99,
+    "validation": 93,
+    "by_series": {
+     "1": {
+      "rises": 28,
+      "still_windows": 27
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 24
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 23
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "6": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 22
+     }
+    }
+   },
+   "validation": {
+    "windows": 93,
+    "noise_minutes": 1.55,
+    "windows_with_any_path_crossing": 0,
+    "any_path_crossing_fraction": 0.0,
+    "any_path_crossings_per_minute": 0.0,
+    "per_path_windows_with_crossing": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.9032258064516129
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.45,
+     1.4882,
+     33.48
+    ],
+    "object_position_tolerance_cm": [
+     2.700000000000017,
+     3.0194400000000003,
+     0.1290000000000191
+    ],
+    "object_motion_tolerance_cm_s": [
+     4.499999999999105,
+     1.9500000000000184,
+     1.6500000000004178
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      -0.004
+     ],
+     [
+      -0.04,
+      0.001,
+      -0.002
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.18003000000000613,
+      0.06,
+      0.135
+     ],
+     [
+      0.024,
+      0.021,
+      0.09
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P6",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.006474058535530767,
+     "sigma_q": 0.00989320749307715,
+     "rung": 1.0,
+     "low": 0.016367266028607916,
+     "high": 0.026260473521685066,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006485059513208671,
+     "sigma_q": 0.02139066995398458,
+     "rung": 1.0,
+     "low": 0.02787572946719325,
+     "high": 0.04926639942117783,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007042464430017383,
+     "sigma_q": 0.011893243779638607,
+     "rung": 1.0,
+     "low": 0.01893570820965599,
+     "high": 0.030828951989294598,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007281081298490349,
+     "sigma_q": 0.015032985248437325,
+     "rung": 1.0,
+     "low": 0.022314066546927674,
+     "high": 0.037347051795365,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006058482526878553,
+     "sigma_q": 0.013494372680580518,
+     "rung": 1.0,
+     "low": 0.01955285520745907,
+     "high": 0.03304722788803959,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.39999999999995595,
+     "sigma_q": 2.614964344275977,
+     "rung": 1.0,
+     "low": 3.014964344275933,
+     "high": 5.62992868855191,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4000000000001336,
+     "sigma_q": 1.4768324379122013,
+     "rung": 1.0,
+     "low": 1.876832437912335,
+     "high": 3.353664875824536,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6800735254367152,
+     "sigma_q": 2.791248970067233,
+     "rung": 1.0,
+     "low": 3.4713224955039483,
+     "high": 6.262571465571181,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.016367266028607916,
+    0.02787572946719325,
+    0.01893570820965599,
+    0.022314066546927674,
+    0.01955285520745907,
+    3.014964344275933,
+    1.876832437912335,
+    3.4713224955039483
+   ],
+   "high": [
+    0.026260473521685066,
+    0.04926639942117783,
+    0.030828951989294598,
+    0.037347051795365,
+    0.03304722788803959,
+    5.62992868855191,
+    3.353664875824536,
+    6.262571465571181
+   ],
+   "noise_windows": {
+    "fit": 94,
+    "validation": 80,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 18
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "3": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 20
+     },
+     "5": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 13
+     }
+    }
+   },
+   "validation": {
+    "windows": 80,
+    "noise_minutes": 1.3333333333333333,
+    "windows_with_any_path_crossing": 3,
+    "any_path_crossing_fraction": 0.0375,
+    "any_path_crossings_per_minute": 2.25,
+    "per_path_windows_with_crossing": [
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     2,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.75
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.66,
+     1.3196,
+     33.464
+    ],
+    "object_position_tolerance_cm": [
+     2.279999999999994,
+     1.3385700000000003,
+     0.11999999999999744
+    ],
+    "object_motion_tolerance_cm_s": [
+     4.5000000000001705,
+     3.1050000000000244,
+     1.8000000000000682
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      -0.003
+     ],
+     [
+      -0.042,
+      0.001,
+      0.002
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      3.306030000000006,
+      0.636,
+      2.3400300000000063
+     ],
+     [
+      0.8880900000000185,
+      0.4080300000000061,
+      1.2900600000000122
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P7",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.0061926084024422606,
+     "sigma_q": 0.0087471665790093,
+     "rung": 1.0,
+     "low": 0.01493977498145156,
+     "high": 0.02368694156046086,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006264218461948699,
+     "sigma_q": 1.9375064458768776,
+     "rung": 1.0,
+     "low": 1.9437706643388264,
+     "high": 3.881277110215704,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006657395100617148,
+     "sigma_q": 0.015276283164851122,
+     "rung": 1.0,
+     "low": 0.02193367826546827,
+     "high": 0.03720996143031939,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.008285149434156844,
+     "sigma_q": 0.03265813871842159,
+     "rung": 1.0,
+     "low": 0.04094328815257843,
+     "high": 0.07360142687100002,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005827359945493441,
+     "sigma_q": 0.00714672651118586,
+     "rung": 1.0,
+     "low": 0.012974086456679301,
+     "high": 0.02012081296786516,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837954233,
+     "sigma_q": 3.32853055783872,
+     "rung": 1.0,
+     "low": 3.7190430416341433,
+     "high": 7.047573599472863,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.40311288741491336,
+     "sigma_q": 3.8923813548328043,
+     "rung": 1.0,
+     "low": 4.295494242247718,
+     "high": 8.187875597080522,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6403124237432907,
+     "sigma_q": 3.3643735327695117,
+     "rung": 1.0,
+     "low": 4.004685956512803,
+     "high": 7.369059489282314,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.01493977498145156,
+    1.9437706643388264,
+    0.02193367826546827,
+    0.04094328815257843,
+    0.012974086456679301,
+    3.7190430416341433,
+    4.295494242247718,
+    4.004685956512803
+   ],
+   "high": [
+    0.02368694156046086,
+    3.881277110215704,
+    0.03720996143031939,
+    0.07360142687100002,
+    0.02012081296786516,
+    7.047573599472863,
+    8.187875597080522,
+    7.369059489282314
+   ],
+   "noise_windows": {
+    "fit": 91,
+    "validation": 95,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 14
+     },
+     "3": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "5": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 26
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 22
+     }
+    }
+   },
+   "validation": {
+    "windows": 95,
+    "noise_minutes": 1.5833333333333333,
+    "windows_with_any_path_crossing": 1,
+    "any_path_crossing_fraction": 0.010526315789473684,
+    "any_path_crossings_per_minute": 0.6315789473684211,
+    "per_path_windows_with_crossing": [
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8842105263157894
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.53,
+     1.4545,
+     33.539
+    ],
+    "object_position_tolerance_cm": [
+     1.9200000000000017,
+     1.6654499999999999,
+     0.1
+    ],
+    "object_motion_tolerance_cm_s": [
+     5.999999999999872,
+     3.5040600000000186,
+     1.8030000000006723
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      -0.001,
+      -0.003
+     ],
+     [
+      -0.041,
+      0.001,
+      -0.001
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      3.0780000000000003,
+      0.9570000000000001,
+      1.6889999999999998
+     ],
+     [
+      0.5489999999999999,
+      0.237,
+      1.0110000000000001
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P8",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.006207656063946921,
+     "sigma_q": 0.03003573695944054,
+     "rung": 1.0,
+     "low": 0.036243393023387464,
+     "high": 0.066279129982828,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006294437364366572,
+     "sigma_q": 0.015815090728446866,
+     "rung": 1.0,
+     "low": 0.022109528092813437,
+     "high": 0.0379246188212603,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.0070386840062602075,
+     "sigma_q": 0.01543909939121229,
+     "rung": 1.0,
+     "low": 0.022477783397472497,
+     "high": 0.03791688278868478,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.010585515072859538,
+     "sigma_q": 0.0334538597264771,
+     "rung": 1.0,
+     "low": 0.044039374799336645,
+     "high": 0.07749323452581375,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005929504499226138,
+     "sigma_q": 0.012904229169805295,
+     "rung": 1.0,
+     "low": 0.018833733669031433,
+     "high": 0.03173796283883673,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837953096,
+     "sigma_q": 2.868717463614095,
+     "rung": 1.0,
+     "low": 3.2592299474094046,
+     "high": 6.1279474110234995,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837953096,
+     "sigma_q": 1.7319948595048025,
+     "rung": 1.0,
+     "low": 2.122507343300112,
+     "high": 3.8545022028049147,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6519202405202986,
+     "sigma_q": 2.8531067306164113,
+     "rung": 1.0,
+     "low": 3.5050269711367097,
+     "high": 6.358133701753121,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.036243393023387464,
+    0.022109528092813437,
+    0.022477783397472497,
+    0.044039374799336645,
+    0.018833733669031433,
+    3.2592299474094046,
+    2.122507343300112,
+    3.5050269711367097
+   ],
+   "high": [
+    0.066279129982828,
+    0.0379246188212603,
+    0.03791688278868478,
+    0.07749323452581375,
+    0.03173796283883673,
+    6.1279474110234995,
+    3.8545022028049147,
+    6.358133701753121
+   ],
+   "noise_windows": {
+    "fit": 98,
+    "validation": 95,
+    "by_series": {
+     "1": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 24
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 22
+     },
+     "6": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 23
+     }
+    }
+   },
+   "validation": {
+    "windows": 95,
+    "noise_minutes": 1.5833333333333333,
+    "windows_with_any_path_crossing": 0,
+    "any_path_crossing_fraction": 0.0,
+    "any_path_crossings_per_minute": 0.0,
+    "per_path_windows_with_crossing": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8526315789473684
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.44,
+     1.3066,
+     33.535
+    ],
+    "object_position_tolerance_cm": [
+     2.759999999999984,
+     1.9922280000000159,
+     0.19200000000000017
+    ],
+    "object_motion_tolerance_cm_s": [
+     4.5000000000001705,
+     5.445,
+     1.8000000000000682
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      -0.001,
+      0.001
+     ],
+     [
+      -0.041,
+      0.002,
+      0.002
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      2.0309999999999997,
+      0.645,
+      1.0860300000000063
+     ],
+     [
+      0.12,
+      0.08100000000000002,
+      0.17700000000000002
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P9",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.005878728421551404,
+     "sigma_q": 0.012695702216818136,
+     "rung": 1.0,
+     "low": 0.01857443063836954,
+     "high": 0.03127013285518768,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006072561626526305,
+     "sigma_q": 0.017620708021321742,
+     "rung": 1.0,
+     "low": 0.02369326964784805,
+     "high": 0.04131397766916979,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006791997896423556,
+     "sigma_q": 0.01204513893299237,
+     "rung": 1.0,
+     "low": 0.018837136829415926,
+     "high": 0.030882275762408297,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.009637487778210017,
+     "sigma_q": 0.022248516260627398,
+     "rung": 1.0,
+     "low": 0.031886004038837415,
+     "high": 0.05413452029946481,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006125737586370466,
+     "sigma_q": 0.0193529073979591,
+     "rung": 1.0,
+     "low": 0.025478644984329564,
+     "high": 0.04483155238228866,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.42720018726583725,
+     "sigma_q": 2.3892829587542086,
+     "rung": 1.0,
+     "low": 2.8164831460200457,
+     "high": 5.205766104774255,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4123105625617529,
+     "sigma_q": 3.3042066242679295,
+     "rung": 1.0,
+     "low": 3.7165171868296825,
+     "high": 7.0207238110976125,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6708203932500153,
+     "sigma_q": 3.34946187989417,
+     "rung": 1.0,
+     "low": 4.020282273144185,
+     "high": 7.369744153038356,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.01857443063836954,
+    0.02369326964784805,
+    0.018837136829415926,
+    0.031886004038837415,
+    0.025478644984329564,
+    2.8164831460200457,
+    3.7165171868296825,
+    4.020282273144185
+   ],
+   "high": [
+    0.03127013285518768,
+    0.04131397766916979,
+    0.030882275762408297,
+    0.05413452029946481,
+    0.04483155238228866,
+    5.205766104774255,
+    7.0207238110976125,
+    7.369744153038356
+   ],
+   "noise_windows": {
+    "fit": 90,
+    "validation": 96,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 24
+     },
+     "2": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "4": {
+      "rises": 28,
+      "still_windows": 27
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 31
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 20
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 22
+     }
+    }
+   },
+   "validation": {
+    "windows": 96,
+    "noise_minutes": 1.6,
+    "windows_with_any_path_crossing": 2,
+    "any_path_crossing_fraction": 0.020833333333333332,
+    "any_path_crossings_per_minute": 1.25,
+    "per_path_windows_with_crossing": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8020833333333334
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.48,
+     1.4259,
+     33.454
+    ],
+    "object_position_tolerance_cm": [
+     2.279999999999994,
+     2.09325,
+     0.14400000000000546
+    ],
+    "object_motion_tolerance_cm_s": [
+     4.5000000000001705,
+     3.4950000000000148,
+     1.4999999999997016
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      0.002
+     ],
+     [
+      -0.041,
+      0.001,
+      0.005
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      1.3590600000000124,
+      0.4830300000000061,
+      0.6750900000000184
+     ],
+     [
+      0.066,
+      0.07200000000000001,
+      0.1140300000000061
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P10",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.005967597922456788,
+     "sigma_q": 0.010149116679112653,
+     "rung": 1.0,
+     "low": 0.01611671460156944,
+     "high": 0.026265831280682092,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.005472494628508186,
+     "sigma_q": 0.008604207822673708,
+     "rung": 1.0,
+     "low": 0.014076702451181894,
+     "high": 0.022680910273855603,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006321889111979938,
+     "sigma_q": 0.019927564748191795,
+     "rung": 1.0,
+     "low": 0.02624945386017173,
+     "high": 0.046177018608363526,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.0062537474075078205,
+     "sigma_q": 0.009159309524870651,
+     "rung": 1.0,
+     "low": 0.015413056932378471,
+     "high": 0.024572366457249122,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006962597133861624,
+     "sigma_q": 0.006778411912482405,
+     "rung": 1.0,
+     "low": 0.01374100904634403,
+     "high": 0.020519420958826435,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837953096,
+     "sigma_q": 2.3703800392172774,
+     "rung": 1.0,
+     "low": 2.760892523012587,
+     "high": 5.1312725622298645,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837953096,
+     "sigma_q": 1.8174277327866715,
+     "rung": 1.0,
+     "low": 2.207940216581981,
+     "high": 4.025367949368652,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6480740698410847,
+     "sigma_q": 2.231161939936453,
+     "rung": 1.0,
+     "low": 2.8792360097775376,
+     "high": 5.11039794971399,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.01611671460156944,
+    0.014076702451181894,
+    0.02624945386017173,
+    0.015413056932378471,
+    0.01374100904634403,
+    2.760892523012587,
+    2.207940216581981,
+    2.8792360097775376
+   ],
+   "high": [
+    0.026265831280682092,
+    0.022680910273855603,
+    0.046177018608363526,
+    0.024572366457249122,
+    0.020519420958826435,
+    5.1312725622298645,
+    4.025367949368652,
+    5.11039794971399
+   ],
+   "noise_windows": {
+    "fit": 99,
+    "validation": 91,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "2": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 22
+     },
+     "4": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 20
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 26
+     }
+    }
+   },
+   "validation": {
+    "windows": 91,
+    "noise_minutes": 1.5166666666666666,
+    "windows_with_any_path_crossing": 1,
+    "any_path_crossing_fraction": 0.01098901098901099,
+    "any_path_crossings_per_minute": 0.6593406593406593,
+    "per_path_windows_with_crossing": [
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8351648351648352
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.63,
+     1.2314,
+     33.48
+    ],
+    "object_position_tolerance_cm": [
+     2.220000000000006,
+     1.0350600000000003,
+     0.11999999999999744
+    ],
+    "object_motion_tolerance_cm_s": [
+     2.999999999999403,
+     1.949999999999985,
+     1.4999999999997016
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      -0.001
+     ],
+     [
+      -0.04,
+      0.0,
+      0.001
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.23103000000000615,
+      0.12903000000000608,
+      0.165
+     ],
+     [
+      0.020999999999999998,
+      0.021,
+      0.07800000000000001
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P11",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.006843113964795644,
+     "sigma_q": 0.05131117871549282,
+     "rung": 1.0,
+     "low": 0.05815429268028846,
+     "high": 0.10946547139578128,
+     "fit_windows_with_crossing": 1,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006879420891634347,
+     "sigma_q": 0.014603033068686957,
+     "rung": 1.0,
+     "low": 0.021482453960321304,
+     "high": 0.03608548702900826,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.008164259546857342,
+     "sigma_q": 0.013899118762124905,
+     "rung": 1.0,
+     "low": 0.022063378308982248,
+     "high": 0.03596249707110715,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007857068566776197,
+     "sigma_q": 0.017838821525271737,
+     "rung": 1.0,
+     "low": 0.025695890092047934,
+     "high": 0.04353471161731967,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006751431116757535,
+     "sigma_q": 0.008720728066172903,
+     "rung": 1.0,
+     "low": 0.015472159182930437,
+     "high": 0.02419288724910334,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.3905124837953096,
+     "sigma_q": 3.7409266405781993,
+     "rung": 1.0,
+     "low": 4.131439124373509,
+     "high": 7.8723657649517085,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4000000000001336,
+     "sigma_q": 3.0576039817872713,
+     "rung": 1.0,
+     "low": 3.457603981787405,
+     "high": 6.515207963574676,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.640312423743568,
+     "sigma_q": 2.805883435926031,
+     "rung": 1.0,
+     "low": 3.446195859669599,
+     "high": 6.25207929559563,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.05815429268028846,
+    0.021482453960321304,
+    0.022063378308982248,
+    0.025695890092047934,
+    0.015472159182930437,
+    4.131439124373509,
+    3.457603981787405,
+    3.446195859669599
+   ],
+   "high": [
+    0.10946547139578128,
+    0.03608548702900826,
+    0.03596249707110715,
+    0.04353471161731967,
+    0.02419288724910334,
+    7.8723657649517085,
+    6.515207963574676,
+    6.25207929559563
+   ],
+   "noise_windows": {
+    "fit": 93,
+    "validation": 100,
+    "by_series": {
+     "1": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 22
+     },
+     "3": {
+      "rises": 34,
+      "still_windows": 33
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 25
+     },
+     "5": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "6": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 23
+     }
+    }
+   },
+   "validation": {
+    "windows": 100,
+    "noise_minutes": 1.6666666666666667,
+    "windows_with_any_path_crossing": 3,
+    "any_path_crossing_fraction": 0.03,
+    "any_path_crossings_per_minute": 1.7999999999999998,
+    "per_path_windows_with_crossing": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.9
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.47,
+     1.4,
+     33.482
+    ],
+    "object_position_tolerance_cm": [
+     1.8299999999999983,
+     1.9221000000000008,
+     0.10800000000000409
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     1.949999999999985,
+     1.2000000000004007
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.0,
+      0.0
+     ],
+     [
+      -0.041,
+      0.0,
+      0.005
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.579,
+      0.084,
+      0.23403000000000612
+     ],
+     [
+      0.129,
+      0.03,
+      0.09303000000000611
+     ]
+    ]
+   }
+  },
+  {
+   "participant": "P12",
+   "paths": [
+    "emg_1",
+    "emg_2",
+    "emg_3",
+    "emg_4",
+    "emg_5",
+    "index_p2_speed",
+    "thumb_p3_speed",
+    "wrist_p4_speed"
+   ],
+   "emg_channel_names": [
+    "Anterior Deltoid",
+    "Brachoradial",
+    "Flexor Digitorum",
+    "Common Extensor Digitorum",
+    "First Dorsal Interosseus"
+   ],
+   "resolved": true,
+   "fits": [
+    {
+     "median": 0.006242582173231859,
+     "sigma_q": 0.011398265473788319,
+     "rung": 1.0,
+     "low": 0.017640847647020178,
+     "high": 0.029039113120808497,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.006109625548497333,
+     "sigma_q": 0.010413678022165437,
+     "rung": 1.0,
+     "low": 0.01652330357066277,
+     "high": 0.02693698159282821,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.007527127227124009,
+     "sigma_q": 0.014477696389911993,
+     "rung": 1.0,
+     "low": 0.022004823617036002,
+     "high": 0.036482520006947995,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.00848984458127126,
+     "sigma_q": 0.024869213036838273,
+     "rung": 1.0,
+     "low": 0.03335905761810953,
+     "high": 0.0582282706549478,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.0058825913760706255,
+     "sigma_q": 0.005728550166051243,
+     "rung": 1.0,
+     "low": 0.011611141542121868,
+     "high": 0.01733969170817311,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4242640687119446,
+     "sigma_q": 2.622460527846842,
+     "rung": 1.0,
+     "low": 3.0467245965587866,
+     "high": 5.669185124405629,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.4272001872660036,
+     "sigma_q": 2.288730294632546,
+     "rung": 1.0,
+     "low": 2.7159304818985497,
+     "high": 5.004660776531096,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    },
+    {
+     "median": 0.6999999999999673,
+     "sigma_q": 3.2921816238307358,
+     "rung": 1.0,
+     "low": 3.992181623830703,
+     "high": 7.284363247661439,
+     "fit_windows_with_crossing": 0,
+     "allowed": 1,
+     "resolved": true,
+     "at_top_rung_without_meeting_criterion": false
+    }
+   ],
+   "low": [
+    0.017640847647020178,
+    0.01652330357066277,
+    0.022004823617036002,
+    0.03335905761810953,
+    0.011611141542121868,
+    3.0467245965587866,
+    2.7159304818985497,
+    3.992181623830703
+   ],
+   "high": [
+    0.029039113120808497,
+    0.02693698159282821,
+    0.036482520006947995,
+    0.0582282706549478,
+    0.01733969170817311,
+    5.669185124405629,
+    5.004660776531096,
+    7.284363247661439
+   ],
+   "noise_windows": {
+    "fit": 97,
+    "validation": 96,
+    "by_series": {
+     "1": {
+      "rises": 34,
+      "still_windows": 22
+     },
+     "2": {
+      "rises": 34,
+      "still_windows": 32
+     },
+     "3": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "4": {
+      "rises": 34,
+      "still_windows": 23
+     },
+     "5": {
+      "rises": 28,
+      "still_windows": 28
+     },
+     "6": {
+      "rises": 34,
+      "still_windows": 34
+     },
+     "7": {
+      "rises": 34,
+      "still_windows": 26
+     }
+    }
+   },
+   "validation": {
+    "windows": 96,
+    "noise_minutes": 1.6,
+    "windows_with_any_path_crossing": 2,
+    "any_path_crossing_fraction": 0.020833333333333332,
+    "any_path_crossings_per_minute": 1.25,
+    "per_path_windows_with_crossing": [
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "quiet_entry_available_fraction": 0.8125
+   },
+   "return_references": {
+    "object_position_cm": [
+     -51.74,
+     1.3922,
+     33.466
+    ],
+    "object_position_tolerance_cm": [
+     1.470000000000006,
+     2.0777400000000004,
+     0.10499999999998977
+    ],
+    "object_motion_tolerance_cm_s": [
+     1.5000000000007674,
+     1.9455000000000056,
+     1.2000000000004007
+    ],
+    "plate_force_n": [
+     [
+      -0.04,
+      0.001,
+      0.002
+     ],
+     [
+      -0.039,
+      0.0,
+      -0.002
+     ]
+    ],
+    "plate_force_tolerance_n": [
+     [
+      0.153,
+      0.078,
+      0.09303000000000611
+     ],
+     [
+      0.11699999999999999,
+      0.024,
+      0.07800000000000001
+     ]
+    ]
+   }
+  }
+ ],
+ "self_paced": {
+  "fit": {
+   "median": 0.0029827350498535547,
+   "sigma_q": 0.08211656629421431,
+   "rung": 1.0,
+   "low": 0.08509930134406786,
+   "high": 0.16721586763828217,
+   "fit_windows_with_crossing": 3,
+   "allowed": 19,
+   "resolved": true,
+   "at_top_rung_without_meeting_criterion": false
+  },
+  "low_g": 0.08509930134406786,
+  "high_g": 0.16721586763828217,
+  "noise_windows": {
+   "fit": 1901,
+   "validation": 1760,
+   "start_tones": 4432,
+   "still": 3661
+  },
+  "validation": {
+   "windows": 1760,
+   "noise_minutes": 29.333333333333332,
+   "windows_with_any_path_crossing": 3,
+   "any_path_crossing_fraction": 0.0017045454545454545,
+   "any_path_crossings_per_minute": 0.10227272727272728,
+   "per_path_windows_with_crossing": [
+    3
+   ],
+   "quiet_entry_available_fraction": 1.0
+  },
+  "per_person_noise": {
+   "sub-02": {
+    "still_windows": 184,
+    "median": 0.003045517806061327,
+    "q999": 0.06900236891742202,
+    "validation": {
+     "windows": 89,
+     "noise_minutes": 1.4833333333333334,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-03": {
+    "still_windows": 322,
+    "median": 0.002364558676451682,
+    "q999": 0.04513761444069317,
+    "validation": {
+     "windows": 154,
+     "noise_minutes": 2.566666666666667,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-04": {
+    "still_windows": 174,
+    "median": 0.005037148395803924,
+    "q999": 0.10709122566467132,
+    "validation": {
+     "windows": 86,
+     "noise_minutes": 1.4333333333333333,
+     "windows_with_any_path_crossing": 1,
+     "any_path_crossing_fraction": 0.011627906976744186,
+     "any_path_crossings_per_minute": 0.6976744186046512,
+     "per_path_windows_with_crossing": [
+      1
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-06": {
+    "still_windows": 229,
+    "median": 0.003682663532710924,
+    "q999": 0.080876167653244,
+    "validation": {
+     "windows": 109,
+     "noise_minutes": 1.8166666666666667,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-08": {
+    "still_windows": 201,
+    "median": 0.0031510076645238664,
+    "q999": 0.029007754784821625,
+    "validation": {
+     "windows": 98,
+     "noise_minutes": 1.6333333333333333,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-09": {
+    "still_windows": 257,
+    "median": 0.0026623258311298595,
+    "q999": 0.103715442910503,
+    "validation": {
+     "windows": 119,
+     "noise_minutes": 1.9833333333333334,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-11": {
+    "still_windows": 280,
+    "median": 0.002355733960224123,
+    "q999": 0.08446098479897592,
+    "validation": {
+     "windows": 135,
+     "noise_minutes": 2.25,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-12": {
+    "still_windows": 246,
+    "median": 0.002911340371765749,
+    "q999": 0.10883114124506467,
+    "validation": {
+     "windows": 122,
+     "noise_minutes": 2.033333333333333,
+     "windows_with_any_path_crossing": 1,
+     "any_path_crossing_fraction": 0.00819672131147541,
+     "any_path_crossings_per_minute": 0.49180327868852464,
+     "per_path_windows_with_crossing": [
+      1
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-14": {
+    "still_windows": 321,
+    "median": 0.0028192595117760674,
+    "q999": 0.09364379825071618,
+    "validation": {
+     "windows": 153,
+     "noise_minutes": 2.55,
+     "windows_with_any_path_crossing": 1,
+     "any_path_crossing_fraction": 0.006535947712418301,
+     "any_path_crossings_per_minute": 0.3921568627450981,
+     "per_path_windows_with_crossing": [
+      1
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-15": {
+    "still_windows": 282,
+    "median": 0.0027932615748951905,
+    "q999": 0.04620691558955294,
+    "validation": {
+     "windows": 136,
+     "noise_minutes": 2.2666666666666666,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-17": {
+    "still_windows": 85,
+    "median": 0.004028720359625974,
+    "q999": 0.03738877972207532,
+    "validation": {
+     "windows": 42,
+     "noise_minutes": 0.7,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-18": {
+    "still_windows": 250,
+    "median": 0.0040627750924584136,
+    "q999": 0.06969414917317093,
+    "validation": {
+     "windows": 118,
+     "noise_minutes": 1.9666666666666666,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-20": {
+    "still_windows": 271,
+    "median": 0.0032149514702966803,
+    "q999": 0.10789166764681772,
+    "validation": {
+     "windows": 130,
+     "noise_minutes": 2.1666666666666665,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-21": {
+    "still_windows": 348,
+    "median": 0.00244907935410977,
+    "q999": 0.016915138939759503,
+    "validation": {
+     "windows": 168,
+     "noise_minutes": 2.8,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   },
+   "sub-22": {
+    "still_windows": 211,
+    "median": 0.0037440251797688593,
+    "q999": 0.042358194858649924,
+    "validation": {
+     "windows": 101,
+     "noise_minutes": 1.6833333333333333,
+     "windows_with_any_path_crossing": 0,
+     "any_path_crossing_fraction": 0.0,
+     "any_path_crossings_per_minute": 0.0,
+     "per_path_windows_with_crossing": [
+      0
+     ],
+     "quiet_entry_available_fraction": 1.0
+    }
+   }
+  }
+ }
+}
