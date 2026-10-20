@@ -303,6 +303,17 @@ does not identify a unique neural learning algorithm.
 
 ## Current state
 
+*October 16: the codebook, session and lost-block mapping, `lickState` window
+and 701-sample axis were resolved on development controls, and the
+trigger/cap and roster were adopted as stated assumptions
+([classification](outputs/source_semantics_design.md#october-16-2026--results-and-classification-job-48180654)).
+Policy revision 6 freezes these definitions (`source_definitions_20261016` in
+[SEARCH_POLICY.json](SEARCH_POLICY.json)); its four raw thresholds stay null
+and every access flag stays false. The steward's aggregate-only structural gate
+on the eleven primary mice then passed
+([log](outputs/experiment_log.md#2026-10-16-1835-pacific--source_semantics_design--primary-structural-gate-passes-job-48187322)).
+"Unresolved endpoint semantics" below is historical.*
+
 No adaptive trial, configuration lock, audit opening, reward, or scientific
 result exists. Endpoint semantics, the documented assignment/exclusion roster,
 the development handoff and the endpoint-specific binding rule remain unresolved.

@@ -16,14 +16,65 @@ analyses:
     name: Resolve endpoint semantics and assignment scope
     description: >-
       Resolve trial, session, lick-trigger, denominator, time-axis and
-      missingness definitions from authorized documentation. Recover the
-      assignment/exclusion roster or record the assumption-dependent scope.
+      missingness definitions from documentation and permitted development
+      data, or adopt the most plausible reading as a stated assumption with
+      sensitivity analyses. Recover the assignment/exclusion roster or record
+      the assumption-dependent scope. Policy revision 6
+      (source_definitions_20261016) freezes the October 16 classification:
+      trial codebook, eligibility, session index and lost-block rule,
+      lickState window, time axis and windows, continuous-replication metric,
+      and the trigger/cap, roster and late-session assumptions. Development
+      outcome magnitudes stay closed until the four raw margins are presigned.
     inputs:
       - {id: goal, from: ../goal}
       - {id: datasets, from: ../datasets}
       - {id: policy, from: ../policy}
+      - {id: cohort_map, type: data, source: COHORT_MAP.json}
+      - {id: trusted_source, type: data, source: /oak/stanford/groups/russpold/data/br_autoresearch_data/dudman_learning_rate_2023/figshare-21816054-v1/source/seshMerge.mat}
+      - {id: released_development_pack, type: data, source: $SCRATCH/br_autoresearch/episode02_dopamine_learning_rate_causality/source_semantics_20261016/development_full}
+      - {id: development_steward, type: data, source: outputs/code/materialize_development_pack.py}
+      - {id: development_reader, type: data, source: outputs/code/development_role_reader.py}
+      - {id: semantics_checker, type: data, source: outputs/code/check_source_semantics.py}
+      - {id: semantics_checker_tests, type: data, source: outputs/tests/test_check_source_semantics.py}
+      - {id: semantics_stage_runner, type: data, source: outputs/code/source_semantics_job.sh}
+      - {id: structural_gate, type: data, source: outputs/code/primary_structural_gate.py}
+      - {id: structural_gate_tests, type: data, source: outputs/tests/test_primary_structural_gate.py}
+      - {id: structural_gate_runner, type: data, source: outputs/code/primary_structural_gate_job.sh}
     outputs:
-      - {id: semantics_design_report, type: report, format: markdown}
+      - id: development_semantics_checks
+        type: report
+        format: directory
+        inputs: [policy, cohort_map, trusted_source, development_steward, development_reader, semantics_checker, semantics_checker_tests, semantics_stage_runner]
+        description: >-
+          The steward writes the nine-control pack (released_development_pack);
+          structure, format and semantics stages then run on the development
+          controls only, as separate stages of the stage runner. Outputs are
+          shapes, codes, counts, denominators, agreement fractions, onset
+          indices and pooled post-reward lick fractions for the codebook test;
+          no pre-reward session lick probability, gain, development centre or
+          scale.
+      - id: semantics_design_report
+        type: report
+        format: markdown
+        inputs: [goal, datasets, policy]
+      - id: primary_structural_gate
+        type: report
+        format: json
+        inputs: [policy, cohort_map, trusted_source, released_development_pack, structural_gate, structural_gate_tests, structural_gate_runner]
+        description: >-
+          Steward-only prelock structural support gate on the eleven primary
+          mice. Hashes the trusted MAT, then streams it and decodes only
+          trialID, seshID and lickState for records 1-20: lickState finiteness
+          alone for primary mice, and development values only to cross-check
+          the parser against the released pack. Other field payloads are
+          inflated and discarded without decoding, so stimState and lick are
+          never decoded; inflation stops at the parsed end of record 20, so
+          boundary records 21-24 are not decompressed. Emits an overall
+          pass/fail and arm-level aggregate counts only, with no per-mouse
+          value, outcome value or audit pack.
+        recipe:
+          command: bash outputs/code/primary_structural_gate_job.sh gate
+          resources: {cpus: 1, memory: 4Gi, time_limit: 30m}
   role_separation:
     name: Provision and check the existing evidence-role boundary
     description: >-

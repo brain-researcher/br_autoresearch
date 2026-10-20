@@ -1,0 +1,78 @@
+{
+  "analysis": "source_semantics_design.primary_structural_gate",
+  "arms": {
+    "stimLick_minus": {
+      "eligible_trials_session_1_total": 515,
+      "eligible_trials_session_8_total": 476,
+      "mice": 6,
+      "mice_at_least_30_eligible_in_sessions_1_and_8": 6,
+      "mice_equal_field_lengths": 6,
+      "mice_meeting_all_criteria": 6,
+      "mice_seshID_contiguous_1_to_K_in_row_order": 6,
+      "mice_sessions_1_and_8_present": 6,
+      "mice_trialID_codes_within_0_1_2": 6,
+      "nonfinite_lickState_rows_in_sessions_1_and_8_total": 0,
+      "sessions_with_nonfinite_lickState_rows_total": 1
+    },
+    "stimLick_plus": {
+      "eligible_trials_session_1_total": 440,
+      "eligible_trials_session_8_total": 411,
+      "mice": 5,
+      "mice_at_least_30_eligible_in_sessions_1_and_8": 5,
+      "mice_equal_field_lengths": 5,
+      "mice_meeting_all_criteria": 5,
+      "mice_seshID_contiguous_1_to_K_in_row_order": 5,
+      "mice_sessions_1_and_8_present": 5,
+      "mice_trialID_codes_within_0_1_2": 5,
+      "nonfinite_lickState_rows_in_sessions_1_and_8_total": 0,
+      "sessions_with_nonfinite_lickState_rows_total": 0
+    }
+  },
+  "audit_pack_written": false,
+  "boundary_records_21_24_inflated": false,
+  "cohort_map_verified": true,
+  "development_parser_crosscheck": {
+    "fields_compared": 27,
+    "mismatches": 0,
+    "passed": true,
+    "records": 9
+  },
+  "eligible_trial": "trialID_code_0_with_finite_lickState",
+  "fields_decoded": "trialID_and_seshID_for_records_1_20_lickState_finiteness_only_for_the_eleven_primary_records_and_lickState_values_only_for_the_development_parser_crosscheck",
+  "fields_never_decoded": [
+    "stimState",
+    "latency",
+    "cueLatency",
+    "nac",
+    "vta",
+    "ds",
+    "pupil",
+    "lick",
+    "nose",
+    "whisk",
+    "body",
+    "iti",
+    "predVars",
+    "cuePredVars",
+    "rewDA",
+    "prepLick",
+    "baseLick"
+  ],
+  "gate_valid": true,
+  "lickState_or_lick_values_emitted": false,
+  "minimum_eligible_trials_per_epoch": 30,
+  "overall_pass": true,
+  "per_mouse_criteria": [
+    "equal_field_lengths",
+    "trialID_codes_within_0_1_2",
+    "seshID_contiguous_1_to_K_in_row_order",
+    "sessions_1_and_8_present",
+    "at_least_30_eligible_in_sessions_1_and_8"
+  ],
+  "per_mouse_values_emitted": false,
+  "policy_revision": 6,
+  "records_inflated_1_based": "1-20",
+  "role": "steward_procedural_same_account",
+  "slurm_job_id": "48187322",
+  "source_identity_verified": true
+}

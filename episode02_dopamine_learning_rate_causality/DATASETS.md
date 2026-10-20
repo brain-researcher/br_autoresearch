@@ -107,6 +107,11 @@ trial; VTA and DS coverage is partial. Records 21–24 have narrower support.
 
 ## Endpoint and design gaps
 
+*October 16: each gap below is now resolved or a stated assumption; see the
+[classification](outputs/source_semantics_design.md#october-16-2026--results-and-classification-job-48180654).
+Policy revision 6 freezes the definitions (`source_definitions_20261016` in
+[SEARCH_POLICY.json](SEARCH_POLICY.json)), so this list is historical.*
+
 - `trialID` lacks an authoritative codebook.
 - `seshID` must be tied to training-day semantics.
 - The 100-Hz streams lack zero-time and event-alignment metadata.

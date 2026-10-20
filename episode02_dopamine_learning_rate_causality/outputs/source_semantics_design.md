@@ -8,7 +8,167 @@ field meanings and assignment record still do not identify the frozen primary
 endpoint and randomization space. Re-running the structural extractor cannot
 supply those meanings: its compressed MAT input contains every evidence role.
 
+## October 16, 2026 — source-fact resolution plan, fixed before any data check
+
+Fixed about 15:45 Pacific, before allocation 48180654 started at 17:03, under
+the AGENTS.md standing authority of October 16
+(missing source facts are recovered from paper, supplement, code or permitted
+data, or adopted as stated assumptions; provider contact is optional). No
+author or provider was contacted. Results and classifications are appended in
+the next section without editing this plan.
+
+**Documentary evidence re-read.** Sources: the article full text
+([Europe PMC PMC9908546](https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9908546/fullTextXML)),
+Supplementary Table 1, the Reporting Summary and the 46-page Peer Review File
+(Nature ESM 1–3), the [Figshare collection](https://api.figshare.com/v2/collections/6369111/articles),
+the RNN_learnDA file list (HEAD equals the pinned commit) and TONIC's pinned
+`TNC_ExtTrigWins.m`.
+
+- Task: a 0.5-s, 10-kHz tone precedes reward by 1.5 s; 10% of rewards are
+  uncued; after three sessions, 10% of trials are omission probes (cue, no
+  reward); 100 trials per session, one session per day for 8–10 days; trial 1
+  is the first reward; figures use the first 800 training trials.
+- Lost blocks: "mouse 3, session 7; mouse 4, session 5; and mouse 9, session 4",
+  filled offline by nearest-neighbour interpolation.
+- Supplementary Table 1 numbers mice 1–20. Its control, stimLick+ and
+  stimLick− columns reproduce `COHORT_MAP.json` exactly, so table numbers are
+  the one-based struct indices. Controls 15 and 16 also had one extra
+  cue-stimulation session after trace conditioning (Extended Data Fig. 4).
+- Licks were timestamped from 100-Hz video; behaviour was digitized at 1 kHz
+  and photometry downsampled to 100 Hz.
+- Online contingency: stimLick+ stimulated at reward when licking was detected
+  "in the 750 ms preceding reward delivery"; stimLick− when no licking was
+  detected "during the delay interval"; stimLick+ was "limited to having a
+  maximum of 50% of total trials stimulated in a given session". Control ran on
+  unreleased Arduino Mega code. The offline lick+ class (Extended Data Fig. 8a)
+  is at least one lick in the delay between cue and reward.
+- The Figshare collection holds only article 21816054. RNN_learnDA's only
+  analysis script is the prohibited `Figure_1_related.m`, which stays closed.
+  `TNC_ExtTrigWins` returns rows indexed `-pre:post`, so 701 columns imply
+  `pre + post = 700` samples with the event at a fixed integer column.
+- Randomization was within repeated cohorts of two to four mice; four mice
+  were removed after histology. No roster is published.
+
+**Readings, tests and decision rules.** Data checks use development records
+1, 2, 4, 6, 9, 11, 15, 16 and 19 only, and only `trialID`, `seshID`,
+`lickState` and `lick` through `code/development_role_reader.py`. Sample
+indices are zero-based; `R` is the reward sample.
+
+| Item | Primary reading | Alternatives | Test and decision rule |
+| --- | --- | --- | --- |
+| `trialID`, denominators | Categorical trial type: cued-rewarded (majority), uncued (about 10% of every session), omission (absent in sessions 1–3, about 10% later) | Within-session trial index; extra codes (cue stimulation, aborted) | Per-session code counts. "Uncued" = 5–15% of trials in every session; "omission" = absent in sessions 1–3 and 5–15% later. Omission must show less post-reward licking (at least one lick in `[R, R+199]`) than both rewarded codes. Eligible denominator = cued-rewarded trials with finite `lickState` and lick window; at least 30 in sessions 1 and 8. |
+| `seshID`, lost blocks | One-based training day 1..K (K = 8–10), rows chronological, about 100 rows per session | Non-contiguous IDs; lost blocks numbered within the control group | Contiguity and order; rows and missing rows per session. Global numbering predicts control deficits only at record 4 session 5 and record 9 session 4; control-group numbering predicts record 4 session 7, record 6 session 5 and record 19 session 4. Sessions carrying non-training codes are flagged. |
+| 701-sample axis | 10-ms samples; reward at one integer index `R` for every trial type; cue onset at `R-150` | Type-specific alignment | E1: rising edge of pooled uncued-trial lick probability. E2: rise of rewarded-minus-omission lick probability, sessions 4 and later. Each is located at 10% and 50% of its maximum rise above baseline. Resolved if, for both, the 10% point lies in `[R+1, R+30]` and the 50% point in `[R+1, R+80]` for the `R` selected by the `lickState` scan. (Amended before the allocation started and before any data access: the single half-maximum bound of `R+60` was too sensitive to early-training latency spread.) |
+| `lickState` | Binary: at least one lick in `[R-75, R-1]` (750 ms before reward) | `[R-100, R-1]` (1-s delay), `[R-150, R-1]` (cue to reward), inclusive end `[R-75, R]`, 500-ms control, non-binary or signed codes | Agreement with the video-lick predicate over finite trials, scanned over every `R` and window. Adopt the 750-ms window if its agreement is at least 0.98 and it wins at least 90% of trials where it disagrees with the 1-s or 1.5-s window (with at least 20 such trials). Otherwise record an assumption with the residual disagreement. |
+| Online trigger, cap | Not testable on permitted data: controls are unstimulated, arm `stimState` is evaluator-only and realized counts are excluded | — | Assumption: the trigger is the same 750-ms predicate on cued-rewarded trials; stimLick− stimulates when it is false, stimLick+ when it is true until 50 stimulated trials (50% of 100) in that session; uncued and omission trials are never stimulated (the Methods make stimulation contingent on delay-period behaviour). Sensitivity: running-fraction cap, random 0.5 thinning, a 1-s window for stimLick−, and uncued rewards evaluated with the same predicate. Used only for model counterfactuals and frozen before any intervention outcome. |
+| Randomization roster | Unrecoverable from public sources | — | Adopt the approved noncausal 462-label conditional exchangeability, with removals assumed independent of arm (histology-driven). Sensitivity: block-restricted enumeration over every partition of mice 1–20 into consecutive blocks of two to four, reported as an assumption-labelled range and frozen in the final lock. |
+
+If `lick` is not an event or count stream (more than ten distinct finite
+values), the predicate is re-specified from its documented format before the
+agreement test runs, and that change is logged.
+
+**Re-specifications after the structure stage, before any agreement test
+(between the structure stage at 17:04:54 and the format stage at 17:09:11
+Pacific, per `status.txt`).** The structure stage (job 48180654) showed that `lick` is a
+continuous non-negative float trace (62,938–134,685 distinct values per mouse,
+maximum 12.2–14.1), and that code 2 occurs 2–4 times pooled in each of
+sessions 1–3. Hence: (1) "omission" means at most 1% of pooled trials in
+sessions 1–3 and 5–15% in sessions 4–8; (2) the trace is treated as a
+smoothed lick rate. A `format` stage characterizes its single-lick kernel
+from normalized isolated local maxima. The primary lick predicate is "a local
+maximum of at least `theta` inside the window", with `theta` set to half the
+modal isolated-peak height. The secondary predicate is "any sample of at
+least `theta` inside the window". Both are reported, and the decision rule
+above is applied to the primary predicate.
+
+**Second re-specification after the format stage, before any agreement test
+(between the format stage at 17:09:11 and the semantics stage at 17:11:00
+Pacific).** The kernel is causal, not symmetric. The isolated single-lick
+shape rises over at most two samples (0.06, 0.83, 0.96, 1.00 at offsets −3 to
+0), then decays roughly exponentially to half height about 10 samples later.
+The modal single-lick height is 6.6, matching a rate estimate of 1/τ for
+τ = 150 ms. Local maxima therefore lag lick onsets by about two samples, and
+the threshold predicate extends each window backward by about ten samples. The
+primary predicate becomes the rise onset, `lick[t] − lick[t−1] ≥ 3.3` (half the
+modal single-lick height), inside the window. Peak and threshold predicates
+are reported as alternatives.
+
+**Emission boundary.** Outputs are limited to shapes, dtypes, value sets,
+code, row and missing counts, eligible denominators, agreement fractions with
+off-diagonal counts, and onset indices. No session lick probability, gain,
+development centre or scale, and no lick time course, is computed for output.
+This keeps the four raw thresholds presignable before development outcomes.
+
+**Procedural roles (same account).** Steward: this session inside the logged
+Slurm allocation, reading only the trusted MAT named in `DATASETS.md` and
+writing only `$SCRATCH/br_autoresearch/episode02_dopamine_learning_rate_causality/source_semantics_20261016/development_full/`.
+No audit or evaluator pack is created. Candidate: the same session, reading
+only that pack through the reader and writing
+`outputs/runs/source_semantics_checks_job_<id>/`. This development handoff is
+released for these checks only; development scoring stays unauthorized.
+
+## October 16, 2026 — results and classification (job 48180654)
+
+Attended allocation 48180654 (`dev`, 17:03–17:20 Pacific) ran the fixture
+tests, the steward step, and the structure, format and semantics stages. The
+steward wrote only the nine-control pack (root `373338f6…`); no audit or
+evaluator pack exists. The candidate read only `trialID`, `seshID`, `lickState`
+and `lick` through the reader. No pre-reward session lick probability, gain,
+centre or scale was computed for output or viewed; the pooled post-reward lick
+fractions in the `trialID` row were the prespecified codebook test. No
+intervention record was opened. Evidence:
+[run directory](runs/source_semantics_checks_job_48180654/) (`structure.json`,
+`format.json`, `semantics.json`) and the figure below.
+
+![lickState agreement by candidate reward sample](figures/ep02_lickstate_alignment_20261016.png)
+
+| Item | Classification | Evidence and frozen reading |
+| --- | --- | --- |
+| `trialID` codes | **Resolved** | All nine controls use values 0, 1 and 2. Pooled over sessions 1–8: code 0 makes up 0.90 of sessions 1–3 and 0.79–0.80 of sessions 4–8; code 1 makes up 0.090–0.116 of every session; code 2 makes up 0.002–0.005 of sessions 1–3 and 0.089–0.109 of sessions 4–8. A lick onset in `[R, R+199]` occurs on 0.96, 0.96 and 0.70 of trials respectively. Reading: 0 = cued and rewarded, 1 = uncued reward, 2 = cued omission. No aborted-trial code exists. |
+| Trial denominators | **Resolved** for development; arm support pending | Eligible trials = code 0 with finite `lickState`; finite `lickState` implies a finite `lick` row. Sessions 1 and 8, by record: 1: 36 and 76; 2: 100 and 77; 4: 90 and 80; 6: 91 and 76; 9: 91 and 78; 11: 89 and 78; 15: 89 and 80; 16: 87 and 89; 19: 85 and 81. All exceed 30. The eleven primary mice still need the steward's aggregate pass/fail gate. |
+| `seshID`, lost blocks | **Resolved** | Integers 1..K, contiguous, with rows in chronological order (no reversals); K = 8–11. Lost blocks are all-NaN `lick` rows with NaN `lickState` and retained codes: record 4 session 5 (50 of 150 rows) and record 9 session 4 (39 of 96). Record 4 session 7, record 6 session 5 and record 19 session 4 have no missing rows, so the paper numbers mice by struct index; the third lost block (record 3, session 7) is evaluator-only. Sessions 1 and 8 contain no lost rows. Stated assumption: one session per training day (Methods). |
+| `lickState` | **Resolved** | Coded 0/1 (1 = lick), NaN only on lost-block rows, and defined for all three codes. Agreement with a lick onset in `[R−75, R−1]` is 0.99806 at `R = 299`: 16 of 8,229 trials disagree, all with `lickState` 1. Extending the window to `[R−76, R−1]` leaves 1 disagreement in 8,229, which is within the ±1-sample onset timing of the smoothed trace. Where the 750-ms window disagrees with another window, `lickState` sides with 750 ms in 96.3% of 438 trials against 1 s, 98.5% of 1,077 against 1.5 s and 100% of 574 against 500 ms. At any `R`, the 1-s and 1.5-s windows reach at most 0.957 and 0.871. The prespecified rule is met. |
+| 701-sample axis | **Resolved** to ±1 sample | Samples are 10 ms apart. Reward is at zero-based sample 299, the end of the onset-matched `lickState` window; a peak-based fit gives 301, and TONIC's round `[300 400]` window convention gives 300. Cue onset is at 149. All codes align at the same point (best `R` = 299, 299 and 298). Independent post-reward markers fall inside the prespecified bounds: the uncued lick rise reaches 10% at `R+13` and 50% at `R+18`; the rewarded-minus-omission rise reaches them at `R+12` and `R+15`. A descriptive cue-evoked lick rise appears at sample 160. `lick` is a causal lick-rate trace: each lick adds about 6.6 Hz (≈ 1/0.15 s), the rise takes at most two samples, and the trace decays to half height in about 10 samples. Frozen windows: `lickState` and the continuous replication use onset samples 223–298; NAc cue response uses samples `[149, 249)` and NAc reward response `[299, 499)`. Sensitivity: `R` = 298 and 300. |
+| Online trigger, 50% cap | **Assumed**: not testable on permitted data | Assumption as fixed before the checks: the trigger is the verified 750-ms lick predicate on cued-rewarded trials. stimLick− stimulates when it is false; stimLick+ stimulates when it is true, until 50 stimulated trials in the session. Uncued and omission trials are never stimulated. Sensitivity: running-fraction cap, random 0.5 thinning, a 1-s window for stimLick−, and uncued rewards evaluated. These choices enter only model counterfactuals, frozen before any intervention outcome. |
+| Randomization roster | **Unrecoverable**; assumption adopted | Absent from the article, supplement, Reporting Summary, Peer Review File, release and code. Adopted: the approved noncausal 462-label conditional exchangeability, with the four histology-driven removals assumed independent of arm. Sensitivity: enumerations restricted to consecutive blocks of 2–4 among mice 1–20, reported as an assumption-labelled range in the final lock. Claims remain complete-case and conditional. |
+
+Further observations, recorded before any magnitude was seen:
+
+- Records 15 (sessions 9–10) and 16 (sessions 7–8) have at most one omission
+  probe per session, and record 15 session 10 has 171 trials. These are the two
+  controls that Supplementary Table 1 lists for the extra cue-stimulation
+  session. That session cannot be located without `stimState`, which is
+  excluded. Assumption: sessions 1–8 are regular training sessions. Frozen
+  development-only sensitivity: the development centre and scale are also
+  reported without record 16.
+- Record 1 has 11 sessions; its sessions 1–3 hold only 41, 50 and 59 trials.
+- Transport assumption: intervention and boundary records share this exporter
+  (codes, axis, `lickState`). The steward's aggregate structural gate can test
+  codes and session support without opening outcomes.
+- Continuous-lick replication metric: the mean of the released `lick` trace
+  over samples 223–298. Sensitivity: lick onsets in the same samples divided by
+  0.76 s.
+
+**Next analysis step.** Freeze these definitions in `SEARCH_POLICY.json`
+revision 6: codebook, eligibility, lost-block rule, axis and windows, `R`
+sensitivity, continuous-replication metric, and the trigger/cap and roster
+assumptions. Then run the steward's aggregate-only prelock structural gate on
+the eleven primary mice: sessions 1 and 8 present, at least 30 eligible code-0
+trials in each, and the same code pattern, with pass/fail output only.
+Development scoring (session 1 and 8 gains, centre and scale) stays closed
+until the four raw margins are presigned. Presigning is a scientist decision
+for the daily question batch, and no outcome information is available to
+inform it.
+
+*Both steps were completed on October 16: revision 6 adds
+`source_definitions_20261016` to `SEARCH_POLICY.json`, and the primary-mouse
+gate passed in job 48187322 (6 of 6 and 5 of 5 mice; see the
+[log](experiment_log.md#2026-10-16-1835-pacific--source_semantics_design--primary-structural-gate-passes-job-48187322)).*
+
 ## Documentary facts and missing decisions
+
+*Historical October 3 table. The October 16 classification above supersedes
+its "resolution needed" column; provider contact is now an optional fallback.*
 
 | Item | Current evidence | Concrete resolution needed |
 | --- | --- | --- |
@@ -333,6 +493,9 @@ the raw continuous-lick replication is a required terminal gate. The existing
 462-label unblocked sensitivity already has a noncausal interpretation in the
 contract; this is not a newly proposed claim downgrade and does not supply
 the missing endpoint or access definitions.
+
+*October 16: the October 16 classification above covers the facts this request
+sought. The request is now an optional fallback, not a gate.*
 
 **Draft request for the scientist to send; not sent:** For Janelia Figshare
 21816054 v1 / `seshMerge.mat`, please provide the release-specific codebook or

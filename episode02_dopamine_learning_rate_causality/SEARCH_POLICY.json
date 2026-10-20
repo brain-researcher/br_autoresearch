@@ -1,7 +1,108 @@
 {
-  "policy_revision": 5,
+  "policy_revision": 6,
   "policy_id": "ep02_dudman_dopamine_learning_rate_causality_adaptive_v3",
   "episode_id": "ep02",
+  "source_definitions_20261016": {
+    "policy_revision": 6,
+    "scope": "definitions_only",
+    "authority": "AGENTS_md_standing_authority_of_2026_10_16_missing_source_facts_recovered_from_paper_supplement_code_or_permitted_data_or_adopted_as_stated_assumptions_provider_contact_optional",
+    "plan_record": "outputs/source_semantics_design.md#october-16-2026--source-fact-resolution-plan-fixed-before-any-data-check",
+    "classification_record": "outputs/source_semantics_design.md#october-16-2026--results-and-classification-job-48180654",
+    "evidence": "outputs/runs/source_semantics_checks_job_48180654/",
+    "classification_data_used": "development_controls_1_2_4_6_9_11_15_16_19_fields_trialID_seshID_lickState_and_lick_through_development_role_reader_only",
+    "classification_outcome_magnitudes_computed_or_viewed": false,
+    "classification_opened_intervention_or_boundary_records": false,
+    "provider_contacted": false,
+    "provider_trigger_codebook_time_axis_requirement_of_scientist_amendment_20261006_superseded_by_the_2026_10_16_standing_authority": true,
+    "index_conventions": "zero_based_samples_one_based_source_records_and_sessions",
+    "trialID_codebook": {
+      "0": "cued_rewarded",
+      "1": "uncued_reward",
+      "2": "cued_omission",
+      "additional_codes_observed_in_development": false
+    },
+    "eligibility": {
+      "eligible_trial": "trialID_code_0_with_finite_lickState",
+      "epochs": [
+        "session_1",
+        "session_8"
+      ],
+      "minimum_eligible_trials_per_epoch": 30
+    },
+    "seshID": {
+      "reading": "chronological_session_index_1_to_K_contiguous_with_rows_in_chronological_order",
+      "stated_assumption": "one_session_per_training_day_per_article_methods",
+      "mouse_numbers_equal_one_based_struct_indices": true,
+      "lost_block_definition": "all_NaN_lick_rows_with_NaN_lickState_and_retained_trialID_codes",
+      "lost_blocks_development": ["source_record_04_session_5", "source_record_09_session_4"],
+      "lost_blocks_evaluator_only_documented_by_article": ["source_record_03_session_7"],
+      "lost_block_rows_are_ineligible_and_never_interpolated": true
+    },
+    "lickState": {
+      "reading": "1_if_a_lick_occurs_in_the_750ms_before_reward_else_0",
+      "missing_values": "NaN_only_on_lost_block_rows",
+      "defined_for_all_three_trial_codes": true
+    },
+    "time_axis": {
+      "samples_per_trial": 701,
+      "sample_period_ms": 10,
+      "reward_sample": 299,
+      "reward_sample_sensitivity": [298, 300],
+      "cue_onset_sample": 149,
+      "same_alignment_for_all_trial_codes": true
+    },
+    "windows_zero_based_samples": {
+      "lickState_and_continuous_replication": "223_to_298_inclusive",
+      "lickState_and_continuous_replication_note": "76_samples_R_minus_76_to_R_minus_1_one_sample_wider_than_the_nominal_750ms_for_onset_timing_of_the_smoothed_trace_while_the_released_lickState_field_keeps_its_750ms_meaning",
+      "NAc_cue_response": "149_inclusive_to_249_exclusive",
+      "NAc_reward_response": "299_inclusive_to_499_exclusive",
+      "reward_sample_sensitivity_rule": "trace_derived_windows_move_with_the_reward_sample_to_298_and_300_while_the_released_lickState_field_is_unchanged"
+    },
+    "continuous_replication_metric": {
+      "primary": "mean_of_the_released_lick_trace_over_samples_223_to_298",
+      "sensitivity": "lick_onsets_in_samples_223_to_298_divided_by_0.76_s_with_an_onset_defined_as_a_one_sample_rise_of_at_least_3.3",
+      "lick_trace_reading": "causal_lick_rate_trace_each_lick_adds_about_6.6_Hz"
+    },
+    "trigger_and_cap_assumption": {
+      "classification": "stated_assumption_not_testable_on_permitted_data",
+      "reading": "the_online_trigger_is_the_750ms_lick_predicate_on_cued_rewarded_trials_stimLick_minus_stimulates_when_it_is_false_stimLick_plus_stimulates_when_it_is_true_until_50_stimulated_trials_in_the_session_and_uncued_and_omission_trials_are_never_stimulated",
+      "sensitivities": [
+        "running_fraction_cap",
+        "random_0.5_thinning",
+        "1s_window_for_stimLick_minus",
+        "uncued_rewards_evaluated_with_the_same_predicate"
+      ],
+      "use": "model_counterfactuals_only_frozen_before_any_intervention_outcome"
+    },
+    "randomization_roster_assumption": {
+      "classification": "roster_not_recovered_from_the_reviewed_public_sources_stated_assumption",
+      "reading": "approved_noncausal_462_label_conditional_exchangeability_with_the_four_histology_driven_removals_assumed_independent_of_arm",
+      "sensitivity": "block_restricted_label_enumeration_for_every_partition_of_mice_1_to_20_into_consecutive_blocks_of_2_to_4_reported_as_an_assumption_labelled_range_frozen_in_the_final_lock",
+      "claims": "complete_case_and_conditional_on_this_assumption"
+    },
+    "training_session_assumption": {
+      "reading": "sessions_1_to_8_are_regular_training_sessions",
+      "flag": "controls_15_sessions_9_10_and_16_sessions_7_8_have_at_most_one_omission_probe_per_session_and_are_the_two_controls_with_an_extra_cue_stimulation_session_that_cannot_be_located_without_excluded_stimState",
+      "development_only_sensitivity": "development_center_and_scale_also_reported_without_source_record_16"
+    },
+    "transport_assumption": {
+      "reading": "intervention_and_boundary_records_share_the_development_exporter_codes_time_axis_and_lickState",
+      "tested_part": "trialID_membership_in_0_1_2_equal_field_lengths_contiguous_session_indices_and_session_1_and_8_eligible_support_on_the_eleven_primary_mice_by_the_steward_aggregate_only_prelock_structural_support_gate",
+      "untested_part": "code_meanings_lickState_semantics_time_axis_and_the_boundary_records_remain_assumptions"
+    },
+    "updated_fields": [
+      "coordinate_and_outcome_contract.required_definitions_status_revision_6",
+      "coordinate_and_outcome_contract.primary_mouse_score.raw_source",
+      "coordinate_and_outcome_contract.primary_mouse_score.eligible_trials",
+      "coordinate_and_outcome_contract.secondary_endpoints.raw_delay_period_lick_rate",
+      "coordinate_and_outcome_contract.secondary_endpoints.NAc_cue_response",
+      "coordinate_and_outcome_contract.secondary_endpoints.NAc_reward_response",
+      "coordinate_and_outcome_contract.missingness.lost_block_rule",
+      "author_code_reuse.closed_loop_trigger_fidelity.normative_source",
+      "audit.current_blocking_reason"
+    ],
+    "unchanged": "question_primary_estimand_data_roles_held_out_boundary_claims_four_null_raw_thresholds_and_every_access_and_positive_terminal_flag"
+  },
   "scientist_amendment_20261012": {
     "authority": "scientist_follow_your_recommendation_at_about_1310_Pacific_for_EP02_EP15_EP17_EP18_evaluation_separation",
     "authority_record": "../episode15_mdtb_topography_vs_geometry/outputs/experiment_log.md#2026-10-12-1310-pacific--scientist-adopts-procedural-same-account-evaluation-separation",
@@ -209,12 +310,25 @@
       "lickState_750ms_trigger_semantics",
       "raw_701_sample_axis_and_event_alignment"
     ],
+    "required_definitions_status_revision_6": {
+      "trialID_codebook": "frozen_in_source_definitions_20261016",
+      "seshID_training_day_semantics": "frozen_with_the_stated_one_session_per_training_day_assumption",
+      "lickState_750ms_trigger_semantics": "lickState_frozen_as_the_750ms_pre_reward_lick_predicate_but_its_identity_with_the_online_trigger_and_cap_is_a_stated_untested_assumption",
+      "raw_701_sample_axis_and_event_alignment": "frozen_to_plus_or_minus_one_sample_with_the_reward_sample_sensitivity",
+      "these_definitions_authorize_development_magnitude_access": false,
+      "development_magnitude_access_still_requires": [
+        "prelock_structural_support_gate_passes_for_all_nine_development_and_all_eleven_primary_mice",
+        "scientist_presigns_practical_margin_raw_arm_margin_raw_development_scale_floor_raw_and_loo_delta_floor_raw",
+        "binding_thresholds_raw_probability_gain_presigned_and_endpoint_calibrated_as_its_status_requires",
+        "recorded_development_scoring_handoff_release"
+      ]
+    },
     "failure_to_resolve_trialID_seshID_or_lickState_semantics": "technical_input_underidentified_without_search",
     "failure_to_resolve_raw_trace_axis": "technical_input_underidentified_without_search_because_raw_continuous_lick_replication_is_a_terminal_gate",
     "primary_mouse_score": {
       "name": "raw_preparatory_policy_learning_gain",
-      "raw_source": "lickState_after_independent_documentary_verification",
-      "eligible_trials": "frozen_cued_reward_trial_code_only",
+      "raw_source": "lickState_as_frozen_in_source_definitions_20261016",
+      "eligible_trials": "trialID_code_0_cued_rewarded_with_finite_lickState",
       "early_epoch": "session_1",
       "late_epoch": "session_8",
       "session_statistic": "mean_binary_pre_reward_lick_state_over_eligible_trials",
@@ -261,10 +375,10 @@
       "per_trial_independence_assumption": false
     },
     "secondary_endpoints": {
-      "raw_delay_period_lick_rate": "required_replication_in_the_same_verified_750ms_pre_reward_trigger_window_after_axis_definition",
+      "raw_delay_period_lick_rate": "required_replication_mean_released_lick_trace_over_samples_223_to_298_with_the_onset_rate_sensitivity_in_source_definitions_20261016",
       "reward_collection_latency": "directional_nonpromotion_falsifier",
-      "NAc_cue_response": "mechanistic_secondary_integral_0_to_1s_after_cue_after_axis_definition",
-      "NAc_reward_response": "stimulation_manipulation_check_integral_0_to_2s_after_reward_nonpromotion",
+      "NAc_cue_response": "mechanistic_secondary_integral_0_to_1s_after_cue_samples_149_inclusive_to_249_exclusive",
+      "NAc_reward_response": "stimulation_manipulation_check_integral_0_to_2s_after_reward_samples_299_inclusive_to_499_exclusive_nonpromotion",
       "VTA_and_DS": "coverage_limited_site_specificity_diagnostics_only",
       "provider_prepLick_and_rewDA": "parity_only_never_terminal"
     },
@@ -276,6 +390,7 @@
       "primary_interpolation": "prohibited",
       "known_lost_blocks": ["source_record_03_session_7", "source_record_04_session_5", "source_record_09_session_4"],
       "known_lost_blocks_overlap_primary_epochs": false,
+      "lost_block_rule": "all_NaN_lick_rows_with_NaN_lickState_are_ineligible_through_the_finite_lickState_eligibility_rule",
       "provider_nearest_neighbour_summaries": "parity_only",
       "mouse_exclusion_after_lock": "prohibited_except_mechanical_predeclared_abstention"
     }
@@ -288,7 +403,7 @@
       "large_stimulation_may_add_positive_performance_error_bias"
     ],
     "closed_loop_trigger_fidelity": {
-      "normative_source": "article_methods_and_verified_online_trigger_codebook",
+      "normative_source": "article_methods_with_the_stated_trigger_and_cap_assumption_in_source_definitions_20261016_because_no_online_trigger_codebook_is_available",
       "stimLick_minus": "stimulate_at_reward_only_when_no_lick_is_detected_in_the_pre_reward_750ms_window",
       "stimLick_plus": "stimulate_at_reward_when_lick_is_detected_in_the_pre_reward_750ms_window_subject_to_the_documented_fifty_percent_session_cap",
       "pinned_dlRNN_train_learnDA_case_logic": "approximate_author_simulation_reference_not_the_definitive_trigger_implementation",
@@ -731,7 +846,7 @@
     "mode": "one_shot_procedurally_separated_same_account_primary_audit_after_configuration_lock",
     "current_opening_authorized": false,
     "current_positive_mechanistic_terminal_authorized": false,
-    "current_blocking_reason": "endpoint_semantics_and_randomization_block_exclusion_rosters_development_handoff_and_implementation_are_unresolved_and_no_endpoint_faithful_binding_rule_or_scientist_signoff_exists",
+    "current_blocking_reason": "endpoint_definitions_are_frozen_in_revision_6_but_the_four_raw_margins_are_unsigned_no_endpoint_faithful_binding_rule_development_scoring_handoff_complete_empirical_implementation_final_lock_or_scientist_signoff_exists_and_the_randomization_roster_supports_only_the_noncausal_462_label_sensitivity",
     "required_before_opening": [
       "replace_the_generic_diagnostic_artifact_with_an_endpoint_faithful_independently_validated_binding_calibration",
       "freeze_verified_endpoint_semantics_numerators_denominators_missingness_and_abstention",

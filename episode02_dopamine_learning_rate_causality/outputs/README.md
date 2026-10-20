@@ -1,5 +1,37 @@
 # Outputs
 
+**October 16, 18:35 Pacific — definitions frozen; primary structural gate passed.**
+Policy revision 6 (`source_definitions_20261016` in `SEARCH_POLICY.json`,
+definitions only) freezes the codebook, eligibility, session and lost-block
+rule, `lickState` window, axis and windows, continuous-replication metric, and
+the trigger/cap, roster and late-session assumptions. The four raw thresholds
+stay null and every access flag stays false. The steward's aggregate-only gate
+on the eleven primary mice (job 48187322) passed: 6 of 6 stimLick− and 5 of 5
+stimLick+ mice have codes 0–2, contiguous sessions including 1 and 8, and at
+least 30 eligible trials in each. No outcome, per-mouse value, `stimState` or
+boundary record was read. See the
+[gate entry](experiment_log.md#2026-10-16-1835-pacific--source_semantics_design--primary-structural-gate-passes-job-48187322),
+[packet](runs/primary_structural_gate_job_48187322/gate.json) and
+[revision 6 entry](experiment_log.md#2026-10-16-1810-pacific--source_semantics_design--policy-revision-6-freezes-the-october-16-definitions).
+Next: development scoring waits on the scientist presigning the four raw
+margins, their endpoint calibration and a recorded scoring handoff. The "Next"
+line in the entry below is historical.
+
+**October 16, 17:30 Pacific — source facts classified without provider contact.**
+Checks on the nine development controls (job 48180654, four reader fields, no
+outcome magnitudes, no intervention record) resolved `trialID`, `seshID` and
+the lost blocks, `lickState`, the 701-sample axis (reward at sample 299 ± 1)
+and the development denominators. The online trigger/cap and the randomization
+roster are stated assumptions with sensitivity plans. See the
+[classification](source_semantics_design.md#october-16-2026--results-and-classification-job-48180654),
+[figure](figures/ep02_lickstate_alignment_20261016.png),
+[run evidence](runs/source_semantics_checks_job_48180654/) and
+[log entry](experiment_log.md#2026-10-16-1730-pacific--source_semantics_design--six-source-facts-classified-on-development-controls).
+Next: policy revision 6 and the steward's aggregate primary-mouse structural
+gate. The four raw margins remain the scientist gate before development
+scoring. Statements below that call these source facts unresolved are
+historical.
+
 **October 12, 13:54 Pacific — adopted procedural separation synchronized.**
 The scientist's 13:10 portfolio decision explicitly included EP02. GOAL,
 DATASETS and SEARCH_POLICY now replace enforced reader isolation with disclosed
