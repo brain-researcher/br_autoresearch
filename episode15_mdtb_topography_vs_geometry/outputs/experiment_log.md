@@ -1,5 +1,92 @@
 # Experiment log
 
+## 2026-10-19T19:39:48+00:00 — observed_map_audit — required raw NaN verified; complete-support route stopped
+
+Attended step48435246.0 completed the first-failure diagnostic in69.24s with216508KiB peakRSS, exit0; the shell exited and the EP21 parent continued. Operations: runs/observed_map_audit/operations001/diagnostic_48435246_0.txt.
+After1728 valid selectedB member samples, sub-19/ses-s2/run01/reg01 (CPRO) fails at4 of188 frozen locations; all four failures involve positive-weight rawNaN. This is one failed member, not a cohort missingness census.
+Independent NIfTI byte-offset315388 decoding at native corner[51,13,11] givesNaN and agrees with array decoding. Existing literal-copy and closed-destination CRC verification supports the handoff; no concrete copy/decoder defect was found and no new original-archive comparison was performed.
+Evidence: runs/observed_map_audit/support_diagnostic001/{diagnostic.json,access.json}; released figure and three lines: figures/observed_map_audit_support001/. All predictions and the failed execution/access record remain unchanged; no losses or laterB members were sampled after failure.
+The adopted missing-value rule stops the complete188-location endpoint: no primary gain/interval can be computed from these supplied values. This establishes data unavailability for the fixed target, not predictive absence, biological mechanism or impossibility for other designs.
+Next daily decision is specified in paper_plan.md: one audit-availability-conditioned evaluation of all frozen predictors on a common subset, requiring spatial-estimand and inference changes. It is proposed only; no mask census, scoring, refit or furtherB access is authorized by writing it.
+Independent source/design review found no contract-preserving data repair. BR pipeline_plan_review returned approve/low with no findings or KG rules and a generic four-step checklist; it supplies no statistical validation or scientist authority.
+Keep EP21's existing draw chain moving; its16-worker transition remains pending the old-profile workers' completion. No Git operation or new dataset was selected.
+Changed-ASTRA validation passed schema and semantics in attended1CPU/512MiB step48435246.1 (3.25s,74460KiB,exit0); evidence operations001/astra_diagnostic_48435246_1.{json,resources.txt}; shell exited. Independent record review passed after labeling the recovered October7 paper-plan scope historical.
+
+## 2026-10-19T19:23:02+00:00 — observed_map_audit — predictions complete; evaluate fixed-support failure
+
+Job48499274 is terminal FAILED1:0 after31m17s. All12 people/18conditions/188locations/16variants and controls passed numerical certification and froze at19:14:38.023788UTC, before the recorded firstB opening19:14:42.344386UTC.
+Evaluation stopped19:15:35UTC at the original strict sampler's invalid/nonfinite-support rule; no complete scores, figure or primary confidence intervals were published. Preserve predictions and the failed access record unchanged.
+Independent source review found no A/B coordinate, roster, header or sampler mismatch; the exception's Task-A wording is a reused label. Actual source nonfiniteness remains unverified until the targeted diagnostic.
+Select a first-failure diagnostic on the identical permittedB plan and frozen188 geometry: identify the first failed member/stencil and independently check one offending raw scalar, without scores, support search, refitting or changed thresholds.
+Run inside an attended1CPU/512MiB/5min companion of task-owned EP21 draw parent48435246 (3CPU/16GiB, main one-thread/15GiB guard); diagnostic448MiB RSS and240s application bound, one numerical thread, no new allocation.
+The companion will disclose priorB access and stop at the same first failure. A verified missing required source value triggers the adopted complete-panel stop; a reader defect permits only an unchanged engineering resumption.
+Next: review diagnostic source, confirm parent remains live with sufficient time/resources, execute once on compute, and report the measured reason without implying an absent prediction benefit.
+
+## 2026-10-19T18:41:53+00:00 — observed_map_audit — complete proposal adopted and execution selected
+
+Scientist adopted the complete October16 proposal in the October19 daily reply; policy records the authority and prediction-before-B sequence.
+Freeze all16 recipes, weights, numerical tolerances, seeds, controls and 188 development locations before audit calibration; use all12 original audit people and18 B-only conditions.
+Release existing role-filtered audit A only after this panel lock, and B only after every ordinary/control prediction is published; shared B14/private reliability remain closed.
+Primary family:16 M0b-minus-model participant gains, simultaneous95% Bonferroni-t(df11); lower>0 predictive benefit only. Controls descriptive; no mechanism, winner, absence or equivalence claim.
+Select one1CPU/7GiB/4h job for metadata-only manifests, all prediction, one evaluation and figure/three-line report; cost011 measured27m48s on1CPU/7GiB, so finite request includes new audit calibration and cleanup.
+Reuse13 passing fixtures from47586225.0; record changed ASTRA validation inside the substantive job. No audit payload has yet been opened in this adoption step.
+Metadata adapter and wrapper source review complete; pre-access donor cycle is materialized inside the job before audit A. Submit once, preserve predictions and disclose any unchanged engineering resume; same-account separation is procedural.
+Submitted once as48499274 at2026-10-19T18:44:35+00:00; scheduler acceptance is not completion. Operations: runs/observed_map_audit/operations001/initial_48499274. Observed RUNNING onsh03-06n08; metadata views, plotting runtime and ASTRA validation passed; fixed donor cycle recorded before A and prediction stage entered.
+
+## 2026-10-17 00:49 Pacific — observed-map audit writer — bounded fixture retest selected
+
+Coordinator selects the13 existing fixtures in an attended1CPU/512MiB companion of task-owned3CPU/16GiB EP21 parent47586225; its unchanged decoder stays one thread with15GiB RSS guard.
+Retest the append-mode repair before any future audit use, then run the separately scoped EP18 metadata diagnosis in the same finite step; no new allocation or audit payload is required.
+Observed step47586225.0 onsh04-04n23: all13 tests passed in0.294s, process2.65s/145768KiB, exit0; evidence runs/observed_map_audit_fixture_retest_47586225_0.{txt,resources.txt}. Adoption, target calibration, prediction and audit evaluation remain closed.
+
+## 2026-10-17 — inactive observed-map audit fixtures — execution-record writer repaired
+
+EP18 job48223571 ran all 13 fixture tests: 11 passed and two failed; evidence is runs/observed_map_audit_fixture_checks_48223571.txt. No empirical audit inputs were used.
+Both failures arose because opening audit_execution.json with a+ forced writes to append despite seek(0), concatenating JSON documents and breaking completed-result/retry reads.
+Changed only the runner's record open to O_RDWR|O_CREAT plus r+, preserving its existing lock, seek/truncate/fsync, fixed paths and one-evaluation rule.
+The existing two failing fixtures directly cover the repair; retest is pending in the next coordinator-owned substantive allocation. The complete suite is not yet verified.
+Proposal adoption remains pending; no audit payload, audit job, active-policy change or empirical result. Next: coordinator retest, while the audit stays closed.
+
+## 2026-10-17 — inactive observed-map audit implementation prepared
+
+Prepared gated context/prediction adapters, separate A/B readers, one-freeze/one-evaluation runner and reporter in tools/*observed_map_audit*.py; legacy development guards and active policy are unchanged.
+All 12 audit people, 18 conditions, 188 frozen locations, 16 variants and fixed controls remain required; exact support identities are checked before B access.
+Predictions publish together before B; one execution record discloses prior access and permits only explicit unchanged engineering resumes, with atomic complete report/figure publication.
+Independent reader/runner/model/reporter source reviews found no blocker; three fixture-only test modules are bundled in EP18 job48223571, pending execution, with no tests run on login.
+Audit jobs: none. Audit payload accesses: zero. New empirical results: zero. The complete proposed scope/access change still awaits scientist adoption; no audit analysis was activated.
+Next: observe the bundled fixture checks; audit execution remains closed pending the recorded decision.
+
+## 2026-10-16 23:55 Pacific — observed_beta_report — narrower held-out evaluation proposed
+
+Existing development betas and session contrasts cannot distinguish a general stable measurement component from stable biology without extra identifying information or assumptions; another unchanged fit would not resolve it.
+Prepared outputs/proposed_observed_map_audit.md: all 12 original audit people, 16 fixed variants, 18 conditions, 188 frozen locations and all controls; all predictions precede any audit B access.
+The proposed primary family is 16 M0b-minus-model gains with simultaneous two-sided 95% Bonferroni participant-t intervals; lower > 0 supports observed predictive transport only. Donor-cycle controls remain descriptive.
+Independent source review confirmed the access order and complete panel; jointly balanced participant selection is disclosed as a limitation of the model-based inference.
+One daily question asks whether to adopt this narrower claim and consume the original audit. Proposal remains inactive; no audit data, job, contract amendment or outcome was opened.
+BR pipeline_plan_review returned approve/low with no findings or KG rules and a generic seven-step checklist; this is advisory, not statistical validation or authorization.
+Next: await this consequential scope/access decision while EP18, EP20 and EP21 continue. The original mechanism question remains unresolved, not proved impossible.
+
+## 2026-10-16 23:43 Pacific — observed_beta_report — source uncertainty narrowed without a provider gate
+
+Read the release-specific Zenodo README and current official MDTB importer/import helper/extraction source; the README still omits preprocessing and the commented GLM7 example cannot authenticate the export.
+The helper copies betas separately from resMS; later Functional Fusion normalization is not part of EP15's arithmetic reader. DATASETS.md links the exact public sources and distinguishes those stages.
+Retain released task labels and state preserved author run chronology as an assumption; do not equate it with independent partition errors. No new public evidence licenses a reliable-signal or mechanism claim.
+Next inference must assess the surviving shared-measurement explanation conditionally; existing matched controls remain descriptive. No participant access, dataset, job, support, margin or audit change.
+
+## 2026-10-16 23:34 Pacific — observed_beta_report — distinguish descriptive completion from current goal
+
+The full observed-map evaluation and its October14 publication milestone remain complete; no fit or result is invalidated.
+Current navigation now explicitly distinguishes that descriptive milestone from the October16 explanation-separating goal amendment. The route has no formal winner or reliable-signal/mechanism decision.
+Shared measurement structure remains a competing explanation; resolving it requires the original error-provenance/inference conditions, not another unchanged fit or a naive participant interval.
+Exposed the already released matched condition/donor contrasts in navigation, including the broad-locality M3 condition exception; no statistics were recomputed and descriptive specificity is not biological identification.
+Documentation only: no job, compute, new outcome access or audit opening. Historical delivery statements retain their dates and earlier scope.
+
+## 2026-10-16 — observed_beta_report — reconcile completed result with readiness notes
+
+Corrected stale GOAL/DATASETS sections that still described development handoffs as unreleased; they now link the completed188-location observed-map result and label the old preparation snapshot historical.
+Preserved the original208-location route, unresolved GLM7 error provenance, five scientific margins and inference requirements; the original audit stays closed.
+Documentation only: no job, refit, outcome access or compute. The completed descriptive result and its scientific limits are unchanged.
+
 ## 2026-10-14 09:15 Pacific — observed_beta_report — next prespecified development result delivered
 
 Step 47377474.49 released the complete cost011 result and generated figures/observed_beta_development001/{observed_beta.png,observed_beta.pdf,3lines.md,observed_beta_report.json}.

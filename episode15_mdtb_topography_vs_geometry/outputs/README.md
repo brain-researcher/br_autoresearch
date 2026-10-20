@@ -1,5 +1,53 @@
 # EP15 outputs
 
+**October 19 — complete-support held-out evaluation stopped: required source NaN verified.**
+All 12 participants' predictions for 18 conditions, 188 locations, 16 variants
+and every control froze before the first audit B opening. The evaluator then
+stopped at the adopted missing-value rule. A focused diagnostic found four
+invalid locations in the first failed member (sub-19, CPRO, run 1/regressor 1),
+each involving a positive-weight raw NaN; direct byte-offset decoding confirmed
+one NaN independently. This is not a whole-cohort missingness estimate.
+
+The unchanged complete endpoint cannot be computed from the supplied values;
+no held-out predictive gains or confidence intervals were produced. This is
+not a negative prediction result or a biological conclusion. Preserve the
+frozen predictions and failed evaluation. Same-account separation was
+procedural, and prior B access is disclosed. Shared B14 and private reliability
+remain closed. [Diagnostic figure](figures/observed_map_audit_support001/support_diagnostic.png) ·
+[Three-line stopping reason](figures/observed_map_audit_support001/3lines.md) ·
+[Numeric diagnostic](runs/observed_map_audit/support_diagnostic001/diagnostic.json) ·
+[Execution evidence](experiment_log.md).
+
+A [concrete next daily decision](paper_plan.md#proposed-daily-decision--october-19-2026)
+would evaluate the same frozen predictors on one jointly available spatial
+subset while retaining all people, conditions, models and controls. It changes
+the spatial estimand and inference language, is not adopted, and cannot recover
+the original 188-location result or an untouched audit. Earlier status entries
+below are historical; the [adopted audit specification](proposed_observed_map_audit.md)
+remains the operative rule for the stopped route.
+
+**October 16, 23:55 Pacific — proposed held-out observed-map evaluation awaits one decision.**
+The [concrete proposal](proposed_observed_map_audit.md) tests whether prediction
+benefits transport to the original 12 audit participants, retaining all 16
+variants and controls on the frozen 188-location support. It specifies the
+complete prediction freeze and participant-level uncertainty before any audit
+Task-B opening. This narrower question cannot distinguish stable measurement
+effects from biology and would consume the reserved audit. It is not adopted;
+the audit remains closed. See the [decision record](experiment_log.md).
+
+**October 17 — inactive implementation prepared; all13 fixture tests pass.**
+New [context](tools/observed_map_audit_context.py), [prediction adapters](tools/observed_map_audit_predictions.py),
+[separate A/B readers](tools/observed_map_audit_readers.py), [runner](tools/run_observed_map_audit.py)
+and [reporter](tools/report_observed_map_audit.py) implement the written proposal behind its absent policy-adoption gate.
+The runner freezes all predictions before B and records any unchanged engineering retry; legacy development guards remain intact.
+Job48223571 initially exposed append-mode JSON writes in the execution record.
+The repaired runner passed all13 fixtures in coordinated compute step47586225.0,
+including unchanged-retry and completed-result paths (0.294s test time,145768KiB process peakRSS).
+See the [successful retest](runs/observed_map_audit_fixture_retest_47586225_0.txt) and
+[preserved initial failure](runs/observed_map_audit_fixture_checks_48223571.txt).
+No audit payload, audit job, policy adoption or scientific result was produced.
+The held-out decision above remains pending; source preparation does not consume the audit.
+
 **October 14 — complete observed-map prediction result released.**
 All 12 development participants, 18 Task-B conditions, 188 common valid
 locations, 16 variants and fixed controls completed in cost011 / job 47751452.
@@ -8,12 +56,33 @@ differences are +0.0216565, -0.0149902, -0.00830282 and -0.0108881.
 These are descriptive out-of-fold predictions, conditional on target availability;
 overlapping training precludes naive participant confidence intervals. No winner,
 recovery or mechanism claim is made, and the original participant audit stays closed.
+This completes the earlier descriptive evaluation milestone. It does not yet
+satisfy the October 16 goal amendment requiring an explanation-separating result.
 [Figure](figures/observed_beta_development001/observed_beta.png) ·
 [Three-line summary](figures/observed_beta_development001/3lines.md) ·
 [Complete report](figures/observed_beta_development001/observed_beta_report.json).
 The scientist's October 14 publication instruction includes the figures and
 complete released numeric report in Git, along with the three-line summary.
 Earlier status entries below are historical.
+
+The released matched controls also address whether prediction depends on whose
+Task A and which condition labels are supplied. The saved mean MSE contrasts
+below are control minus genuine Task A; positive values favor genuine Task A.
+
+| Fixed reference | Permuted conditions minus genuine | Donor participant minus genuine |
+| --- | ---: | ---: |
+| M1 probabilistic parcels | 0.00773910 | 0.05016851 |
+| M2 diffeomorphism | 0.00487366 | 0.01206748 |
+| M3 local isometry | 0.00931694 | 0.03073511 |
+| M4 anisotropic stretch | 0.00848043 | 0.03268969 |
+
+These are existing descriptive comparisons, not new fits or significance tests.
+Across the full 16-variant panel all donor-control means are positive; condition
+specificity is not universal: broad-locality M3 has a difference of −0.00096795.
+This weakens a wholly nonspecific personalization explanation, while shared
+person-specific measurement structure remains unresolved. The donor contrasts
+use their own matched reduced-source fits and cannot be combined with ordinary
+M0b contrasts. See the full [saved controls and interpretation](figures/observed_beta_development001/observed_beta_report.json).
 
 **October 14 — complete real-data retry submitted as 47751452.**
 Cost010 reached numerical fit 170, then refused a local solution outside the

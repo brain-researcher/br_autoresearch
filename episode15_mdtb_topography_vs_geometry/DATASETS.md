@@ -1,5 +1,25 @@
 # EP15 data: MDTB Task A, Task B, and participant roles
 
+## Adopted audit data roles — October 19, 2026
+
+The scientist adopted the complete [observed-map evaluation](outputs/proposed_observed_map_audit.md).
+The original 12 audit people (sub-02,03,04,06,09,10,19,22,26,28,29,30) now
+serve this prospective predictive evaluation. Shared quantities use only the
+12 original development people. After panel lock, audit anatomy and all 29
+Task-A conditions may calibrate individual predictions. Only after all ordinary
+and control predictions freeze may the evaluator open their 18 B-only
+conditions, once, on the development-frozen 188 locations and four partitions.
+Every variant and control is retained; required missing/nonfinite values stop
+the complete panel without exclusions, imputation or support reselection.
+
+The shared 14 Task-B conditions and private reliability remain closed. Existing
+role-filtered containers are reused; no new dataset is added. Separation remains
+procedural within the same account. Older audit-closed statements below apply
+to their earlier routes; this is the sole adopted exception. The original
+mechanism question remains unresolved, and these outcomes cannot later be
+untouched confirmation for it. The full specification controls inference and
+any disclosed unchanged engineering resumption.
+
 EP15 uses the Functional Fusion Multi-Domain Task Battery (MDTB) v1.0
 derivative to ask why individual cerebellar task maps differ. [GOAL.md](GOAL.md)
 defines the scientific comparison; this file describes what is available, how
@@ -87,6 +107,28 @@ still unverified. This review changed no partitions, payloads, preprocessing,
 access rights or statistical claim.
 
 ## Source
+
+### Public-source follow-up — October 16, 2026
+
+The release-specific [README](https://zenodo.org/records/16788784/preview/README.md?include_deleted=0)
+still leaves its preprocessing description unfinished. The current official
+[MDTB importer](https://raw.githubusercontent.com/DiedrichsenLab/Functional_Fusion/main/scripts/import/import_mdtb.py)
+still contains a commented GLM7 example with inconsistent source/destination
+task arguments; it does not authenticate the actual export. This is not evidence
+that the released task labels are wrong. The official
+[import helper](https://raw.githubusercontent.com/DiedrichsenLab/Functional_Fusion/main/Functional_Fusion/import_data.py)
+copies betas and a separate residual-variance image; the later
+[extraction code](https://raw.githubusercontent.com/DiedrichsenLab/Functional_Fusion/main/Functional_Fusion/dataset.py)
+applies additional normalization/recombination that EP15's arithmetic reader does
+not invoke.
+
+For interpretation under standing authority, retain the release's Task-A/Task-B
+labels and assume its run indices preserve the author's chronology. Analyze
+beta amplitudes as supplied. This source-supported chronology assumption does
+not add an assumption of zero shared measurement-error covariance. Existing
+matched controls can be reported now; stronger inference needs explicit
+conditional sensitivity to shared errors, not indefinite provider contact.
+No partition, support mask, formal margin or audit access changes here.
 
 | Item | Value |
 | --- | --- |
@@ -307,6 +349,9 @@ EP15 correlated exposure, not independent evidence.
 
 ## What remains before analysis
 
+The next paragraph is a historical preparation snapshot from before the adopted
+observed-map result; development release is no longer pending for that route.
+
 The source route, 208-location support, Task-A-only reliability preparation,
 fixed 12/12 roles, condition/run-partition member plan and opaque handoff
 materialization are complete. The pre-role EP03 exposure review conservatively
@@ -317,19 +362,22 @@ domain-pair blocks. M3/M4 algebra, covariance, paired-jackknife and endpoint
 arithmetic have passed their focused checks; these are preparation results,
 not participant findings or a qualified inference procedure.
 
-Before exploratory development scoring, EP15 still requires:
+The adopted observed-map route completed its development handoff release,
+source/cache protection, functional checks and complete model/control panel on
+188 common valid locations. Its [released result](outputs/README.md) and
+[numeric report](outputs/figures/observed_beta_development001/observed_beta_report.json)
+are descriptive out-of-fold predictions, not reliable-signal or mechanism
+inference. The 188-location amendment does not change the original route's
+208-location estimand. Reader separation is procedural under the
+[adopted amendment](GOAL.md#adopted-procedural-evaluation-separation--october-12-2026);
+the separately adopted October 19 audit now follows the prediction-before-B
+access order above.
 
-- enforced reader separation and release of the materialized role handoffs
-  (October 12: separation is satisfied procedurally under the
-  [amendment](GOAL.md#adopted-procedural-evaluation-separation--october-12-2026);
-  the release is still pending);
-- functional finite-value/geometry checks and support for independent run
-  errors under the fixed partition plan (the latter remains unresolved and is
-  excepted only for the adopted observed-beta descriptive route);
-- exact M1–M4 capacities, identifiability and operator certificates, source
-  geometry and positive scales for the reports actually evaluated, and a fixed
-  scratch limit within the existing resource ceiling; and
-- the deployed published-parameter/cache firewall.
+For the original reliable-variation route, functional validity must hold on
+its own support and cross-partition error independence remains unresolved.
+The release-bound GLM7 specification/export record described
+[above](#run-error-provenance-follow-up--checked-october-7-2026) is still missing.
+The observed-map exception does not resolve these original-route requirements.
 
 The formal route additionally needs the remaining two signal/geometry and
 three native-signature margins, calibrated joint inference, the registered
@@ -337,5 +385,6 @@ whole-procedure qualification and the audit-prediction dry run. The accepted
 `tau_remaining = 0.20` and `tau_increment = 0.05` resolve two intended standards
 only. The seven-fixture and Bonferroni alternatives remain proposals. These
 formal requirements no longer block the separately labeled exploratory point
-report, but audit Task B remains closed. Setup failure is not evidence for or
-against a scientific class.
+report or the separately adopted observed-map audit. The original formal
+class route remains unqualified. Setup failure is not evidence for or against
+a scientific class.

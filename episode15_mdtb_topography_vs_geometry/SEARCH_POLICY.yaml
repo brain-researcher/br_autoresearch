@@ -1,6 +1,48 @@
 policy_id: ep15_mdtb_topography_vs_geometry
 episode_id: ep15
-evidence_mode: exploratory_real_development_now_formal_class_decision_and_audit_deferred
+evidence_mode: observed_map_development_and_adopted_audit_original_mechanism_unresolved
+
+scientist_amendment_20261016_observed_map_audit:
+  status: adopted
+  adopted_at_utc: '2026-10-19T18:41:53+00:00'
+  authority: >-
+    Scientist explicitly adopted the complete observed-map held-out evaluation
+    in the October 19 daily-question reply, including consumption of the
+    original mechanism audit for this narrower predictive question.
+  specification: outputs/proposed_observed_map_audit.md
+  route_id: observed_map_audit
+  precedence: >-
+    For this route only, the complete incorporated specification supersedes
+    older audit-closed, development-only and no-inference provisions. The
+    original reliable-signal/mechanism route and its unqualified thresholds
+    remain unresolved. Earlier observed-map numerical repairs also apply to
+    these unchanged model families, bounds, tolerances and certificates.
+  fixed_panel:
+    audit_participants: [sub-02, sub-03, sub-04, sub-06, sub-09, sub-10, sub-19, sub-22, sub-26, sub-28, sub-29, sub-30]
+    shared_training: all_12_original_development_people_only
+    support: development_frozen_188_locations_no_audit_reselection
+    Task_B_only_conditions: 18
+    variants: all_16_canonical_variants
+    controls: all_existing_controls_and_draws
+    personalization: anatomy_and_all_29_Task_A_conditions_only
+  access_order: frozen_panel_then_audit_A_then_all_predictions_frozen_then_one_audit_B_evaluation
+  still_closed: [shared_14_Task_B_conditions, private_reliability]
+  primary_family:
+    estimand: mean_participant_M0b_loss_minus_model_loss
+    comparisons: 16
+    interval: simultaneous_two_sided_95_percent_Bonferroni_participant_t_df11
+    positive_benefit: lower_bound_strictly_greater_than_zero
+    zero_spanning_interval: inconclusive_no_absence_or_equivalence_claim
+  control_inference: descriptive_only_average_losses_over_draws_no_naive_donor_participant_intervals
+  required_missing_nonfinite_or_uncertified_fit: stop_complete_panel_no_dropping_imputation_or_support_search
+  engineering_resume: unchanged_frozen_procedure_with_previous_access_disclosed_no_new_independent_test
+  inference_limits: >-
+    Conditional on fixed development fit, selected jointly balanced cohort and
+    support; participant-t independence/exchangeability is a working assumption,
+    with training-cohort uncertainty omitted. Same-account separation is
+    procedural, not enforced. No biology-versus-measurement, reliable-signal,
+    winning-class, absence, equivalence or population/site transport claim.
+  audit_consumption: cannot_later_be_untouched_mechanism_confirmation
 
 scientist_amendment_20261012_finite_support:
   status: adopted

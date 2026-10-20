@@ -1,5 +1,35 @@
 # Why do people have different cerebellar task maps?
 
+## Adopted observed-map held-out evaluation — October 19, 2026
+
+The scientist adopted the complete [observed-map audit specification](outputs/proposed_observed_map_audit.md)
+in the daily-question reply. This tests predictive transport to the original
+12 audit participants, conditional on development-only shared fitting and the
+frozen 188-location support. Keep all 18 B-only conditions, four partitions,
+16 variants, M0a/M0b and every control; personalize from anatomy and all 29 A
+conditions only. Freeze the panel before audit calibration and every ordinary
+and control prediction before any audit B value, then evaluate once.
+
+The primary family is all 16 participant M0b-minus-model mean gains, with
+simultaneous two-sided 95% Bonferroni participant-t intervals (df=11). A lower
+bound above zero supports observed predictive benefit; an interval crossing
+zero is inconclusive. Controls remain descriptive, including the coupled donor
+cycle. Required missing/nonfinite values or unresolved numerical certificates
+stop the complete panel without dropping data or changing support. Engineering
+resumption preserves the frozen procedure and discloses previous access.
+
+This route incorporates the full specification and supersedes older audit-closed,
+development-only and no-inference clauses only for this evaluation. Existing
+numerical repairs apply with unchanged models, bounds and tolerances. The 14
+shared B conditions and private reliability stay closed. Inference is conditional
+on the fixed development fit, selected cohort and support, with working
+participant-t assumptions and no training-cohort uncertainty. Separation is
+same-account procedural. Neither positive nor negative results distinguish
+biology from stable measurement differences. No reliable-signal, mechanism,
+class-winner, absence or equivalence claim follows; the original mechanism
+question remains unresolved and loses its untouched audit through this use.
+Authority: `scientist_amendment_20261016_observed_map_audit` in the policy.
+
 ## Standing-authority numerical repair — October 13, 2026
 
 For the observed-map route, any of the four canonical M4 fits whose sufficient
@@ -492,25 +522,30 @@ are recorded; the earlier image is retained as historical material.
 
 ## Data readiness
 
-The Functional Fusion MDTB v1.0 derivative is present in read-only shared
-storage. The common forward-transform route, 208-location anatomy-only
-support, private Task-A reliability preparation, fixed 12/12 roles and
-condition partitions are complete. All 36 role-filtered containers have been
-materialized without scientific Task-B evaluation and remain unreleased.
-See [the data readiness record](DATASETS.md#what-remains-before-analysis).
-Remaining work includes:
+The earlier readiness snapshot, in which all 36 materialized role-filtered
+containers were unreleased, is historical. The adopted observed-map route has
+completed development release and its full-panel evaluation on 188 common
+valid locations. Its source/cache protection, functional checks and numerical
+certificates supported that route; they do not qualify the original mechanism
+inference. See the [released result and navigation](outputs/README.md) and
+[complete observed-map report](outputs/figures/observed_beta_development001/observed_beta_report.json).
 
-- enforcing reader separation and the published-parameter/cache firewall;
-- functional finite-value/geometry and independent-error checks under the
-  fixed support and partition rules;
-- fixing the source geometry, M1–M4 capacities, certificates, numerical
-  tolerances and scratch limit for exploratory fits;
-- for the later formal route, completing the remaining five margins and
-  calibrated uncertainty and meeting its original scientific qualification;
-  the 700-run program is deferred for exploratory reporting and its bounded
-  replacement remains a proposal; and
-- demonstrating that audit predictions can be generated while audit Task B is
+The original reliable-variation route retains its 208-location support and
+fixed partitions. Its unresolved requirements include:
+
+- functional validity on that route's support and support for cross-partition
+  error independence, including the release-bound GLM7 provenance gap;
+- the remaining five scientific margins, calibrated joint inference and the
+  registered whole-procedure qualification; the 700-run program remains
+  deferred for descriptive reporting, not passed; and
+- the formal panel lock and audit-prediction procedure with audit Task B
   unavailable.
+
+The original participant audit remains closed. Evaluation separation is
+procedural within the same account, as adopted above; enforcing a separate
+reader account is no longer a prerequisite. The observed-map result does not
+establish reliable-signal recovery or a supported mechanism class.
+See [the data readiness record](DATASETS.md#what-remains-before-analysis).
 
 Source availability does not authorize audit Task-B access.
 

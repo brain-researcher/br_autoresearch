@@ -1,6 +1,70 @@
 # EP15 paper plan: location of a shared code or different task geometry?
 
-## Recovery and current authority — October 7, 2026
+## Proposed daily decision — October 19, 2026
+
+**Proposal only; no new mask construction, scoring or audit access is activated.**
+The complete 188-location audit stopped after a required source NaN was
+independently verified. The [diagnostic](runs/observed_map_audit/support_diagnostic001/diagnostic.json)
+concerns one member and does not identify the final common finite subset.
+The original endpoint and mechanism question remain unresolved.
+
+Proposed question: do the already-frozen predictors improve observed-map
+prediction over M0b on the spatial subdomain jointly measurable in this audit
+cohort? This is a new availability-conditioned estimand. It can describe
+transport on that subdomain; it cannot estimate the original 188-location
+endpoint or distinguish biology from stable measurement differences.
+
+1. Keep all 12 audit participants, 18 B-only conditions, four partitions,
+   16 variants, M0a/M0b and every original control/draw. Reuse the exact saved
+   188-trained predictions; do not refit, rebuild spatial models or retune.
+2. After explicit adoption, construct one mask from the original 188 locations:
+   intersect valid finite values from the unchanged strict positive-weight
+   sampler over every required selected B regressor for every audit person.
+   Use no beta magnitude, sign, variance, loss or model identity for selection.
+   Freeze this complete intersection before computing any predictive loss;
+   merely removing the four known failures is prohibited. Shared B14 and
+   private reliability stay closed. Disclose every renewed B access.
+3. At least two locations must survive, otherwise stop: centering on one
+   location makes all squared losses zero. Report the full retained mask and
+   extent, without searching alternative supports or dropping people/conditions.
+4. Restrict and spatially recenter every observed map, prediction, baseline and
+   control on the same mask, with equal retained-location weights. Preserve
+   all domain, condition, partition, participant and control-draw averaging.
+   This scores fixed predictors; it does not assert that their original
+   geometric, norm or rank matching survives restriction.
+5. Report all 16 participant-level M0b-minus-model mean gains and all controls.
+   Retain the original Bonferroni-t formula only as explicitly exploratory,
+   working-model uncertainty summaries (12 participant units), not calibrated
+   post-selection coverage or a confirmatory positive-benefit decision. Report
+   signs and intervals without declaring an original-audit pass or a winner.
+   A positive gain would descriptively weaken nontransport on this selected
+   subdomain; a negative gain would weaken positive mean benefit there. An
+   interval crossing zero is inconclusive and does not establish equivalence.
+
+Availability is selected jointly from all audit people and may depend on
+anatomy, acquisition or signal; no missing-at-random assumption or independent
+mask-conditioned participant draws is established. The nominal interval
+formula does not account for this selection, training-cohort uncertainty or
+cohort selection. B has already been accessed, so this is an exploratory
+follow-up, not another untouched held-out test. No absence, reliable-signal,
+isometry/locality, mechanism or whole-cerebellum claim is licensed.
+
+**One question for the next daily batch:** adopt this complete common-availability
+fixed-predictor comparison with exploratory inference, or retain the current
+scientific stop? Recommendation: adopt only if the narrower spatial question is
+useful; its answer cannot replace the original complete-support endpoint.
+Scientific approval is needed because the primary spatial estimand and claims
+change. Engineering/resource authority is already standing; no provider contact
+or new dataset is required. No new outcome has selected this proposal beyond
+the disclosed missing-value diagnostic. The existing valid stop is preserved.
+
+## Historical recovery and authority as of October 7, 2026
+
+This recovered section and its scope statements are historical. The later
+October 12 support/observed-map amendments and October 19 audit adoption in
+GOAL.md and SEARCH_POLICY.yaml govern their respective routes; current
+execution evidence is linked from outputs/README.md. The proposal above
+changes no current authority.
 
 This file was observed at zero bytes after the October 7 Oak transport failure.
 Its historical paper strategy below is recovered from the exact Git HEAD blob
@@ -12,14 +76,14 @@ wording. This recovery selects no new experiment, recipe, approval or claim.
 Any lost wording not supported by those surviving records remains unrecovered.
 
 The October 6 adopted exploratory branch in [GOAL](../GOAL.md) and
-[SEARCH_POLICY](../SEARCH_POLICY.yaml) governs current work. The preserved
+[SEARCH_POLICY](../SEARCH_POLICY.yaml) governed work at that time. The preserved
 formal study strategy is a retained future route, not authority to run the
 original formal program now. The [experiment log](experiment_log.md) remains
 the authority for executions and passing checks; implementation is not
 empirical qualification. Source documents and code linked below specify the
 recovered later choices without pretending that all original prose survives.
 
-### Current adopted scope
+### Historical adopted scope as of October 7
 
 Use the fixed twelve development participants, 208 common locations and all
 18 Task-B-only conditions. Target personalization uses anatomy and Task A

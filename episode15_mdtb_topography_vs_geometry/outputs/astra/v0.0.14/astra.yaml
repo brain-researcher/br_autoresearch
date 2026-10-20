@@ -5,7 +5,8 @@ description: >-
   EP15 experiment program under its frozen Task-A-to-Task-B comparison.
   Source qualification and permission-separated roles precede candidate scores.
   The adopted exploratory branch reports development point summaries while
-  formal margins, decision qualification and audit claims remain deferred.
+  original formal margins and mechanism qualification remain deferred. The
+  separately adopted observed-map audit tests predictive transport only.
   This program does not itself grant outcome access or scientific acceptance.
 tags:
 - brain-researcher
@@ -1118,6 +1119,81 @@ analyses:
           the fixed donor cycle preclude naive independent-person intervals.
           All controls are reported. Same-account separation is procedural;
           the original audit remains closed and the original question unresolved.
+  observed_map_audit:
+    name: Held-out observed-map predictive transport
+    description: >-
+      Adopted complete twelve-person audit conditional on the development fit
+      and frozen 188-location support; distinguishes transport of observed
+      predictive benefit, not biology from stable measurement structure.
+      Same-account procedural separation; the original mechanism audit is consumed.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: specification, type: data, source: outputs/proposed_observed_map_audit.md}
+    - {id: development_result, from: ../observed_beta_report.descriptive_result}
+    - {id: development_manifest, type: data, source: outputs/runs/development_release/attempt001/view/point_panel_manifest.json}
+    - {id: support, type: data, source: outputs/runs/observed_beta_development/finite_support001/selection.npz}
+    - {id: manifest_builder, type: data, source: outputs/tools/prepare_observed_map_audit_manifests.py}
+    - {id: runner, type: data, source: outputs/tools/run_observed_map_audit.py}
+    - {id: reporter, type: data, source: outputs/tools/report_observed_map_audit.py}
+    - {id: support_diagnostic_code, type: data, source: outputs/tools/diagnose_observed_map_audit_support.py}
+    outputs:
+    - id: observed_map_audit_result
+      type: report
+      format: directory
+      inputs: [policy, specification, development_result, development_manifest, support, manifest_builder, runner, reporter]
+      description: >-
+        Freeze all ordinary/control predictions after A-only calibration and
+        before any audit B values. Evaluate all12 participants,18 conditions,
+        16 variants and controls once. Report16 M0b-minus-model mean gains with
+        simultaneous95percent Bonferroni participant-t intervals(df11); lower>0
+        supports predictive benefit. Controls are descriptive. Required missing
+        or nonfinite values or unresolved certificates stop the complete panel.
+        One figure, full numeric report and exact three lines under
+        outputs/runs/observed_map_audit/evaluation; no class-winner, mechanism,
+        reliable-signal, absence or equivalence claim. Shared B14 and private
+        reliability remain closed; unchanged engineering resumes disclose access.
+      recipe:
+        command: sbatch outputs/tools/run_observed_map_audit.sbatch
+        resources: {cpus: 1, memory: 7Gi, time_limit: 4h}
+    - id: required_support_diagnostic
+      type: report
+      format: directory
+      inputs: [policy, specification, support, runner, support_diagnostic_code]
+      description: >-
+        Diagnose only the first failing selected B member after the recorded
+        failed opening, preserving frozen predictions and the failed state.
+        Classify strict positive-weight stencil failures and independently
+        decode one raw scalar. No losses, support change or cohort prevalence.
+        Evidence is outputs/runs/observed_map_audit/support_diagnostic001;
+        released figure and three-line reason are in
+        outputs/figures/observed_map_audit_support001. This diagnostic does not
+        produce the planned observed_map_audit_result.
+      recipe:
+        command: >-
+          python -B outputs/tools/diagnose_observed_map_audit_support.py
+          --output-dir {output} --deadline-epoch "$EP15_DIAGNOSTIC_DEADLINE"
+          --rss-limit-kib 458752 --durable-byte-cap 4194304
+        resources: {cpus: 1, memory: 512Mi, time_limit: 5m}
+    findings:
+      fixed_target_requires_unavailable_values:
+        id: fixed_target_requires_unavailable_values
+        claim: >-
+          The first failed required audit B member, sub-19 CPRO run1/regressor1,
+          has four invalid locations among the fixed188, each involving a
+          positive-weight raw NaN. Independent byte-offset decoding confirms
+          one raw NaN and agrees with the array reader. The unchanged complete
+          predictive target cannot be computed from these supplied values.
+          This is a data-availability finding, not predictive absence or a
+          biological mechanism result; no cohort missingness rate is estimated.
+        created_at: '2026-10-19T19:30:16Z'
+        evidence:
+        - {id: first_failed_member, artifact: required_support_diagnostic}
+        derived: true
+        notes: >-
+          Predictions preceded B access. Diagnostic access follows the failed
+          opening and is disclosed; same-account separation is procedural.
+          The primary gain/interval report remains unproduced. A different
+          spatial target requires a separate scientist decision.
   development_search:
     name: Full grouped M1-M4 development and native falsifiers
     description: >-
