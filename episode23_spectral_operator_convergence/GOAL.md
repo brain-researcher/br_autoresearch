@@ -2,10 +2,13 @@
 
 ## Status
 
-status: proposed_not_frozen (design of 2026-10-13)
+status: adopted_initial_analyses_complete_A4_inactive (reconciled 2026-10-15)
 
-This is a proposed theory and analysis design. Creating these files does not
-authorize execution. All analyses of LAION development data are exploratory.
+The adopted initial analyses A0–A3 and P1–P5 theory checks are complete; see the
+[released results](outputs/README.md) and [execution record](outputs/experiment_log.md).
+All analyses of exposed LAION development data remain exploratory, and A3 is
+synthetic. A4 independent confirmation remains inactive. This status correction
+does not authorize additional execution or change the scientific rules below.
 
 ## Scientific question
 
