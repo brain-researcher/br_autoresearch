@@ -58,6 +58,22 @@ change. Engineering/resource authority is already standing; no provider contact
 or new dataset is required. No new outcome has selected this proposal beyond
 the disclosed missing-value diagnostic. The existing valid stop is preserved.
 
+### Relevant prior methods — checked October20, proposal still unadopted
+
+The [original MDTB paper](https://web.cs.dal.ca/~carlosh/pubs/king2019.pdf)
+uses a cerebellar analysis mask. Its published repository contains a
+[data-extraction branch](https://github.com/maedbhk/MDTB-Cerebellum/blob/master/sc1_sc2_imana.m)
+that selects non-NaN locations and [analysis summaries](https://github.com/maedbhk/MDTB-Cerebellum/blob/master/sc1_sc2_functionalAtlas.m)
+using `nanmean`. These establish those specific practices, not the actual
+handling of EP15's failed stencil or use of our proposed all-map intersection.
+[Nilearn](https://nilearn.github.io/stable/modules/generated/nilearn.masking.compute_multi_epi_mask.html)
+supports coverage-threshold and intersection masks; that is a software option,
+not evidence that the MDTB authors adopted the same rule. Available-case means
+can change contributors across locations; the proposed common mask instead
+keeps identical locations for every comparison while changing the spatial
+estimand. No raw NaN is treated as a measured zero, and the one-map184/188
+valid count is not the final common support. No mask or new score was computed.
+
 ## Historical recovery and authority as of October 7, 2026
 
 This recovered section and its scope statements are historical. The later

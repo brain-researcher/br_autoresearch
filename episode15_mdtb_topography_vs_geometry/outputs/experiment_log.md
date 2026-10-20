@@ -1,5 +1,10 @@
 # Experiment log
 
+## 2026-10-20 — observed_map_audit — prior missing-data methods checked; amendment remains pending
+
+Checked the MDTB paper and its linked public code: cerebellar masking, a non-NaN extraction branch and some `nanmean` summaries are documented; none establishes handling of this exact failed stencil or our proposed common-support rule. Source links and limits are retained in paper_plan.md.
+The scientist requested this explanation, not adoption. Preserve all frozen predictions, the complete188-location stop and the proposed spatial-estimand amendment; no new mask, B access, scoring or compute job was started. The first-member4/188 count remains a one-map finding.
+
 ## 2026-10-19T19:39:48+00:00 — observed_map_audit — required raw NaN verified; complete-support route stopped
 
 Attended step48435246.0 completed the first-failure diagnostic in69.24s with216508KiB peakRSS, exit0; the shell exited and the EP21 parent continued. Operations: runs/observed_map_audit/operations001/diagnostic_48435246_0.txt.
