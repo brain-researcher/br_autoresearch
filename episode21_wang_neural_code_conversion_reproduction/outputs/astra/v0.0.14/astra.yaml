@@ -2518,6 +2518,9 @@ analyses:
       - {id: amended_draw_retry_entrypoint, type: data, source: outputs/converter_training/tools/run_amended_draw_retry.py}
       - {id: amended_draw_retry_batch, type: data, source: outputs/converter_training/finding_a_draw_retry001.sbatch}
       - {id: amended_draw_retry_selection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt001/selection.json}
+      - {id: amended_draw_retry_second_entrypoint, type: data, source: outputs/converter_training/tools/run_amended_draw_retry002.py}
+      - {id: amended_draw_retry_second_batch, type: data, source: outputs/converter_training/finding_a_draw_retry002.sbatch}
+      - {id: amended_draw_retry_second_selection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt002/selection.json}
       - {id: amended_draw_retry_bindings, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retry_bindings.json}
       - {id: amended_decoded_point_collection, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.h5}
       - {id: amended_decoded_point_metadata, type: data, source: outputs/runs/finding_a_feature_decoding/amended_full001/decoded_point.decoded_point.json}
@@ -2688,11 +2691,13 @@ analyses:
           scheduler override supersedes earlier concurrency caps; retain8 in the
           live grant as captured execution identity, not the effective limit.
           October20 standing authority selects separately bound48h retries of
-          failed0/1/62, original13 plus retry3 after original8-15 close; preserve
+          failed0/1/62 and8-15 in two explicit attempts, original10 plus three per
+          retry after three original children observed live post-throttle-update close; preserve
           completed batches and all63 scientific identities. The sole finalizer
           uses the explicit replacement map, requires every effective closed
           successful batch and retains the original artifact/scientific join.
-          No scientific or per-task resource binding changes. Preserve1000 synchronized image draws
+          Original workers retain captured resource bindings; retries change only
+          operational resources/paths. Preserve1000 synchronized image draws
           in batches of16 with8 in the final batch; all855 decoded slots,
           exact model policy and genuine fitted IDs remain mandatory. Each
           worker reads only published decoded data and tau-test truth and closes
@@ -2705,7 +2710,7 @@ analyses:
           results amended_full001/draw_batches/draw_batch_NNN.json. A completed
           batch is not a complete interval or finding. Original attempts are
           never overwritten; the separately bound October20 retries add at
-          most432CPUh and preserve historical consumption.
+          most432+1152CPUh and preserve historical consumption.
         inputs: [amended_full_readout_grant, amended_full_readout_dependency_bindings,
                  amended_full_readout_entrypoint, amended_full_readout_draw_batch,
                  amended_full_readout_common_batch, amended_decoded_point_collection,

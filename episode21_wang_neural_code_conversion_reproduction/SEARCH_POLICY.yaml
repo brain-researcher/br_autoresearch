@@ -10,8 +10,11 @@ authority:
   failed_draw_repair_authority: standing_scientist_engineering_and_compute_authority_2026_10_20
   failed_draw_repair_selection: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt001/selection.json
   failed_draw_repair_indices: [0, 1, 62]
+  second_failed_draw_repair_selection: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt002/selection.json
+  second_failed_draw_repair_indices: [8, 9, 10, 11, 12, 13, 14, 15]
+  second_failed_draw_repair_resources: {cpus_each: 3, memory_gib_each: 16, hours_each: 48, numeric_threads: 1, maximum_additional_CPU_hours: 1152}
   failed_draw_repair_resources: {cpus_each: 3, memory_gib_each: 16, hours_each: 48, numeric_threads: 1, maximum_additional_CPU_hours: 432}
-  failed_draw_repair_concurrency: original13_plus_retries3_after_original8_through15_close_total_at_most16
+  failed_draw_repair_concurrency: original10_plus_two_retry_arrays_at3_each_after_three_original_children_observed_live_post_throttle_change_close_total_at_most16
   failed_draw_repair_finalizer: explicit_replacement_map_all63_successful_closed_required_no_fallback
   failed_draw_repair_scope: original_decode_scientific_options_draw_indices_and_canonical_artifacts_unchanged
   failed_draw_repair_historical_clocks_and_no_retry_clauses: superseded_only_for_this_logged_engineering_repair_consumed_costs_preserved

@@ -1,13 +1,15 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
-**October20 standing-authority execution repair.** The diagnosed failed draws
-0/1/62 receive separately bound3CPU/16GiB/48h attempts, retaining the original
-successful decode, batch indices, scientific inputs, calculations and canonical
-outputs. The original array and retries share a16-worker ceiling. All63 effective
-successful closed batches remain mandatory for the sole finalizer. Earlier
-no-retry and clock clauses below remain historical and are superseded for this
-scoped engineering repair; consumed resources are retained. See the
-[execution decision and evidence](outputs/experiment_log.md#2026-10-20--finding_a_feature_decoding--validate-isolated-draw-retries-and-complete-result-join).
+**October20 standing-authority execution repair.** Diagnosed original failures
+0/1/62 and8–15 receive two separately bound3CPU/16GiB/48h retry selections,
+retaining the successful decode, batch indices, scientific inputs, calculations
+and canonical outputs. The shared ceiling remains16 workers: original throttle10
+plus at most3 per retry array, with the second retry waiting for three original
+children observed live after the throttle change. All63 effective successful
+closed batches remain mandatory for the sole finalizer. Earlier no-retry and
+clock clauses below are historical and superseded for this scoped engineering
+repair; consumed resources are retained. See the
+[execution decision and evidence](outputs/experiment_log.md#2026-10-20--finding_a_feature_decoding--second-failure-only-draw-repair).
 
 The separate [fresh L40S measurement](outputs/content_cuda_l40s_measurement_authorization.json)
 selects one bounded hardware/cost attempt under the standing instruction to

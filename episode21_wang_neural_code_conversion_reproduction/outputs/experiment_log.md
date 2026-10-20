@@ -1,5 +1,16 @@
 # Experiment log
 
+## 2026-10-20 — finding_a_feature_decoding — second failure-only draw repair
+
+Original8–15 are now FAILED124:0 after23h29m46–50s; all eight preserved batch statuses show admission0, timeout84572–84578s, phase/batch124 and closed. No scientific score is opened. Original2–7 remain complete; first retries0/1/62 and thirteen original workers16–28 are running.
+Select a private second instance of the tested retry adapter, only8–15, fresh attempt002 operational paths, original decoded input/canonical artifacts and48h/3CPU/16GiB per child. Reserve1152additional allocatedCPUh; preserve all scientific scope and historical consumption.
+Before submission, run three focused invented-metadata tests for new attempt/index isolation and two-disjoint-retry all63 finalization, plus wrapper syntax, in an attended1CPU/512MiB/10min companion of task-owned draw48505743. No empirical payload or score is read.
+After PASS, submit attempt002 held and bind its actual ID. Lower original throttle to10, then verify original running≤13 and choose three still-live original children after that change as afterany dependencies; attempt002 throttle3 plus attempt001 throttle3 keeps total≤16. Do not cancel any live worker.
+Hold the sole pending finalizer while adding the explicit nonoverlapping second attempt and afterok dependency; preserve original afterany, all63 closed-successful requirements and first retry selection unchanged. Release only after bindings and scheduler dependencies agree.
+Step48505743.2 passed all3 focused methods in0.067s (0.70s process wall,24468KiB peakRSS), plus wrapper syntax, exit0; evidence runs/software_integration/draw_retry002/. The attended step exited. After lowering original throttle10, scheduler verifies13original workers live and16/17/18 stillRUNNING; sole finalizer is heldPENDING. All eight canonical outputs and partials are absent.
+Submitted48681394 for8–15 with48h limits and throttle3; bound/activated attempt002 and the explicit two-attempt finalizer map. Scheduler returned0 for afterany16/17/18 and finalizer afterany47586235 plus afterok48670343/48681394, then released both jobs. First-retry selection and all running workers remain unchanged; final scheduler-state verification follows.
+Individual scheduler records confirm retry002 throttle3,48h and all three afterany dependencies; finalizer has original-array afterany plus afterok on48670343 and48681394. Both are PENDING(Dependency), no user hold. At21:32UTC, thirteen originals plus three first retries are running; eight second retries and33originals await dependencies/slots.
+
 ## 2026-10-20 — finding_a_feature_decoding — validate isolated draw retries and complete-result join
 
 At19:47:30UTC, six original batches remain complete, three failed, sixteen running and38pending; no retry has been submitted. Preserve all current writers and the successful decode.

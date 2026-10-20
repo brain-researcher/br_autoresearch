@@ -1,5 +1,20 @@
 # Outputs
 
+**October 20, 14:32 Pacific — eight more original timeouts have bound retries.**
+Original8–15 closed at their23.5h application limit; all eight failed records
+remain. Their new array48681394 selects only those indices,3CPU/16GiB/48h
+each, with the same decoded input, calculations and canonical artifacts.
+The original array has13live workers and33pending; first retries0/1/62 are
+RUNNING. The second retry is PENDING(Dependency), awaiting original16/17/18.
+The verified post-update live-child selection and original throttle10 plus
+three workers per retry preserve the total16-worker ceiling without cancellation.
+Three focused tests passed in step48505743.2. The sole finalizer is pending
+on original-array closure plus both successful retry arrays, and still requires
+all63 effective closed successful results. No complete scientific estimate yet.
+[Second repair and submission](experiment_log.md#2026-10-20--finding_a_feature_decoding--second-failure-only-draw-repair)
+· [Focused checks](runs/software_integration/draw_retry002/tests.txt).
+Earlier queue snapshots below are historical.
+
 **October 20, 12:59 Pacific — failed draws resubmitted; complete-result dependency repaired.**
 Retry array48670343 selects only original batches0/1/62, with3CPU/16GiB/48h
 each, the same scientific calculations and fresh operational records. It is

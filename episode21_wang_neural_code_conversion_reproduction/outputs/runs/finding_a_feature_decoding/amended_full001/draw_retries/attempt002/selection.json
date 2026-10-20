@@ -1,0 +1,73 @@
+{
+  "authorized": true,
+  "attempt": "attempt002",
+  "batch_indices": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "array_job_id": "48681394",
+  "original_decode_job_id": "47586225",
+  "original_array_job_id": "47586235",
+  "approval_source": "Standing scientist engineering and compute authority; experiment_log second failure-only draw repair October20",
+  "failed_original_children": {
+    "8": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48436182"
+    },
+    "9": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48436183"
+    },
+    "10": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505735"
+    },
+    "11": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505737"
+    },
+    "12": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505738"
+    },
+    "13": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505740"
+    },
+    "14": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505741"
+    },
+    "15": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "job_id": "48505742"
+    }
+  },
+  "resources_each": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 2880,
+    "deadline_seconds": 171000,
+    "numeric_threads": 1
+  },
+  "maximum_additional_allocated_CPU_hours": 1152,
+  "submission_dependency": "afterany:47586235_16:47586235_17:47586235_18",
+  "concurrency": "Original throttle10 plus attempt001 throttle3 and attempt002 throttle3; wait for three observed live original children after lowering throttle",
+  "scheduler_observed_utc": "2026-10-20T21:30:09.275062+00:00",
+  "scientific_scope": "Original batch indices, draw schedules, stage, truth and canonical artifacts unchanged; no decode or training",
+  "historical_consumption": "Preserved original jobs and failed operational directories"
+}
