@@ -1,0 +1,36 @@
+{
+ "slurm_job_id": "48224711",
+ "hostname": "sh03-06n05.int",
+ "workers": 7,
+ "participant": "T11",
+ "role": "development",
+ "normalization": "block",
+ "readiness": "strict",
+ "draws": 9999,
+ "permutation_null": {
+  "count": 192,
+  "q99_higher": 0.06528563013106842,
+  "max": 0.07302223743902442,
+  "median": -0.09542197862469765
+ },
+ "shifted_label_null_control": {
+  "count": 192,
+  "q99": 0.11575540605285356,
+  "max": 0.16516678445078314,
+  "median": -0.05686038321119147
+ },
+ "J_min": 0.07,
+ "D_min": 0.07,
+ "observed_J": {
+  "min": -0.0563334250275318,
+  "median": 0.40901912732106405,
+  "max": 0.6542644198399711,
+  "sessions_at_or_below_J_min": 4,
+  "days_at_or_below_J_min": [
+   226,
+   364,
+   706,
+   1549
+  ]
+ }
+}

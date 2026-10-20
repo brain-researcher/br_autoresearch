@@ -1,5 +1,20 @@
 # Outputs
 
+**October 16–17 pre-evaluation build (current entry point).** The [analysis specification](config/analysis_specification.json) fixes the role seal, packets, numbers, emulator, recalibration, uncertainty, decisions, positive control, search rules and the T9 command. Evidence:
+- 49 [checks](runs/analysis_specification/20261017-synthetic_checks08/tests.txt) pass in Slurm.
+- T11 [packets](runs/analysis_specification/20261016-t11_packets01/packets.json) resolve for 64 of 64 sessions.
+- T11 calibration and known-positive control are in [calibration07](runs/analysis_specification/20261017-t11_calibration07_blocknorm/), with a [figure](figures/ep16_t11_positive_control.png).
+- The sealed-evaluation [rehearsals on T11](runs/analysis_specification/20261017-t9_rehearsal04/), one from NPZ features and one through the archive reader, give identical primary results.
+- An independent Codex review found 16 issues; the accepted fixes are applied and re-tested (spec `independent_review`).
+
+**Result:** the T11 known-positive control **fails under the frozen readiness rule**. Four T11 sessions have no local signal, so every R bound is infinite; the injections themselves are recovered (+0.18 for +0.20).
+
+T9 remains sealed. Four items for the scientist block the freeze: block normalization, the readiness rule, the J_min null, and the evaluation-only resampling. See the [log](experiment_log.md) and the spec's `proposed_pending_scientist`.
+
+**October 16 case-series amendment (adopted):** develop on T11, then evaluate T9 once; claims concern one person. See the [GOAL amendment](../GOAL.md#adopted-case-series-amendment--october-16-2026), the [roles and final T9 exposure review](../DATASETS.md#case-series-roles-and-t9-exposure-review) (T9 confirmed as the evaluation case), the policy block `case_series_amendment_2026_10_16`, and the [remaining work](../DATASETS.md#current-readiness). Splitting into two time partitions leaves both T9 halves rank-deficient ([check](runs/structural_support/20261016-time_partition_support02/time_partition_support.json)). At adoption no neural value had been opened; T11 was opened on October 16–17 and T9 stays sealed.
+
+**October 16 source-fact reassessment:** the missing size, layout, transition and precision facts were resolved or assumed before application ([items](schedule_definition.md#october-16-source-facts-and-adopted-assumptions); [rules](config/source_fact_rules.json)). Support did not change: only T9 is held-out eligible, and T9 and T11 are supported. This holds under the primary rules and nine sensitivities ([figure](figures/ep16_source_fact_support.png); [run](runs/structural_support/20261016-source_fact_support01/); [log](experiment_log.md#2026-10-16--structural_support--support-re-run-under-adopted-rules-48155786)). The closeout disposition stands. Next is a scientist decision on the T11-to-T9 case series.
+
 **October 6 adopted closeout:** the original three-held-out-participant claim
 has disposition **support_or_uncertainty_prevents_an_answer**. Completed
 structural/preparation evidence is retained; no neural outcome or successor

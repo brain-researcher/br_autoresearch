@@ -1,0 +1,104 @@
+{
+  "analysis_id": "structural_support",
+  "phase": "source_fact_assumption_rules",
+  "adopted_utc": "2026-10-16T21:05:16Z",
+  "authority": "scientist_2026-10-16_standing_authority_missing_source_facts_are_not_stopping_points_and_explicit_request_to_handle_EP16_this_way_relayed_by_coordinating_session",
+  "fixed_before": "any support application under these rules; no pair count, rank, condition, information or leverage value was computed under them before adoption",
+  "seen_before_adoption": "layout-only target metadata from the existing structural JSONL (cardinalities, coordinates, block target sets, transition types) and the earlier 2026-10-03 conditional support report",
+  "unchanged_adopted_rules": [
+    "outputs/config/schedule_support.json#/geometry (translation + positive isotropic scale; delta=min(0.001*m,0.01*d); bijection; strict; complete cliques)",
+    "outputs/config/schedule_support.json#/component_support (weights, Helmert basis, condition<100, residual L2>0.10, retained energy>0.10, node share<0.25, strict)",
+    "outputs/config/analysis_definition.json#/schedule_classification/packet_target_coverage",
+    "SEARCH_POLICY.yaml session_pairs (same person, same array set, chronological 1-30 / >=180 days, whole-block 64/64 capacity), roles T5/T10/T11 development, T3 not holdable, candidates T2/T6/T7/T8/T9"
+  ],
+  "evidence": {
+    "provider_supplement": "medRxiv 10.1101/2025.07.02.25330310 supplement (Europe PMC PMC12236888), Supplementary Methods 1.5 and 1.5.2: each session divided into blocks of uninterrupted trials for a specific task; candidate blocks were goal-directed movement to explicit targets (radial-8, Fitts, grid) chosen from task metadata and session notes; idiosyncratic and non-target-directed blocks excluded; bin widths at collection 10-100 ms, >20 ms only T2/T3; blocks concatenated per session",
+    "provider_readme": "release source/README.md: trials are go periods identified from changes in target positions and/or task-state signals; positions in task coordinates; no target size or task label",
+    "provider_code": "nptl-stanford/array-paper@93beb76 metrics/utils.py: participant-specific far-distance thresholds reflect cursor-coordinate scales (0.2: T2,T3,T7,T9,T10,T11; 160: T5,T6; 5.6: T8; 0.4: eight late T5 sessions); no task or target-size handling anywhere in metrics or batch code",
+    "radial8": "Simeral 2011 J Neural Eng (PMC3715131): one center and 8 peripheral targets of fixed size in an oval layout (11.5/12.5/13.5 cm vertical/diagonal/horizontal); goals alternate center and pseudo-random peripheral targets, peripheral targets without replacement per cycle of 8; after errors the cursor is moved to the intended target. Gilja 2015 Nat Med (PMC4805425): fixed-size targets alternated between center and one of 8 peripheral locations; two configurations (S3-matched, enlarged targets). Brandman 2018 J Neural Eng (PMC5823702) and Neural Comput (PMC6685768): targets 2.4 cm, radius 12.1 cm, alternating center/peripheral, pseudo-random, timeout moves cursor to target",
+    "radial4": "Jarosiewicz 2013 J Neural Eng (PMC3775656): four-target center-out-back task, targets at center, +-13 cm vertical, +-15 cm horizontal, fixed 1.2 cm radius, each target once per random cycle",
+    "grid": "Pandarinath 2017 eLife (PMC5319839): workspace divided into a 6x6 grid of equal squares, one randomly prompted target at a time. Brandman 2018: N=25,36,49,64,81 or 100 square targets in a square grid, pseudo-random order; Brandman 2018 Neural Comput: 36-square grid",
+    "fitts_type": "Simeral 2011 mFitts1 and Gilja 2015: target size drawn pseudo-randomly from three diameters at pseudo-random positions; Willett 2017 J Neural Eng (PMC5371026): random-location targets with one of three radii",
+    "between_session_parameters": "Gilja 2015 (two radial-8 size/distance configurations) and Willett 2017 (PMC5239755: dwell time and other parameters set per session) document between-session task-parameter changes that the release does not record",
+    "coordinate_storage": "structural JSONL values are float64 casts of float32 design values (0.35350000858306885=float32(0.3535); 0.0012000000569969416=float32(0.0012); 6.1232342629258393e-17=float32 of the double cos(pi/2) residue); all 729 target matrices are stored <f8 (target-storage census)"
+  },
+  "rules": {
+    "P_precision": {
+      "same_stored_target": "Euclidean distance <= 1e-9 * session layout RMS radius (unique-target centroid/RMS as in schedule_support.json)",
+      "rationale": "float32-quantized design values have relative resolution ~6e-8; observed near-duplicate pairs are 7e-18..6.2e-17 (normalized workspaces) or 1.1e-13..2.3e-13 (pixel workspaces) and no within-session pair lies between 1e-15 and 2.4e-4 RMS radii, so any threshold in [1e-12,1e-4] gives the same merges",
+      "check": "report the count of within-session distinct-target pairs in (1e-12,1e-4] RMS radii; nonzero would contradict the assumption"
+    },
+    "T_template_slots": {
+      "radial_slot_tolerance": "0.01 * ring radius (median peripheral distance from the fitted center)",
+      "grid_slot_tolerance": "0.01 * lattice spacing per axis",
+      "angle_tolerance_degrees": 1.0,
+      "rationale": "1% of the ring radius is about one tenth of the documented radial-8 target radius (2.4 cm diameter at 12.1 cm) and changes any center-to-peripheral direction by <0.6 degrees; observed within-family stored variants are <=0.5% (T11 center x=0.0012 vs 0.0025) or 0.015% (0.3535 vs 0.353553) of the radius, while the next structural scale is >=8% (oval axes) and 76.5% (adjacent radial-8 targets)",
+      "intended_target": "stored targets assigned to one slot are one intended target; labels and near-target exclusion still use native stored coordinates"
+    },
+    "F_family_from_layout_only": {
+      "inputs": "one stored target point per trial, block identity and trial order only; never cursor, success, neural or decoder information",
+      "placeholder_target": "stored point farther than 1.5 x the largest template extent from the fitted radial center, or more than one lattice spacing outside the fitted grid; its trials are non-displayed go periods and are removed as invalid trials, the block is retained",
+      "radial_8": "one center target plus peripheral targets each within 1 degree of a multiple of 45 degrees from the center, at most one intended target per direction, max/min peripheral distance <= 1.25 (covers the documented oval Radial-8, 13.5/11.5=1.17); session union must contain all 8 directions",
+      "radial_4": "same with directions 0/90/180/270 only; session union must contain exactly those 4 directions",
+      "grid_n": "all points on one n x n lattice (n=5..10, documented N=25..100), equal spacing per axis within slot tolerance, session union >= 50% of the n^2 squares; canonical layout is the full lattice",
+      "fitts_or_random": "any other layout with multiple distances in one direction or more distinct targets than a template allows",
+      "unclassified": "anything else (keyboards, radial-6, incomplete radial unions, other lattices)",
+      "canonical_layout": "radial: center = mean of peripheral intended targets, peripheral = mean of their stored variants; grid: full lattice; matched across sessions with the unchanged adopted delta rule"
+    },
+    "S_size_dependence": {
+      "size_independent_assumed": [
+        "radial_8",
+        "radial_4",
+        "grid_n"
+      ],
+      "excluded_size_dependent_without_size": [
+        "fitts_or_random"
+      ],
+      "excluded_unresolved": [
+        "unclassified"
+      ],
+      "residual_assumption": "target size is fixed within each radial/grid configuration (documented); between-session configuration changes (documented for T6/T7/T8) are not recoverable and are treated as unobserved session-level task state"
+    },
+    "B_block_layout": {
+      "one_intended_layout": "every nonempty block of the session maps to the same template instance (radial center and per-direction targets within slot tolerance; grid lattice spacing/offset within slot tolerance)",
+      "missing_slots_within_block": "finite sampling (primary)",
+      "check": "count blocks missing slots with at least 16 outward radial trials; peripheral targets are presented without replacement per cycle of 8, so such blocks would contradict finite sampling",
+      "multiple_layouts": "sessions whose nonempty blocks map to different templates, families or instances are excluded (SEARCH_POLICY exclude_multiple_or_unstable_layouts)",
+      "check_action": "added 21:14 UTC after the layout-only classification run (23 flagged blocks: T6 7 blocks missing all four diagonals with 16-58 outward trials; T11 16 blocks missing one direction with 16-38 outward trials) and before any support value: a flagged block is a different layout, so its session counts as a multiple-layout session (excluded in P0; the block is dropped under S7)"
+    },
+    "X_transitions": {
+      "radial_permitted": "center->peripheral and peripheral->center (center-out-back)",
+      "grid_permitted": "any ordered pair",
+      "edges": "consecutive trials within a block after removing placeholder trials",
+      "radial_block_consistent": "non-permitted edge fraction <= 0.05 (isolated missing or split go periods); otherwise the block is a conflicting transition pattern (random-order radial variants would give ~78% peripheral-to-peripheral edges)",
+      "observed_support_differences": "subsets of the permitted set are finite sampling, not conflicts"
+    },
+    "K_capacity": {
+      "whole_block_two_sides": "unchanged: whole trials, two whole-block sides of >=64",
+      "packet_coverage_necessary_condition": "there exists such a split in which each side's blocks contain every canonical slot (adopted packet_target_coverage rule; necessary only)",
+      "trials_counted": "whole trials after placeholder removal"
+    },
+    "R_participant_support": {
+      "supported": "at least one passing both-lag component in some qualified schedule group",
+      "held_out_eligible": "a schedule group whose passing components sum to >=6 near and >=6 long pairs",
+      "design_supported": "some held-out triple from eligible T2/T6/T7/T8/T9 leaves >=4 supported among the six development participants (T3,T5,T10,T11 plus the two remaining candidates)"
+    }
+  },
+  "primary_variant": "P0",
+  "sensitivity_plan": {
+    "S1_exclude_incomplete_blocks": "drop blocks that do not contain every canonical slot (task-specified variant for item 2)",
+    "S2_strict_slot_tolerance": "slot tolerance 0.001 (T11 center variants become different layouts)",
+    "S3_narrow_families": "only radial_8 and grid_n size-independent (radial_4 excluded)",
+    "S4_scale_locked_matching": "translation-only cross-session matching in raw units (proxy for unchanged target configuration and size)",
+    "S5_placeholder_blocks_excluded": "blocks containing placeholder trials are excluded instead of removing those trials",
+    "S6_strict_transitions": "any non-permitted radial edge makes the block conflicting",
+    "S7_session_schedule_combinations": "mixed sessions contribute each single-template block set as a separate session-schedule combination instead of being excluded",
+    "S8_without_packet_coverage_condition": "original 2026-10-03 capacity definition only",
+    "S9_strict_group_rule": "a schedule group supports a participant only if none of its both-lag components fails a gate",
+    "precision_threshold_check": "1e-12 and 1e-6 RMS merges reported as counts only (expected identical)",
+    "S10_finite_sampling_check_not_applied": "finite sampling assumed for every block (check action above not applied); labelled post hoc"
+  },
+  "interpretation_limits": "claims are conditional on these assumptions; no task identity, controller identity or target size is asserted; no role is assigned; no neural, cursor, success, yield or impedance value is read",
+  "roles_assigned": false,
+  "neural_scoring_authorized": false
+}

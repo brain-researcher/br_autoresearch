@@ -1,5 +1,35 @@
 # Why does a human iBCI mapping work in one session but not another?
 
+## Adopted case-series amendment — October 16, 2026
+
+The scientist adopted the T11-to-T9 case series on October 16, after the source-fact reassessment left only T9 and T11 supported. It replaces the three-held-out-participant claim, whose October 6 disposition stays recorded. The amendment was chosen after the structural (outcome-free) support results; at adoption no neural, cursor or success value had been opened for any participant. T11 (development) was opened on October 16–17; T9 remains sealed. Operative details are in the [policy amendment](SEARCH_POLICY.yaml) (`case_series_amendment_2026_10_16`); roles and the final T9 exposure review are in [DATASETS.md](DATASETS.md#case-series-roles-and-t9-exposure-review).
+
+**Question.** In one held-out participant, T9, does an unchanged earlier-session mapping lose more of the later session's locally recoverable above-null performance after ≥180 days than after 1–30 days? And which operational signatures does T9 show? Every method, threshold and decision rule is fixed on development data before T9 is opened. The contribution is a prespecified single-case held-out test of the matched diagnostic panel. It cannot show that a pattern repeats across people.
+
+**Roles.**
+- T11 is the primary development case. It is the only development participant whose adjusted contrast passes the support gates: 64 capable radial-8 sessions, 129 near and 1,346 long pairs.
+- T9 is the single evaluation case (59 capable radial-8 sessions, 153/909 pairs), opened once.
+- T3, T5 and T10 are already development. They are proposed only for component-level checks, not for results.
+- T2, T6, T7 and T8 stay unopened.
+
+**Decisive comparisons in T9.** Estimands, margins and uncertainty are unchanged: 9,999 session-node draws with simultaneous one-sided bounds within the participant.
+
+| Account | Supported in T9 if | Weakened if |
+| --- | --- | --- |
+| Extra long-gap normalized transport loss | Lower bounds of both the adjusted and the robust long-minus-near contrast exceed 0.10 | Either bound ≤ 0.10. Read as not established; it supports absence only if the known-positive control was detected at the same margin |
+| Less locally recoverable signal at long gaps | Both upper bounds fall below their margins: fractional −0.15, and a raw margin to be fixed on development | Either upper bound reaches its margin |
+| Observable recording change suffices (only if extra loss is established) | The fixed emulator reproduces near and long local-signal and loss changes within 0.10, and separates from matched-random degradation | Reproduction error ≥ 0.10, or no separation from the random control |
+| 32-label mismatch is repairable (only if extra loss is established) | The selected method recovers ≥ 50% of the gap and ≥ 0.10 of local above-null signal | Either recovery bound fails |
+
+**Known-positive control.** Before T9 opens, the pipeline must detect, at the same margins, an injected long-gap-only perturbation of known size within T11's real session structure. The same injection is rerun on T9's design during the single evaluation. If either check fails, a T9 null is reported as underidentified. The injections are +0.20 for extra loss and −0.30 for the fractional local change, each one margin beyond its decision margin. The October 17 T11 run fails under the frozen readiness rule (see Current status).
+
+**Scope.** The claims are about one person, under the October 16 source-fact assumptions, in a publication-exposed release.
+- No population, prevalence or cross-person claim.
+- No participant-profile (heterogeneity) claim.
+- No within-person replication across time: a two-partition split leaves both T9 halves rank-deficient ([check](outputs/runs/structural_support/20261016-time_partition_support02/time_partition_support.json)).
+
+All other claim limits below still apply.
+
 ## Adopted local closeout — October 6, 2026
 
 The scientist adopted the original three-held-out-participant claim's
@@ -9,6 +39,8 @@ structural and analysis-definition work is retained; no neural outcome,
 single-case successor or unchanged support rerun is selected. Reopening
 requires concrete authentic metadata or a prospectively adopted redesign
 that changes the support basis. See the [adoption record](outputs/experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout).
+
+**October 16 source-fact reassessment.** The scientist's 2026-10-16 authority reopened the support assessment under stated assumptions. Recovered and assumed size, layout, transition and precision rules (fixed before application) leave support unchanged: only T9 is held-out eligible, and only T9 and T11 are supported, under the primary rules and nine sensitivities. The disposition stands with the source-fact gap closed; the case-series amendment above was then adopted. See the [item table](outputs/schedule_definition.md#october-16-source-facts-and-adopted-assumptions) and [figure](outputs/figures/ep16_source_fact_support.png).
 
 Train a direction-prediction mapping on an earlier BrainGate session, then
 apply it unchanged to a later session from the same participant. If it performs
@@ -358,18 +390,24 @@ model family, and participant set. It cannot establish:
 
 ## Current status
 
-The support-limited original-claim closeout above is adopted. The following
-evidence explains that disposition; it is not a pending launch checklist.
+**October 16–17:** the pre-evaluation pieces for the case series are built ([analysis specification](outputs/config/analysis_specification.json)), and T11 development data have been scored. T9's neural and cursor fields remain sealed and unopened; T2, T6, T7 and T8 remain unopened.
 
-The structural support work covers all 729 sessions; only T11 and T9 pass
-the current conditional numerical design, and neither is fully qualified.
-That panel does not meet the unchanged minimum of four supported development
-and three supported held-out participants within the six/three roles.
-Source annotations, exposure history, role/reader qualification and remaining
-analysis components are still needed. The selected score/window/scaling
-arithmetic passed three focused checks. No neural comparison or held-out
-neural result has been examined. [Current readiness](DATASETS.md#current-readiness)
-separates these completed preparations from the remaining work.
+What is in place:
+- a role seal and a separate, write-once T9 entrypoint;
+- the block-aware 128-trial packet builder (all 64 T11 sessions resolve);
+- every margin, minimum and model limit;
+- 49 focused, synthetic and seal checks, passing in Slurm;
+- the T9 command, rehearsed end to end on T11 (once from features, once through the archive reader), after an independent review whose accepted fixes are applied.
+
+**T11 known-positive control: fails under the frozen readiness rule.** T11 has sessions with no local direction signal (J between −0.06 and 0.05), so the extra-loss contrast is unresolved for any readiness minimum. The +0.20 injection is still recovered, at +0.18 ([figure](outputs/figures/ep16_t11_positive_control.png)). Under the current rules a T9 null would be underidentified, and T9 itself is probably unresolved.
+
+Choices for the scientist, which the T9 freeze waits on:
+1. **Block-wise normalization.** It is the provider's convention: without it, sbp baseline shifts between blocks hold T11's median local J at 0.03 instead of 0.41. It also removes baseline drift from what transport loss measures.
+2. **The readiness rule.** Strict as frozen, signal-free sessions screened out before pairing, or pooled ratios. Screening alone still leaves 24% of bootstrap draws non-estimable. The J_min null (permutation instead of circular shift) and the evaluation-only bootstrap resampling are also put to the scientist.
+
+After those decisions come the T11 control rerun, the development search, the freeze, and the single T9 evaluation.
+
+The adjusted contrast measures the long-gap step beyond additive session effects. A loss that grows smoothly with elapsed time is absorbed by those effects, so it cannot by itself establish extra long-gap loss. The original three-held-out claim keeps its October 6 support-limited disposition.
 
 Dataset details are in [DATASETS.md](DATASETS.md). Exact compact methods and
 resource rules are in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml). The proposed

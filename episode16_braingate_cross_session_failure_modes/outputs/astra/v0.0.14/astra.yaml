@@ -1,5 +1,6 @@
-# Preserved scientific program; no successor is selected by the adopted closeout.
-# No completed scientific finding or held-out access is asserted.
+# Scientific program; the October 16 case-series amendment (T11 development, one T9 evaluation) is adopted.
+# No completed scientific finding or held-out access is asserted. The analysis specification, synthetic
+# checks, T11 calibration/known-positive control and the sealed T9 entrypoint are defined (Oct 16-17).
 version: "0.0.14"
 name: EP16 matched cross-session failure signatures
 description: >-
@@ -7,7 +8,16 @@ description: >-
   for the original three-held-out-participant claim. Completed structural and
   analysis-definition work is retained. This is a support disposition without
   a neural result; the recorded recipes do not authorize an unchanged support
-  rerun, case-series successor or neural opening.
+  rerun, case-series successor or neural opening. On October 16 the missing
+  source facts were resolved or replaced by stated assumptions fixed before
+  application (source_fact_support); support did not change (only T9 held-out
+  eligible; T9 and T11 supported) under the primary rules and nine sensitivities.
+  The scientist then adopted the T11-to-T9 case series: one development search on
+  T11 and one held-out evaluation of T9, with single-person claims only. The
+  October 16-17 analysis specification fixes the pre-evaluation rules; two
+  consequential choices (block-wise normalization, readiness rule) await the
+  scientist, and the T11 known-positive control fails under the frozen
+  readiness rule.
 inputs:
   - {id: goal, type: data, source: GOAL.md}
   - {id: dataset_contract, type: data, source: DATASETS.md}
@@ -15,6 +25,9 @@ inputs:
   - {id: component_design, type: data, source: outputs/component_details.md}
   - {id: schedule_support_definition, type: data, source: outputs/config/schedule_support.json}
   - {id: prospective_analysis_choices, type: data, source: outputs/config/analysis_definition.json}
+  - {id: source_fact_rules, type: data, source: outputs/config/source_fact_rules.json}
+  - {id: analysis_specification_config, type: data, source: outputs/config/analysis_specification.json}
+  - {id: t11_development_features, type: data, source: "$SCRATCH/br_autoresearch/episode16_braingate_cross_session_failure_modes/features/T11"}
 outputs:
   - id: final_report
     from: scientific_report.final_report
@@ -26,6 +39,7 @@ analyses:
       - {id: dataset_contract, from: ../dataset_contract}
       - {id: search_policy, from: ../search_policy}
       - {id: schedule_support_definition, from: ../schedule_support_definition}
+      - {id: source_fact_rules, from: ../source_fact_rules}
     outputs:
       - id: source_format
         type: report
@@ -92,6 +106,18 @@ analyses:
             --config outputs/config/schedule_support.json
             --output-dir {output}
           resources: {cpus: 1, memory: 2Gi, time_limit: 5m}
+      - id: source_fact_support
+        type: report
+        format: json
+        inputs: [goal, dataset_contract, search_policy, schedule_support_definition, source_fact_rules]
+        recipe:
+          command: >-
+            python3 outputs/code/apply_source_fact_support.py
+            --structural-jsonl outputs/runs/structural_support/20261003-fields_all01/structural_sessions.jsonl
+            --support-config outputs/config/schedule_support.json
+            --rules-config outputs/config/source_fact_rules.json
+            --output-dir {output}
+          resources: {cpus: 1, memory: 2Gi, time_limit: 10m}
   analysis_definition:
     name: Define block packets, numerical choices, quality assumptions and information exposure
     inputs:
@@ -99,17 +125,46 @@ analyses:
       - {id: search_policy, from: ../search_policy}
       - {id: component_design, from: ../component_design}
       - {id: prospective_analysis_choices, from: ../prospective_analysis_choices}
+      - {id: analysis_specification_config, from: ../analysis_specification_config}
     outputs:
-      # Future complete specification; the partial prospective input does not
-      # supply participant roles, all margins, reader isolation or score access.
-      - {id: analysis_specification, type: report, format: json}
+      # Complete rule set (role seal, packets, numbers, emulator, recalibration,
+      # uncertainty, decisions, positive control, search rules, T9 command);
+      # T11-derived values come from t11_calibration.
+      - {id: analysis_specification, type: report, format: json, inputs: [analysis_specification_config]}
   synthetic_checks:
     name: Contract-required score, recovery, missingness and leakage examples
     inputs:
       - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
       - {id: search_policy, from: ../search_policy}
     outputs:
-      - {id: synthetic_report, type: report, format: json}
+      - id: synthetic_report
+        type: report
+        format: text
+        inputs: [analysis_specification]
+        recipe:
+          command: >-
+            cd outputs/code && EP16_SCENARIOS=1 EP16_WORKERS=6 python3 -m unittest -v
+            test_ep16_specification test_ep16_reader test_ep16_seal_freeze test_mat5_structural test_analysis_primitives > {output}
+          resources: {cpus: 7, memory: 8Gi, time_limit: 30m}
+  t11_calibration:
+    name: Fix T11-derived numbers and run the known-positive control on T11
+    inputs:
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
+      - {id: synthetic_report, from: ../synthetic_checks.synthetic_report}
+      - {id: t11_development_features, from: ../t11_development_features}
+      - {id: support_and_roles, from: ../structural_support.support_and_roles}
+    outputs:
+      - id: positive_control_report
+        type: report
+        format: json
+        inputs: [analysis_specification, synthetic_report, t11_development_features]
+        recipe:
+          command: >-
+            python3 outputs/code/run_t11_calibration.py --feature-dir {inputs.t11_development_features}
+            --structural-jsonl outputs/runs/structural_support/20261003-fields_all01/structural_sessions.jsonl
+            --support-report outputs/runs/structural_support/20261016-source_fact_support01/source_fact_support_report.json
+            --support-config outputs/config/schedule_support.json --output-dir {output} --workers 7
+          resources: {cpus: 7, memory: 8Gi, time_limit: 30m}
   local_and_transport:
     name: Development local-null-transport scores, learning curves and near-long contrasts
     inputs:
@@ -155,7 +210,7 @@ analyses:
     outputs:
       - {id: control_report, type: report, format: json}
   adaptive_panel_search:
-    name: Existing 40-96 complete-panel search and development-only panel selection
+    name: 40-96 complete-panel search on T11 (case series) and development-only panel selection
     inputs:
       - {id: benchmark_report, from: ../local_and_transport.benchmark_report}
       - {id: emulation_report, from: ../recording_emulation.emulation_report}
@@ -166,14 +221,28 @@ analyses:
     outputs:
       - {id: selected_panel, type: report, format: json}
   held_out_evaluation:
-    name: One joint three-person evaluation including the registered time-partition profile route
+    name: One frozen single-case T9 evaluation with the known-positive control rerun on its design
     inputs:
       - {id: selected_panel, from: ../adaptive_panel_search.selected_panel}
+      - {id: positive_control_report, from: ../t11_calibration.positive_control_report}
+      - {id: synthetic_report, from: ../synthetic_checks.synthetic_report}
+      - {id: analysis_specification, from: ../analysis_definition.analysis_specification}
       - {id: support_and_roles, from: ../structural_support.support_and_roles}
       - {id: dataset_contract, from: ../dataset_contract}
       - {id: search_policy, from: ../search_policy}
     outputs:
-      - {id: held_out_report, type: report, format: json}
+      - id: held_out_report
+        type: report
+        format: json
+        inputs: [selected_panel, positive_control_report, synthetic_report, analysis_specification]
+        recipe:
+          # Sealed and write-once; run once after freeze_t9_evaluation.py writes the manifest.
+          command: >-
+            python3 outputs/code/evaluate_t9_sealed.py --freeze-manifest outputs/config/t9_freeze_manifest.json
+            --source-root "$OAK/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6"
+            --scratch-dir "$L_SCRATCH_JOB/ep16-t9" --output-dir outputs/runs/t9_evaluation/attempt01
+            --workers 8 --draws 9999 --sensitivity-draws 1999
+          resources: {cpus: 8, memory: 8Gi, time_limit: 2h}
   scientific_report:
     name: Report all operational signatures, unresolved comparisons and claim limits
     inputs:

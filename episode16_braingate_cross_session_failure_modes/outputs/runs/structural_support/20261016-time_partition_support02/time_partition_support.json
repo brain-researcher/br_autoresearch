@@ -1,0 +1,113 @@
+{
+ "rule": "count-median chronological split of the passing P0 group's capable sessions; unchanged gates",
+ "slurm_job_id": "48167579",
+ "hostname": "sh03-06n11.int",
+ "participants": {
+  "T9": {
+   "early": {
+    "days": [
+     71,
+     422
+    ],
+    "capable_sessions": 30,
+    "both_lag_components": [
+     {
+      "near_pairs": 69,
+      "long_pairs": 144,
+      "design_rank": 56,
+      "design_columns": 57,
+      "weighted_column_normalized_condition": null,
+      "residual_L2": 7.930071779024078e-16,
+      "retained_energy_fraction": 2.518617976109826e-30,
+      "maximum_contrast_node_share": 0.21649629585667748,
+      "conditional_numerical_pass": false,
+      "failed_gates": [
+       "full_constrained_rank",
+       "condition_strictly_below_maximum",
+       "residual_L2_strictly_above_minimum",
+       "retained_energy_strictly_above_minimum"
+      ]
+     }
+    ]
+   },
+   "late": {
+    "days": [
+     426,
+     720
+    ],
+    "capable_sessions": 29,
+    "both_lag_components": [
+     {
+      "near_pairs": 69,
+      "long_pairs": 89,
+      "design_rank": 53,
+      "design_columns": 56,
+      "weighted_column_normalized_condition": null,
+      "residual_L2": 7.804031853603949e-16,
+      "retained_energy_fraction": 2.9117116598673273e-30,
+      "maximum_contrast_node_share": 0.15501653238639312,
+      "conditional_numerical_pass": false,
+      "failed_gates": [
+       "full_constrained_rank",
+       "condition_strictly_below_maximum",
+       "residual_L2_strictly_above_minimum",
+       "retained_energy_strictly_above_minimum"
+      ]
+     }
+    ]
+   }
+  },
+  "T11": {
+   "early": {
+    "days": [
+     97,
+     527
+    ],
+    "capable_sessions": 32,
+    "both_lag_components": [
+     {
+      "near_pairs": 81,
+      "long_pairs": 183,
+      "design_rank": 60,
+      "design_columns": 61,
+      "weighted_column_normalized_condition": null,
+      "residual_L2": 8.42187758474125e-16,
+      "retained_energy_fraction": 2.8726961215851942e-30,
+      "maximum_contrast_node_share": 0.40465207072939835,
+      "conditional_numerical_pass": false,
+      "failed_gates": [
+       "full_constrained_rank",
+       "condition_strictly_below_maximum",
+       "residual_L2_strictly_above_minimum",
+       "retained_energy_strictly_above_minimum",
+       "node_share_strictly_below_maximum"
+      ]
+     }
+    ]
+   },
+   "late": {
+    "days": [
+     555,
+     1591
+    ],
+    "capable_sessions": 32,
+    "both_lag_components": [
+     {
+      "near_pairs": 47,
+      "long_pairs": 257,
+      "design_rank": 60,
+      "design_columns": 60,
+      "weighted_column_normalized_condition": 11.649519659477502,
+      "residual_L2": 0.13611823107063134,
+      "retained_energy_fraction": 0.07450797387056615,
+      "maximum_contrast_node_share": 0.18548685279483904,
+      "conditional_numerical_pass": false,
+      "failed_gates": [
+       "retained_energy_strictly_above_minimum"
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

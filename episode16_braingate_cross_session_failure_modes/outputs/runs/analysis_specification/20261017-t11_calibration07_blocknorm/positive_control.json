@@ -1,0 +1,739 @@
+{
+ "slurm_job_id": "48224711",
+ "hostname": "sh03-06n05.int",
+ "workers": 7,
+ "participant": "T11",
+ "role": "development",
+ "normalization": "block",
+ "readiness": "strict",
+ "draws": 9999,
+ "values": {
+  "ridge_lambda_sbp": 3.1622776601683795,
+  "ridge_lambda_tx_4_5": 5.623413251903491,
+  "ridge_lambda_sbp_frozen_scaling": 100.0,
+  "J_min": 0.07,
+  "D_min": 0.07,
+  "raw_score_decline_margin": -0.046,
+  "raw_margin_basis_near_mean_F_minus_B": 0.3026775446604391,
+  "fixed_utc": "2026-10-17T08:00:38.252986+00:00"
+ },
+ "runs": {
+  "strict_frozen_readiness": {
+   "uninjected": {
+    "status": "evaluated",
+    "point": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": null,
+     "raw_transported": -0.17271853413735816
+    },
+    "bounds": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": null,
+     "raw_transported": -0.11379402405361125,
+     "nonestimable": {
+      "adjusted": 9613,
+      "robust": 9613,
+      "fractional_local": 9550,
+      "raw_transported": 0
+     }
+    }
+   },
+   "extra_loss_injected": {
+    "status": "unresolved",
+    "reason": "nonpositive_or_nonfinite_target_J"
+   },
+   "local_signal_injected": {
+    "status": "unresolved",
+    "reason": "nonpositive_or_nonfinite_source_J"
+   }
+  },
+  "screened_diagnostic": {
+   "uninjected": {
+    "status": "evaluated",
+    "point": {
+     "adjusted": 0.19693226039169168,
+     "robust": 0.4914344562118879,
+     "fractional_local": 0.6545546238321207,
+     "raw_transported": -0.17706999931268932
+    },
+    "bounds": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": null,
+     "raw_transported": -0.11673022237807396,
+     "nonestimable": {
+      "adjusted": 2360,
+      "robust": 2360,
+      "fractional_local": 3304,
+      "raw_transported": 0
+     }
+    }
+   },
+   "extra_loss_injected": {
+    "status": "evaluated",
+    "point": {
+     "adjusted": 0.377993317997534,
+     "robust": 0.6692465678552562,
+     "fractional_local": 0.6545546238321207,
+     "raw_transported": -0.25849238792183116
+    },
+    "bounds": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": null,
+     "raw_transported": -0.19546883887104305,
+     "nonestimable": {
+      "adjusted": 2360,
+      "robust": 2360,
+      "fractional_local": 3304,
+      "raw_transported": 0
+     }
+    }
+   },
+   "local_signal_injected": {
+    "status": "evaluated",
+    "point": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": 0.36046511413192955,
+     "raw_transported": -0.2065388502018815
+    },
+    "bounds": {
+     "adjusted": null,
+     "robust": null,
+     "fractional_local": null,
+     "raw_transported": -0.14515365019932386,
+     "nonestimable": {
+      "adjusted": 9158,
+      "robust": 9158,
+      "fractional_local": 3304,
+      "raw_transported": 0
+     }
+    }
+   }
+  }
+ },
+ "seconds": {
+  "strict_frozen_readiness/uninjected": 7.023478778079152,
+  "strict_frozen_readiness/extra_loss_injected": 2.6244670152664185e-06,
+  "strict_frozen_readiness/local_signal_injected": 1.562759280204773e-06,
+  "screened_diagnostic/uninjected": 24.73513608518988,
+  "screened_diagnostic/extra_loss_injected": 29.191118264570832,
+  "screened_diagnostic/local_signal_injected": 10.219071227125823
+ },
+ "variants": {
+  "strict_frozen_readiness": {
+   "extra_loss_pass": {
+    "pass": false,
+    "status": "unresolved",
+    "reason": "nonpositive_or_nonfinite_target_J"
+   },
+   "local_signal_pass": {
+    "pass": false,
+    "status": "unresolved",
+    "reason": "nonpositive_or_nonfinite_source_J"
+   },
+   "local_signal_calibration": {
+    "status": "unresolved",
+    "310": {
+     "J": 0.25469787029662927,
+     "goal": 0.216629099065758,
+     "achieved": 0.21662909906578276,
+     "tau": 0.509778021229522
+    },
+    "364": {
+     "J": -0.0563334250275318,
+     "goal": -0.10222407364800551,
+     "achieved": -0.10222407364802644,
+     "tau": 0.7387890947679807
+    },
+    "372": {
+     "J": 0.3083689319845956,
+     "goal": 0.2644557204573493,
+     "achieved": 0.2644557204573914,
+     "tau": 0.461883404634591
+    },
+    "385": {
+     "J": 0.24193015225828507,
+     "goal": 0.1980169407310388,
+     "achieved": 0.19801694073098342,
+     "tau": 0.3729799802808884
+    },
+    "401": {
+     "J": 0.3577104643828014,
+     "goal": 0.3100838054613792,
+     "achieved": 0.31008380546135994,
+     "tau": 0.5606179201690793
+    },
+    "406": {
+     "J": 0.5698086629920277,
+     "goal": 0.5688910246244591,
+     "achieved": 0.5688910246244456,
+     "tau": 0.02235734446958304
+    },
+    "415": {
+     "J": 0.23487464952834158,
+     "goal": 0.23365647956577296,
+     "achieved": 0.2336564795657865,
+     "tau": 0.10234611511668845
+    },
+    "420": {
+     "J": 0.26735259449822557,
+     "goal": 0.26613442453565694,
+     "achieved": 0.26613442453565406,
+     "tau": 0.02234485816779852
+    },
+    "427": {
+     "J": 0.15031404126408088,
+     "goal": 0.14894619453349306,
+     "achieved": 0.14894619453350544,
+     "tau": 0.030899036104074185
+    },
+    "441": {
+     "J": 0.3209491803685691,
+     "goal": 0.3195813336379813,
+     "achieved": 0.3195813336379887,
+     "tau": 0.06470157722696968
+    },
+    "444": {
+     "J": 0.2939852845901918,
+     "goal": 0.29246812553177165,
+     "achieved": 0.2924681255317553,
+     "tau": 0.9696343248965604
+    },
+    "454": {
+     "J": 0.5326818994110172,
+     "goal": 0.5311647403525971,
+     "achieved": 0.5311647403525769,
+     "tau": 0.20868990143890187
+    },
+    "456": {
+     "J": 0.3990073080295813,
+     "goal": 0.39749014897116114,
+     "achieved": 0.3974901489711691,
+     "tau": 0.049529647288636625
+    },
+    "461": {
+     "J": 0.3973787215427841,
+     "goal": 0.39586156248436394,
+     "achieved": 0.39586156248435334,
+     "tau": 0.040329587511678255
+    },
+    "464": {
+     "J": 0.22267033891839882,
+     "goal": 0.2211531798599787,
+     "achieved": 0.2211531798599975,
+     "tau": 0.607266976272058
+    },
+    "468": {
+     "J": 0.1974503316496451,
+     "goal": 0.19593317259122497,
+     "achieved": 0.1959331725911977,
+     "tau": 0.021015314115629735
+    },
+    "471": {
+     "J": 0.26756403986656085,
+     "goal": 0.2660468808081407,
+     "achieved": 0.2660468808081282,
+     "tau": 0.04498858077886325
+    },
+    "492": {
+     "J": 0.2811114344994594,
+     "goal": 0.279445866631791,
+     "achieved": 0.27944586663175985,
+     "tau": 0.7734064542696615
+    },
+    "496": {
+     "J": 0.43015363531664386,
+     "goal": 0.42848806744897544,
+     "achieved": 0.4284880674489795,
+     "tau": 0.05639521089824484
+    },
+    "504": {
+     "J": 0.4311659346234621,
+     "goal": 0.42950036675579367,
+     "achieved": 0.4295003667557953,
+     "tau": 0.05843967435930608
+    },
+    "505": {
+     "J": 0.4331793195463207,
+     "goal": 0.4315137516786523,
+     "achieved": 0.4315137516786558,
+     "tau": 0.06061107736195481
+    },
+    "527": {
+     "J": 0.4820542301831007,
+     "goal": 0.48038866231543226,
+     "achieved": 0.4803886623154239,
+     "tau": 0.03308504047026872
+    },
+    "failed_target_day": 555,
+    "reason": "nonpositive_or_nonfinite_source_J"
+   },
+   "extra_loss_injection": {
+    "size": 0.2,
+    "edge": 2,
+    "status": "unresolved",
+    "reason": "nonpositive_or_nonfinite_target_J"
+   },
+   "sessions": 64,
+   "pass": false
+  },
+  "screened_diagnostic": {
+   "extra_loss_pass": {
+    "adjusted": {
+     "observed": 0.19693226039169168,
+     "injected": 0.377993317997534,
+     "injected_lower_bound": null,
+     "lower_bound_minus_observed": null,
+     "recovered_size": 0.18106105760584232,
+     "resolves_margin": false,
+     "unbiased": true
+    },
+    "robust": {
+     "observed": 0.4914344562118879,
+     "injected": 0.6692465678552562,
+     "injected_lower_bound": null,
+     "lower_bound_minus_observed": null,
+     "recovered_size": 0.17781211164336824,
+     "resolves_margin": false,
+     "unbiased": true
+    },
+    "pass": false
+   },
+   "local_signal_pass": {
+    "fractional_local": {
+     "observed": 0.6545546238321207,
+     "injected": 0.36046511413192955,
+     "injected_upper_bound": null,
+     "upper_bound_minus_observed": null,
+     "recovered_size": -0.29408950970019115,
+     "resolves_margin": false,
+     "unbiased": true
+    },
+    "raw_transported": {
+     "observed": -0.17706999931268932,
+     "injected": -0.2065388502018815,
+     "injected_upper_bound": -0.14515365019932386,
+     "upper_bound_minus_observed": 0.031916349113365466,
+     "recovered_size": -0.029468850889192183,
+     "resolves_margin": false,
+     "raw_margin": -0.046
+    },
+    "pass": false
+   },
+   "local_signal_calibration": {
+    "status": "resolved",
+    "310": {
+     "J": 0.25469787029662927,
+     "goal": 0.216629099065758,
+     "achieved": 0.2166290990657579,
+     "tau": 0.3135729262453424
+    },
+    "372": {
+     "J": 0.3083689319845956,
+     "goal": 0.2644557204573493,
+     "achieved": 0.2644557204573681,
+     "tau": 0.3072081594523297
+    },
+    "385": {
+     "J": 0.24193015225828507,
+     "goal": 0.1980169407310388,
+     "achieved": 0.19801694073103515,
+     "tau": 0.22013881584143746
+    },
+    "401": {
+     "J": 0.3577104643828014,
+     "goal": 0.3100838054613792,
+     "achieved": 0.310083805461407,
+     "tau": 0.46811429896069967
+    },
+    "406": {
+     "J": 0.5698086629920277,
+     "goal": 0.5221820040706054,
+     "achieved": 0.5221820040706877,
+     "tau": 0.5919987932479671
+    },
+    "415": {
+     "J": 0.23487464952834158,
+     "goal": 0.18251386880289044,
+     "achieved": 0.18251386880289533,
+     "tau": 0.615834322275532
+    },
+    "420": {
+     "J": 0.26735259449822557,
+     "goal": 0.21499181377277443,
+     "achieved": 0.21499181377275312,
+     "tau": 0.43017100506631323
+    },
+    "427": {
+     "J": 0.15031404126408088,
+     "goal": 0.09557362500599936,
+     "achieved": 0.09557362500603728,
+     "tau": 0.6108251554446724
+    },
+    "441": {
+     "J": 0.3209491803685691,
+     "goal": 0.2662087641104876,
+     "achieved": 0.26620876411043704,
+     "tau": 0.5160884531228476
+    },
+    "444": {
+     "J": 0.2939852845901918,
+     "goal": 0.23692447412450138,
+     "achieved": 0.23692447412453577,
+     "tau": 0.35241694517344513
+    },
+    "454": {
+     "J": 0.5326818994110172,
+     "goal": 0.4756210889453268,
+     "achieved": 0.47562108894531296,
+     "tau": 0.5700687941139222
+    },
+    "456": {
+     "J": 0.3990073080295813,
+     "goal": 0.3419464975638909,
+     "achieved": 0.34194649756387374,
+     "tau": 0.7774616130877803
+    },
+    "461": {
+     "J": 0.3973787215427841,
+     "goal": 0.3403179110770937,
+     "achieved": 0.34031791107703446,
+     "tau": 0.660060674460965
+    },
+    "464": {
+     "J": 0.22267033891839882,
+     "goal": 0.1656095284527084,
+     "achieved": 0.16560952845275634,
+     "tau": 0.683510730965736
+    },
+    "468": {
+     "J": 0.1974503316496451,
+     "goal": 0.14038952118395467,
+     "achieved": 0.14038952118390235,
+     "tau": 0.4543293849469592
+    },
+    "471": {
+     "J": 0.26756403986656085,
+     "goal": 0.21050322940087043,
+     "achieved": 0.21050322940086552,
+     "tau": 0.5883827346365251
+    },
+    "492": {
+     "J": 0.2811114344994594,
+     "goal": 0.22256817851139568,
+     "achieved": 0.22256817851132782,
+     "tau": 0.679329866711214
+    },
+    "496": {
+     "J": 0.43015363531664386,
+     "goal": 0.37161037932858015,
+     "achieved": 0.3716103793285481,
+     "tau": 0.4931227605316053
+    },
+    "504": {
+     "J": 0.4311659346234621,
+     "goal": 0.3726226786353984,
+     "achieved": 0.3726226786353415,
+     "tau": 0.8945384985249802
+    },
+    "505": {
+     "J": 0.4331793195463207,
+     "goal": 0.374636063558257,
+     "achieved": 0.374636063558319,
+     "tau": 0.531683204721503
+    },
+    "527": {
+     "J": 0.4820542301831007,
+     "goal": 0.42351097419503697,
+     "achieved": 0.42351097419512196,
+     "tau": 0.4284278101108612
+    },
+    "555": {
+     "J": 0.4832354950253652,
+     "goal": 0.42267062213038187,
+     "achieved": 0.42267062213032136,
+     "tau": 0.6288595089813498
+    },
+    "560": {
+     "J": 0.4751437942827432,
+     "goal": 0.41457892138775987,
+     "achieved": 0.4145789213877501,
+     "tau": 0.78008447460752
+    },
+    "604": {
+     "J": 0.5525474700763967,
+     "goal": 0.4851023317764615,
+     "achieved": 0.4851023317764267,
+     "tau": 0.48169454874141593
+    },
+    "610": {
+     "J": 0.5155570421659899,
+     "goal": 0.45002261613373373,
+     "achieved": 0.45002261613365735,
+     "tau": 0.7702300533424022
+    },
+    "617": {
+     "J": 0.5241014237208468,
+     "goal": 0.45856699768859066,
+     "achieved": 0.45856699768851583,
+     "tau": 0.587967388312336
+    },
+    "639": {
+     "J": 0.5088750142315637,
+     "goal": 0.43786709218868924,
+     "achieved": 0.43786709218861997,
+     "tau": 0.7386698837067343
+    },
+    "643": {
+     "J": 0.4456915085732376,
+     "goal": 0.37335401016808956,
+     "achieved": 0.3733540101681624,
+     "tau": 0.6971468329325035
+    },
+    "646": {
+     "J": 0.4051925719061824,
+     "goal": 0.333114800497133,
+     "achieved": 0.333114800497069,
+     "tau": 0.756259165283609
+    },
+    "658": {
+     "J": 0.443296059954549,
+     "goal": 0.3715476392978921,
+     "achieved": 0.37154763929790013,
+     "tau": 0.5561549990293315
+    },
+    "672": {
+     "J": 0.4953907217500253,
+     "goal": 0.4232281177430347,
+     "achieved": 0.4232281177430466,
+     "tau": 0.6442951266476484
+    },
+    "675": {
+     "J": 0.5217934081402821,
+     "goal": 0.4496308041332915,
+     "achieved": 0.4496308041332724,
+     "tau": 0.6663615835273049
+    },
+    "689": {
+     "J": 0.4128456827359457,
+     "goal": 0.33722098497111624,
+     "achieved": 0.3372209849711899,
+     "tau": 0.5851412510605769
+    },
+    "692": {
+     "J": 0.6542644198399711,
+     "goal": 0.5786397220751416,
+     "achieved": 0.5786397220750714,
+     "tau": 0.4607843619664891
+    },
+    "709": {
+     "J": 0.6007231145334133,
+     "goal": 0.5238763835085267,
+     "achieved": 0.5238763835084387,
+     "tau": 0.7300162753549557
+    },
+    "715": {
+     "J": 0.4573490105563429,
+     "goal": 0.3805022795314564,
+     "achieved": 0.3805022795314428,
+     "tau": 0.4446876283650454
+    },
+    "744": {
+     "J": 0.16450332883750995,
+     "goal": 0.08535434394840849,
+     "achieved": 0.08535434394831976,
+     "tau": 0.2954871940414705
+    },
+    "749": {
+     "J": 0.5030595232550417,
+     "goal": 0.42391053836594017,
+     "achieved": 0.42391053836583836,
+     "tau": 0.5949899715310494
+    },
+    "751": {
+     "J": 0.6047058212014037,
+     "goal": 0.5255568363123022,
+     "achieved": 0.5255568363123808,
+     "tau": 0.7126610199552488
+    },
+    "758": {
+     "J": 0.5658727736963399,
+     "goal": 0.48672378880723843,
+     "achieved": 0.48672378880733014,
+     "tau": 0.7889887142478074
+    },
+    "842": {
+     "J": 0.43800789209136703,
+     "goal": 0.3519027197746534,
+     "achieved": 0.3519027197746175,
+     "tau": 0.9172700920967145
+    },
+    "868": {
+     "J": 0.4681352010224883,
+     "goal": 0.38016206867139407,
+     "achieved": 0.3801620686713497,
+     "tau": 0.5923058493704048
+    },
+    "888": {
+     "J": 0.45173356152166755,
+     "goal": 0.3620044567097711,
+     "achieved": 0.36200445670975956,
+     "tau": 0.7642290756980401
+    },
+    "952": {
+     "J": 0.45897924177009497,
+     "goal": 0.366587340797638,
+     "achieved": 0.3665873407976309,
+     "tau": 0.6290025835928645
+    },
+    "1001": {
+     "J": 0.5099478574476515,
+     "goal": 0.4175559564751945,
+     "achieved": 0.41755595647525623,
+     "tau": 0.5365354601703984
+    },
+    "1022": {
+     "J": 0.6233813459423121,
+     "goal": 0.5304375858949265,
+     "achieved": 0.5304375858948258,
+     "tau": 0.682507207609433
+    },
+    "1025": {
+     "J": 0.5563245304340704,
+     "goal": 0.4633807703866848,
+     "achieved": 0.46338077038669345,
+     "tau": 0.7882685803492677
+    },
+    "1057": {
+     "J": 0.5006605148931239,
+     "goal": 0.40709629824440685,
+     "achieved": 0.5011080653800657,
+     "tau": 0.012974171073892649
+    },
+    "1059": {
+     "J": 0.4960592008378678,
+     "goal": 0.40249498418915075,
+     "achieved": 0.40249498418910534,
+     "tau": 0.5651713748079601
+    },
+    "1303": {
+     "J": 0.14484071564047263,
+     "goal": 0.046697759185013274,
+     "achieved": 0.04669775918498098,
+     "tau": 0.9142314468113
+    },
+    "1591": {
+     "J": 0.1495529196556371,
+     "goal": 0.05345990579799455,
+     "achieved": 0.053459905798014296,
+     "tau": 1.1193211211038943
+    }
+   },
+   "extra_loss_injection": {
+    "status": "resolved",
+    "size": 0.2,
+    "sigma2_median": 1.545028350749841
+   },
+   "sessions": 60,
+   "pass": false
+  },
+  "screened_design": {
+   "session_days": [
+    97,
+    126,
+    153,
+    191,
+    219,
+    231,
+    233,
+    247,
+    262,
+    310,
+    372,
+    385,
+    401,
+    406,
+    415,
+    420,
+    427,
+    441,
+    444,
+    454,
+    456,
+    461,
+    464,
+    468,
+    471,
+    492,
+    496,
+    504,
+    505,
+    527,
+    555,
+    560,
+    604,
+    610,
+    617,
+    639,
+    643,
+    646,
+    658,
+    672,
+    675,
+    689,
+    692,
+    709,
+    715,
+    744,
+    749,
+    751,
+    758,
+    842,
+    868,
+    888,
+    952,
+    1001,
+    1022,
+    1025,
+    1057,
+    1059,
+    1303,
+    1591
+   ],
+   "pairs": 1283,
+   "near_pairs": 119,
+   "long_pairs": 1164,
+   "source_sessions": 59,
+   "target_sessions": 58,
+   "design_columns": 117,
+   "design_rank": 117,
+   "weighted_column_normalized_condition": 14.289519760596878,
+   "residual_L2": 0.22610685975130054,
+   "retained_energy_fraction": 0.2800294928111177,
+   "maximum_contrast_node_share": 0.05647567390343274,
+   "node_share_sum": 1.9999999999999998,
+   "descriptive_maximum_full_hat_node_mass_over_rank": 0.05945798810757771,
+   "gates": {
+    "both_lag_classes": true,
+    "full_constrained_rank": true,
+    "condition_strictly_below_maximum": true,
+    "residual_L2_strictly_above_minimum": true,
+    "retained_energy_strictly_above_minimum": true,
+    "node_share_strictly_below_maximum": true
+   },
+   "conditional_numerical_pass": true,
+   "failed_gates": [],
+   "pair_pruning_performed": false,
+   "eligibility_qualified": false,
+   "interpretation": "conditional_on_pending_block_transition_size_and_exposure_qualification"
+  }
+ },
+ "elapsed_seconds": 93.85385299194604,
+ "frozen_rule": "strict_frozen_readiness; target readiness gates adjusted/robust, source readiness gates fractional_local, finite scores gate raw_transported, and rank gates adjusted",
+ "screened_diagnostic": "sessions with observed J <= J_min removed before pairing; NOT the frozen rule; informs the scientist's decision",
+ "pass": false
+}

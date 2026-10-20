@@ -18,6 +18,51 @@ local_closeout_2026_10_06:
   canonical_BR_action: false
   adoption_record: outputs/experiment_log.md#2026-10-06--structural_support--scientist-adopted-support-limited-closeout
 
+case_series_amendment_2026_10_16:
+  authority: explicit_scientist_decision_2026-10-16_in_EP16_source_fact_session
+  status: adopted_design_not_launch_authorization
+  precedence: overrides_conflicting_role_development_and_final_evaluation_fields_below
+  replaces_claim: original_three_held_out_participant_claim
+  original_claim_disposition_retained: support_or_uncertainty_prevents_an_answer
+  formed_after: outcome_free_structural_support_results_only
+  adopted:
+    primary_development_participant: T11
+    held_out_evaluation_participants: [T9]
+    held_out_evaluations: 1
+    support_basis: outputs/runs/structural_support/20261016-source_fact_support01  # P0 radial-8 groups
+    estimands_margins_uncertainty_and_controls: unchanged_applied_within_one_participant
+    shared_profile_and_heterogeneity_routes: dropped  # need at least two held-out people
+    within_person_time_partition_replication: unavailable  # both T9 halves rank-deficient; runs/structural_support/20261016-time_partition_support02
+    known_positive_control_required_to_interpret_a_null: true
+    claim_scope: single_held_out_person_offline_operational_claim
+    t9_exposure_disposition: eligible_final_2026-10-16  # no cross-session exposure; scientist confirmed no detailed prior knowledge
+    t9_opening_requires:
+      - selected_panel_numeric_margins_and_decision_rules_frozen
+      - known_positive_control_detected_in_T11_at_registered_margins
+      - synthetic_checks_passed
+      - role_seal_and_separate_development_and_T9_data_views
+      - t9_exposure_protections_kept_until_evaluation_completes  # DATASETS.md#case-series-roles-and-t9-exposure-review
+  proposed_pending_confirmation:
+    supplementary_development_participants: [T3, T5, T10]  # component-level checks only; no contrast reported
+    unopened_without_role: [T2, T6, T7, T8]
+    development_search: same_40_96_panel_cycle_control_and_patience_rules_applied_to_T11
+    selection_stability: T11_session_node_bootstrap_and_block_configuration_checks_replace_leave_one_participant
+    known_positive_control: injected_long_gap_only_perturbation_at_0.10_and_minus_0.15_margins_on_T11_then_rerun_on_T9_design
+    t9_evaluation_attempt: one_frozen_command_with_write_once_outputs
+
+source_fact_reassessment_2026_10_16:
+  authority: scientist_2026-10-16_standing_authority_missing_source_facts_and_explicit_EP16_request
+  rules: outputs/config/source_fact_rules.json
+  rules_fixed_before_support_values: true
+  item_dispositions: outputs/schedule_definition.md#october-16-source-facts-and-adopted-assumptions
+  result: outputs/runs/structural_support/20261016-source_fact_support01/source_fact_support_report.json
+  held_out_eligible_under_all_variants: [T9]
+  supported_under_primary: [T9, T11]
+  original_design_supported_under_any_variant: false
+  disposition_unchanged: support_or_uncertainty_prevents_an_answer
+  claims_conditional_on_stated_assumptions: true
+  roles_thresholds_or_held_out_access_changed: false
+
 data:
   source:
     name: BrainGate long-term array performance release
@@ -58,6 +103,7 @@ session_pairs:
     exclude_multiple_or_unstable_layouts: true
     exclude_conflicting_transition_patterns: true
     exclude_size_dependent_schedules_without_target_size: true
+    size_dependence_disposition: outputs/config/source_fact_rules.json#/rules/S_size_dependence  # 2026-10-16 stated assumption
     # Adopted before application, 2026-10-03T20:22:11Z; exact metric and
     # unresolved near-duplicate/nontransitive branches are in this reference.
     coordinate_tolerance: outputs/config/schedule_support.json#/geometry
@@ -190,7 +236,7 @@ diagnostic_questions:
       The simultaneous upper bounds for both contrasts must be below their
       negative margins in each held-out participant.
     fractional_reduction_anchor: -0.15
-    raw_score_decline_margin: null
+    raw_score_decline_margin: -0.046  # provisional 2026-10-17: -0.15 x T11 near mean F-B 0.302 under proposed block normalization; outputs/config/analysis_specification.json
   observable_recording_change_sufficient:
     label_blind_inputs:
       - electrode_identity_and_availability
@@ -223,7 +269,7 @@ numeric_values_required_before_neural_scoring:
   local_signal_fractional_reduction_margin:
     proposed_anchor: -0.15
     final_value: -0.15
-  transported_raw_score_decline_margin: null
+  transported_raw_score_decline_margin: -0.046  # provisional (block normalization pending); analysis_specification.json values_from_T11
   gap_recovery_fraction_margin:
     proposed_anchor: 0.50
     final_value: 0.50
@@ -233,10 +279,10 @@ numeric_values_required_before_neural_scoring:
   recording_change_normalized_error_margin:
     proposed_anchor: 0.10
     final_value: 0.10
-  recording_change_extra_loss_margin: null
-  matched_random_separation_margin: null
-  later_session_above_null_readiness_minimum: null
-  raw_transport_gap_readiness_minimum: null
+  recording_change_extra_loss_margin: 0.10  # folded into the identity max reproduction error; analysis_specification.json
+  matched_random_separation_margin: 0.05  # lower bound of random-minus-identity max error; low power on synthetic data (recorded)
+  later_session_above_null_readiness_minimum: 0.07  # provisional: T11 permutation-null q99 under proposed block normalization
+  raw_transport_gap_readiness_minimum: 0.07  # D_min = J_min on the aggregate long-gap gap
   # Precise metrics and companion retained-energy rule: schedule_support.json.
   long_gap_design_condition_number_maximum: 100.0
   long_gap_residualized_indicator_norm_minimum: 0.10
@@ -244,9 +290,9 @@ numeric_values_required_before_neural_scoring:
   schedule_coordinate_tolerance: outputs/config/schedule_support.json#/geometry
   onset_offset_ms: 0
   channel_quality_cutoffs: outputs/config/analysis_definition.json#/channel_quality
-  adaptation_rank_and_complexity_limits: null
-  transformation_stability_limit: null
-  uncertainty_rule: null
+  adaptation_rank_and_complexity_limits: analysis_specification.json#/recalibration/limits  # df <= n/2; ranks 2, 4
+  transformation_stability_limit: analysis_specification.json#/recalibration/limits  # operator bounds [1/3, 3]; ||Delta|| <= ||beta||
+  uncertainty_rule: analysis_specification.json#/uncertainty  # evaluation-trial resampling in block x octant strata; fits fixed
   equality_at_a_margin: unresolved
   synthetic_checks_may_choose_or_relax_scientific_margins: false
 
@@ -415,11 +461,24 @@ claim_limits:
   - no_independent_confirmation_outside_this_release
 
 readiness:
-  state: not_ready_for_neural_scoring
+  state: not_ready_for_t9  # T11 development scoring done; T9 stays sealed
+  specification: outputs/config/analysis_specification.json
+  completed:
+    - target_schedule_and_pair_support_check  # 2026-10-16 source-fact rules
+    - case_series_role_choice  # T11 development, T9 single evaluation
+    - t9_exposure_review  # final 2026-10-16; protections continue until the evaluation
+    - role_seal_and_separate_development_and_T9_data_views  # code/ep16_roles.py, mat5_neural.py, evaluate_t9_sealed.py
+    - block_aware_trial_packet_builder  # code/ep16_packets.py; T11 64/64 resolved
+    - numeric_values_listed_above  # T11-derived values provisional on block normalization
+    - emulator_and_adaptation_rules
+    - known_positive_control_specification  # run on T11: FAILS under the frozen readiness rule
+    - synthetic_checks  # 49 checks pass, runs/analysis_specification/20261017-synthetic_checks08
+    - case_series_development_search_rules
+    - t9_evaluation_command_specified_and_rehearsed_on_T11  # NPZ and archive paths identical; not frozen, not run
   remaining:
-    - target_schedule_and_pair_support_check
-    - final_six_three_participant_assignment
-    - block_aware_trial_packet_builder
-    - numeric_values_listed_above
-    - synthetic_checks
-    - separate_development_and_held_out_data_views
+    - scientist_decision_block_normalization  # proposed primary; frozen source-only scaling leaves T11 local J median 0.03
+    - scientist_decision_readiness_rule  # strict rule leaves T11 (and likely T9) unresolved; includes the J_min null
+    - scientist_decision_uncertainty_resampling  # evaluation-only trial resampling with fits fixed
+    - t11_known_positive_control_pass_under_the_decided_rules
+    - t11_development_search_and_selected_panel
+    - freeze_manifest_then_single_t9_evaluation

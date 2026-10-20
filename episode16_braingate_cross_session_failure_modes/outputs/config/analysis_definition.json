@@ -58,12 +58,12 @@
     "noise_attenuation_identified_by_this_order": false
   },
   "adopted_existing_anchors": {
-    "harmful_long_gap_margin": 0.10,
-    "robust_median_margin": 0.10,
+    "harmful_long_gap_margin": 0.1,
+    "robust_median_margin": 0.1,
     "local_signal_fractional_reduction_upper_boundary": -0.15,
-    "gap_recovery_fraction_margin": 0.50,
-    "relative_recovery_gain_margin": 0.10,
-    "recording_change_normalized_error_margin": 0.10
+    "gap_recovery_fraction_margin": 0.5,
+    "relative_recovery_gain_margin": 0.1,
+    "recording_change_normalized_error_margin": 0.1
   },
   "boundary_equality": "unresolved",
   "unresolved_internal_choices": [
@@ -77,5 +77,22 @@
   "roles_assigned": false,
   "neural_reader_activated": false,
   "neural_scoring_authorized": false,
-  "synthetic_campaign_selected": false
+  "synthetic_campaign_selected": false,
+  "case_series_additions_2026_10_16": {
+    "status": "unresolved_internal_choices_added_by_adopted_case_series_amendment",
+    "items": [
+      "known_positive_control_injection_size_target_sessions_and_pass_rule_on_T11_then_T9_design",
+      "development_search_selection_stability_without_leave_one_development_participant",
+      "packet_side_handling_of_T11_alternating_center_configuration_blocks",
+      "placeholder_trial_removal_and_intended_target_slots_from_source_fact_rules_in_packet_builder",
+      "role_seal_and_T9_only_sealed_evaluation_reader",
+      "frozen_single_T9_evaluation_command_outputs_and_resources"
+    ],
+    "unchanged": "roles beyond T11/T9, estimands, margins, uncertainty and claim limits are governed by SEARCH_POLICY.yaml case_series_amendment_2026_10_16"
+  },
+  "resolved_by": {
+    "file": "outputs/config/analysis_specification.json",
+    "utc": "2026-10-17",
+    "note": "every unresolved_internal_choices and case_series_additions item is fixed there; two consequential items await the scientist (block normalization, readiness rule)"
+  }
 }

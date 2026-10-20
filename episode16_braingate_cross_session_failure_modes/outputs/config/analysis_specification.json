@@ -1,0 +1,406 @@
+{
+  "episode": "EP16",
+  "analysis_id": "analysis_specification",
+  "scope": "case_series_amendment_2026_10_16: T11 development, T9 single held-out evaluation",
+  "authority": "AGENTS.md standing authority (numerical, engineering and data-quality choices that keep estimand, data roles and claims) plus the adopted case-series amendment; no margin, estimand, role or held-out boundary changed",
+  "rules_fixed_utc": "2026-10-17T00:18:38Z",
+  "rules_fixed_before": "any EP16 read of T11 neural or cursor values and any T9 neural or cursor value; only structural metadata had been seen",
+  "status": "complete_rules_and_T11_values; two scientist decisions pending (block normalization, readiness rule); development search not run",
+  "inherits_unchanged": [
+    "config/analysis_definition.json (30-bin window at declared trial start, summed 2D loss, half-open octants, source-only scaling, observable no-better order, adopted anchors)",
+    "config/schedule_support.json (geometry, design weights, Helmert basis, component gates)",
+    "config/source_fact_rules.json primary variant P0 (precision merge, slots, layout family, placeholders, transitions, finite-sampling check)",
+    "SEARCH_POLICY.yaml primary_long_gap_test, diagnostic_questions, case_series_amendment_2026_10_16"
+  ],
+  "resolves_open_items": {
+    "analysis_definition.unresolved_internal_choices": [
+      "raw_score_decline_and_positive_denominator_readiness_margins -> readiness, values_from_T11",
+      "recording_extra_loss_and_identity_random_separation_margins -> recording_emulator.decision",
+      "attenuation_noise_compatible_alternatives_beyond_direct_availability_finite_rate_order -> recording_emulator.families",
+      "recovery_gap_class_population_and_ratio_aggregation -> recalibration.recovery",
+      "literal_past_only_history_under_reversed_outer_folds -> recalibration.unlabelled.past_only",
+      "adaptation_complexity_transformation_stability_and_remaining_joint_uncertainty -> recalibration.limits, uncertainty"
+    ],
+    "case_series_additions_2026_10_16": [
+      "known_positive_control -> known_positive_control",
+      "development_search_selection_stability -> development_search",
+      "T11_alternating_center_configuration_blocks -> packet.sides.preferences",
+      "placeholder_removal_and_intended_target_slots -> packet.eligibility",
+      "role_seal_and_T9_only_sealed_reader -> role_seal",
+      "frozen_single_T9_evaluation_command -> t9_evaluation"
+    ]
+  },
+  "role_seal": {
+    "development_neural_readable": [
+      "T11"
+    ],
+    "supplementary_development_neural_readable": [
+      "T3",
+      "T5",
+      "T10"
+    ],
+    "supplementary_use": "component-level checks only, not used by this specification",
+    "sealed_evaluation_only": [
+      "T9"
+    ],
+    "unopened_never_readable": [
+      "T2",
+      "T6",
+      "T7",
+      "T8"
+    ],
+    "protected_fields": [
+      "neural",
+      "cursor_position"
+    ],
+    "structural_fields_readable_for_all": "existing structural JSONL only (one target point per trial, block/trial indices, electrode identity)",
+    "development_reader": "code/ep16_roles.py + code/mat5_neural.py: refuses any non-development participant before an archive is opened and again after the in-file participant_id is read, before any neural/cursor value is decoded",
+    "sealed_reader": "only code/evaluate_t9_sealed.py can obtain a SealedEvaluation token: it verifies the freeze manifest (SHA-256 of frozen spec, selected panel and code), creates the write-once output directory exclusively, writes t9_opened.json, then opens T9",
+    "write_once": "a second T9 evaluation is refused if the output directory or any earlier t9_opened.json exists",
+    "limit": "instruction and code-path seal, not OS isolation; disclosed in reports"
+  },
+  "packet": {
+    "session_nodes": "capable sessions of the participant's registered passing P0 component (T11: 64; T9: 59)",
+    "schedule": "P0 classification recomputed with code/apply_source_fact_support.py (load_session, classify_session, session_nodes)",
+    "eligibility_in_order": [
+      "whole trial inside its declared block",
+      "block is one of the node's kept schedule blocks",
+      "stored target is not a P0 placeholder target",
+      "30-bin window [start, start+30) lies inside the block's sample range (trial end is not used)",
+      "cursor and stored target at the window start are finite",
+      "distance(cursor_start, stored_target_start) > 0.05 * median nonzero pairwise distance of the session's canonical P0 layout (native coordinates); equality excludes"
+    ],
+    "label": "unit vector from cursor_start to stored target at window start (native coordinates)",
+    "slot_of_trial": "P0 intended-target slot of the stored target (C or direction 0-7)",
+    "center_configuration_signature": "per block, the sorted tuple of distinct stored coordinates of its center-slot targets (T11 alternates x=0.0012 and x=0.0025)",
+    "sides": {
+      "unit": "whole blocks; every kept block is assigned to side A or B; A contains the earliest kept block",
+      "side_packet": "first 64 eligible trials of the side in time order; nested fitting subsets are its first 16 and 32 trials",
+      "search": "exhaustive over all 2-colourings of kept blocks (at most 2^(K-1); K<=10 observed)",
+      "hard_constraints": [
+        "each side has >= 64 eligible trials",
+        "each 64-trial side packet contains every canonical slot",
+        "each 64-trial side packet contains all 8 label octants"
+      ],
+      "preferences_lexicographic": [
+        "both first-32 subsets contain all 8 octants",
+        "smallest total-variation distance between the two 64-packets' center-configuration compositions (T11 decision: balance configurations where whole blocks allow; otherwise keep the configurations as observed)",
+        "both first-16 subsets contain all 8 octants",
+        "lexicographically smallest sorted tuple of side-A block ids"
+      ],
+      "folds": "fold 1 fits side A and evaluates side B; fold 2 reverses",
+      "no_feasible_colouring": "session is packet-unresolved and removed with all its pairs before any neural score is computed; the realized design is re-gated"
+    },
+    "realized_design_gate": "after packet failures, the remaining chronological near/long design must pass the unchanged schedule_support.json component gates (rank, condition < 100, residual L2 > 0.10, retained energy > 0.10, node share < 0.25); failure makes the participant unresolved",
+    "configuration_sensitivity": "repeat decisive contrasts on sessions whose two packets have one shared configuration composition; reported, cannot rescue"
+  },
+  "features": {
+    "primary": "sbp",
+    "sensitivity": "tx_4_5",
+    "window": "analysis_definition.feature_window (mean only if all 30 bins finite; else missing channel feature)",
+    "physical_axis": "sorted union of (array label, Utah-grid x, y) over the participant's realized sessions; electrode_id is a per-file column number (T11 day 1549 lists the medial array as ids 0-95, the other 63 sessions the lateral array), so it is not used as identity; every T11 and T9 session has 192 unique grid keys",
+    "scaling": "analysis_definition.channel_quality (fit on the model's own fitting trials, ddof 0, inactive or missing -> 0 in fitting coordinates)",
+    "validity": {
+      "dead_channel": "per session over its 128 packet trials: SD (ddof 0) <= 1e-6 x the session's median channel SD -> every window of that channel invalid (missing); T11: two sessions with one dead 96-channel array",
+      "sbp_artifact": "per session and channel over the 128 packet trials: windows strictly above 10x the channel's median over its currently valid windows are missing, iterated until the artifact mask stabilizes (fixed point, at most 50 passes; nonfinite or nonpositive medians -> no removal); the same per-channel threshold applies to every trial of the session in block normalization; a missing channel feature, never a deleted trial",
+      "tx_4_5": "dead-channel rule only (bounded counts)",
+      "labels_or_scores_used": false,
+      "reason": "attempt t11_calibration01 failed numerically before any interpretable score: mismatched electrode keys (384-channel axis), a dead array with SD ~1e-25 and sbp artifacts up to 1e7 uV^2 produced J = -36,849 and lambda at the grid maximum",
+      "fence_change": "2026-10-17: replaces a single 10x-pre-artifact-median fence after the independent review found the block path applying a second, stricter pass; the single pass let frequent artifacts inflate the median (T11 day 444 J fell to -0.71). Noticed through a T11 local score, so disclosed as post hoc; the rule itself uses no labels or scores"
+    },
+    "normalization": "block (proposed primary, pending the scientist; see proposed_pending_scientist); frozen source-only scaling is the fallback and a required sensitivity"
+  },
+  "models": {
+    "ridge": {
+      "objective": "sum_i w_i ||y_i - c - z_i beta||^2 + lambda ||beta||^2 with octant weights w summing to 1 on the fitting labels; intercept unpenalized",
+      "solver": "weighted dual (n x n Cholesky)",
+      "lambda_rule": "one global lambda per feature, chosen on T11: maximize the mean over realized T11 sessions of fold-averaged L_t(64) on the grid 10^(-2.0..3.0 step 0.25); ties -> larger lambda; an edge maximum extends the grid one decade once",
+      "same_lambda_for": "source, target-local, learning-curve (16/32/64), emulated-local, survivor and adaptation reference fits"
+    },
+    "null": "octant-weighted mean of the fitting labels (intercept only)",
+    "scores": "B_t, L_t(n), F_st, A_st(n) are fold-averaged before any difference or ratio"
+  },
+  "readiness": {
+    "J_min_rule": "0.99 quantile (numpy 'higher') of pooled T11 within-block label-permutation null J (labels permuted within each block of the fitting packet, 3 seeded permutations per session, scored on true evaluation labels), rounded up to 0.01, floor 0.01",
+    "target_readiness": "every target in a primary pair needs J_t = L_t(64) - B_t > J_min, else the pair and component are unresolved",
+    "source_readiness": "every source in a local-signal pair needs J_s > J_min",
+    "raw_gap_minimum_D_min": "equal to J_min; applied to the aggregate long-gap transport gap of the repair statistic",
+    "no_epsilon_no_clipping": true,
+    "superseded_rule": "block-preserving circular shifts by 1/4, 1/2, 3/4 of the block (T11 q99 0.12): replaced at 2026-10-17T01:19:55Z after calibration03 because shifts alias the centre-out-back label sequence (a one-trial shift maps each outward label onto its exact opposite; cycle-length shifts can reproduce labels). Post hoc correction after seeing T11 J values; the shifted-label null stays a reported control"
+  },
+  "estimands": {
+    "R": "(L_t - F_st)/(L_t - B_t)",
+    "adjusted": "WLS coefficient on the long indicator; schedule_support.json weights and Helmert nuisance",
+    "robust": "median over sources within target and lag, median over targets within lag, long minus near",
+    "fractional_local": "target-equal weights within lag (split over sources) of (J_t - J_s)/J_s, long minus near",
+    "raw_transported": "same weights of F_st - B_t, long minus near",
+    "aggregation": "one schedule group and one component for T11 and T9; the general rule is equal group then equal component"
+  },
+  "uncertainty": {
+    "draws": 9999,
+    "seed": 16,
+    "session_level": "draw N session occurrences with replacement from the N realized nodes; each occurrence is a distinct node; rebuild every chronological near/long pair between occurrences of different sessions",
+    "within_occurrence": "evaluation trials resampled with replacement within (side, block, octant) strata at fixed positions; every model (source, local, null, adaptation, emulator) stays fit once to the occurrence's realized fitting trials; whole blocks are kept as strata and never split across sides",
+    "block_unit_resampling_not_used": "a 64-trial side has 1-4 blocks, often partial; drawing blocks as units changes packet size and empties octants or slots, making draws nonestimable for reasons unrelated to the estimand; between-block variation is carried by the session-level draw. Reported as a disclosed interpretation of 'resample whole blocks and trials'",
+    "nonestimable": "rank loss or any readiness failure -> -inf for lower and +inf for upper bounds; never redrawn",
+    "bounds": "one-sided percentile order statistics: k = alpha_each*(draws+1)",
+    "families": {
+      "primary": {
+        "members": [
+          "adjusted",
+          "robust",
+          "fractional_local",
+          "raw_transported"
+        ],
+        "alpha_each": 0.0125
+      },
+      "recording": {
+        "members": [
+          "identity_max_reproduction_error",
+          "random_minus_identity_max_error"
+        ],
+        "alpha_each": 0.025
+      },
+      "repair": {
+        "members": [
+          "recovery_fraction",
+          "relative_gain"
+        ],
+        "alpha_each": 0.025
+      }
+    },
+    "sensitivity_draws": 1999,
+    "equality_at_margin": "unresolved",
+    "fitting_trials_not_resampled": "refitting ridge models (n=64 < p) on duplicated resampled fitting trials biased bootstrap J by -0.044 (SD 0.052) on synthetic data and made 40% of draws nonestimable for sessions with J near 0.2 (runs/analysis_specification/20261016-synthetic_checks01); fitting variability is carried by the session-level draw",
+    "implementation": "per-position evaluation losses computed once; each draw is an index-and-sum (code/ep16_panel.py Realization)"
+  },
+  "decision_rules": {
+    "extra_long_gap_loss": {
+      "supported": "lower bounds of adjusted and robust > 0.10",
+      "not_established": "either finite lower bound <= 0.10 (equality unresolved)",
+      "unresolved": "infinite bound, realized-design gate failure, or observed nonestimable"
+    },
+    "local_signal_reduction": {
+      "supported": "upper bounds of fractional < -0.15 and raw < raw_score_decline_margin",
+      "weakened": "either finite upper bound >= its margin",
+      "unresolved": "infinite bound"
+    },
+    "recording_sufficiency": {
+      "evaluated_only_if": "extra loss supported",
+      "supported": "upper bound of identity max reproduction error < 0.10 and lower bound of (random - identity) max error > 0.05, with >= 6 near and >= 6 long eligible no-better transitions",
+      "weakened": "either finite bound fails",
+      "unresolved": "fewer transitions, rank loss, infinite bound"
+    },
+    "repair_32": {
+      "evaluated_only_if": "extra loss supported",
+      "supported": "lower bounds of recovery fraction > 0.50 and relative gain > 0.10",
+      "weakened": "either finite bound fails",
+      "unresolved": "aggregate D or J readiness failure, infinite bound"
+    },
+    "null_interpretation": "an extra-loss or local-signal 'not established/weakened' result is interpreted only if that account's known-positive check passes on T9's design; otherwise reported as underidentified",
+    "conclusion_map": "code/ep16_panel.py conclusion(); exhaustively tested over all decision-state combinations"
+  },
+  "recording_emulator": {
+    "inputs": "fitting-side summaries only: declared electrode availability, complete-window rate per channel, per-channel variance of source-standardized features (ddof 0); no labels, cursor, scores or decoder weights",
+    "eligible_transitions": "analysis_definition direct no-better order in both folds; incomparable and fold-discordant transitions are controls",
+    "families": {
+      "E1_dropout": "target-unavailable or source-inactive channels -> 0; channels with r_t < r_s are masked per trial with probability (r_s - r_t)/r_s",
+      "E2_dropout_noise_theta0": "E1 plus minimal-change variance match v_j: v_j<1 -> attenuation a=sqrt(v_j); v_j>=1 -> added Gaussian noise sigma^2=v_j-1",
+      "E2_dropout_noise_theta0.5": "compatible alternative: a^2 = 0.5*min(v_j,1), sigma^2 = v_j - a^2 (same marginal variance; sensitivity)",
+      "E2_dropout_noise_theta0_floor": "E2 theta0 with variance ratios inside their 95% sampling band, |log v| <= 1.96*sqrt(2/(n_s-1)+2/(n_t-1)), treated as unchanged; added after the stationary synthetic check showed unfloored matching emulates sampling noise as degradation (null long-local error -0.054 vs -0.022 floored)"
+    },
+    "constraints": "0 <= a <= 1, sigma^2 >= 0; no invented channel; transform fitted on fitting sides and reused unchanged on evaluation trials",
+    "scores": "emulated-local ridge fit on transformed S_k, clean source ridge and emulated-local evaluated on transformed S_not_k; source labels and source null",
+    "matched_random": "jointly permute (drop, mask rate, a, sigma) across channels within (array, source complete-rate tertile) strata; 20 seeded permutations; scores averaged over permutations",
+    "reproduction_errors": "absolute errors in near and long weighted local change, near and long weighted loss R, and the adjusted extra-loss contrast, on the same eligible transition graph; statistic = their maximum",
+    "decision": "see decision_rules.recording_sufficiency; extra-loss reproduction margin 0.10 (folded into the maximum), separation margin 0.05",
+    "selection": "development search chooses one of E1_dropout, E2_theta0, E2_theta0_floor by recording-summary fit, stability and complexity, never by decoding reproduction; theta 0.5 is a sensitivity"
+  },
+  "recalibration": {
+    "exposure": "first n trials of the target fitting side, n in {16, 32, 64}; evaluation trials never tune",
+    "unlabelled": {
+      "past_only": "For H in {16, 64}, restandardize each evaluation trial using the H most recent packet trials preceding it in time, requiring at least max(2, H//2) finite history values per channel and a finite positive SD; otherwise use source-scaling fallback. When normalization is block, label these results history_restricted_restandardization_of_block_normalized_features_not_literal_past_only.",
+      "covariance": "Bounded CORAL uses source fitting trials and the first 32 target fitting trials with alpha in {0.5, 0.9}; singular values (operator gains) of A are clipped to [1/3, 3].",
+      "subspace": "top-8 principal subspace alignment (Procrustes between bases)"
+    },
+    "supervised": {
+      "output_gain_bias": "diag(g) p + b, 4 parameters",
+      "output_rotation": "R(phi) p + b, 3 parameters",
+      "output_similarity": "s R(phi) p + b, 4 parameters",
+      "low_rank": "beta + U_r Gamma, U_r = top-r unlabelled principal directions of the n target trials, r in {2, 4}, ridge on Gamma with the global lambda",
+      "bounded_supervised": "argmin weighted loss + lambda_b ||beta' - beta_s||^2, lambda_b the smallest grid value with effective df <= n/2"
+    },
+    "limits": {
+      "max_effective_df": "n/2 (16 at the primary 32 labels)",
+      "operator_bounds": "gains, scale and covariance eigenvalues clipped to [1/3, 3]",
+      "decoder_update": "||Delta||_F <= ||beta_s||_F (projected)",
+      "bound_activity": "reported per method"
+    },
+    "shuffled_label_control": "every supervised method refit on labels permuted within the n fitting trials (seeded)",
+    "recovery": {
+      "population": "long-gap chronological pairs whose target has octant-complete first-32 fitting subsets on both sides (pre-score label support; frozen octant rule leaves other 32-label packets unresolved); excluded long pairs are counted; fewer than 6 eligible long pairs -> unresolved; near-gap reported descriptively",
+      "aggregation": "ratio of target-equal weighted sums: recovery = sum wG(32)/sum wD, gain = sum wG(32)/sum wJ_t, G = A(32) - F, D = L(64) - F",
+      "readiness": "sum wD > D_min and every J_t > J_min",
+      "also_reported": "16/32/64 curves, recalibrated near/long extra-loss contrast"
+    }
+  },
+  "known_positive_control": {
+    "purpose": "show the frozen pipeline resolves a known long-gap-only effect one margin beyond each decision margin within the participant's real session structure",
+    "extra_loss_injection": {
+      "size": 0.2,
+      "where": "long-gap pairs only, transported features only",
+      "mechanism": "i.i.d. Gaussian noise added to source-standardized target evaluation features seen by the source mapping, variance sigma^2 = 0.20 * J_t / ||beta_s,k||_F^2 fixed from the observed data, so E[R increase] = 0.20; noise fixed per (source, target, fold, packet position)"
+    },
+    "local_signal_injection": {
+      "size": -0.3,
+      "where": "long-gap pairs only (degraded copy of the target used only in long pairs)",
+      "mechanism": "Gaussian noise in target fitting-standardized units added to both target sides, level found by bisection on the observed data so the target's long-pair weighted fractional change falls by 0.30"
+    },
+    "pass_rule": {
+      "extra_loss": "for adjusted and robust: lower_bound(injected run) - observed_point > 0.10 and |injected_point - observed_point - 0.20| <= 0.05",
+      "local_signal": "upper_bound(injected fractional) - observed_point < -0.15, upper_bound(injected raw) - observed raw point < raw_score_decline_margin, and |injected_point - observed_point + 0.30| <= 0.05",
+      "bounds": "primary family level (alpha 0.0125 each), 9,999 draws, same nonestimable rule"
+    },
+    "t11": "run before T9 opens; failure blocks interpretation of any T9 null",
+    "t9": "same injections calibrated on T9's observed data inside the sealed evaluation",
+    "t11_result": {
+      "evidence": "outputs/runs/analysis_specification/20261017-t11_calibration07_blocknorm/positive_control.json",
+      "figure": "outputs/figures/ep16_t11_positive_control.png",
+      "frozen_strict_readiness": "FAIL: 4 targets at or below J_min 0.07 (days 226, 364, 706, 1549; minimum J -0.056) leave the observed adjusted and robust contrasts unresolved, 96% of draws are nonestimable, and both injections are unresolved because some sessions have J <= 0",
+      "screened_diagnostic": "not the frozen rule; 60 sessions: points adjusted 0.197, robust 0.491; the +0.20 injection is recovered as +0.181/+0.178 and the -0.30 local injection as -0.294, but 24% (extra loss) and 33% (local) of draws stay nonestimable, so every R bound is infinite",
+      "pass": false
+    }
+  },
+  "synthetic_checks": "49 checks pass in Slurm (test_ep16_specification, test_ep16_reader, test_ep16_seal_freeze, test_mat5_structural, test_analysis_primitives): runs/analysis_specification/20261017-synthetic_checks08/tests.txt. Scenario design and the not-applicable heterogeneity check as before",
+  "development_search": {
+    "participant": "T11 only",
+    "counts": "40-96 valid panels, 20 coverage panels first, >=2 successor cycles, >=2 current-best vs new decisions, >=40% challenge tests after coverage, patience 16 after panel 40 (unchanged)",
+    "selection_stability_replaces_leave_one_participant": [
+      "S1: selection frequency of the chosen panel across 200 T11 session-node bootstrap draws (higher is better; < 0.5 is recorded as unstable)",
+      "S2: same sign of the 32-label relative gain in configuration-pure and mixed sessions",
+      "S3: same sign of the 32-label relative gain in early-half and late-half T11 targets (descriptive; halves are rank-deficient for the adjusted contrast)"
+    ],
+    "selection_order": [
+      "all scientific and leakage checks pass",
+      "all required methods and controls present",
+      "fewer invalid or unresolved pairs",
+      "S1 then S2 then S3",
+      "more reliable common score",
+      "lower complexity",
+      "lower runtime"
+    ],
+    "selects": "one 32-label method and setting, one unlabelled method and setting (reported), one emulator family",
+    "output": "outputs/runs/development_search/<attempt>/selected_panel.json, then outputs/config/t9_freeze_manifest.json"
+  },
+  "t9_evaluation": {
+    "entrypoint": "code/evaluate_t9_sealed.py",
+    "requires": [
+      "selected_panel.json frozen",
+      "known-positive control passed on T11",
+      "synthetic checks passed",
+      "freeze manifest hashes match"
+    ],
+    "outputs": "write-once outputs/runs/t9_evaluation/attempt01/",
+    "runs_in_one_job": [
+      "primary panel with 9,999 draws",
+      "known-positive injections on T9's design",
+      "recording and repair branches",
+      "sensitivities with 1,999 draws (tx_4_5, reverse pairs, 14/365 days, configuration-pure, survivor electrodes, emulator theta 0.5, shuffled labels, random-bin leakage, past-only vs whole-session)"
+    ],
+    "command": "sbatch -p russpold -c 8 --mem=8G -t 02:00:00 -J ep16-t9-eval --chdir=$OAK/users/zijiao/br_autoresearch/episode16_braingate_cross_session_failure_modes -o outputs/runs/t9_evaluation/attempt01.slurm-%j.out --wrap 'source outputs/code/ep16_env.sh && python3 outputs/code/evaluate_t9_sealed.py --freeze-manifest outputs/config/t9_freeze_manifest.json --source-root \"$OAK/data/br_autoresearch_data/braingate_long_term_array_performance/dryad-x0k6djj1h-v6\" --scratch-dir \"$L_SCRATCH_JOB/ep16-t9\" --output-dir outputs/runs/t9_evaluation/attempt01 --workers 8 --draws 9999 --sensitivity-draws 1999'",
+    "resources_basis": "T11 rehearsal of the identical code path (64 sessions, 1,599/399 draws, 7 workers): 2.5 min, 0.33 GB RSS; T11 feature read 2.8 min for 21 GB; T9 projected under 15 min at full draws; request 8 CPU / 8 GB / 2 h",
+    "order_of_prerequisites": [
+      "scientist decides block normalization and the readiness rule (spec proposed_pending_scientist)",
+      "rerun run_t11_calibration.py under the decided rules; the T11 known-positive control must pass",
+      "T11 development search (40-96 panels) writes selected_panel.json with normalization and readiness fields",
+      "python3 outputs/code/freeze_t9_evaluation.py --selected-panel <panel> --positive-control <T11 positive_control.json> --synthetic-checks <tests.txt>",
+      "submit the command once; results cannot change any method, threshold or panel"
+    ],
+    "rehearsal": "outputs/runs/analysis_specification/20261017-t9_rehearsal04/: the identical code path on T11 from NPZ features and, separately, through the archive reader (21 GB stream); primary points and bounds identical; 3.2 and 6.0 min",
+    "prerequisite_slurm_log_dir": "mkdir -p outputs/runs/t9_evaluation (never create attemptNN)",
+    "restart_rule": "Exclusively create the direct child attemptNN of the script-anchored evaluation root, with NN formatted using at least two digits and equal to one plus the number of existing attempt directories, only when every existing attempt contains failure.json with no_results_written exactly true and has no primary_results.json; otherwise refuse.",
+    "bounded_sensitivities": [
+      "tx_4_5",
+      "gap_14_365",
+      "reverse_pairs",
+      "configuration_pure",
+      "frozen_source_only_scaling"
+    ],
+    "point_only_sensitivities": [
+      "survivor_electrodes",
+      "shifted_label_null_J_q99",
+      "permutation_null_J_q99",
+      "random_bin_leakage_inflation",
+      "random_trial_split_minus_block_split_L",
+      "unlabelled_selected_long_mean_gain",
+      "unlabelled_past_only_H16_long_mean_gain",
+      "unlabelled_past_only_H64_long_mean_gain",
+      "unlabelled_whole_session_long_mean_gain",
+      "shuffled_label_32_repair",
+      "emulator_theta0.5",
+      "repair_curves"
+    ]
+  },
+  "values_from_T11": {
+    "conditional_on": "block normalization (proposed primary) and the fixed-point sbp artifact fence",
+    "ridge_lambda_sbp": 3.1622776601683795,
+    "ridge_lambda_tx_4_5": 5.623413251903491,
+    "ridge_lambda_sbp_frozen_scaling": 100.0,
+    "J_min": 0.07,
+    "D_min": 0.07,
+    "raw_score_decline_margin": -0.046,
+    "raw_margin_basis_near_mean_F_minus_B": 0.3026775446604391,
+    "fixed_utc": "2026-10-17T08:00:38.252986+00:00",
+    "permutation_null_q99": 0.06528563013106842,
+    "evidence": "outputs/runs/analysis_specification/20261017-t11_calibration07_blocknorm/"
+  },
+  "interpretation_notes": {
+    "adjusted_contrast_scope": "the frozen adjusted contrast is the long-gap step beyond additive source and target session effects; any loss additive in sessions, including one linear in elapsed days (R = k*(day_t - day_s)), is absorbed into session effects. Synthetic monotone drift gave adjusted -0.35 with robust +0.33. A smooth drift therefore cannot by itself establish extra long-gap loss (both contrasts must clear 0.10); the known-positive injection is a pure long-gap step and is recovered exactly",
+    "raw_transported_contrast_scope": "the raw contrast compares long-target and near-target levels of F - B; when near pairs span the whole timeline a monotone decline lowers both, so the raw criterion is less sensitive than the fractional one",
+    "recording_separation_power": "synthetic identity-specific dropout (12 of the 12 strongest of 48 channels, 24 sessions) reproduced within 0.10 but the separation lower bound was 0.008 (point 0.069); 16 strongest dropped with 48 sessions gave 0.038. The 0.05 separation margin is unchanged and demanding; this is a power finding, recorded for the scientist"
+  },
+  "amendments_before_T11_comparisons": [
+    {
+      "utc": "2026-10-17T01:08:22Z",
+      "items": [
+        "evaluation-only within-occurrence resampling",
+        "repair population support rule",
+        "E2_theta0_floor emulator candidate",
+        "past-only history over packet trials",
+        "interpretation notes"
+      ],
+      "basis": "synthetic checks attempts 01-03 only; no T11 or T9 neural comparison had been computed",
+      "margins_or_estimands_changed": false
+    },
+    {
+      "utc": "2026-10-17T01:13:48Z",
+      "items": [
+        "physical axis by (array, grid x, y)",
+        "dead-channel rule",
+        "sbp +10 dB artifact rule"
+      ],
+      "basis": "T11 feature distributions and electrode records only; the failed attempt produced no interpretable score",
+      "margins_or_estimands_changed": false
+    },
+    {
+      "utc": "2026-10-17T01:19:55Z",
+      "items": [
+        "readiness null: within-block permutation instead of circular shift"
+      ],
+      "basis": "label-sequence aliasing in the shift null; formed after seeing T11 J values (post hoc, disclosed)",
+      "margins_or_estimands_changed": false
+    }
+  ],
+  "proposed_pending_scientist": {
+    "block_normalization": "PROPOSED PRIMARY, needs the scientist: z-score each channel within each block using that block's eligible trials (provider convention). With the frozen source-only scaling T11 local J has median 0.027 at the calibrated lambda 178 (25/64 sessions <= 0.02; best of lambda 10/100/1000 per session: median 0.069) because sbp baselines shift between blocks; with block normalization median 0.41. Block normalization uses each evaluation block's own unlabelled statistics and removes baseline drift from transport, which changes what F measures; the frozen scaling is kept as a sensitivity",
+    "readiness_rule": "NEEDS THE SCIENTIST: under the frozen rule any target with J <= J_min leaves the component unresolved. T11 has sessions with no local signal (J = -0.056, 0.001, 0.037, 0.045 under block normalization), so T11 is unresolved for any J_min, and T9 likely too. Option: remove sessions with observed J <= J_min as nodes before pairing, re-gate the realized design, disclose the count and report the strict rule as a sensitivity (diagnostic run on T11 in calibration04)",
+    "uncertainty_within_occurrence": "NEEDS THE SCIENTIST (independent review): resampling only evaluation trials, with fits fixed, departs from the policy text 'resample whole blocks and trials within each occurrence' and changes what the bounds condition on. Refitting n=64 ridge models on duplicated trials biased J by -0.044 on synthetic data and made draws nonestimable",
+    "readiness_null": "NEEDS THE SCIENTIST with the readiness rule: J_min from a within-block permutation null (0.07) replaced the circular-shift null (0.13) after T11 J values were seen; the shift null aliases the centre-out-back label sequence"
+  },
+  "independent_review": {
+    "reviewer": "Codex gpt-6-astra, max reasoning, text-only (no data, no T9)",
+    "review": "16 findings; accepted 1-4, 6 (as claim narrowing), 7-11, 13-16 and the T9-run items; rejected applying target readiness to the local-signal statistics; CORAL kept as singular-value clipping with the spec amended",
+    "drafted": "replacement code for ep16_roles, mat5_neural, ep16_data, ep16_panel, ep16_branches, ep16_control, run_t11_calibration, evaluate_t9_sealed, freeze_t9_evaluation; 20 seal/freeze checks; the fixed-point artifact fence; the past-only SD guard",
+    "applied_after_line_review_and_Slurm_checks": true
+  }
+}

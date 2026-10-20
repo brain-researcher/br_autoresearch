@@ -1,5 +1,14 @@
 # EP16 paper plan
 
+## October 16 — source-fact reassessment
+
+Under the scientist's 2026-10-16 authority, the open session facts were resolved or replaced by stated assumptions fixed before application ([items](schedule_definition.md#october-16-source-facts-and-adopted-assumptions)). Re-running support left the panel unchanged under the primary rules and nine sensitivities ([figure](figures/ep16_source_fact_support.png)): only T9 is held-out eligible, and T11 is the only supported development participant (T5 is supported only under the session-schedule reading). The four-plus-three design therefore cannot be supported from this release under any plausible reading of the missing facts. The bottleneck is the pairing structure of T2/T6/T7/T8/T10 (rank deficiency, or retained long-gap information ≤0.04 with one session dominating the contrast).
+
+**Adopted October 16: the T11-to-T9 case series.** The scientist adopted it after the reassessment. The paper becomes a prespecified single-case held-out test of the matched diagnostic panel: develop and freeze on T11, then evaluate T9 once ([GOAL amendment](../GOAL.md#adopted-case-series-amendment--october-16-2026); [roles and T9 exposure review](../DATASETS.md#case-series-roles-and-t9-exposure-review)).
+- **Figures 1–3** keep their questions and are reported for T9, with T11 shown as development evidence only.
+- **Figure 4** (repeat across people) is replaced. It now shows T9's simultaneous bounds, the known-positive control detected at the same margins, and the mandatory sensitivities. A within-person replication across two time partitions is unavailable, because both T9 halves are rank-deficient.
+- **Claims** are about one person; there is no population, prevalence or profile-heterogeneity claim.
+
 ## October 6 review — current support and adopted closure
 
 The contract has a **six-development/three-held-out role allocation**, with

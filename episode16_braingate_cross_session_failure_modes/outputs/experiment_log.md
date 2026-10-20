@@ -1,5 +1,144 @@
 # Experiment log
 
+## 2026-10-17 — analysis_specification — Codex review, drafted fixes and re-verification (48224711, 48245676)
+
+- At the user's instruction, Codex gpt-6-astra (max reasoning, text-only: code, spec and T11 summaries; no data, no T9) independently reviewed the build. It returned 16 findings.
+- Accepted after checking each against the code: silent fallbacks for the normalization and readiness settings; races and missing coverage in the seal and manifest (now an anchored atomic `attemptNN` claim with a predefined restart rule, all runtime inputs hashed, and the T9 archive SHA-256 from the acquisition manifest); CLI checks that ran after sealing; a raw margin that could turn positive; the ignored unlabelled choice; emulator noise added at missing windows; the df-limit and intercept gaps; a second artifact threshold; ungated branches; unpersisted stages; unguarded injections.
+- Rejected one finding: applying target readiness to the local-signal statistics (the policy uses source readiness there). CORAL keeps singular-value clipping, and the spec now says so.
+- Codex drafted all the replacement code, 20 seal/freeze checks, the fixed-point artifact fence and the past-only SD guard. I reviewed it line by line, patched one over-strict metadata comparison, and applied it.
+- [Checks](runs/analysis_specification/20261017-synthetic_checks08/tests.txt): 49 pass. [Calibration07](runs/analysis_specification/20261017-t11_calibration07_blocknorm/) gives the same conclusion: strict fails; screened recovers +0.181/+0.178 and −0.294 but still has 24%/33% non-estimable draws.
+- The single 10× pre-artifact fence had collapsed day 444 (J −0.71); the fixed-point fence fixes it. I noticed this through a T11 score, so it is disclosed as post hoc.
+- [Rehearsal04](runs/analysis_specification/20261017-t9_rehearsal04/): the NPZ and archive-reader runs give identical primary results. ASTRA validated in job 48245676.
+- Compute: 48224711 (8 CPU) used 43,272 CPU-s (12.0 CPU-h) and timed out after 1.5 h while a permission prompt waited; the validation job was trivial. Next: unchanged, the scientist's decisions.
+
+## 2026-10-17 — analysis_specification — T9 entrypoint rehearsed; records updated; two questions for the scientist (48169513)
+
+- Final checks: 29 pass in 30 s ([tests.txt](runs/analysis_specification/20261016-synthetic_checks04/tests.txt)).
+- [Rehearsal 03](runs/analysis_specification/20261016-t9_rehearsal03/) ran the identical sealed-evaluation code path on T11 with the development reader and forced branches. It finished in 2.5 min at 0.33 GB and returned `support_or_uncertainty_prevents_an_answer`.
+- Rehearsals 01–02 exposed few-value scaler blow-ups in the tx_4_5, past-only and half-window paths, now fixed. The leakage control now shows +0.134 inflation, positive in every session.
+- The exact T9 command, resources and prerequisite order are in the spec (`t9_evaluation`). `freeze_t9_evaluation.py` refuses until the T11 control passes and a development-search panel exists. Neither is true, so T9 stays sealed and unopened.
+- Updated GOAL, DATASETS, policy `readiness`, ASTRA (new `t11_calibration` analysis, plus recipes for the synthetic checks and the T9 run) and the README.
+- Compute today: attended allocation 48169513 (russpold, 8 CPU / 48 GiB) ran 15:32–00:21 PDT and was released: 253,792 CPU-s, 70.5 allocated CPU-hours for EP16. Much of it sat idle while an earlier turn was interrupted. ASTRA schema and semantic validation passed ([validation_20261017_job48169513.txt](astra/v0.0.14/validation_20261017_job48169513.txt)) using the pinned uvx validator with `linkml-runtime<1.12`.
+- Next: the scientist decides block normalization and the readiness rule. Then rerun `run_t11_calibration.py`, run the T11 development search, freeze, and submit the T9 run once.
+
+## 2026-10-17 — analysis_specification — T11 known-positive control fails under the frozen readiness rule (48169513)
+
+`20261016-t11_calibration05_blocknorm` (supersedes 02–04, which are preserved). Under block normalization, pending the scientist:
+- Values: λ_sbp 3.16, λ_tx_4_5 5.62, frozen-scaling λ 178; J_min = D_min = 0.07 (permutation-null q99 0.065, rounded up); raw margin −0.046 (= −0.15 × near F−B 0.302).
+- Strict frozen rule: 4 sessions with J ≤ 0.07 leave the observed contrasts unresolved, and 96% of draws are non-estimable. **Control fails.**
+- Screened diagnostic (not the frozen rule): adjusted 0.196, robust 0.492, fractional +0.66, raw −0.177. The +0.20 injection is recovered as +0.181 (adjusted) and +0.177 (robust); the −0.30 injection exactly. But 25% and 34% of draws stay non-estimable, so the bounds are infinite.
+- [Figure](figures/ep16_t11_positive_control.png). Three-line summary:
+  1. The estimator and the injections work.
+  2. Readiness failures, not sensitivity, block the control: T11 has signal-free sessions, and many sessions sit near any J_min.
+  3. Under the frozen rules a T9 null would be underidentified and T9 itself is likely unresolved.
+
+## 2026-10-16 — analysis_specification — T11 local signal needs block normalization; frozen readiness leaves T11 unresolved (48169513)
+
+- `t11_calibration02` (frozen source-only scaling): λ_sbp 178, median local J 0.027 (max 0.082), 25/64 sessions ≤ J_min 0.02, near-gap F−B −0.36. Every R contrast is unresolved.
+- Development diagnostic: z-scoring each block with its own trials gives median J 0.33 (p10 0.13). Single channels correlate with the label up to |r| = 0.55. The signal is present, but sbp baselines shift between blocks; the provider applies block-wise normalization before decoding.
+- `t11_calibration03_blocknorm`: λ_sbp 3.16, median J 0.41, near F−B +0.30. The weakest sessions (days 364, 226, 706, 1549: J −0.056 to 0.045) have no data-quality defect.
+- The shifted-label null (q99 0.12) aliases the centre-out-back label sequence, so the J_min null is now a within-block permutation (post hoc, disclosed).
+- Two items need the scientist (spec `proposed_pending_scientist`): block normalization as primary, and the readiness rule, under which any signal-free target leaves T11 (and likely T9) unresolved.
+Next: `t11_calibration04_blocknorm`, running the positive control under the frozen strict rule and, as a labelled diagnostic, with readiness-failing sessions screened out before pairing.
+
+## 2026-10-16 — analysis_specification — calibration attempt 01 failed numerically; axis and validity rules fixed (48169513)
+
+`20261016-t11_calibration01` failed: λ went to the grid maximum, J reached −36,849, the raw contrast reached ~1e54, and the control stage hit an API error. No interpretable score was produced; the attempt is preserved.
+Diagnosis on T11 features and electrode records:
+- `electrode_id` is a file column number. Day 1549 lists the medial array first, giving a 384-channel axis. Utah-grid (array, x, y) is unique and consistent: 192 keys in every T11 and T9 session.
+- Days 406 and 1057 have one dead 96-channel sbp array (SD ~1e-25).
+- sbp window means reach 1e7 µV² (median ~40). 0.60% of live channel-windows exceed 10× the channel median, and the tail extends to 10^6×.
+Rules fixed in the spec at 01:13 UTC: axis keyed by (array, x, y); dead channel = SD ≤ 1e-6 × session median SD; an sbp window above 10× the channel's session median is a missing channel feature (5×/20× change the flagged share by ≤0.1 point). No labels or scores were used.
+Next: `20261016-t11_calibration02` with the corrected runner.
+
+## 2026-10-16 — analysis_specification — synthetic checks pass; three amendments before any T11 comparison (48169513)
+
+T11 packets ([packets.json](runs/analysis_specification/20261016-t11_packets01/packets.json), cursor at start only): 64/64 sessions resolve. 16 placeholder and 13 near-target-start trials were removed; 63/64 sessions have octant-complete first-32 subsets; 20/64 have configuration-balanced sides. The realized design equals the registered one (129/1,346 pairs, condition 13.8, retained energy 0.27, node share 0.056, passes).
+Synthetic attempts 01–02 exposed three pipeline issues, fixed before any T11 neural score ([spec](config/analysis_specification.json) `amendments_before_T11_comparisons`, 01:08 UTC):
+- Refitting n=64 ridge models on duplicated resampled trials biased bootstrap J by −0.044 (SD 0.052). The bootstrap now resamples evaluation trials only, with fits fixed.
+- The repair population is the long pairs whose target has octant-complete first-32 subsets.
+- Unfloored variance-matching E2 emulated sampling noise as degradation; added `E2_theta0_floor`.
+Attempt 03: all 29 checks pass in 31 s ([tests.txt](runs/analysis_specification/20261016-synthetic_checks03/tests.txt)). Margins are unchanged. Two findings are recorded as interpretation notes: the adjusted contrast absorbs smooth drift, and the 0.05 recording-separation margin has low power (synthetic lower bound 0.008–0.038).
+Next: T11 λ, J_min, raw margin and the known-positive control (`run_t11_calibration.py`, 9,999 draws).
+
+## 2026-10-16 — analysis_specification — role seal tests pass; T11 feature extraction launched (48169513)
+
+Seal and reader checks (`test_ep16_reader`, 3 tests) and the unchanged structural-reader tests (4) passed on sh04-04n23 in 0.034 s. They cover: refusal of T9 without a sealed token; refusal of T2/T6/T7/T8; refusal of a development archive whose file says T9; exact 30-bin means; per-channel invalid windows; windows crossing a block end.
+Launched `extract_development_features.py --participant T11` for the 64 sessions of T11's passing P0 component (1 CPU). It writes transient arrays to `$SCRATCH/.../features/T11` and a count-only report to `runs/analysis_specification/20261016-t11_features01/`. No other participant's archive is opened.
+
+## 2026-10-16 — analysis_specification — rules fixed before any neural read (allocation 48169513)
+
+Wrote [analysis_specification.json](config/analysis_specification.json) at 00:18:38 UTC Oct 17, before any T11 or T9 neural or cursor value was read. Only structural metadata had been seen: T11 has 64 capable sessions with 2–8 kept blocks, T9 has 59 with 3–10.
+It fixes: the role seal; the packet rules (whole-block 2-colouring with slot/octant constraints, center-configuration balance preferred); the ridge λ rule; J_min (0.99 quantile of the shifted-label null, D_min = J_min); raw margin = −0.15 × T11 near-gap mean of F−B; emulator E1/E2 (θ 0 and 0.5); recording margins 0.10/0.05; recovery as long-gap ratio of weighted sums; literal past-only history; complexity df ≤ n/2 and operator bounds [1/3, 3]; bootstrap with trials resampled inside whole-block strata; positive-control injections +0.20 and −0.30 with their pass rules; T11 search-stability rules.
+The four T11-derived values stay null until computed. Disclosed interpretation: whole blocks are kept as strata and not resampled as units (reason in the spec).
+Next: role seal, reader and packet code; synthetic checks; T11 feature extraction.
+
+## 2026-10-16 — case_series_design — T9 exposure disposition final
+
+The scientist confirmed in this session that they have no detailed prior knowledge of T9's cross-session decoding or tuning-stability results. With no verified participant-specific cross-session exposure, T9 is confirmed as the single evaluation case; its yield and within-session exposure stays disclosed ([review](../DATASETS.md#case-series-roles-and-t9-exposure-review)).
+Protections continue until the evaluation finishes:
+- no EP16 worker opens the article's results figures, the provider `data/` files or notebooks, or results from T9 publications;
+- only the sealed step reads T9 neural and cursor fields.
+
+Next: the role seal and the remaining analysis-definition work. Neither needs another scientist decision.
+
+## 2026-10-16 — case_series_design — T11-to-T9 case series adopted
+
+The scientist adopted the T11-to-T9 case series in this session and asked for a redesign record, a T9 exposure review and the list of remaining analysis-definition work. This replaces the three-held-out claim, whose Oct 6 disposition is retained; it was chosen after outcome-free support results only. The record is in [GOAL](../GOAL.md#adopted-case-series-amendment--october-16-2026), [DATASETS](../DATASETS.md#case-series-roles-and-t9-exposure-review), the policy block `case_series_amendment_2026_10_16`, `config/analysis_definition.json` and the paper plan.
+- Feasibility check (allocation 48167579, 186 CPU-s): with each person's capable sessions median-split, both T9 halves are rank-deficient (69/144 and 69/89 pairs); T11's early half is rank-deficient and its late half fails retained energy (0.075). Within-person replication is therefore unavailable.
+- Attempt 01 failed on a subset KeyError and is preserved; the fix guards missing participants and changes no code path when all participants are present.
+- The T9 exposure review is drafted: no verified cross-session exposure. Next: the scientist confirms the exposure review and the proposed elements, then work proceeds to the analysis definition.
+
+## 2026-10-16 — structural_support — support re-run under adopted rules (48155786)
+
+`20261016-source_fact_support01` on sh02-06n01 (85 s, 260 MB RSS) kept all 729 sessions; P0 found 334 single-schedule sessions and excluded 314 mixed ones. Figure: [ep16_source_fact_support.png](figures/ep16_source_fact_support.png).
+- P0: T9 is held-out eligible (59 capable radial-8 sessions, 153/909 pairs, condition 14.9, retained 0.192, node share 0.065). T11 is supported (64 capable, 129/1346 pairs).
+- P0 failures: T2, T6 and T10 are rank-deficient; T5 fails on node share (0.31); T7 and T8 fail the information gates (retained 0.030/0.040).
+- S1–S10: only T9 is ever eligible; T5 passes only under S7; T11 fails under S2. The ≥4 development + 3 held-out design is unsupported in every variant.
+
+The source-fact gap is closed and the disposition stands. Next step: the scientist decides on the T11-to-T9 case series. Compute today: attended allocation 48155786 (russpold, 2 CPU / 8 GiB) ran 13:41–14:45 PDT and was released, 7,726 CPU-s = 2.15 CPU-hours for EP16. ASTRA schema/semantic validation of the edited program is pending; I found no validator in an EP16-owned environment.
+
+## 2026-10-16 — structural_support — classification-only check (48155786)
+
+Ran `20261016-source_fact_classification01` (8.3 s, 172 MB RSS); it computed no pair or gate values.
+- Precision: 0 pairs between 1e-12 and 1e-4 RMS, so the merge rule is threshold-insensitive; 29 sessions merged one or more roundoff duplicates, including T10 days 67, 112 and 130.
+- Transitions: the non-permitted fraction is 0 in 3,151 radial blocks, ≤5% in 21 and 5–20% in 11 (all T6); none exceeds 20%.
+- T11 days 367, 576, 632, 905 and 1017 have only center↔outer edges, plus one repeat edge on day 905.
+- The finite-sampling check flagged 23 blocks. After seeing these counts I added the check's consequence: flagged blocks are distinct layouts. This affects only five capable T11 sessions. The unchecked alternative is S10 (post hoc).
+
+## 2026-10-16 — structural_support — rules fixed before application (allocation 48155786)
+
+Adopted [source_fact_rules.json](config/source_fact_rules.json) at 21:05 UTC (file write time), before any pair, rank or gate value under it. I had seen only layout metadata and the Oct 3 report.
+Primary P0 combines nine rules:
+- precision merge ≤1e-9 RMS;
+- intended-target slots within 1% of ring radius or lattice spacing;
+- layout-only families: radial-8 (oval allowed), radial-4 and n×n grid (n=5–10) are size-independent; Fitts/random and unclassified layouts are excluded;
+- placeholder go periods removed;
+- center↔outer edges with ≤5% exceptions;
+- one template per session, so mixed sessions are excluded;
+- missing slots treated as finite sampling;
+- the packet-coverage necessary condition;
+- the unchanged adopted geometry and component gates.
+
+Sensitivities S1–S9 and their data checks are prespecified in that file. Code: `code/apply_source_fact_support.py`; six focused synthetic checks passed on sh02-06n01 in 0.043 s. Next: a classification-only run, then the support run.
+
+## 2026-10-16 — structural_support — source facts recovered; reopening authorized
+
+The scientist's 2026-10-16 standing authority says missing source facts are not stopping points. The scientist explicitly asked, through the coordinating session, that EP16 be handled this way. This reopens the support assessment under stated assumptions; roles, estimands and held-out access are unchanged.
+
+Sources read:
+- the release README and SOURCE.md;
+- the preprint supplement methods (PMC12236888);
+- pinned array-paper code (no `data/`, no notebooks);
+- methods sections of PMC3715131, 3775656, 4805425, 5823702, 6685768, 5319839, 5371026, 5239755, 4765319, 8218873 and 12089531.
+
+Item classifications are in [schedule_definition.md](schedule_definition.md#october-16-source-facts-and-adopted-assumptions). No provider was contacted.
+
+Exposure disclosure (types only, no values):
+- A search summary and a PMC page summary returned abstract-level results: pooled yield; dSNR > 1 in 11 of 14 arrays; pooled tuning stable over about one month; early yield decline for S2, S3 and T2.
+- Supplement 2.6 and code config record that T2, T3 and T11-lateral were excluded from tuning stability for inconsistent dSNR < 1. This is within-session exposure, including for candidate T2.
+- No participant-specific EP16 cross-session result was seen.
+
 ## 2026-10-06 — structural_support — scientist-adopted support-limited closeout
 
 The scientist replied to the outstanding-judgment recommendations:
