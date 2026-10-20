@@ -2,78 +2,101 @@ episode_id: EP24
 episode_directory: episode24_result_driven_harness
 created: '2026-10-13'
 mode: standalone_operational_improvement
-question: Improve completion of the next authorized interpretable research result.
-current_authorization:
-  - Create the scoped episode and analyze the complete original session prefix.
-  - Develop and apply a concrete minimal harness improvement.
-  - Collect permitted prospective process evidence through existing episode owners.
-  - Preserve original scientific authority and avoid duplicate submissions.
-source:
-  path: /home/users/zijiao/.codex/sessions/2026/10/03/rollout-2026-10-03T10-24-58-01a102cc-2ffb-7120-bd17-e442a0a313e8.jsonl
-  role: already_exposed_operational_history
-  access: read_only
-  capture: Record capture time and fixed byte endpoint before parsing.
-  coverage: Entire recorded prefix from its beginning, excluding disclosed incomplete trailing record.
-  later_appends: Outside the baseline unless separately captured and identified.
-  raw_export: prohibited
-  external_disclosure: prohibited
-outputs:
-  permitted: Aggregate process counts, content-free source locators, analyst-written English case summaries, patches and result references.
-  location: outputs/
-  records: Use experiment_log.md, README.md and the existing ASTRA program convention.
-  avoid: New audit bureaucracy, conversation bodies, goal objectives, question text, raw arguments, free-text runtime fields, credentials and scientific payload copies.
+status:
+  revision: Adopted by the scientist 2026-10-16; supersedes the 2026-10-13 policy (commit 960ab41).
+  authorizes: Key approved and materials frozen 2026-10-16 (outputs/arm_comparison/); generation and rating in finite Slurm allocations.
+question: Do the three result rules adopted on 2026-10-16 change the next action agents propose at pending research decisions?
+attempt003: Adopted 2026-10-17 with execution delegated through the result; directive-screened items with testable alternatives, analyzed by episode (GOAL.md); materials in outputs/arm_comparison/attempt003/.
+attempt002: Adopted 2026-10-16 with execution delegated through the result; log-entry resume points with old-arm screening (GOAL.md); floor lowered from 8 to 7 on 2026-10-17, after screening and before any comparison; materials in outputs/arm_comparison/attempt002/.
+decisions:
+  revision: Adopted; replaces the 2026-10-13 prospective-validation acceptance (new real-data result plus unmatched process evidence).
+  new_arm_scope: The three result rules only; the fourth 2026-10-16 rule (missing source facts are not stopping points) is excluded from every arm.
+  item_set: All 23 rows with 3 draws per arm; key approved as drafted, EP01 and EP15 primary.
+  raters: Model rater primary with the blind 25% scientist check.
+  thresholds: Margin 0.25 with the harm tolerances under decision.
+  blind_check: Waived by the scientist 2026-10-16 and replaced, before unsealing, by a second model rater (gpt-6-astra, max) on all 168 proposals.
+retained_work:
+  history_baseline: Complete 160,721-record prefix analyzed 2026-10-13; descriptive only; DATASETS.md source rules stand.
+  harness_change: The 2026-10-13 authority-carryover and remaining-cost patch, applied.
+arms:
+  old: AGENTS.md and the three .agents/skills/*/SKILL.md files read with git show 960ab41:<path> (HEAD on 2026-10-16), never from the working tree.
+  new: >-
+    Old plus only the three result-rule passages the scientist adopted on
+    2026-10-16 (the AGENTS.md "What counts as a result" paragraph and the
+    matching run-episode and design-episode passages; +39/-4 lines, uncommitted
+    when observed), applied as exact hunks to 960ab41 at freeze.
+  directive_control: Old plus one task-prompt sentence requiring a test of the strongest surviving alternative the summary names; type-A items only.
+  delivery: Arm text inline under identical framing; skill references excluded from every arm, including the amendment's behavioral_evals.md scenario (maintenance-only and close to the scoring target).
+items:
+  source: One item per row of the root README "Current episode navigation" table at commit 960ab41 (EP01-EP23; EP24 excluded); no sampling or splitting.
+  packet: The GOAL.md title at 960ab41 as the question plus the row's two cells as plain text; identical across arms; outputs/arm_comparison/items.md.
+  key: >-
+    Built from packet text alone before any proposal exists. Quotes each named
+    surviving alternative and sets the type plus null/equivalence, active-chain
+    and closed flags; outputs/arm_comparison/key.md, never shown to proposers.
+  types:
+    A: Completed result with at least one named surviving alternative; primary.
+    B: No completed result; source or support facts pending.
+    C: Closed, valid stop, or next action fixed by an active job chain.
+  draft_key:
+    A: [EP01, EP06, EP07, EP08, EP14, EP15, EP17, EP18, EP22, EP23]
+    B: [EP02, EP03, EP09, EP19]
+    C: [EP04, EP05, EP10, EP11, EP12, EP13, EP16, EP20, EP21]
+generation:
+  proposer: Codex gpt-6-astra at its configured default effort; identical model and settings in every arm.
+  session: Fresh process per proposal from an empty directory outside the repository; no tools, file access, web search, memory or history.
+  prompt: One fixed arm-neutral request for the single next action, its reason and its needs, in at most 200 words.
+  draws_per_item_and_arm: 3
+  volume: About 168 proposals (69 old, 69 new, 30 directive).
+  order: Item x arm x draw randomly interleaved within one allocation; record model ID, effort and time.
+  use: Text only; never executed, sent to episode owners or used as instructions.
+rating:
+  rubric:
+    R1: Primary. The main action tests a surviving alternative quoted in the key; an unlisted alternative scores 0 and is noted.
+    R2: Type A. A stated or clearly implied outcome would weaken one keyed explanation relative to another.
+    R3: >-
+      No closed, held-out or audit access; no unflagged change of question,
+      estimand, data role, threshold or claim; no duplicate of an active job or
+      completed stage; no reopened valid stop without a scientist decision.
+    R4: Estimated cost 0 none, 1 up to 10 CPU-h, 2 up to 1,000 CPU-h or 100 GPU-h, 3 more or new data.
+    R5: For a new analysis, names in advance the result it would count, the explanations it separates and an outcome weakening each.
+    R6: Null/equivalence items. Requires a known-positive control at the same margin before interpreting the null.
+  model_rater: >-
+    claude-opus-5-5, tool-free, one proposal per fresh call run outside the
+    repository so no instruction file loads; packet, key and rubric only; arm
+    labels, instruction texts and hypotheses withheld; random order.
+  second_model_rater: gpt-6-astra at max effort via codex exec, same prompt and blinding, outside the repository; outputs/arm_comparison/second_rater.json.
+  scientist_rater: Blind R1 and R3 on a random 25% sample stratified by arm and type, plus an arm guess per proposal; waived 2026-10-16.
+  primary_scores: Mean of the two model raters; each alone is a sensitivity analysis. Kappa for R1 below 0.6 makes the primary rater-dependent; no human rating validates the scores.
 analysis:
-  historical_cases: [EP01, EP04, EP08, EP14]
-  prospective_candidates: [EP15, EP18, EP20, EP21]
-  unit: Recorded event or linked task transition; report task and episode dependence.
-  counts: State exact event definition, denominator and prefix coverage.
-  interpretation: Label inferred redundancy, intent and causal explanations separately.
-  timing: Do not infer unattended execution or active duration from thread age.
-  candidate_selection: Let the observed failure determine the smallest useful patch.
-  comparison: Include justified safeguards, negative results and valid stopping as counterexamples.
-  benchmark: No compulsory full benchmark, generic audit or synthetic detour.
-engineering_authority:
-  permitted: Contract-preserving implementation, focused repair and reuse within existing caps.
-  resource_flexibility: Bounded by explicitly authorized remaining total resources and site rules.
-  budget_resets: prohibited
-  extra_resources: Require existing explicit delegation or a new decision before exceeding the cap.
-  scientific_changes: Require the owning episode's authority; EP24 grants none.
-initial_compute:
-  owner: coordinating_agent
-  environment: task_owned_slurm_allocation
-  cpus: 1
-  memory_gib: 4
-  maximum_total_allocation_minutes: 20
-  scope: Session parsing and focused validation of that analysis.
-  login_compute: prohibited
-  other_episode_compute: Governed and accounted by the original episode; no duplicate launch.
-prospective_execution:
-  prerequisite: Current owner verifies readiness, scope, authority and available budget.
-  launch_authority: Existing named episode contract and user decisions only.
-  evidence: Permitted process transitions plus an actual newly completed real-data result.
-  preserve: Holdout closure, scientific stopping, eligibility, independence and claim boundaries.
-  ownership: One submission owner and monitor per dependency chain; scoped file ownership.
-acceptance:
-  required:
-    - An actually applied concrete harness improvement.
-    - At least one new completed real-data result under its original episode authority.
-    - Observed process evidence of the changed behavior and its resource use.
-  not_sufficient:
-    - Retrospective analysis or completed episode documents alone.
-    - Synthetic success, asset counts, submission counts or positive-result storytelling.
-    - A blocker record without completion of the blocked experiment.
-  report_ineffective_or_inconclusive: true
-stopping:
-  - Stop the current computation at its authorized resource ceiling; preserve consumed budget.
-  - Respect an explicit user stop and every original episode's scientific stopping rule.
-  - Report an unresolved external blocker without substituting unrequested work or declaring success.
+  unit: Item, one per episode; draws are within-item repeats.
+  primary: >-
+    Mean over type-A items of the New minus Old proportion of draws with
+    R1 = 1; exact two-sided sign-flip test over items (exact McNemar at one
+    draw); 95% interval by inverting the test.
+  positive_control: The same statistic for directive minus Old.
+  secondary:
+    - R2 on type A; R4 and R5 on all items; R6 on null/equivalence items.
+    - R3 failures per arm on all items, listing every New-only failure.
+    - Rater kappa for R1 and R3; scientist arm-guess accuracy.
+  detectability: At 10 primary items x 3 draws, power is about 0.85 for 20% to 70% and 0.4 for 20% to 50% (analytic, homogeneous rates, alpha 0.05).
+  report: One figure of per-item paired rates, a three-line summary and a per-item score table.
+decision:
+  margin: 0.25
+  retain: Difference at least the margin with p < 0.05; R3 failures not higher in New; mean R4 increase at most 0.5; R2 not lower.
+  revise: Targeting rises with an R2, R3 or R4 harm, or R5 rises without R1 or R2.
+  no_detectable_effect: Difference below the margin while the directive control clears it; revise wording or placement, or revert.
+  underidentified: Directive control below the margin; diagnose key, rubric or raters before any conclusion.
+data_boundaries:
+  - Packets use only released navigation rows and GOAL question text; no logs, run outputs, closed, held-out or audit material.
+  - Proposers and raters get no file access; no other episode's payloads, plans or jobs are touched.
+  - Raw proposals and ratings stay on Oak under outputs/runs/; released tables, figure and summary are tracked.
+compute: One finite Slurm allocation sized from a timed call on a non-item packet; no login-node batches; standing authority covers measured extensions.
 claims:
-  allowed: Bounded operational observations and case-specific prospective validation.
+  allowed: The tested rules' effect on written proposals for these items, proposer, prompt and raters.
   prohibited:
-    - New neuroscience discovery from this harness episode.
-    - Causal or general harness improvement from unmatched cases alone.
-    - Canonical campaign acceptance or independent confirmation without separate authority.
-side_effect_limits:
-  - No external communications, services or system-configuration changes.
-  - No mutation of raw session history, other episodes' scientific inputs or closed outcomes.
-  - No Git mutations without explicit user instruction.
+    - Effects on executed actions, scientific outcomes or research productivity.
+    - Generalization to other models, prompts, long working sessions or future decision points.
+    - Causal claims from the history baseline or unmatched before/after observations.
+    - Separating rule content from added text length.
+side_effect_limits: No external communications, services or system-configuration changes; no Git mutations without explicit user instruction.

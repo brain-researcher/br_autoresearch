@@ -1,0 +1,87 @@
+diff -ruN old/.agents/skills/design-episode/SKILL.md new/.agents/skills/design-episode/SKILL.md
+--- old/.agents/skills/design-episode/SKILL.md	2026-10-16 14:51:49.000000000 -0700
++++ new/.agents/skills/design-episode/SKILL.md	2026-10-16 14:51:50.000000000 -0700
+@@ -89,6 +89,15 @@
+ where the claim depends on a fair comparison. Add detail until the scientific
+ comparison is clear, not until every implementation choice is frozen.
+ 
++For the primary comparison, write which outcome would weaken each named
++account. Check that the accounts predict a difference larger than the data can
++resolve at the independent-unit level. If every account predicts roughly no
++difference in the available data, reframe the question or choose other data
++rather than adding methods. When a plausible answer is a null or an
++equivalence, plan a known-positive contrast measured with the same pipeline and
++margin, so the null can be interpreted. This is an interpretation requirement,
++not a launch gate.
++
+ ## Keep the search open where it should be open
+ 
+ Use supported starting families and parameter ranges as a launch point, not
+@@ -116,7 +125,8 @@
+ policy choices as proposed; file creation is not a freeze or launch approval.
+ For existing work, update living documents instead of adding review reports:
+ 
+-- `GOAL.md`: question, rationale/novelty, decisive comparisons and claim scope.
++- `GOAL.md`: question, rationale/novelty, competing accounts, decisive
++  comparisons with the outcome that would weaken each, and claim scope.
+ - `DATASETS.md`: observations, source roles, units, availability and limitations.
+ - The single search policy: operational choices and commitments the runner
+   needs; distinguish proposed changes from frozen ones.
+diff -ruN old/.agents/skills/run-episode/SKILL.md new/.agents/skills/run-episode/SKILL.md
+--- old/.agents/skills/run-episode/SKILL.md	2026-10-16 14:51:49.000000000 -0700
++++ new/.agents/skills/run-episode/SKILL.md	2026-10-16 14:51:50.000000000 -0700
+@@ -118,6 +118,14 @@
+ confirmation. A performance win alone does not identify its cause. Negative
+ results and informative limitations are valid outcomes, not failed storytelling.
+ 
++Call an estimate the episode's result only when its record named, before it
++ran, the explanations it separates and the outcome that would weaken each;
++otherwise label it calibration or description. Interpret a null or an
++equivalence only if the same pipeline detected a known positive effect at the
++same margin. If that control failed or is missing, report the comparison as
++underidentified, and diagnose the pipeline or measurement under standing
++authority before proposing an estimand change.
++
+ Report how a result was actually reached. When a hypothesis, explanation or
+ analysis choice is formed after seeing results, record it in the log with the
+ results it was formed after and label it post hoc in reports. A post hoc
+@@ -154,9 +162,14 @@
+ Missing navigation or ASTRA tooling does not block authorized science.
+ 
+ Hand off the observed result or stage, direct evidence, blocker if any, and
+-next scientific action. Do not manufacture a successor run or canonical
+-acceptance. Record changes once and link them; do not create dated audit,
+-review or status documents for routine progress.
++next scientific action. In an active episode, that action defaults to a test of
++the strongest surviving alternative. If the test needs new data, held-out
++access or an estimand change, put it in the daily question batch rather than
++substituting a step that separates nothing. A valid scientific stop stays a
++stop: record the alternative and the test that would address it. Do not
++manufacture a successor run or canonical acceptance. Record changes once and
++link them; do not create dated audit, review or status documents for routine
++progress.
+ 
+ For skill maintenance only, use the relevant
+ [behavioral scenarios](references/behavioral_evals.md).
+diff -ruN old/AGENTS.md new/AGENTS.md
+--- old/AGENTS.md	2026-10-16 14:51:49.000000000 -0700
++++ new/AGENTS.md	2026-10-16 14:51:50.000000000 -0700
+@@ -20,6 +20,18 @@
+ remains in force: label model-based results explicitly, without presenting them
+ as real-data estimates. Engineering benchmarks alone are not scientific results.
+ 
++**What counts as a result — amended 2026-10-16.** The estimate or evaluation
++above counts as the next result only when, before it ran, its record named the
++explanations or claims it separates and the outcome that would weaken each. A
++held-out evaluation or reproduction with a frozen decision rule qualifies.
++Otherwise report it as calibration or description. In an active episode, once a
++result names its strongest surviving alternative, the default next action tests
++that alternative. If that test needs new data, held-out access or an estimand
++change, put it in the daily question batch rather than substituting a step that
++separates nothing. Interpret a null or an equivalence only after the same
++pipeline has detected a known positive effect at the same margin; otherwise
++report the comparison as underidentified.
++
+ ## Standing scientist authority
+ 
+ The scientist pre-authorizes the following for every episode. Act, then add one

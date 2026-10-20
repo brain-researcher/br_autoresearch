@@ -1,0 +1,339 @@
+{
+ "note": "Descriptive only (scientist decision 2026-10-17): no test, interval or decision.",
+ "items": [
+  "EP01-L3",
+  "EP05-L1",
+  "EP05-L2",
+  "EP08-L2",
+  "EP15-R"
+ ],
+ "episodes": [
+  "EP01",
+  "EP05",
+  "EP08",
+  "EP15"
+ ],
+ "R1_mean_by_arm_over_items": {
+  "old": 0.0,
+  "new": 0.1333,
+  "directive": 0.9
+ },
+ "effects": {
+  "R1": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.125,
+    "mean_over_items": 0.1333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.0,
+     "EP05": 0.1666,
+     "EP08": 0.3333,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": 0.0,
+     "EP05-L1": 0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.3333,
+     "EP15-R": 0.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.875,
+    "mean_over_items": 0.9,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 1.0,
+     "EP05": 1.0,
+     "EP08": 1.0,
+     "EP15": 0.5
+    },
+    "per_item": {
+     "EP01-L3": 1.0,
+     "EP05-L1": 1.0,
+     "EP05-L2": 1.0,
+     "EP08-L2": 1.0,
+     "EP15-R": 0.5
+    }
+   }
+  },
+  "R2": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.1666,
+    "mean_over_items": 0.1667,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.0,
+     "EP05": 0.1666,
+     "EP08": 0.3333,
+     "EP15": 0.1667
+    },
+    "per_item": {
+     "EP01-L3": 0.0,
+     "EP05-L1": 0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.3333,
+     "EP15-R": 0.1667
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.875,
+    "mean_over_items": 0.9,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 1.0,
+     "EP05": 1.0,
+     "EP08": 1.0,
+     "EP15": 0.5
+    },
+    "per_item": {
+     "EP01-L3": 1.0,
+     "EP05-L1": 1.0,
+     "EP05-L2": 1.0,
+     "EP08-L2": 1.0,
+     "EP15-R": 0.5
+    }
+   }
+  },
+  "R3": {
+   "new_minus_old": {
+    "mean_over_episodes": -0.0833,
+    "mean_over_items": -0.0667,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": -0.3333,
+     "EP05": 0.0,
+     "EP08": 0.0,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": -0.3333,
+     "EP05-L1": 0.0,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.0,
+     "EP15-R": 0.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": -0.125,
+    "mean_over_items": -0.1333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": -0.3333,
+     "EP05": -0.1666,
+     "EP08": 0.0,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": -0.3333,
+     "EP05-L1": -0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.0,
+     "EP15-R": 0.0
+    }
+   }
+  },
+  "R4": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.0833,
+    "mean_over_items": 0.1,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.3333,
+     "EP05": 0.1666,
+     "EP08": -0.1667,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": 0.3333,
+     "EP05-L1": 0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": -0.1667,
+     "EP15-R": 0.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.4167,
+    "mean_over_items": 0.4333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.6667,
+     "EP05": 0.5,
+     "EP08": -0.1667,
+     "EP15": 0.6667
+    },
+    "per_item": {
+     "EP01-L3": 0.6667,
+     "EP05-L1": 1.0,
+     "EP05-L2": 0.0,
+     "EP08-L2": -0.1667,
+     "EP15-R": 0.6667
+    }
+   }
+  },
+  "R5": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.8889,
+    "mean_over_items": 0.8889,
+    "episodes": 3,
+    "items": 3,
+    "per_episode": {
+     "EP05": 0.6667,
+     "EP08": 1.0,
+     "EP15": 1.0
+    },
+    "per_item": {
+     "EP05-L2": 0.6667,
+     "EP08-L2": 1.0,
+     "EP15-R": 1.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 1.0,
+    "mean_over_items": 1.0,
+    "episodes": 3,
+    "items": 3,
+    "per_episode": {
+     "EP05": 1.0,
+     "EP08": 1.0,
+     "EP15": 1.0
+    },
+    "per_item": {
+     "EP05-L2": 1.0,
+     "EP08-L2": 1.0,
+     "EP15-R": 1.0
+    }
+   }
+  },
+  "R6": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.75,
+    "mean_over_items": 0.75,
+    "episodes": 1,
+    "items": 2,
+    "per_episode": {
+     "EP05": 0.75
+    },
+    "per_item": {
+     "EP05-L1": 0.6667,
+     "EP05-L2": 0.8333
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.0,
+    "mean_over_items": 0.0,
+    "episodes": 1,
+    "items": 2,
+    "per_episode": {
+     "EP05": 0.0
+    },
+    "per_item": {
+     "EP05-L1": 0.0,
+     "EP05-L2": 0.0
+    }
+   }
+  }
+ },
+ "R1_by_rater": {
+  "ratings": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.125,
+    "mean_over_items": 0.1333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.0,
+     "EP05": 0.1666,
+     "EP08": 0.3333,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": 0.0,
+     "EP05-L1": 0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.3333,
+     "EP15-R": 0.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.9167,
+    "mean_over_items": 0.9333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 1.0,
+     "EP05": 1.0,
+     "EP08": 1.0,
+     "EP15": 0.6667
+    },
+    "per_item": {
+     "EP01-L3": 1.0,
+     "EP05-L1": 1.0,
+     "EP05-L2": 1.0,
+     "EP08-L2": 1.0,
+     "EP15-R": 0.6667
+    }
+   }
+  },
+  "ratings_astra": {
+   "new_minus_old": {
+    "mean_over_episodes": 0.125,
+    "mean_over_items": 0.1333,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 0.0,
+     "EP05": 0.1666,
+     "EP08": 0.3333,
+     "EP15": 0.0
+    },
+    "per_item": {
+     "EP01-L3": 0.0,
+     "EP05-L1": 0.3333,
+     "EP05-L2": 0.0,
+     "EP08-L2": 0.3333,
+     "EP15-R": 0.0
+    }
+   },
+   "directive_minus_old": {
+    "mean_over_episodes": 0.8333,
+    "mean_over_items": 0.8667,
+    "episodes": 4,
+    "items": 5,
+    "per_episode": {
+     "EP01": 1.0,
+     "EP05": 1.0,
+     "EP08": 1.0,
+     "EP15": 0.3333
+    },
+    "per_item": {
+     "EP01-L3": 1.0,
+     "EP05-L1": 1.0,
+     "EP05-L2": 1.0,
+     "EP08-L2": 1.0,
+     "EP15-R": 0.3333
+    }
+   }
+  }
+ },
+ "R3_failures": {
+  "old": 0.0,
+  "new": 1.0,
+  "directive": 2.0
+ },
+ "counts": {
+  "proposals": 45,
+  "ratings": {
+   "ratings": 45,
+   "ratings_astra": 45
+  }
+ }
+}

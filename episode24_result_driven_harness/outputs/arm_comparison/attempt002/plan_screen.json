@@ -1,0 +1,35 @@
+{
+ "frozen": "2026-10-16",
+ "arms": {
+  "old": "../arms/old_instructions.txt",
+  "new": "../arms/new_instructions.txt",
+  "directive": "../arms/old_instructions.txt"
+ },
+ "prompts_dir": "../prompts",
+ "second_rater_file": "../second_rater.json",
+ "proposer": {
+  "tool": "codex-cli 0.159.2",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "ultra",
+  "timeout_s": 1800,
+  "attempts": 3,
+  "workers": 4
+ },
+ "rater": {
+  "tool": "Claude Code 2.1.299",
+  "bin": "/home/users/zijiao/.claude/remote/ccd-cli/2.1.299-686c67ec1014",
+  "model": "claude-opus-5-5",
+  "effort": "high",
+  "timeout_s": 900,
+  "attempts": 3,
+  "workers": 3
+ },
+ "scientist_fraction": 0,
+ "stage": "screening: old arm only; screening draws are never reused",
+ "seed": 202610162,
+ "draws": 2,
+ "run_arms": [
+  "old"
+ ],
+ "directive_types": []
+}

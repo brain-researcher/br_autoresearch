@@ -66,3 +66,29 @@ Prospective task traces can demonstrate applied behavior and real result
 completion. Neither an unmatched before/after comparison nor one successful
 case proves that the harness caused a general improvement. This episode has no
 new neuroscience endpoint and no independent scientific confirmation set.
+
+## Arm comparison — adopted 2026-10-16
+
+The adopted design uses four kinds of material, stored under
+`outputs/arm_comparison/` unless noted.
+
+- **Instruction arms.** Old: `AGENTS.md` and the three `SKILL.md` files from
+  `git show 960ab41:<path>`. New: Old plus the three result-rule hunks of the
+  2026-10-16 amendment, saved as a patch at freeze. These are repository
+  instructions, not scientific data.
+- **Item packets** ([items.md](outputs/arm_comparison/items.md)). Rows
+  EP01–EP23 of the root README navigation table and each GOAL title, both at
+  `960ab41`. These are released summaries. Reading other episodes stops at
+  these two sources; no episode logs, run outputs, or closed, held-out or audit
+  material enter a packet.
+- **Key** ([key.md](outputs/arm_comparison/key.md)). Quotations from the
+  packets, with types and flags. Raters see it; proposers never do.
+- **Observations.** Generated proposals and their ratings. Raw texts stay on
+  Oak under `outputs/runs/arm_comparison/` and are not tracked. Released score
+  tables, the figure and the summary are tracked.
+
+The unit is the item, one per episode; draws are repeats within an item. Items
+are not a random sample of decision points: the review that motivated the
+rules had examined them, and each packet is a short snapshot. Proposers and
+raters get no file, tool or web access. The prospective process evidence
+above is descriptive context only.

@@ -1,0 +1,687 @@
+--- AGENTS.md ---
+
+# Research episode workspace
+
+This repository is the durable workspace for independent Brain Researcher
+episodes. Local files describe the work; the configured Brain Researcher MCP
+service owns canonical campaign state.
+
+## Current research goal — adopted 2026-10-13
+
+Produce new scientific results in br_autoresearch. Focus: EP15, EP18, EP20, EP21.
+For each, reach its next empirical result: a real-data estimate with uncertainty
+at the independent-unit level, or its prespecified held-out evaluation. Report it
+with one figure and a three-line summary. A blocker is not an end state: route
+around it under the standing authority below, or put one question in the daily
+batch and keep working. Send one daily update: new results, changes, batched
+questions. Done when each focus episode has its next result or a scientific
+reason it cannot have one.
+
+This replaces the earlier EP01–EP21 execution focus. Preserve completed results,
+active jobs and data boundaries. EP20's previously adopted simulation exception
+remains in force: label model-based results explicitly, without presenting them
+as real-data estimates. Engineering benchmarks alone are not scientific results.
+
+## Standing scientist authority
+
+The scientist pre-authorizes the following for every episode. Act, then add one
+dated log line; do not ask first.
+
+- Compute caps, per-attempt limits and wall clocks are soft. Raise them when a
+  measurement shows the need; wall clocks count consumed job time.
+- Engineering failures (crashes, timeouts, failing tests, lost sessions) never
+  end an episode. Diagnose, fix and retry.
+- Same-account procedural evaluation separation is the default; results
+  disclose it.
+- Engineering, numerical and data-quality changes that keep the estimand, data
+  roles and claims: implement and validate them directly.
+- Follow-ups within the episode question that keep its estimand, data roles and
+  held-out boundary: activate and log each one, so the size of the search stays
+  visible. There is no queue of unactivated proposals.
+
+Ask first only to change the question or primary estimand, data roles,
+held-out/test access, confirmatory thresholds or claims; to add a dataset or data
+agreement; or to contact anyone. Batch these into one message per day and keep
+other work moving while waiting.
+
+This authority overrides conflicting local episode and workflow provisions;
+site-enforced resource limits and Sherlock execution rules remain in force.
+Use finite measured Slurm requests and retain historical consumption.
+
+## Lightweight records
+
+- A log entry is at most 10 lines: what ran (job ID), what came out (numbers),
+  what is next. Report compute per episode once a day, not per job step.
+- Run a check only when its failure would change the next action. No receipts,
+  hashes, conformance suites or bitwise checks of reference code unless a result
+  depends on them.
+- New episodes get a one-page GOAL and a policy under about 100 lines: question,
+  data roles, primary analysis, what counts as a result, claim limits.
+- Existing long contracts stay. The standing authority above overrides their
+  compute, clock, failure-count and separation clauses.
+
+## Choose the workflow
+
+| Requested work | Guidance |
+| --- | --- |
+| Propose a new EP, assess novelty, revise a scientific question/design, or create a concept figure | Use [`design-episode`](.agents/skills/design-episode/SKILL.md). Start from the question and available evidence; existing episode files are not a prerequisite for ideation. |
+| Implement, launch, resume, repair, monitor, analyze, or report on an existing standalone episode | Use [`run-episode`](.agents/skills/run-episode/SKILL.md). Read its `GOAL.md`, `DATASETS.md`, and single search policy; status/diagnosis alone remains read-only. |
+| Explicit formal BR campaign, Society, reward, registered handoff, confirmation, or Landscape action | Use [`manage-research-campaign`](.agents/skills/manage-research-campaign/SKILL.md) and the current canonical state. |
+| Repository maintenance or ordinary document edits with no scientific-design change | Stay within the requested files and action; no research workflow needs to start. |
+
+Design and standalone execution are the everyday workflows. Use only the skill
+needed for the current action, not all three in sequence. Execute follow-ups
+already delegated by the standing authority without reconfirmation; a new
+question, estimand or protected data-role change still needs the stated
+scientist decision. A persistent Codex goal does not imply a canonical Brain
+Researcher Goal. Do not run Git mutations, including staging, committing, or
+pushing, unless the user explicitly requests them.
+
+## Workspace and data boundaries
+
+- Each execution task owns one explicitly named direct-child episode, such as
+  `episodeNN_topic`. Do not write to siblings or use live sibling outputs as
+  run inputs. A request covering several episodes needs separate task scopes.
+- This repository is the only persistent OAK workspace authorized by a task
+  launched here; access to it does not grant write access elsewhere on OAK.
+- Each active episode contains `GOAL.md`, `DATASETS.md`, one
+  `SEARCH_POLICY.yaml` or `SEARCH_POLICY.json`, `inputs/`, and `outputs/`.
+- Scientific payloads under `inputs/` are read-only. Plain input documentation
+  may be corrected without changing payloads, data roles, or exposing outcomes.
+- Determine the current data-access stage before reading episode artifacts.
+  Read or search only explicitly permitted paths, including under `outputs/`
+  and in indexes. Root-wide searches with exclusion globs do not protect closed
+  outcomes; terminal output is access too.
+- Keep durable scientific artifacts under the active episode's `outputs/`
+  and transient work under `$SCRATCH/br_autoresearch/<episode-name>/`.
+  Preserve frozen paths, historical attempts, and active writers. Moving or
+  deleting artifacts requires a separately scoped change.
+- Instructions are not OS-level isolation. Enforce the episode's declared data
+  roles and disclose any weaker boundary.
+
+## Execution and scientific decisions
+
+For a continuation, name the next measured result and its remaining dependency
+in the existing log; carry already granted authority across resumes. A stale
+pending marker or blocked app goal is not an unanswered scientist decision.
+Scheduling approved work on ready inputs, reusing completed stages and repairing
+engineering defects within that authority do not need reconfirmation. Ask only
+for the specific consequential change not already delegated. Apply standing
+resource delegation before treating an older cap as an unanswered request;
+select finite, measured limits and preserve later explicit ceilings. A documented
+blocker is a truthful incomplete state, not delivery of the requested result;
+advance another ready authorized task when one exists. Do not reopen a valid
+scientific stop merely because compute remains.
+
+Advance the next authorized work. Check an explicit contract condition, a
+concrete access/validity risk, or an observed defect that changes the next
+action; reuse passing runner checks. There is no universal preflight,
+conformance, smoke, or qualification sequence. Do not add generic hashes,
+receipt chains, source copies, interpreter bindings, schemas, or provenance
+inventories. Retain a check or integrity mechanism when a result depends on it
+or its failure would change the next action; an older checklist alone is not
+a reason to run it.
+
+Keep exploration as open as the scientific question and active policy allow.
+Do not import candidate caps, modeling choices, or an adaptive-search program
+from a different episode. [Adaptive search](ADAPTIVE_SEARCH_PROTOCOL.md) and its
+[controller interface](ADAPTIVE_CONTROLLER_INTERFACE.md) apply only at their
+declared stages in episodes that adopt them.
+
+Preserve the requested scientific fidelity, biological-group independence,
+overlap/leakage controls, development/final separation, group support,
+source/atlas compatibility, and unknown versus verified absence. Frozen
+scientific identity, data roles, held-out/test access, confirmatory thresholds
+and claim limits remain in force until an authorized amendment. The standing
+authority governs compute, clocks, engineering failures, procedural separation,
+numerical/data-quality repairs and eligible follow-ups; do not reimpose the
+older overridden clauses as approval gates.
+
+Make contract-preserving engineering choices directly. Report missing required
+data, authority, or consequential scientific choices early, with a recommendation.
+Do not replace blocked empirical work with unrequested synthetic or hardening
+work. Optional tools do not block otherwise-authorized execution.
+
+Use useful parallel work with one owner per writable path or submission, one
+monitor per dependency chain, and a shared resource budget. Share meaningful
+new evidence and sourced figures when they clarify the work; unchanged waits
+do not need repeated checks, reports, or plots. Detailed execution, repair,
+monitoring, and result-interpretation guidance lives in `run-episode`;
+novelty, study design and concept-figure guidance lives in `design-episode`.
+
+## Records and artifacts
+
+Keep raw session logs and verbatim conversation exports outside this repository.
+Record decisions as concise English summaries with source references, preserving
+their scope and authority; do not paste user/assistant messages into artifacts.
+
+### Released results belong in Git — scientist instruction, October 14, 2026
+
+Track released scientific figures, tables, summaries and compact numeric reports
+for every episode, including deidentified participant-level scores and source
+dataset participant labels. Do not exclude these merely because they are derived
+data. This instruction supersedes internal episode rules against committing
+derived result data; source-data agreements and unopened evaluation boundaries
+still apply. Keep raw input payloads, model checkpoints, caches and transient
+runtime files on Oak. When a released report sits under an ignored run directory,
+stage its reviewed exact path explicitly; do not add the whole run tree.
+
+| Record | Purpose |
+| --- | --- |
+| `GOAL.md`, `DATASETS.md`, search policy | Scientific question, data roles, and operative contract; not live job status |
+| `outputs/astra/v0.0.14/astra.yaml` | Experiment program with stable analysis IDs and artifact dependencies |
+| `outputs/experiment_log.md` | Execution events, attempts, job IDs, observed evidence, failures, blocker, and next action |
+| `outputs/README.md` | Short, dated navigation to current log entries, runs, and useful results |
+| Existing auxiliary Markdown records | Domain-specific decisions and links, updated when their subject changes |
+
+Maintain the ASTRA program for standalone episodes; use the
+[ASTRA reference](.agents/skills/run-episode/references/astra.md)
+when authoring it or organizing outputs. The legacy snapshot exporter is not
+the full program. Missing navigation or ASTRA tooling does not block
+otherwise-authorized computation.
+
+Record execution facts once in the log and link to their evidence. Resolve
+conflicting summaries from the relevant permitted runner/scheduler observations
+or artifacts. Refresh navigation at material transitions, not on every resume.
+When a released result or adopted decision changes a root `README.md` episode
+row, update that row in the same task and link the evidence. Reconcile identity
+or evidence-role changes in `EPISODE_REGISTRY.yaml`; keep live job details in
+the episode log. Distinguish a completed analysis from its unresolved scientific
+question. A successful Git push does not establish that these summaries agree.
+Preserve `memory.md`, `governance.md`, `society.md`, `loop.md`,
+`landscape.md`, and `verification.md`; do not copy live status into all six or
+create them unless their workflow or contract requires them. Canonical
+projection and CandidateBundle rules are in
+[workspace projections](.agents/skills/manage-research-campaign/references/workspace_projections.md).
+
+## Canonical Brain Researcher authority
+
+- Do not set `BR_AUTORESEARCH_DATA_ROOT` to this repository. The live MCP
+  service uses canonical storage under `/app/jobstore/autoresearch`.
+- Re-read canonical state immediately before a canonical mutation or replay;
+  local notes and old terminal output cannot authorize it.
+- Scientific retrieval or advisory critique is not formal Society, reward,
+  launch approval, confirmation, scientific acceptance, or a Landscape
+  transition. Use exposed read-only scientific assistance where it informs a
+  decision, within the current read/disclosure boundary.
+- A successful local run cannot approve its own claim. Apply canonical actions
+  only when both the scientist's request and current canonical state authorize
+  them. Canonical state is not a prerequisite for standalone execution.
+- Update root `CAMPAIGN.md`, `LANDSCAPE.md`, and `QUESTIONS.md` only from
+  observed canonical state or an explicit human decision.
+
+## Protected history
+
+These prior records are immutable:
+
+- `_examples/historical_prior_records/episode01_narps_analysis`
+- `_examples/historical_prior_records/episode02_narps_analysis`
+
+Do not rewrite, rename, delete, normalize, reward, or otherwise mutate them.
+Canonical action involving them requires a separate scientist-authorized turn
+and fresh canonical state. Their old display aliases are not current episodes.
+
+The current EP01 is `episode01_narps_deep_search`. It may use those records only
+through its verified episode-local, content-addressed prior packet. This is an
+EP01-specific boundary, not a default requirement for other episodes. Do not
+reuse a legacy loop or Goal handoff as the new episode identity.
+
+## Sherlock and credentials
+
+Follow `/etc/agents/AGENTS.md` and its relevant topic files. Tests, scientific
+code, builds and substantial I/O belong in Slurm, not on a login node. Verify
+the execution shell's hostname and `SLURM_JOB_ID`; an allocated session does not
+move other shell calls or subagents onto compute. Coordinate testing through
+the task-owned compute session and stop if it expires. Scratch is purgeable; legacy
+`$SCRATCH/autoresearch/` trees are not canonical inputs and must not be moved or
+deleted without an explicit migration decision.
+
+Never store credentials, tokens, or private keys in this repository. The MCP
+configuration reads `BR_MCP_TOKEN` from the environment.
+
+--- .agents/skills/design-episode/SKILL.md ---
+
+---
+name: design-episode
+description: >-
+  Create or revise a research episode from a question, dataset, or permitted
+  prior evidence. Use for ideation, literature and novelty assessment, study
+  design, paper framing, or conceptual figures; not experiment execution.
+---
+
+# Design an Episode
+
+Develop a question worth answering and a study the available data can actually
+support. This is the entrypoint for generating new EPs and revising existing
+ones. It does not require a pre-existing `GOAL.md` or a formal BR campaign.
+
+Apply only the parts needed for this request. Ideation, novelty assessment and
+substantive redesign need the scientific reasoning below. A wording or figure
+revision can reuse the agreed design and its current evidence; it does not
+restart literature review, add a paper plan or change the research question.
+
+## Establish the task, not a new bureaucracy
+
+Read repository `AGENTS.md` and the user's scientific intent and prior decisions.
+For an existing episode, read its current `GOAL.md`, `DATASETS.md`, search policy,
+and specifically permitted design material. Old audits and conversation
+summaries are leads to verify, not proof of current literature, data or state.
+Do not scan outputs or open held-out outcomes to choose a more attractive story.
+
+Distinguish proposing an idea, reviewing a design, implementing a revision, and
+authorizing an experiment. A review remains read-only; a requested revision can
+change design documents within scope. A new EP can start from an informal
+question. Before creating a numbered directory, check the relevant registry
+entry for collisions or reserved identities; do not renumber existing work or
+register a formal campaign implicitly. If identity or scope is genuinely
+undecided, propose it without creating an arbitrary numbered episode.
+
+Read [study figures](references/study_figures.md) when creating or revising a
+conceptual figure. Do not run execution checks merely to begin design work.
+
+## Find the scientific contribution
+
+Start with the phenomenon, what is unknown, and why a changed answer would
+matter. Preserve the user's intended purpose: discovery, replication, methods,
+boundary testing, or explanation. Do not replace a broad question with the
+easiest available benchmark, or turn a replication into a discovery claim.
+
+Read the closest primary papers, including the dataset's own paper and recent
+work that could already answer the question. Use current retrieval rather
+than memory for novelty claims. Distinguish published evidence from preprints
+and uncertainty. Identify what the nearest work actually tested, what is
+already known, and the specific remaining distinction our data could resolve.
+When an argument relies on a published result or theorem, state the conditions
+it was shown under, such as species, modality, model class or assumptions, and
+whether they hold here; outside them it is a hypothesis to test, not a premise.
+A new model checkpoint, stricter split, or positive familiar comparison is not
+automatically a new scientific finding; say when the value is replication or
+methodological rigor instead. Do not promise publication from a positive result.
+
+Use exposed, read-only BR literature/KG or scientific critique when it can
+change the question, controls or interpretation. Reuse applicable evidence;
+ordinary novelty review is not formal Society and does not require a loop.
+Unavailable optional BR tools do not block ordinary primary-source research.
+Send only permitted summaries, never restricted data or closed outcomes.
+
+In a saturated field, look for an unresolved comparison, prediction, boundary
+condition or explanation that matters. If the data cannot address one, state
+that and recommend reframing, merging related work, or stopping. Do not add
+methods just to make a narrow question look larger.
+
+## Connect observations to claims
+
+Identify the actual measured quantities, independent sampling unit, repeated
+measures, relevant missing information, confounds and cross-episode exposure.
+Check feasibility from permitted metadata and existing evidence, not from an
+unrequested pilot or opened final set. Keep uncertainty about availability
+distinct from verified absence. Metadata checks are not license for a data scan.
+
+Make the intended claim match the measurements: representation similarity is
+not automatically encoding or causality; prediction need not establish a
+mechanism; simulation need not establish biological or hardware performance.
+Use such distinctions where they change this study's interpretation, not as a
+generic list of caveats. Consider detectability at the independent-unit level
+and what a null result could and could not resolve. A power simulation or new
+pilot is an explicit next experiment when needed, not a compulsory design gate.
+
+Develop competing accounts and comparisons that can distinguish them. Specify
+the relevant target/estimand, controls, evaluation support and uncertainty.
+For component-based methods, explain each component's inputs, outputs, fitted
+quantities and fitting data. Match information, capacity and tuning allowance
+where the claim depends on a fair comparison. Add detail until the scientific
+comparison is clear, not until every implementation choice is frozen.
+
+## Keep the search open where it should be open
+
+Use supported starting families and parameter ranges as a launch point, not
+an arbitrary closed menu. Do not impose universal candidate counts, two-metric
+limits, a fixed pilot-trial count, calibration prerequisites, or every available
+research pattern. Use a pattern only when it helps this question.
+
+Separate exploratory choices from data roles, resource limits, stopping rules
+and final evaluation commitments. Existing frozen policies remain binding;
+request or document an authorized amendment before changing them. Already-seen
+outcomes cannot become unobserved confirmation after a redesign; record which
+results a revised hypothesis was formed after. Share paper ideas across EPs
+only within scope; sharing a manuscript does not merge their data permissions
+or make overlapping samples independent replications.
+
+## Write one coherent study
+
+Make the title, opening question, nearest-prior comparison, proposed test,
+expected decision and concept figure tell the same story. Explain the science
+first; put concrete limitations beside the claim they limit. Avoid defensive
+administrative language dominating the narrative or artwork.
+
+For a requested new EP with an agreed identity, create its core documents and
+useful `inputs/README.md` and `outputs/README.md` navigation. State proposed
+policy choices as proposed; file creation is not a freeze or launch approval.
+For existing work, update living documents instead of adding review reports:
+
+- `GOAL.md`: question, rationale/novelty, decisive comparisons and claim scope.
+- `DATASETS.md`: observations, source roles, units, availability and limitations.
+- The single search policy: operational choices and commitments the runner
+  needs; distinguish proposed changes from frozen ones.
+- Existing design/paper-plan and figure material under `outputs/`, when within
+  the permitted design scope. Create a separate paper plan only if useful or
+  requested; an EP need not support an independent paper by itself.
+
+Use English text in repository artifacts. Keep filenames and entrypoints
+stable where possible, and update their relevant links/captions after a
+revision. A concept picture, paper outline or well-written contract is not a
+result. Do not generate schema, SHA, provenance, preflight, review or status
+files as default design deliverables.
+
+End with the revised scientific question, evidence-backed contribution,
+data-supported claim, remaining consequential choice, and next useful action.
+Once execution is requested, hand the agreed design to `run-episode` without
+restarting ideation. Design approval alone does not launch compute, open
+outcomes, authorize Git mutations or invoke `manage-research-campaign`.
+
+--- .agents/skills/manage-research-campaign/SKILL.md ---
+
+---
+name: manage-research-campaign
+description: >-
+  Manage explicitly requested formal Brain Researcher campaign state, Society
+  review, scientist reward, registered confirmation, or Landscape transitions.
+  Not for ordinary episode design, execution, or advisory scientific critique.
+---
+
+# Manage a Research Campaign
+
+## Applicability gate
+
+This is the optional formal state-management workflow, not the entrypoint for
+generating or running ordinary episodes. Use `design-episode` for new studies
+and redesign, and `run-episode` for standalone execution and analysis. Neither
+advisory scientific critique nor an ordinary Codex goal binds a campaign.
+
+Use this skill only for a scientist's explicit request about the canonical
+Brain Researcher campaign, Society/reward, registered handoff, confirmation or
+Landscape. Naming this skill alone does not approve every action: a status
+question stays read-only and each mutation still needs its own current authority.
+
+Use the conversation as the visible control shell for one human-gated campaign.
+The canonical MCP service owns state and actions; conversation and local
+Markdown make them visible but grant no authority.
+
+## Scientific decisions in an authorized campaign
+
+Read [scientific decisions](references/scientific_decisions.md) when authorized
+discovery, design critique or result interpretation needs scientific assistance.
+A status-only turn does not activate that work. Its advisory review does not
+replace formal Society or any frozen selection/confirmation contract.
+
+## Detect state first
+
+At the start of every canonical campaign turn:
+
+1. Inspect server_info and loop_profile_get for codex_autoresearch_v1.
+2. Resume an existing campaign with autoresearch_loop_get and its persisted
+   loop_id. Use autoresearch_loop_init only when the scientist is explicitly
+   starting a new campaign.
+3. When a Goal handoff exists, inspect autoresearch_goal_get before acting.
+4. Treat returned state, revision, actions, terminal reservation, and
+   next_action as authoritative. Re-read them before every mutation or replay.
+
+Use only exposed tools. An absent profile or required tool leaves its step
+blocked: report the integration gap without simulating it, substituting a
+profile, or treating another workflow as authorized fallback.
+
+The normal state order is:
+
+TASK_DRAFT -> DISCOVERING -> REVIEWING -> AWAITING_REWARD -> SELECTING ->
+AWAITING_LAUNCH_APPROVAL -> EXECUTING -> SYNTHESIZING -> COMPLETE.
+
+A closed_no_candidate or technical_failure terminal takes the server-validated
+DISCOVERING -> COMPLETE path without Society, reward, approval, execution, or
+scientific transition. State remains DISCOVERING until the exact terminal
+submission is persisted and reconciled.
+
+## Route by intent and observed state
+
+Read only the reference selected below, plus any reference it directly routes
+to. Read each selected reference completely before acting.
+
+| Intent or observed state | Required reference | Route |
+| --- | --- | --- |
+| Inspect, explain, diagnose, or report status | This entrypoint | Query canonical state read-only and hand off the observed next action. |
+| TASK_DRAFT | [Campaign protocol](references/campaign_protocol.md) | Follow only the returned drafting or scientist-decision action. |
+| Start a new outer campaign or apply a generic loop action | [Campaign protocol](references/campaign_protocol.md) | Follow the persisted profile, state machine, and human gate. |
+| Explicitly bind native-goal exploration to the canonical campaign; no handoff yet | [Native Goal launch](references/native_goal_launch.md) | Verify the open episode, prepare the handoff, and create the host goal exactly once. |
+| DISCOVERING, V3 handoff, before terminal outcomes | [V3 discovery](references/discovery_v3.md) and [workspace projections](references/workspace_projections.md) | Freeze outcome-blind selection provenance, then run bounded exploration. |
+| DISCOVERING, already-frozen V1 or V2 handoff, before terminal outcomes | [V1/V2 compatibility discovery](references/discovery_compatibility.md) | Preserve the exact historical contract and skip V3-only requirements. |
+| DISCOVERING with a terminal bundle, rejected submission, or interrupted bridge | [Terminal submission and review](references/terminal_submission_review.md) | Validate, submit, or replay only the exact state-authorized terminal. |
+| candidate_ready, or REVIEWING with panel work requested by next_action | [Terminal submission and review](references/terminal_submission_review.md), then [native Society panel](references/society_panel.md) | Freeze declared artifacts or run the exact reward-blind panel; preserve and stop on a persisted review block. |
+| REVIEWING with review_blocked, panel_incomplete, or no panel next_action | [Terminal submission and review](references/terminal_submission_review.md) | Preserve the persisted refusal or incomplete panel and stop. |
+| AWAITING_REWARD | [Campaign protocol](references/campaign_protocol.md) | If this message supplies scientist-authored reward, persist the exact action; otherwise stop for it. |
+| SELECTING or AWAITING_LAUNCH_APPROVAL | [Terminal submission and review](references/terminal_submission_review.md) | Prepare or launch only when the current scientist message supplies the required decision; otherwise stop at the gate. |
+| EXECUTING or SYNTHESIZING | [Confirmation and closeout](references/confirmation_closeout.md) | Watch the bound run and follow only its registered terminal route. |
+| Registered predictive dispatch or recovery | [Confirmation and closeout](references/confirmation_closeout.md) | Re-read approval and dispatch authority; execute only the exact returned action. |
+| COMPLETE with a registered Sydnor panel-ingestion or next-round-admission next_action | [Native Society panel](references/society_panel.md) | Follow this specific registered continuation before the generic COMPLETE route. |
+| COMPLETE | [Campaign protocol](references/campaign_protocol.md) | Report the terminal record; do not manufacture a successor. |
+
+State restricts which requested actions are legal; it never expands a status
+question into permission to act. Within one state, the most specific
+state-plus-next_action row wins; generic COMPLETE applies only when no narrower
+registered route exists. Explain a mismatch and surface the server's
+next_action without executing an unrequested action.
+
+## Authority boundaries
+
+- The scientist alone supplies reward and launch approval.
+- Society is reward-blind. It may review evidence but cannot rank rewards,
+  select a portfolio, approve launch, authorize compute, create a ClaimCard, or
+  update Landscape.
+- A native Goal is exploratory. Submission and review do not constitute
+  confirmation, canonical execution, scientific acceptance, or Landscape
+  transition.
+- Never dispatch, start a service, launch a scientific model, or run an
+  experiment unless the user explicitly requests that already-approved live
+  action and canonical state authorizes it.
+- Do not turn negative or technical closeouts into review candidates.
+- Frozen contracts, bundles, packets, decisions, and terminal observations are
+  immutable. Recovery may replay only the exact persisted content authorized
+  by next_action.
+- The active episode is the only writable scientific workspace. Treat inputs/
+  as read-only and put new scientific artifacts under outputs/. Follow
+  [workspace projections](references/workspace_projections.md).
+
+Use autoresearch_loop_apply_action, autoresearch_loop_checkpoint, and
+autoresearch_loop_record_reward only when exposed by the live profile and
+requested by the returned revision-bound next_action.
+
+## Keep the control shell visible
+
+Use a host planning tool when available and useful; otherwise state the next
+authorized action in commentary. After meaningful changes, report the observed
+phase, active roles, MCP checkpoint or loop_id, relevant file changes, and next
+human or agent action. Distinguish assigned workers from future reviewers;
+never reconstruct unobserved background activity.
+
+## Required handoff
+
+Before yielding, re-read the relevant canonical state and return one compact,
+self-contained handoff containing:
+
+- loop_id or review identity, authoritative state, and any terminal status;
+- observed submission, artifact-freeze, panel, or run result, with CandidateBundle
+  path and immutable hash when applicable;
+- the exploratory-only/non-acceptance boundary, open human gate, and exact
+  returned next_action or next invocation;
+- changed files and relevant artifact references; and
+- unresolved integration gaps or failed attempts.
+
+Write the Brain Researcher session snapshot before ending a state-changing
+canonical research turn. A read-only status/explanation request does not
+authorize writing a snapshot. If a required snapshot tool is unavailable,
+report the unmet handoff requirement rather than inventing a substitute.
+Client metadata and the default prompt are in
+[agents/openai.yaml](agents/openai.yaml).
+
+--- .agents/skills/run-episode/SKILL.md ---
+
+---
+name: run-episode
+description: >-
+  Implement, launch, resume, repair, monitor, or analyze a named research
+  episode under its existing scientific contract. Use for experiment execution
+  and results, not designing a new study or managing a formal BR campaign.
+---
+
+# Run an Episode
+
+Turn an existing research design into interpretable evidence. Work in the
+named standalone episode, not the private BR source checkout that distributes
+these instructions. Repository `AGENTS.md` and the episode contract govern.
+
+## Match the requested action
+
+- Implementation or execution: advance the next authorized experiment.
+- Analysis or plotting: use permitted existing evidence; do not launch new
+  experiments merely to strengthen a result or complete a figure.
+- Status or diagnosis: inspect and explain; do not mutate files, repair,
+  resubmit, or start a campaign unless that action is also requested.
+- A new question or substantive redesign belongs to `design-episode`.
+  Outcome-adaptive choices already delegated by the active search policy stay
+  here. A redesign request does not silently amend a running frozen contract.
+- Explicit formal BR campaign work belongs to `manage-research-campaign`.
+  A Codex goal, local launch, or request for scientific critique does not
+  establish that binding.
+
+## Resume from actual evidence
+
+Read the named episode's `GOAL.md`, `DATASETS.md`, and single search policy.
+Determine the current data-access stage before opening artifacts. Follow
+`outputs/README.md` to the relevant ASTRA program, execution-log entries and
+permitted evidence; use known safe paths if navigation is missing or stale.
+Read the state needed for this decision, not every prior attempt.
+
+Identify the selected experiment, its actual dependencies, and whether it is
+planned, running, completed, or blocked. Reuse the designated monitor's
+observation. Never infer completion from a missing job or resubmit a running
+attempt. Preserve failed attempts and start from completed prerequisites.
+
+Input payloads remain read-only. Positive read boundaries also cover indexes,
+terminal output and `outputs/`: no root-wide searches with exclusion globs.
+Instructions alone are not filesystem isolation. Preserve biological-group
+independence, overlap controls, data roles, support/atlas compatibility and
+unknown versus verified absence. Do not open closed outcomes to debug or plot.
+
+## Execute and repair
+
+- Use the runner's existing entrypoint and recorded validations. Add checks
+  only for an explicit contract requirement or a concrete failure that changes
+  the next action. No generic preflight, schema, SHA, provenance, receipt or
+  synthetic-qualification chain. Preserve requirements of frozen contracts.
+- Record the selected analysis and attempt in `outputs/experiment_log.md`
+  before a process or scheduler side effect, then the returned ID and observed
+  outcome. A plan, ASTRA export, dry run or synthetic success is not an
+  empirical launch or scientific finding.
+- Keep exploration as broad as the active question and policy allow. Do not
+  import another episode's candidate counts, model menu, pilot size or search
+  program. Respect the shared budget and the declared stopping rule.
+- Make contract-preserving engineering choices directly. For a diagnosed
+  defect, implement the focused fix, test it on compute, and retry the smallest
+  affected stage within existing authority. Honor explicit retry/job caps.
+- When a consequential code, input, runtime or protocol change invalidates a
+  result, mark only that result and its affected dependents stale in the
+  ledger. Reuse unaffected checks and evidence.
+- Missing required inputs, authority, or a consequential undelegated scientific
+  choice needs one early question with evidence and a recommendation. Optional
+  branches do not block ready work. Do not replace blocked empirical work with
+  unrequested synthetic demonstrations or hardening.
+- A required synthetic or calibration stage needs a scientific purpose, cost
+  and stop condition. Run short required checks inside the substantive
+  allocation. If a requirement dominates the budget or times out, report the
+  trade-off and propose a sufficient amendment; do not reset consumed budget,
+  enlarge a sweep, silently waive the requirement or cancel unrelated work.
+
+When measured runtime makes the next result doubtful, project the remaining
+work before selecting another run. Distinguish a per-job scheduler limit from
+the cumulative episode cap. Use authorized chunking, checkpoints and ready
+inputs directly; if the total cannot fit, identify the concrete resource or
+scientific amendment. Reuse existing measurements rather than adding a
+mandatory benchmark. More compute does not waive a scientific stop.
+
+Preserve the requested fidelity, including an adapted replication with stated
+deviations. Do not demand perfect upstream provenance or silently substitute a
+different dataset. Changes to estimand, model family, eligibility, frozen
+thresholds, data roles, claim or resources need authority unless already
+delegated by the active contract.
+
+## Compute, parallel work and waiting
+
+On Sherlock, follow `/etc/agents/AGENTS.md` and the relevant topic files.
+Run tests, scientific code, builds and substantial I/O in Slurm, not on login
+nodes. For interactive testing, reuse a suitable task-owned compute session
+or request a bounded one after resource discovery. Verify `hostname` and
+`SLURM_JOB_ID` inside the execution shell; a new shell-tool call or subagent
+does not automatically inherit the compute PTY. Stop if the allocation expires;
+never fall back to login-node testing. GPU work requires an actual GPU request.
+
+Delegate useful independent implementation, interpretation, plotting or
+monitoring with explicit permitted paths and a shared resource/thread budget.
+Give each submission and writable path one owner; the lead integrates shared
+records. One monitor owns each dependency chain. Workers coordinate compute
+with the lead rather than starting tests on a login node or duplicating polls.
+
+Use scheduler dependencies or the host-permitted wait/monitor mechanism.
+The site's minimum interval is a floor, not a polling target. Keep unchanged
+waits quiet unless periodic updates were requested. Report meaningful results,
+failures and decisions, and advance independent authorized work when useful.
+Do not fill waits with audits, status rewrites or repeated plots. No unattended
+login-node polling, keepalives, automatic renewals or supervisors.
+
+## Interpret and show the result
+
+Report what the comparison establishes, uncertainty at the independent-unit
+level, the strongest surviving alternative, and what remains unresolved.
+Separate exploratory evidence, held-out evaluation, replication and formal
+confirmation. A performance win alone does not identify its cause. Negative
+results and informative limitations are valid outcomes, not failed storytelling.
+
+Report how a result was actually reached. When a hypothesis, explanation or
+analysis choice is formed after seeing results, record it in the log with the
+results it was formed after and label it post hoc in reports. A post hoc
+explanation can be a good hypothesis; it is not a confirmed prediction. State,
+from the log, how many alternatives were compared when selecting a result. A
+score used to select an ROI, feature set, model, metric or threshold is
+optimistic for the option it selected; re-estimate that option on permitted
+data not used for the selection, or label the score selection-biased.
+
+At consequential scientific decisions, use exposed read-only BR literature/KG
+retrieval or focused plan/result critique within the disclosure boundary.
+Reuse prior evidence and inspect tool schemas only as needed. Record the
+question, evidence reference and decision impact in the existing log. Optional
+tool absence is not an installation or audit gate; never assume an external
+server can read an OAK path. Advisory critique grants no canonical authority.
+
+Plot new permitted evidence when it clarifies the comparison, uncertainty or
+a diagnosed problem. Use a source-backed plotting tool, with
+`neurofig-plotting` if available; identify data and evidence status. Image-gen
+is for conceptual illustration, not invented measurements, brain maps or
+result curves. If image-gen is explicitly requested for quantitative material,
+clarify whether the desired artifact is an illustrative schematic or an exact
+data plot; do not silently replace the requested tool or present generated
+numbers as evidence. Keep useful figures in `outputs/figures/` and share them
+during work. Do not add experiments, unlock outcomes or install a renderer
+merely to make a plot. Unchanged evidence needs no new figure.
+
+## Keep one clear handoff
+
+Maintain the scientific program in `outputs/astra/v0.0.14/astra.yaml`, attempts
+and job state in `outputs/experiment_log.md`, and concise navigation in
+`outputs/README.md`. Read [ASTRA and record ownership](references/astra.md)
+when authoring or changing these records; status-only requests remain read-only.
+Missing navigation or ASTRA tooling does not block authorized science.
+
+Hand off the observed result or stage, direct evidence, blocker if any, and
+next scientific action. Do not manufacture a successor run or canonical
+acceptance. Record changes once and link them; do not create dated audit,
+review or status documents for routine progress.
+
+For skill maintenance only, use the relevant
+[behavioral scenarios](references/behavioral_evals.md).

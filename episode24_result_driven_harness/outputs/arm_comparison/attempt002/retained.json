@@ -1,0 +1,27 @@
+{
+ "rule": "drop when rater-mean old-arm R1 >= 0.75 over the screening draws",
+ "screen_means": {
+  "EP01": 0.0,
+  "EP04": 0.0,
+  "EP05": 0.0,
+  "EP07": 0.0,
+  "EP08": 1.0,
+  "EP14": 1.0,
+  "EP17": 0.0,
+  "EP18": 0.0,
+  "EP23": 0.0
+ },
+ "retained": [
+  "EP01",
+  "EP04",
+  "EP05",
+  "EP07",
+  "EP17",
+  "EP18",
+  "EP23"
+ ],
+ "dropped": [
+  "EP08",
+  "EP14"
+ ]
+}

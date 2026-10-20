@@ -1,0 +1,85 @@
+{
+ "rule": "keep when rater-mean old R1 <= 0.25 and directive R1 >= 0.75",
+ "screen_means": {
+  "EP01-L3": {
+   "old": 0.0,
+   "directive": 1.0
+  },
+  "EP05-L1": {
+   "old": 0.0,
+   "directive": 1.0
+  },
+  "EP05-L2": {
+   "old": 0.0,
+   "directive": 1.0
+  },
+  "EP05-L3": {
+   "old": 0.0,
+   "directive": 0.0
+  },
+  "EP06-L1": {
+   "old": 1.0,
+   "directive": 1.0
+  },
+  "EP06-R": {
+   "old": 1.0,
+   "directive": 1.0
+  },
+  "EP07-R": {
+   "old": 0.0,
+   "directive": 0.0
+  },
+  "EP08-L2": {
+   "old": 0.0,
+   "directive": 1.0
+  },
+  "EP08-L3": {
+   "old": 1.0,
+   "directive": 1.0
+  },
+  "EP14-L1": {
+   "old": 1.0,
+   "directive": 1.0
+  },
+  "EP14-R": {
+   "old": 0.0,
+   "directive": 0.0
+  },
+  "EP15-R": {
+   "old": 0.0,
+   "directive": 0.75
+  },
+  "EP18-R": {
+   "old": 1.0,
+   "directive": 1.0
+  },
+  "EP22-R": {
+   "old": 1.0,
+   "directive": 1.0
+  }
+ },
+ "retained": [
+  "EP01-L3",
+  "EP05-L1",
+  "EP05-L2",
+  "EP08-L2",
+  "EP15-R"
+ ],
+ "retained_episodes": [
+  "EP01",
+  "EP05",
+  "EP08",
+  "EP15"
+ ],
+ "dropped": [
+  "EP05-L3",
+  "EP06-L1",
+  "EP06-R",
+  "EP07-R",
+  "EP08-L3",
+  "EP14-L1",
+  "EP14-R",
+  "EP18-R",
+  "EP22-R"
+ ]
+}
