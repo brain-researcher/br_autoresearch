@@ -20,6 +20,18 @@ active jobs and data boundaries. EP20's previously adopted simulation exception
 remains in force: label model-based results explicitly, without presenting them
 as real-data estimates. Engineering benchmarks alone are not scientific results.
 
+**What counts as a result — amended 2026-10-16.** The estimate or evaluation
+above counts as the next result only when, before it ran, its record named the
+explanations or claims it separates and the outcome that would weaken each. A
+held-out evaluation or reproduction with a frozen decision rule qualifies.
+Otherwise report it as calibration or description. In an active episode, once a
+result names its strongest surviving alternative, the default next action tests
+that alternative. If that test needs new data, held-out access or an estimand
+change, put it in the daily question batch rather than substituting a step that
+separates nothing. Interpret a null or an equivalence only after the same
+pipeline has detected a known positive effect at the same margin; otherwise
+report the comparison as underidentified.
+
 ## Standing scientist authority
 
 The scientist pre-authorizes the following for every episode. Act, then add one
@@ -36,6 +48,13 @@ dated log line; do not ask first.
 - Follow-ups within the episode question that keep its estimand, data roles and
   held-out boundary: activate and log each one, so the size of the search stays
   visible. There is no queue of unactivated proposals.
+- Missing source facts (codebooks, timing, units, labels, provenance) are not
+  stopping points (2026-10-16). Recover them from the paper, supplement, code
+  or permitted data. If a fact remains uncertain, adopt the most plausible
+  reading as a stated assumption before viewing the outcomes it affects, test
+  it against the data where possible, and report sensitivity to the plausible
+  alternatives; claims are then conditional on it. Provider contact is
+  optional, never a gate.
 
 Ask first only to change the question or primary estimand, data roles,
 held-out/test access, confirmatory thresholds or claims; to add a dataset or data

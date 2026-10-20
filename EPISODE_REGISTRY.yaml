@@ -54,9 +54,12 @@ shared_evidence_groups:
     required_shared_artifact: exposure_split_ledger
     evidence_independence: correlated_not_independent
   - group_id: seu_a1876_ep09_ep11
+    # Retain the group ID for existing references; since 2026-10-17 all three
+    # episodes draw on the Gao/CEBSIT whole-cortex release (Zenodo 16909126).
     episode_ids: [ep09, ep10, ep11]
     required_shared_artifact: exposure_split_ledger
     evidence_independence: correlated_not_independent
+    evidence_ref: episode09_local_global_projection/outputs/runs/measurement_and_roles/attempt002/gao_exposure_ledger_v2.csv
   - group_id: things_ep17_prospective_ep18
     # Retain the group ID for existing references; EP18 is now an executed study.
     episode_ids: [ep17, ep18]
@@ -145,7 +148,7 @@ episodes:
     path: episode13_bold_target_identifiability
     title: Counterexample-guided exact BOLD identifiability
     search_policy_ref: episode13_bold_target_identifiability/SEARCH_POLICY.yaml
-    local_role: current_adaptive_episode
+    local_role: current_theory_episode
     foundation_primary: null
     existing_canonical_history_requires_reconciliation: true
   - episode_id: ep14
@@ -160,12 +163,16 @@ episodes:
     search_policy_ref: episode15_mdtb_topography_vs_geometry/SEARCH_POLICY.yaml
     local_role: current_adaptive_episode
     foundation_primary: F20-02
+    evidence_mode: observed_map_development_and_adopted_audit_original_mechanism_unresolved
+    independent_confirmation: false
   - episode_id: ep16
     path: episode16_braingate_cross_session_failure_modes
     title: BrainGate offline cross-session failure signatures
     search_policy_ref: episode16_braingate_cross_session_failure_modes/SEARCH_POLICY.yaml
     local_role: current_adaptive_episode
     foundation_primary: null
+    evidence_mode: T11_development_then_one_shot_T9_single_case_evaluation  # case series adopted 2026-10-16
+    independent_confirmation: false
   - episode_id: ep17
     path: episode17_cneuromod_model_ranking_stability
     title: CNeuroMod measurement-contract stability of visual-model relations

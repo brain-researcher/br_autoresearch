@@ -89,6 +89,15 @@ quantities and fitting data. Match information, capacity and tuning allowance
 where the claim depends on a fair comparison. Add detail until the scientific
 comparison is clear, not until every implementation choice is frozen.
 
+For the primary comparison, write which outcome would weaken each named
+account. Check that the accounts predict a difference larger than the data can
+resolve at the independent-unit level. If every account predicts roughly no
+difference in the available data, reframe the question or choose other data
+rather than adding methods. When a plausible answer is a null or an
+equivalence, plan a known-positive contrast measured with the same pipeline and
+margin, so the null can be interpreted. This is an interpretation requirement,
+not a launch gate.
+
 ## Keep the search open where it should be open
 
 Use supported starting families and parameter ranges as a launch point, not
@@ -116,7 +125,8 @@ useful `inputs/README.md` and `outputs/README.md` navigation. State proposed
 policy choices as proposed; file creation is not a freeze or launch approval.
 For existing work, update living documents instead of adding review reports:
 
-- `GOAL.md`: question, rationale/novelty, decisive comparisons and claim scope.
+- `GOAL.md`: question, rationale/novelty, competing accounts, decisive
+  comparisons with the outcome that would weaken each, and claim scope.
 - `DATASETS.md`: observations, source roles, units, availability and limitations.
 - The single search policy: operational choices and commitments the runner
   needs; distinguish proposed changes from frozen ones.

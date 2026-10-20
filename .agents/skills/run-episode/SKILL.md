@@ -65,8 +65,10 @@ unknown versus verified absence. Do not open closed outcomes to debug or plot.
   result, mark only that result and its affected dependents stale in the
   ledger. Reuse unaffected checks and evidence.
 - Missing required inputs, authority, or a consequential undelegated scientific
-  choice needs one early question with evidence and a recommendation. Optional
-  branches do not block ready work. Do not replace blocked empirical work with
+  choice needs one early question with evidence and a recommendation. A missing
+  source fact about available data is not such a blocker: recover it from the
+  paper, code or permitted data, or adopt a stated assumption as `AGENTS.md`
+  describes. Optional branches do not block ready work. Do not replace blocked empirical work with
   unrequested synthetic demonstrations or hardening.
 - A required synthetic or calibration stage needs a scientific purpose, cost
   and stop condition. Run short required checks inside the substantive
@@ -118,6 +120,14 @@ Separate exploratory evidence, held-out evaluation, replication and formal
 confirmation. A performance win alone does not identify its cause. Negative
 results and informative limitations are valid outcomes, not failed storytelling.
 
+Call an estimate the episode's result only when its record named, before it
+ran, the explanations it separates and the outcome that would weaken each;
+otherwise label it calibration or description. Interpret a null or an
+equivalence only if the same pipeline detected a known positive effect at the
+same margin. If that control failed or is missing, report the comparison as
+underidentified, and diagnose the pipeline or measurement under standing
+authority before proposing an estimand change.
+
 Report how a result was actually reached. When a hypothesis, explanation or
 analysis choice is formed after seeing results, record it in the log with the
 results it was formed after and label it post hoc in reports. A post hoc
@@ -154,9 +164,14 @@ when authoring or changing these records; status-only requests remain read-only.
 Missing navigation or ASTRA tooling does not block authorized science.
 
 Hand off the observed result or stage, direct evidence, blocker if any, and
-next scientific action. Do not manufacture a successor run or canonical
-acceptance. Record changes once and link them; do not create dated audit,
-review or status documents for routine progress.
+next scientific action. In an active episode, that action defaults to a test of
+the strongest surviving alternative. If the test needs new data, held-out
+access or an estimand change, put it in the daily question batch rather than
+substituting a step that separates nothing. A valid scientific stop stays a
+stop: record the alternative and the test that would address it. Do not
+manufacture a successor run or canonical acceptance. Record changes once and
+link them; do not create dated audit, review or status documents for routine
+progress.
 
 For skill maintenance only, use the relevant
 [behavioral scenarios](references/behavioral_evals.md).
