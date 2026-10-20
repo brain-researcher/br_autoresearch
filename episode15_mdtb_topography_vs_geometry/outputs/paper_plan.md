@@ -58,6 +58,19 @@ change. Engineering/resource authority is already standing; no provider contact
 or new dataset is required. No new outcome has selected this proposal beyond
 the disclosed missing-value diagnostic. The existing valid stop is preserved.
 
+### Inactive implementation — October20
+
+The separate [runner](tools/run_observed_map_common_support.py),
+[scanner](tools/observed_map_common_support.py) and
+[reporter](tools/report_observed_map_common_support.py) implement the proposal
+behind the absent `scientist_amendment_20261020_observed_map_common_support`
+policy amendment. They reuse the original188-trained frozen predictions and
+complete B-only manifest; the full strict-availability scan and cached
+observations freeze before scoring. A later report-only retry reuses that
+freeze without reopening B. All17 new/affected invented-data tests passed in
+step48682434.0; see [evidence](runs/observed_map_common_support_checks001/tests.txt).
+This preparation neither adopts the proposal nor constructs an empirical mask.
+
 ### Relevant prior methods — checked October20, proposal still unadopted
 
 The [original MDTB paper](https://web.cs.dal.ca/~carlosh/pubs/king2019.pdf)

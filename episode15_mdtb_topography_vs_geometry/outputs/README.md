@@ -1,5 +1,19 @@
 # EP15 outputs
 
+**October 20 — common-support implementation tested, still inactive.**
+The [separate runner](tools/run_observed_map_common_support.py),
+[complete scanner](tools/observed_map_common_support.py) and
+[exploratory reporter](tools/report_observed_map_common_support.py) implement
+only the [pending proposal](paper_plan.md#proposed-daily-decision--october-19-2026).
+They require its separate adoption before any input reader, retain all frozen
+predictions and controls, freeze the complete availability intersection before
+loss, and restrict then recenter all arrays on the identical support.
+All17 new/affected fixture tests passed in compute step48682434.0
+([evidence](runs/observed_map_common_support_checks001/tests.txt)); independent
+source review found no actionable defect. This is implementation evidence only:
+no new audit map was opened, no empirical mask or score was computed, and the
+original188-location endpoint and scientific decision below remain unchanged.
+
 **October 19 — complete-support held-out evaluation stopped: required source NaN verified.**
 All 12 participants' predictions for 18 conditions, 188 locations, 16 variants
 and every control froze before the first audit B opening. The evaluator then

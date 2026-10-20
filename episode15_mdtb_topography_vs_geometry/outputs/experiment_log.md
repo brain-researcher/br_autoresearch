@@ -1,5 +1,12 @@
 # Experiment log
 
+## 2026-10-20 — observed_map_audit — inactive common-support implementation
+
+Prepare the still-unadopted outputs/paper_plan.md followup with an explicit separate policy gate before prediction or audit readers. Existing policy, original188 endpoint, inputs, frozen predictions and failed audit/access history stay unchanged; no empirical mask or score is constructed.
+The new scanner visits every required selected B regressor for all12people and all18conditions/16runs, intersects unchanged positive-weight strict-sampler validity, and freezes the mask plus observations before loss. Reporting restricts then recenters all frozen16-model/control arrays and uses12participant uncertainty as exploratory only.
+Select focused invented-data tests for the new gate/scanner/freeze/report plus affected existing reader/runner/reporter checks in one attended dev1CPU/4GiB/20min allocation, one numerical thread and180s command timeout. No real audit inputs or outcomes are read; scope adoption remains unanswered and no empirical job is selected.
+Step48682434.0 onsh04-18n32 passed all17 new/affected tests in3.671s (6.40s process wall,233448KiB peakRSS), exit0; evidence runs/observed_map_common_support_checks001/. The attended20min shell exited. Independent bounded source review found no actionable defect. The absent adoption key still blocks real execution; no empirical result is claimed.
+
 ## 2026-10-20 — observed_map_audit — prior missing-data methods checked; amendment remains pending
 
 Checked the MDTB paper and its linked public code: cerebellar masking, a non-NaN extraction branch and some `nanmean` summaries are documented; none establishes handling of this exact failed stencil or our proposed common-support rule. Source links and limits are retained in paper_plan.md.

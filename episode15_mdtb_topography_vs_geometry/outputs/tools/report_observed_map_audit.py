@@ -77,7 +77,7 @@ def _primary_family(gains):
     }
 
 
-def _score(bundle, observations, *, check):
+def _score(bundle, observations, *, check, support_size=SUPPORT_SIZE):
     """Pure scoring after adoption, complete prediction lock and axis checks."""
     observations = tuple(observations)
     # Reject every identity/axis omission before converting any observed value.
@@ -87,9 +87,12 @@ def _score(bundle, observations, *, check):
              "all original twelve audit observations are required in canonical order")
     _require(all(tuple(item.task_b_condition_ids) == CONDITIONS
                  and tuple(item.voxel_ids) == bundle["voxel_ids"] for item in observations),
-             "audit observations must retain all eighteen conditions and the frozen 188-location axis")
+             "audit observations must retain all eighteen conditions and the supplied frozen location axis")
+    _require(type(support_size) is int and 2 <= support_size <= SUPPORT_SIZE
+             and len(bundle["voxel_ids"]) == support_size,
+             "the explicitly supplied support size must match the complete frozen axis")
     check()
-    observed = np.stack([_array(item.task_b_partitions, (4, 18, SUPPORT_SIZE), "audit observed Task B")
+    observed = np.stack([_array(item.task_b_partitions, (4, 18, support_size), "audit observed Task B")
                          for item in observations])
     centered = observed - observed.mean(axis=-1, keepdims=True)
     losses = {baseline: _loss(centered, [bundle[baseline]] * PARTICIPANTS)

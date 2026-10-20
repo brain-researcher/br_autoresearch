@@ -1126,6 +1126,9 @@ analyses:
       and frozen 188-location support; distinguishes transport of observed
       predictive benefit, not biology from stable measurement structure.
       Same-account procedural separation; the original mechanism audit is consumed.
+      The separately implemented common-support followup remains inactive and
+      requires its own spatial-estimand amendment before readers or scoring;
+      it cannot substitute for this complete188-location endpoint.
     inputs:
     - {id: policy, from: ../search_policy}
     - {id: specification, type: data, source: outputs/proposed_observed_map_audit.md}
@@ -1136,6 +1139,10 @@ analyses:
     - {id: runner, type: data, source: outputs/tools/run_observed_map_audit.py}
     - {id: reporter, type: data, source: outputs/tools/report_observed_map_audit.py}
     - {id: support_diagnostic_code, type: data, source: outputs/tools/diagnose_observed_map_audit_support.py}
+    - {id: inactive_common_support_proposal, type: data, source: outputs/paper_plan.md}
+    - {id: inactive_common_support_scanner, type: data, source: outputs/tools/observed_map_common_support.py}
+    - {id: inactive_common_support_runner, type: data, source: outputs/tools/run_observed_map_common_support.py}
+    - {id: inactive_common_support_reporter, type: data, source: outputs/tools/report_observed_map_common_support.py}
     outputs:
     - id: observed_map_audit_result
       type: report
