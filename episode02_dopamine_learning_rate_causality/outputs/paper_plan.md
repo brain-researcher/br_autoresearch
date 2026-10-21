@@ -1,24 +1,149 @@
 # EP02 paper plan — From a protocol effect to learning-rule evidence
 
-Design/writing revision: 2026-09-30. No empirical analysis or outcome opening
-has occurred. This plan reorganizes the existing contract; it does not enact
-new endpoints, model families, thresholds, terminal rules, or access rights.
+Current implementation status: October 20, 2026. No empirical model fitting or
+intervention-outcome opening has occurred. The original September 30 paper
+design is retained below; subsequent adopted source/observation choices and
+component checks are distinguished from empirical results.
 
 The subsequent October 6 scientist agreement adopts the
 [authenticated article/task primary and report-only pinned-code sensitivity](source_semantics_design.md#adopted-model-choice--october-6-2026).
-That variant choice is answered; provider trigger/codebook facts, meaningful
-margin rationale and empirical implementation remain unfinished. The agreement
-does not adopt optional rival operators or validate a confirmatory decision rule.
+That variant choice is answered. [Policy revision 6](../SEARCH_POLICY.json)
+freezes the codebook, time axis, eligibility and the explicitly stated
+trigger/cap and roster assumptions; see the [October 16 classification](source_semantics_design.md#october-16-2026--results-and-classification-job-48180654).
+The adopted [October 12 procedural separation](../GOAL.md#adopted-procedural-evaluation-separation--october-12-2026)
+replaces the former permission-enforced separation requirement. Same-account
+access is disclosed and must not be described as physically isolated or blinded.
+Neither adoption releases development scoring or intervention outcomes.
 
-The [current source and implementation handoff](source_semantics_design.md)
-incorporates the subsequent October 3–6 work: exact unresolved provider fields,
-the unsent source request, separate article/pinned-code variants, the already
-noncausal 462-label fallback, passing arithmetic components and eleven passing
-checks of unadopted rival interfaces. Those checks are preparation rather than
-empirical or full-model qualification. The four proposed margins remain
-inactive, physical reader separation is unprovisioned and no empirical result
-is available. The [execution log](experiment_log.md) is the evidence for that
-progress; the results narrative below remains conditional.
+The [source and implementation handoff](source_semantics_design.md) preserves
+the historical October 3–6 source requests and component work; its earlier
+unresolved-source and enforced-isolation wording is superseded by the adopted
+definitions and separation above. The noncausal 462-label sensitivity remains
+assumption-dependent. Optional rival operators and all four raw scientific
+margins remain unadopted; their substantive rationale, endpoint calibration,
+the development-scoring handoff and the complete empirical fitter remain
+unfinished. Component checks are preparation, not full-model qualification.
+The [execution log](experiment_log.md) records current evidence; the empirical
+results narrative remains conditional.
+
+## October 20: mechanism probabilities to the existing observation fit
+
+Revision 6 resolved or explicitly assumed the source definitions; the earlier
+source-gap wording above is historical. The four raw margins, their endpoint
+calibration and the scoring handoff remain unbound/closed. No empirical data
+were read for this implementation.
+
+[`mechanism_session_readout.py`](code/mechanism_session_readout.py) now averages
+explicitly supplied eligible-trial probabilities within each declared session,
+then takes the logit. It joins the resulting offsets to observed counts by exact
+mouse/session identity and calls the existing eight-control observation fit or
+separate locked nine-control refit. The held-mouse prediction constructor
+accepts no held outcomes. Empirical zero-count sessions are retained; model
+trial counts never replace empirical denominators. Five seeds remain separate
+through fitting and scoring. This expected-rate parameterization uses the
+already selected session-binomial approximation; heterogeneous trial
+probabilities do not have an exactly binomial sum distribution.
+
+The adapter adds no fitted intercept or slope: the observation model retains
+its single common offset and shared Gaussian mouse effect. Empty model support
+fails; exact probabilities 0/1 remain visible but cannot enter its finite-logit
+fitter. No clipping or pseudocount is supplied. All six analytic component
+checks passed in coordinator allocation **48756235**, **0.012 seconds**;
+[test output](runs/mechanism_session_readout/attempt001/readout_tests.txt).
+This qualifies the connector under its supplied-input contract, not a complete
+mechanism model.
+
+### Concrete ACTR probability-generation recipe
+
+The source defines a stochastic lick plant, not `sigmoid(RNN output)`.
+The pinned [`dlRNN_train_learnDA.m`](code/author_oracle/dlRNN_train_learnDA.m)
+lines 197–224 combine recurrent and reactive inputs, sample the plant and
+measure latency/lick count; lines 242–269 and 330–341 use that trajectory for
+eligibility, error and weight updates. Its full-pre-reward lick count at line
+223 is not this episode's binary 750-ms endpoint. The qualified components
+[`actr_port.py`](code/actr_port.py) supply `recurrent_trial` (lines 104–143),
+`behavioral_plant` (154–206), the adopted explicit-trigger multiplier (209–236)
+and `learning_step` (265–278). The plant returns one-based 1-ms lick times;
+the recurrent time constant of 25 ms is not the integration time step.
+
+[`actr_plant_readout.py`](code/actr_plant_readout.py) implements the conditional
+plant readout below on caller-supplied frozen pre-update activities. It accepts
+exactly five seed paths, explicit reward ticks, plant scales/reward conventions,
+and numerical settings. It does not generate recurrent learning paths or use
+`synthetic_fixture` as a production model. All six event-tape/Bernoulli checks
+passed in **48756235**, **0.017 seconds** ([output](runs/mechanism_session_readout/attempt001/plant_readout_tests.txt)).
+The additional non-mocked zero-drive plant check also passed in **48756235**,
+**0.011 seconds** ([output](runs/mechanism_session_readout/attempt001/plant_source_integration_test.txt));
+it exercises the source reward/background convention without RNN training.
+All **13** new component checks pass. No cohort simulation ran; the shared
+allocation is charged once under EP12, not again to EP02.
+
+The outcome-blind conditional Monte Carlo recipe within the existing ACTR
+family is:
+
+1. Keep each of the five frozen top-level seeds and its complete learning
+   trajectory separate. For each scheduled trial, run the 25-ms recurrent
+   dynamics with its original neural tape. Form the source recurrent-plus-
+   reactive activity before updating any weights. Draw the training plant
+   trajectory from its own fixed stream, apply the revision-6 task trigger/cap
+   and doubled-current-factor rule, and retain that trajectory's original
+   error, eligibility and learning update. Neither extra readout draws nor
+   held-mouse outcomes may change this training stream or state.
+2. On a frozen copy of that trial's activity and plant reward convention, draw
+   additional plant trajectories from a separate keyed stream. The executable
+   inner readout is `licks, _ = behavioral_plant(activity, rng, reward=reward,
+   scale=scale)` followed by `int(any((licks >= reward_tick - 750) &
+   (licks < reward_tick)))`. The reward tick is explicit, including the scheduled
+   absent reward on omission trials; only the frozen eligible cued-rewarded
+   trials enter the session prediction. Do not substitute the 76-sample
+   continuous-trace replication window for this 750-ms binary event.
+3. For each trial, average those readout events to estimate its conditional
+   probability. Pass those estimates to `aggregate_trial_probabilities` with
+   the explicit session/eligibility arrays. The result is conditional on that
+   seed's learning history, not a claim to integrate uncertainty over all
+   possible learned networks. The common seed-score aggregation remains
+   unchanged. No readout intercept is fitted before the observation layer.
+4. Freeze the numerical replication schedule, maximum draws and acceptable
+   logit error before empirical scoring. With equal independent readout draws
+   per eligible trial, a session mean is an average of independent bounded
+   Bernoulli draws conditional on its fixed learning path; a Hoeffding bound
+   can therefore bound Monte Carlo error without assuming equal trial
+   probabilities. Spend the declared numerical failure probability across
+   all five seeds, sessions and declared checkpoints, including skipped later
+   looks. Accept a finite-logit handoff only when the entire
+   error interval is inside (0,1) and its logit width meets the frozen numerical
+   tolerance. Otherwise extend only the declared draw schedule or report the
+   probability estimate unresolved; never turn a zero-frequency sample into
+   an impossible event, add a pseudocount, or remove that session. The driver
+   returns fit-ready readouts only when every seed/session has resolved; a
+   draw cap preserves the last complete-stage estimates without releasing a
+   favorable subset. These intervals measure numerical precision only.
+
+This supplies an implementable probability recipe, not a request to change the
+scientific question or a new approval gate for ordinary implementation. Its
+numerical draw schedule must be set from measured compute cost; it is distinct
+from the four unbound scientific margins. A driver must still instantiate the
+production task inputs and declared source assumptions: the current short
+`synthetic_fixture` is not the eight-session production schedule, and its
+replacement initialization and explicit activation callbacks are not recovered
+author-workspace assets. Use the article variant for primary predictions;
+the 30-ms/set-four sensitivity cannot supply its trigger or rescue it. A
+logistic transform of mean neural output, smoothed lick count, changed endpoint
+window, or expectation-driven learning update would instead introduce a new
+readout/model assumption and must not be silently substituted. Unadopted rival
+operators remain unadopted. No empirical fitting or outcome access is released
+by this engineering work.
+
+Before a real-data fit, the production activity producer must connect the
+eight-session task schedule, recurrent state/learning updates and declared
+source assumptions for each family to these frozen plant inputs. The joint
+mechanism/readout fitting and complete nine-fold/five-seed orchestration still
+need implementation; only the supplied-probability observation fit exists.
+The shared rival definitions and numerical draw settings must be explicit, not
+inferred from the test fixtures. Independently, the four presigned raw margins,
+their endpoint calibration and a recorded development scoring handoff still
+gate development outcome access. Primary intervention outcomes remain closed
+until their existing final-lock and single-opening requirements are met.
 
 ## October 7: selected prospective population observation recipe
 

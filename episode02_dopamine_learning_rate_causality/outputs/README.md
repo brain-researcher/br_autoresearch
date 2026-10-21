@@ -1,5 +1,24 @@
 # Outputs
 
+**October 20 — deterministic connector and conditional plant sampler checks pass.**
+The [array-only connector](code/mechanism_session_readout.py) averages eligible
+trial probabilities before taking session logits and joins exact mouse/session
+identities into the existing observation fit. It retains zero-count sessions,
+separates the locked nine-control refit, and refuses unsmoothed boundary
+probabilities. All six [analytic checks](tests/test_mechanism_session_readout.py)
+passed in **48756235**, **0.012 seconds** ([output](runs/mechanism_session_readout/attempt001/readout_tests.txt)).
+The [conditional sampler](code/actr_plant_readout.py) now implements the
+[plant recipe](paper_plan.md#concrete-actr-probability-generation-recipe) on
+five supplied frozen paths with separate RNG streams, stagewise numerical
+error allocation and explicit draw/precision limits. Its six small event-tape
+checks passed in **48756235**, **0.017 seconds** ([output](runs/mechanism_session_readout/attempt001/plant_readout_tests.txt));
+the non-mocked zero-drive source-plant check passed in **0.011 seconds**
+([output](runs/mechanism_session_readout/attempt001/plant_source_integration_test.txt)).
+All **13** new checks pass; the allocation is charged once under EP12.
+The production activity producer and joint mechanism fitting remain missing.
+No empirical fit or outcome opening is claimed; all four raw margins and
+development/primary scoring boundaries remain unchanged.
+
 **October 16, 18:35 Pacific — definitions frozen; primary structural gate passed.**
 Policy revision 6 (`source_definitions_20261016` in `SEARCH_POLICY.json`,
 definitions only) freezes the codebook, eligibility, session and lost-block

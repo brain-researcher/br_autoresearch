@@ -1,5 +1,21 @@
 # Experiment log
 
+## 2026-10-20 — implementation_qualification — connector and conditional plant sampler checks pass
+
+The coordinator ran all six deterministic readout checks in allocation48756235: **6 pass, 0.012s** ([output](runs/mechanism_session_readout/attempt001/readout_tests.txt)); the shared allocation is charged once under EP12, not again to EP02.
+Added `code/actr_plant_readout.py` and six small event-tape/Bernoulli tests. It reads only supplied frozen pre-update activities for exactly five paths; separate keyed readout RNG streams never alter training dynamics or RNG.
+Finite draw stages allocate numerical error across all five seeds/sessions/looks; explicit logit precision and total draw limits gate an all-session/all-path handoff. Zero/one or insufficient-precision estimates remain unresolved with no pseudocount or partial-fit packet.
+The six sampler checks passed in48756235, **0.017s** ([output](runs/mechanism_session_readout/attempt001/plant_readout_tests.txt)); the non-mocked zero-drive source-plant check passed **1/1, 0.011s** ([output](runs/mechanism_session_readout/attempt001/plant_source_integration_test.txt)). All13new component checks pass.
+No recurrent/cohort simulation, empirical data, observed likelihood, margin or access flag was used or changed. The production activity producer and joint mechanism fitting remain missing; next is their implementation with the existing scoring-access requirements preserved.
+
+## 2026-10-20 — implementation_qualification — mechanism session readout connector prepared
+
+Implemented `code/mechanism_session_readout.py`: mean eligible-trial probabilities, exact mouse/session joins, unchanged eight-control observation fit and separate nine-control locked refit; held predictions accept no outcomes.
+Model-trial counts never replace observed denominators; zero-count sessions stay; empty support and non-finite-logit boundary probabilities fail without clipping or pseudocounts.
+Six analytic tests are prepared but unrun; the coordinator owns compute execution and scheduler accounting. No job, empirical payload, fitted result or scientific comparison was produced by this preparation.
+`paper_plan.md` specifies a source-linked conditional plant Monte Carlo recipe with independent readout streams, unchanged sampled learning trajectories and an explicit numerical-boundary rule; the production driver remains unfinished.
+Four raw margins stay null, every access flag stays false, and no development scoring handoff or primary opening is created. Next: coordinator component checks, then the production probability driver under the existing panel and source assumptions.
+
 ## 2026-10-17 00:05 Pacific — source_semantics_design — independent Codex review of revision 6 and the structural gate
 
 Delegated under the standing workflow: `codex exec` (gpt-6-astra, max effort, read-only, web search on; 23:52–23:59 Pacific, text only) reviewed a 91-KB prompt. It held the October 16 design-note sections, the revision 6 diff, the gate code, tests and runner, the aggregate packet, the ASTRA section and the new log entries; no raw data or outcomes were sent. Output: `$SCRATCH/br_autoresearch/episode02_dopamine_learning_rate_causality/codex_review_20261016/codex_review.md`.
