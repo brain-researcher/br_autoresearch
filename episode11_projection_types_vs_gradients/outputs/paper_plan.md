@@ -6,7 +6,32 @@ biological result or authorization to open outcomes. The operative v2
 decision rules remain unchanged. Detailed feasibility and optimizer history
 stay in [GOAL.md](../GOAL.md) and [experiment_log.md](experiment_log.md).
 
-## October 6 public-source update — release locations, no new identity certification
+## October 20 source identity assumption
+
+The scientist's animal-study continuation and repository standing authority
+permit uncertain source facts to be handled as explicit assumptions before
+outcomes. Adopt **one selected whole-brain/sample pair per mouse**. The
+[existing identity assessment](stage0/whole_cortex_ssptr_identity_unit.md)
+establishes 36 unique fMOST IDs and 36 unique provider sample IDs with a
+one-to-one mapping. It does not supply an official mouse crosswalk. EP09's
+use of the same source is not new independent evidence for this assumption.
+
+Keep all cells from a pair together; merge any documented aliases before a
+future role lock. Shared injection dates, line or laboratory do not certify
+distinct experiments and cannot be counted as extra independent units.
+Any animal-level inference must disclose the assumption and show group-level
+influence; an exact duplicate specimen would invalidate the corresponding
+independence claim. Do not invent a re-grouping merely to pass a support gate.
+This resolves a procedural certificate requirement, not biological certainty.
+
+The next permissible preparation is outcome-blind reconstruction eligibility
+and an exact proposed development/held-out reader boundary. Recovery and
+replicate-level precision remain unresolved. A smaller allocation contrast
+would change the primary estimand and still requires a separate prospective
+decision. No axon payload, role assignment, new simulation or empirical fit
+is activated by this source interpretation; no primary threshold is relaxed.
+
+## Historical October 6 source review
 
 The official [Gao reconstruction release](https://zenodo.org/records/16909126)
 still identifies the Allen-CCFv3 SWC archive `data_v3.zip`. The associated

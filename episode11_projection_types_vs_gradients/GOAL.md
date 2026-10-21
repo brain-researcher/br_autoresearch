@@ -1,5 +1,13 @@
 # Do nearby somatosensory neurons use reusable output patterns?
 
+**October 20 source-fact continuation:** the existing one-to-one mapping of
+36 whole-brain/sample pairs supports a prospective **one pair per mouse
+assumption**, now adopted under standing authority. Animal-level interpretation
+will be conditional on it; an additional provider certificate is not a gate.
+This does not establish independence, resolve reconstruction eligibility or
+precision, lock roles, or reopen outcomes. See the [current source decision](outputs/paper_plan.md#october-20-source-identity-assumption).
+The October 6 closeout and numerical results below remain historical facts.
+
 ## Adopted local closeout — October 6, 2026
 
 The scientist adopted closure of the original cross-animal primary as

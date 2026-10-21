@@ -1,5 +1,14 @@
 # Experiment log
 
+## 2026-10-20 — source identity: conditional interpretation adopted
+
+- Under standing source-fact authority and the animal-study continuation, adopt one selected whole-brain/sample pair per mouse as an explicit assumption.
+- Existing permitted assessment: 36 fMOST IDs map one-to-one to 36 sample IDs; this is not an official animal crosswalk or batch-independence proof.
+- Provider confirmation is no longer an execution prerequisite; conditional claims, whole-pair grouping and documented-alias merging remain mandatory.
+- No outcome, role, threshold, primary estimand or dataset changes; no job or empirical reader opened.
+- Next preparation: exact outcome-blind eligibility/reader specification; original recovery and precision problems remain unresolved.
+- Decision: [paper plan](paper_plan.md#october-20-source-identity-assumption); earlier closeout and usage retained.
+
 ## 2026-10-06 — population_h_optimizer_recovery — scientist-adopted primary closeout
 
 The scientist replied to the outstanding-judgment recommendations:

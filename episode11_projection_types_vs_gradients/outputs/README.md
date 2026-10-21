@@ -1,5 +1,13 @@
 # Outputs
 
+**October 20 — source-identity assumption adopted; outcome access unchanged.**
+The selected 36 brain/sample pairs are one-to-one in the released metadata.
+Treat one pair per mouse as an explicit conditional assumption under standing
+authority, rather than wait for a provider certificate. This does not establish
+independence or resolve eligibility, recovery or precision. The original primary
+remains incomplete. See the [decision and next preparation](paper_plan.md#october-20-source-identity-assumption)
+and [execution log](experiment_log.md).
+
 **October 6 adopted closeout:** the original cross-animal primary is
 **unresolved/incomplete**, without empirical adjudication. Real projection
 and audit outcomes remain closed, prior attempts/charges are retained, and

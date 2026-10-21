@@ -4,6 +4,22 @@ episode_id: ep11
 common_protocol_ref: ../ADAPTIVE_SEARCH_PROTOCOL.md
 evidence_mode: adaptive_search
 
+source_fact_interpretation_2026_10_20:
+  authority: repository_standing_source_fact_authority_and_scientist_animal_study_continuation
+  evidence: outputs/stage0/whole_cortex_ssptr_identity_unit.md
+  assumption: each_of_the_36_unique_whole_brain_sample_pairs_represents_one_mouse
+  evidence_limit: one_to_one_selected_ID_mapping_not_an_official_animal_crosswalk
+  claim_limit: any_animal_level_interpretation_is_conditional_on_this_assumption
+  additional_provider_certificate_required: false
+  supersedes:
+    - provider_confirmation_as_a_prerequisite_in_grouping_identity_evidence
+    - provider_certification_blocker_in_outcome_search_activation
+  known_duplicate_specimens_must_be_grouped_together: true
+  roles_or_payload_access_changed: false
+  biological_independence_or_batch_independence_proven: false
+  empirical_primary_reactivated: false
+  remaining: outcome_blind_eligibility_model_recovery_precision_and_prospective_role_lock
+
 local_closeout_2026_10_06:
   authority: explicit_scientist_acceptance_of_recommended_closeout
   user_quote: "i agree with your judgement; EP20 is fine with simulation because we dont have real data"
@@ -57,7 +73,7 @@ dataset_roles:
   sensitivity_resource: SEU_A1876_five_provider_labeled_SSp_tr_cells
   A1876_cells_do_not_count_toward_Gao_primary_role_minima: true
   shared_EP09_EP10_EP11_role_table_applies_only_to_A1876_sensitivity: true
-  split_unit: verified_independent_animal
+  split_unit: whole_brain_sample_pair_under_declared_one_pair_per_mouse_assumption
   current_grouping_proxy: unique_fMOST_brain_and_sample_ID_pair
   current_grouping_proxy_count: 36
   grouping_identity_evidence:
@@ -67,9 +83,9 @@ dataset_roles:
     fMOST_id_to_provider_sample_id_mapping: strict_one_to_one
     operational_unit: distinct_whole_brain_sample_pair
     independent_animal_certification: not_available_in_public_release
-    cross_animal_claim_requires: provider_confirmation_or_official_animal_sample_crosswalk
+    cross_animal_claim_requires: explicitly_conditional_one_pair_per_mouse_interpretation_or_direct_identity_confirmation
     alternative_cross_brain_sample_estimand_requires_explicit_prospective_redesign: true
-  one_brain_sample_equals_one_independent_animal_must_be_confirmed_before_role_lock: true
+  one_brain_sample_equals_one_independent_animal_must_be_confirmed_before_role_lock: false
   published_provider_projectome_fields_forbidden:
     - class
     - class1
@@ -258,7 +274,6 @@ outcome_search_activation:
   # after local_closeout_2026_10_06; ready remains false for every route.
   continuous_or_unresolved_terminal_route_is_executable_without_group_support: true
   blockers:
-    - independent_animal_identity_is_not_provider_certified_and_cross_brain_sample_estimand_has_not_been_prospectively_adopted
     - real_reconstruction_completeness_and_truncation_eligibility_is_not_qualified
     - development_audit_and_unassigned_role_identities_are_not_selected_or_locked
     - B_predictor_whitelist_is_null

@@ -1,5 +1,13 @@
 # Dataset Contract — Episode 11
 
+**October 20 update:** interpret the 36 distinct whole-brain/sample pairs as
+36 mice conditionally, using the [prospective source assumption](outputs/paper_plan.md#october-20-source-identity-assumption).
+The selected identifiers are one-to-one; an official animal crosswalk is still
+absent. Provider confirmation is no longer a prerequisite under standing
+source-fact authority. No role, eligibility rule or outcome access changes.
+Earlier certificate/window requirements below are historical where overridden;
+the original empirical comparison remains incomplete.
+
 The scientist adopted the original cross-animal primary's **unresolved/incomplete
 closeout** on October 6; see the [adoption record](outputs/experiment_log.md#2026-10-06--population_h_optimizer_recovery--scientist-adopted-primary-closeout).
 All identity/eligibility limits and closed real-outcome/audit boundaries remain.
