@@ -1,0 +1,43 @@
+setUpClass (test_canonical_null.CanonicalNullTests) ... ERROR
+test_factorization_matches_direct_integrated_canonical_likelihood (test_canonical_target.CanonicalTargetTests.test_factorization_matches_direct_integrated_canonical_likelihood) ... ok
+test_mapping_preserves_all_endpoint_mass_and_removes_only_empty_pool (test_canonical_target.CanonicalTargetTests.test_mapping_preserves_all_endpoint_mass_and_removes_only_empty_pool) ... ok
+test_singleton_decoder_preserves_existing_generated_scores (test_canonical_target.CanonicalTargetTests.test_singleton_decoder_preserves_existing_generated_scores) ... ok
+test_source_cv_refits_decoder_without_validation_rows (test_canonical_target.CanonicalTargetTests.test_source_cv_refits_decoder_without_validation_rows) ... ok
+test_transfer_scores_use_their_source_decoder_and_canonical_cv (test_canonical_target.CanonicalTargetTests.test_transfer_scores_use_their_source_decoder_and_canonical_cv) ... ok
+test_zero_observed_categories_receive_fixed_per_category_prior (test_canonical_target.CanonicalTargetTests.test_zero_observed_categories_receive_fixed_per_category_prior) ... ok
+test_stale_prefix_cannot_qualify_as_corrected_v3 (test_canonical_target.CorrectedReadinessTests.test_stale_prefix_cannot_qualify_as_corrected_v3) ... ok
+test_v3_contract_roles_do_not_relabel_historical_epochs (test_canonical_target.CorrectedReadinessTests.test_v3_contract_roles_do_not_relabel_historical_epochs) ... ok
+
+======================================================================
+ERROR: setUpClass (test_canonical_null.CanonicalNullTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/tests/test_canonical_null.py", line 28, in setUpClass
+    cls.policy = EpisodePolicy.load(EPISODE_ROOT / "SEARCH_POLICY.yaml")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/policy.py", line 86, in load
+    raw = load_yaml_subset(path)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 187, in load_yaml_subset
+    return parse_yaml_subset_bytes(path.read_bytes())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 181, in parse_yaml_subset_bytes
+    return _parse_yaml_subset_text(text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 164, in _parse_yaml_subset_text
+    document, next_index = parse_block(0, 0)
+                           ^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 160, in parse_block
+    value, index = parse_block(index, indent + 2)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 152, in parse_block
+    container[key] = _scalar(raw_value, line_number)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/ep12_executor/yaml_subset.py", line 84, in _scalar
+    raise YamlSubsetError(
+ep12_executor.yaml_subset.YamlSubsetError: line 45: unsupported YAML feature in scalar '{cpus: 1, memory_gib: 4, gpu: 0, wall_minutes: 30, internal_seconds: 1680}'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.266s
+
+FAILED (errors=1)

@@ -1,5 +1,18 @@
 # Experiment log
 
+## 2026-10-20 — canonical scoring repair — prospective decoder adopted
+
+Today's authorized animal-question work resumes contract-preserving implementation under standing scientist authority; original failed attempts and consumption remain.
+Adopt the reviewed decoder proposal prospectively: source count totals plus 0.5 per canonical category, shared across T/U/M, refit inside each source CV fold.
+Canonical scores drive CV/reference/null selection; remove structurally empty pools and retain zero-observed semantic endpoints. This implements V3's fixed target, not retroactive authorization.
+The prior grows with pool cardinality; shared within-pool composition limits sensitivity to differences inside a pool. No equivalence or old qualification reuse is assumed.
+Canonical nulls sample all endpoints conditional only on N using the stored source decoder; serialization, selected-generator fitting and observed/replay controls use the same canonical law.
+The noise control preserves its registered pooled draw/capacity, allocating children from global count-conditional proportions; binary sensitivity acts on canonical counts to remove raw-status alias multiplicity. These are prospective extensions.
+Coordinator job 48756235: [attempt004](runs/canonical_target_repair/attempt004/canonical_tests.txt) passed all 14 generated-only scoring/CV/null/control/readiness tests in 0.469s; no empirical or final data were read.
+Attempts001–003 remain: interpreter environment, a 3.55e-16 singleton arithmetic difference (test tolerance now 1e-12, scientific tolerance unchanged 1e-6), and policy flow-mapping incompatibility (equivalent block YAML repair).
+Readiness explicitly stays false: affected operating-characteristic qualification and legacy procedure-lock/launch bindings remain; old pooled/V1/V2 trials and fixed-category qualification cannot qualify V3. Next measured artifact is affected-procedure qualification after those bindings align.
+Incoming and 204 final focal types remain closed; no circuit endpoint, smaller study, threshold or claim change. Shared parent 48756235 ended TIMEOUT at 00:40:17 × 1 CPU = 0.671389 allocated CPU-hours, charged once here including EP02/09/10 checks (no step/extern double count); completed test exit-0 artifacts remain valid and no compute session remains.
+
 ## 2026-10-06 — terminal_report — scientist-adopted original-study closeout
 
 The scientist replied to the outstanding-judgment recommendations:

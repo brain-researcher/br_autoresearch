@@ -13,8 +13,10 @@ from __future__ import annotations
 
 import hashlib
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any, Iterable, Mapping, Sequence
+
+from .canonical_target import CanonicalDecoder, count_matrix
 
 try:
     import numpy as np
@@ -342,6 +344,7 @@ class FittedPredictiveModel:
     parameter_count: int
     diagnostics: Mapping[str, Any]
     pseudocount: float
+    canonical_decoder: CanonicalDecoder | None = None
 
     def validated_latent_support(self) -> tuple[Array, Array]:
         """Return the exact finite support and normalized log weights used.
@@ -660,12 +663,32 @@ def cross_validated_candidate(
     covariance_mode: str = "shrinkage",
     covariance_rank: int | None = None,
     tie_tolerance: float = 1e-6,
+    canonical_counts: Any = None,
+    canonical_to_pool: Array | None = None,
 ) -> CandidateSelection:
     counts, covariates = validate_profile_arrays(counts, covariates)
+    if (canonical_counts is None) != (canonical_to_pool is None):
+        raise ScientificModelError("canonical counts and pool mapping must be supplied together")
+    canonical = None if canonical_counts is None else count_matrix(canonical_counts)
+    if canonical is not None and canonical.shape[0] != counts.shape[0]:
+        raise ScientificModelError("canonical counts must retain every source neuron")
     folds = max(2, min(int(folds), counts.shape[0]))
     permutation = np.random.default_rng(seed).permutation(counts.shape[0])
     fold_ids = np.arange(counts.shape[0]) % folds
     fold_ids = fold_ids[np.argsort(permutation)]
+    # Each family keeps its frozen fold seed. No validation/transfer-target
+    # counts contribute to the decoder used to score that fold.
+    fold_corrections = {}
+    if canonical is not None:
+        for fold in range(folds):
+            validation = fold_ids == fold
+            training = ~validation
+            decoder = CanonicalDecoder.fit(
+                canonical[training], canonical_to_pool, counts.shape[1]
+            )
+            if not np.array_equal(decoder.pooled_counts(canonical[training]), counts[training]):
+                raise ScientificModelError("canonical source counts disagree with internal pools")
+            fold_corrections[fold] = decoder.correction(canonical[validation], counts[validation])
     summaries: list[CandidateSelection] = []
     for candidate in candidates:
         scores: list[float] = []
@@ -692,7 +715,10 @@ def cross_validated_candidate(
                     covariance_mode=covariance_mode,
                     covariance_rank=covariance_rank,
                 )
-                scores.append(fitted.mean_score(counts[validation], covariates[validation]))
+                neuron_scores = fitted.score_neurons(counts[validation], covariates[validation])
+                if canonical is not None:
+                    neuron_scores = neuron_scores + fold_corrections[fold]
+                scores.append(float(np.mean(neuron_scores)))
                 parameter_count = max(parameter_count, fitted.parameter_count)
             except ScientificModelError:
                 failed = True
@@ -737,11 +763,23 @@ class FittedTriplet:
     M_cv: CandidateSelection
     reference_model_id: str
     null_generator_model_id: str
+    canonical_decoder: CanonicalDecoder | None = None
 
-    def score_target(self, counts: Array, covariates: Array) -> dict[str, Any]:
+    def score_target(
+        self, counts: Array, covariates: Array, *, canonical_counts: Any = None
+    ) -> dict[str, Any]:
         t_scores = self.T.score_neurons(counts, covariates)
         u_scores = self.U.score_neurons(counts, covariates)
         m_scores = self.M.score_neurons(counts, covariates)
+        if self.canonical_decoder is not None:
+            if canonical_counts is None:
+                raise ScientificModelError("canonical target counts are required by the fitted decoder")
+            correction = self.canonical_decoder.correction(canonical_counts, counts)
+            t_scores = t_scores + correction
+            u_scores = u_scores + correction
+            m_scores = m_scores + correction
+        elif canonical_counts is not None:
+            raise ScientificModelError("canonical target supplied without a source-fitted decoder")
         reference_scores = u_scores if self.reference_model_id.startswith("U") else t_scores
         return {
             "T": t_scores,
@@ -775,6 +813,8 @@ def fit_triplet(
     covariance_mode: str = "shrinkage",
     covariance_rank: int | None = None,
     component_candidates: Sequence[int] = (2, 3),
+    canonical_counts: Any = None,
+    canonical_to_pool: Array | None = None,
 ) -> FittedTriplet:
     counts, covariates = validate_profile_arrays(counts, covariates)
     common = dict(
@@ -787,6 +827,8 @@ def fit_triplet(
         covariance_mode=covariance_mode,
         covariance_rank=covariance_rank,
         tie_tolerance=tie_tolerance,
+        canonical_counts=canonical_counts,
+        canonical_to_pool=canonical_to_pool,
     )
     t_cv = cross_validated_candidate(
         counts, covariates, ["T"], seed=seed_from(seed, "T-cv"), **common
@@ -851,6 +893,13 @@ def fit_triplet(
     reference = u_model.model_id if u_cv.mean_score > t_cv.mean_score + tie_tolerance else "T"
     comparability = max(t_cv.standard_error, u_cv.standard_error, tie_tolerance)
     null_generator = u_model.model_id if u_cv.mean_score >= t_cv.mean_score - comparability else "T"
+    decoder = (None if canonical_counts is None else CanonicalDecoder.fit(
+        canonical_counts, canonical_to_pool, counts.shape[1]
+    ))
+    if decoder is not None:
+        t_model = replace(t_model, canonical_decoder=decoder)
+        u_model = replace(u_model, canonical_decoder=decoder)
+        m_model = replace(m_model, canonical_decoder=decoder)
     return FittedTriplet(
         T=t_model,
         U=u_model,
@@ -860,6 +909,7 @@ def fit_triplet(
         M_cv=m_cv,
         reference_model_id=reference,
         null_generator_model_id=null_generator,
+        canonical_decoder=decoder,
     )
 
 
@@ -870,17 +920,30 @@ def reciprocal_transfer(
     right_covariates: Array,
     *,
     seed: int,
+    left_canonical_counts: Any = None,
+    right_canonical_counts: Any = None,
+    canonical_to_pool: Array | None = None,
     **fit_options: Any,
 ) -> dict[str, Any]:
+    if (left_canonical_counts is None) != (right_canonical_counts is None):
+        raise ScientificModelError("both reciprocal canonical targets must be supplied")
     left_fit = fit_triplet(
-        left_counts, left_covariates, seed=seed_from(seed, "left-source"), **fit_options
+        left_counts, left_covariates, seed=seed_from(seed, "left-source"),
+        canonical_counts=left_canonical_counts, canonical_to_pool=canonical_to_pool,
+        **fit_options
     )
     right_fit = fit_triplet(
-        right_counts, right_covariates, seed=seed_from(seed, "right-source"), **fit_options
+        right_counts, right_covariates, seed=seed_from(seed, "right-source"),
+        canonical_counts=right_canonical_counts, canonical_to_pool=canonical_to_pool,
+        **fit_options
     )
     return {
-        "left_to_right": left_fit.score_target(right_counts, right_covariates),
-        "right_to_left": right_fit.score_target(left_counts, left_covariates),
+        "left_to_right": left_fit.score_target(
+            right_counts, right_covariates, canonical_counts=right_canonical_counts
+        ),
+        "right_to_left": right_fit.score_target(
+            left_counts, left_covariates, canonical_counts=left_canonical_counts
+        ),
         "source_fit_metadata": {
             "left": {
                 "U": left_fit.U.model_id,

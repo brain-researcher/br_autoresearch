@@ -526,7 +526,8 @@ class ProductionReadinessTests(unittest.TestCase):
         checks = {row["check_id"]: row for row in report["checks"]}
         self.assertEqual(report["status"], "revise")
         self.assertFalse(checks["full_synthetic_qualification"]["passed"])
-        self.assertTrue(checks["observed_36_trial_provisional_chain"]["passed"])
+        self.assertFalse(checks["observed_36_trial_provisional_chain"]["passed"])
+        self.assertFalse(checks["canonical_pipeline_qualification"]["passed"])
         self.assertTrue(checks["post36_falsifier_plan"]["passed"])
         self.assertFalse(claim_is_permitted(report, "observed_tail"))
         self.assertFalse(claim_is_permitted(report, "final_connectivity"))

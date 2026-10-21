@@ -1,5 +1,13 @@
 # Dataset contract — Episode 12
 
+**October 20 implementation scope:** the source-training canonical decoder is
+prospectively adopted for the original outgoing comparison; scoring/null/control
+repairs passed 14 generated-only tests. This adds no dataset or access: the
+816 development/204 final roles, incoming/final boundaries, estimand and
+thresholds are unchanged, and no empirical data were read for this repair.
+Affected-procedure qualification and legacy procedure-lock/launch bindings
+remain incomplete, so production readiness is false. See the [repair record](outputs/experiment_log.md#2026-10-20--canonical-scoring-repair--prospective-decoder-adopted).
+
 The October 6 scientist-adopted [original-study closeout](outputs/experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout)
 classifies T/U/M as incomplete and preserves the completed description below.
 Existing 816/204 roles, incoming/final access limits and source history remain

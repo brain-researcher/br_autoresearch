@@ -29,7 +29,7 @@ python3 -m ep12_executor.production_readiness \
   --observed-finalization-dir "${EP12_RUN_ROOT}/observed_finalization" \
   --falsifier-plan "${EP12_ROOT}/outputs/executor/OBSERVED_POST36_TAIL_PLAN.json" \
   --policy "${EP12_ROOT}/SEARCH_POLICY.yaml" \
-  --prefix-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT.yaml" \
+  --prefix-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT_POST36_V3.yaml" \
   --active-contract "${EP12_ROOT}/outputs/executor/SCIENTIFIC_CONTRACT_POST36_V3.yaml" \
   --budget-override "${EP12_ROOT}/outputs/executor/DEVELOPMENT_BUDGET_OVERRIDE.yaml" \
   --output-dir "${EP12_OUTPUT_DIR}" \

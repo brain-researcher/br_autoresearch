@@ -18,6 +18,7 @@ from typing import Any, Callable, Mapping, Sequence
 import observed_tail_plan as frozen_tail_plan
 
 from .adaptive_search import validate_development_configuration
+from .canonical_target import DECODER_PROTOCOL
 from .contract_roles import RANK_RULE, load_contract_provenance
 from .policy import EpisodePolicy
 from .runtime import EPISODE_ROOT, atomic_json
@@ -47,6 +48,7 @@ QUALIFICATION_NONFAILURE_TERMINALS = frozenset(
 REQUIRED_READINESS_CHECK_IDS = (
     "scientific_contract_roles",
     "full_synthetic_qualification",
+    "canonical_pipeline_qualification",
     "observed_36_trial_provisional_chain",
     "post36_falsifier_plan",
     "development_resource_authorization",
@@ -439,6 +441,7 @@ def verify_observed_provisional_chain(
     observed_finalization_dir: Path,
     policy: EpisodePolicy,
     outputs_root: Path = OUTPUTS_ROOT,
+    expected_contract_id: str = "ep12_outgoing_tum_post36_v3",
     **_: Any,
 ) -> dict[str, Any]:
     root = _inside(run_root, outputs_root, label="observed run root")
@@ -467,6 +470,11 @@ def verify_observed_provisional_chain(
             _require(
                 report.get("status") == "completed",
                 f"development trial is not complete: {trial_id}",
+            )
+            _require(
+                report.get("scientific_contract_id") == expected_contract_id
+                and report.get("score_target_protocol") == DECODER_PROTOCOL,
+                f"development trial requires corrected canonical V3 replay: {trial_id}",
             )
             _require(
                 report.get("data_role") == "development_only"
@@ -501,6 +509,8 @@ def verify_observed_provisional_chain(
     )
     return {
         "independent_trial_count": len(trial_ids),
+        "scientific_contract_id": expected_contract_id,
+        "score_target_protocol": DECODER_PROTOCOL,
         "source_counts": source_counts,
         "whole_provider_type_assignment": True,
         "development_roles_only": True,
@@ -594,7 +604,7 @@ def evaluate_production_readiness(
     falsifier_plan_path: Path,
     budget_override_path: Path = OUTPUTS_ROOT / "executor" / "DEVELOPMENT_BUDGET_OVERRIDE.yaml",
     policy_path: Path = EPISODE_ROOT / "SEARCH_POLICY.yaml",
-    prefix_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT.yaml",
+    prefix_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml",
     active_contract_path: Path = OUTPUTS_ROOT / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml",
     outputs_root: Path = OUTPUTS_ROOT,
     **_: Any,
@@ -615,6 +625,16 @@ def evaluate_production_readiness(
             qualification_dir=qualification_dir,
             outputs_root=outputs_root,
         ),
+        {
+            "check_id": "canonical_pipeline_qualification",
+            "passed": False,
+            "reason": (
+                "The affected pooling/canonical-decoder/CV/reference/null procedure "
+                "has no completed operating-characteristic qualification. The fixed "
+                "11-category generated qualifier and focused arithmetic tests do not "
+                "cover that boundary. No corrected procedure may inherit its pass."
+            ),
+        },
         _check(
             "observed_36_trial_provisional_chain",
             verify_observed_provisional_chain,
@@ -622,6 +642,7 @@ def evaluate_production_readiness(
             observed_finalization_dir=observed_finalization_dir,
             policy=policy,
             outputs_root=outputs_root,
+            expected_contract_id=load_yaml_subset(active_contract_path)["contract_id"],
         ),
         _check(
             "post36_falsifier_plan",

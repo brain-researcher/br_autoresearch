@@ -21,6 +21,8 @@ from scipy import sparse
 
 from .adaptive_search import validate_development_configuration
 from .development_trial import _collapse_vocabulary
+from .canonical_target import DECODER_PROTOCOL, canonicalize_counts
+from .canonical_view import prepare_canonical_view
 from .falsifier_controls import (
     ablate_nuisance_block,
     component_partner_contrasts,
@@ -123,6 +125,8 @@ def callback_code_identity() -> dict[str, str]:
         "policy.py",
         "scientific_models.py",
         "development_trial.py",
+        "canonical_target.py",
+        "canonical_view.py",
         "falsifier_controls.py",
         "falsifier_transforms.py",
     )
@@ -148,7 +152,7 @@ def _collapse(
     configuration: Mapping[str, Any],
     hierarchy: Mapping[str, Mapping[str, Any]],
 ) -> tuple[np.ndarray, tuple[str, ...], np.ndarray]:
-    collapsed, vocabulary, _ = _collapse_vocabulary(
+    collapsed, vocabulary, record = _collapse_vocabulary(
         sparse.csr_matrix(np.asarray(raw_counts, dtype=np.int64)),
         np.asarray(focal_types, dtype=object),
         list(map(str, raw_vocabulary)),
@@ -161,54 +165,10 @@ def _collapse(
         ),
         hierarchy_depth=int(configuration["partner_hierarchy_depth"]),
         partner_hierarchy={key: dict(value) for key, value in hierarchy.items()},
+        canonical_target=True,
     )
-    names = tuple(map(str, vocabulary))
-    retained = set(names)
-    hierarchy_field = (
-        "subclass"
-        if int(configuration["partner_hierarchy_depth"]) == 1
-        else "class"
-    )
-    mapping: list[int] = []
-    for raw_key in raw_vocabulary:
-        if raw_key in retained:
-            target = raw_key
-        elif raw_key.startswith("typed::") and str(
-            configuration["partner_vocabulary"]
-        ) == "bounded_hierarchical_partner_categories":
-            provider_type = raw_key.removeprefix("typed::")
-            label = str(hierarchy.get(provider_type, {}).get(hierarchy_field, "")).strip()
-            target = f"hierarchy_{int(configuration['partner_hierarchy_depth'])}::{label or 'unclassified'}"
-        elif raw_key.startswith("typed::"):
-            target = "other_typed"
-        elif raw_key == "missing_annotation":
-            target = "missing_annotation"
-        elif raw_key.startswith("untyped_status::"):
-            _, status, status_label = raw_key.split("::", 2)
-            normalized = f"{status} {status_label}".lower()
-            if "orphan" in normalized or "leaves" in normalized:
-                target = "fragment"
-            elif status in {"Assign", "Anchor"} or any(
-                token in normalized
-                for token in ("hard to trace", "partially traced", "anchor", "assign")
-            ):
-                target = "proofreading"
-            elif status == "Traced":
-                target = "untyped"
-            else:
-                target = "unknown"
-        else:
-            target = "out_of_vocabulary"
-        if target not in retained:
-            raise NullTrialRunnerError(f"collapsed vocabulary omits target bin {target}")
-        mapping.append(names.index(target))
-    dense = collapsed.toarray().astype(np.int64, copy=False)
-    check = np.zeros_like(dense)
-    for raw_index, collapsed_index in enumerate(mapping):
-        check[:, collapsed_index] += raw_counts[:, raw_index]
-    if not np.array_equal(dense, check):
-        raise NullTrialRunnerError("trial collapse mapping disagrees with production collapse")
-    return dense, names, np.asarray(mapping, dtype=np.int64)
+    return (collapsed.toarray().astype(np.int64), tuple(vocabulary),
+            np.asarray(record["raw_to_pool"], dtype=np.int64))
 
 
 def _pooled_counts(
@@ -262,8 +222,9 @@ def _direction_record(
     target_counts: np.ndarray,
     target_covariates: np.ndarray,
     target_ids: np.ndarray,
+    canonical_counts: Any = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-    scored = fit.score_target(target_counts, target_covariates)
+    scored = fit.score_target(target_counts, target_covariates, canonical_counts=canonical_counts)
     t_values = np.asarray(scored["T"], dtype=float)
     u_values = np.asarray(scored["U"], dtype=float)
     m_values = np.asarray(scored["M"], dtype=float)
@@ -312,6 +273,8 @@ def _fit_counts(
     seed_material: Sequence[Any],
     meaningful_margin: float,
     fit_workers: int = 1,
+    canonical_counts: Any = None,
+    canonical_to_pool: np.ndarray | None = None,
 ) -> dict[str, Any]:
     values = np.asarray(counts, dtype=np.int64)
     covariate_values = np.asarray(covariates, dtype=float)
@@ -379,12 +342,16 @@ def _fit_counts(
                 left_counts,
                 covariate_values[left],
                 seed=seed_from(base_seed, "left-source"),
+                canonical_counts=None if canonical_counts is None else canonical_counts[left],
+                canonical_to_pool=canonical_to_pool,
                 **options,
             )
             right_fit = fit_triplet(
                 right_counts,
                 covariate_values[right],
                 seed=seed_from(base_seed, "right-source"),
+                canonical_counts=None if canonical_counts is None else canonical_counts[right],
+                canonical_to_pool=canonical_to_pool,
                 **options,
             )
             left_summary, right_neurons = _direction_record(
@@ -392,12 +359,14 @@ def _fit_counts(
                 target_counts=right_counts,
                 target_covariates=covariate_values[right],
                 target_ids=neuron_ids[right],
+                canonical_counts=None if canonical_counts is None else canonical_counts[right],
             )
             right_summary, left_neurons = _direction_record(
                 fit=right_fit,
                 target_counts=left_counts,
                 target_covariates=covariate_values[left],
                 target_ids=neuron_ids[left],
+                canonical_counts=None if canonical_counts is None else canonical_counts[left],
             )
             left_contrasts = component_partner_contrasts(
                 basis=left_fit.M.basis,
@@ -489,6 +458,7 @@ def _fit_counts(
         "unscorable": unscorable,
         "records": records,
         "complete_T_U_M_result": True,
+        "score_target_protocol": DECODER_PROTOCOL if canonical_counts is not None else None,
         "result_sha256": "pending",
     }
     result["result_sha256"] = digest_object(
@@ -584,22 +554,24 @@ class ProductionFullSearchCallback:
         configuration: Mapping[str, Any] | None = None,
         covariates_override: np.ndarray | None = None,
         fit_workers: int | None = None,
+        matrix_transform: str = "identity",
+        transform_seed: int = 0,
     ) -> dict[str, Any]:
         config = dict(configuration or trial["configuration"])
         covariates, focal_types, _, neuron_ids = self._arrays(sample, config)
         if covariates_override is not None:
             covariates = np.asarray(covariates_override, dtype=float)
-        counts, _, _ = _collapse(
-            np.asarray(raw_counts, dtype=np.int64),
-            focal_types,
-            self.inputs.raw_vocabulary,
-            config,
-            self.inputs.partner_hierarchy,
+        counts, canonical, mapping, _, _, _ = prepare_canonical_view(
+            raw_counts, focal_types, self.inputs.raw_vocabulary, config,
+            self.inputs.partner_hierarchy, matrix_transform=matrix_transform,
+            transform_seed=transform_seed,
         )
         return self._fit_direct(
             sample=sample,
             trial=trial,
-            counts=counts,
+            counts=counts.toarray(),
+            canonical_counts=canonical,
+            canonical_to_pool=mapping,
             covariates=covariates,
             focal_types=focal_types,
             sides=sides,
@@ -622,9 +594,18 @@ class ProductionFullSearchCallback:
         branch_id: str,
         configuration: Mapping[str, Any],
         fit_workers: int | None = None,
+        canonical_counts: Any = None,
+        canonical_to_pool: np.ndarray | None = None,
     ) -> dict[str, Any]:
         if fit_workers is None:
             fit_workers = self._provider_worker_count()
+        if canonical_counts is None:
+            baseline, canonical_counts, canonical_to_pool, _, _, _ = prepare_canonical_view(
+                sample.raw_counts, focal_types, self.inputs.raw_vocabulary,
+                configuration, self.inputs.partner_hierarchy,
+            )
+            if not np.array_equal(baseline.toarray(), counts):
+                raise NullTrialRunnerError("transformed direct branch lacks its canonical target mapping")
         return _fit_counts(
             counts=counts,
             covariates=covariates,
@@ -641,6 +622,8 @@ class ProductionFullSearchCallback:
             ),
             meaningful_margin=self.policy.meaningful_margin,
             fit_workers=fit_workers,
+            canonical_counts=canonical_counts,
+            canonical_to_pool=canonical_to_pool,
         )
 
     def _base_fit(
@@ -913,17 +896,17 @@ class ProductionFullSearchCallback:
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         config = dict(trial["configuration"])
         covariates, _, _, neuron_ids = self._arrays(sample, config)
-        counts, _, _ = _collapse(
-            sample.raw_counts,
-            focal_types,
-            self.inputs.raw_vocabulary,
-            config,
-            self.inputs.partner_hierarchy,
+        baseline_view = prepare_canonical_view(
+            sample.raw_counts, focal_types, self.inputs.raw_vocabulary,
+            config, self.inputs.partner_hierarchy,
         )
-        noise, transform = pooled_multinomial_noise(
-            counts,
-            seed=seed_from(sample.replicate_seed, trial["trial_id"], "noise"),
+        noise_view = prepare_canonical_view(
+            sample.raw_counts, focal_types, self.inputs.raw_vocabulary,
+            config, self.inputs.partner_hierarchy,
+            matrix_transform="pooled_multinomial_noise",
+            transform_seed=seed_from(sample.replicate_seed, trial["trial_id"], "noise"),
         )
+        transform = noise_view[-1][-1]
         expected = ["weighted_baseline", "pooled_multinomial_noise"]
         jobs = [
             {
@@ -932,7 +915,9 @@ class ProductionFullSearchCallback:
                 "arguments": {
                     "sample": sample,
                     "trial": trial,
-                    "counts": branch_counts,
+                    "counts": view[0].toarray(),
+                    "canonical_counts": view[1],
+                    "canonical_to_pool": view[2],
                     "covariates": covariates,
                     "focal_types": focal_types,
                     "sides": sides,
@@ -941,7 +926,7 @@ class ProductionFullSearchCallback:
                     "configuration": config,
                 },
             }
-            for branch_id, branch_counts in zip(expected, (counts, noise))
+            for branch_id, view in zip(expected, (baseline_view, noise_view))
         ]
         (baseline, generated), workers = self._run_fit_jobs(jobs)
         branches = [
@@ -981,7 +966,7 @@ class ProductionFullSearchCallback:
         details: list[dict[str, Any]] = []
         scheduled = dict(trial["configuration"])
         weighted = np.asarray(sample.raw_counts, dtype=np.int64)
-        binary = (np.asarray(sample.raw_counts) > 0).astype(np.int64)
+        binary = weighted  # Canonical binary transformation happens in the shared adapter.
 
         # The frozen implementation specification defines exactly fourteen
         # fitted branches: one scheduled weighted baseline, one scheduled
@@ -1039,6 +1024,7 @@ class ProductionFullSearchCallback:
                         "sides": sides,
                         "branch_id": branch_id,
                         "configuration": config,
+                        "matrix_transform": "binary" if detail["count_mode"] == "binary" else "identity",
                     },
                 }
             )
@@ -1097,12 +1083,14 @@ class ProductionFullSearchCallback:
             self.inputs.partner_hierarchy, self.inputs.raw_vocabulary
         ):
             selected = [by_key[key] for key in family["raw_partner_keys"]]
-            pooled, transform = _pooled_counts(
-                sample.raw_counts,
-                raw_to_collapsed,
-                selected,
-                collapsed.shape[1],
+            view = prepare_canonical_view(
+                sample.raw_counts, focal_types, self.inputs.raw_vocabulary,
+                config, self.inputs.partner_hierarchy,
+                selected_keys=family["raw_partner_keys"],
+                pool_name=f"control_pool::{family['branch_id']}",
             )
+            pooled, canonical, mapping = view[:3]
+            transform = view[-1][-1]
             branch_id = str(family["branch_id"])
             expected.append(branch_id)
             jobs.append(
@@ -1112,7 +1100,9 @@ class ProductionFullSearchCallback:
                     "arguments": {
                         "sample": sample,
                         "trial": trial,
-                        "counts": pooled,
+                        "counts": pooled.toarray(),
+                        "canonical_counts": canonical,
+                        "canonical_to_pool": mapping,
                         "covariates": covariates,
                         "focal_types": focal_types,
                         "sides": sides,
@@ -1395,12 +1385,13 @@ class ProductionFullSearchCallback:
         for endpoint in endpoint_branch_inventory(
             self.inputs.raw_vocabulary, sample.raw_counts
         ):
-            pooled, transform = _pooled_counts(
-                sample.raw_counts,
-                raw_to_collapsed,
-                endpoint["raw_columns"],
-                counts.shape[1],
+            view = prepare_canonical_view(
+                sample.raw_counts, focal_types, self.inputs.raw_vocabulary,
+                config, self.inputs.partner_hierarchy, endpoint=endpoint["endpoint_bin"],
+                pool_name=f"control_pool::{endpoint['branch_id']}",
             )
+            pooled, canonical, mapping = view[:3]
+            transform = view[-1][-1]
             branch_id = str(endpoint["branch_id"])
             expected.append(branch_id)
             metadata.append(
@@ -1416,7 +1407,9 @@ class ProductionFullSearchCallback:
                     "arguments": {
                         "sample": sample,
                         "trial": trial,
-                        "counts": pooled,
+                        "counts": pooled.toarray(),
+                        "canonical_counts": canonical,
+                        "canonical_to_pool": mapping,
                         "covariates": covariates,
                         "focal_types": focal_types,
                         "sides": sides,

@@ -521,6 +521,10 @@ def build_selected_fitted_null_state(
     collapsed, vocabulary, raw_to_collapsed = _collapse(
         counts, types, raw_vocabulary, config, partner_hierarchy
     )
+    from .canonical_target import DECODER_PROTOCOL, canonicalize_counts
+    canonical, canonical_vocabulary, canonical_to_pool = canonicalize_counts(
+        counts, raw_vocabulary, raw_to_collapsed, vocabulary
+    )
     selected_covariates = covariates[int(config["nuisance_spline_df"])]
     minimum = int(config["component_count"]) * int(fit_settings["source_cv_folds"])
     scorable: list[str] = []
@@ -547,11 +551,12 @@ def build_selected_fitted_null_state(
         focal_types=types[keep].tolist(),
         sides=side_values[keep].tolist(),
         covariates=selected_covariates[keep],
-        raw_counts=counts[keep],
-        raw_vocabulary=list(map(str, raw_vocabulary)),
+        raw_counts=canonical[keep].toarray().astype(np.int64),
+        raw_vocabulary=canonical_vocabulary,
         collapsed_vocabulary=vocabulary,
-        raw_to_collapsed=raw_to_collapsed,
+        raw_to_collapsed=canonical_to_pool,
         collapsed_typed_bins=typed_bins,
+        canonical_target_protocol=DECODER_PROTOCOL,
     )
     options = {
         "integration_draws": int(fit_settings["integration_draws"]),
@@ -572,6 +577,7 @@ def build_selected_fitted_null_state(
             fitted = fit_triplet(
                 collapsed[mask], selected_covariates[mask],
                 seed=seed_from(base, label), **options,
+                canonical_counts=canonical[mask], canonical_to_pool=canonical_to_pool,
             )
             generators[(provider_type, side)] = (
                 fitted.T if fitted.null_generator_model_id == "T" else fitted.U

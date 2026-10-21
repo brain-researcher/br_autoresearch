@@ -1,0 +1,21 @@
+test_canonical_target (unittest.loader._FailedTest.test_canonical_target) ... ERROR
+
+======================================================================
+ERROR: test_canonical_target (unittest.loader._FailedTest.test_canonical_target)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_canonical_target
+Traceback (most recent call last):
+  File "/share/software/user/open/python/3.12.1/lib/python3.12/unittest/loader.py", line 394, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/share/software/user/open/python/3.12.1/lib/python3.12/unittest/loader.py", line 337, in _get_module_from_name
+    __import__(name)
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/tests/test_canonical_target.py", line 11, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

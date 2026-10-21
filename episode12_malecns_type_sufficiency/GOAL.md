@@ -1,5 +1,17 @@
 # When does a cell-type average distort a circuit's wiring?
 
+## October 20 — canonical implementation repair adopted
+
+The renewed instruction to work on the animal questions and standing scientist
+authority adopt the source-training count decoder prospectively. Canonical
+scoring/CV, fitted-null sampling and observed/null control parity are repaired;
+14 generated-only tests passed. This engineering work preserves the full
+original outgoing comparison, estimand, thresholds and 816/204 data roles.
+Readiness remains false pending affected-procedure qualification and legacy
+procedure-lock/launch bindings. No empirical replay, circuit endpoint or
+incoming/final opening occurred. The original incomplete comparison and its
+history below are preserved. See the [repair record](outputs/experiment_log.md#2026-10-20--canonical-scoring-repair--prospective-decoder-adopted).
+
 ## Adopted original-study closeout — October 6, 2026
 
 The scientist adopted closure of the original outgoing T/U/M comparison as

@@ -6,11 +6,12 @@ driver must explicitly supply a validated development-only design, one fitted
 T or U model for every focal-provider-type/side pair, the exact raw-to-
 collapsed mapping, and a frozen seed manifest.
 
-The sampler conditions on every observed neuron's typed-partner total.  Raw
-non-typed endpoint counts are copied exactly.  Sampled collapsed typed counts
-are expanded to raw typed partners using proportions pooled across both sides
-of the same focal provider type, with a development-wide both-side fallback
-only when that type has no observed mass in the collapsed bin.
+The canonical V3 sampler conditions only on each neuron's total count and
+samples every canonical partner, including semantic endpoints, using the
+stored source-side decoder. No endpoint counts are copied from observations.
+The legacy sampler is preserved for historical artifacts: it conditions on
+typed-partner totals, copies endpoints, and expands typed pools with both-side
+proportions. A canonical generator cannot be used with that legacy design.
 """
 
 from __future__ import annotations
@@ -25,12 +26,14 @@ from typing import Any, Mapping, Sequence
 import numpy as np
 
 from .scientific_models import FittedPredictiveModel
+from .canonical_target import CANONICAL_ENDPOINTS, DECODER_PROTOCOL
 
 
 NULL_REPLICATE_COUNT = 99
 SEED_PROTOCOL = "ep12.fitted_t_u_null_seed.v1"
 SEED_MANIFEST_SCHEMA = "ep12.fitted_t_u_null_seed_manifest.v1"
 SAMPLER_PROTOCOL = "ep12.fitted_t_u_null_sampler.v2"
+CANONICAL_SAMPLER_PROTOCOL = "ep12.canonical_fitted_t_u_null_sampler.v3"
 
 
 class FittedNullError(RuntimeError):
@@ -231,6 +234,7 @@ class FittedNullDesign:
     collapsed_typed_mask: np.ndarray
     typed_raw_mask: np.ndarray
     design_sha256: str
+    canonical_target_protocol: str | None = None
 
     @classmethod
     def create(
@@ -245,6 +249,7 @@ class FittedNullDesign:
         collapsed_vocabulary: Sequence[str],
         raw_to_collapsed: Sequence[int],
         collapsed_typed_bins: Sequence[str],
+        canonical_target_protocol: str | None = None,
     ) -> "FittedNullDesign":
         normalized_ids = tuple(_normalize_neuron_id(value) for value in neuron_ids)
         if len(set(normalized_ids)) != len(normalized_ids):
@@ -297,6 +302,12 @@ class FittedNullDesign:
             collapsed_names
         ):
             raise FittedNullError("partner vocabulary labels must be unique")
+        if canonical_target_protocol is not None:
+            if canonical_target_protocol != DECODER_PROTOCOL:
+                raise FittedNullError("unknown canonical target protocol")
+            expected = tuple(sorted(key for key in raw_names if key.startswith("typed::"))) + CANONICAL_ENDPOINTS
+            if raw_names != expected:
+                raise FittedNullError("canonical null vocabulary must retain every typed category and six endpoints")
 
         mapping = np.asarray(raw_to_collapsed)
         if mapping.ndim != 1 or len(mapping) != len(raw_names):
@@ -339,6 +350,8 @@ class FittedNullDesign:
 
         digest = hashlib.sha256()
         digest.update(SAMPLER_PROTOCOL.encode("ascii") + b"\0")
+        if canonical_target_protocol is not None:
+            digest.update(canonical_target_protocol.encode("ascii") + b"\0")
         digest.update(
             _canonical_json(
                 {
@@ -366,6 +379,7 @@ class FittedNullDesign:
             collapsed_typed_mask=_readonly_array(collapsed_typed),
             typed_raw_mask=_readonly_array(raw_typed),
             design_sha256=digest.hexdigest(),
+            canonical_target_protocol=canonical_target_protocol,
         )
 
 
@@ -389,6 +403,13 @@ class TypePooledExpansionPlan:
 
     @classmethod
     def build(cls, design: FittedNullDesign) -> "TypePooledExpansionPlan":
+        if design.canonical_target_protocol is not None:
+            # Canonical sampling decodes with the fitted source-side model.
+            # Never estimate a second, both-side expansion from the design.
+            payload = {"design_sha256": design.design_sha256,
+                       "decoder_protocol": DECODER_PROTOCOL,
+                       "expansion": "stored_source_side_decoder_only"}
+            return cls(design.design_sha256, MappingProxyType({}), (), _digest_json(payload))
         rules: dict[int, ExpansionRule] = {}
         fallback_pairs: list[tuple[str, str]] = []
         focal_types_array = np.asarray(design.focal_types, dtype=object)
@@ -501,6 +522,11 @@ def _verify_expansion_plan(
         raise FittedNullError("raw expansion plan has the wrong type")
     if plan.design_sha256 != design.design_sha256:
         raise FittedNullError("raw expansion plan belongs to a different null design")
+    if design.canonical_target_protocol is not None:
+        expected = TypePooledExpansionPlan.build(design)
+        if plan.rules or plan.fallback_type_bin_pairs or plan.plan_sha256 != expected.plan_sha256:
+            raise FittedNullError("canonical null must use only its stored source-side decoder")
+        return plan.plan_sha256
     recorded = _validated_sha256(plan.plan_sha256, "expansion plan SHA-256")
     payload = _expansion_plan_payload_parts(
         plan.design_sha256,
@@ -560,6 +586,13 @@ def _validate_generator(model: FittedPredictiveModel, design: FittedNullDesign) 
         raise FittedNullError("generator must be an EP12 FittedPredictiveModel")
     if model.model_id not in {"T", "U_linear", "U_curved"}:
         raise FittedNullError("fitted null generator must be T, U_linear, or U_curved")
+    if design.canonical_target_protocol is not None:
+        decoder = model.canonical_decoder
+        if (decoder is None or decoder.pool_count != len(design.collapsed_vocabulary)
+                or not np.array_equal(decoder.canonical_to_pool, design.raw_to_collapsed)):
+            raise FittedNullError("canonical generator lacks its matching source-fitted decoder")
+    elif model.canonical_decoder is not None:
+        raise FittedNullError("canonical generator cannot use the legacy exact-endpoint sampler")
     collapsed_count = len(design.collapsed_vocabulary)
     latent_dimension = collapsed_count - 1
     basis = np.asarray(model.basis, dtype=float)
@@ -625,6 +658,10 @@ def fitted_generator_sha256(
     digest = hashlib.sha256()
     digest.update(SAMPLER_PROTOCOL.encode("ascii") + b"\0")
     digest.update(model.model_id.encode("ascii") + b"\0")
+    if model.canonical_decoder is not None:
+        digest.update(DECODER_PROTOCOL.encode("ascii") + b"\0")
+        _array_hash(digest, "canonical_to_pool", model.canonical_decoder.canonical_to_pool)
+        _array_hash(digest, "canonical_log_probability", model.canonical_decoder.log_conditional_probability)
     _array_hash(digest, "basis", np.asarray(model.basis, dtype=np.float64))
     _array_hash(
         digest,
@@ -728,7 +765,7 @@ def null_seed_binding(
     )
     expansion_plan_sha256 = _verify_expansion_plan(expansion_plan, design)
     return {
-        "sampler_protocol": SAMPLER_PROTOCOL,
+        "sampler_protocol": (CANONICAL_SAMPLER_PROTOCOL if design.canonical_target_protocol else SAMPLER_PROTOCOL),
         "design_sha256": _validated_sha256(design.design_sha256, "design_sha256"),
         "generator_unit": "focal_provider_type_by_side",
         "generator_count": len(generator_rows),
@@ -744,6 +781,7 @@ def _typed_probabilities(
     design: FittedNullDesign,
     row_index: int,
     replicate_seed: int,
+    *, canonical: bool = False,
 ) -> np.ndarray:
     design_row = np.concatenate(([1.0], design.covariates[row_index]))
     base = design_row @ np.asarray(model.nuisance_coefficients, dtype=float)
@@ -769,7 +807,7 @@ def _typed_probabilities(
         support_index = int(generator.choice(len(weights), p=weights))
         residual = np.asarray(support[support_index], dtype=float)
     logits = (base + residual) @ np.asarray(model.basis, dtype=float).T
-    typed_logits = logits[design.collapsed_typed_mask]
+    typed_logits = logits if canonical else logits[design.collapsed_typed_mask]
     if not np.all(np.isfinite(typed_logits)):
         raise FittedNullError("fitted generator produced non-finite typed logits")
     typed_logits = typed_logits - float(np.max(typed_logits))
@@ -780,6 +818,10 @@ def _typed_probabilities(
     probabilities /= probability_sum
     if not np.isclose(float(probabilities.sum()), 1.0, atol=1e-12):
         raise FittedNullError("typed probabilities do not sum to one")
+    if canonical:
+        if model.canonical_decoder is None:
+            raise FittedNullError("canonical null generation requires a source-fitted decoder")
+        return model.canonical_decoder.decode_probabilities(probabilities)
     return probabilities
 
 
@@ -808,6 +850,7 @@ class FittedNullSample:
     raw_counts: np.ndarray
     collapsed_counts: np.ndarray
     fallback_allocations_with_positive_mass: int
+    score_target_protocol: str | None = None
 
 
 def sample_fitted_null(
@@ -838,6 +881,36 @@ def sample_fitted_null(
     )
     seeds = verify_null_seed_manifest(seed_manifest, expected_binding=binding)
     replicate_seed = seeds[replicate_index]
+
+    if design.canonical_target_protocol is not None:
+        sampled_raw = np.zeros_like(design.raw_counts)
+        totals = design.raw_counts.sum(axis=1)
+        for row_index, total in enumerate(totals):
+            key = (design.focal_types[row_index], design.sides[row_index])
+            probabilities = _typed_probabilities(
+                normalized_generators[key], design, row_index, replicate_seed, canonical=True
+            )
+            count_seed = _stable_seed(
+                CANONICAL_SAMPLER_PROTOCOL, replicate_seed, design.neuron_ids[row_index],
+                *key, "canonical_multinomial",
+            )
+            sampled_raw[row_index] = np.random.default_rng(count_seed).multinomial(int(total), probabilities)
+        if not np.array_equal(sampled_raw.sum(axis=1), totals):
+            raise FittedNullError("canonical null changed a neuron's conditioned total")
+        return FittedNullSample(
+            replicate_index=replicate_index, replicate_id=f"null_{replicate_index + 1:03d}",
+            replicate_seed=replicate_seed, design_sha256=design.design_sha256,
+            generator_manifest_sha256=binding["generator_manifest_sha256"],
+            expansion_plan_sha256=expansion_plan_sha256,
+            generator_models_by_type_side=tuple(
+                (str(row["focal_type"]), str(row["side"]), str(row["model_id"]))
+                for row in binding["generators"]
+            ),
+            neuron_ids=design.neuron_ids, focal_types=design.focal_types, sides=design.sides,
+            covariates=_readonly_array(design.covariates), raw_counts=_readonly_array(sampled_raw),
+            collapsed_counts=_readonly_array(_collapse_raw_counts(design, sampled_raw)),
+            fallback_allocations_with_positive_mass=0, score_target_protocol=DECODER_PROTOCOL,
+        )
 
     original_collapsed = _collapse_raw_counts(design, design.raw_counts)
     sampled_raw = np.array(design.raw_counts, copy=True)

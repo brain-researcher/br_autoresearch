@@ -42,7 +42,12 @@ observed_outgoing_description_2026_10_05:
   incoming_access: false
   final_focal_access: false
   new_simulation_or_recovery: false
-  allocation: {cpus: 1, memory_gib: 4, gpu: 0, wall_minutes: 30, internal_seconds: 1680}
+  allocation:
+    cpus: 1
+    memory_gib: 4
+    gpu: 0
+    wall_minutes: 30
+    internal_seconds: 1680
   maximum_additional_allocated_cpu_hours: 0.5
   automatic_retry_or_rematerialization: false
   source_or_runtime_failure: stop_and_preserve_partial_output

@@ -17,6 +17,10 @@ import pyarrow.parquet as parquet
 from scipy import sparse
 
 from .policy import EpisodePolicy, digest_bytes, digest_object
+from .canonical_target import (
+    CANONICAL_ENDPOINTS, DECODER_PROTOCOL, DECODER_PSEUDOCOUNT,
+    canonicalize_counts, endpoint_bin as _endpoint_bin,
+)
 from .contract_roles import active_record_fields, validate_contract_provenance
 from .scientific_models import reciprocal_transfer, seed_from
 from .scientific_qualification import _contract_settings
@@ -33,27 +37,6 @@ ENDPOINT_BINS = (
     "missing_annotation",
     "out_of_vocabulary",
 )
-
-
-def _endpoint_bin(raw_key: str) -> str:
-    if raw_key == "missing_annotation":
-        return "missing_annotation"
-    if raw_key.startswith("typed::"):
-        return "other_typed"
-    if not raw_key.startswith("untyped_status::"):
-        return "out_of_vocabulary"
-    _, status, status_label = raw_key.split("::", 2)
-    normalized = f"{status} {status_label}".lower()
-    if "orphan" in normalized or "leaves" in normalized:
-        return "fragment"
-    if status in {"Assign", "Anchor"} or any(
-        token in normalized
-        for token in ("hard to trace", "partially traced", "anchor", "assign")
-    ):
-        return "proofreading"
-    if status == "Traced":
-        return "untyped"
-    return "unknown"
 
 
 def _fixed_covariates(
@@ -110,6 +93,7 @@ def _collapse_vocabulary(
     rare_partner_mass_fraction: float,
     hierarchy_depth: int = 1,
     partner_hierarchy: dict[str, dict[str, str]] | None = None,
+    canonical_target: bool = False,
 ) -> tuple[sparse.csr_matrix, list[str], dict[str, Any]]:
     type_names = sorted(set(str(value) for value in focal_types))
     type_index = {name: index for index, name in enumerate(type_names)}
@@ -177,8 +161,7 @@ def _collapse_vocabulary(
     collapsed_vocabulary = (
         sorted(retained_typed) + sorted(hierarchy_bins) + list(ENDPOINT_BINS)
     )
-    collapsed_index = {key: index for index, key in enumerate(collapsed_vocabulary)}
-    target_columns: list[int] = []
+    target_keys: list[str] = []
     for key in raw_vocabulary:
         if key in retained_typed:
             target_key = key
@@ -188,7 +171,16 @@ def _collapse_vocabulary(
             target_key = f"hierarchy_{hierarchy_depth}::{label or 'unclassified'}"
         else:
             target_key = _endpoint_bin(key)
-        target_columns.append(collapsed_index[target_key])
+        target_keys.append(target_key)
+    removed_empty_pools = []
+    if canonical_target:
+        # All semantic endpoints have canonical children, even at zero mass.
+        # An unused other_typed pool has no children and must carry no mass.
+        occupied = set(target_keys) | set(CANONICAL_ENDPOINTS)
+        removed_empty_pools = [key for key in collapsed_vocabulary if key not in occupied]
+        collapsed_vocabulary = [key for key in collapsed_vocabulary if key in occupied]
+    collapsed_index = {key: index for index, key in enumerate(collapsed_vocabulary)}
+    target_columns = [collapsed_index[key] for key in target_keys]
     mapping = sparse.coo_matrix(
         (
             np.ones(len(raw_vocabulary), dtype=np.int8),
@@ -212,6 +204,9 @@ def _collapse_vocabulary(
         "retained_typed_partner_count": len(retained_typed),
         "hierarchy_bin_count": len(hierarchy_bins),
         "collapsed_partner_count": len(collapsed_vocabulary),
+        **({"raw_to_pool": target_columns,
+            "structurally_empty_pools_removed": removed_empty_pools}
+           if canonical_target else {}),
         "retained_typed_partners": sorted(
             key.removeprefix("typed::") for key in retained_typed
         ),
@@ -250,9 +245,11 @@ def run_development_trial(
     contract_path = (
         contract_path.resolve(strict=True)
         if contract_path is not None
-        else EPISODE_ROOT / "outputs" / "executor" / "SCIENTIFIC_CONTRACT.yaml"
+        else EPISODE_ROOT / "outputs" / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml"
     )
     contract = load_yaml_subset(contract_path)
+    if contract.get("contract_id") != "ep12_outgoing_tum_post36_v3":
+        raise ValueError("corrected development execution requires the V3 scientific contract")
     contract_fields: dict[str, Any] = {}
     if contract_provenance is not None:
         contract_fields = active_record_fields(
@@ -311,7 +308,18 @@ def run_development_trial(
         ),
         hierarchy_depth=int(configuration["partner_hierarchy_depth"]),
         partner_hierarchy=partner_hierarchy,
+        canonical_target=True,
     )
+    canonical, canonical_vocabulary, canonical_to_pool = canonicalize_counts(
+        matrix, raw_vocabulary, vocabulary_record.pop("raw_to_pool"), vocabulary
+    )
+    vocabulary_record.update({
+        "canonical_partner_count": len(canonical_vocabulary),
+        "canonical_decoder_protocol": DECODER_PROTOCOL,
+        "canonical_decoder_pseudocount_per_category": DECODER_PSEUDOCOUNT,
+        "pool_partition_scope": "all_development_focal_rows_before_side_split",
+        "decoder_fit_scope": "transfer_source_only_and_source_CV_training_folds",
+    })
     covariates = _fixed_covariates(
         focal,
         stats,
@@ -382,6 +390,9 @@ def run_development_trial(
                     covariance_mode=str(configuration["covariance"]),
                     covariance_rank=int(configuration["covariance_rank"]),
                     component_candidates=(component_count,),
+                    left_canonical_counts=canonical[left],
+                    right_canonical_counts=canonical[right],
+                    canonical_to_pool=canonical_to_pool,
                 )
                 record.update(
                     {
@@ -459,6 +470,7 @@ def run_development_trial(
         "cpu_seconds": time.process_time() - started_cpu,
         **contract_fields,
         "scientific_contract_id": contract.get("contract_id"),
+        "score_target_protocol": DECODER_PROTOCOL,
     }
     atomic_json(output_dir / "trial_report.json", report)
     with (output_dir / "result_table.csv").open("x", encoding="utf-8", newline="") as handle:

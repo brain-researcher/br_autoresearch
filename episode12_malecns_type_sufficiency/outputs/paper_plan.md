@@ -1,5 +1,17 @@
 # EP12 paper plan: when does a cell-type average distort circuit wiring?
 
+## October 20 — adopted engineering scope
+
+The renewed animal-question instruction and standing scientist authority adopt
+the source-training count decoder prospectively. Scoring/CV, fitted-null sampling
+and shared observed/null controls are repaired, with 14 generated-only tests
+passing. The full original outgoing comparison, estimand, thresholds and data
+roles remain fixed; no circuit endpoint or incoming/final opening is adopted.
+Production readiness remains false pending affected-procedure qualification
+and legacy procedure-lock/launch bindings. This is an engineering result;
+the original incomplete empirical comparison and history below remain intact.
+See the [repair record](experiment_log.md#2026-10-20--canonical-scoring-repair--prospective-decoder-adopted).
+
 ## October 6 review — separate completion and adopted primary closure
 
 The selected real-development description and its figure are **complete**:
@@ -21,7 +33,7 @@ figure and future circuit narrative below.
 The original outgoing T/U/M comparison is **incomplete**. Its observed-search
 deadline expired October 1 at 05:57:34 UTC; the generated oracle chain ended
 with unresolved precision; the reviewed canonical-target decoder proposal
-remains unadopted. No corrected replay, final-type opening or circuit round
+was then unadopted. No corrected replay, final-type opening or circuit round
 follows from the completed description. See [the execution record](experiment_log.md)
 and [the existing decoder proposal](canonical_target_decoder_proposal.md).
 

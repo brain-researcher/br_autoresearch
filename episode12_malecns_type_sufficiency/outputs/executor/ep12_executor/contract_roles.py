@@ -28,14 +28,18 @@ def _require(condition: bool, message: str) -> None:
 
 
 def validate_contract_provenance(value: Mapping[str, Any] | None) -> dict[str, Any]:
-    """Normalize old provenance records to the two scientific epoch labels."""
+    """Retain historical epochs; never relabel old fits as corrected V3 fits."""
 
     raw = dict(value or {})
     rank_rule = raw.get("prevalence_parameter_rank_definition", RANK_RULE)
     _require(rank_rule == RANK_RULE, "post-36 prevalence-rank definition changed")
+    prefix_epoch = raw.get("prefix_epoch", PREFIX_EPOCH)
+    active_epoch = raw.get("active_epoch", ACTIVE_EPOCH)
+    _require(prefix_epoch in {PREFIX_EPOCH, "observed_prefix_v3"}, "unknown prefix epoch")
+    _require(active_epoch in {ACTIVE_EPOCH, "post36_active_v3"}, "unknown active epoch")
     return {
-        "prefix_epoch": PREFIX_EPOCH,
-        "active_epoch": ACTIVE_EPOCH,
+        "prefix_epoch": prefix_epoch,
+        "active_epoch": active_epoch,
         "prevalence_parameter_rank_definition": RANK_RULE,
         "operator_development_outcome_values_displayed": bool(
             raw.get("operator_development_outcome_values_displayed", True)
@@ -59,11 +63,11 @@ def load_contract_provenance(
     prefix = load_yaml_subset(prefix_contract_path)
     active = load_yaml_subset(active_contract_path)
     _require(
-        prefix.get("contract_id") == "ep12_outgoing_tum_v1",
+        prefix.get("contract_id") in {"ep12_outgoing_tum_v1", "ep12_outgoing_tum_post36_v3"},
         "unexpected observed-prefix scientific contract",
     )
     _require(
-        active.get("contract_id") == "ep12_outgoing_tum_post36_v2",
+        active.get("contract_id") in {"ep12_outgoing_tum_post36_v2", "ep12_outgoing_tum_post36_v3"},
         "unexpected post-36 scientific contract",
     )
     rank_rule = active.get("mode_support", {}).get(
@@ -71,19 +75,21 @@ def load_contract_provenance(
     )
     _require(rank_rule == RANK_RULE, "post-36 prevalence-rank definition changed")
     return validate_contract_provenance(
-        {"prevalence_parameter_rank_definition": rank_rule}
+        {"prevalence_parameter_rank_definition": rank_rule,
+         "prefix_epoch": ("observed_prefix_v3" if prefix.get("contract_id").endswith("v3") else PREFIX_EPOCH),
+         "active_epoch": ("post36_active_v3" if active.get("contract_id").endswith("v3") else ACTIVE_EPOCH)}
     )
 
 
 def prefix_record_fields(provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
-    validate_contract_provenance(provenance)
-    return {"contract_epoch": PREFIX_EPOCH}
+    normalized = validate_contract_provenance(provenance)
+    return {"contract_epoch": normalized["prefix_epoch"]}
 
 
 def active_record_fields(provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
-    validate_contract_provenance(provenance)
+    normalized = validate_contract_provenance(provenance)
     return {
-        "contract_epoch": ACTIVE_EPOCH,
+        "contract_epoch": normalized["active_epoch"],
         "prevalence_parameter_rank_definition": RANK_RULE,
     }
 

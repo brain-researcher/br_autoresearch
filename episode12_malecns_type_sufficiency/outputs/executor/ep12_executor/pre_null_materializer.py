@@ -29,8 +29,6 @@ from scipy import sparse
 
 from .adaptive_search import validate_development_configuration
 from .contract_roles import (
-    ACTIVE_EPOCH,
-    PREFIX_EPOCH,
     RANK_RULE,
     active_record_fields,
     load_contract_provenance,
@@ -40,6 +38,7 @@ from .contract_roles import (
 )
 from .adaptive_successors import _ranking_key, _scientific_signature
 from .development_trial import _fixed_covariates
+from .canonical_target import DECODER_PROTOCOL, canonicalize_counts
 from .fitted_null import FittedNullDesign, fitted_generator_manifest
 from .mode_support import (
     component_partner_contrasts,
@@ -77,8 +76,11 @@ SCRATCH_ROOT = Path(
     "/scratch/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency"
 )
 DEFAULT_POST36_PLAN = OUTPUTS_ROOT / "executor" / "OBSERVED_POST36_TAIL_PLAN.json"
-PREFIX_CONTRACT_ID = "ep12_outgoing_tum_v1"
-ACTIVE_CONTRACT_ID = "ep12_outgoing_tum_post36_v2"
+PREFIX_CONTRACT_ID = "ep12_outgoing_tum_post36_v3"
+ACTIVE_CONTRACT_ID = "ep12_outgoing_tum_post36_v3"
+# A corrected prefix is re-estimated; old V1/V2 records are never relabelled.
+PREFIX_EPOCH = "observed_prefix_v3"
+ACTIVE_EPOCH = "post36_active_v3"
 
 
 class PreNullMaterializerError(RuntimeError):
@@ -201,6 +203,9 @@ def _validate_trial_outputs(
 
     report_path = trial_dir / "trial_report.json"
     report = _read_json(report_path, f"trial report {trial_id}")
+    _require(report.get("scientific_contract_id") == ACTIVE_CONTRACT_ID
+             and report.get("score_target_protocol") == DECODER_PROTOCOL,
+             f"trial {trial_id} requires corrected canonical V3 replay")
     report_configuration = _mapping(
         report.get("configuration"), f"trial configuration {trial_id}"
     )
@@ -1041,6 +1046,9 @@ def fit_selected_mode_and_generators(
         configuration,
         partner_hierarchy,
     )
+    canonical, canonical_vocabulary, canonical_to_pool = canonicalize_counts(
+        raw, raw_vocabulary, raw_to_collapsed, collapsed_vocabulary
+    )
     options = _fit_options(configuration, fit_settings)
     minimum = int(configuration["component_count"]) * int(
         fit_settings["source_cv_folds"]
@@ -1080,21 +1088,23 @@ def fit_selected_mode_and_generators(
             collapsed[left],
             covariates[left],
             seed=seed_from(base_seed, "left-source"),
+            canonical_counts=canonical[left], canonical_to_pool=canonical_to_pool,
             **options,
         )
         right_fit = fit_triplet(
             collapsed[right],
             covariates[right],
             seed=seed_from(base_seed, "right-source"),
+            canonical_counts=canonical[right], canonical_to_pool=canonical_to_pool,
             **options,
         )
         left_score = float(
-            left_fit.score_target(collapsed[right], covariates[right])[
+            left_fit.score_target(collapsed[right], covariates[right], canonical_counts=canonical[right])[
                 "mean_delta_M_minus_reference"
             ]
         )
         right_score = float(
-            right_fit.score_target(collapsed[left], covariates[left])[
+            right_fit.score_target(collapsed[left], covariates[left], canonical_counts=canonical[left])[
                 "mean_delta_M_minus_reference"
             ]
         )
@@ -1220,11 +1230,12 @@ def fit_selected_mode_and_generators(
         focal_types=types[keep].tolist(),
         sides=side_values[keep].tolist(),
         covariates=covariates[keep],
-        raw_counts=raw[keep],
-        raw_vocabulary=list(map(str, raw_vocabulary)),
+        raw_counts=canonical[keep].toarray().astype(np.int64),
+        raw_vocabulary=canonical_vocabulary,
         collapsed_vocabulary=list(collapsed_vocabulary),
-        raw_to_collapsed=raw_to_collapsed,
+        raw_to_collapsed=canonical_to_pool,
         collapsed_typed_bins=typed_bins,
+        canonical_target_protocol=DECODER_PROTOCOL,
     )
     generator_rows, generator_manifest_sha256 = fitted_generator_manifest(
         generators, design

@@ -22,6 +22,8 @@ import pyarrow.parquet as parquet
 from scipy import sparse
 
 from .development_trial import _collapse_vocabulary, _fixed_covariates
+from .canonical_target import DECODER_PROTOCOL
+from .canonical_view import prepare_canonical_view
 from .contract_roles import active_record_fields, validate_contract_provenance
 from .falsifier_controls import (
     FalsifierControlError,
@@ -128,7 +130,8 @@ def _prepare_arrays(
     snapshot_dir: Path,
     configuration: Mapping[str, Any],
     control_spec: Mapping[str, Any],
-) -> tuple[sparse.csr_matrix, pd.DataFrame, np.ndarray, list[str], dict[str, Any], list[dict[str, Any]]]:
+) -> tuple[sparse.csr_matrix, pd.DataFrame, np.ndarray, list[str], dict[str, Any],
+           list[dict[str, Any]], sparse.csr_matrix, np.ndarray]:
     matrix = sparse.load_npz(snapshot_dir / "development_outgoing_counts.npz").tocsr()
     focal = parquet.read_table(snapshot_dir / "development_focal_neurons.parquet").to_pandas()
     stats = parquet.read_table(snapshot_dir / "development_body_statistics.parquet").to_pandas()
@@ -143,79 +146,14 @@ def _prepare_arrays(
         if hierarchy_path.is_file()
         else None
     )
-    transforms: list[dict[str, Any]] = []
-    matrix_transform = str(control_spec["matrix_transform"])
-    deferred_noise = matrix_transform == "pooled_multinomial_noise"
-    if matrix_transform == "binary":
-        matrix = matrix.sign().astype(np.int64).tocsr()
-        transforms.append(
-            {
-                "transform": "binary_edge_counts",
-                "same_shape": True,
-                "nonzero_support_preserved": True,
-                "row_mass_preservation_required": False,
-            }
-        )
-    elif matrix_transform == "pooled_multinomial_noise":
-        # Defer the draw until after the frozen baseline vocabulary collapse.
-        # This preserves the exact modeled partner dimension as well as every
-        # neuron row total, so the T/U/M candidate capacities are identical.
-        pass
-    elif matrix_transform != "identity":
-        raise FalsifierControlError("unsupported matrix transform")
-
-    selected_columns: list[int] = []
-    pool_name: str | None = None
-    partner_keys = set(map(str, control_spec.get("partner_pool_keys", [])))
-    endpoint = control_spec.get("endpoint_pool_bin")
-    if partner_keys:
-        missing = partner_keys - set(map(str, raw_vocabulary))
-        if missing:
-            raise FalsifierControlError(f"partner pool keys are absent: {sorted(missing)}")
-        selected_columns = [
-            index for index, key in enumerate(raw_vocabulary) if str(key) in partner_keys
-        ]
-        pool_name = f"control_partner_family_pool::{control_spec['branch_id']}"
-    elif endpoint is not None:
-        selected_columns = [
-            index
-            for index, key in enumerate(raw_vocabulary)
-            if endpoint_bin(str(key)) == str(endpoint)
-        ]
-        pool_name = f"control_endpoint_pool::{endpoint}"
-
-    focal_types = focal["type"].astype(str).to_numpy()
-    if selected_columns:
-        collapsed, vocabulary, vocabulary_record, receipt = _pool_after_collapse(
-            matrix=matrix,
-            focal_types=focal_types,
-            raw_vocabulary=list(map(str, raw_vocabulary)),
-            configuration=configuration,
-            partner_hierarchy=hierarchy,
-            selected_columns=selected_columns,
-            pool_name=str(pool_name),
-        )
-        transforms.append(receipt)
-    else:
-        collapsed, vocabulary, vocabulary_record = _collapse_vocabulary(
-            matrix,
-            focal_types,
-            list(map(str, raw_vocabulary)),
-            strategy=str(configuration["partner_vocabulary"]),
-            minimum_development_type_count=int(
-                configuration["partner_minimum_development_type_count"]
-            ),
-            rare_partner_mass_fraction=float(
-                configuration["rare_partner_pooling_mass_fraction"]
-            ),
-            hierarchy_depth=int(configuration["partner_hierarchy_depth"]),
-            partner_hierarchy=hierarchy,
-        )
-    if deferred_noise:
-        collapsed, receipt = pooled_multinomial_noise_sparse(
-            collapsed, seed=int(control_spec["transform_seed"])
-        )
-        transforms.append(receipt)
+    collapsed, canonical, mapping, vocabulary, vocabulary_record, transforms = prepare_canonical_view(
+        matrix, focal["type"].astype(str).to_numpy(), raw_vocabulary, configuration, hierarchy,
+        matrix_transform=str(control_spec["matrix_transform"]),
+        transform_seed=int(control_spec["transform_seed"]),
+        selected_keys=list(map(str, control_spec.get("partner_pool_keys", []))),
+        endpoint=control_spec.get("endpoint_pool_bin"),
+        pool_name=f"control_pool::{control_spec['branch_id']}",
+    )
     vocabulary_record = {
         **vocabulary_record,
         "collapsed_partner_count": len(vocabulary),
@@ -235,7 +173,7 @@ def _prepare_arrays(
             block_id=str(nuisance),
         )
         transforms.append(receipt)
-    return collapsed, focal, covariates, vocabulary, vocabulary_record, transforms
+    return collapsed, focal, covariates, vocabulary, vocabulary_record, transforms, canonical, mapping
 
 
 def _source_metadata(fitted: Any, vocabulary: list[str]) -> dict[str, Any]:
@@ -389,9 +327,11 @@ def run_control_development_trial(
     contract_path = (
         contract_path.resolve(strict=True)
         if contract_path is not None
-        else EPISODE_ROOT / "outputs" / "executor" / "SCIENTIFIC_CONTRACT.yaml"
+        else EPISODE_ROOT / "outputs" / "executor" / "SCIENTIFIC_CONTRACT_POST36_V3.yaml"
     )
     contract = load_yaml_subset(contract_path)
+    if contract.get("contract_id") != "ep12_outgoing_tum_post36_v3":
+        raise FalsifierControlError("corrected controls require the V3 scientific contract")
     contract_fields: dict[str, Any] = {}
     if contract_provenance is not None:
         contract_fields = active_record_fields(
@@ -403,7 +343,7 @@ def run_control_development_trial(
         raise FalsifierControlError("final connectivity must remain locked")
     settings = _contract_settings(contract)
     policy = EpisodePolicy.load(EPISODE_ROOT / "SEARCH_POLICY.yaml")
-    collapsed, focal, covariates, vocabulary, vocabulary_record, transforms = _prepare_arrays(
+    collapsed, focal, covariates, vocabulary, vocabulary_record, transforms, canonical, mapping = _prepare_arrays(
         snapshot_dir=snapshot_dir,
         configuration=config,
         control_spec=spec,
@@ -459,13 +399,15 @@ def run_control_development_trial(
                 )
                 seed = seed_from("ep12-control", trial_id, provider_type)
                 left_fit = fit_triplet(
-                    left_counts, covariates[left], seed=seed_from(seed, "left-source"), **options
+                    left_counts, covariates[left], seed=seed_from(seed, "left-source"),
+                    canonical_counts=canonical[left], canonical_to_pool=mapping, **options
                 )
                 right_fit = fit_triplet(
-                    right_counts, covariates[right], seed=seed_from(seed, "right-source"), **options
+                    right_counts, covariates[right], seed=seed_from(seed, "right-source"),
+                    canonical_counts=canonical[right], canonical_to_pool=mapping, **options
                 )
-                left_to_right = left_fit.score_target(right_counts, covariates[right])
-                right_to_left = right_fit.score_target(left_counts, covariates[left])
+                left_to_right = left_fit.score_target(right_counts, covariates[right], canonical_counts=canonical[right])
+                right_to_left = right_fit.score_target(left_counts, covariates[left], canonical_counts=canonical[left])
                 record.update(
                     {
                         "status": "valid_complete_T_U_M_triplet",
@@ -558,6 +500,7 @@ def run_control_development_trial(
         "cpu_seconds": time.process_time() - started_cpu,
         **contract_fields,
         "scientific_contract_id": contract.get("contract_id"),
+        "score_target_protocol": DECODER_PROTOCOL,
     }
     atomic_json(output_dir / "trial_report.json", report)
     with (output_dir / "result_table.csv").open("x", encoding="utf-8", newline="") as handle:

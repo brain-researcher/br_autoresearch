@@ -147,6 +147,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     trial.add_argument("--config-manifest", type=Path)
     trial.add_argument("--config-index", type=int)
+    trial.add_argument("--contract", type=Path, default=(
+        EPISODE_ROOT / "outputs/executor/SCIENTIFIC_CONTRACT_POST36_V3.yaml"
+    ))
 
     reconcile = subcommands.add_parser(
         "reconcile-development-trial",
@@ -369,6 +372,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             output_dir=arguments.output_dir,
             snapshot_dir=arguments.snapshot_dir,
             configuration=configuration,
+            contract_path=arguments.contract,
         )
         print(
             json.dumps(

@@ -1,12 +1,23 @@
 # Outputs
 
+**October 20 implementation resumed:** the reviewed source-only canonical
+decoder is prospectively adopted under standing scientist authority and the
+new instruction to work on the animal questions. Scoring/CV, fitted-null
+sampling and shared observed/null controls are repaired; all 14 focused
+generated-only tests [passed](runs/canonical_target_repair/attempt004/canonical_tests.txt).
+Readiness remains false pending affected-procedure qualification and legacy
+procedure-lock/launch bindings. This is not a new scientific result or passing
+qualification. Historical trials remain historical, and incoming/final
+access stays closed. See the [implementation record](experiment_log.md#2026-10-20--canonical-scoring-repair--prospective-decoder-adopted).
+
 [Public online resources, checked October 6](../DATASETS.md#public-online-resources--checked-october-6-2026): official release, flat-connectome file documentation, API interface and morphology-unit conventions.
 
 **October 6 adopted closeout:** the real-development description and figure
 remain complete; the original T/U/M comparison is **incomplete under expired
 execution and qualification limits**. The [adopted primary closeout](paper_plan.md#october-6-review--separate-completion-and-adopted-primary-closure)
 selects no successor or final/incoming opening. See the [adoption record](experiment_log.md#2026-10-06--terminal_report--scientist-adopted-original-study-closeout).
-The expired clock, prior charges and unadopted decoder proposal are preserved.
+The expired clock, prior charges and then-unadopted decoder proposal are preserved
+as history; the October 20 adoption is prospective.
 
 **Figure complete, October6,00:02UTC:** [three-panel description](figures/observed_outgoing_description/20261005-description01/observed_outgoing_description.png)
 and [caption](figures/observed_outgoing_description/20261005-description01/figure_caption.md)
@@ -25,7 +36,7 @@ These are in-sample descriptions from one male fly, not evidence that the
 original T/U/M comparison succeeded. Its expired clock and unresolved
 qualification remain; final focal types and incoming scope stay closed.
 
-October 4, 20:46 UTC: **the generated oracle chain has ended at its frozen
+Historical October 4 status (superseded only where stated above): **the generated oracle chain ended at its frozen
 bound with unresolved precision**. The
 [final look-08 aggregate](scientific_qualification/stochastic_oracle_v3/qualification_attempt001/qualification_look08.json)
 has 32/35 cells within tolerance; three fail, with eight of 105 coordinate
@@ -38,10 +49,10 @@ for the exact cells, resource accounting and interpretation. No additional
 look, replacement bank, relaxed threshold or restart is authorized.
 
 The original observed-search 120-hour deadline was October 1, 05:57:34 UTC;
-the CPU override preserves it. V3 launcher/readiness mismatches and the
-canonical-target scoring implementation remain unresolved. The reviewed
-[decoder proposal](canonical_target_decoder_proposal.md) remains **unadopted**.
-This generated result neither resolves those issues nor authorizes empirical
+the CPU override preserved it. V3 launcher/readiness mismatches and the
+canonical-target scoring implementation were unresolved at that closeout. The reviewed
+[decoder proposal](canonical_target_decoder_proposal.md) was then **unadopted**.
+That generated result neither resolved those issues nor authorized empirical
 replay, procedure locking, null searches, circuit work or final connectivity
 access. The historical prefix remains attempts, not corrected V3 evidence.
 

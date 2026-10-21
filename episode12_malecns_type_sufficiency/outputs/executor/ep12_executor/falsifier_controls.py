@@ -312,6 +312,8 @@ def ablate_nuisance_block(
 
 
 def endpoint_bin(raw_key: str) -> str:
+    if raw_key in {"unknown", "untyped", "fragment", "proofreading", "out_of_vocabulary"}:
+        return raw_key
     if raw_key == "missing_annotation":
         return "missing_annotation"
     if raw_key.startswith("typed::"):

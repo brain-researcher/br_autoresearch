@@ -1,0 +1,38 @@
+test_factorization_matches_direct_integrated_canonical_likelihood (test_canonical_target.CanonicalTargetTests.test_factorization_matches_direct_integrated_canonical_likelihood) ... ok
+test_mapping_preserves_all_endpoint_mass_and_removes_only_empty_pool (test_canonical_target.CanonicalTargetTests.test_mapping_preserves_all_endpoint_mass_and_removes_only_empty_pool) ... ok
+test_singleton_decoder_preserves_existing_generated_scores (test_canonical_target.CanonicalTargetTests.test_singleton_decoder_preserves_existing_generated_scores) ... FAIL
+test_source_cv_refits_decoder_without_validation_rows (test_canonical_target.CanonicalTargetTests.test_source_cv_refits_decoder_without_validation_rows) ... ok
+test_transfer_scores_use_their_source_decoder_and_canonical_cv (test_canonical_target.CanonicalTargetTests.test_transfer_scores_use_their_source_decoder_and_canonical_cv) ... ok
+test_zero_observed_categories_receive_fixed_per_category_prior (test_canonical_target.CanonicalTargetTests.test_zero_observed_categories_receive_fixed_per_category_prior) ... ok
+test_stale_prefix_cannot_qualify_as_corrected_v3 (test_canonical_target.CorrectedReadinessTests.test_stale_prefix_cannot_qualify_as_corrected_v3) ... ok
+test_v3_contract_roles_do_not_relabel_historical_epochs (test_canonical_target.CorrectedReadinessTests.test_v3_contract_roles_do_not_relabel_historical_epochs) ... ok
+
+======================================================================
+FAIL: test_singleton_decoder_preserves_existing_generated_scores (test_canonical_target.CanonicalTargetTests.test_singleton_decoder_preserves_existing_generated_scores)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/oak/stanford/groups/russpold/users/zijiao/br_autoresearch/episode12_malecns_type_sufficiency/outputs/executor/tests/test_canonical_target.py", line 143, in test_singleton_decoder_preserves_existing_generated_scores
+    np.testing.assert_array_equal(identity.correction(self.pooled_right, self.pooled_right), np.zeros(16))
+  File "/share/software/user/open/py-numpy/1.26.3_py312/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 920, in assert_array_equal
+    assert_array_compare(operator.__eq__, x, y, err_msg=err_msg,
+  File "/share/software/user/open/python/3.12.1/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/share/software/user/open/py-numpy/1.26.3_py312/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 797, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Arrays are not equal
+
+Mismatched elements: 1 / 16 (6.25%)
+Max absolute difference: 3.55271368e-16
+Max relative difference: inf
+ x: array([0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00,
+       0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00,
+       0.000000e+00, 0.000000e+00, 0.000000e+00, 3.552714e-16,
+       0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00])
+ y: array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.281s
+
+FAILED (failures=1)

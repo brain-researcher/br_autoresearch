@@ -1,6 +1,19 @@
 # Proposed canonical-target decoder for corrected outgoing development
 
-**Status: UNADOPTED, 2026-10-04.** This is a separately prepared scientific
+**Status: ADOPTED prospectively, 2026-10-20.** The renewed animal-question
+instruction and standing scientist authority adopt the source-training count
+decoder specified below, with 0.5 per canonical category and per-fold refitting.
+Scoring/CV, fitted-null sampling and shared observed/null controls are repaired;
+14 generated-only tests passed. Readiness remains false pending affected-procedure
+qualification and legacy procedure-lock/launch bindings. No old qualification is
+inherited, no original comparison is declared complete, and no estimand,
+threshold, data role, circuit endpoint or incoming/final opening changes.
+The prior remains category-count dependent and within-pool sensitivity remains
+limited. See the [prospective adoption and test record](experiment_log.md#2026-10-20--canonical-scoring-repair--prospective-decoder-adopted).
+
+**Historical proposal status, 2026-10-04: UNADOPTED.** The text below records
+the reviewed proposal at that date; its old pending-approval and clock language
+does not override the October 20 engineering adoption. This was a separately prepared scientific
 proposal, not an operative contract, implementation, qualification result or
 launch decision. It does not change the running generated chain or renew the
 observed-search deadline of 2026-10-01 05:57:34 UTC. Any later execution needs

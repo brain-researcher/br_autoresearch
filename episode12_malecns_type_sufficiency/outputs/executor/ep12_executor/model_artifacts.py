@@ -23,6 +23,7 @@ from .fitted_null import (
 )
 from .policy import digest_bytes, digest_object
 from .scientific_models import FittedPredictiveModel
+from .canonical_target import CanonicalDecoder, DECODER_PROTOCOL
 
 
 STATE_SCHEMA = "ep12.fitted_null_model_state.v1"
@@ -209,6 +210,8 @@ def _write_design(directory: Path, design: FittedNullDesign) -> dict[str, Any]:
         "sides": list(design.sides),
         "raw_vocabulary": list(design.raw_vocabulary),
         "collapsed_vocabulary": list(design.collapsed_vocabulary),
+        **({"canonical_target_protocol": design.canonical_target_protocol}
+           if design.canonical_target_protocol is not None else {}),
         "collapsed_typed_bins": [
             name
             for name, typed in zip(
@@ -237,7 +240,8 @@ def _read_design(directory: Path) -> FittedNullDesign:
         "files",
         "artifact_sha256",
     }
-    if set(metadata) != required or metadata.get("schema_version") != DESIGN_SCHEMA:
+    if (set(metadata) - {"canonical_target_protocol"} != required
+            or metadata.get("schema_version") != DESIGN_SCHEMA):
         raise ModelArtifactError("design metadata schema mismatch")
     core = {key: value for key, value in metadata.items() if key != "artifact_sha256"}
     if metadata["artifact_sha256"] != digest_object(core):
@@ -268,6 +272,7 @@ def _read_design(directory: Path) -> FittedNullDesign:
             label="raw-to-collapsed mapping",
         ),
         collapsed_typed_bins=list(metadata["collapsed_typed_bins"]),
+        canonical_target_protocol=metadata.get("canonical_target_protocol"),
     )
     if design.design_sha256 != _sha256(metadata["design_sha256"], "design"):
         raise ModelArtifactError("reconstructed design digest mismatch")
@@ -287,6 +292,9 @@ def _write_model(
         f"{name}.npy": np.asarray(getattr(model, name), dtype=np.float64)
         for name in MODEL_ARRAYS
     }
+    if model.canonical_decoder is not None:
+        arrays["canonical_to_pool.npy"] = model.canonical_decoder.canonical_to_pool
+        arrays["canonical_log_probability.npy"] = model.canonical_decoder.log_conditional_probability
     for name, value in arrays.items():
         atomic_npy(directory / name, value)
     core = {
@@ -301,6 +309,8 @@ def _write_model(
         "parameter_count": int(model.parameter_count),
         "pseudocount": float(model.pseudocount),
         "diagnostics": _json_copy(model.diagnostics),
+        **({"canonical_decoder_protocol": DECODER_PROTOCOL}
+           if model.canonical_decoder is not None else {}),
         "files": _record_files(directory, tuple(arrays)),
     }
     metadata = {**core, "artifact_sha256": digest_object(core)}
@@ -331,7 +341,8 @@ def _read_model(
         "files",
         "artifact_sha256",
     }
-    if set(metadata) != required or metadata.get("schema_version") != MODEL_SCHEMA:
+    if (set(metadata) - {"canonical_decoder_protocol"} != required
+            or metadata.get("schema_version") != MODEL_SCHEMA):
         raise ModelArtifactError("model metadata schema mismatch")
     core = {key: value for key, value in metadata.items() if key != "artifact_sha256"}
     if metadata["artifact_sha256"] != digest_object(core):
@@ -345,13 +356,27 @@ def _read_model(
     files = metadata.get("files")
     if not isinstance(files, Mapping):
         raise ModelArtifactError("model file inventory is missing")
-    _verify_files(directory, files, {f"{name}.npy" for name in MODEL_ARRAYS})
+    expected_files = {f"{name}.npy" for name in MODEL_ARRAYS}
+    decoder = None
+    if metadata.get("canonical_decoder_protocol") is not None:
+        if metadata["canonical_decoder_protocol"] != DECODER_PROTOCOL:
+            raise ModelArtifactError("unsupported canonical decoder protocol")
+        expected_files |= {"canonical_to_pool.npy", "canonical_log_probability.npy"}
+    _verify_files(directory, files, expected_files)
     arrays = {
         name: _load_npy(
             directory / f"{name}.npy", dtype=np.float64, label=f"model {name}"
         )
         for name in MODEL_ARRAYS
     }
+    if metadata.get("canonical_decoder_protocol") is not None:
+        decoder = CanonicalDecoder(
+            _load_npy(directory / "canonical_to_pool.npy", dtype=np.int64,
+                      label="canonical pool mapping"),
+            _load_npy(directory / "canonical_log_probability.npy", dtype=np.float64,
+                      label="canonical conditional probabilities"),
+            len(design.collapsed_vocabulary),
+        )
     model = FittedPredictiveModel(
         model_id=str(metadata["model_id"]),
         basis=arrays["basis"],
@@ -366,6 +391,7 @@ def _read_model(
         parameter_count=int(metadata["parameter_count"]),
         diagnostics=_json_copy(metadata["diagnostics"]),
         pseudocount=float(metadata["pseudocount"]),
+        canonical_decoder=decoder,
     )
     observed = fitted_generator_sha256(model, design)
     if observed != _sha256(metadata["generator_sha256"], "generator"):
