@@ -155,6 +155,41 @@ recommend:
 
 ## Next
 
+### October 20: prospective implementation defaults under standing authority
+
+The scientist authorized work on the animal-study questions. The coordinating
+agent adopted the following implementation choices under repository standing
+authority, without adopting the original companion draft as a whole:
+
+- **D03:** retain the adopted metadata whitelist; do not add author, virus or
+  undocumented descriptors.
+- **D04:** implement genuine coherent bijective donor plans. The proposed
+  512-plan count remains subject to outcome-free stability and workload
+  qualification; recipient-uniform edge averaging is not substituted.
+- **D06:** implement the registered feature/model families and conditional
+  ridge location/scale residualization with animal-grouped nested fitting.
+- **D07:** retain 40 minimum and 96 maximum valid trials, patience 18 and the
+  existing falsification schedule; the draft's extra hard cap of 48 is not
+  adopted. Finite compute requests follow measured need under standing authority.
+- **D08:** implement conservative 97.5th-percentile critical-value calibration,
+  disjoint validation and the Student-t floor while preserving nominal one-sided
+  95% inference and the existing 5% noncoverage requirement.
+- **D10/D12:** implement the frozen four-by-three anatomical blocks and full
+  exact-target matrix; preserve the original 27/16 roles and development-only
+  12/15 pseudo-audits. Population-dependent revisions remain contingent.
+
+The [original companion YAML](companion/companion_contract_v0_1_draft.yaml)
+remains unchanged. Pending scientific decisions are the scoped **D01/D02**
+[population/matching amendment](companion/donor_population_amendment_proposed.md),
+confirmatory donor/probability/sign gates, meaningful scientific margins, and
+the secondary hierarchy estimator. No axon access, audit feature access,
+role change or scientific readiness follows from these implementation defaults.
+The [donor-graph kernel](../../../tools/ep09_donor_graph.py) and its
+[finite-graph tests](../../../tools/test_ep09_donor_graph.py) prepare the
+missing feasible-edge step using synthetic adjacency only; they do not qualify
+real donor support. Execution is recorded once in the
+[episode log](../../../experiment_log.md).
+
 - Resolve the [scoped population/matching proposal](companion/donor_population_amendment_proposed.md)
   before treating the reviewer's recommendation as adopted. It is not blanket
   approval of D01–D12.

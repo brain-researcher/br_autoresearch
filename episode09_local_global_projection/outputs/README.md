@@ -1,5 +1,16 @@
 # EP09 outputs
 
+**October 20 — donor-graph implementation validated: 8 tests passed.**
+The [exact graph kernel](tools/ep09_donor_graph.py) completes the proposed
+feasible-edge pruning step missing from the preliminary census. Its
+[finite-graph oracle tests](tools/test_ep09_donor_graph.py) use no scientific
+payloads; all eight passed in **0.709 s** in coordinator allocation **48756235**
+on `sh04-18n32.int` (exit 0). The
+[test output](runs/matched_donor_qualification/attempt002/graph_kernel_tests.txt)
+and [log](experiment_log.md#2026-10-20--matched_donor_qualification-graph-kernel-tests-passed)
+record the implementation check, not real donor qualification. The population
+amendment remains unadopted, and no axon or audit outcome access is activated.
+
 **October 18 — donor-population amendment prepared, unadopted.** The
 [scoped proposal](runs/measurement_and_roles/attempt006/companion/donor_population_amendment_proposed.md)
 defines a donor-supported primary, separate all-eligible benchmark, prospective

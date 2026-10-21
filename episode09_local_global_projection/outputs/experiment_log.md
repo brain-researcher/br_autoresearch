@@ -1,5 +1,39 @@
 # Experiment log
 
+## 2026-10-20 — matched_donor_qualification: graph-kernel tests passed
+
+- Coordinator allocation **48756235**, `sh04-18n32.int`: all **8** graph/oracle/census-integration tests passed in **0.709 s**, exit **0**.
+- Evidence: [attempt002 test output](runs/matched_donor_qualification/attempt002/graph_kernel_tests.txt); no real scientific input was read.
+- Attempt001 preserves an interpreter mismatch (Python 3.13 with Python 3.12 NumPy); the coordinator corrected invocation to `python3` with native modules, with no graph-code change.
+- This validates feasible-edge pruning and opt-in census integration, not real donor support, power or biological prediction; historical census artifacts remain unchanged.
+- Reconciled the GOAL entrypoint with already adopted CEBSIT/Cux2/Wfs1/27–16 records, retaining SEU feasibility as history and the explicit animal-identity assumption.
+- Next: resolve the pending scientific population/matching and claim gates, then advance authorized donor/measurement stages; no axon or audit access was opened here.
+
+## 2026-10-20 — measurement_and_roles: adopted source entrypoint reconciled
+
+- Corrected DATASETS to the adopted CEBSIT source, Cux2/Wfs1 L2/3–L4 population, registered dendrites and 27/16 whole-brain roles; marked prior CEBSIT proposal/SEU inventory explicitly historical.
+- Preserved frozen artifacts and roles. Current dependencies now refer to stage A and the remaining companion decisions rather than historical SEU provisioning.
+- The catalog review supports unique IT-line sample identifiers, but the retained records cite no explicit provider animal/acquisition crosswalk; one fMOST brain per mouse is reported as the adopted identity assumption, not a new certificate.
+- No payload read, test, job or additional outcome access accompanied this documentation correction.
+
+## 2026-10-20 — measurement_and_roles: prospective implementation choices adopted
+
+- Under the scientist's animal-study continuation and repository standing authority, the lead adopted D03 whitelist, D04 genuine bijective plans and D06 registered nested-animal models/residualization for implementation.
+- Preserve the current 40/96 search bounds and patience 18 (D07); use conservative critical-value calibration with unchanged nominal 95% inference (D08).
+- Implement frozen 4×3 anatomical blocks/full-target matrices (D10) and preserve original roles/development pseudo-audits (D12); this adopts no scientific sign gate or population-dependent change.
+- The prospective 512-plan count still requires outcome-free stability/workload qualification; no real donor bank or scientific result exists.
+- The original companion draft stays unchanged; [current navigation](runs/measurement_and_roles/attempt006/README.md#october-20-prospective-implementation-defaults-under-standing-authority) distinguishes adopted defaults from pending D01/D02, confirmatory gates, margins and secondary hierarchy choice.
+- No data read, new job or axon/audit access accompanies this record; the graph-kernel compute check remains the selected immediate implementation test.
+
+## 2026-10-20 — matched_donor_qualification: exact donor-graph kernel prepared
+
+- Activated a contract-preserving implementation step under the scientist's animal-study continuation; no population, radius, threshold, role or outcome-access amendment is adopted.
+- The prior support census degree-prunes and checks for a perfect matching but does not remove edges absent from every complete plan; its historical support counts remain preliminary.
+- Added `tools/ep09_donor_graph.py` and opt-in `--qualify-feasible-edges` integration in the existing census; the original census mode and frozen artifacts are preserved.
+- Selected compute-only finite-graph oracle tests in `tools/test_ep09_donor_graph.py`; proposed resource use is one CPU, under 1 GiB and two minutes, coordinated by the lead.
+- No real data run is selected. Pending artifact: `runs/matched_donor_qualification/attempt001/graph_kernel_tests.txt`; a pass would validate the graph algorithm, not donor support, scientific power or model performance.
+- Next scientific dependency remains the unadopted donor-population/matching amendment and unresolved companion specifications before real donor qualification or axon access.
+
 ## 2026-10-18 — donor-population amendment preparation activated; no execution
 
 - Scoped document work: turn attempt006's supported-animal recommendation into one reviewable, unadopted amendment; no job, test, scientific code or data access.

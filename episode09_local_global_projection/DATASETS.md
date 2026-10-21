@@ -1,4 +1,4 @@
-# EP09 data: native dendrites and distal axonal arbors from the same neurons
+# EP09 data: registered dendrites and distal axonal arbors from the same neurons
 
 EP09 needs whole-neuron reconstructions in which the dendritic tree and distal
 axon belong to the same identified cell. [GOAL.md](GOAL.md) explains the
@@ -6,21 +6,54 @@ scientific question; this file explains which measurements support it, how a
 valid target observation is constructed, and what must be settled before the
 experiment can launch.
 
-## Proposed primary source: CEBSIT whole-cortex projectome — unadopted
+<a id="primary-source"></a>
+## Current primary source: CEBSIT whole-cortex projectome
 
-**Status: approved October 16; qualification complete October 17.** The
-archive is verified, labelling is confirmed Cre-dependent, and 6,302 of 6,469
-IT-line cells pass dendrite QC
-([attempt005](outputs/runs/metadata_feasibility/attempt005/README.md)).
-PlexinD1, Tlx3 and Rorb failed the pre-set line-specificity rule. The
-remaining Cux2 core gives 17 animals with pools, below 20. Adding Wfs1 gives
-52; that needs the scientist's amendment.
+The scientist adopted **CEBSIT / Gao, Zenodo 16909126** on October 16 and
+**Cux2-Cre plus Wfs1-Tg2-CreERT2** on October 17. These are the operative
+source and line-set amendments in [SEARCH_POLICY.yaml](SEARCH_POLICY.yaml).
+SEU-A1876 is the historical, infeasible source, not a current primary input.
 
-**Original proposal text (October 16, 2026) follows.** SEU-A1876 cannot supply the
-registered design: at most 3 of 12 IT-driver animals have donor pools. The
-scientist asked for a new dataset. Nothing below is adopted, and no file from
-this source has been downloaded. Evidence:
-[attempt004](outputs/runs/metadata_feasibility/attempt004/README.md).
+| Contract item | Adopted specification |
+| --- | --- |
+| Resource | Gao whole-cortex projectome, Zenodo 16909126; the verified `data_v3.zip` release contains 18,621 registered cortical reconstructions. |
+| Primary population | Cux2 L2/3 and L4; Wfs1 L2/3. No L5 IT claim. Scnn1a remains sensitivity-only. |
+| Coordinates | CCFv3-registered, soma-centred rotation-invariant dendritic features. Native SWCs are not released; a native-versus-CCF sensitivity is unavailable. |
+| Layer and grouping | Registered soma area/layer with the adopted coordinate-disagreement corrections; one fMOST brain treated as one animal under the identity assumption below. |
+| Frozen cohort and roles | 1,703 cells: 1,114 development cells in 27 whole-brain groups and 589 audit cells in 16 groups. The original 12/8 group counts remain minimums, not the assigned split. |
+| Measurement | Adopted v1.2 distal/arbor/observability rules; stage-A `n_coverage=6`, radial edges 50/100/150 µm, branch-order ranges 1–3/4–5/>5 and R_cap 600 µm. |
+
+The [qualification record](outputs/runs/metadata_feasibility/attempt005/README.md)
+documents 6,302/6,469 IT-line cells passing the dendrite screen. Its pending
+Wfs1 wording describes the earlier qualification decision point; the later
+adopted line-set amendment supersedes it. The
+[role record](outputs/runs/measurement_and_roles/attempt002/README.md),
+[stage-A record](outputs/runs/measurement_and_roles/attempt006/README.md) and
+[current output navigation](outputs/README.md) establish the operative bindings
+and access stage. The donor-population/radius amendment is still a proposal.
+
+**Identity evidence and assumption.** The
+[catalog-only source review](outputs/runs/metadata_feasibility/attempt004/README.md#cebsit-check-i-ran-this-catalog-only)
+reports unique `sample_id` values for IT-line brains. Its
+[retained census](outputs/runs/metadata_feasibility/attempt004/cebsit_catalog_census.json)
+records 382 sample rows, 382 unique fMOST IDs and no fMOST ID with multiple
+sample rows. These observations support, but do not independently certify,
+the adopted interpretation of one fMOST brain per mouse; no explicit
+provider animal/acquisition crosswalk is cited in these records. Animal-level
+wording is conditional on that interpretation. Do not treat the source
+amendment itself as independent evidence or export it to another episode as
+an animal-identity certificate. The frozen whole-brain roles remain unchanged.
+
+<a id="proposed-primary-source-cebsit-whole-cortex-projectome--unadopted"></a>
+## Historical October 16 proposal: CEBSIT before adoption
+
+The original proposal below records the earlier design state. Its pending
+source/line decisions, counts, labelling uncertainties and no-download wording
+are historical and are superseded by the adopted specifications above.
+SEU-A1876 could not supply the registered design: at most 3 of 12 IT-driver
+animals had donor pools. The scientist requested another dataset; the
+[attempt004 search](outputs/runs/metadata_feasibility/attempt004/README.md)
+then produced this proposal.
 
 | Item | Proposed source |
 | --- | --- |
@@ -140,7 +173,12 @@ preserved, with this separate observation as correction evidence. This adds no
 authenticated L2/3–L5 IT eligibility, missing layers or matched-donor support;
 the current cohort-feasibility limits below remain unchanged.
 
-## Primary source
+## Historical primary source: SEU-A1876
+
+This section preserves the former source inventory and identity work. Its
+primary/native-input labels and unassigned-role statements describe the
+superseded SEU design only; they do not authorize SEU payload use in the
+adopted CEBSIT study.
 
 | Item | Role in EP09 |
 | --- | --- |
@@ -313,10 +351,10 @@ Role assignment uses identity, provenance, coverage, and technical feasibility
 only. It cannot use dendrite–axon associations, target prevalence, model scores,
 or visually interesting cells.
 
-| Role | Minimum groups | Permitted use |
-| --- | ---: | --- |
-| Development | 12 | Build the observation pipeline, determine training-fold target support, tune models, run falsification analyses, and freeze predictions |
-| Audit | 8 | One evaluation of the locked primary and explanatory predictions in held-out biological groups within SEU-A1876 |
+| Role | Minimum groups | Assigned CEBSIT groups | Permitted use |
+| --- | ---: | ---: | --- |
+| Development | 12 | 27 | Build the observation pipeline, determine training-fold target support, tune models, run falsification analyses, and freeze predictions within the adopted staged access. |
+| Audit | 8 | 16 | One evaluation of the locked primary and explanatory predictions after the shared lock and authorized extraction. |
 
 Audit axonal detections, target prevalence, and outcome-derived feature caches
 remain in a separately readable location until the full EP09/10/11 lock. The
@@ -324,11 +362,11 @@ search process may receive audit anatomy and outcome-blind coverage only when a
 frozen recipe explicitly needs them; it may not receive detection labels or
 summaries from which those labels can be inferred.
 
-This split supports internal grouped reproducibility within the source
-collection. It is not an independent replication of Peng 2021. A
-lineage-disjoint audit using newly annotated cells is optional only if those
-cells independently satisfy the biological-group, exact-target, and matched-
-donor requirements; it is not promised in advance.
+This split supports internal grouped reproducibility within CEBSIT, conditional
+on the identity assumption above. CEBSIT is separate from the Peng/SEU lineage,
+but its own development and audit groups remain one laboratory/reconstruction
+resource. A held-out CEBSIT subset is not external replication. The earlier
+option to use newly annotated SEU cells does not assign them a current role.
 
 ## Constructing a target observation
 
@@ -410,22 +448,22 @@ the distal axon:
   of axonal geometry; and
 - independently defined labels whose lineage contains no axonal outcome.
 
-### Native dendritic predictors
+### Registered dendritic predictors
 
-M1 adds summaries computed from `Full_morphology_RAW.zip`. Candidate blocks
-include:
+M1 adds soma-centred, rotation-invariant summaries from the adopted CEBSIT
+CCFv3 dendrites. Candidate blocks include:
 
 - branch topology and branch order;
 - soma-centered radial or Sholl-like profiles;
 - path length, extent, tortuosity, and branching geometry;
-- orientation and hemispheric symmetry; and
+- orientation and hemispheric symmetry as a prespecified secondary extension; and
 - prespecified persistent-homology summaries.
 
 Physical-radius shells and branch-order blocks for the explanatory analysis
 are frozen after unit, sampling, and coordinate validation but without viewing
-target detections. Native coordinates are primary because the question concerns
-the measured dendritic tree rather than an atlas-warped version. CCFv3
-dendrites are a locked sensitivity only.
+target detections. The source amendment makes registered CCFv3 morphology the
+primary representation; native morphology is unavailable. Registration and
+interior-only sensitivities therefore matter for the interpretation.
 
 An external pretrained representation is admissible only if its training data,
 cell identities, and publication lineage are documented and do not expose the
@@ -540,39 +578,30 @@ residual against coherent tightly matched donor residuals at exact-target
 resolution, followed by a scale × exact-target replication test. M1 beating M0
 is a required benchmark, not the discovery.
 
-## Launch blockers
+## Remaining dependencies under the adopted source
 
-The following items must be resolved before candidate scoring:
+CEBSIT acquisition, source/line qualification, shared roles, compartment-code
+resolution, measurement v1.2 and stage A are recorded in the links above.
+Do not repeat the historical SEU provisioning sequence. Before the relevant
+later access/scoring stages, the remaining requirements are:
 
-- provision the SEU-A1876 archives and pin the exact Allen CCFv3 annotation and
-  structure graph in read-only storage;
-- verify animal/brain/specimen provenance and build the shared EP09/10/11 role
-  and exposure ledger;
-- verify an outcome-independent cortical IT label and document its provenance;
-- document original-release versus newly annotated lineage;
-- authenticate cell joins, native-to-CCF coordinate relationships, and the
-  dendrite/axon parsing route;
-- freeze the distal-arbor, observability, valid-nondetection, target-vocabulary,
-  and outcome-independent target/source family cuts;
-- verify the minimum development and audit group counts after all eligibility
-  rules;
-- verify exact-target support and the prespecified donor count within every
-  source × layer × non-axon class × biological-group matching pool;
-- freeze `n_coverage`, positive/negative group support, family support,
-  dendritic blocks, conditional-generator diagnostics, independent-block
-  nuisance seeds, coherent matched-donor plans, and all 20 shuffled
-  hierarchies;
-- freeze E0/E1, the exact group, target, and family scores, `delta_morph`,
-  `delta_cell`, `eta_matrix`, `rho_matrix`, exact-target entry order,
-  required sign entries, source-family scope, and calibrator eligibility;
-- demonstrate with separate, prespecified calibration and validation simulations
-  that the planned lower-tail, upper-tail, cell-equivalence, nuisance, and
-  hierarchy critical values meet their coverage requirements;
-- confirm that the nuisance and hierarchy refits, fixed-model matched-donor
-  predictions, and explanatory-template evaluation fit inside the resource ceiling.
+- resolve the scoped donor-supported-population/matching amendment and
+  confirmatory gates without inferring their adoption from implementation work;
+- complete the prospective model/donor specifications and outcome-free donor
+  qualification, preserving actual supported-group counts and the full primary
+  exact-target scope;
+- perform the adopted technical stage and development measurements only under
+  their staged access rules; audit dendrites and axons remain closed until the
+  shared lock and authorized stage E;
+- freeze qualified nuisance controls, E0/E1, scientific margins, exact-target
+  template/sign rules, calibrated inference and nested development checks;
+- retain the 20-shuffle secondary hierarchy requirement and its own availability
+  rule without treating secondary failure as primary failure;
+- demonstrate measured workload feasibility using finite resource requests
+  under standing authority, retaining historical consumption.
 
-Optional CCF-ME absence does not block the primary analysis. Failure of a
-primary item does.
+The [attempt006 navigation](outputs/runs/measurement_and_roles/attempt006/README.md#october-20-prospective-implementation-defaults-under-standing-authority)
+separates adopted implementation defaults from pending scientific choices.
 
 ## Storage
 

@@ -11,9 +11,15 @@ Also counts, per V_6 target, animals with >= 4 donor-supported A_pre-positive re
 (option B's floor; an outcome-blind upper bound on observable supported recipients).
 Reads no dendrite or axon rows.
 
+The historical default is a preliminary degree/Hall census. The optional
+--qualify-feasible-edges mode additionally removes donor edges that participate
+in no complete plan and repeats pruning, as required by the proposed companion
+graph definition. Neither mode adopts that companion or authorizes outcome access.
+
 Usage: ep09_donor_support_census.py ZIP CELL_MANIFEST_CSV CCF_PAYLOAD_DIR TOOLS_DIR
        RELABELED_CELLS_CSV SOMA_FRAMES_CSV OUT_DIR
 """
+import argparse
 import csv
 import json
 import math
@@ -41,20 +47,58 @@ def weighted_quantile(values_weights, q):
     return max(v for v, _ in values_weights)
 
 
+def supported_vertices(edges, *, minimum_donors=MIN_DONORS, qualify_feasible_edges=False):
+    """Per-pool decision, with the historical census preserved by default."""
+    if qualify_feasible_edges:
+        from ep09_donor_graph import qualify_support_graph
+
+        return set(qualify_support_graph(edges, minimum_donors=minimum_donors).edges)
+
+    import numpy as np
+    from scipy.sparse import csr_matrix
+    from scipy.sparse.csgraph import maximum_bipartite_matching
+
+    alive = set(edges)
+    while True:
+        drop = [i for i in alive if len(edges[i] & alive) < minimum_donors]
+        if drop:
+            alive.difference_update(drop)
+            continue
+        if alive:
+            order = sorted(alive)
+            index = {cell: k for k, cell in enumerate(order)}
+            rows, cols = [], []
+            for i in order:
+                for j in edges[i] & alive:
+                    rows.append(index[i])
+                    cols.append(index[j])
+            matrix = csr_matrix(
+                (np.ones(len(rows)), (rows, cols)), shape=(len(order), len(order))
+            )
+            if (maximum_bipartite_matching(matrix, perm_type="column") < 0).any():
+                alive.clear()
+        return alive
+
+
 def main():
     if not os.environ.get("SLURM_JOB_ID"):
         raise SystemExit("Refusing to run: SLURM_JOB_ID is not set.")
     for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         os.environ[name] = "1"
-    zip_path, manifest_path, ccf_dir, tools_dir, relabel_path, frames_path, out_dir = map(Path, sys.argv[1:8])
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ("zip", "manifest", "ccf_dir", "tools_dir", "relabel", "frames", "out_dir"):
+        parser.add_argument(name, type=Path)
+    parser.add_argument("--qualify-feasible-edges", action="store_true")
+    args = parser.parse_args()
+    zip_path, manifest_path, ccf_dir, tools_dir, relabel_path, frames_path, out_dir = (
+        args.zip, args.manifest, args.ccf_dir, args.tools_dir, args.relabel, args.frames, args.out_dir
+    )
     out_dir.mkdir(parents=True, exist_ok=True)
     out_json = out_dir / "donor_support_census_variants.json"
     if out_json.exists():
         raise SystemExit(f"Refusing to overwrite {out_json}")
 
     import numpy as np
-    from scipy.sparse import csr_matrix
-    from scipy.sparse.csgraph import maximum_bipartite_matching
     from scipy.spatial import cKDTree
 
     sys.path.insert(0, str(tools_dir.resolve()))
@@ -136,23 +180,10 @@ def main():
                     return False
                 return True
             edges = {i: {j for j in members if ok(i, j)} for i in members}
-            alive = set(members)
-            while True:
-                drop = [i for i in alive if len(edges[i] & alive) < MIN_DONORS]
-                if drop:
-                    alive.difference_update(drop)
-                    continue
-                if alive:
-                    order = sorted(alive)
-                    index = {c: k for k, c in enumerate(order)}
-                    rows, cols = [], []
-                    for i in order:
-                        for j in edges[i] & alive:
-                            rows.append(index[i]); cols.append(index[j])
-                    m = csr_matrix((np.ones(len(rows)), (rows, cols)), shape=(len(order), len(order)))
-                    if (maximum_bipartite_matching(m, perm_type="column") < 0).any():
-                        alive.clear()
-                break
+            alive = supported_vertices(
+                edges, minimum_donors=MIN_DONORS,
+                qualify_feasible_edges=args.qualify_feasible_edges,
+            )
             for i in alive:
                 result[i] = True
         return result
@@ -208,6 +239,10 @@ def main():
                        "soma_frames": str(frames_path), "relabeled_cells": str(relabel_path)},
         "rule": {"depth_caliper": DEPTH_CALIPER, "min_donors": MIN_DONORS, "width_quantile": WIDTH_QUANTILE,
                  "width_cap_um": WIDTH_CAP_UM, "same_hemisphere": True},
+        "support_graph_algorithm": (
+            "degree_pruning_Hall_check_and_feasible_edge_fixed_point"
+            if args.qualify_feasible_edges else "historical_degree_pruning_and_Hall_check_only"
+        ),
         "width_unrounded_um": q90, "width_um": width,
         "supported_cells": {role: int(sum(supported[i] for i, c in enumerate(cells) if c["ep09_role"] == role))
                             for role in ("development", "audit")},

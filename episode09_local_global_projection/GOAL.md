@@ -1,6 +1,30 @@
 # At what biological resolution does dendrite–projectome coupling live?
 
-## Current feasibility, October 16
+## Adopted source and scientific scope
+
+The operative primary source is **CEBSIT / Gao whole-cortex projectome,
+Zenodo 16909126**, adopted October 16. The October 17 line-set amendment
+defines the primary population as **Cux2 L2/3–L4 and Wfs1 L2/3**, with no L5 IT
+claim. The question remains whether a recipient's own dendritic residual
+predicts exact distal targets better than coherent matched-peer residuals.
+
+The frozen whole-brain roles are 27 development and 16 audit groups. The
+adopted measurement v1.2 and stage-A bindings use registered CCFv3 dendrites,
+rotation-invariant primary features and `n_coverage=6`; native dendrites are
+unavailable. Animal-level interpretation remains conditional on the adopted
+one-fMOST-brain-per-mouse assumption, as distinguished from the retained
+catalog evidence in [DATASETS.md](DATASETS.md#current-primary-source-cebsit-whole-cortex-projectome).
+CEBSIT is separate from the Peng/SEU lineage but shares its underlying release
+with EP10/EP11, so their exposure ledger and whole-group boundaries apply.
+
+The donor-supported population/radius amendment and remaining scientific
+gates are still pending; preparatory implementation does not adopt them.
+No axonal prediction result exists. The
+[current execution record](outputs/README.md) and
+[companion navigation](outputs/runs/measurement_and_roles/attempt006/README.md#october-20-prospective-implementation-defaults-under-standing-authority)
+separate completed stage A, delegated implementation and remaining decisions.
+
+## Historical SEU feasibility, October 16
 
 The missing source facts have been recovered from papers, supplements, code
 and permitted data, without provider contact. Claims based on them are
@@ -25,16 +49,15 @@ The registered 12-development/8-audit design, and the unadopted nine-animal
 route, are therefore infeasible on SEU-A1876. This is a data limitation, and
 the headline matched-donor primary is unavailable on this source.
 
-The scientist chose to look for a new dataset (October 16). The
-[proposed source](DATASETS.md#proposed-primary-source-cebsit-whole-cortex-projectome--unadopted)
-is the CEBSIT whole-cortex projectome (Gao et al., *Neuron* 2025). It has
-57 core IT-line animals with within-animal pools of at least 5 cells, and no
-overlap with the Peng 2021 lineage. If adopted, the question and primary
-estimand stay the same; the source, the dendrite coordinate frame and the
-layer rule change. Until the scientist approves it, roles, thresholds and
-access are unchanged, and no fit is selected.
+The scientist chose to look for a new dataset on October 16. The
+[historical proposal](DATASETS.md#proposed-primary-source-cebsit-whole-cortex-projectome--unadopted)
+identified CEBSIT with 57 provisional core-IT groups with within-group pools
+of at least five cells. Subsequent source and line-set adoptions supersede
+that provisional population, source and coordinate frame as stated above.
+The SEU limitation remains valid; it is not the current CEBSIT feasibility
+decision.
 
-## Current feasibility and proposed route, October 6
+## Historical SEU feasibility and proposed route, October 6
 
 The preserved October 3 non-axon metadata join matches 38 brains to 38 distinct animals,
 but only 12 animals have documented cortical IT-driver support before further
