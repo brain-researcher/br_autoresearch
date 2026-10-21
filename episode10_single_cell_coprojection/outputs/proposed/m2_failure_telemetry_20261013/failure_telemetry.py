@@ -1,6 +1,7 @@
-"""INACTIVE proposal: preserve scalar diagnostics before a worker loses its traceback.
+"""Preserve synthetic qualification scalars before a worker loses its traceback.
 
-No CLI, imports of scientific modules, optimizer patch, or execution selection.
+Activated October 20 as a child-worker diagnostic only; no scientific launch.
+No CLI, imports of scientific modules, or optimizer patch.
 The caller passes the original synthetic qualification worker and optimizer path.
 This records failure only; successful calls are returned unchanged.
 """
@@ -65,7 +66,7 @@ def failure_record(error, *, family, rank, optimizer_path):
                 and Path(frame.f_code.co_filename).resolve() == optimizer_path):
             local = frame.f_locals
             if local.get("objective_mode") != "synthetic_qualification":
-                raise ValueError("This proposal excludes production objective frames")
+                raise ValueError("Failure telemetry excludes production objective frames")
             current = local.get("current")
             spec = local.get("specification")
             state = local.get("state")
@@ -111,7 +112,7 @@ def failure_record(error, *, family, rank, optimizer_path):
 def run_case_with_failure_record(worker, family, rank, *, optimizer_path, failure_path):
     """Call the unchanged worker; persist a failure before reraising it.
 
-    Future integration must invoke this inside each child, not around
+    Integration invokes this inside each child, not around
     future.result() in the parent. Caller must select a fresh failure path and
     an authorized bounded compute action; this helper selects neither.
     """

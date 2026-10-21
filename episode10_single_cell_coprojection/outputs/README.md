@@ -1,11 +1,21 @@
 # Outputs
 
-**October 13 — inactive worker-failure diagnostic repair prepared.**
+**October 20 — child-side scalar failure diagnostics integrated.**
+The synthetic optional-family ProcessPool worker now uses the
+[reviewed helper](proposed/m2_failure_telemetry_20261013/README.md) before
+exception transport, preserving original returns/exceptions and fresh records.
+All four generated exception/ProcessPool checks passed in 1.112 s in allocation
+48756235 ([evidence](runs/m2_failure_telemetry/attempt001/telemetry_tests.txt)); the
+shared allocation is charged once under EP12. No optimizer campaign, numerical change or full M2 reactivation is
+selected. The incomplete closeout and closed outcomes remain in force.
+See the [current log](experiment_log.md).
+
+**October 13 — historical inactive preparation.**
 The original M2 study remains closed incomplete. A concrete child-process
 telemetry defect explains why the old failures lack terminal gradients/steps;
 [a separate reviewed proposal](proposed/m2_failure_telemetry_20261013/README.md)
-preserves those scalars before exception transport. It is untested and unactivated,
-with no optimizer change or new job. No convergence repair or feasible full-search
+preserves those scalars before exception transport. At preparation it was untested
+and unactivated; the October 20 entry supersedes that status. No convergence repair or feasible full-search
 cost is established. See the [preparation record](experiment_log.md).
 
 **October 12 — inactive original-M2 reactivation proposal prepared.**

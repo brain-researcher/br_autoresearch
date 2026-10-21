@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
+import importlib.util
 import json
 import math
 import multiprocessing
@@ -508,6 +509,31 @@ def _run_recovery_case(family: str, rank: int) -> tuple[str, int, Mapping[str, A
     return family, rank, gate
 
 
+def _run_recovery_case_with_failure_record(
+    family: str, rank: int, failure_path: Path | None,
+) -> tuple[str, int, Mapping[str, Any]]:
+    """Persist synthetic scalar failures in the child before exception transport.
+
+    The original worker and all numerical choices are unchanged. The CLI always
+    supplies a progress directory; library calls that explicitly omit output
+    retain their previous no-artifact behavior. This wrapper does not authorize
+    a qualification campaign or any empirical M2 work.
+    """
+    if failure_path is None:
+        return _run_recovery_case(family, rank)
+    helper_path = (Path(__file__).resolve().parents[2] / "proposed"
+                   / "m2_failure_telemetry_20261013" / "failure_telemetry.py")
+    spec = importlib.util.spec_from_file_location("ep10_m2_failure_telemetry", helper_path)
+    if spec is None or spec.loader is None:
+        raise OptionalQualificationError("failure telemetry module is unavailable")
+    helper = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(helper)
+    return helper.run_case_with_failure_record(
+        _run_recovery_case, family, rank, optimizer_path=optional.__file__,
+        failure_path=failure_path,
+    )
+
+
 def _case_context(family: str, rank: int) -> Mapping[str, Any]:
     return {
         "family": family, "rank": rank,
@@ -670,11 +696,19 @@ def _parallel_recovery_gates(
             _atomic_json(progress_dir / f"{family}_rank_{rank}.json", gate)
         print(f"RECOVERY_CASE_REUSED family={family} rank={rank}", flush=True)
     failures: list[str] = []
+    failure_dir = None
+    if progress_dir is not None:
+        progress_dir.mkdir(parents=True, exist_ok=True)
+        # One fresh directory per invocation preserves every prior failed case.
+        failure_dir = Path(tempfile.mkdtemp(prefix="failure_diagnostics_", dir=progress_dir))
     with ProcessPoolExecutor(
         max_workers=workers, mp_context=multiprocessing.get_context("spawn"),
     ) as executor:
         futures = {
-            executor.submit(_run_recovery_case, family, rank): (family, rank)
+            executor.submit(
+                _run_recovery_case_with_failure_record, family, rank,
+                None if failure_dir is None else failure_dir / f"{family}_rank_{rank}_failure.json",
+            ): (family, rank)
             for family in families for rank in LOW_RANK_RANKS
             if str(rank) not in completed[family]
         }

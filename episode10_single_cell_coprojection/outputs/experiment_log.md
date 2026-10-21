@@ -1,5 +1,14 @@
 # Experiment log
 
+## 2026-10-20 — v3_search — prospective child-side diagnostic activation
+
+Under the animal-study continuation, integrate the [single reviewed scalar helper](proposed/m2_failure_telemetry_20261013/README.md) into the existing synthetic optional-family ProcessPool child.
+Select only generated exception/ProcessPool tests of capture, unchanged returns/exceptions, production-frame rejection and fresh-path protection; coordinator owns compute execution.
+Each invocation receives a fresh diagnostic subdirectory; all previous failed runs remain intact, without reconstructed terminal values.
+No optimizer, threshold, family, stopping rule, data role or ASTRA recipe changes; no qualification campaign or empirical M2 reactivation is selected.
+The adopted incomplete closeout, final/unassigned closure and prior charges remain.
+Result: all 4 checks PASS in 1.112 s, exit 0, allocation 48756235; [test evidence](runs/m2_failure_telemetry/attempt001/telemetry_tests.txt). Shared allocation charged once under EP12; no optimizer job or duplicate EP10 charge.
+
 ## 2026-10-13 — v3_search — inactive child-side failure diagnostic prepared
 
 The full-goal audit preserves the adopted original-M2 incomplete closeout.

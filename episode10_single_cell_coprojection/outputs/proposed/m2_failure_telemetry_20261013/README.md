@@ -1,11 +1,13 @@
-# EP10 original M2: inactive failure-telemetry preparation
+# EP10 original M2: child-side failure diagnostics
 
-Prepared October 13, 2026. **Unactivated and untested. No execution selected.**
-This is a source-only follow-up to
+Prepared October 13; **diagnostic integration activated October 20, 2026**
+under the animal-study continuation. Focused generated-fixture checks are
+selected; no optimizer or qualification campaign is selected. This follows
 [`proposed_original_m2_reactivation.md`](../../proposed_original_m2_reactivation.md).
-It changes neither the adopted incomplete closeout nor any original numerical
-source, scientific threshold, model family, data role, resource ledger or ASTRA
-recipe. This proposal has no command-line entrypoint or submission wrapper.
+It preserves the adopted incomplete closeout, numerical algorithm, scientific
+thresholds, model families, data roles and ASTRA recipe. The original helper
+path is retained as the single active implementation; the directory name
+records its preparation history. The helper has no CLI or submission wrapper.
 
 ## Specific finding
 
@@ -17,7 +19,8 @@ other failed low-rank ranks are 4, 6 and 8 at rho=0.001. There is no terminal
 gradient, relative objective change, accepted step or iteration history in
 those historical error strings, so their numerical cause remains unresolved.
 
-The concrete telemetry loss is in the qualification wrapper:
+The October 13 review identified the following telemetry loss in the original
+qualification wrapper; the October 20 child wrapper addresses it prospectively:
 
 - [`_run_recovery_case`](../../stage0/tools/qualify_v3_m2_optional.py#L493)
   allows exceptions to leave the child process without saving scalar failure
@@ -31,14 +34,14 @@ The concrete telemetry loss is in the qualification wrapper:
   and the existing [log](../../experiment_log.md). Re-adding those words is not
   a repair and cannot recover the historical values.
 
-## Proposed minimal mechanical repair
+## Activated mechanical repair
 
 [`failure_telemetry.py`](failure_telemetry.py) wraps the unchanged worker inside
 its child process. Successful results are returned untouched. On an ordinary
 exception it reads an explicit allowlist from the original optimizer traceback,
 writes a fresh diagnostic JSON, then reraises the original exception. It adds
 no iteration callback, objective evaluation, trajectory logging, alternative
-optimizer, test fixture or retry. It records no state or data arrays and refuses
+optimizer or retry. It records no state or data arrays and refuses
 production-objective frames. Independent review identified that free-form exception
 text could bypass this boundary; the helper now records an exception class and
 fixed reason code only. Diagnostic-failure notes likewise omit exception text. Diagnostic-writing failure is attached as an error
@@ -51,10 +54,11 @@ failure from its later optimization. It is neither a resumable checkpoint nor
 a qualified result. It does not catch a hard kill or create missing intermediate
 states; catching a signal would be a separately selected wrapper behavior.
 
-Future caller integration, **not applied here**:
+The active [`_run_recovery_case_with_failure_record`](../../stage0/tools/qualify_v3_m2_optional.py)
+loads this one helper inside each ProcessPool child and calls:
 
 ```python
-run_case_with_failure_record(
+helper.run_case_with_failure_record(
     original_qualification._run_recovery_case, family, rank,
     optimizer_path=original_optional.__file__,
     failure_path=fresh_directory / f"{family}_rank_{rank}_failure.json",
@@ -62,11 +66,23 @@ run_case_with_failure_record(
 ```
 
 The original qualification worker enforces Slurm and one-thread numerical
-settings. This wrapper must run in the worker, before exception serialization;
-calling it around the parent's `future.result()` is too late. Each parallel
-case needs its own fresh filename. Any future check should focus on preservation
-of the original returned object/exception and capture of the whitelisted failure
-fields; no new recovery campaign is selected by preparing this helper.
+settings. `_parallel_recovery_gates` now submits that wrapper, creating a fresh
+`completed_cases/failure_diagnostics_*/` directory for each invocation and a
+distinct filename for each family/rank. Existing records cannot be overwritten.
+The CLI supplies this output directory; library calls omitting a progress
+directory retain their prior no-artifact behavior. Serial execution is unchanged.
+The wrapper runs before exception serialization; the parent's `future.result()`
+cannot recover those frames. This is failure diagnosis, not a convergence fix.
+
+[`test_m2_failure_telemetry.py`](../../stage0/tools/test_m2_failure_telemetry.py)
+uses generated exception frames and one spawned worker to check child-side
+capture, original return/exception preservation, rejection of production frames,
+and fresh-path protection. No fixture invokes an optimizer or recovery campaign.
+All four checks passed in **1.112 s**, exit 0, in Slurm allocation **48756235**;
+see [test evidence](../../runs/m2_failure_telemetry/attempt001/telemetry_tests.txt)
+and the [current execution log](../../experiment_log.md). The shared allocation
+is charged once under EP12, without a duplicate EP10 charge. These checks establish
+the diagnostic boundary, not optimizer convergence or empirical readiness.
 
 ## What source review does and does not establish
 
@@ -79,11 +95,11 @@ The unit step and coupled U/d coordinates can converge slowly when scales
 differ. At sufficiently small steps floating-point Armijo decrease can round to
 zero; the source permits equal rounded objectives even while the gradient gate
 fails. These are possible explanations, not diagnoses of the four old runs.
-The proposed scalar record can separate a failing gradient block from an
+The scalar record can separate a failing gradient block from an
 objective-change-only failure or an apparent objective plateau; it cannot alone
 prove roundoff stagnation or supply a better nonconvex optimizer. Increasing
 iterations or changing the step rule would change the frozen method and is not
-part of this telemetry proposal.
+part of this diagnostic integration.
 
 ## Remaining blocker and original question
 
@@ -104,15 +120,16 @@ even that lower bound exceeds remaining allowance by 835.711222 CPU-hours;
 the standing willingness to increase compute supplies no finite run estimate.
 The previous triangular-solve repair left whole-path time effectively unchanged.
 
-No launch is ready: the low-rank cause and feasible complete-search cost remain
-unresolved, and original-study reactivation is not granted. No tests, scientific
-payload reads, scheduler calls, empirical/synthetic executions or contract edits
-were performed in preparing these two files on login node sh04-ln04.
+No full-search launch is ready: the low-rank cause and feasible complete-search
+cost remain unresolved, and this diagnostic integration does not reactivate
+the original study. No scientific payload, final or unassigned outcome is opened.
+Historical failure values remain unavailable; no retrospective record is invented.
 
-## Preparation review
+## October 13 preparation review (historical)
 
 Independent source review matched the captured locals to the actual optimizer,
 confirmed child-side capture and preservation of successful returns/original
 exceptions, and found no activation. Root corrected the one identified defect: 
-free-form exception serialization. The helper remains untested and inactive;
-no successful runtime check or convergence improvement is claimed.
+free-form exception serialization. At that point the helper was untested and
+inactive. The October 20 integration above supersedes only that activation
+status; no convergence improvement is claimed.
