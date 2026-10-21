@@ -1,10 +1,78 @@
 # EP07 paper: does recording history preserve task structure or same-trial coupling?
 
-Status: integrated paper design with the adopted October 10 eleven-session
-amendment below. EP07 owns the main line; EP06 is a
-recording-domain component study. No neural result, new-day replication, or
-scientific acceptance is claimed. The public corpus and earlier campaign work
-were already outcome-exposed.
+Status, October 20, 2026: EP07's single primary evaluation is complete;
+neither region meets the full support rule. EP06 remains its recording-domain
+component study. The synthesis below includes released EP05/EP08 evidence
+from the same public corpus; it does not combine their estimands or data roles.
+The original conditional designs below are retained as history, not instructions
+to restart search or open further outcomes.
+
+## What the completed EP05–08 comparisons establish
+
+**When does LFP prediction carry information beyond task structure, and how
+dependable is that information across recording and calibration conditions?**
+This connects the four questions without treating them as four independent
+replications. They use overlapping recordings from Mihili and Chewie, two
+animals; Chewie's implants, recording days, electrodes and trials do not add
+independent animals. The effects below have different targets and denominators
+and must not be pooled into a common effect size.
+
+| Question and support | Released result | Scientific interpretation |
+| --- | --- | --- |
+| EP05: does the correct trial's M1 LFP predict its reach deviation? Sixteen M1 sessions, two animals; exposed development. | After 45 comparisons, the W/HW blend gives primary ΔR² **0.002679** and trial-identity increment **0.004559**, below the **0.01/0.005** margins. Separate scalar calibration gives **0.002733/0.004211**, also below both. | Small predictive and pairing signals remain; calibration improves total prediction while reducing trial-identity gain. Neither a practically qualifying decoder nor a population mechanism is established. [Closeout](../../episode05_sensorimotor_lfp/outputs/primary_development_report.md), [calibration](../../episode05_sensorimotor_lfp/outputs/runs/fixed_hw_correction_calibration/attempt001/interpretation.md). |
+| EP06: does a regional LFP frequency profile transfer between animals, and how sensitive is residual prediction to recording support? Seven exposed development dates; two animals. | No supported candidate after 30 comparisons. In the separate support panel, all-unit M1 LMP recovery is **0.01168**, or **0.01081** after HF projection; four-unit matched pools give **0.00111/0.00098**. | Prediction depends on the sampled population; changed targets/axes prevent attributing that dependence to contamination or cortical region. Some classification survives trial mismatch. [Closeout](../../episode06_lfp_regional_fingerprints/outputs/runs/residual_fingerprint_development/development_closeout.md), [support result](../../episode06_lfp_regional_fingerprints/outputs/experiment_log.md#2026-10-13--lmp_support_followup--complete-small-prediction-survives-hf-projection-support-and-stability-remain-limiting). |
+| EP07: do earlier days add value beyond equally tuned today-only fitting? Five target days in two animals; completed single internal held-out evaluation. | History-minus-today ΔR² is **0.017275 in M1** and **0.007772 in PMd**. M1 exceeds the mean margin but only **1/3 Chewie days** improves against both comparators; omitting October 7 leaves Chewie at **−0.008173** against today-only. PMd is positive on all five days but below **0.01**. | Neither region passes the full rule. A positive average is insufficient evidence for dependable transfer. The conditional residual/pairing analysis did not run, so the information carried by history remains unresolved. [Released primary result](experiment_log.md#2026-10-11-0030-pacific--primary_evaluation--completed-neither-region-meets-the-full-support-rule). |
+| EP08: can available calibration information predict electrode value or guide acquisition? Eight development sessions, two animals. | The 41-comparison policy search found no initializer-robust policy. In the separate information-value analysis, the primary **32-trial** predictor worsens prediction in both animal means; only **0/4 Chewie and 1/4 Mihili sessions** improve. The **64-trial** sensitivity has small positive animal means. | More calibration is a useful lead, not a replacement endpoint or demonstrated acquisition benefit. Removal loss is specific to the fitted decoder. [Policy result](../../episode08_lfp_electrode_trial_policy/outputs/final_report.md), [information-value result](../../episode08_lfp_electrode_trial_policy/outputs/runs/offline_information_value/attempt001/information_value.md), [session signs](../../episode08_lfp_electrode_trial_policy/outputs/README.md). |
+
+The shared finding is limited, condition-dependent predictive information.
+EP05's shrinkage tradeoff, EP06's population-support sensitivity, EP07's day
+heterogeneity and EP08's calibration sensitivity make recording support and
+estimation quality important surviving explanations. They do not establish one
+common cause. In particular, none licenses absence of LFP information, pure
+regional physiology, mean-only transfer, or a causal electrode-value claim.
+These completed comparisons justify a coherent account of the conditions
+under which prediction succeeds and fails, rather than four further searches
+for a more favorable model. The existing stops remain scientific outcomes;
+they are not unresolved engineering failures.
+
+EP05 and the later EP06/EP08 explanations are exposed-development evidence.
+EP07's trial bootstrap is conditional on its five fixed target days and two
+animals, not uncertainty over newly sampled animals or days. The EP06 and
+EP08 reserved sessions remain closed under their own roles; cross-episode
+overlap does not make them fresh project-wide confirmation. No sibling
+predictions, outcomes or fitted state become analysis inputs through this
+manuscript synthesis.
+
+### Most informative future comparison — proposal only
+
+On separately approved new recording days, cross **calibration amount and
+LFP electrode support**, retaining one common untouched spike-population
+target and evaluation-trial set across the comparisons. This would directly
+test dependence on the available observations rather than merely repeat the
+current history-versus-today contrast. Freeze the support/calibration grid,
+matched fitting opportunities, effects and practical margins prospectively;
+retain every day and report animal/day results. New days in existing animals
+test day robustness; a compatible new animal is needed to extend the animal
+claim. No such new source is asserted available here.
+
+Within each condition, compare history and equally tuned today-only prediction,
+and their **incremental correct-versus-within-direction-mismatched trial
+advantage**. A history gain confined to sparse calibration/support would
+strengthen a limited-observation explanation; a gain that survives generous
+calibration, matched support and trial-identity controls would weaken that
+explanation. A primary gain without incremental pairing would weaken the
+trial-specific transfer account, without proving mean-only transfer. Keep the
+population target fixed so that changing the predictor support cannot itself
+change the score's denominator. A known-positive sensitivity control at the
+chosen margin must succeed before interpreting a null; otherwise the contrast
+remains underidentified. This comparison would test conditional predictive
+accounts, not identify a biological mechanism.
+
+This is a proposed future design, not a selected run or an amendment to any
+completed endpoint. It grants no new-data access or held-out access, does not
+reopen the four episode searches, and does not merge their data permissions.
+Dataset selection, any changed estimand and a prospective protocol require a
+separate scientist decision before execution.
 
 ![EP07 concept schematic, not observed results](ep07_question_imagegen-v2.png)
 
@@ -14,7 +82,7 @@ the illustrated residual comparison is an example, not a closed model menu.
 Unsupported pairing does not establish mean-only or geometry-only transfer.
 [Exact imagegen prompts](ep07_question_imagegen-v2-prompt.md).
 
-## The one argument this paper should make
+## Original conditional argument
 
 A new day has only a nominal 20% calibration sample. Three earlier days might
 help estimate the usual response to each reach, align population coordinates,
@@ -542,6 +610,11 @@ the correction or explicit joint amendment.
 
 ## Planned evidence sequence
 
+The sequence below records the original design. The primary evaluation is
+complete and did not satisfy its full support rule; its conditional explanatory
+branches remain unperformed. These prospective instructions do not reopen
+the completed search or authorize further outcome access.
+
 ### Search broadly before freezing the final comparison
 
 The paper question does not dictate a small model shortlist. Explore the
@@ -735,5 +808,7 @@ The strongest eventual conclusion names the exact setting, frequency scope,
 information that survived, calibration regime, animals/days, and evidence role.
 It remains an offline result using provider-preprocessed LFP features, not
 causal LFP-to-spike influence, stable cells/electrodes, an online BCI benefit,
-or generalization to a new animal. Current figures are schematic and all
-result-dependent manuscript branches remain hypothetical.
+or generalization to a new animal. The concept figures remain schematic;
+the [released primary figure](figures/primary_evaluation/ep07_primary_result.pdf)
+shows the completed result. The conditional mechanism branches remain
+unperformed.
