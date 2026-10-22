@@ -1,16 +1,15 @@
 # Outputs
 
-**October21 — measured scheduler-only expansion to32 workers.**
-With10/63 batches complete,16 live and37 queued, completed batch durations
-of19h39m–24h34m motivate more parallel work. Scheduler verification confirms
-throttles19/5/7/1 across original/retry002/retry003/retry004, at most96CPUs/512GiB.
-This supersedes earlier16-worker planning limits while preserving live JSON,
-all job IDs, scientific calculations, per-task limits and sole finalizer.
-No new jobs or repeat tests. At04:59UTC October22,31 workers are running
-(19original/5retry002/7retry003); the last retry awaits original29. The nine
-newly started original40–48 all passed admission with48h clocks. No new terminal
-failure or completion is observed; throughput under the expansion remains unmeasured.
-[Measurements, selection and execution](experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--measured-scheduler-only-concurrency-increase-to32).
+**October 21 Pacific — 18/63 uncertainty batches complete; pending holds cleared.**
+Original batches 29–33 and retry002 batches 8–10 all completed successfully,
+with published canonical artifacts and closed readers. No new failure or retry.
+All 13 temporarily held original children 49–61 were released; post-release
+verification finds 28 workers running and 17 draw tasks pending without user holds.
+The existing 32-worker ceiling, 48h extended clocks and full scientific scope remain.
+The sole finalizer already includes figure and three-line-summary rendering after
+all 63 effective successful batches. No complete uncertainty result is available yet.
+[Completions, release and next result](experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--eight-more-batches-complete-and-pending-hold-resolved).
+Earlier snapshots below are historical.
 
 **October21 — extend unstarted batches before repeating the diagnosed timeout.**
 Original children40–61 were verified held and unstarted, then their existing

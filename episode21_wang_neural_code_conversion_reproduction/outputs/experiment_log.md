@@ -1,5 +1,14 @@
 # Experiment log
 
+## 2026-10-21 Pacific — finding_a_feature_decoding — eight more batches complete and pending hold resolved
+
+Original 29–33 completed 0:0 at 06:32 UTC October 22 after 23h22m–23h25m; retry002 children 8–10 also completed 0:0 after about 23h25m. All eight operational reports confirm published canonical artifacts and closed readers; no scientific values were opened.
+Together with the ten previously verified successes, 18/63 effective batches are complete. There is no new failure and no fifth retry is selected.
+The coordinator temporarily held only pending, zero-elapsed original 49–61 at 06:04:39 UTC to reserve capacity for any diagnosed repair, then released all 13 at 06:40:20 after the five original successes were established. Running workers were untouched.
+At 06:45 UTC, post-release scheduler verification finds original 49 RUNNING and 50–61 PENDING without user holds; 28 draw workers run and 17 await resources/array limits. Retry004 batch 37 and retry002 children 12–14 have also started. The existing 32-worker ceiling and 48h clocks remain unchanged.
+The sole finalizer 47716676 retains original-array closure plus successful retry dependencies. Source review confirms its existing wrapper already runs the JSON-only figure/three-line renderer after successful finalization; no additional downstream job or test is needed.
+Next: finish all 63 effective closed-successful batches, then verify scientific finalization, render_exit=0, the figure and the three-line summary. Partial uncertainty cannot substitute for the complete result.
+
 ## 2026-10-21 Pacific — finding_a_feature_decoding — measured scheduler-only concurrency increase to32
 
 At04:11UTC October22 ten effective batches are complete (19h39m–24h34m);53 remain, with16 RUNNING and37 queued under array/dependency limits. No new original failure or retry completion is observed.
