@@ -10,6 +10,7 @@ Preserve all63 distinct batches, original/replacement maps, sole finalizer477166
 Compare later completions/resource observations before any further expansion; shared-storage contention may prevent proportional speedup. One coordinator continues to own scheduler checks.
 Independent source review confirms no runtime check compares effective throttle with captured concurrency metadata. At04:16:43UTC all three scheduler updates returned0 and individual records verify19/5/7/1; selected originals/retries are pending without user holds and finalizer dependencies remain intact.
 At04:20:49UTC18 workers areRUNNING:10 original,4 retry002 and4 retry003. Newly started48681394_15/48899908_19 have48h limits and operational startup records; all22 extended original children still await scheduling. The32 ceiling is not yet fully occupied; finalizer remains dependent and complete-result delivery is pending.
+At04:59:38UTC31 workers areRUNNING (19original/5retry002/7retry003); newly started original40–48 all record admission0, remaining-admission0,48h allocations and170970–170978s execution limits. All15 additional workers have48h claims; no new terminal failure/completion. Retry004 still awaits original29, and finalizer retains full dependencies. This verifies actual expanded startup, not scientific completion or proportional throughput.
 
 ## 2026-10-21 Pacific — finding_a_feature_decoding — extend only unstarted original draw clocks
 
