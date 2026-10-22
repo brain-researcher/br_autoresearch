@@ -1,5 +1,26 @@
 # Experiment log
 
+## 2026-10-21 18:20 Pacific — observed_map_audit_common_support — exploratory result complete
+
+Job48901119 COMPLETED0:0 in79s on1CPU; daily increment0.0219444allocatedCPUh, without step double counting. Full numeric report,PNG/PDF and three lines are published under runs/observed_map_audit/common_support001/evaluation/.
+All12 people,18 B-only conditions,four partitions,16 variants and every control retained; all288 selected members/person scanned; complete joint support180/188. Original predictions were reused without refitting or rebuilding.
+Support/observations froze2026-10-22T01:20:09.382751UTC before scoring01:20:09.571UTC; evaluation finished01:20:13UTC. Prior and renewed B access are disclosed; original failure and predictions remain unchanged.
+All16 mean M0b gains are positive0.0338019–0.0552056;13 exploratory formula intervals lie above0,three M1 intervals span0. Four fixed-reference gains/intervals and full controls are linked in outputs/README.md; participant unit n12,df11.
+Every donor-control mean loss exceeds genuine prediction; condition-permutation contrasts are mixed; random local-basis control minus genuine M3=-0.00295064,with all8 draws retained. These controls do not identify task geometry or a biological mechanism.
+The prospective nontransport alternative is descriptively weakened on the selected subdomain. Joint availability/cohort selection and training uncertainty are unaccounted for; no calibrated post-selection coverage,original188 audit pass,winner,absence,equivalence or whole-cerebellum claim.
+Independent released-report review found full coverage and no consequential claim-language defect. This achieves the next-result milestone under the adopted exploratory question; stable measurement/nonspecific personalization and the original mechanism question remain unresolved. No successor analysis is activated; shared B14/private reliability stay closed.
+
+## 2026-10-21 Pacific — observed_map_audit_common_support — complete followup adopted
+
+Scientist explicitly adopted the full common-valid-location exploratory plan; recorded at2026-10-22T01:04:44UTC before any new mask or score. Policy now activates the separate route.
+Keep all12 audit people,18 B-only conditions,four partitions,16 variants and every baseline/control/draw; reuse the original188-trained frozen predictions without refitting, rebuilding or retuning.
+Scan every required B regressor through the unchanged strict sampler; freeze the complete jointly valid mask and observations before losses; restrict then recenter all arrays identically. Fewer than2locations stops without another support search.
+Report all participant mean gains and exploratory Bonferroni-t formula intervals; positive gains descriptively weaken nontransport on this selected subdomain, negative gains weaken positive mean benefit; zero-spanning intervals are inconclusive. No original-audit pass,winner,mechanism,absence,equivalence or calibrated post-selection claim.
+Preserve the failed188 endpoint and prior access; record renewed B access with same-account procedural separation. Shared B14/private reliability remain closed; no new dataset.
+Select one1CPU/7GiB/4h job with6GiB application RSS and128MiB durable cap,90s cleanup reserve,one numerical thread; prior complete prediction/partial evaluation took31m17s. Reuse all17 passing checks from48682434.0; no scientific code behavior changed.
+Wrapper outputs/tools/run_observed_map_common_support.sbatch reuses existing predictions and manifests; changed ASTRA validation runs within the substantive allocation and is nonblocking. Root coordinator submits once and records job ID; no job or empirical result is implied by this adoption.
+Submitted48901119 once after verifying no existing EP15 job; at01:18:31UTC October22 it is PENDING. The1CPU/7GiB/4h request preserves the complete adopted route; submission is not a result.
+
 ## 2026-10-20 — observed_map_audit — inactive common-support implementation
 
 Prepare the still-unadopted outputs/paper_plan.md followup with an explicit separate policy gate before prediction or audit readers. Existing policy, original188 endpoint, inputs, frozen predictions and failed audit/access history stay unchanged; no empirical mask or score is constructed.

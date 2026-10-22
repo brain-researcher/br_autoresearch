@@ -1,14 +1,46 @@
 # EP15 paper plan: location of a shared code or different task geometry?
 
+## Completed exploratory result — October 21, 2026
+
+The adopted comparison below is complete for all 12 audit people, 18 conditions,
+four partitions, 16 variants and every control on 180/188 jointly available
+locations. The complete mask froze before scoring the unchanged predictions.
+All 16 mean M0b-minus-model gains are positive (0.03380–0.05521 MSE units);
+13 exploratory formula intervals lie above zero, and three M1 intervals span
+zero. This descriptively weakens the prospectively named nontransport account
+on this availability-conditioned subdomain and completes the focus goal's next
+result for this adopted question. It is not completion of the original
+188-location evaluation or the biological-mechanism question.
+
+The fixed-reference gains and 12-participant exploratory intervals appear in
+[current navigation](README.md); [all models and controls](runs/observed_map_audit/common_support001/evaluation/report/observed_map_common_support.complete.json),
+[figure](runs/observed_map_audit/common_support001/evaluation/figures/observed_map_common_support.png)
+and [three lines](runs/observed_map_audit/common_support001/evaluation/report/3lines.md)
+are released. Donor-control mean losses are higher for all variants, but
+condition-permutation contrasts are mixed and random local bases outperform
+genuine M3 descriptively by0.00295064 MSE. Stable person-specific measurement
+structure and nonspecific personalization therefore remain credible alternatives;
+the positive prediction contrasts do not establish task geometry or mechanism.
+
+Joint mask/cohort selection and training uncertainty are not covered by the
+interval formula. Preserve prior/renewed B-access disclosure, procedural
+same-account separation and the original complete-support stop. No original
+audit pass, winner, calibrated post-selection coverage, absence, equivalence
+or whole-cerebellum claim is made. No successor analysis or further protected
+data access is selected by this result; shared B14/private reliability stay closed.
+
 ## Proposed daily decision — October 19, 2026
 
-**Proposal only; no new mask construction, scoring or audit access is activated.**
+**Adopted October 21, 2026 Pacific.** The scientist explicitly adopted this
+complete exploratory comparison; the historical heading/anchor is retained as
+the policy specification identifier. The separate common-support policy
+amendment now authorizes the complete mask scan and fixed-predictor evaluation.
 The complete 188-location audit stopped after a required source NaN was
 independently verified. The [diagnostic](runs/observed_map_audit/support_diagnostic001/diagnostic.json)
 concerns one member and does not identify the final common finite subset.
 The original endpoint and mechanism question remain unresolved.
 
-Proposed question: do the already-frozen predictors improve observed-map
+Adopted question: do the already-frozen predictors improve observed-map
 prediction over M0b on the spatial subdomain jointly measurable in this audit
 cohort? This is a new availability-conditioned estimand. It can describe
 transport on that subdomain; it cannot estimate the original 188-location
@@ -17,7 +49,7 @@ endpoint or distinguish biology from stable measurement differences.
 1. Keep all 12 audit participants, 18 B-only conditions, four partitions,
    16 variants, M0a/M0b and every original control/draw. Reuse the exact saved
    188-trained predictions; do not refit, rebuild spatial models or retune.
-2. After explicit adoption, construct one mask from the original 188 locations:
+2. Construct one mask from the original 188 locations:
    intersect valid finite values from the unchanged strict positive-weight
    sampler over every required selected B regressor for every audit person.
    Use no beta magnitude, sign, variance, loss or model identity for selection.
@@ -49,29 +81,27 @@ cohort selection. B has already been accessed, so this is an exploratory
 follow-up, not another untouched held-out test. No absence, reliable-signal,
 isometry/locality, mechanism or whole-cerebellum claim is licensed.
 
-**One question for the next daily batch:** adopt this complete common-availability
-fixed-predictor comparison with exploratory inference, or retain the current
-scientific stop? Recommendation: adopt only if the narrower spatial question is
-useful; its answer cannot replace the original complete-support endpoint.
-Scientific approval is needed because the primary spatial estimand and claims
-change. Engineering/resource authority is already standing; no provider contact
-or new dataset is required. No new outcome has selected this proposal beyond
-the disclosed missing-value diagnostic. The existing valid stop is preserved.
+**Decision recorded October 21 Pacific:** the scientist adopted the complete
+common-availability fixed-predictor comparison with exploratory inference.
+This supplies the required spatial-estimand and claim authority; no provider
+contact or new dataset is required. No new outcome selected this followup
+beyond the disclosed missing-value diagnostic. The original complete-support
+stop is preserved and cannot be replaced by this narrower result.
 
-### Inactive implementation — October20
+### Implementation prepared October20; activated October21
 
 The separate [runner](tools/run_observed_map_common_support.py),
 [scanner](tools/observed_map_common_support.py) and
-[reporter](tools/report_observed_map_common_support.py) implement the proposal
-behind the absent `scientist_amendment_20261020_observed_map_common_support`
-policy amendment. They reuse the original188-trained frozen predictions and
+[reporter](tools/report_observed_map_common_support.py) implement the adopted plan
+behind `scientist_amendment_20261020_observed_map_common_support`.
+They reuse the original188-trained frozen predictions and
 complete B-only manifest; the full strict-availability scan and cached
 observations freeze before scoring. A later report-only retry reuses that
 freeze without reopening B. All17 new/affected invented-data tests passed in
 step48682434.0; see [evidence](runs/observed_map_common_support_checks001/tests.txt).
-This preparation neither adopts the proposal nor constructs an empirical mask.
+The unchanged implementation is reused; adoption itself constructs no mask.
 
-### Relevant prior methods — checked October20, proposal still unadopted
+### Relevant prior methods — checked October20 before adoption
 
 The [original MDTB paper](https://web.cs.dal.ca/~carlosh/pubs/king2019.pdf)
 uses a cerebellar analysis mask. Its published repository contains a
@@ -92,8 +122,8 @@ valid count is not the final common support. No mask or new score was computed.
 This recovered section and its scope statements are historical. The later
 October 12 support/observed-map amendments and October 19 audit adoption in
 GOAL.md and SEARCH_POLICY.yaml govern their respective routes; current
-execution evidence is linked from outputs/README.md. The proposal above
-changes no current authority.
+execution evidence is linked from outputs/README.md. The October21 adoption
+above governs the separate common-support followup.
 
 This file was observed at zero bytes after the October 7 Oak transport failure.
 Its historical paper strategy below is recovered from the exact Git HEAD blob

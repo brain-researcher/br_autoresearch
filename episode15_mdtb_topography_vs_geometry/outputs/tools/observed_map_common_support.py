@@ -1,8 +1,7 @@
-"""INACTIVE proposed audit followup: complete strict-sampler availability only.
+"""Adopted audit followup: complete strict-sampler availability only.
 
-The actual policy currently has no adoption for this changed spatial estimand.
-This code does not add one. Every entry that can inspect audit inputs requires
-that separate amendment; the older full188 audit adoption is insufficient.
+Every entry that can inspect audit inputs requires the separate amendment for
+this changed spatial estimand; the older full188 audit adoption is insufficient.
 """
 from collections.abc import Mapping
 from contextlib import ExitStack

@@ -1,5 +1,31 @@
 # Why do people have different cerebellar task maps?
 
+## Adopted common-valid-location exploratory evaluation — October 21, 2026
+
+The scientist adopted the complete [common-support followup](outputs/paper_plan.md#proposed-daily-decision--october-19-2026).
+Reuse the original frozen predictions, all 12 audit participants, 18 B-only
+conditions, four partitions, 16 variants and every baseline/control/draw.
+Intersect strict finite sampler availability over every required selected audit
+B regressor, freeze that complete mask and observations before losses, then
+restrict and recenter every observation and predictor on the same support.
+No model refitting, geometry rebuilding, retuning or selective exclusions occur.
+Fewer than two surviving locations stops the followup without another mask.
+
+This new spatial estimand asks whether fixed predictors improve observed-map
+prediction over M0b on the jointly measurable audit subdomain. Positive mean
+gains descriptively weaken nontransport there; negative gains weaken positive
+mean benefit. Report all 16 gains and controls with explicitly exploratory
+12-participant Bonferroni-t formula intervals; zero-spanning intervals remain
+inconclusive. Joint availability/cohort selection and training uncertainty are
+not accounted for, so no calibrated post-selection coverage is claimed.
+
+Preserve the failed original 188-location endpoint and disclose prior and
+renewed Task-B access and same-account procedural separation. No original-audit
+pass, winner, mechanism, absence, equivalence or whole-cerebellum claim follows.
+Shared B14 and private reliability remain closed. This scoped adoption overrides
+older support/access/inference language only for this followup; its policy key
+is `scientist_amendment_20261020_observed_map_common_support`.
+
 ## Adopted observed-map held-out evaluation — October 19, 2026
 
 The scientist adopted the complete [observed-map audit specification](outputs/proposed_observed_map_audit.md)

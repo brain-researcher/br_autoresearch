@@ -1,5 +1,40 @@
 # EP15 outputs
 
+**October 21, 18:20 Pacific — complete exploratory common-support result released.**
+All 12 audit participants, 18 B-only conditions, four partitions, 16 variants
+and every control completed on **180/188 jointly valid locations**. The full
+availability mask froze before losses; the original frozen predictions were
+reused without refitting. All 16 mean gains over M0b are positive
+(0.03380–0.05521 observed MSE units); 13 exploratory formula intervals lie
+above zero, while three M1 intervals span zero.
+
+| Fixed reference | Mean M0b-minus-model gain | Exploratory participant interval |
+| --- | ---: | --- |
+| M1 probabilistic parcels | 0.0408812 | [−0.0146118, 0.0963741] |
+| M2 diffeomorphism | 0.0529947 | [0.0167048, 0.0892846] |
+| M3 local isometry | 0.0480562 | [0.0101067, 0.0860058] |
+| M4 anisotropic stretch | 0.0516247 | [0.0157053, 0.0875441] |
+
+These are 12-participant Bonferroni-t formula intervals, explicitly exploratory:
+joint availability/cohort selection and training uncertainty are unaccounted
+for. They do not provide calibrated post-selection coverage or an audit pass.
+Donor-control mean losses exceed genuine predictions for every variant, but
+condition-permutation contrasts have mixed signs; the random local-basis
+control has **0.00295064 lower mean loss** than genuine M3. Thus the result
+descriptively weakens nontransport on this measured subdomain; stable
+measurement structure and nonspecific personalization remain viable.
+
+[Figure](runs/observed_map_audit/common_support001/evaluation/figures/observed_map_common_support.png) ·
+[Three-line summary](runs/observed_map_audit/common_support001/evaluation/report/3lines.md) ·
+[Complete numeric report](runs/observed_map_audit/common_support001/evaluation/report/observed_map_common_support.complete.json) ·
+[Execution and compute](experiment_log.md).
+This completes EP15's next-result milestone under the [adopted exploratory question](paper_plan.md#proposed-daily-decision--october-19-2026),
+not the original mechanism question or failed complete188 endpoint. Prior and
+renewed B access and same-account procedural separation are disclosed; no
+winner, mechanism, absence, equivalence or whole-cerebellum claim is made.
+Shared B14 and private reliability remain closed. Earlier pending/execution
+statements below are historical.
+
 **October 20 — common-support implementation tested, still inactive.**
 The [separate runner](tools/run_observed_map_common_support.py),
 [complete scanner](tools/observed_map_common_support.py) and

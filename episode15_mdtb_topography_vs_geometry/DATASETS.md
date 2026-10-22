@@ -1,5 +1,23 @@
 # EP15 data: MDTB Task A, Task B, and participant roles
 
+## Adopted common-valid audit support — October 21, 2026
+
+The scientist adopted the [complete exploratory common-support followup](outputs/paper_plan.md#proposed-daily-decision--october-19-2026).
+The same 12 audit people, 18 B-only conditions, four partitions, all 16 variants
+and every control remain. Reuse existing role-filtered containers and the
+original188-trained frozen predictions; do not recalibrate or refit.
+Renewed B access may construct one complete strict-sampler availability
+intersection over every required selected regressor and freeze it before any
+loss. No beta magnitude, sign, variance or score selects locations.
+
+Only this availability-conditioned spatial target is scored, after restricting
+and recentering observations and predictions identically. Fewer than two
+locations stops without an alternative support search. Shared B14 and private
+reliability stay closed. Preserve the original failed complete188 evaluation;
+prior/renewed access and same-account procedural separation are disclosed.
+The result is exploratory, with no untouched audit, original188 pass, winner,
+mechanism or whole-cerebellum claim. No dataset or data agreement is added.
+
 ## Adopted audit data roles — October 19, 2026
 
 The scientist adopted the complete [observed-map evaluation](outputs/proposed_observed_map_audit.md).

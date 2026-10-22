@@ -1,6 +1,43 @@
 policy_id: ep15_mdtb_topography_vs_geometry
 episode_id: ep15
-evidence_mode: observed_map_development_and_adopted_audit_original_mechanism_unresolved
+evidence_mode: observed_map_development_and_adopted_common_support_exploratory_audit_original_mechanism_unresolved
+
+scientist_amendment_20261020_observed_map_common_support:
+  status: adopted
+  adopted_at_utc: '2026-10-22T01:04:44+00:00'
+  authority: >-
+    Scientist explicitly adopted the complete common-valid-location exploratory
+    followup on October 21 Pacific, retaining all participants, conditions,
+    variants and controls and the already frozen predictions.
+  specification: outputs/paper_plan.md#proposed-daily-decision--october-19-2026
+  route_id: observed_map_audit_common_support_exploratory
+  precedence: >-
+    For this separate followup only, replaces the original fixed188 spatial
+    estimand and confirmatory interpretation with the complete jointly valid
+    availability-conditioned spatial target and exploratory uncertainty.
+    The original failed complete188 evaluation and its access history remain.
+  panel: all_12_original_audit_people_18_B_only_conditions_four_partitions_16_variants_M0a_M0b_and_every_original_control_draw
+  predictions: reuse_exact_original188_trained_frozen_predictions_no_refitting_rebuilding_or_retuning
+  support:
+    source: original_188_prediction_locations
+    rule: strict_positive_weight_stencil_valid_and_finite_in_every_required_selected_B_regressor_for_every_audit_person
+    freeze: complete_intersection_and_observations_before_any_predictive_loss
+    forbidden_selection: beta_magnitude_sign_variance_loss_model_identity_or_only_the_four_previously_failed_locations
+    minimum_locations: 2
+    insufficient_support: scientific_stop_no_gains_or_intervals_no_alternative_mask_search
+  scoring: restrict_then_spatially_recenter_all_observations_predictions_baselines_and_controls_on_the_same_mask_with_equal_location_weights
+  preserved_averaging: all_original_domain_condition_partition_participant_and_control_draw_rules
+  uncertainty: exploratory_Bonferroni_participant_t_formula_12_units_df11_no_calibrated_postselection_or_simultaneous_coverage_claim
+  confirmatory_decision: none
+  interpretation: >-
+    Positive mean gain descriptively weakens nontransport on this selected
+    subdomain; negative mean gain weakens positive mean benefit there. An
+    interval crossing zero is inconclusive, not equivalence. Joint mask and
+    cohort selection and training uncertainty are not covered by the formula.
+  prohibited_claims: [original188_audit_pass, winner, absence, equivalence, reliable_signal, biological_mechanism, whole_cerebellum, untouched_heldout_confirmation]
+  still_closed: [shared_14_Task_B_conditions, private_reliability]
+  access: renewed_audit_B_access_recorded_and_prior_access_disclosed_same_account_procedural_separation
+  no_new_dataset_or_provider_contact: true
 
 scientist_amendment_20261016_observed_map_audit:
   status: adopted

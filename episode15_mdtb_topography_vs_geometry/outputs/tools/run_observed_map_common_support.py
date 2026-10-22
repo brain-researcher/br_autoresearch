@@ -1,4 +1,4 @@
-"""INACTIVE EP15 followup; no run is permitted without its separate adoption.
+"""Adopted EP15 followup; every run requires its separate policy amendment.
 
 Reuses the existing prediction freeze and original B-only role manifest. The
 complete strict-availability scan is frozen with its observations before any

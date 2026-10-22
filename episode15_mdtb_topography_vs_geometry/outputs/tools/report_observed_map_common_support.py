@@ -1,4 +1,4 @@
-"""Inactive exploratory reporting for a separately adopted common-support route."""
+"""Exploratory reporting for the separately adopted common-support route."""
 import json
 from pathlib import Path
 

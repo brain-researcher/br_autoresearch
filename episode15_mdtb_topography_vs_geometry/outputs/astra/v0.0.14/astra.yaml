@@ -1126,9 +1126,8 @@ analyses:
       and frozen 188-location support; distinguishes transport of observed
       predictive benefit, not biology from stable measurement structure.
       Same-account procedural separation; the original mechanism audit is consumed.
-      The separately implemented common-support followup remains inactive and
-      requires its own spatial-estimand amendment before readers or scoring;
-      it cannot substitute for this complete188-location endpoint.
+      The separately adopted common-support followup is a distinct exploratory
+      spatial target and cannot substitute for this complete188-location endpoint.
     inputs:
     - {id: policy, from: ../search_policy}
     - {id: specification, type: data, source: outputs/proposed_observed_map_audit.md}
@@ -1139,10 +1138,6 @@ analyses:
     - {id: runner, type: data, source: outputs/tools/run_observed_map_audit.py}
     - {id: reporter, type: data, source: outputs/tools/report_observed_map_audit.py}
     - {id: support_diagnostic_code, type: data, source: outputs/tools/diagnose_observed_map_audit_support.py}
-    - {id: inactive_common_support_proposal, type: data, source: outputs/paper_plan.md}
-    - {id: inactive_common_support_scanner, type: data, source: outputs/tools/observed_map_common_support.py}
-    - {id: inactive_common_support_runner, type: data, source: outputs/tools/run_observed_map_common_support.py}
-    - {id: inactive_common_support_reporter, type: data, source: outputs/tools/report_observed_map_common_support.py}
     outputs:
     - id: observed_map_audit_result
       type: report
@@ -1201,6 +1196,71 @@ analyses:
           opening and is disclosed; same-account separation is procedural.
           The primary gain/interval report remains unproduced. A different
           spatial target requires a separate scientist decision.
+  observed_map_audit_common_support:
+    name: Exploratory fixed-predictor transport on jointly valid audit locations
+    description: >-
+      Scientist-adopted complete availability-conditioned comparison of the
+      original frozen predictors; no refitting or new untouched audit.
+      Positive gains weaken nontransport on this selected spatial target;
+      negative gains weaken positive mean benefit, while zero-spanning
+      intervals are inconclusive. Joint mask/cohort selection and training
+      uncertainty are not accounted for; no original188 pass, winner or mechanism.
+    inputs:
+    - {id: policy, from: ../search_policy}
+    - {id: specification, type: data, source: outputs/paper_plan.md}
+    - {id: original_stop, from: ../observed_map_audit.required_support_diagnostic}
+    - {id: predictions, type: data, source: outputs/runs/observed_map_audit/predictions}
+    - {id: evaluation_manifest, type: data, source: outputs/runs/observed_map_audit/manifests001/view/evaluation_manifest.json}
+    - {id: scanner, type: data, source: outputs/tools/observed_map_common_support.py}
+    - {id: runner, type: data, source: outputs/tools/run_observed_map_common_support.py}
+    - {id: reporter, type: data, source: outputs/tools/report_observed_map_common_support.py}
+    outputs:
+    - id: common_support_result
+      type: report
+      format: directory
+      inputs: [policy, specification, original_stop, predictions, evaluation_manifest, scanner, runner, reporter]
+      description: >-
+        Complete strict-availability intersection over every required B regressor
+        for all12 audit people freezes before loss. Retain18 conditions,four
+        partitions,16 variants and every baseline/control/draw; restrict then
+        recenter all observations and frozen predictions on identical support.
+        Fewer than two locations yields a scientific stop, not another mask.
+        Report all16 participant mean gains and exploratory Bonferroni-t formula
+        intervals, full numeric results, PNG/PDF and three lines under
+        outputs/runs/observed_map_audit/common_support001/evaluation.
+        Prior and renewed B access and same-account procedural separation are
+        disclosed; shared B14/private reliability stay closed. Original188
+        failure/predictions are preserved; no calibrated post-selection coverage.
+      recipe:
+        command: sbatch outputs/tools/run_observed_map_common_support.sbatch
+        resources: {cpus: 1, memory: 7Gi, time_limit: 4h}
+    findings:
+      exploratory_common_support_predictive_transport:
+        id: exploratory_common_support_predictive_transport
+        claim: >-
+          The complete adopted exploratory comparison retains all12 audit people,
+          18 conditions,four partitions,16 variants and all controls on180/188
+          jointly valid locations. All16 mean M0b-minus-model gains are positive
+          (0.0338019 to0.0552056 MSE);13 exploratory participant formula intervals
+          lie above zero and three M1 intervals span zero. This descriptively
+          weakens nontransport on this selected spatial target and completes
+          this adopted next-result analysis, not the original188 evaluation or
+          biological-mechanism question.
+        created_at: '2026-10-22T01:20:13Z'
+        evidence:
+        - {id: complete_common_support_report, artifact: common_support_result}
+        derived: true
+        notes: >-
+          Donor-control mean losses exceed genuine predictions for all variants,
+          but condition-permutation contrasts are mixed and random local-basis
+          control minus genuine M3 is-0.00295064. Stable measurement structure
+          and nonspecific personalization remain viable. Joint availability/
+          cohort selection and training uncertainty are unaccounted for; no
+          calibrated post-selection coverage,originalaudit pass,winner,mechanism,
+          absence,equivalence or whole-cerebellum claim. Predictions preceded
+          original B access; the new complete support froze before scoring.
+          Prior/renewed access and same-account procedural separation are
+          disclosed; shared B14 and private reliability stay closed.
   development_search:
     name: Full grouped M1-M4 development and native falsifiers
     description: >-
