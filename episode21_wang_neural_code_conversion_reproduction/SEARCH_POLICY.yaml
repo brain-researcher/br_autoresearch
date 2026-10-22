@@ -2,7 +2,7 @@ schema_version: ep21.search_policy.v1
 policy_id: ep21_wang_laion_fmri_fixed_reproduction
 episode_id: ep21
 recorded_on: "2026-09-28"
-last_decision_update: "2026-10-20"
+last_decision_update: "2026-10-21"
 evidence_mode: fixed_adapted_retrospective_reproduction
 
 authority:
@@ -10,7 +10,7 @@ authority:
   pending_original_draw_clock_extension: outputs/runs/finding_a_feature_decoding/amended_full001/pending_draw_extension001.json
   pending_original_draw_clock_extension_scope: original47586235_indices40_through61_verified_held_unstarted_same_IDs_paths_options_and_all63_finalization
   pending_original_draw_clock_extension_resources: {cpus: 3, memory_gib: 16, hours: 48, deadline_seconds: 171000, numeric_threads: 1, maximum_additional_CPU_hours: 1584}
-  pending_original_draw_clock_extension_live_profiles: unchanged_private_caller_only_scheduler_total_at_most16
+  pending_original_draw_clock_extension_live_profiles: unchanged_private_caller_only_captured16_superseded_by_logged_scheduler32
   failed_draw_repair_authority: standing_scientist_engineering_and_compute_authority_2026_10_20
   failed_draw_repair_selection: outputs/runs/finding_a_feature_decoding/amended_full001/draw_retries/attempt001/selection.json
   failed_draw_repair_indices: [0, 1, 62]
@@ -18,7 +18,7 @@ authority:
   second_failed_draw_repair_indices: [8, 9, 10, 11, 12, 13, 14, 15]
   second_failed_draw_repair_resources: {cpus_each: 3, memory_gib_each: 16, hours_each: 48, numeric_threads: 1, maximum_additional_CPU_hours: 1152}
   failed_draw_repair_resources: {cpus_each: 3, memory_gib_each: 16, hours_each: 48, numeric_threads: 1, maximum_additional_CPU_hours: 432}
-  failed_draw_repair_concurrency: original10_plus_two_retry_arrays_at3_each_after_three_original_children_observed_live_post_throttle_change_close_total_at_most16
+  failed_draw_repair_concurrency: original19_plus_retry002_5_plus_retry003_7_plus_retry004_1_total_at_most32
   failed_draw_repair_finalizer: explicit_replacement_map_all63_successful_closed_required_no_fallback
   failed_draw_repair_scope: original_decode_scientific_options_draw_indices_and_canonical_artifacts_unchanged
   failed_draw_repair_historical_clocks_and_no_retry_clauses: superseded_only_for_this_logged_engineering_repair_consumed_costs_preserved
@@ -54,9 +54,10 @@ authority:
   complete_amended_finding_a_readout_scope: five_owners_224images_19layers_45streams_855decoded_0unavailable_20fresh_constant_brain_20original_content_5within
   complete_amended_finding_a_readout_model_policy: exact_constant_brain_comparator_all20_fresh_fits
   complete_amended_finding_a_readout_decode: {tasks: 1, cpus: 3, memory_gib: 16, minutes: 4320, deadline_seconds: 255600, rss_limit_bytes: 16106127360}
-  # October 19 standing-authority scheduler override; captured live JSON stays at eight.
-  complete_amended_finding_a_readout_draw: {tasks: 63, maximum_concurrent_tasks: 16, cpus: 3, memory_gib: 16, minutes: 1440, deadline_seconds: 84600, rss_limit_bytes: 16106127360}
-  complete_amended_finding_a_readout_concurrency_override: outputs/experiment_log.md#2026-10-19--finding_a_feature_decoding--scheduler-only-concurrency-override-to-sixteen
+  # October21 effective shared concurrency; captured live JSON stays at eight.
+  # The original draw clock below is historical; pending40–61 and retries use their scoped48h selections.
+  complete_amended_finding_a_readout_draw: {tasks: 63, maximum_concurrent_tasks: 32, cpus: 3, memory_gib: 16, minutes: 1440, deadline_seconds: 84600, rss_limit_bytes: 16106127360}
+  complete_amended_finding_a_readout_concurrency_override: outputs/experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--measured-scheduler-only-concurrency-increase-to32
   complete_amended_finding_a_readout_captured_profile_concurrency: 8
   complete_amended_finding_a_readout_captured_profile_role: historical_execution_identity_not_effective_scheduler_limit_do_not_mutate_live_JSON
   complete_amended_finding_a_readout_finalize: {tasks: 1, cpus: 1, memory_gib: 7, minutes: 120, deadline_seconds: 6900, rss_limit_bytes: 6979321856}

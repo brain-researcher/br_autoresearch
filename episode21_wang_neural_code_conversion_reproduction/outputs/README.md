@@ -1,5 +1,16 @@
 # Outputs
 
+**October21 — measured scheduler-only expansion to32 workers.**
+With10/63 batches complete,16 live and37 queued, completed batch durations
+of19h39m–24h34m motivate more parallel work. Scheduler verification confirms
+throttles19/5/7/1 across original/retry002/retry003/retry004, at most96CPUs/512GiB.
+This supersedes earlier16-worker planning limits while preserving live JSON,
+all job IDs, scientific calculations, per-task limits and sole finalizer.
+No new jobs or repeat tests. At04:20UTC October22,18 workers are running,
+including two newly started repair children; the32 ceiling is not yet occupied.
+Throughput under the expanded concurrency remains unmeasured.
+[Measurements, selection and execution](experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--measured-scheduler-only-concurrency-increase-to32).
+
 **October21 — extend unstarted batches before repeating the diagnosed timeout.**
 Original children40–61 were verified held and unstarted, then their existing
 jobs received48h limits and were released. Their private caller changes only

@@ -1,5 +1,16 @@
 # Experiment log
 
+## 2026-10-21 Pacific — finding_a_feature_decoding — measured scheduler-only concurrency increase to32
+
+At04:11UTC October22 ten effective batches are complete (19h39m–24h34m);53 remain, with16 RUNNING and37 queued under array/dependency limits. No new original failure or retry completion is observed.
+Five live batch-step samples show approximately0.65–0.74CPU-seconds per wall second, near16GiB recorded memory and0.295–2.038TB logical-read counters; these are not physical-I/O or scaling measurements. Long task durations and the queued backlog motivate a finite concurrency increase.
+Standing resource authority selects total32 workers: original47586235 throttle19, retry00248681394 throttle5, retry00348899908 throttle7 and retry00448904747 throttle1. Max simultaneous resources96CPUs/512GiB; per-task clocks/resources and cumulative reservations do not change.
+Only scheduler throttles change. Captured profile/selection JSON remains untouched, including its historical concurrency16/8/3 metadata; this logged effective ceiling supersedes those resource limits without altering scientific scope or active identity.
+Preserve all63 distinct batches, original/replacement maps, sole finalizer47716676, dependencies,1000draws and numerical calculations. No new job, payload access, cancellation, duplicate or test rerun is selected.
+Compare later completions/resource observations before any further expansion; shared-storage contention may prevent proportional speedup. One coordinator continues to own scheduler checks.
+Independent source review confirms no runtime check compares effective throttle with captured concurrency metadata. At04:16:43UTC all three scheduler updates returned0 and individual records verify19/5/7/1; selected originals/retries are pending without user holds and finalizer dependencies remain intact.
+At04:20:49UTC18 workers areRUNNING:10 original,4 retry002 and4 retry003. Newly started48681394_15/48899908_19 have48h limits and operational startup records; all22 extended original children still await scheduling. The32 ceiling is not yet fully occupied; finalizer remains dependent and complete-result delivery is pending.
+
 ## 2026-10-21 Pacific — finding_a_feature_decoding — extend only unstarted original draw clocks
 
 Completed retry0 needed24h34m, exceeding the original23.5h application limit; repeated original124 exits establish a concrete need to extend pending clocks before execution.

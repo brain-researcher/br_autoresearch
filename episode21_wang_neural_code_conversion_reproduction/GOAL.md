@@ -1,5 +1,13 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
+**October21 measured concurrency extension.** The effective shared ceiling is
+now32 workers: original array19, retry002 five, retry003 seven and retry004 one,
+at most96CPUs/512GiB. This scheduler-only standing-authority decision supersedes
+earlier16-worker planning clauses, including captured JSON metadata, without
+editing those live profiles. All job identities, per-task limits, scientific
+inputs,63-batch requirements and finalizer dependencies remain unchanged. See
+the [measurement and decision](outputs/experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--measured-scheduler-only-concurrency-increase-to32).
+
 **October21 pending-only clock extension.** Original draw children40–61 were
 verified held, PENDING and zero elapsed before extending their existing jobs to
 48h with a171000s application deadline. A separately selected private caller
