@@ -1,5 +1,30 @@
 # Outputs
 
+**October 21 — metadata-read failure repaired without changing the evaluation.**
+Original37 stopped with JSONDecodeError one second after an in-place dependency
+file edit; that transient read is the leading cause, though the report lacks
+the exact failing file. Seven focused/affected checks passed in48505771.1.
+Fresh37-only retry48904747 preserves the actual exit1 diagnosis, original
+outputs and all63-batch requirements. Dependency records are now published by
+atomic replacement. Original throttle9 plus retries3/3/1 preserve16 workers;
+the new retry waits for original29, verified live after the throttle change.
+The sole finalizer includes all four explicit replacements; no scientific
+score or complete interval has been opened by this repair.
+[Diagnosis and current execution record](experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--live-dependency-publication-failure).
+
+**October 21 — ten batches complete; twelve further timeouts have a bound repair.**
+Original2–7/27 and all three first retries are complete, totaling10/63 batches.
+Original16–26/28 closed at the23.5h application limit. Their isolated retry
+array48899908 retains the same inputs, calculations and canonical outputs,
+with3CPU/16GiB/48h per child. Three focused tests passed in step48505771.0.
+The first retry has finished; original throttle10 plus second/third retry
+throttles3 retain the16-worker ceiling. The sole finalizer47716676 now waits
+for original-array closure and both remaining retry arrays, while validating
+all63 effective closed-successful results, including the completed first retry.
+Submission and release are recorded; no complete scientific estimate is claimed.
+[Current repair record](experiment_log.md#2026-10-21--finding_a_feature_decoding--third-failure-only-draw-repair).
+Earlier queue snapshots below are historical.
+
 **October 20, 14:32 Pacific — eight more original timeouts have bound retries.**
 Original8–15 closed at their23.5h application limit; all eight failed records
 remain. Their new array48681394 selects only those indices,3CPU/16GiB/48h

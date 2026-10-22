@@ -1,5 +1,29 @@
 # Experiment log
 
+## 2026-10-21 Pacific — finding_a_feature_decoding — live dependency publication failure
+
+Original37/job48505770 closed FAILED1 after4h49m14s; operational report records JSONDecodeError in execute_phase, no published artifact and readers_closed=false. This is not a numerical or scientific result and cannot support partial reuse.
+dependency_bindings.json was rewritten in place at01:08:47UTC October22; the failed report is timestamped01:08:48. AmendedBudget rereads that JSON every second. A transient partial read during the coordinator edit is the leading cause; the report does not retain a traceback proving the exact file.
+All subsequent live JSON updates must publish a complete same-directory temporary file with flush/fsync and atomic replacement. Existing decoded data, completed batches and active worker profiles remain unchanged.
+Select a fresh37-only attempt004 with the same complete batch and48h/3CPU/16GiB limits,144additional allocatedCPUh, only after focused validation of the explicit closed1:0/JSONDecodeError replacement path. Do not relabel its exit as124, relax other failure guards, reuse partials or open scientific values.
+Preserve the16-worker ceiling by waiting for a verified current worker slot before releasing this extra retry; retain one finalizer and all63 effective closed-successful requirements.
+Step48505771.1 onsh02-06n02 passed all7 new/affected checks in0.449s (2.02s process wall,24896KiB peakRSS), plus wrapper syntax, exit0; attended step exited. Evidence runs/software_integration/draw_retry004/. Select original throttle9 and retry004 throttle1, with afterany on a still-live original child verified after the throttle change.
+Submitted48904747 held. At01:42UTC October22 original29 remainsRUNNING after throttle9; atomically published attempt004 and finalizer maps, then set retry afterany47586235_29 and added finalizer afterok48904747. Both releases returned0; already-satisfied first-retry success remains in the result map. No live worker was stopped.
+At01:51:59UTC scheduler confirms retry004 PENDING(Dependency), throttle1/48h, and finalizer PENDING on original closure plus remaining three retry arrays; neither is user-held. Sixteen existing workers remain live; retry004 cannot add a seventeenth.
+
+## 2026-10-21 — finding_a_feature_decoding — third failure-only draw repair
+
+Original16–26 and28 are FAILED124:0 at23h29m; all twelve operational records show admission0, phase/batch124 and closed. Their canonical JSON outputs are absent; preserved original27 completed in19h47m.
+At22:55UTC, original29–38 are RUNNING and39–61 await throttle10; retry002 has three running and five pending. Retry001 has no live children and its last child000 records closed exit0; verify scheduler success before activating the new selection.
+Select an isolated attempt003 for exactly16–26,28 using the tested draw adapter, unchanged scientific inputs/calculations/canonical paths, and3CPU/16GiB/48h per child. Reserve1728additional allocatedCPUh; preserve prior consumption and all63 required batches.
+Reuse existing validation; run only focused gapped-array identity and three-attempt finalizer-join checks plus wrapper syntax in an attended1CPU/512MiB/10min step of task-owned draw48505771, one numerical thread and120s command limit. No scientific values are opened.
+After PASS, submit attempt003 held, bind its actual ID and verify prior retry001 terminal success. Original throttle10, retry002 throttle3 and new throttle3 then bound concurrency at16 without cancelling a live worker.
+Hold the sole pending finalizer while extending its explicit replacement map/dependencies; preserve original-array closure and all63 effective closed-successful artifacts. Release only after file bindings and scheduler dependencies agree.
+Step48505771.0 onsh02-06n02 passed all3 focused checks in0.265s (1.47s process wall,24800KiB peakRSS) and wrapper syntax, exit0; the attended step exited. Evidence: runs/software_integration/draw_retry003/. At23:31UTC all three retry001 children are COMPLETED0:0; filtered reports for those and original27 confirm published artifacts and closed readers, bringing valid completed batches to10/63.
+Submitted48899908 held, bound and activated attempt003, and extended the explicit finalizer map. At01:08UTC October22 both new array and finalizer were confirmed held; dependency update/release returned0. Finalizer retains afterany47586235 and afterok48681394/48899908; already-satisfied48670343 remains in its validated result map. Post-release status verification follows.
+October21 Pacific allocation through23:31:44UTC:745.450CPUh,0GPUh for this chain, intersecting parent-only original/retry elapsed intervals with Pacific midnight and counting no steps twice; subsequent work is outside this accounting cutoff.
+At01:17UTC October22 attempt003 children16/17/18 are RUNNING, nine await throttle3, and the sole finalizer is PENDING on the verified original/remaining-retry dependencies. Total EP21 concurrency is16. Original37's distinct exit1 is diagnosed in the next entry.
+
 ## 2026-10-20 — finding_a_feature_decoding — second failure-only draw repair
 
 Original8–15 are now FAILED124:0 after23h29m46–50s; all eight preserved batch statuses show admission0, timeout84572–84578s, phase/batch124 and closed. No scientific score is opened. Original2–7 remain complete; first retries0/1/62 and thirteen original workers16–28 are running.

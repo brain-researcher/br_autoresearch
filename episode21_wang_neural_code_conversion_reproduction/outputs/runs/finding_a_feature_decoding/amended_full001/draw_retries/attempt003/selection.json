@@ -1,0 +1,97 @@
+{
+  "authorized": true,
+  "attempt": "attempt003",
+  "batch_indices": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    28
+  ],
+  "array_job_id": "48899908",
+  "original_decode_job_id": "47586225",
+  "original_array_job_id": "47586235",
+  "approval_source": "Standing scientist engineering and compute authority; October21 third failure-only draw repair in experiment_log.md",
+  "failed_original_children": {
+    "16": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_16"
+    },
+    "17": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_17"
+    },
+    "18": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_18"
+    },
+    "19": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_19"
+    },
+    "20": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_20"
+    },
+    "21": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_21"
+    },
+    "22": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_22"
+    },
+    "23": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_23"
+    },
+    "24": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_24"
+    },
+    "25": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_25"
+    },
+    "26": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_26"
+    },
+    "28": {
+      "state": "FAILED",
+      "exit_code": "124:0",
+      "array_child": "47586235_28"
+    }
+  },
+  "resources_each": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 2880,
+    "deadline_seconds": 171000,
+    "numeric_threads": 1
+  },
+  "maximum_additional_allocated_CPU_hours": 1728,
+  "submission_dependency": null,
+  "concurrency": "Original throttle10 plus retry002 throttle3 plus retry003 throttle3; retry001 confirmed terminal success before activation",
+  "scheduler_observed_utc": "2026-10-21T23:31:44Z",
+  "scientific_scope": "Original63 batches, schedules, decoded inputs and canonical artifacts unchanged; no new decode, training or outcome access",
+  "historical_consumption": "All original failed and completed jobs and prior retry records preserved"
+}

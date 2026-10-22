@@ -167,6 +167,36 @@ def _bindings(stage, allocation):
     return selected
 
 
+def _metadata_read_failure(root, attempt, index, failure):
+    """Admit only the separately diagnosed batch-37 metadata-read failure.
+
+    A JSON decoding error does not establish which file was read. Preserve its
+    actual exit code and operational uncertainty; never relabel it a timeout.
+    Fresh retry publication separately requires absent canonical output paths.
+    """
+    _require(attempt == "attempt004" and type(index) is int and index == 37
+        and failure.get("state") == "FAILED" and failure.get("exit_code") == "1:0"
+        and failure.get("error_type") == "JSONDecodeError"
+        and _job_id(failure.get("original_job_id")),
+        "specific_batch37_metadata_failure_selection_required")
+    directory = root / "draws" / "batch_037"
+    report = json.loads(_text(directory / "report.json"))
+    _require(report.get("phase") == "draw" and type(report.get("batch_index")) is int
+        and report["batch_index"] == 37 and report.get("status") == "incomplete"
+        and report.get("model_policy") == MODEL_POLICY
+        and report.get("error_type") == "JSONDecodeError"
+        and report.get("failed_stage") == "execute_phase"
+        and "artifacts_published" in report and report["artifacts_published"] is None
+        and "published_paths" in report and report["published_paths"] is None
+        and report.get("readers_closed") is False and report.get("resumable") is False
+        and report.get("allocation_identity", {}).get("job_id") == failure["original_job_id"],
+        "preserved_batch37_JSONDecodeError_report_required")
+    _require(_status(directory / "batch_status.txt", ("phase_exit", "batch_exit", "status"))
+        == {"phase_exit": ["1"], "batch_exit": ["1"], "status": ["closed"]},
+        "closed_batch37_exit1_required")
+    return True
+
+
 def _retry_selections(stage, decode, draw):
     """Explicit finalizer-only replacement map; never choose a latest attempt."""
     attempts = json.loads(_text(stage.root / "draw_retry_bindings.json"))["attempts"]
@@ -191,7 +221,10 @@ def _retry_selections(stage, decode, draw):
         failed = value.get("failed_original_children", {})
         _require(set(failed) == {str(i) for i in batches}
             and all(failed[str(i)].get("state") == "FAILED"
-                and failed[str(i)].get("exit_code") in ("124:0", "2:0") for i in batches),
+                and (failed[str(i)].get("exit_code") in ("124:0", "2:0")
+                    or (failed[str(i)].get("exit_code") == "1:0"
+                        and _metadata_read_failure(stage.root, attempt, i, failed[str(i)])))
+                for i in batches),
             "diagnosed_failed_original_batches_required")
         selected[attempt] = value
         indices.update(batches); arrays.add(array)

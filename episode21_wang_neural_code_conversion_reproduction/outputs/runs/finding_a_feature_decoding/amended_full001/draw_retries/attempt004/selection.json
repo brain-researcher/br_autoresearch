@@ -1,0 +1,33 @@
+{
+  "authorized": true,
+  "attempt": "attempt004",
+  "batch_indices": [
+    37
+  ],
+  "array_job_id": "48904747",
+  "original_decode_job_id": "47586225",
+  "original_array_job_id": "47586235",
+  "approval_source": "Standing scientist engineering authority; October21 live dependency publication failure log",
+  "failed_original_children": {
+    "37": {
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "error_type": "JSONDecodeError",
+      "original_job_id": "48505770"
+    }
+  },
+  "resources_each": {
+    "cpus": 3,
+    "memory_gib": 16,
+    "minutes": 2880,
+    "deadline_seconds": 171000,
+    "numeric_threads": 1
+  },
+  "maximum_additional_allocated_CPU_hours": 144,
+  "concurrency": "Original throttle9 plus retry002/003 throttle3 each plus retry004 throttle1; release only after a verified post-update live original child finishes",
+  "scientific_scope": "Fresh recomputation of unchanged complete batch37, same original decode and canonical artifact; no partial reuse",
+  "diagnostic_limit": "Transient incomplete dependency-file read is the leading cause; original report does not identify the exact file",
+  "historical_consumption": "Original exit1 and all previous jobs retained",
+  "submission_dependency": "afterany:47586235_29",
+  "scheduler_observed_utc": "2026-10-22T01:42:22Z"
+}

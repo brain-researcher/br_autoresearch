@@ -26,6 +26,11 @@ SELECTION = RETRY_ROOT / "selection.json"
 INDICES = (0, 1, 62)
 
 
+def failure_exit_code(index):
+    """Original retry diagnoses; a private adapter may bind a narrower repair."""
+    return "2" if index == 62 else "124"
+
+
 def selection():
     value = json.loads(caller._text(SELECTION))
     caller._require(value.get("authorized") is True
@@ -44,7 +49,7 @@ def selection():
     failures = value.get("failed_original_children", {})
     caller._require(set(failures) == {str(i) for i in INDICES}
         and all(failures[str(i)].get("state") == "FAILED"
-            and failures[str(i)].get("exit_code") == ("2:0" if i == 62 else "124:0")
+            and failures[str(i)].get("exit_code") == failure_exit_code(i) + ":0"
             for i in INDICES), "diagnosed_original_failures_required")
     return value
 
@@ -92,7 +97,7 @@ def completed(selected_stage, binding):
     original_completed(selected_stage, binding)
     # A retry can replace only an explicitly failed original execution.
     failed = ROOT / "draws" / f"batch_{selected_stage.batch_index:03d}" / "batch_status.txt"
-    expected = "2" if selected_stage.batch_index == 62 else "124"
+    expected = failure_exit_code(selected_stage.batch_index)
     records = caller._status(failed, ("batch_exit", "status"))
     caller._require(records == {"batch_exit": [expected], "status": ["closed"]},
         "preserved_closed_failed_original_required")
