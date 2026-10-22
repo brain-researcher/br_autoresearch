@@ -6,6 +6,7 @@ set -euo pipefail
 [[ $# -eq 1 ]] || exit 2
 ep21_amended_phase=$1
 ep21_amended_args=(--phase "$ep21_amended_phase")
+ep21_amended_entry_name=run_amended_full_readout.py
 case "$ep21_amended_phase" in
   decode)
     ep21_amended_cpus=3; ep21_amended_mem=16384; ep21_amended_seconds=255600
@@ -23,6 +24,13 @@ case "$ep21_amended_phase" in
       && "${SLURM_ARRAY_TASK_MAX:-}" == 62 \
       && "${SLURM_ARRAY_TASK_STEP:-}" == 1 ]] || exit 2
     (( SLURM_ARRAY_TASK_ID <= 62 )) || exit 2
+    # Only these originally unstarted, held children receive the separately
+    # selected clock extension. Existing workers already loaded their wrapper.
+    if [[ "$SLURM_ARRAY_JOB_ID" == 47586235 ]] \
+        && (( SLURM_ARRAY_TASK_ID >= 40 && SLURM_ARRAY_TASK_ID <= 61 )); then
+      ep21_amended_seconds=171000; ep21_amended_hours=144
+      ep21_amended_entry_name=run_amended_pending_draw_extension.py
+    fi
     printf -v ep21_amended_index '%03d' "$SLURM_ARRAY_TASK_ID"
     ep21_amended_relative="draws/batch_$ep21_amended_index"
     ep21_amended_scratch="ep21_amended_full001_draw_$ep21_amended_index"
@@ -117,7 +125,7 @@ export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 CUDA_VISIBLE_DEVICES=''
 export TMPDIR="$L_SCRATCH_JOB/$ep21_amended_scratch"
 mkdir "$TMPDIR"
 export XDG_CACHE_HOME="$TMPDIR/cache" TORCH_HOME="$TMPDIR/torch"
-ep21_amended_entry="$ep21_amended_base/outputs/converter_training/tools/run_amended_full_readout.py"
+ep21_amended_entry="$ep21_amended_base/outputs/converter_training/tools/$ep21_amended_entry_name"
 ep21_amended_rc=0
 ep21_amended_timeout=$(ep21_amended_limit 60)
 if timeout --signal=TERM --kill-after=5s "${ep21_amended_timeout}s" python3.12 -B \

@@ -1,5 +1,13 @@
 # Can neural codes be converted across people and imaging sites without shared stimuli?
 
+**October21 pending-only clock extension.** Original draw children40–61 were
+verified held, PENDING and zero elapsed before extending their existing jobs to
+48h with a171000s application deadline. A separately selected private caller
+changes only their clock resources; original job IDs, scientific options, paths,
+all63-batch finalization and the16-worker ceiling remain. Live workers and the
+captured original authorization JSON are unchanged. See the
+[measured extension](outputs/experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--extend-only-unstarted-original-draw-clocks).
+
 **October21 standing-authority execution repair.** Diagnosed original failures
 0/1/62,8–15,16–26/28 and37 receive four separately bound3CPU/16GiB/48h retry selections,
 retaining the successful decode, batch indices, scientific inputs, calculations

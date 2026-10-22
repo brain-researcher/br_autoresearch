@@ -1,5 +1,13 @@
 # Outputs
 
+**October21 — extend unstarted batches before repeating the diagnosed timeout.**
+Original children40–61 were verified held and unstarted, then their existing
+jobs received48h limits and were released. Their private caller changes only
+clock resources; live workers, scientific options and all63-batch requirements
+remain unchanged. Three focused checks and shell syntax passed in48505771.2.
+No duplicate or new array was submitted; the total16-worker ceiling remains.
+[Extension, validation and release](experiment_log.md#2026-10-21-pacific--finding_a_feature_decoding--extend-only-unstarted-original-draw-clocks).
+
 **October 21 — metadata-read failure repaired without changing the evaluation.**
 Original37 stopped with JSONDecodeError one second after an in-place dependency
 file edit; that transient read is the leading cause, though the report lacks

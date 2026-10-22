@@ -1,5 +1,18 @@
 # Experiment log
 
+## 2026-10-21 Pacific — finding_a_feature_decoding — extend only unstarted original draw clocks
+
+Completed retry0 needed24h34m, exceeding the original23.5h application limit; repeated original124 exits establish a concrete need to extend pending clocks before execution.
+Select only original array47586235 indices40–61, subject to verified PENDING/zero elapsed after a temporary hold. Keep their IDs, original directories, canonical artifacts, decode and all scientific inputs/options unchanged.
+Use a separately selected private caller with48h/171000s clocks and an atomic launch-time shell dispatch; never modify the live original authorization JSON, running workers or finalizer science.
+Validate only the new selection/admission and original-path/finalizer compatibility in one bounded attended task-owned compute step before changing or releasing the held jobs.
+At most22 children gain72allocatedCPUh reservation each (1584additional maximum); prior consumption remains counted and the total16-worker scheduler ceiling stays unchanged.
+The next result remains the complete63-batch Finding A evaluation with its existing uncertainty, figure and three-line summary; this is execution repair, not a partial scientific result.
+Step48505771.2 onsh02-06n02 passed all3 focused methods in0.164s (0.88s process wall,24372KiB peakRSS), plus wrapper syntax, exit0; the attended step exited. Evidence: runs/software_integration/pending_draw_extension001/.
+At03:52UTC October22 all22 children were verified heldPENDING/zero elapsed; no operational claims or canonical artifacts existed. Selection and wrapper were published atomically, then only these jobs received48h limits.
+The pre-release scheduler verification found all22 still heldPENDING/zero elapsed with48h limits; release returned0. No new job, cancellation, altered live profile or finalizer dependency was introduced. Post-release scheduler verification follows.
+At04:02UTC October22 all22 are releasedPENDING at the array throttle with48h limits;16 existing workers remainRUNNING and finalizer47716676 remainsPENDING(Dependency). No user hold or new failure is observed in the live chain.
+
 ## 2026-10-21 Pacific — finding_a_feature_decoding — live dependency publication failure
 
 Original37/job48505770 closed FAILED1 after4h49m14s; operational report records JSONDecodeError in execute_phase, no published artifact and readers_closed=false. This is not a numerical or scientific result and cannot support partial reuse.
